@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="28" fill="#ffffff" font-size="16" font-family="sans-serif" text-anchor="middle" font-weight="bold">しっぺ返し戦略 — Tit-for-Tat の仕組み</text>
+  <!-- Strategy rules box -->
+  <rect x="40" y="50" width="350" height="200" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="215" y="78" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">TFT の4原則</text>
+  <text x="80" y="108" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">1. 協調から始める</text>
+  <text x="80" y="128" fill="#aaaaaa" font-size="10" font-family="sans-serif">最初の手は必ず「協力」を選ぶ</text>
+  <text x="80" y="158" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">2. 即座に報復</text>
+  <text x="80" y="178" fill="#aaaaaa" font-size="10" font-family="sans-serif">相手が裏切ったら次の手で裏切り返す</text>
+  <text x="80" y="208" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">3. 即座に許す</text>
+  <text x="80" y="228" fill="#aaaaaa" font-size="10" font-family="sans-serif">相手が協力に戻ったら即座に協力再開</text>
+  <!-- Timeline sequence -->
+  <rect x="430" y="50" width="330" height="200" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="595" y="78" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">ゲームの流れ</text>
+  <!-- Round headers -->
+  <text x="480" y="102" fill="#aaaaaa" font-size="10" font-family="sans-serif">ラウンド</text>
+  <text x="555" y="102" fill="#f9a825" font-size="10" font-family="sans-serif">A（TFT）</text>
+  <text x="640" y="102" fill="#e91e63" font-size="10" font-family="sans-serif">B（相手）</text>
+  <!-- rows -->
+  <text x="480" y="122" fill="#aaaaaa" font-size="10" font-family="sans-serif">R1</text>
+  <text x="555" y="122" fill="#f9a825" font-size="10" font-family="sans-serif">協力</text>
+  <text x="640" y="122" fill="#f9a825" font-size="10" font-family="sans-serif">協力</text>
+  <text x="480" y="142" fill="#aaaaaa" font-size="10" font-family="sans-serif">R2</text>
+  <text x="555" y="142" fill="#f9a825" font-size="10" font-family="sans-serif">協力</text>
+  <text x="640" y="142" fill="#e91e63" font-size="10" font-family="sans-serif">裏切り</text>
+  <text x="480" y="162" fill="#aaaaaa" font-size="10" font-family="sans-serif">R3</text>
+  <text x="555" y="162" fill="#e91e63" font-size="10" font-family="sans-serif">裏切り</text>
+  <text x="640" y="162" fill="#aaaaaa" font-size="10" font-family="sans-serif">（様子見）</text>
+  <text x="480" y="182" fill="#aaaaaa" font-size="10" font-family="sans-serif">R4</text>
+  <text x="555" y="182" fill="#f9a825" font-size="10" font-family="sans-serif">協力</text>
+  <text x="640" y="182" fill="#f9a825" font-size="10" font-family="sans-serif">協力</text>
+  <text x="480" y="202" fill="#aaaaaa" font-size="10" font-family="sans-serif">R5+</text>
+  <text x="555" y="202" fill="#f9a825" font-size="10" font-family="sans-serif">協力</text>
+  <text x="640" y="202" fill="#f9a825" font-size="10" font-family="sans-serif">協力</text>
+  <text x="595" y="232" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">→ 協力関係が安定</text>
+  <!-- Result box -->
+  <rect x="40" y="275" width="720" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="298" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">Axelrodの実験（1980）で最高スコア</text>
+  <text x="400" y="320" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">200戦略をトーナメント対戦 → TFTが優勝。シンプルさが強さの理由</text>
+</svg>

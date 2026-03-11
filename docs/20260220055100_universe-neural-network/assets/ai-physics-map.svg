@@ -1,0 +1,46 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">AIが物理学を変革する：実例マップ</text>
+  <!-- Columns -->
+  <text x="200" y="56" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#e91e63" font-weight="bold">AIツール</text>
+  <text x="600" y="56" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4ec9b0" font-weight="bold">物理学への貢献</text>
+  <!-- Row 1 -->
+  <rect x="40" y="66" width="310" height="46" rx="5" fill="#200010"/>
+  <text x="195" y="90" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#e91e63" font-weight="bold">AlphaFold (DeepMind)</text>
+  <text x="195" y="106" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">タンパク質構造予測NN</text>
+  <line x1="353" y1="89" x2="447" y2="89" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="440,83 452,89 440,95" fill="#f9a825"/>
+  <rect x="450" y="66" width="310" height="46" rx="5" fill="#003020"/>
+  <text x="605" y="90" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4ec9b0" font-weight="bold">50年来の難題を解決</text>
+  <text x="605" y="106" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">タンパク質折り畳み問題</text>
+  <!-- Row 2 -->
+  <rect x="40" y="122" width="310" height="46" rx="5" fill="#200010"/>
+  <text x="195" y="146" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#e91e63" font-weight="bold">PINN (物理情報NN)</text>
+  <text x="195" y="162" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">物理法則を制約に組み込む</text>
+  <line x1="353" y1="145" x2="447" y2="145" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="440,139 452,145 440,151" fill="#f9a825"/>
+  <rect x="450" y="122" width="310" height="46" rx="5" fill="#003020"/>
+  <text x="605" y="146" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4ec9b0" font-weight="bold">偏微分方程式の高速求解</text>
+  <text x="605" y="162" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">流体力学・量子シミュレーション</text>
+  <!-- Row 3 -->
+  <rect x="40" y="178" width="310" height="46" rx="5" fill="#200010"/>
+  <text x="195" y="202" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#e91e63" font-weight="bold">LIGO-ML (重力波検出)</text>
+  <text x="195" y="218" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">信号分類NN</text>
+  <line x1="353" y1="201" x2="447" y2="201" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="440,195 452,201 440,207" fill="#f9a825"/>
+  <rect x="450" y="178" width="310" height="46" rx="5" fill="#003020"/>
+  <text x="605" y="202" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4ec9b0" font-weight="bold">リアルタイム重力波検出</text>
+  <text x="605" y="218" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">精度と速度が飛躍的向上</text>
+  <!-- Row 4 -->
+  <rect x="40" y="234" width="310" height="46" rx="5" fill="#200010"/>
+  <text x="195" y="258" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#e91e63" font-weight="bold">格子QCD-ML</text>
+  <text x="195" y="274" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">量子色力学シミュレーション</text>
+  <line x1="353" y1="257" x2="447" y2="257" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="440,251 452,257 440,263" fill="#f9a825"/>
+  <rect x="450" y="234" width="310" height="46" rx="5" fill="#003020"/>
+  <text x="605" y="258" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4ec9b0" font-weight="bold">計算を数万倍高速化</text>
+  <text x="605" y="274" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">素粒子物理の実用化</text>
+  <!-- Bottom -->
+  <rect x="40" y="296" width="720" height="42" rx="6" fill="#16213e"/>
+  <text x="400" y="322" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#f9a825" font-weight="bold">AIと物理学は双方向に概念・技術を交換し続けている</text>
+</svg>

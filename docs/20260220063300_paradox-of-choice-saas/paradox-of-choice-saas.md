@@ -219,10 +219,10 @@ style: |
 <!-- _class: lead -->
 # まとめ
 
+- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="240" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">選択のパラドックス × SaaS まとめ</text><rect x="30" y="50" width="340" height="70" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="76" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">逆説: 機能追加 → 満足度低下</text><text x="200" y="96" text-anchor="middle" fill="#cccccc" font-size="10">ジャム実験・Pendo調査で実証済み</text><rect x="430" y="50" width="340" height="70" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="600" y="76" text-anchor="middle" fill="#4caf50" font-size="12" font-weight="bold">勝ちパターン: 引き算設計</text><text x="600" y="96" text-anchor="middle" fill="#cccccc" font-size="10">Basecamp・Linear: 制限が「売り」</text><rect x="30" y="145" width="340" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="171" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">プランは3択が最適</text><text x="200" y="191" text-anchor="middle" fill="#cccccc" font-size="10">おとり効果 + 決定疲れ防止</text><rect x="430" y="145" width="340" height="70" rx="6" fill="#16213e" stroke="#2196f3" stroke-width="2"/><text x="600" y="171" text-anchor="middle" fill="#2196f3" font-size="12" font-weight="bold">段階的開示が鍵</text><text x="600" y="191" text-anchor="middle" fill="#cccccc" font-size="10">初心者→上級者で機能を開放</text></svg>
 - 選択のパラドックスは**SaaS製品設計の最大の落とし穴**の一つ
 - 機能を増やすほど満足度が下がる ― 直感に反するが実証済み
 - Basecamp、Linearのように「制限」を価値にする設計が勝つ時代
-- プランは3択、機能は段階的開示、デフォルトには意見を持つ
 - **「全てを提供する」より「最善を提供する」方が難しく、価値がある**
 
 

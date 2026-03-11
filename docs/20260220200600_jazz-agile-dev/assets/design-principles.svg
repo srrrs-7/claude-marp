@@ -1,0 +1,46 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">即興的開発の設計原則 — ジャズからの教え</text>
+  <!-- 6 principles in 2 rows x 3 cols -->
+  <!-- Row 1 -->
+  <rect x="20" y="50" width="240" height="140" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="140" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">モジュール性</text>
+  <text x="140" y="100" text-anchor="middle" font-size="11" fill="#ffffff">各奏者が独立した</text>
+  <text x="140" y="118" text-anchor="middle" font-size="11" fill="#ffffff">パートを持つように</text>
+  <text x="140" y="145" text-anchor="middle" font-size="10" fill="#4caf50">→ マイクロサービス</text>
+  <text x="140" y="163" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">変更が他を壊さない設計</text>
+  <rect x="280" y="50" width="240" height="140" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="400" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">明示的なインターフェース</text>
+  <text x="400" y="100" text-anchor="middle" font-size="11" fill="#ffffff">コード進行という</text>
+  <text x="400" y="118" text-anchor="middle" font-size="11" fill="#ffffff">「共通言語」のように</text>
+  <text x="400" y="145" text-anchor="middle" font-size="10" fill="#4caf50">→ API契約の明確化</text>
+  <text x="400" y="163" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">チームが合意できる境界</text>
+  <rect x="540" y="50" width="240" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="660" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">観察と適応</text>
+  <text x="660" y="100" text-anchor="middle" font-size="11" fill="#ffffff">演奏中に仲間を</text>
+  <text x="660" y="118" text-anchor="middle" font-size="11" fill="#ffffff">聴きながら変える</text>
+  <text x="660" y="145" text-anchor="middle" font-size="10" fill="#f9a825">→ 継続的フィードバック</text>
+  <text x="660" y="163" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">モニタリング・振り返り</text>
+  <!-- Row 2 -->
+  <rect x="20" y="210" width="240" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="140" y="238" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">最小限の計画</text>
+  <text x="140" y="260" text-anchor="middle" font-size="11" fill="#ffffff">リードシートだけで</text>
+  <text x="140" y="278" text-anchor="middle" font-size="11" fill="#ffffff">演奏を始める</text>
+  <text x="140" y="305" text-anchor="middle" font-size="10" fill="#f9a825">→ スプリント目標</text>
+  <text x="140" y="323" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">詳細は「演奏」しながら決める</text>
+  <rect x="280" y="210" width="240" height="140" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="238" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">失敗の包含</text>
+  <text x="400" y="260" text-anchor="middle" font-size="11" fill="#ffffff">外した音も</text>
+  <text x="400" y="278" text-anchor="middle" font-size="11" fill="#ffffff">次の音で活かす</text>
+  <text x="400" y="305" text-anchor="middle" font-size="10" fill="#e91e63">→ 失敗を前提とした設計</text>
+  <text x="400" y="323" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">Circuit Breaker・Graceful Degradation</text>
+  <rect x="540" y="210" width="240" height="140" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="660" y="238" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">リズムの維持</text>
+  <text x="660" y="260" text-anchor="middle" font-size="11" fill="#ffffff">テンポを乱さず</text>
+  <text x="660" y="278" text-anchor="middle" font-size="11" fill="#ffffff">演奏し続ける</text>
+  <text x="660" y="305" text-anchor="middle" font-size="10" fill="#e91e63">→ 継続的デリバリー</text>
+  <text x="660" y="323" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">リリースを止めない文化</text>
+  <!-- Bottom -->
+  <text x="400" y="370" text-anchor="middle" font-size="12" fill="#f9a825">これらは「ジャズ的」と「アジャイル的」の両方に当てはまる</text>
+  <text x="400" y="388" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.6">異なる分野の「知恵」が互いを強化する — 類比は学習の鍵</text>
+</svg>

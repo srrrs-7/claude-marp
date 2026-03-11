@@ -107,6 +107,7 @@ style: |
 
 # 数字で見るPokemon GOのインパクト
 
+![w:900 center](assets/pokemon-go-impact.svg)
 - **2016年7月リリース** ― 初月で最もDLされたアプリの世界記録
 - 累計DL数：**7.5億以上**（2023年時点）
 - 累計収益：**60億ドル以上**
@@ -169,6 +170,7 @@ style: |
 
 # 歩行データが示す変化
 
+![w:900 center](assets/walkability-data.svg)
 - **Microsoft Research（2017）の分析結果：**
 - Pokemon GOプレイヤーの1日あたり歩行数：**+1,473歩**
 - 効果の持続期間：約30日後に減衰（ただし完全にはゼロに戻らない）
@@ -187,6 +189,7 @@ style: |
 
 # 地域経済への波及効果
 
+![w:900 center](assets/economic-impact.svg)
 - **スポンサードPokeStop** ― マクドナルド・スターバックスが参加
 - PokeStop近くの小売店：**売上+25-50%**（複数調査の報告）
 - 地方自治体のコラボイベント ― 鳥取砂丘・横須賀・熊本
@@ -211,6 +214,8 @@ style: |
 
 <!-- _class: lead -->
 # 都市計画への示唆
+
+![w:900 center](assets/urban-planning-lessons.svg)
 
 
 ---
@@ -242,6 +247,8 @@ style: |
 
 <!-- _class: lead -->
 # AR時代の公共空間デザイン
+
+![w:900 center](assets/ar-future-design.svg)
 
 
 ---

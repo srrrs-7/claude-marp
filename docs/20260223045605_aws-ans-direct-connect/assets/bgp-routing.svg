@@ -1,0 +1,54 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">BGP トラフィックエンジニアリング</text>
+  <!-- On-Prem -->
+  <rect x="30" y="80" width="140" height="240" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="100" y="108" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">オンプレ</text>
+  <rect x="45" y="120" width="110" height="35" rx="4" fill="#0d3b66"/>
+  <text x="100" y="142" text-anchor="middle" fill="#ffffff" font-size="11">Router (AS 65000)</text>
+  <text x="100" y="185" text-anchor="middle" fill="#aaaaaa" font-size="10">DX1: Primary</text>
+  <text x="100" y="202" text-anchor="middle" fill="#aaaaaa" font-size="10">Community 7224:7300</text>
+  <text x="100" y="240" text-anchor="middle" fill="#aaaaaa" font-size="10">DX2: Backup</text>
+  <text x="100" y="257" text-anchor="middle" fill="#aaaaaa" font-size="10">Community 7224:7100</text>
+  <text x="100" y="297" text-anchor="middle" fill="#aaaaaa" font-size="10">AS Path Prepend x3</text>
+  <!-- DX1 arrow (往路) -->
+  <line x1="170" y1="155" x2="320" y2="155" stroke="#4caf50" stroke-width="2.5"/>
+  <polygon points="320,150 332,155 320,160" fill="#4caf50"/>
+  <text x="245" y="143" text-anchor="middle" fill="#4caf50" font-size="10">往路: Local Pref 300</text>
+  <!-- DX2 arrow (往路) -->
+  <line x1="170" y1="255" x2="320" y2="255" stroke="#ff8a65" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <polygon points="320,250 332,255 320,260" fill="#ff8a65"/>
+  <text x="245" y="243" text-anchor="middle" fill="#ff8a65" font-size="10">往路: Local Pref 100</text>
+  <!-- AWS box -->
+  <rect x="332" y="60" width="160" height="280" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="412" y="88" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">AWS</text>
+  <rect x="350" y="100" width="124" height="35" rx="4" fill="#0d3b66"/>
+  <text x="412" y="122" text-anchor="middle" fill="#ffffff" font-size="11">DX Router (7224)</text>
+  <text x="412" y="165" text-anchor="middle" fill="#4caf50" font-size="10">DX1 BGP Session</text>
+  <text x="412" y="183" text-anchor="middle" fill="#aaaaaa" font-size="10">LP: 300 (優先)</text>
+  <text x="412" y="230" text-anchor="middle" fill="#ff8a65" font-size="10">DX2 BGP Session</text>
+  <text x="412" y="248" text-anchor="middle" fill="#aaaaaa" font-size="10">LP: 100 (バックアップ)</text>
+  <rect x="350" y="270" width="124" height="35" rx="4" fill="#0d3b66"/>
+  <text x="412" y="292" text-anchor="middle" fill="#ffffff" font-size="11">VPC / TGW</text>
+  <!--復路 arrow -->
+  <line x1="332" y1="155" x2="240" y2="155" stroke="#4caf50" stroke-width="2.5"/>
+  <polygon points="240,150 228,155 240,160" fill="#4caf50"/>
+  <text x="285" y="127" text-anchor="middle" fill="#4caf50" font-size="10">復路: AS Path short</text>
+  <line x1="332" y1="255" x2="240" y2="255" stroke="#ff8a65" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <polygon points="240,250 228,255 240,260" fill="#ff8a65"/>
+  <text x="285" y="275" text-anchor="middle" fill="#ff8a65" font-size="10">復路: AS Path long</text>
+  <!-- Legend -->
+  <rect x="530" y="80" width="240" height="220" rx="8" fill="#16213e" stroke="#555" stroke-width="1"/>
+  <text x="650" y="105" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold">制御手段</text>
+  <line x1="548" y1="125" x2="590" y2="125" stroke="#4caf50" stroke-width="2"/>
+  <text x="600" y="129" fill="#4caf50" font-size="11">往路: BGP Community</text>
+  <text x="548" y="148" fill="#aaaaaa" font-size="10">7224:7300 → LP 300 (最高優先)</text>
+  <text x="548" y="163" fill="#aaaaaa" font-size="10">7224:7200 → LP 200 (中)</text>
+  <text x="548" y="178" fill="#aaaaaa" font-size="10">7224:7100 → LP 100 (最低)</text>
+  <line x1="548" y1="198" x2="590" y2="198" stroke="#ff8a65" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="600" y="202" fill="#ff8a65" font-size="11">復路: AS Path Prepend</text>
+  <text x="548" y="222" fill="#aaaaaa" font-size="10">Backup側でAS番号を繰り返す</text>
+  <text x="548" y="237" fill="#aaaaaa" font-size="10">例: 65000 65000 65000</text>
+  <text x="548" y="260" fill="#f9a825" font-size="10" font-weight="bold">BFD: 300ms 以内で障害検出</text>
+  <text x="548" y="278" fill="#aaaaaa" font-size="10">Hold Timer 90s より高速</text>
+</svg>

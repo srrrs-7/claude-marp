@@ -1,0 +1,37 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">偶然を「設計」する — 組織と個人の戦略</text>
+  <!-- Left: Individual strategies -->
+  <rect x="30" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="205" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#f9a825">個人の戦略</text>
+  <rect x="50" y="88" width="310" height="52" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1" opacity="0.8"/>
+  <text x="205" y="108" text-anchor="middle" font-size="12" fill="#f9a825">幅広い知識の習得</text>
+  <text x="205" y="128" text-anchor="middle" font-size="11" fill="#ffffff">複数分野の知識が「接続」を生む</text>
+  <rect x="50" y="150" width="310" height="52" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1" opacity="0.8"/>
+  <text x="205" y="170" text-anchor="middle" font-size="12" fill="#f9a825">観察力のトレーニング</text>
+  <text x="205" y="190" text-anchor="middle" font-size="11" fill="#ffffff">日常の「なぜ？」を見流さない習慣</text>
+  <rect x="50" y="212" width="310" height="52" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1" opacity="0.8"/>
+  <text x="205" y="232" text-anchor="middle" font-size="12" fill="#f9a825">多様なコミュニティへの参加</text>
+  <text x="205" y="252" text-anchor="middle" font-size="11" fill="#ffffff">異分野との接触が偶然を増やす</text>
+  <rect x="50" y="274" width="310" height="52" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1" opacity="0.8"/>
+  <text x="205" y="294" text-anchor="middle" font-size="12" fill="#f9a825">記録する習慣</text>
+  <text x="205" y="314" text-anchor="middle" font-size="11" fill="#ffffff">「失敗」「偶然の観察」をノートに残す</text>
+  <!-- Right: Organizational strategies -->
+  <rect x="420" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="595" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#4caf50">組織の戦略</text>
+  <rect x="440" y="88" width="310" height="52" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1" opacity="0.8"/>
+  <text x="595" y="108" text-anchor="middle" font-size="12" fill="#4caf50">20%ルール（Google・3M）</text>
+  <text x="595" y="128" text-anchor="middle" font-size="11" fill="#ffffff">自由探索時間が偶発的発見を生む</text>
+  <rect x="440" y="150" width="310" height="52" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1" opacity="0.8"/>
+  <text x="595" y="170" text-anchor="middle" font-size="12" fill="#4caf50">多様な人材の配置</text>
+  <text x="595" y="190" text-anchor="middle" font-size="11" fill="#ffffff">異分野の専門家が協働する場を作る</text>
+  <rect x="440" y="212" width="310" height="52" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1" opacity="0.8"/>
+  <text x="595" y="232" text-anchor="middle" font-size="12" fill="#4caf50">失敗の共有文化</text>
+  <text x="595" y="252" text-anchor="middle" font-size="11" fill="#ffffff">「使えなかった発明」を共有データベース化</text>
+  <rect x="440" y="274" width="310" height="52" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1" opacity="0.8"/>
+  <text x="595" y="294" text-anchor="middle" font-size="12" fill="#4caf50">偶発的な交流の場の設計</text>
+  <text x="595" y="314" text-anchor="middle" font-size="11" fill="#ffffff">廊下・カフェテリアが発見を生む</text>
+  <!-- Bottom insight -->
+  <text x="400" y="368" text-anchor="middle" font-size="13" fill="#f9a825">偶然は「準備」×「機会」×「認識」の掛け算</text>
+  <text x="400" y="387" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.6">全てをゼロにしたら何も起きない — どれか一つでも最大化できる</text>
+</svg>

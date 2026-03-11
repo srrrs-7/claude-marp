@@ -1,0 +1,51 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">TGW ルートテーブル セグメンテーション</text>
+  <!-- TGW center -->
+  <rect x="320" y="155" width="160" height="90" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Transit Gateway</text>
+  <text x="400" y="202" text-anchor="middle" fill="#aaaaaa" font-size="10">ルートテーブル A: Dev</text>
+  <text x="400" y="218" text-anchor="middle" fill="#aaaaaa" font-size="10">ルートテーブル B: Prod</text>
+  <text x="400" y="234" text-anchor="middle" fill="#aaaaaa" font-size="10">ルートテーブル C: Shared</text>
+  <!-- On-prem left -->
+  <rect x="30" y="175" width="120" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="90" y="198" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">オンプレ</text>
+  <text x="90" y="215" text-anchor="middle" fill="#aaaaaa" font-size="9">DX + DXGW</text>
+  <line x1="150" y1="200" x2="320" y2="200" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="318,195 330,200 318,205" fill="#f9a825"/>
+  <text x="235" y="188" text-anchor="middle" fill="#f9a825" font-size="9">Transit VIF</text>
+  <!-- Dev VPC top-left -->
+  <rect x="30" y="60" width="120" height="45" rx="6" fill="#16213e" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="90" y="80" text-anchor="middle" fill="#64b5f6" font-size="11" font-weight="bold">Dev VPC</text>
+  <text x="90" y="97" text-anchor="middle" fill="#aaaaaa" font-size="9">10.1.0.0/16</text>
+  <line x1="150" y1="82" x2="320" y2="165" stroke="#64b5f6" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="318,162 326,168 316,171" fill="#64b5f6"/>
+  <!-- Prod VPC bottom-left -->
+  <rect x="30" y="295" width="120" height="45" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="90" y="315" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">Prod VPC</text>
+  <text x="90" y="332" text-anchor="middle" fill="#aaaaaa" font-size="9">10.2.0.0/16</text>
+  <line x1="150" y1="318" x2="320" y2="235" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="318,232 326,238 316,241" fill="#e91e63"/>
+  <!-- Shared VPC right -->
+  <rect x="520" y="60" width="120" height="45" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="580" y="80" text-anchor="middle" fill="#4caf50" font-size="11" font-weight="bold">Shared VPC</text>
+  <text x="580" y="97" text-anchor="middle" fill="#aaaaaa" font-size="9">DNS/Monitoring</text>
+  <line x1="520" y1="82" x2="480" y2="165" stroke="#4caf50" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="482,162 474,168 484,171" fill="#4caf50"/>
+  <!-- Security VPC right-bottom -->
+  <rect x="520" y="295" width="120" height="45" rx="6" fill="#16213e" stroke="#ff9800" stroke-width="1.5"/>
+  <text x="580" y="315" text-anchor="middle" fill="#ff9800" font-size="11" font-weight="bold">Security VPC</text>
+  <text x="580" y="332" text-anchor="middle" fill="#aaaaaa" font-size="9">Network Firewall</text>
+  <line x1="520" y1="318" x2="480" y2="235" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="482,232 474,238 484,241" fill="#ff9800"/>
+  <!-- Blocked Dev-Prod -->
+  <line x1="150" y1="82" x2="150" y2="318" stroke="#ff5252" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="20" y="205" fill="#ff5252" font-size="9" text-anchor="middle" writing-mode="vertical-lr" transform="rotate(-90, 20, 205)">Dev↔Prod 通信禁止</text>
+  <!-- Legend -->
+  <rect x="660" y="150" width="130" height="100" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/>
+  <text x="725" y="172" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">ポリシー</text>
+  <text x="675" y="192" fill="#64b5f6" font-size="9">● Dev → Shared: 許可</text>
+  <text x="675" y="208" fill="#e91e63" font-size="9">● Prod → Shared: 許可</text>
+  <text x="675" y="224" fill="#ff5252" font-size="9">✕ Dev ↔ Prod: 禁止</text>
+  <text x="675" y="240" fill="#f9a825" font-size="9">● オンプレ → 全て: 許可</text>
+</svg>

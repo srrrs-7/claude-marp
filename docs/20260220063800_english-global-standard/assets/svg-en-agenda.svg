@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">本日のアジェンダ</text>
+  <rect x="60" y="55" width="680" height="48" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="110" y="75" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">1</text>
+  <text x="140" y="75" fill="#ffffff" font-size="13" font-family="sans-serif">英語はなぜ世界標準になったか</text>
+  <text x="140" y="93" fill="#aaaaaa" font-size="10" font-family="sans-serif">帝国主義・アメリカの覇権・インターネットの三段階</text>
+  <rect x="60" y="113" width="680" height="48" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="110" y="133" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">2-3</text>
+  <text x="140" y="133" fill="#ffffff" font-size="13" font-family="sans-serif">大英帝国から米国へ — 覇権の移行</text>
+  <text x="140" y="151" fill="#aaaaaa" font-size="10" font-family="sans-serif">なぜフランス語でなく英語か？歴史的偶然と設計</text>
+  <rect x="60" y="171" width="680" height="48" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="110" y="191" fill="#e91e63" font-size="14" font-family="sans-serif" font-weight="bold">4-5</text>
+  <text x="140" y="191" fill="#ffffff" font-size="13" font-family="sans-serif">インターネット + プログラミング言語</text>
+  <text x="140" y="209" fill="#aaaaaa" font-size="10" font-family="sans-serif">テクノロジーが英語支配をさらに強化した経緯</text>
+  <rect x="60" y="229" width="680" height="48" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="110" y="249" fill="#e91e63" font-size="14" font-family="sans-serif" font-weight="bold">6-7</text>
+  <text x="140" y="249" fill="#ffffff" font-size="13" font-family="sans-serif">リンガ・フランカとしての英語の未来</text>
+  <text x="140" y="267" fill="#aaaaaa" font-size="10" font-family="sans-serif">母語話者より非母語話者が多い — パラドックスの解決</text>
+  <rect x="60" y="287" width="680" height="48" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="110" y="307" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">8</text>
+  <text x="140" y="307" fill="#ffffff" font-size="13" font-family="sans-serif">教訓 — 言語標準化から学ぶ設計哲学</text>
+  <text x="140" y="325" fill="#aaaaaa" font-size="10" font-family="sans-serif">ネットワーク効果・慣性・技術的デフォルトの力</text>
+</svg>

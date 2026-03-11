@@ -1,0 +1,66 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">エシカルデザインの実践原則</text>
+  <!-- 5 principles -->
+  <!-- Principle 1: Transparency -->
+  <rect x="20" y="48" width="150" height="130" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="95" y="76" text-anchor="middle" font-size="28" fill="#4caf50">1</text>
+  <text x="95" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">透明性</text>
+  <text x="95" y="120" text-anchor="middle" font-size="10" fill="#ffffff">コストを明示</text>
+  <text x="95" y="137" text-anchor="middle" font-size="10" fill="#ffffff">隠し料金なし</text>
+  <text x="95" y="155" text-anchor="middle" font-size="10" fill="#ffffff">プロセスを見せる</text>
+  <text x="95" y="168" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.6">「正直さ」が基本</text>
+  <!-- Principle 2: User control -->
+  <rect x="185" y="48" width="150" height="130" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="260" y="76" text-anchor="middle" font-size="28" fill="#4caf50">2</text>
+  <text x="260" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">ユーザー制御</text>
+  <text x="260" y="120" text-anchor="middle" font-size="10" fill="#ffffff">いつでも解約可能</text>
+  <text x="260" y="137" text-anchor="middle" font-size="10" fill="#ffffff">設定変更が容易</text>
+  <text x="260" y="155" text-anchor="middle" font-size="10" fill="#ffffff">取り消しボタン</text>
+  <text x="260" y="168" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.6">Amazon「1クリックキャンセル」</text>
+  <!-- Principle 3: Honest defaults -->
+  <rect x="350" y="48" width="150" height="130" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="425" y="76" text-anchor="middle" font-size="28" fill="#f9a825">3</text>
+  <text x="425" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#f9a825">正直なデフォルト</text>
+  <text x="425" y="120" text-anchor="middle" font-size="10" fill="#ffffff">オプトイン方式</text>
+  <text x="425" y="137" text-anchor="middle" font-size="10" fill="#ffffff">未選択がデフォルト</text>
+  <text x="425" y="155" text-anchor="middle" font-size="10" fill="#ffffff">プライバシー保護優先</text>
+  <text x="425" y="168" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.6">GDPRの要件でもある</text>
+  <!-- Principle 4: Clarity -->
+  <rect x="515" y="48" width="150" height="130" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="590" y="76" text-anchor="middle" font-size="28" fill="#f9a825">4</text>
+  <text x="590" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#f9a825">明瞭さ</text>
+  <text x="590" y="120" text-anchor="middle" font-size="10" fill="#ffffff">CTA は意図を示す</text>
+  <text x="590" y="137" text-anchor="middle" font-size="10" fill="#ffffff">「購入する」=購入</text>
+  <text x="590" y="155" text-anchor="middle" font-size="10" fill="#ffffff">曖昧表現を排除</text>
+  <text x="590" y="168" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.6">ユーザーテストで確認</text>
+  <!-- Principle 5: Long-term value -->
+  <rect x="630" y="48" width="150" height="130" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="705" y="76" text-anchor="middle" font-size="28" fill="#4caf50">5</text>
+  <text x="705" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">長期価値優先</text>
+  <text x="705" y="120" text-anchor="middle" font-size="10" fill="#ffffff">顧客生涯価値</text>
+  <text x="705" y="137" text-anchor="middle" font-size="10" fill="#ffffff">信頼がリピートを生む</text>
+  <text x="705" y="155" text-anchor="middle" font-size="10" fill="#ffffff">口コミ効果</text>
+  <text x="705" y="168" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.6">短期 vs 長期の選択</text>
+  <!-- Business case section -->
+  <rect x="20" y="195" width="760" height="85" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="400" y="218" text-anchor="middle" font-size="13" fill="#4caf50">ビジネスケース：エシカルデザインは利益になる</text>
+  <rect x="40" y="230" width="180" height="36" rx="4" fill="#1a1a2e"/>
+  <text x="130" y="246" text-anchor="middle" font-size="11" fill="#ffffff">Patagonia</text>
+  <text x="130" y="260" text-anchor="middle" font-size="10" fill="#4caf50">透明性 → 顧客ロイヤルティ</text>
+  <rect x="240" y="230" width="180" height="36" rx="4" fill="#1a1a2e"/>
+  <text x="330" y="246" text-anchor="middle" font-size="11" fill="#ffffff">Stack Overflow</text>
+  <text x="330" y="260" text-anchor="middle" font-size="10" fill="#4caf50">誠実なデザイン → 高信頼</text>
+  <rect x="440" y="230" width="180" height="36" rx="4" fill="#1a1a2e"/>
+  <text x="530" y="246" text-anchor="middle" font-size="11" fill="#ffffff">Apple（一部）</text>
+  <text x="530" y="260" text-anchor="middle" font-size="10" fill="#4caf50">プライバシー → 差別化</text>
+  <rect x="630" y="230" width="140" height="36" rx="4" fill="#1a1a2e"/>
+  <text x="700" y="246" text-anchor="middle" font-size="11" fill="#ffffff">研究知見</text>
+  <text x="700" y="260" text-anchor="middle" font-size="10" fill="#4caf50">信頼→LTV +40%</text>
+  <!-- Bottom -->
+  <rect x="20" y="296" width="760" height="88" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="320" text-anchor="middle" font-size="13" fill="#f9a825">チェックリスト：「このデザインをユーザーに説明できるか？」</text>
+  <text x="400" y="342" text-anchor="middle" font-size="11" fill="#ffffff">「なぜこのデフォルト？」「ユーザーが気づかなかったら意図通り？」</text>
+  <text x="400" y="362" text-anchor="middle" font-size="11" fill="#e91e63">恥ずかしくて説明できないデザインはダークパターンの疑いがある</text>
+  <text x="400" y="376" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.5">「新聞テスト」：もし記事になったら恥ずかしいか？</text>
+</svg>

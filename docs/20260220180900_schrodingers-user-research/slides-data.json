@@ -65,6 +65,7 @@
 			"title": "観測者効果：観測行為が現実を変える（2/2）",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/observer-effect-ux.svg)",
 				"",
 				"### ユーザーリサーチへの示唆",
 				"",
@@ -153,6 +154,7 @@
 			"title": "アンケートの嘘：言うことと行動は違う（2/2）",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/say-do-gap.svg)",
 				"### プロダクトでの実例",
 				"",
 				"- アンケート：「このUIは使いにくい」と答えない → 実際は離脱している",
@@ -165,6 +167,7 @@
 			"title": "インタビューの量子的困難（1/2）",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/interview-quantum.svg)",
 				"### 観測の連鎖反応",
 				"",
 				"インタビュアーが質問する",

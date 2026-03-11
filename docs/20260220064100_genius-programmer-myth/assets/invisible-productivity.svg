@@ -1,0 +1,39 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">2. 元の研究の問題点 — なぜ28倍は信頼できないか</text>
+  <!-- 5 problems -->
+  <rect x="20" y="48" width="350" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="50" y="73" font-size="22" fill="#e91e63">①</text>
+  <text x="90" y="73" font-size="12" font-weight="bold" fill="#e91e63">サンプルサイズが小さすぎる</text>
+  <text x="90" y="93" font-size="11" fill="#ffffff">12〜29名の研究で「全エンジニア」を語れない</text>
+  <text x="90" y="110" font-size="10" fill="#ffffff" opacity="0.7">統計的有意性を満たすには数百名が必要</text>
+  <rect x="430" y="48" width="350" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="460" y="73" font-size="22" fill="#e91e63">②</text>
+  <text x="500" y="73" font-size="12" font-weight="bold" fill="#e91e63">最速 vs 最遅の比較</text>
+  <text x="500" y="93" font-size="11" fill="#ffffff">「平均」ではなく外れ値同士の比較</text>
+  <text x="500" y="110" font-size="10" fill="#ffffff" opacity="0.7">どの集団でも最速/最遅の比は大きくなる</text>
+  <rect x="20" y="148" width="350" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="50" y="173" font-size="22" fill="#f9a825">③</text>
+  <text x="90" y="173" font-size="12" font-weight="bold" fill="#f9a825">タスクが特殊すぎる</text>
+  <text x="90" y="193" font-size="11" fill="#ffffff">1960年代のバッチ処理プログラム</text>
+  <text x="90" y="210" font-size="10" fill="#ffffff" opacity="0.7">現代のコラボ開発とは全く異なる</text>
+  <rect x="430" y="148" width="350" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="460" y="173" font-size="22" fill="#f9a825">④</text>
+  <text x="500" y="173" font-size="12" font-weight="bold" fill="#f9a825">コーディング速度のみ測定</text>
+  <text x="500" y="193" font-size="11" fill="#ffffff">設計・レビュー・コミュニケーションは除外</text>
+  <text x="500" y="210" font-size="10" fill="#ffffff" opacity="0.7">現代の「生産性」とはかけ離れた指標</text>
+  <rect x="20" y="248" width="350" height="80" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="50" y="273" font-size="22" fill="#4caf50">⑤</text>
+  <text x="90" y="273" font-size="12" font-weight="bold" fill="#4caf50">再現研究がない</text>
+  <text x="90" y="293" font-size="11" fill="#ffffff">56年間、同条件での追試がない</text>
+  <text x="90" y="310" font-size="10" fill="#ffffff" opacity="0.7">科学的根拠として引用するには不十分</text>
+  <!-- Consequence box -->
+  <rect x="430" y="248" width="350" height="80" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="605" y="273" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">現代の再現研究の結果</text>
+  <text x="605" y="293" text-anchor="middle" font-size="11" fill="#ffffff">実務では2〜4倍差が現実的</text>
+  <text x="605" y="310" text-anchor="middle" font-size="10" fill="#4caf50">28倍は条件次第の最大値</text>
+  <!-- Bottom -->
+  <rect x="20" y="342" width="760" height="46" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="362" text-anchor="middle" font-size="12" fill="#f9a825">「10x神話」はデータの誤読と誇張から生まれた都市伝説</text>
+  <text x="400" y="380" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.6">しかし神話として広まり、採用・組織設計・文化に影響し続けている</text>
+</svg>

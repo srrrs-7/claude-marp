@@ -96,6 +96,18 @@
   .btn:hover{background:var(--accent-hover)}
   .btn svg{width:16px;height:16px}
 
+  /* Grade badge */
+  .grade-badge{
+    position:absolute;top:1rem;right:1rem;
+    width:24px;height:24px;border-radius:50%;
+    font-size:.72rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .grade-A{background:#16a34a;color:#fff}
+  .grade-B{background:#2563eb;color:#fff}
+  .grade-C{background:#ca8a04;color:#fff}
+  .grade-D{background:#dc2626;color:#fff}
+
   /* Search */
   .search-wrap{
     max-width:480px;margin:1.5rem auto 0;position:relative;
@@ -133,6 +145,24 @@
     background:var(--accent);color:#fff;border-color:var(--accent);
   }
 
+  /* Grade filter bar */
+  .grade-bar{
+    display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+    max-width:1100px;margin:0 auto;padding:.5rem 1.5rem .75rem;
+  }
+  .grade-btn{
+    padding:.3rem .8rem;border:1px solid var(--border);border-radius:99px;
+    background:transparent;color:var(--text-sub);cursor:pointer;
+    font-size:.8rem;font-weight:600;transition:all .15s;
+  }
+  .grade-btn-A:hover,.grade-btn-A.active{background:#16a34a;color:#fff;border-color:#16a34a}
+  .grade-btn-B:hover,.grade-btn-B.active{background:#2563eb;color:#fff;border-color:#2563eb}
+  .grade-btn-C:hover,.grade-btn-C.active{background:#ca8a04;color:#fff;border-color:#ca8a04}
+  .grade-btn-D:hover,.grade-btn-D.active{background:#dc2626;color:#fff;border-color:#dc2626}
+  .grade-btn:not([class*="grade-btn-"]):hover,.grade-btn:not([class*="grade-btn-"]).active{
+    background:var(--accent);color:#fff;border-color:var(--accent);
+  }
+
   /* Footer */
   footer{
     text-align:center;padding:2rem 1rem;color:var(--text-sub);
@@ -158,15 +188,15 @@
   </div>
   <div class="stats">
     <div class="stat">
-      <div class="stat-num">220</div>
+      <div class="stat-num">221</div>
       <div class="stat-label">Presentations</div>
     </div>
     <div class="stat">
-      <div class="stat-num">8664</div>
+      <div class="stat-num">8731</div>
       <div class="stat-label">Total Slides</div>
     </div>
     <div class="stat">
-      <div class="stat-num">212h 43m</div>
+      <div class="stat-num">803h 27m</div>
       <div class="stat-label">Reading Time</div>
     </div>
     <div class="stat">
@@ -191,6 +221,15 @@
   <button class="filter-btn" data-filter="other">Other</button>
 </nav>
 
+<div class="grade-bar">
+  <span class="sort-label">Grade:</span>
+  <button class="grade-btn active" data-grade="all">All</button>
+  <button class="grade-btn grade-btn-A" data-grade="A">A</button>
+  <button class="grade-btn grade-btn-B" data-grade="B">B</button>
+  <button class="grade-btn grade-btn-C" data-grade="C">C</button>
+  <button class="grade-btn grade-btn-D" data-grade="D">D</button>
+</div>
+
 <div class="sort-bar">
   <span class="sort-label">Sort:</span>
   <button class="sort-btn active" data-sort="newest">Newest</button>
@@ -204,7 +243,8 @@
   <h2 class="section-title" data-section="ai">AI &amp; Technology</h2>
   <div class="grid">
 
-    <div class="card" data-category="ai" data-ts="20260214063457" data-slides="46" data-mins="16">
+    <div class="card" data-category="ai" data-ts="20260214063457" data-slides="46" data-mins="166" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>AI時代のソフトウェアエンジニアの生存戦略</h3>
       <div class="card-meta">
@@ -214,7 +254,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          16 min
+          2h 46m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -229,7 +269,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260214082356" data-slides="63" data-mins="21">
+    <div class="card" data-category="ai" data-ts="20260214082356" data-slides="63" data-mins="246" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>2026年のWeb技術トレンド予測</h3>
       <div class="card-meta">
@@ -239,7 +280,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          21 min
+          4h 6m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -254,7 +295,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260214103000" data-slides="55" data-mins="34">
+    <div class="card" data-category="ai" data-ts="20260214103000" data-slides="55" data-mins="342" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>AIを使用したアプリケーションで今後伸びる可能性が高いもの</h3>
       <div class="card-meta">
@@ -264,7 +306,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          34 min
+          5h 42m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -279,7 +321,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260214120000" data-slides="47" data-mins="25">
+    <div class="card" data-category="ai" data-ts="20260214120000" data-slides="47" data-mins="121" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>Claude Code Agent Teams</h3>
       <div class="card-meta">
@@ -289,7 +332,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          25 min
+          2h 1m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -304,7 +347,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260219000000" data-slides="70" data-mins="30">
+    <div class="card" data-category="ai" data-ts="20260219000000" data-slides="70" data-mins="484" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>ローカルLLM完全ガイド 2026</h3>
       <div class="card-meta">
@@ -314,7 +358,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          30 min
+          8h 4m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -329,7 +373,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260219020000" data-slides="120" data-mins="127">
+    <div class="card" data-category="ai" data-ts="20260219020000" data-slides="120" data-mins="1297" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>RAG実装ガイド完全版 — OpenSearch / pgvector / Bedrock Knowledge Base</h3>
       <div class="card-meta">
@@ -339,7 +384,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          2h 7m
+          21h 37m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -354,7 +399,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260219105407" data-slides="56" data-mins="25">
+    <div class="card" data-category="ai" data-ts="20260219105407" data-slides="56" data-mins="25" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>AIエージェント・オーケストレーション実践ワークショップ</h3>
       <div class="card-meta">
@@ -379,7 +425,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260219130000" data-slides="71" data-mins="27">
+    <div class="card" data-category="ai" data-ts="20260219130000" data-slides="71" data-mins="305" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>AI エージェント設計パターン</h3>
       <div class="card-meta">
@@ -389,7 +436,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          27 min
+          5h 5m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -404,7 +451,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260219150000" data-slides="88" data-mins="51">
+    <div class="card" data-category="ai" data-ts="20260219150000" data-slides="88" data-mins="258" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>AIの学習の仕組み 〜研究者・専門家向け完全解説〜</h3>
       <div class="card-meta">
@@ -414,7 +462,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          51 min
+          4h 18m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -429,7 +477,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260219170000" data-slides="182" data-mins="83">
+    <div class="card" data-category="ai" data-ts="20260219170000" data-slides="182" data-mins="1916" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>LLMアプリ設計パターン完全ガイド — RAG・Fine-tuning・Agents・評価フレームワーク</h3>
       <div class="card-meta">
@@ -439,7 +488,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 23m
+          31h 56m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -454,7 +503,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260219220000" data-slides="58" data-mins="112">
+    <div class="card" data-category="ai" data-ts="20260219220000" data-slides="58" data-mins="443" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>Claude Code スキルガイドライン</h3>
       <div class="card-meta">
@@ -464,7 +514,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 52m
+          7h 23m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -479,7 +529,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220053800" data-slides="19" data-mins="66">
+    <div class="card" data-category="ai" data-ts="20260220053800" data-slides="19" data-mins="66" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>AIに意識はあるか：クオリアと哲学的ゾンビ</h3>
       <div class="card-meta">
@@ -504,7 +555,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220060300" data-slides="21" data-mins="82">
+    <div class="card" data-category="ai" data-ts="20260220060300" data-slides="21" data-mins="82" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>相関と因果の混同 — 「チョコレートを食べると賢くなる」は本当か</h3>
       <div class="card-meta">
@@ -529,7 +581,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220060400" data-slides="11" data-mins="38">
+    <div class="card" data-category="ai" data-ts="20260220060400" data-slides="11" data-mins="38" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>平均値という嘘 — データの罠を見破る</h3>
       <div class="card-meta">
@@ -554,7 +607,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220060600" data-slides="10" data-mins="41">
+    <div class="card" data-category="ai" data-ts="20260220060600" data-slides="10" data-mins="41" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>外れた未来予測から学ぶ — なぜ専門家の予測は外れるのか</h3>
       <div class="card-meta">
@@ -579,7 +633,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220062900" data-slides="19" data-mins="7">
+    <div class="card" data-category="ai" data-ts="20260220062900" data-slides="19" data-mins="8" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>東京の電車はなぜ1分も遅れないのか ― 定時運行の科学</h3>
       <div class="card-meta">
@@ -589,7 +644,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          8 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -604,7 +659,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220063400" data-slides="19" data-mins="7">
+    <div class="card" data-category="ai" data-ts="20260220063400" data-slides="19" data-mins="64" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>AIと著作権 ― 誰が「創作者」なのか</h3>
       <div class="card-meta">
@@ -614,7 +670,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          1h 4m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -629,7 +685,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220063700" data-slides="18" data-mins="81">
+    <div class="card" data-category="ai" data-ts="20260220063700" data-slides="18" data-mins="81" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>2050年の仕事 ― AIに奪われる職業、AIが創る職業</h3>
       <div class="card-meta">
@@ -654,7 +711,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220120000" data-slides="48" data-mins="197">
+    <div class="card" data-category="ai" data-ts="20260220120000" data-slides="48" data-mins="208" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>LLMのハルシネーションを逆手に取る</h3>
       <div class="card-meta">
@@ -664,7 +722,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          3h 17m
+          3h 28m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -679,7 +737,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220150000" data-slides="67" data-mins="103">
+    <div class="card" data-category="ai" data-ts="20260220150000" data-slides="67" data-mins="343" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>産業革命前夜としてのAI時代</h3>
       <div class="card-meta">
@@ -689,7 +748,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 43m
+          5h 43m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -704,7 +763,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220180005" data-slides="18" data-mins="67">
+    <div class="card" data-category="ai" data-ts="20260220180005" data-slides="18" data-mins="67" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>集合知はなぜ失敗するか</h3>
       <div class="card-meta">
@@ -729,7 +789,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220180007" data-slides="17" data-mins="41">
+    <div class="card" data-category="ai" data-ts="20260220180007" data-slides="17" data-mins="46" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>成功が失敗を生む瞬間 — イノベーターのジレンマ実例集</h3>
       <div class="card-meta">
@@ -739,7 +800,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          41 min
+          46 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -754,7 +815,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220200200" data-slides="15" data-mins="35">
+    <div class="card" data-category="ai" data-ts="20260220200200" data-slides="15" data-mins="35" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>錬金術からAIへ〜知識自動化の2000年史〜</h3>
       <div class="card-meta">
@@ -779,7 +841,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220200800" data-slides="17" data-mins="7">
+    <div class="card" data-category="ai" data-ts="20260220200800" data-slides="17" data-mins="46" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>失われた技術とレガシーシステム〜ロストテクノロジーが教えるドキュメントの価値〜</h3>
       <div class="card-meta">
@@ -789,7 +852,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          46 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -804,7 +867,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220203500" data-slides="18" data-mins="7">
+    <div class="card" data-category="ai" data-ts="20260220203500" data-slides="18" data-mins="8" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>地図と領土：LLMハルシネーションの認識論</h3>
       <div class="card-meta">
@@ -814,7 +878,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          8 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -829,7 +893,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220210000" data-slides="21" data-mins="8">
+    <div class="card" data-category="ai" data-ts="20260220210000" data-slides="21" data-mins="38" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>AIエージェントの信頼問題：自律型AIをどう信頼するか</h3>
       <div class="card-meta">
@@ -839,7 +904,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          38 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -854,7 +919,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220213500" data-slides="23" data-mins="8">
+    <div class="card" data-category="ai" data-ts="20260220213500" data-slides="23" data-mins="98" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>地図は領土ではない〜LLMの世界モデルという幻想〜</h3>
       <div class="card-meta">
@@ -864,7 +930,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          1h 38m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -879,17 +945,18 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260220216000" data-slides="29" data-mins="10">
+    <div class="card" data-category="ai" data-ts="20260220216000" data-slides="32" data-mins="134" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>AIエージェントの信頼問題〜いつSUDO権限を与えるのか〜</h3>
       <div class="card-meta">
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          29 slides
+          32 slides
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          10 min
+          2h 14m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -904,7 +971,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="ai" data-ts="20260311085506" data-slides="40" data-mins="410">
+    <div class="card" data-category="ai" data-ts="20260311085506" data-slides="40" data-mins="410" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AI &amp; Technology</div>
       <h3>Claudeの最新機能2026</h3>
       <div class="card-meta">
@@ -934,7 +1002,8 @@
   <h2 class="section-title" data-section="engineering">Software Engineering</h2>
   <div class="grid">
 
-    <div class="card" data-category="engineering" data-ts="20260219024236" data-slides="107" data-mins="54">
+    <div class="card" data-category="engineering" data-ts="20260219024236" data-slides="107" data-mins="498" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>スタートアップ技術選定ガイド — AWS vs GCP vs Azure + OSS選定</h3>
       <div class="card-meta">
@@ -944,7 +1013,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          54 min
+          8h 18m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -959,7 +1028,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260219100000" data-slides="77" data-mins="38">
+    <div class="card" data-category="engineering" data-ts="20260219100000" data-slides="77" data-mins="716" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">Software Engineering</div>
       <h3>フロントエンドアーキテクチャとAIの相性 完全ガイド 2026</h3>
       <div class="card-meta">
@@ -969,7 +1039,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          38 min
+          11h 56m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -984,7 +1054,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260219110000" data-slides="166" data-mins="107">
+    <div class="card" data-category="engineering" data-ts="20260219110000" data-slides="166" data-mins="2941" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">Software Engineering</div>
       <h3>AI Transformer 完全ガイド 2026 — アーキテクチャから最新研究まで</h3>
       <div class="card-meta">
@@ -994,7 +1065,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 47m
+          49h 1m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1009,7 +1080,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260219200000" data-slides="101" data-mins="49">
+    <div class="card" data-category="engineering" data-ts="20260219200000" data-slides="101" data-mins="645" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>AWS Lambda / Serverless Deep Dive — パフォーマンス最適化と実践アーキテクチャ</h3>
       <div class="card-meta">
@@ -1019,7 +1091,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          49 min
+          10h 45m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1034,7 +1106,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260219230000" data-slides="101" data-mins="333">
+    <div class="card" data-category="engineering" data-ts="20260219230000" data-slides="101" data-mins="617" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>バックエンドアーキテクチャ × AI 相性完全ガイド</h3>
       <div class="card-meta">
@@ -1044,7 +1117,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          5h 33m
+          10h 17m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1059,7 +1132,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220032405" data-slides="45" data-mins="21">
+    <div class="card" data-category="engineering" data-ts="20260220032405" data-slides="45" data-mins="152" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>なぜモノリスは再評価されているか</h3>
       <div class="card-meta">
@@ -1069,7 +1143,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          21 min
+          2h 32m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1084,7 +1158,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220032701" data-slides="64" data-mins="19">
+    <div class="card" data-category="engineering" data-ts="20260220032701" data-slides="64" data-mins="163" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>YAGNI原則を人生に適用する</h3>
       <div class="card-meta">
@@ -1094,7 +1169,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          19 min
+          2h 43m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1109,7 +1184,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220040500" data-slides="60" data-mins="25">
+    <div class="card" data-category="engineering" data-ts="20260220040500" data-slides="60" data-mins="460" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">Software Engineering</div>
       <h3>「仕様書文化」vs「コード is ドキュメント」― 世代間・文化間の衝突を超えて</h3>
       <div class="card-meta">
@@ -1119,7 +1195,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          25 min
+          7h 40m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1134,7 +1210,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220053400" data-slides="18" data-mins="65">
+    <div class="card" data-category="engineering" data-ts="20260220053400" data-slides="18" data-mins="65" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>テセウスの船とリファクタリング</h3>
       <div class="card-meta">
@@ -1159,7 +1236,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220053900" data-slides="18" data-mins="65">
+    <div class="card" data-category="engineering" data-ts="20260220053900" data-slides="18" data-mins="65" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>プログラミング言語の設計哲学は人生観の違い</h3>
       <div class="card-meta">
@@ -1184,7 +1262,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220054000" data-slides="24" data-mins="130">
+    <div class="card" data-category="engineering" data-ts="20260220054000" data-slides="24" data-mins="130" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>法律はコードと同じ構造を持つ</h3>
       <div class="card-meta">
@@ -1209,7 +1288,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220062300" data-slides="25" data-mins="8">
+    <div class="card" data-category="engineering" data-ts="20260220062300" data-slides="25" data-mins="9" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>マンガに学ぶUXデザイン ― 視線誘導・情報設計・感情設計の技法</h3>
       <div class="card-meta">
@@ -1219,7 +1299,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          9 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1234,7 +1314,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220062800" data-slides="22" data-mins="7">
+    <div class="card" data-category="engineering" data-ts="20260220062800" data-slides="22" data-mins="169" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>渋谷スクランブル交差点の最適化 ― 3,000人が45秒で渡れる理由</h3>
       <div class="card-meta">
@@ -1244,7 +1325,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          2h 49m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1259,7 +1340,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220064600" data-slides="10" data-mins="46">
+    <div class="card" data-category="engineering" data-ts="20260220064600" data-slides="10" data-mins="46" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>ゲームのチュートリアル設計に学ぶUX — 最高の学習体験はゲームが作る</h3>
       <div class="card-meta">
@@ -1284,7 +1366,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220180003" data-slides="20" data-mins="53">
+    <div class="card" data-category="engineering" data-ts="20260220180003" data-slides="20" data-mins="58" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>カーゴカルト・プログラミングの解剖</h3>
       <div class="card-meta">
@@ -1294,7 +1377,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          53 min
+          58 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1309,7 +1392,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220180006" data-slides="19" data-mins="61">
+    <div class="card" data-category="engineering" data-ts="20260220180006" data-slides="19" data-mins="61" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>グレシャムの法則とコードベース — 悪いコードが良いコードを駆逐する</h3>
       <div class="card-meta">
@@ -1334,7 +1418,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220180009" data-slides="20" data-mins="74">
+    <div class="card" data-category="engineering" data-ts="20260220180009" data-slides="20" data-mins="74" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>最適化の罠 — 効率化するほど脆くなる</h3>
       <div class="card-meta">
@@ -1359,7 +1444,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220180015" data-slides="17" data-mins="68">
+    <div class="card" data-category="engineering" data-ts="20260220180015" data-slides="17" data-mins="68" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>ダンバー数とコンウェイの法則 — チームサイズがアーキテクチャを決める</h3>
       <div class="card-meta">
@@ -1384,7 +1470,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220180300" data-slides="23" data-mins="147">
+    <div class="card" data-category="engineering" data-ts="20260220180300" data-slides="23" data-mins="147" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>菌根ネットワーク(Wood Wide Web)とマイクロサービス</h3>
       <div class="card-meta">
@@ -1409,7 +1496,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220180400" data-slides="23" data-mins="125">
+    <div class="card" data-category="engineering" data-ts="20260220180400" data-slides="23" data-mins="125" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>職人気質(Shokunin)とソフトウェアクラフトマンシップ</h3>
       <div class="card-meta">
@@ -1434,7 +1522,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220180500" data-slides="27" data-mins="16">
+    <div class="card" data-category="engineering" data-ts="20260220180500" data-slides="27" data-mins="49" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>能の「間（ま）」と最高のUXデザイン</h3>
       <div class="card-meta">
@@ -1444,7 +1533,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          16 min
+          49 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1459,17 +1548,18 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220180700" data-slides="30" data-mins="13">
+    <div class="card" data-category="engineering" data-ts="20260220180700" data-slides="33" data-mins="137" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>地図は現実ではない：アーキテクチャ図という必要な嘘</h3>
       <div class="card-meta">
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          30 slides
+          33 slides
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          13 min
+          2h 17m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1484,7 +1574,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220180800" data-slides="20" data-mins="164">
+    <div class="card" data-category="engineering" data-ts="20260220180800" data-slides="20" data-mins="164" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>コンウェイの法則は熱力学の第二法則か？</h3>
       <div class="card-meta">
@@ -1509,7 +1600,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220200000" data-slides="15" data-mins="49">
+    <div class="card" data-category="engineering" data-ts="20260220200000" data-slides="15" data-mins="49" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>バベルの塔とマイクロサービス〜分散システムの神話〜</h3>
       <div class="card-meta">
@@ -1534,7 +1626,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220200000" data-slides="24" data-mins="10">
+    <div class="card" data-category="engineering" data-ts="20260220200000" data-slides="24" data-mins="11" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>森のインターネット：菌糸ネットワークが先取りしていた分散システム設計</h3>
       <div class="card-meta">
@@ -1544,7 +1637,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          10 min
+          11 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1559,7 +1652,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220200300" data-slides="15" data-mins="76">
+    <div class="card" data-category="engineering" data-ts="20260220200300" data-slides="15" data-mins="76" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">Software Engineering</div>
       <h3>都市計画とシステム設計〜ジェイン・ジェイコブスに学ぶソフトウェアアーキテクチャ〜</h3>
       <div class="card-meta">
@@ -1584,7 +1678,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220200500" data-slides="19" data-mins="6">
+    <div class="card" data-category="engineering" data-ts="20260220200500" data-slides="19" data-mins="58" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Software Engineering</div>
       <h3>記憶の宮殿とコードベース〜古代ギリシャの記憶術から学ぶコード設計〜</h3>
       <div class="card-meta">
@@ -1594,7 +1689,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          6 min
+          58 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1609,7 +1704,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220200700" data-slides="21" data-mins="7">
+    <div class="card" data-category="engineering" data-ts="20260220200700" data-slides="21" data-mins="178" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>写本文化とコードレビュー〜中世の写字室から学ぶ知識継承の技法〜</h3>
       <div class="card-meta">
@@ -1619,7 +1715,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          2h 58m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1634,7 +1730,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220200900" data-slides="23" data-mins="7">
+    <div class="card" data-category="engineering" data-ts="20260220200900" data-slides="23" data-mins="8" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>ゲームバランシングとUX設計〜フロー理論から学ぶプロダクト設計〜</h3>
       <div class="card-meta">
@@ -1644,7 +1741,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          8 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1659,7 +1756,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220201500" data-slides="20" data-mins="9">
+    <div class="card" data-category="engineering" data-ts="20260220201500" data-slides="20" data-mins="141" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>収束進化：なぜ異なる技術が同じアーキテクチャに収束するのか</h3>
       <div class="card-meta">
@@ -1669,7 +1767,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          9 min
+          2h 21m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1684,7 +1782,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220211000" data-slides="24" data-mins="10">
+    <div class="card" data-category="engineering" data-ts="20260220211000" data-slides="24" data-mins="66" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>森のインターネット：菌糸ネットワークが先取りしていた分散システム設計</h3>
       <div class="card-meta">
@@ -1694,7 +1793,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          10 min
+          1h 6m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1709,7 +1808,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220212000" data-slides="22" data-mins="8">
+    <div class="card" data-category="engineering" data-ts="20260220212000" data-slides="22" data-mins="44" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>完全変態：モノリスがマイクロサービスに変わるとき</h3>
       <div class="card-meta">
@@ -1719,7 +1819,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          44 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1734,7 +1834,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220212500" data-slides="20" data-mins="8">
+    <div class="card" data-category="engineering" data-ts="20260220212500" data-slides="20" data-mins="49" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>収束進化：なぜ異なるチームが同じアーキテクチャに辿り着くのか</h3>
       <div class="card-meta">
@@ -1744,7 +1845,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          49 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1759,17 +1860,18 @@
       </div>
     </div>
 
-    <div class="card" data-category="engineering" data-ts="20260220216500" data-slides="23" data-mins="9">
+    <div class="card" data-category="engineering" data-ts="20260220216500" data-slides="26" data-mins="115" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Software Engineering</div>
       <h3>完全変態〜モノリスがマイクロサービスに変わるとき〜</h3>
       <div class="card-meta">
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          23 slides
+          26 slides
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          9 min
+          1h 55m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1789,7 +1891,8 @@
   <h2 class="section-title" data-section="infra">Infrastructure &amp; Networks</h2>
   <div class="grid">
 
-    <div class="card" data-category="infra" data-ts="20260220050000" data-slides="61" data-mins="28">
+    <div class="card" data-category="infra" data-ts="20260220050000" data-slides="61" data-mins="479" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">Infrastructure &amp; Networks</div>
       <h3>半導体戦争の地政学 — TSMCという名の核ボタン</h3>
       <div class="card-meta">
@@ -1799,7 +1902,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          28 min
+          7h 59m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1814,7 +1917,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="infra" data-ts="20260220054100" data-slides="19" data-mins="80">
+    <div class="card" data-category="infra" data-ts="20260220054100" data-slides="19" data-mins="80" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Infrastructure &amp; Networks</div>
       <h3>半導体戦争の地政学</h3>
       <div class="card-meta">
@@ -1839,7 +1943,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="infra" data-ts="20260220054200" data-slides="16" data-mins="80">
+    <div class="card" data-category="infra" data-ts="20260220054200" data-slides="16" data-mins="80" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Infrastructure &amp; Networks</div>
       <h3>インターネットのスプリンターネット化</h3>
       <div class="card-meta">
@@ -1864,7 +1969,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="infra" data-ts="20260220054300" data-slides="16" data-mins="59">
+    <div class="card" data-category="infra" data-ts="20260220054300" data-slides="16" data-mins="59" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Infrastructure &amp; Networks</div>
       <h3>海底ケーブルが切れたら</h3>
       <div class="card-meta">
@@ -1889,7 +1995,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="infra" data-ts="20260220060000" data-slides="58" data-mins="22">
+    <div class="card" data-category="infra" data-ts="20260220060000" data-slides="58" data-mins="22" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Infrastructure &amp; Networks</div>
       <h3>海底ケーブルが切れたら — インターネットの物理的脆弱性</h3>
       <div class="card-meta">
@@ -1914,7 +2021,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="infra" data-ts="20260220062500" data-slides="11" data-mins="34">
+    <div class="card" data-category="infra" data-ts="20260220062500" data-slides="11" data-mins="39" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Infrastructure &amp; Networks</div>
       <h3>インターネット誕生の神話と真実 — ARPANETは核戦争のためではなかった</h3>
       <div class="card-meta">
@@ -1924,7 +2032,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          34 min
+          39 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1939,7 +2047,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="infra" data-ts="20260220062700" data-slides="20" data-mins="8">
+    <div class="card" data-category="infra" data-ts="20260220062700" data-slides="20" data-mins="9" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Infrastructure &amp; Networks</div>
       <h3>植民地ルートを走るインターネット ― 海底ケーブルと権力の地理学</h3>
       <div class="card-meta">
@@ -1949,7 +2058,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          9 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -1964,7 +2073,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="infra" data-ts="20260220120000" data-slides="63" data-mins="40">
+    <div class="card" data-category="infra" data-ts="20260220120000" data-slides="63" data-mins="40" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Infrastructure &amp; Networks</div>
       <h3>核戦争が生んだインターネット説は嘘だった — ARPANETの本当の動機</h3>
       <div class="card-meta">
@@ -1989,7 +2099,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="infra" data-ts="20260220140000" data-slides="51" data-mins="228">
+    <div class="card" data-category="infra" data-ts="20260220140000" data-slides="51" data-mins="228" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Infrastructure &amp; Networks</div>
       <h3>インターネットの分裂</h3>
       <div class="card-meta">
@@ -2014,7 +2125,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="infra" data-ts="20260220180010" data-slides="17" data-mins="44">
+    <div class="card" data-category="infra" data-ts="20260220180010" data-slides="17" data-mins="50" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Infrastructure &amp; Networks</div>
       <h3>偶然生まれた標準 — インターネットを支える「仮決め」の歴史</h3>
       <div class="card-meta">
@@ -2024,7 +2136,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          44 min
+          50 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2039,7 +2151,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="infra" data-ts="20260220180014" data-slides="20" data-mins="78">
+    <div class="card" data-category="infra" data-ts="20260220180014" data-slides="20" data-mins="82" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Infrastructure &amp; Networks</div>
       <h3>炭素認識コンピューティング — グリーンソフトウェアの最前線</h3>
       <div class="card-meta">
@@ -2049,7 +2162,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 18m
+          1h 22m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2069,7 +2182,8 @@
   <h2 class="section-title" data-section="security">Security &amp; Compliance</h2>
   <div class="grid">
 
-    <div class="card" data-category="security" data-ts="20260219030000" data-slides="100" data-mins="82">
+    <div class="card" data-category="security" data-ts="20260219030000" data-slides="100" data-mins="567" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Security &amp; Compliance</div>
       <h3>AWS セキュリティ完全版 — IAM / KMS / GuardDuty / WAF / Security Specialty対策</h3>
       <div class="card-meta">
@@ -2079,7 +2193,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 22m
+          9h 27m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2094,7 +2208,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="security" data-ts="20260219031200" data-slides="127" data-mins="41">
+    <div class="card" data-category="security" data-ts="20260219031200" data-slides="127" data-mins="517" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Security &amp; Compliance</div>
       <h3>DevSecOps実践ガイド — シフトレフト・SBOM・脅威モデリング・クラウドネイティブセキュリティ</h3>
       <div class="card-meta">
@@ -2104,7 +2219,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          41 min
+          8h 37m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2119,7 +2234,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="security" data-ts="20260219031500" data-slides="153" data-mins="76">
+    <div class="card" data-category="security" data-ts="20260219031500" data-slides="153" data-mins="742" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Security &amp; Compliance</div>
       <h3>EKS / コンテナセキュリティ完全ガイド — RBAC・イメージスキャン・Fargate</h3>
       <div class="card-meta">
@@ -2129,7 +2245,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 16m
+          12h 22m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2144,7 +2260,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="security" data-ts="20260219120000" data-slides="72" data-mins="48">
+    <div class="card" data-category="security" data-ts="20260219120000" data-slides="72" data-mins="159" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Security &amp; Compliance</div>
       <h3>クラウド認証・認可 完全設計ガイド</h3>
       <div class="card-meta">
@@ -2154,7 +2271,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          48 min
+          2h 39m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2169,7 +2286,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="security" data-ts="20260219120000" data-slides="148" data-mins="74">
+    <div class="card" data-category="security" data-ts="20260219120000" data-slides="148" data-mins="79" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Security &amp; Compliance</div>
       <h3>AWS Certified Security - Specialty (SCS-C02) 完全技術ガイド</h3>
       <div class="card-meta">
@@ -2179,7 +2297,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 14m
+          1h 19m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2194,7 +2312,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="security" data-ts="20260219130000" data-slides="50" data-mins="28">
+    <div class="card" data-category="security" data-ts="20260219130000" data-slides="50" data-mins="135" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Security &amp; Compliance</div>
       <h3>MFA完全ガイド — ISMSの観点から</h3>
       <div class="card-meta">
@@ -2204,7 +2323,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          28 min
+          2h 15m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2219,7 +2338,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="security" data-ts="20260219130000" data-slides="43" data-mins="21">
+    <div class="card" data-category="security" data-ts="20260219130000" data-slides="43" data-mins="117" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Security &amp; Compliance</div>
       <h3>OAuth2 / OIDC 実装詳細ガイド</h3>
       <div class="card-meta">
@@ -2229,7 +2349,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          21 min
+          1h 57m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2244,7 +2364,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="security" data-ts="20260219140000" data-slides="149" data-mins="80">
+    <div class="card" data-category="security" data-ts="20260219140000" data-slides="149" data-mins="2371" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">Security &amp; Compliance</div>
       <h3>HIPAA on AWS — 医療データ保護の完全実装ガイド</h3>
       <div class="card-meta">
@@ -2254,7 +2375,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 20m
+          39h 31m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2269,7 +2390,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="security" data-ts="20260219160000" data-slides="101" data-mins="76">
+    <div class="card" data-category="security" data-ts="20260219160000" data-slides="101" data-mins="832" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">Security &amp; Compliance</div>
       <h3>生成AIセキュリティ完全ガイド — LLM/AIシステムの防御戦略</h3>
       <div class="card-meta">
@@ -2279,7 +2401,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 16m
+          13h 52m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2294,7 +2416,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="security" data-ts="20260219210000" data-slides="61" data-mins="36">
+    <div class="card" data-category="security" data-ts="20260219210000" data-slides="61" data-mins="173" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Security &amp; Compliance</div>
       <h3>OIDC vs SAML: アーキテクトの選択ガイド</h3>
       <div class="card-meta">
@@ -2304,7 +2427,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          36 min
+          2h 53m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2319,7 +2442,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="security" data-ts="20260219230000" data-slides="70" data-mins="48">
+    <div class="card" data-category="security" data-ts="20260219230000" data-slides="70" data-mins="140" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Security &amp; Compliance</div>
       <h3>ISMS完全ガイド — ISO/IEC 27001:2022 審査員・コンサルタントのための詳解</h3>
       <div class="card-meta">
@@ -2329,7 +2453,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          48 min
+          2h 20m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2344,7 +2468,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="security" data-ts="20260220053600" data-slides="18" data-mins="68">
+    <div class="card" data-category="security" data-ts="20260220053600" data-slides="18" data-mins="68" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Security &amp; Compliance</div>
       <h3>免疫システムとゼロトラストセキュリティ</h3>
       <div class="card-meta">
@@ -2374,7 +2499,8 @@
   <h2 class="section-title" data-section="science">Science &amp; Math</h2>
   <div class="grid">
 
-    <div class="card" data-category="science" data-ts="20260220051141" data-slides="52" data-mins="65">
+    <div class="card" data-category="science" data-ts="20260220051141" data-slides="52" data-mins="212" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>フラクタル：ブロッコリーと海岸線と金融チャートの同じ数式</h3>
       <div class="card-meta">
@@ -2384,7 +2510,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 5m
+          3h 32m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2399,7 +2525,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220053100" data-slides="16" data-mins="70">
+    <div class="card" data-category="science" data-ts="20260220053100" data-slides="16" data-mins="70" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>アリのコロニーに学ぶ分散システム設計</h3>
       <div class="card-meta">
@@ -2424,7 +2551,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220053200" data-slides="18" data-mins="54">
+    <div class="card" data-category="science" data-ts="20260220053200" data-slides="18" data-mins="54" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>渋滞はなぜ消えないか</h3>
       <div class="card-meta">
@@ -2449,7 +2577,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220053300" data-slides="17" data-mins="52">
+    <div class="card" data-category="science" data-ts="20260220053300" data-slides="17" data-mins="52" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>カオス理論とバグ：バタフライ効果と本番障害</h3>
       <div class="card-meta">
@@ -2474,7 +2603,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220053500" data-slides="18" data-mins="57">
+    <div class="card" data-category="science" data-ts="20260220053500" data-slides="18" data-mins="57" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>エントロピーは技術的負債と同じ法則に従う</h3>
       <div class="card-meta">
@@ -2499,7 +2629,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220053700" data-slides="17" data-mins="66">
+    <div class="card" data-category="science" data-ts="20260220053700" data-slides="17" data-mins="66" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>タコの知性とニューラルネット</h3>
       <div class="card-meta">
@@ -2524,7 +2655,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220055100" data-slides="24" data-mins="9">
+    <div class="card" data-category="science" data-ts="20260220055100" data-slides="24" data-mins="10" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>宇宙はニューラルネットワークなのか？ — 物理学と深層学習の驚くべき類似性</h3>
       <div class="card-meta">
@@ -2534,7 +2666,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          9 min
+          10 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2549,7 +2681,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220055200" data-slides="16" data-mins="63">
+    <div class="card" data-category="science" data-ts="20260220055200" data-slides="16" data-mins="63" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>フラクタルは自然界のデザイン原理</h3>
       <div class="card-meta">
@@ -2574,7 +2707,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220055300" data-slides="15" data-mins="76">
+    <div class="card" data-category="science" data-ts="20260220055300" data-slides="15" data-mins="76" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>素数の謎と暗号の関係</h3>
       <div class="card-meta">
@@ -2599,7 +2733,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220055400" data-slides="13" data-mins="57">
+    <div class="card" data-category="science" data-ts="20260220055400" data-slides="13" data-mins="57" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>「時間」は存在しないか — 物理学が語る時間の正体</h3>
       <div class="card-meta">
@@ -2624,7 +2759,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220055500" data-slides="13" data-mins="47">
+    <div class="card" data-category="science" data-ts="20260220055500" data-slides="13" data-mins="47" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>量子コンピュータの現実と幻想</h3>
       <div class="card-meta">
@@ -2649,7 +2785,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220055600" data-slides="11" data-mins="38">
+    <div class="card" data-category="science" data-ts="20260220055600" data-slides="11" data-mins="38" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>気候変動のティッピングポイント — 不可逆な転換点</h3>
       <div class="card-meta">
@@ -2674,7 +2811,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220055700" data-slides="11" data-mins="48">
+    <div class="card" data-category="science" data-ts="20260220055700" data-slides="11" data-mins="48" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>リスク補償効果：安全装置が危険を増す逆説</h3>
       <div class="card-meta">
@@ -2699,7 +2837,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220060100" data-slides="22" data-mins="8">
+    <div class="card" data-category="science" data-ts="20260220060100" data-slides="22" data-mins="200" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>p値の罠と再現性の危機 — 統計学が科学を騙すとき</h3>
       <div class="card-meta">
@@ -2709,7 +2848,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          3h 20m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2724,7 +2863,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220120000" data-slides="48" data-mins="64">
+    <div class="card" data-category="science" data-ts="20260220120000" data-slides="48" data-mins="200" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>フェルミ推定でビジネスを読む</h3>
       <div class="card-meta">
@@ -2734,7 +2874,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 4m
+          3h 20m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2749,7 +2889,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220120000" data-slides="41" data-mins="15">
+    <div class="card" data-category="science" data-ts="20260220120000" data-slides="41" data-mins="121" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>渋滞はなぜ消えないか</h3>
       <div class="card-meta">
@@ -2759,7 +2900,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          15 min
+          2h 1m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2774,7 +2915,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220130000" data-slides="67" data-mins="291">
+    <div class="card" data-category="science" data-ts="20260220130000" data-slides="67" data-mins="291" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>アリのコロニーに学ぶ分散システム</h3>
       <div class="card-meta">
@@ -2799,7 +2941,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220130000" data-slides="62" data-mins="319">
+    <div class="card" data-category="science" data-ts="20260220130000" data-slides="62" data-mins="319" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>ベンフォードの法則で不正を見抜く</h3>
       <div class="card-meta">
@@ -2824,7 +2967,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220150000" data-slides="57" data-mins="21">
+    <div class="card" data-category="science" data-ts="20260220150000" data-slides="57" data-mins="21" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>宇宙の大規模構造とニューラルネットの類似 — 偶然か、必然か</h3>
       <div class="card-meta">
@@ -2849,7 +2993,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220170000" data-slides="104" data-mins="116">
+    <div class="card" data-category="science" data-ts="20260220170000" data-slides="104" data-mins="868" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>エントロピーは技術的負債と同じ法則に従う</h3>
       <div class="card-meta">
@@ -2859,7 +3004,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 56m
+          14h 28m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -2874,7 +3019,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220180000" data-slides="18" data-mins="70">
+    <div class="card" data-category="science" data-ts="20260220180000" data-slides="18" data-mins="70" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>ゲーデルの不完全性定理とプログラム検証の限界</h3>
       <div class="card-meta">
@@ -2899,7 +3045,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220180001" data-slides="19" data-mins="60">
+    <div class="card" data-category="science" data-ts="20260220180001" data-slides="19" data-mins="60" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>スライム菌が東京の地下鉄を設計した話</h3>
       <div class="card-meta">
@@ -2924,7 +3071,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220180002" data-slides="20" data-mins="59">
+    <div class="card" data-category="science" data-ts="20260220180002" data-slides="20" data-mins="59" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>ゲーデルの不完全性定理とテストの限界</h3>
       <div class="card-meta">
@@ -2949,7 +3097,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220180008" data-slides="17" data-mins="61">
+    <div class="card" data-category="science" data-ts="20260220180008" data-slides="17" data-mins="61" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>シンプソンのパラドックスとA/Bテストの落とし穴</h3>
       <div class="card-meta">
@@ -2974,7 +3123,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220180012" data-slides="18" data-mins="59">
+    <div class="card" data-category="science" data-ts="20260220180012" data-slides="18" data-mins="59" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>ムーアの法則の死後 — 次の10年の物理的基盤</h3>
       <div class="card-meta">
@@ -2999,7 +3149,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220180100" data-slides="31" data-mins="145">
+    <div class="card" data-category="science" data-ts="20260220180100" data-slides="31" data-mins="145" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>マクスウェルの悪魔とキャッシュ無効化</h3>
       <div class="card-meta">
@@ -3024,7 +3175,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220180900" data-slides="24" data-mins="14">
+    <div class="card" data-category="science" data-ts="20260220180900" data-slides="24" data-mins="15" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>シュレーディンガーのユーザー：観測するまで存在しない</h3>
       <div class="card-meta">
@@ -3034,7 +3186,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          14 min
+          15 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3049,7 +3201,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220200100" data-slides="15" data-mins="41">
+    <div class="card" data-category="science" data-ts="20260220200100" data-slides="15" data-mins="41" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>シュレーディンガーの本番環境〜量子力学で読み解くDevOps〜</h3>
       <div class="card-meta">
@@ -3074,7 +3227,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220202000" data-slides="21" data-mins="7">
+    <div class="card" data-category="science" data-ts="20260220202000" data-slides="21" data-mins="201" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>観察者効果とHeisenbug：見ると消えるバグの量子力学</h3>
       <div class="card-meta">
@@ -3084,7 +3238,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          3h 21m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3099,7 +3253,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220204000" data-slides="20" data-mins="8">
+    <div class="card" data-category="science" data-ts="20260220204000" data-slides="20" data-mins="39" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>ムーアの法則の社会学：指数関数的成長が社会を変えるメカニズム</h3>
       <div class="card-meta">
@@ -3109,7 +3264,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          39 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3124,7 +3279,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220205500" data-slides="20" data-mins="7">
+    <div class="card" data-category="science" data-ts="20260220205500" data-slides="20" data-mins="40" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>ポスト量子暗号：量子コンピュータ時代の暗号技術</h3>
       <div class="card-meta">
@@ -3134,7 +3290,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          40 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3149,7 +3305,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220214000" data-slides="34" data-mins="11">
+    <div class="card" data-category="science" data-ts="20260220214000" data-slides="34" data-mins="133" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>ムーアの法則の社会学：予言が法則になった日</h3>
       <div class="card-meta">
@@ -3159,7 +3316,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          11 min
+          2h 13m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3174,7 +3331,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="science" data-ts="20260220215500" data-slides="21" data-mins="7">
+    <div class="card" data-category="science" data-ts="20260220215500" data-slides="21" data-mins="60" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Science &amp; Math</div>
       <h3>ポスト量子暗号：今日の秘密は明日解読される</h3>
       <div class="card-meta">
@@ -3184,7 +3342,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          1h 0m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3204,7 +3362,8 @@
   <h2 class="section-title" data-section="thinking">Society &amp; Bias</h2>
   <div class="grid">
 
-    <div class="card" data-category="thinking" data-ts="20260219140000" data-slides="91" data-mins="30">
+    <div class="card" data-category="thinking" data-ts="20260219140000" data-slides="91" data-mins="184" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>2045: AIの選択 ― ディストピアかユートピアか</h3>
       <div class="card-meta">
@@ -3214,7 +3373,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          30 min
+          3h 4m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3229,7 +3388,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220055900" data-slides="12" data-mins="61">
+    <div class="card" data-category="thinking" data-ts="20260220055900" data-slides="12" data-mins="61" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>BMI技術の最前線と倫理 — 脳とコンピュータの接続</h3>
       <div class="card-meta">
@@ -3254,7 +3414,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220060000" data-slides="11" data-mins="44">
+    <div class="card" data-category="thinking" data-ts="20260220060000" data-slides="11" data-mins="44" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>最適化の倫理問題 — アルゴリズムが「最善」を決めるとき</h3>
       <div class="card-meta">
@@ -3279,7 +3440,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220060200" data-slides="18" data-mins="67">
+    <div class="card" data-category="thinking" data-ts="20260220060200" data-slides="18" data-mins="67" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>生存者バイアス — 見えないデータが語る真実</h3>
       <div class="card-meta">
@@ -3304,7 +3466,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220062100" data-slides="24" data-mins="8">
+    <div class="card" data-category="thinking" data-ts="20260220062100" data-slides="24" data-mins="9" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>日本ゲーム産業の黄金時代 ― なぜ80-90年代の日本が世界を制覇したのか</h3>
       <div class="card-meta">
@@ -3314,7 +3477,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          9 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3329,7 +3492,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220062200" data-slides="21" data-mins="8">
+    <div class="card" data-category="thinking" data-ts="20260220062200" data-slides="21" data-mins="9" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>Pokemon GOと都市デザイン ― 拡張現実が変えた街の歩き方</h3>
       <div class="card-meta">
@@ -3339,7 +3503,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          9 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3354,7 +3518,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220062600" data-slides="21" data-mins="8">
+    <div class="card" data-category="thinking" data-ts="20260220062600" data-slides="21" data-mins="9" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>偶然の発明 ― セレンディピティが変えた世界</h3>
       <div class="card-meta">
@@ -3364,7 +3529,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          9 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3379,7 +3544,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220063200" data-slides="21" data-mins="8">
+    <div class="card" data-category="thinking" data-ts="20260220063200" data-slides="21" data-mins="9" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>確証バイアスとコードレビュー ― 見たいものしか見えない問題</h3>
       <div class="card-meta">
@@ -3389,7 +3555,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          9 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3404,7 +3570,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220063600" data-slides="17" data-mins="85">
+    <div class="card" data-category="thinking" data-ts="20260220063600" data-slides="17" data-mins="85" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>顔認識AIのバイアス ― テクノロジーは差別を増幅するか</h3>
       <div class="card-meta">
@@ -3429,17 +3596,18 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220100000" data-slides="30" data-mins="15">
+    <div class="card" data-category="thinking" data-ts="20260220100000" data-slides="33" data-mins="159" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>確証バイアスをAIが増幅する仕組み</h3>
       <div class="card-meta">
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          30 slides
+          33 slides
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          15 min
+          2h 39m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3454,7 +3622,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220180011" data-slides="18" data-mins="55">
+    <div class="card" data-category="thinking" data-ts="20260220180011" data-slides="18" data-mins="55" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>エターナル・セプテンバー — コミュニティはなぜ死ぬか</h3>
       <div class="card-meta">
@@ -3479,7 +3648,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220180013" data-slides="18" data-mins="57">
+    <div class="card" data-category="thinking" data-ts="20260220180013" data-slides="18" data-mins="57" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>デジタルツインの哲学的問題</h3>
       <div class="card-meta">
@@ -3504,7 +3674,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220180017" data-slides="18" data-mins="59">
+    <div class="card" data-category="thinking" data-ts="20260220180017" data-slides="18" data-mins="59" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>マタイ効果とテック格差 — 持てる者はさらに与えられる</h3>
       <div class="card-meta">
@@ -3529,7 +3700,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220180200" data-slides="26" data-mins="14">
+    <div class="card" data-category="thinking" data-ts="20260220180200" data-slides="26" data-mins="55" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>ジャズ即興演奏とアジャイル開発</h3>
       <div class="card-meta">
@@ -3539,7 +3711,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          14 min
+          55 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3554,7 +3726,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220180600" data-slides="20" data-mins="117">
+    <div class="card" data-category="thinking" data-ts="20260220180600" data-slides="20" data-mins="117" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>明治維新はDXの完全な教科書だ</h3>
       <div class="card-meta">
@@ -3579,7 +3752,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="thinking" data-ts="20260220200600" data-slides="21" data-mins="6">
+    <div class="card" data-category="thinking" data-ts="20260220200600" data-slides="21" data-mins="7" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Society &amp; Bias</div>
       <h3>ジャズと即興的開発〜コード進行から学ぶアジャイル開発の哲学〜</h3>
       <div class="card-meta">
@@ -3589,7 +3763,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          6 min
+          7 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3609,7 +3783,8 @@
   <h2 class="section-title" data-section="business">Business &amp; Strategy</h2>
   <div class="grid">
 
-    <div class="card" data-category="business" data-ts="20260219140000" data-slides="90" data-mins="33">
+    <div class="card" data-category="business" data-ts="20260219140000" data-slides="90" data-mins="205" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>OpenClaw完全解説 〜オープンソース自律AIエージェント〜</h3>
       <div class="card-meta">
@@ -3619,7 +3794,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          33 min
+          3h 25m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3634,7 +3809,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220054500" data-slides="20" data-mins="80">
+    <div class="card" data-category="business" data-ts="20260220054500" data-slides="20" data-mins="80" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>なぜ人は無料でOSSを作るか</h3>
       <div class="card-meta">
@@ -3659,7 +3835,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220054600" data-slides="14" data-mins="90">
+    <div class="card" data-category="business" data-ts="20260220054600" data-slides="14" data-mins="90" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>情報の非対称性がテックを支配する</h3>
       <div class="card-meta">
@@ -3684,7 +3861,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220054700" data-slides="14" data-mins="54">
+    <div class="card" data-category="business" data-ts="20260220054700" data-slides="14" data-mins="54" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>ネットワーク効果の「罠」</h3>
       <div class="card-meta">
@@ -3709,7 +3887,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220054800" data-slides="15" data-mins="33">
+    <div class="card" data-category="business" data-ts="20260220054800" data-slides="15" data-mins="48" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>フリーミアムは本当に儲かるか</h3>
       <div class="card-meta">
@@ -3719,7 +3898,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          33 min
+          48 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3734,7 +3913,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220054900" data-slides="12" data-mins="4">
+    <div class="card" data-category="business" data-ts="20260220054900" data-slides="12" data-mins="4" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>「無料」の本当のコスト計算</h3>
       <div class="card-meta">
@@ -3759,7 +3939,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220062400" data-slides="22" data-mins="8">
+    <div class="card" data-category="business" data-ts="20260220062400" data-slides="22" data-mins="148" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>エジソンは発明家ではなく起業家だった ― イノベーションの真実</h3>
       <div class="card-meta">
@@ -3769,7 +3950,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          2h 28m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3784,7 +3965,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220064300" data-slides="18" data-mins="79">
+    <div class="card" data-category="business" data-ts="20260220064300" data-slides="18" data-mins="89" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>スタートアップが失敗する本当の理由</h3>
       <div class="card-meta">
@@ -3794,7 +3976,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 19m
+          1h 29m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3809,7 +3991,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220130000" data-slides="52" data-mins="19">
+    <div class="card" data-category="business" data-ts="20260220130000" data-slides="52" data-mins="401" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>なぜ人は無料でOSSを作るか</h3>
       <div class="card-meta">
@@ -3819,7 +4002,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          19 min
+          6h 41m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3834,7 +4017,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220160000" data-slides="66" data-mins="90">
+    <div class="card" data-category="business" data-ts="20260220160000" data-slides="66" data-mins="255" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>フリーミアムは本当に儲かるか</h3>
       <div class="card-meta">
@@ -3844,7 +4028,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 30m
+          4h 15m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3859,7 +4043,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220180004" data-slides="18" data-mins="49">
+    <div class="card" data-category="business" data-ts="20260220180004" data-slides="18" data-mins="49" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>ポスト希少性ソフトウェア — コードが無料になる日</h3>
       <div class="card-meta">
@@ -3884,7 +4069,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220200400" data-slides="23" data-mins="7">
+    <div class="card" data-category="business" data-ts="20260220200400" data-slides="23" data-mins="8" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>囚人のジレンマとオープンソース〜ゲーム理論で読み解くOSSの持続可能性〜</h3>
       <div class="card-meta">
@@ -3894,7 +4080,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          8 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3909,7 +4095,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220203000" data-slides="19" data-mins="9">
+    <div class="card" data-category="business" data-ts="20260220203000" data-slides="19" data-mins="35" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>コモンズの悲劇：OSS持続可能性の経済学</h3>
       <div class="card-meta">
@@ -3919,7 +4106,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          9 min
+          35 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3934,7 +4121,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220205000" data-slides="19" data-mins="7">
+    <div class="card" data-category="business" data-ts="20260220205000" data-slides="19" data-mins="43" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>バイブコーディングの経済学：AIペアプログラミングのROI分析</h3>
       <div class="card-meta">
@@ -3944,7 +4132,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          43 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3959,7 +4147,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220213000" data-slides="29" data-mins="8">
+    <div class="card" data-category="business" data-ts="20260220213000" data-slides="29" data-mins="85" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>デジタルコモンズの悲劇：誰がインターネットの地下室を守るのか</h3>
       <div class="card-meta">
@@ -3969,7 +4158,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          1h 25m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -3984,7 +4173,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260220215000" data-slides="21" data-mins="6">
+    <div class="card" data-category="business" data-ts="20260220215000" data-slides="21" data-mins="44" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>バイブコーディングの経済学：速く作れるが速く壊れる時代</h3>
       <div class="card-meta">
@@ -3994,7 +4184,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          6 min
+          44 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4009,7 +4199,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="business" data-ts="20260311120000" data-slides="60" data-mins="19">
+    <div class="card" data-category="business" data-ts="20260311120000" data-slides="60" data-mins="749" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Business &amp; Strategy</div>
       <h3>Vibe Coding &amp; AI駆動開発</h3>
       <div class="card-meta">
@@ -4019,7 +4210,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          19 min
+          12h 29m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4039,7 +4230,8 @@
   <h2 class="section-title" data-section="investment">Investment &amp; Finance</h2>
   <div class="grid">
 
-    <div class="card" data-category="investment" data-ts="20260214073222" data-slides="61" data-mins="33">
+    <div class="card" data-category="investment" data-ts="20260214073222" data-slides="61" data-mins="336" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">Investment &amp; Finance</div>
       <h3>成長産業投資分析レポート 2026</h3>
       <div class="card-meta">
@@ -4049,7 +4241,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          33 min
+          5h 36m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4064,7 +4256,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="investment" data-ts="20260214103001" data-slides="69" data-mins="41">
+    <div class="card" data-category="investment" data-ts="20260214103001" data-slides="69" data-mins="139" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Investment &amp; Finance</div>
       <h3>日本円為替の今後の動向分析 - 投資家向け包括的レポート</h3>
       <div class="card-meta">
@@ -4074,7 +4267,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          41 min
+          2h 19m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4089,7 +4282,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="investment" data-ts="20260220054400" data-slides="19" data-mins="66">
+    <div class="card" data-category="investment" data-ts="20260220054400" data-slides="19" data-mins="66" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Investment &amp; Finance</div>
       <h3>デジタル人民元の本当の狙い</h3>
       <div class="card-meta">
@@ -4114,7 +4308,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="investment" data-ts="20260220055000" data-slides="18" data-mins="78">
+    <div class="card" data-category="investment" data-ts="20260220055000" data-slides="18" data-mins="78" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Investment &amp; Finance</div>
       <h3>倹約家より浪費家が経済成長に貢献する構造</h3>
       <div class="card-meta">
@@ -4144,7 +4339,8 @@
   <h2 class="section-title" data-section="career">Career &amp; Management</h2>
   <div class="grid">
 
-    <div class="card" data-category="career" data-ts="20260214081826" data-slides="51" data-mins="133">
+    <div class="card" data-category="career" data-ts="20260214081826" data-slides="51" data-mins="216" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Career &amp; Management</div>
       <h3>世界年収アップ戦略と円安下の海外就業意思決定</h3>
       <div class="card-meta">
@@ -4154,7 +4350,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          2h 13m
+          3h 36m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4169,7 +4365,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="career" data-ts="20260214082958" data-slides="51" data-mins="31">
+    <div class="card" data-category="career" data-ts="20260214082958" data-slides="51" data-mins="308" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">Career &amp; Management</div>
       <h3>部下のマネージメント：経営層のための包括ガイド</h3>
       <div class="card-meta">
@@ -4179,7 +4376,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          31 min
+          5h 8m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4194,7 +4391,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="career" data-ts="20260220064400" data-slides="18" data-mins="7">
+    <div class="card" data-category="career" data-ts="20260220064400" data-slides="18" data-mins="8" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Career &amp; Management</div>
       <h3>エンジニアの年収と幸福度の関係</h3>
       <div class="card-meta">
@@ -4204,7 +4402,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          8 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4219,7 +4417,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="career" data-ts="20260220140000" data-slides="62" data-mins="21">
+    <div class="card" data-category="career" data-ts="20260220140000" data-slides="62" data-mins="236" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Career &amp; Management</div>
       <h3>コードを書かない日のほうが生産的な理由</h3>
       <div class="card-meta">
@@ -4229,7 +4428,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          21 min
+          3h 56m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4244,7 +4443,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="career" data-ts="20260220180016" data-slides="18" data-mins="65">
+    <div class="card" data-category="career" data-ts="20260220180016" data-slides="18" data-mins="65" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Career &amp; Management</div>
       <h3>10倍エンジニアは実在するか — 生産性研究の結論</h3>
       <div class="card-meta">
@@ -4274,7 +4474,8 @@
   <h2 class="section-title" data-section="aws">AWS</h2>
   <div class="grid">
 
-    <div class="card" data-category="aws" data-ts="20260214105800" data-slides="85" data-mins="31">
+    <div class="card" data-category="aws" data-ts="20260214105800" data-slides="85" data-mins="585" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AWS</div>
       <h3>AWS IAMの権限管理 完全ガイド</h3>
       <div class="card-meta">
@@ -4284,7 +4485,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          31 min
+          9h 45m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4299,7 +4500,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260214152555" data-slides="53" data-mins="30">
+    <div class="card" data-category="aws" data-ts="20260214152555" data-slides="53" data-mins="491" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AWS</div>
       <h3>Amazon Cognito 詳細レポート</h3>
       <div class="card-meta">
@@ -4309,7 +4511,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          30 min
+          8h 11m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4324,7 +4526,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260214160000" data-slides="97" data-mins="37">
+    <div class="card" data-category="aws" data-ts="20260214160000" data-slides="97" data-mins="911" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AWS</div>
       <h3>AWSネットワーキング完全ガイド — 認定試験対策</h3>
       <div class="card-meta">
@@ -4334,7 +4537,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          37 min
+          15h 11m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4349,7 +4552,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260215064908" data-slides="91" data-mins="45">
+    <div class="card" data-category="aws" data-ts="20260215064908" data-slides="91" data-mins="1126" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AWS</div>
       <h3>AWS ストレージサービス完全ガイド</h3>
       <div class="card-meta">
@@ -4359,7 +4563,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          45 min
+          18h 46m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4374,7 +4578,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260217133338" data-slides="72" data-mins="38">
+    <div class="card" data-category="aws" data-ts="20260217133338" data-slides="72" data-mins="551" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AWS</div>
       <h3>AWS Direct Connect 完全ガイド — VIF・Gateway・冗長化設計</h3>
       <div class="card-meta">
@@ -4384,7 +4589,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          38 min
+          9h 11m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4399,7 +4604,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260219012225" data-slides="62" data-mins="46">
+    <div class="card" data-category="aws" data-ts="20260219012225" data-slides="62" data-mins="297" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AWS</div>
       <h3>AWS Certified Generative AI Developer - Professional 試験対策</h3>
       <div class="card-meta">
@@ -4409,7 +4615,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          46 min
+          4h 57m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4424,7 +4630,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260219012517" data-slides="88" data-mins="69">
+    <div class="card" data-category="aws" data-ts="20260219012517" data-slides="88" data-mins="451" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AWS</div>
       <h3>AWS Certified Generative AI Developer - Professional: 責任あるAI（Responsible AI）完全ガイド</h3>
       <div class="card-meta">
@@ -4434,7 +4641,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 9m
+          7h 31m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4449,7 +4656,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260219013500" data-slides="98" data-mins="84">
+    <div class="card" data-category="aws" data-ts="20260219013500" data-slides="98" data-mins="903" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AWS</div>
       <h3>AWS Certified Generative AI Developer - Professional 試験直前チートシート</h3>
       <div class="card-meta">
@@ -4459,7 +4667,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 24m
+          15h 3m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4474,7 +4682,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260219044339" data-slides="129" data-mins="60">
+    <div class="card" data-category="aws" data-ts="20260219044339" data-slides="129" data-mins="1598" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AWS</div>
       <h3>AWS Observability完全ガイド — OpenTelemetry + CloudWatch + Grafana + X-Ray</h3>
       <div class="card-meta">
@@ -4484,7 +4693,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 0m
+          26h 38m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4499,7 +4708,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260219120000" data-slides="111" data-mins="61">
+    <div class="card" data-category="aws" data-ts="20260219120000" data-slides="111" data-mins="891" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AWS</div>
       <h3>AWS Certified Generative AI Developer - Professional 応用的資料</h3>
       <div class="card-meta">
@@ -4509,7 +4719,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 1m
+          14h 51m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4524,7 +4734,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260219140000" data-slides="174" data-mins="106">
+    <div class="card" data-category="aws" data-ts="20260219140000" data-slides="174" data-mins="2082" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AWS</div>
       <h3>AWS Certified Advanced Networking - Specialty (ANS-C01) 完全ガイド</h3>
       <div class="card-meta">
@@ -4534,7 +4745,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 46m
+          34h 42m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4549,7 +4760,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260220055800" data-slides="11" data-mins="33">
+    <div class="card" data-category="aws" data-ts="20260220055800" data-slides="11" data-mins="33" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AWS</div>
       <h3>都市のスケーリング則 — 人口が2倍になると何が起きるか</h3>
       <div class="card-meta">
@@ -4574,7 +4786,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260223045605" data-slides="131" data-mins="107">
+    <div class="card" data-category="aws" data-ts="20260223045605" data-slides="131" data-mins="119" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AWS</div>
       <h3>AWS Advanced Networking Specialty — Direct Connect / Transit Gateway 完全解説</h3>
       <div class="card-meta">
@@ -4584,7 +4797,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 47m
+          1h 59m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4599,7 +4812,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260223050100" data-slides="53" data-mins="33">
+    <div class="card" data-category="aws" data-ts="20260223050100" data-slides="53" data-mins="691" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AWS</div>
       <h3>AWS VPC Endpoint 深掘り: Gateway Endpoint vs Interface Endpoint (PrivateLink)</h3>
       <div class="card-meta">
@@ -4609,7 +4823,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          33 min
+          11h 31m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4624,7 +4838,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260223120000" data-slides="56" data-mins="446">
+    <div class="card" data-category="aws" data-ts="20260223120000" data-slides="56" data-mins="446" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AWS</div>
       <h3>AWS ANS — VPN完全ガイド</h3>
       <div class="card-meta">
@@ -4649,7 +4864,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260223130000" data-slides="87" data-mins="59">
+    <div class="card" data-category="aws" data-ts="20260223130000" data-slides="87" data-mins="1444" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">AWS</div>
       <h3>AWS Certified Generative AI Developer - Professional 試験対策</h3>
       <div class="card-meta">
@@ -4659,7 +4875,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          59 min
+          24h 4m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4674,7 +4890,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260223140000" data-slides="135" data-mins="97">
+    <div class="card" data-category="aws" data-ts="20260223140000" data-slides="135" data-mins="97" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AWS</div>
       <h3>AWS Certified Generative AI Developer - Professional: MLOps完全ガイド</h3>
       <div class="card-meta">
@@ -4699,7 +4916,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="aws" data-ts="20260223150000" data-slides="109" data-mins="109">
+    <div class="card" data-category="aws" data-ts="20260223150000" data-slides="109" data-mins="109" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">AWS</div>
       <h3>AWS SageMaker 完全ガイド - アーキテクト・リードエンジニア向け</h3>
       <div class="card-meta">
@@ -4724,12 +4942,39 @@
       </div>
     </div>
 
+    <div class="card" data-category="aws" data-ts="20260311124404" data-slides="55" data-mins="30" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
+      <div class="card-category">AWS</div>
+      <h3>AWS Deploy戦略完全ガイド</h3>
+      <div class="card-meta">
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          55 slides
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          30 min
+        </span>
+        <span class="tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
+          gaia + invert
+        </span>
+      </div>
+      <div class="card-actions">
+        <a class="btn" href="20260311124404_aws-deploy-strategy/dist/aws-deploy-strategy.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          View Slides
+        </a>
+      </div>
+    </div>
+
   </div>
 
   <h2 class="section-title" data-section="other">Other</h2>
   <div class="grid">
 
-    <div class="card" data-category="other" data-ts="20260220060500" data-slides="10" data-mins="70">
+    <div class="card" data-category="other" data-ts="20260220060500" data-slides="10" data-mins="70" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>信頼区間の誤解 — 「95%信頼区間」は何を意味するのか</h3>
       <div class="card-meta">
@@ -4754,7 +4999,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220060700" data-slides="10" data-mins="68">
+    <div class="card" data-category="other" data-ts="20260220060700" data-slides="10" data-mins="68" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>20世紀の予測と21世紀の現実 — 技術楽観主義の光と影</h3>
       <div class="card-meta">
@@ -4779,7 +5025,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220060800" data-slides="10" data-mins="41">
+    <div class="card" data-category="other" data-ts="20260220060800" data-slides="10" data-mins="41" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>標準化が変えた世界 — コンテナ・時刻・単位の革命</h3>
       <div class="card-meta">
@@ -4804,7 +5051,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220060900" data-slides="10" data-mins="36">
+    <div class="card" data-category="other" data-ts="20260220060900" data-slides="10" data-mins="36" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>VHSとベータマックスの戦争 — 優れた技術が負ける理由</h3>
       <div class="card-meta">
@@ -4829,7 +5077,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220061000" data-slides="10" data-mins="54">
+    <div class="card" data-category="other" data-ts="20260220061000" data-slides="10" data-mins="54" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>QWERTYキーボードのロックイン — なぜ非効率が生き残るのか</h3>
       <div class="card-meta">
@@ -4854,7 +5103,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220061100" data-slides="19" data-mins="73">
+    <div class="card" data-category="other" data-ts="20260220061100" data-slides="19" data-mins="73" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>意志力は有限か？ — 自制心の科学と「意志力の枯渇」神話</h3>
       <div class="card-meta">
@@ -4879,7 +5129,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220061200" data-slides="19" data-mins="77">
+    <div class="card" data-category="other" data-ts="20260220061200" data-slides="19" data-mins="95" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>記憶は再構成される — あなたの思い出は本当か？</h3>
       <div class="card-meta">
@@ -4889,7 +5140,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          1h 17m
+          1h 35m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -4904,7 +5155,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220061300" data-slides="10" data-mins="49">
+    <div class="card" data-category="other" data-ts="20260220061300" data-slides="10" data-mins="49" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>睡眠中に脳が洗われる — グリンパティックシステムの発見</h3>
       <div class="card-meta">
@@ -4929,7 +5181,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220061400" data-slides="15" data-mins="81">
+    <div class="card" data-category="other" data-ts="20260220061400" data-slides="15" data-mins="81" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>プラセボを知っていても効く — オープンラベルプラセボの謎</h3>
       <div class="card-meta">
@@ -4954,7 +5207,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220061500" data-slides="10" data-mins="48">
+    <div class="card" data-category="other" data-ts="20260220061500" data-slides="10" data-mins="48" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>自由意志は幻想か — 神経科学が挑む哲学の難問</h3>
       <div class="card-meta">
@@ -4979,7 +5233,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220061600" data-slides="10" data-mins="38">
+    <div class="card" data-category="other" data-ts="20260220061600" data-slides="10" data-mins="38" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>マルチタスクという幻想 — 脳は同時に2つのことができない</h3>
       <div class="card-meta">
@@ -5004,7 +5259,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220061700" data-slides="10" data-mins="42">
+    <div class="card" data-category="other" data-ts="20260220061700" data-slides="10" data-mins="42" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>計画錯誤 — なぜプロジェクトは常に遅れるのか</h3>
       <div class="card-meta">
@@ -5029,7 +5285,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220061800" data-slides="10" data-mins="57">
+    <div class="card" data-category="other" data-ts="20260220061800" data-slides="10" data-mins="57" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>カフェインとアデノシン — コーヒーが眠気を消す本当の仕組み</h3>
       <div class="card-meta">
@@ -5054,7 +5311,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220061900" data-slides="10" data-mins="37">
+    <div class="card" data-category="other" data-ts="20260220061900" data-slides="10" data-mins="37" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>1万時間の法則の嘘と真実</h3>
       <div class="card-meta">
@@ -5079,7 +5337,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220062000" data-slides="10" data-mins="39">
+    <div class="card" data-category="other" data-ts="20260220062000" data-slides="10" data-mins="39" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>孤独は喫煙より危険 — 孤立が健康に与える衝撃</h3>
       <div class="card-meta">
@@ -5104,7 +5363,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220063000" data-slides="20" data-mins="7">
+    <div class="card" data-category="other" data-ts="20260220063000" data-slides="20" data-mins="8" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>シンガポール ― 設計された都市国家の実験</h3>
       <div class="card-meta">
@@ -5114,7 +5374,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          8 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5129,7 +5389,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220063100" data-slides="21" data-mins="7">
+    <div class="card" data-category="other" data-ts="20260220063100" data-slides="21" data-mins="8" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>ダークパターンの解剖学 ― ユーザーを欺くUIの仕組み</h3>
       <div class="card-meta">
@@ -5139,7 +5400,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          8 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5154,7 +5415,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220063300" data-slides="17" data-mins="7">
+    <div class="card" data-category="other" data-ts="20260220063300" data-slides="17" data-mins="52" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>選択のパラドックス × SaaS ― なぜ多機能ツールは使われないのか</h3>
       <div class="card-meta">
@@ -5164,7 +5426,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          52 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5179,7 +5441,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220063500" data-slides="18" data-mins="89">
+    <div class="card" data-category="other" data-ts="20260220063500" data-slides="18" data-mins="89" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>死後のデジタル遺産 ― アカウントは誰が相続するのか</h3>
       <div class="card-meta">
@@ -5204,7 +5467,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220063800" data-slides="19" data-mins="7">
+    <div class="card" data-category="other" data-ts="20260220063800" data-slides="19" data-mins="8" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>英語はなぜ世界標準になったのか ― 言語帝国主義の歴史</h3>
       <div class="card-meta">
@@ -5214,7 +5478,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          8 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5229,7 +5493,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220063900" data-slides="12" data-mins="42">
+    <div class="card" data-category="other" data-ts="20260220063900" data-slides="12" data-mins="42" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>言語が思考を決める — サピア＝ウォーフ仮説の現代的検証</h3>
       <div class="card-meta">
@@ -5254,7 +5519,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220064000" data-slides="18" data-mins="86">
+    <div class="card" data-category="other" data-ts="20260220064000" data-slides="18" data-mins="86" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>絵文字は言語か ― コミュニケーションの進化論</h3>
       <div class="card-meta">
@@ -5279,7 +5545,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220064100" data-slides="20" data-mins="8">
+    <div class="card" data-category="other" data-ts="20260220064100" data-slides="20" data-mins="9" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Other</div>
       <h3>10xエンジニア神話 — 天才プログラマーは存在するか？</h3>
       <div class="card-meta">
@@ -5289,7 +5556,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          9 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5304,7 +5571,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220064200" data-slides="19" data-mins="8">
+    <div class="card" data-category="other" data-ts="20260220064200" data-slides="19" data-mins="9" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>ノーコードデーは本当に生産的か？</h3>
       <div class="card-meta">
@@ -5314,7 +5582,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          9 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5329,7 +5597,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220064500" data-slides="18" data-mins="89">
+    <div class="card" data-category="other" data-ts="20260220064500" data-slides="18" data-mins="89" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>ピザ2枚ルール — チームサイズの科学</h3>
       <div class="card-meta">
@@ -5354,7 +5623,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220064700" data-slides="10" data-mins="45">
+    <div class="card" data-category="other" data-ts="20260220064700" data-slides="10" data-mins="45" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>「1時間会議」のデフォルトが組織を壊す — 会議の経済学</h3>
       <div class="card-meta">
@@ -5379,7 +5649,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220064800" data-slides="10" data-mins="68">
+    <div class="card" data-category="other" data-ts="20260220064800" data-slides="10" data-mins="68" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>マジカルナンバー7±2 — ミラーの法則とデザインの科学</h3>
       <div class="card-meta">
@@ -5404,7 +5675,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220064900" data-slides="11" data-mins="47">
+    <div class="card" data-category="other" data-ts="20260220064900" data-slides="11" data-mins="47" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>沈黙のコミュニケーション — 言葉にならないメッセージの力</h3>
       <div class="card-meta">
@@ -5429,7 +5701,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220065000" data-slides="10" data-mins="48">
+    <div class="card" data-category="other" data-ts="20260220065000" data-slides="10" data-mins="48" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>協力の進化 — なぜ利己的遺伝子から利他的行動が生まれるのか</h3>
       <div class="card-meta">
@@ -5454,7 +5727,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220200500" data-slides="27" data-mins="11">
+    <div class="card" data-category="other" data-ts="20260220200500" data-slides="27" data-mins="55" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Other</div>
       <h3>コードの地層：地質学が教えるレガシーシステム考古学</h3>
       <div class="card-meta">
@@ -5464,7 +5738,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          11 min
+          55 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5479,7 +5753,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220201000" data-slides="21" data-mins="8">
+    <div class="card" data-category="other" data-ts="20260220201000" data-slides="21" data-mins="203" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>完全変態：昆虫のメタモルフォーゼに学ぶソフトウェアマイグレーション</h3>
       <div class="card-meta">
@@ -5489,7 +5764,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          8 min
+          3h 23m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5504,7 +5779,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220202500" data-slides="17" data-mins="7">
+    <div class="card" data-category="other" data-ts="20260220202500" data-slides="17" data-mins="46" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>相変化と技術採用の臨界点：なぜ技術は突然普及するのか</h3>
       <div class="card-meta">
@@ -5514,7 +5790,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          46 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5529,7 +5805,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220204500" data-slides="18" data-mins="8">
+    <div class="card" data-category="other" data-ts="20260220204500" data-slides="18" data-mins="8" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>囚人のジレンマ × プラットフォーム競争：協調と裏切りの戦略論</h3>
       <div class="card-meta">
@@ -5554,7 +5831,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220211500" data-slides="27" data-mins="11">
+    <div class="card" data-category="other" data-ts="20260220211500" data-slides="27" data-mins="52" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Other</div>
       <h3>コードの地層：地質学が教えるレガシーシステム考古学</h3>
       <div class="card-meta">
@@ -5564,7 +5842,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          11 min
+          52 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5579,7 +5857,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220212000" data-slides="13" data-mins="5">
+    <div class="card" data-category="other" data-ts="20260220212000" data-slides="13" data-mins="48" data-grade="C">
+      <div class="grade-badge grade-C">C</div>
       <div class="card-category">Other</div>
       <h3>観察者効果：プロファイラを起動した途端に消えるバグ</h3>
       <div class="card-meta">
@@ -5589,7 +5868,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          5 min
+          48 min
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5604,7 +5883,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220212500" data-slides="22" data-mins="7">
+    <div class="card" data-category="other" data-ts="20260220212500" data-slides="22" data-mins="84" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>相変化：技術普及はなぜ突然起きるのか</h3>
       <div class="card-meta">
@@ -5614,7 +5894,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          7 min
+          1h 24m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5629,7 +5909,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260220214500" data-slides="31" data-mins="12">
+    <div class="card" data-category="other" data-ts="20260220214500" data-slides="31" data-mins="127" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>囚人のジレンマ：プラットフォーム戦争の数学</h3>
       <div class="card-meta">
@@ -5639,7 +5920,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          12 min
+          2h 7m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5654,7 +5935,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260223160000" data-slides="111" data-mins="35">
+    <div class="card" data-category="other" data-ts="20260223160000" data-slides="111" data-mins="35" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>ML評価指標 完全ガイド</h3>
       <div class="card-meta">
@@ -5679,7 +5961,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260311085414" data-slides="45" data-mins="318">
+    <div class="card" data-category="other" data-ts="20260311085414" data-slides="45" data-mins="318" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>出社 vs リモート ― 最適な働き方を考える</h3>
       <div class="card-meta">
@@ -5704,7 +5987,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260311090036" data-slides="55" data-mins="633">
+    <div class="card" data-category="other" data-ts="20260311090036" data-slides="55" data-mins="633" data-grade="B">
+      <div class="grade-badge grade-B">B</div>
       <div class="card-category">Other</div>
       <h3>Kubernetes 実践ガイド</h3>
       <div class="card-meta">
@@ -5729,7 +6013,8 @@
       </div>
     </div>
 
-    <div class="card" data-category="other" data-ts="20260311120001" data-slides="60" data-mins="20">
+    <div class="card" data-category="other" data-ts="20260311120001" data-slides="60" data-mins="791" data-grade="A">
+      <div class="grade-badge grade-A">A</div>
       <div class="card-category">Other</div>
       <h3>GitOps &amp; Platform Engineering</h3>
       <div class="card-meta">
@@ -5739,7 +6024,7 @@
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          20 min
+          13h 11m
         </span>
         <span class="tag">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
@@ -5774,6 +6059,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   let activeFilter='all';
   let searchQuery='';
   let activeSort='newest';
+  let activeGrade='all';
 
   function getCardVal(c,sort){
     if(sort==='slides')return parseInt(c.dataset.slides||'0',10);
@@ -5795,7 +6081,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.querySelectorAll('.card').forEach(c=>{
       const matchFilter=activeFilter==='all'||c.dataset.category===activeFilter;
       const matchSearch=!searchQuery||c.querySelector('h3').textContent.toLowerCase().includes(searchQuery);
-      const visible=matchFilter&&matchSearch;
+      const matchGrade=activeGrade==='all'||c.dataset.grade===activeGrade;
+      const visible=matchFilter&&matchSearch&&matchGrade;
       c.style.display=visible?'':'none';
       if(visible)anyVisible=true;
     });
@@ -5830,6 +6117,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   searchInput.addEventListener('input',()=>{
     searchQuery=searchInput.value.trim().toLowerCase();
     applyFilters();
+  });
+
+  const gradeBtns=document.querySelectorAll('.grade-btn');
+  gradeBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      gradeBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      activeGrade=btn.dataset.grade;
+      applyFilters();
+    });
   });
 
   sortGrids();

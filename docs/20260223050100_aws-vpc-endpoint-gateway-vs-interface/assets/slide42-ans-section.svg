@@ -1,4 +1,4 @@
-<svg viewBox="0 0 800 380" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+<svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="55" font-family="sans-serif" font-size="24" font-weight="bold" fill="#f9a825" text-anchor="middle">ANS 試験対策ポイント</text>
   <text x="400" y="84" font-family="sans-serif" font-size="15" fill="#ffffff" text-anchor="middle">頻出パターンと設計判断の鍵</text>

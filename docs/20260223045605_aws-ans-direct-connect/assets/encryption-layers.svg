@@ -1,0 +1,55 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">DX 暗号化オプション比較</text>
+  <!-- Column headers -->
+  <text x="120" y="58" text-anchor="middle" fill="#aaaaaa" font-size="11">方式</text>
+  <text x="280" y="58" text-anchor="middle" fill="#aaaaaa" font-size="11">対象レイヤー</text>
+  <text x="440" y="58" text-anchor="middle" fill="#aaaaaa" font-size="11">対象区間</text>
+  <text x="590" y="58" text-anchor="middle" fill="#aaaaaa" font-size="11">対応接続</text>
+  <text x="720" y="58" text-anchor="middle" fill="#aaaaaa" font-size="11">オーバーヘッド</text>
+  <!-- Row 1: MACsec -->
+  <rect x="15" y="65" width="770" height="50" rx="4" fill="#16213e" stroke="#4caf50" stroke-width="1"/>
+  <text x="120" y="85" text-anchor="middle" fill="#4caf50" font-size="12" font-weight="bold">MACsec</text>
+  <text x="120" y="103" text-anchor="middle" fill="#aaaaaa" font-size="10">IEEE 802.1AE</text>
+  <text x="280" y="95" text-anchor="middle" fill="#ffffff" font-size="12">Layer 2 (L2)</text>
+  <text x="440" y="85" text-anchor="middle" fill="#ffffff" font-size="11">DXロケーション</text>
+  <text x="440" y="103" text-anchor="middle" fill="#ffffff" font-size="11">〜AWS エッジ</text>
+  <text x="590" y="85" text-anchor="middle" fill="#ff8a65" font-size="11">10G/100G Dedicated</text>
+  <text x="590" y="103" text-anchor="middle" fill="#ff8a65" font-size="10">のみ</text>
+  <text x="720" y="95" text-anchor="middle" fill="#4caf50" font-size="11">なし (HW処理)</text>
+  <!-- Row 2: VPN over DX -->
+  <rect x="15" y="125" width="770" height="50" rx="4" fill="#16213e" stroke="#64b5f6" stroke-width="1"/>
+  <text x="120" y="143" text-anchor="middle" fill="#64b5f6" font-size="12" font-weight="bold">VPN over DX</text>
+  <text x="120" y="161" text-anchor="middle" fill="#aaaaaa" font-size="10">IPsec</text>
+  <text x="280" y="155" text-anchor="middle" fill="#ffffff" font-size="12">Layer 3 (L3)</text>
+  <text x="440" y="143" text-anchor="middle" fill="#ffffff" font-size="11">エンドポイント間</text>
+  <text x="440" y="161" text-anchor="middle" fill="#ffffff" font-size="11">(オンプレ〜VGW/TGW)</text>
+  <text x="590" y="155" text-anchor="middle" fill="#4caf50" font-size="11">すべての DX</text>
+  <text x="720" y="155" text-anchor="middle" fill="#ff8a65" font-size="11">あり (~10%帯域減)</text>
+  <!-- Row 3: MACsec + VPN -->
+  <rect x="15" y="185" width="770" height="50" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="120" y="203" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">MACsec + VPN</text>
+  <text x="120" y="221" text-anchor="middle" fill="#aaaaaa" font-size="10">二重暗号化</text>
+  <text x="280" y="215" text-anchor="middle" fill="#ffffff" font-size="12">L2 + L3</text>
+  <text x="440" y="203" text-anchor="middle" fill="#ffffff" font-size="11">DXロケーション〜AWS</text>
+  <text x="440" y="221" text-anchor="middle" fill="#ffffff" font-size="11">+ エンドポイント間</text>
+  <text x="590" y="215" text-anchor="middle" fill="#ff8a65" font-size="11">10G/100G Dedicated</text>
+  <text x="720" y="215" text-anchor="middle" fill="#ff8a65" font-size="11">大 (二重暗号化)</text>
+  <!-- Row 4: No encryption -->
+  <rect x="15" y="245" width="770" height="50" rx="4" fill="#16213e" stroke="#555" stroke-width="1"/>
+  <text x="120" y="265" text-anchor="middle" fill="#aaaaaa" font-size="12">暗号化なし</text>
+  <text x="120" y="283" text-anchor="middle" fill="#aaaaaa" font-size="10">(デフォルト)</text>
+  <text x="280" y="275" text-anchor="middle" fill="#555" font-size="12">—</text>
+  <text x="440" y="275" text-anchor="middle" fill="#555" font-size="11">専用線のみ (物理分離)</text>
+  <text x="590" y="275" text-anchor="middle" fill="#4caf50" font-size="11">すべての DX</text>
+  <text x="720" y="275" text-anchor="middle" fill="#4caf50" font-size="11">なし</text>
+  <!-- Recommendations -->
+  <rect x="15" y="310" width="770" height="75" rx="6" fill="#0d1b2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="400" y="333" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">推奨パターン</text>
+  <text x="200" y="355" text-anchor="middle" fill="#ffffff" font-size="11">一般企業: VPN over DX</text>
+  <text x="200" y="372" text-anchor="middle" fill="#aaaaaa" font-size="10">コスト効率 + 暗号化</text>
+  <text x="400" y="355" text-anchor="middle" fill="#ffffff" font-size="11">金融/医療: MACsec + VPN + TLS</text>
+  <text x="400" y="372" text-anchor="middle" fill="#aaaaaa" font-size="10">多層防御 (規制対応)</text>
+  <text x="620" y="355" text-anchor="middle" fill="#ffffff" font-size="11">高帯域: 100G + MACsec</text>
+  <text x="620" y="372" text-anchor="middle" fill="#aaaaaa" font-size="10">ハードウェア暗号化で遅延なし</text>
+</svg>

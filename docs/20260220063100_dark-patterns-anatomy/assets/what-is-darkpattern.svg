@@ -1,0 +1,39 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">ダークパターンとは何か — 定義と本質</text>
+  <!-- Definition box -->
+  <rect x="20" y="48" width="760" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="75" text-anchor="middle" font-size="13" fill="#e91e63">「ユーザーが意図しないことをするよう設計されたUIのパターン」</text>
+  <text x="400" y="97" text-anchor="middle" font-size="12" fill="#ffffff">— Harry Brignull, 2010年 darkpatterns.org にて定義</text>
+  <text x="400" y="117" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">UXデザインの知識を「善のため」ではなく「企業利益のため」に使う</text>
+  <!-- Spectrum: Mistake → Deceptive Design -->
+  <rect x="20" y="148" width="760" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="171" text-anchor="middle" font-size="12" fill="#f9a825">意図のスペクトラム</text>
+  <!-- Spectrum bar -->
+  <rect x="60" y="182" width="680" height="24" rx="12" fill="#0d1b2a"/>
+  <rect x="60" y="182" width="170" height="24" rx="12" fill="#4caf50" opacity="0.6"/>
+  <rect x="230" y="182" width="170" height="24" fill="#f9a825" opacity="0.6"/>
+  <rect x="400" y="182" width="170" height="24" fill="#e91e63" opacity="0.7"/>
+  <rect x="570" y="182" width="170" height="24" rx="12" fill="#e91e63" opacity="0.9"/>
+  <text x="145" y="198" text-anchor="middle" font-size="9" fill="#ffffff">誤ったデザイン</text>
+  <text x="315" y="198" text-anchor="middle" font-size="9" fill="#ffffff">紛らわしいUI</text>
+  <text x="485" y="198" text-anchor="middle" font-size="9" fill="#ffffff">意図的欺瞞</text>
+  <text x="655" y="198" text-anchor="middle" font-size="9" fill="#ffffff">ダークパターン</text>
+  <text x="145" y="218" text-anchor="middle" font-size="8" fill="#4caf50">偶発的</text>
+  <text x="655" y="218" text-anchor="middle" font-size="8" fill="#e91e63">意図的</text>
+  <!-- Key distinction -->
+  <rect x="20" y="245" width="370" height="130" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="205" y="270" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">良いUXデザイン</text>
+  <text x="205" y="292" text-anchor="middle" font-size="11" fill="#ffffff">ユーザーの目標達成を支援</text>
+  <text x="205" y="310" text-anchor="middle" font-size="11" fill="#ffffff">使いやすさ・満足度を最大化</text>
+  <text x="205" y="328" text-anchor="middle" font-size="11" fill="#ffffff">長期的な信頼を構築する</text>
+  <text x="205" y="355" text-anchor="middle" font-size="11" fill="#4caf50">ユーザーとビジネスが win-win</text>
+  <rect x="410" y="245" width="370" height="130" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="595" y="270" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">ダークパターン</text>
+  <text x="595" y="292" text-anchor="middle" font-size="11" fill="#ffffff">ユーザーを意図しない行動に誘導</text>
+  <text x="595" y="310" text-anchor="middle" font-size="11" fill="#ffffff">短期収益を優先して信頼を破壊</text>
+  <text x="595" y="328" text-anchor="middle" font-size="11" fill="#ffffff">認知バイアスを悪意的に利用する</text>
+  <text x="595" y="355" text-anchor="middle" font-size="11" fill="#e91e63">ビジネスだけが短期的に win</text>
+  <!-- Bottom -->
+  <text x="400" y="390" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.6">重要な判断基準：「ユーザーが意図した通りの結果になっているか？」</text>
+</svg>

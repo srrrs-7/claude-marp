@@ -1,0 +1,37 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">AIコードレビューは確証バイアスを解決するか</text>
+  <!-- Left: AI strengths -->
+  <rect x="20" y="50" width="360" height="290" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="200" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#4caf50">AIレビューの強み</text>
+  <rect x="40" y="92" width="320" height="50" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1"/>
+  <text x="200" y="112" text-anchor="middle" font-size="12" fill="#4caf50">著者バイアスゼロ</text>
+  <text x="200" y="130" text-anchor="middle" font-size="11" fill="#ffffff">誰が書いたか知らない = ハロー効果なし</text>
+  <rect x="40" y="152" width="320" height="50" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1"/>
+  <text x="200" y="172" text-anchor="middle" font-size="12" fill="#4caf50">一貫した基準</text>
+  <text x="200" y="190" text-anchor="middle" font-size="11" fill="#ffffff">疲労・気分で判断がブレない</text>
+  <rect x="40" y="212" width="320" height="50" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1"/>
+  <text x="200" y="232" text-anchor="middle" font-size="12" fill="#4caf50">網羅的な静的解析</text>
+  <text x="200" y="250" text-anchor="middle" font-size="11" fill="#ffffff">見落としやすいセキュリティ・型エラー</text>
+  <rect x="40" y="272" width="320" height="52" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1"/>
+  <text x="200" y="292" text-anchor="middle" font-size="12" fill="#4caf50">スケール</text>
+  <text x="200" y="310" text-anchor="middle" font-size="11" fill="#ffffff">大規模PR も同じ精度でチェック</text>
+  <!-- Right: AI limitations -->
+  <rect x="420" y="50" width="360" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="600" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">AIレビューの限界</text>
+  <rect x="440" y="92" width="320" height="50" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="600" y="112" text-anchor="middle" font-size="12" fill="#e91e63">ビジネス文脈の欠如</text>
+  <text x="600" y="130" text-anchor="middle" font-size="11" fill="#ffffff">「なぜこの機能が必要か」を知らない</text>
+  <rect x="440" y="152" width="320" height="50" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="600" y="172" text-anchor="middle" font-size="12" fill="#e91e63">チームの暗黙知</text>
+  <text x="600" y="190" text-anchor="middle" font-size="11" fill="#ffffff">過去の決定・チームの設計哲学を知らない</text>
+  <rect x="440" y="212" width="320" height="50" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="600" y="232" text-anchor="middle" font-size="12" fill="#e91e63">過信リスク</text>
+  <text x="600" y="250" text-anchor="middle" font-size="11" fill="#ffffff">「AI OK = 人間はOK」という自動化バイアス</text>
+  <rect x="440" y="272" width="320" height="52" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="600" y="292" text-anchor="middle" font-size="12" fill="#e91e63">ナレッジ伝達ゼロ</text>
+  <text x="600" y="310" text-anchor="middle" font-size="11" fill="#ffffff">コードレビューは学習の場でもある</text>
+  <!-- Bottom -->
+  <rect x="20" y="355" width="760" height="35" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="376" text-anchor="middle" font-size="12" fill="#f9a825">結論：AI は人間レビューの「補助」— 置き換えではなく品質底上げツール</text>
+</svg>

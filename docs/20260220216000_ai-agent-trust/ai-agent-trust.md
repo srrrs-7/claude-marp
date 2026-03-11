@@ -118,6 +118,37 @@ style: |
 <!-- _class: lead -->
 # Luhmannの信頼論
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">Luhmann 信頼論：社会システムの機能</text>
+<rect x="40" y="80" width="200" height="80" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="140" y="116" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">社会的複雑性</text>
+<text x="140" y="140" text-anchor="middle" fill="#ffffff" font-size="11">無限の可能性・選択</text>
+<line x1="240" y1="120" x2="298" y2="120" stroke="#e91e63" stroke-width="2"/>
+<polygon points="298,113 314,120 298,127" fill="#e91e63"/>
+<rect x="314" y="80" width="172" height="80" rx="10" fill="#e91e63" opacity="0.85"/>
+<text x="400" y="116" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">信頼</text>
+<text x="400" y="140" text-anchor="middle" fill="#ffe082" font-size="11">複雑性縮減のメカニズム</text>
+<line x1="486" y1="120" x2="544" y2="120" stroke="#f9a825" stroke-width="2"/>
+<polygon points="544,113 560,120 544,127" fill="#f9a825"/>
+<rect x="560" y="80" width="200" height="80" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="660" y="116" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">行動の可能性</text>
+<text x="660" y="140" text-anchor="middle" fill="#ffffff" font-size="11">協調・協力・委任</text>
+<rect x="100" y="220" width="180" height="65" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
+<text x="190" y="248" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold">人格的信頼</text>
+<text x="190" y="268" text-anchor="middle" fill="#ffffff" font-size="10">個人への信頼（顔・歴史）</text>
+<rect x="320" y="220" width="180" height="65" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="410" y="248" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">システム信頼</text>
+<text x="410" y="268" text-anchor="middle" fill="#ffffff" font-size="10">制度・規則への信頼</text>
+<rect x="540" y="220" width="180" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="630" y="248" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">一般化された信頼</text>
+<text x="630" y="268" text-anchor="middle" fill="#ffffff" font-size="10">社会的期待・規範</text>
+<text x="400" y="340" text-anchor="middle" fill="#aaaaaa" font-size="11">AIエージェントへの信頼 = システム信頼 + 一般化された信頼の組み合わせ</text>
+<line x1="400" y1="160" x2="190" y2="220" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="400" y1="160" x2="410" y2="220" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/>
+<line x1="400" y1="160" x2="630" y2="220" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/>
+</svg>
+
 
 ---
 
@@ -136,6 +167,31 @@ style: |
 
 # 信頼の2つの形態（1/2）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">信頼の2形態：人格的信頼 vs システム信頼</text>
+<rect x="40" y="65" width="330" height="270" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="205" y="98" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">人格的信頼</text>
+<text x="205" y="120" text-anchor="middle" fill="#aaaaaa" font-size="11">Personal Trust</text>
+<text x="60" y="152" fill="#ffffff" font-size="11">• 特定の個人との関係に基づく</text>
+<text x="60" y="174" fill="#ffffff" font-size="11">• 過去の経験・相互作用の蓄積</text>
+<text x="60" y="196" fill="#ffffff" font-size="11">• 裏切りで即座に崩壊する</text>
+<text x="60" y="218" fill="#ffffff" font-size="11">• 小規模ネットワークで機能</text>
+<rect x="55" y="238" width="300" height="50" rx="6" fill="#f9a825" opacity="0.15" stroke="#f9a825" stroke-width="1"/>
+<text x="205" y="258" text-anchor="middle" fill="#f9a825" font-size="11">例：同僚エンジニアへの信頼</text>
+<text x="205" y="278" text-anchor="middle" fill="#f9a825" font-size="11">「彼は過去にも正確だった」</text>
+<rect x="430" y="65" width="330" height="270" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="595" y="98" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">システム信頼</text>
+<text x="595" y="120" text-anchor="middle" fill="#aaaaaa" font-size="11">System Trust</text>
+<text x="450" y="152" fill="#ffffff" font-size="11">• 制度・規則・組織に基づく</text>
+<text x="450" y="174" fill="#ffffff" font-size="11">• 個人を超えたメカニズム</text>
+<text x="450" y="196" fill="#ffffff" font-size="11">• スケールしやすい</text>
+<text x="450" y="218" fill="#ffffff" font-size="11">• 匿名性・大規模協力を可能に</text>
+<rect x="445" y="238" width="300" height="50" rx="6" fill="#e91e63" opacity="0.15" stroke="#e91e63" stroke-width="1"/>
+<text x="595" y="258" text-anchor="middle" fill="#e91e63" font-size="11">例：航空会社への信頼</text>
+<text x="595" y="278" text-anchor="middle" fill="#e91e63" font-size="11">「パイロットは誰でも信頼できる」</text>
+<text x="400" y="370" text-anchor="middle" fill="#aaaaaa" font-size="11">AIエージェントはどちらの信頼に頼るべきか？</text>
+</svg>
 - - **人格的信頼 (Personal Trust)**
 -   - 特定の個人への信頼
 -   - 経験と実績に基づく
@@ -159,11 +215,74 @@ style: |
 <!-- _class: lead -->
 # AIへの信頼の構造
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">AIへの信頼の構造：3層モデル</text>
+<ellipse cx="400" cy="220" rx="320" ry="160" fill="#16213e" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="5,3"/>
+<text x="620" y="100" fill="#aaaaaa" font-size="10">制度的信頼層</text>
+<ellipse cx="400" cy="220" rx="220" ry="110" fill="#1a1a2e" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="580" y="145" fill="#f9a825" font-size="10">組織信頼層</text>
+<ellipse cx="400" cy="220" rx="120" ry="60" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="400" y="205" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">AIエージェント</text>
+<text x="400" y="225" text-anchor="middle" fill="#ffffff" font-size="11">コア能力・整合性</text>
+<text x="400" y="245" text-anchor="middle" fill="#aaaaaa" font-size="10">モデル信頼層</text>
+<text x="120" y="150" text-anchor="middle" fill="#f9a825" font-size="11">企業ポリシー</text>
+<text x="130" y="168" text-anchor="middle" fill="#f9a825" font-size="11">使用規約</text>
+<text x="680" y="260" text-anchor="middle" fill="#f9a825" font-size="11">監査・ログ</text>
+<text x="685" y="278" text-anchor="middle" fill="#f9a825" font-size="11">フィードバック</text>
+<text x="120" y="290" text-anchor="middle" fill="#aaaaaa" font-size="11">規制・法律</text>
+<text x="120" y="308" text-anchor="middle" fill="#aaaaaa" font-size="11">業界標準</text>
+<text x="680" y="175" text-anchor="middle" fill="#aaaaaa" font-size="11">社会的規範</text>
+<text x="680" y="193" text-anchor="middle" fill="#aaaaaa" font-size="11">倫理ガイドライン</text>
+<text x="400" y="385" text-anchor="middle" fill="#aaaaaa" font-size="11">内側の層が安定しないと外側の層だけでは信頼を保てない</text>
+</svg>
+
 
 ---
 
 # 信頼の委譲チェーン
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">信頼の委譲チェーンと希薄化リスク</text>
+<rect x="30" y="80" width="120" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="90" y="106" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">人間</text>
+<text x="90" y="126" text-anchor="middle" fill="#ffffff" font-size="10">Principal</text>
+<line x1="150" y1="110" x2="200" y2="110" stroke="#f9a825" stroke-width="2"/>
+<polygon points="200,103 216,110 200,117" fill="#f9a825"/>
+<rect x="216" y="80" width="120" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="276" y="106" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Agent 1</text>
+<text x="276" y="126" text-anchor="middle" fill="#ffffff" font-size="10">Orchestrator</text>
+<line x1="336" y1="110" x2="386" y2="110" stroke="#e91e63" stroke-width="2"/>
+<polygon points="386,103 402,110 386,117" fill="#e91e63"/>
+<rect x="402" y="80" width="120" height="60" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
+<text x="462" y="106" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold">Agent 2</text>
+<text x="462" y="126" text-anchor="middle" fill="#ffffff" font-size="10">Sub-Agent</text>
+<line x1="522" y1="110" x2="572" y2="110" stroke="#4db6ac" stroke-width="2"/>
+<polygon points="572,103 588,110 572,117" fill="#4db6ac"/>
+<rect x="588" y="80" width="120" height="60" rx="8" fill="#16213e" stroke="#aaaaaa" stroke-width="2"/>
+<text x="648" y="106" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="bold">Agent 3</text>
+<text x="648" y="126" text-anchor="middle" fill="#ffffff" font-size="10">Worker</text>
+<text x="90" y="170" text-anchor="middle" fill="#f9a825" font-size="10">100%</text>
+<text x="276" y="170" text-anchor="middle" fill="#e91e63" font-size="10">70%</text>
+<text x="462" y="170" text-anchor="middle" fill="#4db6ac" font-size="10">40%</text>
+<text x="648" y="170" text-anchor="middle" fill="#aaaaaa" font-size="10">15%</text>
+<text x="400" y="200" text-anchor="middle" fill="#aaaaaa" font-size="11">信頼スコアの希薄化</text>
+<line x1="90" y1="185" x2="90" y2="215" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,2"/>
+<rect x="30" y="220" width="720" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<line x1="90" y1="235" x2="90" y2="245" stroke="#f9a825" stroke-width="2"/>
+<rect x="50" y="235" width="80" height="25" rx="4" fill="#f9a825" opacity="0.8"/>
+<text x="90" y="252" text-anchor="middle" fill="#1a1a2e" font-size="10" font-weight="bold">初期委譲</text>
+<rect x="236" y="235" width="80" height="25" rx="4" fill="#e91e63" opacity="0.8"/>
+<text x="276" y="252" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">部分委譲</text>
+<rect x="422" y="235" width="80" height="25" rx="4" fill="#4db6ac" opacity="0.6"/>
+<text x="462" y="252" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">さらに希薄</text>
+<rect x="608" y="235" width="80" height="25" rx="4" fill="#555" opacity="0.8"/>
+<text x="648" y="252" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold">危険領域</text>
+<rect x="30" y="295" width="740" height="55" rx="8" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/>
+<text x="400" y="318" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">問題：委譲の連鎖が長くなるほど責任と権限の根拠が薄れる</text>
+<text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="11">解決策：各レベルで明示的な権限確認 + 監査ログの維持</text>
+</svg>
 ![w:900 center](assets/trust-delegation-chain.svg)
 
 
@@ -209,6 +328,7 @@ style: |
 
 # なぜ信頼が必要なのか
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">なぜ信頼が必要なのか：3つの理由</text><rect x="30" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="140" y="95" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">理由1: 複雑性</text><text x="50" y="125" fill="#ffffff" font-size="11">AIの判断ロジックを</text><text x="50" y="145" fill="#ffffff" font-size="11">全て検証するのは不可能</text><text x="50" y="165" fill="#ffffff" font-size="11">毎回の出力を人間が</text><text x="50" y="185" fill="#ffffff" font-size="11">確認するコストは∞</text><rect x="50" y="215" width="178" height="80" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="139" y="258" text-anchor="middle" fill="#f9a825" font-size="11">→ 信頼なしには</text><text x="139" y="278" text-anchor="middle" fill="#f9a825" font-size="11">　利用できない</text><rect x="290" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="95" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">理由2: 速度</text><text x="310" y="125" fill="#ffffff" font-size="11">リアルタイム判断が必要</text><text x="310" y="145" fill="#ffffff" font-size="11">人間のレビューを待てない</text><text x="310" y="165" fill="#ffffff" font-size="11">自律的な行動が前提</text><text x="310" y="185" fill="#ffffff" font-size="11">承認待ちがボトルネック</text><rect x="310" y="215" width="178" height="80" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="399" y="258" text-anchor="middle" fill="#e91e63" font-size="11">→ 委任なしには</text><text x="399" y="278" text-anchor="middle" fill="#e91e63" font-size="11">　価値を出せない</text><rect x="550" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="660" y="95" text-anchor="middle" fill="#4db6ac" font-size="13" font-weight="bold">理由3: スケール</text><text x="570" y="125" fill="#ffffff" font-size="11">人間の監督能力に限界</text><text x="570" y="145" fill="#ffffff" font-size="11">並列処理・大量タスク</text><text x="570" y="165" fill="#ffffff" font-size="11">人間1人 vs エージェント∞</text><text x="570" y="185" fill="#ffffff" font-size="11">監視コストが線形増大</text><rect x="570" y="215" width="178" height="80" rx="6" fill="#4db6ac" opacity="0.12" stroke="#4db6ac" stroke-width="1"/><text x="659" y="258" text-anchor="middle" fill="#4db6ac" font-size="11">→ 制度化なしには</text><text x="659" y="278" text-anchor="middle" fill="#4db6ac" font-size="11">　管理できない</text><text x="400" y="365" text-anchor="middle" fill="#aaaaaa" font-size="11">信頼は「甘え」ではなく「必要条件」</text></svg>
 - - AIエージェントの出力を**毎回全て検証する**のは非現実的
 - - 検証コストがAI使用の利益を上回る → 意味がない
 - - しかし**検証なしに全て受け入れる**のは危険
@@ -252,11 +372,67 @@ style: |
 <!-- _class: lead -->
 # 権限設計
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">AIエージェント権限設計フレームワーク</text>
+<rect x="30" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
+<text x="140" y="94" text-anchor="middle" fill="#4db6ac" font-size="13" font-weight="bold">Read-Only</text>
+<text x="140" y="114" text-anchor="middle" fill="#aaaaaa" font-size="10">リスク: 低</text>
+<text x="50" y="140" fill="#ffffff" font-size="10">• ファイル読み取り</text>
+<text x="50" y="158" fill="#ffffff" font-size="10">• API参照</text>
+<text x="50" y="176" fill="#ffffff" font-size="10">• ログ閲覧</text>
+<text x="50" y="194" fill="#ffffff" font-size="10">• 検索・分析</text>
+<rect x="45" y="218" width="160" height="40" rx="6" fill="#4db6ac" opacity="0.2" stroke="#4db6ac" stroke-width="1"/>
+<text x="125" y="240" text-anchor="middle" fill="#4db6ac" font-size="10">承認不要</text>
+<text x="125" y="256" text-anchor="middle" fill="#4db6ac" font-size="10">自動実行可</text>
+<rect x="290" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="400" y="94" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Read-Write</text>
+<text x="400" y="114" text-anchor="middle" fill="#aaaaaa" font-size="10">リスク: 中</text>
+<text x="310" y="140" fill="#ffffff" font-size="10">• ファイル変更</text>
+<text x="310" y="158" fill="#ffffff" font-size="10">• DB更新</text>
+<text x="310" y="176" fill="#ffffff" font-size="10">• 設定変更</text>
+<text x="310" y="194" fill="#ffffff" font-size="10">• メール送信</text>
+<rect x="305" y="218" width="160" height="40" rx="6" fill="#f9a825" opacity="0.2" stroke="#f9a825" stroke-width="1"/>
+<text x="385" y="240" text-anchor="middle" fill="#f9a825" font-size="10">ログ必須</text>
+<text x="385" y="256" text-anchor="middle" fill="#f9a825" font-size="10">確認推奨</text>
+<rect x="550" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="660" y="94" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">Privileged</text>
+<text x="660" y="114" text-anchor="middle" fill="#aaaaaa" font-size="10">リスク: 高</text>
+<text x="570" y="140" fill="#ffffff" font-size="10">• システム変更</text>
+<text x="570" y="158" fill="#ffffff" font-size="10">• 外部API書き込み</text>
+<text x="570" y="176" fill="#ffffff" font-size="10">• 金融取引</text>
+<text x="570" y="194" fill="#ffffff" font-size="10">• 削除・不可逆操作</text>
+<rect x="565" y="218" width="160" height="40" rx="6" fill="#e91e63" opacity="0.2" stroke="#e91e63" stroke-width="1"/>
+<text x="645" y="240" text-anchor="middle" fill="#e91e63" font-size="10">人間承認必須</text>
+<text x="645" y="256" text-anchor="middle" fill="#e91e63" font-size="10">二重確認</text>
+<text x="400" y="370" text-anchor="middle" fill="#aaaaaa" font-size="11">Principle of Least Privilege: 必要最小限の権限のみ付与する</text>
+</svg>
+
 
 ---
 
 # AIエージェント権限段階図
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">AIエージェント権限段階図</text>
+<rect x="50" y="310" width="700" height="50" rx="8" fill="#4db6ac" opacity="0.8"/>
+<text x="400" y="340" text-anchor="middle" fill="#1a1a2e" font-size="13" font-weight="bold">Level 1: 情報収集のみ（Read-Only）</text>
+<rect x="100" y="245" width="600" height="50" rx="8" fill="#4db6ac" opacity="0.6"/>
+<text x="400" y="275" text-anchor="middle" fill="#1a1a2e" font-size="13" font-weight="bold">Level 2: ローカル変更可（Sandbox）</text>
+<rect x="150" y="180" width="500" height="50" rx="8" fill="#f9a825" opacity="0.7"/>
+<text x="400" y="210" text-anchor="middle" fill="#1a1a2e" font-size="13" font-weight="bold">Level 3: 外部通信あり（Monitored）</text>
+<rect x="200" y="115" width="400" height="50" rx="8" fill="#e91e63" opacity="0.7"/>
+<text x="400" y="145" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Level 4: 不可逆操作（Supervised）</text>
+<rect x="280" y="60" width="240" height="40" rx="8" fill="#e91e63" opacity="0.95"/>
+<text x="400" y="85" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Level 5: 完全自律（人間承認後）</text>
+<text x="790" y="340" text-anchor="end" fill="#4db6ac" font-size="10">安全</text>
+<text x="790" y="275" text-anchor="end" fill="#4db6ac" font-size="10">低リスク</text>
+<text x="790" y="210" text-anchor="end" fill="#f9a825" font-size="10">中リスク</text>
+<text x="790" y="145" text-anchor="end" fill="#e91e63" font-size="10">高リスク</text>
+<text x="790" y="85" text-anchor="end" fill="#e91e63" font-size="10">要承認</text>
+<text x="400" y="385" text-anchor="middle" fill="#aaaaaa" font-size="11">Claude Code は --dangerously-skip-permissions で Level 5 に相当</text>
+</svg>
 ![w:900 center](assets/permission-levels.svg)
 
 
@@ -307,6 +483,35 @@ style: |
 <!-- _class: lead -->
 # SUDO問題
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">SUDO問題：権限昇格の危険性</text>
+<rect x="40" y="70" width="320" height="140" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
+<text x="200" y="100" text-anchor="middle" fill="#4db6ac" font-size="13" font-weight="bold">通常操作フロー</text>
+<text x="60" y="128" fill="#ffffff" font-size="11">User: ファイルを削除してください</text>
+<text x="60" y="150" fill="#ffffff" font-size="11">Agent: 確認します → 実行</text>
+<text x="60" y="172" fill="#4db6ac" font-size="11">リスク: 低 — スコープが限定的</text>
+<text x="60" y="192" fill="#4db6ac" font-size="11">影響範囲: 単一ファイル</text>
+<rect x="440" y="70" width="320" height="140" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="600" y="100" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">SUDO権限付与後</text>
+<text x="460" y="128" fill="#ffffff" font-size="11">User: sudo で実行してください</text>
+<text x="460" y="150" fill="#ffffff" font-size="11">Agent: 全権限で実行</text>
+<text x="460" y="172" fill="#e91e63" font-size="11">リスク: 極高 — スコープ無限</text>
+<text x="460" y="192" fill="#e91e63" font-size="11">影響範囲: システム全体</text>
+<line x1="360" y1="140" x2="440" y2="140" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,3"/>
+<text x="400" y="132" text-anchor="middle" fill="#e91e63" font-size="10">sudo!</text>
+<polygon points="440,133 456,140 440,147" fill="#e91e63"/>
+<rect x="40" y="240" width="720" height="60" rx="8" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/>
+<text x="400" y="266" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">攻撃ベクター：Prompt Injection + SUDO要求</text>
+<text x="400" y="286" text-anchor="middle" fill="#ffffff" font-size="11">「システムのメンテナンスのためsudoが必要です」— 悪意のある指示</text>
+<rect x="40" y="320" width="340" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+<text x="210" y="342" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">対策: Never Sudo Policy</text>
+<text x="210" y="360" text-anchor="middle" fill="#ffffff" font-size="10">AIエージェントにSUDO権限を与えない</text>
+<rect x="420" y="320" width="340" height="50" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="1"/>
+<text x="590" y="342" text-anchor="middle" fill="#4db6ac" font-size="11" font-weight="bold">対策: Privilege Separation</text>
+<text x="590" y="360" text-anchor="middle" fill="#ffffff" font-size="10">権限が必要な操作は別プロセスで実行</text>
+</svg>
+
 
 ---
 
@@ -332,6 +537,7 @@ style: |
 
 # 信頼の崩壊と回復（1/2）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">信頼の崩壊：典型的なパターン</text><rect x="30" y="65" width="340" height="130" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="94" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">パターン1: 能力の失望</text><text x="50" y="120" fill="#ffffff" font-size="11">「できる」と信じたが、実はできなかった</text><text x="50" y="142" fill="#ffffff" font-size="11">例: AIが誤った情報を自信満々に提示</text><text x="50" y="164" fill="#aaaaaa" font-size="10">→ 能力への信頼が崩壊（回復困難）</text><rect x="430" y="65" width="340" height="130" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="94" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">パターン2: 誠実さへの疑念</text><text x="450" y="120" fill="#ffffff" font-size="11">「正直」と信じたが、隠蔽があった</text><text x="450" y="142" fill="#ffffff" font-size="11">例: AIが自分の限界を隠す</text><text x="450" y="164" fill="#aaaaaa" font-size="10">→ 誠実性への信頼が崩壊（最も深刻）</text><rect x="30" y="225" width="340" height="130" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="254" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">パターン3: 整合性の欠如</text><text x="50" y="280" fill="#ffffff" font-size="11">「一貫している」と思ったが、ブレる</text><text x="50" y="300" fill="#ffffff" font-size="11">例: 同じ質問に毎回違う答え</text><text x="50" y="322" fill="#aaaaaa" font-size="10">→ 予測可能性への信頼が崩壊</text><rect x="430" y="225" width="340" height="130" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="600" y="254" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold">共通の教訓</text><text x="450" y="280" fill="#ffffff" font-size="11">信頼は「期待の充足」によって維持</text><text x="450" y="300" fill="#ffffff" font-size="11">一度でも大きく裏切ると回復は困難</text><text x="450" y="322" fill="#aaaaaa" font-size="10">→ 信頼の約束は守れる範囲のみ</text></svg>
 - - **信頼の非対称性**: 構築は遅く、崩壊は一瞬
 - - AIエージェントが本番環境を壊したら？
 -   - 技術的損害 + 心理的信頼の崩壊
@@ -383,11 +589,70 @@ style: |
 <!-- _class: lead -->
 # 信頼構築ロードマップ
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">信頼構築ロードマップ：4フェーズ</text>
+<line x1="80" y1="200" x2="720" y2="200" stroke="#444" stroke-width="2"/>
+<polygon points="720,193 736,200 720,207" fill="#444"/>
+<text x="760" y="204" fill="#aaaaaa" font-size="11">時間</text>
+<rect x="80" y="120" width="140" height="120" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
+<text x="150" y="148" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold">Phase 1</text>
+<text x="150" y="166" text-anchor="middle" fill="#ffffff" font-size="11">観察</text>
+<text x="96" y="188" fill="#aaaaaa" font-size="10">• Read-Onlyのみ</text>
+<text x="96" y="205" fill="#aaaaaa" font-size="10">• 全ログ記録</text>
+<text x="96" y="222" fill="#aaaaaa" font-size="10">• 人間がレビュー</text>
+<rect x="250" y="100" width="140" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="320" y="128" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">Phase 2</text>
+<text x="320" y="146" text-anchor="middle" fill="#ffffff" font-size="11">補助</text>
+<text x="266" y="168" fill="#aaaaaa" font-size="10">• 提案のみ</text>
+<text x="266" y="185" fill="#aaaaaa" font-size="10">• 人間が承認</text>
+<text x="266" y="202" fill="#aaaaaa" font-size="10">• 低リスク操作</text>
+<rect x="420" y="80" width="140" height="160" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="490" y="108" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Phase 3</text>
+<text x="490" y="126" text-anchor="middle" fill="#ffffff" font-size="11">協働</text>
+<text x="436" y="148" fill="#aaaaaa" font-size="10">• 定型作業を自律</text>
+<text x="436" y="165" fill="#aaaaaa" font-size="10">• 例外は人間へ</text>
+<text x="436" y="182" fill="#aaaaaa" font-size="10">• 定期的監査</text>
+<rect x="590" y="60" width="140" height="180" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="660" y="88" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">Phase 4</text>
+<text x="660" y="106" text-anchor="middle" fill="#ffffff" font-size="11">委任</text>
+<text x="606" y="128" fill="#aaaaaa" font-size="10">• 高度な自律性</text>
+<text x="606" y="145" fill="#aaaaaa" font-size="10">• 結果のみ報告</text>
+<text x="606" y="162" fill="#aaaaaa" font-size="10">• 継続的評価</text>
+<text x="400" y="360" text-anchor="middle" fill="#aaaaaa" font-size="11">各フェーズの移行条件：一定期間の無失敗実績 + 人間による評価承認</text>
+</svg>
+
 
 ---
 
 # 4フェーズの信頼構築
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">フェーズ移行の判断基準</text>
+<rect x="30" y="65" width="355" height="150" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
+<text x="208" y="92" text-anchor="middle" fill="#4db6ac" font-size="13" font-weight="bold">Phase 1 → 2 移行条件</text>
+<text x="50" y="118" fill="#ffffff" font-size="11">✓ 30日間の観察期間完了</text>
+<text x="50" y="138" fill="#ffffff" font-size="11">✓ エラー率 &lt;0.1%</text>
+<text x="50" y="158" fill="#ffffff" font-size="11">✓ 期待外れ動作ゼロ</text>
+<text x="50" y="178" fill="#ffffff" font-size="11">✓ ステークホルダー承認</text>
+<rect x="415" y="65" width="355" height="150" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="593" y="92" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Phase 2 → 3 移行条件</text>
+<text x="435" y="118" fill="#ffffff" font-size="11">✓ 90日間の補助期間完了</text>
+<text x="435" y="138" fill="#ffffff" font-size="11">✓ 提案採択率 &gt;85%</text>
+<text x="435" y="158" fill="#ffffff" font-size="11">✓ 重大ミスゼロ</text>
+<text x="435" y="178" fill="#ffffff" font-size="11">✓ セキュリティ審査合格</text>
+<rect x="30" y="240" width="355" height="120" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="208" y="267" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">Phase 3 → 4 移行条件</text>
+<text x="50" y="293" fill="#ffffff" font-size="11">✓ 180日間の協働実績</text>
+<text x="50" y="313" fill="#ffffff" font-size="11">✓ 独立監査合格</text>
+<text x="50" y="333" fill="#ffffff" font-size="11">✓ インシデント対応実績</text>
+<rect x="415" y="240" width="355" height="120" rx="10" fill="#16213e" stroke="#aaaaaa" stroke-width="2"/>
+<text x="593" y="267" text-anchor="middle" fill="#aaaaaa" font-size="13" font-weight="bold">後退条件（全フェーズ共通）</text>
+<text x="435" y="293" fill="#ffffff" font-size="11">✗ 重大インシデント発生</text>
+<text x="435" y="313" fill="#ffffff" font-size="11">✗ 説明不能な動作</text>
+<text x="435" y="333" fill="#ffffff" font-size="11">✗ ユーザー信頼スコア低下</text>
+</svg>
 ![w:900 center](assets/trust-roadmap.svg)
 
 
@@ -395,6 +660,43 @@ style: |
 
 # 制度的信頼の設計
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">制度的信頼の設計：3つの柱</text>
+<rect x="30" y="70" width="220" height="280" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="140" y="100" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">透明性</text>
+<text x="140" y="120" text-anchor="middle" fill="#aaaaaa" font-size="10">Transparency</text>
+<text x="50" y="150" fill="#ffffff" font-size="11">• 意思決定の説明</text>
+<text x="50" y="170" fill="#ffffff" font-size="11">• 監査ログの公開</text>
+<text x="50" y="190" fill="#ffffff" font-size="11">• エラーの開示</text>
+<text x="50" y="210" fill="#ffffff" font-size="11">• 限界の明示</text>
+<rect x="45" y="235" width="190" height="80" rx="6" fill="#f9a825" opacity="0.1" stroke="#f9a825" stroke-width="1"/>
+<text x="140" y="260" text-anchor="middle" fill="#f9a825" font-size="11">例: Claude の</text>
+<text x="140" y="278" text-anchor="middle" fill="#f9a825" font-size="11">Constitutional AI</text>
+<text x="140" y="296" text-anchor="middle" fill="#f9a825" font-size="11">原則の公開</text>
+<rect x="290" y="70" width="220" height="280" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="400" y="100" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">説明責任</text>
+<text x="400" y="120" text-anchor="middle" fill="#aaaaaa" font-size="10">Accountability</text>
+<text x="310" y="150" fill="#ffffff" font-size="11">• 責任の所在明確化</text>
+<text x="310" y="170" fill="#ffffff" font-size="11">• インシデント報告</text>
+<text x="310" y="190" fill="#ffffff" font-size="11">• 修正プロセス</text>
+<text x="310" y="210" fill="#ffffff" font-size="11">• 第三者評価</text>
+<rect x="305" y="235" width="190" height="80" rx="6" fill="#e91e63" opacity="0.1" stroke="#e91e63" stroke-width="1"/>
+<text x="400" y="260" text-anchor="middle" fill="#e91e63" font-size="11">例: AIインシデント</text>
+<text x="400" y="278" text-anchor="middle" fill="#e91e63" font-size="11">データベース</text>
+<text x="400" y="296" text-anchor="middle" fill="#e91e63" font-size="11">(AIID)</text>
+<rect x="550" y="70" width="220" height="280" rx="12" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
+<text x="660" y="100" text-anchor="middle" fill="#4db6ac" font-size="14" font-weight="bold">検証可能性</text>
+<text x="660" y="120" text-anchor="middle" fill="#aaaaaa" font-size="10">Verifiability</text>
+<text x="570" y="150" fill="#ffffff" font-size="11">• テスト・ベンチマーク</text>
+<text x="570" y="170" fill="#ffffff" font-size="11">• Red-teaming</text>
+<text x="570" y="190" fill="#ffffff" font-size="11">• 独立検証</text>
+<text x="570" y="210" fill="#ffffff" font-size="11">• 再現可能な評価</text>
+<rect x="565" y="235" width="190" height="80" rx="6" fill="#4db6ac" opacity="0.1" stroke="#4db6ac" stroke-width="1"/>
+<text x="660" y="260" text-anchor="middle" fill="#4db6ac" font-size="11">例: MMLU, HumanEval</text>
+<text x="660" y="278" text-anchor="middle" fill="#4db6ac" font-size="11">などの標準化</text>
+<text x="660" y="296" text-anchor="middle" fill="#4db6ac" font-size="11">ベンチマーク</text>
+</svg>
 - - **監査ログ**: 全てのAI操作を記録する
 - - **サンドボックス**: 本番環境と分離された実行環境
 - - **ロールバック**: いつでも元に戻せる仕組み
@@ -408,6 +710,7 @@ style: |
 
 # 現実のケーススタディ
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">現実のケーススタディ：Claude Code の信頼モデル</text><rect x="30" y="65" width="350" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="205" y="96" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">信頼の設計</text><rect x="50" y="115" width="290" height="50" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="195" y="138" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">明示的な権限モデル</text><text x="195" y="156" text-anchor="middle" fill="#ffffff" font-size="10">--allow-read, --allow-write で明示</text><rect x="50" y="178" width="290" height="50" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="195" y="201" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">インタラクティブ確認</text><text x="195" y="219" text-anchor="middle" fill="#ffffff" font-size="10">重要操作前に必ず承認を求める</text><rect x="50" y="241" width="290" height="50" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="195" y="264" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">透明な行動ログ</text><text x="195" y="282" text-anchor="middle" fill="#ffffff" font-size="10">全操作がユーザーに見える</text><rect x="420" y="65" width="350" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="595" y="96" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">信頼を脅かす要素</text><rect x="440" y="115" width="290" height="50" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="585" y="138" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">--dangerously-skip-permissions</text><text x="585" y="156" text-anchor="middle" fill="#ffffff" font-size="10">全権限付与 → 信頼の根拠が薄れる</text><rect x="440" y="178" width="290" height="50" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="585" y="201" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">Prompt Injection攻撃</text><text x="585" y="219" text-anchor="middle" fill="#ffffff" font-size="10">外部入力による権限昇格試み</text><rect x="440" y="241" width="290" height="50" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="585" y="264" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">エージェントの連鎖</text><text x="585" y="282" text-anchor="middle" fill="#ffffff" font-size="10">委任が深くなると検証が困難に</text><text x="400" y="380" text-anchor="middle" fill="#aaaaaa" font-size="11">Claude Code は信頼の「工学的実装」の好例</text></svg>
 - - **GitHub Copilot**: Lv.2 (Suggest) -- 提案のみ、人間が判断
 - - **Claude Code**: Lv.1-4 -- 段階的権限、設定で制御
 - - **Devin**: Lv.3-4 -- 自律的にコード書き・実行
@@ -421,6 +724,35 @@ style: |
 
 <!-- _class: lead -->
 # 設計原則
+
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect width="800" height="400" fill="#1a1a2e"/>
+<text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">設計原則：信頼を工学的に実装する</text>
+<rect x="30" y="60" width="350" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="205" y="88" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">P1: Least Privilege</text>
+<text x="205" y="108" text-anchor="middle" fill="#ffffff" font-size="10">必要最小限の権限のみ付与</text>
+<text x="205" y="126" text-anchor="middle" fill="#aaaaaa" font-size="10">実装: --allow-read のみ / sandbox 環境</text>
+<rect x="420" y="60" width="350" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="595" y="88" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">P2: Human-in-the-Loop</text>
+<text x="595" y="108" text-anchor="middle" fill="#ffffff" font-size="10">重大操作は必ず人間が確認</text>
+<text x="595" y="126" text-anchor="middle" fill="#aaaaaa" font-size="10">実装: approval workflow / dry-run 先行</text>
+<rect x="30" y="165" width="350" height="80" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
+<text x="205" y="193" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold">P3: Audit Everything</text>
+<text x="205" y="213" text-anchor="middle" fill="#ffffff" font-size="10">全操作をログに残す</text>
+<text x="205" y="231" text-anchor="middle" fill="#aaaaaa" font-size="10">実装: structured logging / immutable log</text>
+<rect x="420" y="165" width="350" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+<text x="595" y="193" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">P4: Fail Safe</text>
+<text x="595" y="213" text-anchor="middle" fill="#ffffff" font-size="10">不確実な場合は安全側に倒す</text>
+<text x="595" y="231" text-anchor="middle" fill="#aaaaaa" font-size="10">実装: abort on ambiguity / confirm before</text>
+<rect x="30" y="270" width="350" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<text x="205" y="298" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">P5: Transparent Reasoning</text>
+<text x="205" y="318" text-anchor="middle" fill="#ffffff" font-size="10">判断根拠を常に示す</text>
+<text x="205" y="336" text-anchor="middle" fill="#aaaaaa" font-size="10">実装: chain-of-thought / explain outputs</text>
+<rect x="420" y="270" width="350" height="80" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
+<text x="595" y="298" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold">P6: Graceful Degradation</text>
+<text x="595" y="318" text-anchor="middle" fill="#ffffff" font-size="10">信頼が下がっても機能継続</text>
+<text x="595" y="336" text-anchor="middle" fill="#aaaaaa" font-size="10">実装: fallback to supervised mode</text>
+</svg>
 
 
 ---

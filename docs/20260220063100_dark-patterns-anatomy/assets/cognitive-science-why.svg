@@ -1,0 +1,52 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">なぜ効くのか：認知科学の視点</text>
+  <!-- System 1 vs System 2 header -->
+  <rect x="30" y="48" width="340" height="50" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="200" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">System 1（速い思考）</text>
+  <text x="200" y="88" text-anchor="middle" font-size="11" fill="#ffffff">自動的・直感的・感情的</text>
+  <rect x="430" y="48" width="340" height="50" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="600" y="72" text-anchor="middle" font-size="14" font-weight="bold" fill="#4caf50">System 2（遅い思考）</text>
+  <text x="600" y="88" text-anchor="middle" font-size="11" fill="#ffffff">論理的・意識的・疲れる</text>
+  <!-- Arrow showing dark patterns exploit System 1 -->
+  <text x="400" y="120" text-anchor="middle" font-size="13" fill="#f9a825">ダークパターンはSystem 1を狙い撃ちにする</text>
+  <!-- 4 mechanisms -->
+  <rect x="30" y="135" width="175" height="160" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="117" y="158" text-anchor="middle" font-size="12" font-weight="bold" fill="#e91e63">損失回避</text>
+  <text x="117" y="178" text-anchor="middle" font-size="11" fill="#ffffff">「失う」恐怖は</text>
+  <text x="117" y="196" text-anchor="middle" font-size="11" fill="#ffffff">「得る」喜びの</text>
+  <text x="117" y="214" text-anchor="middle" font-size="11" fill="#ffffff">2倍の効果</text>
+  <text x="117" y="240" text-anchor="middle" font-size="10" fill="#e91e63">「残り1席」は</text>
+  <text x="117" y="256" text-anchor="middle" font-size="10" fill="#e91e63">これを悪用</text>
+  <text x="117" y="278" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.6">Kahneman 2011</text>
+  <rect x="220" y="135" width="175" height="160" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="307" y="158" text-anchor="middle" font-size="12" font-weight="bold" fill="#f9a825">デフォルト効果</text>
+  <text x="307" y="178" text-anchor="middle" font-size="11" fill="#ffffff">初期設定を</text>
+  <text x="307" y="196" text-anchor="middle" font-size="11" fill="#ffffff">変えるのは面倒</text>
+  <text x="307" y="214" text-anchor="middle" font-size="11" fill="#ffffff">80%は変えない</text>
+  <text x="307" y="240" text-anchor="middle" font-size="10" fill="#f9a825">「チェック済み」</text>
+  <text x="307" y="256" text-anchor="middle" font-size="10" fill="#f9a825">はこれを悪用</text>
+  <text x="307" y="278" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.6">Thaler &amp; Sunstein</text>
+  <rect x="410" y="135" width="175" height="160" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="497" y="158" text-anchor="middle" font-size="12" font-weight="bold" fill="#f9a825">社会的証明</text>
+  <text x="497" y="178" text-anchor="middle" font-size="11" fill="#ffffff">他人が選んだ</text>
+  <text x="497" y="196" text-anchor="middle" font-size="11" fill="#ffffff">ものは正しい</text>
+  <text x="497" y="214" text-anchor="middle" font-size="11" fill="#ffffff">という思い込み</text>
+  <text x="497" y="240" text-anchor="middle" font-size="10" fill="#f9a825">「98%が選択」</text>
+  <text x="497" y="256" text-anchor="middle" font-size="10" fill="#f9a825">の偽統計</text>
+  <text x="497" y="278" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.6">Cialdini 1984</text>
+  <rect x="600" y="135" width="170" height="160" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="685" y="158" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">コミットメント</text>
+  <text x="685" y="175" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">の一貫性</text>
+  <text x="685" y="196" text-anchor="middle" font-size="11" fill="#ffffff">一度始めると</text>
+  <text x="685" y="214" text-anchor="middle" font-size="11" fill="#ffffff">やめられない</text>
+  <text x="685" y="232" text-anchor="middle" font-size="11" fill="#ffffff">サンクコスト</text>
+  <text x="685" y="250" text-anchor="middle" font-size="10" fill="#4caf50">無料→有料の</text>
+  <text x="685" y="266" text-anchor="middle" font-size="10" fill="#4caf50">継続はこれ</text>
+  <text x="685" y="286" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.6">Ariely 2008</text>
+  <!-- Bottom insight -->
+  <rect x="30" y="308" width="740" height="75" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="330" text-anchor="middle" font-size="13" fill="#f9a825">ユーザーは「騙されやすい」のではなく「認知の仕組みが悪用されている」</text>
+  <text x="400" y="352" text-anchor="middle" font-size="11" fill="#ffffff">意思決定の97%はSystem 1が担う — 「よく考えれば分かる」は的外れな批判</text>
+  <text x="400" y="374" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.5">エシカルデザインはSystem 2を補助しSystem 1の悪用を避ける設計</text>
+</svg>

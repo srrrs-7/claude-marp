@@ -7,6 +7,71 @@ paginate: true
 header: "Vibe Coding Economics"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.05em;
   }
@@ -69,6 +134,7 @@ style: |
 <!-- _class: lead -->
 # AI開発生産性の飛躍
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">バイブコーディングの本質：速度と品質のトレードオフ</text><rect x="40" y="50" width="220" height="270" rx="10" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="150" y="78" text-anchor="middle" fill="#81c784" font-size="13" font-family="sans-serif" font-weight="bold">メリット</text><line x1="60" y1="88" x2="240" y2="88" stroke="#333355" stroke-width="1"/><text x="60" y="115" fill="#ffffff" font-size="11" font-family="sans-serif">自然言語で開発</text><text x="60" y="138" fill="#ffffff" font-size="11" font-family="sans-serif">プロトタイプが数分で完成</text><text x="60" y="161" fill="#ffffff" font-size="11" font-family="sans-serif">非エンジニアも参入可能</text><text x="60" y="184" fill="#ffffff" font-size="11" font-family="sans-serif">開発コスト90%削減の可能性</text><text x="60" y="207" fill="#ffffff" font-size="11" font-family="sans-serif">ハッカソンで圧倒的に有利</text><text x="150" y="275" text-anchor="middle" fill="#81c784" font-size="28" font-family="sans-serif" font-weight="bold">10x</text><text x="150" y="298" text-anchor="middle" fill="#81c784" font-size="11" font-family="sans-serif">体感速度向上</text><rect x="295" y="50" width="230" height="270" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="410" y="78" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">リスク</text><line x1="315" y1="88" x2="505" y2="88" stroke="#333355" stroke-width="1"/><text x="315" y="115" fill="#ffffff" font-size="11" font-family="sans-serif">コードを理解しない</text><text x="315" y="138" fill="#ffffff" font-size="11" font-family="sans-serif">隠れた技術的負債</text><text x="315" y="161" fill="#ffffff" font-size="11" font-family="sans-serif">セキュリティリスク</text><text x="315" y="184" fill="#ffffff" font-size="11" font-family="sans-serif">保守が困難に</text><text x="315" y="207" fill="#ffffff" font-size="11" font-family="sans-serif">「作り直し」症候群</text><text x="410" y="275" text-anchor="middle" fill="#e91e63" font-size="28" font-family="sans-serif" font-weight="bold">5-10x</text><text x="410" y="298" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">保守コスト増加</text><rect x="555" y="50" width="205" height="270" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="657" y="78" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">最適解</text><line x1="575" y1="88" x2="740" y2="88" stroke="#333355" stroke-width="1"/><text x="575" y="115" fill="#ffffff" font-size="11" font-family="sans-serif">プロトタイプ:</text><text x="575" y="133" fill="#81c784" font-size="11" font-family="sans-serif">バイブ全開</text><text x="575" y="160" fill="#ffffff" font-size="11" font-family="sans-serif">MVP以降:</text><text x="575" y="178" fill="#f9a825" font-size="11" font-family="sans-serif">人間レビュー必須</text><text x="575" y="205" fill="#ffffff" font-size="11" font-family="sans-serif">金融・医療:</text><text x="575" y="223" fill="#e91e63" font-size="11" font-family="sans-serif">避けるべき</text><text x="657" y="275" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">文脈で判断</text></svg>
 - 2020年から2026年、開発生産性はどう変わったか
 
 
@@ -98,6 +164,7 @@ style: |
 <!-- _class: lead -->
 # 開発ワークフローの変化
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">速度と品質：3つの開発パラダイムの位置付け</text><line x1="80" y1="310" x2="740" y2="310" stroke="#555577" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="310" stroke="#555577" stroke-width="2"/><polygon points="740,304 755,310 740,316" fill="#555577"/><polygon points="74,60 80,45 86,60" fill="#555577"/><text x="750" y="315" fill="#aaaaaa" font-size="11" font-family="sans-serif">速度</text><text x="55" y="50" fill="#aaaaaa" font-size="11" font-family="sans-serif">品質</text><circle cx="200" cy="130" r="45" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="200" y="122" text-anchor="middle" fill="#4fc3f7" font-size="12" font-family="sans-serif" font-weight="bold">従来型開発</text><text x="200" y="142" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">品質高・速度低</text><circle cx="430" cy="195" r="45" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="430" y="187" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">AI支援開発</text><text x="430" y="207" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">バランス型</text><circle cx="660" cy="270" r="45" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="660" y="262" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">バイブコーディング</text><text x="660" y="282" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">速度特化・品質?</text><line x1="240" y1="160" x2="390" y2="190" stroke="#555577" stroke-width="1" stroke-dasharray="4,4"/><line x1="470" y1="215" x2="620" y2="250" stroke="#555577" stroke-width="1" stroke-dasharray="4,4"/><rect x="80" y="320" width="660" height="30" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="410" y="340" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">最適解 = 人間の判断(品質) + AIの速度 = AI支援開発のゾーン</text></svg>
 - 従来型 → AI支援 → バイブコーディング
 
 
@@ -152,6 +219,7 @@ style: |
 <!-- _class: lead -->
 # 技術的負債の氷山
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">隠れたコストの正体：AI自動化率と総コストの関係</text><line x1="80" y1="290" x2="720" y2="290" stroke="#555577" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="290" stroke="#555577" stroke-width="2"/><text x="400" y="315" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">AI自動化率 →</text><text x="50" y="178" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">コスト</text><text x="100" y="306" fill="#aaaaaa" font-size="10" font-family="sans-serif">0%</text><text x="240" y="306" fill="#aaaaaa" font-size="10" font-family="sans-serif">25%</text><text x="380" y="306" fill="#aaaaaa" font-size="10" font-family="sans-serif">50%</text><text x="520" y="306" fill="#aaaaaa" font-size="10" font-family="sans-serif">75%</text><text x="660" y="306" fill="#aaaaaa" font-size="10" font-family="sans-serif">100%</text><polyline points="80,270 240,230 380,190 520,175 660,100 720,70" stroke="#81c784" stroke-width="2.5" fill="none"/><polyline points="80,200 240,215 380,225 520,250 660,280 720,285" stroke="#e91e63" stroke-width="2.5" fill="none"/><polyline points="80,250 240,222 380,205 440,198 520,212 660,270 720,280" stroke="#f9a825" stroke-width="3" fill="none" stroke-dasharray="8,4"/><rect x="470" y="60" width="240" height="110" rx="6" fill="#16213e" stroke="#555577" stroke-width="1"/><text x="590" y="84" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">凡例</text><line x1="490" y1="105" x2="530" y2="105" stroke="#81c784" stroke-width="2.5"/><text x="545" y="109" fill="#81c784" font-size="11" font-family="sans-serif">開発コスト(削減)</text><line x1="490" y1="128" x2="530" y2="128" stroke="#e91e63" stroke-width="2.5"/><text x="545" y="132" fill="#e91e63" font-size="11" font-family="sans-serif">保守コスト(増加)</text><line x1="490" y1="151" x2="530" y2="151" stroke="#f9a825" stroke-width="3" stroke-dasharray="8,4"/><text x="545" y="155" fill="#f9a825" font-size="11" font-family="sans-serif">総コスト</text><line x1="445" y1="60" x2="445" y2="290" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,4"/><text x="445" y="55" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">最適点(40-60%)</text></svg>
 - 見える成果の下に潜む膨大な負債
 
 
@@ -179,6 +247,7 @@ style: |
 <!-- _class: lead -->
 # 用途別リスク評価
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">技術的負債の顕在化タイムライン</text><line x1="60" y1="185" x2="740" y2="185" stroke="#555577" stroke-width="3"/><polygon points="740,179 755,185 740,191" fill="#555577"/><text x="110" y="210" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">1週間後</text><text x="230" y="210" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">1ヶ月後</text><text x="370" y="210" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">3ヶ月後</text><text x="510" y="210" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">6ヶ月後</text><text x="650" y="210" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">1年後</text><line x1="110" y1="180" x2="110" y2="190" stroke="#4fc3f7" stroke-width="2"/><line x1="230" y1="180" x2="230" y2="190" stroke="#f9a825" stroke-width="2"/><line x1="370" y1="180" x2="370" y2="190" stroke="#ff9800" stroke-width="2"/><line x1="510" y1="180" x2="510" y2="190" stroke="#e91e63" stroke-width="2"/><line x1="650" y1="180" x2="650" y2="190" stroke="#e91e63" stroke-width="3"/><rect x="40" y="60" width="140" height="100" rx="6" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="110" y="82" text-anchor="middle" fill="#4fc3f7" font-size="11" font-family="sans-serif" font-weight="bold">小さな変更が</text><text x="110" y="100" text-anchor="middle" fill="#4fc3f7" font-size="11" font-family="sans-serif" font-weight="bold">全体を壊す</text><text x="110" y="125" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">「あの機能を</text><text x="110" y="142" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">少し変えて」</text><line x1="110" y1="160" x2="110" y2="180" stroke="#4fc3f7" stroke-width="2"/><rect x="160" y="55" width="140" height="110" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="230" y="77" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif" font-weight="bold">セキュリティ</text><text x="230" y="95" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif" font-weight="bold">脆弱性が大量</text><text x="230" y="118" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">スキャンで発見</text><text x="230" y="138" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">AIが出力したままの</text><text x="230" y="153" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">危険なコード</text><line x1="230" y1="165" x2="230" y2="180" stroke="#f9a825" stroke-width="2"/><rect x="295" y="50" width="150" height="115" rx="6" fill="#16213e" stroke="#ff9800" stroke-width="2"/><text x="370" y="72" text-anchor="middle" fill="#ff9800" font-size="11" font-family="sans-serif" font-weight="bold">パフォーマンス</text><text x="370" y="90" text-anchor="middle" fill="#ff9800" font-size="11" font-family="sans-serif" font-weight="bold">問題が顕在化</text><text x="370" y="115" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">ユーザー増加で</text><text x="370" y="133" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">スケーリング失敗</text><text x="370" y="150" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">N+1クエリ問題</text><line x1="370" y1="165" x2="370" y2="180" stroke="#ff9800" stroke-width="2"/><rect x="435" y="45" width="150" height="120" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="510" y="67" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif" font-weight="bold">誰もコードを</text><text x="510" y="85" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif" font-weight="bold">理解できない</text><text x="510" y="110" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">チームメンバー全員</text><text x="510" y="128" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">が困惑</text><text x="510" y="148" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">ドキュメントなし</text><line x1="510" y1="165" x2="510" y2="180" stroke="#e91e63" stroke-width="2"/><rect x="575" y="40" width="155" height="125" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="3"/><text x="652" y="62" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">作り直し決断</text><text x="652" y="88" text-anchor="middle" fill="#f9a825" font-size="24" font-family="sans-serif" font-weight="bold">全消し</text><text x="652" y="115" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">技術的負債が</text><text x="652" y="133" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">限界点を超える</text><text x="652" y="152" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">全コスト消失</text><line x1="652" y1="165" x2="652" y2="180" stroke="#e91e63" stroke-width="3"/><text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">技術的負債の利子は複利で増加する</text></svg>
 - どこで使うべきか、どこで避けるべきか
 
 

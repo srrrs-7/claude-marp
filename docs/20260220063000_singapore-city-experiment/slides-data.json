@@ -12,6 +12,7 @@
 		{
 			"title": "アジェンダ",
 			"content": [
+				"![w:800 center](assets/svg-sg-agenda.svg)",
 				"1. シンガポールの奇跡",
 				"2. リー・クアンユーの設計思想",
 				"3. HDB：住宅で社会を設計する",
@@ -42,6 +43,7 @@
 		{
 			"title": "成功の鍵：「全てを設計する」思想",
 			"content": [
+				"![w:800 center](assets/svg-sg-success-keys.svg)",
 				"シンガポールは**自然に発展した都市ではない**",
 				"住宅配置・民族構成・交通量・教育制度まで政府が設計",
 				"「効率性」と「社会安定」を最優先する合理主義",
@@ -99,6 +101,7 @@
 		{
 			"title": "デジタル政府の実績",
 			"content": [
+				"![w:800 center](assets/svg-sg-digital-gov.svg)",
 				"**SingPass** ― 国民全員に発行されるデジタルID",
 				"行政手続きの98%がオンラインで完結",
 				"COVID-19対応：**TraceTogether** アプリを2週間で開発・展開",

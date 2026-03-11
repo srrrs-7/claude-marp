@@ -7,6 +7,71 @@ paginate: true
 header: "英語の世界標準化"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -24,6 +89,7 @@ style: |
 
 # アジェンダ
 
+![w:800 center](assets/svg-en-agenda.svg)
 - 1. 英語の現在の地位
 - 2. 大英帝国と英語の拡散
 - 3. アメリカの経済力と文化力
@@ -42,6 +108,7 @@ style: |
 
 # 数字で見る英語の支配力
 
+![w:800 center](assets/svg-english-dominance.svg)
 - 英語話者数：**約15億人**（母語3.8億 + 第二言語11億）
 - インターネットコンテンツの**60%以上**が英語
 - 科学論文の**95%以上**が英語で発表
@@ -60,6 +127,7 @@ style: |
 
 # 「太陽の沈まない帝国」と言語
 
+![w:800 center](assets/svg-empire.svg)
 - **19世紀ピーク時：** 世界の陸地の25%、人口の23%を支配
 - 北米・オーストラリア・インド・アフリカに英語を持ち込む
 - 植民地の教育制度に英語を強制 → 現地エリート層が英語を習得
@@ -71,6 +139,7 @@ style: |
 
 # なぜフランス語ではなく英語か
 
+![w:800 center](assets/svg-en-why-not-french.svg)
 - **18世紀まではフランス語が外交の共通語だった**
 - 1919年ベルサイユ条約：英語が初めて外交言語として使用
 - 決定的要因：**アメリカの台頭**
@@ -83,6 +152,8 @@ style: |
 
 <!-- _class: lead -->
 # アメリカの経済力と文化力
+
+![w:800 center](assets/svg-american-power.svg)
 
 
 ---
@@ -101,11 +172,14 @@ style: |
 <!-- _class: lead -->
 # インターネットと英語
 
+![w:800 center](assets/svg-soft-power.svg)
+
 
 ---
 
 # インターネットは英語で生まれた
 
+![w:800 center](assets/svg-en-internet.svg)
 - ARPANET（1969年）― 米国国防総省の英語プロジェクト
 - HTTP/HTML ― 英語のキーワードで構成
 - 初期のWebサイトは**99%が英語**（1995年時点）
@@ -119,11 +193,14 @@ style: |
 <!-- _class: lead -->
 # プログラミングと英語
 
+![w:800 center](assets/svg-internet.svg)
+
 
 ---
 
 # なぜ全てのプログラミング言語は英語ベースか
 
+![w:800 center](assets/svg-en-programming.svg)
 - **if, else, for, while, return, class, function...**
 - 全ての主要プログラミング言語のキーワードは英語
 - これは技術的必然ではない ― 歴史的偶然+文化的慣性
@@ -142,6 +219,7 @@ style: |
 
 # 英語の覇権は続くか？
 
+![w:800 center](assets/svg-future.svg)
 - **英語が続く理由：** ネットワーク効果（皆が使うから皆が使う）
 - **揺らぐ要因：** 機械翻訳の進化（言語障壁が技術で解消される可能性）
 - **中国語の台頭：** 母語話者9億人、中国経済の成長

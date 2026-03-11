@@ -1,0 +1,148 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="400" fill="transparent"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">デプロイ戦略比較マトリクス（速度・コスト・リスク・複雑度）</text>
+
+  <!-- Header row -->
+  <rect x="20" y="45" width="760" height="40" rx="4" fill="#1e1b4b"/>
+  <text x="120" y="70" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold" font-family="sans-serif">戦略</text>
+  <text x="290" y="70" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold" font-family="sans-serif">速度</text>
+  <text x="430" y="70" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold" font-family="sans-serif">コスト</text>
+  <text x="570" y="70" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold" font-family="sans-serif">リスク</text>
+  <text x="710" y="70" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold" font-family="sans-serif">複雑度</text>
+
+  <!-- Helper: score bar -->
+  <!-- Row 1: Rolling -->
+  <rect x="20" y="90" width="760" height="60" fill="#0f172a"/>
+  <rect x="20" y="90" width="200" height="60" fill="#1e1b4b"/>
+  <text x="120" y="115" text-anchor="middle" fill="#60a5fa" font-size="13" font-weight="bold" font-family="sans-serif">ローリング</text>
+  <text x="120" y="135" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="sans-serif">Rolling Update</text>
+  <!-- Speed: 3/5 bars -->
+  <rect x="230" y="105" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="258" y="105" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="286" y="105" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="314" y="105" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="342" y="105" width="24" height="20" rx="2" fill="#334155"/>
+  <!-- Cost: 1/5 bars -->
+  <rect x="370" y="105" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="398" y="105" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="426" y="105" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="454" y="105" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="482" y="105" width="24" height="20" rx="2" fill="#334155"/>
+  <!-- Risk: 3/5 bars -->
+  <rect x="510" y="105" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="538" y="105" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="566" y="105" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="594" y="105" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="622" y="105" width="24" height="20" rx="2" fill="#334155"/>
+  <!-- Complexity: 2/5 bars -->
+  <rect x="650" y="105" width="24" height="20" rx="2" fill="#f59e0b"/>
+  <rect x="678" y="105" width="24" height="20" rx="2" fill="#f59e0b"/>
+  <rect x="706" y="105" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="734" y="105" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="762" y="105" width="16" height="20" rx="2" fill="#334155"/>
+
+  <!-- Row 2: Blue/Green -->
+  <rect x="20" y="155" width="760" height="60" fill="#0f172a"/>
+  <rect x="20" y="155" width="200" height="60" fill="#1e1b4b"/>
+  <text x="120" y="180" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold" font-family="sans-serif">Blue/Green</text>
+  <text x="120" y="200" text-anchor="middle" fill="#a855f7" font-size="10" font-family="sans-serif">Blue/Green Deploy</text>
+  <!-- Speed: 4/5 -->
+  <rect x="230" y="170" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="258" y="170" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="286" y="170" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="314" y="170" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="342" y="170" width="24" height="20" rx="2" fill="#334155"/>
+  <!-- Cost: 4/5 -->
+  <rect x="370" y="170" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="398" y="170" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="426" y="170" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="454" y="170" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="482" y="170" width="24" height="20" rx="2" fill="#334155"/>
+  <!-- Risk: 1/5 -->
+  <rect x="510" y="170" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="538" y="170" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="566" y="170" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="594" y="170" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="622" y="170" width="24" height="20" rx="2" fill="#334155"/>
+  <!-- Complexity: 3/5 -->
+  <rect x="650" y="170" width="24" height="20" rx="2" fill="#f59e0b"/>
+  <rect x="678" y="170" width="24" height="20" rx="2" fill="#f59e0b"/>
+  <rect x="706" y="170" width="24" height="20" rx="2" fill="#f59e0b"/>
+  <rect x="734" y="170" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="762" y="170" width="16" height="20" rx="2" fill="#334155"/>
+
+  <!-- Row 3: Canary -->
+  <rect x="20" y="220" width="760" height="60" fill="#0f172a"/>
+  <rect x="20" y="220" width="200" height="60" fill="#1e1b4b"/>
+  <text x="120" y="245" text-anchor="middle" fill="#34d399" font-size="13" font-weight="bold" font-family="sans-serif">カナリア</text>
+  <text x="120" y="265" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">Canary Release</text>
+  <!-- Speed: 2/5 -->
+  <rect x="230" y="235" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="258" y="235" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="286" y="235" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="314" y="235" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="342" y="235" width="24" height="20" rx="2" fill="#334155"/>
+  <!-- Cost: 2/5 -->
+  <rect x="370" y="235" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="398" y="235" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="426" y="235" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="454" y="235" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="482" y="235" width="24" height="20" rx="2" fill="#334155"/>
+  <!-- Risk: 2/5 -->
+  <rect x="510" y="235" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="538" y="235" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="566" y="235" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="594" y="235" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="622" y="235" width="24" height="20" rx="2" fill="#334155"/>
+  <!-- Complexity: 5/5 -->
+  <rect x="650" y="235" width="24" height="20" rx="2" fill="#f59e0b"/>
+  <rect x="678" y="235" width="24" height="20" rx="2" fill="#f59e0b"/>
+  <rect x="706" y="235" width="24" height="20" rx="2" fill="#f59e0b"/>
+  <rect x="734" y="235" width="24" height="20" rx="2" fill="#f59e0b"/>
+  <rect x="762" y="235" width="16" height="20" rx="2" fill="#f59e0b"/>
+
+  <!-- Row 4: Recreate -->
+  <rect x="20" y="285" width="760" height="60" fill="#0f172a"/>
+  <rect x="20" y="285" width="200" height="60" fill="#1e1b4b"/>
+  <text x="120" y="310" text-anchor="middle" fill="#f59e0b" font-size="13" font-weight="bold" font-family="sans-serif">Recreate</text>
+  <text x="120" y="330" text-anchor="middle" fill="#f59e0b" font-size="10" font-family="sans-serif">停止→再起動</text>
+  <!-- Speed: 5/5 -->
+  <rect x="230" y="300" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="258" y="300" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="286" y="300" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="314" y="300" width="24" height="20" rx="2" fill="#34d399"/>
+  <rect x="342" y="300" width="24" height="20" rx="2" fill="#34d399"/>
+  <!-- Cost: 0/5 -->
+  <rect x="370" y="300" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="398" y="300" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="426" y="300" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="454" y="300" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="482" y="300" width="24" height="20" rx="2" fill="#334155"/>
+  <!-- Risk: 5/5 -->
+  <rect x="510" y="300" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="538" y="300" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="566" y="300" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="594" y="300" width="24" height="20" rx="2" fill="#ef4444"/>
+  <rect x="622" y="300" width="24" height="20" rx="2" fill="#ef4444"/>
+  <!-- Complexity: 1/5 -->
+  <rect x="650" y="300" width="24" height="20" rx="2" fill="#f59e0b"/>
+  <rect x="678" y="300" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="706" y="300" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="734" y="300" width="24" height="20" rx="2" fill="#334155"/>
+  <rect x="762" y="300" width="16" height="20" rx="2" fill="#334155"/>
+
+  <!-- Divider lines -->
+  <line x1="20" y1="90" x2="780" y2="90" stroke="#334155" stroke-width="1"/>
+  <line x1="20" y1="155" x2="780" y2="155" stroke="#334155" stroke-width="1"/>
+  <line x1="20" y1="220" x2="780" y2="220" stroke="#334155" stroke-width="1"/>
+  <line x1="20" y1="285" x2="780" y2="285" stroke="#334155" stroke-width="1"/>
+  <line x1="20" y1="345" x2="780" y2="345" stroke="#334155" stroke-width="1"/>
+  <line x1="220" y1="45" x2="220" y2="345" stroke="#334155" stroke-width="1"/>
+  <line x1="360" y1="45" x2="360" y2="345" stroke="#334155" stroke-width="1"/>
+  <line x1="500" y1="45" x2="500" y2="345" stroke="#334155" stroke-width="1"/>
+  <line x1="640" y1="45" x2="640" y2="345" stroke="#334155" stroke-width="1"/>
+  <rect x="20" y="45" width="760" height="300" rx="4" fill="transparent" stroke="#334155" stroke-width="1"/>
+
+  <!-- Legend -->
+  <text x="400" y="372" text-anchor="middle" fill="#94a3b8" font-size="10" font-family="sans-serif">バーの数 = スコア (多いほど高い)    速度・コスト削減: 緑    リスク: 赤    複雑度: 橙</text>
+</svg>

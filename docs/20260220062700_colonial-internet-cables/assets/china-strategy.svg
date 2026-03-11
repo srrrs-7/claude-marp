@@ -1,0 +1,45 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">中国の対抗戦略 — デジタルシルクロード</text>
+  <!-- Central China node -->
+  <circle cx="400" cy="185" r="45" fill="#16213e" stroke="#e91e63" stroke-width="3"/>
+  <text x="400" y="180" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">中国</text>
+  <text x="400" y="200" text-anchor="middle" font-size="10" fill="#ffffff">デジタル</text>
+  <text x="400" y="215" text-anchor="middle" font-size="10" fill="#ffffff">シルクロード</text>
+  <!-- 5 strategy pillars connected to center -->
+  <!-- Top: Cable investment -->
+  <circle cx="400" cy="68" r="38" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="63" text-anchor="middle" font-size="10" fill="#f9a825">海底ケーブル</text>
+  <text x="400" y="78" text-anchor="middle" font-size="10" fill="#ffffff">PEACE Cable</text>
+  <text x="400" y="92" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.7">中国-欧州直通</text>
+  <line x1="400" y1="106" x2="400" y2="140" stroke="#f9a825" stroke-width="2"/>
+  <!-- Left-top: Huawei submarine -->
+  <circle cx="200" cy="100" r="38" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="200" y="95" text-anchor="middle" font-size="10" fill="#f9a825">HMN Tech</text>
+  <text x="200" y="110" text-anchor="middle" font-size="10" fill="#ffffff">元：華為海洋</text>
+  <text x="200" y="124" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.7">ケーブル敷設シェア拡大</text>
+  <line x1="235" y1="128" x2="362" y2="163" stroke="#f9a825" stroke-width="2"/>
+  <!-- Left: BRI digital -->
+  <circle cx="90" cy="205" r="38" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="90" y="200" text-anchor="middle" font-size="10" fill="#4caf50">一帯一路</text>
+  <text x="90" y="215" text-anchor="middle" font-size="10" fill="#ffffff">デジタル版</text>
+  <text x="90" y="229" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.7">途上国インフラ投資</text>
+  <line x1="128" y1="205" x2="355" y2="185" stroke="#4caf50" stroke-width="2"/>
+  <!-- Right-top: Data center -->
+  <circle cx="600" cy="100" r="38" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="600" y="95" text-anchor="middle" font-size="10" fill="#f9a825">海外データ</text>
+  <text x="600" y="110" text-anchor="middle" font-size="10" fill="#ffffff">センター</text>
+  <text x="600" y="124" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.7">アフリカ・東南アジア</text>
+  <line x1="565" y1="128" x2="438" y2="163" stroke="#f9a825" stroke-width="2"/>
+  <!-- Right: Satellite -->
+  <circle cx="710" cy="205" r="38" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="710" y="200" text-anchor="middle" font-size="10" fill="#4caf50">衛星通信</text>
+  <text x="710" y="215" text-anchor="middle" font-size="10" fill="#ffffff">Starlink対抗</text>
+  <text x="710" y="229" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.7">GW衛星網構築中</text>
+  <line x1="672" y1="205" x2="445" y2="185" stroke="#4caf50" stroke-width="2"/>
+  <!-- Bottom analysis -->
+  <rect x="30" y="295" width="740" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="318" text-anchor="middle" font-size="13" fill="#f9a825">「新たな植民地ルート」か「対抗覇権」か</text>
+  <text x="400" y="340" text-anchor="middle" font-size="11" fill="#ffffff">西側の批判：安全保障リスク・融資による債務の罠 | 途上国の視点：ようやく投資が来た</text>
+  <text x="400" y="368" text-anchor="middle" font-size="11" fill="#e91e63">インフラ投資は常に政治的 — 「技術的中立」は幻想</text>
+</svg>

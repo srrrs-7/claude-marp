@@ -1,14 +1,80 @@
 ---
 marp: true
 theme: gaia
-class: invert
 size: 16:9
 paginate: true
+style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
 ---
 
 <!-- _class: lead -->
 # AWS Certified Generative AI Developer - Professional
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/><rect x="100" y="130" width="600" height="140" fill="#0d1b3e" rx="12"/><rect x="100" y="130" width="600" height="8" fill="#e91e63" rx="4"/><text x="400" y="190" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">AWS Certified Generative AI Developer</text><text x="400" y="225" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">Professional 試験対策</text><text x="400" y="260" font-family="sans-serif" font-size="14" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Domain 1〜5 完全カバー</text></svg>
 - 試験対策 基礎資料
 - エンジニアチーム向け内部研修 | 2026年2月
 - 対象: 全評価領域（Domain 1〜5）を均等にカバー
@@ -18,6 +84,41 @@ paginate: true
 
 # 本日のアジェンダ（1/2）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
+<text x="400" y="40" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">評価領域 — Domain Overview</text>
+
+<rect x="45" y="80" width="110" height="240" fill="#16213e" rx="8"/>
+<rect x="55" y="230" width="90" height="140" fill="#e91e63" rx="4"/>
+<text x="100" y="220" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">20%</text>
+<text x="100" y="345" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">AI/ML基礎</text>
+<text x="100" y="360" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Domain 1</text>
+
+<rect x="165" y="80" width="110" height="240" fill="#16213e" rx="8"/>
+<rect x="175" y="202" width="90" height="168" fill="#e91e63" rx="4"/>
+<text x="220" y="192" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">24%</text>
+<text x="220" y="345" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">生成AI基礎</text>
+<text x="220" y="360" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Domain 2</text>
+
+<rect x="285" y="80" width="110" height="240" fill="#16213e" rx="8"/>
+<rect x="295" y="174" width="90" height="196" fill="#e91e63" rx="4"/>
+<text x="340" y="164" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">28%</text>
+<text x="340" y="345" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">FM活用</text>
+<text x="340" y="360" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Domain 3</text>
+
+<rect x="405" y="80" width="110" height="240" fill="#16213e" rx="8"/>
+<rect x="415" y="272" width="90" height="98" fill="#e91e63" rx="4"/>
+<text x="460" y="262" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">14%</text>
+<text x="460" y="345" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">責任あるAI</text>
+<text x="460" y="360" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Domain 4</text>
+
+<rect x="525" y="80" width="110" height="240" fill="#16213e" rx="8"/>
+<rect x="535" y="272" width="90" height="98" fill="#e91e63" rx="4"/>
+<text x="580" y="262" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">14%</text>
+<text x="580" y="345" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">セキュリティ</text>
+<text x="580" y="360" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Domain 5</text>
+
+</svg>
 - **試験概要** — 形式・評価領域・合格スコア・準備方法
 - **Domain 1（20%）** — AI/ML の基礎: 機械学習種類・ML ワークフロー・AWS AI サービス
 - **Domain 2（24%）** — 生成 AI の基礎: FM の仕組み・プロンプトエンジニアリング・ハルシネーション
@@ -31,6 +132,24 @@ paginate: true
 
 # 試験の位置づけ
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
+<text x="400" y="35" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">AWS 認定資格ロードマップ</text>
+<rect x="30" y="120" width="180" height="80" fill="#16213e" rx="8"/>
+<text x="120" y="152" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">AI Practitioner</text>
+<text x="120" y="172" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">基礎レベル</text>
+<rect x="310" y="120" width="180" height="80" fill="#1e3a5f" rx="8"/>
+<text x="400" y="152" font-family="sans-serif" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold">GenAI Developer</text>
+<text x="400" y="172" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="normal">Professional ★本試験</text>
+<rect x="590" y="120" width="180" height="80" fill="#16213e" rx="8"/>
+<text x="680" y="152" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">ML Specialty</text>
+<text x="680" y="172" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">専門深化</text>
+<line x1="210" y1="160" x2="300" y2="160" stroke="#f9a825" stroke-width="2"/><polygon points="310,160 300,165 300,155" fill="#f9a825"/>
+<line x1="490" y1="160" x2="580" y2="160" stroke="#f9a825" stroke-width="2"/><polygon points="590,160 580,165 580,155" fill="#f9a825"/>
+<text x="400" y="250" font-family="sans-serif" font-size="15" fill="#b0b8d0" text-anchor="middle" font-weight="normal">推奨経験: AWS実務1年以上 + 生成AI/ML基礎知識</text>
+<text x="400" y="280" font-family="sans-serif" font-size="15" fill="#b0b8d0" text-anchor="middle" font-weight="normal">有効期間: 3年間 | 合格スコア: 750/1000</text>
+<text x="400" y="310" font-family="sans-serif" font-size="15" fill="#b0b8d0" text-anchor="middle" font-weight="normal">受験料: USD 300 | 問題数: 85問（採点対象65問）</text>
+</svg>
 - **認定名**: AWS Certified Generative AI Developer - Professional
 - **対象者**: AWS 上で生成 AI / ML ソリューションを設計・実装・最適化するエンジニア
 - **推奨経験**: AWS 実務経験 1 年以上 + 生成 AI / ML の基礎知識
@@ -43,6 +162,44 @@ paginate: true
 
 # 本資料の使い方
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
+<text x="400" y="35" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">学習フロー</text>
+
+<rect x="-40" y="70" width="110" height="90" fill="#16213e" rx="8"/>
+<circle cx="15" cy="95" r="20" fill="#e91e63"/>
+<text x="15" y="101" font-family="sans-serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold">1</text>
+<text x="16" y="132" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">セクション別に読む</text>
+<text x="16" y="148" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">各ドメインから順番に</text>
+
+<rect x="80" y="70" width="110" height="90" fill="#16213e" rx="8"/>
+<circle cx="135" cy="95" r="20" fill="#e91e63"/>
+<text x="135" y="101" font-family="sans-serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold">2</text>
+<text x="136" y="132" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">チェックリスト確認</text>
+<text x="136" y="148" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">各末尾で理解度確認</text>
+
+<rect x="200" y="70" width="110" height="90" fill="#16213e" rx="8"/>
+<circle cx="255" cy="95" r="20" fill="#e91e63"/>
+<text x="255" y="101" font-family="sans-serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold">3</text>
+<text x="256" y="132" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">Bedrockを実操作</text>
+<text x="256" y="148" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">コンソール/APIで体験</text>
+
+<rect x="320" y="70" width="110" height="90" fill="#16213e" rx="8"/>
+<circle cx="375" cy="95" r="20" fill="#e91e63"/>
+<text x="375" y="101" font-family="sans-serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold">4</text>
+<text x="376" y="132" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">模擬試験で確認</text>
+<text x="376" y="148" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">AWS公式模擬問題集</text>
+
+<rect x="440" y="70" width="110" height="90" fill="#16213e" rx="8"/>
+<circle cx="495" cy="95" r="20" fill="#e91e63"/>
+<text x="495" y="101" font-family="sans-serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold">5</text>
+<text x="496" y="132" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="bold">弱点ドメイン復習</text>
+<text x="496" y="148" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">繰り返しで定着</text>
+
+<line x1="140" y1="115" x2="170" y2="115" stroke="#f9a825" stroke-width="2"/><polygon points="180,115 170,120 170,110" fill="#f9a825"/><line x1="260" y1="115" x2="290" y2="115" stroke="#f9a825" stroke-width="2"/><polygon points="300,115 290,120 290,110" fill="#f9a825"/><line x1="380" y1="115" x2="410" y2="115" stroke="#f9a825" stroke-width="2"/><polygon points="420,115 410,120 410,110" fill="#f9a825"/><line x1="500" y1="115" x2="530" y2="115" stroke="#f9a825" stroke-width="2"/><polygon points="540,115 530,120 530,110" fill="#f9a825"/>
+<text x="400" y="220" font-family="sans-serif" font-size="16" fill="#b0b8d0" text-anchor="middle" font-weight="normal">合格スコア: 750/1000 スケールスコア（65問中）</text>
+<text x="400" y="250" font-family="sans-serif" font-size="15" fill="#b0b8d0" text-anchor="middle" font-weight="normal">問題形式: 単一選択 + 複数選択（記述問題なし）</text>
+</svg>
 - **学習フロー**: 各ドメインのセクションスライドから順番に読み進める
 - **チェックリスト活用**: 各ドメイン末尾の「重要ポイント」で理解度を確認
 - **図解の活用**: SVG 図解は試験に頻出のアーキテクチャを視覚的に整理
@@ -56,6 +213,7 @@ paginate: true
 <!-- _class: lead -->
 # 試験概要
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/><text x="400" y="35" font-family="sans-serif" font-size="24" fill="#f9a825" text-anchor="middle" font-weight="bold">試験概要</text><rect x="150" y="90" width="500" height="220" fill="#16213e" rx="8"/><text x="400" y="135" font-family="sans-serif" font-size="16" fill="#b0b8d0" text-anchor="middle" font-weight="normal">形式・評価領域・合格スコア</text><text x="400" y="175" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">85問 / 170分 / USD300</text><text x="400" y="220" font-family="sans-serif" font-size="16" fill="#b0b8d0" text-anchor="middle" font-weight="normal">合格スコア: 750/1000</text><text x="400" y="255" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="normal">評価領域: Domain 1〜5</text></svg>
 - 形式・評価領域・合格スコア・学習計画を把握する
 
 
@@ -63,6 +221,41 @@ paginate: true
 
 # 試験形式・詳細
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
+<text x="400" y="35" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">試験形式 詳細</text>
+
+<rect x="20" y="80" width="240" height="110" fill="#16213e" rx="8"/>
+<text x="140" y="118" font-family="sans-serif" font-size="13" fill="#b0b8d0" text-anchor="middle" font-weight="normal">問題数</text>
+<text x="140" y="148" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">85問</text>
+<text x="140" y="170" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">採点65問 + ノンスコア20問</text>
+
+<rect x="280" y="80" width="240" height="110" fill="#16213e" rx="8"/>
+<text x="400" y="118" font-family="sans-serif" font-size="13" fill="#b0b8d0" text-anchor="middle" font-weight="normal">試験時間</text>
+<text x="400" y="148" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">170分</text>
+<text x="400" y="170" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">約2分/問のペース</text>
+
+<rect x="540" y="80" width="240" height="110" fill="#16213e" rx="8"/>
+<text x="660" y="118" font-family="sans-serif" font-size="13" fill="#b0b8d0" text-anchor="middle" font-weight="normal">合格スコア</text>
+<text x="660" y="148" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">750/1000</text>
+<text x="660" y="170" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">スケールスコア</text>
+
+<rect x="20" y="210" width="240" height="110" fill="#16213e" rx="8"/>
+<text x="140" y="248" font-family="sans-serif" font-size="13" fill="#b0b8d0" text-anchor="middle" font-weight="normal">受験料</text>
+<text x="140" y="278" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">USD 300</text>
+<text x="140" y="300" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Professional レベル</text>
+
+<rect x="280" y="210" width="240" height="110" fill="#16213e" rx="8"/>
+<text x="400" y="248" font-family="sans-serif" font-size="13" fill="#b0b8d0" text-anchor="middle" font-weight="normal">言語</text>
+<text x="400" y="278" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">英語</text>
+<text x="400" y="300" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">日本語UI選択可</text>
+
+<rect x="540" y="210" width="240" height="110" fill="#16213e" rx="8"/>
+<text x="660" y="248" font-family="sans-serif" font-size="13" fill="#b0b8d0" text-anchor="middle" font-weight="normal">受験方法</text>
+<text x="660" y="278" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">PearsonVUE / 自宅</text>
+<text x="660" y="300" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">テストセンター or オンライン</text>
+
+</svg>
 - **問題数**: 85 問（採点対象 65 問 + ノンスコアリング 20 問）
 - **試験時間**: 170 分（約 2 分/問のペース配分）
 - **出題形式**: 単一回答・複数回答の選択式（記述問題なし）
@@ -83,6 +276,36 @@ paginate: true
 
 # 試験準備の目安
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="35" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">学習スケジュール目安</text>
+
+<rect x="20" y="70" width="175" height="160" fill="#16213e" rx="8"/>
+<rect x="20" y="70" width="175" height="8" fill="#e91e63" rx="4"/>
+<text x="107" y="110" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold">Week 1-2</text>
+<text x="107" y="135" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold">AWS AI/ML全体像</text>
+<text x="107" y="155" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Bedrockコンソール基礎操作</text>
+
+<rect x="210" y="70" width="175" height="160" fill="#16213e" rx="8"/>
+<rect x="210" y="70" width="175" height="8" fill="#0d7377" rx="4"/>
+<text x="297" y="110" font-family="sans-serif" font-size="14" fill="#0d7377" text-anchor="middle" font-weight="bold">Week 3-4</text>
+<text x="297" y="135" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold">RAG・Agents・Guardrails</text>
+<text x="297" y="155" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">プロンプトエンジニアリング実践</text>
+
+<rect x="400" y="70" width="175" height="160" fill="#16213e" rx="8"/>
+<rect x="400" y="70" width="175" height="8" fill="#6b2d8b" rx="4"/>
+<text x="487" y="110" font-family="sans-serif" font-size="14" fill="#6b2d8b" text-anchor="middle" font-weight="bold">Week 5-6</text>
+<text x="487" y="135" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold">責任あるAI・セキュリティ</text>
+<text x="487" y="155" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">コンプライアンス理解</text>
+
+<rect x="590" y="70" width="175" height="160" fill="#16213e" rx="8"/>
+<rect x="590" y="70" width="175" height="8" fill="#1a6b3c" rx="4"/>
+<text x="677" y="110" font-family="sans-serif" font-size="14" fill="#1a6b3c" text-anchor="middle" font-weight="bold">Week 7-8</text>
+<text x="677" y="135" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold">模擬試験繰り返し</text>
+<text x="677" y="155" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">弱点ドメイン集中復習</text>
+
+<text x="400" y="270" font-family="sans-serif" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">Domain 3（28%）は最重点 — Bedrockを実際に操作して理解する</text>
+</svg>
 - **学習期間の目安**: AWS 経験 1 年以上なら 4〜6 週間、未経験者は 8〜12 週間
 - **必須の実践経験**: Amazon Bedrock（Knowledge Bases・Agents・Guardrails）の実装経験
 - **AWS Skill Builder**: 公式オンライン学習プラットフォームで試験対応コースを受講
@@ -95,6 +318,7 @@ paginate: true
 
 # 合格に向けたアプローチ
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/><text x="400" y="32" font-family="sans-serif" font-size="21" fill="#f9a825" text-anchor="middle" font-weight="bold">合格に向けたアプローチ</text><rect x="15" y="70" width="170" height="240" fill="#16213e" rx="8"/><rect x="15" y="70" width="170" height="7" fill="#e91e63" rx="4"/><text x="100" y="108" font-family="sans-serif" font-size="16" fill="#e91e63" text-anchor="middle" font-weight="bold">W1-2</text><text x="100" y="140" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">AWS AI/ML + Bedrock基礎</text><rect x="135" y="70" width="170" height="240" fill="#16213e" rx="8"/><rect x="135" y="70" width="170" height="7" fill="#0d7377" rx="4"/><text x="220" y="108" font-family="sans-serif" font-size="16" fill="#0d7377" text-anchor="middle" font-weight="bold">W3-4</text><text x="220" y="140" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">RAG・Agents・Guardrails</text><rect x="255" y="70" width="170" height="240" fill="#16213e" rx="8"/><rect x="255" y="70" width="170" height="7" fill="#6b2d8b" rx="4"/><text x="340" y="108" font-family="sans-serif" font-size="16" fill="#6b2d8b" text-anchor="middle" font-weight="bold">W5-6</text><text x="340" y="140" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">責任あるAI・セキュリティ</text><rect x="375" y="70" width="170" height="240" fill="#16213e" rx="8"/><rect x="375" y="70" width="170" height="7" fill="#1a6b3c" rx="4"/><text x="460" y="108" font-family="sans-serif" font-size="16" fill="#1a6b3c" text-anchor="middle" font-weight="bold">W7-8</text><text x="460" y="140" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">模擬試験・弱点復習</text></svg>
 - **Week 1-2**: AWS AI/ML サービスの全体像 + Bedrock の基礎操作（コンソール・API）
 - **Week 3-4**: RAG・Agents・Guardrails の実装 + プロンプトエンジニアリング実践
 - **Week 5-6**: 責任ある AI・セキュリティ・コンプライアンスの理解
@@ -108,6 +332,7 @@ paginate: true
 <!-- _class: lead -->
 # Domain 1: AI と ML の基礎
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/><text x="400" y="32" font-family="sans-serif" font-size="21" fill="#f9a825" text-anchor="middle" font-weight="bold">Domain 1: AI と ML の基礎</text><rect x="150" y="80" width="500" height="80" fill="#16213e" rx="8"/><text x="400" y="120" font-family="sans-serif" font-size="14" fill="#b0b8d0" text-anchor="middle" font-weight="normal">出題比率 20% — AI/MLの基本概念とAWS AIサービスの全体像</text><rect x="10" y="190" width="180" height="130" fill="#16213e" rx="8"/><rect x="10" y="190" width="180" height="7" fill="#e91e63" rx="4"/><text x="100" y="222" font-family="sans-serif" font-size="15" fill="#e91e63" text-anchor="middle" font-weight="bold">教師あり学習</text><text x="100" y="250" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">分類・回帰</text><rect x="260" y="190" width="180" height="130" fill="#16213e" rx="8"/><rect x="260" y="190" width="180" height="7" fill="#0d7377" rx="4"/><text x="350" y="222" font-family="sans-serif" font-size="15" fill="#0d7377" text-anchor="middle" font-weight="bold">教師なし学習</text><text x="350" y="250" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">クラスタリング</text><rect x="510" y="190" width="180" height="130" fill="#16213e" rx="8"/><rect x="510" y="190" width="180" height="7" fill="#6b2d8b" rx="4"/><text x="600" y="222" font-family="sans-serif" font-size="15" fill="#6b2d8b" text-anchor="middle" font-weight="bold">強化学習</text><text x="600" y="250" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">RLHF・制御</text></svg>
 - 出題比率 20% | AI/ML の基本概念と AWS AI サービスの全体像を理解する
 
 
@@ -122,6 +347,7 @@ paginate: true
 
 # 機械学習の種類
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/><text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">機械学習の種類 — 試験ポイント</text><rect x="15" y="70" width="230" height="260" fill="#16213e" rx="8"/><rect x="15" y="70" width="230" height="7" fill="#e91e63" rx="4"/><text x="130" y="110" font-family="sans-serif" font-size="16" fill="#e91e63" text-anchor="middle" font-weight="bold">教師あり学習</text><text x="130" y="145" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">ラベル付きデータ</text><text x="130" y="175" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">分類・回帰・SageMaker</text><rect x="285" y="70" width="230" height="260" fill="#16213e" rx="8"/><rect x="285" y="70" width="230" height="7" fill="#0d7377" rx="4"/><text x="400" y="110" font-family="sans-serif" font-size="16" fill="#0d7377" text-anchor="middle" font-weight="bold">教師なし学習</text><text x="400" y="145" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">ラベルなしデータ</text><text x="400" y="175" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">クラスタリング・次元削減</text><rect x="555" y="70" width="230" height="260" fill="#16213e" rx="8"/><rect x="555" y="70" width="230" height="7" fill="#6b2d8b" rx="4"/><text x="670" y="110" font-family="sans-serif" font-size="16" fill="#6b2d8b" text-anchor="middle" font-weight="bold">強化学習</text><text x="670" y="145" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">報酬最大化</text><text x="670" y="175" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">ゲームAI・RLHF</text></svg>
 - **教師あり学習（Supervised Learning）**: ラベル付きデータから予測モデルを学習。分類（スパム判定）・回帰（価格予測）
 - **教師なし学習（Unsupervised Learning）**: ラベルなしデータからパターン発見。クラスタリング・次元削減・異常検知
 - **強化学習（Reinforcement Learning）**: 環境との相互作用から報酬を最大化。ゲーム AI・ロボット制御・RLHF（LLM の人間フィードバック学習）
@@ -140,6 +366,7 @@ paginate: true
 
 # ML モデルの主要評価指標
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/><text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">ML モデル評価指標 — 使い分け</text><rect x="20" y="70" width="240" height="130" fill="#16213e" rx="8"/><rect x="20" y="70" width="240" height="6" fill="#e91e63" rx="3"/><text x="140" y="105" font-family="sans-serif" font-size="17" fill="#e91e63" text-anchor="middle" font-weight="bold">Accuracy</text><text x="140" y="130" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">全体正解率</text><text x="140" y="152" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">クラス不均衡時は不適</text><rect x="275" y="70" width="240" height="130" fill="#16213e" rx="8"/><rect x="275" y="70" width="240" height="6" fill="#0d7377" rx="3"/><text x="395" y="105" font-family="sans-serif" font-size="17" fill="#0d7377" text-anchor="middle" font-weight="bold">Precision</text><text x="395" y="130" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">陽性予測適合率</text><text x="395" y="152" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">偽陽性最小化</text><rect x="530" y="70" width="240" height="130" fill="#16213e" rx="8"/><rect x="530" y="70" width="240" height="6" fill="#6b2d8b" rx="3"/><text x="650" y="105" font-family="sans-serif" font-size="17" fill="#6b2d8b" text-anchor="middle" font-weight="bold">Recall</text><text x="650" y="130" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">実陽性検出率</text><text x="650" y="152" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">偽陰性最小化（医療）</text><rect x="20" y="220" width="240" height="130" fill="#16213e" rx="8"/><rect x="20" y="220" width="240" height="6" fill="#1a6b3c" rx="3"/><text x="140" y="255" font-family="sans-serif" font-size="17" fill="#1a6b3c" text-anchor="middle" font-weight="bold">F1 Score</text><text x="140" y="280" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">調和平均</text><text x="140" y="302" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">不均衡データ</text><rect x="275" y="220" width="240" height="130" fill="#16213e" rx="8"/><rect x="275" y="220" width="240" height="6" fill="#b45309" rx="3"/><text x="395" y="255" font-family="sans-serif" font-size="17" fill="#b45309" text-anchor="middle" font-weight="bold">AUC-ROC</text><text x="395" y="280" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">判別能力</text><text x="395" y="302" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">0.5〜1.0</text><rect x="530" y="220" width="240" height="130" fill="#16213e" rx="8"/><rect x="530" y="220" width="240" height="6" fill="#0891b2" rx="3"/><text x="650" y="255" font-family="sans-serif" font-size="17" fill="#0891b2" text-anchor="middle" font-weight="bold">RMSE/MAE</text><text x="650" y="280" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">回帰誤差</text><text x="650" y="302" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">外れ値感度</text></svg>
 - **Accuracy（精度）**: 全サンプル中の正解率。クラス不均衡時は不適切（95% 正解でも実は全部「陰性」予測かも）
 - **Precision（適合率）**: 「陽性と予測した」うち本当の陽性の割合。偽陽性を減らしたい時
 - **Recall（再現率）**: 「実際の陽性」のうち正しく検出できた割合。偽陰性を減らしたい時（がん診断など）
@@ -159,6 +386,31 @@ paginate: true
 
 # Amazon SageMaker — 主要機能
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">SageMaker 追加コンポーネント</text>
+
+<rect x="-20" y="50" width="280" height="110" fill="#16213e" rx="8"/>
+<text x="120" y="80" font-family="sans-serif" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">Feature Store</text>
+<text x="120" y="110" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">特徴量オンライン/オフライン一元管理</text>
+
+<rect x="260" y="50" width="280" height="110" fill="#16213e" rx="8"/>
+<text x="400" y="80" font-family="sans-serif" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">Model Monitor</text>
+<text x="400" y="110" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">データドリフト・品質劣化検出</text>
+
+<rect x="540" y="50" width="280" height="110" fill="#16213e" rx="8"/>
+<text x="680" y="80" font-family="sans-serif" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">Ground Truth</text>
+<text x="680" y="110" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">人手ラベリング+自動ラベリング</text>
+
+<rect x="60" y="200" width="280" height="110" fill="#16213e" rx="8"/>
+<text x="200" y="230" font-family="sans-serif" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">JumpStart</text>
+<text x="200" y="260" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">事前学習済みモデルの検索・FT・デプロイ</text>
+
+<rect x="360" y="200" width="280" height="110" fill="#16213e" rx="8"/>
+<text x="500" y="230" font-family="sans-serif" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">Data Wrangler</text>
+<text x="500" y="260" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">ノーコードデータ前処理・可視化</text>
+
+</svg>
 - **SageMaker Studio**: 統合 ML 開発環境（IDE）。ノートブック・実験・パイプラインを一元管理
 - **SageMaker Autopilot**: AutoML。データを与えるだけで最適なモデルを自動構築
 - **SageMaker Training**: 分散学習ジョブの管理。Spot インスタンスでコスト削減
@@ -171,6 +423,36 @@ paginate: true
 
 # SageMaker — 追加コンポーネント
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">Domain 1 — 重要ポイントまとめ</text>
+
+<rect x="60" y="65" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="65" width="6" height="48" fill="#e91e63" rx="3"/>
+<text x="110" y="85" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="start" font-weight="bold">機械学習の種類</text>
+<text x="110" y="103" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">教師あり/なし/強化学習の違い</text>
+
+<rect x="60" y="121" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="121" width="6" height="48" fill="#0d7377" rx="3"/>
+<text x="110" y="141" font-family="sans-serif" font-size="14" fill="#0d7377" text-anchor="start" font-weight="bold">評価指標</text>
+<text x="110" y="159" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">Precision・Recall・F1・AUC-ROC</text>
+
+<rect x="60" y="177" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="177" width="6" height="48" fill="#6b2d8b" rx="3"/>
+<text x="110" y="197" font-family="sans-serif" font-size="14" fill="#6b2d8b" text-anchor="start" font-weight="bold">AWS AIサービス</text>
+<text x="110" y="215" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">Rekognition=画像 Comprehend=NLP</text>
+
+<rect x="60" y="233" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="233" width="6" height="48" fill="#1a6b3c" rx="3"/>
+<text x="110" y="253" font-family="sans-serif" font-size="14" fill="#1a6b3c" text-anchor="start" font-weight="bold">SageMaker主要機能</text>
+<text x="110" y="271" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">Studio/Pipelines/Clarify/Monitor</text>
+
+<rect x="60" y="289" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="289" width="6" height="48" fill="#b45309" rx="3"/>
+<text x="110" y="309" font-family="sans-serif" font-size="14" fill="#b45309" text-anchor="start" font-weight="bold">MLワークフロー</text>
+<text x="110" y="327" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">各ステップとAWSサービスの対応</text>
+
+</svg>
 - **SageMaker Clarify**: バイアス検出（学習前・後）+ SHAP による説明可能性（XAI）
 - **SageMaker Feature Store**: 特徴量のオンライン/オフライン一元管理・再利用促進
 - **SageMaker Model Monitor**: リアルタイムでデータドリフト・品質劣化・バイアスを検出
@@ -196,6 +478,26 @@ paginate: true
 <!-- _class: lead -->
 # Domain 2: 生成 AI の基礎
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">生成AI vs 従来AI — アーキテクチャ比較</text>
+<rect x="30" y="70" width="340" height="270" fill="#16213e" rx="8"/>
+<rect x="30" y="70" width="340" height="8" fill="#555" rx="4"/>
+<text x="200" y="105" font-family="sans-serif" font-size="17" fill="#b0b8d0" text-anchor="middle" font-weight="bold">従来の判別AI</text>
+<text x="200" y="135" font-family="sans-serif" font-size="13" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Input → Classify / Predict</text>
+<text x="200" y="160" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal">例: スパム判定・画像分類</text>
+<text x="200" y="185" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal">特定タスクに特化</text>
+<text x="200" y="210" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">タスク固有の学習データが必要</text>
+<rect x="430" y="70" width="340" height="270" fill="#16213e" rx="8"/>
+<rect x="430" y="70" width="340" height="8" fill="#e91e63" rx="4"/>
+<text x="600" y="105" font-family="sans-serif" font-size="17" fill="#f9a825" text-anchor="middle" font-weight="bold">生成AI / Foundation Models</text>
+<text x="600" y="135" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal">Input → Generate New Content</text>
+<text x="600" y="160" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal">例: テキスト・画像・コード生成</text>
+<text x="600" y="185" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal">Zero-shot / Few-shot 対応</text>
+<text x="600" y="210" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">数十億〜数千億パラメータ</text>
+<text x="600" y="235" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Claude・GPT-4・Titan・Llama</text>
+<text x="400" y="370" font-family="sans-serif" font-size="14" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Foundation Models: 大規模データで事前学習済みの汎用モデル</text>
+</svg>
 - 出題比率 24% | Foundation Models の仕組み・プロンプトエンジニアリング・ハルシネーション対策
 
 
@@ -203,6 +505,32 @@ paginate: true
 
 # 生成 AI と Foundation Models
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">Transformer アーキテクチャ</text>
+<rect x="50" y="70" width="200" height="270" fill="#16213e" rx="8"/>
+<text x="150" y="100" font-family="sans-serif" font-size="14" fill="#b0b8d0" text-anchor="middle" font-weight="bold">Input</text>
+<text x="150" y="125" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">Tokenization</text>
+<text x="150" y="148" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">Embedding</text>
+<text x="150" y="170" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">Positional</text>
+<text x="150" y="190" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">Encoding</text>
+<rect x="300" y="70" width="200" height="270" fill="#1e3a5f" rx="8"/>
+<text x="400" y="100" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold">Attention</text>
+<text x="400" y="125" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">Self-Attention</text>
+<text x="400" y="148" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">単語間の関係を</text>
+<text x="400" y="168" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">並列計算で学習</text>
+<text x="400" y="195" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">長距離依存も対応</text>
+<rect x="550" y="70" width="200" height="270" fill="#16213e" rx="8"/>
+<text x="650" y="100" font-family="sans-serif" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold">Output</text>
+<text x="650" y="125" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">BERT: エンコーダ型</text>
+<text x="650" y="148" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">→ 理解タスク</text>
+<text x="650" y="170" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">GPT: デコーダ型</text>
+<text x="650" y="190" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">→ 生成タスク</text>
+<text x="650" y="215" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">LLMは次トークン予測</text>
+<line x1="250" y1="205" x2="290" y2="205" stroke="#f9a825" stroke-width="2"/><polygon points="300,205 290,210 290,200" fill="#f9a825"/>
+<line x1="500" y1="205" x2="540" y2="205" stroke="#f9a825" stroke-width="2"/><polygon points="550,205 540,210 540,200" fill="#f9a825"/>
+<text x="400" y="370" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Scaling Law: パラメータ数・データ量・計算量を増やすほど能力が急激に向上</text>
+</svg>
 - **生成 AI（Generative AI）とは**: 学習データのパターンから新しいコンテンツ（テキスト・画像・コード・音声・動画）を生成する AI
 - **従来 AI との違い**: 判別 AI（入力→分類/予測）vs 生成 AI（入力→新しいコンテンツ創出）
 - **Foundation Models（FM）**: 大規模データで事前学習済みの汎用モデル。数十億〜数千億パラメータ
@@ -215,6 +543,31 @@ paginate: true
 
 # Transformer アーキテクチャの仕組み
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="19" fill="#f9a825" text-anchor="middle" font-weight="bold">トークン・エンベディング・コンテキストウィンドウ</text>
+<rect x="30" y="70" width="220" height="240" fill="#16213e" rx="8"/>
+<text x="140" y="100" font-family="sans-serif" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">トークン</text>
+<text x="140" y="125" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">テキストの基本処理単位</text>
+<text x="140" y="148" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">1 token ≈ 0.75 英語単語</text>
+<text x="140" y="168" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">≈ 0.5 日本語文字</text>
+<text x="140" y="195" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">サブワード分割で</text>
+<text x="140" y="212" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">語彙を最適化</text>
+<rect x="290" y="70" width="220" height="240" fill="#16213e" rx="8"/>
+<text x="400" y="100" font-family="sans-serif" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">エンベディング</text>
+<text x="400" y="125" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">テキスト→数値ベクトル変換</text>
+<text x="400" y="148" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">意味情報を保持</text>
+<text x="400" y="168" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">類似テキスト=近いベクトル</text>
+<text x="400" y="195" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="normal">Amazon Titan Embeddings</text>
+<text x="400" y="212" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">RAGで必須の技術</text>
+<rect x="550" y="70" width="220" height="240" fill="#16213e" rx="8"/>
+<text x="660" y="100" font-family="sans-serif" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold">コンテキストウィンドウ</text>
+<text x="660" y="125" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">1リクエストの最大トークン数</text>
+<text x="660" y="148" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">（入力+出力の合計）</text>
+<text x="660" y="175" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Claude: 最大 200K tokens</text>
+<text x="660" y="195" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">長文書・会話履歴対応</text>
+<text x="660" y="215" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">チャンキングで分割処理</text>
+</svg>
 - **Transformer とは**: 2017 年に Google が発表した「Attention Is All You Need」に基づく DL アーキテクチャ
 - **Self-Attention メカニズム**: 文章内の単語間の関係性を並列計算で捉える（長距離依存も対応）
 - **エンコーダ・デコーダ構造**: BERT（エンコーダ型）= 理解タスク / GPT（デコーダ型）= 生成タスク
@@ -227,6 +580,46 @@ paginate: true
 
 # トークン・エンベディング・コンテキストウィンドウ
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="21" fill="#f9a825" text-anchor="middle" font-weight="bold">LLM 推論パラメータ</text>
+
+<rect x="50" y="65" width="700" height="50" fill="#16213e" rx="8"/>
+<rect x="50" y="65" width="5" height="50" fill="#e91e63" rx="3"/>
+<text x="150" y="85" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="start" font-weight="bold">Temperature</text>
+<text x="270" y="85" font-family="sans-serif" font-size="14" fill="#b0b8d0" text-anchor="start" font-weight="normal">0〜2</text>
+<text x="350" y="85" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="start" font-weight="normal">低=確定的 高=創造的</text>
+<text x="590" y="85" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="start" font-weight="normal">事実確認→低 創作→高</text>
+
+<rect x="50" y="123" width="700" height="50" fill="#16213e" rx="8"/>
+<rect x="50" y="123" width="5" height="50" fill="#0d7377" rx="3"/>
+<text x="150" y="143" font-family="sans-serif" font-size="14" fill="#0d7377" text-anchor="start" font-weight="bold">Top-P</text>
+<text x="270" y="143" font-family="sans-serif" font-size="14" fill="#b0b8d0" text-anchor="start" font-weight="normal">0〜1</text>
+<text x="350" y="143" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="start" font-weight="normal">累積確率サンプリング</text>
+<text x="590" y="143" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="start" font-weight="normal">Nucleus Sampling</text>
+
+<rect x="50" y="181" width="700" height="50" fill="#16213e" rx="8"/>
+<rect x="50" y="181" width="5" height="50" fill="#6b2d8b" rx="3"/>
+<text x="150" y="201" font-family="sans-serif" font-size="14" fill="#6b2d8b" text-anchor="start" font-weight="bold">Top-K</text>
+<text x="270" y="201" font-family="sans-serif" font-size="14" fill="#b0b8d0" text-anchor="start" font-weight="normal">整数</text>
+<text x="350" y="201" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="start" font-weight="normal">上位K個からサンプル</text>
+<text x="590" y="201" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="start" font-weight="normal">K=1はGreedy（最高確率）</text>
+
+<rect x="50" y="239" width="700" height="50" fill="#16213e" rx="8"/>
+<rect x="50" y="239" width="5" height="50" fill="#1a6b3c" rx="3"/>
+<text x="150" y="259" font-family="sans-serif" font-size="14" fill="#1a6b3c" text-anchor="start" font-weight="bold">Max Tokens</text>
+<text x="270" y="259" font-family="sans-serif" font-size="14" fill="#b0b8d0" text-anchor="start" font-weight="normal">整数</text>
+<text x="350" y="259" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="start" font-weight="normal">生成トークン数上限</text>
+<text x="590" y="259" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="start" font-weight="normal">コスト制御と応答長</text>
+
+<rect x="50" y="297" width="700" height="50" fill="#16213e" rx="8"/>
+<rect x="50" y="297" width="5" height="50" fill="#b45309" rx="3"/>
+<text x="150" y="317" font-family="sans-serif" font-size="14" fill="#b45309" text-anchor="start" font-weight="bold">Stop Sequence</text>
+<text x="270" y="317" font-family="sans-serif" font-size="14" fill="#b0b8d0" text-anchor="start" font-weight="normal">文字列</text>
+<text x="350" y="317" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="start" font-weight="normal">特定文字列で生成停止</text>
+<text x="590" y="317" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="start" font-weight="normal">出力形式の制御</text>
+
+</svg>
 - **トークン**: LLM が処理するテキストの基本単位（サブワード）。1 トークン ≈ 0.75 英語単語 / 0.5 日本語文字
 - **エンベディング**: テキストを意味を保持した高次元数値ベクトルに変換。類似テキスト = 近いベクトル
 - **コンテキストウィンドウ**: 1 回のリクエストで処理できる最大トークン数（入力 + 出力の合計）
@@ -258,6 +651,33 @@ paginate: true
 
 # 高度なプロンプト技法
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="21" fill="#f9a825" text-anchor="middle" font-weight="bold">プロンプト 4つの構成要素</text>
+<rect x="50" y="70" width="165" height="260" fill="#16213e" rx="8"/>
+<rect x="50" y="70" width="165" height="8" fill="#e91e63" rx="4"/>
+<text x="132" y="110" font-family="sans-serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold">指示</text>
+<text x="132" y="132" font-family="sans-serif" font-size="13" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Instruction</text>
+<text x="132" y="160" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">何をしてほしいか</text>
+<text x="132" y="180" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">具体的・明確に記述</text>
+<rect x="230" y="70" width="165" height="260" fill="#16213e" rx="8"/>
+<rect x="230" y="70" width="165" height="8" fill="#0d7377" rx="4"/>
+<text x="312" y="110" font-family="sans-serif" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="bold">コンテキスト</text>
+<text x="312" y="132" font-family="sans-serif" font-size="13" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Context</text>
+<text x="312" y="160" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">背景情報・制約・前提</text>
+<rect x="410" y="70" width="165" height="260" fill="#16213e" rx="8"/>
+<rect x="410" y="70" width="165" height="8" fill="#6b2d8b" rx="4"/>
+<text x="492" y="110" font-family="sans-serif" font-size="17" fill="#ffffff" text-anchor="middle" font-weight="bold">入力データ</text>
+<text x="492" y="132" font-family="sans-serif" font-size="13" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Input Data</text>
+<text x="492" y="160" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">Few-shotの例</text>
+<text x="492" y="180" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">処理対象データ</text>
+<rect x="590" y="70" width="165" height="260" fill="#16213e" rx="8"/>
+<rect x="590" y="70" width="165" height="8" fill="#1a6b3c" rx="4"/>
+<text x="672" y="110" font-family="sans-serif" font-size="18" fill="#ffffff" text-anchor="middle" font-weight="bold">出力形式</text>
+<text x="672" y="132" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Output Indicator</text>
+<text x="672" y="160" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">JSON/箇条書き/表</text>
+<text x="400" y="365" font-family="sans-serif" font-size="13" fill="#b0b8d0" text-anchor="middle" font-weight="normal">ベスト: 具体的・肯定で指示・例を提示(Few-shot)・段階的に分解</text>
+</svg>
 - **Self-Consistency**: 同じ質問を複数回（異なる Temperature で）生成し、多数決で最終回答を決定
 - **ReAct（Reasoning + Acting）**: 推論とツール使用を交互に繰り返す。Bedrock Agents の基盤
 - **Reflection**: モデルが自分の回答を批評・修正する反復プロセス（精度向上）
@@ -270,6 +690,34 @@ paginate: true
 
 # プロンプトの構成要素
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">ハルシネーション（幻覚）の原因</text>
+
+<rect x="30" y="75" width="240" height="200" fill="#16213e" rx="8"/>
+<rect x="30" y="75" width="240" height="8" fill="#e91e63" rx="4"/>
+<circle cx="150" cy="135" r="28" fill="#e91e63" style="opacity:0.2"/>
+<text x="150" y="141" font-family="sans-serif" font-size="28" fill="#e91e63" text-anchor="middle" font-weight="bold">1</text>
+<text x="150" y="185" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold">学習データの問題</text>
+<text x="150" y="208" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">誤ったデータ・知識カットオフ</text><text x="150" y="226" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">最新情報がモデルに存在しない</text>
+
+<rect x="285" y="75" width="240" height="200" fill="#16213e" rx="8"/>
+<rect x="285" y="75" width="240" height="8" fill="#e74c3c" rx="4"/>
+<circle cx="405" cy="135" r="28" fill="#e74c3c" style="opacity:0.2"/>
+<text x="405" y="141" font-family="sans-serif" font-size="28" fill="#e74c3c" text-anchor="middle" font-weight="bold">2</text>
+<text x="405" y="185" font-family="sans-serif" font-size="14" fill="#e74c3c" text-anchor="middle" font-weight="bold">確率的生成の性質</text>
+<text x="405" y="208" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">次トークンを確率的に予測</text><text x="405" y="226" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">「それらしい嘘」が生まれる</text>
+
+<rect x="540" y="75" width="240" height="200" fill="#16213e" rx="8"/>
+<rect x="540" y="75" width="240" height="8" fill="#9b59b6" rx="4"/>
+<circle cx="660" cy="135" r="28" fill="#9b59b6" style="opacity:0.2"/>
+<text x="660" y="141" font-family="sans-serif" font-size="28" fill="#9b59b6" text-anchor="middle" font-weight="bold">3</text>
+<text x="660" y="185" font-family="sans-serif" font-size="14" fill="#9b59b6" text-anchor="middle" font-weight="bold">コンテキスト不足</text>
+<text x="660" y="208" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">情報なしに質問→埋め合わせで誤情報</text><text x="660" y="226" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">不明確な質問が原因になる</text>
+
+<text x="400" y="308" font-family="sans-serif" font-size="13" fill="#b0b8d0" text-anchor="middle" font-weight="normal">特徴: LLMは「確信度」を正確に表現できないため、嘘でも断定的に答える</text>
+<text x="400" y="335" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle" font-weight="normal">→ 被害事例: 架空の法律条文・医療情報の誤り・架空の引用文献</text>
+</svg>
 - **指示（Instruction）**: モデルに何をしてほしいかを具体的・明確に記述
 - **コンテキスト（Context）**: タスクに関連する背景情報・制約・前提条件
 - **入力データ（Input Data）**: 処理対象のデータや Few-shot の例
@@ -282,6 +730,41 @@ paginate: true
 
 # ハルシネーション（幻覚）とは
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">ハルシネーション軽減戦略</text>
+
+<rect x="20" y="75" width="240" height="110" fill="#16213e" rx="8"/>
+<rect x="20" y="75" width="240" height="6" fill="#e91e63" rx="3"/>
+<text x="140" y="110" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold">① RAG</text>
+<text x="140" y="133" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">外部ナレッジから根拠取得</text><text x="140" y="151" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">→ Bedrock Knowledge Bases</text>
+
+<rect x="275" y="75" width="240" height="110" fill="#16213e" rx="8"/>
+<rect x="275" y="75" width="240" height="6" fill="#0d7377" rx="3"/>
+<text x="395" y="110" font-family="sans-serif" font-size="14" fill="#0d7377" text-anchor="middle" font-weight="bold">② Grounding</text>
+<text x="395" y="133" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">Bedrock Guardrailsで</text><text x="395" y="151" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">RAG回答をソース検証</text>
+
+<rect x="530" y="75" width="240" height="110" fill="#16213e" rx="8"/>
+<rect x="530" y="75" width="240" height="6" fill="#6b2d8b" rx="3"/>
+<text x="650" y="110" font-family="sans-serif" font-size="14" fill="#6b2d8b" text-anchor="middle" font-weight="bold">③ Temperature低下</text>
+<text x="650" y="133" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">0.0〜0.3に設定</text><text x="650" y="151" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">→ 決定論的出力を促進</text>
+
+<rect x="20" y="205" width="240" height="110" fill="#16213e" rx="8"/>
+<rect x="20" y="205" width="240" height="6" fill="#1a6b3c" rx="3"/>
+<text x="140" y="240" font-family="sans-serif" font-size="14" fill="#1a6b3c" text-anchor="middle" font-weight="bold">④ Chain-of-Thought</text>
+<text x="140" y="263" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">推論ステップを明示させ</text><text x="140" y="281" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">論理的正解を誘導</text>
+
+<rect x="275" y="205" width="240" height="110" fill="#16213e" rx="8"/>
+<rect x="275" y="205" width="240" height="6" fill="#b45309" rx="3"/>
+<text x="395" y="240" font-family="sans-serif" font-size="14" fill="#b45309" text-anchor="middle" font-weight="bold">⑤ HITL</text>
+<text x="395" y="263" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">高リスク判断には</text><text x="395" y="281" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">人間の確認を挟む</text>
+
+<rect x="530" y="205" width="240" height="110" fill="#16213e" rx="8"/>
+<rect x="530" y="205" width="240" height="6" fill="#f9a825" rx="3"/>
+<text x="650" y="240" font-family="sans-serif" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold">⑥ Few-shot</text>
+<text x="650" y="263" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">正確な参照例を提示</text><text x="650" y="281" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">出力の方向性を固定</text>
+
+</svg>
 - **定義**: LLM が事実に反する内容や存在しない情報を、自信を持って生成する現象
 - **原因①（学習データ）**: 誤った・偏ったデータを学習。知識カットオフ（最新情報なし）
 - **原因②（確率的生成）**: 次のトークンを確率的に予測するため、「それらしい嘘」が生まれる
@@ -294,6 +777,36 @@ paginate: true
 
 # ハルシネーション対策
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">Domain 2 — 重要ポイントまとめ</text>
+
+<rect x="60" y="65" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="65" width="6" height="48" fill="#e91e63" rx="3"/>
+<text x="110" y="85" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="start" font-weight="bold">FM vs 従来ML</text>
+<text x="110" y="103" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">汎用性・スケール・Zero-shot対応の違い</text>
+
+<rect x="60" y="121" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="121" width="6" height="48" fill="#0d7377" rx="3"/>
+<text x="110" y="141" font-family="sans-serif" font-size="14" fill="#0d7377" text-anchor="start" font-weight="bold">推論パラメータ</text>
+<text x="110" y="159" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">Temperature/Top-P/Top-Kの影響</text>
+
+<rect x="60" y="177" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="177" width="6" height="48" fill="#6b2d8b" rx="3"/>
+<text x="110" y="197" font-family="sans-serif" font-size="14" fill="#6b2d8b" text-anchor="start" font-weight="bold">プロンプト手法</text>
+<text x="110" y="215" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">Zero-shot/Few-shot/CoTの使い分け</text>
+
+<rect x="60" y="233" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="233" width="6" height="48" fill="#1a6b3c" rx="3"/>
+<text x="110" y="253" font-family="sans-serif" font-size="14" fill="#1a6b3c" text-anchor="start" font-weight="bold">ハルシネーション</text>
+<text x="110" y="271" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">原因（確率的生成）と対策（RAG・Grounding）</text>
+
+<rect x="60" y="289" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="289" width="6" height="48" fill="#b45309" rx="3"/>
+<text x="110" y="309" font-family="sans-serif" font-size="14" fill="#b45309" text-anchor="start" font-weight="bold">Transformer</text>
+<text x="110" y="327" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">Self-Attention・デコーダ型の基本概念</text>
+
+</svg>
 - **① RAG（Retrieval-Augmented Generation）**: 外部ナレッジから根拠を取得して回答生成。最も効果的
 - **② Grounding（Bedrock Guardrails）**: RAG の回答がソースに基づくかを自動検証・ブロック
 - **③ Temperature 低下**: 0.0〜0.3 に設定することで決定論的・一貫性の高い出力を促進
@@ -333,6 +846,37 @@ paginate: true
 
 # Bedrock Foundation Models の特徴
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="21" fill="#f9a825" text-anchor="middle" font-weight="bold">RAG 基本フロー</text>
+
+<rect x="10" y="100" width="115" height="100" fill="#16213e" rx="8"/>
+<text x="70" y="130" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">クエリ入力</text>
+<text x="70" y="155" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">ユーザーの質問</text>
+
+<rect x="150" y="100" width="115" height="100" fill="#16213e" rx="8"/>
+<text x="210" y="130" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">エンベディング</text>
+<text x="210" y="155" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">ベクトル変換</text>
+
+<rect x="310" y="100" width="115" height="100" fill="#16213e" rx="8"/>
+<text x="370" y="130" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">ベクトルDB検索</text>
+<text x="370" y="155" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">類似チャンク取得</text>
+
+<rect x="470" y="100" width="115" height="100" fill="#16213e" rx="8"/>
+<text x="530" y="130" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">コンテキスト付与</text>
+<text x="530" y="155" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">関連情報をFMへ</text>
+
+<rect x="620" y="100" width="115" height="100" fill="#16213e" rx="8"/>
+<text x="680" y="130" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">回答生成</text>
+<text x="680" y="155" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">根拠付き回答</text>
+
+<line x1="130" y1="150" x2="140" y2="150" stroke="#f9a825" stroke-width="2"/><polygon points="150,150 140,155 140,145" fill="#f9a825"/><line x1="290" y1="150" x2="300" y2="150" stroke="#f9a825" stroke-width="2"/><polygon points="310,150 300,155 300,145" fill="#f9a825"/><line x1="450" y1="150" x2="460" y2="150" stroke="#f9a825" stroke-width="2"/><polygon points="470,150 460,155 460,145" fill="#f9a825"/><line x1="610" y1="150" x2="620" y2="150" stroke="#f9a825" stroke-width="2"/><polygon points="630,150 620,155 620,145" fill="#f9a825"/>
+<rect x="60" y="230" width="680" height="130" fill="#16213e" rx="8"/>
+<text x="400" y="260" font-family="sans-serif" font-size="14" fill="#b0b8d0" text-anchor="middle" font-weight="bold">解決する問題:</text>
+<text x="400" y="290" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal">① 知識カットオフ  ② ハルシネーション  ③ 社内固有情報への対応</text>
+<text x="400" y="320" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal">AWS実装: Amazon Bedrock Knowledge Bases（マネージドRAG）</text>
+<text x="400" y="348" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">ベクトルストア: OpenSearch Serverless / Aurora pgvector / Pinecone / Redis</text>
+</svg>
 - **Anthropic Claude**: 長文理解・複雑な推論・安全性に優れる。最大コンテキストウィンドウ 200K tokens
 - **Amazon Titan**: AWS ネイティブ FM。テキスト生成（Titan Text）と Embeddings の 2 系統
 - **Meta Llama**: オープンソース系。ファインチューニングのベースモデルとして人気
@@ -409,6 +953,36 @@ paginate: true
 
 # Fine-tuning と Continued Pre-training
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">Domain 3 — 重要ポイントまとめ</text>
+
+<rect x="60" y="65" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="65" width="6" height="48" fill="#e91e63" rx="3"/>
+<text x="110" y="85" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="start" font-weight="bold">Bedrock機能</text>
+<text x="110" y="103" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">KB・Agents・Guardrails・Fine-tuningの全体像</text>
+
+<rect x="60" y="121" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="121" width="6" height="48" fill="#0d7377" rx="3"/>
+<text x="110" y="141" font-family="sans-serif" font-size="14" fill="#0d7377" text-anchor="start" font-weight="bold">RAGフロー</text>
+<text x="110" y="159" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">クエリ→エンベディング→検索→コンテキスト付与→生成</text>
+
+<rect x="60" y="177" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="177" width="6" height="48" fill="#6b2d8b" rx="3"/>
+<text x="110" y="197" font-family="sans-serif" font-size="14" fill="#6b2d8b" text-anchor="start" font-weight="bold">カスタマイズ比較</text>
+<text x="110" y="215" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">Prompt < RAG < Fine-tuning < Pre-training（コスト順）</text>
+
+<rect x="60" y="233" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="233" width="6" height="48" fill="#1a6b3c" rx="3"/>
+<text x="110" y="253" font-family="sans-serif" font-size="14" fill="#1a6b3c" text-anchor="start" font-weight="bold">ベクトルDB選択</text>
+<text x="110" y="271" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">OpenSearch / Aurora pgvectorと類似度計算手法</text>
+
+<rect x="60" y="289" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="289" width="6" height="48" fill="#b45309" rx="3"/>
+<text x="110" y="309" font-family="sans-serif" font-size="14" fill="#b45309" text-anchor="start" font-weight="bold">Agents仕組み</text>
+<text x="110" y="327" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">Action Groups・ReAct・Return Control・KB連携</text>
+
+</svg>
 - **Fine-tuning（追加学習）**: 事前学習済み FM に特定タスクのデータ（入力/出力ペア）で追加学習
 - **Fine-tuning のメリット**: 特定タスクの精度向上 / 応答スタイルの固定 / 推論速度改善
 - **Fine-tuning の注意**: カタストロフィック忘却（以前の能力低下）/ 大量の高品質データが必要
@@ -433,6 +1007,41 @@ paginate: true
 
 # Domain 3 — 試験対策チェックリスト
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="21" fill="#f9a825" text-anchor="middle" font-weight="bold">責任あるAI — 6つの原則</text>
+
+<rect x="20" y="70" width="240" height="115" fill="#16213e" rx="8"/>
+<rect x="20" y="70" width="240" height="7" fill="#e91e63" rx="4"/>
+<text x="140" y="105" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold">公平性</text><text x="140" y="125" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Fairness</text>
+<text x="140" y="153" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">全ユーザーへの公平な結果</text><text x="140" y="171" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">差別・偏見の防止</text>
+
+<rect x="275" y="70" width="240" height="115" fill="#16213e" rx="8"/>
+<rect x="275" y="70" width="240" height="7" fill="#0d7377" rx="4"/>
+<text x="395" y="105" font-family="sans-serif" font-size="14" fill="#0d7377" text-anchor="middle" font-weight="bold">説明可能性</text><text x="395" y="125" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Explainability</text>
+<text x="395" y="153" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">予測根拠を人間が理解</text><text x="395" y="171" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">ブラックボックス解消</text>
+
+<rect x="530" y="70" width="240" height="115" fill="#16213e" rx="8"/>
+<rect x="530" y="70" width="240" height="7" fill="#6b2d8b" rx="4"/>
+<text x="650" y="105" font-family="sans-serif" font-size="14" fill="#6b2d8b" text-anchor="middle" font-weight="bold">プライバシー</text><text x="650" y="125" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Privacy & Security</text>
+<text x="650" y="153" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">個人データ保護・最小化</text><text x="650" y="171" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">GDPR準拠</text>
+
+<rect x="20" y="205" width="240" height="115" fill="#16213e" rx="8"/>
+<rect x="20" y="205" width="240" height="7" fill="#1a6b3c" rx="4"/>
+<text x="140" y="240" font-family="sans-serif" font-size="14" fill="#1a6b3c" text-anchor="middle" font-weight="bold">安全性</text><text x="140" y="260" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Safety</text>
+<text x="140" y="288" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">有害コンテンツ防止</text><text x="140" y="306" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">Guardrails活用</text>
+
+<rect x="275" y="205" width="240" height="115" fill="#16213e" rx="8"/>
+<rect x="275" y="205" width="240" height="7" fill="#b45309" rx="4"/>
+<text x="395" y="240" font-family="sans-serif" font-size="14" fill="#b45309" text-anchor="middle" font-weight="bold">制御可能性</text><text x="395" y="260" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Controllability</text>
+<text x="395" y="288" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">人間が監視・制御・修正</text><text x="395" y="306" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">HITLの組み込み</text>
+
+<rect x="530" y="205" width="240" height="115" fill="#16213e" rx="8"/>
+<rect x="530" y="205" width="240" height="7" fill="#f9a825" rx="4"/>
+<text x="650" y="240" font-family="sans-serif" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold">正確性</text><text x="650" y="260" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Veracity</text>
+<text x="650" y="288" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">ハルシネーション最小化</text><text x="650" y="306" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">RAG・Grounding</text>
+
+</svg>
 - ✅ Amazon Bedrock の主要機能（Knowledge Bases・Agents・Guardrails・Fine-tuning）を理解
 - ✅ RAG の処理フローを図で説明できる（クエリ→エンベディング→検索→コンテキスト付与→生成）
 - ✅ Prompt Engineering / RAG / Fine-tuning / Pre-training の使い分け基準を把握
@@ -453,6 +1062,30 @@ paginate: true
 
 # 責任ある AI の原則
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">説明可能AI（XAI）— 手法比較</text>
+
+<rect x="30" y="75" width="230" height="250" fill="#16213e" rx="8"/>
+<rect x="30" y="75" width="230" height="7" fill="#e91e63" rx="4"/>
+<text x="145" y="110" font-family="sans-serif" font-size="18" fill="#e91e63" text-anchor="middle" font-weight="bold">SHAP</text>
+<text x="145" y="132" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">SHapley Additive Explanations</text>
+<text x="145" y="187" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">ゲーム理論ベース</text><text x="145" y="207" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">全特徴量の貢献を公平配分</text><text x="145" y="227" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">SageMaker Clarifyが採用</text>
+
+<rect x="285" y="75" width="230" height="250" fill="#16213e" rx="8"/>
+<rect x="285" y="75" width="230" height="7" fill="#0d7377" rx="4"/>
+<text x="400" y="110" font-family="sans-serif" font-size="18" fill="#0d7377" text-anchor="middle" font-weight="bold">LIME</text>
+<text x="400" y="132" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Local Interpretable</text><text x="400" y="149" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">Model-agnostic Explanations</text>
+<text x="400" y="187" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">局所線形モデルで近似</text><text x="400" y="207" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">個別予測の説明</text><text x="400" y="227" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">Clarifyでは非対応</text>
+
+<rect x="540" y="75" width="230" height="250" fill="#16213e" rx="8"/>
+<rect x="540" y="75" width="230" height="7" fill="#6b2d8b" rx="4"/>
+<text x="655" y="110" font-family="sans-serif" font-size="18" fill="#6b2d8b" text-anchor="middle" font-weight="bold">Feature Importance</text>
+<text x="655" y="132" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">特徴量重要度ランキング</text><text x="655" y="149" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">(グローバル解釈)</text>
+<text x="655" y="187" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">ランダムフォレスト等</text><text x="655" y="207" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">モデル全体の傾向</text><text x="655" y="227" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">快速・シンプル</text>
+
+<text x="400" y="365" font-family="sans-serif" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold">試験ポイント: LIME は Clarify でサポートされていない！</text>
+</svg>
 - **Fairness（公平性）**: すべてのユーザーに対して公平な結果を提供。特定グループへの差別・偏見を防止
 - **Explainability（説明可能性）**: モデルの予測根拠を人間が理解できる形で提示（ブラックボックス問題の解消）
 - **Privacy & Security（プライバシー）**: 個人データの保護・最小化・安全な取り扱い（GDPR 準拠）
@@ -472,6 +1105,27 @@ paginate: true
 
 # AI バイアスの種類と対策
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">ヒューマンインザループ (HITL) 設計</text>
+<rect x="50" y="70" width="700" height="100" fill="#16213e" rx="8"/>
+<text x="400" y="110" font-family="sans-serif" font-size="15" fill="#b0b8d0" text-anchor="middle" font-weight="bold">AIの判断フロー</text>
+<rect x="100" y="200" width="130" height="80" fill="#1e3a5f" rx="8"/>
+<text x="165" y="240" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal">AIによる予測</text>
+<rect x="310" y="200" width="130" height="80" fill="#1e3a5f" rx="8"/>
+<text x="375" y="232" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal">信頼スコア</text>
+<text x="375" y="252" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal">の評価</text>
+<rect x="520" y="160" width="180" height="60" fill="#16213e" rx="8"/>
+<rect x="520" y="160" width="180" height="5" fill="#1a6b3c" rx="3"/>
+<text x="610" y="190" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">高信頼度→自動承認</text>
+<rect x="520" y="240" width="180" height="60" fill="#16213e" rx="8"/>
+<rect x="520" y="240" width="180" height="5" fill="#e91e63" rx="3"/>
+<text x="610" y="270" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">低信頼度→人間レビュー</text>
+<line x1="230" y1="240" x2="300" y2="240" stroke="#f9a825" stroke-width="2"/><polygon points="310,240 300,245 300,235" fill="#f9a825"/>
+<line x1="440" y1="220" x2="510.29857499854666" y2="202.42535625036334" stroke="#f9a825" stroke-width="2"/><polygon points="520,200 511.5112531237283,207.27606875109 509.085896873365,197.57464374963666" fill="#f9a825"/>
+<line x1="440" y1="260" x2="510" y2="260" stroke="#f9a825" stroke-width="2"/><polygon points="520,260 510,265 510,255" fill="#f9a825"/>
+<text x="400" y="348" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">AWS実装: Amazon A2I / SageMaker Ground Truth Plus / Bedrock Return Control</text>
+</svg>
 - **学習データバイアス**: 過去の差別的データを学習したモデルが同様の偏りを再現（採用スクリーニング等）
 - **選択バイアス（サンプリングバイアス）**: 特定グループが過小/過剰代表されたデータセットでの学習
 - **測定バイアス**: 特定グループのデータ品質・精度が他のグループと異なる（顔認識での人種差）
@@ -484,6 +1138,36 @@ paginate: true
 
 # 説明可能 AI（XAI）と透明性
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">Domain 4 — 重要ポイントまとめ</text>
+
+<rect x="60" y="65" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="65" width="6" height="48" fill="#e91e63" rx="3"/>
+<text x="110" y="85" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="start" font-weight="bold">責任あるAI6原則</text>
+<text x="110" y="103" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">公平性・説明可能性・プライバシー・安全性・制御・正確性</text>
+
+<rect x="60" y="121" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="121" width="6" height="48" fill="#0d7377" rx="3"/>
+<text x="110" y="141" font-family="sans-serif" font-size="14" fill="#0d7377" text-anchor="start" font-weight="bold">バイアスの種類</text>
+<text x="110" y="159" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">学習データ/選択/測定/確認バイアスと対策</text>
+
+<rect x="60" y="177" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="177" width="6" height="48" fill="#6b2d8b" rx="3"/>
+<text x="110" y="197" font-family="sans-serif" font-size="14" fill="#6b2d8b" text-anchor="start" font-weight="bold">Clarifyの機能</text>
+<text x="110" y="215" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">バイアス検出（事前・事後）とSHAP値の提供</text>
+
+<rect x="60" y="233" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="233" width="6" height="48" fill="#1a6b3c" rx="3"/>
+<text x="110" y="253" font-family="sans-serif" font-size="14" fill="#1a6b3c" text-anchor="start" font-weight="bold">HITL実装</text>
+<text x="110" y="271" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">A2I・Ground Truth Plus・Bedrock Return Control</text>
+
+<rect x="60" y="289" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="289" width="6" height="48" fill="#b45309" rx="3"/>
+<text x="110" y="309" font-family="sans-serif" font-size="14" fill="#b45309" text-anchor="start" font-weight="bold">XAI手法の違い</text>
+<text x="110" y="327" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">SHAP（Clarify採用）・LIME（非対応）・Feature Importance</text>
+
+</svg>
 - **XAI（Explainable AI）の必要性**: 医療・金融・採用など高リスク判断での説明責任・規制準拠
 - **SHAP（SHapley Additive exPlanations）**: 各特徴量が予測結果に与える影響量を数値化（標準手法）
 - **LIME（Local Interpretable Model-agnostic Explanations）**: 個別の予測に対して局所的な線形モデルで近似説明
@@ -508,6 +1192,41 @@ paginate: true
 
 # ヒューマンインザループ（HITL）
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="21" fill="#f9a825" text-anchor="middle" font-weight="bold">Bedrock セキュリティ設計</text>
+
+<rect x="60" y="65" width="680" height="46" fill="#16213e" rx="8"/>
+<circle cx="95" cy="88" r="16" fill="#e91e63"/>
+<text x="95" y="94" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">1</text>
+<text x="130" y="84" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="start" font-weight="bold">IAM最小権限</text>
+<text x="130" y="103" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">bedrock:InvokeModel等アクション単位で権限設定</text>
+
+<rect x="60" y="119" width="680" height="46" fill="#16213e" rx="8"/>
+<circle cx="95" cy="142" r="16" fill="#0d7377"/>
+<text x="95" y="148" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">2</text>
+<text x="130" y="138" font-family="sans-serif" font-size="14" fill="#0d7377" text-anchor="start" font-weight="bold">VPC PrivateLink</text>
+<text x="130" y="157" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">パブリックインターネットを介さずBedrock APIを処理</text>
+
+<rect x="60" y="173" width="680" height="46" fill="#16213e" rx="8"/>
+<circle cx="95" cy="196" r="16" fill="#6b2d8b"/>
+<text x="95" y="202" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">3</text>
+<text x="130" y="192" font-family="sans-serif" font-size="14" fill="#6b2d8b" text-anchor="start" font-weight="bold">AWS KMS暗号化</text>
+<text x="130" y="211" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">S3学習データ・モデル・Knowledge Basesコンテンツを暗号化</text>
+
+<rect x="60" y="227" width="680" height="46" fill="#16213e" rx="8"/>
+<circle cx="95" cy="250" r="16" fill="#1a6b3c"/>
+<text x="95" y="256" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">4</text>
+<text x="130" y="246" font-family="sans-serif" font-size="14" fill="#1a6b3c" text-anchor="start" font-weight="bold">CloudTrail監査</text>
+<text x="130" y="265" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">全Bedrock/SageMaker APIコールを完全記録・監査</text>
+
+<rect x="60" y="281" width="680" height="46" fill="#16213e" rx="8"/>
+<circle cx="95" cy="304" r="16" fill="#b45309"/>
+<text x="95" y="310" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">5</text>
+<text x="130" y="300" font-family="sans-serif" font-size="14" fill="#b45309" text-anchor="start" font-weight="bold">Amazon Macie</text>
+<text x="130" y="319" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">S3の学習データ・ドキュメントのPIIを自動検出・通知</text>
+
+</svg>
 - **HITL の定義**: AI の判断に人間が介入するレビュー・承認・修正プロセスを組み込む設計
 - **必要な場面**: 高リスクな判断（医療診断・融資審査・採用）/ 低信頼スコアの出力 / 法的責任が問われる場合
 - **AWS SageMaker Ground Truth Plus**: ヒューマンレビューワークフローを簡単に組み込めるサービス
@@ -520,6 +1239,31 @@ paginate: true
 
 # Domain 4 — 試験対策チェックリスト
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">Bedrock Guardrails — 4つの主要機能</text>
+
+<rect x="20" y="75" width="370" height="130" fill="#16213e" rx="8"/>
+<rect x="20" y="75" width="370" height="7" fill="#e91e63" rx="4"/>
+<text x="205" y="110" font-family="sans-serif" font-size="16" fill="#e91e63" text-anchor="middle" font-weight="bold">コンテンツフィルタ</text>
+<text x="205" y="135" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">暴力/性的/ヘイト/侮辱</text><text x="205" y="157" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">None/Low/Medium/High</text>
+
+<rect x="410" y="75" width="370" height="130" fill="#16213e" rx="8"/>
+<rect x="410" y="75" width="370" height="7" fill="#0d7377" rx="4"/>
+<text x="595" y="110" font-family="sans-serif" font-size="16" fill="#0d7377" text-anchor="middle" font-weight="bold">トピックの拒否</text>
+<text x="595" y="135" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">競合製品・政治・法律など</text><text x="595" y="157" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">指定トピックへの回答を禁止</text>
+
+<rect x="20" y="225" width="370" height="130" fill="#16213e" rx="8"/>
+<rect x="20" y="225" width="370" height="7" fill="#6b2d8b" rx="4"/>
+<text x="205" y="260" font-family="sans-serif" font-size="16" fill="#6b2d8b" text-anchor="middle" font-weight="bold">PII保護</text>
+<text x="205" y="285" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">氏名/メール/電話等を自動検出</text><text x="205" y="307" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">BLOCKまたはANONYMIZE</text>
+
+<rect x="410" y="225" width="370" height="130" fill="#16213e" rx="8"/>
+<rect x="410" y="225" width="370" height="7" fill="#1a6b3c" rx="4"/>
+<text x="595" y="260" font-family="sans-serif" font-size="16" fill="#1a6b3c" text-anchor="middle" font-weight="bold">Groundingチェック</text>
+<text x="595" y="285" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">RAGの回答がソースに基づくか</text><text x="595" y="307" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">ハルシネーション検出・ブロック</text>
+
+</svg>
 - ✅ AWS の責任ある AI 6 原則（公平性・説明可能性・プライバシー・安全性・制御可能性・正確性）を説明できる
 - ✅ バイアスの種類（学習データ/選択/測定/確認）と対策（データ拡張・Clarify・フェアネス指標）を理解
 - ✅ SageMaker Clarify の機能（バイアス検出・SHAP 値）と使用場面を把握
@@ -547,6 +1291,34 @@ paginate: true
 
 # Bedrock セキュリティ設計の基本
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">IAM と最小権限設計 — Bedrock</text>
+<rect x="30" y="70" width="730" height="60" fill="#16213e" rx="8"/>
+<text x="400" y="92" font-family="sans-serif" font-size="14" fill="#b0b8d0" text-anchor="middle" font-weight="normal">最小権限の原則: 必要最低限の権限のみ付与。「*」ワイルドカードを避ける</text>
+<text x="400" y="112" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">リソースポリシー: 特定のモデルARNにのみアクセスを許可（Cross-Account設定も可能）</text>
+
+<rect x="30" y="150" width="740" height="40" fill="#16213e" rx="8"/>
+<text x="310" y="168" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="start" font-weight="normal">bedrock:InvokeModel</text>
+<text x="520" y="168" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">モデル呼び出し権限</text>
+<text x="660" y="168" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="start" font-weight="normal">基本的な推論処理</text>
+
+<rect x="30" y="198" width="740" height="40" fill="#16213e" rx="8"/>
+<text x="310" y="216" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="start" font-weight="normal">bedrock:InvokeAgent</text>
+<text x="520" y="216" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">Agent実行権限</text>
+<text x="660" y="216" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="start" font-weight="normal">Agents機能の利用</text>
+
+<rect x="30" y="246" width="740" height="40" fill="#16213e" rx="8"/>
+<text x="310" y="264" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="start" font-weight="normal">bedrock:CreateKnowledgeBase</text>
+<text x="520" y="264" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">KB作成権限</text>
+<text x="660" y="264" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="start" font-weight="normal">Knowledge Bases管理</text>
+
+<rect x="30" y="294" width="740" height="40" fill="#16213e" rx="8"/>
+<text x="310" y="312" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="start" font-weight="normal">bedrock:RetrieveAndGenerate</text>
+<text x="520" y="312" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">RAG回答生成権限</text>
+<text x="660" y="312" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="start" font-weight="normal">KBからの検索・生成</text>
+
+</svg>
 - **IAM 最小権限**: `bedrock:InvokeModel` / `bedrock:InvokeAgent` など Bedrock アクション単位で権限設定
 - **VPC エンドポイント（PrivateLink）**: Bedrock API コールをパブリックインターネットを介さずに処理
 - **AWS KMS**: 学習データ（S3）・モデルアーティファクト・Knowledge Bases コンテンツを暗号化
@@ -559,6 +1331,36 @@ paginate: true
 
 # Amazon Bedrock Guardrails — 詳細
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">Domain 5 — 重要ポイントまとめ</text>
+
+<rect x="60" y="65" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="65" width="6" height="48" fill="#e91e63" rx="3"/>
+<text x="110" y="85" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="start" font-weight="bold">Guardrails機能</text>
+<text x="110" y="103" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">コンテンツフィルタ・トピック拒否・PII保護・Grounding</text>
+
+<rect x="60" y="121" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="121" width="6" height="48" fill="#0d7377" rx="3"/>
+<text x="110" y="141" font-family="sans-serif" font-size="14" fill="#0d7377" text-anchor="start" font-weight="bold">VPC PrivateLink</text>
+<text x="110" y="159" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">Bedrock閉域アクセス設計の理解</text>
+
+<rect x="60" y="177" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="177" width="6" height="48" fill="#6b2d8b" rx="3"/>
+<text x="110" y="197" font-family="sans-serif" font-size="14" fill="#6b2d8b" text-anchor="start" font-weight="bold">共有責任モデル</text>
+<text x="110" y="215" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">AIワークロードの顧客/AWS責任境界</text>
+
+<rect x="60" y="233" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="233" width="6" height="48" fill="#1a6b3c" rx="3"/>
+<text x="110" y="253" font-family="sans-serif" font-size="14" fill="#1a6b3c" text-anchor="start" font-weight="bold">IAM最小権限</text>
+<text x="110" y="271" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">アクション単位の権限制御（bedrock:InvokeModel等）</text>
+
+<rect x="60" y="289" width="680" height="48" fill="#16213e" rx="8"/>
+<rect x="60" y="289" width="6" height="48" fill="#b45309" rx="3"/>
+<text x="110" y="309" font-family="sans-serif" font-size="14" fill="#b45309" text-anchor="start" font-weight="bold">CloudTrail監査</text>
+<text x="110" y="327" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal">Bedrock API監査ログの有効化と活用方法</text>
+
+</svg>
 - **定義**: Bedrock の FM 入力・出力に対するコンテンツフィルタリング・ポリシー適用機能
 - **コンテンツフィルタ**: 有害・暴力的・性的・ヘイトスピーチコンテンツを検出・ブロック（強度調整可：None/Low/Medium/High）
 - **トピックの拒否**: 指定したトピック（競合製品・政治・法律相談）への回答を禁止
@@ -602,6 +1404,37 @@ paginate: true
 
 # Domain 5 — 試験対策チェックリスト
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
+<text x="400" y="32" font-family="sans-serif" font-size="21" fill="#f9a825" text-anchor="middle" font-weight="bold">試験合格への最重要ポイント</text>
+
+<rect x="20" y="65" width="160" height="260" fill="#16213e" rx="8"/>
+<rect x="20" y="65" width="160" height="8" fill="#555" rx="4"/>
+<text x="100" y="98" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">Domain 1</text><text x="100" y="120" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">(20%)</text>
+<text x="100" y="158" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">MLの種類・F1/AUC-ROC</text><text x="100" y="180" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">SageMakerコンポーネント</text>
+
+<rect x="140" y="65" width="160" height="260" fill="#16213e" rx="8"/>
+<rect x="140" y="65" width="160" height="8" fill="#555" rx="4"/>
+<text x="220" y="98" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">Domain 2</text><text x="220" y="120" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">(24%)</text>
+<text x="220" y="158" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">FMの仕組み・プロンプト技法</text><text x="220" y="180" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">ハルシネーション対策</text>
+
+<rect x="260" y="65" width="160" height="260" fill="#16213e" rx="8"/>
+<rect x="260" y="65" width="160" height="8" fill="#e91e63" rx="4"/>
+<text x="340" y="98" font-family="sans-serif" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold">Domain 3</text><text x="340" y="120" font-family="sans-serif" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold">(28%)★</text>
+<text x="340" y="158" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">Bedrock全機能</text><text x="340" y="180" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">RAGの詳細フロー必須</text>
+
+<rect x="380" y="65" width="160" height="260" fill="#16213e" rx="8"/>
+<rect x="380" y="65" width="160" height="8" fill="#555" rx="4"/>
+<text x="460" y="98" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">Domain 4</text><text x="460" y="120" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">(14%)</text>
+<text x="460" y="158" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">責任あるAI6原則</text><text x="460" y="180" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">Clarify・HITL</text>
+
+<rect x="500" y="65" width="160" height="260" fill="#16213e" rx="8"/>
+<rect x="500" y="65" width="160" height="8" fill="#555" rx="4"/>
+<text x="580" y="98" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">Domain 5</text><text x="580" y="120" font-family="sans-serif" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold">(14%)</text>
+<text x="580" y="158" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">セキュリティ設計</text><text x="580" y="180" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">Guardrails・共有責任</text>
+
+<text x="400" y="368" font-family="sans-serif" font-size="12" fill="#b0b8d0" text-anchor="middle" font-weight="normal">合格の鍵: 各サービスの「なぜそれを使うか」を実践的に理解し、Bedrockを実際に操作すること</text>
+</svg>
 - ✅ Bedrock Guardrails の 4 機能（コンテンツフィルタ・トピック拒否・PII 保護・Grounding）を理解
 - ✅ VPC PrivateLink による Bedrock の閉域アクセス設計を把握
 - ✅ 共有責任モデルにおける AI ワークロードの顧客/AWS の責任境界を説明できる

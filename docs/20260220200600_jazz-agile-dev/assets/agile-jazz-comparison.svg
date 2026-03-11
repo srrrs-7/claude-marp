@@ -1,0 +1,64 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">ジャズとアジャイルチームの対応（2/2）</text>
+  <!-- Column headers -->
+  <rect x="20" y="45" width="235" height="38" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="137" y="69" text-anchor="middle" font-size="14" font-weight="bold" fill="#f9a825">ジャズ</text>
+  <rect x="285" y="45" width="235" height="38" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="402" y="69" text-anchor="middle" font-size="14" font-weight="bold" fill="#4caf50">対応する概念</text>
+  <rect x="550" y="45" width="230" height="38" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="665" y="69" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">アジャイル</text>
+  <!-- Row 1 -->
+  <rect x="20" y="95" width="235" height="46" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1" opacity="0.7"/>
+  <text x="137" y="118" text-anchor="middle" font-size="12" fill="#ffffff">リードシート</text>
+  <text x="137" y="133" text-anchor="middle" font-size="10" fill="#f9a825" opacity="0.8">最小限の設計図</text>
+  <text x="262" y="122" text-anchor="middle" font-size="20" fill="#4caf50">↔</text>
+  <rect x="285" y="95" width="235" height="46" rx="4" fill="#16213e" stroke="#4caf50" stroke-width="1"/>
+  <text x="402" y="118" text-anchor="middle" font-size="12" fill="#4caf50">最小限の計画</text>
+  <text x="402" y="133" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">詳細は実行中に決定</text>
+  <text x="537" y="122" text-anchor="middle" font-size="20" fill="#e91e63">↔</text>
+  <rect x="550" y="95" width="230" height="46" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="665" y="118" text-anchor="middle" font-size="12" fill="#ffffff">ユーザーストーリー</text>
+  <text x="665" y="133" text-anchor="middle" font-size="10" fill="#e91e63" opacity="0.8">要件の最小表現</text>
+  <!-- Row 2 -->
+  <rect x="20" y="151" width="235" height="46" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1" opacity="0.7"/>
+  <text x="137" y="174" text-anchor="middle" font-size="12" fill="#ffffff">コール＆レスポンス</text>
+  <text x="137" y="189" text-anchor="middle" font-size="10" fill="#f9a825" opacity="0.8">即時の対話</text>
+  <text x="262" y="178" text-anchor="middle" font-size="20" fill="#4caf50">↔</text>
+  <rect x="285" y="151" width="235" height="46" rx="4" fill="#16213e" stroke="#4caf50" stroke-width="1"/>
+  <text x="402" y="174" text-anchor="middle" font-size="12" fill="#4caf50">継続的統合</text>
+  <text x="402" y="189" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">変更の即時フィードバック</text>
+  <text x="537" y="178" text-anchor="middle" font-size="20" fill="#e91e63">↔</text>
+  <rect x="550" y="151" width="230" height="46" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="665" y="174" text-anchor="middle" font-size="12" fill="#ffffff">デイリースクラム</text>
+  <text x="665" y="189" text-anchor="middle" font-size="10" fill="#e91e63" opacity="0.8">チームの同期</text>
+  <!-- Row 3 -->
+  <rect x="20" y="207" width="235" height="46" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1" opacity="0.7"/>
+  <text x="137" y="230" text-anchor="middle" font-size="12" fill="#ffffff">リハーモナイゼーション</text>
+  <text x="137" y="245" text-anchor="middle" font-size="10" fill="#f9a825" opacity="0.8">既存を豊かに変える</text>
+  <text x="262" y="234" text-anchor="middle" font-size="20" fill="#4caf50">↔</text>
+  <rect x="285" y="207" width="235" height="46" rx="4" fill="#16213e" stroke="#4caf50" stroke-width="1"/>
+  <text x="402" y="230" text-anchor="middle" font-size="12" fill="#4caf50">リファクタリング</text>
+  <text x="402" y="245" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">機能を変えずに改善</text>
+  <text x="537" y="234" text-anchor="middle" font-size="20" fill="#e91e63">↔</text>
+  <rect x="550" y="207" width="230" height="46" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="665" y="230" text-anchor="middle" font-size="12" fill="#ffffff">スプリント改善</text>
+  <text x="665" y="245" text-anchor="middle" font-size="10" fill="#e91e63" opacity="0.8">レトロスペクティブ</text>
+  <!-- Row 4 -->
+  <rect x="20" y="263" width="235" height="46" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1" opacity="0.7"/>
+  <text x="137" y="286" text-anchor="middle" font-size="12" fill="#ffffff">ドラムのリズム</text>
+  <text x="137" y="301" text-anchor="middle" font-size="10" fill="#f9a825" opacity="0.8">テンポの維持</text>
+  <text x="262" y="290" text-anchor="middle" font-size="20" fill="#4caf50">↔</text>
+  <rect x="285" y="263" width="235" height="46" rx="4" fill="#16213e" stroke="#4caf50" stroke-width="1"/>
+  <text x="402" y="286" text-anchor="middle" font-size="12" fill="#4caf50">一定のリリースリズム</text>
+  <text x="402" y="301" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">スプリントの定期性</text>
+  <text x="537" y="290" text-anchor="middle" font-size="20" fill="#e91e63">↔</text>
+  <rect x="550" y="263" width="230" height="46" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="665" y="286" text-anchor="middle" font-size="12" fill="#ffffff">スプリントサイクル</text>
+  <text x="665" y="301" text-anchor="middle" font-size="10" fill="#e91e63" opacity="0.8">1-2週の固定リズム</text>
+  <!-- Bottom -->
+  <rect x="20" y="325" width="760" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="348" text-anchor="middle" font-size="13" fill="#f9a825">どちらも「制約の中でのリアルタイム適応」という本質を共有</text>
+  <text x="400" y="368" text-anchor="middle" font-size="11" fill="#ffffff">ジャズを「聴く」ように、コードを「読む」力がチームを強くする</text>
+  <text x="400" y="378" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.4">音楽理論 = ソフトウェアパターン | 演奏経験 = 開発経験</text>
+</svg>

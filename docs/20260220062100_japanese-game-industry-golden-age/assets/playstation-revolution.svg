@@ -1,0 +1,31 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">PlayStation（1994）が変えた5つのこと</text>
+  <!-- 5 changes -->
+  <rect x="40" y="50" width="340" height="54" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="60" y="72" font-family="sans-serif" font-size="13" fill="#e91e63" font-weight="bold">1. 媒体革命</text>
+  <text x="60" y="90" font-family="sans-serif" font-size="12" fill="#aaa">CD-ROM採用: カートリッジの10倍以上の容量</text>
+  <rect x="420" y="50" width="340" height="54" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="440" y="72" font-family="sans-serif" font-size="13" fill="#e91e63" font-weight="bold">2. 開発者優遇</text>
+  <text x="440" y="90" font-family="sans-serif" font-size="12" fill="#aaa">低ロイヤリティ率: サードパーティが殺到</text>
+  <rect x="40" y="118" width="340" height="54" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="60" y="140" font-family="sans-serif" font-size="13" fill="#f9a825" font-weight="bold">3. 年齢層拡大</text>
+  <text x="60" y="158" font-family="sans-serif" font-size="12" fill="#aaa">「ゲームは子供」から20〜30代ターゲットへ</text>
+  <rect x="420" y="118" width="340" height="54" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="440" y="140" font-family="sans-serif" font-size="13" fill="#f9a825" font-weight="bold">4. 映像革命</text>
+  <text x="440" y="158" font-family="sans-serif" font-size="12" fill="#aaa">FF7の3DCGムービー: 映画的体験の実現</text>
+  <rect x="40" y="186" width="720" height="54" rx="6" fill="#16213e" stroke="#4ec9b0" stroke-width="1.5"/>
+  <text x="60" y="208" font-family="sans-serif" font-size="13" fill="#4ec9b0" font-weight="bold">5. 文化的転換</text>
+  <text x="60" y="226" font-family="sans-serif" font-size="12" fill="#aaa">ゲームが「文化」として認知される転換点 → 1億249万台（史上初）</text>
+  <!-- Key titles -->
+  <rect x="40" y="256" width="720" height="80" rx="8" fill="#0d1b2a"/>
+  <text x="400" y="278" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#f9a825" font-weight="bold">代表タイトルが定義した新ジャンル</text>
+  <rect x="60" y="286" width="154" height="34" rx="4" fill="#16213e"/>
+  <text x="137" y="308" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0">FF7 → シネマRPG</text>
+  <rect x="228" y="286" width="154" height="34" rx="4" fill="#16213e"/>
+  <text x="305" y="308" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0">MGS → ステルス</text>
+  <rect x="396" y="286" width="154" height="34" rx="4" fill="#16213e"/>
+  <text x="473" y="308" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0">GT → シム</text>
+  <rect x="564" y="286" width="154" height="34" rx="4" fill="#16213e"/>
+  <text x="641" y="308" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0">バイオ → ホラー</text>
+</svg>

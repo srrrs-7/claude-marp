@@ -1,0 +1,43 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">確証バイアスとは何か</text>
+  <!-- Definition -->
+  <rect x="20" y="48" width="760" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="75" text-anchor="middle" font-size="14" fill="#ffffff">「自分の信念を支持する情報を優先的に探し、反証を無視する傾向」</text>
+  <text x="400" y="98" text-anchor="middle" font-size="12" fill="#f9a825">— Peter Wason の選択課題実験（1960年）で初めて実証</text>
+  <!-- Visual: Information filter -->
+  <rect x="20" y="135" width="355" height="230" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="197" y="162" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">バイアスのある認知プロセス</text>
+  <!-- Input -->
+  <rect x="40" y="176" width="315" height="36" rx="6" fill="#1a1a2e"/>
+  <text x="197" y="200" text-anchor="middle" font-size="12" fill="#ffffff">情報のインプット（コードを見る）</text>
+  <!-- Filter -->
+  <polygon points="197,222 147,222 172,248 197,222" fill="#e91e63" opacity="0.8"/>
+  <polygon points="197,222 247,222 222,248 197,222" fill="#e91e63" opacity="0.8"/>
+  <rect x="100" y="255" width="194" height="36" rx="6" fill="#e91e63" opacity="0.3"/>
+  <text x="197" y="278" text-anchor="middle" font-size="12" fill="#e91e63">確証フィルター</text>
+  <!-- Outputs -->
+  <rect x="40" y="305" width="140" height="45" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1"/>
+  <text x="110" y="325" text-anchor="middle" font-size="11" fill="#4caf50">支持証拠</text>
+  <text x="110" y="340" text-anchor="middle" font-size="10" fill="#ffffff">注目・記憶</text>
+  <rect x="195" y="305" width="140" height="45" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="265" y="325" text-anchor="middle" font-size="11" fill="#e91e63">反証</text>
+  <text x="265" y="340" text-anchor="middle" font-size="10" fill="#ffffff">無視・軽視</text>
+  <!-- Right: Real-world examples -->
+  <rect x="425" y="135" width="355" height="230" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="602" y="162" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">コードレビューでの具体例</text>
+  <rect x="445" y="176" width="315" height="52" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1" opacity="0.7"/>
+  <text x="602" y="196" text-anchor="middle" font-size="11" fill="#f9a825">「このPRは動くはず」と思うと</text>
+  <text x="602" y="214" text-anchor="middle" font-size="11" fill="#ffffff">→ 動くことを確認するだけでレビュー終了</text>
+  <text x="602" y="228" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">バグを「探す」姿勢にならない</text>
+  <rect x="445" y="238" width="315" height="52" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1" opacity="0.7"/>
+  <text x="602" y="258" text-anchor="middle" font-size="11" fill="#f9a825">「Aさんのコードだから」と思うと</text>
+  <text x="602" y="276" text-anchor="middle" font-size="11" fill="#ffffff">→ 問題を見つけても「気のせいか」と判断</text>
+  <text x="602" y="290" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">過去の実績が現在の判断を歪める</text>
+  <rect x="445" y="300" width="315" height="52" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="602" y="320" text-anchor="middle" font-size="11" fill="#e91e63">「急ぎだから」と思うと</text>
+  <text x="602" y="338" text-anchor="middle" font-size="11" fill="#ffffff">→ 問題を見つけても後回しに合理化</text>
+  <text x="602" y="352" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">時間的プレッシャーがバイアスを増幅</text>
+  <!-- Bottom insight -->
+  <text x="400" y="385" text-anchor="middle" font-size="12" fill="#f9a825">バイアスは「意識の外」で働く — 気づくことが第一歩</text>
+</svg>

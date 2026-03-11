@@ -1,0 +1,43 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">セレンディピティとは何か — 定義と構造</text>
+  <!-- Definition -->
+  <rect x="20" y="48" width="760" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="73" text-anchor="middle" font-size="13" fill="#f9a825">「偶然と賢明さによる幸運な発見（happy accident + sagacity）」</text>
+  <text x="400" y="95" text-anchor="middle" font-size="12" fill="#ffffff">— Horace Walpole, 1754年に造語。語源：セレンディポの三人の王子の物語</text>
+  <!-- 3-component model -->
+  <rect x="20" y="130" width="760" height="80" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="400" y="155" text-anchor="middle" font-size="13" fill="#4caf50">セレンディピティの3成分</text>
+  <rect x="40" y="166" width="220" height="34" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="150" y="188" text-anchor="middle" font-size="12" fill="#e91e63">偶然のできごと</text>
+  <text x="265" y="188" text-anchor="middle" font-size="16" fill="#f9a825">×</text>
+  <rect x="280" y="166" width="220" height="34" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="390" y="188" text-anchor="middle" font-size="12" fill="#f9a825">準備された心</text>
+  <text x="505" y="188" text-anchor="middle" font-size="16" fill="#f9a825">×</text>
+  <rect x="520" y="166" width="220" height="34" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1"/>
+  <text x="630" y="188" text-anchor="middle" font-size="12" fill="#4caf50">探求する行動力</text>
+  <!-- Examples row -->
+  <rect x="20" y="228" width="235" height="140" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="127" y="252" text-anchor="middle" font-size="12" font-weight="bold" fill="#e91e63">偶然に頼ると失敗</text>
+  <text x="127" y="274" text-anchor="middle" font-size="11" fill="#ffffff">知識なし</text>
+  <text x="127" y="291" text-anchor="middle" font-size="11" fill="#ffffff">→ 気づかない</text>
+  <text x="127" y="316" text-anchor="middle" font-size="11" fill="#ffffff">行動なし</text>
+  <text x="127" y="333" text-anchor="middle" font-size="11" fill="#ffffff">→ 活かせない</text>
+  <text x="127" y="355" text-anchor="middle" font-size="10" fill="#e91e63">「運がなかった」で終わる</text>
+  <rect x="283" y="228" width="235" height="140" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="400" y="252" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">3成分が揃うと発見</text>
+  <text x="400" y="274" text-anchor="middle" font-size="11" fill="#ffffff">X線：物理学知識あり</text>
+  <text x="400" y="291" text-anchor="middle" font-size="11" fill="#ffffff">→ 光の異常に気づく</text>
+  <text x="400" y="316" text-anchor="middle" font-size="11" fill="#ffffff">→ 6週間追求する</text>
+  <text x="400" y="333" text-anchor="middle" font-size="11" fill="#ffffff">→ 医療革命へ</text>
+  <text x="400" y="355" text-anchor="middle" font-size="10" fill="#4caf50">「準備が運を引き寄せた」</text>
+  <rect x="546" y="228" width="234" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="663" y="252" text-anchor="middle" font-size="12" font-weight="bold" fill="#f9a825">現代への応用</text>
+  <text x="663" y="274" text-anchor="middle" font-size="11" fill="#ffffff">多様な知識を持つ</text>
+  <text x="663" y="291" text-anchor="middle" font-size="11" fill="#ffffff">→ 気づける準備</text>
+  <text x="663" y="316" text-anchor="middle" font-size="11" fill="#ffffff">異常を追求する</text>
+  <text x="663" y="333" text-anchor="middle" font-size="11" fill="#ffffff">→ 発見の機会</text>
+  <text x="663" y="355" text-anchor="middle" font-size="10" fill="#f9a825">設計できる偶然</text>
+  <!-- Bottom -->
+  <text x="400" y="385" text-anchor="middle" font-size="11" fill="#f9a825">Louis Pasteur: "Chance favors only the prepared mind"</text>
+</svg>

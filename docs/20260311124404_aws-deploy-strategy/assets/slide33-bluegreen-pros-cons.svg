@@ -1,0 +1,55 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="380" fill="transparent"/>
+
+  <!-- Left panel: Merits -->
+  <rect x="30" y="20" width="360" height="330" rx="10" fill="#052e16" stroke="#34d399" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <rect x="30" y="20" width="360" height="44" rx="10" fill="#166534"/>
+  <text x="210" y="48" text-anchor="middle" font-size="16" font-weight="bold" fill="#34d399" font-family="sans-serif">メリット</text>
+
+  <text x="60" y="90" font-size="13" fill="#34d399" font-family="sans-serif">✓</text>
+  <text x="80" y="90" font-size="13" fill="#ffffff" font-family="sans-serif">ダウンタイムゼロのデプロイ</text>
+
+  <text x="60" y="120" font-size="13" fill="#34d399" font-family="sans-serif">✓</text>
+  <text x="80" y="120" font-size="13" fill="#ffffff" font-family="sans-serif">即時ロールバック (秒単位)</text>
+
+  <text x="60" y="150" font-size="13" fill="#34d399" font-family="sans-serif">✓</text>
+  <text x="80" y="150" font-size="13" fill="#ffffff" font-family="sans-serif">本番同等環境でのテスト可能</text>
+
+  <text x="60" y="180" font-size="13" fill="#34d399" font-family="sans-serif">✓</text>
+  <text x="80" y="180" font-size="13" fill="#ffffff" font-family="sans-serif">切り替えの判断タイミングが明確</text>
+
+  <text x="60" y="210" font-size="13" fill="#34d399" font-family="sans-serif">✓</text>
+  <text x="80" y="210" font-size="13" fill="#ffffff" font-family="sans-serif">旧環境を保持 → リスク低減</text>
+
+  <text x="60" y="240" font-size="13" fill="#34d399" font-family="sans-serif">✓</text>
+  <text x="80" y="240" font-size="13" fill="#ffffff" font-family="sans-serif">CodeDeploy で自動化が容易</text>
+
+  <text x="60" y="270" font-size="13" fill="#34d399" font-family="sans-serif">✓</text>
+  <text x="80" y="270" font-size="13" fill="#ffffff" font-family="sans-serif">CI/CD パイプラインとの統合容易</text>
+
+  <!-- Right panel: Demerits -->
+  <rect x="410" y="20" width="360" height="330" rx="10" fill="#1e1b4b" stroke="#f97316" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <rect x="410" y="20" width="360" height="44" rx="10" fill="#7c2d12"/>
+  <text x="590" y="48" text-anchor="middle" font-size="16" font-weight="bold" fill="#f97316" font-family="sans-serif">デメリット</text>
+
+  <text x="440" y="90" font-size="13" fill="#f97316" font-family="sans-serif">✗</text>
+  <text x="460" y="90" font-size="13" fill="#ffffff" font-family="sans-serif">インフラコストが約2倍</text>
+
+  <text x="440" y="120" font-size="13" fill="#f97316" font-family="sans-serif">✗</text>
+  <text x="460" y="120" font-size="13" fill="#ffffff" font-family="sans-serif">ステートフルアプリで複雑化</text>
+
+  <text x="440" y="150" font-size="13" fill="#f97316" font-family="sans-serif">✗</text>
+  <text x="460" y="150" font-size="13" fill="#ffffff" font-family="sans-serif">DBスキーマ移行が難しい</text>
+
+  <text x="440" y="180" font-size="13" fill="#f97316" font-family="sans-serif">✗</text>
+  <text x="460" y="180" font-size="13" fill="#ffffff" font-family="sans-serif">長期セッションの引き継ぎが必要</text>
+
+  <text x="440" y="210" font-size="13" fill="#f97316" font-family="sans-serif">✗</text>
+  <text x="460" y="210" font-size="13" fill="#ffffff" font-family="sans-serif">環境差異の維持管理コスト</text>
+
+  <text x="440" y="240" font-size="13" fill="#f97316" font-family="sans-serif">✗</text>
+  <text x="460" y="240" font-size="13" fill="#ffffff" font-family="sans-serif">旧環境削除タイミングの判断が必要</text>
+
+  <text x="440" y="270" font-size="13" fill="#f97316" font-family="sans-serif">✗</text>
+  <text x="460" y="270" font-size="13" fill="#ffffff" font-family="sans-serif">DNS TTL を考慮した移行設計が必須</text>
+</svg>

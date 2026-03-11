@@ -7,6 +7,71 @@ paginate: true
 header: "シンガポールの都市実験"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -24,6 +89,7 @@ style: |
 
 # アジェンダ
 
+![w:800 center](assets/svg-sg-agenda.svg)
 - 1. シンガポールの奇跡
 - 2. リー・クアンユーの設計思想
 - 3. HDB：住宅で社会を設計する
@@ -42,6 +108,7 @@ style: |
 
 # 1965年 → 2025年の変貌
 
+![w:800 center](assets/svg-timeline.svg)
 - **1965年：** マレーシアから追放される形で独立
 - 天然資源なし、飲料水すらマレーシアから輸入
 - 「生き残れないかもしれない」とリー・クアンユーが涙した
@@ -54,6 +121,7 @@ style: |
 
 # 成功の鍵：「全てを設計する」思想
 
+![w:800 center](assets/svg-sg-success-keys.svg)
 - シンガポールは**自然に発展した都市ではない**
 - 住宅配置・民族構成・交通量・教育制度まで政府が設計
 - 「効率性」と「社会安定」を最優先する合理主義
@@ -71,6 +139,7 @@ style: |
 
 # 実用主義（Pragmatism）の徹底
 
+![w:800 center](assets/svg-pragmatism.svg)
 - **「イデオロギーではなく、何が機能するかで決める」**
 - 英語を公用語に → 外資誘致と国際化のため
 - チューインガム販売禁止 → 公共空間の美化のため
@@ -89,6 +158,7 @@ style: |
 
 # HDB（住宅開発庁）の驚異
 
+![w:800 center](assets/svg-hdb.svg)
 - 国民の**80%**が政府建設の公営住宅（HDB）に住む
 - 持ち家率**90%以上** ― 世界最高水準
 - **民族統合政策（EIP）：** 各HDB棟に中国系・マレー系・インド系の比率を設定
@@ -114,6 +184,7 @@ style: |
 
 # デジタル政府の実績
 
+![w:800 center](assets/svg-sg-digital-gov.svg)
 - **SingPass** ― 国民全員に発行されるデジタルID
 - 行政手続きの98%がオンラインで完結
 - COVID-19対応：**TraceTogether** アプリを2週間で開発・展開
@@ -126,6 +197,7 @@ style: |
 
 # 交通管理 ― 車を「持たせない」設計
 
+![w:800 center](assets/svg-transport.svg)
 - **COE（Certificate of Entitlement）** ― 車の「所有権」をオークション制に
 - COEの価格：**約6万ドル（800万円）** ← 車の本体価格以上
 - 有効期間10年 → 更新しなければ車は廃車
@@ -144,6 +216,7 @@ style: |
 
 # 批判と課題
 
+![w:800 center](assets/svg-freedom.svg)
 - **報道の自由度：** 世界126位（2024年、国境なき記者団）
 - 政治的反対意見への厳しい対応（名誉毀損訴訟の多用）
 - 表現の自由の制限（集会には許可が必要）
@@ -169,6 +242,8 @@ style: |
 
 <!-- _class: lead -->
 # テック業界への示唆
+
+![w:800 center](assets/svg-platform.svg)
 
 
 ---

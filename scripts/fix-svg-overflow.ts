@@ -16,34 +16,7 @@
  */
 
 import { resolve } from "node:path";
-
-const SVG_CONTAINMENT_STYLE =
-	"max-height:70vh;max-width:100%;display:block;margin:0 auto;";
-
-function normalizeSvgTags(content: string): string {
-	return content.replace(/<svg([^>]*)>/g, (_match, attrs: string) => {
-		// Remove hardcoded width/height attributes
-		let cleaned = attrs
-			.replace(/\s+width\s*=\s*"[^"]*"/g, "")
-			.replace(/\s+height\s*=\s*"[^"]*"/g, "");
-
-		// Check for existing style attribute
-		const styleMatch = cleaned.match(/\s+style\s*=\s*"([^"]*)"/);
-		if (styleMatch) {
-			const existing = styleMatch[1];
-			if (!existing.includes("max-height") || !existing.includes("max-width")) {
-				cleaned = cleaned.replace(
-					/\s+style\s*=\s*"[^"]*"/,
-					` style="${SVG_CONTAINMENT_STYLE}"`,
-				);
-			}
-		} else {
-			cleaned += ` style="${SVG_CONTAINMENT_STYLE}"`;
-		}
-
-		return `<svg${cleaned}>`;
-	});
-}
+import { normalizeSvg as normalizeSvgTags } from "../src/generate/markdown.js";
 
 async function processFile(filePath: string): Promise<boolean> {
 	const file = Bun.file(filePath);

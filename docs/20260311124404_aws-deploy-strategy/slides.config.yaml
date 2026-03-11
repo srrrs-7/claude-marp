@@ -1,0 +1,16 @@
+topic: "AWS Deploy戦略完全ガイド"
+language: "ja"
+
+slides:
+  count: 55
+
+output:
+  dir: "docs/20260311124404_aws-deploy-strategy"
+  baseName: "aws-deploy-strategy"
+
+marp:
+  theme: gaia
+  class: invert
+  paginate: true
+  header: "AWS Deploy戦略"
+  footer: "© 2026"

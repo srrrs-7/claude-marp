@@ -237,21 +237,28 @@ bun run slides init                     # Create slides.config.yaml template
 bun run slides render -c <config> --in <data.json>          # Render JSON → Marp markdown
 bun run slides export -c <config> -f html --in <file.md>    # Export markdown → HTML
 bun run validate                        # Validate all slides-data.json (Zod schema) + reading time + duplicate titles
+bun run validate:quality                # Quality check: assertive titles, subtitle coverage, SVG ratio
+bun run lint                            # Shorthand: validate + validate:quality
 bun run fix                             # Auto-fix common schema issues (bullets→content, layout values, codeLanguage)
 bun run fix:all                         # Chain: fix → split → fix-svg → generate:index (one-shot cleanup)
 bun run split                           # Split code+bullets co-located on same slide (all)
 python3 scripts/split-bullet-overflow.py --all  # Split slides with 8+ bullet points into 2 slides
 bun run fix-svg                         # Fix SVG overflow issues in markdown files
 bun run doctor                          # Project health check (toolchain, exports, SVG violations)
-bun run rebuild                         # Re-render + re-export all presentations (incremental by default)
+bun run single <deckDir> [render|export|all]  # Render+export one deck; accepts partial name match
+bun run dev [docs/<dir>]                # Watch mode: auto-render on file change (400ms debounce)
+bun run stats                           # Quality statistics: SVG %, assertive title %, grade A/B/C/D distribution
+bun run stats -- --verbose              # Per-deck breakdown sorted by grade
+bun run stats -- --worst                # Show only C/D grade decks (improvement targets)
+bun run rebuild                         # Re-render + re-export all presentations (incremental; parallel render)
 bun run rebuild -- --force              # Force full rebuild (ignore cache)
-bun run rebuild:render                  # Re-render only
-bun run rebuild:export                  # Re-export only
+bun run rebuild:render                  # Re-render only (parallel)
+bun run rebuild:export                  # Re-export only (sequential — Marp CLI constraint)
 bun run typecheck                       # tsgo (native TS compiler, not tsc)
 bun run check                           # Biome lint + format check
 bun run format                          # Auto-format with Biome
 bun run test                            # Regression tests (bun:test)
-bun run generate:index                  # Regenerate docs/index.html for GitHub Pages
+bun run generate:index                  # Regenerate docs/index.html (grade badges, sort, search, reading time)
 bun scripts/fix-svg-url-refs.ts        # Fix url(#id) violations across all SVGs/markdown
 ```
 
@@ -291,8 +298,8 @@ docs/20260214073222_example/
 
 | File | Purpose |
 |------|---------|
-| `src/index.ts` | Entry point (`#!/usr/bin/env bun`) |
-| `src/cli/commands.ts` | `init`, `render`, `export` command handlers |
+| `src/index.ts` | Entry point — calls `parseArgs(...).catch(...)` for top-level error handling |
+| `src/cli/commands.ts` | `init`, `render`, `export` — all async, awaited properly |
 | `src/config/schema.ts` | Zod config schema — strips unknown top-level keys (no `.passthrough()`) |
 | `src/config/defaults.ts` | Default YAML template written by `init` command |
 | `src/config/loader.ts` | YAML parse + Zod validate config file |
@@ -301,6 +308,7 @@ docs/20260214073222_example/
 | `src/generate/markdown.ts` | `buildFrontMatter()` + `renderSlide()` → Marp markdown string |
 | `src/export/marp.ts` | Spawn `bunx @marp-team/marp-cli`; `fixAssetPaths()` rewrites `src="assets/"` → `src="../assets/"` in `dist/*.html` |
 | `src/utils/files.ts` | `slugify()` (max 60 chars), `ensureDir()` |
+| `scripts/lib/quality.ts` | Shared quality helpers: `LABEL_TITLE_RE`, `SlideRecord`, `isAssertive()`, `hasSvg()`, `estimateMins()`, `computeDeckMetrics()` — imported by stats, validate, generate-index |
 
 **Two-layer Zod schema design:**
 - Config schema: every field except `topic` has `.default()`. Nested objects use `.default({})`.
@@ -407,6 +415,7 @@ tmux-based parallel execution: Claude Code (impl) + Codex (review) workers in sp
 | Slide content overflowing (bullets) | 8+ bullet points on one slide | `python3 scripts/split-bullet-overflow.py --all` → re-render |
 | Slide content overflowing (code) | Code block > 12 lines or code+bullets combined | `bun run split` → re-render |
 | 32K token API error | Large content output inline instead of via Write tool | Use Write tool for all large output; set `CLAUDE_CODE_MAX_OUTPUT_TOKENS` |
+| Render fails for one deck but not others | Need to iterate on a single deck without full rebuild | `bun run single <partial-name>` — partial name matching, render+export one deck |
 | Parallel worker stalls / falls back to sequential | `mode: "bypassPermissions"` not set in Task tool call | Add `mode: "bypassPermissions"` to every Task tool call that spawns a slide worker |
 | Worker completes but output file missing | Overlapping file paths between workers (cache conflict) | Assign strictly non-overlapping `slides-data-part{N}.json` paths |
 

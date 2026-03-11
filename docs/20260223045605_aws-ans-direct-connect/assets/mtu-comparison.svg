@@ -1,0 +1,47 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">MTU / Jumbo Frames 比較</text>
+  <!-- Bar chart area -->
+  <!-- Standard 1500 -->
+  <rect x="80" y="280" width="100" height="60" rx="4" fill="#64b5f6"/>
+  <text x="130" y="270" text-anchor="middle" fill="#64b5f6" font-size="12">1,500 B</text>
+  <text x="130" y="358" text-anchor="middle" fill="#ffffff" font-size="11">Public VIF</text>
+  <text x="130" y="374" text-anchor="middle" fill="#aaaaaa" font-size="10">標準 MTU</text>
+  <!-- 8500 Transit VIF -->
+  <rect x="250" y="100" width="100" height="240" rx="4" fill="#f9a825"/>
+  <text x="300" y="90" text-anchor="middle" fill="#f9a825" font-size="12">8,500 B</text>
+  <text x="300" y="358" text-anchor="middle" fill="#ffffff" font-size="11">Transit VIF</text>
+  <text x="300" y="374" text-anchor="middle" fill="#aaaaaa" font-size="10">Jumbo対応</text>
+  <!-- 9001 Private VIF -->
+  <rect x="420" y="60" width="100" height="280" rx="4" fill="#4caf50"/>
+  <text x="470" y="50" text-anchor="middle" fill="#4caf50" font-size="12">9,001 B</text>
+  <text x="470" y="358" text-anchor="middle" fill="#ffffff" font-size="11">Private VIF</text>
+  <text x="470" y="374" text-anchor="middle" fill="#aaaaaa" font-size="10">最大 Jumbo</text>
+  <!-- VPN (effectively 1500) -->
+  <rect x="590" y="268" width="100" height="72" rx="4" fill="#ff8a65"/>
+  <text x="640" y="258" text-anchor="middle" fill="#ff8a65" font-size="12">~1,400 B</text>
+  <text x="640" y="358" text-anchor="middle" fill="#ffffff" font-size="11">VPN over DX</text>
+  <text x="640" y="374" text-anchor="middle" fill="#aaaaaa" font-size="10">IPsec減少</text>
+  <!-- Y-axis label -->
+  <text x="45" y="200" text-anchor="middle" fill="#aaaaaa" font-size="11" transform="rotate(-90,45,200)">MTU (bytes)</text>
+  <!-- Annotation: 6x difference -->
+  <line x1="80" y1="280" x2="420" y2="280" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/>
+  <polygon points="414,275 426,280 414,285" fill="#aaaaaa"/>
+  <text x="252" y="296" text-anchor="middle" fill="#aaaaaa" font-size="10">約 6倍の差</text>
+  <!-- Benefits box -->
+  <rect x="30" y="390" width="740" height="0" rx="4" fill="#16213e"/>
+  <!-- Info panel right -->
+  <rect x="715" y="50" width="70" height="290" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/>
+  <text x="750" y="75" text-anchor="middle" fill="#f9a825" font-size="10" font-weight="bold">効果</text>
+  <text x="750" y="100" text-anchor="middle" fill="#aaaaaa" font-size="9">CPU</text>
+  <text x="750" y="115" text-anchor="middle" fill="#aaaaaa" font-size="9">オーバー</text>
+  <text x="750" y="130" text-anchor="middle" fill="#aaaaaa" font-size="9">ヘッド減</text>
+  <text x="750" y="165" text-anchor="middle" fill="#4caf50" font-size="9">スループ</text>
+  <text x="750" y="180" text-anchor="middle" fill="#4caf50" font-size="9">ット向上</text>
+  <text x="750" y="215" text-anchor="middle" fill="#aaaaaa" font-size="9">フレーム</text>
+  <text x="750" y="230" text-anchor="middle" fill="#aaaaaa" font-size="9">処理数</text>
+  <text x="750" y="245" text-anchor="middle" fill="#aaaaaa" font-size="9">削減</text>
+  <text x="750" y="290" text-anchor="middle" fill="#ff8a65" font-size="9">経路全体</text>
+  <text x="750" y="305" text-anchor="middle" fill="#ff8a65" font-size="9">の MTU</text>
+  <text x="750" y="320" text-anchor="middle" fill="#ff8a65" font-size="9">統一必須</text>
+</svg>

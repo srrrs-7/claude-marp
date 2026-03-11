@@ -1,0 +1,75 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff" font-family="sans-serif">ローリング バージョン混在状態とロールバック制御</text>
+
+  <!-- Mixed state area -->
+  <rect x="20" y="42" width="760" height="90" rx="8" fill="none" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="400" y="60" text-anchor="middle" font-size="12" fill="#f59e0b" font-weight="bold" font-family="sans-serif">混在期間: v1 と v2 が同時稼働</text>
+
+  <!-- Instance grid: 3 v2 + 3 v1 -->
+  <rect x="50" y="68" width="70" height="32" rx="5" fill="#a855f7"/>
+  <text x="85" y="88" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2 (new)</text>
+  <rect x="135" y="68" width="70" height="32" rx="5" fill="#a855f7"/>
+  <text x="170" y="88" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2 (new)</text>
+  <rect x="220" y="68" width="70" height="32" rx="5" fill="#a855f7"/>
+  <text x="255" y="88" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2 (new)</text>
+  <rect x="320" y="68" width="70" height="32" rx="5" fill="#60a5fa"/>
+  <text x="355" y="88" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v1 (old)</text>
+  <rect x="405" y="68" width="70" height="32" rx="5" fill="#60a5fa"/>
+  <text x="440" y="88" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v1 (old)</text>
+  <rect x="490" y="68" width="70" height="32" rx="5" fill="#60a5fa"/>
+  <text x="525" y="88" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v1 (old)</text>
+
+  <!-- LB routing -->
+  <text x="640" y="80" font-size="11" fill="#ffffff" font-family="sans-serif">LBが両バージョンに</text>
+  <text x="640" y="96" font-size="11" fill="#f59e0b" font-family="sans-serif">ランダムにルーティング!</text>
+
+  <!-- Two scenarios below -->
+  <!-- Left: Rollback scenario -->
+  <rect x="20" y="148" width="370" height="190" rx="8" fill="#7f1d1d" opacity="0.4"/>
+  <text x="205" y="170" text-anchor="middle" font-size="13" font-weight="bold" fill="#f87171" font-family="sans-serif">異常検知 → ロールバック</text>
+
+  <rect x="40" y="180" width="330" height="28" rx="5" fill="#7f1d1d" opacity="0.7"/>
+  <text x="205" y="198" text-anchor="middle" font-size="11" fill="#f87171" font-family="sans-serif">CloudWatch Alarm 発火 (エラー率 &gt; 1%)</text>
+
+  <!-- Rollback arrow down -->
+  <line x1="205" y1="208" x2="205" y2="225" stroke="#f87171" stroke-width="2"/>
+  <polygon points="200,223 205,233 210,223" fill="#f87171"/>
+
+  <rect x="40" y="233" width="330" height="28" rx="5" fill="#7f1d1d" opacity="0.7"/>
+  <text x="205" y="251" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">v2 インスタンスへの逆ローリング開始</text>
+
+  <line x1="205" y1="261" x2="205" y2="278" stroke="#f87171" stroke-width="2"/>
+  <polygon points="200,276 205,286 210,276" fill="#f87171"/>
+
+  <rect x="40" y="286" width="330" height="28" rx="5" fill="#7f1d1d" opacity="0.7"/>
+  <text x="205" y="304" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">v2→v1 に逆方向で置き換え (時間がかかる)</text>
+
+  <!-- Warning box -->
+  <rect x="40" y="322" width="330" height="28" rx="5" fill="#92400e" opacity="0.8"/>
+  <text x="205" y="340" text-anchor="middle" font-size="10" fill="#f59e0b" font-family="sans-serif">注意: DB後方互換がなければロールバック不可</text>
+
+  <!-- Right: Prevention scenario -->
+  <rect x="410" y="148" width="370" height="190" rx="8" fill="#14532d" opacity="0.4"/>
+  <text x="595" y="170" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399" font-family="sans-serif">予防策と安全な管理</text>
+
+  <rect x="430" y="180" width="330" height="34" rx="5" fill="#14532d" opacity="0.7"/>
+  <text x="595" y="196" text-anchor="middle" font-size="11" fill="#34d399" font-weight="bold" font-family="sans-serif">1. API後方互換を必ず保持</text>
+  <text x="595" y="210" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">新旧両バージョンが同じAPIを処理できる設計</text>
+
+  <rect x="430" y="222" width="330" height="34" rx="5" fill="#14532d" opacity="0.7"/>
+  <text x="595" y="238" text-anchor="middle" font-size="11" fill="#34d399" font-weight="bold" font-family="sans-serif">2. DBスキーマ変更は段階的に</text>
+  <text x="595" y="252" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">Expand→Migrate→Contract パターン適用</text>
+
+  <rect x="430" y="264" width="330" height="34" rx="5" fill="#14532d" opacity="0.7"/>
+  <text x="595" y="280" text-anchor="middle" font-size="11" fill="#34d399" font-weight="bold" font-family="sans-serif">3. 自動ロールバック Alarm 設定</text>
+  <text x="595" y="294" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">CodeDeploy + CloudWatch Alarm 連携</text>
+
+  <rect x="430" y="306" width="330" height="34" rx="5" fill="#14532d" opacity="0.7"/>
+  <text x="595" y="322" text-anchor="middle" font-size="11" fill="#34d399" font-weight="bold" font-family="sans-serif">4. 小バッチサイズで混在期間を短縮</text>
+  <text x="595" y="336" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">20%バッチ + 5インスタンス = 最大4分で完了</text>
+
+  <!-- Bottom summary -->
+  <rect x="150" y="350" width="500" height="36" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="400" y="372" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="bold" font-family="sans-serif">ロールバックは「逆方向のローリング」— 時間は同等かかる</text>
+</svg>

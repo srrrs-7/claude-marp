@@ -1,0 +1,44 @@
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="340" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">物理学がAIに与えた概念：年代別</text>
+  <!-- Timeline -->
+  <line x1="80" y1="180" x2="720" y2="180" stroke="#555" stroke-width="2"/>
+  <!-- 1985: Boltzmann Machine -->
+  <circle cx="140" cy="180" r="12" fill="#e91e63"/>
+  <line x1="140" y1="168" x2="140" y2="90" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="4"/>
+  <rect x="60" y="46" width="180" height="42" rx="5" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="150" y="64" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e91e63" font-weight="bold">Boltzmann Machine（1985）</text>
+  <text x="150" y="80" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">統計力学 → 確率的学習</text>
+  <text x="140" y="200" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">1985</text>
+  <!-- 1982: Hopfield -->
+  <circle cx="280" cy="180" r="12" fill="#f9a825"/>
+  <line x1="280" y1="192" x2="280" y2="260" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="4"/>
+  <rect x="195" y="260" width="180" height="42" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="285" y="278" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f9a825" font-weight="bold">Hopfield Network（1982）</text>
+  <text x="285" y="294" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">スピングラス理論 → 連想記憶</text>
+  <text x="280" y="200" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">1982</text>
+  <!-- 1990s: Renormalization -->
+  <circle cx="420" cy="180" r="12" fill="#4ec9b0"/>
+  <line x1="420" y1="168" x2="420" y2="90" stroke="#4ec9b0" stroke-width="1.5" stroke-dasharray="4"/>
+  <rect x="338" y="46" width="180" height="42" rx="5" fill="#16213e" stroke="#4ec9b0" stroke-width="1"/>
+  <text x="428" y="64" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0" font-weight="bold">繰り込み群（1990s）</text>
+  <text x="428" y="80" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">粗視化 → 多層NNの層構造</text>
+  <text x="420" y="200" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">1990s</text>
+  <!-- HMC: Hamiltonian MC -->
+  <circle cx="560" cy="180" r="12" fill="#9c27b0"/>
+  <line x1="560" y1="192" x2="560" y2="260" stroke="#9c27b0" stroke-width="1.5" stroke-dasharray="4"/>
+  <rect x="476" y="260" width="180" height="42" rx="5" fill="#16213e" stroke="#9c27b0" stroke-width="1"/>
+  <text x="566" y="278" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#9c27b0" font-weight="bold">ハミルトニアンMC法</text>
+  <text x="566" y="294" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">物理シミュレーション → サンプリング</text>
+  <text x="560" y="200" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">2000s</text>
+  <!-- Nobel 2024 -->
+  <circle cx="680" cy="180" r="12" fill="#f9a825"/>
+  <line x1="680" y1="168" x2="680" y2="90" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="4"/>
+  <rect x="590" y="46" width="180" height="42" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="680" y="64" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f9a825" font-weight="bold">ノーベル物理学賞（2024）</text>
+  <text x="680" y="80" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">HopfieldとHinton が受賞</text>
+  <text x="680" y="200" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">2024</text>
+  <!-- Bottom note -->
+  <rect x="80" y="310" width="640" height="22" rx="4" fill="#0d1b2a"/>
+  <text x="400" y="326" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">物理学とAIは50年以上にわたって概念を相互に交換し続けてきた</text>
+</svg>

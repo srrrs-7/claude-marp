@@ -1,0 +1,61 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">VIF タイプ比較</text>
+  <!-- Headers -->
+  <rect x="20" y="50" width="230" height="40" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="135" y="75" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Public VIF</text>
+  <rect x="285" y="50" width="230" height="40" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="400" y="75" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">Private VIF</text>
+  <rect x="550" y="50" width="230" height="40" rx="4" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="665" y="75" text-anchor="middle" fill="#4caf50" font-size="13" font-weight="bold">Transit VIF</text>
+  <!-- Row: 接続先 -->
+  <text x="10" y="115" fill="#aaaaaa" font-size="11">接続先</text>
+  <rect x="20" y="100" width="230" height="30" rx="3" fill="#0d1b2e"/>
+  <text x="135" y="120" text-anchor="middle" fill="#ffffff" font-size="11">AWS パブリックサービス</text>
+  <rect x="285" y="100" width="230" height="30" rx="3" fill="#0d1b2e"/>
+  <text x="400" y="120" text-anchor="middle" fill="#ffffff" font-size="11">VPC (VGW)</text>
+  <rect x="550" y="100" width="230" height="30" rx="3" fill="#0d1b2e"/>
+  <text x="665" y="120" text-anchor="middle" fill="#ffffff" font-size="11">TGW (DXGW経由)</text>
+  <!-- Row: MTU -->
+  <text x="10" y="155" fill="#aaaaaa" font-size="11">MTU上限</text>
+  <rect x="20" y="140" width="230" height="30" rx="3" fill="#16213e"/>
+  <text x="135" y="160" text-anchor="middle" fill="#ff8a65" font-size="12" font-weight="bold">1,500 bytes</text>
+  <rect x="285" y="140" width="230" height="30" rx="3" fill="#16213e"/>
+  <text x="400" y="160" text-anchor="middle" fill="#4caf50" font-size="12" font-weight="bold">9,001 bytes</text>
+  <rect x="550" y="140" width="230" height="30" rx="3" fill="#16213e"/>
+  <text x="665" y="160" text-anchor="middle" fill="#4caf50" font-size="12" font-weight="bold">8,500 bytes</text>
+  <!-- Row: BGP ASN -->
+  <text x="10" y="195" fill="#aaaaaa" font-size="11">BGP ASN</text>
+  <rect x="20" y="180" width="230" height="30" rx="3" fill="#0d1b2e"/>
+  <text x="135" y="200" text-anchor="middle" fill="#ff8a65" font-size="11">パブリック必須</text>
+  <rect x="285" y="180" width="230" height="30" rx="3" fill="#0d1b2e"/>
+  <text x="400" y="200" text-anchor="middle" fill="#ffffff" font-size="11">Public / Private 可</text>
+  <rect x="550" y="180" width="230" height="30" rx="3" fill="#0d1b2e"/>
+  <text x="665" y="200" text-anchor="middle" fill="#ffffff" font-size="11">Public / Private 可</text>
+  <!-- Row: DXGW -->
+  <text x="10" y="235" fill="#aaaaaa" font-size="11">DXGW</text>
+  <rect x="20" y="220" width="230" height="30" rx="3" fill="#16213e"/>
+  <text x="135" y="240" text-anchor="middle" fill="#ffffff" font-size="11">不要</text>
+  <rect x="285" y="220" width="230" height="30" rx="3" fill="#16213e"/>
+  <text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="11">不要（直接 VGW）</text>
+  <rect x="550" y="220" width="230" height="30" rx="3" fill="#16213e"/>
+  <text x="665" y="240" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">必要</text>
+  <!-- Row: 送信プレフィックス上限 -->
+  <text x="10" y="275" fill="#aaaaaa" font-size="11">送信上限</text>
+  <rect x="20" y="260" width="230" height="30" rx="3" fill="#0d1b2e"/>
+  <text x="135" y="280" text-anchor="middle" fill="#ffffff" font-size="11">パブリックIPのみ</text>
+  <rect x="285" y="260" width="230" height="30" rx="3" fill="#0d1b2e"/>
+  <text x="400" y="280" text-anchor="middle" fill="#ff8a65" font-size="11" font-weight="bold">100 プレフィックス</text>
+  <rect x="550" y="260" width="230" height="30" rx="3" fill="#0d1b2e"/>
+  <text x="665" y="280" text-anchor="middle" fill="#ff8a65" font-size="11" font-weight="bold">100 プレフィックス</text>
+  <!-- Row: 複数VPC -->
+  <text x="10" y="320" fill="#aaaaaa" font-size="11">複数VPC</text>
+  <rect x="20" y="305" width="230" height="30" rx="3" fill="#16213e"/>
+  <text x="135" y="325" text-anchor="middle" fill="#ff8a65" font-size="11">不可</text>
+  <rect x="285" y="305" width="230" height="30" rx="3" fill="#16213e"/>
+  <text x="400" y="325" text-anchor="middle" fill="#ff8a65" font-size="11">1 VGW = 1 VPC</text>
+  <rect x="550" y="305" width="230" height="30" rx="3" fill="#16213e"/>
+  <text x="665" y="325" text-anchor="middle" fill="#4caf50" font-size="11" font-weight="bold">複数 VPC 可</text>
+  <!-- Footer tip -->
+  <text x="400" y="375" text-anchor="middle" fill="#f9a825" font-size="11">試験ポイント: マルチアカウント/複数VPC → Transit VIF + DXGW + TGW</text>
+</svg>

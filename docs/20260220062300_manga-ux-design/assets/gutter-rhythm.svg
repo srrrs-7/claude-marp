@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="35" fill="#f9a825" font-size="20" font-weight="bold" text-anchor="middle" font-family="sans-serif">ガター（余白）がリズムを生む</text>
+  <!-- Steps with gutter rhythm -->
+  <!-- Step 1 -->
+  <rect x="40" y="70" width="120" height="80" fill="#16213e" stroke="#f9a825" stroke-width="2" rx="6"/>
+  <text x="100" y="105" fill="#f9a825" font-size="14" text-anchor="middle" font-weight="bold" font-family="sans-serif">STEP 1</text>
+  <text x="100" y="125" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">情報入力</text>
+  <!-- Gutter arrow -->
+  <line x1="165" y1="110" x2="210" y2="110" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="210,104 222,110 210,116" fill="#e91e63"/>
+  <text x="193" y="102" fill="#e91e63" font-size="9" text-anchor="middle" font-family="sans-serif">余白</text>
+  <!-- Step 2 -->
+  <rect x="225" y="70" width="120" height="80" fill="#16213e" stroke="#f9a825" stroke-width="2" rx="6"/>
+  <text x="285" y="105" fill="#f9a825" font-size="14" text-anchor="middle" font-weight="bold" font-family="sans-serif">STEP 2</text>
+  <text x="285" y="125" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">確認</text>
+  <!-- Gutter arrow -->
+  <line x1="350" y1="110" x2="395" y2="110" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="395,104 407,110 395,116" fill="#e91e63"/>
+  <text x="378" y="102" fill="#e91e63" font-size="9" text-anchor="middle" font-family="sans-serif">余白</text>
+  <!-- Step 3 -->
+  <rect x="410" y="70" width="120" height="80" fill="#16213e" stroke="#f9a825" stroke-width="2" rx="6"/>
+  <text x="470" y="105" fill="#f9a825" font-size="14" text-anchor="middle" font-weight="bold" font-family="sans-serif">STEP 3</text>
+  <text x="470" y="125" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">完了</text>
+  <!-- Label: step indicator -->
+  <text x="285" y="180" fill="#a0a0c0" font-size="13" text-anchor="middle" font-family="sans-serif">ステップインジケーターの余白 → 進行感・区切り感</text>
+  <!-- vs no gutter -->
+  <text x="400" y="220" fill="#f9a825" font-size="15" text-anchor="middle" font-family="sans-serif">余白なし → 情報が詰まって窒息感</text>
+  <rect x="100" y="240" width="80" height="60" fill="#333" stroke="#666" stroke-width="1"/>
+  <rect x="181" y="240" width="80" height="60" fill="#333" stroke="#666" stroke-width="1"/>
+  <rect x="262" y="240" width="80" height="60" fill="#333" stroke="#666" stroke-width="1"/>
+  <rect x="343" y="240" width="80" height="60" fill="#333" stroke="#666" stroke-width="1"/>
+  <text x="140" y="275" fill="#888" font-size="10" text-anchor="middle" font-family="sans-serif">詰め込み</text>
+  <text x="221" y="275" fill="#888" font-size="10" text-anchor="middle" font-family="sans-serif">読みにくい</text>
+  <text x="302" y="275" fill="#888" font-size="10" text-anchor="middle" font-family="sans-serif">疲弊感</text>
+  <text x="383" y="275" fill="#888" font-size="10" text-anchor="middle" font-family="sans-serif">離脱↑</text>
+  <text x="400" y="340" fill="#4fc3f7" font-size="13" text-anchor="middle" font-family="sans-serif">マンガのコマ間余白 ＝ UIのホワイトスペース設計</text>
+</svg>

@@ -1,0 +1,67 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff" font-family="sans-serif">イミュータブルデプロイ メリット・デメリット</text>
+
+  <!-- Divider line -->
+  <line x1="400" y1="40" x2="400" y2="385" stroke="#ffffff" stroke-width="1" opacity="0.4"/>
+
+  <!-- Left: Merits -->
+  <rect x="20" y="42" width="370" height="330" rx="8" fill="#14532d" opacity="0.4"/>
+  <text x="205" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#34d399" font-family="sans-serif">メリット</text>
+
+  <rect x="40" y="80" width="340" height="56" rx="6" fill="#14532d" opacity="0.7"/>
+  <text x="65" y="103" font-size="22" fill="#34d399" font-family="sans-serif">0</text>
+  <text x="95" y="102" font-size="12" font-weight="bold" fill="#34d399" font-family="sans-serif">設定ドリフトゼロ</text>
+  <text x="95" y="120" font-size="11" fill="#ffffff" font-family="sans-serif">全インスタンスが同一 AMI から作成</text>
+  <text x="95" y="134" font-size="10" fill="#ffffff" opacity="0.7" font-family="sans-serif">「なぜかあのサーバーだけ動く」が起きない</text>
+
+  <rect x="40" y="146" width="340" height="56" rx="6" fill="#14532d" opacity="0.7"/>
+  <text x="65" y="169" font-size="20" fill="#34d399" font-family="sans-serif">R</text>
+  <text x="95" y="168" font-size="12" font-weight="bold" fill="#34d399" font-family="sans-serif">高速ロールバック</text>
+  <text x="95" y="186" font-size="11" fill="#ffffff" font-family="sans-serif">旧インスタンスへの切り戻しが数秒〜数分</text>
+  <text x="95" y="200" font-size="10" fill="#ffffff" opacity="0.7" font-family="sans-serif">EB Immutable: 一時 ASG 削除のみ</text>
+
+  <rect x="40" y="212" width="340" height="56" rx="6" fill="#14532d" opacity="0.7"/>
+  <text x="65" y="235" font-size="18" fill="#34d399" font-family="sans-serif">+</text>
+  <text x="95" y="234" font-size="12" font-weight="bold" fill="#34d399" font-family="sans-serif">完全な再現性</text>
+  <text x="95" y="252" font-size="11" fill="#ffffff" font-family="sans-serif">Infrastructure as Code と完全に相性が良い</text>
+  <text x="95" y="266" font-size="10" fill="#ffffff" opacity="0.7" font-family="sans-serif">Terraform / CDK でコード化しやすい</text>
+
+  <rect x="40" y="278" width="340" height="56" rx="6" fill="#14532d" opacity="0.7"/>
+  <text x="65" y="301" font-size="18" fill="#34d399" font-family="sans-serif">S</text>
+  <text x="95" y="300" font-size="12" font-weight="bold" fill="#34d399" font-family="sans-serif">バージョン混在なし</text>
+  <text x="95" y="318" font-size="11" fill="#ffffff" font-family="sans-serif">切り替え完了まで旧バージョンのみ稼働</text>
+  <text x="95" y="332" font-size="10" fill="#ffffff" opacity="0.7" font-family="sans-serif">API 後方互換の要件が緩和される</text>
+
+  <!-- Right: Demerits -->
+  <rect x="410" y="42" width="370" height="330" rx="8" fill="#7f1d1d" opacity="0.4"/>
+  <text x="595" y="68" text-anchor="middle" font-size="14" font-weight="bold" fill="#f87171" font-family="sans-serif">デメリット</text>
+
+  <rect x="430" y="80" width="340" height="56" rx="6" fill="#7f1d1d" opacity="0.7"/>
+  <text x="455" y="103" font-size="20" fill="#f87171" font-family="sans-serif">$</text>
+  <text x="482" y="102" font-size="12" font-weight="bold" fill="#f87171" font-family="sans-serif">コスト増加</text>
+  <text x="482" y="120" font-size="11" fill="#ffffff" font-family="sans-serif">デプロイ中は最大 2 倍のインスタンス数</text>
+  <text x="482" y="134" font-size="10" fill="#ffffff" opacity="0.7" font-family="sans-serif">ピーク頻度が高いと月コストに影響大</text>
+
+  <rect x="430" y="146" width="340" height="56" rx="6" fill="#7f1d1d" opacity="0.7"/>
+  <text x="455" y="169" font-size="18" fill="#f87171" font-family="sans-serif">T</text>
+  <text x="482" y="168" font-size="12" font-weight="bold" fill="#f87171" font-family="sans-serif">デプロイ時間が長い</text>
+  <text x="482" y="186" font-size="11" fill="#ffffff" font-family="sans-serif">新インスタンス起動 + ヘルスチェック待機</text>
+  <text x="482" y="200" font-size="10" fill="#ffffff" opacity="0.7" font-family="sans-serif">標準: 5〜15分 (AMI サイズに依存)</text>
+
+  <rect x="430" y="212" width="340" height="56" rx="6" fill="#7f1d1d" opacity="0.7"/>
+  <text x="455" y="235" font-size="18" fill="#f87171" font-family="sans-serif">!</text>
+  <text x="482" y="234" font-size="12" font-weight="bold" fill="#f87171" font-family="sans-serif">AMI ベイクが必要</text>
+  <text x="482" y="252" font-size="11" fill="#ffffff" font-family="sans-serif">Packer 等で AMI 事前作成の CI が必要</text>
+  <text x="482" y="266" font-size="10" fill="#ffffff" opacity="0.7" font-family="sans-serif">パイプラインの複雑度が増す</text>
+
+  <rect x="430" y="278" width="340" height="56" rx="6" fill="#7f1d1d" opacity="0.7"/>
+  <text x="455" y="301" font-size="18" fill="#f87171" font-family="sans-serif">C</text>
+  <text x="482" y="300" font-size="12" font-weight="bold" fill="#f87171" font-family="sans-serif">スケールアウト遅延リスク</text>
+  <text x="482" y="318" font-size="11" fill="#ffffff" font-family="sans-serif">起動時間が長いと Auto Scaling が間に合わない</text>
+  <text x="482" y="332" font-size="10" fill="#ffffff" opacity="0.7" font-family="sans-serif">Warm Pool (事前起動プール) で緩和可能</text>
+
+  <!-- Bottom recommendation -->
+  <rect x="100" y="340" width="600" height="36" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="400" y="362" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="bold" font-family="sans-serif">採用判断: SLA 99.99%以上 / 設定ドリフト課題あり / ロールバック速度が重要 → イミュータブル</text>
+</svg>

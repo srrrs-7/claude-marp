@@ -2,6 +2,7 @@
 
 import { Glob } from "bun";
 import { parse as parseYaml } from "yaml";
+import { type SlideRecord, computeDeckMetrics } from "./lib/quality.js";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -14,6 +15,7 @@ interface PresentationInfo {
 	slideCount: number;
 	readingMins: number;
 	htmlPath: string; // relative to docs/
+	grade: "A" | "B" | "C" | "D";
 }
 
 type CategoryId =
@@ -205,24 +207,17 @@ async function collectPresentations(): Promise<PresentationInfo[]> {
 		// Slide count + reading time from slides-data.json
 		let slideCount = 0;
 		let readingMins = 0;
+		let grade: "A" | "B" | "C" | "D" = "D";
 		const dataPath = `${docsDir}/${dirName}/slides-data.json`;
 		try {
 			const data = (await Bun.file(dataPath).json()) as {
-				slides?: Array<{
-					title?: string;
-					content?: string[];
-					speakerNotes?: string;
-				}>;
+				slides?: SlideRecord[];
 			};
 			const slides = data.slides ?? [];
 			slideCount = slides.length;
-			let chars = 0;
-			for (const s of slides) {
-				chars += (s.title ?? "").length;
-				for (const c of s.content ?? []) chars += c.length;
-				chars += (s.speakerNotes ?? "").length;
-			}
-			readingMins = Math.max(1, Math.ceil(chars / 350));
+			const metrics = computeDeckMetrics(slides);
+			readingMins = metrics.readingMins;
+			grade = metrics.grade;
 		} catch {
 			// slides-data.json may not exist
 		}
@@ -241,6 +236,7 @@ async function collectPresentations(): Promise<PresentationInfo[]> {
 			slideCount,
 			readingMins,
 			htmlPath,
+			grade,
 		});
 	}
 
@@ -276,7 +272,8 @@ function renderCard(p: PresentationInfo, categoryLabel: string): string {
 		p.readingMins < 60
 			? `${p.readingMins} min`
 			: `${Math.floor(p.readingMins / 60)}h ${p.readingMins % 60}m`;
-	return `    <div class="card" data-category="${catId}" data-ts="${ts}" data-slides="${p.slideCount}" data-mins="${p.readingMins}">
+	return `    <div class="card" data-category="${catId}" data-ts="${ts}" data-slides="${p.slideCount}" data-mins="${p.readingMins}" data-grade="${p.grade}">
+      <div class="grade-badge grade-${p.grade}">${p.grade}</div>
       <div class="card-category">${escapeHtml(categoryLabel)}</div>
       <h3>${escapeHtml(p.topic)}</h3>
       <div class="card-meta">
@@ -440,6 +437,18 @@ function generateHtml(
   .btn:hover{background:var(--accent-hover)}
   .btn svg{width:16px;height:16px}
 
+  /* Grade badge */
+  .grade-badge{
+    position:absolute;top:1rem;right:1rem;
+    width:24px;height:24px;border-radius:50%;
+    font-size:.72rem;font-weight:700;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .grade-A{background:#16a34a;color:#fff}
+  .grade-B{background:#2563eb;color:#fff}
+  .grade-C{background:#ca8a04;color:#fff}
+  .grade-D{background:#dc2626;color:#fff}
+
   /* Search */
   .search-wrap{
     max-width:480px;margin:1.5rem auto 0;position:relative;
@@ -474,6 +483,24 @@ function generateHtml(
     font-size:.8rem;transition:all .15s;
   }
   .sort-btn:hover,.sort-btn.active{
+    background:var(--accent);color:#fff;border-color:var(--accent);
+  }
+
+  /* Grade filter bar */
+  .grade-bar{
+    display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;
+    max-width:1100px;margin:0 auto;padding:.5rem 1.5rem .75rem;
+  }
+  .grade-btn{
+    padding:.3rem .8rem;border:1px solid var(--border);border-radius:99px;
+    background:transparent;color:var(--text-sub);cursor:pointer;
+    font-size:.8rem;font-weight:600;transition:all .15s;
+  }
+  .grade-btn-A:hover,.grade-btn-A.active{background:#16a34a;color:#fff;border-color:#16a34a}
+  .grade-btn-B:hover,.grade-btn-B.active{background:#2563eb;color:#fff;border-color:#2563eb}
+  .grade-btn-C:hover,.grade-btn-C.active{background:#ca8a04;color:#fff;border-color:#ca8a04}
+  .grade-btn-D:hover,.grade-btn-D.active{background:#dc2626;color:#fff;border-color:#dc2626}
+  .grade-btn:not([class*="grade-btn-"]):hover,.grade-btn:not([class*="grade-btn-"]).active{
     background:var(--accent);color:#fff;border-color:var(--accent);
   }
 
@@ -524,6 +551,15 @@ function generateHtml(
 ${filterButtons}
 </nav>
 
+<div class="grade-bar">
+  <span class="sort-label">Grade:</span>
+  <button class="grade-btn active" data-grade="all">All</button>
+  <button class="grade-btn grade-btn-A" data-grade="A">A</button>
+  <button class="grade-btn grade-btn-B" data-grade="B">B</button>
+  <button class="grade-btn grade-btn-C" data-grade="C">C</button>
+  <button class="grade-btn grade-btn-D" data-grade="D">D</button>
+</div>
+
 <div class="sort-bar">
   <span class="sort-label">Sort:</span>
   <button class="sort-btn active" data-sort="newest">Newest</button>
@@ -554,6 +590,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   let activeFilter='all';
   let searchQuery='';
   let activeSort='newest';
+  let activeGrade='all';
 
   function getCardVal(c,sort){
     if(sort==='slides')return parseInt(c.dataset.slides||'0',10);
@@ -575,7 +612,8 @@ document.addEventListener('DOMContentLoaded',()=>{
     document.querySelectorAll('.card').forEach(c=>{
       const matchFilter=activeFilter==='all'||c.dataset.category===activeFilter;
       const matchSearch=!searchQuery||c.querySelector('h3').textContent.toLowerCase().includes(searchQuery);
-      const visible=matchFilter&&matchSearch;
+      const matchGrade=activeGrade==='all'||c.dataset.grade===activeGrade;
+      const visible=matchFilter&&matchSearch&&matchGrade;
       c.style.display=visible?'':'none';
       if(visible)anyVisible=true;
     });
@@ -610,6 +648,16 @@ document.addEventListener('DOMContentLoaded',()=>{
   searchInput.addEventListener('input',()=>{
     searchQuery=searchInput.value.trim().toLowerCase();
     applyFilters();
+  });
+
+  const gradeBtns=document.querySelectorAll('.grade-btn');
+  gradeBtns.forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      gradeBtns.forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
+      activeGrade=btn.dataset.grade;
+      applyFilters();
+    });
   });
 
   sortGrids();

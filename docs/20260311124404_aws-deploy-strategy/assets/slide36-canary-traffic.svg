@@ -1,0 +1,70 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="380" fill="transparent"/>
+
+  <!-- Title row: Users -->
+  <rect x="330" y="15" width="140" height="40" rx="8" fill="#6d28d9"/>
+  <text x="400" y="40" text-anchor="middle" font-size="14" fill="#ffffff" font-family="sans-serif">本番ユーザー</text>
+
+  <!-- Arrow to LB -->
+  <line x1="400" y1="55" x2="400" y2="88" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="400,88 394,76 406,76" fill="#a855f7"/>
+
+  <!-- Load Balancer -->
+  <rect x="270" y="88" width="260" height="40" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="2"/>
+  <text x="400" y="112" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">ALB / CodeDeploy Router</text>
+
+  <!-- Phase bars label -->
+  <text x="120" y="160" text-anchor="middle" font-size="12" fill="#60a5fa" font-family="sans-serif">フェーズ 1</text>
+  <text x="400" y="160" text-anchor="middle" font-size="12" fill="#a855f7" font-family="sans-serif">フェーズ 2</text>
+  <text x="680" y="160" text-anchor="middle" font-size="12" fill="#34d399" font-family="sans-serif">フェーズ 3</text>
+
+  <!-- Phase 1: 5% canary -->
+  <rect x="30" y="170" width="180" height="120" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="120" y="194" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa" font-family="sans-serif">5% カナリア</text>
+  <rect x="50" y="204" width="140" height="22" rx="4" fill="#60a5fa" opacity="0.3"/>
+  <rect x="50" y="204" width="7" height="22" rx="2" fill="#60a5fa"/>
+  <text x="120" y="220" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">v2: 5% | v1: 95%</text>
+  <text x="120" y="244" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">エラーレート / レイテンシ</text>
+  <text x="120" y="260" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">5分〜10分監視</text>
+  <text x="120" y="278" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">問題なければ次フェーズへ</text>
+
+  <!-- Arrow 1→2 -->
+  <line x1="210" y1="230" x2="308" y2="230" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="308,230 296,224 296,236" fill="#a855f7"/>
+
+  <!-- Phase 2: 25% -->
+  <rect x="308" y="170" width="184" height="120" rx="10" fill="#312e81" stroke="#a855f7" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="400" y="194" text-anchor="middle" font-size="13" font-weight="bold" fill="#a855f7" font-family="sans-serif">25% カナリア</text>
+  <rect x="328" y="204" width="144" height="22" rx="4" fill="#a855f7" opacity="0.3"/>
+  <rect x="328" y="204" width="36" height="22" rx="2" fill="#a855f7"/>
+  <text x="400" y="220" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">v2: 25% | v1: 75%</text>
+  <text x="400" y="244" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">ビジネスメトリクス確認</text>
+  <text x="400" y="260" text-anchor="middle" font-size="11" fill="#a855f7" font-family="sans-serif">10分〜30分監視</text>
+  <text x="400" y="278" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">問題なければ全展開へ</text>
+
+  <!-- Arrow 2→3 -->
+  <line x1="492" y1="230" x2="590" y2="230" stroke="#34d399" stroke-width="2"/>
+  <polygon points="590,230 578,224 578,236" fill="#34d399"/>
+
+  <!-- Phase 3: 100% -->
+  <rect x="590" y="170" width="180" height="120" rx="10" fill="#052e16" stroke="#34d399" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="680" y="194" text-anchor="middle" font-size="13" font-weight="bold" fill="#34d399" font-family="sans-serif">100% 全展開</text>
+  <rect x="610" y="204" width="140" height="22" rx="4" fill="#34d399"/>
+  <text x="680" y="220" text-anchor="middle" font-size="11" fill="#052e16" font-family="sans-serif">v2: 100% | v1: 0%</text>
+  <text x="680" y="244" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">全メトリクス正常</text>
+  <text x="680" y="260" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">デプロイ完了</text>
+  <text x="680" y="278" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">v1 環境を削除</text>
+
+  <!-- Rollback arrow back -->
+  <path d="M 308 310 Q 200 345 120 310" stroke="#f97316" stroke-width="1.5" fill="none" stroke-dasharray="5,3"/>
+  <polygon points="120,310 130,302 130,318" fill="#f97316"/>
+  <text x="215" y="360" text-anchor="middle" font-size="11" fill="#f97316" font-family="sans-serif">問題発生時: 即時ロールバック</text>
+
+  <!-- Arrows from LB to phases -->
+  <line x1="350" y1="128" x2="120" y2="170" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="120,170 116,158 128,160" fill="#60a5fa"/>
+  <line x1="400" y1="128" x2="400" y2="170" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="400,170 394,158 406,158" fill="#a855f7"/>
+  <line x1="450" y1="128" x2="680" y2="170" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="680,170 672,158 684,160" fill="#34d399"/>
+</svg>

@@ -30,6 +30,7 @@
 			"title": "Wood Wide Web：地下に広がる森のインターネット",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/wood-wide-web.svg)",
 				"- 菌根菌（Mycorrhizal Fungi）が木の根を地下で接続",
 				"- 1本の木は平均 **数十〜数百の他の木** と接続",
 				"- ネットワーク全長は **1gの土壌に数km** の菌糸",
@@ -47,6 +48,7 @@
 			"title": "Mother Tree：ネットワークのハブノード",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/mother-tree-hub.svg)",
 				"- **Mother Tree**（母樹）= 最も多くの接続を持つハブ",
 				"- 森林内の **最大40種以上** の他の木と菌糸接続",
 				"- 日陰の若木（Sapling）に炭素を優先的に供給",
@@ -100,6 +102,7 @@
 			"title": "化学シグナルの仕組み",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/chem-signal.svg)",
 				"- 虫害を受けた木が **ジャスモン酸** を菌糸経由で送信",
 				"- 受信した木は事前に **防御酵素** を生成開始",
 				"- シグナル到達速度: 数時間〜数日（物理的拡散）",
@@ -129,7 +132,10 @@
 		},
 		{
 			"title": "リソース再分配のコード比較",
-			"content": ["- 菌糸ネットワークの栄養素転送 ≒ P2Pの負荷分散アルゴリズム"],
+			"content": [
+				"![w:800 center](assets/resource-redistribution-flow.svg)",
+				"- 菌糸ネットワークの栄養素転送 ≒ P2Pの負荷分散アルゴリズム"
+			],
 			"layout": "default"
 		},
 		{
@@ -153,6 +159,7 @@
 			"title": "自己修復メカニズム：菌糸 vs P2P",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/self-healing.svg)",
 				"- **菌糸**: 損傷を検知 → 新しい菌糸が迂回経路を形成",
 				"- **P2P**: ノード離脱を検知 → DHT/Gossipで経路再構築",
 				"- 両者とも **冗長接続** が前提（Replication Factor）",

@@ -1,0 +1,38 @@
+<svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="340" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">なぜ日本が世界を制覇できたか：5つの構造的優位性</text>
+  <!-- Pentagon-like layout -->
+  <!-- Top center -->
+  <rect x="286" y="46" width="228" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="67" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#f9a825" font-weight="bold">1. アタリショック後の空白</text>
+  <text x="400" y="84" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">競合不在の市場に参入</text>
+  <!-- Left -->
+  <rect x="30" y="114" width="228" height="50" rx="8" fill="#16213e" stroke="#4ec9b0" stroke-width="2"/>
+  <text x="144" y="135" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#4ec9b0" font-weight="bold">2. ハード・ソフト垂直統合</text>
+  <text x="144" y="152" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">プラットフォーム+コンテンツ</text>
+  <!-- Right -->
+  <rect x="542" y="114" width="228" height="50" rx="8" fill="#16213e" stroke="#4ec9b0" stroke-width="2"/>
+  <text x="656" y="135" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#4ec9b0" font-weight="bold">3. 品質管理の徹底</text>
+  <text x="656" y="152" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">任天堂モデルが業界標準に</text>
+  <!-- Bottom left -->
+  <rect x="110" y="230" width="228" height="50" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="224" y="251" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e91e63" font-weight="bold">4. 文化的蓄積</text>
+  <text x="224" y="268" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">マンガ・アニメの技法</text>
+  <!-- Bottom right -->
+  <rect x="462" y="230" width="228" height="50" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="576" y="251" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e91e63" font-weight="bold">5. 長期的視点の経営</text>
+  <text x="576" y="268" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">短期利益より「ファンの信頼」</text>
+  <!-- Connecting lines -->
+  <line x1="286" y1="71" x2="258" y2="114" stroke="#555" stroke-width="1" opacity="0.6"/>
+  <line x1="514" y1="71" x2="542" y2="114" stroke="#555" stroke-width="1" opacity="0.6"/>
+  <line x1="144" y1="164" x2="180" y2="230" stroke="#555" stroke-width="1" opacity="0.6"/>
+  <line x1="656" y1="164" x2="620" y2="230" stroke="#555" stroke-width="1" opacity="0.6"/>
+  <line x1="338" y1="280" x2="462" y2="280" stroke="#555" stroke-width="1" opacity="0.6"/>
+  <!-- Center: result -->
+  <rect x="310" y="148" width="180" height="62" rx="8" fill="#0d1b2a" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="172" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#f9a825" font-weight="bold">世界市場 98%</text>
+  <text x="400" y="190" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#aaa">制覇（1990年代）</text>
+  <!-- Result -->
+  <rect x="100" y="294" width="600" height="34" rx="6" fill="#16213e"/>
+  <text x="400" y="316" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#ffffff">5つの要素が相乗効果を発揮 → 構造的必然の勝利</text>
+</svg>

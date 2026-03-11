@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="400" fill="transparent"/>
+
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#ffffff">Elastic Beanstalk: All at once デプロイフロー</text>
+
+  <!-- Phase labels -->
+  <text x="120" y="60" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#34d399">Phase 1: 初期状態</text>
+  <text x="390" y="60" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f97316">Phase 2: デプロイ中</text>
+  <text x="655" y="60" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#34d399">Phase 3: 完了</text>
+
+  <!-- Phase dividers -->
+  <line x1="253" y1="50" x2="253" y2="390" stroke="#374151" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="520" y1="50" x2="520" y2="390" stroke="#374151" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- Phase 1: All running v1 -->
+  <!-- Instance 1 -->
+  <rect x="40" y="80" width="160" height="55" rx="8" fill="#1e1b4b" stroke="#34d399" stroke-width="2"/>
+  <text x="120" y="104" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">EC2 Instance 1</text>
+  <text x="120" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">v1.0 ✓ 稼働中</text>
+
+  <rect x="40" y="155" width="160" height="55" rx="8" fill="#1e1b4b" stroke="#34d399" stroke-width="2"/>
+  <text x="120" y="179" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">EC2 Instance 2</text>
+  <text x="120" y="199" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">v1.0 ✓ 稼働中</text>
+
+  <rect x="40" y="230" width="160" height="55" rx="8" fill="#1e1b4b" stroke="#34d399" stroke-width="2"/>
+  <text x="120" y="254" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">EC2 Instance 3</text>
+  <text x="120" y="274" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">v1.0 ✓ 稼働中</text>
+
+  <!-- ALB indicator Phase 1 -->
+  <rect x="55" y="305" width="130" height="35" rx="6" fill="#0f172a" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="120" y="328" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#60a5fa">ALB: 全インスタンスへ振り分け</text>
+
+  <!-- Phase 2: All stopped/updating -->
+  <!-- Instance 1 - stopped -->
+  <rect x="274" y="80" width="160" height="55" rx="8" fill="#1e1b4b" stroke="#f97316" stroke-width="2"/>
+  <text x="354" y="104" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f97316">EC2 Instance 1</text>
+  <text x="354" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fca5a5">⚠ 停止・更新中</text>
+
+  <rect x="274" y="155" width="160" height="55" rx="8" fill="#1e1b4b" stroke="#f97316" stroke-width="2"/>
+  <text x="354" y="179" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f97316">EC2 Instance 2</text>
+  <text x="354" y="199" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fca5a5">⚠ 停止・更新中</text>
+
+  <rect x="274" y="230" width="160" height="55" rx="8" fill="#1e1b4b" stroke="#f97316" stroke-width="2"/>
+  <text x="354" y="254" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f97316">EC2 Instance 3</text>
+  <text x="354" y="274" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#fca5a5">⚠ 停止・更新中</text>
+
+  <!-- ALB indicator Phase 2 -->
+  <rect x="289" y="305" width="130" height="35" rx="6" fill="#3b0f0f" stroke="#f97316" stroke-width="1.5"/>
+  <text x="354" y="320" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f97316">ALB: リクエスト</text>
+  <text x="354" y="335" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fca5a5">すべて503エラー</text>
+
+  <!-- Downtime indicator -->
+  <rect x="265" y="355" width="265" height="30" rx="6" fill="#7f1d1d" stroke="#f97316" stroke-width="1.5"/>
+  <text x="397" y="375" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#fca5a5">ダウンタイム発生中 (3〜10分)</text>
+
+  <!-- Phase 3: All running v2 -->
+  <rect x="540" y="80" width="160" height="55" rx="8" fill="#1e1b4b" stroke="#34d399" stroke-width="2"/>
+  <text x="620" y="104" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">EC2 Instance 1</text>
+  <text x="620" y="124" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">v2.0 ✓ 稼働中</text>
+
+  <rect x="540" y="155" width="160" height="55" rx="8" fill="#1e1b4b" stroke="#34d399" stroke-width="2"/>
+  <text x="620" y="179" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">EC2 Instance 2</text>
+  <text x="620" y="199" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">v2.0 ✓ 稼働中</text>
+
+  <rect x="540" y="230" width="160" height="55" rx="8" fill="#1e1b4b" stroke="#34d399" stroke-width="2"/>
+  <text x="620" y="254" text-anchor="middle" font-family="sans-serif" font-size="12" font-weight="bold" fill="#34d399">EC2 Instance 3</text>
+  <text x="620" y="274" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">v2.0 ✓ 稼働中</text>
+
+  <!-- ALB indicator Phase 3 -->
+  <rect x="555" y="305" width="130" height="35" rx="6" fill="#0f172a" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="620" y="328" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#60a5fa">ALB: 全インスタンスへ振り分け</text>
+
+  <!-- Summary -->
+  <text x="400" y="395" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#9ca3af">All at once = 最速・最安 / ただしダウンタイム必須。 開発・テスト環境専用推奨。</text>
+</svg>

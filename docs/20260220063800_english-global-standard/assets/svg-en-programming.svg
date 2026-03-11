@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">なぜプログラミング言語は英語か</text>
+  <!-- 3 columns -->
+  <rect x="40" y="55" width="215" height="240" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="147" y="85" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">歴史的偶然</text>
+  <text x="147" y="112" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">最初の発明者が</text>
+  <text x="147" y="130" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">英語圏（米・英）</text>
+  <text x="147" y="158" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">FORTRAN (1957)</text>
+  <text x="147" y="176" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">COBOL (1959)</text>
+  <text x="147" y="194" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">C (1972)</text>
+  <text x="147" y="212" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">Python (1991)</text>
+  <rect x="293" y="55" width="215" height="240" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="85" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">ネットワーク効果</text>
+  <text x="400" y="112" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">英語キーワードが</text>
+  <text x="400" y="130" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">デファクト標準に</text>
+  <text x="400" y="158" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">if / else / while</text>
+  <text x="400" y="176" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">function / class</text>
+  <text x="400" y="194" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">import / return</text>
+  <text x="400" y="212" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">変更コスト → 無限大</text>
+  <rect x="546" y="55" width="215" height="240" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="653" y="85" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">現代への影響</text>
+  <text x="653" y="112" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">英語能力が</text>
+  <text x="653" y="130" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">技術アクセスを左右</text>
+  <text x="653" y="158" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">Stack Overflow</text>
+  <text x="653" y="176" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">GitHub README</text>
+  <text x="653" y="194" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">AI (GPT/Claude)</text>
+  <text x="653" y="212" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">技術格差の構造的原因</text>
+  <rect x="100" y="315" width="600" height="35" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="335" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">言語 = 技術インフラ — 変更不可能なレガシーシステム</text>
+</svg>

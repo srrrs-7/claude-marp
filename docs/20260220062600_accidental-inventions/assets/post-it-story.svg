@@ -1,0 +1,39 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">ポストイット（1968-1980年）— 12年の旅</text>
+  <line x1="60" y1="165" x2="740" y2="165" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+  <circle cx="120" cy="165" r="10" fill="#e91e63"/>
+  <line x1="120" y1="155" x2="120" y2="85" stroke="#e91e63" stroke-width="2"/>
+  <rect x="50" y="50" width="140" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="120" y="72" text-anchor="middle" font-size="11" fill="#e91e63">1968年</text>
+  <text x="120" y="90" text-anchor="middle" font-size="10" fill="#ffffff">スペンサー・シルバー</text>
+  <text x="120" y="106" text-anchor="middle" font-size="10" fill="#ffffff">弱い接着剤を発明</text>
+  <text x="120" y="185" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">「失敗作」として保留</text>
+  <circle cx="320" cy="165" r="10" fill="#f9a825"/>
+  <line x1="320" y1="175" x2="320" y2="245" stroke="#f9a825" stroke-width="2"/>
+  <rect x="250" y="248" width="140" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="320" y="268" text-anchor="middle" font-size="11" fill="#f9a825">1974年</text>
+  <text x="320" y="286" text-anchor="middle" font-size="10" fill="#ffffff">アート・フライ</text>
+  <text x="320" y="302" text-anchor="middle" font-size="10" fill="#ffffff">賛美歌の栞に応用</text>
+  <circle cx="520" cy="165" r="10" fill="#f9a825"/>
+  <line x1="520" y1="155" x2="520" y2="85" stroke="#f9a825" stroke-width="2"/>
+  <rect x="450" y="50" width="140" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="520" y="72" text-anchor="middle" font-size="11" fill="#f9a825">1977年</text>
+  <text x="520" y="90" text-anchor="middle" font-size="10" fill="#ffffff">市場テスト</text>
+  <text x="520" y="106" text-anchor="middle" font-size="10" fill="#ffffff">ボイシー市で試験販売</text>
+  <text x="520" y="185" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">当初は低評価</text>
+  <circle cx="700" cy="165" r="12" fill="#4caf50"/>
+  <line x1="700" y1="175" x2="700" y2="245" stroke="#4caf50" stroke-width="2"/>
+  <rect x="630" y="248" width="140" height="60" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="700" y="268" text-anchor="middle" font-size="11" fill="#4caf50">1980年</text>
+  <text x="700" y="286" text-anchor="middle" font-size="10" fill="#ffffff">全米発売</text>
+  <text x="700" y="302" text-anchor="middle" font-size="10" fill="#ffffff">大ヒット商品に</text>
+  <rect x="30" y="320" width="350" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="205" y="344" text-anchor="middle" font-size="12" fill="#e91e63">失敗作の再発見</text>
+  <text x="205" y="362" text-anchor="middle" font-size="11" fill="#ffffff">「役に立たない発明」が12年後に価値</text>
+  <text x="205" y="377" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">用途は発明後に見つかる</text>
+  <rect x="420" y="320" width="350" height="60" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="595" y="344" text-anchor="middle" font-size="12" fill="#4caf50">組織文化の役割</text>
+  <text x="595" y="362" text-anchor="middle" font-size="11" fill="#ffffff">3Mは「失敗」を保管し共有した</text>
+  <text x="595" y="377" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">cross-pollination が価値を生む</text>
+</svg>

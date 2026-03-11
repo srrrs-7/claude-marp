@@ -1,0 +1,57 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="400" fill="transparent"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">RTO / RPO 観点のデプロイ戦略比較</text>
+
+  <!-- Axes -->
+  <!-- X axis: RTO (left=short, right=long) -->
+  <line x1="100" y1="340" x2="740" y2="340" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="740,335 750,340 740,345" fill="#94a3b8"/>
+  <text x="750" y="355" text-anchor="start" fill="#94a3b8" font-size="12" font-family="sans-serif">RTO長</text>
+  <text x="80" y="355" text-anchor="end" fill="#94a3b8" font-size="12" font-family="sans-serif">RTO短</text>
+  <text x="400" y="375" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">→ 目標復旧時間 (RTO: Recovery Time Objective)</text>
+
+  <!-- Y axis: RPO (bottom=long, top=short) -->
+  <line x1="100" y1="340" x2="100" y2="50" stroke="#94a3b8" stroke-width="2"/>
+  <polygon points="95,50 100,40 105,50" fill="#94a3b8"/>
+  <text x="85" y="50" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif" transform="rotate(-90,85,50)">RPO短</text>
+  <text x="75" y="345" text-anchor="middle" fill="#94a3b8" font-size="12" font-family="sans-serif">RPO長</text>
+  <text x="30" y="195" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif" transform="rotate(-90,30,195)">目標復旧時点 (RPO)</text>
+
+  <!-- Grid lines -->
+  <line x1="100" y1="190" x2="740" y2="190" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,4"/>
+  <line x1="420" y1="50" x2="420" y2="340" stroke="#1e293b" stroke-width="1" stroke-dasharray="5,4"/>
+
+  <!-- Quadrant labels -->
+  <text x="260" y="100" text-anchor="middle" fill="#334155" font-size="11" font-family="sans-serif">RTO短・RPO短</text>
+  <text x="260" y="115" text-anchor="middle" fill="#334155" font-size="10" font-family="sans-serif">ミッションクリティカル</text>
+  <text x="580" y="260" text-anchor="middle" fill="#334155" font-size="11" font-family="sans-serif">RTO長・RPO長</text>
+  <text x="580" y="275" text-anchor="middle" fill="#334155" font-size="10" font-family="sans-serif">開発・ステージング</text>
+
+  <!-- Strategy bubbles -->
+  <!-- Blue/Green: RTO short, RPO short -->
+  <circle cx="200" cy="130" r="45" fill="#1e1b4b" stroke="#a855f7" stroke-width="2.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="200" y="122" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Blue/</text>
+  <text x="200" y="138" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Green</text>
+  <text x="200" y="154" text-anchor="middle" fill="#a855f7" font-size="10" font-family="sans-serif">最適</text>
+
+  <!-- Canary: RTO somewhat short, RPO somewhat short -->
+  <circle cx="300" cy="170" r="40" fill="#1e1b4b" stroke="#34d399" stroke-width="2.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="300" y="162" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">カナリア</text>
+  <text x="300" y="180" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">段階的</text>
+
+  <!-- Rolling: middle -->
+  <circle cx="460" cy="230" r="40" fill="#1e1b4b" stroke="#60a5fa" stroke-width="2.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="460" y="222" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">ローリング</text>
+  <text x="460" y="240" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="sans-serif">バランス</text>
+
+  <!-- Recreate: RTO long, RPO long -->
+  <circle cx="620" cy="295" r="38" fill="#1e1b4b" stroke="#f59e0b" stroke-width="2.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="620" y="287" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Recreate</text>
+  <text x="620" y="305" text-anchor="middle" fill="#f59e0b" font-size="10" font-family="sans-serif">ダウンタイム有</text>
+
+  <!-- Axis labels -->
+  <text x="130" y="340" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif">秒</text>
+  <text x="230" y="340" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="sans-serif">分</text>
+  <text x="420" y="340" text-anchor="middle" fill="#f59e0b" font-size="11" font-family="sans-serif">時間</text>
+  <text x="640" y="340" text-anchor="middle" fill="#ef4444" font-size="11" font-family="sans-serif">日</text>
+</svg>

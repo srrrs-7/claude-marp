@@ -12,6 +12,7 @@
 		{
 			"title": "アジェンダ",
 			"content": [
+				"![w:800 center](assets/svg-en-agenda.svg)",
 				"1. 英語の現在の地位",
 				"2. 大英帝国と英語の拡散",
 				"3. アメリカの経済力と文化力",
@@ -59,6 +60,7 @@
 		{
 			"title": "なぜフランス語ではなく英語か",
 			"content": [
+				"![w:800 center](assets/svg-en-why-not-french.svg)",
 				"**18世紀まではフランス語が外交の共通語だった**",
 				"1919年ベルサイユ条約：英語が初めて外交言語として使用",
 				"決定的要因：**アメリカの台頭**",
@@ -92,6 +94,7 @@
 		{
 			"title": "インターネットは英語で生まれた",
 			"content": [
+				"![w:800 center](assets/svg-en-internet.svg)",
 				"ARPANET（1969年）― 米国国防総省の英語プロジェクト",
 				"HTTP/HTML ― 英語のキーワードで構成",
 				"初期のWebサイトは**99%が英語**（1995年時点）",
@@ -109,6 +112,7 @@
 		{
 			"title": "なぜ全てのプログラミング言語は英語ベースか",
 			"content": [
+				"![w:800 center](assets/svg-en-programming.svg)",
 				"**if, else, for, while, return, class, function...**",
 				"全ての主要プログラミング言語のキーワードは英語",
 				"これは技術的必然ではない ― 歴史的偶然+文化的慣性",

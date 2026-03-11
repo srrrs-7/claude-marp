@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="28" fill="#ffffff" font-size="16" font-family="sans-serif" text-anchor="middle" font-weight="bold">まとめ — 地図と領域の哲学をLLMに適用する</text>
+  <!-- 3 pillars -->
+  <rect x="40" y="55" width="210" height="230" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="145" y="88" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">理解</text>
+  <text x="145" y="115" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">LLMは世界モデル</text>
+  <text x="145" y="135" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">ではなく地図</text>
+  <text x="145" y="163" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">統計パターンの圧縮</text>
+  <text x="145" y="181" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">知識カットオフあり</text>
+  <text x="145" y="199" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">自信と正確性は別物</text>
+  <text x="145" y="260" fill="#f9a825" font-size="28" font-family="sans-serif" text-anchor="middle">🗺</text>
+  <rect x="296" y="55" width="210" height="230" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2.5"/>
+  <text x="401" y="88" fill="#e91e63" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">検証</text>
+  <text x="401" y="115" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">出力を盲信しない</text>
+  <text x="401" y="135" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">ファクトチェック習慣</text>
+  <text x="401" y="163" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">引用元を要求する</text>
+  <text x="401" y="181" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">複数ソース照合</text>
+  <text x="401" y="199" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">不確かさを明示させる</text>
+  <text x="401" y="260" fill="#e91e63" font-size="24" font-family="sans-serif" text-anchor="middle">🔍</text>
+  <rect x="552" y="55" width="210" height="230" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="657" y="88" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">補完</text>
+  <text x="657" y="115" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">地図の弱点を補う</text>
+  <text x="657" y="135" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">ツールで拡張する</text>
+  <text x="657" y="163" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">RAGで最新情報注入</text>
+  <text x="657" y="181" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">計算は計算機に委譲</text>
+  <text x="657" y="199" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">Human-in-the-Loop</text>
+  <text x="657" y="260" fill="#f9a825" font-size="24" font-family="sans-serif" text-anchor="middle">🔧</text>
+  <text x="400" y="320" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">「地図は領域ではない」を知ることが、AI活用の出発点</text>
+  <text x="400" y="348" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">コルジブスキーの洞察（1931）はLLM時代に最も重要な知的ツールの一つ</text>
+</svg>

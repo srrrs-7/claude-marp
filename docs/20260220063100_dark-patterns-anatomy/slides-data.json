@@ -23,7 +23,7 @@
 		},
 		{
 			"title": "ダークパターンとは何か",
-			"content": [],
+			"content": ["![w:900 center](assets/what-is-darkpattern.svg)"],
 			"layout": "section"
 		},
 		{
@@ -41,7 +41,7 @@
 		},
 		{
 			"title": "6つの分類と具体例",
-			"content": [],
+			"content": ["![w:900 center](assets/dark-pattern-taxonomy.svg)"],
 			"layout": "section"
 		},
 		{
@@ -100,7 +100,7 @@
 		},
 		{
 			"title": "なぜ効くのか：認知科学の視点",
-			"content": [],
+			"content": ["![w:900 center](assets/cognitive-science-why.svg)"],
 			"layout": "section"
 		},
 		{
@@ -126,7 +126,7 @@
 		},
 		{
 			"title": "企業にとってのリスク",
-			"content": [],
+			"content": ["![w:900 center](assets/business-risk.svg)"],
 			"layout": "section"
 		},
 		{
@@ -150,6 +150,7 @@
 		{
 			"title": "EU・FTCの対応",
 			"content": [
+				"![w:900 center](assets/regulation-timeline.svg)",
 				"**EU DSA（デジタルサービス法、2024年施行）**",
 				"ダークパターンを明示的に禁止（初の包括的規制）",
 				"違反時：全世界売上の6%の制裁金",
@@ -162,7 +163,7 @@
 		},
 		{
 			"title": "エシカルデザインの実践",
-			"content": [],
+			"content": ["![w:900 center](assets/ethical-ux-principles.svg)"],
 			"layout": "section"
 		},
 		{

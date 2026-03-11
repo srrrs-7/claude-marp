@@ -23,7 +23,7 @@
 		},
 		{
 			"title": "確証バイアスとは何か",
-			"content": [],
+			"content": ["![w:900 center](assets/what-is-bias.svg)"],
 			"layout": "section"
 		},
 		{
@@ -42,7 +42,7 @@
 		},
 		{
 			"title": "コードレビューでの確証バイアス",
-			"content": [],
+			"content": ["![w:900 center](assets/code-review-bias.svg)"],
 			"layout": "section"
 		},
 		{
@@ -62,6 +62,7 @@
 		{
 			"title": "コードレビューに潜む5つのバイアス",
 			"content": [
+				"![w:900 center](assets/cognitive-bias-overview.svg)",
 				"**1. 著者バイアス** ― 知っている人のコードは甘く見る",
 				"**2. 技術バイアス** ― 自分が推す技術の問題を見逃す",
 				"**3. 規模バイアス** ― 小さなPRは「問題ないだろう」と油断",
@@ -102,7 +103,7 @@
 		},
 		{
 			"title": "チーム力学との相互作用",
-			"content": [],
+			"content": ["![w:900 center](assets/team-dynamics.svg)"],
 			"layout": "section"
 		},
 		{
@@ -127,6 +128,7 @@
 		{
 			"title": "レビュープロセスの改善",
 			"content": [
+				"![w:900 center](assets/checklist-practices.svg)",
 				"**1. 小さなPR** ― 200行以下を推奨（注意力の限界を考慮）",
 				"**2. チェックリスト** ― 見るべき観点を構造化する",
 				"**3. 時間制限** ― 60分以上のレビューは効果が低下する",
@@ -139,6 +141,7 @@
 		{
 			"title": "レビュアーのマインドセット（1/2）",
 			"content": [
+				"![w:900 center](assets/mindset-shift.svg)",
 				"**「バグを見つける」のではなく「理解する」姿勢**",
 				"「このコードの意図は何か」を最初に問う",
 				"自分の好みと客観的品質を区別する",
@@ -175,6 +178,7 @@
 		{
 			"title": "AIコードレビューは確証バイアスを解決するか（2/2）",
 			"content": [
+				"![w:900 center](assets/ai-review-limits.svg)",
 				"**AIの限界：** 学習データのバイアスを引き継ぐ",
 				"「よくあるパターン」=「良いパターン」と判断する傾向",
 				"ビジネスロジックの妥当性は判断できない",

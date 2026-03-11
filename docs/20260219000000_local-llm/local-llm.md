@@ -7,6 +7,71 @@ paginate: true
 header: "ローカルLLM完全ガイド 2026"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.05em;
   }
@@ -67,11 +132,66 @@ style: |
 <!-- _class: lead -->
 # ローカルLLMとは？
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ローカルLLM とは</text>
+  <rect x="50" y="80" width="300" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="111" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">クラウドLLM</text>
+<text x="200" y="132" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">API呼び出し / GPT-4 / Claude</text>
+  <rect x="450" y="80" width="300" height="80" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="111" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ローカルLLM</text>
+<text x="600" y="132" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">自機実行 / Llama / Mistral</text>
+  <line x1="350" y1="120" x2="450" y2="120" stroke="#e91e63" stroke-width="3" stroke-dasharray="8,4"/>
+  <text x="400" y="120" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="22" font-weight="bold" font-family="sans-serif">VS</text>
+  <rect x="50" y="240" width="135" height="55" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="267.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">データ外部送信</text>
+
+  <rect x="195" y="240" width="135" height="55" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="262.5" y="267.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">月額コスト発生</text>
+
+  <rect x="50" y="310" width="135" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="337.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">完全プライベート</text>
+
+  <rect x="195" y="310" width="135" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="262.5" y="337.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">ランニングコスト0</text>
+
+  <rect x="450" y="240" width="135" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="517.5" y="267.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">オフライン動作</text>
+
+  <rect x="595" y="240" width="135" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="662.5" y="267.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">カスタマイズ自由</text>
+
+</svg>
+
 
 ---
 
 # LLMの仕組みおさらい
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">LLM のアーキテクチャ概要</text>
+  <rect x="30" y="80" width="120" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="90" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">入力</text>
+<text x="90" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">トークン列</text>
+  <line x1="150" y1="110" x2="220" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="220,110 208,116 208,104" fill="#f9a825"/>
+  <rect x="220" y="65" width="180" height="90" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="310" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Transformer</text>
+<text x="310" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Self-Attention × N層</text>
+  <line x1="400" y1="110" x2="470" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="470,110 458,116 458,104" fill="#f9a825"/>
+  <rect x="470" y="80" width="120" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="530" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">出力</text>
+<text x="530" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">次トークン</text>
+  <rect x="620" y="80" width="150" height="60" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Weights</text>
+<text x="695" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">モデルファイル</text>
+  <line x1="620" y1="110" x2="600" y2="110" stroke="#9c27b0" stroke-width="2.5"/>
+<polygon points="600,110 612,104 612,116" fill="#9c27b0"/>
+  <rect x="200" y="230" width="400" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="265" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">パラメータ数 → 7B / 13B / 70B = モデルサイズ</text>
+
+  <text x="400" y="340" text-anchor="middle" dominant-baseline="middle" fill="#00bcd4" font-size="13" font-weight="normal" font-family="sans-serif">推論 = テキスト → トークン化 → 行列演算 → デコード</text>
+</svg>
 - **LLM（大規模言語モデル）**: 大量テキストで学習したニューラルネットワーク
 - **トークン**: テキストをモデルが処理する最小単位（単語の一部〜数文字）
 - **推論（Inference）**: 学習済みモデルを使って出力を生成するプロセス
@@ -87,6 +207,22 @@ style: |
 
 # ローカルLLMの定義
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ローカルLLM の定義</text>
+  <rect x="30" y="75" width="340" height="80" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">クラウドLLM</text>
+<text x="200" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">サーバーはベンダーが管理 / API 経由で利用</text>
+  <rect x="430" y="75" width="340" height="80" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ローカルLLM</text>
+<text x="600" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">モデルを自分のマシンで実行 / 完全自己管理</text>
+  <rect x="30" y="230" width="340" height="70" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="265" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">ChatGPT / Claude / Gemini</text>
+
+  <rect x="430" y="230" width="340" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="265" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">Ollama / LM Studio / llama.cpp</text>
+
+  <text x="400" y="360" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">キーワード: 自己ホスト / オープンウェイト / オフプレミス不要</text>
+</svg>
 - **ローカルLLM**: クラウドAPIを使わず、自分のマシン上で動作するLLM
 - データは外部に送信されない → **プライバシー完全保護**
 - ネットワーク接続不要 → **オフライン動作可能**
@@ -99,6 +235,51 @@ style: |
 
 # クラウドLLM vs ローカルLLM
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">クラウドLLM vs ローカルLLM</text>
+  <rect x="30" y="65" width="340" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="92.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">クラウドLLM (GPT-4 / Claude)</text>
+
+  <rect x="430" y="65" width="340" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="92.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">ローカルLLM (Llama / Mistral)</text>
+
+  <rect x="30" y="135" width="155" height="50" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">プライバシー △</text>
+
+  <rect x="195" y="135" width="175" height="50" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="282.5" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">コスト: API課金</text>
+
+  <rect x="430" y="135" width="155" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="507.5" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">プライバシー ◎</text>
+
+  <rect x="595" y="135" width="175" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="682.5" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">コスト: 初期のみ</text>
+
+  <rect x="30" y="200" width="155" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">性能: 最高品質</text>
+
+  <rect x="195" y="200" width="175" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="282.5" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">スケール: 無制限</text>
+
+  <rect x="430" y="200" width="155" height="50" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="507.5" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">性能: モデル依存</text>
+
+  <rect x="595" y="200" width="175" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="682.5" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">オフライン: ◎</text>
+
+  <rect x="30" y="265" width="155" height="50" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="290" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">オフライン: ✗</text>
+
+  <rect x="195" y="265" width="175" height="50" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="282.5" y="290" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">カスタム: 困難</text>
+
+  <rect x="430" y="265" width="155" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="507.5" y="290" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">HW: 自前必要</text>
+
+  <rect x="595" y="265" width="175" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="682.5" y="290" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">カスタム: 自由</text>
+
+</svg>
 ![w:900 center](assets/cloud-vs-local.svg)
 
 <!--
@@ -109,6 +290,39 @@ style: |
 
 # ローカルLLMエコシステム全体図
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ローカルLLM エコシステム全体図</text>
+  <rect x="30" y="65" width="170" height="60" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="115" y="86" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">モデル</text>
+<text x="115" y="107" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Llama/Mistral/Phi</text>
+  <line x1="200" y1="95" x2="260" y2="95" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="260,95 248,101 248,89" fill="#f9a825"/>
+  <rect x="260" y="65" width="170" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="345" y="86" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ランタイム</text>
+<text x="345" y="107" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Ollama / llama.cpp</text>
+  <line x1="430" y1="95" x2="490" y2="95" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="490,95 478,101 478,89" fill="#f9a825"/>
+  <rect x="490" y="65" width="170" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="575" y="86" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">API 層</text>
+<text x="575" y="107" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">OpenAI互換 REST</text>
+  <line x1="660" y1="95" x2="720" y2="95" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="720,95 708,101 708,89" fill="#f9a825"/>
+  <rect x="720" y="65" width="60" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="750" y="95" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">App</text>
+
+  <rect x="30" y="200" width="170" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="115" y="221" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">量子化</text>
+<text x="115" y="242" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">GGUF/AWQ/GPTQ</text>
+  <rect x="260" y="200" width="170" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="345" y="221" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">GUI</text>
+<text x="345" y="242" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">LM Studio</text>
+  <rect x="490" y="200" width="170" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="575" y="221" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">フレームワーク</text>
+<text x="575" y="242" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">LangChain</text>
+  <rect x="30" y="310" width="710" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="385" y="337.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">ハードウェア: CPU (x86/ARM) / GPU (NVIDIA/AMD/Apple M) / NPU</text>
+
+</svg>
 ![w:950 center](assets/ecosystem.svg)
 
 <!--
@@ -119,6 +333,32 @@ style: |
 
 # 2024-2026年のトレンド
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">2024-2026 ローカルLLM トレンド</text>
+  <rect x="30" y="70" width="220" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">2024</text>
+<text x="140" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Llama 3 / Mistral 台頭
+GGUF 普及</text>
+  <rect x="290" y="70" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">2025</text>
+<text x="400" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">量子化技術成熟
+Apple Silicon 最適化</text>
+  <rect x="550" y="70" width="220" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">2026</text>
+<text x="660" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">NPU 対応拡大
+マルチモーダル実用化</text>
+  <line x1="250" y1="105" x2="290" y2="105" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="290,105 278,111 278,99" fill="#f9a825"/>
+  <line x1="510" y1="105" x2="550" y2="105" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="550,105 538,111 538,99" fill="#f9a825"/>
+  <rect x="30" y="220" width="340" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="255" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">性能向上: 7B が旧来の 13B を超える</text>
+
+  <rect x="430" y="220" width="340" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="255" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">ツール成熟: Ollama / vLLM が標準化</text>
+
+  <text x="400" y="355" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">2026年 = ローカルLLM が実務レベルに到達した転換期</text>
+</svg>
 - **小型化の加速**: 7Bモデルが GPT-3.5 相当の性能に到達
 - **量子化の普及**: 4bit量子化で精度劣化を最小化しつつ圧縮
 - **Apple Silicon革命**: M3/M4 Macで実用的なローカル推論が可能に
@@ -132,11 +372,43 @@ style: |
 <!-- _class: lead -->
 # なぜローカルLLMか？
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">なぜ今ローカルLLMか</text>
+  <rect x="30" y="70" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">モデル品質の向上</text>
+<text x="200" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">7B Q4 が実用レベルに到達</text>
+  <rect x="430" y="70" width="340" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ハードウェアの民主化</text>
+<text x="600" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">RTX 4090 / Apple M3 が普及</text>
+  <rect x="30" y="205" width="340" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="233.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">プライバシー規制強化</text>
+<text x="200" y="254.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">GDPR / 個人情報保護法対応</text>
+  <rect x="430" y="205" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="233.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">API コスト問題</text>
+<text x="600" y="254.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">月額課金が企業の障壁</text>
+  <text x="400" y="345" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">品質 × コスト × 規制 の3要因が揃いローカルLLM が加速</text>
+</svg>
+
 
 ---
 
 # ローカルLLMを選ぶ4つの理由
 
+- <svg viewBox="0 0 800 330" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="330" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ローカルLLM を選ぶ 4 つの理由</text>
+  <rect x="30" y="70" width="340" height="90" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">① プライバシー・セキュリティ</text>
+<text x="200" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">データが外部に出ない</text>
+  <rect x="430" y="70" width="340" height="90" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">② コスト削減</text>
+<text x="600" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">API コスト ゼロ → 初期投資のみ</text>
+  <rect x="30" y="200" width="340" height="90" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="236" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">③ オフライン・低レイテンシ</text>
+<text x="200" y="257" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ネット不要 / msec 応答</text>
+  <rect x="430" y="200" width="340" height="90" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="236" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">④ フルカスタマイズ</text>
+<text x="600" y="257" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ファインチューニング / Modelfile</text>
+</svg>
 ![w:900 center](assets/benefits.svg)
 
 <!--
@@ -147,6 +419,29 @@ style: |
 
 # プライバシー・データセキュリティ
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">プライバシー・データセキュリティ比較</text>
+  <rect x="30" y="70" width="340" height="70" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">クラウド LLM</text>
+<text x="200" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">データ → 外部サーバへ送信</text>
+  <rect x="430" y="70" width="340" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ローカル LLM</text>
+<text x="600" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">データ → 自機内のみ</text>
+  <line x1="400" y1="60" x2="400" y2="360" stroke="#e91e63" stroke-width="1" stroke-dasharray="6,4"/>
+  <rect x="30" y="180" width="340" height="55" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="207.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">GDPR / 個人情報 リスク高</text>
+
+  <rect x="430" y="180" width="340" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="207.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">GDPR 準拠容易 / 機密データOK</text>
+
+  <rect x="30" y="250" width="340" height="55" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="277.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">社内規定で禁止ケース多</text>
+
+  <rect x="430" y="250" width="340" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="277.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">金融・医療・法務に最適</text>
+
+  <text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="14" font-weight="bold" font-family="sans-serif">機密プロジェクトはローカルLLM一択</text>
+</svg>
 - **機密データをクラウドに送信しない** → 情報漏洩リスクゼロ
 - 医療・法務・金融データも安全に処理可能
 - GDPR / 個人情報保護法 に完全準拠
@@ -159,6 +454,28 @@ style: |
 
 # コスト比較：クラウドAPI vs ローカル
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コスト比較：クラウド API vs ローカル</text>
+  <text x="200" y="60" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">クラウドAPI (GPT-4o)</text>
+  <text x="600" y="60" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="14" font-weight="bold" font-family="sans-serif">ローカル (RTX 4090)</text>
+  <rect x="60" y="80" width="280" height="20" rx="3" fill="#333"/>
+  <rect x="60" y="80" width="280" height="20" rx="3" fill="#e91e63"/>
+  <text x="200" y="90" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">初期コスト: $0</text>
+  <rect x="460" y="80" width="120" height="20" rx="3" fill="#333"/>
+  <rect x="460" y="80" width="120" height="20" rx="3" fill="#4caf50"/>
+  <text x="600" y="90" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">初期: $1,500〜</text>
+  <rect x="60" y="120" width="60" height="20" rx="3" fill="#e91e63"/>
+  <text x="200" y="130" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">100万トークン=$5〜$30</text>
+  <rect x="460" y="120" width="10" height="20" rx="3" fill="#4caf50"/>
+  <text x="600" y="130" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">追加コスト: $0</text>
+  <rect x="60" y="190" width="280" height="60" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="211" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">月100万リクエスト</text>
+<text x="200" y="232" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">= 数万〜数十万円/月</text>
+  <rect x="460" y="190" width="280" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="211" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">月100万リクエスト</text>
+<text x="600" y="232" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">= 電気代のみ</text>
+  <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">高頻度利用ほどローカルが有利 — BEP: 6〜12 ヶ月</text>
+</svg>
 - **GPT-4o**: 約 $5/100万トークン (入力) + $15/100万トークン (出力)
 - **Claude 3.5 Sonnet**: 約 $3/$15 per 100万トークン
 - **日常業務での月間コスト目安**: エンジニア1人 $20〜200+
@@ -171,6 +488,22 @@ style: |
 
 # オフライン利用・低レイテンシ
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">オフライン・低レイテンシのメリット</text>
+  <rect x="30" y="70" width="340" height="80" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">クラウド API レイテンシ</text>
+<text x="200" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">RTT + キュー待機 = 500ms〜数秒</text>
+  <rect x="430" y="70" width="340" height="80" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ローカル推論レイテンシ</text>
+<text x="600" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">VRAM 読込のみ = 10〜100ms</text>
+  <rect x="30" y="215" width="340" height="75" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="252.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ネット障害 → サービス停止</text>
+
+  <rect x="430" y="215" width="340" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="252.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">オフライン動作 → 常時稼働</text>
+
+  <text x="400" y="355" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">エッジデバイス / 工場 / 医療現場ではオフライン必須</text>
+</svg>
 - **ネットワーク遅延ゼロ** → 初回トークンまでの時間が短い
 - 機内・僻地・障害時でも安定動作
 - レスポンスが安定 → SLAを自社でコントロール可能
@@ -184,11 +517,61 @@ style: |
 <!-- _class: lead -->
 # 主要モデルカタログ
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">主要ローカルLLM カタログ 2026</text>
+  <rect x="30" y="70" width="220" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Meta Llama 3.x</text>
+<text x="140" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">8B / 70B / 405B</text>
+  <rect x="290" y="70" width="220" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Mistral AI</text>
+<text x="400" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">7B / Mixtral 8x7B</text>
+  <rect x="550" y="70" width="220" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Microsoft Phi-4</text>
+<text x="660" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">3.8B 小型高性能</text>
+  <rect x="30" y="195" width="220" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="218.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Google Gemma 3</text>
+<text x="140" y="239.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">2B / 9B / 27B</text>
+  <rect x="290" y="195" width="220" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="218.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DeepSeek V3</text>
+<text x="400" y="239.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">MoE 大規模モデル</text>
+  <rect x="550" y="195" width="220" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="218.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Qwen 2.5</text>
+<text x="660" y="239.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">0.5B〜72B 多言語</text>
+  <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">全モデル Apache 2.0 または MIT ライセンス → 商用利用可</text>
+</svg>
+
 
 ---
 
 # モデルポジショニングマップ
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">モデルポジショニングマップ 2026</text>
+  <line x1="100" y1="200" x2="700" y2="200" stroke="#ffffff" stroke-width="1.5"/>
+  <line x1="400" y1="50" x2="400" y2="350" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="700,200 688,194 688,206" fill="#ffffff"/>
+  <polygon points="400,50 394,62 406,62" fill="#ffffff"/>
+  <text x="700" y="185" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">高性能</text>
+  <text x="100" y="185" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">軽量</text>
+  <text x="415" y="55" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">低VRAM</text>
+  <text x="415" y="345" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">高VRAM</text>
+  <circle cx="550" cy="120" r="20" fill="#e91e63"/>
+  <text x="550" y="120" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10" font-weight="normal" font-family="sans-serif">Llama3
+70B</text>
+  <circle cx="500" cy="200" r="15" fill="#2196f3"/>
+  <text x="500" y="200" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10" font-weight="normal" font-family="sans-serif">Llama3
+8B</text>
+  <circle cx="250" cy="160" r="15" fill="#4caf50"/>
+  <text x="250" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10" font-weight="normal" font-family="sans-serif">Phi-4</text>
+  <circle cx="300" cy="220" r="12" fill="#00bcd4"/>
+  <text x="300" y="220" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10" font-weight="normal" font-family="sans-serif">Gemma3</text>
+  <circle cx="600" cy="260" r="18" fill="#9c27b0"/>
+  <text x="600" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10" font-weight="normal" font-family="sans-serif">Mixtral
+8x7B</text>
+  <circle cx="450" cy="290" r="12" fill="#f9a825"/>
+  <text x="450" y="290" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="10" font-weight="normal" font-family="sans-serif">Mistral
+7B</text>
+</svg>
 ![w:950 center](assets/model-map.svg)
 
 <!--
@@ -199,6 +582,28 @@ style: |
 
 # Meta: Llama 3.x シリーズ
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Meta Llama 3.x シリーズ</text>
+  <rect x="30" y="70" width="220" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Llama 3.2 1B/3B</text>
+<text x="140" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">モバイル / エッジ向け</text>
+  <rect x="290" y="70" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Llama 3.1 8B</text>
+<text x="400" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">最も人気 / バランス</text>
+  <rect x="550" y="70" width="220" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Llama 3.3 70B</text>
+<text x="660" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">高性能 / GPU 必要</text>
+  <rect x="30" y="210" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="245" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VRAM: ~2GB Q4</text>
+
+  <rect x="290" y="210" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="245" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VRAM: ~5GB Q4</text>
+
+  <rect x="550" y="210" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="245" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VRAM: ~40GB Q4</text>
+
+  <text x="400" y="345" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Llama 3.1 8B Q4 がコスパ最強 — RTX 3060 12GB で快適動作</text>
+</svg>
 - **Llama 3.2**: 1B / 3B（超軽量・エッジ向け）、11B / 90B（マルチモーダル）
 - **Llama 3.3**: 70B 命令チューニング、Llama 3.1 405B相当の性能
 - **ライセンス**: Meta Llama License（商用利用可、月間ユーザー数制限あり）
@@ -211,6 +616,22 @@ style: |
 
 # Mistral AI: Mistral / Mixtral
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Mistral AI: Mistral / Mixtral</text>
+  <rect x="30" y="70" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Mistral 7B</text>
+<text x="200" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">7B パラメータ / Apache 2.0</text>
+  <rect x="430" y="70" width="340" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Mixtral 8x7B</text>
+<text x="600" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">MoE: 8専門家 × 7B</text>
+  <rect x="30" y="215" width="340" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="250" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">VRAM: ~5GB Q4 / 汎用タスク</text>
+
+  <rect x="430" y="215" width="340" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="250" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">VRAM: ~26GB Q4 / 推論力高</text>
+
+  <text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Mixtral: 実質 47B モデルを MoE で効率化 → 高品質</text>
+</svg>
 - **Mistral 7B**: 小型ながら高品質、Apache 2.0 ライセンス
 - **Mixtral 8x7B**: MoE（Mixture of Experts）アーキテクチャ、実質13B相当の計算量
 - **Mixtral 8x22B**: より大型のMoEモデル
@@ -223,6 +644,22 @@ style: |
 
 # Microsoft: Phi-4
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Microsoft Phi-4 — 小型高性能モデル</text>
+  <rect x="100" y="80" width="600" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="111" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Phi-4 (3.8B パラメータ)</text>
+<text x="400" y="132" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">数学・推論特化 / MIT ライセンス</text>
+  <rect x="100" y="220" width="190" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="195" y="255" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">VRAM: ~2.5GB Q4</text>
+
+  <rect x="320" y="220" width="190" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="415" y="255" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">速度: 50+ tok/s (GPU)</text>
+
+  <rect x="540" y="220" width="160" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="620" y="255" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">精度: 13B 相当</text>
+
+  <text x="400" y="355" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">小型で高品質 → Raspberry Pi / 低スペックマシンでも動作</text>
+</svg>
 - **Phi-4**: 14Bパラメータながら驚異的な推論性能
 - **特徴**: 数学・科学的推論に特化、Small Language Model (SLM) の最高峰
 - **Phi-3.5-mini**: 3.8B、エッジデバイス向け
@@ -235,6 +672,28 @@ style: |
 
 # Google: Gemma 3
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Google Gemma 3 シリーズ</text>
+  <rect x="30" y="70" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Gemma 3 2B</text>
+<text x="140" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">超軽量 / デバイス向け</text>
+  <rect x="290" y="70" width="220" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Gemma 3 9B</text>
+<text x="400" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">バランス / 日本語対応</text>
+  <rect x="550" y="70" width="220" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Gemma 3 27B</text>
+<text x="660" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">高性能 / マルチモーダル</text>
+  <rect x="30" y="210" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="242.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VRAM: ~1.5GB Q4</text>
+
+  <rect x="290" y="210" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="242.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VRAM: ~6GB Q4</text>
+
+  <rect x="550" y="210" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="242.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VRAM: ~18GB Q4</text>
+
+  <text x="400" y="345" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Gemma 3 は日本語性能が優秀 → 日本語タスクに推奨</text>
+</svg>
 - **Gemma 3**: 1B / 4B / 12B / 27B のラインナップ
 - **特徴**: Gemini 技術を転用、マルチモーダル対応（12B/27B）
 - **128Kコンテキスト**: 長文ドキュメント処理に強い
@@ -247,6 +706,28 @@ style: |
 
 # DeepSeek / Qwen / その他注目モデル
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DeepSeek / Qwen / その他注目モデル</text>
+  <rect x="30" y="70" width="220" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DeepSeek V3</text>
+<text x="140" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">671B MoE / コーディング最強</text>
+  <rect x="290" y="70" width="220" height="80" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Qwen 2.5</text>
+<text x="400" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">0.5B〜72B / 多言語◎</text>
+  <rect x="550" y="70" width="220" height="80" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Command R+</text>
+<text x="660" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">RAG 特化 / Cohere</text>
+  <rect x="30" y="215" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="250" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">GGUF Q4: ~40GB / コード生成</text>
+
+  <rect x="290" y="215" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="250" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">日中韓対応 / 7B〜72B 選択肢</text>
+
+  <rect x="550" y="215" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="250" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">RAG / ツール使用 特化</text>
+
+  <text x="400" y="355" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">用途特化モデルを選ぶことで品質が大幅向上</text>
+</svg>
 - **DeepSeek-R1**: 671B（MoE）、GPT-4o級の推論、MIT License
 - **DeepSeek-R1-Distill**: 1.5B〜70B 蒸留版 → ローカル実行可能
 - **Qwen 2.5**: アリババ、0.5B〜72B、日本語・コード強い
@@ -259,6 +740,45 @@ style: |
 
 # モデル選択フローチャート
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">モデル選択フローチャート</text>
+  <rect x="300" y="60" width="200" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="87.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VRAM は？</text>
+
+  <line x1="400" y1="115" x2="200" y2="180" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="200,180 209.55789239074602,170.58476271956363 213.26692525879673,181.997171544335" fill="#f9a825"/>
+  <line x1="400" y1="115" x2="400" y2="180" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="400,180 394,168 406,168" fill="#f9a825"/>
+  <line x1="400" y1="115" x2="600" y2="180" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="600,180 586.7330747412033,181.997171544335 590.4421076092539,170.58476271956363" fill="#f9a825"/>
+  <rect x="90" y="180" width="170" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="175" y="207.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">4GB 以下</text>
+
+  <rect x="315" y="180" width="170" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="207.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">8〜16GB</text>
+
+  <rect x="540" y="180" width="170" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="625" y="207.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">24GB 以上</text>
+
+  <line x1="175" y1="235" x2="175" y2="295" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="175,295 169,283 181,283" fill="#f9a825"/>
+  <line x1="400" y1="235" x2="400" y2="295" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="400,295 394,283 406,283" fill="#f9a825"/>
+  <line x1="625" y1="235" x2="625" y2="295" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="625,295 619,283 631,283" fill="#f9a825"/>
+  <rect x="80" y="295" width="190" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="175" y="322.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Phi-4 / Gemma3 2B
+GGUF Q4</text>
+
+  <rect x="310" y="295" width="190" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="405" y="322.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Llama3 8B
+Mistral 7B</text>
+
+  <rect x="535" y="295" width="190" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="630" y="322.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Llama3 70B
+Mixtral 8x7B</text>
+
+</svg>
 ![w:900 center](assets/model-selection.svg)
 
 <!--
@@ -270,11 +790,49 @@ style: |
 <!-- _class: lead -->
 # 量子化と形式
 
+- <svg viewBox="0 0 800 310" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="310" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">量子化 (Quantization) とは</text>
+  <rect x="30" y="75" width="340" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">元モデル FP32/FP16</text>
+<text x="200" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">各パラメータを32/16bit浮動小数点で保存</text>
+  <line x1="400" y1="112" x2="400" y2="185" stroke="#4caf50" stroke-width="2.5"/>
+<polygon points="400,185 394,173 406,173" fill="#4caf50"/>
+  <text x="400" y="155" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">量子化 (精度を下げてサイズ削減)</text>
+  <rect x="30" y="185" width="340" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="213.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">量子化モデル Q4/Q8</text>
+<text x="200" y="234.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">各パラメータを4/8bitに圧縮</text>
+  <rect x="430" y="75" width="340" height="185" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="167.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">効果: VRAM 1/4〜1/8
+速度: 2〜4倍高速
+精度: わずかに低下
+→ 実用上ほぼ問題なし</text>
+
+</svg>
+
 
 ---
 
 # なぜ量子化が必要か
 
+- <svg viewBox="0 0 800 440" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="440" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">なぜ量子化が必要か</text>
+  <rect x="50" y="70" width="700" height="55" rx="4" fill="#2a1a2a"/>
+<text x="400" y="91.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Llama3 70B FP32</text>
+<text x="400" y="107.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">280 GB VRAM 必要</text>
+  <rect x="50" y="140" width="560" height="55" rx="4" fill="#2a1a3a"/>
+<text x="330" y="161.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Llama3 70B FP16</text>
+<text x="330" y="177.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">140 GB VRAM</text>
+  <rect x="50" y="210" width="350" height="55" rx="4" fill="#1b3a4b"/>
+<text x="225" y="231.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Llama3 70B INT8</text>
+<text x="225" y="247.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">70 GB VRAM</text>
+  <rect x="50" y="280" width="200" height="55" rx="4" fill="#1a3a1a"/>
+<text x="150" y="301.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Llama3 70B Q4</text>
+<text x="150" y="317.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">40 GB VRAM</text>
+  <rect x="50" y="350" width="110" height="55" rx="4" fill="#1a3a2a"/>
+<text x="105" y="371.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Llama3 70B Q2</text>
+<text x="105" y="387.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">20 GB VRAM</text>
+  <text x="680" y="355" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">← 精度低下</text>
+</svg>
 ![w:900 center](assets/quantization-concept.svg)
 
 <!--
@@ -285,6 +843,40 @@ style: |
 
 # 主要フォーマット比較：GGUF / AWQ / GPTQ
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">主要フォーマット比較</text>
+  <rect x="30" y="70" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">GGUF</text>
+<text x="140" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">llama.cpp 専用 CPU/GPU</text>
+  <rect x="290" y="70" width="220" height="70" rx="8" fill="#1a3a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">AWQ</text>
+<text x="400" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Activation-aware 4bit GPU</text>
+  <rect x="550" y="70" width="220" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">GPTQ</text>
+<text x="660" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Post-training 4bit GPU</text>
+  <rect x="30" y="175" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="207.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">CPU でも動作可能
+汎用性 ◎</text>
+
+  <rect x="290" y="175" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="207.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">精度保持◎ / 速度◎
+GPU 必須</text>
+
+  <rect x="550" y="175" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="207.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">歴史が長い / 互換性◎
+GPU 必須</text>
+
+  <rect x="30" y="275" width="220" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="302.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Ollama / LM Studio</text>
+
+  <rect x="290" y="275" width="220" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="302.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">vLLM / TGI</text>
+
+  <rect x="550" y="275" width="220" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="302.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">AutoGPTQ / vLLM</text>
+
+  <text x="400" y="370" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">CPU 実行 → GGUF、GPU 高速推論 → AWQ / GPTQ</text>
+</svg>
 - **GGUF（旧GGML）**: llama.cpp形式。CPUでも動作、Ollama/LM Studioで利用
 - **AWQ（Activation-aware Weight Quantization）**: GPU向け高精度量子化
 - **GPTQ**: GPU向け4bit量子化、推論速度重視
@@ -297,6 +889,43 @@ style: |
 
 # 量子化レベルの比較
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">量子化レベル別スペック比較 (7B モデル)</text>
+  <text x="130" y="60" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">量子化</text>
+  <text x="290" y="60" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">VRAM</text>
+  <text x="430" y="60" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">速度</text>
+  <text x="560" y="60" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">品質</text>
+  <text x="680" y="60" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">推奨用途</text>
+  <rect x="30" y="80" width="180" height="45" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="102.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">FP16 (16bit)</text>
+
+  <text x="290" y="103" text-anchor="middle" dominant-baseline="middle" fill="#00bcd4" font-size="13" font-weight="normal" font-family="sans-serif">14 GB</text>
+  <text x="430" y="103" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="normal" font-family="sans-serif">標準</text>
+  <text x="560" y="103" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">最高</text>
+  <text x="680" y="103" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">GPU24GB+</text>
+  <rect x="30" y="135" width="180" height="45" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="157.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">Q8 (8bit)</text>
+
+  <text x="290" y="158" text-anchor="middle" dominant-baseline="middle" fill="#00bcd4" font-size="13" font-weight="normal" font-family="sans-serif">7 GB</text>
+  <text x="430" y="158" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">速い</text>
+  <text x="560" y="158" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">◎</text>
+  <text x="680" y="158" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">GPU 8GB</text>
+  <rect x="30" y="190" width="180" height="45" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="212.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">Q4 (4bit)</text>
+
+  <text x="290" y="213" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">4 GB</text>
+  <text x="430" y="213" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">最速</text>
+  <text x="560" y="213" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="13" font-weight="normal" font-family="sans-serif">○ 実用的</text>
+  <text x="680" y="213" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">GPU/CPU</text>
+  <rect x="30" y="245" width="180" height="45" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="267.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">Q2 (2bit)</text>
+
+  <text x="290" y="268" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">2 GB</text>
+  <text x="430" y="268" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">超高速</text>
+  <text x="560" y="268" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">△ やや劣化</text>
+  <text x="680" y="268" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">超低スペック</text>
+  <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">バランス重視なら Q4 が最もコスパ良好</text>
+</svg>
 - **Q2_K**: 2bit、最小サイズ（7B→約2.5GB）、精度大幅劣化
 - **Q4_K_M**: 4bit（推奨）、7B→約4.1GB、精度劣化最小
 - **Q5_K_M**: 5bit、7B→約4.8GB、精度とサイズのベストバランス
@@ -309,6 +938,22 @@ style: |
 
 # 精度 vs 速度 vs メモリのトレードオフ
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">精度 vs 速度 vs メモリ トレードオフ</text>
+  <polygon points="400,60 700,320 100,320" fill="none" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="45" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">精度</text>
+  <text x="730" y="335" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="14" font-weight="bold" font-family="sans-serif">速度</text>
+  <text x="65" y="335" text-anchor="middle" dominant-baseline="middle" fill="#00bcd4" font-size="14" font-weight="bold" font-family="sans-serif">メモリ効率</text>
+  <circle cx="400" cy="180" r="8" fill="#e91e63"/>
+  <text x="400" y="160" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="12" font-weight="normal" font-family="sans-serif">Q4 ← バランス最良</text>
+  <circle cx="400" cy="90" r="6" fill="#ffffff"/>
+  <text x="430" y="90" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="normal" font-family="sans-serif">FP16</text>
+  <circle cx="580" cy="280" r="6" fill="#4caf50"/>
+  <text x="610" y="280" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="11" font-weight="normal" font-family="sans-serif">Q2</text>
+  <circle cx="230" cy="280" r="6" fill="#00bcd4"/>
+  <text x="200" y="280" text-anchor="middle" dominant-baseline="middle" fill="#00bcd4" font-size="11" font-weight="normal" font-family="sans-serif">INT4
+AWQ</text>
+</svg>
 ![w:900 center](assets/quant-tradeoff.svg)
 
 <!--
@@ -325,6 +970,40 @@ style: |
 
 # ローカルLLMツールエコシステム
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ローカルLLM ツール エコシステム</text>
+  <rect x="30" y="70" width="175" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Ollama</text>
+<text x="117.5" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">CLI / REST API</text>
+  <rect x="215" y="70" width="175" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="302.5" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">LM Studio</text>
+<text x="302.5" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">GUI デスクトップ</text>
+  <rect x="400" y="70" width="175" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="487.5" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">llama.cpp</text>
+<text x="487.5" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">低レベル C++</text>
+  <rect x="585" y="70" width="175" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="672.5" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">vLLM</text>
+<text x="672.5" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">本番 高スループット</text>
+  <rect x="30" y="200" width="175" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="117.5" y="232.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">初心者向け
+Mac/Win/Linux</text>
+
+  <rect x="215" y="200" width="175" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="302.5" y="232.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">初心者向け
+GUI管理</text>
+
+  <rect x="400" y="200" width="175" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="487.5" y="232.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">上級者向け
+カスタマイズ</text>
+
+  <rect x="585" y="200" width="175" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="672.5" y="232.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">本番デプロイ
+Linux/GPU</text>
+
+  <rect x="30" y="310" width="730" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="337.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">共通: OpenAI 互換 API → LangChain / LlamaIndex から透過的に利用可能</text>
+
+</svg>
 ![w:950 center](assets/tools-ecosystem.svg)
 
 <!--
@@ -335,6 +1014,31 @@ style: |
 
 # Ollama：一番手軽なローカルLLM実行環境
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Ollama 概要</text>
+  <rect x="30" y="75" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Ollama</text>
+<text x="140" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ワンコマンド LLM 実行</text>
+  <line x1="250" y1="110" x2="320" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="320,110 308,116 308,104" fill="#f9a825"/>
+  <rect x="320" y="75" width="200" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="420" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">モデルライブラリ</text>
+<text x="420" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ollama.com/library</text>
+  <line x1="520" y1="110" x2="590" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="590,110 578,116 578,104" fill="#f9a825"/>
+  <rect x="590" y="75" width="180" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">REST API</text>
+<text x="680" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">:11434</text>
+  <rect x="30" y="220" width="340" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="252.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">$ ollama run llama3.1
+→ 自動ダウンロード + 実行</text>
+
+  <rect x="430" y="220" width="340" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="252.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Mac / Linux / Windows
+GPU自動検出</text>
+
+  <text x="400" y="360" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">最も簡単にローカルLLMを始める方法 — 初心者に最推奨</text>
+</svg>
 - **概要**: macOS/Linux/Windows対応のワンクリックLLM実行ツール
 - **OpenAI互換API**: `http://localhost:11434/v1` でAPIサーバーとして動作
 - **モデル管理**: `ollama pull/run/list/rm` でDockerライクに操作
@@ -347,6 +1051,22 @@ style: |
 
 # LM Studio：GUIで直感的にローカルLLM
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">LM Studio — GUI でローカルLLM</text>
+  <rect x="30" y="75" width="340" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">モデル検索・ダウンロード</text>
+<text x="200" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">HuggingFace から直接 GUI でダウンロード</text>
+  <rect x="430" y="75" width="340" height="80" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">チャット UI</text>
+<text x="600" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ブラウザ不要のデスクトップ UI</text>
+  <rect x="30" y="220" width="340" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="248.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OpenAI 互換サーバー</text>
+<text x="200" y="269.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ローカルで API サーバー起動</text>
+  <rect x="430" y="220" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="248.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">GPU/CPU 設定 GUI</text>
+<text x="600" y="269.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">VRAM 使用量を視覚的に管理</text>
+  <text x="400" y="360" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">コマンド不要 → エンジニア以外にも使いやすい</text>
+</svg>
 - **概要**: macOS/Windows/Linux向けデスクトップアプリ（無料）
 - **HuggingFaceブラウザ内蔵**: GGUFモデルを検索・ダウンロード
 - **ChatUI**: ブラウザ不要でチャット可能
@@ -359,6 +1079,30 @@ style: |
 
 # llama.cpp：軽量・高速な低レベル実行
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">llama.cpp — 軽量・高速 C++ 推論エンジン</text>
+  <rect x="30" y="75" width="220" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">C++ 実装</text>
+<text x="140" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">依存ライブラリ最小</text>
+  <rect x="290" y="75" width="220" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">クロスプラットフォーム</text>
+<text x="400" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">CPU / GPU / Apple Metal</text>
+  <rect x="550" y="75" width="220" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">GGUF フォーマット</text>
+<text x="660" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">量子化モデル対応</text>
+  <rect x="30" y="225" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">CPU のみでも動作
+省メモリ</text>
+
+  <rect x="290" y="225" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">ラズパイ〜サーバーまで</text>
+
+  <rect x="550" y="225" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Ollama の内部エンジン
+としても使用</text>
+
+  <text x="400" y="360" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">組込み / 低スペック環境での LLM 実行に最適</text>
+</svg>
 - **概要**: C/C++実装のLLM推論エンジン（Ollama の内部エンジン）
 - **対応**: CPU (x86/ARM)、Apple Metal、CUDA、Vulkan、OpenBLAS
 - **特徴**: 依存ライブラリ最小、組み込み・エッジに最適
@@ -371,6 +1115,22 @@ style: |
 
 # vLLM：本番・高スループット向け
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">vLLM — 本番・高スループット推論</text>
+  <rect x="30" y="75" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">高スループット設計</text>
+<text x="200" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">PagedAttention で KV Cache 効率化</text>
+  <rect x="430" y="75" width="340" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OpenAI 互換 API</text>
+<text x="600" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">base_url 変更のみで既存コード動作</text>
+  <rect x="30" y="215" width="340" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="241" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Continuous Batching</text>
+<text x="200" y="262" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">複数リクエストを動的バッチ処理</text>
+  <rect x="430" y="215" width="340" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="241" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Multi-GPU サポート</text>
+<text x="600" y="262" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">tensor parallel / pipeline parallel</text>
+  <text x="400" y="355" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">本番 API サーバー = vLLM が事実上の標準</text>
+</svg>
 - **概要**: UC Berkeley発の高効率LLM推論エンジン（CUDA GPU必須）
 - **PagedAttention**: KVキャッシュを効率管理 → スループット最大24倍向上
 - **連続バッチング**: 複数リクエストをまとめて処理 → GPU稼働率最大化
@@ -384,11 +1144,71 @@ style: |
 <!-- _class: lead -->
 # ハードウェア要件
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">CPU / GPU / NPU の役割分担</text>
+  <rect x="30" y="70" width="220" height="100" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="111" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">CPU</text>
+<text x="140" y="132" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">汎用計算 x86 / ARM
+GGUF 推論可</text>
+  <rect x="290" y="70" width="220" height="100" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="111" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">GPU</text>
+<text x="400" y="132" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">並列計算 CUDA / Metal
+高速推論</text>
+  <rect x="550" y="70" width="220" height="100" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="111" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">NPU</text>
+<text x="660" y="132" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AI専用回路
+Apple Neural Engine</text>
+  <rect x="30" y="220" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="252.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">低速 / 高汎用
+コスト低</text>
+
+  <rect x="290" y="220" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="252.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">高速 / 高コスト
+VRAM 重要</text>
+
+  <rect x="550" y="220" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="252.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">省電力 / 高効率
+モデル制限あり</text>
+
+  <text x="400" y="340" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">実用構成: CPU補助 + GPU主体 / or Apple M シリーズ統合メモリ</text>
+</svg>
+
 
 ---
 
 # CPU / GPU / NPU の役割分担
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">CPU / GPU / NPU の役割分担 詳細</text>
+  <rect x="30" y="70" width="220" height="90" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">CPU</text>
+<text x="140" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">汎用計算</text>
+  <rect x="290" y="70" width="220" height="90" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">GPU</text>
+<text x="400" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">並列行列演算</text>
+  <rect x="550" y="70" width="220" height="90" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">NPU</text>
+<text x="660" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">推論専用</text>
+  <line x1="140" y1="160" x2="140" y2="220" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="140,220 134,208 146,208" fill="#f9a825"/>
+  <line x1="400" y1="160" x2="400" y2="220" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="400,220 394,208 406,208" fill="#f9a825"/>
+  <line x1="660" y1="160" x2="660" y2="220" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="660,220 654,208 666,208" fill="#f9a825"/>
+  <rect x="30" y="220" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="252.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">GGUF/CPU推論
+低速・汎用</text>
+
+  <rect x="290" y="220" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="252.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">CUDA/Metal
+高速推論</text>
+
+  <rect x="550" y="220" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="252.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Apple ANE
+省電力</text>
+
+  <text x="400" y="340" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">M3 Max: 統合メモリ 128GB → 大モデル実行可能</text>
+</svg>
 ![w:900 center](assets/cpu-gpu-npu.svg)
 
 <!--
@@ -399,6 +1219,35 @@ style: |
 
 # VRAMとモデルサイズの目安
 
+- <svg viewBox="0 0 800 450" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="450" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VRAM とモデルサイズの目安</text>
+  <rect x="30" y="70" width="130" height="50" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="95" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">2B モデル</text>
+
+  <rect x="30" y="135" width="130" height="50" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">7B モデル</text>
+
+  <rect x="30" y="200" width="130" height="50" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">13B モデル</text>
+
+  <rect x="30" y="265" width="130" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="290" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">34B モデル</text>
+
+  <rect x="30" y="330" width="130" height="50" rx="8" fill="#1a3a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="355" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">70B モデル</text>
+
+  <rect x="175" y="82" width="90" height="26" rx="3" fill="#00bcd4"/>
+  <text x="220" y="95" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">~2 GB</text>
+  <rect x="175" y="147" width="220" height="26" rx="3" fill="#2196f3"/>
+  <text x="285" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">~4-8 GB</text>
+  <rect x="175" y="212" width="350" height="26" rx="3" fill="#f9a825"/>
+  <text x="350" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">~8-16 GB</text>
+  <rect x="175" y="277" width="490" height="26" rx="3" fill="#e91e63"/>
+  <text x="420" y="290" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">~16-24 GB</text>
+  <rect x="175" y="342" width="590" height="26" rx="3" fill="#9c27b0"/>
+  <text x="470" y="355" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">~40-48 GB (Q4)</text>
+  <text x="400" y="410" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Q4 量子化で VRAM を約 1/4 に削減可能</text>
+</svg>
 ![w:900 center](assets/vram-matrix.svg)
 
 <!--
@@ -409,6 +1258,27 @@ style: |
 
 # Apple Silicon（Metal）の活用
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Apple Silicon (Metal) の活用</text>
+  <rect x="100" y="70" width="600" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Apple M シリーズ — 統合メモリアーキテクチャ</text>
+<text x="400" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">CPU + GPU + NPU がメモリ共有</text>
+  <rect x="100" y="190" width="170" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="185" y="213.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">M1/M2</text>
+<text x="185" y="234.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">8-24GB 統合</text>
+  <rect x="310" y="190" width="170" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="395" y="213.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">M3 Max</text>
+<text x="395" y="234.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">36-128GB 統合</text>
+  <rect x="520" y="190" width="170" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="605" y="213.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">M4 Ultra</text>
+<text x="605" y="234.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">192GB 統合</text>
+  <text x="185" y="290" text-anchor="middle" dominant-baseline="middle" fill="#00bcd4" font-size="12" font-weight="normal" font-family="sans-serif">7B〜13B</text>
+  <text x="395" y="290" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="12" font-weight="normal" font-family="sans-serif">34B〜70B</text>
+  <text x="605" y="290" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-weight="normal" font-family="sans-serif">100B+</text>
+  <rect x="100" y="320" width="600" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="347.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">llama.cpp / Ollama は Metal 対応 → GPU 推論自動切換え</text>
+
+</svg>
 - **統合メモリアーキテクチャ**: CPU/GPU がメモリを共有 → VRAMとRAMの区別なし
 - **M3 Pro (36GB RAM)**: Llama 3 70B Q4 が実用速度（20-30 tok/s）で動作
 - **M4 Max (128GB RAM)**: 最大 671B MoEモデルも動作可能
@@ -421,6 +1291,31 @@ style: |
 
 # コスパ最適化ガイド
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コスパ最適化ガイド</text>
+  <rect x="30" y="70" width="220" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">~$500 予算</text>
+<text x="140" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">CPU のみ / Phi-4 Q4</text>
+  <rect x="290" y="70" width="220" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">~$1,500 予算</text>
+<text x="400" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">RTX 3080 10GB</text>
+  <rect x="550" y="70" width="220" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">~$3,000 予算</text>
+<text x="660" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">RTX 4090 24GB</text>
+  <rect x="30" y="190" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="222.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Llama3 8B Q4
+~5 tok/s</text>
+
+  <rect x="290" y="190" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="222.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Llama3 13B Q4
+~20 tok/s</text>
+
+  <rect x="550" y="190" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="222.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Llama3 70B Q4
+~30 tok/s</text>
+
+  <text x="400" y="320" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Mac M3 Max ($3,000) は GPU不要で 70B 実行可能 — 省電力優位</text>
+</svg>
 - **予算 ～$300**: RTX 3060 (12GB) → Llama 3.1 8B Q8 / 13B Q4
 - **予算 $400-600**: RTX 4060 Ti (16GB) → 34B Q4 まで快適
 - **予算 $800-1200**: RTX 4070 Ti Super (16GB) → 最高効率帯
@@ -434,11 +1329,53 @@ style: |
 <!-- _class: lead -->
 # 実践：Ollamaセットアップ
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Ollama セットアップ フロー</text>
+  <rect x="50" y="70" width="140" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">① インストール</text>
+<text x="120" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">brew/curl</text>
+  <line x1="190" y1="97" x2="240" y2="97" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="240,97 228,103 228,91" fill="#f9a825"/>
+  <rect x="240" y="70" width="140" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="310" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">② モデル Pull</text>
+<text x="310" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ollama pull</text>
+  <line x1="380" y1="97" x2="430" y2="97" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="430,97 418,103 418,91" fill="#f9a825"/>
+  <rect x="430" y="70" width="140" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="500" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">③ 実行</text>
+<text x="500" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ollama run</text>
+  <line x1="570" y1="97" x2="620" y2="97" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="620,97 608,103 608,91" fill="#f9a825"/>
+  <rect x="620" y="70" width="130" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="685" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">④ API 利用</text>
+<text x="685" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">:11434</text>
+  <rect x="30" y="210" width="740" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="245" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">curl http://localhost:11434/api/generate -d '{"model":"llama3.1","prompt":"Hello"}'</text>
+
+  <text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">5 分でローカルLLM API が起動する — 最速のスタート方法</text>
+</svg>
+
 
 ---
 
 # インストールからモデル起動まで
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">インストールから起動まで (Mac/Linux)</text>
+  <rect x="30" y="70" width="340" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="102.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Mac: brew install ollama</text>
+
+  <rect x="430" y="70" width="340" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="102.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">Linux: curl -fsSL https://ollama.com/install.sh | sh</text>
+
+  <rect x="30" y="205" width="340" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="237.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">モデルDL: ollama pull llama3.1:8b</text>
+
+  <rect x="430" y="205" width="340" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="237.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">起動: ollama run llama3.1:8b</text>
+
+  <text x="400" y="345" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">初回ダウンロードのみ時間が必要 (4-8GB) / 以降は即時起動</text>
+</svg>
 - macOS/Linux ではワンライナーでインストール完了
 - モデルは `ollama pull` で自動ダウンロード（GGUF形式）
 - 起動後は `http://localhost:11434` でAPIサーバーが待機
@@ -469,6 +1406,26 @@ ollama run llama3.2 "Pythonでフィボナッチ数列を書いて"
 
 # OpenAI互換APIの利用
 
+- <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">OpenAI 互換 API の利用</text>
+  <rect x="30" y="75" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">既存コード</text>
+<text x="140" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">openai.ChatCompletion</text>
+  <line x1="250" y1="110" x2="320" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="320,110 308,116 308,104" fill="#f9a825"/>
+  <rect x="320" y="75" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="430" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">base_url 変更</text>
+<text x="430" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">localhost:11434/v1</text>
+  <line x1="540" y1="110" x2="620" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="620,110 608,116 608,104" fill="#f9a825"/>
+  <rect x="620" y="75" width="150" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Ollama</text>
+<text x="695" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ローカル推論</text>
+  <rect x="30" y="230" width="740" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="262.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">OpenAI SDK: openai.OpenAI(base_url='http://localhost:11434/v1', api_key='ollama')</text>
+
+  <text x="400" y="365" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">コード変更 2 行でクラウド → ローカル切替可能</text>
+</svg>
 - OllamaはOpenAI互換エンドポイントを提供
 - 既存のOpenAI SDKコードをほぼそのまま流用可能
 - 環境変数を切り替えるだけでローカル/クラウドを切替
@@ -506,6 +1463,22 @@ for await (const chunk of response) {
 
 # Modelfile：カスタムモデルの作成
 
+- <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Modelfile — カスタムモデルの作成</text>
+  <rect x="30" y="75" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">FROM llama3.1</text>
+<text x="200" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ベースモデル指定</text>
+  <rect x="430" y="75" width="340" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">SYSTEM prompt</text>
+<text x="600" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">キャラクター / 役割 定義</text>
+  <rect x="30" y="215" width="340" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="243.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">PARAMETER temperature</text>
+<text x="200" y="264.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">応答の創造性調整</text>
+  <rect x="430" y="215" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="243.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">PARAMETER num_ctx</text>
+<text x="600" y="264.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">コンテキスト長設定</text>
+  <text x="400" y="360" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">ollama create my-model -f Modelfile → カスタムモデル完成</text>
+</svg>
 - Modelfile でシステムプロンプト・パラメータをカスタマイズ
 - チームで共有・バージョン管理可能
 - `ollama create` でカスタムモデルとして登録
@@ -544,11 +1517,68 @@ PARAMETER num_predict 2048
 <!-- _class: lead -->
 # アプリケーション統合
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">アプリケーション統合アーキテクチャ</text>
+  <rect x="30" y="80" width="160" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Your App</text>
+<text x="110" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Python / JS</text>
+  <line x1="190" y1="112" x2="270" y2="112" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="270,112 258,118 258,106" fill="#f9a825"/>
+  <rect x="270" y="80" width="200" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="370" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">LangChain /
+LlamaIndex</text>
+
+  <line x1="470" y1="112" x2="550" y2="112" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="550,112 538,118 538,106" fill="#f9a825"/>
+  <rect x="550" y="80" width="200" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">Ollama API
+localhost:11434</text>
+
+  <line x1="650" y1="145" x2="650" y2="220" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="650,220 644,208 656,208" fill="#f9a825"/>
+  <rect x="550" y="220" width="200" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="252.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">Local Model
+Llama3 / Mistral</text>
+
+  <rect x="30" y="240" width="480" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="270" y="270" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">OpenAI 互換 API → base_url='http://localhost:11434/v1'</text>
+
+</svg>
+
 
 ---
 
 # LangChain / LlamaIndex との連携
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">LangChain / LlamaIndex との連携</text>
+  <rect x="30" y="75" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">LangChain</text>
+<text x="140" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AIアプリ構築フレームワーク</text>
+  <line x1="250" y1="110" x2="320" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="320,110 308,116 308,104" fill="#f9a825"/>
+  <rect x="320" y="75" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="430" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OllamaLLM</text>
+<text x="430" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">LangChain 統合クラス</text>
+  <line x1="540" y1="110" x2="620" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="620,110 608,116 608,104" fill="#f9a825"/>
+  <rect x="620" y="75" width="150" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Ollama</text>
+<text x="695" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">推論エンジン</text>
+  <rect x="30" y="225" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="251" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">LlamaIndex</text>
+<text x="140" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">RAG 特化フレームワーク</text>
+  <line x1="250" y1="260" x2="320" y2="260" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="320,260 308,266 308,254" fill="#f9a825"/>
+  <rect x="320" y="225" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="430" y="251" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OllamaEmbedding</text>
+<text x="430" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ベクトル化</text>
+  <line x1="540" y1="260" x2="620" y2="260" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="620,260 608,266 608,254" fill="#f9a825"/>
+  <rect x="620" y="225" width="150" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="251" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Vector DB</text>
+<text x="695" y="272" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">検索</text>
+</svg>
 ![w:900 center](assets/langchain-integration.svg)
 
 <!--
@@ -594,6 +1624,46 @@ result = chain.invoke({"code": "def fib(n): return fib(n-1)+fib(n-2)"})
 
 # ローカルRAGアーキテクチャ
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">完全ローカル RAG アーキテクチャ</text>
+  <rect x="30" y="80" width="150" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="105" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ドキュメント</text>
+<text x="105" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">PDF/MD/TXT</text>
+  <line x1="180" y1="110" x2="250" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="250,110 238,116 238,104" fill="#f9a825"/>
+  <rect x="250" y="80" width="150" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="325" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Embedding
+nomic-embed</text>
+
+  <line x1="400" y1="110" x2="470" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="470,110 458,116 458,104" fill="#f9a825"/>
+  <rect x="470" y="80" width="150" height="60" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="545" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Vector DB
+Chroma/FAISS</text>
+
+  <rect x="30" y="230" width="150" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="105" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ユーザー質問</text>
+
+  <line x1="180" y1="260" x2="250" y2="260" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="250,260 238,266 238,254" fill="#f9a825"/>
+  <rect x="250" y="230" width="150" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="325" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Embedding
+(同一モデル)</text>
+
+  <line x1="400" y1="260" x2="470" y2="260" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="470,260 458,266 458,254" fill="#f9a825"/>
+  <rect x="470" y="230" width="150" height="60" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="545" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">類似検索
+Top-K</text>
+
+  <line x1="620" y1="260" x2="680" y2="260" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="680,260 668,266 668,254" fill="#f9a825"/>
+  <rect x="680" y="230" width="90" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">LLM
+生成</text>
+
+  <text x="400" y="360" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">全コンポーネントをローカル実行 → 完全プライベート RAG</text>
+</svg>
 ![w:950 center](assets/local-rag.svg)
 
 <!--
@@ -604,6 +1674,36 @@ result = chain.invoke({"code": "def fib(n): return fib(n-1)+fib(n-2)"})
 
 # 完全ローカルRAGの実装
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">完全ローカル RAG 実装スタック</text>
+  <rect x="30" y="70" width="220" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ドキュメント</text>
+<text x="140" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">PDF / Markdown / テキスト</text>
+  <rect x="290" y="70" width="220" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Embedding</text>
+<text x="400" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">nomic-embed-text (Ollama)</text>
+  <rect x="550" y="70" width="220" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Vector DB</text>
+<text x="660" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ChromaDB (ローカル)</text>
+  <line x1="250" y1="102" x2="290" y2="102" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="290,102 278,108 278,96" fill="#f9a825"/>
+  <line x1="510" y1="102" x2="550" y2="102" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="550,102 538,108 538,96" fill="#f9a825"/>
+  <rect x="30" y="215" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="247.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ユーザー質問</text>
+
+  <rect x="290" y="215" width="220" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="238.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">類似検索</text>
+<text x="400" y="259.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">コサイン類似度</text>
+  <rect x="550" y="215" width="220" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="238.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">LLM 回答生成</text>
+<text x="660" y="259.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Llama3 (Ollama)</text>
+  <line x1="250" y1="247" x2="290" y2="247" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="290,247 278,253 278,241" fill="#f9a825"/>
+  <line x1="510" y1="247" x2="550" y2="247" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="550,247 538,253 538,241" fill="#f9a825"/>
+  <text x="400" y="355" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">全コンポーネントをローカルで動かす — データが外に出ない</text>
+</svg>
 - ベクトルDBも埋め込みモデルもローカルで完結
 - 機密ドキュメントをクラウドに送らずAI検索を実現
 
@@ -643,6 +1743,33 @@ qa = RetrievalQA.from_chain_type(
 
 # Function Calling / ツール利用
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Function Calling / ツール利用</text>
+  <rect x="30" y="75" width="200" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ユーザー質問</text>
+<text x="130" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">天気を教えて</text>
+  <line x1="230" y1="110" x2="310" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="310,110 298,116 298,104" fill="#f9a825"/>
+  <rect x="310" y="75" width="200" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="410" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">LLM</text>
+<text x="410" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ツール選択判断</text>
+  <line x1="510" y1="110" x2="590" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="590,110 578,116 578,104" fill="#f9a825"/>
+  <rect x="590" y="75" width="180" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">get_weather()</text>
+<text x="680" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">外部 API 呼び出し</text>
+  <line x1="680" y1="145" x2="680" y2="210" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="680,210 674,198 686,198" fill="#f9a825"/>
+  <rect x="590" y="210" width="180" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="236" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">結果を LLM へ</text>
+<text x="680" y="257" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">API レスポンス</text>
+  <line x1="590" y1="245" x2="510" y2="245" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="510,245 522,239 522,251" fill="#f9a825"/>
+  <rect x="310" y="210" width="200" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="410" y="236" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">LLM</text>
+<text x="410" y="257" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">回答生成</text>
+  <text x="400" y="355" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Llama3 / Qwen2.5 は Function Calling に対応</text>
+</svg>
 - **対応モデル**: Llama 3.x, Mistral, Qwen 2.5, Phi-4（Ollama経由）
 - **OpenAI tools API**: Ollama が互換エンドポイントで提供
 - 天気取得・DB検索・コード実行などを自律的に実行
@@ -655,6 +1782,31 @@ qa = RetrievalQA.from_chain_type(
 
 # マルチモーダル活用
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">マルチモーダル ローカルLLM</text>
+  <rect x="30" y="75" width="220" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">LLaVA</text>
+<text x="140" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">テキスト + 画像理解</text>
+  <rect x="290" y="75" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Gemma 3 27B</text>
+<text x="400" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">画像 + テキスト対応</text>
+  <rect x="550" y="75" width="220" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Llama 3.2 Vision</text>
+<text x="660" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Meta の VLM</text>
+  <rect x="30" y="215" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="250" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">ollama run llava
+→ 画像を貼り付けて質問</text>
+
+  <rect x="290" y="215" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="250" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">ドキュメント解析
+図・グラフ理解</text>
+
+  <rect x="550" y="215" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="250" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">医療画像・製造品質
+チェックに活用</text>
+
+  <text x="400" y="355" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">2026年: マルチモーダルがローカルでも実用レベルに到達</text>
+</svg>
 - **LLaVA 1.6**: 画像理解、OCR、図解の説明生成
 - **Llama 3.2 11B/90B Vision**: Metaの最新ビジョンモデル
 - **Gemma 3 12B/27B**: マルチモーダル対応、高品質な画像理解
@@ -668,11 +1820,59 @@ qa = RetrievalQA.from_chain_type(
 <!-- _class: lead -->
 # ユースケース
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ローカルLLM ユースケース全体像</text>
+  <rect x="30" y="70" width="220" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">コーディング支援</text>
+<text x="140" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">コード補完 / レビュー</text>
+  <rect x="290" y="70" width="220" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ドキュメント処理</text>
+<text x="400" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">要約 / 翻訳 / 抽出</text>
+  <rect x="550" y="70" width="220" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">RAG システム</text>
+<text x="660" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">社内データ Q&A</text>
+  <rect x="30" y="200" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="223.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">セキュリティ解析</text>
+<text x="140" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ログ / 脅威検出</text>
+  <rect x="290" y="200" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="223.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">エッジAI</text>
+<text x="400" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">工場 / IoT / 車載</text>
+  <rect x="550" y="200" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="223.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">個人アシスタント</text>
+<text x="660" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">スケジュール / メモ</text>
+  <text x="400" y="340" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">業務・開発・個人利用まで幅広く活用可能</text>
+</svg>
+
 
 ---
 
 # コーディング支援
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コーディング支援ユースケース</text>
+  <rect x="30" y="70" width="220" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">コード補完</text>
+<text x="140" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Continue / Copilot代替</text>
+  <rect x="290" y="70" width="220" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">コードレビュー</text>
+<text x="400" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">PR差分 → LLM解析</text>
+  <rect x="550" y="70" width="220" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ドキュメント生成</text>
+<text x="660" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">関数 → JSDoc自動</text>
+  <rect x="30" y="200" width="220" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="237.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">バグ修正提案
+スタックトレース入力</text>
+
+  <rect x="290" y="200" width="220" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="237.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">テストコード生成
+ユニットテスト自動化</text>
+
+  <rect x="550" y="200" width="220" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="237.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">リファクタリング
+技術負債解消</text>
+
+  <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">推奨: Codestral / DeepSeek-Coder / Qwen2.5-Coder</text>
+</svg>
 - **コード補完**: VS Code + Continue拡張 + Ollama でCopilot代替
 - **コードレビュー**: プルリク差分を自動レビュー（社内コード漏洩なし）
 - **テスト生成**: 関数仕様からユニットテストを自動生成
@@ -685,6 +1885,32 @@ qa = RetrievalQA.from_chain_type(
 
 # ドキュメント処理・社内データ活用
 
+- <svg viewBox="0 0 800 430" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="430" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ドキュメント処理・社内データ活用</text>
+  <rect x="30" y="75" width="220" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">社内文書 Input</text>
+<text x="140" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">PDF / Word / Slack 等</text>
+  <line x1="250" y1="110" x2="320" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="320,110 308,116 308,104" fill="#f9a825"/>
+  <rect x="320" y="75" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="430" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ローカル RAG</text>
+<text x="430" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Embedding + 検索</text>
+  <line x1="540" y1="110" x2="620" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="620,110 608,116 608,104" fill="#f9a825"/>
+  <rect x="620" y="75" width="150" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">LLM 回答</text>
+<text x="695" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">社内情報ベース</text>
+  <rect x="30" y="230" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="265" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">議事録 → 要約</text>
+
+  <rect x="290" y="230" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="265" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">契約書 → 条件抽出</text>
+
+  <rect x="550" y="230" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="265" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">マニュアル → Q&A</text>
+
+  <text x="400" y="370" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">機密文書は外部に出せない → ローカルLLM が唯一の選択肢</text>
+</svg>
 - **議事録自動生成**: 会議録音 → Whisper（ローカル）→ LLM 要約
 - **社内ナレッジベース**: Confluence/Notion文書 + ローカルRAG
 - **多言語翻訳**: 社内文書の英語/日本語翻訳（Qwen/Llama多言語モデル）
@@ -697,6 +1923,25 @@ qa = RetrievalQA.from_chain_type(
 
 # セキュリティ・コンプライアンス用途
 
+- <svg viewBox="0 0 800 430" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="430" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">セキュリティ・コンプライアンス用途</text>
+  <rect x="30" y="75" width="340" height="80" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">クラウドLLM の問題</text>
+<text x="200" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">セキュリティログ / 脆弱性情報を外部送信 → リスク</text>
+  <rect x="430" y="75" width="340" height="80" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ローカルLLM の解決</text>
+<text x="600" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">SIEM ログをローカルで解析 → ゼロ漏洩</text>
+  <rect x="30" y="230" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="256" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ログ異常検知</text>
+<text x="140" y="277" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">SIEM + LLM</text>
+  <rect x="290" y="230" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="256" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">脆弱性トリアージ</text>
+<text x="400" y="277" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">CVE 解析</text>
+  <rect x="550" y="230" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="256" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">インシデント対応</text>
+<text x="660" y="277" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">手順生成</text>
+  <text x="400" y="370" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">SOC チームのローカルLLM 活用が急速に拡大中</text>
+</svg>
 - **脆弱性解析**: コードの脆弱性パターン検出（SAST補助）
 - **インシデントレスポンス**: ログ・アラートの自然言語説明生成
 - **コンプライアンスチェック**: 規定文書との差分分析
@@ -709,6 +1954,32 @@ qa = RetrievalQA.from_chain_type(
 
 # エッジデプロイ
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">エッジデプロイ アーキテクチャ</text>
+  <rect x="30" y="75" width="180" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">エッジデバイス</text>
+<text x="120" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Jetson / Raspberry Pi</text>
+  <rect x="260" y="75" width="180" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="350" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ローカルLLM</text>
+<text x="350" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Phi-4 Q4 / Gemma 2B</text>
+  <line x1="440" y1="110" x2="510" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="510,110 498,116 498,104" fill="#f9a825"/>
+  <rect x="510" y="75" width="260" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="640" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">リアルタイム推論</text>
+<text x="640" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ネット不要 / 低遅延</text>
+  <line x1="140" y1="145" x2="140" y2="210" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="140,210 134,198 146,198" fill="#f9a825"/>
+  <rect x="30" y="210" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="236" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">製造品質検査</text>
+<text x="120" y="257" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">画像 + LLM</text>
+  <rect x="260" y="210" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="350" y="236" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">医療現場</text>
+<text x="350" y="257" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">オフライン診断支援</text>
+  <rect x="510" y="210" width="260" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="640" y="236" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">自動車 / 航空</text>
+<text x="640" y="257" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">安全クリティカル</text>
+  <text x="400" y="355" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">VRAM 4GB で動く小型モデル → エッジに最適</text>
+</svg>
 - **産業IoT**: 工場内センサーデータ解析、異常検知
 - **医療機器**: 患者データをクラウド送信せずAI診断補助
 - **自動車**: 車載ECU / ADAS でのリアルタイム処理
@@ -722,11 +1993,66 @@ qa = RetrievalQA.from_chain_type(
 <!-- _class: lead -->
 # パフォーマンスと最適化
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">推論パフォーマンス影響要因</text>
+  <rect x="30" y="70" width="220" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">モデルサイズ</text>
+<text x="140" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">パラメータ数 ↑ → 遅</text>
+  <rect x="290" y="70" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">量子化</text>
+<text x="400" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Q4 が速度と精度のバランス</text>
+  <rect x="550" y="70" width="220" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VRAM</text>
+<text x="660" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">メモリ帯域が律速</text>
+  <rect x="30" y="200" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="226" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">バッチサイズ</text>
+<text x="140" y="247" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">並列リクエスト数</text>
+  <rect x="290" y="200" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="226" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">コンテキスト長</text>
+<text x="400" y="247" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">長いほど遅い</text>
+  <rect x="550" y="200" width="220" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="226" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">GPU型番</text>
+<text x="660" y="247" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">A100 > 4090 >> 3080</text>
+  <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">tok/s = VRAM帯域 ÷ モデルウェイトサイズ が近似指標</text>
+</svg>
+
 
 ---
 
 # ベンチマーク：モデル・ツール別性能比較
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">モデル・ツール別 性能ベンチマーク (RTX 4090)</text>
+  <text x="160" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">モデル</text>
+  <text x="340" y="65" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">tok/s</text>
+  <text x="480" y="65" text-anchor="middle" dominant-baseline="middle" fill="#00bcd4" font-size="13" font-weight="bold" font-family="sans-serif">VRAM</text>
+  <text x="620" y="65" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="bold" font-family="sans-serif">品質</text>
+  <rect x="30" y="85" width="220" height="40" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Llama3.1 8B Q4</text>
+
+  <text x="340" y="105" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-weight="normal" font-family="sans-serif">80 tok/s</text>
+  <text x="480" y="105" text-anchor="middle" dominant-baseline="middle" fill="#00bcd4" font-size="12" font-weight="normal" font-family="sans-serif">5 GB</text>
+  <text x="620" y="105" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="12" font-weight="normal" font-family="sans-serif">◎ 実用十分</text>
+  <rect x="30" y="140" width="220" height="40" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Mistral 7B Q4</text>
+
+  <text x="340" y="160" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-weight="normal" font-family="sans-serif">75 tok/s</text>
+  <text x="480" y="160" text-anchor="middle" dominant-baseline="middle" fill="#00bcd4" font-size="12" font-weight="normal" font-family="sans-serif">5 GB</text>
+  <text x="620" y="160" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="12" font-weight="normal" font-family="sans-serif">◎ 英語特化</text>
+  <rect x="30" y="195" width="220" height="40" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="215" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Llama3.3 70B Q4</text>
+
+  <text x="340" y="215" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-weight="normal" font-family="sans-serif">25 tok/s</text>
+  <text x="480" y="215" text-anchor="middle" dominant-baseline="middle" fill="#00bcd4" font-size="12" font-weight="normal" font-family="sans-serif">40 GB</text>
+  <text x="620" y="215" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="12" font-weight="normal" font-family="sans-serif">◎◎ 高精度</text>
+  <rect x="30" y="250" width="220" height="40" rx="8" fill="#1a3a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="270" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Phi-4 3.8B Q4</text>
+
+  <text x="340" y="270" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-weight="normal" font-family="sans-serif">120 tok/s</text>
+  <text x="480" y="270" text-anchor="middle" dominant-baseline="middle" fill="#00bcd4" font-size="12" font-weight="normal" font-family="sans-serif">3 GB</text>
+  <text x="620" y="270" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="12" font-weight="normal" font-family="sans-serif">◎ 数学強</text>
+  <text x="400" y="355" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">RTX 4090 = ローカルLLM 最強コスパ GPU (2026年現在)</text>
+</svg>
 - **速度指標（tokens/sec）目安**:
 - RTX 4090 + llama3.2:3b-q4 → 約150-200 tok/s
 - RTX 4090 + llama3.1:8b-q4 → 約80-120 tok/s
@@ -740,6 +2066,24 @@ qa = RetrievalQA.from_chain_type(
 
 # 推論最適化テクニック
 
+- <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">推論最適化テクニック</text>
+  <rect x="30" y="70" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">KV Cache</text>
+<text x="200" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">過去トークンの計算結果を再利用</text>
+  <rect x="430" y="70" width="340" height="75" rx="8" fill="#1a3a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Flash Attention</text>
+<text x="600" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">メモリ効率的な Attention 計算</text>
+  <rect x="30" y="200" width="340" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="228.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Continuous Batching</text>
+<text x="200" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">複数リクエストを動的にまとめる</text>
+  <rect x="430" y="200" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="228.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Speculative Decoding</text>
+<text x="600" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Draft モデルで候補生成 → 高速化</text>
+  <rect x="30" y="330" width="720" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="390" y="357.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">vLLM は上記すべてを自動適用 → 本番ワークロードに最適</text>
+
+</svg>
 - **Flash Attention 2**: KVキャッシュ計算を最適化 → 長コンテキストで大幅高速化
 - **コンテキスト長の管理**: 不要な会話履歴を圧縮・削除
 - **バッチサイズ調整**: vLLM の `--max-num-seqs` で並列リクエスト数最適化
@@ -753,11 +2097,53 @@ qa = RetrievalQA.from_chain_type(
 <!-- _class: lead -->
 # 展望・まとめ
 
+- <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">2026年 ローカルLLM の展望</text>
+  <rect x="30" y="70" width="340" height="80" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">短期 (2026)</text>
+<text x="200" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">7B モデルが GPT-3.5 水準超え
+NPU デバイス普及</text>
+  <rect x="430" y="70" width="340" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">中期 (2027-28)</text>
+<text x="600" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">70B がリアルタイム推論
+スマホ搭載 LLM 普及</text>
+  <rect x="30" y="215" width="340" height="80" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="246" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">長期 (2029+)</text>
+<text x="200" y="267" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">専用 AI チップ / AGI 議論
+オープンモデルが主流へ</text>
+  <rect x="430" y="215" width="340" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="246" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ローカルLLM の役割</text>
+<text x="600" y="267" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">プライバシー / エッジ / コスト
+→ 永続的な需要</text>
+  <text x="400" y="360" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">AI の民主化 = ローカルLLM の普及 — 今が参入好機</text>
+</svg>
+
 
 ---
 
 # ローカルLLMの課題と制限
 
+- <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">ローカルLLM の課題と制限</text>
+  <rect x="30" y="70" width="340" height="75" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ハードウェアコスト</text>
+<text x="200" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">高性能GPU / 大容量メモリが必要</text>
+  <rect x="430" y="70" width="340" height="75" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">性能ギャップ</text>
+<text x="600" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">GPT-4o / Claude 3.5 には及ばない</text>
+  <rect x="30" y="200" width="340" height="75" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="228.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">セットアップコスト</text>
+<text x="200" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">初期設定・保守の工数</text>
+  <rect x="430" y="200" width="340" height="75" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="228.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">マルチモーダル制限</text>
+<text x="600" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">画像・音声対応モデルは少ない</text>
+  <rect x="30" y="330" width="340" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="357.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">対策: 量子化で低スペック対応</text>
+
+  <rect x="430" y="330" width="340" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="357.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">対策: タスク特化ファインチューニング</text>
+
+</svg>
 - **ハードウェア依存**: 高品質な推論にはGPU/Apple Silicon が必要
 - **セットアップコスト**: 初期設定・チューニングに時間が必要
 - **最新モデルへの追従**: フロンティアモデル（GPT-4o級）はまだクラウド優勢
@@ -770,6 +2156,28 @@ qa = RetrievalQA.from_chain_type(
 
 # 2026年以降の展望
 
+- <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">2026年以降の技術展望</text>
+  <rect x="30" y="70" width="220" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Speculative Decoding</text>
+<text x="140" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">小モデルで仮説 → 大モデル検証</text>
+  <rect x="290" y="70" width="220" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">MoE (Mixture of Experts)</text>
+<text x="400" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Mixtral 型の効率化が主流へ</text>
+  <rect x="550" y="70" width="220" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">SSM (Mamba/H3)</text>
+<text x="660" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Transformer を超えるアーキテクチャ</text>
+  <rect x="30" y="215" width="220" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="243.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">on-device LLM</text>
+<text x="140" y="264.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">スマホ内蔵 / Apple ANE</text>
+  <rect x="290" y="215" width="220" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="243.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">低bit量子化</text>
+<text x="400" y="264.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">2bit でも実用水準へ</text>
+  <rect x="550" y="215" width="220" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="243.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">マルチモーダル統合</text>
+<text x="660" y="264.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">テキスト+画像+音声</text>
+  <text x="400" y="360" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">技術革新が加速 → 半年ごとに新しい選択肢が登場する</text>
+</svg>
 - **Apple M5/M6**: さらなるメモリ増加で100B級モデルが標準ラップトップで動作
 - **量子化精度向上**: 2bit量子化でもF16相当に近づく研究が進行中
 - **SLMの台頭**: 3B以下のモデルがユースケースの大半をカバーへ
@@ -782,6 +2190,45 @@ qa = RetrievalQA.from_chain_type(
 
 # 選択のフレームワーク
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ローカルLLM 選択フレームワーク</text>
+  <rect x="280" y="60" width="240" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="87.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">要件整理</text>
+
+  <line x1="400" y1="115" x2="200" y2="180" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="200,180 209.55789239074602,170.58476271956363 213.26692525879673,181.997171544335" fill="#f9a825"/>
+  <line x1="400" y1="115" x2="400" y2="180" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="400,180 394,168 406,168" fill="#f9a825"/>
+  <line x1="400" y1="115" x2="600" y2="180" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="600,180 586.7330747412033,181.997171544335 590.4421076092539,170.58476271956363" fill="#f9a825"/>
+  <rect x="80" y="180" width="190" height="55" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="175" y="207.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">プライバシー最優先</text>
+
+  <rect x="305" y="180" width="190" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="207.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">コスト最適化</text>
+
+  <rect x="530" y="180" width="190" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="625" y="207.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">性能最優先</text>
+
+  <line x1="175" y1="235" x2="175" y2="295" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="175,295 169,283 181,283" fill="#f9a825"/>
+  <line x1="400" y1="235" x2="400" y2="295" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="400,295 394,283 406,283" fill="#f9a825"/>
+  <line x1="625" y1="235" x2="625" y2="295" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="625,295 619,283 631,283" fill="#f9a825"/>
+  <rect x="80" y="295" width="190" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="175" y="322.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ローカル 一択
+機密データ対応</text>
+
+  <rect x="305" y="295" width="190" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="322.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">7B Q4 + Ollama
+低コスト実用</text>
+
+  <rect x="530" y="295" width="190" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="625" y="322.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">70B + GPU24GB
+高品質推論</text>
+
+</svg>
 ![w:900 center](assets/selection-framework.svg)
 
 <!--
@@ -793,6 +2240,28 @@ qa = RetrievalQA.from_chain_type(
 <!-- _class: lead -->
 # まとめ
 
+- <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">まとめ: ローカルLLM 実践チェックリスト</text>
+  <rect x="30" y="70" width="340" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="91" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">① ユースケース確認</text>
+<text x="200" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">プライバシー/コスト/性能 要件</text>
+  <rect x="430" y="70" width="340" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="91" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">② ハードウェア選定</text>
+<text x="600" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">VRAM / 統合メモリ量</text>
+  <rect x="30" y="160" width="340" height="60" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="181" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">③ モデル選択</text>
+<text x="200" y="202" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">7B Q4 → 70B Q4 段階的</text>
+  <rect x="430" y="160" width="340" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="181" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">④ ランタイム選択</text>
+<text x="600" y="202" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Ollama (簡単) / vLLM (本番)</text>
+  <rect x="30" y="250" width="340" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="271" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">⑤ アプリ統合</text>
+<text x="200" y="292" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">OpenAI互換 API 活用</text>
+  <rect x="430" y="250" width="340" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="271" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">⑥ 最適化</text>
+<text x="600" y="292" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">量子化 / KVCache / Batching</text>
+  <text x="400" y="370" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="14" font-weight="bold" font-family="sans-serif">ローカルLLM は 2026年 実用段階 — 今すぐ始めよう</text>
+</svg>
 - 🏠 **ローカルLLMは成熟期を迎えた** — 今すぐ実用可能
 - 🔒 **プライバシー・コスト・オフライン** の3点が強み
 - 🚀 **Ollama** から始めて、段階的に本番環境へ

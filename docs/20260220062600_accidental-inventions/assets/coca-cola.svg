@@ -1,0 +1,36 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">コカ・コーラ（1886年）とテフロン — 日常を変えた偶然</text>
+  <!-- Left: Coca-Cola -->
+  <rect x="20" y="50" width="370" height="300" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="205" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">コカ・コーラ（1886年）</text>
+  <text x="205" y="98" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">ジョン・ペンバートン薬剤師</text>
+  <rect x="40" y="110" width="330" height="52" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="205" y="131" text-anchor="middle" font-size="12" fill="#e91e63">もともとの目的</text>
+  <text x="205" y="150" text-anchor="middle" font-size="11" fill="#ffffff">頭痛薬・モルヒネ代替薬の開発</text>
+  <rect x="40" y="172" width="330" height="52" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="205" y="193" text-anchor="middle" font-size="12" fill="#f9a825">偶然の発見</text>
+  <text x="205" y="212" text-anchor="middle" font-size="11" fill="#ffffff">炭酸水と混合したら風味が良い</text>
+  <rect x="40" y="234" width="330" height="52" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1"/>
+  <text x="205" y="255" text-anchor="middle" font-size="12" fill="#4caf50">商品化の決断</text>
+  <text x="205" y="274" text-anchor="middle" font-size="11" fill="#ffffff">薬局で5セントで販売開始</text>
+  <text x="205" y="318" text-anchor="middle" font-size="11" fill="#e91e63">初年度売上：50ドル（現在：400億ドル）</text>
+  <text x="205" y="335" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">「世界で最も有名な飲み物」の誕生</text>
+  <!-- Right: Pattern analysis -->
+  <rect x="410" y="50" width="370" height="300" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="595" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#4caf50">セレンディピティの共通パターン</text>
+  <!-- Pattern 1 -->
+  <rect x="430" y="95" width="330" height="55" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1"/>
+  <text x="595" y="118" text-anchor="middle" font-size="12" fill="#4caf50">問題解決中に別の解決策に出会う</text>
+  <text x="595" y="138" text-anchor="middle" font-size="11" fill="#ffffff">薬開発 → 飲料、軍用技術 → 家電</text>
+  <!-- Pattern 2 -->
+  <rect x="430" y="160" width="330" height="55" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="595" y="183" text-anchor="middle" font-size="12" fill="#f9a825">既存の知識で「なぜ？」を解釈</text>
+  <text x="595" y="203" text-anchor="middle" font-size="11" fill="#ffffff">専門家のみが価値を認識できる</text>
+  <!-- Pattern 3 -->
+  <rect x="430" y="225" width="330" height="55" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="595" y="248" text-anchor="middle" font-size="12" fill="#e91e63">用途は後から見つかる</text>
+  <text x="595" y="268" text-anchor="middle" font-size="11" fill="#ffffff">発明者が最終用途を知らないことも</text>
+  <text x="595" y="318" text-anchor="middle" font-size="12" fill="#4caf50">共通の教訓</text>
+  <text x="595" y="338" text-anchor="middle" font-size="11" fill="#ffffff">「失敗」「副産物」を捨てない文化</text>
+</svg>

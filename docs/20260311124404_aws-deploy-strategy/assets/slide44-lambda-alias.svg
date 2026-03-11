@@ -1,0 +1,82 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="400" fill="transparent"/>
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Lambda バージョン・エイリアス・重み付けルーティング</text>
+
+  <!-- Lambda Function -->
+  <rect x="30" y="60" width="140" height="60" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="2"/>
+  <text x="100" y="85" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Lambda</text>
+  <text x="100" y="105" text-anchor="middle" fill="#a855f7" font-size="11" font-family="sans-serif">$LATEST</text>
+
+  <!-- Arrow: publish v1 -->
+  <line x1="170" y1="90" x2="210" y2="90" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="210,85 220,90 210,95" fill="#60a5fa"/>
+
+  <!-- Version v1 -->
+  <rect x="220" y="60" width="110" height="60" rx="8" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/>
+  <text x="275" y="85" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Version 1</text>
+  <text x="275" y="105" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="sans-serif">Stable</text>
+
+  <!-- Version v2 -->
+  <rect x="220" y="160" width="110" height="60" rx="8" fill="#1a3a2f" stroke="#34d399" stroke-width="2"/>
+  <text x="275" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Version 2</text>
+  <text x="275" y="205" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif">New</text>
+
+  <!-- Arrow: publish v2 -->
+  <line x1="170" y1="90" x2="190" y2="90" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="190" y1="90" x2="190" y2="190" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <line x1="190" y1="190" x2="220" y2="190" stroke="#34d399" stroke-width="1.5" stroke-dasharray="4,3"/>
+
+  <!-- PROD Alias box -->
+  <rect x="400" y="100" width="140" height="80" rx="8" fill="#1e1b4b" stroke="#f59e0b" stroke-width="2"/>
+  <text x="470" y="128" text-anchor="middle" fill="#ffffff" font-size="14" font-family="sans-serif">Alias: prod</text>
+  <text x="470" y="150" text-anchor="middle" fill="#f59e0b" font-size="11" font-family="sans-serif">v1: 95%</text>
+  <text x="470" y="168" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif">v2: 5%</text>
+
+  <!-- Arrow v1 -> alias -->
+  <line x1="330" y1="90" x2="400" y2="130" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="397,123 407,133 400,140" fill="#60a5fa"/>
+
+  <!-- Arrow v2 -> alias -->
+  <line x1="330" y1="190" x2="400" y2="155" stroke="#34d399" stroke-width="2"/>
+  <polygon points="397,162 407,152 403,145" fill="#34d399"/>
+
+  <!-- Client -->
+  <rect x="600" y="120" width="110" height="50" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="2"/>
+  <text x="655" y="148" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Client</text>
+
+  <!-- Arrow client -> alias -->
+  <line x1="600" y1="145" x2="540" y2="145" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="540,140 530,145 540,150" fill="#a855f7"/>
+
+  <!-- Canary stages -->
+  <text x="400" y="250" text-anchor="start" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">カナリアリリース段階:</text>
+  <!-- Stage 1 -->
+  <rect x="40" y="270" width="150" height="50" rx="6" fill="#1e1b4b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="115" y="293" text-anchor="middle" fill="#34d399" font-size="12" font-family="sans-serif">Step 1: 5%</text>
+  <text x="115" y="310" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">モニタリング 15分</text>
+
+  <line x1="190" y1="295" x2="220" y2="295" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="220,290 230,295 220,300" fill="#a855f7"/>
+
+  <!-- Stage 2 -->
+  <rect x="230" y="270" width="150" height="50" rx="6" fill="#1e1b4b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="305" y="293" text-anchor="middle" fill="#34d399" font-size="12" font-family="sans-serif">Step 2: 20%</text>
+  <text x="305" y="310" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">モニタリング 30分</text>
+
+  <line x1="380" y1="295" x2="410" y2="295" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="410,290 420,295 410,300" fill="#a855f7"/>
+
+  <!-- Stage 3 -->
+  <rect x="420" y="270" width="150" height="50" rx="6" fill="#1e1b4b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="495" y="293" text-anchor="middle" fill="#34d399" font-size="12" font-family="sans-serif">Step 3: 100%</text>
+  <text x="495" y="310" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">全トラフィック移行</text>
+
+  <!-- Rollback -->
+  <rect x="600" y="270" width="160" height="50" rx="6" fill="#3b0a0a" stroke="#ef4444" stroke-width="1.5"/>
+  <text x="680" y="293" text-anchor="middle" fill="#ef4444" font-size="12" font-family="sans-serif">エラー検知</text>
+  <text x="680" y="310" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">自動ロールバック</text>
+
+  <!-- Error arrow -->
+  <line x1="570" y1="295" x2="600" y2="295" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="600,290 610,295 600,300" fill="#ef4444"/>
+</svg>

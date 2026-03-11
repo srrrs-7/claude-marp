@@ -3,6 +3,12 @@
 import { Glob } from "bun";
 import { z } from "zod";
 import { generationResultSchema } from "../src/generate/slide-schema.js";
+import {
+	type SlideRecord,
+	estimateMins,
+	hasSvg,
+	isAssertive,
+} from "./lib/quality.js";
 
 interface ValidationError {
 	file: string;
@@ -20,29 +26,8 @@ interface QualityWarning {
 // Quality helpers (Google / Amazon best practices)
 // ---------------------------------------------------------------------------
 
-/**
- * Generic "label titles" — topic labels with no assertive claim.
- * Content slides (layout: default) should state a conclusion, not just a noun.
- * Section / center slides are exempt (they are dividers / title cards).
- */
-const LABEL_TITLE_RE =
-	/^(アジェンダ|目次|概要|まとめ|結論|はじめに|導入|背景|課題|解決策|参考文献|おわりに|終わりに|ご清聴ありがとうございました|ありがとうございました|質疑応答|デモ|agenda|overview|introduction|conclusion|summary|background|problem|solution|next steps?|references?|thank you|q&a|demo|outline|contents?)$/i;
-
 /** Max recommended chars per bullet (Japanese ~50, English ~80). */
 const MAX_BULLET_CHARS = 60;
-
-/** Estimate reading time in minutes (Japanese: ~350 chars/min) */
-function estimateReadingTime(
-	slides: Array<{ title?: string; content?: string[]; speakerNotes?: string }>,
-): number {
-	let totalChars = 0;
-	for (const slide of slides) {
-		totalChars += (slide.title ?? "").length;
-		for (const line of slide.content ?? []) totalChars += line.length;
-		totalChars += (slide.speakerNotes ?? "").length;
-	}
-	return Math.ceil(totalChars / 350);
-}
 
 /** Return duplicate titles within a single deck */
 function findDuplicateTitles(slides: Array<{ title?: string }>): string[] {
@@ -77,14 +62,12 @@ function checkQuality(
 		const title = (slide.title ?? "").trim();
 		const layout = slide.layout ?? "default";
 		const content = slide.content ?? [];
-		const hasSvg = content.some(
-			(c) => c.includes("<svg") || c.startsWith("!["),
-		);
+		const slideHasSvg = hasSvg(slide as SlideRecord);
 		const hasCode = !!slide.code;
 		const isContentSlide = layout === "default";
 
 		// ── 1. Assertive title check (label title on content slide) ────────
-		if (isContentSlide && LABEL_TITLE_RE.test(title)) {
+		if (isContentSlide && !isAssertive(title)) {
 			warnings.push({
 				slideIndex: i + 1,
 				title,
@@ -116,7 +99,7 @@ function checkQuality(
 		if (
 			isContentSlide &&
 			content.length >= 4 &&
-			!hasSvg &&
+			!slideHasSvg &&
 			!hasCode &&
 			!slide.subtitle
 		) {
@@ -129,7 +112,7 @@ function checkQuality(
 		}
 
 		// ── 4. Consecutive text-only slides ────────────────────────────────
-		if (isContentSlide && !hasSvg && !hasCode) {
+		if (isContentSlide && !slideHasSvg && !hasCode) {
 			consecutiveTextOnly++;
 			if (consecutiveTextOnly >= 3) {
 				warnings.push({
@@ -158,13 +141,11 @@ function checkQuality(
 	const contentSlides = slides.filter(
 		(s) => (s.layout ?? "default") === "default",
 	);
-	const labelTitleCount = contentSlides.filter((s) =>
-		LABEL_TITLE_RE.test((s.title ?? "").trim()),
+	const assertiveCount = contentSlides.filter((s) =>
+		isAssertive(s.title ?? ""),
 	).length;
 	const assertiveRatio =
-		contentSlides.length > 0
-			? (contentSlides.length - labelTitleCount) / contentSlides.length
-			: 1;
+		contentSlides.length > 0 ? assertiveCount / contentSlides.length : 1;
 
 	if (contentSlides.length >= 5 && assertiveRatio < 0.6) {
 		warnings.push({
@@ -213,7 +194,7 @@ async function validateAllSlides() {
 
 			const slides = data.slides ?? [];
 			const dupes = findDuplicateTitles(slides);
-			const mins = estimateReadingTime(slides);
+			const mins = estimateMins(slides as SlideRecord[]);
 			const quality = showQuality ? checkQuality(slides) : [];
 
 			totalSlideCount += slides.length;

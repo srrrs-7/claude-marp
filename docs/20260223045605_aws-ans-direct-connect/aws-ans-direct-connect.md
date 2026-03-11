@@ -7,6 +7,71 @@ paginate: true
 header: "AWS ANS — Direct Connect / Transit Gateway"
 footer: "© 2026 AWS Networking Deep Dive"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.0em;
   }
@@ -80,6 +145,7 @@ style: |
 
 # Direct Connect の主要コンポーネント
 
+![w:820 center](assets/dx-architecture.svg)
 - **物理接続 (Connection)**: DX ロケーションに設置される物理ポート。Dedicated または Hosted
 - **Virtual Interface (VIF)**: 物理接続上の論理インターフェース。VLAN + BGP セッションで構成
 - **Direct Connect Gateway (DXGW)**: 複数リージョン / 複数 VPC へのグローバルなルーティングハブ
@@ -93,6 +159,7 @@ style: |
 
 # Dedicated Connection（1/2）
 
+![w:820 center](assets/vif-comparison.svg)
 - **直接 AWS DX ルーターとのポートを占有する専用接続**
 - **帯域**: 1 Gbps / 10 Gbps / 100 Gbps（選択制）
 - **設定方法**: AWS コンソール → Direct Connect → 接続の作成 → LOA-CFA を取得
@@ -103,6 +170,7 @@ style: |
 
 # Dedicated Connection（2/2）
 
+![w:820 center](assets/dx-architecture.svg)
 - **ポート占有**: AWS Cage 内のポートを顧客が専有（他顧客と共有しない）
 - **VIF 数**: 1 接続あたり最大 50 VIF（Private / Public / Transit の合計）
 - **MACsec 対応**: 10 Gbps / 100 Gbps のみ（Layer 2 暗号化）
@@ -113,6 +181,7 @@ style: |
 
 # Hosted Connection（1/2）
 
+![w:820 center](assets/vif-comparison.svg)
 - **APN パートナーが物理 Dedicated Connection を分割して提供する接続形態**
 - **帯域**: 50 Mbps / 100 Mbps / 200 Mbps / 300 Mbps / 400 Mbps / 500 Mbps / 1 Gbps / 2 Gbps / 5 Gbps / 10 Gbps
 - **設定方法**: APN パートナーに申し込み → パートナーが AWS コンソールで接続を提供 → 顧客が承認
@@ -123,6 +192,7 @@ style: |
 
 # Hosted Connection（2/2）
 
+![w:820 center](assets/dx-architecture.svg)
 - **MACsec**: 非対応（パートナーの共有インフラのため）
 - **メリット**: 低コスト・少帯域から始められる、パートナーが物理管理を担当
 - **注意**: パートナーの物理インフラを共有するため、帯域が保証されない場合あり
@@ -133,6 +203,7 @@ style: |
 
 # Dedicated vs Hosted 詳細比較
 
+![w:820 center](assets/vif-comparison.svg)
 | 項目 | Dedicated Connection | Hosted Connection |
 |------|---------------------|------------------|
 | 帯域 | 1G / 10G / 100G | 50Mbps 〜 10Gbps |
@@ -157,6 +228,7 @@ style: |
 
 # DX ロケーション & パートナー（1/2）
 
+![w:820 center](assets/dx-architecture.svg)
 - **DX ロケーション**: AWS ルーターが設置されているコロケーション施設（全世界 100+ 箇所）
 - **日本国内ロケーション**: 東京（Equinix TY2/TY3/TY4/TY8、AT Tokyo、NTT）、大阪（Equinix OS1）など
 - **APN パートナー (Partner)**: AWS 認定の接続パートナー。Hosted Connection / Hosted VIF を提供
@@ -167,6 +239,7 @@ style: |
 
 # DX ロケーション & パートナー（2/2）
 
+![w:820 center](assets/dx-architecture.svg)
 - **接続の選択基準**:
 -   - 直接 Dedicated が必要 → DX ロケーションに自社/代理接続
 -   - 低帯域・低コストで始める → APN パートナー経由の Hosted Connection
@@ -194,6 +267,7 @@ style: |
 
 # LAG 設定・制約・ユースケース（1/2）
 
+![w:820 center](assets/vif-comparison.svg)
 - **LAG 設定要件**:
 -   - すべての接続が同一 DX ロケーションにある必要がある
 -   - すべての接続が同一帯域である必要がある（1G×4 や 10G×4 など）
@@ -206,6 +280,7 @@ style: |
 
 # LAG 設定・制約・ユースケース（2/2）
 
+![w:820 center](assets/dx-architecture.svg)
 -   - 例: 4 接続 LAG で `minimumLinks=2` → 2 接続以上 UP している間は動作
 - **ユースケース**:
 -   - 10G×4 LAG → 最大 40 Gbps の論理帯域（ECMP で分散）
@@ -235,6 +310,7 @@ style: |
 
 # Public VIF — AWS パブリックサービスへの接続（1/2）
 
+![w:820 center](assets/vif-comparison.svg)
 - **接続先**: AWS のパブリック IP アドレスを持つすべてのサービスへ接続
 - **対応サービス**: Amazon S3 / DynamoDB / SQS / SNS / CloudFront / Route 53 / API Gateway など
 - **BGP の動作**: AWS から全リージョンのパブリック IP プレフィックスを広告（数千プレフィックス）
@@ -246,6 +322,7 @@ style: |
 
 # Public VIF — AWS パブリックサービスへの接続（2/2）
 
+![w:820 center](assets/vif-comparison.svg)
 -   - BGP Peer IP は /30 のパブリック IP を使用
 -   - 広告するオンプレプレフィックスは**パブリック IP のみ**（プライベート IP 不可）
 - **MTU**: 最大 1,500 bytes（Jumbo Frames 非対応）
@@ -257,6 +334,7 @@ style: |
 
 # Private VIF — VPC への直接接続（1/2）
 
+![w:820 center](assets/vif-comparison.svg)
 - **接続先**: VPC 内のプライベートリソース（EC2 / RDS / ELB など）
 - **接続方式**: Virtual Private Gateway (VGW) に接続 → VPC のプライベートサブネットへ
 - **BGP の動作**: VPC の CIDR ブロックが AWS から広告される
@@ -268,6 +346,7 @@ style: |
 
 # Private VIF — VPC への直接接続（2/2）
 
+![w:820 center](assets/vif-comparison.svg)
 -   - VLAN ID（802.1Q タグ、1〜4094）
 -   - BGP Peer IP（/30、プライベート IP 使用可）
 -   - BGP ASN（パブリック / プライベート どちらも可）
@@ -280,6 +359,7 @@ style: |
 
 # Transit VIF — Transit Gateway への接続（1/2）
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 - **接続先**: Direct Connect Gateway (DXGW) 経由で Transit Gateway (TGW) に接続
 - **1 つの Transit VIF で複数 VPC・複数アカウントへ一括接続が可能**
 - **アーキテクチャ**: オンプレ → DX → Transit VIF → DXGW → TGW → 複数 VPC
@@ -290,6 +370,7 @@ style: |
 
 # Transit VIF — Transit Gateway への接続（2/2）
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 - **MTU**: 最大 **8,500 bytes**（Jumbo Frames 対応）
 - **広告制限**: オンプレから AWS へ最大 **100 プレフィックス**、AWS からオンプレへ最大 **1,000 プレフィックス**
 - **AWS から広告される経路**: TGW ルートテーブルに Propagation 設定されたすべての VPC CIDR
@@ -301,6 +382,7 @@ style: |
 
 # VIF 種類 詳細比較
 
+![w:820 center](assets/vif-comparison.svg)
 | 項目 | Public VIF | Private VIF | Transit VIF |
 |------|-----------|------------|------------|
 | 接続先 | AWS パブリックサービス | VPC (VGW) | TGW (DXGW経由) |
@@ -317,6 +399,7 @@ style: |
 
 # Hosted VIF — クロスアカウント VIF 共有（1/2）
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 - **定義**: Dedicated Connection の所有者（提供者）が、別の AWS アカウント（利用者）に VIF を提供
 - **主な用途**: APN パートナーが複数顧客に VIF を提供、または組織内でアカウント間 VIF 共有
 - **仕組み**: 同一 Dedicated Connection に複数の VLAN を作成し、各 VLAN を異なるアカウントに割り当て
@@ -327,6 +410,7 @@ style: |
 
 # Hosted VIF — クロスアカウント VIF 共有（2/2）
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 - **帯域**: 物理ポートの帯域を複数 VIF で共有（VLAN で論理分離）
 - **Hosted Connection との違い**:
 -   - Hosted Connection: APN パートナーが物理接続全体を提供（VIF は 1 つのみ）
@@ -338,6 +422,7 @@ style: |
 
 # VIF 作成プロセスと必須パラメータ（1/2）
 
+![w:820 center](assets/vif-comparison.svg)
 - **VIF 作成手順** (AWS コンソール / CLI):
 -   1. Direct Connect → Virtual Interfaces → Create virtual interface
 -   2. VIF タイプ選択（Private / Public / Transit）
@@ -350,6 +435,7 @@ style: |
 
 # VIF 作成プロセスと必須パラメータ（2/2）
 
+![w:820 center](assets/vif-comparison.svg)
 -   6. 関連付け先設定（VGW / DXGW）
 - **必須パラメータ一覧**:
 -   - **VLAN ID**: 802.1Q タグ（1〜4094、接続内で一意）
@@ -362,6 +448,7 @@ style: |
 
 # VIF の VLAN 設定と 802.1Q タギング（1/2）
 
+![w:820 center](assets/dx-architecture.svg)
 - **802.1Q VLAN タグ**: 各 VIF に一意の VLAN ID を割り当て、同一物理接続上で複数 VIF を区別
 - **タギングの動作**:
 -   - オンプレルーター → DX Router: 指定の VLAN タグを付与して送信
@@ -374,6 +461,7 @@ style: |
 
 # VIF の VLAN 設定と 802.1Q タギング（2/2）
 
+![w:820 center](assets/dx-architecture.svg)
 -   - `interface GigabitEthernet0/0.101`
 -   - ` encapsulation dot1Q 101` ← VLAN ID 101
 -   - ` ip address 169.254.0.1 255.255.255.252` ← /30 BGP Peer IP
@@ -387,6 +475,7 @@ style: |
 
 # VIF の上限・制約まとめ
 
+![w:820 center](assets/vif-comparison.svg)
 | 制限項目 | 値 | 備考 |
 |---------|-----|------|
 | VIF 数 / Dedicated Connection | 最大 50 | Public + Private + Transit 合計 |
@@ -420,6 +509,7 @@ style: |
 
 # BGP (Border Gateway Protocol) 基礎（1/2）
 
+![w:820 center](assets/bgp-routing.svg)
 - **BGP**: インターネット / 大規模ネットワークで使用される経路制御プロトコル（Exterior Gateway Protocol）
 - **AWS DX での役割**: オンプレルーターと AWS ルーター間で経路情報を交換するプロトコル
 - **特徴**:
@@ -432,6 +522,7 @@ style: |
 
 # BGP (Border Gateway Protocol) 基礎（2/2）
 
+![w:820 center](assets/bgp-routing.svg)
 -   - **iBGP**: 同一 AS 内（AWS 内部ルーター間）
 - **AWS DX での BGP セッション**:
 -   - 1 VIF = 1 BGP セッション（IPv4 / IPv6 それぞれ個別セッション）
@@ -452,6 +543,7 @@ style: |
 
 # AS 番号 (ASN) — パブリック vs プライベート（1/2）
 
+![w:820 center](assets/bgp-routing.svg)
 - **Public ASN (1 〜 64511)**:
 -   - IANA が割り当てるグローバルに一意の AS 番号
 -   - Public VIF では**必須**
@@ -465,6 +557,7 @@ style: |
 
 # AS 番号 (ASN) — パブリック vs プライベート（2/2）
 
+![w:820 center](assets/bgp-routing.svg)
 -   - Private VIF / Transit VIF では使用可
 -   - AWS が自動割り当てる場合もある（デフォルト）
 - **4 バイト ASN (65536 〜 4294967295)**:
@@ -479,6 +572,7 @@ style: |
 
 # BGP 経路広告数の上限 — 重要制限（1/2）
 
+![w:820 center](assets/bgp-routing.svg)
 - **オンプレ → AWS（送信プレフィックス数）: 最大 100**
 -   - Private VIF: 最大 100 プレフィックス
 -   - Transit VIF: 最大 100 プレフィックス
@@ -492,6 +586,7 @@ style: |
 
 # BGP 経路広告数の上限 — 重要制限（2/2）
 
+![w:820 center](assets/bgp-routing.svg)
 -   - TGW に接続された VPC が多い場合は注意が必要
 -   - TGW ルートテーブルの Propagation 設定で広告数を制御
 -   - Private VIF: VPC CIDR のみ（通常は問題なし）
@@ -513,6 +608,7 @@ style: |
 
 # BGP Communities タグ 詳細リファレンス（1/2）
 
+![w:820 center](assets/bgp-routing.svg)
 - **Local Preference の動作**:
 -   - AWS iBGP ルーターで経路を選択する際、Local Preference が高い経路を優先
 -   - 同じプレフィックスを複数 DX 接続から受信した場合に有効
@@ -528,6 +624,7 @@ style: |
 
 # BGP Communities タグ 詳細リファレンス（2/2）
 
+![w:820 center](assets/bgp-routing.svg)
 - **設定例（Cisco IOS）**:
 -   - `route-map SET-DX1-PREF permit 10`
 -   - ` set community 7224:7300` ← DX1 を優先
@@ -544,6 +641,7 @@ style: |
 
 # AS Path Prepending — 帰り路のトラフィックエンジニアリング（1/2）
 
+![w:820 center](assets/bgp-routing.svg)
 - **自分の AS 番号を繰り返し付加することで、相手側から見た AS Path 長を伸ばして優先度を下げる技術**
 - **AS Path Prepend の仕組み**:
 -   - 通常: AS Path = `65000` (長さ 1 = 優先)
@@ -557,6 +655,7 @@ style: |
 
 # AS Path Prepending — 帰り路のトラフィックエンジニアリング（2/2）
 
+![w:820 center](assets/bgp-routing.svg)
 -   - AWS から見てプライマリ DX 経由の経路が短く見える → プライマリを優先
 - **BGP Communities との違い**:
 -   - Communities → AWS がオンプレからの経路の Local Pref を制御（往路）
@@ -571,6 +670,7 @@ style: |
 
 # MED (Multi-Exit Discriminator)（1/2）
 
+![w:820 center](assets/bgp-routing.svg)
 - **MED = 隣接 AS に対して「どの入口から入ってほしいか」を伝えるヒント値（任意）**
 - **動作**:
 -   - MED 値が小さい経路が優先される（デフォルト値: 0）
@@ -583,6 +683,7 @@ style: |
 
 # MED (Multi-Exit Discriminator)（2/2）
 
+![w:820 center](assets/bgp-routing.svg)
 -   - AWS から広告する経路に MED を設定して、オンプレ側の入口を制御
 -   - オンプレが複数の DX 接続でそれぞれ異なる入口から接続している場合に有効
 - **AS Path Prepend との使い分け**:
@@ -603,6 +704,7 @@ style: |
 
 # BFD (Bidirectional Forwarding Detection)（1/2）
 
+![w:820 center](assets/bgp-routing.svg)
 - **BFD = 高速リンク障害検出プロトコル。BGP Hold Timer（90秒）より高速に障害を検出**
 - **BFD の仕組み**:
 -   - 指定間隔で Hello パケットを送受信し、応答がなければ障害と判断
@@ -616,6 +718,7 @@ style: |
 
 # BFD (Bidirectional Forwarding Detection)（2/2）
 
+![w:820 center](assets/bgp-routing.svg)
 -   - オンプレルーターと AWS ルーター間で BFD セッションを確立
 -   - BFD タイマー: 最小検出間隔 300ms、乗数 3（デフォルト）
 - **BFD 設定例（Cisco IOS）**:
@@ -630,6 +733,7 @@ style: |
 
 # BGP トラフィックエンジニアリング まとめ
 
+![w:820 center](assets/bgp-routing.svg)
 | 技術 | 制御方向 | 設定者 | 効果 |
 |-----|---------|--------|------|
 | **BGP Community 7224:7300** | 往路（オンプレ→AWS）| オンプレ側 | AWS が高優先で受信 |
@@ -657,6 +761,7 @@ style: |
 
 # Direct Connect Gateway (DXGW) とは（1/2）
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 - **DXGW = グローバルな AWS マネージドルーター。複数リージョン・複数 VPC への接続を一元化する**
 - **主な役割**:
 -   - Transit VIF の終端先（Transit VIF は必ず DXGW に接続）
@@ -669,6 +774,7 @@ style: |
 
 # Direct Connect Gateway (DXGW) とは（2/2）
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 -   - **グローバルリソース**: リージョンに依存しない（どのリージョンの VPC にも接続可能）
 -   - **ASN**: デフォルト 64512（カスタム ASN 設定可）
 -   - AWS アカウント内で作成、他アカウントの VGW/TGW とも関連付け可能（RAM 使用）
@@ -689,6 +795,7 @@ style: |
 
 # DXGW + VGW 接続（Private VIF の場合）（1/2）
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 - **接続パターン**: オンプレ → DX → Private VIF → **DXGW** → VGW → VPC
 - **DXGW + VGW の特徴**:
 -   - 1 DXGW に最大 **10 VGW**（= 最大 10 VPC）を関連付け可能
@@ -701,6 +808,7 @@ style: |
 
 # DXGW + VGW 接続（Private VIF の場合）（2/2）
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 -   1. DXGW を作成（デフォルト ASN: 64512）
 -   2. VGW を各 VPC に作成
 -   3. DXGW に VGW を Association（関連付け）
@@ -714,6 +822,7 @@ style: |
 
 # DXGW + TGW 接続（Transit VIF の場合）（1/2）
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 - **接続パターン**: オンプレ → DX → Transit VIF → **DXGW** → TGW → 複数 VPC
 - **DXGW + TGW の特徴**:
 -   - 1 DXGW に最大 **3 TGW** を関連付け可能
@@ -726,6 +835,7 @@ style: |
 
 # DXGW + TGW 接続（Transit VIF の場合）（2/2）
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 -   - DXGW と TGW 間に BGP セッションが確立される
 -   - DXGW ASN（例: 64512）↔ TGW ASN（例: 64513）
 -   - 許可するプレフィックス（Allowed Prefixes）を明示的に設定する必要あり
@@ -739,6 +849,7 @@ style: |
 
 # DXGW の重要な制約 — 推移ルーティング非対応（1/2）
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 - **DXGW は推移ルーティング（Transitive Routing）に対応しない**
 - **意味**: DXGW に接続された VPC/TGW 同士は DXGW 経由では通信できない
 - **具体例**:
@@ -751,6 +862,7 @@ style: |
 
 # DXGW の重要な制約 — 推移ルーティング非対応（2/2）
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 - **理由**: DXGW は VPC 間通信を中継する設計になっていない
 - **解決策**:
 -   - VPC 間通信が必要 → TGW を使用（TGW はすべての接続間をルーティング可能）
@@ -763,6 +875,7 @@ style: |
 
 # DXGW の上限・制限まとめ
 
+![w:820 center](assets/dxgw-vgw-tgw.svg)
 | 制限項目 | 値 | 備考 |
 |---------|-----|------|
 | VGW 関連付け数 / DXGW | **10** | Private VIF 経由接続の場合 |
@@ -782,6 +895,7 @@ style: |
 
 # クロスアカウント DXGW 共有（1/2）
 
+![w:820 center](assets/multi-account-design.svg)
 - **AWS Resource Access Manager (RAM) を使って DXGW を複数アカウントで共有可能**
 - **ユースケース**: 組織のネットワーキングアカウントが DXGW/DX 接続を所有し、複数のビジネスユニットの VGW/TGW を接続
 - **手順**:
@@ -794,6 +908,7 @@ style: |
 
 # クロスアカウント DXGW 共有（2/2）
 
+![w:820 center](assets/multi-account-design.svg)
 -   4. 各アカウントの VGW または TGW を DXGW に Association
 -   5. BGP セッション確立 → 接続完了
 - **制約**:
@@ -815,6 +930,7 @@ style: |
 
 # Transit Gateway とは（1/2）
 
+![w:820 center](assets/tgw-routing.svg)
 - **TGW = 単一リージョン内で複数の VPC・VPN・DX 接続を集約するネットワーキングハブ**
 - **ハブ&スポーク型**: すべての接続が TGW を中心に通信（VPC 間の Peering 不要）
 - **アタッチメントの種類**:
@@ -827,6 +943,7 @@ style: |
 
 # Transit Gateway とは（2/2）
 
+![w:820 center](assets/tgw-routing.svg)
 -   - **Peering アタッチメント**: 別リージョン / 別アカウントの TGW とピアリング
 -   - **Connect アタッチメント**: GRE + BGP でサードパーティ SD-WAN 統合
 - **TGW の特徴**:
@@ -866,6 +983,7 @@ style: |
 
 # TGW + Direct Connect 統合アーキテクチャ（1/2）
 
+![w:820 center](assets/tgw-routing.svg)
 - **フルスタック統合: オンプレ → DX → DXGW → TGW → 多数の VPC**
 - **接続フロー**:
 -   1. オンプレルーターが DX 接続を終端
@@ -879,6 +997,7 @@ style: |
 
 # TGW + Direct Connect 統合アーキテクチャ（2/2）
 
+![w:820 center](assets/tgw-routing.svg)
 - **帯域の集約**:
 -   - 複数の DX 接続 → ECMP で TGW への帯域を集約
 -   - 例: 3 × 10 Gbps DX → 最大 30 Gbps（ECMP）
@@ -900,6 +1019,7 @@ style: |
 
 # TGW Inter-Region Peering（1/2）
 
+![w:820 center](assets/tgw-routing.svg)
 - **異なる AWS リージョン間の TGW を接続し、グローバルネットワークを構築**
 - **仕組み**:
 -   - リージョン A の TGW からリージョン B の TGW に「Peering Attachment」を作成
@@ -913,6 +1033,7 @@ style: |
 
 # TGW Inter-Region Peering（2/2）
 
+![w:820 center](assets/tgw-routing.svg)
 - **ユースケース**:
 -   - DR（ディザスタリカバリ）構成（東京 ↔ 大阪リージョン）
 -   - グローバルアプリケーションの VPC 間通信
@@ -927,6 +1048,7 @@ style: |
 
 # TGW Connect — GRE による SD-WAN 統合（1/2）
 
+![w:820 center](assets/tgw-routing.svg)
 - **TGW Connect = GRE（Generic Routing Encapsulation）トンネルで SD-WAN アプライアンスを TGW に接続**
 - **背景**: 従来の Site-to-Site VPN (IPsec) の代替として、よりシンプルな GRE + BGP で接続
 - **TGW Connect の特徴**:
@@ -939,6 +1061,7 @@ style: |
 
 # TGW Connect — GRE による SD-WAN 統合（2/2）
 
+![w:820 center](assets/tgw-routing.svg)
 -   - **帯域**: 最大 5 Gbps / Connect Peer（複数 Peer で集約可能）
 - **ユースケース**:
 -   - Cisco / VMware / Palo Alto などの SD-WAN アプライアンスを TGW に接続
@@ -951,6 +1074,7 @@ style: |
 
 # TGW Flow Logs と Network Manager（1/2）
 
+![w:820 center](assets/tgw-routing.svg)
 - **TGW Flow Logs**:
 -   - TGW を通過するトラフィックのメタデータをキャプチャ
 -   - フィールド: src/dst IP、src/dst Port、プロトコル、バイト数、パケット数、ACCEPT/REJECT
@@ -963,6 +1087,7 @@ style: |
 
 # TGW Flow Logs と Network Manager（2/2）
 
+![w:820 center](assets/tgw-routing.svg)
 - **TGW Network Manager**:
 -   - 複数リージョンの TGW をグローバルなネットワーク図として可視化
 -   - グローバルネットワーク（Global Network）を作成し、TGW を登録
@@ -976,6 +1101,7 @@ style: |
 
 # TGW の上限と制約
 
+![w:820 center](assets/tgw-routing.svg)
 | 制限項目 | 値 | 備考 |
 |---------|-----|------|
 | VPC アタッチメント数 / TGW | 5,000 | Service Quota で増加可 |
@@ -1006,6 +1132,7 @@ style: |
 
 # Direct Connect 暗号化オプション概要
 
+![w:820 center](assets/encryption-layers.svg)
 - **DX は物理専用線だが、デフォルトでは暗号化されない**
 | 暗号化方式 | Layer | 対象区間 | 対応接続 | オーバーヘッド |
 |-----------|-------|---------|---------|-------------|
@@ -1032,6 +1159,7 @@ style: |
 
 # VPN over Direct Connect — エンド to エンド暗号化（1/2）
 
+![w:820 center](assets/encryption-layers.svg)
 - **DX 専用線の上に IPsec VPN トンネルを重ねることで、エンドポイント間の暗号化を実現**
 - **アーキテクチャ**: オンプレ VPN Router → DX（物理専用線）→ Public VIF → VGW/TGW → VPN トンネル（IPsec）
 - **なぜ Public VIF を使うのか**: VPN のエンドポイント（VGW/TGW）はパブリック IP アドレスを持つため
@@ -1044,6 +1172,7 @@ style: |
 
 # VPN over Direct Connect — エンド to エンド暗号化（2/2）
 
+![w:820 center](assets/encryption-layers.svg)
 -   - **DX の安定性 + VPN の暗号化**を組み合わせた構成
 - **帯域への影響**:
 -   - IPsec オーバーヘッドにより実効帯域が低下（約 5〜10%）
@@ -1056,6 +1185,7 @@ style: |
 
 # BGP MD5 認証（1/2）
 
+![w:820 center](assets/encryption-layers.svg)
 - **BGP セッションを MD5 ハッシュで認証し、なりすまし攻撃を防止する**
 - **仕組み**:
 -   - 両側（オンプレ + AWS）で同一の MD5 キーを設定
@@ -1070,6 +1200,7 @@ style: |
 
 # BGP MD5 認証（2/2）
 
+![w:820 center](assets/encryption-layers.svg)
 -   - `aws directconnect create-private-virtual-interface --auth-key <KEY>`
 -   - オンプレルーター側にも同じキーを設定
 - **オンプレルーター設定例（Cisco IOS）**:
@@ -1085,6 +1216,7 @@ style: |
 
 # セキュリティ設計パターン（1/2）
 
+![w:820 center](assets/encryption-layers.svg)
 - **AWS Network Firewall との統合**:
 -   - TGW の中央インスペクション VPC に Network Firewall をデプロイ
 -   - オンプレから VPC へのトラフィックを Network Firewall で検査
@@ -1101,6 +1233,7 @@ style: |
 
 # セキュリティ設計パターン（2/2）
 
+![w:820 center](assets/encryption-layers.svg)
 -   - L3〜L7 のステートフル / ステートレスフィルタリング
 - **ゼロトラスト アーキテクチャ**:
 -   - DX で接続してもデフォルトで信頼しない
@@ -1126,6 +1259,7 @@ style: |
 
 # Jumbo Frames — MTU の詳細（1/2）
 
+![w:820 center](assets/mtu-comparison.svg)
 - **MTU（Maximum Transmission Unit）= 1 フレームで送信できる最大データサイズ**
 - **Jumbo Frames の効果**:
 -   - 1,500 bytes → 9,001 bytes: 1 フレームあたり 6 倍のデータ
@@ -1142,6 +1276,7 @@ style: |
 
 # Jumbo Frames — MTU の詳細（2/2）
 
+![w:820 center](assets/mtu-comparison.svg)
 -   - TCP スループット向上（特に高遅延・高帯域リンク）
 - **Jumbo Frames の注意点**:
 -   - VPC 内のすべてのネットワークホップが Jumbo MTU 対応であること
@@ -1159,6 +1294,7 @@ style: |
 
 # 帯域計画と計算方法（1/2）
 
+![w:820 center](assets/mtu-comparison.svg)
 - **Direct Connect の実効帯域計算**:
 -   - 理論帯域（Gbps）× 利用率目標（例: 70%）= 計画帯域
 -   - 例: 10 Gbps DX × 70% = **7 Gbps** を実運用の上限として設計
@@ -1172,6 +1308,7 @@ style: |
 
 # 帯域計画と計算方法（2/2）
 
+![w:820 center](assets/mtu-comparison.svg)
 - **帯域に影響する要素**:
 -   - TCP ウィンドウサイズ（高遅延時は特に重要）
 -   - レイテンシ: 東京〜AWS 東京リージョン間は通常 1〜5ms
@@ -1186,6 +1323,7 @@ style: |
 
 # パフォーマンス最適化のベストプラクティス（1/2）
 
+![w:820 center](assets/mtu-comparison.svg)
 - **TCP パフォーマンスの最適化**:
 -   - TCP Window Scaling を有効にする（高遅延・高帯域リンクで必須）
 -   - TCP バッファサイズの調整（Linux: `/proc/sys/net/core/rmem_max` など）
@@ -1200,6 +1338,7 @@ style: |
 
 # パフォーマンス最適化のベストプラクティス（2/2）
 
+![w:820 center](assets/mtu-comparison.svg)
 - **ルーター設定の最適化**:
 -   - BGP タイマーを適切に設定（BFD で高速障害検出）
 -   - QoS / Traffic Shaping: 優先トラフィックに高い優先度を設定
@@ -1230,6 +1369,7 @@ style: |
 
 # パターン1・2: Single / Dual（同一ロケーション）（1/2）
 
+![w:820 center](assets/dx-redundancy.svg)
 - **パターン1: Single Connection（SLA なし）**
 -   - 1 つの DX 接続のみ
 -   - SPOF（単一障害点）: 接続障害 = 即サービス停止
@@ -1242,6 +1382,7 @@ style: |
 
 # パターン1・2: Single / Dual（同一ロケーション）（2/2）
 
+![w:820 center](assets/dx-redundancy.svg)
 -   - 同一 DX ロケーション内に 2 つの接続
 -   - ポート障害・ルーター障害に耐性
 -   - 施設障害（停電・火災）では両断の可能性あり
@@ -1254,6 +1395,7 @@ style: |
 
 # パターン3・4: 異ロケーション / DX+VPN（1/2）
 
+![w:820 center](assets/dx-redundancy.svg)
 - **パターン3: Dual Connection 異なる DX ロケーション（SLA: 99.99%）— AWS 推奨**
 -   - 2 つの異なる DX ロケーションに接続（例: 東京 + 大阪）
 -   - ポート障害・ルーター障害・施設障害すべてに耐性
@@ -1266,6 +1408,7 @@ style: |
 
 # パターン3・4: 異ロケーション / DX+VPN（2/2）
 
+![w:820 center](assets/dx-redundancy.svg)
 - **パターン4: DX + VPN バックアップ（SLA: 99.9%）**
 -   - プライマリ: DX 接続（高帯域・低レイテンシ）
 -   - バックアップ: Site-to-Site VPN（DX 障害時のフェイルオーバー先）
@@ -1278,6 +1421,7 @@ style: |
 
 # フェイルオーバー設計と BGP チューニング（1/2）
 
+![w:820 center](assets/dx-redundancy.svg)
 - **フェイルオーバー時間を最小化するための設計**
 - **障害検出の高速化**:
 -   - BFD（Bidirectional Forwarding Detection）: **300ms 以内**に障害検出
@@ -1292,6 +1436,7 @@ style: |
 
 # フェイルオーバー設計と BGP チューニング（2/2）
 
+![w:820 center](assets/dx-redundancy.svg)
 -   3. BGP セッション切断 → ルートテーブルから経路削除
 -   4. バックアップ経路（次善経路）が昇格
 -   5. トラフィックがバックアップ DX または VPN に切り替わり
@@ -1307,6 +1452,7 @@ style: |
 
 # HA 設計チェックリスト（1/2）
 
+![w:820 center](assets/dx-redundancy.svg)
 - **設計フェーズ（接続構成）**:
 -   - [ ] 本番環境: 最低でもパターン2（Dual 同一ロケーション）以上
 -   - [ ] SLA 99.99% 要件: パターン3（異なる DX ロケーション）必須
@@ -1322,6 +1468,7 @@ style: |
 
 # HA 設計チェックリスト（2/2）
 
+![w:820 center](assets/dx-redundancy.svg)
 - **テスト・検証フェーズ**:
 -   - [ ] 手動で DX 接続を切断してフェイルオーバーを確認
 -   - [ ] フェイルオーバー時間を計測（BFD ありなしの比較）
@@ -1353,6 +1500,7 @@ style: |
 
 # CloudWatch DX メトリクス 詳細
 
+![w:820 center](assets/dx-architecture.svg)
 | メトリクス名 | 説明 | 推奨アラーム閾値 |
 |-----------|------|----------------|
 | `ConnectionState` | 接続状態（0=DOWN, 1=UP）| 0 = アラーム |
@@ -1372,6 +1520,7 @@ style: |
 
 # AWS Health Dashboard と EventBridge（1/2）
 
+![w:820 center](assets/dx-architecture.svg)
 - **AWS Health Dashboard**:
 -   - DX 接続のメンテナンス通知（事前通知: 数日〜数週間前）
 -   - 予期しない障害イベントのリアルタイム通知
@@ -1385,6 +1534,7 @@ style: |
 
 # AWS Health Dashboard と EventBridge（2/2）
 
+![w:820 center](assets/dx-architecture.svg)
 -   - イベントタイプ例:
 -     - `directconnect:connectionStateChange` → 接続の UP/DOWN
 -     - `directconnect:virtualInterfaceStateChange` → VIF の状態変化
@@ -1399,6 +1549,7 @@ style: |
 
 # DX 障害診断フロー（1/2）
 
+![w:820 center](assets/dx-redundancy.svg)
 - **症状: DX 接続が利用できない場合の調査順序**
 - **① 物理層の確認**:
 -   - CloudWatch: `ConnectionState` = 0 か確認
@@ -1414,6 +1565,7 @@ style: |
 
 # DX 障害診断フロー（2/2）
 
+![w:820 center](assets/dx-redundancy.svg)
 -   - 802.1Q タグが正しく設定されているか
 - **③ BGP セッションの確認**:
 -   - `show bgp neighbor <AWS-IP>` で BGP ステート確認
@@ -1430,6 +1582,7 @@ style: |
 
 # コスト最適化ガイド（1/2）
 
+![w:820 center](assets/dx-cost-comparison.svg)
 - **Direct Connect の料金体系**:
 -   - **ポート時間料金**: 接続が確立している間、時間単位で課金
 -     - 1 Gbps Dedicated: 約 $0.30/時間（リージョン依存）
@@ -1442,6 +1595,7 @@ style: |
 
 # コスト最適化ガイド（2/2）
 
+![w:820 center](assets/dx-cost-comparison.svg)
 -     - インターネット経由: $0.09/GB（EC2 Egress）
 -   - **Ingress（受信）**: 無料（AWS への受信データは課金なし）
 - **コスト最適化の戦略**:
@@ -1455,6 +1609,7 @@ style: |
 
 # 料金体系まとめ（DX vs VPN vs インターネット）（1/2）
 
+![w:820 center](assets/dx-cost-comparison.svg)
 - **コスト比較例（月間 100 TB Egress、東京リージョン）**:
 -   - DX: データ転送 $2,000 + ポート $1,080 = **$3,080/月**
 -   - インターネット: $9,200/月
@@ -1471,6 +1626,7 @@ style: |
 
 # 料金体系まとめ（DX vs VPN vs インターネット）（2/2）
 
+![w:820 center](assets/dx-cost-comparison.svg)
 - **選択基準**:
 -   - 月間 Egress が 10 TB 以上 → DX が経済的
 -   - 10 TB 以下 → インターネット or VPN の方が低コスト
@@ -1495,6 +1651,7 @@ style: |
 
 # ハイブリッド接続パターン比較
 
+![w:820 center](assets/multi-account-design.svg)
 | パターン | 接続方式 | 帯域 | レイテンシ | 可用性 | ユースケース |
 |--------|---------|-----|---------|--------|-----------|
 | A | DX Dedicated | 最大 100 Gbps | 最低 | 99.99%（Dual）| エンタープライズ、大量データ転送 |
@@ -1514,6 +1671,7 @@ style: |
 
 # 大規模マルチアカウント DX 設計（1/2）
 
+![w:820 center](assets/multi-account-design.svg)
 - **AWS Organizations 全体で DX を一元管理する推奨アーキテクチャ**
 - **構成パターン（ハブ&スポーク）**:
 -   - **Network Account**: DX 接続 / DXGW / TGW を集約管理
@@ -1527,6 +1685,7 @@ style: |
 
 # 大規模マルチアカウント DX 設計（2/2）
 
+![w:820 center](assets/multi-account-design.svg)
 -   - オンプレ → DX（Network Account）→ DXGW → TGW（共有）→ 各 App Account VPC
 - **セキュリティセグメンテーション（TGW ルートテーブルで実現）**:
 -   - Dev ↔ Prod: 直接通信禁止
@@ -1541,6 +1700,7 @@ style: |
 
 # ANS 試験対策ポイント (1/2)（1/2）
 
+![w:820 center](assets/vif-comparison.svg)
 - **頻出トピック1: VIF の選択**
 -   - AWS パブリックサービス（S3 etc.）→ **Public VIF**（パブリック ASN 必須）
 -   - 単一 VPC への接続 → **Private VIF** + VGW
@@ -1554,6 +1714,7 @@ style: |
 
 # ANS 試験対策ポイント (1/2)（2/2）
 
+![w:820 center](assets/bgp-routing.svg)
 -   - 1 DXGW に VGW 最大 10 個、TGW 最大 3 個
 - **頻出トピック3: BGP 経路制御**
 -   - オンプレ → AWS の優先制御 → **BGP Community 7224:7300/7200/7100**
@@ -1568,6 +1729,7 @@ style: |
 
 # ANS 試験対策ポイント (2/2)（1/2）
 
+![w:820 center](assets/dx-redundancy.svg)
 - **頻出トピック5: 冗長性と SLA**
 -   - SLA 99.99% → **異なる DX ロケーションに 2 接続**（AWS 推奨）
 -   - SLA 99.9% → 同一 DX ロケーションに 2 接続
@@ -1581,6 +1743,7 @@ style: |
 
 # ANS 試験対策ポイント (2/2)（2/2）
 
+![w:820 center](assets/encryption-layers.svg)
 -   - Public VIF: **1,500 bytes**（Jumbo 非対応）
 - **頻出トピック7: 暗号化**
 -   - Layer 2 暗号化 → **MACsec**（10G/100G Dedicated のみ）
@@ -1620,6 +1783,7 @@ style: |
 
 # まとめ — AWS ネットワーキングの全体像（1/2）
 
+![w:820 center](assets/dx-architecture.svg)
 - **Direct Connect エコシステムの核心概念**
 -   - **物理接続**: Dedicated（占有）vs Hosted（共有）、帯域・VIF 数・MACsec 対応が違う
 -   - **VIF**: Public / Private / Transit の 3 種類。用途によって選択
@@ -1632,6 +1796,7 @@ style: |
 
 # まとめ — AWS ネットワーキングの全体像（2/2）
 
+![w:820 center](assets/multi-account-design.svg)
 - **設計の鉄則**
 -   - 本番環境: **必ず Dual 接続**（SLA 99.9% 以上）
 -   - 高可用性: **異なる DX ロケーション**（SLA 99.99%）

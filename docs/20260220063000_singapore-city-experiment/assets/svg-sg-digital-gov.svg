@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">デジタル政府 — データ駆動型統治の全体像</text>
+  <!-- center node -->
+  <circle cx="400" cy="190" r="55" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="400" y="184" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">SingPass</text>
+  <text x="400" y="204" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">デジタルID基盤</text>
+  <!-- spokes -->
+  <line x1="345" y1="155" x2="200" y2="100" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="455" y1="155" x2="600" y2="100" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="345" y1="225" x2="200" y2="280" stroke="#e91e63" stroke-width="1.5"/>
+  <line x1="455" y1="225" x2="600" y2="280" stroke="#e91e63" stroke-width="1.5"/>
+  <line x1="400" y1="135" x2="400" y2="60" stroke="#f9a825" stroke-width="1.5"/>
+  <!-- satellite nodes -->
+  <rect x="100" y="65" width="190" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="195" y="88" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">ライフSG</text>
+  <text x="195" y="108" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">行政サービス一元化</text>
+  <rect x="510" y="65" width="190" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="605" y="88" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">CorpPass</text>
+  <text x="605" y="108" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">法人デジタル認証</text>
+  <rect x="100" y="250" width="190" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="195" y="273" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">SmartNation</text>
+  <text x="195" y="293" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">IoTセンサー網</text>
+  <rect x="510" y="250" width="190" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="605" y="273" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">GovTech</text>
+  <text x="605" y="293" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">政府テック機関</text>
+  <rect x="305" y="25" width="190" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="46" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">NDI (国家ID)</text>
+  <text x="400" y="64" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">全国民デジタル基盤</text>
+  <text x="400" y="350" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">97%のデジタルサービス利用率 — OECD最高水準</text>
+</svg>

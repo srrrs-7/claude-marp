@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">Staff+ エンジニアの理想的な一日</text>
+  <!-- Schedule timeline -->
+  <rect x="60" y="50" width="680" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="130" y="67" fill="#f9a825" font-size="11" font-family="sans-serif" font-weight="bold">9:00-10:00</text>
+  <text x="130" y="83" fill="#ffffff" font-size="11" font-family="sans-serif">メール・Slack確認（一括処理）</text>
+  <text x="680" y="75" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="end">× リアクティブ排除</text>
+  <rect x="60" y="100" width="680" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="130" y="117" fill="#f9a825" font-size="11" font-family="sans-serif" font-weight="bold">10:00-12:00</text>
+  <text x="130" y="133" fill="#ffffff" font-size="11" font-family="sans-serif">深作業ブロック①（設計 / 執筆 / 調査）</text>
+  <text x="680" y="121" fill="#f9a825" font-size="10" font-family="sans-serif" text-anchor="end">★ コアタイム</text>
+  <rect x="60" y="150" width="680" height="42" rx="6" fill="#16213e" stroke="#aaaaaa" stroke-width="1.5"/>
+  <text x="130" y="167" fill="#aaaaaa" font-size="11" font-family="sans-serif" font-weight="bold">12:00-13:00</text>
+  <text x="130" y="183" fill="#ffffff" font-size="11" font-family="sans-serif">ランチ + 軽い読書・散歩</text>
+  <text x="680" y="171" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="end">脳のリセット</text>
+  <rect x="60" y="200" width="680" height="42" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="130" y="217" fill="#e91e63" font-size="11" font-family="sans-serif" font-weight="bold">13:00-15:00</text>
+  <text x="130" y="233" fill="#ffffff" font-size="11" font-family="sans-serif">チーム支援（コードレビュー・1on1・相談）</text>
+  <text x="680" y="221" fill="#e91e63" font-size="10" font-family="sans-serif" text-anchor="end">乗数効果</text>
+  <rect x="60" y="250" width="680" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="130" y="267" fill="#f9a825" font-size="11" font-family="sans-serif" font-weight="bold">15:00-17:00</text>
+  <text x="130" y="283" fill="#ffffff" font-size="11" font-family="sans-serif">深作業ブロック②（実装 / プロトタイプ）</text>
+  <text x="680" y="271" fill="#f9a825" font-size="10" font-family="sans-serif" text-anchor="end">★ コアタイム</text>
+  <rect x="60" y="300" width="680" height="42" rx="6" fill="#16213e" stroke="#aaaaaa" stroke-width="1.5"/>
+  <text x="130" y="317" fill="#aaaaaa" font-size="11" font-family="sans-serif" font-weight="bold">17:00-18:00</text>
+  <text x="130" y="333" fill="#ffffff" font-size="11" font-family="sans-serif">翌日の計画 + 振り返り（日次レトロ）</text>
+  <text x="680" y="321" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="end">クローズ儀式</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="35" fill="#f9a825" font-size="20" font-weight="bold" text-anchor="middle" font-family="sans-serif">観測者効果：観察が現実を変える</text>
+  <!-- Without observation -->
+  <text x="195" y="70" fill="#66bb6a" font-size="15" text-anchor="middle" font-weight="bold" font-family="sans-serif">観察なし（自然な状態）</text>
+  <rect x="60" y="88" width="130" height="55" fill="#16213e" stroke="#66bb6a" stroke-width="2" rx="6"/>
+  <text x="125" y="112" fill="#66bb6a" font-size="12" text-anchor="middle" font-family="sans-serif">ユーザー</text>
+  <text x="125" y="130" fill="#a0a0c0" font-size="10" text-anchor="middle" font-family="sans-serif">自然な行動</text>
+  <line x1="190" y1="115" x2="240" y2="115" stroke="#66bb6a" stroke-width="2"/>
+  <polygon points="240,109 252,115 240,121" fill="#66bb6a"/>
+  <rect x="252" y="88" width="100" height="55" fill="#16213e" stroke="#66bb6a" stroke-width="2" rx="6"/>
+  <text x="302" y="112" fill="#66bb6a" font-size="12" text-anchor="middle" font-family="sans-serif">行動データ</text>
+  <text x="302" y="130" fill="#a0a0c0" font-size="10" text-anchor="middle" font-family="sans-serif">真の行動</text>
+  <!-- With observation -->
+  <text x="195" y="200" fill="#e91e63" font-size="15" text-anchor="middle" font-weight="bold" font-family="sans-serif">観察あり（歪んだ状態）</text>
+  <rect x="60" y="218" width="130" height="55" fill="#16213e" stroke="#e91e63" stroke-width="2" rx="6"/>
+  <text x="125" y="242" fill="#e91e63" font-size="12" text-anchor="middle" font-family="sans-serif">ユーザー</text>
+  <text x="125" y="260" fill="#a0a0c0" font-size="10" text-anchor="middle" font-family="sans-serif">意識した行動</text>
+  <!-- Observer bubble -->
+  <circle cx="225" cy="245" r="25" fill="#1a1a3e" stroke="#f9a825" stroke-width="2"/>
+  <text x="225" y="242" fill="#f9a825" font-size="9" text-anchor="middle" font-family="sans-serif">調査員</text>
+  <text x="225" y="256" fill="#f9a825" font-size="9" text-anchor="middle" font-family="sans-serif">観察</text>
+  <!-- Distortion arrow -->
+  <line x1="250" y1="245" x2="290" y2="245" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="290,239 302,245 290,251" fill="#e91e63"/>
+  <rect x="302" y="218" width="100" height="55" fill="#2a1a1a" stroke="#e91e63" stroke-width="2" rx="6"/>
+  <text x="352" y="242" fill="#e91e63" font-size="12" text-anchor="middle" font-family="sans-serif">行動データ</text>
+  <text x="352" y="260" fill="#a0a0c0" font-size="10" text-anchor="middle" font-family="sans-serif">歪んだ行動</text>
+  <!-- Examples on right -->
+  <rect x="460" y="80" width="300" height="230" fill="#16213e" stroke="#4fc3f7" stroke-width="1" rx="8"/>
+  <text x="610" y="108" fill="#4fc3f7" font-size="13" text-anchor="middle" font-weight="bold" font-family="sans-serif">UXリサーチでの実例</text>
+  <line x1="480" y1="118" x2="740" y2="118" stroke="#4fc3f7" stroke-width="1"/>
+  <text x="490" y="142" fill="#f9a825" font-size="11" font-family="sans-serif">ユーザーテスト:</text>
+  <text x="490" y="160" fill="#a0a0c0" font-size="10" font-family="sans-serif">観察されると丁寧に操作してしまう</text>
+  <text x="490" y="185" fill="#f9a825" font-size="11" font-family="sans-serif">アンケート:</text>
+  <text x="490" y="203" fill="#a0a0c0" font-size="10" font-family="sans-serif">社会的望ましさバイアスが発生</text>
+  <text x="490" y="228" fill="#f9a825" font-size="11" font-family="sans-serif">インタビュー:</text>
+  <text x="490" y="246" fill="#a0a0c0" font-size="10" font-family="sans-serif">インタビュアーに合わせた答えを出す</text>
+  <text x="490" y="275" fill="#66bb6a" font-size="10" font-family="sans-serif">解決策: 行動観察 + ログ分析の組み合わせ</text>
+  <!-- Bottom note -->
+  <text x="400" y="360" fill="#a0a0c0" font-size="12" text-anchor="middle" font-family="sans-serif">量子力学の測定問題と同構造：測定行為が状態を変化させる</text>
+</svg>

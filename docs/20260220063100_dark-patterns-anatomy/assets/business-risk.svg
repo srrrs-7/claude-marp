@@ -1,0 +1,33 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">企業にとってのリスク — 発覚すると何が起きるか</text>
+  <!-- 4 risk areas in 2x2 -->
+  <rect x="20" y="50" width="370" height="135" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="205" y="76" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">法的リスク</text>
+  <text x="205" y="98" text-anchor="middle" font-size="11" fill="#ffffff">Epic Games: FTCに$5.2億ドル制裁</text>
+  <text x="205" y="116" text-anchor="middle" font-size="11" fill="#ffffff">Amazon: EU当局から是正命令</text>
+  <text x="205" y="134" text-anchor="middle" font-size="11" fill="#ffffff">EU DSA 2024: 売上の6%制裁金</text>
+  <text x="205" y="172" text-anchor="middle" font-size="10" fill="#e91e63">→ 規制は世界的に強化中</text>
+  <rect x="410" y="50" width="370" height="135" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="595" y="76" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">ブランドリスク</text>
+  <text x="595" y="98" text-anchor="middle" font-size="11" fill="#ffffff">SNSでの炎上・拡散</text>
+  <text x="595" y="116" text-anchor="middle" font-size="11" fill="#ffffff">darkpatterns.orgなどへの晒し</text>
+  <text x="595" y="134" text-anchor="middle" font-size="11" fill="#ffffff">信頼回復に数年かかる事例も</text>
+  <text x="595" y="172" text-anchor="middle" font-size="10" fill="#e91e63">→ ブランド信頼度 -28%（調査）</text>
+  <rect x="20" y="200" width="370" height="135" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="205" y="226" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">顧客離れリスク</text>
+  <text x="205" y="248" text-anchor="middle" font-size="11" fill="#ffffff">怒りのユーザーは悪評を12人に</text>
+  <text x="205" y="266" text-anchor="middle" font-size="11" fill="#ffffff">LTV（顧客生涯価値）の喪失</text>
+  <text x="205" y="284" text-anchor="middle" font-size="11" fill="#ffffff">解約後のレビュー爆撃</text>
+  <text x="205" y="322" text-anchor="middle" font-size="10" fill="#f9a825">→ 短期収益 &lt; 長期損失</text>
+  <rect x="410" y="200" width="370" height="135" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="595" y="226" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">人材リスク</text>
+  <text x="595" y="248" text-anchor="middle" font-size="11" fill="#ffffff">エンジニア・デザイナーの離職</text>
+  <text x="595" y="266" text-anchor="middle" font-size="11" fill="#ffffff">「倫理的に問題」と感じる従業員</text>
+  <text x="595" y="284" text-anchor="middle" font-size="11" fill="#ffffff">採用ブランドへのダメージ</text>
+  <text x="595" y="322" text-anchor="middle" font-size="10" fill="#f9a825">→ 優秀な人材は逃げる</text>
+  <!-- Bottom -->
+  <rect x="20" y="350" width="760" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="370" text-anchor="middle" font-size="12" fill="#f9a825">短期的な収益増加 vs 法的制裁・ブランド破壊・人材流出 — どちらが大きいか</text>
+  <text x="400" y="383" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.6">エシカルデザインはコストではなくリスク管理への投資</text>
+</svg>

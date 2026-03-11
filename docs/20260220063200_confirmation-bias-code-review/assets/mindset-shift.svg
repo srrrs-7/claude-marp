@@ -1,0 +1,39 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">レビュアーのマインドセット転換</text>
+  <!-- Left: Old mindset -->
+  <rect x="20" y="50" width="370" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="205" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">旧マインドセット（バイアス強化）</text>
+  <rect x="40" y="92" width="330" height="52" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="205" y="112" text-anchor="middle" font-size="12" fill="#e91e63">「このコードは正しいはず」</text>
+  <text x="205" y="132" text-anchor="middle" font-size="11" fill="#ffffff">→ 動作確認だけして承認</text>
+  <rect x="40" y="154" width="330" height="52" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="205" y="174" text-anchor="middle" font-size="12" fill="#e91e63">「○○さんのコードだから」</text>
+  <text x="205" y="194" text-anchor="middle" font-size="11" fill="#ffffff">→ ハロー効果で自動承認</text>
+  <rect x="40" y="216" width="330" height="52" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="205" y="236" text-anchor="middle" font-size="12" fill="#e91e63">「テストが通ってるから」</text>
+  <text x="205" y="256" text-anchor="middle" font-size="11" fill="#ffffff">→ 設計・可読性は見ない</text>
+  <rect x="40" y="278" width="330" height="48" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1" opacity="0.7"/>
+  <text x="205" y="298" text-anchor="middle" font-size="12" fill="#e91e63">「皆が承認したから」</text>
+  <text x="205" y="318" text-anchor="middle" font-size="11" fill="#ffffff">→ 集団浅慮に流される</text>
+  <!-- Arrow -->
+  <text x="400" y="210" text-anchor="middle" font-size="30" fill="#f9a825">→</text>
+  <!-- Right: New mindset -->
+  <rect x="410" y="50" width="370" height="290" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="595" y="78" text-anchor="middle" font-size="14" font-weight="bold" fill="#4caf50">新マインドセット（バイアス抑制）</text>
+  <rect x="430" y="92" width="330" height="52" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="595" y="112" text-anchor="middle" font-size="12" fill="#4caf50">「バグを探しにきた」</text>
+  <text x="595" y="132" text-anchor="middle" font-size="11" fill="#ffffff">→ 能動的に問題を探す姿勢</text>
+  <rect x="430" y="154" width="330" height="52" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="595" y="174" text-anchor="middle" font-size="12" fill="#4caf50">「著者名を見ずにコードを見る」</text>
+  <text x="595" y="194" text-anchor="middle" font-size="11" fill="#ffffff">→ コードの品質だけで評価</text>
+  <rect x="430" y="216" width="330" height="52" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="595" y="236" text-anchor="middle" font-size="12" fill="#4caf50">「なぜこの設計？」を問う</text>
+  <text x="595" y="256" text-anchor="middle" font-size="11" fill="#ffffff">→ 動作だけでなく設計を評価</text>
+  <rect x="430" y="278" width="330" height="48" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="595" y="298" text-anchor="middle" font-size="12" fill="#4caf50">「私だけが気づいたかも」</text>
+  <text x="595" y="318" text-anchor="middle" font-size="11" fill="#ffffff">→ 異論を恐れず発言する</text>
+  <!-- Bottom -->
+  <text x="400" y="364" text-anchor="middle" font-size="13" fill="#f9a825">「著者名を知らなければ、同じレビューをするか？」</text>
+  <text x="400" y="382" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">この問いが確証バイアスへの最も実践的な対抗手段</text>
+</svg>

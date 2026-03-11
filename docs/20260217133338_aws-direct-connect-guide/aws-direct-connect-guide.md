@@ -4,6 +4,72 @@ theme: gaia
 class: invert
 size: 16:9
 paginate: true
+style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
 ---
 
 <!-- _class: lead -->
@@ -40,6 +106,24 @@ paginate: true
 
 # AWS Direct Connect とは
 
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+  <rect x="30" y="150" width="160" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="180" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">企業オンプレ</text>
+<text x="110" y="204" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Customer Network</text>
+  <line x1="190" y1="190" x2="280" y2="190" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,190 268,196 268,184" fill="#f9a825"/>
+  <rect x="280" y="160" width="140" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="350" y="180" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">DX Location</text>
+<text x="350" y="204" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">コロケーション</text>
+  <line x1="420" y1="190" x2="510" y2="190" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="510,190 498,196 498,184" fill="#f9a825"/>
+  <rect x="510" y="150" width="160" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="590" y="180" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">AWS Cloud</text>
+<text x="590" y="204" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">VPC / Services</text>
+  <text x="400" y="80" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">AWS Direct Connect — 専用線接続</text>
+  <text x="260" y="285" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="normal" font-family="sans-serif">1G / 10G / 100G 専用回線</text>
+  <text x="530" y="285" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">低レイテンシ・安定帯域</text>
+</svg>
 - - オンプレミス環境と AWS を **専用線** で接続するサービス
 - - インターネットを経由せず、**一貫したネットワーク品質** を提供
 - - 帯域: **50 Mbps 〜 100 Gbps** まで柔軟に選択可能
@@ -52,6 +136,28 @@ paginate: true
 
 # DX の主なユースケース
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX 主なユースケース</text>
+  <rect x="30" y="65" width="220" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ハイブリッドクラウド</text>
+<text x="140" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">DC ↔ AWS 安定接続</text>
+  <rect x="290" y="65" width="220" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">大容量データ転送</text>
+<text x="400" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">TB 級 バックアップ/DR</text>
+  <rect x="550" y="65" width="220" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">低レイテンシ接続</text>
+<text x="660" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">金融・HFT・ゲーム</text>
+  <rect x="30" y="195" width="220" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="223.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">コンプライアンス</text>
+<text x="140" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">規制環境でのクラウド利用</text>
+  <rect x="290" y="195" width="220" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="223.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">マルチリージョン</text>
+<text x="400" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">DXGW で複数拠点接続</text>
+  <rect x="550" y="195" width="220" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="223.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">SaaS 閉域接続</text>
+<text x="660" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Hosted VIF 経由</text>
+  <text x="400" y="325" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">DX は可用性 / 帯域 / セキュリティ の三拍子が揃う</text>
+</svg>
 - - **大容量データ転送** — S3/Glacier への TB〜PB 級データ移行
 - - **ハイブリッドクラウド** — オンプレ DC と VPC のシームレス接続
 - - **リアルタイムアプリ** — 低レイテンシが求められる金融・製造系
@@ -64,6 +170,35 @@ paginate: true
 
 # DX 接続の全体像
 
+- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
+  <rect x="20" y="60" width="150" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="85" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Customer</text>
+<text x="95" y="109" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Router</text>
+  <line x1="170" y1="95" x2="240" y2="95" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="240,95 228,101 228,89" fill="#f9a825"/>
+  <rect x="240" y="60" width="150" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="85" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">DX Location</text>
+<text x="315" y="109" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Cage/MMR</text>
+  <line x1="390" y1="95" x2="460" y2="95" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="460,95 448,101 448,89" fill="#f9a825"/>
+  <rect x="460" y="40" width="160" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="540" y="67.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">AWS DX Router</text>
+
+  <rect x="460" y="110" width="160" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="540" y="127.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">Virtual IF</text>
+<text x="540" y="151.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">VIF</text>
+  <line x1="620" y1="95" x2="690" y2="75" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="690,75 680.1100393956943,84.06579722061348 676.8133858609259,72.5275098489236" fill="#f9a825"/>
+  <line x1="620" y1="130" x2="690" y2="155" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="690,155 676.6810786788731,156.61441470559114 680.7171154428509,145.3135117664531" fill="#f9a825"/>
+  <rect x="690" y="55" width="100" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="72.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">VPC</text>
+<text x="740" y="96.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="9" font-family="sans-serif">Private VIF</text>
+  <rect x="690" y="130" width="100" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="740" y="147.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">AWS Svc</text>
+<text x="740" y="171.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="9" font-family="sans-serif">Public VIF</text>
+  <text x="400" y="20" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="17" font-weight="bold" font-family="sans-serif">Direct Connect 接続の全体像</text>
+</svg>
 ![w:1000 center](assets/dx-overview.svg)
 
 
@@ -71,6 +206,22 @@ paginate: true
 
 # DX ロケーションとパートナー
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX ロケーションとパートナー</text>
+  <rect x="30" y="70" width="180" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Dedicated</text>
+<text x="120" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AWS DX ロケーション直接</text>
+  <rect x="240" y="70" width="180" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="330" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Hosted</text>
+<text x="330" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">APN パートナー経由</text>
+  <rect x="450" y="70" width="300" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">東京: Equinix TY4 / Colt Shinagawa など</text>
+
+  <rect x="30" y="200" width="720" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="390" y="232.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">APN パートナー: NTT / KDDI / SoftBank / Colt / Megaport 等</text>
+
+  <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="12" font-weight="normal" font-family="sans-serif">ロケーション → aws.amazon.com/directconnect/locations で確認</text>
+</svg>
 - - **日本のDXロケーション**: Equinix TY2 (東京)、NTT 堂島 (大阪) 等
 - - **パートナー接続**: NTT、KDDI、IIJ、SoftBank 等が Hosted Connection を提供
 - - 自社でクロスコネクトを用意する **Dedicated** と、パートナー経由の **Hosted** の2方式
@@ -83,6 +234,25 @@ paginate: true
 <!-- _class: lead -->
 # 物理接続の基礎
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="40" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">物理接続コンポーネント</text>
+  <rect x="50" y="100" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="125" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Customer</text>
+<text x="130" y="149" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Router/Switch</text>
+  <line x1="210" y1="135" x2="320" y2="135" stroke="#f9a825" stroke-width="3" stroke-dasharray="8,4"/>
+  <rect x="320" y="100" width="160" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="125" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Cross Connect</text>
+<text x="400" y="149" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">MMR内 パッチ</text>
+  <line x1="480" y1="135" x2="580" y2="135" stroke="#f9a825" stroke-width="3"/>
+  <rect x="580" y="100" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="125" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">AWS DX</text>
+<text x="660" y="149" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Router</text>
+  <text x="265" y="175" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">専用物理回線</text>
+  <text x="530" y="175" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="12" font-weight="normal" font-family="sans-serif">直接接続</text>
+  <rect x="220" y="260" width="360" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="290" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">802.1Q VLAN タグ</text>
+<text x="400" y="314" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">複数VIFを単一物理回線で多重化</text>
+</svg>
 - DX の物理レイヤーとコネクション管理
 
 
@@ -90,6 +260,39 @@ paginate: true
 
 # 物理接続のコンポーネント
 
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">物理接続コンポーネント詳細</text>
+  <rect x="30" y="70" width="170" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="115" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客ルータ</text>
+<text x="115" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">BGP 対応</text>
+  <line x1="200" y1="102" x2="270" y2="102" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="270,102 258,108 258,96" fill="#f9a825"/>
+  <rect x="270" y="70" width="170" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="355" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Cross Connect</text>
+<text x="355" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">MMR 内パッチ</text>
+  <line x1="440" y1="102" x2="510" y2="102" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="510,102 498,108 498,96" fill="#f9a825"/>
+  <rect x="510" y="70" width="170" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="595" y="102.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">AWS DX Router</text>
+
+  <line x1="680" y1="102" x2="750" y2="102" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="750,102 738,108 738,96" fill="#f9a825"/>
+  <rect x="750" y="70" width="40" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="770" y="102.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">AWS</text>
+
+  <rect x="30" y="215" width="170" height="60" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="115" y="236" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">LOA-CFA</text>
+<text x="115" y="257" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">承認書</text>
+  <rect x="230" y="215" width="170" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="236" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VLAN 802.1Q</text>
+<text x="315" y="257" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">タグ多重化</text>
+  <rect x="430" y="215" width="170" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="515" y="236" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">BGP セッション</text>
+<text x="515" y="257" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">経路交換</text>
+  <rect x="630" y="215" width="140" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="700" y="236" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">BFD</text>
+<text x="700" y="257" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">高速障害検出</text>
+</svg>
 - - **カスタマールーター** — お客様拠点のBGP対応ルーター
 - - **クロスコネクト** — DXロケーション内の物理ケーブル接続
 - - **DX ルーター** — AWS側のルーター（DXロケーション内に設置）
@@ -102,6 +305,31 @@ paginate: true
 
 # Dedicated Connection
 
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+  <text x="400" y="35" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Dedicated Connection</text>
+  <rect x="60" y="80" width="200" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="160" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">お客様</text>
+<text x="160" y="134" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">コロケーション設備</text>
+  <line x1="260" y1="120" x2="360" y2="120" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="360,120 348,126 348,114" fill="#f9a825"/>
+  <rect x="360" y="80" width="200" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="460" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">AWS DX Router</text>
+<text x="460" y="134" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">1G/10G/100G</text>
+  <line x1="560" y1="120" x2="660" y2="120" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="660,120 648,126 648,114" fill="#f9a825"/>
+  <rect x="660" y="80" width="110" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">AWS</text>
+<text x="715" y="134" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Region</text>
+  <rect x="80" y="230" width="160" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="160" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">帯域: 1G/10G/100G</text>
+
+  <rect x="270" y="230" width="160" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="350" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">SLA: 専用物理回線</text>
+
+  <rect x="460" y="230" width="160" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="540" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">LOA-CFA 発行が必要</text>
+
+</svg>
 - - AWS から **専用の物理ポート** が割り当てられる接続方式
 - - 帯域: **1 Gbps / 10 Gbps / 100 Gbps**
 - - お客様が DX ロケーションまでの回線とクロスコネクトを手配
@@ -114,6 +342,31 @@ paginate: true
 
 # Hosted Connection
 
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+  <text x="400" y="35" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Hosted Connection</text>
+  <rect x="50" y="80" width="180" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">お客様</text>
+<text x="140" y="134" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">任意のロケーション</text>
+  <line x1="230" y1="120" x2="310" y2="120" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="310,120 298,126 298,114" fill="#f9a825"/>
+  <rect x="310" y="80" width="180" height="80" rx="8" fill="#2a1a3a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">APN パートナー</text>
+<text x="400" y="134" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ネットワーク</text>
+  <line x1="490" y1="120" x2="570" y2="120" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="570,120 558,126 558,114" fill="#f9a825"/>
+  <rect x="570" y="80" width="180" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="120" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">AWS DX Router</text>
+
+  <rect x="80" y="230" width="160" height="60" rx="8" fill="#2a1a2e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="160" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">50M〜10G 柔軟設定</text>
+
+  <rect x="270" y="230" width="160" height="60" rx="8" fill="#2a1a2e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="350" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">パートナー経由申請</text>
+
+  <rect x="460" y="230" width="160" height="60" rx="8" fill="#2a1a2e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="540" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">LOA-CFA 不要</text>
+
+</svg>
 - - **AWS Direct Connect パートナー** 経由で提供される接続方式
 - - 帯域: **50 Mbps 〜 10 Gbps**（パートナーにより異なる）
 - - パートナーが物理接続を所有し、お客様に **論理的な接続を提供**
@@ -126,6 +379,40 @@ paginate: true
 
 # Dedicated vs Hosted 比較表
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Dedicated vs Hosted 比較</text>
+  <rect x="30" y="65" width="340" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="92.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Dedicated Connection</text>
+
+  <rect x="430" y="65" width="340" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="92.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Hosted Connection</text>
+
+  <rect x="30" y="135" width="155" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">帯域: 1/10/100G</text>
+
+  <rect x="195" y="135" width="175" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="282.5" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">LOA-CFA 必要</text>
+
+  <rect x="430" y="135" width="155" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="507.5" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">50M〜10G 可変</text>
+
+  <rect x="595" y="135" width="175" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="682.5" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">LOA-CFA 不要</text>
+
+  <rect x="30" y="200" width="155" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">直接 AWS 申請</text>
+
+  <rect x="195" y="200" width="175" height="50" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="282.5" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">AWS との SLA</text>
+
+  <rect x="430" y="200" width="155" height="50" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="507.5" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">パートナー申請</text>
+
+  <rect x="595" y="200" width="175" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="682.5" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">迅速プロビジョン</text>
+
+  <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Dedicated: 大企業向け / Hosted: 中小・迅速導入向け</text>
+</svg>
 | 項目 | Dedicated | Hosted |
 |------|-----------|--------|
 | 帯域 | 1 / 10 / 100 Gbps | 50 Mbps〜10 Gbps |
@@ -140,6 +427,29 @@ paginate: true
 
 # LAG (Link Aggregation Group)
 
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">LAG (Link Aggregation Group)</text>
+  <rect x="50" y="80" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Customer</text>
+<text x="130" y="129" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">LAG対応ルータ</text>
+  <line x1="210" y1="105" x2="350" y2="105" stroke="#4caf50" stroke-width="3"/>
+  <line x1="210" y1="125" x2="350" y2="125" stroke="#4caf50" stroke-width="3"/>
+  <line x1="210" y1="145" x2="350" y2="145" stroke="#4caf50" stroke-width="3"/>
+  <rect x="350" y="80" width="160" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="430" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">AWS LAG</text>
+<text x="430" y="129" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">最大4ポート</text>
+  <line x1="510" y1="115" x2="600" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="600,115 588,121 588,109" fill="#f9a825"/>
+  <rect x="600" y="80" width="150" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="675" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">AWS VPC</text>
+
+  <rect x="150" y="230" width="200" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="250" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">LACP 802.3ad 準拠</text>
+
+  <rect x="380" y="230" width="200" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="480" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">障害時 自動フェイルオーバー</text>
+
+</svg>
 - - 複数の Dedicated Connection を **1つの論理接続** として束ねる
 - - **LACP (802.3ad)** ベースのリンクアグリゲーション
 - - 同一帯域・同一DXロケーションの接続のみ束ね可能
@@ -152,6 +462,39 @@ paginate: true
 
 # 接続確立までのフロー
 
+- <svg viewBox="0 0 800 430" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="430" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX 接続確立フロー</text>
+  <rect x="50" y="70" width="130" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="115" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">① 申請</text>
+<text x="115" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AWSコンソール</text>
+  <line x1="180" y1="97" x2="230" y2="97" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="230,97 218,103 218,91" fill="#f9a825"/>
+  <rect x="230" y="70" width="130" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="295" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">② LOA-CFA</text>
+<text x="295" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">発行 (数時間)</text>
+  <line x1="360" y1="97" x2="410" y2="97" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="410,97 398,103 398,91" fill="#f9a825"/>
+  <rect x="410" y="70" width="130" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="475" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">③ Cross
+Connect</text>
+<text x="475" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ロケーション</text>
+  <line x1="540" y1="97" x2="590" y2="97" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="590,97 578,103 578,91" fill="#f9a825"/>
+  <rect x="590" y="70" width="130" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="655" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">④ VIF 作成</text>
+<text x="655" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">コンソール</text>
+  <line x1="400" y1="125" x2="400" y2="185" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="400,185 394,173 406,173" fill="#f9a825"/>
+  <rect x="300" y="185" width="200" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="212.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">⑤ BGP セッション確立</text>
+
+  <line x1="400" y1="240" x2="400" y2="295" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="400,295 394,283 406,283" fill="#f9a825"/>
+  <rect x="300" y="295" width="200" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="322.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">⑥ 通信開始</text>
+
+  <text x="400" y="390" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Dedicated: 数日〜数週間 / Hosted: 数分〜数時間</text>
+</svg>
 ![w:1000 center](assets/connection-flow.svg)
 
 
@@ -160,6 +503,28 @@ paginate: true
 <!-- _class: lead -->
 # Virtual Interface (VIF)
 
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="35" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Virtual Interface (VIF) の位置づけ</text>
+  <rect x="50" y="90" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">物理接続</text>
+<text x="130" y="139" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Dedicated/Hosted</text>
+  <line x1="210" y1="125" x2="290" y2="125" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="290,125 278,131 278,119" fill="#f9a825"/>
+  <rect x="290" y="70" width="200" height="120" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="390" y="120" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">VIF 論理インタフェース</text>
+<text x="390" y="144" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">BGP + VLAN</text>
+  <line x1="490" y1="110" x2="570" y2="90" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="570,90 559.8135037484741,98.73128250130799 556.903076248038,87.08957249956401" fill="#f9a825"/>
+  <line x1="490" y1="140" x2="570" y2="160" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="570,160 556.903076248038,162.91042750043601 559.8135037484741,151.268717498692" fill="#f9a825"/>
+  <rect x="570" y="65" width="160" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="85" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Private VIF</text>
+<text x="650" y="109" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">→ VPC</text>
+  <rect x="570" y="140" width="160" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Public VIF</text>
+<text x="650" y="184" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">→ AWS Svc</text>
+  <text x="480" y="240" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">Transit VIF → TGW (別経路)</text>
+</svg>
 - 論理インターフェースの種類と設計
 
 
@@ -167,6 +532,33 @@ paginate: true
 
 # VIF とは何か
 
+- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF (Virtual Interface) とは何か</text>
+  <rect x="30" y="75" width="200" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">物理接続 (1本)</text>
+<text x="130" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">1G / 10G / 100G</text>
+  <line x1="230" y1="112" x2="300" y2="112" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="300,112 288,118 288,106" fill="#f9a825"/>
+  <rect x="300" y="60" width="200" height="110" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">802.1Q VLAN 多重化</text>
+<text x="400" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">複数 VIF を収容</text>
+  <line x1="500" y1="95" x2="560" y2="75" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="560,75 550.5131670194949,84.48683298050514 546.7184338272928,73.10263340389898" fill="#f9a825"/>
+  <line x1="500" y1="112" x2="560" y2="112" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="560,112 548,118 548,106" fill="#f9a825"/>
+  <line x1="500" y1="130" x2="560" y2="150" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="560,150 546.7184338272928,151.89736659610105 550.5131670194949,140.51316701949486" fill="#f9a825"/>
+  <rect x="560" y="55" width="200" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="82.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Private VIF #1</text>
+
+  <rect x="560" y="120" width="200" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="147.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Public VIF #2</text>
+
+  <rect x="560" y="185" width="200" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="212.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Transit VIF #3</text>
+
+  <text x="400" y="300" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">1 物理接続で最大 50 VIF (Dedicated) / 1 VIF (Hosted)</text>
+</svg>
 - - DX 物理接続上に作成する **論理的なインターフェース**
 - - **802.1Q VLAN タグ** で1本の物理接続を論理分割
 - - 各 VIF ごとに **BGP セッション** を確立
@@ -179,6 +571,26 @@ paginate: true
 
 # VIF の3種類
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF の 3 種類</text>
+  <rect x="40" y="70" width="220" height="90" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="150" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Private VIF</text>
+<text x="150" y="129" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">VPC への直接接続</text>
+  → VGW または DXGW
+  <rect x="290" y="70" width="220" height="90" rx="8" fill="#1b3a2e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Public VIF</text>
+<text x="400" y="129" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AWS パブリックサービス</text>
+  → S3, DynamoDB など
+  <rect x="540" y="70" width="220" height="90" rx="8" fill="#2e1b3a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Transit VIF</text>
+<text x="650" y="129" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Transit Gateway 経由</text>
+  <text x="150" y="185" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">→ VGW または DXGW</text>
+  <text x="400" y="185" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">→ S3, DynamoDB など</text>
+  <text x="650" y="185" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">→ Transit Gateway</text>
+  <rect x="60" y="270" width="660" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="390" y="305" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">共通: VLAN ID + BGP ASN + BGP AUTH KEY が必要</text>
+
+</svg>
 - - **Private VIF** — VPC 内のリソースにプライベート IP でアクセス
 -   - 接続先: Virtual Private Gateway (VGW) / DX Gateway
 - - **Public VIF** — AWS パブリックサービスに直接アクセス
@@ -191,6 +603,31 @@ paginate: true
 
 # VLAN タグと BGP セッション
 
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VLAN タグと BGP セッション</text>
+  <rect x="30" y="75" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客ルータ</text>
+<text x="120" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">VLAN 100/200</text>
+  <line x1="210" y1="100" x2="310" y2="100" stroke="#4caf50" stroke-width="3"/>
+  <text x="260" y="88" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="11" font-weight="normal" font-family="sans-serif">VLAN 100</text>
+  <line x1="210" y1="125" x2="310" y2="125" stroke="#e91e63" stroke-width="3" stroke-dasharray="8,4"/>
+  <text x="260" y="138" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="11" font-weight="normal" font-family="sans-serif">VLAN 200</text>
+  <rect x="310" y="60" width="200" height="110" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="410" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">AWS DX
+VLAN 分離</text>
+
+  <line x1="510" y1="95" x2="580" y2="80" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="580,80 569.5235455634563,88.38116354923494 567.0091964986859,76.64753458030603" fill="#f9a825"/>
+  <line x1="510" y1="125" x2="580" y2="145" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="580,145 566.8133858609259,147.4724901510764 570.1100393956943,135.93420277938654" fill="#f9a825"/>
+  <rect x="580" y="60" width="190" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="675" y="78.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">BGP AS 65001</text>
+<text x="675" y="99.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Private VIF</text>
+  <rect x="580" y="130" width="190" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="675" y="148.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">BGP AS 65002</text>
+<text x="675" y="169.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Public VIF</text>
+  <text x="400" y="270" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="13" font-weight="normal" font-family="sans-serif">各 VIF で独立した BGP セッションを確立</text>
+</svg>
 - - **VLAN ID**: 1〜4094 の範囲で指定（物理接続内で一意）
 - - **BGP ASN**: お客様側の AS 番号（パブリック or プライベート ASN）
 -   - AWS 側: Private/Transit VIF = **64512**、Public VIF = **7224**
@@ -204,6 +641,28 @@ paginate: true
 
 # VIF 作成時のパラメータ
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF 作成時の主要パラメータ</text>
+  <rect x="30" y="70" width="340" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VLAN ID (100〜4094)</text>
+<text x="200" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">物理回線内の識別子</text>
+  <rect x="430" y="70" width="340" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">BGP ASN</text>
+<text x="600" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">顧客側 AS番号 (Private: 64512〜65534)</text>
+  <rect x="30" y="155" width="340" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="173.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">BGP Auth Key</text>
+<text x="200" y="194.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">MD5 認証キー</text>
+  <rect x="430" y="155" width="340" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="173.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Amazon IP / Customer IP</text>
+<text x="600" y="194.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">BGP ピアアドレス</text>
+  <rect x="30" y="240" width="340" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="258.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">MTU</text>
+<text x="200" y="279.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">1500 or 9001 (Jumbo)</text>
+  <rect x="430" y="240" width="340" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="258.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Jumbo Frame 有効化</text>
+<text x="600" y="279.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">スループット向上</text>
+  <text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">パラメータは変更不可のものが多い → 設計フェーズで確定</text>
+</svg>
 | パラメータ | Private VIF | Public VIF | Transit VIF |
 |-----------|-------------|------------|-------------|
 | VLAN ID | 必須 | 必須 | 必須 |
@@ -218,6 +677,39 @@ paginate: true
 
 # VIF と接続先の対応関係
 
+- <svg viewBox="0 0 800 430" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="430" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF と接続先の対応関係</text>
+  <rect x="30" y="70" width="200" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Private VIF</text>
+
+  <line x1="230" y1="105" x2="300" y2="105" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="300,105 288,111 288,99" fill="#f9a825"/>
+  <rect x="300" y="70" width="180" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="390" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VGW</text>
+<text x="390" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">同リージョン VPC</text>
+  <text x="600" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="normal" font-family="sans-serif">または DXGW</text>
+  <rect x="30" y="190" width="200" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Transit VIF</text>
+
+  <line x1="230" y1="225" x2="300" y2="225" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="300,225 288,231 288,219" fill="#f9a825"/>
+  <rect x="300" y="190" width="180" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="390" y="216" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DX Gateway</text>
+<text x="390" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">必須</text>
+  <line x1="480" y1="225" x2="550" y2="225" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="550,225 538,231 538,219" fill="#f9a825"/>
+  <rect x="550" y="190" width="120" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="610" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">TGW</text>
+
+  <rect x="30" y="310" width="200" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="345" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Public VIF</text>
+
+  <line x1="230" y1="345" x2="300" y2="345" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="300,345 288,351 288,339" fill="#f9a825"/>
+  <rect x="300" y="310" width="470" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="535" y="345" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">AWS パブリックサービス エンドポイント</text>
+
+</svg>
 ![w:1000 center](assets/vif-gateway-mapping.svg)
 
 
@@ -225,6 +717,39 @@ paginate: true
 
 # VIF 種別 完全比較表
 
+- <svg viewBox="0 0 800 310" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="310" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF 種別 完全比較</text>
+  <text x="175" y="65" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">Private VIF</text>
+  <text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">Public VIF</text>
+  <text x="625" y="65" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="13" font-weight="bold" font-family="sans-serif">Transit VIF</text>
+  <rect x="30" y="85" width="290" height="50" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="175" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">VPC 直接接続 / プライベートIP</text>
+
+  <rect x="350" y="85" width="100" height="50" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">AWS Svc / パブリックIP</text>
+
+  <rect x="480" y="85" width="290" height="50" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="625" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">TGW 経由 / マルチVPC</text>
+
+  <rect x="30" y="150" width="290" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="175" y="175" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">接続先: VGW or DXGW</text>
+
+  <rect x="350" y="150" width="100" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="175" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">接続先: AWS EP</text>
+
+  <rect x="480" y="150" width="290" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="625" y="175" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">接続先: DXGW → TGW</text>
+
+  <rect x="30" y="215" width="290" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="175" y="240" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">用途: DC-VPC 閉域</text>
+
+  <rect x="350" y="215" width="100" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="240" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">用途: S3 API 閉域</text>
+
+  <rect x="480" y="215" width="290" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="625" y="240" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">用途: 多拠点 大規模</text>
+
+</svg>
 | 項目 | Private VIF | Public VIF | Transit VIF |
 |------|------------|------------|-------------|
 | 接続先 | VGW / DX GW | AWS Public | DX GW → TGW |
@@ -240,6 +765,31 @@ paginate: true
 <!-- _class: lead -->
 # Private VIF 詳細
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Private VIF アーキテクチャ</text>
+  <rect x="30" y="80" width="140" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="100" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客拠点</text>
+<text x="100" y="129" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">オンプレ</text>
+  <line x1="170" y1="115" x2="240" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="240,115 228,121 228,109" fill="#f9a825"/>
+  <rect x="240" y="80" width="150" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Private VIF</text>
+<text x="315" y="129" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">VLAN+BGP</text>
+  <line x1="390" y1="115" x2="460" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="460,115 448,121 448,109" fill="#f9a825"/>
+  <rect x="460" y="80" width="140" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="530" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VGW</text>
+<text x="530" y="129" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Virtual PGW</text>
+  <line x1="600" y1="115" x2="670" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="670,115 658,121 658,109" fill="#f9a825"/>
+  <rect x="670" y="80" width="110" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC</text>
+
+  <text x="400" y="220" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">プライベートIPアドレスで通信 — インターネット不使用</text>
+  <rect x="100" y="260" width="580" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="390" y="290" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">BGP プレフィックス広報 ← オンプレルートをAWSへ / AWSルートをオンプレへ</text>
+
+</svg>
 - VGW・DX Gateway によるプライベート接続
 
 
@@ -247,6 +797,30 @@ paginate: true
 
 # Private VIF の概要
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Private VIF 概要</text>
+  <rect x="30" y="75" width="170" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="115" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客 DC</text>
+<text x="115" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">プライベートIP</text>
+  <line x1="200" y1="112" x2="280" y2="112" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,112 268,118 268,106" fill="#f9a825"/>
+  <rect x="280" y="75" width="190" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Private VIF</text>
+<text x="375" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">RFC1918 アドレス</text>
+  <line x1="470" y1="112" x2="540" y2="100" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="540,100 529.1863158329058,107.94129931020976 527.1587500515757,96.11383225245055" fill="#f9a825"/>
+  <line x1="470" y1="130" x2="540" y2="155" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="540,155 526.6810786788731,156.61441470559114 530.7171154428509,145.3135117664531" fill="#f9a825"/>
+  <rect x="540" y="75" width="230" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="655" y="102.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">VGW → 同リージョン VPC</text>
+
+  <rect x="540" y="145" width="230" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="655" y="172.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">DXGW → 他リージョン VPC</text>
+
+  <rect x="30" y="260" width="740" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="292.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">インターネットを通らない → セキュア / 低レイテンシ / 安定帯域</text>
+
+</svg>
 - - VPC 内のリソース（EC2, RDS, ELB 等）に **プライベート IP** でアクセス
 - - 接続先は **Virtual Private Gateway (VGW)** または **DX Gateway**
 - - BGP で VPC の CIDR を受信し、オンプレのルートを広報
@@ -259,6 +833,33 @@ paginate: true
 
 # Private VIF アーキテクチャ
 
+- <svg viewBox="0 0 800 330" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="330" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Private VIF + VGW 構成</text>
+  <rect x="30" y="80" width="160" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Customer DC</text>
+<text x="110" y="134" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">192.168.0.0/16</text>
+  <line x1="190" y1="120" x2="270" y2="120" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="270,120 258,126 258,114" fill="#f9a825"/>
+  <rect x="270" y="80" width="160" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="350" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Private VIF</text>
+<text x="350" y="134" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">VLAN 100</text>
+  <line x1="430" y1="120" x2="510" y2="120" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="510,120 498,126 498,114" fill="#f9a825"/>
+  <rect x="510" y="80" width="140" height="80" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="580" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VGW</text>
+<text x="580" y="134" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">us-east-1</text>
+  <line x1="650" y1="120" x2="720" y2="100" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="720,100 710.1100393956943,109.06579722061348 706.8133858609259,97.5275098489236" fill="#f9a825"/>
+  <line x1="650" y1="140" x2="720" y2="160" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="720,160 706.8133858609259,162.4724901510764 710.1100393956943,150.93420277938654" fill="#f9a825"/>
+  <rect x="720" y="75" width="70" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="755" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC-A</text>
+
+  <rect x="720" y="150" width="70" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="755" y="180" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC-B</text>
+
+  <text x="400" y="280" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">VGW は 1 リージョン内の VPC のみ対応</text>
+</svg>
 ![w:1000 center](assets/private-vif-arch.svg)
 
 
@@ -266,6 +867,28 @@ paginate: true
 
 # Virtual Private Gateway (VGW)
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Virtual Private Gateway (VGW)</text>
+  <rect x="30" y="75" width="170" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="115" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DX Location</text>
+
+  <line x1="200" y1="110" x2="280" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,110 268,116 268,104" fill="#f9a825"/>
+  <rect x="280" y="75" width="190" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="375" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Private VIF</text>
+
+  <line x1="470" y1="110" x2="550" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="550,110 538,116 538,104" fill="#f9a825"/>
+  <rect x="550" y="60" width="200" height="100" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VGW</text>
+<text x="650" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">リージョン内 VPC ゲートウェイ</text>
+  <line x1="650" y1="160" x2="650" y2="225" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="650,225 644,213 656,213" fill="#f9a825"/>
+  <rect x="550" y="225" width="200" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="255" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VPC (同リージョン)</text>
+
+  <text x="400" y="340" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">VGW は 1 リージョン / 単一 VPC のみ。複数VPC → DXGW 使用</text>
+</svg>
 - - **VPC にアタッチする仮想ルーター**（AWS マネージド）
 - - Direct Connect の Private VIF と VPN の両方の終端点
 - - **1つの VPC に 1つの VGW** のみアタッチ可能
@@ -278,6 +901,22 @@ paginate: true
 
 # VGW の制約事項
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">VGW の制約事項</text>
+  <rect x="30" y="75" width="340" height="75" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">制約 1: 単一 VPC のみ</text>
+<text x="200" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">1 VGW = 1 VPC に限定</text>
+  <rect x="430" y="75" width="340" height="75" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">制約 2: 同リージョンのみ</text>
+<text x="600" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">クロスリージョン不可</text>
+  <rect x="30" y="205" width="340" height="75" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="233.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">制約 3: クロスアカウント制限</text>
+<text x="200" y="254.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">別アカウント VPC への接続困難</text>
+  <rect x="430" y="205" width="340" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="233.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">解決策: DX Gateway</text>
+<text x="600" y="254.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">マルチVPC / マルチリージョン対応</text>
+  <text x="400" y="340" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">大規模構成では VGW より DX Gateway を推奨</text>
+</svg>
 - - **1 VPC : 1 VGW** — VPC あたり VGW は1つのみ
 - - **リージョン固定** — VGW は作成したリージョンでのみ利用可能
 - - **VIF 数の制限** — 1つの VGW に接続できる Private VIF は最大 **30個**
@@ -310,6 +949,38 @@ paginate: true
 
 # DX Gateway 経由のマルチリージョン接続
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway — マルチリージョン接続</text>
+  <rect x="30" y="80" width="140" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="100" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客DC</text>
+
+  <line x1="170" y1="115" x2="240" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="240,115 228,121 228,109" fill="#f9a825"/>
+  <rect x="240" y="90" width="130" height="50" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="305" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Location</text>
+
+  <line x1="370" y1="115" x2="430" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="430,115 418,121 418,109" fill="#f9a825"/>
+  <rect x="430" y="80" width="150" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="505" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Gateway</text>
+<text x="505" y="129" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">グローバル</text>
+  <line x1="580" y1="105" x2="650" y2="85" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="650,85 640.1100393956943,94.06579722061348 636.8133858609259,82.5275098489236" fill="#f9a825"/>
+  <line x1="580" y1="125" x2="650" y2="145" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="650,145 636.8133858609259,147.4724901510764 640.1100393956943,135.93420277938654" fill="#f9a825"/>
+  <line x1="580" y1="115" x2="650" y2="210" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="650,210 638.0512765192816,203.8985241800587 647.7119465675221,196.7801357234605" fill="#f9a825"/>
+  <rect x="650" y="60" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="710" y="87.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">VPC ap-ne-1</text>
+
+  <rect x="650" y="120" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="710" y="147.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">VPC us-east-1</text>
+
+  <rect x="650" y="190" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="710" y="217.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">VPC eu-west-1</text>
+
+  <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">最大 10 VGW / アカウントをまたいだ接続も可能</text>
+</svg>
 ![w:1000 center](assets/dx-gw-multiregion.svg)
 
 
@@ -317,6 +988,26 @@ paginate: true
 
 # Private VIF の BGP ルーティング（1/2）
 
+- <svg viewBox="0 0 800 290" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="290" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">BGP ルーティング基礎 (Private VIF)</text>
+  <rect x="30" y="75" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客 BGP</text>
+<text x="120" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AS 65001</text>
+  <line x1="210" y1="110" x2="370" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+  <polygon points="370,110 358,104 358,116" fill="#f9a825"/>
+  <text x="290" y="97" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="11" font-weight="normal" font-family="sans-serif">顧客プレフィックス広報</text>
+  <line x1="370" y1="120" x2="210" y2="120" stroke="#e91e63" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <text x="290" y="133" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="11" font-weight="normal" font-family="sans-serif">AWS プレフィックス受信</text>
+  <rect x="370" y="75" width="180" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="460" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">AWS BGP</text>
+<text x="460" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AS 7224</text>
+  <line x1="550" y1="110" x2="620" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="620,110 608,116 608,104" fill="#f9a825"/>
+  <rect x="620" y="75" width="150" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VGW / VPC</text>
+
+  <text x="400" y="230" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">BGP コミュニティ / MED / AS-PATH で経路制御</text>
+</svg>
 - - **AWS → オンプレ**: VPC CIDR が BGP で広報される
 -   - DX Gateway 利用時は **Allowed Prefixes** でフィルタ可能
 - - **オンプレ → AWS**: お客様のルートを BGP で広報
@@ -327,6 +1018,28 @@ paginate: true
 
 # Private VIF の BGP ルーティング（2/2）
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">BGP 経路優先度制御</text>
+  <rect x="30" y="75" width="200" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DX Primary</text>
+<text x="130" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">BGP MED=100</text>
+  <rect x="30" y="200" width="200" height="70" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="226" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VPN Backup</text>
+<text x="130" y="247" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">BGP MED=200</text>
+  <line x1="230" y1="110" x2="310" y2="155" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="310,155 296.5995261167101,154.34631834715657 302.4826609923008,143.887411901662" fill="#f9a825"/>
+  <line x1="230" y1="235" x2="310" y2="195" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="310,195 301.9501552810008,205.73312629199899 296.58359213500125,195" fill="#f9a825"/>
+  <rect x="310" y="155" width="180" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="176" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VGW</text>
+<text x="400" y="197" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">経路選択</text>
+  <line x1="490" y1="185" x2="570" y2="185" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="570,185 558,191 558,179" fill="#f9a825"/>
+  <rect x="570" y="155" width="200" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="185" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VPC</text>
+
+  <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">MED が小さい方が優先 → DX が常に優先, VPN はフェイルオーバー</text>
+</svg>
 -   - 超過すると BGP セッションが **ダウン**
 - - **経路選択の優先順位** (同一プレフィックスの場合):
 -   1. ロンゲストマッチ
@@ -359,6 +1072,29 @@ paginate: true
 <!-- _class: lead -->
 # Public VIF 詳細
 
+- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF アーキテクチャ</text>
+  <rect x="30" y="80" width="150" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="105" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客DC</text>
+<text x="105" y="134" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">プライベート環境</text>
+  <line x1="180" y1="120" x2="260" y2="120" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="260,120 248,126 248,114" fill="#f9a825"/>
+  <rect x="260" y="80" width="150" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="335" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Public VIF</text>
+<text x="335" y="134" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AWS パブリックIP帯</text>
+  <line x1="410" y1="120" x2="490" y2="120" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="490,120 478,126 478,114" fill="#f9a825"/>
+  <rect x="490" y="60" width="280" height="50" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="630" y="85" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">S3 / EC2 API / CloudFront / その他</text>
+
+  <rect x="490" y="120" width="280" height="50" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="630" y="145" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">DynamoDB / SQS / SNS / KMS ...</text>
+
+  <rect x="490" y="180" width="280" height="50" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="630" y="205" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Route53 / CloudWatch / ...</text>
+
+  <text x="400" y="300" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">インターネットを通らず AWS サービスへ直接アクセス</text>
+</svg>
 - AWS パブリックサービスへの専用線アクセス
 
 
@@ -366,6 +1102,25 @@ paginate: true
 
 # Public VIF の概要
 
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF 概要</text>
+  <rect x="30" y="75" width="170" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="115" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客 DC</text>
+<text x="115" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">プライベート環境</text>
+  <line x1="200" y1="110" x2="280" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,110 268,116 268,104" fill="#f9a825"/>
+  <rect x="280" y="75" width="170" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="365" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Public VIF</text>
+<text x="365" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AWS パブリック IP</text>
+  <line x1="450" y1="110" x2="530" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="530,110 518,116 518,104" fill="#f9a825"/>
+  <rect x="530" y="55" width="230" height="120" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="645" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">S3 / EC2 API
+Route53 / SQS
+CloudFront ...</text>
+
+  <text x="400" y="280" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">パブリック AS プレフィックス (AWS: 7224) を BGP で受信</text>
+</svg>
 - - **AWS のパブリックサービス** に DX 経由で直接アクセス
 - - インターネットを経由せずに S3、DynamoDB 等に到達
 - - **パブリック IP アドレス** が BGP ピアリングに必要
@@ -378,6 +1133,28 @@ paginate: true
 
 # Public VIF アーキテクチャ
 
+- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF BGP ルーティング</text>
+  <rect x="30" y="80" width="160" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Customer</text>
+<text x="110" y="134" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">BGP AS 65001</text>
+  <line x1="190" y1="120" x2="280" y2="120" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,120 268,126 268,114" fill="#f9a825"/>
+  <rect x="280" y="80" width="180" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="370" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">AWS BGP</text>
+<text x="370" y="134" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AS 7224</text>
+  <line x1="460" y1="110" x2="540" y2="90" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="540,90 529.8135037484741,98.73128250130799 526.903076248038,87.08957249956401" fill="#f9a825"/>
+  <line x1="460" y1="130" x2="540" y2="155" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="540,155 526.756590304764,157.1475799505788 530.3358902223953,145.69382021415845" fill="#f9a825"/>
+  <rect x="540" y="65" width="220" height="55" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="92.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">AWS パブリック IP プレフィックス 広報</text>
+
+  <rect x="540" y="135" width="220" height="55" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="162.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">顧客 IP を AWS へ広報</text>
+
+  <text x="400" y="270" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="13" font-weight="normal" font-family="sans-serif">MD5 BGP 認証推奨・BFD によるリンク障害検出</text>
+</svg>
 ![w:1000 center](assets/public-vif-arch.svg)
 
 
@@ -385,6 +1162,36 @@ paginate: true
 
 # アクセス可能なサービス一覧
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF でアクセス可能な AWS サービス</text>
+  <rect x="30" y="70" width="220" height="60" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="91" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ストレージ</text>
+<text x="140" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">S3 / EFS / Glacier</text>
+  <rect x="290" y="70" width="220" height="60" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="91" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">データベース</text>
+<text x="400" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">DynamoDB / RDS API</text>
+  <rect x="550" y="70" width="220" height="60" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="91" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">コンピュート</text>
+<text x="660" y="112" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">EC2 API / ECS</text>
+  <rect x="30" y="175" width="220" height="60" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="196" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">メッセージング</text>
+<text x="140" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">SQS / SNS / SES</text>
+  <rect x="290" y="175" width="220" height="60" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="196" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">セキュリティ</text>
+<text x="400" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">IAM / KMS / Secrets</text>
+  <rect x="550" y="175" width="220" height="60" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="196" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">監視/運用</text>
+<text x="660" y="217" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">CloudWatch / CloudTrail</text>
+  <rect x="30" y="280" width="220" height="60" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="301" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ネットワーク</text>
+<text x="140" y="322" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Route53 / CloudFront</text>
+  <rect x="290" y="280" width="220" height="60" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="301" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">分析</text>
+<text x="400" y="322" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Athena / EMR / Glue</text>
+  <rect x="550" y="280" width="220" height="60" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="301" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">AI/ML</text>
+<text x="660" y="322" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Bedrock / SageMaker</text>
+</svg>
 - - **ストレージ**: Amazon S3、S3 Glacier、EFS（VPCエンドポイント不要）
 - - **データベース**: DynamoDB（Gateway エンドポイント代替）
 - - **セキュリティ**: AWS STS、CloudHSM、Certificate Manager
@@ -397,6 +1204,28 @@ paginate: true
 
 # Public VIF の BGP ルーティング
 
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF BGP 経路制御</text>
+  <rect x="30" y="75" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客 AS</text>
+<text x="120" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">65001</text>
+  <line x1="210" y1="110" x2="290" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="290,110 278,116 278,104" fill="#f9a825"/>
+  <rect x="290" y="75" width="200" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="390" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">AWS BGP AS 7224</text>
+
+  <line x1="490" y1="110" x2="570" y2="100" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="570,100 558.8368738869711,107.44208407535251 557.3484570719007,95.5347495547885" fill="#f9a825"/>
+  <line x1="490" y1="120" x2="570" y2="145" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="570,145 556.756590304764,147.1475799505788 560.3358902223953,135.69382021415845" fill="#f9a825"/>
+  <rect x="570" y="75" width="200" height="55" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="102.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">AWS IP プレフィックス 広報</text>
+
+  <rect x="570" y="145" width="200" height="55" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="670" y="172.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">顧客 IP → AWS へ広報</text>
+
+  <text x="400" y="290" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">BGP コミュニティ 7224:9300 で地域フィルタリング可能</text>
+</svg>
 - - **AWS → オンプレ**: Amazon が所有する **パブリック IP プレフィックス** を広報
 -   - 全リージョンのプレフィックスが広報される（数千プレフィックス）
 -   - BGP コミュニティでリージョン単位のフィルタリング可能
@@ -410,6 +1239,28 @@ paginate: true
 
 # Public VIF のユースケース
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF ユースケース</text>
+  <rect x="30" y="75" width="220" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">S3 大容量転送</text>
+<text x="140" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">100G DX 経由で高速 backup</text>
+  <rect x="290" y="75" width="220" height="80" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">EC2 API 閉域</text>
+<text x="400" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">インターネット使わず管理</text>
+  <rect x="550" y="75" width="220" height="80" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">CloudFront Origin</text>
+<text x="660" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">オリジンへ閉域</text>
+  <rect x="30" y="210" width="220" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="241" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">SQS/SNS 閉域</text>
+<text x="140" y="262" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">内部通知を安全に</text>
+  <rect x="290" y="210" width="220" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="241" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">KMS 閉域</text>
+<text x="400" y="262" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">暗号化キー操作</text>
+  <rect x="550" y="210" width="220" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="241" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Bedrock 閉域</text>
+<text x="660" y="262" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AI API 閉域呼び出し</text>
+  <text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">インターネット経由ゼロ → セキュリティポリシー準拠</text>
+</svg>
 - - **S3 大容量転送**: TB〜PB 級のデータ移行を安定した帯域で実行
 -   - VPC エンドポイントと異なり、VPC を経由しない直接アクセス
 - - **AWS API アクセス**: マネジメントコンソール、CLI、SDK の通信を専用線化
@@ -424,6 +1275,37 @@ paginate: true
 <!-- _class: lead -->
 # Transit VIF 詳細
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">Transit VIF アーキテクチャ</text>
+  <rect x="30" y="80" width="140" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="100" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客DC</text>
+
+  <line x1="170" y1="115" x2="240" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="240,115 228,121 228,109" fill="#f9a825"/>
+  <rect x="240" y="80" width="150" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="315" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Transit VIF</text>
+<text x="315" y="129" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">VLAN+BGP</text>
+  <line x1="390" y1="115" x2="460" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="460,115 448,121 448,109" fill="#f9a825"/>
+  <rect x="460" y="80" width="150" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="535" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Gateway</text>
+
+  <line x1="610" y1="115" x2="680" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="680,115 668,121 668,109" fill="#f9a825"/>
+  <rect x="680" y="80" width="90" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="725" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">TGW</text>
+
+  <line x1="730" y1="150" x2="730" y2="210" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="730,210 724,198 736,198" fill="#f9a825"/>
+  <rect x="660" y="210" width="100" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="710" y="237.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC-A</text>
+
+  <line x1="730" y1="265" x2="660" y2="290" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="660,290 669.2828845571491,280.31351176645313 673.3189213211269,291.6144147055912" fill="#f9a825"/>
+  <line x1="730" y1="265" x2="790" y2="290" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="790,290 776.6153846153846,290.9230769230769 781.2307692307692,279.8461538461538" fill="#f9a825"/>
+  <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">TGW経由で多数のVPCを一元管理</text>
+</svg>
 - TGW 連携によるマルチVPCアクセス
 
 
@@ -431,6 +1313,35 @@ paginate: true
 
 # Transit VIF の概要
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">Transit VIF 概要</text>
+  <rect x="30" y="75" width="170" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="115" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客 DC</text>
+
+  <line x1="200" y1="110" x2="280" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,110 268,116 268,104" fill="#f9a825"/>
+  <rect x="280" y="75" width="170" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="365" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Transit VIF</text>
+<text x="365" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">DXGW 必須</text>
+  <line x1="450" y1="110" x2="530" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="530,110 518,116 518,104" fill="#f9a825"/>
+  <rect x="530" y="75" width="140" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DX Gateway</text>
+
+  <line x1="670" y1="110" x2="730" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="730,110 718,116 718,104" fill="#f9a825"/>
+  <rect x="730" y="75" width="50" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="755" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">TGW</text>
+
+  <line x1="755" y1="145" x2="720" y2="210" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="720,210 720.4063712768872,196.58974786272378 730.9720244759532,202.278945739144" fill="#f9a825"/>
+  <line x1="755" y1="145" x2="780" y2="210" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="780,210 770.0921774110752,200.95372720141648 781.2923246855119,196.64597824971008" fill="#f9a825"/>
+  <rect x="680" y="210" width="80" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="720" y="237.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VPC x N</text>
+
+  <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Transit VIF = 1 接続で数百 VPC を一元管理</text>
+</svg>
 - - **Transit Gateway (TGW)** 経由で **複数の VPC に一括接続**
 - - DX Gateway との組み合わせが **必須**（直接TGWには接続不可）
 - - 構成: DX → Transit VIF → **DX Gateway** → **TGW** → 複数VPC
@@ -443,6 +1354,42 @@ paginate: true
 
 # Transit Gateway (TGW) の基礎
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">Transit Gateway — ハブ & スポーク</text>
+  <rect x="330" y="150" width="140" height="80" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="180" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Transit GW</text>
+<text x="400" y="204" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ハブ</text>
+  <line x1="330" y1="190" x2="230" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="230,110 243.11859599864292,112.8111277139949 235.6222554279898,122.18155342731127" fill="#f9a825"/>
+  <line x1="330" y1="190" x2="130" y2="190" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="130,190 142,184 142,196" fill="#f9a825"/>
+  <line x1="330" y1="190" x2="230" y2="270" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="230,270 235.6222554279898,257.8184465726887 243.11859599864292,267.1888722860051" fill="#f9a825"/>
+  <line x1="470" y1="190" x2="570" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="570,110 564.3777445720102,122.18155342731127 556.8814040013572,112.8111277139949" fill="#f9a825"/>
+  <line x1="470" y1="190" x2="670" y2="190" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="670,190 658,196 658,184" fill="#f9a825"/>
+  <line x1="470" y1="190" x2="570" y2="270" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="570,270 556.8814040013572,267.1888722860051 564.3777445720102,257.8184465726887" fill="#f9a825"/>
+  <rect x="150" y="65" width="110" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="205" y="95" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC-A</text>
+
+  <rect x="30" y="160" width="110" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="85" y="190" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC-B</text>
+
+  <rect x="150" y="250" width="110" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="205" y="280" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC-C</text>
+
+  <rect x="540" y="65" width="110" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="595" y="85" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">オンプレ</text>
+<text x="595" y="109" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">DX/VPN</text>
+  <rect x="660" y="160" width="110" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="190" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC-D</text>
+
+  <rect x="540" y="250" width="110" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="595" y="280" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC-E</text>
+
+</svg>
 - - **リージョナルなネットワークハブ** — VPC、VPN、DX を集約
 - - **ハブ＆スポーク** トポロジで VPC 間通信を実現
 - - **ルートテーブル** による柔軟な経路制御（セグメンテーション可能）
@@ -456,6 +1403,38 @@ paginate: true
 
 # Transit VIF アーキテクチャ
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">Transit VIF + DX Gateway + TGW</text>
+  <rect x="20" y="90" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="85" y="120" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DC Site A</text>
+
+  <rect x="20" y="170" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="85" y="200" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DC Site B</text>
+
+  <line x1="150" y1="120" x2="220" y2="145" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="220,145 206.68107867887304,146.61441470559114 210.71711544285088,135.3135117664531" fill="#f9a825"/>
+  <line x1="150" y1="200" x2="220" y2="185" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="220,185 209.52354556345634,193.38116354923494 207.00919649868584,181.647534580306" fill="#f9a825"/>
+  <rect x="220" y="130" width="130" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="285" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX GW</text>
+
+  <line x1="350" y1="160" x2="420" y2="160" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="420,160 408,166 408,154" fill="#f9a825"/>
+  <rect x="420" y="130" width="130" height="60" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="485" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">TGW</text>
+
+  <line x1="550" y1="150" x2="620" y2="120" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="620,120 611.3337754312583,130.24190176305837 606.6067438483083,119.21216140284167" fill="#f9a825"/>
+  <line x1="550" y1="170" x2="620" y2="200" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="620,200 606.6067438483083,200.78783859715833 611.3337754312583,189.75809823694163" fill="#f9a825"/>
+  <rect x="620" y="95" width="150" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="122.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC prod</text>
+
+  <rect x="620" y="170" width="150" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="695" y="197.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC dev</text>
+
+  <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">最大 20 VPC アタッチメント / TGW</text>
+</svg>
 ![w:1000 center](assets/transit-vif-arch.svg)
 
 
@@ -463,6 +1442,38 @@ paginate: true
 
 # DX Gateway + TGW 連携構成
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway + TGW 連携構成</text>
+  <rect x="20" y="80" width="140" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="90" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DC 東京</text>
+
+  <rect x="20" y="190" width="140" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="90" y="222.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DC 大阪</text>
+
+  <line x1="160" y1="112" x2="220" y2="155" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="220,155 206.75108082054436,152.8866754683077 213.7413081176805,143.1328699374201" fill="#f9a825"/>
+  <line x1="160" y1="222" x2="220" y2="185" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="220,185 212.93528178129088,196.40568965430148 206.63661734533338,186.19163921761358" fill="#f9a825"/>
+  <rect x="220" y="145" width="150" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="295" y="175" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DX GW</text>
+
+  <line x1="370" y1="175" x2="440" y2="175" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="440,175 428,181 428,169" fill="#f9a825"/>
+  <rect x="440" y="145" width="130" height="60" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="505" y="175" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">TGW</text>
+
+  <line x1="570" y1="165" x2="640" y2="140" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="640,140 630.7171154428509,149.6864882335469 626.6810786788731,138.38558529440886" fill="#f9a825"/>
+  <line x1="570" y1="185" x2="640" y2="220" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="640,220 626.5835921350013,220 631.9501552810007,209.26687370800101" fill="#f9a825"/>
+  <rect x="640" y="115" width="150" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="142.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VPC 本番</text>
+
+  <rect x="640" y="195" width="150" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="222.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VPC 開発</text>
+
+  <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">DX GW — TGW 間は最大 6 アソシエーション</text>
+</svg>
 - - **DX Gateway**: グローバルリソース（リージョンに依存しない）
 - - **Transit VIF → DX Gateway**: VIF を DX GW にアソシエーション
 - - **DX Gateway → TGW**: DX GW を TGW にアソシエーション
@@ -475,6 +1486,38 @@ paginate: true
 
 # TGW 経由マルチVPC接続
 
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">TGW 経由マルチVPC 接続</text>
+  <rect x="30" y="80" width="140" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="100" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客 DC</text>
+
+  <line x1="170" y1="112" x2="250" y2="112" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="250,112 238,118 238,106" fill="#f9a825"/>
+  <rect x="250" y="80" width="140" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="320" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Transit VIF</text>
+
+  <line x1="390" y1="112" x2="460" y2="112" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="460,112 448,118 448,106" fill="#f9a825"/>
+  <rect x="460" y="80" width="130" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="525" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">TGW</text>
+
+  <line x1="530" y1="100" x2="600" y2="80" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="600,80 590.1100393956943,89.06579722061348 586.8133858609259,77.5275098489236" fill="#f9a825"/>
+  <line x1="530" y1="112" x2="600" y2="112" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="600,112 588,118 588,106" fill="#f9a825"/>
+  <line x1="530" y1="125" x2="600" y2="145" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="600,145 586.8133858609259,147.4724901510764 590.1100393956943,135.93420277938654" fill="#f9a825"/>
+  <rect x="600" y="60" width="180" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="690" y="82.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">VPC-A 10.0.0.0/16</text>
+
+  <rect x="600" y="115" width="180" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="690" y="137.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">VPC-B 10.1.0.0/16</text>
+
+  <rect x="600" y="170" width="180" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="690" y="192.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">VPC-C 10.2.0.0/16</text>
+
+  <text x="400" y="290" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">TGW ルートテーブルで VPC 間の通信制御</text>
+</svg>
 ![w:1000 center](assets/tgw-multi-vpc.svg)
 
 
@@ -482,6 +1525,24 @@ paginate: true
 
 # Transit VIF の制約と注意点
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Transit VIF の制約と注意点</text>
+  <rect x="30" y="70" width="340" height="70" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">制約 1: DX Gateway 必須</text>
+<text x="200" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Transit VIF → DXGW のみ接続可能</text>
+  <rect x="430" y="70" width="340" height="70" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">制約 2: 同リージョン TGW</text>
+<text x="600" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">DXGW と TGW は同リージョン</text>
+  <rect x="30" y="190" width="340" height="70" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="216" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">制約 3: BGP プレフィックス上限</text>
+<text x="200" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">最大 20,000 経路</text>
+  <rect x="430" y="190" width="340" height="70" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="216" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">制約 4: 帯域共有</text>
+<text x="600" y="237" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">単一 VIF で全 VPC 共有</text>
+  <rect x="30" y="310" width="720" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="390" y="337.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">解決: 大規模時は複数 DX Gateway / TGW を使い分け</text>
+
+</svg>
 - - **DX Gateway 必須** — Transit VIF は DX GW 経由でのみ TGW に接続
 - - **1 DX GW : 最大 3 TGW** — TGW アソシエーション数に上限あり
 - - **受信プレフィックス上限**: 100（Private VIF と同じ）
@@ -494,6 +1555,34 @@ paginate: true
 
 # TGW ピアリングとの組合せ
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">TGW ピアリングとの組合せ</text>
+  <rect x="30" y="80" width="150" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="105" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DC Japan</text>
+
+  <line x1="180" y1="112" x2="260" y2="112" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="260,112 248,118 248,106" fill="#f9a825"/>
+  <rect x="260" y="80" width="140" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="330" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">TGW ap-ne-1</text>
+
+  <line x1="400" y1="112" x2="470" y2="112" stroke="#9c27b0" stroke-width="2.5" stroke-dasharray="6,3"/>
+  <text x="435" y="99" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="10" font-weight="normal" font-family="sans-serif">TGW
+Peering</text>
+  <rect x="470" y="80" width="140" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="540" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">TGW us-east-1</text>
+
+  <line x1="610" y1="112" x2="680" y2="112" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="680,112 668,118 668,106" fill="#f9a825"/>
+  <rect x="680" y="80" width="100" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="730" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VPC US</text>
+
+  <line x1="330" y1="145" x2="330" y2="210" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="330,210 324,198 336,198" fill="#f9a825"/>
+  <rect x="260" y="210" width="140" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="330" y="240" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">VPC Tokyo A</text>
+
+  <text x="400" y="320" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">リージョン間通信を TGW ピアリングで実現</text>
+</svg>
 - - **TGW ピアリング**: 異なるリージョンの TGW 同士を接続
 - - DX + TGW + ピアリングで **マルチリージョン・フルメッシュ** 接続が可能
 - - 構成例: オンプレ → DX → TGW(東京) ↔ TGW(大阪) → VPC(大阪)
@@ -508,6 +1597,28 @@ paginate: true
 <!-- _class: lead -->
 # VIF 選定ガイド
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF 選定ガイド</text>
+  <rect x="30" y="70" width="220" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Private VIF</text>
+<text x="140" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">単一VPC / 同リージョン</text>
+  <rect x="290" y="70" width="220" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Transit VIF</text>
+<text x="400" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">複数VPC / スケール</text>
+  <rect x="550" y="70" width="220" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Public VIF</text>
+<text x="660" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AWS マネージドサービス</text>
+  <rect x="30" y="210" width="220" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="247.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">小〜中規模 VPC 1-2個</text>
+
+  <rect x="290" y="210" width="220" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="247.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">大規模 VPC 多数</text>
+
+  <rect x="550" y="210" width="220" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="247.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">S3/DynamoDB など API</text>
+
+  <text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">将来拡張を見込む場合は Transit VIF + TGW を推奨</text>
+</svg>
 - Private VIF vs Transit VIF の判断基準
 
 
@@ -515,6 +1626,40 @@ paginate: true
 
 # Private VIF vs Transit VIF 詳細比較
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Private VIF vs Transit VIF 詳細比較</text>
+  <rect x="30" y="65" width="340" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="92.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Private VIF</text>
+
+  <rect x="430" y="65" width="340" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="92.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Transit VIF</text>
+
+  <rect x="30" y="135" width="155" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">接続先: VGW/DXGW</text>
+
+  <rect x="195" y="135" width="175" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="282.5" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">VPC 数: 最大10</text>
+
+  <rect x="430" y="135" width="155" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="507.5" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">接続先: DXGW→TGW</text>
+
+  <rect x="595" y="135" width="175" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="682.5" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">VPC 数: 数百</text>
+
+  <rect x="30" y="200" width="155" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="107.5" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">シンプル構成</text>
+
+  <rect x="195" y="200" width="175" height="50" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="282.5" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">DXGW 必須</text>
+
+  <rect x="430" y="200" width="155" height="50" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="507.5" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">TGW 追加コスト</text>
+
+  <rect x="595" y="200" width="175" height="50" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="682.5" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">柔軟ルーティング</text>
+
+  <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">10 VPC 以下 → Private VIF / 11 VPC 以上 → Transit VIF</text>
+</svg>
 | 項目 | Private VIF | Transit VIF |
 |------|-----------|-------------|
 | 接続先 | VGW (直接) / DX GW | DX GW → TGW |
@@ -529,6 +1674,42 @@ paginate: true
 
 # VIF 選定フローチャート
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF 選定フローチャート</text>
+  <rect x="300" y="60" width="200" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="87.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">接続先は？</text>
+
+  <line x1="400" y1="115" x2="200" y2="180" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="200,180 209.55789239074602,170.58476271956363 213.26692525879673,181.997171544335" fill="#f9a825"/>
+  <line x1="400" y1="115" x2="400" y2="180" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="400,180 394,168 406,168" fill="#f9a825"/>
+  <line x1="400" y1="115" x2="600" y2="180" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="600,180 586.7330747412033,181.997171544335 590.4421076092539,170.58476271956363" fill="#f9a825"/>
+  <rect x="100" y="180" width="160" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="180" y="197.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC のみ</text>
+<text x="180" y="221.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">単一リージョン</text>
+  <rect x="320" y="180" width="160" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="197.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC 複数/多様</text>
+<text x="400" y="221.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">マルチリージョン</text>
+  <rect x="540" y="180" width="160" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="620" y="197.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">AWS パブリック</text>
+<text x="620" y="221.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">サービス</text>
+  <line x1="180" y1="235" x2="180" y2="295" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="180,295 174,283 186,283" fill="#f9a825"/>
+  <line x1="400" y1="235" x2="400" y2="295" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="400,295 394,283 406,283" fill="#f9a825"/>
+  <line x1="620" y1="235" x2="620" y2="295" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="620,295 614,283 626,283" fill="#f9a825"/>
+  <rect x="100" y="295" width="160" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="180" y="312.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Private VIF</text>
+<text x="180" y="336.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">+ VGW</text>
+  <rect x="320" y="295" width="160" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="312.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Transit VIF</text>
+<text x="400" y="336.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">+ DXGW + TGW</text>
+  <rect x="540" y="295" width="160" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="620" y="322.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Public VIF</text>
+
+</svg>
 ![w:900 center](assets/vif-selection-flow.svg)
 
 
@@ -536,6 +1717,28 @@ paginate: true
 
 # 構成パターン別コスト比較（1/2）
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">構成パターン別コスト比較 (概算)</text>
+  <rect x="30" y="70" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Dedicated 1G</text>
+<text x="140" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">~$0.30/時間</text>
+  <rect x="290" y="70" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Dedicated 10G</text>
+<text x="400" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">~$1.50/時間</text>
+  <rect x="550" y="70" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Dedicated 100G</text>
+<text x="660" y="117" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">~$15/時間</text>
+  <rect x="30" y="200" width="220" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="226" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Hosted 50M-500M</text>
+<text x="140" y="247" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">パートナー依存</text>
+  <rect x="290" y="200" width="220" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="226" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Hosted 1G-10G</text>
+<text x="400" y="247" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">パートナー依存</text>
+  <rect x="550" y="200" width="220" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="226" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">データ転送</text>
+<text x="660" y="247" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">$0.02〜/GB</text>
+  <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">ポート時間 + データ転送量 + VIF 数で合計コスト計算</text>
+</svg>
 - **Private VIF 構成 (VPC 10個の場合)**
 - - DX ポート (10G): $2,270/月
 - - Private VIF × 10: 追加料金なし
@@ -547,6 +1750,22 @@ paginate: true
 
 # 構成パターン別コスト比較（2/2）
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コスト最適化ポイント</text>
+  <rect x="30" y="70" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">必要帯域を見積もる</text>
+<text x="200" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">過剰スペックはコスト増</text>
+  <rect x="430" y="70" width="340" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Hosted で始めて Dedicated へ</text>
+<text x="600" y="119.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">小規模から段階的移行</text>
+  <rect x="30" y="200" width="340" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="228.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DX GW で VIF 数を最小化</text>
+<text x="200" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">VIF 数 × 時間課金</text>
+  <rect x="430" y="200" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="228.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">LAG で冗長化コスト削減</text>
+<text x="600" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ポート数削減</text>
+  <text x="400" y="335" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">コスト試算は AWS Pricing Calculator で事前確認</text>
+</svg>
 - **Transit VIF 構成 (VPC 10個の場合)**
 - - DX ポート (10G): $2,270/月
 - - Transit VIF × 1: 追加料金なし
@@ -559,6 +1778,33 @@ paginate: true
 <!-- _class: lead -->
 # DX Gateway 詳細
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway の役割</text>
+  <rect x="30" y="90" width="140" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="100" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Location A</text>
+<text x="100" y="139" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">東京</text>
+  <rect x="30" y="200" width="140" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="100" y="225" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Location B</text>
+<text x="100" y="249" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">大阪</text>
+  <line x1="170" y1="125" x2="280" y2="165" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,165 266.67202053961853,166.53784378389017 270.77293729665894,155.2603227020289" fill="#f9a825"/>
+  <line x1="170" y1="235" x2="280" y2="195" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,195 270.77293729665894,204.7396772979711 266.67202053961853,193.46215621610983" fill="#f9a825"/>
+  <rect x="280" y="155" width="180" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="370" y="180" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Gateway</text>
+<text x="370" y="204" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">グローバルリソース</text>
+  <line x1="460" y1="190" x2="540" y2="150" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="540,150 531.9501552810007,160.73312629199899 526.5835921350013,150" fill="#f9a825"/>
+  <line x1="460" y1="190" x2="540" y2="230" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="540,230 526.5835921350013,230 531.9501552810007,219.26687370800101" fill="#f9a825"/>
+  <rect x="540" y="115" width="220" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="145" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">VGW (us-east-1 VPC)</text>
+
+  <rect x="540" y="205" width="220" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="650" y="235" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">TGW (ap-northeast-1)</text>
+
+  <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">1 DX GW に最大 10 VGW / TGW をアタッチ可能</text>
+</svg>
 - グローバルハブとしての役割と設計
 
 
@@ -566,6 +1812,22 @@ paginate: true
 
 # DX Gateway の役割
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway の主な役割</text>
+  <rect x="30" y="75" width="200" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ロール 1: マルチリージョン</text>
+<text x="130" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">1 DX GW で複数リージョン</text>
+  <rect x="270" y="75" width="200" height="75" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="370" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ロール 2: マルチVPC</text>
+<text x="370" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">最大 10 VGW / TGW</text>
+  <rect x="510" y="75" width="260" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="640" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ロール 3: クロスアカウント</text>
+<text x="640" y="124.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">他アカウント VGW も接続可</text>
+  <rect x="30" y="225" width="740" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="257.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">DX Gateway: グローバルリソース (リージョン非依存) → 1 つで全世界に対応</text>
+
+  <text x="400" y="355" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">Private/Transit VIF のみ対応 (Public VIF は不可)</text>
+</svg>
 - - **グローバルリソース** — 特定リージョンに属さない
 - - Private VIF / Transit VIF と VGW / TGW の **仲介役**
 - - DX Gateway 自体に **追加料金は発生しない**
@@ -578,6 +1840,33 @@ paginate: true
 
 # DX Gateway アーキテクチャ
 
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway アーキテクチャ詳細</text>
+  <rect x="30" y="80" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="100" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客 AS</text>
+<text x="95" y="124" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">65001</text>
+  <line x1="160" y1="110" x2="230" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="230,110 218,116 218,104" fill="#f9a825"/>
+  <rect x="230" y="80" width="150" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="305" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">Private/Transit VIF</text>
+
+  <line x1="380" y1="110" x2="450" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="450,110 438,116 438,104" fill="#f9a825"/>
+  <rect x="450" y="65" width="140" height="90" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="520" y="100" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Gateway</text>
+<text x="520" y="124" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Amazon側 BGP</text>
+  <line x1="590" y1="100" x2="660" y2="80" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="660,80 650.1100393956943,89.06579722061348 646.8133858609259,77.5275098489236" fill="#f9a825"/>
+  <line x1="590" y1="120" x2="660" y2="160" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="660,160 646.6042486643655,159.25579159246476 652.5579159246474,148.83687388697123" fill="#f9a825"/>
+  <rect x="660" y="55" width="110" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="85" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">VGW/TGW A</text>
+
+  <rect x="660" y="130" width="110" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="160" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">VGW/TGW B</text>
+
+  <text x="300" y="240" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">許可プレフィックスで経路フィルタリング必須</text>
+</svg>
 ![w:1000 center](assets/dx-gw-arch.svg)
 
 
@@ -585,6 +1874,28 @@ paginate: true
 
 # 許可プレフィックスとルーティング
 
+- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">許可プレフィックスとルーティング制御</text>
+  <rect x="30" y="75" width="200" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DX GW 設定</text>
+<text x="130" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">許可プレフィックスリスト</text>
+  <line x1="230" y1="110" x2="310" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="310,110 298,116 298,104" fill="#f9a825"/>
+  <rect x="310" y="75" width="200" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="410" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">フィルタリング</text>
+<text x="410" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">指定プレフィックスのみ通過</text>
+  <line x1="510" y1="110" x2="590" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="590,110 578,116 578,104" fill="#f9a825"/>
+  <rect x="590" y="75" width="180" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VGW/TGW</text>
+<text x="680" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">許可された経路のみ</text>
+  <rect x="30" y="230" width="340" height="65" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="200" y="262.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">設定ミス: 広すぎるプレフィックス → セキュリティリスク</text>
+
+  <rect x="430" y="230" width="340" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="600" y="262.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">ベスト: /24 単位で最小権限設定</text>
+
+</svg>
 - - **Allowed Prefixes (許可プレフィックス)**: DX GW で広報するルートを制限
 - - VGW 関連付け時: AWS → オンプレ方向のプレフィックスをフィルタ
 -   - デフォルト: VPC CIDR がそのまま広報
@@ -598,6 +1909,28 @@ paginate: true
 
 # クロスアカウント共有（1/2）
 
+- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway クロスアカウント共有</text>
+  <rect x="30" y="80" width="200" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Account A (Network)</text>
+<text x="130" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">DX Gateway 所有</text>
+  <line x1="230" y1="115" x2="310" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="310,115 298,121 298,109" fill="#f9a825"/>
+  <rect x="310" y="80" width="200" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="410" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">RAM 共有</text>
+<text x="410" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Resource Access Manager</text>
+  <line x1="510" y1="115" x2="590" y2="100" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="590,100 579.3112649670892,108.10869554220817 577.099802546487,96.3142292989963" fill="#f9a825"/>
+  <line x1="510" y1="130" x2="590" y2="155" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="590,155 576.756590304764,157.1475799505788 580.3358902223953,145.69382021415845" fill="#f9a825"/>
+  <rect x="590" y="75" width="180" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Account B</text>
+<text x="680" y="114.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">VGW アタッチ</text>
+  <rect x="590" y="145" width="180" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="163.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Account C</text>
+<text x="680" y="184.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">VGW アタッチ</text>
+  <text x="400" y="290" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Network 専用アカウントで DX GW を集中管理する構成が推奨</text>
+</svg>
 - - DX Gateway は **別の AWS アカウント** の VGW/TGW と関連付け可能
 - - **AWS Organizations 不要** — アカウント ID だけで共有可能
 - - ユースケース: 共有サービスアカウントで DX を管理し、各事業部の VPC に接続
@@ -608,6 +1941,31 @@ paginate: true
 
 # クロスアカウント共有（2/2）
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">クロスアカウント共有の手順</text>
+  <rect x="50" y="70" width="140" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">① DX GW 作成</text>
+<text x="120" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Network Acct</text>
+  <line x1="190" y1="97" x2="240" y2="97" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="240,97 228,103 228,91" fill="#f9a825"/>
+  <rect x="240" y="70" width="140" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="310" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">② RAM で共有</text>
+<text x="310" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">対象アカウントへ</text>
+  <line x1="380" y1="97" x2="430" y2="97" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="430,97 418,103 418,91" fill="#f9a825"/>
+  <rect x="430" y="70" width="140" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="500" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">③ 招待承認</text>
+<text x="500" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">受け側アカウント</text>
+  <line x1="570" y1="97" x2="620" y2="97" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="620,97 608,103 608,91" fill="#f9a825"/>
+  <rect x="620" y="70" width="140" height="55" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="690" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">④ VGW アタッチ</text>
+<text x="690" y="109.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">各アカウントで実施</text>
+  <text x="400" y="220" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">DX GW 管理はネットワークチームに集中 → ガバナンス向上</text>
+  <rect x="100" y="265" width="600" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="295" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">許可プレフィックスは DX GW 側で一元管理 → セキュリティ統制</text>
+
+</svg>
 -   1. DX GW 所有者が関連付け提案を作成
 -   2. VGW/TGW 所有者が提案を **承認**
 -   3. BGP セッション確立・ルーティング開始
@@ -618,6 +1976,28 @@ paginate: true
 
 # DX Gateway 構成パターン比較
 
+- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway 構成パターン比較</text>
+  <rect x="30" y="70" width="220" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">パターン A</text>
+<text x="140" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">DX GW + VGW (シンプル)</text>
+  <rect x="290" y="70" width="220" height="80" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">パターン B</text>
+<text x="400" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">DX GW + TGW (スケール)</text>
+  <rect x="550" y="70" width="220" height="80" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">パターン C</text>
+<text x="660" y="122" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">複数 DX GW (分離)</text>
+  <rect x="30" y="210" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="140" y="242.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">小〜中規模 / シンプル運用</text>
+
+  <rect x="290" y="210" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="242.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">大規模 / 多拠点 / 柔軟</text>
+
+  <rect x="550" y="210" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="660" y="242.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">事業部分離 / セキュリティ分離</text>
+
+  <text x="400" y="345" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">規模と要件に応じてパターンを選択</text>
+</svg>
 | 構成パターン | VGW 直接 | DX GW + VGW | DX GW + TGW |
 |-------------|---------|-------------|-------------|
 | リージョン制約 | 同一リージョン | マルチリージョン | マルチリージョン |
@@ -633,6 +2013,38 @@ paginate: true
 <!-- _class: lead -->
 # 冗長化・高可用性設計
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">冗長化設計パターン概要</text>
+  <rect x="30" y="80" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">企業DC A</text>
+
+  <rect x="30" y="220" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="110" y="255" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">企業DC B</text>
+
+  <line x1="190" y1="115" x2="280" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,115 268,121 268,109" fill="#f9a825"/>
+  <line x1="190" y1="255" x2="280" y2="255" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,255 268,261 268,249" fill="#f9a825"/>
+  <rect x="280" y="80" width="140" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="350" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Location A</text>
+<text x="350" y="129" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">東京</text>
+  <rect x="280" y="220" width="140" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="350" y="245" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Location B</text>
+<text x="350" y="269" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">大阪</text>
+  <line x1="420" y1="115" x2="510" y2="185" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="510,185 496.84412971039455,182.36882594207893 504.21141707257357,172.896599333563" fill="#f9a825"/>
+  <line x1="420" y1="255" x2="510" y2="215" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="510,215 501.4710922128776,225.35653088436294 496.5974306202362,214.39079230091983" fill="#f9a825"/>
+  <rect x="510" y="180" width="140" height="60" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="580" y="210" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Gateway</text>
+
+  <line x1="650" y1="210" x2="720" y2="210" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="720,210 708,216 708,204" fill="#f9a825"/>
+  <rect x="720" y="180" width="60" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="750" y="210" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC</text>
+
+  <text x="400" y="340" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="12" font-weight="normal" font-family="sans-serif">Maximum Resiliency: 4ポート / High: 2ポート / 開発: 1ポート</text>
+</svg>
 - AWS 推奨モデルと VPN フェイルオーバー
 
 
@@ -640,6 +2052,34 @@ paginate: true
 
 # AWS 推奨の冗長化モデル
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">AWS 推奨 冗長化モデル比較</text>
+  <rect x="30" y="70" width="200" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="100" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Maximum Resiliency</text>
+<text x="130" y="124" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">4接続 / 2ロケーション</text>
+  <rect x="30" y="175" width="200" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="205" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">High Resiliency</text>
+<text x="130" y="229" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">2接続 / 2ロケーション</text>
+  <rect x="30" y="280" width="200" height="80" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="310" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Development</text>
+<text x="130" y="334" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">1接続 SLA なし</text>
+  <rect x="280" y="70" width="200" height="80" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="380" y="100" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">最高の可用性</text>
+<text x="380" y="124" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ミッションクリティカル向け</text>
+  <rect x="280" y="175" width="200" height="80" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="380" y="205" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">高可用性</text>
+<text x="380" y="229" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">本番ワークロード向け</text>
+  <rect x="280" y="280" width="200" height="80" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="380" y="310" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">開発・検証用</text>
+<text x="380" y="334" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">コスト優先</text>
+  <line x1="230" y1="110" x2="280" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,110 268,116 268,104" fill="#f9a825"/>
+  <line x1="230" y1="215" x2="280" y2="215" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,215 268,221 268,209" fill="#f9a825"/>
+  <line x1="230" y1="320" x2="280" y2="320" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="280,320 268,326 268,314" fill="#f9a825"/>
+  <text x="650" y="195" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">コスト: ↑ Max > High > Dev ↓</text>
+</svg>
 - - AWS は **4段階の回復性モデル** を定義
 - - ビジネス要件（RTO/RPO・コスト）に応じて選択
 - 
@@ -655,6 +2095,46 @@ paginate: true
 
 # Maximum Resiliency（最大回復性）
 
+- <svg viewBox="0 0 800 450" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="450" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="18" font-weight="bold" font-family="sans-serif">Maximum Resiliency 構成</text>
+  <rect x="30" y="80" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DC Primary</text>
+
+  <rect x="30" y="200" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="230" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DC Secondary</text>
+
+  <line x1="160" y1="110" x2="240" y2="120" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="240,120 227.34845707190075,124.4652504452115 228.83687388697123,112.55791592464749" fill="#f9a825"/>
+  <line x1="160" y1="110" x2="240" y2="200" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="240,200 227.54317802193899,195.01727120877558 236.5120898461429,187.04490514281656" fill="#f9a825"/>
+  <line x1="160" y1="230" x2="240" y2="240" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="240,240 227.34845707190075,244.4652504452115 228.83687388697123,232.5579159246475" fill="#f9a825"/>
+  <line x1="160" y1="230" x2="240" y2="310" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="240,310 227.27207793864213,305.7573593128807 235.7573593128807,297.27207793864216" fill="#f9a825"/>
+  <rect x="240" y="95" width="140" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="310" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX-LoA 1</text>
+<text x="310" y="139" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Tokyo-A</text>
+  <rect x="240" y="175" width="140" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="310" y="195" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX-LoA 2</text>
+<text x="310" y="219" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Tokyo-B</text>
+  <rect x="240" y="255" width="140" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="310" y="275" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX-LoA 3</text>
+<text x="310" y="299" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Osaka-A</text>
+  <rect x="240" y="325" width="140" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="310" y="345" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX-LoA 4</text>
+<text x="310" y="369" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Osaka-B</text>
+  <line x1="380" y1="220" x2="440" y2="220" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="440,220 428,226 428,214" fill="#f9a825"/>
+  <rect x="440" y="190" width="150" height="60" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="515" y="220" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Gateway</text>
+
+  <line x1="590" y1="220" x2="660" y2="220" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="660,220 648,226 648,214" fill="#f9a825"/>
+  <rect x="660" y="190" width="110" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="220" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC</text>
+
+  <text x="400" y="420" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">4 ポート全断に耐える最高レベルの冗長性</text>
+</svg>
 ![w:1000 center](assets/maximum-resiliency.svg)
 
 <!--
@@ -665,6 +2145,36 @@ paginate: true
 
 # High Resiliency（高回復性）
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">High Resiliency 構成</text>
+  <rect x="30" y="100" width="130" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="135" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DC A</text>
+
+  <rect x="30" y="220" width="130" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="95" y="255" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DC B</text>
+
+  <line x1="160" y1="135" x2="250" y2="155" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="250,155 236.9841725308806,158.25395686727984 239.5873380247045,146.53971214507243" fill="#f9a825"/>
+  <line x1="160" y1="255" x2="250" y2="255" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="250,255 238,261 238,249" fill="#f9a825"/>
+  <rect x="250" y="120" width="150" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="325" y="145" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Tokyo</text>
+<text x="325" y="169" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ポート1</text>
+  <rect x="250" y="215" width="150" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="325" y="240" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Osaka</text>
+<text x="325" y="264" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ポート2</text>
+  <line x1="400" y1="190" x2="480" y2="190" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="480,190 468,196 468,184" fill="#f9a825"/>
+  <rect x="480" y="160" width="160" height="60" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="560" y="190" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX GW</text>
+
+  <line x1="640" y1="190" x2="720" y2="190" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="720,190 708,196 708,184" fill="#f9a825"/>
+  <rect x="720" y="160" width="60" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="750" y="190" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC</text>
+
+  <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">異なるロケーション2接続で単一障害点なし</text>
+</svg>
 ![w:1000 center](assets/high-resiliency.svg)
 
 <!--
@@ -675,6 +2185,26 @@ paginate: true
 
 # 開発・テスト環境の冗長化
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">開発・テスト環境の冗長化</text>
+  <rect x="30" y="80" width="200" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="130" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Development Resiliency</text>
+<text x="130" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">1接続のみ / SLA なし</text>
+  <line x1="230" y1="115" x2="310" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="310,115 298,121 298,109" fill="#f9a825"/>
+  <rect x="310" y="80" width="200" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="410" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DX 1接続</text>
+<text x="410" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">シングルポイント</text>
+  <line x1="510" y1="115" x2="590" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="590,115 578,121 578,109" fill="#f9a825"/>
+  <rect x="590" y="80" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="680" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">開発VPC</text>
+
+  <rect x="30" y="240" width="740" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="272.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">本番: Max/High Resiliency 必須 / 開発: コスト優先で Single OK</text>
+
+  <text x="400" y="360" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">SLA が不要な環境では Development モードがコスト最適</text>
+</svg>
 - - **単一 DX ロケーション** に2本の接続（コスト優先）
 - - SLA の保証なし — ロケーション障害時は全断
 - - **VPN バックアップ** との併用を推奨:
@@ -688,6 +2218,35 @@ paginate: true
 
 # VPN フェイルオーバー構成
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX + VPN フェイルオーバー構成</text>
+  <rect x="30" y="100" width="150" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="105" y="135" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客 DC</text>
+
+  <line x1="180" y1="125" x2="270" y2="125" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="270,125 258,131 258,119" fill="#f9a825"/>
+  <line x1="180" y1="145" x2="270" y2="220" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="270,220 256.9402382468446,216.9271148816105 264.6224510428184,207.708459526442" fill="#f9a825"/>
+  <rect x="270" y="95" width="160" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="350" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX 接続</text>
+<text x="350" y="139" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Active (優先)</text>
+  <rect x="270" y="190" width="160" height="60" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="350" y="210" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPN 接続</text>
+<text x="350" y="234" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Standby (予備)</text>
+  <line x1="430" y1="125" x2="510" y2="175" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="510,175 496.6440267119199,173.72800254399237 503.004013991958,163.55202289593132" fill="#f9a825"/>
+  <line x1="430" y1="220" x2="510" y2="200" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="510,200 499.813503748474,208.731282501308 496.903076248038,197.08957249956399" fill="#f9a825"/>
+  <rect x="510" y="155" width="160" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="590" y="185" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VGW</text>
+
+  <line x1="670" y1="185" x2="740" y2="185" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="740,185 728,191 728,179" fill="#f9a825"/>
+  <rect x="740" y="155" width="50" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="765" y="185" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC</text>
+
+  <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">BGP MED / AS-PATH で DX を優先。VPN はコールドスタンバイ</text>
+</svg>
 ![w:1000 center](assets/vpn-failover.svg)
 
 <!--
@@ -698,6 +2257,24 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 # BFD と SiteLink（1/2）
 
+- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">BFD (Bidirectional Forwarding Detection)</text>
+  <rect x="80" y="100" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="170" y="125" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客ルータ</text>
+<text x="170" y="149" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">BFD 対応</text>
+  <line x1="260" y1="135" x2="540" y2="135" stroke="#4caf50" stroke-width="3"/>
+  <text x="400" y="120" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="12" font-weight="normal" font-family="sans-serif">BFD ハローパケット (msec)</text>
+  <rect x="540" y="100" width="180" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="630" y="125" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">AWS DX Router</text>
+<text x="630" y="149" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">BFD 対応</text>
+  <rect x="80" y="240" width="180" height="70" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="170" y="265" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">障害検知: BGP のみ</text>
+<text x="170" y="289" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">数十秒〜数分</text>
+  <rect x="540" y="240" width="180" height="70" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="630" y="265" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">障害検知: BFD 有効</text>
+<text x="630" y="289" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">< 1 秒</text>
+  <text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">BFD で高速フェイルオーバーを実現 (デフォルト 300ms)</text>
+</svg>
 - **BFD (Bidirectional Forwarding Detection)**
 - - BGP のデフォルト障害検知 (90秒) を **300ms 以下** に短縮
 - - DX 接続で **強く推奨** — 高速フェイルオーバーに必須
@@ -708,6 +2285,31 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 # BFD と SiteLink（2/2）
 
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">SiteLink — 拠点間 DX 経由通信</text>
+  <rect x="30" y="80" width="150" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="105" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">拠点 A</text>
+<text x="105" y="127" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Tokyo DC</text>
+  <line x1="180" y1="115" x2="260" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="260,115 248,121 248,109" fill="#f9a825"/>
+  <rect x="260" y="80" width="170" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="345" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">DX Location
+東京</text>
+
+  <line x1="430" y1="115" x2="510" y2="115" stroke="#00bcd4" stroke-width="2.5"/>
+<polygon points="510,115 498,121 498,109" fill="#00bcd4"/>
+  <text x="470" y="100" text-anchor="middle" dominant-baseline="middle" fill="#00bcd4" font-size="11" font-weight="normal" font-family="sans-serif">SiteLink</text>
+  <rect x="510" y="80" width="170" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="595" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">DX Location
+大阪</text>
+
+  <line x1="680" y1="115" x2="750" y2="115" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="750,115 738,121 738,109" fill="#f9a825"/>
+  <rect x="750" y="80" width="40" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="770" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">拠点 B</text>
+
+  <text x="400" y="240" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">SiteLink: DX 接続間を AWS バックボーンで直結 → 低レイテンシ拠点間通信</text>
+</svg>
 - 
 - **SiteLink**
 - - DX ロケーション間を **AWS バックボーン経由** で直接通信
@@ -719,6 +2321,31 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 # 移行戦略: VPN → DX
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VPN → DX 移行ステップ</text>
+  <rect x="50" y="80" width="140" height="60" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="120" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">① VPN 稼働中</text>
+
+  <line x1="190" y1="110" x2="250" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="250,110 238,116 238,104" fill="#f9a825"/>
+  <rect x="250" y="80" width="140" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="320" y="100" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">② DX 開通</text>
+<text x="320" y="124" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">並列稼働</text>
+  <line x1="390" y1="110" x2="450" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="450,110 438,116 438,104" fill="#f9a825"/>
+  <rect x="450" y="80" width="140" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="520" y="100" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">③ BGP 優先度</text>
+<text x="520" y="124" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">DX→優先</text>
+  <line x1="590" y1="110" x2="650" y2="110" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="650,110 638,116 638,104" fill="#f9a825"/>
+  <rect x="650" y="80" width="130" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="715" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">④ VPN 廃止</text>
+
+  <text x="400" y="220" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="14" font-weight="normal" font-family="sans-serif">移行中は DX + VPN 並列稼働で無停止移行</text>
+  <rect x="100" y="270" width="580" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="390" y="300" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">DX 開通後 BGP MED で DX 優先 → 安定確認後 VPN を削除</text>
+
+</svg>
 - **段階的移行の推奨手順:**
 - 1. **準備**: DX 接続の申請・物理回線の手配（2〜4週間）
 - 2. **並行運用**: VPN を維持しつつ DX を追加接続
@@ -732,6 +2359,30 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 # 設計時のベストプラクティス
 
+- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">設計時のベストプラクティス</text>
+  <rect x="40" y="70" width="340" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="210" y="102.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">冗長化: 最低2接続 / 2ロケーション</text>
+
+  <rect x="420" y="70" width="340" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="590" y="102.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">BFD で高速フェイルオーバー設定</text>
+
+  <rect x="40" y="155" width="340" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="210" y="187.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">DX Gateway でマルチリージョン接続</text>
+
+  <rect x="420" y="155" width="340" height="65" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="590" y="187.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">許可プレフィックスは最小権限で設定</text>
+
+  <rect x="40" y="240" width="340" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="210" y="272.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Transit VIF は大規模VPC向け (TGW経由)</text>
+
+  <rect x="420" y="240" width="340" height="65" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="590" y="272.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">MTU: Jumbo Frame (9001) 有効化検討</text>
+
+  <rect x="40" y="325" width="720" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">コスト: データ転送量 / ポート時間 / VIF数を把握してから設計</text>
+
+</svg>
 - - **冗長化**: 本番は最低 High Resiliency（2ロケーション）を確保
 - - **BFD 有効化**: 全 DX 接続で BFD を有効にし高速障害検知
 - - **BGP MD5 認証**: 全 VIF で MD5 認証を設定
@@ -744,6 +2395,42 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 # 全体アーキテクチャ サマリ
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">全体アーキテクチャ サマリ</text>
+  <rect x="20" y="80" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="85" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DC 東京</text>
+
+  <rect x="20" y="160" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+<text x="85" y="190" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DC 大阪</text>
+
+  <line x1="150" y1="110" x2="220" y2="130" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="220,130 206.81338586092585,132.4724901510764 210.1100393956944,120.93420277938652" fill="#f9a825"/>
+  <line x1="150" y1="190" x2="220" y2="180" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="220,180 208.96913421348987,187.6367532368147 207.27207793864213,175.7573593128807" fill="#f9a825"/>
+  <rect x="220" y="110" width="140" height="60" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
+<text x="290" y="130" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Location</text>
+<text x="290" y="154" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">× 2</text>
+  <line x1="360" y1="140" x2="430" y2="140" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="430,140 418,146 418,134" fill="#f9a825"/>
+  <rect x="430" y="110" width="140" height="60" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="500" y="140" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Gateway</text>
+
+  <line x1="570" y1="130" x2="640" y2="100" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="640,100 631.3337754312583,110.24190176305837 626.6067438483083,99.21216140284167" fill="#f9a825"/>
+  <line x1="570" y1="150" x2="640" y2="180" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="640,180 626.6067438483083,180.78783859715833 631.3337754312583,169.75809823694163" fill="#f9a825"/>
+  <rect x="640" y="70" width="140" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="710" y="100" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">TGW ap-ne-1</text>
+
+  <rect x="640" y="155" width="140" height="60" rx="8" fill="#1a3a1a" stroke="#f9a825" stroke-width="1.5"/>
+<text x="710" y="185" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">VGW us-east-1</text>
+
+  <line x1="640" y1="100" x2="720" y2="100" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="720,100 708,106 708,94" fill="#f9a825"/>
+  <line x1="640" y1="185" x2="720" y2="185" stroke="#f9a825" stroke-width="2.5"/>
+<polygon points="720,185 708,191 708,179" fill="#f9a825"/>
+  <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">エンタープライズ DX アーキテクチャの標準構成</text>
+</svg>
 ![w:1050 center](assets/full-architecture.svg)
 
 

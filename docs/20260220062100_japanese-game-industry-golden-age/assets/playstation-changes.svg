@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="380" fill="#1a1a2e"/>
+  <text x="400" y="35" fill="#f9a825" font-size="20" font-weight="bold" text-anchor="middle" font-family="sans-serif">PlayStationが変えた3つのパラダイム</text>
+  <!-- Column 1: Media -->
+  <rect x="40" y="65" width="200" height="260" fill="#16213e" stroke="#4fc3f7" stroke-width="2" rx="8"/>
+  <text x="140" y="95" fill="#4fc3f7" font-size="15" text-anchor="middle" font-weight="bold" font-family="sans-serif">メディア</text>
+  <line x1="60" y1="105" x2="220" y2="105" stroke="#4fc3f7" stroke-width="1"/>
+  <text x="140" y="130" fill="#e91e63" font-size="12" text-anchor="middle" font-family="sans-serif">カートリッジ</text>
+  <text x="140" y="148" fill="#a0a0c0" font-size="11" text-anchor="middle" font-family="sans-serif">高単価・小容量</text>
+  <text x="140" y="185" fill="#ffffff" font-size="18" text-anchor="middle" font-family="sans-serif">↓</text>
+  <text x="140" y="220" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">CD-ROM</text>
+  <text x="140" y="238" fill="#a0a0c0" font-size="11" text-anchor="middle" font-family="sans-serif">低コスト・大容量</text>
+  <text x="140" y="270" fill="#ffffff" font-size="10" text-anchor="middle" font-family="sans-serif">製造コスト1/10以下</text>
+  <text x="140" y="288" fill="#ffffff" font-size="10" text-anchor="middle" font-family="sans-serif">開発規模の爆発的拡大</text>
+  <!-- Column 2: Image -->
+  <rect x="300" y="65" width="200" height="260" fill="#16213e" stroke="#e91e63" stroke-width="2" rx="8"/>
+  <text x="400" y="95" fill="#e91e63" font-size="15" text-anchor="middle" font-weight="bold" font-family="sans-serif">映像表現</text>
+  <line x1="320" y1="105" x2="480" y2="105" stroke="#e91e63" stroke-width="1"/>
+  <text x="400" y="130" fill="#e91e63" font-size="12" text-anchor="middle" font-family="sans-serif">2Dスプライト</text>
+  <text x="400" y="148" fill="#a0a0c0" font-size="11" text-anchor="middle" font-family="sans-serif">ドット絵の限界</text>
+  <text x="400" y="185" fill="#ffffff" font-size="18" text-anchor="middle" font-family="sans-serif">↓</text>
+  <text x="400" y="220" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">3Dポリゴン</text>
+  <text x="400" y="238" fill="#a0a0c0" font-size="11" text-anchor="middle" font-family="sans-serif">立体表現の実現</text>
+  <text x="400" y="270" fill="#ffffff" font-size="10" text-anchor="middle" font-family="sans-serif">映像作品に近い演出</text>
+  <text x="400" y="288" fill="#ffffff" font-size="10" text-anchor="middle" font-family="sans-serif">新規ユーザー層の獲得</text>
+  <!-- Column 3: Market -->
+  <rect x="560" y="65" width="200" height="260" fill="#16213e" stroke="#f9a825" stroke-width="2" rx="8"/>
+  <text x="660" y="95" fill="#f9a825" font-size="15" text-anchor="middle" font-weight="bold" font-family="sans-serif">市場</text>
+  <line x1="580" y1="105" x2="740" y2="105" stroke="#f9a825" stroke-width="1"/>
+  <text x="660" y="130" fill="#e91e63" font-size="12" text-anchor="middle" font-family="sans-serif">子供向け玩具</text>
+  <text x="660" y="148" fill="#a0a0c0" font-size="11" text-anchor="middle" font-family="sans-serif">限定されたユーザー</text>
+  <text x="660" y="185" fill="#ffffff" font-size="18" text-anchor="middle" font-family="sans-serif">↓</text>
+  <text x="660" y="220" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">全世代エンタメ</text>
+  <text x="660" y="238" fill="#a0a0c0" font-size="11" text-anchor="middle" font-family="sans-serif">大人も楽しむ文化</text>
+  <text x="660" y="270" fill="#ffffff" font-size="10" text-anchor="middle" font-family="sans-serif">初年度100万台突破</text>
+  <text x="660" y="288" fill="#ffffff" font-size="10" text-anchor="middle" font-family="sans-serif">ゲーム＝大衆文化へ</text>
+</svg>

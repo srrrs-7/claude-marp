@@ -7,6 +7,71 @@ paginate: true
 header: "コードを書かない日のほうが生産的な理由"
 footer: "© 2026 Engineer Productivity Workshop"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section { font-size: 1.0em; }
   section pre code { font-size: 0.55em; line-height: 1.4; }
   
@@ -55,6 +120,31 @@ style: |
 
 # 活動量 ≠ 成果：データが示す乖離
 
+- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">活動量 ≠ 成果 — エンジニアの時間の実態</text>
+<rect x="50" y="60" width="320" height="200" fill="#16213e" rx="8"/>
+<text x="210" y="88" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">時間の使い方 (McKinsey 2023)</text>
+<rect x="70" y="105" width="280" height="35" fill="#0f3460" rx="8"/>
+<text x="210" y="128" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">コーディング: 32%</text>
+<rect x="70" y="150" width="180" height="28" fill="#16213e" rx="8"/>
+<text x="160" y="170" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">コミュニケーション: 25%</text>
+<rect x="70" y="188" width="155" height="28" fill="#16213e" rx="8"/>
+<text x="148" y="208" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">レビュー・調査: 22%</text>
+<rect x="70" y="226" width="130" height="28" fill="#16213e" rx="8"/>
+<text x="135" y="246" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">会議・その他: 21%</text>
+<rect x="430" y="60" width="320" height="200" fill="#16213e" rx="8"/>
+<text x="590" y="88" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">PR マージまでの内訳</text>
+<text x="590" y="115" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">中央値: 3.6日</text>
+<rect x="450" y="140" width="100" height="80" fill="#0f3460" rx="8"/>
+<text x="500" y="188" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">コード</text>
+<text x="500" y="206" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">1.2日</text>
+<rect x="560" y="140" width="170" height="80" fill="#16213e" rx="8"/>
+<text x="645" y="188" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">待機・レビュー</text>
+<text x="645" y="206" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">修正: 2.4日</text>
+<text x="400" y="300" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">コーディング時間を増やしても ボトルネックは別の場所にある</text>
+<text x="400" y="328" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 「何をしたか」より「何が前進したか」が生産性の指標</text>
+</svg>
 - **McKinsey 調査（2023）:**
 - - エンジニアの実作業のうち **コーディング：約32%**
 - - 残り68%：会議・レビュー・調査・コミュニケーション
@@ -68,6 +158,27 @@ style: |
 
 # ベロシティの罠：Sprint Velocity と価値創出
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ベロシティの罠 — 速く動くことと前に進むことは別</text>
+<rect x="60" y="60" width="300" height="230" fill="#16213e" rx="8"/>
+<text x="210" y="88" font-size="15" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">ベロシティ信仰の罠</text>
+<text x="210" y="115" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">点数稼ぎ行動にインセンティブ歪む</text>
+<text x="210" y="140" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">小タスク分割が優先される</text>
+<text x="210" y="165" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">リファクタ・設計が後回しに</text>
+<text x="210" y="195" font-size="18" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">↓</text>
+<text x="210" y="225" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">見かけの速度は上がるが</text>
+<text x="210" y="248" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">実際の前進はゼロに</text>
+<rect x="440" y="60" width="300" height="230" fill="#0f3460" rx="8"/>
+<text x="590" y="88" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">健全な生産性指標</text>
+<text x="590" y="115" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">DORA メトリクス</text>
+<text x="590" y="138" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">デプロイ頻度・変更失敗率</text>
+<text x="590" y="162" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Flow Metrics</text>
+<text x="590" y="185" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">リードタイム</text>
+<text x="590" y="212" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">技術的負債指数</text>
+<text x="590" y="235" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードの複雑度推移</text>
+<text x="400" y="330" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">計測するものが行動を変える — 良いKPIが良い文化を作る</text>
+</svg>
 - **Sprint Velocity とは:**
 - - 1スプリントで完了したストーリーポイント数
 - - しかし「点数を稼ぐ」行動にインセンティブが歪む
@@ -81,6 +192,27 @@ style: |
 
 # 「忙しい」エンジニアのパラドックス（1/2）
 
+- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">書き続けることのコスト — 技術的負債の蓄積</text>
+<rect x="50" y="60" width="320" height="220" fill="#16213e" rx="8"/>
+<text x="210" y="88" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">技術的負債の現実</text>
+<text x="210" y="115" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">開発者時間の 33% が</text>
+<text x="210" y="138" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">負債対処に費やされる</text>
+<text x="210" y="165" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">(Stripe調査 2018)</text>
+<text x="210" y="195" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">世界全体で年間</text>
+<text x="210" y="220" font-size="16" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">$300 billion の損失</text>
+<rect x="430" y="60" width="320" height="220" fill="#16213e" rx="8"/>
+<text x="590" y="88" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">負債が生まれる原因 Top3</text>
+<rect x="450" y="108" width="280" height="35" fill="#2a1a0a" rx="8"/>
+<text x="590" y="131" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">設計をスキップしてコーディングを急いだ</text>
+<rect x="450" y="153" width="280" height="35" fill="#2a1a0a" rx="8"/>
+<text x="590" y="176" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">仕様が固まる前に実装を始めた</text>
+<rect x="450" y="198" width="280" height="35" fill="#2a1a0a" rx="8"/>
+<text x="590" y="221" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">レビュー・テストの時間を削った</text>
+<text x="590" y="262" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 今急ぐ = 後で10倍のコスト</text>
+<text x="400" y="320" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「後で直す」という判断が積み重なって行き詰まりを生む</text>
+</svg>
 - **典型的な一日:**
 - - 朝：Slack の通知を処理（30分）
 - - 午前：スタンドアップ → コードレビュー → バグ修正
@@ -101,6 +233,27 @@ style: |
 
 # 書き続けることのコスト：技術的負債の蓄積（1/2）
 
+- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">書き続けることのコスト — 技術的負債の蓄積</text>
+<rect x="50" y="60" width="320" height="220" fill="#16213e" rx="8"/>
+<text x="210" y="88" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">技術的負債の現実</text>
+<text x="210" y="115" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">開発者時間の 33% が</text>
+<text x="210" y="138" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">負債対処に費やされる</text>
+<text x="210" y="165" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">(Stripe調査 2018)</text>
+<text x="210" y="195" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">世界全体で年間</text>
+<text x="210" y="220" font-size="16" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">$300 billion の損失</text>
+<rect x="430" y="60" width="320" height="220" fill="#16213e" rx="8"/>
+<text x="590" y="88" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">負債が生まれる原因 Top3</text>
+<rect x="450" y="108" width="280" height="35" fill="#2a1a0a" rx="8"/>
+<text x="590" y="131" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">設計をスキップしてコーディングを急いだ</text>
+<rect x="450" y="153" width="280" height="35" fill="#2a1a0a" rx="8"/>
+<text x="590" y="176" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">仕様が固まる前に実装を始めた</text>
+<rect x="450" y="198" width="280" height="35" fill="#2a1a0a" rx="8"/>
+<text x="590" y="221" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">レビュー・テストの時間を削った</text>
+<text x="590" y="262" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 今急ぐ = 後で10倍のコスト</text>
+<text x="400" y="320" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「後で直す」という判断が積み重なって行き詰まりを生む</text>
+</svg>
 - **Stripe 調査（2018）:**
 - - 開発者時間の **33%** が技術的負債の対処に費やされている
 - - 世界全体で年間 **$300 billion** の損失
@@ -122,6 +275,27 @@ style: |
 <!-- _class: lead -->
 # 脳科学・認知科学の視点
 
+- <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">インキュベーション効果 — 「寝かせる」ことの力</text>
+<rect x="50" y="65" width="300" height="200" fill="#16213e" rx="8"/>
+<text x="200" y="95" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">集中して問題に取り組む</text>
+<text x="200" y="120" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 固定観念が形成される</text>
+<text x="200" y="145" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 同じアプローチを繰り返す</text>
+<text x="200" y="175" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">典型的なエンジニア:</text>
+<text x="200" y="198" font-size="11" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">「何時間もデバッグして解決できない」</text>
+<rect x="450" y="65" width="300" height="200" fill="#0f3460" rx="8"/>
+<text x="600" y="95" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">意図的に「休む」</text>
+<text x="600" y="120" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 固定観念がリセットされる</text>
+<text x="600" y="145" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 新しい視点でアプローチ</text>
+<text x="600" y="175" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Sio & Ormerod (2009):</text>
+<text x="600" y="198" font-size="11" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">洞察課題 平均15-20%向上</text>
+<line x1="350" y1="165" x2="438" y2="165" stroke="#f9a825" stroke-width="2"/>
+<polygon points="450,165 438,171 438,159" fill="#f9a825"/>
+<text x="400" y="165" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">休む</text>
+<text x="400" y="310" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「悩んで休む」は怠惰ではなく、戦略である</text>
+<text x="400" y="340" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">DMN (Default Mode Network) が休憩中に問題の解を探し続ける</text>
+</svg>
 - 脳は「使わない時間」に最も創造的になる
 
 
@@ -148,6 +322,27 @@ style: |
 
 # デフォルトモードネットワーク（DMN）が創造する（2/2）
 
+- <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">インキュベーション効果 — 「寝かせる」ことの力</text>
+<rect x="50" y="65" width="300" height="200" fill="#16213e" rx="8"/>
+<text x="200" y="95" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">集中して問題に取り組む</text>
+<text x="200" y="120" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 固定観念が形成される</text>
+<text x="200" y="145" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 同じアプローチを繰り返す</text>
+<text x="200" y="175" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">典型的なエンジニア:</text>
+<text x="200" y="198" font-size="11" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">「何時間もデバッグして解決できない」</text>
+<rect x="450" y="65" width="300" height="200" fill="#0f3460" rx="8"/>
+<text x="600" y="95" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">意図的に「休む」</text>
+<text x="600" y="120" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 固定観念がリセットされる</text>
+<text x="600" y="145" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 新しい視点でアプローチ</text>
+<text x="600" y="175" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Sio & Ormerod (2009):</text>
+<text x="600" y="198" font-size="11" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">洞察課題 平均15-20%向上</text>
+<line x1="350" y1="165" x2="438" y2="165" stroke="#f9a825" stroke-width="2"/>
+<polygon points="450,165 438,171 438,159" fill="#f9a825"/>
+<text x="400" y="165" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">休む</text>
+<text x="400" y="310" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「悩んで休む」は怠惰ではなく、戦略である</text>
+<text x="400" y="340" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">DMN (Default Mode Network) が休憩中に問題の解を探し続ける</text>
+</svg>
 - - 過去の経験と新情報の **統合・接続**
 - - 将来シナリオの **シミュレーション**
 - - 自己参照的思考 → **アイデアのインキュベーション**
@@ -168,6 +363,27 @@ style: |
 
 # インキュベーション効果：「寝かせる」ことの力（2/2）
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">割り込みのコスト — 23分の回復時間</text>
+<rect x="50" y="60" width="700" height="30" fill="#0f3460" rx="8"/>
+<text x="400" y="82" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">集中作業タイムライン</text>
+<rect x="50" y="110" width="200" height="55" fill="#0a2a0a" rx="8"/>
+<text x="150" y="142" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">集中状態 (フロー)</text>
+<rect x="250" y="110" width="8" height="55" fill="#e91e63" rx="8"/>
+<text x="254" y="175" font-size="12" fill="#e91e63" text-anchor="start" font-weight="normal" font-family="sans-serif">割り込み発生</text>
+<rect x="258" y="110" width="350" height="55" fill="#2a0a0a" rx="8"/>
+<text x="433" y="138" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">集中に戻るまで 23分 6秒</text>
+<text x="433" y="158" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">(Gloria Mark, UC Irvine 2005)</text>
+<rect x="608" y="110" width="140" height="55" fill="#0a2a0a" rx="8"/>
+<text x="678" y="142" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">集中状態に</text>
+<text x="678" y="158" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">戻れる</text>
+<text x="400" y="220" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">1日8回の割り込み → 3時間以上が回復コスト</text>
+<rect x="50" y="250" width="700" height="60" fill="#16213e" rx="8"/>
+<text x="400" y="278" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">割り込みコストの計算: 30分作業 × 1回割り込み = 実質 53分消費</text>
+<text x="400" y="300" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Slack通知オフ・会議を曜日集約 → 集中時間を守ることが最高の生産性施策</text>
+<text x="400" y="350" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">Stack Overflow 調査: 「頻繁な中断」が生産性低下要因 No.1 (62%)</text>
+</svg>
 - - インキュベーション後に洞察課題の成績が **平均15〜20%** 向上
 - **なぜ機能するか:**
 - - 誤った思考パターンから「離れる」ことで固定観念がリセット
@@ -197,6 +413,25 @@ style: |
 
 # フロー状態の誤解：コストとリターン（2/2）
 
+- <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">Deep Work理論 — 知的労働の本質</text>
+<rect x="50" y="60" width="700" height="55" fill="#16213e" rx="8"/>
+<text x="400" y="88" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">Deep Work = 「認知的に要求の高いタスクに完全に集中する能力」</text>
+<text x="400" y="108" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">Cal Newport (2016)</text>
+<rect x="50" y="135" width="320" height="180" fill="#0f3460" rx="8"/>
+<text x="210" y="163" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">Deep Work が可能な時間</text>
+<text x="210" y="190" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">知的労働者の上限:</text>
+<text x="210" y="218" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">約 4時間/日</text>
+<text x="210" y="250" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">それを超えると認知パフォーマンスが急低下</text>
+<rect x="430" y="135" width="320" height="180" fill="#16213e" rx="8"/>
+<text x="590" y="163" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">「1日中コードを書く」の問題</text>
+<text x="590" y="190" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Deep Work 定義に反する</text>
+<text x="590" y="215" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">4時間以降は質が急落</text>
+<text x="590" y="240" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードを書かない時間 =</text>
+<text x="590" y="260" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">次のDeep Workへの充電</text>
+<text x="400" y="355" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">浅い作業 (Slack・会議) は価値を生まない — 「忙しい」≠「深く考えている」</text>
+</svg>
 - - 中断されると再入場まで同じコストがかかる
 - **誤解:**
 - - 「フロー = ずっとコードを書き続けること」ではない
@@ -215,6 +450,38 @@ style: |
 
 # Cal Newport「ディープワーク」理論（1/2）
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ディープワーク時間ブロックの設計</text>
+<rect x="50" y="65" width="130" height="180" fill="#334" rx="8"/>
+<text x="115" y="95" font-size="22" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">月</text>
+<text x="115" y="122" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">計画・設計</text>
+<text x="115" y="145" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">1on1・RFC作成</text>
+<text x="115" y="215" font-size="11" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">非コーディング</text>
+<rect x="195" y="65" width="130" height="180" fill="#0f3460" rx="8"/>
+<text x="260" y="95" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">火</text>
+<text x="260" y="122" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">ディープワーク</text>
+<text x="260" y="145" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">コーディング優先</text>
+<text x="260" y="215" font-size="11" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">コーディング</text>
+<rect x="340" y="65" width="130" height="180" fill="#0f3460" rx="8"/>
+<text x="405" y="95" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">水</text>
+<text x="405" y="122" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">ディープワーク</text>
+<text x="405" y="145" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">コーディング優先</text>
+<text x="405" y="215" font-size="11" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">コーディング</text>
+<rect x="485" y="65" width="130" height="180" fill="#334" rx="8"/>
+<text x="550" y="95" font-size="22" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">木</text>
+<text x="550" y="122" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">設計・思考</text>
+<text x="550" y="145" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">ADR・コードリーディング</text>
+<text x="550" y="215" font-size="11" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">非コーディング</text>
+<rect x="630" y="65" width="130" height="180" fill="#16213e" rx="8"/>
+<text x="695" y="95" font-size="22" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">金</text>
+<text x="695" y="122" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">振り返り</text>
+<text x="695" y="145" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">学習・設計メモ</text>
+<text x="695" y="215" font-size="11" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">非コーディング</text>
+<text x="400" y="295" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">先に「保護時間」をカレンダーにブロックする</text>
+<text x="400" y="325" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">空き時間は会議に侵食される — 積極的に守らないと消える</text>
+<text x="400" y="355" font-size="11" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">週4時間がディープワークの上限 (Cal Newport) — それを超えると認知パフォーマンス急低下</text>
+</svg>
 - **Deep Work（2016）の核心:**
 - - 「認知的に要求の高いタスクに完全に集中する能力」
 - - 浅い作業（メール・会議・Slack）は価値を生まない
@@ -225,6 +492,38 @@ style: |
 
 # Cal Newport「ディープワーク」理論（2/2）
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">熟慮的実践 — 成長を生む「コードを書かない日」</text>
+<rect x="280" y="55" width="240" height="65" fill="#0f3460" rx="8"/>
+<text x="400" y="83" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">熟慮的実践 (Ericsson)</text>
+<text x="400" y="104" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">= 快適ゾーンを超えた意識的練習</text>
+<line x1="520" y1="87" x2="599.9131475788764" y2="138.4995839952759" stroke="#f9a825" stroke-width="2"/>
+<polygon points="610,145 596.6629395765144,143.5430102058377 603.1633555812384,133.45615778471412" fill="#f9a825"/>
+<line x1="280" y1="87" x2="200.08685242112358" y2="138.4995839952759" stroke="#f9a825" stroke-width="2"/>
+<polygon points="190,145 196.83664441876152,133.45615778471412 203.33706042348564,143.5430102058377" fill="#f9a825"/>
+<line x1="400" y1="120" x2="400" y2="133" stroke="#f9a825" stroke-width="2"/>
+<polygon points="400,145 394,133 406,133" fill="#f9a825"/>
+<rect x="50" y="145" width="200" height="65" fill="#16213e" rx="8"/>
+<text x="150" y="172" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">難しい課題</text>
+<text x="150" y="192" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">快適ゾーンを超える</text>
+<rect x="300" y="145" width="200" height="65" fill="#16213e" rx="8"/>
+<text x="400" y="172" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">即時フィードバック</text>
+<text x="400" y="192" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">CI/CD・コードレビュー</text>
+<rect x="550" y="145" width="200" height="65" fill="#16213e" rx="8"/>
+<text x="650" y="172" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">意識的な振り返り</text>
+<text x="650" y="192" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 修正</text>
+<line x1="150" y1="210" x2="269.10448738599456" y2="264.97130187045906" stroke="#f9a825" stroke-width="2"/>
+<polygon points="280,270 266.59013832122406,270.41905817746175 271.61883645076506,259.52354556345637" fill="#f9a825"/>
+<line x1="400" y1="210" x2="400" y2="258" stroke="#f9a825" stroke-width="2"/>
+<polygon points="400,270 394,258 406,258" fill="#f9a825"/>
+<line x1="650" y1="210" x2="530.8955126140054" y2="264.97130187045906" stroke="#f9a825" stroke-width="2"/>
+<polygon points="520,270 528.3811635492349,259.52354556345637 533.4098616787759,270.41905817746175" fill="#f9a825"/>
+<rect x="250" y="270" width="300" height="65" fill="#16213e" rx="8"/>
+<text x="400" y="297" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">スキルの向上</text>
+<text x="400" y="318" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードを書かない日の「振り返り」が成長を生む</text>
+<text x="400" y="365" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">1万時間の法則の本質は「時間」ではなく「振り返りの質」</text>
+</svg>
 - - 1日あたりディープワークが可能な時間：**約4時間が上限**
 - - それを超えると認知パフォーマンスが急低下
 - → 1日中コードを書くことは **ディープワークの定義に反する**
@@ -244,6 +543,27 @@ style: |
 
 # 熟慮的実践（Deliberate Practice）とは（1/2）
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">割り込みのコスト — 23分の回復時間</text>
+<rect x="50" y="60" width="700" height="30" fill="#0f3460" rx="8"/>
+<text x="400" y="82" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">集中作業タイムライン</text>
+<rect x="50" y="110" width="200" height="55" fill="#0a2a0a" rx="8"/>
+<text x="150" y="142" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">集中状態 (フロー)</text>
+<rect x="250" y="110" width="8" height="55" fill="#e91e63" rx="8"/>
+<text x="254" y="175" font-size="12" fill="#e91e63" text-anchor="start" font-weight="normal" font-family="sans-serif">割り込み発生</text>
+<rect x="258" y="110" width="350" height="55" fill="#2a0a0a" rx="8"/>
+<text x="433" y="138" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">集中に戻るまで 23分 6秒</text>
+<text x="433" y="158" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">(Gloria Mark, UC Irvine 2005)</text>
+<rect x="608" y="110" width="140" height="55" fill="#0a2a0a" rx="8"/>
+<text x="678" y="142" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">集中状態に</text>
+<text x="678" y="158" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">戻れる</text>
+<text x="400" y="220" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">1日8回の割り込み → 3時間以上が回復コスト</text>
+<rect x="50" y="250" width="700" height="60" fill="#16213e" rx="8"/>
+<text x="400" y="278" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">割り込みコストの計算: 30分作業 × 1回割り込み = 実質 53分消費</text>
+<text x="400" y="300" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Slack通知オフ・会議を曜日集約 → 集中時間を守ることが最高の生産性施策</text>
+<text x="400" y="350" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">Stack Overflow 調査: 「頻繁な中断」が生産性低下要因 No.1 (62%)</text>
+</svg>
 - **Anders Ericsson の研究（1993〜）:**
 - - 「1万時間の法則」の元ネタ（しかし誤解されている）
 - - 重要なのは時間ではなく **熟慮的実践の質**
@@ -264,6 +584,25 @@ style: |
 
 # Stack Overflow 調査：生産性を下げる要因 Top 5（1/2）
 
+- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「余白の時間」が革新を生む — Google 20%ルールの本質</text>
+<rect x="50" y="60" width="700" height="65" fill="#16213e" rx="8"/>
+<text x="400" y="88" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">20%ルール = 就業時間の20%を自由なプロジェクトに使える制度</text>
+<text x="400" y="110" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">Gmail, Google Maps, Google News が誕生</text>
+<rect x="50" y="148" width="320" height="170" fill="#0f3460" rx="8"/>
+<text x="210" y="178" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">表面的な解釈</text>
+<text x="210" y="205" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「好きなものを作る時間」</text>
+<text x="210" y="228" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 副業・趣味プロジェクト</text>
+<text x="210" y="258" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 組み込まれた余暇</text>
+<rect x="430" y="148" width="320" height="170" fill="#16213e" rx="8"/>
+<text x="590" y="178" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">本質的な意味</text>
+<text x="590" y="205" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「強制されない思考の時間」</text>
+<text x="590" y="228" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 既存コードを書かない時間</text>
+<text x="590" y="255" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 制度化された余白</text>
+<text x="590" y="278" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 拡散モード思考の活性化</text>
+<text x="400" y="360" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">組み込まれた余白が革新を生む — 余白なしに革新なし</text>
+</svg>
 - **Stack Overflow Developer Survey 2023（N=89,000）:**
 - 1. **頻繁な中断・割り込み** — 62%
 - 2. **不明瞭な要件・仕様** — 54%
@@ -294,6 +633,27 @@ style: |
 
 # Google の 20% ルール再考（2/2）
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動の価値マップ</text>
+<rect x="60" y="60" width="320" height="260" fill="#16213e" rx="8"/>
+<text x="220" y="88" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">投資ゾーン (高価値・低即時性)</text>
+<text x="220" y="115" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・アーキテクチャ設計</text>
+<text x="220" y="138" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・RFC・ADR作成</text>
+<text x="220" y="161" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・ペア思考・ホワイトボード</text>
+<text x="220" y="184" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・散歩・インキュベーション</text>
+<text x="220" y="207" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・1on1・メンタリング</text>
+<text x="220" y="233" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 長期的に最高のROI</text>
+<rect x="420" y="60" width="320" height="260" fill="#16213e" rx="8"/>
+<text x="580" y="88" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">消費ゾーン (低価値・高即時性)</text>
+<text x="580" y="115" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・Slack通知への即対応</text>
+<text x="580" y="138" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・浅いコーディング</text>
+<text x="580" y="161" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・無計画な会議参加</text>
+<text x="580" y="184" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・仕様未確定の実装</text>
+<text x="580" y="207" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・技術的負債の積み上げ</text>
+<text x="580" y="233" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 忙しいが前に進まない</text>
+<text x="400" y="360" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「投資ゾーン」を意図的にカレンダーに入れることが戦略的生産性の核心</text>
+</svg>
 - - 「好きなものを作る時間」ではなく **「強制されない思考の時間」**
 - - 既存コードを書き続けない時間を制度化
 - **含意:**
@@ -312,6 +672,27 @@ style: |
 
 # アーキテクチャ思考・システム設計（1/2）
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動の価値マップ</text>
+<rect x="60" y="60" width="320" height="260" fill="#16213e" rx="8"/>
+<text x="220" y="88" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">投資ゾーン (高価値・低即時性)</text>
+<text x="220" y="115" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・アーキテクチャ設計</text>
+<text x="220" y="138" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・RFC・ADR作成</text>
+<text x="220" y="161" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・ペア思考・ホワイトボード</text>
+<text x="220" y="184" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・散歩・インキュベーション</text>
+<text x="220" y="207" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・1on1・メンタリング</text>
+<text x="220" y="233" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 長期的に最高のROI</text>
+<rect x="420" y="60" width="320" height="260" fill="#16213e" rx="8"/>
+<text x="580" y="88" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">消費ゾーン (低価値・高即時性)</text>
+<text x="580" y="115" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・Slack通知への即対応</text>
+<text x="580" y="138" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・浅いコーディング</text>
+<text x="580" y="161" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・無計画な会議参加</text>
+<text x="580" y="184" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・仕様未確定の実装</text>
+<text x="580" y="207" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・技術的負債の積み上げ</text>
+<text x="580" y="233" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 忙しいが前に進まない</text>
+<text x="400" y="360" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「投資ゾーン」を意図的にカレンダーに入れることが戦略的生産性の核心</text>
+</svg>
 - **なぜ設計時間が削られるか:**
 - - 「考えている」と作業に見えない
 - - 即時の成果物が出ない
@@ -332,6 +713,29 @@ style: |
 
 # 仕様書・RFC・ADR を書く（1/2）
 
+- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動のROI可視化</text>
+<rect x="220" y="55" width="650" height="34" fill="#f9a825" rx="8"/>
+<text x="215" y="78" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">RFC・ADR作成</text>
+<text x="875" y="78" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">実装コスト削減・バグ防止</text>
+<rect x="220" y="105" width="550" height="34" fill="#f9a825" rx="8"/>
+<text x="215" y="128" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">アーキテクチャ設計</text>
+<text x="775" y="128" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">技術的負債抑制・10-100倍コスト防止</text>
+<rect x="220" y="155" width="420" height="34" fill="#4fc3f7" rx="8"/>
+<text x="215" y="178" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">1on1・ペア思考</text>
+<text x="645" y="178" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">ブロッカー早期発見・認知負荷分散</text>
+<rect x="220" y="205" width="320" height="34" fill="#ffffff" rx="8"/>
+<text x="215" y="228" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">コードリーディング</text>
+<text x="545" y="228" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">コードベースの理解・設計力向上</text>
+<rect x="220" y="255" width="250" height="34" fill="#e91e63" rx="8"/>
+<text x="215" y="278" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">散歩・休養</text>
+<text x="475" y="278" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">創造的思考60%向上・DMN活性化</text>
+<rect x="220" y="305" width="150" height="34" fill="#888" rx="8"/>
+<text x="215" y="328" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">インライン実装</text>
+<text x="375" y="328" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">即時成果だが技術的負債リスク</text>
+<text x="400" y="360" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 「非コーディング活動」のROIをチームに数字で見せることが文化変革の鍵</text>
+</svg>
 - **RFC（Request for Comments）の効果:**
 - - 実装前に設計をチームでレビュー
 - - Google, Rust, IETF で標準的な開発プロセス
@@ -352,6 +756,29 @@ style: |
 
 # コードを読む（書くより難しい）（1/2）
 
+- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動のROI可視化</text>
+<rect x="220" y="55" width="650" height="34" fill="#f9a825" rx="8"/>
+<text x="215" y="78" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">RFC・ADR作成</text>
+<text x="875" y="78" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">実装コスト削減・バグ防止</text>
+<rect x="220" y="105" width="550" height="34" fill="#f9a825" rx="8"/>
+<text x="215" y="128" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">アーキテクチャ設計</text>
+<text x="775" y="128" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">技術的負債抑制・10-100倍コスト防止</text>
+<rect x="220" y="155" width="420" height="34" fill="#4fc3f7" rx="8"/>
+<text x="215" y="178" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">1on1・ペア思考</text>
+<text x="645" y="178" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">ブロッカー早期発見・認知負荷分散</text>
+<rect x="220" y="205" width="320" height="34" fill="#ffffff" rx="8"/>
+<text x="215" y="228" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">コードリーディング</text>
+<text x="545" y="228" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">コードベースの理解・設計力向上</text>
+<rect x="220" y="255" width="250" height="34" fill="#e91e63" rx="8"/>
+<text x="215" y="278" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">散歩・休養</text>
+<text x="475" y="278" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">創造的思考60%向上・DMN活性化</text>
+<rect x="220" y="305" width="150" height="34" fill="#888" rx="8"/>
+<text x="215" y="328" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">インライン実装</text>
+<text x="375" y="328" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">即時成果だが技術的負債リスク</text>
+<text x="400" y="360" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 「非コーディング活動」のROIをチームに数字で見せることが文化変革の鍵</text>
+</svg>
 - **コードを「読む」ことの重要性:**
 - - エンジニアは書く時間より **読む時間のほうが長い**（研究による）
 - - コードを書く前に既存コードを理解するコストが支配的
@@ -372,6 +799,27 @@ style: |
 
 # 1on1・ホワイトボード・ペア思考（1/2）
 
+- <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">インキュベーション効果 — 「寝かせる」ことの力</text>
+<rect x="50" y="65" width="300" height="200" fill="#16213e" rx="8"/>
+<text x="200" y="95" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">集中して問題に取り組む</text>
+<text x="200" y="120" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 固定観念が形成される</text>
+<text x="200" y="145" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 同じアプローチを繰り返す</text>
+<text x="200" y="175" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">典型的なエンジニア:</text>
+<text x="200" y="198" font-size="11" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">「何時間もデバッグして解決できない」</text>
+<rect x="450" y="65" width="300" height="200" fill="#0f3460" rx="8"/>
+<text x="600" y="95" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">意図的に「休む」</text>
+<text x="600" y="120" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 固定観念がリセットされる</text>
+<text x="600" y="145" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 新しい視点でアプローチ</text>
+<text x="600" y="175" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Sio & Ormerod (2009):</text>
+<text x="600" y="198" font-size="11" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">洞察課題 平均15-20%向上</text>
+<line x1="350" y1="165" x2="438" y2="165" stroke="#f9a825" stroke-width="2"/>
+<polygon points="450,165 438,171 438,159" fill="#f9a825"/>
+<text x="400" y="165" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">休む</text>
+<text x="400" y="310" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「悩んで休む」は怠惰ではなく、戦略である</text>
+<text x="400" y="340" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">DMN (Default Mode Network) が休憩中に問題の解を探し続ける</text>
+</svg>
 - **ペア思考（Pair Thinking）:**
 - - ペアプログラミングの「コーディングしない版」
 - - 問題を一緒に分解し、設計を言語化
@@ -393,6 +841,27 @@ style: |
 
 # 休養・散歩・「ボーッとする」時間の科学（1/2）
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動の価値マップ</text>
+<rect x="60" y="60" width="320" height="260" fill="#16213e" rx="8"/>
+<text x="220" y="88" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">投資ゾーン (高価値・低即時性)</text>
+<text x="220" y="115" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・アーキテクチャ設計</text>
+<text x="220" y="138" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・RFC・ADR作成</text>
+<text x="220" y="161" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・ペア思考・ホワイトボード</text>
+<text x="220" y="184" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・散歩・インキュベーション</text>
+<text x="220" y="207" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・1on1・メンタリング</text>
+<text x="220" y="233" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 長期的に最高のROI</text>
+<rect x="420" y="60" width="320" height="260" fill="#16213e" rx="8"/>
+<text x="580" y="88" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">消費ゾーン (低価値・高即時性)</text>
+<text x="580" y="115" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・Slack通知への即対応</text>
+<text x="580" y="138" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・浅いコーディング</text>
+<text x="580" y="161" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・無計画な会議参加</text>
+<text x="580" y="184" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・仕様未確定の実装</text>
+<text x="580" y="207" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・技術的負債の積み上げ</text>
+<text x="580" y="233" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 忙しいが前に進まない</text>
+<text x="400" y="360" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「投資ゾーン」を意図的にカレンダーに入れることが戦略的生産性の核心</text>
+</svg>
 - **Stanford 研究（Oppezzo & Schwartz, 2014）:**
 - - 歩行中の創造的思考が **約60% 向上**
 - - 屋内のトレッドミルでも効果あり（景色は関係ない）
@@ -423,6 +892,26 @@ style: |
 <!-- _class: lead -->
 # 実践フレームワーク
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">理想の週次生産性パターン</text>
+() => {}
+<rect x="60" y="190" width="70" height="80" fill="#334" rx="8"/>
+<text x="100" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">月</text>
+<rect x="160" y="70" width="70" height="200" fill="#0f3460" rx="8"/>
+<text x="200" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">火</text>
+<rect x="260" y="50" width="70" height="220" fill="#0f3460" rx="8"/>
+<text x="300" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">水</text>
+<rect x="360" y="180" width="70" height="90" fill="#334" rx="8"/>
+<text x="400" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">木</text>
+<rect x="460" y="160" width="70" height="110" fill="#16213e" rx="8"/>
+<text x="500" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">金</text>
+<text x="100" y="310" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">計画・設計</text>
+<text x="250" y="310" font-size="11" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">深いコーディング</text>
+<text x="400" y="310" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">思考・文書化</text>
+<text x="500" y="310" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">振り返り・学習</text>
+<text x="400" y="350" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">月: 会議・1on1集約  火水: ディープワーク保護  木: ADR/RFC  金: 振り返り</text>
+</svg>
 - 「コードを書かない日」を意図的に設計する
 
 
@@ -439,6 +928,29 @@ style: |
 
 # 「コードを書かない日」カレンダーの作り方（1/2）
 
+- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動のROI可視化</text>
+<rect x="220" y="55" width="650" height="34" fill="#f9a825" rx="8"/>
+<text x="215" y="78" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">RFC・ADR作成</text>
+<text x="875" y="78" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">実装コスト削減・バグ防止</text>
+<rect x="220" y="105" width="550" height="34" fill="#f9a825" rx="8"/>
+<text x="215" y="128" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">アーキテクチャ設計</text>
+<text x="775" y="128" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">技術的負債抑制・10-100倍コスト防止</text>
+<rect x="220" y="155" width="420" height="34" fill="#4fc3f7" rx="8"/>
+<text x="215" y="178" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">1on1・ペア思考</text>
+<text x="645" y="178" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">ブロッカー早期発見・認知負荷分散</text>
+<rect x="220" y="205" width="320" height="34" fill="#ffffff" rx="8"/>
+<text x="215" y="228" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">コードリーディング</text>
+<text x="545" y="228" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">コードベースの理解・設計力向上</text>
+<rect x="220" y="255" width="250" height="34" fill="#e91e63" rx="8"/>
+<text x="215" y="278" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">散歩・休養</text>
+<text x="475" y="278" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">創造的思考60%向上・DMN活性化</text>
+<rect x="220" y="305" width="150" height="34" fill="#888" rx="8"/>
+<text x="215" y="328" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">インライン実装</text>
+<text x="375" y="328" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">即時成果だが技術的負債リスク</text>
+<text x="400" y="360" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 「非コーディング活動」のROIをチームに数字で見せることが文化変革の鍵</text>
+</svg>
 - **ステップ 1：曜日でモードを決める**
 - - 月：週次計画・設計レビュー・1on1
 - - 火・水：ディープワーク（コーディング優先）
@@ -459,6 +971,27 @@ style: |
 
 # チームへの説明：成果で語る（1/2）
 
+- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ベロシティの罠 — 速く動くことと前に進むことは別</text>
+<rect x="60" y="60" width="300" height="230" fill="#16213e" rx="8"/>
+<text x="210" y="88" font-size="15" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">ベロシティ信仰の罠</text>
+<text x="210" y="115" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">点数稼ぎ行動にインセンティブ歪む</text>
+<text x="210" y="140" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">小タスク分割が優先される</text>
+<text x="210" y="165" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">リファクタ・設計が後回しに</text>
+<text x="210" y="195" font-size="18" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">↓</text>
+<text x="210" y="225" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">見かけの速度は上がるが</text>
+<text x="210" y="248" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">実際の前進はゼロに</text>
+<rect x="440" y="60" width="300" height="230" fill="#0f3460" rx="8"/>
+<text x="590" y="88" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">健全な生産性指標</text>
+<text x="590" y="115" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">DORA メトリクス</text>
+<text x="590" y="138" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">デプロイ頻度・変更失敗率</text>
+<text x="590" y="162" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Flow Metrics</text>
+<text x="590" y="185" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">リードタイム</text>
+<text x="590" y="212" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">技術的負債指数</text>
+<text x="590" y="235" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードの複雑度推移</text>
+<text x="400" y="330" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">計測するものが行動を変える — 良いKPIが良い文化を作る</text>
+</svg>
 - **よくある懸念:**
 - - 「コードを書いていない日はサボっているように見える」
 - - 「スプリントのポイントが稼げない」
@@ -479,6 +1012,31 @@ style: |
 
 # KPI の再定義：Lines of Code から何へ（1/2）
 
+- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">活動量 ≠ 成果 — エンジニアの時間の実態</text>
+<rect x="50" y="60" width="320" height="200" fill="#16213e" rx="8"/>
+<text x="210" y="88" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">時間の使い方 (McKinsey 2023)</text>
+<rect x="70" y="105" width="280" height="35" fill="#0f3460" rx="8"/>
+<text x="210" y="128" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">コーディング: 32%</text>
+<rect x="70" y="150" width="180" height="28" fill="#16213e" rx="8"/>
+<text x="160" y="170" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">コミュニケーション: 25%</text>
+<rect x="70" y="188" width="155" height="28" fill="#16213e" rx="8"/>
+<text x="148" y="208" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">レビュー・調査: 22%</text>
+<rect x="70" y="226" width="130" height="28" fill="#16213e" rx="8"/>
+<text x="135" y="246" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">会議・その他: 21%</text>
+<rect x="430" y="60" width="320" height="200" fill="#16213e" rx="8"/>
+<text x="590" y="88" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">PR マージまでの内訳</text>
+<text x="590" y="115" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">中央値: 3.6日</text>
+<rect x="450" y="140" width="100" height="80" fill="#0f3460" rx="8"/>
+<text x="500" y="188" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">コード</text>
+<text x="500" y="206" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">1.2日</text>
+<rect x="560" y="140" width="170" height="80" fill="#16213e" rx="8"/>
+<text x="645" y="188" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">待機・レビュー</text>
+<text x="645" y="206" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">修正: 2.4日</text>
+<text x="400" y="300" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">コーディング時間を増やしても ボトルネックは別の場所にある</text>
+<text x="400" y="328" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 「何をしたか」より「何が前進したか」が生産性の指標</text>
+</svg>
 - **悪いKPI（コーディング量）:**
 - - Lines of Code：多いほど複雑になる
 - - コミット数：細かく分割するだけで増える
@@ -489,6 +1047,26 @@ style: |
 
 # KPI の再定義：Lines of Code から何へ（2/2）
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">理想の週次生産性パターン</text>
+() => {}
+<rect x="60" y="190" width="70" height="80" fill="#334" rx="8"/>
+<text x="100" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">月</text>
+<rect x="160" y="70" width="70" height="200" fill="#0f3460" rx="8"/>
+<text x="200" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">火</text>
+<rect x="260" y="50" width="70" height="220" fill="#0f3460" rx="8"/>
+<text x="300" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">水</text>
+<rect x="360" y="180" width="70" height="90" fill="#334" rx="8"/>
+<text x="400" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">木</text>
+<rect x="460" y="160" width="70" height="110" fill="#16213e" rx="8"/>
+<text x="500" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">金</text>
+<text x="100" y="310" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">計画・設計</text>
+<text x="250" y="310" font-size="11" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">深いコーディング</text>
+<text x="400" y="310" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">思考・文書化</text>
+<text x="500" y="310" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">振り返り・学習</text>
+<text x="400" y="350" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">月: 会議・1on1集約  火水: ディープワーク保護  木: ADR/RFC  金: 振り返り</text>
+</svg>
 - - **DORA メトリクス**：デプロイ頻度・変更失敗率・復旧時間
 - - **Flow Metrics**：タスクのリードタイム
 - - **技術的負債指数**：コードの複雑度推移
@@ -507,6 +1085,38 @@ style: |
 
 # Exercise 1：直近1週間の活動を分類する（1/2）
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ディープワーク時間ブロックの設計</text>
+<rect x="50" y="65" width="130" height="180" fill="#334" rx="8"/>
+<text x="115" y="95" font-size="22" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">月</text>
+<text x="115" y="122" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">計画・設計</text>
+<text x="115" y="145" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">1on1・RFC作成</text>
+<text x="115" y="215" font-size="11" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">非コーディング</text>
+<rect x="195" y="65" width="130" height="180" fill="#0f3460" rx="8"/>
+<text x="260" y="95" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">火</text>
+<text x="260" y="122" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">ディープワーク</text>
+<text x="260" y="145" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">コーディング優先</text>
+<text x="260" y="215" font-size="11" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">コーディング</text>
+<rect x="340" y="65" width="130" height="180" fill="#0f3460" rx="8"/>
+<text x="405" y="95" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">水</text>
+<text x="405" y="122" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">ディープワーク</text>
+<text x="405" y="145" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">コーディング優先</text>
+<text x="405" y="215" font-size="11" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">コーディング</text>
+<rect x="485" y="65" width="130" height="180" fill="#334" rx="8"/>
+<text x="550" y="95" font-size="22" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">木</text>
+<text x="550" y="122" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">設計・思考</text>
+<text x="550" y="145" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">ADR・コードリーディング</text>
+<text x="550" y="215" font-size="11" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">非コーディング</text>
+<rect x="630" y="65" width="130" height="180" fill="#16213e" rx="8"/>
+<text x="695" y="95" font-size="22" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">金</text>
+<text x="695" y="122" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">振り返り</text>
+<text x="695" y="145" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">学習・設計メモ</text>
+<text x="695" y="215" font-size="11" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">非コーディング</text>
+<text x="400" y="295" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">先に「保護時間」をカレンダーにブロックする</text>
+<text x="400" y="325" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">空き時間は会議に侵食される — 積極的に守らないと消える</text>
+<text x="400" y="355" font-size="11" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">週4時間がディープワークの上限 (Cal Newport) — それを超えると認知パフォーマンス急低下</text>
+</svg>
 - **作業時間（5分）:**
 - 直近1週間でやったことを書き出す
 - **分類する:**
@@ -527,6 +1137,29 @@ style: |
 
 # Exercise 2：「非コーディング日」を設計する（1/2）
 
+- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動のROI可視化</text>
+<rect x="220" y="55" width="650" height="34" fill="#f9a825" rx="8"/>
+<text x="215" y="78" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">RFC・ADR作成</text>
+<text x="875" y="78" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">実装コスト削減・バグ防止</text>
+<rect x="220" y="105" width="550" height="34" fill="#f9a825" rx="8"/>
+<text x="215" y="128" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">アーキテクチャ設計</text>
+<text x="775" y="128" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">技術的負債抑制・10-100倍コスト防止</text>
+<rect x="220" y="155" width="420" height="34" fill="#4fc3f7" rx="8"/>
+<text x="215" y="178" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">1on1・ペア思考</text>
+<text x="645" y="178" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">ブロッカー早期発見・認知負荷分散</text>
+<rect x="220" y="205" width="320" height="34" fill="#ffffff" rx="8"/>
+<text x="215" y="228" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">コードリーディング</text>
+<text x="545" y="228" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">コードベースの理解・設計力向上</text>
+<rect x="220" y="255" width="250" height="34" fill="#e91e63" rx="8"/>
+<text x="215" y="278" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">散歩・休養</text>
+<text x="475" y="278" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">創造的思考60%向上・DMN活性化</text>
+<rect x="220" y="305" width="150" height="34" fill="#888" rx="8"/>
+<text x="215" y="328" font-size="12" fill="#ffffff" text-anchor="end" font-weight="normal" font-family="sans-serif">インライン実装</text>
+<text x="375" y="328" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">即時成果だが技術的負債リスク</text>
+<text x="400" y="360" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 「非コーディング活動」のROIをチームに数字で見せることが文化変革の鍵</text>
+</svg>
 - **作業時間（10分）:**
 - 来週の理想の週次スケジュールを設計する
 - **条件:**
@@ -547,6 +1180,25 @@ style: |
 
 # Exercise 3：チームでシェア・ディスカッション（1/2）
 
+- <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">Deep Work理論 — 知的労働の本質</text>
+<rect x="50" y="60" width="700" height="55" fill="#16213e" rx="8"/>
+<text x="400" y="88" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">Deep Work = 「認知的に要求の高いタスクに完全に集中する能力」</text>
+<text x="400" y="108" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">Cal Newport (2016)</text>
+<rect x="50" y="135" width="320" height="180" fill="#0f3460" rx="8"/>
+<text x="210" y="163" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">Deep Work が可能な時間</text>
+<text x="210" y="190" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">知的労働者の上限:</text>
+<text x="210" y="218" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">約 4時間/日</text>
+<text x="210" y="250" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">それを超えると認知パフォーマンスが急低下</text>
+<rect x="430" y="135" width="320" height="180" fill="#16213e" rx="8"/>
+<text x="590" y="163" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">「1日中コードを書く」の問題</text>
+<text x="590" y="190" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Deep Work 定義に反する</text>
+<text x="590" y="215" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">4時間以降は質が急落</text>
+<text x="590" y="240" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードを書かない時間 =</text>
+<text x="590" y="260" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">次のDeep Workへの充電</text>
+<text x="400" y="355" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">浅い作業 (Slack・会議) は価値を生まない — 「忙しい」≠「深く考えている」</text>
+</svg>
 - **グループシェア（15分）:**
 - 2〜3人でペアを組んで互いの計画を共有
 - **ディスカッションテーマ:**
@@ -557,6 +1209,27 @@ style: |
 
 # Exercise 3：チームでシェア・ディスカッション（2/2）
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動の価値マップ</text>
+<rect x="60" y="60" width="320" height="260" fill="#16213e" rx="8"/>
+<text x="220" y="88" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">投資ゾーン (高価値・低即時性)</text>
+<text x="220" y="115" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・アーキテクチャ設計</text>
+<text x="220" y="138" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・RFC・ADR作成</text>
+<text x="220" y="161" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・ペア思考・ホワイトボード</text>
+<text x="220" y="184" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・散歩・インキュベーション</text>
+<text x="220" y="207" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・1on1・メンタリング</text>
+<text x="220" y="233" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 長期的に最高のROI</text>
+<rect x="420" y="60" width="320" height="260" fill="#16213e" rx="8"/>
+<text x="580" y="88" font-size="14" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">消費ゾーン (低価値・高即時性)</text>
+<text x="580" y="115" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・Slack通知への即対応</text>
+<text x="580" y="138" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・浅いコーディング</text>
+<text x="580" y="161" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・無計画な会議参加</text>
+<text x="580" y="184" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・仕様未確定の実装</text>
+<text x="580" y="207" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">・技術的負債の積み上げ</text>
+<text x="580" y="233" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 忙しいが前に進まない</text>
+<text x="400" y="360" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「投資ゾーン」を意図的にカレンダーに入れることが戦略的生産性の核心</text>
+</svg>
 - - チームとして「非コーディング文化」を作るには？
 - - どんな組織的・個人的な障壁があるか？
 - **全体シェア（10分）:**
@@ -568,6 +1241,26 @@ style: |
 <!-- _class: lead -->
 # まとめ
 
+- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">理想の週次生産性パターン</text>
+() => {}
+<rect x="60" y="190" width="70" height="80" fill="#334" rx="8"/>
+<text x="100" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">月</text>
+<rect x="160" y="70" width="70" height="200" fill="#0f3460" rx="8"/>
+<text x="200" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">火</text>
+<rect x="260" y="50" width="70" height="220" fill="#0f3460" rx="8"/>
+<text x="300" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">水</text>
+<rect x="360" y="180" width="70" height="90" fill="#334" rx="8"/>
+<text x="400" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">木</text>
+<rect x="460" y="160" width="70" height="110" fill="#16213e" rx="8"/>
+<text x="500" y="290" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">金</text>
+<text x="100" y="310" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">計画・設計</text>
+<text x="250" y="310" font-size="11" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">深いコーディング</text>
+<text x="400" y="310" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">思考・文書化</text>
+<text x="500" y="310" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">振り返り・学習</text>
+<text x="400" y="350" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">月: 会議・1on1集約  火水: ディープワーク保護  木: ADR/RFC  金: 振り返り</text>
+</svg>
 - 行動するのは今日から
 
 
@@ -588,6 +1281,38 @@ style: |
 
 # アクションアイテム（1/2）
 
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
+<text x="400" y="28" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">熟慮的実践 — 成長を生む「コードを書かない日」</text>
+<rect x="280" y="55" width="240" height="65" fill="#0f3460" rx="8"/>
+<text x="400" y="83" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">熟慮的実践 (Ericsson)</text>
+<text x="400" y="104" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">= 快適ゾーンを超えた意識的練習</text>
+<line x1="520" y1="87" x2="599.9131475788764" y2="138.4995839952759" stroke="#f9a825" stroke-width="2"/>
+<polygon points="610,145 596.6629395765144,143.5430102058377 603.1633555812384,133.45615778471412" fill="#f9a825"/>
+<line x1="280" y1="87" x2="200.08685242112358" y2="138.4995839952759" stroke="#f9a825" stroke-width="2"/>
+<polygon points="190,145 196.83664441876152,133.45615778471412 203.33706042348564,143.5430102058377" fill="#f9a825"/>
+<line x1="400" y1="120" x2="400" y2="133" stroke="#f9a825" stroke-width="2"/>
+<polygon points="400,145 394,133 406,133" fill="#f9a825"/>
+<rect x="50" y="145" width="200" height="65" fill="#16213e" rx="8"/>
+<text x="150" y="172" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">難しい課題</text>
+<text x="150" y="192" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">快適ゾーンを超える</text>
+<rect x="300" y="145" width="200" height="65" fill="#16213e" rx="8"/>
+<text x="400" y="172" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">即時フィードバック</text>
+<text x="400" y="192" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">CI/CD・コードレビュー</text>
+<rect x="550" y="145" width="200" height="65" fill="#16213e" rx="8"/>
+<text x="650" y="172" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">意識的な振り返り</text>
+<text x="650" y="192" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 修正</text>
+<line x1="150" y1="210" x2="269.10448738599456" y2="264.97130187045906" stroke="#f9a825" stroke-width="2"/>
+<polygon points="280,270 266.59013832122406,270.41905817746175 271.61883645076506,259.52354556345637" fill="#f9a825"/>
+<line x1="400" y1="210" x2="400" y2="258" stroke="#f9a825" stroke-width="2"/>
+<polygon points="400,270 394,258 406,258" fill="#f9a825"/>
+<line x1="650" y1="210" x2="530.8955126140054" y2="264.97130187045906" stroke="#f9a825" stroke-width="2"/>
+<polygon points="520,270 528.3811635492349,259.52354556345637 533.4098616787759,270.41905817746175" fill="#f9a825"/>
+<rect x="250" y="270" width="300" height="65" fill="#16213e" rx="8"/>
+<text x="400" y="297" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">スキルの向上</text>
+<text x="400" y="318" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードを書かない日の「振り返り」が成長を生む</text>
+<text x="400" y="365" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">1万時間の法則の本質は「時間」ではなく「振り返りの質」</text>
+</svg>
 - **今週からできること:**
 - - 週に1日、コーディングしない日をカレンダーにブロックする
 - - その日に ADR・RFC・設計メモを書く

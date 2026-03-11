@@ -1,0 +1,73 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">コードレビューに潜む5つの認知バイアス</text>
+  <!-- 5 bias cards -->
+  <!-- 1 -->
+  <rect x="20" y="48" width="145" height="175" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="93" y="75" text-anchor="middle" font-size="11" font-weight="bold" fill="#e91e63">確証バイアス</text>
+  <text x="93" y="95" text-anchor="middle" font-size="20" fill="#e91e63">①</text>
+  <text x="93" y="118" text-anchor="middle" font-size="10" fill="#ffffff">既存の信念を</text>
+  <text x="93" y="133" text-anchor="middle" font-size="10" fill="#ffffff">支持する証拠を</text>
+  <text x="93" y="148" text-anchor="middle" font-size="10" fill="#ffffff">優先して探す</text>
+  <text x="93" y="172" text-anchor="middle" font-size="10" fill="#e91e63">「このコードは</text>
+  <text x="93" y="187" text-anchor="middle" font-size="10" fill="#e91e63">良さそうだ」→</text>
+  <text x="93" y="202" text-anchor="middle" font-size="10" fill="#e91e63">細かく見ない</text>
+  <!-- 2 -->
+  <rect x="175" y="48" width="145" height="175" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="248" y="75" text-anchor="middle" font-size="11" font-weight="bold" fill="#f9a825">ハロー効果</text>
+  <text x="248" y="95" text-anchor="middle" font-size="20" fill="#f9a825">②</text>
+  <text x="248" y="118" text-anchor="middle" font-size="10" fill="#ffffff">著者の評判が</text>
+  <text x="248" y="133" text-anchor="middle" font-size="10" fill="#ffffff">コードの評価に</text>
+  <text x="248" y="148" text-anchor="middle" font-size="10" fill="#ffffff">影響する</text>
+  <text x="248" y="172" text-anchor="middle" font-size="10" fill="#f9a825">シニアのコード</text>
+  <text x="248" y="187" text-anchor="middle" font-size="10" fill="#f9a825">は自動承認</text>
+  <text x="248" y="202" text-anchor="middle" font-size="10" fill="#f9a825">される傾向</text>
+  <!-- 3 -->
+  <rect x="330" y="48" width="145" height="175" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="403" y="75" text-anchor="middle" font-size="11" font-weight="bold" fill="#f9a825">アンカリング</text>
+  <text x="403" y="95" text-anchor="middle" font-size="20" fill="#f9a825">③</text>
+  <text x="403" y="118" text-anchor="middle" font-size="10" fill="#ffffff">最初に見た</text>
+  <text x="403" y="133" text-anchor="middle" font-size="10" fill="#ffffff">実装に引きずられ</text>
+  <text x="403" y="148" text-anchor="middle" font-size="10" fill="#ffffff">代替案を見逃す</text>
+  <text x="403" y="172" text-anchor="middle" font-size="10" fill="#f9a825">「これで合って</text>
+  <text x="403" y="187" text-anchor="middle" font-size="10" fill="#f9a825">いるはず」と</text>
+  <text x="403" y="202" text-anchor="middle" font-size="10" fill="#f9a825">前提する</text>
+  <!-- 4 -->
+  <rect x="485" y="48" width="145" height="175" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="558" y="75" text-anchor="middle" font-size="11" font-weight="bold" fill="#4caf50">自動化バイアス</text>
+  <text x="558" y="95" text-anchor="middle" font-size="20" fill="#4caf50">④</text>
+  <text x="558" y="118" text-anchor="middle" font-size="10" fill="#ffffff">CIが通れば</text>
+  <text x="558" y="133" text-anchor="middle" font-size="10" fill="#ffffff">正しいという</text>
+  <text x="558" y="148" text-anchor="middle" font-size="10" fill="#ffffff">過信</text>
+  <text x="558" y="172" text-anchor="middle" font-size="10" fill="#4caf50">テスト通過 =</text>
+  <text x="558" y="187" text-anchor="middle" font-size="10" fill="#4caf50">正しい設計では</text>
+  <text x="558" y="202" text-anchor="middle" font-size="10" fill="#4caf50">ない</text>
+  <!-- 5 -->
+  <rect x="640" y="48" width="140" height="175" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="710" y="75" text-anchor="middle" font-size="11" font-weight="bold" fill="#4caf50">同調バイアス</text>
+  <text x="710" y="95" text-anchor="middle" font-size="20" fill="#4caf50">⑤</text>
+  <text x="710" y="118" text-anchor="middle" font-size="10" fill="#ffffff">チームの意見に</text>
+  <text x="710" y="133" text-anchor="middle" font-size="10" fill="#ffffff">反論しにくい</text>
+  <text x="710" y="148" text-anchor="middle" font-size="10" fill="#ffffff">心理的圧力</text>
+  <text x="710" y="172" text-anchor="middle" font-size="10" fill="#4caf50">「皆がOKなら</text>
+  <text x="710" y="187" text-anchor="middle" font-size="10" fill="#4caf50">私もOK」</text>
+  <text x="710" y="202" text-anchor="middle" font-size="10" fill="#4caf50">集団浅慮の源</text>
+  <!-- Real-world impact -->
+  <rect x="20" y="238" width="760" height="145" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="262" text-anchor="middle" font-size="13" fill="#f9a825">実際の影響（実証研究から）</text>
+  <rect x="40" y="275" width="220" height="95" rx="6" fill="#1a1a2e"/>
+  <text x="150" y="298" text-anchor="middle" font-size="12" fill="#e91e63">著者名の効果</text>
+  <text x="150" y="318" text-anchor="middle" font-size="11" fill="#ffffff">同じコードでも</text>
+  <text x="150" y="335" text-anchor="middle" font-size="11" fill="#ffffff">シニア名: 承認+34%</text>
+  <text x="150" y="353" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">Michigan State Univ.</text>
+  <rect x="290" y="275" width="220" height="95" rx="6" fill="#1a1a2e"/>
+  <text x="400" y="298" text-anchor="middle" font-size="12" fill="#f9a825">PR規模の影響</text>
+  <text x="400" y="318" text-anchor="middle" font-size="11" fill="#ffffff">400行超で</text>
+  <text x="400" y="335" text-anchor="middle" font-size="11" fill="#ffffff">バグ見逃し率+60%</text>
+  <text x="400" y="353" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">Microsoft Research</text>
+  <rect x="540" y="275" width="220" height="95" rx="6" fill="#1a1a2e"/>
+  <text x="650" y="298" text-anchor="middle" font-size="12" fill="#4caf50">疲労の影響</text>
+  <text x="650" y="318" text-anchor="middle" font-size="11" fill="#ffffff">60分後に承認率</text>
+  <text x="650" y="335" text-anchor="middle" font-size="11" fill="#ffffff">が統計的に上昇</text>
+  <text x="650" y="353" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">SmartBear 2011</text>
+</svg>

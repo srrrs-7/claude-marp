@@ -12,19 +12,11 @@
 
 import { Glob } from "bun";
 import { parse as parseYaml } from "yaml";
+import { type SlideRecord, computeDeckMetrics } from "./lib/quality.js";
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
-
-interface SlideData {
-	title?: string;
-	subtitle?: string;
-	content?: string[];
-	code?: string;
-	layout?: string;
-	speakerNotes?: string;
-}
 
 interface DeckStats {
 	dir: string;
@@ -40,44 +32,6 @@ interface DeckStats {
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
-
-const LABEL_TITLE_RE =
-	/^(アジェンダ|目次|概要|まとめ|結論|はじめに|導入|背景|課題|解決策|参考文献|おわりに|終わりに|ご清聴ありがとうございました|ありがとうございました|質疑応答|デモ|agenda|overview|introduction|conclusion|summary|background|problem|solution|next steps?|references?|thank you|q&a|demo|outline|contents?)$/i;
-
-function isAssertive(title: string): boolean {
-	return !LABEL_TITLE_RE.test(title.trim());
-}
-
-function hasSvg(slide: SlideData): boolean {
-	const content = slide.content ?? [];
-	return content.some((c) => c.includes("<svg") || c.startsWith("!["));
-}
-
-function estimateMins(slides: SlideData[]): number {
-	let chars = 0;
-	for (const s of slides) {
-		chars += (s.title ?? "").length;
-		for (const c of s.content ?? []) chars += c.length;
-		chars += (s.speakerNotes ?? "").length;
-	}
-	return Math.ceil(chars / 350);
-}
-
-function grade(
-	svgRatio: number,
-	assertiveRatio: number,
-	subtitleRatio: number,
-): "A" | "B" | "C" | "D" {
-	const score =
-		svgRatio * 40 + // SVG: figure-first (40pts)
-		assertiveRatio * 40 + // assertive titles (40pts)
-		subtitleRatio * 20; // subtitle/BLUF (20pts)
-
-	if (score >= 70) return "A";
-	if (score >= 50) return "B";
-	if (score >= 30) return "C";
-	return "D";
-}
 
 function bar(ratio: number, width = 20): string {
 	const filled = Math.round(ratio * width);
@@ -128,40 +82,26 @@ async function collectStats(): Promise<DeckStats[]> {
 			/* no config */
 		}
 
-		let slides: SlideData[] = [];
+		let slides: SlideRecord[] = [];
 		try {
 			const data = (await Bun.file(dataPath).json()) as {
-				slides?: SlideData[];
+				slides?: SlideRecord[];
 			};
 			slides = data.slides ?? [];
 		} catch {
 			continue;
 		}
 
-		const contentSlides = slides.filter(
-			(s) => (s.layout ?? "default") === "default",
-		);
-		const svgCount = slides.filter(hasSvg).length;
-		const withSubtitle = contentSlides.filter((s) => s.subtitle).length;
-		const assertiveCount = contentSlides.filter((s) =>
-			isAssertive(s.title ?? ""),
-		).length;
-
-		const svgRatio = slides.length > 0 ? svgCount / slides.length : 0;
-		const subtitleRatio =
-			contentSlides.length > 0 ? withSubtitle / contentSlides.length : 0;
-		const assertiveRatio =
-			contentSlides.length > 0 ? assertiveCount / contentSlides.length : 0;
-
+		const metrics = computeDeckMetrics(slides);
 		results.push({
 			dir,
 			topic,
 			slideCount: slides.length,
-			readingMins: estimateMins(slides),
-			svgRatio,
-			subtitleRatio,
-			assertiveRatio,
-			grade: grade(svgRatio, assertiveRatio, subtitleRatio),
+			readingMins: metrics.readingMins,
+			svgRatio: metrics.svgRatio,
+			subtitleRatio: metrics.subtitleRatio,
+			assertiveRatio: metrics.assertiveRatio,
+			grade: metrics.grade,
 		});
 	}
 
@@ -228,8 +168,51 @@ console.log(
 	`  ${R("D")} (<30pts) ${String(gradeDist.D).padStart(3)} decks  ${"█".repeat(Math.round((gradeDist.D / decks.length) * 40))}`,
 );
 
+// --worst: show only C/D grade decks as improvement targets
+const isWorst = process.argv.includes("--worst") || process.argv.includes("-w");
+if (isWorst) {
+	const targets = decks
+		.filter((d) => d.grade === "C" || d.grade === "D")
+		.sort((a, b) => {
+			const gOrder = { A: 0, B: 1, C: 2, D: 3 };
+			return gOrder[b.grade] - gOrder[a.grade]; // D first
+		});
+
+	if (targets.length === 0) {
+		console.log(
+			G("\n  No C/D grade decks — all presentations are B or better!\n"),
+		);
+	} else {
+		console.log(
+			BOLD(
+				`\n── Improvement Targets (${targets.length} decks) ────────────────────────\n`,
+			),
+		);
+		console.log(DIM("  Grade  SVG    Assert  Subtitle  Slides  Topic"));
+		console.log(DIM("  ─────  ─────  ──────  ────────  ──────  ─────"));
+		for (const d of targets) {
+			const issues: string[] = [];
+			if (d.svgRatio < 0.3) issues.push("SVG");
+			if (d.assertiveRatio < 0.4) issues.push("Titles");
+			if (d.subtitleRatio === 0) issues.push("BLUF");
+			const topic = d.topic.length > 38 ? d.topic.slice(0, 35) + "…" : d.topic;
+			const issueStr =
+				issues.length > 0 ? R(` ← fix: ${issues.join(", ")}`) : "";
+			console.log(
+				`  ${gradeColor(d.grade)}      ${pct(d.svgRatio)}  ${pct(d.assertiveRatio)}    ${pct(d.subtitleRatio)}    ${String(d.slideCount).padStart(4)}    ${topic}${issueStr}`,
+			);
+		}
+		console.log(
+			DIM(`\n  Run: bun run validate:quality  to see per-slide detail`),
+		);
+	}
+}
+
 // --verbose: show per-deck breakdown
-if (process.argv.includes("--verbose") || process.argv.includes("-v")) {
+if (
+	!isWorst &&
+	(process.argv.includes("--verbose") || process.argv.includes("-v"))
+) {
 	console.log(
 		BOLD("\n── Per-deck breakdown ───────────────────────────────────────\n"),
 	);

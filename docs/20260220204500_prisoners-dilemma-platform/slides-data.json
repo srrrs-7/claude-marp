@@ -84,6 +84,7 @@
 			"title": "しっぺ返し戦略（Tit for Tat）",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-pd-tit-for-tat.svg)",
 				"- Robert Axelrod (1984): 繰り返し囚人のジレンマのトーナメント",
 				"- **最強の戦略**: しっぺ返し（Tit for Tat）= 最初は協調、以後は相手を模倣",
 				"- **4つの特徴**: 善良、報復的、寛容、明瞭",

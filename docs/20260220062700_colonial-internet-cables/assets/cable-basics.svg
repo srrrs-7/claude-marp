@@ -1,0 +1,50 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">海底ケーブルの基本事実 — 知られざる実態</text>
+  <!-- Stats row -->
+  <rect x="20" y="50" width="175" height="110" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="107" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#f9a825">グローバル</text>
+  <text x="107" y="95" text-anchor="middle" font-size="12" font-weight="bold" fill="#f9a825">ケーブル網</text>
+  <text x="107" y="122" text-anchor="middle" font-size="28" font-weight="bold" fill="#f9a825">400+</text>
+  <text x="107" y="147" text-anchor="middle" font-size="11" fill="#ffffff">本以上のケーブル</text>
+  <rect x="210" y="50" width="175" height="110" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="297" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#f9a825">総延長</text>
+  <text x="297" y="122" text-anchor="middle" font-size="28" font-weight="bold" fill="#f9a825">130万</text>
+  <text x="297" y="147" text-anchor="middle" font-size="11" fill="#ffffff">km（地球33周分）</text>
+  <rect x="400" y="50" width="175" height="110" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="487" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#e91e63">インターネット</text>
+  <text x="487" y="95" text-anchor="middle" font-size="12" font-weight="bold" fill="#e91e63">トラフィック</text>
+  <text x="487" y="122" text-anchor="middle" font-size="28" font-weight="bold" fill="#e91e63">95%</text>
+  <text x="487" y="147" text-anchor="middle" font-size="11" fill="#ffffff">が海底ケーブル経由</text>
+  <rect x="590" y="50" width="190" height="110" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="685" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">衛星</text>
+  <text x="685" y="95" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">（Starlink等）</text>
+  <text x="685" y="122" text-anchor="middle" font-size="28" font-weight="bold" fill="#4caf50">5%</text>
+  <text x="685" y="147" text-anchor="middle" font-size="11" fill="#ffffff">以下しか担わない</text>
+  <!-- Cable structure -->
+  <rect x="20" y="180" width="760" height="200" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="205" text-anchor="middle" font-size="13" fill="#f9a825">ケーブルの構造 — 海底1kmに何が通るか</text>
+  <!-- Cable cross-section simplified -->
+  <circle cx="160" cy="275" r="55" fill="#0d1b2a" stroke="#f9a825" stroke-width="2"/>
+  <circle cx="160" cy="275" r="40" fill="#0d1b2a" stroke="#4caf50" stroke-width="2"/>
+  <circle cx="160" cy="275" r="28" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <circle cx="160" cy="275" r="14" fill="#f9a825"/>
+  <text x="160" y="345" text-anchor="middle" font-size="10" fill="#ffffff">ケーブル断面</text>
+  <!-- Labels -->
+  <text x="250" y="225" font-size="11" fill="#f9a825">外装（PE保護層）</text>
+  <line x1="248" y1="230" x2="213" y2="252" stroke="#f9a825" stroke-width="1"/>
+  <text x="250" y="255" font-size="11" fill="#4caf50">鋼線アーマー</text>
+  <line x1="248" y1="260" x2="200" y2="265" stroke="#4caf50" stroke-width="1"/>
+  <text x="250" y="283" font-size="11" fill="#e91e63">光ファイバー束</text>
+  <line x1="248" y1="288" x2="190" y2="278" stroke="#e91e63" stroke-width="1"/>
+  <text x="250" y="310" font-size="11" fill="#f9a825">コア（中央給電線）</text>
+  <line x1="248" y1="315" x2="174" y2="292" stroke="#f9a825" stroke-width="1"/>
+  <!-- Capacity info -->
+  <rect x="450" y="218" width="310" height="150" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1"/>
+  <text x="605" y="242" text-anchor="middle" font-size="12" fill="#4caf50">最新ケーブルの性能</text>
+  <text x="605" y="264" text-anchor="middle" font-size="11" fill="#ffffff">伝送容量：最大 250 Tbps</text>
+  <text x="605" y="282" text-anchor="middle" font-size="11" fill="#ffffff">光ファイバー：最大 16ペア</text>
+  <text x="605" y="300" text-anchor="middle" font-size="11" fill="#ffffff">寿命：25年</text>
+  <text x="605" y="318" text-anchor="middle" font-size="11" fill="#ffffff">コスト：1km あたり数十万ドル</text>
+  <text x="605" y="353" text-anchor="middle" font-size="10" fill="#4caf50">1本で世界の通信の数%を担える</text>
+</svg>

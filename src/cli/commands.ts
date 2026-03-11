@@ -17,10 +17,12 @@ export async function initCommand(): Promise<void> {
 	const file = Bun.file(configPath);
 
 	if (await file.exists()) {
+		console.log(`slides.config.yaml already exists at ${configPath}`);
 		return;
 	}
 
 	await Bun.write(configPath, defaultConfigYaml);
+	console.log(`Created ${configPath}`);
 }
 
 export async function renderCommand(
@@ -44,19 +46,19 @@ export async function exportCommand(options: CliOptions): Promise<void> {
 	await exportSlides(input, options.format, config);
 }
 
-export function parseArgs(args: string[]): void {
+export async function parseArgs(args: string[]): Promise<void> {
 	const command = args[0];
 	const options = parseCliOptions(args.slice(1));
 
 	switch (command) {
 		case "init":
-			initCommand();
+			await initCommand();
 			break;
 		case "render":
-			renderCommand(options);
+			await renderCommand(options);
 			break;
 		case "export":
-			exportCommand(options);
+			await exportCommand(options);
 			break;
 		default:
 			printUsage();

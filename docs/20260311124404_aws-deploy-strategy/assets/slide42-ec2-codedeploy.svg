@@ -1,0 +1,77 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <!-- Background -->
+  <rect width="800" height="400" fill="transparent"/>
+  <!-- Title row labels -->
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">EC2 + CodeDeploy アーキテクチャ</text>
+
+  <!-- Developer box -->
+  <rect x="20" y="60" width="120" height="60" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="2"/>
+  <text x="80" y="87" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Developer</text>
+  <text x="80" y="107" text-anchor="middle" fill="#a855f7" font-size="11" font-family="sans-serif">Push Code</text>
+
+  <!-- Arrow: Developer -> CodePipeline -->
+  <line x1="140" y1="90" x2="190" y2="90" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="190,85 200,90 190,95" fill="#60a5fa"/>
+
+  <!-- CodePipeline box -->
+  <rect x="200" y="60" width="130" height="60" rx="8" fill="#1e1b4b" stroke="#60a5fa" stroke-width="2"/>
+  <text x="265" y="87" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">CodePipeline</text>
+  <text x="265" y="107" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="sans-serif">Build &amp; Trigger</text>
+
+  <!-- Arrow: CodePipeline -> S3 -->
+  <line x1="330" y1="90" x2="380" y2="90" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="380,85 390,90 380,95" fill="#60a5fa"/>
+
+  <!-- S3 Artifact box -->
+  <rect x="390" y="60" width="120" height="60" rx="8" fill="#1e1b4b" stroke="#34d399" stroke-width="2"/>
+  <text x="450" y="87" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">S3 Bucket</text>
+  <text x="450" y="107" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif">Artifact Store</text>
+
+  <!-- Arrow: CodePipeline -> CodeDeploy -->
+  <line x1="265" y1="120" x2="265" y2="170" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="260,170 265,180 270,170" fill="#60a5fa"/>
+
+  <!-- CodeDeploy box -->
+  <rect x="200" y="180" width="130" height="60" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="2"/>
+  <text x="265" y="207" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">CodeDeploy</text>
+  <text x="265" y="227" text-anchor="middle" fill="#a855f7" font-size="11" font-family="sans-serif">Deployment Group</text>
+
+  <!-- IAM Role box -->
+  <rect x="390" y="180" width="120" height="60" rx="8" fill="#1e1b4b" stroke="#f59e0b" stroke-width="2"/>
+  <text x="450" y="207" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">IAM Role</text>
+  <text x="450" y="227" text-anchor="middle" fill="#f59e0b" font-size="11" font-family="sans-serif">CodeDeploy Role</text>
+
+  <!-- Arrow: IAM -> CodeDeploy -->
+  <line x1="390" y1="210" x2="330" y2="210" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="330,205 320,210 330,215" fill="#f59e0b"/>
+
+  <!-- EC2 instances group -->
+  <rect x="40" y="270" width="620" height="110" rx="10" fill="#0f172a" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="350" y="295" text-anchor="middle" fill="#a855f7" font-size="13" font-family="sans-serif">Auto Scaling Group / EC2 Instances</text>
+
+  <!-- EC2 instance 1 -->
+  <rect x="60" y="305" width="130" height="60" rx="6" fill="#1e1b4b" stroke="#60a5fa" stroke-width="2"/>
+  <text x="125" y="330" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">EC2 Instance 1</text>
+  <text x="125" y="350" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">CodeDeploy Agent</text>
+
+  <!-- EC2 instance 2 -->
+  <rect x="230" y="305" width="130" height="60" rx="6" fill="#1e1b4b" stroke="#60a5fa" stroke-width="2"/>
+  <text x="295" y="330" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">EC2 Instance 2</text>
+  <text x="295" y="350" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">CodeDeploy Agent</text>
+
+  <!-- EC2 instance 3 -->
+  <rect x="400" y="305" width="130" height="60" rx="6" fill="#1e1b4b" stroke="#60a5fa" stroke-width="2"/>
+  <text x="465" y="330" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">EC2 Instance 3</text>
+  <text x="465" y="350" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">CodeDeploy Agent</text>
+
+  <!-- Arrow: CodeDeploy -> EC2 group -->
+  <line x1="265" y1="240" x2="265" y2="270" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="260,270 265,280 270,270" fill="#a855f7"/>
+
+  <!-- Arrow: S3 -> EC2 (Agents pull) -->
+  <line x1="450" y1="120" x2="450" y2="160" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="450" y1="160" x2="570" y2="160" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="570" y1="160" x2="570" y2="270" stroke="#34d399" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="565,270 570,280 575,270" fill="#34d399"/>
+  <text x="510" y="155" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">Pull artifact</text>
+</svg>

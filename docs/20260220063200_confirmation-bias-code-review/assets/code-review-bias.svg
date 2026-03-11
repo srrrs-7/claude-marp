@@ -1,0 +1,36 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">コードレビューでの確証バイアス — 4つの場面</text>
+  <!-- 4 scenarios -->
+  <rect x="20" y="50" width="370" height="145" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="205" y="76" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">場面1：「このコードは動く」という先入観</text>
+  <text x="205" y="98" text-anchor="middle" font-size="11" fill="#ffffff">CI が通っているのを見て → 「まあOKか」</text>
+  <text x="205" y="116" text-anchor="middle" font-size="11" fill="#ffffff">セキュリティ・パフォーマンスの確認をスキップ</text>
+  <text x="205" y="140" text-anchor="middle" font-size="11" fill="#e91e63">バイアス：テスト通過 = 品質という自動化バイアス</text>
+  <text x="205" y="160" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">解決：セキュリティ・スケール観点のチェックリスト</text>
+  <text x="205" y="183" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.4">「テストが通っても設計は検証されていない」</text>
+  <rect x="410" y="50" width="370" height="145" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="595" y="76" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">場面2：「Aさんらしい実装だ」</text>
+  <text x="595" y="98" text-anchor="middle" font-size="11" fill="#ffffff">著者名が見え → 過去の評価で今を判断</text>
+  <text x="595" y="116" text-anchor="middle" font-size="11" fill="#ffffff">問題を見つけても「私の読み違いかも」</text>
+  <text x="595" y="140" text-anchor="middle" font-size="11" fill="#f9a825">バイアス：ハロー効果 + 権威への服従</text>
+  <text x="595" y="160" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">解決：Author-blind review / ローテーション</text>
+  <text x="595" y="183" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.4">「コードには名前がない — 品質だけが存在する」</text>
+  <rect x="20" y="210" width="370" height="145" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="205" y="236" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">場面3：「みんな承認している」</text>
+  <text x="205" y="258" text-anchor="middle" font-size="11" fill="#ffffff">先行レビュアーのコメントを見てから判断</text>
+  <text x="205" y="276" text-anchor="middle" font-size="11" fill="#ffffff">「承認が3つついたから私もOKで」</text>
+  <text x="205" y="300" text-anchor="middle" font-size="11" fill="#f9a825">バイアス：社会的証明 + 同調圧力</text>
+  <text x="205" y="320" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">解決：先行レビューを見ずに独立レビュー</text>
+  <text x="205" y="343" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.4">「最初のレビュアーが設定したアンカーに引かれる」</text>
+  <rect x="410" y="210" width="370" height="145" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="595" y="236" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">場面4：「急ぎだから大丈夫だろう」</text>
+  <text x="595" y="258" text-anchor="middle" font-size="11" fill="#ffffff">時間的プレッシャーで浅いレビューに</text>
+  <text x="595" y="276" text-anchor="middle" font-size="11" fill="#ffffff">「後でリファクタリングすればいい」</text>
+  <text x="595" y="300" text-anchor="middle" font-size="11" fill="#4caf50">バイアス：楽観バイアス + 現在バイアス</text>
+  <text x="595" y="320" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">解決：60分ルール・PRサイズ制限</text>
+  <text x="595" y="343" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.4">「急いでいるときほど丁寧さが重要」</text>
+  <!-- Bottom note -->
+  <text x="400" y="370" text-anchor="middle" font-size="12" fill="#f9a825">どの場面も「意識していない」のが問題 — メタ認知が解決の鍵</text>
+  <text x="400" y="385" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.5">「今自分はどのバイアスにかかっているか？」と問う習慣</text>
+</svg>

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="28" fill="#ffffff" font-size="16" font-family="sans-serif" text-anchor="middle" font-weight="bold">LLMが「統計パターン」として記憶する仕組み</text>
+  <!-- Training data box -->
+  <rect x="40" y="55" width="200" height="200" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="140" y="80" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">訓練データ</text>
+  <text x="140" y="105" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">「東京の人口は約1,400万人」</text>
+  <text x="140" y="123" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">「東京は日本の首都」</text>
+  <text x="140" y="141" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">「東京タワーは333m」</text>
+  <text x="140" y="159" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">×10億テキスト...</text>
+  <!-- arrow -->
+  <line x1="240" y1="155" x2="300" y2="155" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="300,155 288,149 288,161" fill="#f9a825"/>
+  <!-- Weights box -->
+  <rect x="300" y="55" width="200" height="200" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="80" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">重みパラメータ</text>
+  <text x="400" y="105" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">w1=0.342, w2=-0.119</text>
+  <text x="400" y="123" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">w3=0.876, w4=0.023</text>
+  <text x="400" y="141" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">...7000億パラメータ</text>
+  <text x="400" y="165" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">事実ではなく</text>
+  <text x="400" y="183" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">「共起確率の圧縮」</text>
+  <!-- arrow -->
+  <line x1="500" y1="155" x2="560" y2="155" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="560,155 548,149 548,161" fill="#e91e63"/>
+  <!-- Output box -->
+  <rect x="560" y="55" width="200" height="200" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="660" y="80" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">生成テキスト</text>
+  <text x="660" y="105" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">「東京の人口は約</text>
+  <text x="660" y="121" fill="#ffffff" font-size="10" font-family="sans-serif" text-anchor="middle">1,400万人です」</text>
+  <text x="660" y="145" fill="#f9a825" font-size="10" font-family="sans-serif" text-anchor="middle">✓ 訓練時と同じ</text>
+  <text x="660" y="165" fill="#e91e63" font-size="10" font-family="sans-serif" text-anchor="middle">✗ 2024年以降は？</text>
+  <text x="660" y="185" fill="#e91e63" font-size="10" font-family="sans-serif" text-anchor="middle">知識カットオフ問題</text>
+  <!-- key insight -->
+  <rect x="40" y="275" width="720" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="297" fill="#f9a825" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">LLMは「地図」を更新しない — 訓練時の世界のスナップショット</text>
+  <text x="400" y="315" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">RAG・検索拡張・ツール呼び出しで「現在の地図」を補完する必要がある</text>
+</svg>

@@ -1,0 +1,48 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="400" fill="transparent"/>
+
+  <!-- Client -->
+  <rect x="330" y="15" width="140" height="44" rx="8" fill="#6d28d9" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="400" y="42" text-anchor="middle" font-size="15" fill="#ffffff" font-family="sans-serif">クライアント</text>
+
+  <!-- Arrow to ALB -->
+  <line x1="400" y1="59" x2="400" y2="95" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="400,95 394,83 406,83" fill="#a855f7"/>
+
+  <!-- ALB -->
+  <rect x="260" y="95" width="280" height="48" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="400" y="115" text-anchor="middle" font-size="14" font-weight="bold" fill="#a855f7" font-family="sans-serif">ALB (Application Load Balancer)</text>
+  <text x="400" y="133" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">Listener: Port 443</text>
+
+  <!-- Listener Rule box -->
+  <rect x="290" y="175" width="220" height="48" rx="8" fill="#312e81" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="400" y="195" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">Listener Rule</text>
+  <text x="400" y="213" text-anchor="middle" font-size="12" fill="#a855f7" font-family="sans-serif">Forward → Target Group 変更</text>
+
+  <!-- Arrow ALB to Rule -->
+  <line x1="400" y1="143" x2="400" y2="175" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="400,175 394,163 406,163" fill="#a855f7"/>
+
+  <!-- Arrow Rule to Blue TG (Before) -->
+  <line x1="340" y1="223" x2="200" y2="275" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="200,275 198,262 210,266" fill="#60a5fa"/>
+
+  <!-- Arrow Rule to Green TG (After) -->
+  <line x1="460" y1="223" x2="600" y2="275" stroke="#34d399" stroke-width="2"/>
+  <polygon points="600,275 590,266 602,262" fill="#34d399"/>
+
+  <!-- Blue TG -->
+  <rect x="80" y="275" width="240" height="80" rx="8" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="200" y="298" text-anchor="middle" font-size="14" font-weight="bold" fill="#60a5fa" font-family="sans-serif">Blue Target Group</text>
+  <text x="200" y="318" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">EC2 / ECS (v1.0)</text>
+  <text x="200" y="338" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">切り替え前: アクティブ</text>
+
+  <!-- Green TG -->
+  <rect x="480" y="275" width="240" height="80" rx="8" fill="#052e16" stroke="#34d399" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="600" y="298" text-anchor="middle" font-size="14" font-weight="bold" fill="#34d399" font-family="sans-serif">Green Target Group</text>
+  <text x="600" y="318" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">EC2 / ECS (v2.0)</text>
+  <text x="600" y="338" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">切り替え後: アクティブ</text>
+
+  <!-- Note -->
+  <text x="400" y="382" text-anchor="middle" font-size="12" fill="#a855f7" font-family="sans-serif">Listener Rule 変更のみ — DNS 伝播なし、即時反映</text>
+</svg>

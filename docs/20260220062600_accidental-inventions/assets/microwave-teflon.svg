@@ -1,0 +1,39 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">偶然が変えた日常 — 電子レンジとテフロン</text>
+  <!-- Left: Microwave -->
+  <rect x="30" y="50" width="365" height="310" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="212" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">電子レンジ（1945年）</text>
+  <text x="212" y="96" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.8">パーシー・スペンサー / レイセオン社</text>
+  <!-- Story flow -->
+  <rect x="50" y="108" width="325" height="48" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="212" y="128" text-anchor="middle" font-size="12" fill="#e91e63">偶然のきっかけ</text>
+  <text x="212" y="146" text-anchor="middle" font-size="11" fill="#ffffff">レーダー装置の前に立ったらチョコが溶けた</text>
+  <rect x="50" y="166" width="325" height="48" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="212" y="186" text-anchor="middle" font-size="12" fill="#f9a825">好奇心の行動化</text>
+  <text x="212" y="204" text-anchor="middle" font-size="11" fill="#ffffff">ポップコーンで再現実験 → 卵で確認</text>
+  <rect x="50" y="224" width="325" height="48" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1"/>
+  <text x="212" y="244" text-anchor="middle" font-size="12" fill="#4caf50">製品化</text>
+  <text x="212" y="262" text-anchor="middle" font-size="11" fill="#ffffff">1947年 初の電子レンジ発売（高さ1.8m）</text>
+  <text x="212" y="295" text-anchor="middle" font-size="11" fill="#f9a825">軍事技術 → 家電</text>
+  <text x="212" y="315" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">スペンサーは特許料を受け取らなかった</text>
+  <text x="212" y="335" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.5">（会社の方針、後に表彰）</text>
+  <!-- Right: Teflon -->
+  <rect x="405" y="50" width="365" height="310" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="587" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#4caf50">テフロン（1938年）</text>
+  <text x="587" y="96" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.8">ロイ・プランケット / デュポン社</text>
+  <rect x="425" y="108" width="325" height="48" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1"/>
+  <text x="587" y="128" text-anchor="middle" font-size="12" fill="#4caf50">偶然のきっかけ</text>
+  <text x="587" y="146" text-anchor="middle" font-size="11" fill="#ffffff">ガスが予想より少ない → シリンダー内を調査</text>
+  <rect x="425" y="166" width="325" height="48" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="587" y="186" text-anchor="middle" font-size="12" fill="#f9a825">異常への着目</text>
+  <text x="587" y="204" text-anchor="middle" font-size="11" fill="#ffffff">固体物質を発見 → 摩擦係数が極めて低い</text>
+  <rect x="425" y="224" width="325" height="48" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="587" y="244" text-anchor="middle" font-size="12" fill="#e91e63">応用への旅</text>
+  <text x="587" y="262" text-anchor="middle" font-size="11" fill="#ffffff">最初はマンハッタン計画で使用</text>
+  <text x="587" y="295" text-anchor="middle" font-size="11" fill="#f9a825">軍事 → 宇宙 → キッチン</text>
+  <text x="587" y="315" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">1960年代にフライパンのコーティングとして普及</text>
+  <text x="587" y="335" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.5">医療器具・電子基板にも応用</text>
+  <!-- Bottom -->
+  <text x="400" y="377" text-anchor="middle" font-size="12" fill="#f9a825">共通点：予期しない現象 → 好奇心 → 探求 → 意外な用途</text>
+</svg>

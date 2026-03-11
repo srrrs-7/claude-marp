@@ -1,7 +1,7 @@
 import type { SlidesConfig } from "../config/schema.js";
 import type { GenerationResult, SlideContent } from "./slide-schema.js";
 
-const SVG_CONTAINMENT_STYLE =
+export const SVG_CONTAINMENT_STYLE =
 	"max-height:70vh;max-width:100%;display:block;margin:0 auto;";
 
 /**

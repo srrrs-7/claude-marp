@@ -1,0 +1,73 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Direct Connect 冗長パターン比較</text>
+  <!-- Pattern 1 -->
+  <rect x="15" y="45" width="175" height="150" rx="6" fill="#16213e" stroke="#ff5252" stroke-width="1.5"/>
+  <text x="103" y="67" text-anchor="middle" fill="#ff5252" font-size="11" font-weight="bold">パターン1: Single</text>
+  <rect x="25" y="78" width="60" height="30" rx="3" fill="#0d3b66"/>
+  <text x="55" y="98" text-anchor="middle" fill="#ffffff" font-size="9">オンプレ</text>
+  <line x1="85" y1="93" x2="115" y2="93" stroke="#ff5252" stroke-width="2"/>
+  <polygon points="115,88 125,93 115,98" fill="#ff5252"/>
+  <rect x="125" y="78" width="55" height="30" rx="3" fill="#0d3b66"/>
+  <text x="153" y="98" text-anchor="middle" fill="#ffffff" font-size="9">AWS</text>
+  <text x="103" y="135" text-anchor="middle" fill="#ff5252" font-size="10">SLA: なし</text>
+  <text x="103" y="152" text-anchor="middle" fill="#aaaaaa" font-size="9">SPOF あり</text>
+  <text x="103" y="169" text-anchor="middle" fill="#aaaaaa" font-size="9">開発/テストのみ</text>
+  <!-- Pattern 2 -->
+  <rect x="205" y="45" width="175" height="150" rx="6" fill="#16213e" stroke="#ff9800" stroke-width="1.5"/>
+  <text x="293" y="67" text-anchor="middle" fill="#ff9800" font-size="11" font-weight="bold">パターン2: Dual同一</text>
+  <rect x="215" y="78" width="60" height="30" rx="3" fill="#0d3b66"/>
+  <text x="245" y="98" text-anchor="middle" fill="#ffffff" font-size="9">オンプレ</text>
+  <line x1="275" y1="88" x2="310" y2="83" stroke="#4caf50" stroke-width="2"/>
+  <polygon points="308,78 318,83 308,88" fill="#4caf50"/>
+  <line x1="275" y1="98" x2="310" y2="103" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="308,98 318,103 308,108" fill="#ff9800"/>
+  <rect x="318" y="73" width="55" height="45" rx="3" fill="#0d3b66"/>
+  <text x="346" y="93" text-anchor="middle" fill="#ffffff" font-size="9">DX Loc</text>
+  <text x="346" y="107" text-anchor="middle" fill="#aaaaaa" font-size="8">同一</text>
+  <text x="293" y="135" text-anchor="middle" fill="#ff9800" font-size="10">SLA: 99.9%</text>
+  <text x="293" y="152" text-anchor="middle" fill="#aaaaaa" font-size="9">ポート/ルーター障害に耐性</text>
+  <text x="293" y="169" text-anchor="middle" fill="#ff8a65" font-size="9">施設障害でリスクあり</text>
+  <!-- Pattern 3 -->
+  <rect x="395" y="45" width="175" height="150" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="483" y="67" text-anchor="middle" fill="#4caf50" font-size="11" font-weight="bold">パターン3: 異ロケーション</text>
+  <rect x="405" y="78" width="60" height="30" rx="3" fill="#0d3b66"/>
+  <text x="435" y="98" text-anchor="middle" fill="#ffffff" font-size="9">オンプレ</text>
+  <line x1="465" y1="88" x2="495" y2="78" stroke="#4caf50" stroke-width="2"/>
+  <polygon points="493,73 503,78 493,83" fill="#4caf50"/>
+  <line x1="465" y1="98" x2="495" y2="108" stroke="#4caf50" stroke-width="2" stroke-dasharray="5,3"/>
+  <polygon points="493,103 503,108 493,113" fill="#4caf50"/>
+  <rect x="503" y="68" width="55" height="25" rx="3" fill="#0d3b66"/>
+  <text x="531" y="85" text-anchor="middle" fill="#4caf50" font-size="8">東京DX</text>
+  <rect x="503" y="100" width="55" height="25" rx="3" fill="#0d3b66"/>
+  <text x="531" y="117" text-anchor="middle" fill="#4caf50" font-size="8">大阪DX</text>
+  <text x="483" y="135" text-anchor="middle" fill="#4caf50" font-size="11" font-weight="bold">SLA: 99.99%</text>
+  <text x="483" y="152" text-anchor="middle" fill="#aaaaaa" font-size="9">施設障害も耐性あり</text>
+  <text x="483" y="169" text-anchor="middle" fill="#4caf50" font-size="9">AWS 推奨構成</text>
+  <!-- Pattern 4 -->
+  <rect x="585" y="45" width="200" height="150" rx="6" fill="#16213e" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="685" y="67" text-anchor="middle" fill="#64b5f6" font-size="11" font-weight="bold">パターン4: DX+VPN</text>
+  <rect x="595" y="78" width="60" height="30" rx="3" fill="#0d3b66"/>
+  <text x="625" y="98" text-anchor="middle" fill="#ffffff" font-size="9">オンプレ</text>
+  <line x1="655" y1="88" x2="685" y2="83" stroke="#64b5f6" stroke-width="2"/>
+  <polygon points="683,78 693,83 683,88" fill="#64b5f6"/>
+  <line x1="655" y1="98" x2="685" y2="108" stroke="#ff9800" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="683,103 693,108 683,113" fill="#ff9800"/>
+  <rect x="693" y="68" width="80" height="25" rx="3" fill="#0d3b66"/>
+  <text x="733" y="85" text-anchor="middle" fill="#64b5f6" font-size="8">DX (Primary)</text>
+  <rect x="693" y="100" width="80" height="25" rx="3" fill="#0d3b66"/>
+  <text x="733" y="117" text-anchor="middle" fill="#ff9800" font-size="8">VPN (Backup)</text>
+  <text x="685" y="135" text-anchor="middle" fill="#64b5f6" font-size="10">SLA: 99.9%</text>
+  <text x="685" y="152" text-anchor="middle" fill="#aaaaaa" font-size="9">コスト効率良し</text>
+  <text x="685" y="169" text-anchor="middle" fill="#aaaaaa" font-size="9">帯域差に注意</text>
+  <!-- Comparison Table -->
+  <rect x="15" y="215" width="770" height="30" rx="4" fill="#0d1b2e"/>
+  <text x="103" y="235" text-anchor="middle" fill="#ff5252" font-size="10" font-weight="bold">SLA なし</text>
+  <text x="293" y="235" text-anchor="middle" fill="#ff9800" font-size="10" font-weight="bold">SLA 99.9%</text>
+  <text x="483" y="235" text-anchor="middle" fill="#4caf50" font-size="10" font-weight="bold">SLA 99.99% ★推奨</text>
+  <text x="685" y="235" text-anchor="middle" fill="#64b5f6" font-size="10" font-weight="bold">SLA 99.9% + VPN</text>
+  <!-- BFD note -->
+  <rect x="15" y="260" width="770" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="400" y="285" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">フェイルオーバー高速化: BFD 必須</text>
+  <text x="400" y="308" text-anchor="middle" fill="#aaaaaa" font-size="11">BFD あり: 1〜3秒以内 | BGP Hold Timer のみ: 最大 90秒 | 設定: bfd interval 300 min_rx 300 multiplier 3</text>
+</svg>

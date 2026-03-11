@@ -1,0 +1,63 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="420" fill="transparent"/>
+
+  <!-- Start -->
+  <rect x="310" y="15" width="180" height="44" rx="8" fill="#4c1d95" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="400" y="42" text-anchor="middle" font-size="14" fill="#ffffff" font-family="sans-serif">デプロイ開始</text>
+
+  <line x1="400" y1="59" x2="400" y2="90" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="400,90 394,78 406,78" fill="#a855f7"/>
+
+  <!-- Traffic shift box -->
+  <rect x="290" y="90" width="220" height="40" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="400" y="115" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">カナリア トラフィック移行</text>
+
+  <line x1="400" y1="130" x2="400" y2="162" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="400,162 394,150 406,150" fill="#a855f7"/>
+
+  <!-- Monitor box -->
+  <rect x="290" y="162" width="220" height="40" rx="8" fill="#1e1b4b" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="400" y="187" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">CloudWatch 監視 (60s interval)</text>
+
+  <line x1="400" y1="202" x2="400" y2="234" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="400,234 394,222 406,222" fill="#60a5fa"/>
+
+  <!-- Decision diamond -->
+  <polygon points="400,234 490,275 400,316 310,275" fill="#1e1b4b" stroke="#60a5fa" stroke-width="2"/>
+  <text x="400" y="271" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">成功条件</text>
+  <text x="400" y="287" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">クリア?</text>
+
+  <!-- Success path (right) -->
+  <line x1="490" y1="275" x2="600" y2="275" stroke="#34d399" stroke-width="2"/>
+  <polygon points="600,275 588,269 588,281" fill="#34d399"/>
+  <text x="545" y="263" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">YES</text>
+
+  <rect x="600" y="250" width="170" height="50" rx="8" fill="#052e16" stroke="#34d399" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="685" y="272" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">次フェーズ昇格</text>
+  <text x="685" y="290" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">100% まで継続</text>
+
+  <line x1="685" y1="300" x2="685" y2="330" stroke="#34d399" stroke-width="1.5"/>
+  <polygon points="685,330 679,318 691,318" fill="#34d399"/>
+  <rect x="595" y="330" width="180" height="40" rx="8" fill="#166534" stroke="#34d399" stroke-width="1.5"/>
+  <text x="685" y="355" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">デプロイ完了</text>
+
+  <!-- Failure path (left) -->
+  <line x1="310" y1="275" x2="200" y2="275" stroke="#f97316" stroke-width="2"/>
+  <polygon points="200,275 212,269 212,281" fill="#f97316"/>
+  <text x="255" y="263" text-anchor="middle" font-size="11" fill="#f97316" font-family="sans-serif">NO / ALARM</text>
+
+  <rect x="30" y="250" width="170" height="50" rx="8" fill="#7c2d12" stroke="#f97316" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="115" y="272" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">自動ロールバック</text>
+  <text x="115" y="290" text-anchor="middle" font-size="11" fill="#f97316" font-family="sans-serif">CodeDeploy Stop &amp; Revert</text>
+
+  <line x1="115" y1="300" x2="115" y2="330" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="115,330 109,318 121,318" fill="#f97316"/>
+  <rect x="25" y="330" width="180" height="40" rx="8" fill="#7c2d12" stroke="#f97316" stroke-width="1.5"/>
+  <text x="115" y="347" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">旧バージョン復元完了</text>
+  <text x="115" y="363" text-anchor="middle" font-size="11" fill="#f97316" font-family="sans-serif">SNS で担当者へ通知</text>
+
+  <!-- Success conditions legend -->
+  <rect x="220" y="370" width="360" height="40" rx="6" fill="#1e1b4b" stroke="#a855f7" stroke-width="1"/>
+  <text x="400" y="388" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">成功条件例: エラーレート &lt; 1%, P99 &lt; 300ms, カスタム KPI 達成</text>
+  <text x="400" y="404" text-anchor="middle" font-size="11" fill="#a855f7" font-family="sans-serif">失敗条件例: CloudWatch Alarm INSUFFICIENT_DATA / ALARM 状態</text>
+</svg>

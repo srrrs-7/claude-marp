@@ -30,6 +30,7 @@
 			"title": "即興は「自由」ではない",
 			"layout": "default",
 			"content": [
+				"![w:900 center](assets/constraint-creativity.svg)",
 				"![w:900 center](assets/sprint-improvisation.svg)",
 				"- ジャズの即興演奏は**完全な自由**ではない",
 				"- **コード進行**(和声の枠組み)の上で即興する",
@@ -101,6 +102,7 @@
 			"title": "アジャイルチームとの対応（2/2）",
 			"layout": "default",
 			"content": [
+				"![w:900 center](assets/agile-jazz-comparison.svg)",
 				"- **コンダクター** = テックリード/アーキテクト",
 				"  - 全体の方向性を示すが細部は任せる",
 				"",
@@ -140,7 +142,7 @@
 		{
 			"title": "即興的開発の設計原則",
 			"layout": "section",
-			"content": []
+			"content": ["![w:900 center](assets/design-principles.svg)"]
 		},
 		{
 			"title": "ジャズから学ぶ6つの原則",

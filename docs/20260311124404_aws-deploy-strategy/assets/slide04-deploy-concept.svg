@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <!-- Background -->
+  <rect width="800" height="400" fill="transparent"/>
+
+  <!-- Title area -->
+  <text x="400" y="35" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#ffffff">デプロイ戦略の概念モデル</text>
+
+  <!-- Source box: Code -->
+  <rect x="30" y="80" width="140" height="70" rx="10" fill="#1e1b4b" stroke="#a855f7" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="100" y="111" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#a855f7">コード変更</text>
+  <text x="100" y="132" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">開発者がプッシュ</text>
+
+  <!-- Arrow 1 -->
+  <line x1="170" y1="115" x2="210" y2="115" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="210,109 222,115 210,121" fill="#60a5fa"/>
+
+  <!-- CI/CD box -->
+  <rect x="222" y="80" width="140" height="70" rx="10" fill="#1e1b4b" stroke="#60a5fa" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="292" y="111" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#60a5fa">CI/CDパイプライン</text>
+  <text x="292" y="132" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">ビルド・テスト・承認</text>
+
+  <!-- Arrow 2 -->
+  <line x1="362" y1="115" x2="402" y2="115" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="402,109 414,115 402,121" fill="#60a5fa"/>
+
+  <!-- Deploy Strategy box (center) -->
+  <rect x="414" y="60" width="160" height="110" rx="12" fill="#581c87" stroke="#a855f7" stroke-width="3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="494" y="100" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#ffffff">デプロイ戦略</text>
+  <text x="494" y="122" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e9d5ff">リスク制御の中核</text>
+  <text x="494" y="142" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#d8b4fe">速度 × 安全性 × コスト</text>
+
+  <!-- Arrow 3 -->
+  <line x1="574" y1="115" x2="614" y2="115" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="614,109 626,115 614,121" fill="#60a5fa"/>
+
+  <!-- Production box -->
+  <rect x="626" y="80" width="140" height="70" rx="10" fill="#1e1b4b" stroke="#34d399" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="696" y="111" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#34d399">本番環境</text>
+  <text x="696" y="132" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#ffffff">ユーザーへ価値提供</text>
+
+  <!-- Risk control area -->
+  <rect x="30" y="210" width="740" height="160" rx="12" fill="#0f172a" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="400" y="238" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#a855f7">デプロイ戦略が制御するリスク要素</text>
+
+  <!-- Risk items -->
+  <rect x="55" y="255" width="155" height="90" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="132" y="280" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#a855f7">影響範囲</text>
+  <text x="132" y="300" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ffffff">何%のユーザーが</text>
+  <text x="132" y="318" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ffffff">影響を受けるか</text>
+  <text x="132" y="336" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#d8b4fe">→ カナリアで最小化</text>
+
+  <rect x="230" y="255" width="155" height="90" rx="8" fill="#1e1b4b" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="307" y="280" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#60a5fa">検知速度</text>
+  <text x="307" y="300" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ffffff">問題発生から</text>
+  <text x="307" y="318" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ffffff">検知までの時間</text>
+  <text x="307" y="336" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#bfdbfe">→ 自動モニタリング</text>
+
+  <rect x="405" y="255" width="155" height="90" rx="8" fill="#1e1b4b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="482" y="280" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#34d399">回復時間</text>
+  <text x="482" y="300" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ffffff">問題発生から</text>
+  <text x="482" y="318" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ffffff">復旧までの時間</text>
+  <text x="482" y="336" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#a7f3d0">→ ロールバック戦略</text>
+
+  <rect x="580" y="255" width="165" height="90" rx="8" fill="#1e1b4b" stroke="#fbbf24" stroke-width="1.5"/>
+  <text x="662" y="280" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="bold" fill="#fbbf24">ダウンタイム</text>
+  <text x="662" y="300" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ffffff">サービス停止時間</text>
+  <text x="662" y="318" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#ffffff">とビジネスへの影響</text>
+  <text x="662" y="336" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#fde68a">→ Blue/Greenで排除</text>
+</svg>

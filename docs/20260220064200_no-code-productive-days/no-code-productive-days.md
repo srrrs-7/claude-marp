@@ -7,6 +7,71 @@ paginate: true
 header: "ノーコードデー"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -40,6 +105,7 @@ style: |
 
 # あなたは今日、生産的でしたか？
 
+![w:800 center](assets/svg-perception.svg)
 - - 多くの開発者の回答: 「たくさんコードを書いた日 = 良い日」
 - - **GitHub Contributions** のグラフが緑色 = 充実感
 - - コミット数、PR数、マージ数で「成果」を測る文化
@@ -65,6 +131,7 @@ style: |
 
 # コード = 生産性という幻想
 
+![w:800 center](assets/svg-loc.svg)
 - - **Bill Gates**: 「コード行数で進捗を測るのは重量で飛行機の進捗を測るようなもの」
 - - LOC (Lines of Code) は1960年代からの計測手法
 - - 10行で解決する人と100行で解決する人、どちらが優秀？
@@ -77,6 +144,7 @@ style: |
 
 # Activity ≠ Progress
 
+![w:800 center](assets/svg-nc-activity-progress.svg)
 - - **GitHub調査 (2024)**: 開発者の自己評価「生産的な日」の特徴
 - - 1位: 集中してコードを書けた日 (72%)
 - - 2位: 難しいバグを解決した日 (68%)
@@ -95,6 +163,7 @@ style: |
 
 # Glue Work — チームを支える接着剤
 
+![w:800 center](assets/svg-glue.svg)
 - - **Tanya Reilly (2019)**: "Being Glue" — 組織を機能させる見えない仕事
 - - コードレビュー: バグを未然に防ぎ、知識を共有する
 - - オンボーディング: 新メンバーの立ち上がりを3ヶ月→1ヶ月に短縮
@@ -107,6 +176,7 @@ style: |
 
 # 乗数効果 (Multiplier Effect)
 
+![w:800 center](assets/svg-multiplier.svg)
 - - **自分で100行のコードを書く** → 100行分の価値
 - - **5人のコードレビューで各20行の改善** → 100行分 + バグ防止
 - - **良い設計ドキュメントを書く** → チーム全員の開発速度向上
@@ -125,6 +195,7 @@ style: |
 
 # コードを書かなくなる問題
 
+![w:800 center](assets/svg-nc-no-code-day.svg)
 - - シニアになるほどコードを書く時間が減る
 - - 会議、レビュー、設計、メンタリングに時間を使う
 - - **「最近コード書いてないな…」** という不安
@@ -137,6 +208,7 @@ style: |
 
 # Staff+ エンジニアの一日
 
+![w:800 center](assets/svg-nc-staff-plus-day.svg)
 - - **Gergely Orosz (2023)**: Staff Engineerの典型的な時間配分
 - - コーディング: 20-30%
 - - 設計・アーキテクチャ議論: 25-35%
@@ -150,6 +222,8 @@ style: |
 
 <!-- _class: lead -->
 # 5. 組織としての生産性
+
+![w:800 center](assets/svg-staff.svg)
 
 
 ---
@@ -168,6 +242,7 @@ style: |
 
 # SPACE Framework
 
+![w:800 center](assets/svg-dora.svg)
 - - **GitHub/MS/University of Victoria (2021)**: 開発者生産性の5次元
 - - **S**atisfaction: 仕事への満足度
 - - **P**erformance: 成果の質と影響

@@ -1,0 +1,108 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff" font-family="sans-serif">Elastic Beanstalk: Immutable 更新フロー</text>
+
+  <!-- Phase labels -->
+  <text x="80" y="52" text-anchor="middle" font-size="11" fill="#60a5fa" font-weight="bold" font-family="sans-serif">PHASE 1</text>
+  <text x="260" y="52" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="bold" font-family="sans-serif">PHASE 2</text>
+  <text x="460" y="52" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="bold" font-family="sans-serif">PHASE 3</text>
+  <text x="660" y="52" text-anchor="middle" font-size="11" fill="#34d399" font-weight="bold" font-family="sans-serif">PHASE 4</text>
+
+  <!-- Phase 1: Existing ASG -->
+  <rect x="20" y="60" width="130" height="110" rx="8" fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="85" y="78" text-anchor="middle" font-size="10" fill="#60a5fa" font-family="sans-serif">既存 ASG</text>
+  <rect x="34" y="85" width="50" height="30" rx="4" fill="#60a5fa"/>
+  <text x="59" y="104" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="94" y="85" width="50" height="30" rx="4" fill="#60a5fa"/>
+  <text x="119" y="104" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="34" y="125" width="50" height="30" rx="4" fill="#60a5fa"/>
+  <text x="59" y="144" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="94" y="125" width="50" height="30" rx="4" fill="#60a5fa"/>
+  <text x="119" y="144" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+
+  <!-- Arrow 1 -->
+  <line x1="150" y1="115" x2="175" y2="115" stroke="#ffffff" stroke-width="2"/>
+  <polygon points="173,111 181,115 173,119" fill="#ffffff"/>
+
+  <!-- Phase 2: Temp ASG created -->
+  <rect x="178" y="60" width="170" height="110" rx="8" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="263" y="78" text-anchor="middle" font-size="10" fill="#a855f7" font-family="sans-serif">既存ASG + 一時ASG作成</text>
+  <rect x="190" y="85" width="40" height="28" rx="4" fill="#60a5fa"/>
+  <text x="210" y="103" text-anchor="middle" font-size="8" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="238" y="85" width="40" height="28" rx="4" fill="#60a5fa"/>
+  <text x="258" y="103" text-anchor="middle" font-size="8" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="190" y="122" width="40" height="28" rx="4" fill="#a855f7" stroke="#34d399" stroke-width="1.5"/>
+  <text x="210" y="140" text-anchor="middle" font-size="8" fill="#ffffff" font-family="sans-serif">v2</text>
+  <text x="235" y="145" font-size="9" fill="#34d399" font-family="sans-serif">一時ASG</text>
+  <text x="232" y="158" font-size="9" fill="#ffffff" font-family="sans-serif">(v2デプロイ中)</text>
+
+  <!-- Arrow 2 -->
+  <line x1="348" y1="115" x2="370" y2="115" stroke="#ffffff" stroke-width="2"/>
+  <polygon points="368,111 376,115 368,119" fill="#ffffff"/>
+
+  <!-- Phase 3: Health check + merge -->
+  <rect x="373" y="60" width="175" height="110" rx="8" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="460" y="78" text-anchor="middle" font-size="10" fill="#a855f7" font-family="sans-serif">ヘルスチェック → 統合</text>
+  <rect x="385" y="85" width="40" height="28" rx="4" fill="#60a5fa" opacity="0.5"/>
+  <text x="405" y="103" text-anchor="middle" font-size="8" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="432" y="85" width="40" height="28" rx="4" fill="#60a5fa" opacity="0.5"/>
+  <text x="452" y="103" text-anchor="middle" font-size="8" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="385" y="122" width="40" height="28" rx="4" fill="#a855f7"/>
+  <text x="405" y="140" text-anchor="middle" font-size="8" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="432" y="122" width="40" height="28" rx="4" fill="#a855f7"/>
+  <text x="452" y="140" text-anchor="middle" font-size="8" fill="#ffffff" font-family="sans-serif">v2</text>
+  <!-- check mark -->
+  <text x="490" y="120" font-size="18" fill="#34d399" font-family="sans-serif">OK</text>
+  <text x="490" y="140" font-size="10" fill="#ffffff" font-family="sans-serif">HCパス</text>
+
+  <!-- Arrow 3 -->
+  <line x1="548" y1="115" x2="570" y2="115" stroke="#ffffff" stroke-width="2"/>
+  <polygon points="568,111 576,115 568,119" fill="#ffffff"/>
+
+  <!-- Phase 4: Complete -->
+  <rect x="573" y="60" width="210" height="110" rx="8" fill="none" stroke="#34d399" stroke-width="1.5"/>
+  <text x="678" y="78" text-anchor="middle" font-size="10" fill="#34d399" font-family="sans-serif">v1削除 → v2のみ稼働</text>
+  <rect x="595" y="90" width="50" height="30" rx="4" fill="#a855f7"/>
+  <text x="620" y="109" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="655" y="90" width="50" height="30" rx="4" fill="#a855f7"/>
+  <text x="680" y="109" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="715" y="90" width="50" height="30" rx="4" fill="#a855f7"/>
+  <text x="740" y="109" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="595" y="130" width="50" height="30" rx="4" fill="#a855f7"/>
+  <text x="620" y="149" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="655" y="130" width="50" height="30" rx="4" fill="#a855f7"/>
+  <text x="680" y="149" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+
+  <!-- Detail steps below -->
+  <rect x="0" y="185" width="800" height="1" fill="#ffffff" opacity="0.2"/>
+
+  <text x="400" y="205" text-anchor="middle" font-size="13" fill="#a855f7" font-weight="bold" font-family="sans-serif">詳細ステップ</text>
+
+  <rect x="20" y="215" width="175" height="60" rx="6" fill="none" stroke="#60a5fa" stroke-width="1"/>
+  <text x="107" y="232" text-anchor="middle" font-size="10" fill="#60a5fa" font-weight="bold" font-family="sans-serif">Step 1</text>
+  <text x="107" y="248" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">一時 ASG 作成</text>
+  <text x="107" y="264" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">既存と同サイズ</text>
+
+  <rect x="210" y="215" width="175" height="60" rx="6" fill="none" stroke="#a855f7" stroke-width="1"/>
+  <text x="297" y="232" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="bold" font-family="sans-serif">Step 2</text>
+  <text x="297" y="248" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2 をデプロイ・ヘルスチェック</text>
+  <text x="297" y="264" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">ELB 登録前に検証</text>
+
+  <rect x="400" y="215" width="175" height="60" rx="6" fill="none" stroke="#a855f7" stroke-width="1"/>
+  <text x="487" y="232" text-anchor="middle" font-size="10" fill="#a855f7" font-weight="bold" font-family="sans-serif">Step 3</text>
+  <text x="487" y="248" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">一時 ASG を既存 ASG へ統合</text>
+  <text x="487" y="264" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">トラフィック切り替え</text>
+
+  <rect x="590" y="215" width="188" height="60" rx="6" fill="none" stroke="#34d399" stroke-width="1"/>
+  <text x="684" y="232" text-anchor="middle" font-size="10" fill="#34d399" font-weight="bold" font-family="sans-serif">Step 4</text>
+  <text x="684" y="248" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v1 インスタンスを削除</text>
+  <text x="684" y="264" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">一時 ASG も削除</text>
+
+  <!-- Rollback note -->
+  <rect x="20" y="290" width="760" height="44" rx="8" fill="#1e1b4b" stroke="#34d399" stroke-width="1.5"/>
+  <text x="400" y="310" text-anchor="middle" font-size="12" fill="#34d399" font-weight="bold" font-family="sans-serif">ロールバック: 一時 ASG を削除するだけ — v1 は一切変更されていない</text>
+  <text x="400" y="328" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">失敗時のロールバック時間: 数秒〜1分 (ASG 削除 + ELB ドレイン時間のみ)</text>
+
+  <!-- Duration indicator -->
+  <text x="400" y="356" text-anchor="middle" font-size="11" fill="#f59e0b" font-family="sans-serif">デプロイ所要時間: 通常の2〜3倍 (新インスタンス起動時間が追加)</text>
+</svg>

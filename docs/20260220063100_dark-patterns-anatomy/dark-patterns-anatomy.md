@@ -102,6 +102,8 @@ style: |
 <!-- _class: lead -->
 # ダークパターンとは何か
 
+![w:900 center](assets/what-is-darkpattern.svg)
+
 
 ---
 
@@ -120,6 +122,8 @@ style: |
 
 <!-- _class: lead -->
 # 6つの分類と具体例
+
+![w:900 center](assets/dark-pattern-taxonomy.svg)
 
 
 ---
@@ -183,6 +187,8 @@ style: |
 <!-- _class: lead -->
 # なぜ効くのか：認知科学の視点
 
+![w:900 center](assets/cognitive-science-why.svg)
+
 
 ---
 
@@ -210,6 +216,8 @@ style: |
 <!-- _class: lead -->
 # 企業にとってのリスク
 
+![w:900 center](assets/business-risk.svg)
+
 
 ---
 
@@ -234,6 +242,7 @@ style: |
 
 # EU・FTCの対応
 
+![w:900 center](assets/regulation-timeline.svg)
 - **EU DSA（デジタルサービス法、2024年施行）**
 - ダークパターンを明示的に禁止（初の包括的規制）
 - 違反時：全世界売上の6%の制裁金
@@ -247,6 +256,8 @@ style: |
 
 <!-- _class: lead -->
 # エシカルデザインの実践
+
+![w:900 center](assets/ethical-ux-principles.svg)
 
 
 ---

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">シンガポール成功の4つの鍵</text>
+  <!-- 4 quadrants -->
+  <rect x="40" y="55" width="340" height="130" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="210" y="85" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">プラグマティズム</text>
+  <text x="210" y="110" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">イデオロギーなし</text>
+  <text x="210" y="130" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">「機能するか？」だけを問う</text>
+  <text x="210" y="150" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">左右を超えた実用主義</text>
+  <rect x="420" y="55" width="340" height="130" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="590" y="85" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">人材投資</text>
+  <text x="590" y="110" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">唯一の資源 = 人</text>
+  <text x="590" y="130" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">教育への徹底投資</text>
+  <text x="590" y="150" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">世界最高水準の公務員給与</text>
+  <rect x="40" y="200" width="340" height="130" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="210" y="230" fill="#e91e63" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">長期視点</text>
+  <text x="210" y="255" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">5年・10年・20年計画</text>
+  <text x="210" y="275" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">次の選挙より次の世代</text>
+  <text x="210" y="295" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">CPF強制貯蓄制度</text>
+  <rect x="420" y="200" width="340" height="130" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="590" y="230" fill="#e91e63" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">実験と修正</text>
+  <text x="590" y="255" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">失敗を認め即修正</text>
+  <text x="590" y="275" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">COE価格調整（渋滞税）</text>
+  <text x="590" y="295" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">HDB政策の継続改善</text>
+  <text x="400" y="350" fill="#888888" font-size="11" font-family="sans-serif" text-anchor="middle">「我々の成功は奇跡ではなく、設計の結果だ」— リー・クアンユー</text>
+</svg>

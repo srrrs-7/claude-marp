@@ -1,0 +1,44 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="400" fill="transparent"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">コスト・速度・リスクのトレードオフ三角形</text>
+
+  <!-- Main triangle -->
+  <polygon points="400,55 100,340 700,340" fill="#0f172a" stroke="#a855f7" stroke-width="2"/>
+
+  <!-- Vertex labels -->
+  <text x="400" y="45" text-anchor="middle" fill="#34d399" font-size="15" font-weight="bold" font-family="sans-serif">速度優先</text>
+  <text x="85" y="360" text-anchor="middle" fill="#60a5fa" font-size="15" font-weight="bold" font-family="sans-serif">コスト優先</text>
+  <text x="720" y="360" text-anchor="middle" fill="#ef4444" font-size="15" font-weight="bold" font-family="sans-serif">リスク最小</text>
+
+  <!-- Center point of triangle -->
+  <!-- Centroid: x=(400+100+700)/3=400, y=(55+340+340)/3=245 -->
+
+  <!-- Strategy dots -->
+  <!-- Recreate: speed priority (top) -->
+  <circle cx="400" cy="120" r="28" fill="#1a3a2f" stroke="#34d399" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="400" y="114" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">Recreate</text>
+  <text x="400" y="130" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">最速・高リスク</text>
+
+  <!-- Rolling: balanced (center) -->
+  <circle cx="400" cy="230" r="32" fill="#1e1b4b" stroke="#a855f7" stroke-width="2.5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="400" y="224" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">ローリング</text>
+  <text x="400" y="242" text-anchor="middle" fill="#a855f7" font-size="10" font-family="sans-serif">バランス型</text>
+
+  <!-- Immutable: cost+risk balanced (bottom left-center) -->
+  <circle cx="240" cy="295" r="28" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="240" y="289" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">Immutable</text>
+  <text x="240" y="306" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="sans-serif">コスト+安全</text>
+
+  <!-- Blue/Green: risk priority (bottom right) -->
+  <circle cx="570" cy="295" r="28" fill="#2d1a4b" stroke="#ef4444" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="570" y="289" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold" font-family="sans-serif">Blue/Green</text>
+  <text x="570" y="306" text-anchor="middle" fill="#ef4444" font-size="10" font-family="sans-serif">最低リスク</text>
+
+  <!-- Canary: risk+speed balanced -->
+  <circle cx="490" cy="175" r="25" fill="#1a3a2f" stroke="#34d399" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="490" y="169" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="bold" font-family="sans-serif">カナリア</text>
+  <text x="490" y="183" text-anchor="middle" fill="#34d399" font-size="9" font-family="sans-serif">段階的</text>
+
+  <!-- Guidance text -->
+  <text x="400" y="375" text-anchor="middle" fill="#94a3b8" font-size="11" font-family="sans-serif">重心を三角形のどの頂点に置くかで最適な戦略が変わる — システム要件と優先度を明確にして選択する</text>
+</svg>

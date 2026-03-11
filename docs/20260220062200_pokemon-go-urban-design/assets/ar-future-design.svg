@@ -1,0 +1,45 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">AR時代の公共空間デザイン原則</text>
+  <!-- Principle 1: Accessibility -->
+  <rect x="20" y="50" width="235" height="130" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="137" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">アクセシビリティ</text>
+  <text x="137" y="100" text-anchor="middle" font-size="11" fill="#ffffff">デジタルデバイドへの配慮</text>
+  <text x="137" y="118" text-anchor="middle" font-size="11" fill="#ffffff">スマホを持てない人は？</text>
+  <text x="137" y="136" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.8">公共端末・シニア向けUI</text>
+  <text x="137" y="153" text-anchor="middle" font-size="10" fill="#4caf50">デジタル ≠ 排除</text>
+  <text x="137" y="168" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.5">物理空間も同時に整備</text>
+  <!-- Principle 2: Privacy -->
+  <rect x="285" y="50" width="235" height="130" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="402" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">プライバシー保護</text>
+  <text x="402" y="100" text-anchor="middle" font-size="11" fill="#ffffff">位置情報の収集と利用</text>
+  <text x="402" y="118" text-anchor="middle" font-size="11" fill="#ffffff">ゲーム企業が都市データを取得</text>
+  <text x="402" y="136" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.8">データの主権は誰に？</text>
+  <text x="402" y="153" text-anchor="middle" font-size="10" fill="#f9a825">プライバシーbyデザイン</text>
+  <text x="402" y="168" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.5">行動データの民主的管理</text>
+  <!-- Principle 3: Governance -->
+  <rect x="550" y="50" width="230" height="130" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="665" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">公民連携ガバナンス</text>
+  <text x="665" y="100" text-anchor="middle" font-size="11" fill="#ffffff">PokeStop の配置は誰が決める?</text>
+  <text x="665" y="118" text-anchor="middle" font-size="11" fill="#ffffff">民間企業 vs 公共の利益</text>
+  <text x="665" y="136" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.8">行政の関与が必要</text>
+  <text x="665" y="153" text-anchor="middle" font-size="10" fill="#e91e63">デジタル都市計画の法整備</text>
+  <text x="665" y="168" text-anchor="middle" font-size="9" fill="#ffffff" opacity="0.5">シンガポール・オランダが先進</text>
+  <!-- Center: Vision -->
+  <rect x="20" y="200" width="760" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="228" text-anchor="middle" font-size="14" font-weight="bold" fill="#f9a825">「15分都市」 × AR の融合</text>
+  <text x="400" y="252" text-anchor="middle" font-size="12" fill="#ffffff">パリ・バルセロナが推進する「徒歩15分で生活が完結する都市」に</text>
+  <text x="400" y="270" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.8">デジタル体験が重なると、地域への愛着と新たな発見が生まれる</text>
+  <!-- Future scenarios -->
+  <rect x="20" y="295" width="760" height="90" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="400" y="318" text-anchor="middle" font-size="13" fill="#4caf50">近未来の都市体験シナリオ</text>
+  <rect x="40" y="330" width="200" height="45" rx="4" fill="#1a1a2e"/>
+  <text x="140" y="350" text-anchor="middle" font-size="11" fill="#ffffff">ARガイドで史跡探索</text>
+  <text x="140" y="366" text-anchor="middle" font-size="10" fill="#f9a825">観光 × 学習 × 歩行</text>
+  <rect x="260" y="330" width="200" height="45" rx="4" fill="#1a1a2e"/>
+  <text x="360" y="350" text-anchor="middle" font-size="11" fill="#ffffff">健康ポイントと街歩き連携</text>
+  <text x="360" y="366" text-anchor="middle" font-size="10" fill="#f9a825">医療費削減 × 活性化</text>
+  <rect x="480" y="330" width="280" height="45" rx="4" fill="#1a1a2e"/>
+  <text x="620" y="350" text-anchor="middle" font-size="11" fill="#ffffff">デジタルアート × 公共空間</text>
+  <text x="620" y="366" text-anchor="middle" font-size="10" fill="#f9a825">場所の固有性 × グローバル体験</text>
+</svg>

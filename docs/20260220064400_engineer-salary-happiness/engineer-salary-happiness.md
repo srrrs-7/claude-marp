@@ -7,6 +7,71 @@ paginate: true
 header: "年収と幸福度"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -40,6 +105,7 @@ style: |
 
 # イースタリンのパラドックス
 
+![w:800 center](assets/svg-easterlin.svg)
 - - **Richard Easterlin (1974)**: 国が豊かになっても国民の幸福度は上がらない
 - - 絶対的な所得より **相対的な所得** が幸福感を決める
 - - 「隣の芝生は青い」= 社会的比較の罠
@@ -60,11 +126,14 @@ style: |
 <!-- _class: lead -->
 # 2. エンジニア年収の現実
 
+![w:800 center](assets/svg-salary-dist.svg)
+
 
 ---
 
 # 日本のエンジニア年収分布
 
+![w:800 center](assets/svg-sal-dist2.svg)
 - - **経済産業省 IT人材白書 (2024)** より
 - - 新卒〜3年目: 300-450万円
 - - 中堅 (5-10年): 500-700万円
@@ -91,11 +160,14 @@ style: |
 <!-- _class: lead -->
 # 3. 幸福度の飽和点
 
+![w:800 center](assets/svg-diminishing.svg)
+
 
 ---
 
 # お金で買える幸せの限界
 
+![w:800 center](assets/svg-hedonic.svg)
 - - **Kahneman & Deaton (2010)**: 年収$75K(約750万円)で日常の幸福感は飽和
 - - **Killingsworth (2021)**: $100K以上でも幸福度は上がり続ける（反論）
 - - **Kahneman & Killingsworth (2023)**: 共同論文で和解
@@ -108,6 +180,7 @@ style: |
 
 # ヘドニック・アダプテーション
 
+![w:800 center](assets/svg-sal-hedonic2.svg)
 - - **年収が上がると、基準も上がる** (快楽の踏み車)
 - - 年収500万→700万: 最初は嬉しいが3ヶ月で「普通」に
 - - ライフスタイル・インフレーション: 収入増 → 支出増 → 余裕なし
@@ -126,6 +199,7 @@ style: |
 
 # エンジニアの幸福度を決めるもの
 
+![w:800 center](assets/svg-sdt.svg)
 - - **Stack Overflow Developer Survey (2024)** より
 - - 1位: 技術的に面白い仕事 (72%)
 - - 2位: ワークライフバランス (68%)
@@ -151,6 +225,8 @@ style: |
 
 <!-- _class: lead -->
 # 5. 最適な選択とは
+
+![w:800 center](assets/svg-optimal.svg)
 
 
 ---

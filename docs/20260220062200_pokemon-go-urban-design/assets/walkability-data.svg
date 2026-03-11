@@ -1,0 +1,49 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">歩行データが示す変化 — Pokemon GO前後の比較</text>
+  <!-- Chart: Weekly steps before/after -->
+  <text x="140" y="62" text-anchor="middle" font-size="12" fill="#ffffff">週間歩数（平均）</text>
+  <line x1="80" y1="290" x2="750" y2="290" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+  <line x1="80" y1="80" x2="80" y2="290" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+  <!-- Y labels -->
+  <text x="72" y="290" text-anchor="end" font-size="9" fill="#ffffff" opacity="0.6">0</text>
+  <text x="72" y="240" text-anchor="end" font-size="9" fill="#ffffff" opacity="0.6">50k</text>
+  <text x="72" y="190" text-anchor="end" font-size="9" fill="#ffffff" opacity="0.6">100k</text>
+  <text x="72" y="140" text-anchor="end" font-size="9" fill="#ffffff" opacity="0.6">150k</text>
+  <text x="72" y="90" text-anchor="end" font-size="9" fill="#ffffff" opacity="0.6">200k</text>
+  <!-- Grid -->
+  <line x1="80" y1="240" x2="750" y2="240" stroke="#ffffff" stroke-width="1" opacity="0.1"/>
+  <line x1="80" y1="190" x2="750" y2="190" stroke="#ffffff" stroke-width="1" opacity="0.1"/>
+  <line x1="80" y1="140" x2="750" y2="140" stroke="#ffffff" stroke-width="1" opacity="0.1"/>
+  <!-- Before bars (dark) -->
+  <rect x="105" y="215" width="60" height="75" rx="4" fill="#e91e63" opacity="0.5"/>
+  <text x="135" y="205" text-anchor="middle" font-size="9" fill="#e91e63">65k</text>
+  <text x="135" y="308" text-anchor="middle" font-size="9" fill="#ffffff">非プレイヤー</text>
+  <text x="135" y="320" text-anchor="middle" font-size="9" fill="#ffffff">（対照群）</text>
+  <!-- After bars: Players week 1 -->
+  <rect x="220" y="140" width="60" height="150" rx="4" fill="#f9a825" opacity="0.8"/>
+  <text x="250" y="130" text-anchor="middle" font-size="9" fill="#f9a825">131k</text>
+  <text x="250" y="308" text-anchor="middle" font-size="9" fill="#ffffff">プレイヤー</text>
+  <text x="250" y="320" text-anchor="middle" font-size="9" fill="#ffffff">（1週目）</text>
+  <!-- After: Players week 4 -->
+  <rect x="340" y="120" width="60" height="170" rx="4" fill="#f9a825" opacity="0.9"/>
+  <text x="370" y="110" text-anchor="middle" font-size="9" fill="#f9a825">155k</text>
+  <text x="370" y="308" text-anchor="middle" font-size="9" fill="#ffffff">（4週目）</text>
+  <!-- After: inactive players -->
+  <rect x="460" y="200" width="60" height="90" rx="4" fill="#4caf50" opacity="0.6"/>
+  <text x="490" y="190" text-anchor="middle" font-size="9" fill="#4caf50">78k</text>
+  <text x="490" y="308" text-anchor="middle" font-size="9" fill="#ffffff">元プレイヤー</text>
+  <text x="490" y="320" text-anchor="middle" font-size="9" fill="#ffffff">（休止後）</text>
+  <!-- Overweight group -->
+  <rect x="580" y="105" width="60" height="185" rx="4" fill="#4caf50" opacity="0.9"/>
+  <text x="610" y="95" text-anchor="middle" font-size="9" fill="#4caf50">+180%</text>
+  <text x="610" y="308" text-anchor="middle" font-size="9" fill="#ffffff">過体重プレイヤー</text>
+  <text x="610" y="320" text-anchor="middle" font-size="9" fill="#ffffff">（最も改善）</text>
+  <!-- Annotation -->
+  <line x1="80" y1="205" x2="750" y2="205" stroke="#ffffff" stroke-width="1" stroke-dasharray="5,3" opacity="0.4"/>
+  <text x="752" y="209" font-size="9" fill="#ffffff" opacity="0.5">推奨歩数</text>
+  <!-- Research credit -->
+  <rect x="30" y="340" width="740" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="400" y="360" text-anchor="middle" font-size="12" fill="#f9a825">Harvard T.H. Chan School of Public Health 研究（2016年）</text>
+  <text x="400" y="380" text-anchor="middle" font-size="11" fill="#ffffff">Pokemon GOプレイヤー：週に平均1,473歩増加 — 座りがちな層に最も効果的</text>
+</svg>

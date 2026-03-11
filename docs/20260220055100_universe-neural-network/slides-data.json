@@ -31,6 +31,7 @@
 			"title": "構造的類似性の発見",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/structural-similarity.svg)",
 				"- **2020年 Bologna大学の研究** (Vazza & Feletti)",
 				"- 宇宙の大規模構造と脳のニューロンネットワークを定量比較",
 				"- **パワースペクトル分析**で統計的に区別不可能と判明",
@@ -110,6 +111,7 @@
 			"title": "物理学がAIに与えた概念",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/physics-to-ai.svg)",
 				"- **Boltzmann Machine** (1985): 統計力学のボルツマン分布を学習に応用",
 				"- **Hopfield Network** (2024年ノーベル物理学賞): スピングラスの理論",
 				"- **繰り込み群 → 深層学習**: 粗視化が多層NNの層構造に対応",
@@ -121,6 +123,7 @@
 			"title": "AIが物理学を変革する",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/ai-physics-map.svg)",
 				"- **AlphaFold**: タンパク質の3D構造を予測（50年来の難題を解決）",
 				"- **PINN**: 物理法則を制約に組み込んだニューラルネット",
 				"- **重力波検出**: LIGO信号からのリアルタイム検出をNNが高速化",
@@ -137,6 +140,7 @@
 			"title": "情報は物理の根本か？",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/info-physics-pyramid.svg)",
 				"- **「It from Bit」** (John Wheeler, 1990): 情報が物理実在の基盤",
 				"- **ホログラフィック原理**: 3D空間の情報は2D表面にエンコード",
 				"- **ブラックホール情報パラドックス**: 情報は物理的に保存される",
@@ -179,6 +183,7 @@
 			"title": "もし本当なら何が変わるか",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/implications.svg)",
 				"- **物理学**: 全ての力の統一が「ネットワーク構造」から自然に導出",
 				"- **AI研究**: 物理法則からより効率的なアーキテクチャのヒント",
 				"- **哲学**: 意識・自由意志に対する新しい枠組み",

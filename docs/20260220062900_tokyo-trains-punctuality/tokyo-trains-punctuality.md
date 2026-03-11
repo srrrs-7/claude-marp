@@ -7,6 +7,71 @@ paginate: true
 header: "東京の鉄道定時運行"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -24,6 +89,7 @@ style: |
 
 # アジェンダ
 
+![w:800 center](assets/svg-agenda.svg)
 - 1. 世界が驚く東京の定時運行
 - 2. ATC：自動列車制御の仕組み
 - 3. ATOS：AI運行管理システム
@@ -42,6 +108,7 @@ style: |
 
 # 各国の鉄道定時率比較
 
+![w:800 center](assets/svg-punctuality.svg)
 - **日本（新幹線）：** 定時率 99.3%（遅延の定義：1分以上）
 - **日本（在来線）：** 定時率 約95%（首都圏、1分以上基準）
 - **ドイツ（DB）：** 定時率 65%（6分以上を遅延とカウント）
@@ -72,6 +139,7 @@ style: |
 
 # ATC（Automatic Train Control）
 
+![w:800 center](assets/svg-atc.svg)
 - **軌道回路** ― レールに電流を流し、列車の位置を検知
 - 先行列車との距離に応じて**自動で速度制限**をかける
 - 運転士が速度超過 → システムが自動ブレーキ
@@ -98,6 +166,7 @@ style: |
 
 # ATOS（Autonomous Decentralized Transport Operation control System）
 
+![w:800 center](assets/svg-atos.svg)
 - **JR東日本が開発した世界最先端の運行管理システム**
 - 首都圏24線区、約1,600駅をリアルタイムで一元管理
 - 列車遅延発生時：**自動でダイヤ復旧案を生成**
@@ -110,6 +179,7 @@ style: |
 
 # 遅延回復の驚異的な速さ
 
+![w:800 center](assets/svg-recovery.svg)
 - **山手線で3分の遅延が発生した場合：**
 - ATOSが全列車の速度・停車時間を自動調整
 - 各駅の停車時間を2-3秒ずつ短縮
@@ -129,6 +199,7 @@ style: |
 
 # 乗降時間を最小化する設計
 
+![w:800 center](assets/svg-boarding.svg)
 - **整列乗車** ― ホームにマーキングされた位置に並ぶ
 - 降車客が先 → 乗車客が後：暗黙のプロトコル
 - ホームドア ― 安全確保 + 列車停車位置の精度向上
@@ -147,6 +218,7 @@ style: |
 
 # 秒単位の停車技術
 
+![w:800 center](assets/svg-driver.svg)
 - 運転士の停車位置精度：**±10cm以内**（ホームドア対応）
 - ブレーキ操作は手動 ― ATOでも最終調整は人間
 - 「指差確認」― 全ての操作を声に出して指差す安全習慣
@@ -165,6 +237,7 @@ style: |
 
 # 東京の鉄道から学ぶシステム設計原則
 
+![w:800 center](assets/svg-principles.svg)
 - **1. 多層防御** ― ATC + ATOS + 人間 の3層で信頼性確保
 - **2. 自動回復** ― 遅延を自動で吸収するレジリエンス設計
 - **3. プロトコルの標準化** ― 整列乗車という「暗黙のAPI」
@@ -177,6 +250,7 @@ style: |
 <!-- _class: lead -->
 # まとめ
 
+![w:800 center](assets/svg-summary.svg)
 - 東京の定時運行は**技術・設計・文化の三位一体**で実現している
 - ATC（安全制御）+ ATOS（最適化）+ 人間（微調整）の多層構造
 - 「遅延は恥」という文化的期待値がシステム全体の品質を引き上げる

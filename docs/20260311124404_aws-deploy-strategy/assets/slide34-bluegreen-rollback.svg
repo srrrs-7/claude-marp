@@ -1,0 +1,68 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="400" fill="transparent"/>
+
+  <!-- Start: Deploy -->
+  <rect x="310" y="15" width="180" height="44" rx="8" fill="#4c1d95" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="400" y="42" text-anchor="middle" font-size="14" fill="#ffffff" font-family="sans-serif">Green 環境へデプロイ完了</text>
+
+  <!-- Arrow down -->
+  <line x1="400" y1="59" x2="400" y2="92" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="400,92 394,80 406,80" fill="#a855f7"/>
+
+  <!-- Monitor decision diamond -->
+  <polygon points="400,92 480,136 400,180 320,136" fill="#1e1b4b" stroke="#a855f7" stroke-width="2"/>
+  <text x="400" y="130" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">監視 &amp;</text>
+  <text x="400" y="147" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">判定</text>
+
+  <!-- Left: Problem detected -->
+  <line x1="320" y1="136" x2="160" y2="136" stroke="#f97316" stroke-width="2"/>
+  <polygon points="160,136 172,130 172,142" fill="#f97316"/>
+  <text x="240" y="125" text-anchor="middle" font-size="11" fill="#f97316" font-family="sans-serif">問題検出</text>
+
+  <!-- Rollback box -->
+  <rect x="40" y="108" width="120" height="56" rx="8" fill="#7c2d12" stroke="#f97316" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="100" y="132" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">ロールバック</text>
+  <text x="100" y="152" text-anchor="middle" font-size="11" fill="#f97316" font-family="sans-serif">即時トリガー</text>
+
+  <!-- Rollback steps -->
+  <line x1="100" y1="164" x2="100" y2="200" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="100,200 94,188 106,188" fill="#f97316"/>
+  <rect x="30" y="200" width="240" height="38" rx="6" fill="#1e1b4b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="150" y="224" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">ALB → Blue Target Group に切り替え</text>
+
+  <line x1="150" y1="238" x2="150" y2="268" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="150,268 144,256 156,256" fill="#f97316"/>
+  <rect x="30" y="268" width="240" height="38" rx="6" fill="#1e1b4b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="150" y="292" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">Route 53 重み → Blue: 100%</text>
+
+  <line x1="150" y1="306" x2="150" y2="336" stroke="#f97316" stroke-width="1.5"/>
+  <polygon points="150,336 144,324 156,324" fill="#f97316"/>
+  <rect x="30" y="336" width="240" height="38" rx="6" fill="#7c2d12" stroke="#f97316" stroke-width="1.5"/>
+  <text x="150" y="360" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">完了 (30秒以内)</text>
+
+  <!-- Right: Success -->
+  <line x1="480" y1="136" x2="640" y2="136" stroke="#34d399" stroke-width="2"/>
+  <polygon points="640,136 628,130 628,142" fill="#34d399"/>
+  <text x="560" y="125" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">正常稼働確認</text>
+
+  <!-- Success box -->
+  <rect x="640" y="108" width="120" height="56" rx="8" fill="#052e16" stroke="#34d399" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="700" y="132" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">デプロイ</text>
+  <text x="700" y="152" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">成功</text>
+
+  <!-- Post-success steps -->
+  <line x1="700" y1="164" x2="700" y2="200" stroke="#34d399" stroke-width="1.5"/>
+  <polygon points="700,200 694,188 706,188" fill="#34d399"/>
+  <rect x="540" y="200" width="320" height="38" rx="6" fill="#052e16" stroke="#34d399" stroke-width="1.5"/>
+  <text x="700" y="224" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">Blue 環境: 一定期間保持 (60分〜24時間)</text>
+
+  <line x1="700" y1="238" x2="700" y2="268" stroke="#34d399" stroke-width="1.5"/>
+  <polygon points="700,268 694,256 706,256" fill="#34d399"/>
+  <rect x="540" y="268" width="320" height="38" rx="6" fill="#052e16" stroke="#34d399" stroke-width="1.5"/>
+  <text x="700" y="292" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">問題なければ Blue 環境を削除</text>
+
+  <line x1="700" y1="306" x2="700" y2="336" stroke="#34d399" stroke-width="1.5"/>
+  <polygon points="700,336 694,324 706,324" fill="#34d399"/>
+  <rect x="540" y="336" width="320" height="38" rx="6" fill="#166534" stroke="#34d399" stroke-width="1.5"/>
+  <text x="700" y="360" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">Green が新 Blue として次回の準備へ</text>
+</svg>

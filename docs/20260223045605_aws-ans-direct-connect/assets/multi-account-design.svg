@@ -1,0 +1,57 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">マルチアカウント DX 設計 (ハブ&スポーク)</text>
+  <!-- AWS Organizations wrapper -->
+  <rect x="15" y="40" width="770" height="340" rx="10" fill="#0d1b2e" stroke="#f9a825" stroke-width="1" stroke-dasharray="6,3"/>
+  <text x="400" y="60" text-anchor="middle" fill="#f9a825" font-size="11">AWS Organizations</text>
+  <!-- On-prem -->
+  <rect x="30" y="170" width="110" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="85" y="196" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">オンプレ</text>
+  <text x="85" y="213" text-anchor="middle" fill="#aaaaaa" font-size="9">Router / WAN</text>
+  <!-- Network Account -->
+  <rect x="180" y="80" width="180" height="240" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="270" y="103" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Network Account</text>
+  <rect x="198" y="115" width="144" height="30" rx="4" fill="#0d3b66"/>
+  <text x="270" y="135" text-anchor="middle" fill="#ffffff" font-size="10">DX Dedicated Connection</text>
+  <rect x="198" y="155" width="144" height="30" rx="4" fill="#0d3b66"/>
+  <text x="270" y="175" text-anchor="middle" fill="#ffffff" font-size="10">DXGW (グローバル)</text>
+  <rect x="198" y="195" width="144" height="30" rx="4" fill="#0d3b66" stroke="#f9a825" stroke-width="1"/>
+  <text x="270" y="215" text-anchor="middle" fill="#f9a825" font-size="10" font-weight="bold">TGW (RAM共有)</text>
+  <rect x="198" y="235" width="144" height="30" rx="4" fill="#0d3b66"/>
+  <text x="270" y="255" text-anchor="middle" fill="#ffffff" font-size="10">Network Firewall VPC</text>
+  <rect x="198" y="275" width="144" height="30" rx="4" fill="#0d3b66"/>
+  <text x="270" y="295" text-anchor="middle" fill="#ffffff" font-size="10">Egress VPC</text>
+  <!-- DX line from On-prem to Network Account -->
+  <line x1="140" y1="200" x2="180" y2="200" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="178,195 188,200 178,205" fill="#f9a825"/>
+  <!-- TGW to App Accounts -->
+  <line x1="360" y1="215" x2="420" y2="140" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="360" y1="215" x2="420" y2="215" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="360" y1="215" x2="420" y2="290" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- App Account A -->
+  <rect x="420" y="100" width="160" height="80" rx="6" fill="#16213e" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="500" y="122" text-anchor="middle" fill="#64b5f6" font-size="11" font-weight="bold">App Account A</text>
+  <text x="500" y="140" text-anchor="middle" fill="#aaaaaa" font-size="10">VPC (Dev)</text>
+  <text x="500" y="157" text-anchor="middle" fill="#aaaaaa" font-size="9">TGWアタッチメント(共有)</text>
+  <polygon points="418,140 408,135 408,145" fill="#64b5f6"/>
+  <!-- App Account B -->
+  <rect x="420" y="175" width="160" height="80" rx="6" fill="#16213e" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="500" y="197" text-anchor="middle" fill="#64b5f6" font-size="11" font-weight="bold">App Account B</text>
+  <text x="500" y="215" text-anchor="middle" fill="#aaaaaa" font-size="10">VPC (Prod)</text>
+  <text x="500" y="232" text-anchor="middle" fill="#aaaaaa" font-size="9">TGWアタッチメント(共有)</text>
+  <polygon points="418,215 408,210 408,220" fill="#64b5f6"/>
+  <!-- App Account C -->
+  <rect x="420" y="250" width="160" height="80" rx="6" fill="#16213e" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="500" y="272" text-anchor="middle" fill="#64b5f6" font-size="11" font-weight="bold">App Account C</text>
+  <text x="500" y="290" text-anchor="middle" fill="#aaaaaa" font-size="10">VPC (Staging)</text>
+  <text x="500" y="307" text-anchor="middle" fill="#aaaaaa" font-size="9">TGWアタッチメント(共有)</text>
+  <polygon points="418,290 408,285 408,295" fill="#64b5f6"/>
+  <!-- RAM label -->
+  <text x="400" y="370" text-anchor="middle" fill="#aaaaaa" font-size="10">TGW / DXGW は Resource Access Manager (RAM) で各アカウントに共有</text>
+  <!-- SCP note -->
+  <rect x="610" y="100" width="160" height="80" rx="6" fill="#16213e" stroke="#ff9800" stroke-width="1.5"/>
+  <text x="690" y="122" text-anchor="middle" fill="#ff9800" font-size="11" font-weight="bold">SCP ガードレール</text>
+  <text x="690" y="142" text-anchor="middle" fill="#aaaaaa" font-size="9">DX 削除禁止</text>
+  <text x="690" y="157" text-anchor="middle" fill="#aaaaaa" font-size="9">IGW 作成禁止</text>
+  <text x="690" y="172" text-anchor="middle" fill="#aaaaaa" font-size="9">TGW 切断禁止</text>
+</svg>

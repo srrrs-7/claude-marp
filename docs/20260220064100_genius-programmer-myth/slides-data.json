@@ -20,12 +20,13 @@
 		{
 			"title": "1. 10xエンジニアの起源",
 			"layout": "section",
-			"content": []
+			"content": ["![w:900 center](assets/myth-context.svg)"]
 		},
 		{
 			"title": "1968年の伝説的研究",
 			"layout": "default",
 			"content": [
+				"![w:900 center](assets/myth-origin.svg)",
 				"- **Sackman, Erikson & Grant (1968)**: プログラマー間の生産性差を測定",
 				"- 結果: 最も速い人と遅い人で **28倍** の差を報告",
 				"- この結果が「10xエンジニア」の概念の起源",
@@ -48,6 +49,7 @@
 			"title": "なぜ28倍は信頼できないか",
 			"layout": "default",
 			"content": [
+				"![w:900 center](assets/invisible-productivity.svg)",
 				"- **サンプルサイズ**: たった12人のプログラマー",
 				"- **測定方法**: デバッグ時間とコーディング時間を別々に測定",
 				"- **タスクの違い**: 経験のあるタスクと初めてのタスクを混在",
@@ -78,6 +80,7 @@
 			"title": "見えない生産性",
 			"layout": "default",
 			"content": [
+				"![w:900 center](assets/productivity-research.svg)",
 				"- **コードレビュー**: 他人のコード品質を向上させる",
 				"- **メンタリング**: チーム全体の能力を底上げする",
 				"- **設計判断**: 良いアーキテクチャで将来の問題を防ぐ",
@@ -126,6 +129,7 @@
 			"title": "10x神話がもたらす弊害",
 			"layout": "default",
 			"content": [
+				"![w:900 center](assets/research-problems.svg)",
 				"- **ロックスターカルチャー**: 一部の「天才」に過度に依存する組織",
 				"- **バス係数1**: その人が辞めたらプロジェクトが止まる",
 				"- **有害な行動の容認**: 生産性が高ければ態度が悪くても許される",
@@ -138,6 +142,7 @@
 			"title": "Googleの「No Brilliant Jerks」方針",
 			"layout": "default",
 			"content": [
+				"![w:900 center](assets/brilliant-jerks.svg)",
 				"- Netflix, Google等: 「優秀だが有害な人を雇わない」方針",
 				"- 研究: チームの**最も弱い** メンバーではなく**最も有害な**メンバーがパフォーマンスを決める",
 				"- 1人の「ブリリアント・ジャーク」の悪影響 > 1人の10xの貢献",
@@ -154,6 +159,7 @@
 			"title": "エビデンスに基づく生産性向上",
 			"layout": "default",
 			"content": [
+				"![w:900 center](assets/evidence-based-productivity.svg)",
 				"- **Developer Experience (DX)**: 開発者の日常体験を改善する",
 				"- **CI/CD**: 自動化でフィードバックループを短縮する",
 				"- **テスト文化**: 恐怖なくコードを変更できる環境",

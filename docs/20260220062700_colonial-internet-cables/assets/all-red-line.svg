@@ -1,0 +1,55 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">All Red Line（1870年代）— 帝国の神経網</text>
+  <!-- World map simplified outline (continents as rectangles) -->
+  <!-- Ocean background -->
+  <rect x="30" y="45" width="740" height="260" rx="8" fill="#0d1b2a"/>
+  <!-- Continents simplified -->
+  <!-- Europe/UK -->
+  <rect x="320" y="65" width="70" height="50" rx="4" fill="#2a4a3e" opacity="0.8"/>
+  <text x="355" y="96" text-anchor="middle" font-size="9" fill="#ffffff">UK</text>
+  <!-- North America -->
+  <rect x="90" y="80" width="150" height="110" rx="4" fill="#2a4a3e" opacity="0.8"/>
+  <text x="165" y="142" text-anchor="middle" font-size="9" fill="#ffffff">北米</text>
+  <!-- Africa -->
+  <rect x="330" y="135" width="100" height="130" rx="4" fill="#2a4a3e" opacity="0.8"/>
+  <text x="380" y="207" text-anchor="middle" font-size="9" fill="#ffffff">アフリカ</text>
+  <!-- India -->
+  <rect x="490" y="110" width="80" height="80" rx="4" fill="#2a4a3e" opacity="0.8"/>
+  <text x="530" y="155" text-anchor="middle" font-size="9" fill="#ffffff">インド</text>
+  <!-- Australia -->
+  <rect x="580" y="195" width="120" height="80" rx="4" fill="#2a4a3e" opacity="0.8"/>
+  <text x="640" y="241" text-anchor="middle" font-size="9" fill="#ffffff">豪州</text>
+  <!-- South America -->
+  <rect x="150" y="180" width="100" height="120" rx="4" fill="#2a4a3e" opacity="0.8"/>
+  <text x="200" y="245" text-anchor="middle" font-size="9" fill="#ffffff">南米</text>
+  <!-- All Red Line cables (red lines connecting British territories) -->
+  <!-- UK to Canada -->
+  <line x1="355" y1="90" x2="240" y2="110" stroke="#e91e63" stroke-width="3"/>
+  <!-- Canada to Newfoundland to UK already done -->
+  <!-- UK to South Africa via West Africa -->
+  <line x1="355" y1="115" x2="355" y2="135" stroke="#e91e63" stroke-width="3"/>
+  <line x1="355" y1="265" x2="355" y2="195" stroke="#e91e63" stroke-width="3" stroke-dasharray="5,3"/>
+  <!-- South Africa to India via East Africa coast -->
+  <line x1="430" y1="240" x2="490" y2="180" stroke="#e91e63" stroke-width="3"/>
+  <!-- UK to India via Mediterranean -->
+  <line x1="390" y1="90" x2="490" y2="130" stroke="#e91e63" stroke-width="3"/>
+  <!-- India to Australia -->
+  <line x1="570" y1="155" x2="590" y2="210" stroke="#e91e63" stroke-width="3"/>
+  <!-- UK indicator dot -->
+  <circle cx="355" cy="90" r="8" fill="#e91e63"/>
+  <text x="380" y="75" font-size="10" fill="#e91e63">ロンドン</text>
+  <!-- Node dots -->
+  <circle cx="240" cy="110" r="5" fill="#f9a825"/>
+  <circle cx="430" cy="265" r="5" fill="#f9a825"/>
+  <circle cx="530" cy="155" r="5" fill="#f9a825"/>
+  <circle cx="640" cy="210" r="5" fill="#f9a825"/>
+  <!-- Label: All Red Line -->
+  <text x="200" y="75" font-size="11" fill="#e91e63">英国領（赤色領域）</text>
+  <text x="200" y="90" font-size="10" fill="#ffffff" opacity="0.7">を繋ぐ電信ケーブル</text>
+  <!-- Bottom explanation -->
+  <rect x="30" y="315" width="740" height="70" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="337" text-anchor="middle" font-size="13" fill="#f9a825">「全て赤」= 全て英国領土を通過するルート</text>
+  <text x="400" y="358" text-anchor="middle" font-size="11" fill="#ffffff">1902年完成時、英国は世界の電信の65%を制御</text>
+  <text x="400" y="377" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">ニュース・命令・情報の流れを独占 → 情報覇権 = 政治・経済覇権</text>
+</svg>

@@ -90,6 +90,7 @@
 			"title": "統計的パターンマッチングの限界",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-llm-stat-pattern.svg)",
 				"- LLMは **パターンの補完** をしているに過ぎない",
 				"- 「2024年のノーベル物理学賞は...」→ もっともらしい名前を生成",
 				"- 訓練データに存在しない組み合わせ → **内挿** で合成",
@@ -137,6 +138,7 @@
 			"title": "地図と領土を橋渡しする設計",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-llm-bridging.svg)",
 				"- **地図は道具であり、真実ではない** — この前提で設計する",
 				"- LLM出力には常に **検証のステップ** を組み込む",
 				"- 重要な判断は **人間が領土を直接確認** する設計",
@@ -149,6 +151,7 @@
 			"title": "まとめ：地図と共に歩く知恵",
 			"layout": "center",
 			"content": [
+				"![w:800 center](assets/svg-llm-summary.svg)",
 				"LLMは史上最高の「地図」である",
 				"しかし、地図は領土ではない",
 				"",

@@ -102,6 +102,8 @@ style: |
 <!-- _class: lead -->
 # 海底ケーブルの基本事実
 
+![w:900 center](assets/cable-basics.svg)
+
 
 ---
 
@@ -125,6 +127,7 @@ style: |
 
 # All Red Line（1870年代）
 
+![w:900 center](assets/all-red-line.svg)
 - **大英帝国が「全赤線」と呼んだ世界電信ネットワーク**
 - ロンドンからカイロ、ボンベイ、シンガポール、シドニーへ
 - 全てのケーブルが**イギリス領土のみ**を中継する設計
@@ -137,6 +140,7 @@ style: |
 
 # 電信がなぜ植民地支配に不可欠だったか
 
+![w:900 center](assets/telegraph-colonialism.svg)
 - **ロンドンからインドへの通信時間：**
 - 手紙：数ヶ月 → 電信：**数時間**
 - 植民地の反乱を即座に察知し、軍隊を派遣できる
@@ -149,6 +153,8 @@ style: |
 
 <!-- _class: lead -->
 # 植民地ルートとの一致
+
+![w:900 center](assets/colonial-route-match.svg)
 
 
 ---
@@ -226,6 +232,7 @@ style: |
 
 # 中国の対抗戦略
 
+![w:900 center](assets/china-strategy.svg)
 - **PEACE Cable（2022年）** ― パキスタン-東アフリカ-フランス
 - 一帯一路の「デジタルシルクロード」の一環
 - HMN Technologies（華為海洋）がケーブル敷設を担当
@@ -238,6 +245,8 @@ style: |
 
 <!-- _class: lead -->
 # 地理的権力の未来
+
+![w:900 center](assets/future-of-internet.svg)
 
 
 ---

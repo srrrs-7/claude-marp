@@ -7,6 +7,71 @@ paginate: true
 header: "Map vs Territory × LLM Hallucination"
 footer: "© 2026 Epistemology of AI"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.05em;
   }
@@ -49,6 +114,7 @@ style: |
 
 # コジブスキーの命題（1933）
 
+![w:800 center](assets/svg-korzybski.svg)
 - - **Alfred Korzybski**: 「地図は領土ではない」（一般意味論）
 - - 地図（モデル）は領土（現実）の **不完全な表現** に過ぎない
 - - 全ての地図には **歪み・省略・一般化** がある
@@ -79,6 +145,7 @@ style: |
 
 # LLMは世界の「統計的地図」
 
+![w:800 center](assets/svg-llm-map.svg)
 - - LLMの訓練データ = 領土の **スナップショット**（固定時点）
 - - 次トークン予測 = 地図上の **最もありそうな経路** を選択
 - - パラメータ = 地図の **解像度**（多いほど詳細だが完全ではない）
@@ -99,6 +166,7 @@ style: |
 
 # ハルシネーションの4類型
 
+![w:800 center](assets/svg-halluc-types.svg)
 - - **Intrinsic Hallucination**: 入力と矛盾する出力（地図の歪み）
 - - **Extrinsic Hallucination**: 検証不能な情報の追加（地図にない道）
 - - **Factual Hallucination**: 事実と異なる情報（架空の論文引用）
@@ -119,6 +187,7 @@ style: |
 
 # 統計的パターンマッチングの限界
 
+![w:800 center](assets/svg-llm-stat-pattern.svg)
 - - LLMは **パターンの補完** をしているに過ぎない
 - - 「2024年のノーベル物理学賞は...」→ もっともらしい名前を生成
 - - 訓練データに存在しない組み合わせ → **内挿** で合成
@@ -137,6 +206,8 @@ style: |
 ---
 
 # ハルシネーション発生のコード例（コード例）
+
+![w:800 center](assets/svg-verification.svg)
 
 ```typescript
 // User: "bun.serve()のwebSocketオプションにあるcompressフィールドの使い方は？"
@@ -164,6 +235,7 @@ Bun.serve({
 
 # LLM出力の検証戦略
 
+![w:800 center](assets/svg-hitl.svg)
 - - 1. **Ground Truth 照合**: 公式ドキュメント・ソースコードとの突合せ
 - - 2. **RAG（検索拡張生成）**: 領土の最新情報を地図に注入
 - - 3. **Chain of Thought**: 推論過程を可視化して歪みを検出
@@ -184,6 +256,7 @@ Bun.serve({
 
 # 地図と領土を橋渡しする設計
 
+![w:800 center](assets/svg-llm-bridging.svg)
 - - **地図は道具であり、真実ではない** — この前提で設計する
 - - LLM出力には常に **検証のステップ** を組み込む
 - - 重要な判断は **人間が領土を直接確認** する設計
@@ -197,6 +270,7 @@ Bun.serve({
 <!-- _class: lead -->
 # まとめ：地図と共に歩く知恵
 
+![w:800 center](assets/svg-llm-summary.svg)
 - LLMは史上最高の「地図」である
 - しかし、地図は領土ではない
 - 

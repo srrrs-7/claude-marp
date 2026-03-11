@@ -62,6 +62,7 @@
 			"title": "Activity ≠ Progress",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-nc-activity-progress.svg)",
 				"- **GitHub調査 (2024)**: 開発者の自己評価「生産的な日」の特徴",
 				"- 1位: 集中してコードを書けた日 (72%)",
 				"- 2位: 難しいバグを解決した日 (68%)",
@@ -110,6 +111,7 @@
 			"title": "コードを書かなくなる問題",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-nc-no-code-day.svg)",
 				"- シニアになるほどコードを書く時間が減る",
 				"- 会議、レビュー、設計、メンタリングに時間を使う",
 				"- **「最近コード書いてないな…」** という不安",
@@ -122,6 +124,7 @@
 			"title": "Staff+ エンジニアの一日",
 			"layout": "default",
 			"content": [
+				"![w:800 center](assets/svg-nc-staff-plus-day.svg)",
 				"- **Gergely Orosz (2023)**: Staff Engineerの典型的な時間配分",
 				"- コーディング: 20-30%",
 				"- 設計・アーキテクチャ議論: 25-35%",

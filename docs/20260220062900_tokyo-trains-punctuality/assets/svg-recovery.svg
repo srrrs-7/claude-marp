@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="30" fill="#ffffff" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">山手線での3分遅延 — 自己修復の流れ</text>
+  <!-- time axis -->
+  <line x1="60" y1="200" x2="740" y2="200" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="400" y="350" fill="#aaaaaa" font-size="12" font-family="sans-serif" text-anchor="middle">→ 時間経過（周回数）</text>
+  <!-- delay event -->
+  <line x1="120" y1="200" x2="120" y2="120" stroke="#e91e63" stroke-width="2"/>
+  <circle cx="120" cy="200" r="8" fill="#e91e63"/>
+  <rect x="60" y="65" width="130" height="50" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="125" y="88" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">遅延発生</text>
+  <text x="125" y="106" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">+3分</text>
+  <!-- recovery wave -->
+  <path d="M120,200 L200,200 L210,160 L270,160 L300,200 L380,200 L390,178 L440,178 L460,200 L540,200 L550,192 L600,192 L620,200 L720,200" fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <!-- improvement markers -->
+  <line x1="300" y1="200" x2="300" y2="230" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="300" y="248" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle">1周目</text>
+  <text x="300" y="264" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">-1.5分</text>
+  <line x1="460" y1="200" x2="460" y2="230" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="460" y="248" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle">2周目</text>
+  <text x="460" y="264" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">-1分</text>
+  <line x1="620" y1="200" x2="620" y2="230" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/>
+  <text x="620" y="248" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle">3周目</text>
+  <text x="620" y="264" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">ほぼ解消</text>
+  <!-- how it works box -->
+  <rect x="200" y="60" width="500" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="450" y="85" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">ATOSの回復メカニズム</text>
+  <text x="450" y="107" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">各駅の停車時間を2〜3秒ずつ短縮 → 1周で累積短縮</text>
+  <text x="450" y="125" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">分散システムの自動スケーリング + リバランシングと同じ概念</text>
+</svg>

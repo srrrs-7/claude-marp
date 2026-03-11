@@ -1,0 +1,73 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="400" fill="transparent"/>
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">ECS Fargate コンテナデプロイフロー</text>
+
+  <!-- Step 1: ECR -->
+  <rect x="30" y="60" width="120" height="60" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="2"/>
+  <text x="90" y="85" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ECR</text>
+  <text x="90" y="105" text-anchor="middle" fill="#a855f7" font-size="10" font-family="sans-serif">Container Registry</text>
+
+  <!-- Arrow -->
+  <line x1="150" y1="90" x2="190" y2="90" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="190,85 200,90 190,95" fill="#60a5fa"/>
+
+  <!-- Step 2: Task Definition -->
+  <rect x="200" y="60" width="140" height="60" rx="8" fill="#1e1b4b" stroke="#60a5fa" stroke-width="2"/>
+  <text x="270" y="85" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Task Definition</text>
+  <text x="270" y="105" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="sans-serif">New Revision (v2)</text>
+
+  <!-- Arrow -->
+  <line x1="340" y1="90" x2="380" y2="90" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="380,85 390,90 380,95" fill="#60a5fa"/>
+
+  <!-- Step 3: ECS Service Update -->
+  <rect x="390" y="60" width="140" height="60" rx="8" fill="#1e1b4b" stroke="#34d399" stroke-width="2"/>
+  <text x="460" y="85" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ECS Service</text>
+  <text x="460" y="105" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">UpdateService API</text>
+
+  <!-- Arrow -->
+  <line x1="530" y1="90" x2="570" y2="90" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="570,85 580,90 570,95" fill="#60a5fa"/>
+
+  <!-- Step 4: CodeDeploy -->
+  <rect x="580" y="60" width="140" height="60" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="2"/>
+  <text x="650" y="85" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">CodeDeploy</text>
+  <text x="650" y="105" text-anchor="middle" fill="#a855f7" font-size="10" font-family="sans-serif">Blue/Green Controller</text>
+
+  <!-- ALB section -->
+  <rect x="300" y="170" width="200" height="50" rx="8" fill="#1e1b4b" stroke="#f59e0b" stroke-width="2"/>
+  <text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ALB</text>
+  <text x="400" y="210" text-anchor="middle" fill="#f59e0b" font-size="10" font-family="sans-serif">Target Group 切り替え</text>
+
+  <!-- Arrow from CodeDeploy to ALB -->
+  <line x1="650" y1="120" x2="650" y2="195" stroke="#a855f7" stroke-width="2"/>
+  <line x1="650" y1="195" x2="500" y2="195" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="500,190 490,195 500,200" fill="#a855f7"/>
+
+  <!-- Blue tasks group -->
+  <rect x="50" y="250" width="310" height="120" rx="10" fill="#0f172a" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="205" y="273" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="sans-serif">Blue (旧バージョン v1)</text>
+  <rect x="70" y="285" width="110" height="50" rx="6" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="125" y="308" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Task v1</text>
+  <text x="125" y="325" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="sans-serif">RUNNING</text>
+  <rect x="200" y="285" width="110" height="50" rx="6" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="255" y="308" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Task v1</text>
+  <text x="255" y="325" text-anchor="middle" fill="#60a5fa" font-size="10" font-family="sans-serif">RUNNING</text>
+
+  <!-- Green tasks group -->
+  <rect x="440" y="250" width="310" height="120" rx="10" fill="#0f172a" stroke="#34d399" stroke-width="1.5"/>
+  <text x="595" y="273" text-anchor="middle" fill="#34d399" font-size="12" font-family="sans-serif">Green (新バージョン v2)</text>
+  <rect x="460" y="285" width="110" height="50" rx="6" fill="#1a3a2f" stroke="#34d399" stroke-width="1.5"/>
+  <text x="515" y="308" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Task v2</text>
+  <text x="515" y="325" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">RUNNING</text>
+  <rect x="590" y="285" width="110" height="50" rx="6" fill="#1a3a2f" stroke="#34d399" stroke-width="1.5"/>
+  <text x="645" y="308" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Task v2</text>
+  <text x="645" y="325" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">RUNNING</text>
+
+  <!-- ALB arrows to task groups -->
+  <line x1="370" y1="220" x2="250" y2="250" stroke="#60a5fa" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="245,245 240,255 255,252" fill="#60a5fa"/>
+  <line x1="430" y1="220" x2="550" y2="250" stroke="#34d399" stroke-width="2"/>
+  <polygon points="545,245 560,250 550,255" fill="#34d399"/>
+  <text x="500" y="243" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">Traffic shift</text>
+</svg>

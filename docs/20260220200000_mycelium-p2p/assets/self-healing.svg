@@ -1,0 +1,54 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">自己修復：菌糸ネットワーク vs P2P</text>
+  <!-- Before failure: left -->
+  <rect x="30" y="48" width="340" height="130" rx="8" fill="#16213e"/>
+  <text x="200" y="70" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4ec9b0" font-weight="bold">正常時</text>
+  <!-- Nodes connected normally -->
+  <circle cx="80" cy="110" r="10" fill="#4ec9b0"/>
+  <circle cx="180" cy="90" r="10" fill="#4ec9b0"/>
+  <circle cx="260" cy="110" r="10" fill="#4ec9b0"/>
+  <circle cx="340" cy="90" r="10" fill="#4ec9b0"/>
+  <line x1="90" y1="110" x2="170" y2="90" stroke="#4ec9b0" stroke-width="2"/>
+  <line x1="190" y1="90" x2="250" y2="110" stroke="#4ec9b0" stroke-width="2"/>
+  <line x1="270" y1="110" x2="330" y2="90" stroke="#4ec9b0" stroke-width="2"/>
+  <line x1="90" y1="110" x2="250" y2="110" stroke="#4ec9b0" stroke-width="1" opacity="0.4"/>
+  <!-- Redundant path indicator -->
+  <line x1="90" y1="110" x2="330" y2="90" stroke="#4ec9b0" stroke-width="1" opacity="0.3" stroke-dasharray="3"/>
+  <text x="200" y="150" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">冗長経路: 5〜8本（菌糸）/ Factor 3〜5（P2P）</text>
+  <!-- After failure and reroute: right -->
+  <rect x="430" y="48" width="340" height="130" rx="8" fill="#16213e"/>
+  <text x="600" y="70" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#e91e63" font-weight="bold">障害 → 自己修復</text>
+  <!-- Failed node -->
+  <circle cx="580" cy="90" r="10" fill="#300" stroke="#e91e63" stroke-width="2"/>
+  <line x1="574" y1="84" x2="586" y2="96" stroke="#e91e63" stroke-width="2"/>
+  <line x1="586" y1="84" x2="574" y2="96" stroke="#e91e63" stroke-width="2"/>
+  <text x="580" y="76" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#e91e63">障害</text>
+  <!-- Other nodes -->
+  <circle cx="480" cy="110" r="10" fill="#4ec9b0"/>
+  <circle cx="660" cy="90" r="10" fill="#4ec9b0"/>
+  <circle cx="740" cy="110" r="10" fill="#4ec9b0"/>
+  <!-- Old paths (broken) -->
+  <line x1="490" y1="110" x2="570" y2="90" stroke="#e91e63" stroke-width="1" opacity="0.3" stroke-dasharray="4,3"/>
+  <line x1="590" y1="90" x2="650" y2="90" stroke="#e91e63" stroke-width="1" opacity="0.3" stroke-dasharray="4,3"/>
+  <!-- New rerouted path -->
+  <path d="M 490 110 C 540 120 620 120 670 90" fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <polygon points="662,85 674,90 662,95" fill="#f9a825"/>
+  <text x="600" y="130" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#f9a825">迂回経路を自動形成</text>
+  <line x1="670" y1="90" x2="730" y2="110" stroke="#4ec9b0" stroke-width="2"/>
+  <text x="600" y="158" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">Graceful Degradation: 部分障害でも継続動作</text>
+  <!-- Bottom comparison table -->
+  <rect x="30" y="196" width="740" height="150" rx="8" fill="#0d1b2a"/>
+  <text x="400" y="218" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#f9a825" font-weight="bold">修復メカニズムの比較</text>
+  <text x="200" y="244" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#4ec9b0" font-weight="bold">菌糸ネットワーク</text>
+  <text x="600" y="244" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#e91e63" font-weight="bold">P2Pシステム</text>
+  <line x1="30" y1="254" x2="770" y2="254" stroke="#333" stroke-width="1"/>
+  <text x="200" y="272" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">損傷を検知 → 新菌糸が迂回経路形成</text>
+  <text x="600" y="272" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">ノード離脱検知 → DHT/Gossipで経路再構築</text>
+  <text x="200" y="292" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">Mother Tree喪失 = Super Node障害</text>
+  <text x="600" y="292" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">新しいリーダー選出（Raft/Paxos）</text>
+  <text x="200" y="312" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">数百万年の進化で耐障害性を獲得</text>
+  <text x="600" y="312" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">数十年で同じ原理を実装</text>
+  <text x="200" y="332" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">平均5〜8の冗長経路</text>
+  <text x="600" y="332" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">Replication Factor 3〜5</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="28" fill="#ffffff" font-size="16" font-family="sans-serif" text-anchor="middle" font-weight="bold">地図と現実を橋渡しする実践的手法</text>
+  <!-- 4 technique boxes -->
+  <rect x="40" y="55" width="330" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="205" y="82" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">RAG（検索拡張生成）</text>
+  <text x="205" y="107" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">外部DB/ドキュメントをリアルタイム検索</text>
+  <text x="205" y="127" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">LLMの地図 + 現在の現実 → 正確な回答</text>
+  <text x="205" y="147" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">例: 最新株価・法改正・社内マニュアル</text>
+  <rect x="430" y="55" width="330" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="595" y="82" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">ツール呼び出し</text>
+  <text x="595" y="107" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">計算・API・コード実行を委譲</text>
+  <text x="595" y="127" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">統計処理は計算機に任せる</text>
+  <text x="595" y="147" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">例: Python実行、DB クエリ、Web検索</text>
+  <rect x="40" y="195" width="330" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="205" y="222" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">構造化プロンプト</text>
+  <text x="205" y="247" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">事実と推論を明示的に分離</text>
+  <text x="205" y="267" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">「確実な情報 / 不確かな推測」を区別</text>
+  <text x="205" y="287" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">例: Chain-of-Thought + 引用要求</text>
+  <rect x="430" y="195" width="330" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="595" y="222" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">Human-in-the-Loop</text>
+  <text x="595" y="247" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">高リスク判断に人間を介在</text>
+  <text x="595" y="267" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">LLMは候補を提示、人が最終決定</text>
+  <text x="595" y="287" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">例: 医療診断・法的判断・財務決定</text>
+  <text x="400" y="345" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">地図の限界を知った上でツールを使いこなす — これが現代のAI活用哲学</text>
+</svg>

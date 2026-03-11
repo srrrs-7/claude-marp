@@ -114,6 +114,7 @@ style: |
 
 # Wood Wide Web：地下に広がる森のインターネット
 
+![w:800 center](assets/wood-wide-web.svg)
 - - 菌根菌（Mycorrhizal Fungi）が木の根を地下で接続
 - - 1本の木は平均 **数十〜数百の他の木** と接続
 - - ネットワーク全長は **1gの土壌に数km** の菌糸
@@ -133,6 +134,7 @@ style: |
 
 # Mother Tree：ネットワークのハブノード
 
+![w:800 center](assets/mother-tree-hub.svg)
 - - **Mother Tree**（母樹）= 最も多くの接続を持つハブ
 - - 森林内の **最大40種以上** の他の木と菌糸接続
 - - 日陰の若木（Sapling）に炭素を優先的に供給
@@ -198,6 +200,7 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 
 # 化学シグナルの仕組み
 
+![w:800 center](assets/chem-signal.svg)
 - - 虫害を受けた木が **ジャスモン酸** を菌糸経由で送信
 - - 受信した木は事前に **防御酵素** を生成開始
 - - シグナル到達速度: 数時間〜数日（物理的拡散）
@@ -234,6 +237,7 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 
 # リソース再分配のコード比較
 
+![w:800 center](assets/resource-redistribution-flow.svg)
 - - 菌糸ネットワークの栄養素転送 ≒ P2Pの負荷分散アルゴリズム
 
 
@@ -275,6 +279,7 @@ async function redistributeLoad(nodes: PeerNode[]) {
 
 # 自己修復メカニズム：菌糸 vs P2P
 
+![w:800 center](assets/self-healing.svg)
 - - **菌糸**: 損傷を検知 → 新しい菌糸が迂回経路を形成
 - - **P2P**: ノード離脱を検知 → DHT/Gossipで経路再構築
 - - 両者とも **冗長接続** が前提（Replication Factor）

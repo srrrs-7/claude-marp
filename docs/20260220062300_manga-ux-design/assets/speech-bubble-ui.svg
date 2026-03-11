@@ -1,0 +1,38 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">吹き出し = 情報の階層化システム</text>
+  <!-- Manga side -->
+  <rect x="30" y="46" width="340" height="290" rx="8" fill="#16213e"/>
+  <text x="200" y="68" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#f9a825" font-weight="bold">マンガの吹き出し</text>
+  <!-- Normal speech bubble -->
+  <ellipse cx="180" cy="108" rx="100" ry="30" fill="#fff" stroke="#333" stroke-width="2"/>
+  <polygon points="145,134 135,150 160,134" fill="#fff" stroke="#333" stroke-width="1"/>
+  <text x="180" y="115" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#000">通常の会話</text>
+  <text x="90" y="158" font-family="sans-serif" font-size="10" fill="#aaa">→ ノーマル吹き出し</text>
+  <!-- Angry/shout bubble (jagged) -->
+  <path d="M 100 210 L 115 195 L 125 208 L 140 192 L 152 207 L 165 190 L 177 207 L 190 192 L 202 207 L 215 190 L 228 207 L 242 192 L 255 210 L 248 224 L 255 238 L 240 226 L 228 240 L 215 225 L 202 240 L 190 224 L 177 240 L 165 224 L 152 238 L 140 224 L 125 238 L 112 224 L 100 210Z"
+    fill="#ffdddd" stroke="#e91e63" stroke-width="2"/>
+  <text x="178" y="218" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#c00" font-weight="bold">叫び・驚き</text>
+  <text x="90" y="252" font-family="sans-serif" font-size="10" fill="#aaa">→ ギザギザ吹き出し</text>
+  <!-- Thought/monologue -->
+  <rect x="60" y="268" width="130" height="40" rx="12" fill="#f0f0ff" stroke="#9999cc" stroke-width="2"/>
+  <text x="125" y="293" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#333">（内心のつぶやき）</text>
+  <text x="90" y="320" font-family="sans-serif" font-size="10" fill="#aaa">→ 角丸四角＝モノローグ</text>
+  <!-- UI side -->
+  <rect x="430" y="46" width="340" height="290" rx="8" fill="#16213e"/>
+  <text x="600" y="68" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#e91e63" font-weight="bold">UIへの応用</text>
+  <!-- Tooltip -->
+  <rect x="448" y="82" width="160" height="34" rx="6" fill="#333" stroke="#4ec9b0" stroke-width="1"/>
+  <polygon points="510,116 520,128 530,116" fill="#333"/>
+  <text x="528" y="103" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0">ツールチップ</text>
+  <text x="630" y="103" font-family="sans-serif" font-size="11" fill="#aaa">補足情報</text>
+  <!-- Toast notification -->
+  <rect x="448" y="156" width="260" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="578" y="180" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#f9a825">保存しました ✓ (トースト)</text>
+  <text x="600" y="212" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">→ 一時的なメッセージ</text>
+  <!-- Alert banner -->
+  <rect x="448" y="232" width="300" height="40" rx="6" fill="#300" stroke="#e91e63" stroke-width="2"/>
+  <text x="598" y="256" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e91e63" font-weight="bold">エラー！ アラートバナー</text>
+  <text x="600" y="290" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">→ ギザギザ = 赤いアラート</text>
+  <text x="600" y="308" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">感情的優先度を視覚化</text>
+</svg>

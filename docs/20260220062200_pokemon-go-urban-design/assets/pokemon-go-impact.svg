@@ -1,0 +1,52 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">数字で見るPokemon GOのインパクト</text>
+  <!-- Big numbers grid -->
+  <rect x="20" y="50" width="175" height="110" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="107" y="82" text-anchor="middle" font-size="28" font-weight="bold" fill="#f9a825">10億+</text>
+  <text x="107" y="105" text-anchor="middle" font-size="11" fill="#ffffff">ダウンロード数</text>
+  <text x="107" y="122" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">2016年〜2024年</text>
+  <text x="107" y="148" text-anchor="middle" font-size="10" fill="#f9a825">最速10億に到達</text>
+  <rect x="210" y="50" width="175" height="110" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="297" y="82" text-anchor="middle" font-size="28" font-weight="bold" fill="#e91e63">$16億</text>
+  <text x="297" y="105" text-anchor="middle" font-size="11" fill="#ffffff">2023年収益</text>
+  <text x="297" y="122" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">累計$60億超</text>
+  <text x="297" y="148" text-anchor="middle" font-size="10" fill="#e91e63">モバイルゲーム史上最高水準</text>
+  <rect x="400" y="50" width="175" height="110" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="487" y="82" text-anchor="middle" font-size="28" font-weight="bold" fill="#4caf50">87%</text>
+  <text x="487" y="105" text-anchor="middle" font-size="11" fill="#ffffff">歩行増加（調査）</text>
+  <text x="487" y="122" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">運動しない層で顕著</text>
+  <text x="487" y="148" text-anchor="middle" font-size="10" fill="#4caf50">公衆衛生への貢献</text>
+  <rect x="590" y="50" width="190" height="110" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="685" y="82" text-anchor="middle" font-size="28" font-weight="bold" fill="#f9a825">68.7億</text>
+  <text x="685" y="105" text-anchor="middle" font-size="11" fill="#ffffff">歩の歩行促進</text>
+  <text x="685" y="122" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">米国全土（2016年）</text>
+  <text x="685" y="148" text-anchor="middle" font-size="10" fill="#f9a825">2週間でマラソン完走者</text>
+  <!-- Social impact section -->
+  <rect x="20" y="180" width="760" height="200" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="400" y="205" text-anchor="middle" font-size="13" fill="#4caf50">社会的インパクトの多面性</text>
+  <!-- Health -->
+  <rect x="40" y="220" width="215" height="145" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1"/>
+  <text x="147" y="244" text-anchor="middle" font-size="12" fill="#4caf50">公衆衛生</text>
+  <text x="147" y="264" text-anchor="middle" font-size="11" fill="#ffffff">BMI改善（過体重層）</text>
+  <text x="147" y="282" text-anchor="middle" font-size="11" fill="#ffffff">うつ症状の軽減</text>
+  <text x="147" y="300" text-anchor="middle" font-size="11" fill="#ffffff">外出機会の増加</text>
+  <text x="147" y="318" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">特に高齢者・引きこもり層</text>
+  <text x="147" y="356" text-anchor="middle" font-size="10" fill="#4caf50">医療費削減効果も試算</text>
+  <!-- Community -->
+  <rect x="295" y="220" width="215" height="145" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="402" y="244" text-anchor="middle" font-size="12" fill="#f9a825">コミュニティ形成</text>
+  <text x="402" y="264" text-anchor="middle" font-size="11" fill="#ffffff">見知らぬ人が会話</text>
+  <text x="402" y="282" text-anchor="middle" font-size="11" fill="#ffffff">地域イベントの創出</text>
+  <text x="402" y="300" text-anchor="middle" font-size="11" fill="#ffffff">孤独感の解消</text>
+  <text x="402" y="318" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">障害者・高齢者の社会参加</text>
+  <text x="402" y="356" text-anchor="middle" font-size="10" fill="#f9a825">「偶然の出会い」の設計</text>
+  <!-- Urban -->
+  <rect x="550" y="220" width="210" height="145" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="655" y="244" text-anchor="middle" font-size="12" fill="#e91e63">都市経済</text>
+  <text x="655" y="264" text-anchor="middle" font-size="11" fill="#ffffff">地域商店への来客+</text>
+  <text x="655" y="282" text-anchor="middle" font-size="11" fill="#ffffff">観光地の再発見</text>
+  <text x="655" y="300" text-anchor="middle" font-size="11" fill="#ffffff">イベント経済効果</text>
+  <text x="655" y="318" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">鳥取砂丘：18億円</text>
+  <text x="655" y="356" text-anchor="middle" font-size="10" fill="#e91e63">デジタル誘客の実証</text>
+</svg>

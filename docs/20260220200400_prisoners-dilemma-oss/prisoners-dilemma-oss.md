@@ -173,6 +173,7 @@ style: |
 
 # Axelrodの発見
 
+![w:800 center](assets/axelrod-tournament.svg)
 - - **1980年代**: Robert Axelrodが囚人のジレンマのトーナメントを開催
 - - 最も成功した戦略 = **しっぺ返し(Tit-for-Tat)**
 - - 4つの特徴:
@@ -206,6 +207,7 @@ style: |
 
 # OSS特有の構造
 
+![w:800 center](assets/oss-structure.svg)
 - - **非排除性**: 誰でもコードを使える(ライセンス上)
 - - **非競合性**: 使っても減らない(デジタル財)
 - - **ネットワーク効果**: 利用者が増えるほど価値が上がる
@@ -250,6 +252,7 @@ style: |
 
 # ゲーム理論が示す3つの教訓（1/2）
 
+![w:800 center](assets/game-theory-lessons.svg)
 - - **1. 繰り返しが協力を生む**
 -   - 一回限りのゲームでは裏切りが合理的
 -   - 長期的関係では協力が進化的に安定

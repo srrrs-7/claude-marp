@@ -1,0 +1,67 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">DXGW + VGW vs DXGW + TGW</text>
+  <!-- Left: DXGW + VGW -->
+  <rect x="20" y="50" width="355" height="320" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="198" y="76" text-anchor="middle" fill="#4caf50" font-size="12" font-weight="bold">Private VIF パターン</text>
+  <!-- On-prem -->
+  <rect x="35" y="90" width="90" height="40" rx="4" fill="#0d3b66" stroke="#f9a825" stroke-width="1"/>
+  <text x="80" y="115" text-anchor="middle" fill="#f9a825" font-size="10">オンプレ</text>
+  <!-- Arrow -->
+  <line x1="125" y1="110" x2="155" y2="110" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="155,105 165,110 155,115" fill="#ffffff"/>
+  <!-- DXGW -->
+  <rect x="165" y="90" width="80" height="40" rx="4" fill="#0d3b66" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="205" y="108" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold">DXGW</text>
+  <text x="205" y="123" text-anchor="middle" fill="#aaaaaa" font-size="9">Global</text>
+  <!-- Arrows to VGWs -->
+  <line x1="245" y1="110" x2="280" y2="130" stroke="#aaaaaa" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="277,127 285,133 279,136" fill="#aaaaaa"/>
+  <line x1="245" y1="110" x2="280" y2="175" stroke="#aaaaaa" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="277,172 285,178 279,181" fill="#aaaaaa"/>
+  <line x1="245" y1="110" x2="280" y2="220" stroke="#aaaaaa" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="277,217 285,223 279,226" fill="#aaaaaa"/>
+  <!-- VGW + VPC pairs -->
+  <rect x="285" y="120" width="75" height="28" rx="3" fill="#0d3b66"/>
+  <text x="323" y="139" text-anchor="middle" fill="#64b5f6" font-size="10">VGW → VPC-A</text>
+  <rect x="285" y="165" width="75" height="28" rx="3" fill="#0d3b66"/>
+  <text x="323" y="184" text-anchor="middle" fill="#64b5f6" font-size="10">VGW → VPC-B</text>
+  <rect x="285" y="210" width="75" height="28" rx="3" fill="#0d3b66"/>
+  <text x="323" y="229" text-anchor="middle" fill="#64b5f6" font-size="10">VGW → VPC-C</text>
+  <text x="198" y="270" text-anchor="middle" fill="#aaaaaa" font-size="10">最大 10 VGW / DXGW</text>
+  <text x="198" y="290" text-anchor="middle" fill="#ff8a65" font-size="10">VPC間通信: DXGW経由は不可</text>
+  <text x="198" y="310" text-anchor="middle" fill="#4caf50" font-size="10">複数リージョン対応</text>
+  <!-- Right: DXGW + TGW -->
+  <rect x="425" y="50" width="355" height="320" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="603" y="76" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">Transit VIF パターン</text>
+  <!-- On-prem -->
+  <rect x="440" y="90" width="90" height="40" rx="4" fill="#0d3b66" stroke="#f9a825" stroke-width="1"/>
+  <text x="485" y="115" text-anchor="middle" fill="#f9a825" font-size="10">オンプレ</text>
+  <!-- Arrow -->
+  <line x1="530" y1="110" x2="558" y2="110" stroke="#ffffff" stroke-width="1.5"/>
+  <polygon points="558,105 568,110 558,115" fill="#ffffff"/>
+  <!-- DXGW -->
+  <rect x="568" y="90" width="80" height="40" rx="4" fill="#0d3b66" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="608" y="108" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold">DXGW</text>
+  <text x="608" y="123" text-anchor="middle" fill="#aaaaaa" font-size="9">Global</text>
+  <!-- Arrow to TGW -->
+  <line x1="648" y1="110" x2="675" y2="160" stroke="#f9a825" stroke-width="1.5"/>
+  <polygon points="672,157 678,165 667,163" fill="#f9a825"/>
+  <!-- TGW -->
+  <rect x="625" y="165" width="100" height="40" rx="4" fill="#0d3b66" stroke="#f9a825" stroke-width="2"/>
+  <text x="675" y="183" text-anchor="middle" fill="#f9a825" font-size="10" font-weight="bold">TGW</text>
+  <text x="675" y="198" text-anchor="middle" fill="#aaaaaa" font-size="9">Region Hub</text>
+  <!-- TGW to VPCs -->
+  <line x1="725" y1="185" x2="745" y2="170" stroke="#64b5f6" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="725" y1="185" x2="745" y2="195" stroke="#64b5f6" stroke-width="1" stroke-dasharray="3,2"/>
+  <line x1="725" y1="185" x2="745" y2="220" stroke="#64b5f6" stroke-width="1" stroke-dasharray="3,2"/>
+  <rect x="748" y="157" width="25" height="20" rx="2" fill="#16213e" stroke="#64b5f6" stroke-width="1"/>
+  <text x="760" y="171" text-anchor="middle" fill="#64b5f6" font-size="8">VPC</text>
+  <rect x="748" y="183" width="25" height="20" rx="2" fill="#16213e" stroke="#64b5f6" stroke-width="1"/>
+  <text x="760" y="197" text-anchor="middle" fill="#64b5f6" font-size="8">VPC</text>
+  <rect x="748" y="209" width="25" height="20" rx="2" fill="#16213e" stroke="#64b5f6" stroke-width="1"/>
+  <text x="760" y="223" text-anchor="middle" fill="#64b5f6" font-size="8">VPC</text>
+  <text x="603" y="270" text-anchor="middle" fill="#aaaaaa" font-size="10">最大 3 TGW / DXGW</text>
+  <text x="603" y="290" text-anchor="middle" fill="#4caf50" font-size="10">VPC間通信: TGW経由で可能</text>
+  <text x="603" y="310" text-anchor="middle" fill="#4caf50" font-size="10">マルチアカウント推奨構成</text>
+</svg>

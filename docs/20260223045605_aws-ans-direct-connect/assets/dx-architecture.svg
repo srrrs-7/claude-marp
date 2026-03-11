@@ -1,0 +1,42 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <!-- On-Premises -->
+  <rect x="30" y="150" width="150" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="105" y="193" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">オンプレミス</text>
+  <text x="105" y="213" text-anchor="middle" fill="#ffffff" font-size="11">Enterprise Router</text>
+  <text x="105" y="230" text-anchor="middle" fill="#aaaaaa" font-size="10">BGP ASN: 65000</text>
+  <!-- Arrow: On-prem to DX Location -->
+  <line x1="180" y1="200" x2="280" y2="200" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="280,195 290,200 280,205" fill="#f9a825"/>
+  <text x="230" y="190" text-anchor="middle" fill="#aaaaaa" font-size="10">専用線</text>
+  <!-- DX Location -->
+  <rect x="290" y="120" width="160" height="160" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="370" y="150" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">DX ロケーション</text>
+  <rect x="310" y="160" width="120" height="40" rx="4" fill="#0d3b66"/>
+  <text x="370" y="184" text-anchor="middle" fill="#ffffff" font-size="11">AWS DX Router</text>
+  <rect x="310" y="215" width="120" height="35" rx="4" fill="#0d3b66"/>
+  <text x="370" y="237" text-anchor="middle" fill="#ffffff" font-size="11">Cross Connect</text>
+  <!-- Arrow: DX Location to DXGW -->
+  <line x1="450" y1="200" x2="530" y2="200" stroke="#f9a825" stroke-width="2"/>
+  <polygon points="530,195 540,200 530,205" fill="#f9a825"/>
+  <text x="490" y="190" text-anchor="middle" fill="#aaaaaa" font-size="10">AWS Backbone</text>
+  <!-- DXGW -->
+  <rect x="540" y="150" width="130" height="100" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="605" y="183" text-anchor="middle" fill="#4caf50" font-size="12" font-weight="bold">DXGW</text>
+  <text x="605" y="203" text-anchor="middle" fill="#ffffff" font-size="10">Global Router</text>
+  <text x="605" y="220" text-anchor="middle" fill="#aaaaaa" font-size="10">ASN: 64512</text>
+  <!-- Arrow: DXGW to VPC -->
+  <line x1="670" y1="180" x2="740" y2="130" stroke="#4caf50" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="670" y1="200" x2="740" y2="200" stroke="#4caf50" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <line x1="670" y1="220" x2="740" y2="270" stroke="#4caf50" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <!-- VPCs -->
+  <rect x="740" y="100" width="50" height="35" rx="4" fill="#16213e" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="765" y="122" text-anchor="middle" fill="#64b5f6" font-size="10">VPC-A</text>
+  <rect x="740" y="183" width="50" height="35" rx="4" fill="#16213e" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="765" y="205" text-anchor="middle" fill="#64b5f6" font-size="10">VPC-B</text>
+  <rect x="740" y="255" width="50" height="35" rx="4" fill="#16213e" stroke="#64b5f6" stroke-width="1.5"/>
+  <text x="765" y="277" text-anchor="middle" fill="#64b5f6" font-size="10">VPC-C</text>
+  <!-- Labels -->
+  <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">Transit VIF: VLAN + BGP セッション</text>
+  <text x="400" y="360" text-anchor="middle" fill="#aaaaaa" font-size="11">オンプレ → DX ロケーション → DXGW → 複数 VPC</text>
+</svg>

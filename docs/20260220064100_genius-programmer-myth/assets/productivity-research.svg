@@ -1,0 +1,37 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">生産性は何で測るか — 見えない貢献</text>
+  <!-- Visible vs Invisible -->
+  <rect x="20" y="48" width="370" height="320" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="205" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#e91e63">「見える」生産性指標</text>
+  <text x="205" y="96" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">従来の10x測定に使われるもの</text>
+  <rect x="40" y="108" width="330" height="40" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1" opacity="0.6"/>
+  <text x="205" y="128" text-anchor="middle" font-size="12" fill="#e91e63">コード行数 (LoC)</text>
+  <text x="205" y="143" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">多ければ良い? → 実は逆</text>
+  <rect x="40" y="158" width="330" height="40" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1" opacity="0.6"/>
+  <text x="205" y="178" text-anchor="middle" font-size="12" fill="#e91e63">PRのマージ数</text>
+  <text x="205" y="193" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">量より質 — 小さな改善を見落とす</text>
+  <rect x="40" y="208" width="330" height="40" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1" opacity="0.6"/>
+  <text x="205" y="228" text-anchor="middle" font-size="12" fill="#e91e63">バグ修正数</text>
+  <text x="205" y="243" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">バグを出さない人は評価されない</text>
+  <rect x="40" y="258" width="330" height="40" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1" opacity="0.6"/>
+  <text x="205" y="278" text-anchor="middle" font-size="12" fill="#e91e63">フィーチャー実装数</text>
+  <text x="205" y="293" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">技術的負債を生む速度かもしれない</text>
+  <text x="205" y="340" text-anchor="middle" font-size="12" fill="#e91e63">問題：個人の「目立つ」仕事しか見えない</text>
+  <rect x="410" y="48" width="370" height="320" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="595" y="76" text-anchor="middle" font-size="14" font-weight="bold" fill="#4caf50">「見えない」高価値貢献</text>
+  <text x="595" y="96" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">10x神話が見落とすもの</text>
+  <rect x="430" y="108" width="330" height="40" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="595" y="128" text-anchor="middle" font-size="12" fill="#4caf50">メンタリング・ナレッジ共有</text>
+  <text x="595" y="143" text-anchor="middle" font-size="10" fill="#ffffff">5人を2倍にすると全体+200%</text>
+  <rect x="430" y="158" width="330" height="40" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="595" y="178" text-anchor="middle" font-size="12" fill="#4caf50">丁寧なコードレビュー</text>
+  <text x="595" y="193" text-anchor="middle" font-size="10" fill="#ffffff">チームのコード品質全体を底上げ</text>
+  <rect x="430" y="208" width="330" height="40" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="595" y="228" text-anchor="middle" font-size="12" fill="#4caf50">ドキュメント・設計議論</text>
+  <text x="595" y="243" text-anchor="middle" font-size="10" fill="#ffffff">将来の開発速度を決定する</text>
+  <rect x="430" y="258" width="330" height="40" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="595" y="278" text-anchor="middle" font-size="12" fill="#4caf50">心理的安全性の維持</text>
+  <text x="595" y="293" text-anchor="middle" font-size="10" fill="#ffffff">チームが発言できる環境を守る</text>
+  <text x="595" y="340" text-anchor="middle" font-size="12" fill="#4caf50">解決策：チームアウトカムで測定</text>
+</svg>

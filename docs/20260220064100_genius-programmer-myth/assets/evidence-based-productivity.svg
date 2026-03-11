@@ -1,0 +1,51 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">エビデンスに基づく生産性向上</text>
+  <!-- 4 evidence-based factors -->
+  <rect x="20" y="50" width="175" height="220" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="107" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">心理的安全性</text>
+  <text x="107" y="100" text-anchor="middle" font-size="26" font-weight="bold" fill="#4caf50">+35%</text>
+  <text x="107" y="118" text-anchor="middle" font-size="10" fill="#ffffff">チーム生産性向上</text>
+  <text x="107" y="143" text-anchor="middle" font-size="10" fill="#ffffff">Google Project</text>
+  <text x="107" y="158" text-anchor="middle" font-size="10" fill="#ffffff">Aristotle (2016)</text>
+  <text x="107" y="183" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">5つの要素中</text>
+  <text x="107" y="198" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">最重要因子</text>
+  <text x="107" y="220" text-anchor="middle" font-size="9" fill="#4caf50">発言できる = 速い</text>
+  <text x="107" y="255" text-anchor="middle" font-size="9" fill="#4caf50">修正サイクル短縮</text>
+  <rect x="210" y="50" width="175" height="220" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="297" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#4caf50">フロー状態の確保</text>
+  <text x="297" y="100" text-anchor="middle" font-size="26" font-weight="bold" fill="#4caf50">5x</text>
+  <text x="297" y="118" text-anchor="middle" font-size="10" fill="#ffffff">通常時との比較</text>
+  <text x="297" y="143" text-anchor="middle" font-size="10" fill="#ffffff">McKinsey 研究</text>
+  <text x="297" y="158" text-anchor="middle" font-size="10" fill="#ffffff">(2013)</text>
+  <text x="297" y="183" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">中断を防ぐ</text>
+  <text x="297" y="198" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">会議集中日の設定</text>
+  <text x="297" y="220" text-anchor="middle" font-size="9" fill="#4caf50">「会議なし曜日」</text>
+  <text x="297" y="255" text-anchor="middle" font-size="9" fill="#4caf50">= 生産性の投資</text>
+  <rect x="400" y="50" width="175" height="220" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="487" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#f9a825">技術的負債管理</text>
+  <text x="487" y="100" text-anchor="middle" font-size="26" font-weight="bold" fill="#f9a825">40%</text>
+  <text x="487" y="118" text-anchor="middle" font-size="10" fill="#ffffff">開発時間が負債返済</text>
+  <text x="487" y="143" text-anchor="middle" font-size="10" fill="#ffffff">Stripe 調査 (2018)</text>
+  <text x="487" y="158" text-anchor="middle" font-size="10" fill="#ffffff">業界平均</text>
+  <text x="487" y="183" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">リファクタリングへの</text>
+  <text x="487" y="198" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">投資が速度を上げる</text>
+  <text x="487" y="220" text-anchor="middle" font-size="9" fill="#f9a825">負債を貯めると</text>
+  <text x="487" y="255" text-anchor="middle" font-size="9" fill="#f9a825">全員が遅くなる</text>
+  <rect x="590" y="50" width="190" height="220" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="685" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#f9a825">継続的デリバリー</text>
+  <text x="685" y="100" text-anchor="middle" font-size="26" font-weight="bold" fill="#f9a825">2x</text>
+  <text x="685" y="118" text-anchor="middle" font-size="10" fill="#ffffff">DORA High performers</text>
+  <text x="685" y="143" text-anchor="middle" font-size="10" fill="#ffffff">デプロイ頻度と</text>
+  <text x="685" y="158" text-anchor="middle" font-size="10" fill="#ffffff">安定性は両立する</text>
+  <text x="685" y="183" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">小さく早くリリース</text>
+  <text x="685" y="198" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">がリスクを下げる</text>
+  <text x="685" y="220" text-anchor="middle" font-size="9" fill="#f9a825">速い = 安全</text>
+  <text x="685" y="255" text-anchor="middle" font-size="9" fill="#f9a825">Accelerate (2018)</text>
+  <!-- Bottom -->
+  <rect x="20" y="285" width="760" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="308" text-anchor="middle" font-size="13" fill="#f9a825">結論：個人の天才性より「システムの設計」が生産性を決める</text>
+  <text x="400" y="330" text-anchor="middle" font-size="11" fill="#ffffff">10xエンジニアを探すより → 10xチームを作る環境を整える</text>
+  <text x="400" y="352" text-anchor="middle" font-size="11" fill="#e91e63">採用：高い技術力 + 高い協調性 → チーム全体が加速する</text>
+  <text x="400" y="373" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.5">参考: DORA State of DevOps Report, Google Aristotle, McKinsey研究</text>
+</svg>

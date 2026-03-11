@@ -112,6 +112,7 @@ style: |
 
 # 即興は「自由」ではない
 
+![w:900 center](assets/constraint-creativity.svg)
 ![w:900 center](assets/sprint-improvisation.svg)
 - - ジャズの即興演奏は**完全な自由**ではない
 - - **コード進行**(和声の枠組み)の上で即興する
@@ -191,6 +192,7 @@ style: |
 
 # アジャイルチームとの対応（2/2）
 
+![w:900 center](assets/agile-jazz-comparison.svg)
 - - **コンダクター** = テックリード/アーキテクト
 -   - 全体の方向性を示すが細部は任せる
 - 
@@ -234,6 +236,8 @@ style: |
 
 <!-- _class: lead -->
 # 即興的開発の設計原則
+
+![w:900 center](assets/design-principles.svg)
 
 
 ---

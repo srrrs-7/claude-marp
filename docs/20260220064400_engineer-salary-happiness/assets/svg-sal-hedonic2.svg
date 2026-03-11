@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="370" fill="#1a1a2e"/>
+  <text x="400" y="28" fill="#ffffff" font-size="16" font-family="sans-serif" text-anchor="middle" font-weight="bold">ヘドニックトレッドミル — 慣れの法則</text>
+  <!-- axes -->
+  <line x1="80" y1="320" x2="730" y2="320" stroke="#aaaaaa" stroke-width="1.5"/>
+  <line x1="80" y1="60" x2="80" y2="320" stroke="#aaaaaa" stroke-width="1.5"/>
+  <text x="405" y="345" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">時間 →</text>
+  <text x="50" y="195" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle" transform="rotate(-90,50,195)">幸福度</text>
+  <!-- baseline -->
+  <line x1="80" y1="220" x2="730" y2="220" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="740" y="224" fill="#aaaaaa" font-size="10" font-family="sans-serif">基準線</text>
+  <!-- raise 1: small bump then return -->
+  <path d="M80,220 L160,220 L180,150 L200,130 L240,160 L280,200 L320,218 L360,220" fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <!-- label for raise 1 -->
+  <line x1="200" y1="130" x2="200" y2="90" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="120" y="65" width="165" height="40" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="202" y="82" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">昇給 +100万円</text>
+  <text x="202" y="98" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">喜びはすぐ慣れる</text>
+  <!-- raise 2: another bump then return -->
+  <path d="M360,220 L400,220 L420,155 L440,140 L480,170 L520,205 L560,218 L600,220" fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <line x1="440" y1="140" x2="440" y2="90" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/>
+  <rect x="390" y="65" width="165" height="40" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="472" y="82" fill="#f9a825" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">昇給 +200万円</text>
+  <text x="472" y="98" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">また慣れる</text>
+  <!-- end flat -->
+  <path d="M600,220 L730,220" fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <!-- key insight -->
+  <rect x="150" y="265" width="500" height="40" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="400" y="283" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">「もっと稼げば幸せになれる」= トレッドミルの上で走り続ける</text>
+  <text x="400" y="299" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">適応水準理論（Brickman &amp; Campbell, 1971）</text>
+  <text x="400" y="350" fill="#888888" font-size="10" font-family="sans-serif" text-anchor="middle">解決策: 関係性・意味・自律性 — 慣れにくい幸福の源泉</text>
+</svg>

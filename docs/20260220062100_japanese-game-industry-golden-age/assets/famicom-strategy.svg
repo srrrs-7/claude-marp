@@ -1,0 +1,34 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">ファミリーコンピュータ（1983）戦略的優位性</text>
+  <!-- Price comparison -->
+  <text x="200" y="58" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#4ec9b0" font-weight="bold">価格比較</text>
+  <rect x="50" y="66" width="100" height="136" rx="4" fill="#003820"/>
+  <text x="100" y="92" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#4ec9b0">ファミコン</text>
+  <text x="100" y="176" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#4ec9b0" font-weight="bold">¥14,800</text>
+  <text x="100" y="192" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">1983年</text>
+  <rect x="200" y="66" width="100" height="192" rx="4" fill="#300010"/>
+  <text x="250" y="92" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e91e63">競合機</text>
+  <text x="250" y="230" text-anchor="middle" font-family="sans-serif" font-size="22" fill="#e91e63" font-weight="bold">¥30,000+</text>
+  <text x="250" y="246" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">同期水準</text>
+  <text x="170" y="270" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#f9a825">→ 半額以下を実現</text>
+  <!-- Y axis -->
+  <line x1="44" y1="60" x2="44" y2="262" stroke="#555" stroke-width="1.5"/>
+  <text x="40" y="72" text-anchor="end" font-family="sans-serif" font-size="10" fill="#aaa">高</text>
+  <text x="40" y="258" text-anchor="end" font-family="sans-serif" font-size="10" fill="#aaa">低</text>
+  <!-- Key factors on right -->
+  <rect x="360" y="46" width="400" height="280" rx="8" fill="#16213e"/>
+  <text x="560" y="68" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#f9a825" font-weight="bold">成功の構造的要因</text>
+  <rect x="380" y="80" width="360" height="44" rx="5" fill="#0d1b2a"/>
+  <text x="560" y="102" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#4ec9b0" font-weight="bold">ゲーム専用機への集中</text>
+  <text x="560" y="118" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">山内溥社長の決断：多機能化を拒否</text>
+  <rect x="380" y="132" width="360" height="44" rx="5" fill="#0d1b2a"/>
+  <text x="560" y="154" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#4ec9b0" font-weight="bold">カスタムCPU（6502互換）</text>
+  <text x="560" y="170" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">リコー製: 性能・コストの最適解</text>
+  <rect x="380" y="184" width="360" height="44" rx="5" fill="#0d1b2a"/>
+  <text x="560" y="206" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#4ec9b0" font-weight="bold">北米: トイザらスとの提携</text>
+  <text x="560" y="222" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">ロボットおもちゃとして再設計</text>
+  <rect x="380" y="236" width="360" height="44" rx="5" fill="#0d1b2a"/>
+  <text x="560" y="258" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#f9a825" font-weight="bold">結果: 1,500万台 (日本)</text>
+  <text x="560" y="274" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">アタリの廃墟から3年で市場復活</text>
+</svg>

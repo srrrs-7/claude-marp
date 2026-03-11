@@ -1,0 +1,39 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">1968年の伝説的研究 — 10x神話の起源</text>
+  <!-- Study details -->
+  <rect x="20" y="48" width="760" height="90" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="72" text-anchor="middle" font-size="13" fill="#f9a825">Sackman, Erikson, Grant (1968) "Exploratory experimental studies comparing online and offline programming performance"</text>
+  <text x="400" y="94" text-anchor="middle" font-size="12" fill="#ffffff">Communications of the ACM — 被引用数は数千を超え「10x」神話の原典に</text>
+  <text x="400" y="114" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.7">被験者：12〜29名のプログラマー（数は論文によって異なる）</text>
+  <text x="400" y="130" text-anchor="middle" font-size="11" fill="#e91e63">原典には「10倍」という記述は実際にはない — 後の引用で誇張された</text>
+  <!-- Problem 1 -->
+  <rect x="20" y="155" width="370" height="110" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="205" y="180" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">研究設計の問題点</text>
+  <text x="205" y="202" text-anchor="middle" font-size="11" fill="#ffffff">・サンプルサイズが極めて小さい（12名前後）</text>
+  <text x="205" y="220" text-anchor="middle" font-size="11" fill="#ffffff">・被験者はすでに「優秀」な社員</text>
+  <text x="205" y="238" text-anchor="middle" font-size="11" fill="#ffffff">・タスクが当時のシステムに特化</text>
+  <text x="205" y="255" text-anchor="middle" font-size="11" fill="#ffffff">・繰り返し検証されていない</text>
+  <!-- Problem 2 -->
+  <rect x="410" y="155" width="370" height="110" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="595" y="180" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">「28倍差」の真実</text>
+  <text x="595" y="202" text-anchor="middle" font-size="11" fill="#ffffff">・最速 vs 最遅 の比較（平均ではない）</text>
+  <text x="595" y="220" text-anchor="middle" font-size="11" fill="#ffffff">・外れ値が比率を極端に拡大した</text>
+  <text x="595" y="238" text-anchor="middle" font-size="11" fill="#ffffff">・デバッグ時間に集中（他のスキル除外）</text>
+  <text x="595" y="255" text-anchor="middle" font-size="11" fill="#ffffff">・「コーディング速度」≠「価値創出」</text>
+  <!-- Modern evidence -->
+  <rect x="20" y="280" width="760" height="105" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="400" y="305" text-anchor="middle" font-size="13" fill="#4caf50">現代の研究が示すもの</text>
+  <rect x="40" y="318" width="215" height="55" rx="6" fill="#1a1a2e"/>
+  <text x="147" y="338" text-anchor="middle" font-size="11" fill="#ffffff">Lutz (2011)</text>
+  <text x="147" y="355" text-anchor="middle" font-size="11" fill="#ffffff">実務では2-4倍差が現実的</text>
+  <text x="147" y="368" text-anchor="middle" font-size="10" fill="#4caf50">28倍は再現されない</text>
+  <rect x="275" y="318" width="215" height="55" rx="6" fill="#1a1a2e"/>
+  <text x="382" y="338" text-anchor="middle" font-size="11" fill="#ffffff">Cagan (2017)</text>
+  <text x="382" y="355" text-anchor="middle" font-size="11" fill="#ffffff">優秀なエンジニアは</text>
+  <text x="382" y="368" text-anchor="middle" font-size="10" fill="#4caf50">チームを強化する</text>
+  <rect x="510" y="318" width="250" height="55" rx="6" fill="#1a1a2e"/>
+  <text x="635" y="338" text-anchor="middle" font-size="11" fill="#ffffff">Google研究 (2016)</text>
+  <text x="635" y="355" text-anchor="middle" font-size="11" fill="#ffffff">生産性差より環境差の方が</text>
+  <text x="635" y="368" text-anchor="middle" font-size="10" fill="#4caf50">成果に影響する</text>
+</svg>

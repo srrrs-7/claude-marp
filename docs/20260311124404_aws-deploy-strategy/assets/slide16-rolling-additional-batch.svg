@@ -1,0 +1,133 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-size="15" font-weight="bold" fill="#ffffff" font-family="sans-serif">Rolling vs Rolling with Additional Batch</text>
+
+  <!-- Left: Standard Rolling -->
+  <rect x="20" y="40" width="370" height="340" rx="8" fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+  <text x="205" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#60a5fa" font-family="sans-serif">Standard Rolling</text>
+
+  <!-- Standard Rolling: Phase rows -->
+  <!-- Phase A -->
+  <text x="40" y="85" font-size="10" fill="#ffffff" font-family="sans-serif">開始:</text>
+  <rect x="80" y="72" width="36" height="24" rx="3" fill="#60a5fa"/>
+  <text x="98" y="88" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="122" y="72" width="36" height="24" rx="3" fill="#60a5fa"/>
+  <text x="140" y="88" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="164" y="72" width="36" height="24" rx="3" fill="#60a5fa"/>
+  <text x="182" y="88" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="206" y="72" width="36" height="24" rx="3" fill="#60a5fa"/>
+  <text x="224" y="88" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <text x="260" y="88" font-size="10" fill="#34d399" font-family="sans-serif">容量: 100%</text>
+
+  <!-- Phase B: update batch 1 -->
+  <text x="40" y="120" font-size="10" fill="#ffffff" font-family="sans-serif">更新中:</text>
+  <rect x="80" y="107" width="36" height="24" rx="3" fill="#a855f7"/>
+  <text x="98" y="123" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="122" y="107" width="36" height="24" rx="3" fill="#a855f7"/>
+  <text x="140" y="123" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="164" y="107" width="36" height="24" rx="3" fill="#60a5fa"/>
+  <text x="182" y="123" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="206" y="107" width="36" height="24" rx="3" fill="#60a5fa"/>
+  <text x="224" y="123" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <text x="260" y="123" font-size="10" fill="#f59e0b" font-family="sans-serif">容量: 50%</text>
+  <!-- warning icon -->
+  <text x="340" y="123" font-size="14" fill="#f59e0b" font-family="sans-serif">!</text>
+
+  <!-- Phase C -->
+  <text x="40" y="155" font-size="10" fill="#ffffff" font-family="sans-serif">完了:</text>
+  <rect x="80" y="142" width="36" height="24" rx="3" fill="#a855f7"/>
+  <text x="98" y="158" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="122" y="142" width="36" height="24" rx="3" fill="#a855f7"/>
+  <text x="140" y="158" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="164" y="142" width="36" height="24" rx="3" fill="#a855f7"/>
+  <text x="182" y="158" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="206" y="142" width="36" height="24" rx="3" fill="#a855f7"/>
+  <text x="224" y="158" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <text x="260" y="158" font-size="10" fill="#34d399" font-family="sans-serif">容量: 100%</text>
+
+  <!-- Capacity chart for standard rolling -->
+  <text x="205" y="195" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">キャパシティ推移</text>
+  <rect x="60" y="205" width="300" height="60" rx="4" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+  <!-- 100% line -->
+  <line x1="60" y1="215" x2="360" y2="215" stroke="#34d399" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="38" y="219" font-size="9" fill="#34d399" font-family="sans-serif">100%</text>
+  <!-- 50% line -->
+  <line x1="60" y1="235" x2="360" y2="235" stroke="#f59e0b" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="38" y="239" font-size="9" fill="#f59e0b" font-family="sans-serif">50%</text>
+  <!-- capacity curve: drop then recover -->
+  <polyline points="60,215 160,215 160,235 260,235 260,215 360,215" fill="none" stroke="#60a5fa" stroke-width="2.5"/>
+
+  <!-- Demerits -->
+  <rect x="40" y="278" width="330" height="80" rx="6" fill="#7f1d1d" opacity="0.6"/>
+  <text x="205" y="298" text-anchor="middle" font-size="11" fill="#f87171" font-weight="bold" font-family="sans-serif">デメリット</text>
+  <text x="55" y="316" font-size="10" fill="#ffffff" font-family="sans-serif">- 更新中にキャパシティが最大50%低下</text>
+  <text x="55" y="332" font-size="10" fill="#ffffff" font-family="sans-serif">- 低トラフィック時間帯のみ実施推奨</text>
+  <text x="55" y="348" font-size="10" fill="#ffffff" font-family="sans-serif">- ELBのヘルスチェック間隔に依存</text>
+
+  <!-- Right: Rolling with Additional Batch -->
+  <rect x="410" y="40" width="370" height="340" rx="8" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="595" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#a855f7" font-family="sans-serif">Rolling with Additional Batch</text>
+
+  <!-- Phase A -->
+  <text x="430" y="85" font-size="10" fill="#ffffff" font-family="sans-serif">開始:</text>
+  <rect x="470" y="72" width="32" height="24" rx="3" fill="#60a5fa"/>
+  <text x="486" y="88" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="508" y="72" width="32" height="24" rx="3" fill="#60a5fa"/>
+  <text x="524" y="88" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="546" y="72" width="32" height="24" rx="3" fill="#60a5fa"/>
+  <text x="562" y="88" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="584" y="72" width="32" height="24" rx="3" fill="#60a5fa"/>
+  <text x="600" y="88" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <text x="630" y="88" font-size="10" fill="#34d399" font-family="sans-serif">容量: 100%</text>
+
+  <!-- Phase B: add batch first -->
+  <text x="430" y="120" font-size="10" fill="#ffffff" font-family="sans-serif">追加:</text>
+  <rect x="470" y="107" width="32" height="24" rx="3" fill="#60a5fa"/>
+  <text x="486" y="123" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="508" y="107" width="32" height="24" rx="3" fill="#60a5fa"/>
+  <text x="524" y="123" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="546" y="107" width="32" height="24" rx="3" fill="#60a5fa"/>
+  <text x="562" y="123" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="584" y="107" width="32" height="24" rx="3" fill="#60a5fa"/>
+  <text x="600" y="123" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="622" y="107" width="32" height="24" rx="3" fill="#a855f7" stroke="#34d399" stroke-width="2"/>
+  <text x="638" y="123" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2+</text>
+  <rect x="660" y="107" width="32" height="24" rx="3" fill="#a855f7" stroke="#34d399" stroke-width="2"/>
+  <text x="676" y="123" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2+</text>
+  <text x="725" y="123" font-size="10" fill="#34d399" font-family="sans-serif">125%</text>
+
+  <!-- Phase C: update old instances -->
+  <text x="430" y="155" font-size="10" fill="#ffffff" font-family="sans-serif">更新中:</text>
+  <rect x="470" y="142" width="32" height="24" rx="3" fill="#a855f7"/>
+  <text x="486" y="158" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="508" y="142" width="32" height="24" rx="3" fill="#a855f7"/>
+  <text x="524" y="158" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="546" y="142" width="32" height="24" rx="3" fill="#60a5fa"/>
+  <text x="562" y="158" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="584" y="142" width="32" height="24" rx="3" fill="#60a5fa"/>
+  <text x="600" y="158" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="622" y="142" width="32" height="24" rx="3" fill="#a855f7"/>
+  <text x="638" y="158" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="660" y="142" width="32" height="24" rx="3" fill="#a855f7"/>
+  <text x="676" y="158" text-anchor="middle" font-size="9" fill="#ffffff" font-family="sans-serif">v2</text>
+  <text x="725" y="158" font-size="10" fill="#34d399" font-family="sans-serif">100%</text>
+
+  <!-- Capacity chart for additional batch -->
+  <text x="595" y="195" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">キャパシティ推移</text>
+  <rect x="450" y="205" width="300" height="60" rx="4" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
+  <!-- 125% line -->
+  <line x1="450" y1="210" x2="750" y2="210" stroke="#a855f7" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="425" y="214" font-size="8" fill="#a855f7" font-family="sans-serif">125%</text>
+  <!-- 100% line -->
+  <line x1="450" y1="225" x2="750" y2="225" stroke="#34d399" stroke-width="1" stroke-dasharray="4,3" opacity="0.5"/>
+  <text x="425" y="229" font-size="9" fill="#34d399" font-family="sans-serif">100%</text>
+  <!-- capacity curve: rise then constant then normalize -->
+  <polyline points="450,225 530,225 530,210 650,210 650,225 750,225" fill="none" stroke="#a855f7" stroke-width="2.5"/>
+
+  <!-- Benefits -->
+  <rect x="430" y="278" width="330" height="80" rx="6" fill="#14532d" opacity="0.6"/>
+  <text x="595" y="298" text-anchor="middle" font-size="11" fill="#34d399" font-weight="bold" font-family="sans-serif">メリット</text>
+  <text x="445" y="316" font-size="10" fill="#ffffff" font-family="sans-serif">- 更新中もキャパシティ100%を維持</text>
+  <text x="445" y="332" font-size="10" fill="#ffffff" font-family="sans-serif">- ピーク時でもデプロイ可能</text>
+  <text x="445" y="348" font-size="10" fill="#f59e0b" font-family="sans-serif">- コスト: 追加バッチ分の一時的なコスト増</text>
+</svg>

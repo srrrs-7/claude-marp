@@ -1,0 +1,61 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="380" fill="transparent"/>
+
+  <!-- ECS / Lambda source -->
+  <rect x="20" y="160" width="160" height="60" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="100" y="187" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">ECS / Lambda</text>
+  <text x="100" y="207" text-anchor="middle" font-size="11" fill="#a855f7" font-family="sans-serif">メトリクス送信</text>
+
+  <!-- Arrow to CloudWatch -->
+  <line x1="180" y1="190" x2="236" y2="190" stroke="#a855f7" stroke-width="2"/>
+  <polygon points="236,190 224,184 224,196" fill="#a855f7"/>
+
+  <!-- CloudWatch box -->
+  <rect x="236" y="140" width="200" height="100" rx="8" fill="#1e1b4b" stroke="#60a5fa" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="336" y="168" text-anchor="middle" font-size="14" font-weight="bold" fill="#60a5fa" font-family="sans-serif">CloudWatch</text>
+  <text x="336" y="190" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">エラーレート &gt; 1%</text>
+  <text x="336" y="210" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">P99 レイテンシ &gt; 500ms</text>
+  <text x="336" y="228" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">Alarm 監視中</text>
+
+  <!-- Arrow to Alarm decision -->
+  <line x1="436" y1="190" x2="490" y2="190" stroke="#60a5fa" stroke-width="2"/>
+  <polygon points="490,190 478,184 478,196" fill="#60a5fa"/>
+
+  <!-- Alarm diamond -->
+  <polygon points="530,160 590,190 530,220 470,190" fill="#1e1b4b" stroke="#60a5fa" stroke-width="2"/>
+  <text x="530" y="186" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">閾値</text>
+  <text x="530" y="202" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">超過?</text>
+
+  <!-- Arrow: OK (down) -->
+  <line x1="530" y1="220" x2="530" y2="268" stroke="#34d399" stroke-width="2"/>
+  <polygon points="530,268 524,256 536,256" fill="#34d399"/>
+  <text x="560" y="248" font-size="11" fill="#34d399" font-family="sans-serif">OK</text>
+
+  <!-- Continue box -->
+  <rect x="430" y="268" width="200" height="44" rx="8" fill="#052e16" stroke="#34d399" stroke-width="2"/>
+  <text x="530" y="288" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">デプロイ続行</text>
+  <text x="530" y="304" text-anchor="middle" font-size="11" fill="#34d399" font-family="sans-serif">次フェーズへ昇格</text>
+
+  <!-- Arrow: ALARM (right) -->
+  <line x1="590" y1="190" x2="648" y2="190" stroke="#f97316" stroke-width="2"/>
+  <polygon points="648,190 636,184 636,196" fill="#f97316"/>
+  <text x="620" y="180" font-size="11" fill="#f97316" font-family="sans-serif">ALARM</text>
+
+  <!-- Alert box -->
+  <rect x="648" y="163" width="130" height="54" rx="8" fill="#7c2d12" stroke="#f97316" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="713" y="186" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">自動ロールバック</text>
+  <text x="713" y="204" text-anchor="middle" font-size="11" fill="#f97316" font-family="sans-serif">CodeDeploy Stop</text>
+
+  <!-- SNS notification -->
+  <line x1="713" y1="217" x2="713" y2="260" stroke="#f97316" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <polygon points="713,260 707,248 719,248" fill="#f97316"/>
+  <rect x="648" y="260" width="130" height="38" rx="6" fill="#1e1b4b" stroke="#f97316" stroke-width="1.5"/>
+  <text x="713" y="278" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">SNS 通知</text>
+  <text x="713" y="294" text-anchor="middle" font-size="11" fill="#a855f7" font-family="sans-serif">Slack / PagerDuty</text>
+
+  <!-- Metric labels at top -->
+  <rect x="20" y="30" width="220" height="60" rx="6" fill="#1e3a5f" stroke="#60a5fa" stroke-width="1"/>
+  <text x="130" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#60a5fa" font-family="sans-serif">監視メトリクス例</text>
+  <text x="130" y="70" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">5XXRate / Latency / CPU</text>
+  <text x="130" y="86" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">RequestCount / Custom Metric</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">地理的権力の未来 — 3つのシナリオ</text>
+  <!-- Scenario 1: Status quo -->
+  <rect x="20" y="50" width="235" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="127" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">シナリオ1</text>
+  <text x="127" y="96" text-anchor="middle" font-size="12" fill="#e91e63">現状維持</text>
+  <text x="127" y="118" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.8">GAFAMの寡占継続</text>
+  <rect x="40" y="130" width="195" height="170" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1" opacity="0.6"/>
+  <text x="137" y="152" text-anchor="middle" font-size="11" fill="#ffffff">・大手3-4社がケーブル</text>
+  <text x="137" y="170" text-anchor="middle" font-size="11" fill="#ffffff">　網の50%超を制御</text>
+  <text x="137" y="190" text-anchor="middle" font-size="11" fill="#ffffff">・途上国は依存継続</text>
+  <text x="137" y="210" text-anchor="middle" font-size="11" fill="#ffffff">・地政学リスクは増大</text>
+  <text x="137" y="235" text-anchor="middle" font-size="11" fill="#e91e63">問題：</text>
+  <text x="137" y="252" text-anchor="middle" font-size="11" fill="#ffffff">デジタル植民地の</text>
+  <text x="137" y="269" text-anchor="middle" font-size="11" fill="#ffffff">深化・固定化</text>
+  <text x="127" y="310" text-anchor="middle" font-size="11" fill="#e91e63">可能性：高</text>
+  <!-- Scenario 2: Balkanization -->
+  <rect x="283" y="50" width="234" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">シナリオ2</text>
+  <text x="400" y="96" text-anchor="middle" font-size="12" fill="#f9a825">インターネット分断</text>
+  <text x="400" y="118" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.8">スプリンターネット化</text>
+  <rect x="303" y="130" width="194" height="170" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1" opacity="0.6"/>
+  <text x="400" y="152" text-anchor="middle" font-size="11" fill="#ffffff">・米中がそれぞれの</text>
+  <text x="400" y="170" text-anchor="middle" font-size="11" fill="#ffffff">　ケーブル網を構築</text>
+  <text x="400" y="190" text-anchor="middle" font-size="11" fill="#ffffff">・EU独自規制でブロック</text>
+  <text x="400" y="210" text-anchor="middle" font-size="11" fill="#ffffff">・国家ファイアウォール増加</text>
+  <text x="400" y="235" text-anchor="middle" font-size="11" fill="#f9a825">問題：</text>
+  <text x="400" y="252" text-anchor="middle" font-size="11" fill="#ffffff">情報の自由な流れの</text>
+  <text x="400" y="269" text-anchor="middle" font-size="11" fill="#ffffff">終焉</text>
+  <text x="400" y="310" text-anchor="middle" font-size="11" fill="#f9a825">可能性：中（進行中）</text>
+  <!-- Scenario 3: Democratic Internet -->
+  <rect x="545" y="50" width="235" height="290" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="662" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">シナリオ3</text>
+  <text x="662" y="96" text-anchor="middle" font-size="12" fill="#4caf50">民主的インターネット</text>
+  <text x="662" y="118" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.8">理想的ゴール</text>
+  <rect x="565" y="130" width="195" height="170" rx="6" fill="#1a1a2e" stroke="#4caf50" stroke-width="1.5"/>
+  <text x="662" y="152" text-anchor="middle" font-size="11" fill="#ffffff">・国際共同運営の</text>
+  <text x="662" y="170" text-anchor="middle" font-size="11" fill="#ffffff">　ケーブルインフラ</text>
+  <text x="662" y="190" text-anchor="middle" font-size="11" fill="#ffffff">・アフリカ・アジアが</text>
+  <text x="662" y="208" text-anchor="middle" font-size="11" fill="#ffffff">　自国インフラを所有</text>
+  <text x="662" y="228" text-anchor="middle" font-size="11" fill="#4caf50">実現条件：</text>
+  <text x="662" y="245" text-anchor="middle" font-size="11" fill="#ffffff">政治的意志 + 資金 +</text>
+  <text x="662" y="262" text-anchor="middle" font-size="11" fill="#ffffff">国際協調</text>
+  <text x="662" y="310" text-anchor="middle" font-size="11" fill="#4caf50">可能性：低（要努力）</text>
+  <!-- Bottom message -->
+  <text x="400" y="362" text-anchor="middle" font-size="12" fill="#f9a825">インフラの所有者が情報の流れを決める — これは技術の問題ではなく政治の問題</text>
+  <text x="400" y="382" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.6">エンジニアはどのシナリオを選ぶかに責任を持つ</text>
+</svg>

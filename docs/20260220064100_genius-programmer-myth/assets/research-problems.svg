@@ -1,0 +1,36 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">10x神話がもたらす弊害</text>
+  <!-- 4 harm areas -->
+  <rect x="20" y="50" width="368" height="140" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="204" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">採用への弊害</text>
+  <text x="204" y="100" text-anchor="middle" font-size="11" fill="#ffffff">「スーパーヒーロー」探しに注力</text>
+  <text x="204" y="118" text-anchor="middle" font-size="11" fill="#ffffff">→ チームプレーヤーを過小評価</text>
+  <text x="204" y="138" text-anchor="middle" font-size="11" fill="#ffffff">→ 多様性が失われる（同じ「天才」像を求める）</text>
+  <text x="204" y="156" text-anchor="middle" font-size="10" fill="#e91e63">→ ブリリアント・ジャークを許容する文化へ</text>
+  <text x="204" y="172" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">Amazon/Netflixも長らく苦しんだ問題</text>
+  <rect x="412" y="50" width="368" height="140" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="596" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">チーム設計への弊害</text>
+  <text x="596" y="100" text-anchor="middle" font-size="11" fill="#ffffff">少数精鋭 = 良いチームという誤解</text>
+  <text x="596" y="118" text-anchor="middle" font-size="11" fill="#ffffff">→ バス係数（Key Person リスク）</text>
+  <text x="596" y="138" text-anchor="middle" font-size="11" fill="#ffffff">→ ナレッジのサイロ化</text>
+  <text x="596" y="156" text-anchor="middle" font-size="10" fill="#e91e63">→ 1人の欠員でプロジェクト崩壊</text>
+  <text x="596" y="172" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">バス係数1 = 最も危険なアーキテクチャ</text>
+  <rect x="20" y="205" width="368" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="204" y="233" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">評価・報酬への弊害</text>
+  <text x="204" y="255" text-anchor="middle" font-size="11" fill="#ffffff">個人の「見える」貢献のみを評価</text>
+  <text x="204" y="273" text-anchor="middle" font-size="11" fill="#ffffff">→ メンタリング・ドキュメントが報われない</text>
+  <text x="204" y="293" text-anchor="middle" font-size="11" fill="#ffffff">→ チームへの投資が選択的に消える</text>
+  <text x="204" y="311" text-anchor="middle" font-size="10" fill="#f9a825">→ 「目立つ仕事」競争が心理的安全性を破壊</text>
+  <text x="204" y="327" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">Google: 目に見えない貢献をOKRに組み込む</text>
+  <rect x="412" y="205" width="368" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="596" y="233" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">組織文化への弊害</text>
+  <text x="596" y="255" text-anchor="middle" font-size="11" fill="#ffffff">「エリート意識」が普通のメンバーを疎外</text>
+  <text x="596" y="273" text-anchor="middle" font-size="11" fill="#ffffff">→ 「自分は10xじゃない」と自己否定</text>
+  <text x="596" y="293" text-anchor="middle" font-size="11" fill="#ffffff">→ 心理的安全性の低下</text>
+  <text x="596" y="311" text-anchor="middle" font-size="10" fill="#f9a825">→ 離職率の増加（普通の人が去る）</text>
+  <text x="596" y="327" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">「普通の人」が組織の大多数を占める現実</text>
+  <!-- Bottom -->
+  <text x="400" y="368" text-anchor="middle" font-size="12" fill="#4caf50">神話を破棄する方法：チームアウトカムで全員を評価する</text>
+  <text x="400" y="385" text-anchor="middle" font-size="11" fill="#ffffff" opacity="0.6">個人の能力より、チームが機能する「システム」を設計する</text>
+</svg>

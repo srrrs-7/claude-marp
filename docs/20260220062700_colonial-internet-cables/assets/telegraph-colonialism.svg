@@ -1,0 +1,49 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">電信がなぜ植民地支配に不可欠だったか</text>
+  <!-- 4 pillars -->
+  <rect x="30" y="55" width="165" height="220" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="112" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">軍事制御</text>
+  <text x="112" y="110" text-anchor="middle" font-size="11" fill="#ffffff">反乱の早期</text>
+  <text x="112" y="128" text-anchor="middle" font-size="11" fill="#ffffff">察知・鎮圧</text>
+  <text x="112" y="158" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.8">インド大反乱(1857)</text>
+  <text x="112" y="175" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.8">増援に数ヶ月必要</text>
+  <text x="112" y="200" text-anchor="middle" font-size="10" fill="#f9a825">電信後：</text>
+  <text x="112" y="217" text-anchor="middle" font-size="10" fill="#f9a825">数時間で指令</text>
+  <text x="112" y="250" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">1871年 インド電信</text>
+  <text x="112" y="264" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">網整備完了</text>
+  <rect x="210" y="55" width="165" height="220" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="292" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">経済制御</text>
+  <text x="292" y="110" text-anchor="middle" font-size="11" fill="#ffffff">商品価格の</text>
+  <text x="292" y="128" text-anchor="middle" font-size="11" fill="#ffffff">リアルタイム把握</text>
+  <text x="292" y="158" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.8">ロンドンが綿花・</text>
+  <text x="292" y="175" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.8">砂糖の価格を設定</text>
+  <text x="292" y="200" text-anchor="middle" font-size="10" fill="#f9a825">植民地は価格を</text>
+  <text x="292" y="217" text-anchor="middle" font-size="10" fill="#f9a825">知る手段なし</text>
+  <text x="292" y="250" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">情報格差が</text>
+  <text x="292" y="264" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">収奪を可能に</text>
+  <rect x="390" y="55" width="165" height="220" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="472" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">情報制御</text>
+  <text x="472" y="110" text-anchor="middle" font-size="11" fill="#ffffff">ニュースの</text>
+  <text x="472" y="128" text-anchor="middle" font-size="11" fill="#ffffff">フィルタリング</text>
+  <text x="472" y="158" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.8">英国視点のニュース</text>
+  <text x="472" y="175" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.8">のみが流通</text>
+  <text x="472" y="200" text-anchor="middle" font-size="10" fill="#f9a825">Reutersは英国</text>
+  <text x="472" y="217" text-anchor="middle" font-size="10" fill="#f9a825">ケーブル使用</text>
+  <text x="472" y="250" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">現地の声は</text>
+  <text x="472" y="264" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">世界に届かない</text>
+  <rect x="570" y="55" width="200" height="220" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="670" y="82" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">帝国維持コスト削減</text>
+  <text x="670" y="110" text-anchor="middle" font-size="11" fill="#ffffff">遠隔管理で</text>
+  <text x="670" y="128" text-anchor="middle" font-size="11" fill="#ffffff">駐留コスト圧縮</text>
+  <text x="670" y="158" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.8">電報1通 = 数千人の</text>
+  <text x="670" y="175" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.8">軍隊と同等の効果</text>
+  <text x="670" y="200" text-anchor="middle" font-size="10" fill="#f9a825">「電信なしには</text>
+  <text x="670" y="217" text-anchor="middle" font-size="10" fill="#f9a825">帝国は不可能」</text>
+  <text x="670" y="250" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.6">— 当時の英政府高官</text>
+  <!-- Bottom -->
+  <rect x="30" y="290" width="740" height="90" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="313" text-anchor="middle" font-size="13" fill="#f9a825">現代との類比：インターネットの物理インフラも同じ権力構造を持つ</text>
+  <text x="400" y="335" text-anchor="middle" font-size="11" fill="#ffffff">電信ケーブル → 海底ケーブル | ロンドン → ニューヨーク・シリコンバレー | ロイター → GAFAM</text>
+  <text x="400" y="368" text-anchor="middle" font-size="11" fill="#e91e63">インフラを制する者が情報と経済を制する — 150年前も今も</text>
+</svg>

@@ -1,0 +1,113 @@
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff" font-family="sans-serif">Elastic Beanstalk: Rolling 段階更新フロー</text>
+
+  <!-- Legend -->
+  <rect x="560" y="10" width="14" height="14" rx="2" fill="#60a5fa"/>
+  <text x="578" y="21" font-size="11" fill="#ffffff" font-family="sans-serif">旧バージョン</text>
+  <rect x="680" y="10" width="14" height="14" rx="2" fill="#a855f7"/>
+  <text x="698" y="21" font-size="11" fill="#ffffff" font-family="sans-serif">新バージョン</text>
+
+  <!-- Phase labels -->
+  <text x="100" y="60" text-anchor="middle" font-size="13" fill="#a855f7" font-weight="bold" font-family="sans-serif">PHASE 1</text>
+  <text x="300" y="60" text-anchor="middle" font-size="13" fill="#a855f7" font-weight="bold" font-family="sans-serif">PHASE 2</text>
+  <text x="500" y="60" text-anchor="middle" font-size="13" fill="#a855f7" font-weight="bold" font-family="sans-serif">PHASE 3</text>
+  <text x="700" y="60" text-anchor="middle" font-size="13" fill="#34d399" font-weight="bold" font-family="sans-serif">COMPLETE</text>
+
+  <!-- Phase 1: 4 instances, all old -->
+  <rect x="30" y="75" width="50" height="36" rx="5" fill="#60a5fa" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="55" y="97" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="90" y="75" width="50" height="36" rx="5" fill="#60a5fa" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="115" y="97" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="30" y="120" width="50" height="36" rx="5" fill="#60a5fa" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="55" y="142" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="90" y="120" width="50" height="36" rx="5" fill="#60a5fa" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="115" y="142" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v1</text>
+  <text x="100" y="172" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">全インスタンス v1</text>
+
+  <!-- Arrow 1 -->
+  <line x1="160" y1="110" x2="185" y2="110" stroke="#ffffff" stroke-width="2"/>
+  <polygon points="185,105 195,110 185,115" fill="#ffffff"/>
+
+  <!-- Phase 2: 2 old, 2 new -->
+  <rect x="210" y="75" width="50" height="36" rx="5" fill="#a855f7" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="235" y="97" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="270" y="75" width="50" height="36" rx="5" fill="#a855f7" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="295" y="97" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="210" y="120" width="50" height="36" rx="5" fill="#60a5fa" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="235" y="142" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v1</text>
+  <rect x="270" y="120" width="50" height="36" rx="5" fill="#60a5fa" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="295" y="142" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v1</text>
+  <text x="280" y="172" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">バッチ1更新済</text>
+
+  <!-- Arrow 2 -->
+  <line x1="340" y1="110" x2="365" y2="110" stroke="#ffffff" stroke-width="2"/>
+  <polygon points="365,105 375,110 365,115" fill="#ffffff"/>
+
+  <!-- Phase 3: 3 new, 1 old -->
+  <rect x="390" y="75" width="50" height="36" rx="5" fill="#a855f7" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="415" y="97" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="450" y="75" width="50" height="36" rx="5" fill="#a855f7" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="475" y="97" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="390" y="120" width="50" height="36" rx="5" fill="#a855f7" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="415" y="142" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="450" y="120" width="50" height="36" rx="5" fill="#60a5fa" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="475" y="142" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v1</text>
+  <text x="460" y="172" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">バッチ2更新済</text>
+
+  <!-- Arrow 3 -->
+  <line x1="520" y1="110" x2="545" y2="110" stroke="#ffffff" stroke-width="2"/>
+  <polygon points="545,105 555,110 545,115" fill="#ffffff"/>
+
+  <!-- Complete: all new -->
+  <rect x="570" y="75" width="50" height="36" rx="5" fill="#a855f7" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="595" y="97" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="630" y="75" width="50" height="36" rx="5" fill="#a855f7" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="655" y="97" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="570" y="120" width="50" height="36" rx="5" fill="#a855f7" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="595" y="142" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2</text>
+  <rect x="630" y="120" width="50" height="36" rx="5" fill="#a855f7" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+  <text x="655" y="142" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">v2</text>
+  <text x="640" y="172" text-anchor="middle" font-size="10" fill="#34d399" font-family="sans-serif">全インスタンス v2</text>
+
+  <!-- Health check annotation -->
+  <rect x="0" y="200" width="800" height="1" fill="#ffffff" opacity="0.3"/>
+
+  <!-- Steps below -->
+  <rect x="30" y="215" width="170" height="50" rx="6" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="115" y="234" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="bold" font-family="sans-serif">STEP 1</text>
+  <text x="115" y="250" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">バッチを取り出しOOS</text>
+  <text x="115" y="263" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">（Out of Service）</text>
+
+  <rect x="220" y="215" width="170" height="50" rx="6" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="305" y="234" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="bold" font-family="sans-serif">STEP 2</text>
+  <text x="305" y="250" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">新バージョンを</text>
+  <text x="305" y="263" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">バッチへデプロイ</text>
+
+  <rect x="410" y="215" width="170" height="50" rx="6" fill="none" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="495" y="234" text-anchor="middle" font-size="11" fill="#a855f7" font-weight="bold" font-family="sans-serif">STEP 3</text>
+  <text x="495" y="250" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">ヘルスチェック通過後</text>
+  <text x="495" y="263" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">次バッチへ進む</text>
+
+  <rect x="600" y="215" width="170" height="50" rx="6" fill="none" stroke="#34d399" stroke-width="1.5"/>
+  <text x="685" y="234" text-anchor="middle" font-size="11" fill="#34d399" font-weight="bold" font-family="sans-serif">STEP 4</text>
+  <text x="685" y="250" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">全バッチ完了で</text>
+  <text x="685" y="263" text-anchor="middle" font-size="10" fill="#ffffff" font-family="sans-serif">デプロイ完了</text>
+
+  <!-- Step arrows -->
+  <line x1="200" y1="240" x2="220" y2="240" stroke="#ffffff" stroke-width="1.5" opacity="0.6"/>
+  <polygon points="218,236 226,240 218,244" fill="#ffffff" opacity="0.6"/>
+  <line x1="390" y1="240" x2="410" y2="240" stroke="#ffffff" stroke-width="1.5" opacity="0.6"/>
+  <polygon points="408,236 416,240 408,244" fill="#ffffff" opacity="0.6"/>
+  <line x1="580" y1="240" x2="600" y2="240" stroke="#ffffff" stroke-width="1.5" opacity="0.6"/>
+  <polygon points="598,236 606,240 598,244" fill="#ffffff" opacity="0.6"/>
+
+  <!-- Bottom note -->
+  <text x="400" y="295" text-anchor="middle" font-size="12" fill="#ffffff" opacity="0.8" font-family="sans-serif">バッチサイズ設定: EB Console > Rolling updates and deployments > Deployment policy</text>
+  <text x="400" y="315" text-anchor="middle" font-size="11" fill="#60a5fa" font-family="sans-serif">注意: 更新中は一部インスタンスがキャパシティから除外されるため、ピーク時は避けること</text>
+
+  <!-- Key metric -->
+  <rect x="200" y="335" width="400" height="45" rx="8" fill="#1e1b4b" stroke="#a855f7" stroke-width="1.5"/>
+  <text x="400" y="356" text-anchor="middle" font-size="12" fill="#a855f7" font-weight="bold" font-family="sans-serif">ELB ヘルスチェック確認後に次バッチへ — 失敗時は即時ロールバック</text>
+  <text x="400" y="372" text-anchor="middle" font-size="11" fill="#ffffff" font-family="sans-serif">デフォルトバッチサイズ: 30% のインスタンス / 推奨: 20%以下</text>
+</svg>

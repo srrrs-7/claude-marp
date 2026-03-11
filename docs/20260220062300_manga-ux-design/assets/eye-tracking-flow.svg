@@ -1,0 +1,51 @@
+<svg viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+  <rect width="800" height="360" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" font-family="sans-serif" font-size="17" fill="#f9a825" font-weight="bold">視線誘導の3原則：視線フロー</text>
+  <!-- Left: manga reading flow -->
+  <rect x="30" y="46" width="340" height="290" rx="8" fill="#16213e"/>
+  <text x="200" y="68" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#f9a825" font-weight="bold">マンガ：右→左・上→下</text>
+  <!-- Manga panels -->
+  <rect x="210" y="82" width="120" height="80" rx="4" fill="#0d1b2a" stroke="#555" stroke-width="1"/>
+  <text x="270" y="126" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">①大ゴマ</text>
+  <rect x="60" y="82" width="140" height="36" rx="4" fill="#0d1b2a" stroke="#555" stroke-width="1"/>
+  <text x="130" y="106" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">②小コマ</text>
+  <rect x="60" y="126" width="140" height="36" rx="4" fill="#0d1b2a" stroke="#555" stroke-width="1"/>
+  <text x="130" y="150" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">③小コマ</text>
+  <rect x="60" y="172" width="270" height="52" rx="4" fill="#0d1b2a" stroke="#555" stroke-width="1"/>
+  <text x="195" y="202" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">④横コマ（場面転換）</text>
+  <rect x="60" y="232" width="120" height="80" rx="4" fill="#0d1b2a" stroke="#555" stroke-width="1"/>
+  <text x="120" y="276" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">⑤大ゴマ</text>
+  <rect x="192" y="232" width="138" height="36" rx="4" fill="#0d1b2a" stroke="#555" stroke-width="1"/>
+  <text x="261" y="256" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">⑥</text>
+  <!-- Eye path overlay -->
+  <circle cx="270" cy="122" r="5" fill="#f9a825"/>
+  <circle cx="130" cy="102" r="5" fill="#f9a825"/>
+  <circle cx="130" cy="144" r="5" fill="#f9a825"/>
+  <circle cx="195" cy="198" r="5" fill="#f9a825"/>
+  <circle cx="120" cy="272" r="5" fill="#f9a825"/>
+  <polyline points="270,122 130,102 130,144 195,198 120,272"
+    fill="none" stroke="#f9a825" stroke-width="2" opacity="0.7"/>
+  <!-- Right: UI reading flow (F-pattern) -->
+  <rect x="430" y="46" width="340" height="290" rx="8" fill="#16213e"/>
+  <text x="600" y="68" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#e91e63" font-weight="bold">UI：Fパターン・Zパターン</text>
+  <!-- Nav bar -->
+  <rect x="450" y="82" width="300" height="28" rx="4" fill="#0d1b2a" stroke="#e91e63" stroke-width="1"/>
+  <text x="600" y="101" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">①ナビゲーション（横一列スキャン）</text>
+  <!-- Hero -->
+  <rect x="450" y="118" width="300" height="50" rx="4" fill="#0d1b2a" stroke="#555" stroke-width="1"/>
+  <text x="600" y="147" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">②ヒーロー（左から右）</text>
+  <!-- Content blocks -->
+  <rect x="450" y="176" width="190" height="50" rx="4" fill="#0d1b2a" stroke="#555" stroke-width="1"/>
+  <text x="545" y="205" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">③左コンテンツ</text>
+  <rect x="648" y="176" width="102" height="50" rx="4" fill="#0d1b2a" stroke="#333" stroke-width="1"/>
+  <rect x="450" y="234" width="190" height="50" rx="4" fill="#0d1b2a" stroke="#555" stroke-width="1"/>
+  <text x="545" y="263" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#aaa">④左コンテンツ</text>
+  <!-- Eye path -->
+  <circle cx="450" cy="96" r="5" fill="#e91e63"/>
+  <circle cx="600" cy="143" r="5" fill="#e91e63"/>
+  <circle cx="545" cy="201" r="5" fill="#e91e63"/>
+  <circle cx="545" cy="259" r="5" fill="#e91e63"/>
+  <polyline points="450,96 750,96 460,143 740,143 460,201 640,201 460,259 640,259"
+    fill="none" stroke="#e91e63" stroke-width="2" opacity="0.7"/>
+  <text x="600" y="310" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">F字パターン（Nielsen&amp;Pernice研究）</text>
+</svg>

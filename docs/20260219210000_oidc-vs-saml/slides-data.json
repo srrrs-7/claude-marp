@@ -1,579 +1,640 @@
 {
-	"slides": [
-		{
-			"title": "OIDC vs SAML",
-			"layout": "center",
-			"content": [
-				"アーキテクトのための選択ガイド",
-				"認証プロトコルの深層比較 — フロー・構造・セキュリティ・移行",
-				"対象: アーキテクト / Tech Lead"
-			],
-			"speakerNotes": "本日はOIDCとSAMLの違いを、アーキテクトの視点から深掘りします。単なる機能比較だけでなく、フロー図解・トークン構造・セキュリティ・移行パターンまで網羅します。"
-		},
-		{
-			"title": "アジェンダ (1/2)",
-			"layout": "default",
-			"content": [
-				"**Part 1: 背景と基礎** — 認証/認可の概念、SAMLとOIDCの歴史",
-				"**Part 2: プロトコルフロー詳解** — SP-Initiated, IdP-Initiated, PKCE",
-				"**Part 3: トークン・アサーション構造** — SAML Assertion vs JWT ID Token",
-				"**Part 4: ユースケース別選択基準** — 選択マトリクス・Decision Flowchart",
-				"**Part 5: セキュリティ考慮事項** — XSW, Token Leakage, 対策チェックリスト",
-				"**Part 6: 実装・移行ガイド** — 主要IdP対応, SAML→OIDC 4フェーズ移行"
-			]
-		},
-		{
-			"title": "アジェンダ (2/2) — 本日のゴール",
-			"layout": "default",
-			"content": [
-				"**判断できるようになること:**",
-				"新規プロジェクトで SAML か OIDC どちらを選ぶべきか即答できる",
-				"既存 SAML 環境から OIDC への移行計画を立てられる",
-				"各プロトコルの脆弱性を理解し、正しい実装方針を示せる",
-				"**前提知識:** HTTP / OAuth 2.0 の基本的な概念があると理解が深まります",
-				"**スライド資料:** 図解 14 枚 + コードサンプル + 参考資料一覧"
-			]
-		},
-		{
-			"title": "Part 1: 背景と基礎",
-			"layout": "section",
-			"content": [
-				"認証・認可の概念整理",
-				"IdP / SP の関係",
-				"SAML と OIDC の歴史的背景"
-			]
-		},
-		{
-			"title": "認証（AuthN）vs 認可（AuthZ）",
-			"layout": "default",
-			"content": [
-				"**認証 (Authentication / AuthN):** 「あなたは誰ですか？」を確認するプロセス",
-				"**認可 (Authorization / AuthZ):** 「あなたは何をしてよいですか？」を確認するプロセス",
-				"**SAML:** 主に認証（SSO）に特化。認可情報は Attribute で補完",
-				"**OIDC:** OAuth 2.0（認可）の上に認証レイヤー（ID Token）を追加",
-				"**混乱しやすい点:** OAuth 2.0 は認可フレームワーク。OIDC がその上の認証層",
-				"**Identity Federation:** 異なるドメイン間で認証情報を信頼・共有する仕組み"
-			],
-			"speakerNotes": "認証と認可は厳密に分けて考えることが重要です。OAuth 2.0 単体は認可のみ。OIDC が認証を追加します。"
-		},
-		{
-			"title": "フェデレーションの基本概念: IdP と SP",
-			"layout": "default",
-			"content": [
-				"**Identity Provider (IdP):** ユーザーの認証情報を管理・認証結果を発行する側",
-				"**Service Provider (SP) / Relying Party (RP):** IdP の認証結果を受け取り、サービスを提供する側",
-				"**フェデレーション:** SP が独自のユーザー管理をせず、IdP の認証結果を信頼する",
-				"**シングルサインオン (SSO):** 1回の認証で複数のサービスにアクセス可能",
-				"**信頼関係:** SP と IdP の間に事前に確立するメタデータ/証明書の交換",
-				"**SAML の呼び名:** IdP / SP   |   **OIDC の呼び名:** OP (OpenID Provider) / RP"
-			]
-		},
-		{
-			"title": "SAML の歴史と設計思想",
-			"layout": "default",
-			"content": [
-				"**2002年:** OASIS が SAML 1.0 策定。企業間 SSO が目的",
-				"**2005年:** SAML 2.0 リリース。現在も標準として使用",
-				"**設計思想:** エンタープライズ向け。SOAP/XML が全盛の時代",
-				"**ブラウザ中心:** リダイレクトと HTML フォームの POST で動作",
-				"**強み:** AD/LDAP との統合、成熟したエコシステム、Salesforce/SAP 等の対応",
-				"**弱み:** XML の複雑さ、モバイル非対応、API 認可は設計外"
-			]
-		},
-		{
-			"title": "OIDC / OAuth 2.0 の登場",
-			"layout": "default",
-			"content": [
-				"**2012年:** OAuth 2.0 (RFC 6749) — API 認可フレームワークとして策定",
-				"**2014年:** OpenID Connect 1.0 — OAuth 2.0 の上に認証レイヤーを追加",
-				"**設計思想:** Web・モバイル・API 時代の認証認可",
-				"**JSON/JWT:** 軽量、パース容易、言語非依存（JavaScript フレンドリー）",
-				"**Google・Facebook** がログイン基盤に採用。ソーシャルログインで普及",
-				"**現在:** AWS Cognito, Auth0, Okta, Keycloak が OIDC を標準サポート"
-			]
-		},
-		{
-			"title": "SAML vs OIDC: アーキテクチャ概念比較",
-			"layout": "default",
-			"content": ["![w:1000 center](assets/overview-comparison.svg)"],
-			"speakerNotes": "左がSAML、右がOIDCのアーキテクチャ概念図です。SAMLはブラウザ経由のXML POST、OIDCはJSON/JWTベースのREST API指向です。"
-		},
-		{
-			"title": "Part 2: プロトコルフロー詳解",
-			"layout": "section",
-			"content": [
-				"SAML SP-Initiated / IdP-Initiated",
-				"OIDC 認可コードフロー",
-				"PKCE（モバイル/SPA 向け）"
-			]
-		},
-		{
-			"title": "SAML SP-Initiated SSO フロー",
-			"layout": "default",
-			"content": ["![w:980 center](assets/saml-sp-initiated-flow.svg)"],
-			"speakerNotes": "SP-InitiatedはSPがSAMLRequestを作りIdPにリダイレクト。認証後、IdPがSAMLResponseをブラウザ経由でSPにPOSTします。"
-		},
-		{
-			"title": "SAML SP-Initiated フロー — ポイント",
-			"layout": "default",
-			"content": [
-				"**Step 2:** SP が SAMLRequest を Base64 エンコードしてリダイレクト",
-				"**Step 6:** IdP が署名付き SAMLResponse を HTML フォームに埋め込む",
-				"**Step 7:** JavaScript で自動サブミット → SP の ACS (Assertion Consumer Service) URL に POST",
-				"**SP 検証項目:** 署名の正当性 / Audience (自分宛か) / Conditions (有効期限) / Issuer",
-				"**RelayState:** 元のリクエスト URL を保持し、認証後にリダイレクトするための情報",
-				"**セッション:** SP が独自にセッション Cookie を発行（SAML は SSO, セッション管理は SP 独自）"
-			]
-		},
-		{
-			"title": "SAML IdP-Initiated SSO フロー",
-			"layout": "default",
-			"content": ["![w:970 center](assets/saml-idp-initiated-flow.svg)"],
-			"speakerNotes": "IdP-InitiatedはユーザーがIdPのポータルからアプリを選ぶパターン。セキュリティリスクが高いため非推奨。"
-		},
-		{
-			"title": "SAML Binding: HTTP-Redirect vs HTTP-POST",
-			"layout": "default",
-			"content": [
-				"**HTTP-Redirect Binding:** SAMLRequest を URL クエリパラメータで送信",
-				"  → URL 長さ制限あり（〜2KB）。SAMLRequest に使用が一般的",
-				"**HTTP-POST Binding:** HTML フォームの hidden フィールドに埋め込み",
-				"  → サイズ制限なし。SAMLResponse に必須（署名付き XML は大きい）",
-				"**SOAP Binding (ECP):** XML SOAP メッセージで直接通信。ブラウザ不要",
-				"  → CLI ツール・ネイティブアプリ向け。実装が複雑",
-				"**推奨組み合わせ:** Request: HTTP-Redirect, Response: HTTP-POST"
-			]
-		},
-		{
-			"title": "OIDC 認証コードフロー + ID Token",
-			"layout": "default",
-			"content": ["![w:1050 center](assets/oidc-authcode-flow.svg)"],
-			"speakerNotes": "OIDCの認可コードフローです。重要なのはStep 8-9のバックチャンネルでのトークン交換と、IDトークンの検証です。"
-		},
-		{
-			"title": "OIDC フロー — ポイント",
-			"layout": "default",
-			"content": [
-				"**scope=openid:** これが OIDC の起動キー。これがないと OAuth 2.0 のみ",
-				"**state パラメータ:** CSRF 攻撃防止。リクエストとコールバックで一致確認必須",
-				"**nonce:** リプレイ攻撃防止。ID Token のクレームと一致確認必須",
-				"**バックチャンネル交換 (Step 8):** Auth Code をトークンに変換。直接 HTTPS POST",
-				"**ID Token 検証:** iss / aud / exp / nonce / 署名 (JWKS で公開鍵取得) を確認",
-				"**UserInfo Endpoint:** Access Token で追加のユーザー情報を取得できる"
-			]
-		},
-		{
-			"title": "OIDC PKCE フロー (モバイル/SPA 向け)",
-			"layout": "default",
-			"content": ["![w:930 center](assets/oidc-pkce-flow.svg)"],
-			"speakerNotes": "PKCEはRFC 7636で定義。client_secretを使わないパブリッククライアントでの認可コードフローを安全にします。"
-		},
-		{
-			"title": "プロトコルフロー比較サマリー",
-			"layout": "default",
-			"content": [
-				"| 観点 | SAML SP-Initiated | OIDC Auth Code + PKCE |",
-				"|------|-------------------|----------------------|",
-				"| 仲介 | ブラウザ (必須) | ブラウザ + バックチャンネル |",
-				"| トークン形式 | XML (Base64 POST) | JWT (JSON) |",
-				"| CSRF 対策 | RelayState | state + PKCE |",
-				"| リプレイ対策 | Conditions/InResponseTo | nonce + exp |",
-				"| バックチャンネル通信 | なし | あり (安全) |",
-				"| モバイル対応 | ✗ 困難 | ✓ PKCE で対応 |"
-			]
-		},
-		{
-			"title": "Part 3: トークン・アサーション構造",
-			"layout": "section",
-			"content": [
-				"SAML Assertion の XML 構造",
-				"JWT ID Token の 3 部構成",
-				"Access Token vs ID Token の役割分離"
-			]
-		},
-		{
-			"title": "SAML Assertion の構造",
-			"layout": "default",
-			"content": ["![w:1000 center](assets/saml-assertion-structure.svg)"],
-			"speakerNotes": "SAML AssertionはXMLで構成されます。Issuer, Subject, Conditions, AuthnStatement, AttributeStatementが主要要素です。"
-		},
-		{
-			"title": "SAML Assertion — XML サンプル",
-			"content": ["署名付き Assertion の実際の XML 構造を確認する"],
-			"layout": "default"
-		},
-		{
-			"title": "SAML Assertion — XML サンプル（コード例）",
-			"content": [],
-			"code": "<saml:Assertion xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\"\n  ID=\"_abc123\" IssueInstant=\"2026-02-19T12:00:00Z\" Version=\"2.0\">\n  <saml:Issuer>https://idp.example.com</saml:Issuer>\n  <saml:Subject>\n    <saml:NameID Format=\"urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress\">\n      user@example.com\n    </saml:NameID>\n    <saml:SubjectConfirmation Method=\"...bearer\">\n      <saml:SubjectConfirmationData\n        NotOnOrAfter=\"2026-02-19T12:05:00Z\"\n        Recipient=\"https://sp.example.com/acs\"/>\n    </saml:SubjectConfirmation>\n  </saml:Subject>\n  <saml:Conditions NotBefore=\"...\" NotOnOrAfter=\"...\">\n    <saml:AudienceRestriction>\n      <saml:Audience>https://sp.example.com</saml:Audience>\n    </saml:AudienceRestriction>\n  </saml:Conditions>\n  <saml:AttributeStatement>\n    <saml:Attribute Name=\"email\"><saml:AttributeValue>user@example.com</saml:AttributeValue></saml:Attribute>\n    <saml:Attribute Name=\"groups\"><saml:AttributeValue>admin</saml:AttributeValue></saml:Attribute>\n  </saml:AttributeStatement>\n  <ds:Signature><!-- RSA-SHA256 デジタル署名 --></ds:Signature>\n</saml:Assertion>",
-			"codeLanguage": "xml",
-			"layout": "default"
-		},
-		{
-			"title": "JWT ID Token の構造",
-			"layout": "default",
-			"content": ["![w:1000 center](assets/jwt-structure.svg)"],
-			"speakerNotes": "JWTは3つのBase64URLエンコードされたパーツをピリオドで結合。ヘッダー・ペイロード・署名。"
-		},
-		{
-			"title": "ID Token の標準クレーム (OIDC Core 仕様)",
-			"layout": "default",
-			"content": [
-				"| クレーム | 必須 | 説明 |",
-				"|---------|------|------|",
-				"| `iss` | ✓ | 発行者 URL (https://op.example.com) |",
-				"| `sub` | ✓ | ユーザー識別子 (不変・プロバイダー固有) |",
-				"| `aud` | ✓ | 対象クライアント (client_id) |",
-				"| `exp` | ✓ | 有効期限 (Unix timestamp) |",
-				"| `iat` | ✓ | 発行時刻 |",
-				"| `nonce` | 条件付 | リプレイ攻撃防止 (リクエスト時に送った値) |",
-				"| `email` `name` `picture` | オプション | scope に応じて含まれる |"
-			]
-		},
-		{
-			"title": "Access Token vs ID Token — 役割の分離",
-			"layout": "default",
-			"content": ["![w:1000 center](assets/access-id-token-roles.svg)"],
-			"speakerNotes": "ID TokenはClientがユーザー認証確認のために使うもの。Access TokenはResource Serverへの認可証明。混乱しやすいポイントです。"
-		},
-		{
-			"title": "SAML Assertion vs JWT ID Token — 属性比較",
-			"layout": "default",
-			"content": [
-				"| 比較項目 | SAML Assertion | JWT ID Token |",
-				"|---------|----------------|--------------|",
-				"| **形式** | XML (署名付き) | JSON (Base64URL) |",
-				"| **典型サイズ** | 5〜20 KB | 300〜1000 bytes |",
-				"| **署名** | XML Digital Signature | RS256 / ES256 |",
-				"| **有効期限** | Conditions NotOnOrAfter | `exp` クレーム |",
-				"| **対象者** | AudienceRestriction | `aud` クレーム |",
-				"| **ユーザー識別** | NameID (Format 指定) | `sub` (不変) |",
-				"| **属性** | AttributeStatement (柔軟) | Claims (標準化) |"
-			]
-		},
-		{
-			"title": "クレームマッピング: IdP → SP 属性変換",
-			"content": [
-				"IdP の属性名と SP が期待する属性名が異なる場合のマッピング設定例"
-			],
-			"layout": "default"
-		},
-		{
-			"title": "クレームマッピング: IdP → SP 属性変換（コード例）",
-			"content": [],
-			"code": "# Okta / Azure AD での SAML 属性マッピング設定例\nsaml_attributes:\n  - name: \"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress\"\n    value: \"user.email\"        # IdP フィールド名\n    # SP では 'email' として受け取りたい場合、SP 側でも変換設定\n\n# OIDC スコープとクレームのマッピング例 (Keycloak)\noidc_scope_mappings:\n  openid:\n    - sub\n  profile:\n    - name, given_name, family_name, picture\n  email:\n    - email, email_verified\n  # カスタムスコープ\n  roles:\n    - realm_roles, resource_access\n\n# JWT クレームでのグループ情報例\n{\n  \"sub\": \"user123\",\n  \"email\": \"user@example.com\",\n  \"groups\": [\"admin\", \"developers\"],\n  \"custom:department\": \"Engineering\"\n}",
-			"codeLanguage": "yaml",
-			"layout": "default"
-		},
-		{
-			"title": "Part 4: ユースケース別選択基準",
-			"layout": "section",
-			"content": [
-				"エンタープライズ SSO / モバイル・SPA",
-				"B2B フェデレーション / API 認可",
-				"マルチプロトコル構成と選択フローチャート"
-			]
-		},
-		{
-			"title": "エンタープライズ SSO — SAML が適切な理由",
-			"layout": "default",
-			"content": [
-				"**Active Directory / ADFS との深い統合:** Kerberos→SAML変換が成熟",
-				"**ベンダーサポートの幅広さ:** Salesforce, SAP, ServiceNow, Workday は SAML が標準",
-				"**Windows 統合認証 (WIA):** イントラネット環境では Kerberos→SAML のシームレス SSO",
-				"**組織内ポリシーの伝達:** Group/Role 情報を Attribute Statement で SP に渡せる",
-				"**成熟した実装:** 20年以上の実績。脆弱性と対策が出揃っている",
-				"**判断基準:** 既存 AD + エンタープライズ SaaS の SSO が主目的 → SAML を維持"
-			]
-		},
-		{
-			"title": "モバイル・SPA — OIDC が適切な理由",
-			"layout": "default",
-			"content": [
-				"**SAML の根本的問題:** XML HTML フォームの POST はネイティブアプリで扱えない",
-				"**PKCE による安全な認可:** client_secret 不要でパブリッククライアントに対応",
-				"**カスタムスキーム:** `myapp://callback` で Auth Code をアプリが受け取れる",
-				"**JWT の軽量さ:** ネットワーク帯域・解析コスト共に有利（モバイル回線考慮）",
-				"**SDKライブラリの充実:** AppAuth (iOS/Android), MSAL, Auth0 SDK 等が完備",
-				"**判断基準:** iOS・Android アプリや React/Vue SPA → OIDC + PKCE 一択"
-			]
-		},
-		{
-			"title": "B2B フェデレーション — 状況に応じた選択",
-			"layout": "default",
-			"content": [
-				"**エンタープライズ B2B:** 相手企業が SAML IdP (AD/ADFS) を持つ → SAML",
-				"**クラウドネイティブ B2B:** 相手が Okta / Auth0 等 → OIDC が増えてきた",
-				"**実用的アプローチ:** マルチプロトコル対応 IdP を使い、相手に合わせる",
-				"**AWS IAM Identity Center:** SAML 2.0 + OIDC 両対応。外部 IdP と連携",
-				"**Google Workspace / Azure AD:** 外部 SAML フェデレーション、OIDC フェデレーション両対応",
-				"**判断基準:** 相手先のシステム制約に合わせる。自社 IdP はマルチプロトコル対応を"
-			]
-		},
-		{
-			"title": "マルチプロトコル対応 IdP 構成",
-			"layout": "default",
-			"content": ["![w:960 center](assets/multi-protocol-idp.svg)"],
-			"speakerNotes": "エンタープライズ移行期の現実解です。1つのIdPでSAMLとOIDCを両対応し、段階的に移行します。"
-		},
-		{
-			"title": "ユースケース別選択マトリクス",
-			"layout": "default",
-			"content": ["![w:1000 center](assets/usecase-matrix.svg)"],
-			"speakerNotes": "各ユースケースでの推奨度をまとめた表です。新規開発はほぼOIDC一択、エンタープライズSSOはSAML優位です。"
-		},
-		{
-			"title": "Decision Flowchart: どちらを選ぶか",
-			"layout": "default",
-			"content": ["![w:930 center](assets/decision-flowchart.svg)"],
-			"speakerNotes": "迷ったときはこのフローチャートを使ってください。基本的に新規プロジェクトはOIDCがデフォルトです。"
-		},
-		{
-			"title": "Part 5: セキュリティ考慮事項",
-			"layout": "section",
-			"content": [
-				"SAML の主要脆弱性 (XSW, リプレイ攻撃)",
-				"OIDC の主要脆弱性 (不正リダイレクト, Token Leakage)",
-				"セキュリティ対策チェックリスト"
-			]
-		},
-		{
-			"title": "SAML 脆弱性 #1: XML Signature Wrapping (XSW)",
-			"layout": "default",
-			"content": ["![w:1000 center](assets/xml-signature-wrapping.svg)"],
-			"speakerNotes": "XSWはSAMLの最も深刻な脆弱性。署名は有効でも別の要素が処理される。検証済みライブラリの使用が必須。"
-		},
-		{
-			"title": "SAML 脆弱性 #2 — その他のリスク（1/2）",
-			"layout": "default",
-			"content": [
-				"**XML インジェクション:** XML メタキャラクタを含む属性値でパーサーを混乱",
-				"  → 対策: 属性値のエスケープ、strict な XML パーサー設定",
-				"**リプレイ攻撃:** 有効期限内の SAMLResponse を再送して不正アクセス",
-				"  → 対策: InResponseTo / AssertionID のキャッシュで重複検出"
-			]
-		},
-		{
-			"title": "SAML 脆弱性 #2 — その他のリスク（2/2）",
-			"layout": "default",
-			"content": [
-				"**オープンリダイレクト:** RelayState を検証しない場合に任意 URL へリダイレクト",
-				"  → 対策: RelayState はホワイトリスト or 相対 URL のみ許可",
-				"**中間者攻撃:** TLS を使わない場合の SAMLResponse 傍受・改ざん",
-				"  → 対策: 全通信 HTTPS 必須、SP でアサーション署名を必須化"
-			]
-		},
-		{
-			"title": "OIDC 脆弱性 #1: リダイレクト URI 攻撃（1/2）",
-			"layout": "default",
-			"content": [
-				"**不正 redirect_uri:** 登録外のURIに Auth Code / Token がリダイレクトされる",
-				"  → 対策: redirect_uri を完全一致で事前登録。ワイルドカード禁止",
-				"**オープンリダイレクタ利用:** 正規ドメインのリダイレクタ経由で外部へ誘導",
-				"  → 対策: redirect_uri は完全 URL で登録。動的登録には注意"
-			]
-		},
-		{
-			"title": "OIDC 脆弱性 #1: リダイレクト URI 攻撃（2/2）",
-			"layout": "default",
-			"content": [
-				"**CSRF 攻撃 (state 未検証):** state パラメータ検証なしで認可コードを送信",
-				"  → 対策: state は必ず生成・検証。セッション/Cookie に保存して照合",
-				"**Code Injection (Implicit Flow):** URL フラグメントのトークンが Referer 漏洩",
-				"  → 対策: Implicit Flow は廃止。Auth Code + PKCE を使用"
-			]
-		},
-		{
-			"title": "OIDC 脆弱性 #2: Token Leakage と実装ミス（1/2）",
-			"layout": "default",
-			"content": [
-				"**Access Token のログ記録:** Bearer Token がアクセスログに残る",
-				"  → 対策: Authorization ヘッダーはログから除外。短命トークン使用",
-				"**`alg: none` 攻撃:** JWT の署名アルゴリズムに none を指定し検証スキップ",
-				"  → 対策: alg を明示的に RS256/ES256 に限定。none を拒否"
-			]
-		},
-		{
-			"title": "OIDC 脆弱性 #2: Token Leakage と実装ミス（2/2）",
-			"layout": "default",
-			"content": [
-				"**HS256 共有鍵の漏洩:** 対称鍵が漏洩すると全トークン偽造可能",
-				"  → 対策: RS256 (公開鍵暗号) を推奨。HS256 はマイクロサービス内部のみ",
-				"**nonce 未検証:** リプレイ攻撃防止の nonce をクライアントが確認しない",
-				"  → 対策: nonce は必ずセッションに保存し ID Token クレームと照合"
-			]
-		},
-		{
-			"title": "セキュリティ対策比較チェックリスト",
-			"layout": "default",
-			"content": [
-				"| 脅威 | SAML 対策 | OIDC 対策 |",
-				"|------|-----------|-----------|",
-				"| リプレイ攻撃 | InResponseTo + AssertionID キャッシュ | nonce + exp 検証 |",
-				"| 改ざん | XML Digital Signature 必須化 | RS256 署名 + JWKS 検証 |",
-				"| CSRF | RelayState 検証 | state パラメータ検証 |",
-				"| 不正リダイレクト | ACS URL ホワイトリスト | redirect_uri 完全一致 |",
-				"| 中間者攻撃 | 全通信 TLS 必須 | HTTPS 必須 + HSTS |",
-				"| トークン漏洩 | SAMLResponse の短命化 | 短命 Access Token + Refresh Token |"
-			]
-		},
-		{
-			"title": "共通セキュリティ ベストプラクティス",
-			"layout": "default",
-			"content": [
-				"**実装は必ず検証済みライブラリを使用:** 独自実装は危険（特に SAML の XML 署名）",
-				"**SAML:** OneLogin python-saml / Shibboleth / Spring Security SAML",
-				"**OIDC:** Authlib / Keycloak / Auth0 SDK / Microsoft MSAL",
-				"**定期的な依存ライブラリの更新:** CVE を定期スキャン (Dependabot, Snyk)",
-				"**最小スコープ原則:** 必要最小限の scope / 属性のみ要求",
-				"**ログと監査:** 認証成功/失敗をすべて記録。異常検知アラートを設定"
-			]
-		},
-		{
-			"title": "Part 6: 実装・移行ガイド",
-			"layout": "section",
-			"content": [
-				"主要 IdP / ライブラリの対応状況",
-				"SAML → OIDC 4 フェーズ移行パターン",
-				"よくある実装ミス Top 5"
-			]
-		},
-		{
-			"title": "主要 IdP・ライブラリ対応状況",
-			"layout": "default",
-			"content": [
-				"| プロダクト | SAML 2.0 | OIDC | 備考 |",
-				"|-----------|----------|------|------|",
-				"| **Azure AD / Entra ID** | ✓ | ✓ | 両対応。新規は OIDC 推奨 |",
-				"| **Okta** | ✓ | ✓ | 両対応。設定 UI が充実 |",
-				"| **Keycloak (OSS)** | ✓ | ✓ | 両対応。オンプレ向け |",
-				"| **Auth0** | ✓ | ✓ | 両対応。SaaS IdP |",
-				"| **AWS IAM Identity Center** | ✓ | ✓ | 外部 IdP との連携 |",
-				"| **Google Identity** | — | ✓ | OIDC のみ |",
-				"| **GitHub OAuth** | — | ✓ | OAuth 2.0 / OIDC |"
-			]
-		},
-		{
-			"title": "SAML → OIDC 移行パターン (4 フェーズ)",
-			"layout": "default",
-			"content": ["![w:1000 center](assets/migration-pattern.svg)"],
-			"speakerNotes": "移行は段階的に。最初に現状把握→並存期→移行実行→完全移行の4フェーズで進めます。ロールバック手順の準備が重要です。"
-		},
-		{
-			"title": "Azure AD / Okta での OIDC 設定例",
-			"content": ["主要 IdP での OIDC アプリ登録と検証コードの例"],
-			"layout": "default"
-		},
-		{
-			"title": "Azure AD / Okta での OIDC 設定例（コード例）",
-			"content": [],
-			"code": "# Azure AD (MSAL Python) での OIDC 設定\nimport msal\n\napp = msal.ConfidentialClientApplication(\n    client_id=\"your-client-id\",\n    client_credential=\"your-client-secret\",\n    authority=\"https://login.microsoftonline.com/tenant-id\"\n)\n\n# 1. Authorization URL を生成\nauth_url = app.get_authorization_request_url(\n    scopes=[\"openid\", \"profile\", \"email\"],\n    redirect_uri=\"https://app.example.com/callback\",\n    state=\"random-csrf-token\",\n    nonce=\"random-nonce\"\n)\n\n# 2. Auth Code → Token 交換\nresult = app.acquire_token_by_authorization_code(\n    code=request.args[\"code\"],\n    scopes=[\"openid\", \"profile\"],\n    redirect_uri=\"https://app.example.com/callback\"\n)\n# result[\"id_token_claims\"] に検証済みクレームが入る",
-			"codeLanguage": "python",
-			"layout": "default"
-		},
-		{
-			"title": "よくある実装ミス Top 5（1/2）",
-			"layout": "default",
-			"content": [
-				"**❌ #1 SAML:** 署名検証をスキップ or 自己実装 → XSW 攻撃の温床",
-				"  ✅ 対策: 検証済みライブラリ使用。署名 + Conditions + Audience を全て確認",
-				"**❌ #2 OIDC:** state / nonce を検証しない → CSRF / リプレイ攻撃に脆弱",
-				"  ✅ 対策: セッションに保存し、コールバック時に必ず照合"
-			]
-		},
-		{
-			"title": "よくある実装ミス Top 5（2/2）",
-			"layout": "default",
-			"content": [
-				"**❌ #3 OIDC:** Access Token を ID として使う → sub クレームで識別すること",
-				"  ✅ 対策: ユーザー識別は ID Token の sub。UserInfo API で補完",
-				"**❌ #4 OIDC:** JWT の alg を未検証 → alg:none 攻撃やアルゴリズム混乱攻撃",
-				"  ✅ 対策: 受け入れ alg を RS256/ES256 に明示的に制限"
-			]
-		},
-		{
-			"title": "よくある実装ミス Top 5 (続き)（1/2）",
-			"layout": "default",
-			"content": [
-				"**❌ #5 共通:** セッション管理と認証を混同 → SLO (Single Logout) の未実装",
-				"  ✅ 対策: SAML SLO / OIDC RP-Initiated Logout を適切に実装",
-				"**その他の注意点:**",
-				"SAML: InResponseTo を検証しないと IdP-Initiated 攻撃に弱い"
-			]
-		},
-		{
-			"title": "よくある実装ミス Top 5 (続き)（2/2）",
-			"layout": "default",
-			"content": [
-				"OIDC: Implicit Flow の使用（廃止済み）→ Auth Code + PKCE へ移行",
-				"OIDC: client_secret をフロントエンドコードに埋め込む → 公開される",
-				"共通: トークン/アサーションの有効期限を長く設定しすぎる",
-				"共通: エラーメッセージに認証情報の詳細を含める → 情報漏洩"
-			]
-		},
-		{
-			"title": "まとめ",
-			"layout": "section",
-			"content": ["SAML vs OIDC 総合比較", "選択ガイド"]
-		},
-		{
-			"title": "SAML vs OIDC — 総合比較表",
-			"layout": "default",
-			"content": ["![w:1000 center](assets/overall-comparison.svg)"],
-			"speakerNotes": "総合比較のまとめです。新規プロジェクトはOIDCがデフォルト、既存エンタープライズはSAML維持が現実解です。"
-		},
-		{
-			"title": "選択ガイド — 3 行サマリー",
-			"layout": "default",
-			"content": [
-				"**新規プロジェクト:** → **OIDC + PKCE** (モバイル・SPA・API・マイクロサービス全て対応)",
-				"**既存エンタープライズ SSO:** → **SAML 維持** (AD 統合・コスト・リスクを考慮)",
-				"**移行計画:** → **マルチプロトコル IdP** で並存しながら段階移行",
-				"**重要な原則:**",
-				"認証実装は必ずライブラリを使う。独自実装は脆弱性の温床",
-				"OIDC でも SAML でも、検証項目（署名・有効期限・対象者）は必ず全て確認",
-				"「どちらが優れているか」ではなく「ユースケースに何が最適か」で判断"
-			]
-		},
-		{
-			"title": "参考資料 / RFC (1/2)（1/2）",
-			"layout": "default",
-			"content": [
-				"**仕様書・RFC:**",
-				"[SAML 2.0 Core (OASIS)](https://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf)",
-				"[OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)",
-				"[RFC 6749: OAuth 2.0](https://www.rfc-editor.org/rfc/rfc6749)"
-			]
-		},
-		{
-			"title": "参考資料 / RFC (1/2)（2/2）",
-			"layout": "default",
-			"content": [
-				"[RFC 7636: PKCE](https://www.rfc-editor.org/rfc/rfc7636)",
-				"[RFC 7519: JWT](https://www.rfc-editor.org/rfc/rfc7519)",
-				"**セキュリティ:**",
-				"[OAuth 2.0 Security Best Current Practice (RFC 9700)](https://www.rfc-editor.org/rfc/rfc9700)"
-			]
-		},
-		{
-			"title": "参考資料 / RFC (2/2)（1/2）",
-			"layout": "default",
-			"content": [
-				"**実装ガイド・ライブラリ:**",
-				"[Okta: OIDC vs SAML](https://developer.okta.com/blog/2020/09/14/password-management-for-devs)",
-				"[Auth0: SAML vs JWT](https://auth0.com/blog/saml-vs-oauth/)",
-				"[OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)"
-			]
-		},
-		{
-			"title": "参考資料 / RFC (2/2)（2/2）",
-			"layout": "default",
-			"content": [
-				"**OSS ライブラリ:**",
-				"[Keycloak (IdP)](https://www.keycloak.org/) | [python-saml (OneLogin)](https://github.com/onelogin/python-saml)",
-				"[AppAuth (Mobile OIDC)](https://appauth.io/) | [Authlib (Python OIDC)](https://authlib.org/)",
-				"[MSAL (Microsoft)](https://github.com/AzureAD/microsoft-authentication-library-for-python)"
-			]
-		}
-	]
+  "slides": [
+    {
+      "title": "OIDC vs SAML",
+      "layout": "center",
+      "content": [
+        "アーキテクトのための選択ガイド",
+        "認証プロトコルの深層比較 — フロー・構造・セキュリティ・移行",
+        "対象: アーキテクト / Tech Lead"
+      ],
+      "speakerNotes": "本日はOIDCとSAMLの違いを、アーキテクトの視点から深掘りします。単なる機能比較だけでなく、フロー図解・トークン構造・セキュリティ・移行パターンまで網羅します。"
+    },
+    {
+      "title": "アジェンダ (1/2)",
+      "layout": "default",
+      "content": [
+        "**Part 1: 背景と基礎** — 認証/認可の概念、SAMLとOIDCの歴史",
+        "**Part 2: プロトコルフロー詳解** — SP-Initiated, IdP-Initiated, PKCE",
+        "**Part 3: トークン・アサーション構造** — SAML Assertion vs JWT ID Token",
+        "**Part 4: ユースケース別選択基準** — 選択マトリクス・Decision Flowchart",
+        "**Part 5: セキュリティ考慮事項** — XSW, Token Leakage, 対策チェックリスト",
+        "**Part 6: 実装・移行ガイド** — 主要IdP対応, SAML→OIDC 4フェーズ移行"
+      ]
+    },
+    {
+      "title": "アジェンダ (2/2) — 本日のゴール",
+      "layout": "default",
+      "content": [
+        "**判断できるようになること:**",
+        "新規プロジェクトで SAML か OIDC どちらを選ぶべきか即答できる",
+        "既存 SAML 環境から OIDC への移行計画を立てられる",
+        "各プロトコルの脆弱性を理解し、正しい実装方針を示せる",
+        "**前提知識:** HTTP / OAuth 2.0 の基本的な概念があると理解が深まります",
+        "**スライド資料:** 図解 14 枚 + コードサンプル + 参考資料一覧"
+      ]
+    },
+    {
+      "title": "Part 1: 背景と基礎",
+      "layout": "section",
+      "content": [
+        "認証・認可の概念整理",
+        "IdP / SP の関係",
+        "SAML と OIDC の歴史的背景"
+      ]
+    },
+    {
+      "title": "認証（AuthN）vs 認可（AuthZ）",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<rect x=\"30\" y=\"60\" width=\"340\" height=\"280\" rx=\"12\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"430\" y=\"60\" width=\"340\" height=\"280\" rx=\"12\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"100\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"22\" font-weight=\"bold\" font-family=\"sans-serif\">認証 (AuthN)</text>\n<text x=\"600\" y=\"100\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"22\" font-weight=\"bold\" font-family=\"sans-serif\">認可 (AuthZ)</text>\n<text x=\"200\" y=\"135\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-family=\"sans-serif\">あなたは誰ですか？</text>\n<text x=\"600\" y=\"135\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-family=\"sans-serif\">何ができますか？</text>\n<text x=\"200\" y=\"175\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">ID確認・本人証明</text>\n<text x=\"600\" y=\"175\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">アクセス権限の判断</text>\n<text x=\"200\" y=\"215\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">例: パスワード / MFA</text>\n<text x=\"600\" y=\"215\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">例: RBAC / ポリシー</text>\n<text x=\"200\" y=\"255\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">プロトコル: SAML / OIDC</text>\n<text x=\"600\" y=\"255\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">プロトコル: OAuth2</text>\n<text x=\"200\" y=\"305\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-family=\"sans-serif\">先に実行される</text>\n<text x=\"600\" y=\"305\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\">後に実行される</text>\n<text x=\"400\" y=\"200\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"28\" font-family=\"sans-serif\">→</text>\n</svg>",
+        "**認証 (Authentication / AuthN):** 「あなたは誰ですか？」を確認するプロセス",
+        "**認可 (Authorization / AuthZ):** 「あなたは何をしてよいですか？」を確認するプロセス",
+        "**SAML:** 主に認証（SSO）に特化。認可情報は Attribute で補完",
+        "**OIDC:** OAuth 2.0（認可）の上に認証レイヤー（ID Token）を追加",
+        "**混乱しやすい点:** OAuth 2.0 は認可フレームワーク。OIDC がその上の認証層",
+        "**Identity Federation:** 異なるドメイン間で認証情報を信頼・共有する仕組み"
+      ],
+      "speakerNotes": "認証と認可は厳密に分けて考えることが重要です。OAuth 2.0 単体は認可のみ。OIDC が認証を追加します。"
+    },
+    {
+      "title": "フェデレーションの基本概念: IdP と SP",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<rect x=\"50\" y=\"130\" width=\"180\" height=\"100\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"140\" y=\"175\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">IdP</text>\n<text x=\"140\" y=\"200\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Identity Provider</text>\n<rect x=\"310\" y=\"80\" width=\"180\" height=\"80\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"115\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">SP / RP</text>\n<text x=\"400\" y=\"140\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Service Provider</text>\n<rect x=\"310\" y=\"220\" width=\"180\" height=\"80\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"255\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">SP / RP</text>\n<text x=\"400\" y=\"280\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Service Provider</text>\n<rect x=\"570\" y=\"130\" width=\"180\" height=\"100\" rx=\"10\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"660\" y=\"175\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">ユーザー</text>\n<text x=\"660\" y=\"200\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">End User</text>\n<line x1=\"230\" y1=\"180\" x2=\"310\" y2=\"120\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"310,120 295,125 302,138\" fill=\"#f9a825\"/>\n<line x1=\"230\" y1=\"180\" x2=\"310\" y2=\"260\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"310,260 295,252 302,265\" fill=\"#f9a825\"/>\n<line x1=\"570\" y1=\"180\" x2=\"490\" y2=\"120\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<polygon points=\"490,120 500,130 508,118\" fill=\"#4caf50\"/>\n<text x=\"400\" y=\"380\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">フェデレーション: IdPで認証 → SP/RPへアサーション伝達</text>\n</svg>",
+        "**Identity Provider (IdP):** ユーザーの認証情報を管理・認証結果を発行する側",
+        "**Service Provider (SP) / Relying Party (RP):** IdP の認証結果を受け取り、サービスを提供する側",
+        "**フェデレーション:** SP が独自のユーザー管理をせず、IdP の認証結果を信頼する",
+        "**シングルサインオン (SSO):** 1回の認証で複数のサービスにアクセス可能",
+        "**信頼関係:** SP と IdP の間に事前に確立するメタデータ/証明書の交換",
+        "**SAML の呼び名:** IdP / SP   |   **OIDC の呼び名:** OP (OpenID Provider) / RP"
+      ]
+    },
+    {
+      "title": "SAML の歴史と設計思想",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">SAML の歴史と設計思想</text>\n<rect x=\"20\" y=\"50\" width=\"80\" height=\"300\" rx=\"6\" fill=\"#16213e\" stroke=\"#ffffff\" stroke-width=\"1\" opacity=\"0.4\"/>\n<text x=\"60\" y=\"310\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\" transform=\"rotate(-90,60,200)\">時系列</text>\n<rect x=\"130\" y=\"65\" width=\"620\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"150\" y=\"87\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">2002</text>\n<text x=\"210\" y=\"87\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">SAML 1.0 — OASIS標準化。エンタープライズSSO誕生</text>\n<text x=\"210\" y=\"105\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">XML + PKI署名による強固な認証。ブラウザリダイレクト方式</text>\n<rect x=\"130\" y=\"130\" width=\"620\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"150\" y=\"152\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">2005</text>\n<text x=\"210\" y=\"152\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">SAML 2.0 — 現在の標準。HTTP-POST/Redirect Binding</text>\n<text x=\"210\" y=\"170\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Liberty AllianceとShibbolethを統合。エンプラ普及加速</text>\n<rect x=\"130\" y=\"195\" width=\"620\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"150\" y=\"217\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">2012</text>\n<text x=\"210\" y=\"217\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">OAuth 2.0登場 — APIアクセス認可の標準化</text>\n<text x=\"210\" y=\"235\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">モバイル・クラウド時代のニーズに応える軽量プロトコル</text>\n<rect x=\"130\" y=\"260\" width=\"620\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"150\" y=\"282\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">2014</text>\n<text x=\"210\" y=\"282\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">OIDC 1.0 — OAuth2の上にアイデンティティ層を追加</text>\n<text x=\"210\" y=\"300\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">JSON/JWT。SAMLの代替としてモバイル・API時代へ</text>\n<text x=\"400\" y=\"375\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">SAMLは2005年以来エンプラの基盤 — 新規はOIDCへ移行中</text></svg>",
+        "**2002年:** OASIS が SAML 1.0 策定。企業間 SSO が目的",
+        "**2005年:** SAML 2.0 リリース。現在も標準として使用",
+        "**設計思想:** エンタープライズ向け。SOAP/XML が全盛の時代",
+        "**ブラウザ中心:** リダイレクトと HTML フォームの POST で動作",
+        "**強み:** AD/LDAP との統合、成熟したエコシステム、Salesforce/SAP 等の対応",
+        "**弱み:** XML の複雑さ、モバイル非対応、API 認可は設計外"
+      ]
+    },
+    {
+      "title": "OIDC / OAuth 2.0 の登場",
+      "layout": "default",
+      "content": [
+        "**2012年:** OAuth 2.0 (RFC 6749) — API 認可フレームワークとして策定",
+        "**2014年:** OpenID Connect 1.0 — OAuth 2.0 の上に認証レイヤーを追加",
+        "**設計思想:** Web・モバイル・API 時代の認証認可",
+        "**JSON/JWT:** 軽量、パース容易、言語非依存（JavaScript フレンドリー）",
+        "**Google・Facebook** がログイン基盤に採用。ソーシャルログインで普及",
+        "**現在:** AWS Cognito, Auth0, Okta, Keycloak が OIDC を標準サポート"
+      ]
+    },
+    {
+      "title": "SAML vs OIDC: アーキテクチャ概念比較",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"35\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">アーキテクチャ概念比較</text>\n<rect x=\"20\" y=\"55\" width=\"370\" height=\"320\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"410\" y=\"55\" width=\"370\" height=\"320\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"205\" y=\"85\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">SAML 2.0</text>\n<text x=\"595\" y=\"85\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">OIDC / OAuth2</text>\n<text x=\"55\" y=\"120\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• XML ベース</text>\n<text x=\"55\" y=\"150\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• ブラウザリダイレクト中心</text>\n<text x=\"55\" y=\"180\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• エンタープライズ SSO</text>\n<text x=\"55\" y=\"210\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• IdP + SP (Service Provider)</text>\n<text x=\"55\" y=\"240\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• Assertion = XML署名</text>\n<text x=\"55\" y=\"270\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• 2002年〜</text>\n<text x=\"55\" y=\"310\" fill=\"#f9a825\" font-size=\"13\" font-family=\"sans-serif\">最適: 企業間SSO / レガシー統合</text>\n<text x=\"445\" y=\"120\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• JSON / JWT ベース</text>\n<text x=\"445\" y=\"150\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• API・モバイル対応</text>\n<text x=\"445\" y=\"180\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• 認証(OIDC) + 認可(OAuth2)</text>\n<text x=\"445\" y=\"210\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• IdP + RP (Relying Party)</text>\n<text x=\"445\" y=\"240\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• Token = JWT署名</text>\n<text x=\"445\" y=\"270\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• 2012年〜</text>\n<text x=\"445\" y=\"310\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\">最適: Web/モバイル / マイクロサービス</text>\n</svg>",
+        "![w:1000 center](assets/overview-comparison.svg)"
+      ],
+      "speakerNotes": "左がSAML、右がOIDCのアーキテクチャ概念図です。SAMLはブラウザ経由のXML POST、OIDCはJSON/JWTベースのREST API指向です。"
+    },
+    {
+      "title": "Part 2: プロトコルフロー詳解",
+      "layout": "section",
+      "content": [
+        "SAML SP-Initiated / IdP-Initiated",
+        "OIDC 認可コードフロー",
+        "PKCE（モバイル/SPA 向け）"
+      ]
+    },
+    {
+      "title": "SAML SP-Initiated SSO フロー",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">SAML SP-Initiated SSO フロー</text>\n<rect x=\"30\" y=\"50\" width=\"100\" height=\"40\" rx=\"6\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"80\" y=\"75\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\" font-family=\"sans-serif\">ユーザー</text>\n<rect x=\"200\" y=\"50\" width=\"120\" height=\"40\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"260\" y=\"75\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">SP (Service)</text>\n<rect x=\"480\" y=\"50\" width=\"120\" height=\"40\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"540\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">IdP</text>\n<line x1=\"80\" y1=\"90\" x2=\"80\" y2=\"380\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"4,4\" opacity=\"0.3\"/>\n<line x1=\"260\" y1=\"90\" x2=\"260\" y2=\"380\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"4,4\" opacity=\"0.3\"/>\n<line x1=\"540\" y1=\"90\" x2=\"540\" y2=\"380\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"4,4\" opacity=\"0.3\"/>\n<line x1=\"80\" y1=\"120\" x2=\"255\" y2=\"120\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<polygon points=\"255,120 242,114 242,126\" fill=\"#4caf50\"/>\n<text x=\"168\" y=\"113\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">① SP アクセス要求</text>\n<line x1=\"255\" y1=\"155\" x2=\"85\" y2=\"155\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<polygon points=\"85,155 98,149 98,161\" fill=\"#e91e63\"/>\n<text x=\"168\" y=\"148\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">② AuthnRequest リダイレクト</text>\n<line x1=\"80\" y1=\"190\" x2=\"535\" y2=\"190\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<polygon points=\"535,190 522,184 522,196\" fill=\"#4caf50\"/>\n<text x=\"308\" y=\"183\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">③ IdP に転送 (AuthnRequest)</text>\n<line x1=\"540\" y1=\"225\" x2=\"540\" y2=\"255\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"620\" y=\"245\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">④ 認証処理</text>\n<line x1=\"535\" y1=\"280\" x2=\"85\" y2=\"280\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"85,280 98,274 98,286\" fill=\"#f9a825\"/>\n<text x=\"308\" y=\"273\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">⑤ SAML Response (Assertion) 返却</text>\n<line x1=\"80\" y1=\"315\" x2=\"255\" y2=\"315\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<polygon points=\"255,315 242,309 242,321\" fill=\"#4caf50\"/>\n<text x=\"168\" y=\"308\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">⑥ Assertion を SP に POST</text>\n<line x1=\"260\" y1=\"350\" x2=\"85\" y2=\"350\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<polygon points=\"85,350 98,344 98,356\" fill=\"#e91e63\"/>\n<text x=\"168\" y=\"368\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">⑦ アクセス許可・セッション確立</text>\n</svg>",
+        "![w:980 center](assets/saml-sp-initiated-flow.svg)"
+      ],
+      "speakerNotes": "SP-InitiatedはSPがSAMLRequestを作りIdPにリダイレクト。認証後、IdPがSAMLResponseをブラウザ経由でSPにPOSTします。"
+    },
+    {
+      "title": "SAML SP-Initiated フロー — ポイント",
+      "layout": "default",
+      "content": [
+        "**Step 2:** SP が SAMLRequest を Base64 エンコードしてリダイレクト",
+        "**Step 6:** IdP が署名付き SAMLResponse を HTML フォームに埋め込む",
+        "**Step 7:** JavaScript で自動サブミット → SP の ACS (Assertion Consumer Service) URL に POST",
+        "**SP 検証項目:** 署名の正当性 / Audience (自分宛か) / Conditions (有効期限) / Issuer",
+        "**RelayState:** 元のリクエスト URL を保持し、認証後にリダイレクトするための情報",
+        "**セッション:** SP が独自にセッション Cookie を発行（SAML は SSO, セッション管理は SP 独自）"
+      ]
+    },
+    {
+      "title": "SAML IdP-Initiated SSO フロー",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">SAML IdP-Initiated SSO フロー</text>\n<rect x=\"30\" y=\"45\" width=\"100\" height=\"40\" rx=\"6\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"80\" y=\"70\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\" font-family=\"sans-serif\">ユーザー</text>\n<rect x=\"200\" y=\"45\" width=\"120\" height=\"40\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"260\" y=\"70\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">IdP Portal</text>\n<rect x=\"480\" y=\"45\" width=\"120\" height=\"40\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"540\" y=\"70\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">SP (Service)</text>\n<line x1=\"80\" y1=\"85\" x2=\"80\" y2=\"370\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"3,3\" opacity=\"0.3\"/>\n<line x1=\"260\" y1=\"85\" x2=\"260\" y2=\"370\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"3,3\" opacity=\"0.3\"/>\n<line x1=\"540\" y1=\"85\" x2=\"540\" y2=\"370\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"3,3\" opacity=\"0.3\"/>\n<line x1=\"80\" y1=\"110\" x2=\"255\" y2=\"110\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<polygon points=\"255,110 243,104 243,116\" fill=\"#4caf50\"/>\n<text x=\"168\" y=\"102\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">① IdP Portal にログイン</text>\n<line x1=\"260\" y1=\"145\" x2=\"260\" y2=\"170\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"310\" y=\"162\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">② IdPで認証完了</text>\n<line x1=\"260\" y1=\"200\" x2=\"535\" y2=\"200\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"535,200 523,194 523,206\" fill=\"#f9a825\"/>\n<text x=\"397\" y=\"192\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">③ SAML Response (Assertion) を SP に POST</text>\n<line x1=\"535\" y1=\"240\" x2=\"85\" y2=\"240\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<polygon points=\"85,240 97,234 97,246\" fill=\"#e91e63\"/>\n<text x=\"310\" y=\"232\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">④ SP がAssertionを検証</text>\n<line x1=\"535\" y1=\"285\" x2=\"85\" y2=\"285\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<polygon points=\"85,285 97,279 97,291\" fill=\"#e91e63\"/>\n<text x=\"310\" y=\"277\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">⑤ セッション確立 → サービス利用可能</text>\n<rect x=\"30\" y=\"315\" width=\"740\" height=\"45\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"400\" y=\"340\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">SP-Initiated との違い: IdP起点のためSP側にAuthnRequest不要</text></svg>",
+        "![w:970 center](assets/saml-idp-initiated-flow.svg)"
+      ],
+      "speakerNotes": "IdP-InitiatedはユーザーがIdPのポータルからアプリを選ぶパターン。セキュリティリスクが高いため非推奨。"
+    },
+    {
+      "title": "SAML Binding: HTTP-Redirect vs HTTP-POST",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">SAML Binding: HTTP-Redirect vs HTTP-POST</text>\n<rect x=\"20\" y=\"50\" width=\"370\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"410\" y=\"50\" width=\"370\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"205\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">HTTP-Redirect Binding</text>\n<text x=\"595\" y=\"78\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">HTTP-POST Binding</text>\n<text x=\"35\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">転送先: URLクエリパラメータ</text>\n<text x=\"425\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">転送先: POSTボディ</text>\n<text x=\"35\" y=\"142\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">エンコード: Base64 + deflate</text>\n<text x=\"425\" y=\"142\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">エンコード: Base64</text>\n<text x=\"35\" y=\"172\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">サイズ制限: URLの長さ制限あり</text>\n<text x=\"425\" y=\"172\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">サイズ制限: なし</text>\n<text x=\"35\" y=\"202\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">用途: AuthnRequest送信</text>\n<text x=\"425\" y=\"202\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">用途: SAML Response/Assertion送信</text>\n<text x=\"35\" y=\"232\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">署名: クエリ文字列に付加</text>\n<text x=\"425\" y=\"232\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">署名: XML内に埋め込み</text>\n<text x=\"35\" y=\"275\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">軽量・リダイレクト向き</text>\n<text x=\"425\" y=\"275\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">大きなAssertionに適切</text>\n<text x=\"400\" y=\"360\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">実装: AuthnRequestはRedirect / SAMLResponseはPOSTが一般的</text></svg>",
+        "**HTTP-Redirect Binding:** SAMLRequest を URL クエリパラメータで送信",
+        "  → URL 長さ制限あり（〜2KB）。SAMLRequest に使用が一般的",
+        "**HTTP-POST Binding:** HTML フォームの hidden フィールドに埋め込み",
+        "  → サイズ制限なし。SAMLResponse に必須（署名付き XML は大きい）",
+        "**SOAP Binding (ECP):** XML SOAP メッセージで直接通信。ブラウザ不要",
+        "  → CLI ツール・ネイティブアプリ向け。実装が複雑",
+        "**推奨組み合わせ:** Request: HTTP-Redirect, Response: HTTP-POST"
+      ]
+    },
+    {
+      "title": "OIDC 認証コードフロー + ID Token",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">OIDC 認証コードフロー + ID Token</text>\n<rect x=\"20\" y=\"45\" width=\"90\" height=\"35\" rx=\"5\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"65\" y=\"67\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"11\" font-family=\"sans-serif\">ユーザー</text>\n<rect x=\"175\" y=\"45\" width=\"110\" height=\"35\" rx=\"5\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"230\" y=\"67\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">Client (RP)</text>\n<rect x=\"475\" y=\"45\" width=\"110\" height=\"35\" rx=\"5\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"530\" y=\"67\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">Authorization</text>\n<rect x=\"660\" y=\"45\" width=\"110\" height=\"35\" rx=\"5\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/>\n<text x=\"715\" y=\"67\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"11\" font-family=\"sans-serif\">Token Endpoint</text>\n<line x1=\"65\" y1=\"80\" x2=\"65\" y2=\"390\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"3,3\" opacity=\"0.3\"/>\n<line x1=\"230\" y1=\"80\" x2=\"230\" y2=\"390\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"3,3\" opacity=\"0.3\"/>\n<line x1=\"530\" y1=\"80\" x2=\"530\" y2=\"390\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"3,3\" opacity=\"0.3\"/>\n<line x1=\"715\" y1=\"80\" x2=\"715\" y2=\"390\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"3,3\" opacity=\"0.3\"/>\n<line x1=\"65\" y1=\"105\" x2=\"225\" y2=\"105\" stroke=\"#4caf50\" stroke-width=\"1.5\"/>\n<polygon points=\"225,105 213,99 213,111\" fill=\"#4caf50\"/>\n<text x=\"145\" y=\"98\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">① ログイン要求</text>\n<line x1=\"225\" y1=\"130\" x2=\"70\" y2=\"130\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<polygon points=\"70,130 82,124 82,136\" fill=\"#e91e63\"/>\n<text x=\"145\" y=\"123\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">② auth URL にリダイレクト</text>\n<line x1=\"65\" y1=\"155\" x2=\"525\" y2=\"155\" stroke=\"#4caf50\" stroke-width=\"1.5\"/>\n<polygon points=\"525,155 513,149 513,161\" fill=\"#4caf50\"/>\n<text x=\"295\" y=\"148\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">③ Authorization Request (scope=openid)</text>\n<line x1=\"530\" y1=\"180\" x2=\"530\" y2=\"205\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"570\" y=\"196\" fill=\"#f9a825\" font-size=\"10\" font-family=\"sans-serif\">④ 認証</text>\n<line x1=\"525\" y1=\"225\" x2=\"70\" y2=\"225\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<polygon points=\"70,225 82,219 82,231\" fill=\"#f9a825\"/>\n<text x=\"295\" y=\"218\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">⑤ code=xxx リダイレクト</text>\n<line x1=\"230\" y1=\"250\" x2=\"710\" y2=\"250\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<polygon points=\"710,250 698,244 698,256\" fill=\"#e91e63\"/>\n<text x=\"470\" y=\"243\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">⑥ code + client_secret でトークン要求</text>\n<line x1=\"710\" y1=\"275\" x2=\"235\" y2=\"275\" stroke=\"#2196f3\" stroke-width=\"1.5\"/>\n<polygon points=\"235,275 247,269 247,281\" fill=\"#2196f3\"/>\n<text x=\"470\" y=\"268\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">⑦ access_token + id_token 返却</text>\n<rect x=\"175\" y=\"295\" width=\"170\" height=\"60\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"260\" y=\"317\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">ID Token (JWT)</text>\n<text x=\"260\" y=\"335\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">sub, email, name, iat...</text>\n<text x=\"260\" y=\"352\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">署名検証 → ユーザー確認</text>\n</svg>",
+        "![w:1050 center](assets/oidc-authcode-flow.svg)"
+      ],
+      "speakerNotes": "OIDCの認可コードフローです。重要なのはStep 8-9のバックチャンネルでのトークン交換と、IDトークンの検証です。"
+    },
+    {
+      "title": "OIDC フロー — ポイント",
+      "layout": "default",
+      "content": [
+        "**scope=openid:** これが OIDC の起動キー。これがないと OAuth 2.0 のみ",
+        "**state パラメータ:** CSRF 攻撃防止。リクエストとコールバックで一致確認必須",
+        "**nonce:** リプレイ攻撃防止。ID Token のクレームと一致確認必須",
+        "**バックチャンネル交換 (Step 8):** Auth Code をトークンに変換。直接 HTTPS POST",
+        "**ID Token 検証:** iss / aud / exp / nonce / 署名 (JWKS で公開鍵取得) を確認",
+        "**UserInfo Endpoint:** Access Token で追加のユーザー情報を取得できる"
+      ]
+    },
+    {
+      "title": "OIDC PKCE フロー (モバイル/SPA 向け)",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">OIDC PKCE フロー (モバイル/SPA向け)</text>\n<rect x=\"20\" y=\"50\" width=\"160\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"100\" y=\"81\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">Mobile / SPA</text>\n<rect x=\"310\" y=\"50\" width=\"160\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"390\" y=\"81\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-family=\"sans-serif\">Auth Server</text>\n<rect x=\"610\" y=\"50\" width=\"160\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"690\" y=\"81\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\">Token Endpoint</text>\n<line x1=\"100\" y1=\"100\" x2=\"100\" y2=\"390\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"3,3\" opacity=\"0.3\"/>\n<line x1=\"390\" y1=\"100\" x2=\"390\" y2=\"390\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"3,3\" opacity=\"0.3\"/>\n<line x1=\"690\" y1=\"100\" x2=\"690\" y2=\"390\" stroke=\"#ffffff\" stroke-width=\"1\" stroke-dasharray=\"3,3\" opacity=\"0.3\"/>\n<rect x=\"20\" y=\"115\" width=\"160\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"1.5\"/>\n<text x=\"100\" y=\"136\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">① code_verifier 生成</text>\n<text x=\"100\" y=\"154\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" font-family=\"sans-serif\">code_challenge=S256(verifier)</text>\n<line x1=\"180\" y1=\"180\" x2=\"385\" y2=\"180\" stroke=\"#4caf50\" stroke-width=\"1.5\"/>\n<polygon points=\"385,180 373,174 373,186\" fill=\"#4caf50\"/>\n<text x=\"282\" y=\"172\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">② Authz Request + code_challenge</text>\n<line x1=\"385\" y1=\"210\" x2=\"105\" y2=\"210\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<polygon points=\"105,210 117,204 117,216\" fill=\"#f9a825\"/>\n<text x=\"245\" y=\"203\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">③ code 返却 (redirect)</text>\n<line x1=\"180\" y1=\"240\" x2=\"685\" y2=\"240\" stroke=\"#4caf50\" stroke-width=\"1.5\"/>\n<polygon points=\"685,240 673,234 673,246\" fill=\"#4caf50\"/>\n<text x=\"430\" y=\"232\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">④ code + code_verifier → Token Request</text>\n<rect x=\"310\" y=\"258\" width=\"390\" height=\"45\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"505\" y=\"278\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">⑤ S256(code_verifier) == code_challenge?</text>\n<text x=\"505\" y=\"297\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">検証OK → access_token / id_token 発行</text>\n<line x1=\"685\" y1=\"303\" x2=\"105\" y2=\"303\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<polygon points=\"105,303 117,297 117,309\" fill=\"#e91e63\"/>\n<text x=\"395\" y=\"320\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">⑥ access_token + id_token</text>\n<text x=\"400\" y=\"360\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">PKCE: client_secret不要 → モバイル/SPAでも安全</text>\n</svg>",
+        "![w:930 center](assets/oidc-pkce-flow.svg)"
+      ],
+      "speakerNotes": "PKCEはRFC 7636で定義。client_secretを使わないパブリッククライアントでの認可コードフローを安全にします。"
+    },
+    {
+      "title": "プロトコルフロー比較サマリー",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"32\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"17\" font-weight=\"bold\" font-family=\"sans-serif\">プロトコルフロー比較サマリー</text>\n<rect x=\"20\" y=\"55\" width=\"370\" height=\"320\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"410\" y=\"55\" width=\"370\" height=\"320\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"205\" y=\"82\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">SAML</text>\n<text x=\"595\" y=\"82\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">OIDC</text>\n<text x=\"40\" y=\"115\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">トークン形式: XML Assertion</text>\n<text x=\"40\" y=\"145\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">転送方式: HTTPリダイレクト/POST</text>\n<text x=\"40\" y=\"175\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">署名: XML Signature (XSD)</text>\n<text x=\"40\" y=\"205\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">エンドポイント: IdP SSO URL</text>\n<text x=\"40\" y=\"235\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">セッション: SP セッションCookie</text>\n<text x=\"40\" y=\"275\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">長所: 成熟・エンプラ実績多数</text>\n<text x=\"40\" y=\"300\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">短所: XMLサイズ大・実装複雑</text>\n<text x=\"430\" y=\"115\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">トークン形式: JWT</text>\n<text x=\"430\" y=\"145\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">転送方式: HTTP/API呼び出し</text>\n<text x=\"430\" y=\"175\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">署名: JWS (RS256/ES256)</text>\n<text x=\"430\" y=\"205\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">エンドポイント: 複数(auth/token)</text>\n<text x=\"430\" y=\"235\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">セッション: トークン自己完結</text>\n<text x=\"430\" y=\"275\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">長所: 軽量・REST API親和性高</text>\n<text x=\"430\" y=\"300\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">短所: Token管理の責任</text>\n<text x=\"40\" y=\"350\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">用途: 企業内 / B2B SSO</text>\n<text x=\"430\" y=\"350\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">用途: Web / モバイル / API</text>\n</svg>",
+        "| 観点 | SAML SP-Initiated | OIDC Auth Code + PKCE |",
+        "|------|-------------------|----------------------|",
+        "| 仲介 | ブラウザ (必須) | ブラウザ + バックチャンネル |",
+        "| トークン形式 | XML (Base64 POST) | JWT (JSON) |",
+        "| CSRF 対策 | RelayState | state + PKCE |",
+        "| リプレイ対策 | Conditions/InResponseTo | nonce + exp |",
+        "| バックチャンネル通信 | なし | あり (安全) |",
+        "| モバイル対応 | ✗ 困難 | ✓ PKCE で対応 |"
+      ]
+    },
+    {
+      "title": "Part 3: トークン・アサーション構造",
+      "layout": "section",
+      "content": [
+        "SAML Assertion の XML 構造",
+        "JWT ID Token の 3 部構成",
+        "Access Token vs ID Token の役割分離"
+      ]
+    },
+    {
+      "title": "SAML Assertion の構造",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">SAML Assertion の構造</text>\n<rect x=\"30\" y=\"50\" width=\"740\" height=\"310\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">samlp:Response</text>\n<rect x=\"50\" y=\"90\" width=\"700\" height=\"55\" rx=\"6\" fill=\"#1a1a2e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<text x=\"70\" y=\"113\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">saml:Assertion</text>\n<text x=\"300\" y=\"113\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">ID=, Version=\"2.0\", IssueInstant=</text>\n<text x=\"70\" y=\"133\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Issuer: IdP エンティティID / Signature (XML Signature)</text>\n<rect x=\"70\" y=\"155\" width=\"660\" height=\"40\" rx=\"5\" fill=\"#1a1a2e\" stroke=\"#4caf50\" stroke-width=\"1.5\"/>\n<text x=\"90\" y=\"178\" fill=\"#4caf50\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">Subject</text>\n<text x=\"210\" y=\"178\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">NameID (ユーザー識別子) / SubjectConfirmation (Bearer)</text>\n<rect x=\"70\" y=\"205\" width=\"660\" height=\"40\" rx=\"5\" fill=\"#1a1a2e\" stroke=\"#2196f3\" stroke-width=\"1.5\"/>\n<text x=\"90\" y=\"228\" fill=\"#2196f3\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">Conditions</text>\n<text x=\"210\" y=\"228\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">NotBefore / NotOnOrAfter / AudienceRestriction (SP Entity ID)</text>\n<rect x=\"70\" y=\"255\" width=\"310\" height=\"75\" rx=\"5\" fill=\"#1a1a2e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"90\" y=\"278\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">AuthnStatement</text>\n<text x=\"90\" y=\"300\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">AuthnInstant</text>\n<text x=\"90\" y=\"318\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">AuthnContext (PasswordProtectedTransport等)</text>\n<rect x=\"400\" y=\"255\" width=\"330\" height=\"75\" rx=\"5\" fill=\"#1a1a2e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<text x=\"420\" y=\"278\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">AttributeStatement</text>\n<text x=\"420\" y=\"300\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">email / displayName / groups</text>\n<text x=\"420\" y=\"318\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">カスタム属性 (IdPで設定)</text></svg>",
+        "![w:1000 center](assets/saml-assertion-structure.svg)"
+      ],
+      "speakerNotes": "SAML AssertionはXMLで構成されます。Issuer, Subject, Conditions, AuthnStatement, AttributeStatementが主要要素です。"
+    },
+    {
+      "title": "SAML Assertion — XML サンプル",
+      "content": [
+        "署名付き Assertion の実際の XML 構造を確認する"
+      ],
+      "layout": "default"
+    },
+    {
+      "title": "SAML Assertion — XML サンプル（コード例）",
+      "content": [],
+      "code": "<saml:Assertion xmlns:saml=\"urn:oasis:names:tc:SAML:2.0:assertion\"\n  ID=\"_abc123\" IssueInstant=\"2026-02-19T12:00:00Z\" Version=\"2.0\">\n  <saml:Issuer>https://idp.example.com</saml:Issuer>\n  <saml:Subject>\n    <saml:NameID Format=\"urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress\">\n      user@example.com\n    </saml:NameID>\n    <saml:SubjectConfirmation Method=\"...bearer\">\n      <saml:SubjectConfirmationData\n        NotOnOrAfter=\"2026-02-19T12:05:00Z\"\n        Recipient=\"https://sp.example.com/acs\"/>\n    </saml:SubjectConfirmation>\n  </saml:Subject>\n  <saml:Conditions NotBefore=\"...\" NotOnOrAfter=\"...\">\n    <saml:AudienceRestriction>\n      <saml:Audience>https://sp.example.com</saml:Audience>\n    </saml:AudienceRestriction>\n  </saml:Conditions>\n  <saml:AttributeStatement>\n    <saml:Attribute Name=\"email\"><saml:AttributeValue>user@example.com</saml:AttributeValue></saml:Attribute>\n    <saml:Attribute Name=\"groups\"><saml:AttributeValue>admin</saml:AttributeValue></saml:Attribute>\n  </saml:AttributeStatement>\n  <ds:Signature><!-- RSA-SHA256 デジタル署名 --></ds:Signature>\n</saml:Assertion>",
+      "codeLanguage": "xml",
+      "layout": "default"
+    },
+    {
+      "title": "JWT ID Token の構造",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">JWT ID Token の構造</text>\n<rect x=\"20\" y=\"50\" width=\"220\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"270\" y=\"50\" width=\"220\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<rect x=\"520\" y=\"50\" width=\"260\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"130\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">Header</text>\n<text x=\"380\" y=\"78\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">Payload</text>\n<text x=\"650\" y=\"78\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">Signature</text>\n<text x=\"35\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">alg: RS256</text>\n<text x=\"35\" y=\"140\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">typ: JWT</text>\n<text x=\"35\" y=\"168\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">kid: キーID</text>\n<text x=\"35\" y=\"210\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→検証に使う</text>\n<text x=\"35\" y=\"230\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">   アルゴリズム</text>\n<text x=\"285\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">sub: ユーザーID</text>\n<text x=\"285\" y=\"140\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">iss: IdP URL</text>\n<text x=\"285\" y=\"168\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">aud: client_id</text>\n<text x=\"285\" y=\"196\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">exp: 有効期限</text>\n<text x=\"285\" y=\"224\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">iat: 発行時刻</text>\n<text x=\"285\" y=\"252\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">nonce: (CSRF対策)</text>\n<text x=\"285\" y=\"280\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">email / name</text>\n<text x=\"535\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">RSASSA-PKCS1-v1.5</text>\n<text x=\"535\" y=\"140\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">または ECDSA</text>\n<text x=\"535\" y=\"170\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">IdPの秘密鍵で署名</text>\n<text x=\"535\" y=\"200\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">JWKSで公開鍵取得</text>\n<text x=\"535\" y=\"228\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">→署名を検証</text>\n<text x=\"535\" y=\"270\" fill=\"#4caf50\" font-size=\"12\" font-family=\"sans-serif\">改ざん不可</text>\n<text x=\"130\" y=\"340\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"20\" font-family=\"monospace\">xxxxx</text>\n<text x=\"380\" y=\"340\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"20\" font-family=\"monospace\">yyyyy</text>\n<text x=\"650\" y=\"340\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"20\" font-family=\"monospace\">zzzzz</text>\n<text x=\"400\" y=\"380\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-family=\"sans-serif\">xxxxx.yyyyy.zzzzz (Base64URL)</text></svg>",
+        "![w:1000 center](assets/jwt-structure.svg)"
+      ],
+      "speakerNotes": "JWTは3つのBase64URLエンコードされたパーツをピリオドで結合。ヘッダー・ペイロード・署名。"
+    },
+    {
+      "title": "ID Token の標準クレーム (OIDC Core 仕様)",
+      "layout": "default",
+      "content": [
+        "| クレーム | 必須 | 説明 |",
+        "|---------|------|------|",
+        "| `iss` | ✓ | 発行者 URL (https://op.example.com) |",
+        "| `sub` | ✓ | ユーザー識別子 (不変・プロバイダー固有) |",
+        "| `aud` | ✓ | 対象クライアント (client_id) |",
+        "| `exp` | ✓ | 有効期限 (Unix timestamp) |",
+        "| `iat` | ✓ | 発行時刻 |",
+        "| `nonce` | 条件付 | リプレイ攻撃防止 (リクエスト時に送った値) |",
+        "| `email` `name` `picture` | オプション | scope に応じて含まれる |"
+      ]
+    },
+    {
+      "title": "Access Token vs ID Token — 役割の分離",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">Access Token vs ID Token — 役割の分離</text>\n<rect x=\"30\" y=\"55\" width=\"340\" height=\"310\" rx=\"12\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<rect x=\"430\" y=\"55\" width=\"340\" height=\"310\" rx=\"12\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"82\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">Access Token</text>\n<text x=\"600\" y=\"82\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">ID Token</text>\n<text x=\"200\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">目的: リソースへの認可</text>\n<text x=\"600\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">目的: ユーザー認証の証明</text>\n<text x=\"200\" y=\"140\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">読み手: Resource Server</text>\n<text x=\"600\" y=\"140\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">読み手: Client (RP)</text>\n<text x=\"200\" y=\"172\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">含む情報: scope / aud</text>\n<text x=\"600\" y=\"172\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">含む情報: sub / email / name</text>\n<text x=\"200\" y=\"204\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">有効期限: 短命 (1時間等)</text>\n<text x=\"600\" y=\"204\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">有効期限: 短命 (数分〜1時間)</text>\n<text x=\"200\" y=\"236\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">転送先: API サーバー</text>\n<text x=\"600\" y=\"236\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">転送先: Client内部のみ</text>\n<text x=\"200\" y=\"268\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">APIに Bearer ヘッダーで送信</text>\n<text x=\"600\" y=\"268\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">APIには送信しない!</text>\n<rect x=\"50\" y=\"290\" width=\"300\" height=\"55\" rx=\"6\" fill=\"#1a1a2e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<text x=\"200\" y=\"310\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Authorization: Bearer &lt;access_token&gt;</text>\n<text x=\"200\" y=\"330\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ リソース操作の権限証明</text>\n<rect x=\"450\" y=\"290\" width=\"300\" height=\"55\" rx=\"6\" fill=\"#1a1a2e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"600\" y=\"310\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">JWT検証 → ユーザーセッション確立</text>\n<text x=\"600\" y=\"330\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 「誰がログインしているか」確認</text>\n</svg>",
+        "![w:1000 center](assets/access-id-token-roles.svg)"
+      ],
+      "speakerNotes": "ID TokenはClientがユーザー認証確認のために使うもの。Access TokenはResource Serverへの認可証明。混乱しやすいポイントです。"
+    },
+    {
+      "title": "SAML Assertion vs JWT ID Token — 属性比較",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"32\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">SAML Assertion vs JWT ID Token — 属性比較</text>\n<rect x=\"20\" y=\"55\" width=\"370\" height=\"310\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"410\" y=\"55\" width=\"370\" height=\"310\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"205\" y=\"80\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">SAML Assertion</text>\n<text x=\"595\" y=\"80\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">JWT ID Token</text>\n<text x=\"40\" y=\"115\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">形式: XML (署名済み)</text>\n<text x=\"40\" y=\"145\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">サイズ: 2-10KB (通常)</text>\n<text x=\"40\" y=\"175\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">主体識別子: NameID</text>\n<text x=\"40\" y=\"205\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">属性: AttributeStatement</text>\n<text x=\"40\" y=\"235\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">有効期限: Conditions/@NotOnOrAfter</text>\n<text x=\"40\" y=\"265\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">発行者: Issuer 要素</text>\n<text x=\"40\" y=\"295\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">署名: xmldsig (XSD)</text>\n<text x=\"40\" y=\"340\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">→ エンプラ標準・複雑だが実績</text>\n<text x=\"430\" y=\"115\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">形式: JSON (Base64url署名)</text>\n<text x=\"430\" y=\"145\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">サイズ: 200-500B (通常)</text>\n<text x=\"430\" y=\"175\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">主体識別子: sub クレーム</text>\n<text x=\"430\" y=\"205\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">属性: 任意の JSON クレーム</text>\n<text x=\"430\" y=\"235\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">有効期限: exp クレーム (UNIX)</text>\n<text x=\"430\" y=\"265\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">発行者: iss クレーム</text>\n<text x=\"430\" y=\"295\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">署名: JWS (RS256/ES256)</text>\n<text x=\"430\" y=\"340\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">→ 軽量・モバイル/API対応</text>\n</svg>",
+        "| 比較項目 | SAML Assertion | JWT ID Token |",
+        "|---------|----------------|--------------|",
+        "| **形式** | XML (署名付き) | JSON (Base64URL) |",
+        "| **典型サイズ** | 5〜20 KB | 300〜1000 bytes |",
+        "| **署名** | XML Digital Signature | RS256 / ES256 |",
+        "| **有効期限** | Conditions NotOnOrAfter | `exp` クレーム |",
+        "| **対象者** | AudienceRestriction | `aud` クレーム |",
+        "| **ユーザー識別** | NameID (Format 指定) | `sub` (不変) |",
+        "| **属性** | AttributeStatement (柔軟) | Claims (標準化) |"
+      ]
+    },
+    {
+      "title": "クレームマッピング: IdP → SP 属性変換",
+      "content": [
+        "IdP の属性名と SP が期待する属性名が異なる場合のマッピング設定例"
+      ],
+      "layout": "default"
+    },
+    {
+      "title": "クレームマッピング: IdP → SP 属性変換（コード例）",
+      "content": [],
+      "code": "# Okta / Azure AD での SAML 属性マッピング設定例\nsaml_attributes:\n  - name: \"http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress\"\n    value: \"user.email\"        # IdP フィールド名\n    # SP では 'email' として受け取りたい場合、SP 側でも変換設定\n\n# OIDC スコープとクレームのマッピング例 (Keycloak)\noidc_scope_mappings:\n  openid:\n    - sub\n  profile:\n    - name, given_name, family_name, picture\n  email:\n    - email, email_verified\n  # カスタムスコープ\n  roles:\n    - realm_roles, resource_access\n\n# JWT クレームでのグループ情報例\n{\n  \"sub\": \"user123\",\n  \"email\": \"user@example.com\",\n  \"groups\": [\"admin\", \"developers\"],\n  \"custom:department\": \"Engineering\"\n}",
+      "codeLanguage": "yaml",
+      "layout": "default"
+    },
+    {
+      "title": "Part 4: ユースケース別選択基準",
+      "layout": "section",
+      "content": [
+        "エンタープライズ SSO / モバイル・SPA",
+        "B2B フェデレーション / API 認可",
+        "マルチプロトコル構成と選択フローチャート"
+      ]
+    },
+    {
+      "title": "エンタープライズ SSO — SAML が適切な理由",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">エンタープライズ SSO — SAML が適切な理由</text>\n<rect x=\"30\" y=\"55\" width=\"230\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"540\" y=\"55\" width=\"230\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"145\" y=\"80\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">企業 IdP (ADFS等)</text>\n<text x=\"655\" y=\"80\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">業務システム群 (SP)</text>\n<text x=\"145\" y=\"115\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Active Directory</text>\n<text x=\"145\" y=\"140\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">LDAP / Kerberos</text>\n<text x=\"145\" y=\"165\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">証明書管理</text>\n<text x=\"145\" y=\"200\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">一度認証すれば</text>\n<text x=\"145\" y=\"220\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">全SP自動ログイン</text>\n<text x=\"655\" y=\"115\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Salesforce</text>\n<text x=\"655\" y=\"140\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">ServiceNow</text>\n<text x=\"655\" y=\"165\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Workday / SAP</text>\n<text x=\"655\" y=\"190\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">社内ポータル</text>\n<text x=\"655\" y=\"220\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">SAML対応必須</text>\n<line x1=\"260\" y1=\"190\" x2=\"540\" y2=\"190\" stroke=\"#f9a825\" stroke-width=\"2.5\"/>\n<polygon points=\"540,190 527,183 527,197\" fill=\"#f9a825\"/>\n<text x=\"400\" y=\"180\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">SAML Assertion</text>\n<text x=\"400\" y=\"215\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">XML + 署名付き属性</text>\n<text x=\"400\" y=\"270\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">SAML採用理由:</text>\n<text x=\"400\" y=\"295\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 既存AD/LDAPとの統合が容易</text>\n<text x=\"400\" y=\"318\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 主要 SaaS が標準サポート</text>\n</svg>",
+        "**Active Directory / ADFS との深い統合:** Kerberos→SAML変換が成熟",
+        "**ベンダーサポートの幅広さ:** Salesforce, SAP, ServiceNow, Workday は SAML が標準",
+        "**Windows 統合認証 (WIA):** イントラネット環境では Kerberos→SAML のシームレス SSO",
+        "**組織内ポリシーの伝達:** Group/Role 情報を Attribute Statement で SP に渡せる",
+        "**成熟した実装:** 20年以上の実績。脆弱性と対策が出揃っている",
+        "**判断基準:** 既存 AD + エンタープライズ SaaS の SSO が主目的 → SAML を維持"
+      ]
+    },
+    {
+      "title": "モバイル・SPA — OIDC が適切な理由",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">モバイル・SPA — OIDC が適切な理由</text>\n<rect x=\"20\" y=\"50\" width=\"350\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<rect x=\"430\" y=\"50\" width=\"350\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"195\" y=\"78\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">SAMLが困難な理由</text>\n<text x=\"605\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">OIDCが適切な理由</text>\n<text x=\"35\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• XMLは重くモバイルに不向き</text>\n<text x=\"35\" y=\"142\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• ブラウザリダイレクト依存</text>\n<text x=\"35\" y=\"172\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">  (ネイティブアプリに困難)</text>\n<text x=\"35\" y=\"202\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• client_secret保管が困難</text>\n<text x=\"35\" y=\"232\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• REST API認可に非対応</text>\n<text x=\"35\" y=\"262\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• XMLパーサーの脆弱性リスク</text>\n<text x=\"445\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• JWT(JSON)は軽量・パース容易</text>\n<text x=\"445\" y=\"142\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• PKCE: secret不要で安全</text>\n<text x=\"445\" y=\"172\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• OAuth2でAPI認可も統一</text>\n<text x=\"445\" y=\"202\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• Custom URI Scheme対応</text>\n<text x=\"445\" y=\"232\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• Discovery自動設定</text>\n<text x=\"445\" y=\"262\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• 各OSのSDKが充実</text>\n<text x=\"400\" y=\"370\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">新規モバイル/SPAはOIDC + PKCE (S256) 一択</text></svg>",
+        "**SAML の根本的問題:** XML HTML フォームの POST はネイティブアプリで扱えない",
+        "**PKCE による安全な認可:** client_secret 不要でパブリッククライアントに対応",
+        "**カスタムスキーム:** `myapp://callback` で Auth Code をアプリが受け取れる",
+        "**JWT の軽量さ:** ネットワーク帯域・解析コスト共に有利（モバイル回線考慮）",
+        "**SDKライブラリの充実:** AppAuth (iOS/Android), MSAL, Auth0 SDK 等が完備",
+        "**判断基準:** iOS・Android アプリや React/Vue SPA → OIDC + PKCE 一択"
+      ]
+    },
+    {
+      "title": "B2B フェデレーション — 状況に応じた選択",
+      "layout": "default",
+      "content": [
+        "**エンタープライズ B2B:** 相手企業が SAML IdP (AD/ADFS) を持つ → SAML",
+        "**クラウドネイティブ B2B:** 相手が Okta / Auth0 等 → OIDC が増えてきた",
+        "**実用的アプローチ:** マルチプロトコル対応 IdP を使い、相手に合わせる",
+        "**AWS IAM Identity Center:** SAML 2.0 + OIDC 両対応。外部 IdP と連携",
+        "**Google Workspace / Azure AD:** 外部 SAML フェデレーション、OIDC フェデレーション両対応",
+        "**判断基準:** 相手先のシステム制約に合わせる。自社 IdP はマルチプロトコル対応を"
+      ]
+    },
+    {
+      "title": "マルチプロトコル対応 IdP 構成",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">マルチプロトコル対応 IdP 構成</text>\n<rect x=\"300\" y=\"50\" width=\"200\" height=\"65\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2.5\"/>\n<text x=\"400\" y=\"80\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">Modern IdP</text>\n<text x=\"400\" y=\"100\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Okta / Azure AD / Auth0</text>\n<line x1=\"350\" y1=\"115\" x2=\"200\" y2=\"165\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"200,165 206,152 218,158\" fill=\"#f9a825\"/>\n<line x1=\"400\" y1=\"115\" x2=\"400\" y2=\"165\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"400,165 394,152 406,152\" fill=\"#f9a825\"/>\n<line x1=\"450\" y1=\"115\" x2=\"600\" y2=\"165\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"600,165 590,154 602,152\" fill=\"#f9a825\"/>\n<rect x=\"100\" y=\"168\" width=\"180\" height=\"55\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"190\" y=\"193\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">SAML 2.0</text>\n<text x=\"190\" y=\"213\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">エンプラ SSO</text>\n<rect x=\"310\" y=\"168\" width=\"180\" height=\"55\" rx=\"8\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"193\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">OIDC</text>\n<text x=\"400\" y=\"213\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Web/モバイル</text>\n<rect x=\"520\" y=\"168\" width=\"180\" height=\"55\" rx=\"8\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/>\n<text x=\"610\" y=\"193\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">OAuth2</text>\n<text x=\"610\" y=\"213\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">API認可</text>\n<text x=\"400\" y=\"290\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">接続可能なシステム例</text>\n<rect x=\"30\" y=\"310\" width=\"150\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<text x=\"105\" y=\"340\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Salesforce (SAML)</text>\n<rect x=\"200\" y=\"310\" width=\"150\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"1.5\"/>\n<text x=\"275\" y=\"340\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">React SPA (OIDC)</text>\n<rect x=\"370\" y=\"310\" width=\"150\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"1.5\"/>\n<text x=\"445\" y=\"340\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Microservice (OAuth2)</text>\n<rect x=\"540\" y=\"310\" width=\"230\" height=\"50\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"655\" y=\"340\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Legacy ADFS連携 (SAML)</text></svg>",
+        "![w:960 center](assets/multi-protocol-idp.svg)"
+      ],
+      "speakerNotes": "エンタープライズ移行期の現実解です。1つのIdPでSAMLとOIDCを両対応し、段階的に移行します。"
+    },
+    {
+      "title": "ユースケース別選択マトリクス",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">ユースケース別選択マトリクス</text>\n<rect x=\"30\" y=\"50\" width=\"740\" height=\"45\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.2\"/>\n<text x=\"155\" y=\"79\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">ユースケース</text>\n<text x=\"370\" y=\"79\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">SAML</text>\n<text x=\"530\" y=\"79\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">OIDC</text>\n<text x=\"700\" y=\"79\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">推奨</text>\n<text x=\"155\" y=\"120\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">企業内 SSO</text>\n<text x=\"370\" y=\"120\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"16\" font-family=\"sans-serif\">✓</text>\n<text x=\"530\" y=\"120\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"16\" font-family=\"sans-serif\">✓</text>\n<text x=\"700\" y=\"120\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">SAML優先</text>\n<text x=\"155\" y=\"157\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">モバイル/SPA アプリ</text>\n<text x=\"370\" y=\"157\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"16\" font-family=\"sans-serif\">✗</text>\n<text x=\"530\" y=\"157\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"16\" font-family=\"sans-serif\">✓</text>\n<text x=\"700\" y=\"157\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">OIDC必須</text>\n<text x=\"155\" y=\"194\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">B2B フェデレーション</text>\n<text x=\"370\" y=\"194\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"16\" font-family=\"sans-serif\">✓</text>\n<text x=\"530\" y=\"194\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"16\" font-family=\"sans-serif\">✓</text>\n<text x=\"700\" y=\"194\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">相手次第</text>\n<text x=\"155\" y=\"231\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">API 認可</text>\n<text x=\"370\" y=\"231\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"16\" font-family=\"sans-serif\">✗</text>\n<text x=\"530\" y=\"231\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"16\" font-family=\"sans-serif\">✓</text>\n<text x=\"700\" y=\"231\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">OIDC必須</text>\n<text x=\"155\" y=\"268\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">レガシー連携</text>\n<text x=\"370\" y=\"268\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"16\" font-family=\"sans-serif\">✓</text>\n<text x=\"530\" y=\"268\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"16\" font-family=\"sans-serif\">△</text>\n<text x=\"700\" y=\"268\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">SAML優先</text>\n<text x=\"155\" y=\"305\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">新規 Web サービス</text>\n<text x=\"370\" y=\"305\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"16\" font-family=\"sans-serif\">△</text>\n<text x=\"530\" y=\"305\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"16\" font-family=\"sans-serif\">✓</text>\n<text x=\"700\" y=\"305\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">OIDC推奨</text>\n<line x1=\"30\" y1=\"100\" x2=\"770\" y2=\"100\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"30\" y1=\"137\" x2=\"770\" y2=\"137\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"30\" y1=\"174\" x2=\"770\" y2=\"174\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"30\" y1=\"211\" x2=\"770\" y2=\"211\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"30\" y1=\"248\" x2=\"770\" y2=\"248\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"30\" y1=\"285\" x2=\"770\" y2=\"285\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"280\" y1=\"50\" x2=\"280\" y2=\"320\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"460\" y1=\"50\" x2=\"460\" y2=\"320\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"620\" y1=\"50\" x2=\"620\" y2=\"320\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n</svg>",
+        "![w:1000 center](assets/usecase-matrix.svg)"
+      ],
+      "speakerNotes": "各ユースケースでの推奨度をまとめた表です。新規開発はほぼOIDC一択、エンタープライズSSOはSAML優位です。"
+    },
+    {
+      "title": "Decision Flowchart: どちらを選ぶか",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">Decision Flowchart: どちらを選ぶか</text>\n<rect x=\"300\" y=\"40\" width=\"200\" height=\"45\" rx=\"8\" fill=\"#16213e\" stroke=\"#ffffff\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"68\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">新しいシステム？</text>\n<line x1=\"400\" y1=\"85\" x2=\"400\" y2=\"110\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n<polygon points=\"400,110 394,98 406,98\" fill=\"#ffffff\"/>\n<rect x=\"130\" y=\"115\" width=\"160\" height=\"45\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"210\" y=\"143\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\">モバイル/SPA?</text>\n<rect x=\"510\" y=\"115\" width=\"160\" height=\"45\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"590\" y=\"143\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-family=\"sans-serif\">既存SAML統合?</text>\n<line x1=\"340\" y1=\"130\" x2=\"290\" y2=\"138\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n<text x=\"305\" y=\"128\" fill=\"#4caf50\" font-size=\"11\" font-family=\"sans-serif\">YES</text>\n<line x1=\"460\" y1=\"130\" x2=\"510\" y2=\"138\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n<text x=\"470\" y=\"128\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">NO</text>\n<line x1=\"210\" y1=\"160\" x2=\"210\" y2=\"200\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n<polygon points=\"210,200 204,188 216,188\" fill=\"#ffffff\"/>\n<rect x=\"120\" y=\"205\" width=\"180\" height=\"45\" rx=\"8\" fill=\"#e91e63\" opacity=\"0.8\"/>\n<text x=\"210\" y=\"233\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">OIDC + PKCE</text>\n<line x1=\"590\" y1=\"160\" x2=\"590\" y2=\"200\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n<polygon points=\"590,200 584,188 596,188\" fill=\"#ffffff\"/>\n<rect x=\"120\" y=\"310\" width=\"180\" height=\"45\" rx=\"8\" fill=\"#f9a825\" opacity=\"0.8\"/>\n<text x=\"210\" y=\"338\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">SAML 2.0</text>\n<rect x=\"490\" y=\"205\" width=\"200\" height=\"45\" rx=\"8\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"590\" y=\"233\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">エンプラB2B連携?</text>\n<line x1=\"490\" y1=\"228\" x2=\"300\" y2=\"228\" stroke=\"#4caf50\" stroke-width=\"1.5\"/>\n<polygon points=\"300,228 312,222 312,234\" fill=\"#4caf50\"/>\n<text x=\"395\" y=\"220\" fill=\"#4caf50\" font-size=\"11\" font-family=\"sans-serif\">YES→SAML</text>\n<line x1=\"590\" y1=\"250\" x2=\"590\" y2=\"310\" stroke=\"#ffffff\" stroke-width=\"1.5\"/>\n<polygon points=\"590,310 584,298 596,298\" fill=\"#ffffff\"/>\n<rect x=\"490\" y=\"315\" width=\"200\" height=\"45\" rx=\"8\" fill=\"#e91e63\" opacity=\"0.8\"/>\n<text x=\"590\" y=\"343\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">OIDC 推奨</text>\n</svg>",
+        "![w:930 center](assets/decision-flowchart.svg)"
+      ],
+      "speakerNotes": "迷ったときはこのフローチャートを使ってください。基本的に新規プロジェクトはOIDCがデフォルトです。"
+    },
+    {
+      "title": "Part 5: セキュリティ考慮事項",
+      "layout": "section",
+      "content": [
+        "SAML の主要脆弱性 (XSW, リプレイ攻撃)",
+        "OIDC の主要脆弱性 (不正リダイレクト, Token Leakage)",
+        "セキュリティ対策チェックリスト"
+      ]
+    },
+    {
+      "title": "SAML 脆弱性 #1: XML Signature Wrapping (XSW)",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">SAML 脆弱性 #1: XML Signature Wrapping (XSW)</text>\n<rect x=\"20\" y=\"50\" width=\"370\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<rect x=\"410\" y=\"50\" width=\"370\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"205\" y=\"78\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">攻撃の仕組み</text>\n<text x=\"595\" y=\"78\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">対策</text>\n<text x=\"35\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">1. 正規ユーザーのSAML Response傍受</text>\n<text x=\"35\" y=\"142\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">2. XMLに悪意ある要素を追加</text>\n<text x=\"35\" y=\"172\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">   (署名されたノードは変更せず)</text>\n<text x=\"35\" y=\"202\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">3. パーサーが改ざんノードを読む</text>\n<text x=\"35\" y=\"232\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">   (署名検証は成功と判断)</text>\n<text x=\"35\" y=\"262\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">4. 攻撃者が他ユーザーとして認証</text>\n<text x=\"35\" y=\"295\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">CVE: 多数存在 / 主要SAMLライブラリで発見歴</text>\n<text x=\"425\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">✓ 署名されたノードのみ使用</text>\n<text x=\"425\" y=\"142\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">✓ XPath検証の厳密化</text>\n<text x=\"425\" y=\"172\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">✓ 実績あるSAMLライブラリ使用</text>\n<text x=\"425\" y=\"202\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">✓ InResponseToの検証</text>\n<text x=\"425\" y=\"232\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">✓ AssertionIDのキャッシュ</text>\n<text x=\"425\" y=\"262\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">✓ ライブラリを最新版に維持</text>\n<text x=\"425\" y=\"295\" fill=\"#4caf50\" font-size=\"12\" font-family=\"sans-serif\">→ 自前実装は危険: 専用ライブラリ必須</text></svg>",
+        "![w:1000 center](assets/xml-signature-wrapping.svg)"
+      ],
+      "speakerNotes": "XSWはSAMLの最も深刻な脆弱性。署名は有効でも別の要素が処理される。検証済みライブラリの使用が必須。"
+    },
+    {
+      "title": "SAML 脆弱性 #2 — その他のリスク（1/2）",
+      "layout": "default",
+      "content": [
+        "**XML インジェクション:** XML メタキャラクタを含む属性値でパーサーを混乱",
+        "  → 対策: 属性値のエスケープ、strict な XML パーサー設定",
+        "**リプレイ攻撃:** 有効期限内の SAMLResponse を再送して不正アクセス",
+        "  → 対策: InResponseTo / AssertionID のキャッシュで重複検出"
+      ]
+    },
+    {
+      "title": "SAML 脆弱性 #2 — その他のリスク（2/2）",
+      "layout": "default",
+      "content": [
+        "**オープンリダイレクト:** RelayState を検証しない場合に任意 URL へリダイレクト",
+        "  → 対策: RelayState はホワイトリスト or 相対 URL のみ許可",
+        "**中間者攻撃:** TLS を使わない場合の SAMLResponse 傍受・改ざん",
+        "  → 対策: 全通信 HTTPS 必須、SP でアサーション署名を必須化"
+      ]
+    },
+    {
+      "title": "OIDC 脆弱性 #1: リダイレクト URI 攻撃（1/2）",
+      "layout": "default",
+      "content": [
+        "**不正 redirect_uri:** 登録外のURIに Auth Code / Token がリダイレクトされる",
+        "  → 対策: redirect_uri を完全一致で事前登録。ワイルドカード禁止",
+        "**オープンリダイレクタ利用:** 正規ドメインのリダイレクタ経由で外部へ誘導",
+        "  → 対策: redirect_uri は完全 URL で登録。動的登録には注意"
+      ]
+    },
+    {
+      "title": "OIDC 脆弱性 #1: リダイレクト URI 攻撃（2/2）",
+      "layout": "default",
+      "content": [
+        "**CSRF 攻撃 (state 未検証):** state パラメータ検証なしで認可コードを送信",
+        "  → 対策: state は必ず生成・検証。セッション/Cookie に保存して照合",
+        "**Code Injection (Implicit Flow):** URL フラグメントのトークンが Referer 漏洩",
+        "  → 対策: Implicit Flow は廃止。Auth Code + PKCE を使用"
+      ]
+    },
+    {
+      "title": "OIDC 脆弱性 #2: Token Leakage と実装ミス（1/2）",
+      "layout": "default",
+      "content": [
+        "**Access Token のログ記録:** Bearer Token がアクセスログに残る",
+        "  → 対策: Authorization ヘッダーはログから除外。短命トークン使用",
+        "**`alg: none` 攻撃:** JWT の署名アルゴリズムに none を指定し検証スキップ",
+        "  → 対策: alg を明示的に RS256/ES256 に限定。none を拒否"
+      ]
+    },
+    {
+      "title": "OIDC 脆弱性 #2: Token Leakage と実装ミス（2/2）",
+      "layout": "default",
+      "content": [
+        "**HS256 共有鍵の漏洩:** 対称鍵が漏洩すると全トークン偽造可能",
+        "  → 対策: RS256 (公開鍵暗号) を推奨。HS256 はマイクロサービス内部のみ",
+        "**nonce 未検証:** リプレイ攻撃防止の nonce をクライアントが確認しない",
+        "  → 対策: nonce は必ずセッションに保存し ID Token クレームと照合"
+      ]
+    },
+    {
+      "title": "セキュリティ対策比較チェックリスト",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">セキュリティ対策比較チェックリスト</text>\n<rect x=\"20\" y=\"50\" width=\"370\" height=\"330\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"410\" y=\"50\" width=\"370\" height=\"330\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"205\" y=\"77\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">SAML 対策</text>\n<text x=\"595\" y=\"77\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">OIDC 対策</text>\n<text x=\"35\" y=\"112\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">XMLデジタル署名検証</text>\n<text x=\"35\" y=\"142\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"142\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">XSW攻撃対策</text>\n<text x=\"35\" y=\"172\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"172\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">InResponseTo検証</text>\n<text x=\"35\" y=\"202\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"202\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">有効期限(Conditions)確認</text>\n<text x=\"35\" y=\"232\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"232\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Audience Restriction確認</text>\n<text x=\"35\" y=\"262\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"262\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">HTTPS強制 + HSTS</text>\n<text x=\"35\" y=\"292\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"292\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">署名アルゴリズム: SHA-256+</text>\n<text x=\"425\" y=\"112\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">JWT署名検証(RS256/ES256)</text>\n<text x=\"425\" y=\"142\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"142\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">PKCE使用 (S256)</text>\n<text x=\"425\" y=\"172\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"172\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">state パラメータ検証</text>\n<text x=\"425\" y=\"202\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"202\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">nonce検証 (リプレイ防止)</text>\n<text x=\"425\" y=\"232\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"232\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">redirect_uri ホワイトリスト</text>\n<text x=\"425\" y=\"262\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"262\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">aud/iss クレーム検証</text>\n<text x=\"425\" y=\"292\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"292\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">短命アクセストークン</text>\n<text x=\"400\" y=\"360\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">共通: HTTPS必須 / セキュリティヘッダー / 監査ログ</text>\n</svg>",
+        "| 脅威 | SAML 対策 | OIDC 対策 |",
+        "|------|-----------|-----------|",
+        "| リプレイ攻撃 | InResponseTo + AssertionID キャッシュ | nonce + exp 検証 |",
+        "| 改ざん | XML Digital Signature 必須化 | RS256 署名 + JWKS 検証 |",
+        "| CSRF | RelayState 検証 | state パラメータ検証 |",
+        "| 不正リダイレクト | ACS URL ホワイトリスト | redirect_uri 完全一致 |",
+        "| 中間者攻撃 | 全通信 TLS 必須 | HTTPS 必須 + HSTS |",
+        "| トークン漏洩 | SAMLResponse の短命化 | 短命 Access Token + Refresh Token |"
+      ]
+    },
+    {
+      "title": "共通セキュリティ ベストプラクティス",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">共通セキュリティ ベストプラクティス</text>\n<rect x=\"20\" y=\"50\" width=\"370\" height=\"310\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"410\" y=\"50\" width=\"370\" height=\"310\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"205\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">通信・証明書</text>\n<text x=\"595\" y=\"78\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">トークン・実装</text>\n<text x=\"35\" y=\"112\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">HTTPS必須 / TLS 1.2+</text>\n<text x=\"35\" y=\"142\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"142\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">HSTS (Strict-Transport-Security)</text>\n<text x=\"35\" y=\"172\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"172\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">証明書ピニング(モバイル)</text>\n<text x=\"35\" y=\"202\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"202\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">定期的な鍵ローテーション</text>\n<text x=\"35\" y=\"232\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"232\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">証明書有効期限の監視</text>\n<text x=\"35\" y=\"262\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"262\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">DNSSEC + CAA レコード</text>\n<text x=\"35\" y=\"295\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"55\" y=\"295\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">フィッシング耐性MFA</text>\n<text x=\"425\" y=\"112\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"112\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">有効期限の短いトークン</text>\n<text x=\"425\" y=\"142\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"142\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">署名アルゴリズムの固定</text>\n<text x=\"425\" y=\"172\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"172\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">alg:none 拒否設定</text>\n<text x=\"425\" y=\"202\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"202\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">全パラメータのバリデーション</text>\n<text x=\"425\" y=\"232\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"232\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">セキュリティヘッダー設定</text>\n<text x=\"425\" y=\"262\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"262\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">認証ログの監査・SIEM連携</text>\n<text x=\"425\" y=\"295\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"445\" y=\"295\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">依存ライブラリのSCA</text></svg>",
+        "**実装は必ず検証済みライブラリを使用:** 独自実装は危険（特に SAML の XML 署名）",
+        "**SAML:** OneLogin python-saml / Shibboleth / Spring Security SAML",
+        "**OIDC:** Authlib / Keycloak / Auth0 SDK / Microsoft MSAL",
+        "**定期的な依存ライブラリの更新:** CVE を定期スキャン (Dependabot, Snyk)",
+        "**最小スコープ原則:** 必要最小限の scope / 属性のみ要求",
+        "**ログと監査:** 認証成功/失敗をすべて記録。異常検知アラートを設定"
+      ]
+    },
+    {
+      "title": "Part 6: 実装・移行ガイド",
+      "layout": "section",
+      "content": [
+        "主要 IdP / ライブラリの対応状況",
+        "SAML → OIDC 4 フェーズ移行パターン",
+        "よくある実装ミス Top 5"
+      ]
+    },
+    {
+      "title": "主要 IdP・ライブラリ対応状況",
+      "layout": "default",
+      "content": [
+        "| プロダクト | SAML 2.0 | OIDC | 備考 |",
+        "|-----------|----------|------|------|",
+        "| **Azure AD / Entra ID** | ✓ | ✓ | 両対応。新規は OIDC 推奨 |",
+        "| **Okta** | ✓ | ✓ | 両対応。設定 UI が充実 |",
+        "| **Keycloak (OSS)** | ✓ | ✓ | 両対応。オンプレ向け |",
+        "| **Auth0** | ✓ | ✓ | 両対応。SaaS IdP |",
+        "| **AWS IAM Identity Center** | ✓ | ✓ | 外部 IdP との連携 |",
+        "| **Google Identity** | — | ✓ | OIDC のみ |",
+        "| **GitHub OAuth** | — | ✓ | OAuth 2.0 / OIDC |"
+      ]
+    },
+    {
+      "title": "SAML → OIDC 移行パターン (4 フェーズ)",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">SAML → OIDC 移行パターン (4フェーズ)</text>\n<rect x=\"20\" y=\"60\" width=\"165\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"215\" y=\"60\" width=\"165\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<rect x=\"410\" y=\"60\" width=\"165\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/>\n<rect x=\"605\" y=\"60\" width=\"165\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"102\" y=\"88\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">Phase 1</text>\n<text x=\"297\" y=\"88\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">Phase 2</text>\n<text x=\"492\" y=\"88\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">Phase 3</text>\n<text x=\"687\" y=\"88\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">Phase 4</text>\n<text x=\"102\" y=\"112\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">評価・計画</text>\n<text x=\"297\" y=\"112\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">並行運用</text>\n<text x=\"492\" y=\"112\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">段階移行</text>\n<text x=\"687\" y=\"112\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">SAML廃止</text>\n<text x=\"35\" y=\"150\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• SP一覧作成</text>\n<text x=\"35\" y=\"175\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• OIDC対応確認</text>\n<text x=\"35\" y=\"200\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• IdP選定</text>\n<text x=\"35\" y=\"225\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• ロードマップ</text>\n<text x=\"35\" y=\"250\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• リスク評価</text>\n<text x=\"230\" y=\"150\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• SAML維持</text>\n<text x=\"230\" y=\"175\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• OIDC追加設定</text>\n<text x=\"230\" y=\"200\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• テスト環境検証</text>\n<text x=\"230\" y=\"225\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• クレームマッピング</text>\n<text x=\"230\" y=\"250\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• SP選別</text>\n<text x=\"425\" y=\"150\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• SP毎に切替</text>\n<text x=\"425\" y=\"175\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• ユーザー通知</text>\n<text x=\"425\" y=\"200\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 動作確認</text>\n<text x=\"425\" y=\"225\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• ロールバック準備</text>\n<text x=\"425\" y=\"250\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 監視強化</text>\n<text x=\"620\" y=\"150\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• SAML無効化</text>\n<text x=\"620\" y=\"175\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 証明書破棄</text>\n<text x=\"620\" y=\"200\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• ドキュメント更新</text>\n<text x=\"620\" y=\"225\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 監査完了</text>\n<text x=\"620\" y=\"250\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 完全OIDC移行</text>\n<line x1=\"185\" y1=\"205\" x2=\"215\" y2=\"205\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"215,205 203,199 203,211\" fill=\"#f9a825\"/>\n<line x1=\"380\" y1=\"205\" x2=\"410\" y2=\"205\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<polygon points=\"410,205 398,199 398,211\" fill=\"#e91e63\"/>\n<line x1=\"575\" y1=\"205\" x2=\"605\" y2=\"205\" stroke=\"#2196f3\" stroke-width=\"2\"/>\n<polygon points=\"605,205 593,199 593,211\" fill=\"#2196f3\"/>\n</svg>",
+        "![w:1000 center](assets/migration-pattern.svg)"
+      ],
+      "speakerNotes": "移行は段階的に。最初に現状把握→並存期→移行実行→完全移行の4フェーズで進めます。ロールバック手順の準備が重要です。"
+    },
+    {
+      "title": "Azure AD / Okta での OIDC 設定例",
+      "content": [
+        "主要 IdP での OIDC アプリ登録と検証コードの例"
+      ],
+      "layout": "default"
+    },
+    {
+      "title": "Azure AD / Okta での OIDC 設定例（コード例）",
+      "content": [],
+      "code": "# Azure AD (MSAL Python) での OIDC 設定\nimport msal\n\napp = msal.ConfidentialClientApplication(\n    client_id=\"your-client-id\",\n    client_credential=\"your-client-secret\",\n    authority=\"https://login.microsoftonline.com/tenant-id\"\n)\n\n# 1. Authorization URL を生成\nauth_url = app.get_authorization_request_url(\n    scopes=[\"openid\", \"profile\", \"email\"],\n    redirect_uri=\"https://app.example.com/callback\",\n    state=\"random-csrf-token\",\n    nonce=\"random-nonce\"\n)\n\n# 2. Auth Code → Token 交換\nresult = app.acquire_token_by_authorization_code(\n    code=request.args[\"code\"],\n    scopes=[\"openid\", \"profile\"],\n    redirect_uri=\"https://app.example.com/callback\"\n)\n# result[\"id_token_claims\"] に検証済みクレームが入る",
+      "codeLanguage": "python",
+      "layout": "default"
+    },
+    {
+      "title": "よくある実装ミス Top 5（1/2）",
+      "layout": "default",
+      "content": [
+        "**❌ #1 SAML:** 署名検証をスキップ or 自己実装 → XSW 攻撃の温床",
+        "  ✅ 対策: 検証済みライブラリ使用。署名 + Conditions + Audience を全て確認",
+        "**❌ #2 OIDC:** state / nonce を検証しない → CSRF / リプレイ攻撃に脆弱",
+        "  ✅ 対策: セッションに保存し、コールバック時に必ず照合"
+      ]
+    },
+    {
+      "title": "よくある実装ミス Top 5（2/2）",
+      "layout": "default",
+      "content": [
+        "**❌ #3 OIDC:** Access Token を ID として使う → sub クレームで識別すること",
+        "  ✅ 対策: ユーザー識別は ID Token の sub。UserInfo API で補完",
+        "**❌ #4 OIDC:** JWT の alg を未検証 → alg:none 攻撃やアルゴリズム混乱攻撃",
+        "  ✅ 対策: 受け入れ alg を RS256/ES256 に明示的に制限"
+      ]
+    },
+    {
+      "title": "よくある実装ミス Top 5 (続き)（1/2）",
+      "layout": "default",
+      "content": [
+        "**❌ #5 共通:** セッション管理と認証を混同 → SLO (Single Logout) の未実装",
+        "  ✅ 対策: SAML SLO / OIDC RP-Initiated Logout を適切に実装",
+        "**その他の注意点:**",
+        "SAML: InResponseTo を検証しないと IdP-Initiated 攻撃に弱い"
+      ]
+    },
+    {
+      "title": "よくある実装ミス Top 5 (続き)（2/2）",
+      "layout": "default",
+      "content": [
+        "OIDC: Implicit Flow の使用（廃止済み）→ Auth Code + PKCE へ移行",
+        "OIDC: client_secret をフロントエンドコードに埋め込む → 公開される",
+        "共通: トークン/アサーションの有効期限を長く設定しすぎる",
+        "共通: エラーメッセージに認証情報の詳細を含める → 情報漏洩"
+      ]
+    },
+    {
+      "title": "まとめ",
+      "layout": "section",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">まとめ</text>\n<rect x=\"30\" y=\"50\" width=\"340\" height=\"140\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2.5\"/>\n<rect x=\"430\" y=\"50\" width=\"340\" height=\"140\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2.5\"/>\n<text x=\"200\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">SAML を選ぶ場面</text>\n<text x=\"600\" y=\"78\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">OIDC を選ぶ場面</text>\n<text x=\"45\" y=\"108\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• 既存エンプラ IdP (ADFS等)</text>\n<text x=\"45\" y=\"133\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• B2B/SaaS 標準要件がSAML</text>\n<text x=\"45\" y=\"158\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• レガシーシステム統合</text>\n<text x=\"445\" y=\"108\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• 新規 Web / モバイルアプリ</text>\n<text x=\"445\" y=\"133\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• API 認可が必要</text>\n<text x=\"445\" y=\"158\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">• マイクロサービス認証</text>\n<rect x=\"30\" y=\"215\" width=\"740\" height=\"145\" rx=\"10\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"242\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">共通の重要ポイント</text>\n<text x=\"50\" y=\"272\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"70\" y=\"272\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">実績あるライブラリを使用 — 自前実装は危険</text>\n<text x=\"50\" y=\"302\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"70\" y=\"302\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">セキュリティパラメータの全検証必須</text>\n<text x=\"50\" y=\"332\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">✓</text>\n<text x=\"70\" y=\"332\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">現代的 IdP (Okta/Azure AD) は両方サポート</text></svg>",
+        "SAML vs OIDC 総合比較",
+        "選択ガイド"
+      ]
+    },
+    {
+      "title": "SAML vs OIDC — 総合比較表",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">SAML vs OIDC — 総合比較表</text>\n<rect x=\"15\" y=\"45\" width=\"770\" height=\"40\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.25\"/>\n<text x=\"120\" y=\"71\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">項目</text>\n<text x=\"335\" y=\"71\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">SAML 2.0</text>\n<text x=\"590\" y=\"71\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">OIDC / OAuth2</text>\n<text x=\"120\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">標準化年</text>\n<text x=\"335\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">2005</text>\n<text x=\"590\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">2012 / 2014</text>\n<text x=\"120\" y=\"140\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">データ形式</text>\n<text x=\"335\" y=\"140\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">XML</text>\n<text x=\"590\" y=\"140\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">JSON / JWT</text>\n<text x=\"120\" y=\"172\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">モバイル対応</text>\n<text x=\"335\" y=\"172\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">困難</text>\n<text x=\"590\" y=\"172\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\" font-family=\"sans-serif\">ネイティブ対応</text>\n<text x=\"120\" y=\"204\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">実装複雑度</text>\n<text x=\"335\" y=\"204\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">高い</text>\n<text x=\"590\" y=\"204\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\" font-family=\"sans-serif\">中程度</text>\n<text x=\"120\" y=\"236\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">エンプラ採用率</text>\n<text x=\"335\" y=\"236\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\" font-family=\"sans-serif\">非常に高い</text>\n<text x=\"590\" y=\"236\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\" font-family=\"sans-serif\">急速に拡大中</text>\n<text x=\"120\" y=\"268\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">API認可</text>\n<text x=\"335\" y=\"268\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">非対応</text>\n<text x=\"590\" y=\"268\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\" font-family=\"sans-serif\">OAuth2で対応</text>\n<text x=\"120\" y=\"300\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">主要IdP</text>\n<text x=\"335\" y=\"300\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">AD FS / Shibboleth</text>\n<text x=\"590\" y=\"300\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Okta / Auth0 / Azure AD</text>\n<line x1=\"15\" y1=\"88\" x2=\"785\" y2=\"88\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.4\"/>\n<line x1=\"15\" y1=\"120\" x2=\"785\" y2=\"120\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"15\" y1=\"152\" x2=\"785\" y2=\"152\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"15\" y1=\"184\" x2=\"785\" y2=\"184\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"15\" y1=\"216\" x2=\"785\" y2=\"216\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"15\" y1=\"248\" x2=\"785\" y2=\"248\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"15\" y1=\"280\" x2=\"785\" y2=\"280\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.3\"/>\n<line x1=\"225\" y1=\"45\" x2=\"225\" y2=\"315\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.4\"/>\n<line x1=\"450\" y1=\"45\" x2=\"450\" y2=\"315\" stroke=\"#ffffff\" stroke-width=\"0.5\" opacity=\"0.4\"/>\n</svg>",
+        "![w:1000 center](assets/overall-comparison.svg)"
+      ],
+      "speakerNotes": "総合比較のまとめです。新規プロジェクトはOIDCがデフォルト、既存エンタープライズはSAML維持が現実解です。"
+    },
+    {
+      "title": "選択ガイド — 3 行サマリー",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"40\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">選択ガイド — 3行サマリー</text>\n<rect x=\"50\" y=\"70\" width=\"700\" height=\"90\" rx=\"12\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2.5\"/>\n<text x=\"400\" y=\"102\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">1. 新規Webサービス / モバイル / API</text>\n<text x=\"400\" y=\"140\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-family=\"sans-serif\">→ OIDC + OAuth2 (PKCE) を選択</text>\n<rect x=\"50\" y=\"180\" width=\"700\" height=\"90\" rx=\"12\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2.5\"/>\n<text x=\"400\" y=\"212\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">2. 既存エンプラ / B2B / SAMLが必須</text>\n<text x=\"400\" y=\"250\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-family=\"sans-serif\">→ SAML 2.0 を維持・活用</text>\n<rect x=\"50\" y=\"290\" width=\"700\" height=\"80\" rx=\"12\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2.5\"/>\n<text x=\"400\" y=\"322\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">3. 混在環境 / マルチプロトコル対応IdP</text>\n<text x=\"400\" y=\"352\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-family=\"sans-serif\">→ Okta / Azure AD で両対応</text>\n</svg>",
+        "**新規プロジェクト:** → **OIDC + PKCE** (モバイル・SPA・API・マイクロサービス全て対応)",
+        "**既存エンタープライズ SSO:** → **SAML 維持** (AD 統合・コスト・リスクを考慮)",
+        "**移行計画:** → **マルチプロトコル IdP** で並存しながら段階移行",
+        "**重要な原則:**",
+        "認証実装は必ずライブラリを使う。独自実装は脆弱性の温床",
+        "OIDC でも SAML でも、検証項目（署名・有効期限・対象者）は必ず全て確認",
+        "「どちらが優れているか」ではなく「ユースケースに何が最適か」で判断"
+      ]
+    },
+    {
+      "title": "参考資料 / RFC (1/2)（1/2）",
+      "layout": "default",
+      "content": [
+        "**仕様書・RFC:**",
+        "[SAML 2.0 Core (OASIS)](https://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf)",
+        "[OpenID Connect Core 1.0](https://openid.net/specs/openid-connect-core-1_0.html)",
+        "[RFC 6749: OAuth 2.0](https://www.rfc-editor.org/rfc/rfc6749)"
+      ]
+    },
+    {
+      "title": "参考資料 / RFC (1/2)（2/2）",
+      "layout": "default",
+      "content": [
+        "[RFC 7636: PKCE](https://www.rfc-editor.org/rfc/rfc7636)",
+        "[RFC 7519: JWT](https://www.rfc-editor.org/rfc/rfc7519)",
+        "**セキュリティ:**",
+        "[OAuth 2.0 Security Best Current Practice (RFC 9700)](https://www.rfc-editor.org/rfc/rfc9700)"
+      ]
+    },
+    {
+      "title": "参考資料 / RFC (2/2)（1/2）",
+      "layout": "default",
+      "content": [
+        "**実装ガイド・ライブラリ:**",
+        "[Okta: OIDC vs SAML](https://developer.okta.com/blog/2020/09/14/password-management-for-devs)",
+        "[Auth0: SAML vs JWT](https://auth0.com/blog/saml-vs-oauth/)",
+        "[OWASP Authentication Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Authentication_Cheat_Sheet.html)"
+      ]
+    },
+    {
+      "title": "参考資料 / RFC (2/2)（2/2）",
+      "layout": "default",
+      "content": [
+        "**OSS ライブラリ:**",
+        "[Keycloak (IdP)](https://www.keycloak.org/) | [python-saml (OneLogin)](https://github.com/onelogin/python-saml)",
+        "[AppAuth (Mobile OIDC)](https://appauth.io/) | [Authlib (Python OIDC)](https://authlib.org/)",
+        "[MSAL (Microsoft)](https://github.com/AzureAD/microsoft-authentication-library-for-python)"
+      ]
+    }
+  ]
 }

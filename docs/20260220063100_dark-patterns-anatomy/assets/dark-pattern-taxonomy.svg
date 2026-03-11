@@ -1,0 +1,56 @@
+<svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" font-family="sans-serif" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825">ダークパターン6分類</text>
+  <!-- 6 categories in 2x3 grid -->
+  <!-- Row 1 -->
+  <rect x="20" y="48" width="240" height="90" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="140" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">1. 偽装（Disguised）</text>
+  <text x="140" y="93" text-anchor="middle" font-size="11" fill="#ffffff">広告をコンテンツに見せる</text>
+  <text x="140" y="110" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">例：「お知らせ」に見せた広告リンク</text>
+  <text x="140" y="127" text-anchor="middle" font-size="10" fill="#e91e63">最も高頻度・見破りにくい</text>
+  <rect x="280" y="48" width="240" height="90" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63">2. 欺瞞（Sneaking）</text>
+  <text x="400" y="93" text-anchor="middle" font-size="11" fill="#ffffff">意図せず追加させる</text>
+  <text x="400" y="110" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">例：チェックボックスで有料オプション追加</text>
+  <text x="400" y="127" text-anchor="middle" font-size="10" fill="#e91e63">旅行サイトで多発</text>
+  <rect x="540" y="48" width="240" height="90" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="660" y="73" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">3. 緊急・希少性</text>
+  <text x="660" y="93" text-anchor="middle" font-size="11" fill="#ffffff">偽のプレッシャーを作る</text>
+  <text x="660" y="110" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">例：「残り1席！」「3分で終了！」</text>
+  <text x="660" y="127" text-anchor="middle" font-size="10" fill="#f9a825">多くは虚偽の情報</text>
+  <!-- Row 2 -->
+  <rect x="20" y="152" width="240" height="90" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="140" y="177" text-anchor="middle" font-size="13" font-weight="bold" fill="#f9a825">4. 妨害（Obstruction）</text>
+  <text x="140" y="197" text-anchor="middle" font-size="11" fill="#ffffff">解約・変更を困難にする</text>
+  <text x="140" y="214" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">例：解約ボタンが見つからない</text>
+  <text x="140" y="231" text-anchor="middle" font-size="10" fill="#f9a825">「ロック・イン」の手法</text>
+  <rect x="280" y="152" width="240" height="90" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="400" y="177" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">5. 感情的操作</text>
+  <text x="400" y="197" text-anchor="middle" font-size="11" fill="#ffffff">罪悪感・恥で意思を操る</text>
+  <text x="400" y="214" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">例：「いいえ結構です、健康はいりません」</text>
+  <text x="400" y="231" text-anchor="middle" font-size="10" fill="#4caf50">「Confirmshaming」</text>
+  <rect x="540" y="152" width="240" height="90" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
+  <text x="660" y="177" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50">6. 強制的継続</text>
+  <text x="660" y="197" text-anchor="middle" font-size="11" fill="#ffffff">無料→有料の自動移行</text>
+  <text x="660" y="214" text-anchor="middle" font-size="10" fill="#ffffff" opacity="0.7">例：無料トライアル後の自動課金</text>
+  <text x="660" y="231" text-anchor="middle" font-size="10" fill="#4caf50">解約しないと課金継続</text>
+  <!-- Bottom stats -->
+  <rect x="20" y="260" width="760" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="283" text-anchor="middle" font-size="13" fill="#f9a825">実態調査（FTC 2022 / Deceptive Design研究）</text>
+  <rect x="40" y="295" width="160" height="70" rx="6" fill="#1a1a2e"/>
+  <text x="120" y="318" text-anchor="middle" font-size="20" font-weight="bold" fill="#e91e63">76%</text>
+  <text x="120" y="338" text-anchor="middle" font-size="10" fill="#ffffff">ECサイトに</text>
+  <text x="120" y="352" text-anchor="middle" font-size="10" fill="#ffffff">1種類以上存在</text>
+  <rect x="220" y="295" width="160" height="70" rx="6" fill="#1a1a2e"/>
+  <text x="300" y="318" text-anchor="middle" font-size="20" font-weight="bold" fill="#f9a825">+13%</text>
+  <text x="300" y="338" text-anchor="middle" font-size="10" fill="#ffffff">購買率を</text>
+  <text x="300" y="352" text-anchor="middle" font-size="10" fill="#ffffff">上昇させる</text>
+  <rect x="400" y="295" width="160" height="70" rx="6" fill="#1a1a2e"/>
+  <text x="480" y="318" text-anchor="middle" font-size="20" font-weight="bold" fill="#e91e63">-28%</text>
+  <text x="480" y="338" text-anchor="middle" font-size="10" fill="#ffffff">ブランド信頼度</text>
+  <text x="480" y="352" text-anchor="middle" font-size="10" fill="#ffffff">発覚後に低下</text>
+  <rect x="580" y="295" width="180" height="70" rx="6" fill="#1a1a2e"/>
+  <text x="670" y="318" text-anchor="middle" font-size="20" font-weight="bold" fill="#4caf50">長期損失</text>
+  <text x="670" y="338" text-anchor="middle" font-size="10" fill="#ffffff">短期収益 vs</text>
+  <text x="670" y="352" text-anchor="middle" font-size="10" fill="#ffffff">顧客生涯価値の破壊</text>
+</svg>
