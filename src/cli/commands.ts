@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 import { parseArgs as parseNodeArgs } from "node:util";
 import { z } from "zod";
@@ -6,6 +7,7 @@ import { loadConfig } from "../config/loader.js";
 import { CONFIG_FILENAME } from "../constants.js";
 import { exportSlides } from "../export/marp.js";
 import { renderSlides } from "../generate/pipeline.js";
+import { ensureDir, slugify } from "../utils/files.js";
 
 const FORMAT_SCHEMA = z.enum(["html", "pdf", "pptx"]);
 type Format = z.infer<typeof FORMAT_SCHEMA>;
@@ -58,6 +60,58 @@ export async function exportCommand(options: CliOptions): Promise<void> {
 	);
 }
 
+export async function newCommand(topic: string): Promise<void> {
+	if (!topic) {
+		console.error("Usage: bun run slides new <topic>");
+		process.exit(1);
+	}
+
+	// Generate timestamp + slug for directory name
+	const now = new Date();
+	const ts = now.toISOString().replace(/[-T:]/g, "").slice(0, 14);
+	const slug = slugify(topic);
+	const dirName = `docs/${ts}_${slug}`;
+
+	const dirPath = resolve(dirName);
+	if (existsSync(dirPath)) {
+		console.log(`Directory already exists: ${dirPath}`);
+		return;
+	}
+
+	ensureDir(dirPath);
+
+	// Write config
+	const config = defaultConfigYaml.replace(
+		'"Your Presentation Topic"',
+		JSON.stringify(topic),
+	);
+	await Bun.write(resolve(dirPath, "slides.config.yaml"), config);
+
+	// Write empty slides-data.json
+	const emptyData = JSON.stringify(
+		{
+			slides: [
+				{
+					title: topic,
+					content: [],
+					layout: "center",
+				},
+			],
+		},
+		null,
+		2,
+	);
+	await Bun.write(resolve(dirPath, "slides-data.json"), emptyData);
+
+	console.log(`Created: ${dirPath}`);
+	console.log(`  - slides.config.yaml`);
+	console.log(`  - slides-data.json`);
+	console.log(`\nNext steps:`);
+	console.log(
+		`  bun run slides render -c ${dirPath}/slides.config.yaml --in ${dirPath}/slides-data.json`,
+	);
+}
+
 export async function parseArgs(args: string[]): Promise<void> {
 	const command = args[0];
 	const options = parseCliOptions(args.slice(1));
@@ -65,6 +119,9 @@ export async function parseArgs(args: string[]): Promise<void> {
 	switch (command) {
 		case "init":
 			await initCommand();
+			break;
+		case "new":
+			await newCommand(args[1] ?? "");
 			break;
 		case "render":
 			await renderCommand(options);
@@ -114,6 +171,7 @@ Usage: bun run slides <command> [options]
 
 Commands:
   init                          Create slides.config.yaml template
+  new <topic>                   Create a new presentation scaffold
   render [options]              Render slide data JSON to Marp markdown
   export [options]              Export Marp markdown to HTML/PDF
 

@@ -9,6 +9,7 @@
 import { Glob } from "bun";
 import { z } from "zod";
 import { generationResultSchema } from "../src/generate/slide-schema.js";
+import { EXIT } from "./lib/exit-codes.js";
 import {
 	type QualityWarning,
 	type SlideRecord,
@@ -108,6 +109,41 @@ async function validateAllSlides() {
 		}
 	}
 
+	// ── Cross-deck duplicate title detection ──────────────────────────────────
+	const titleToDeck = new Map<string, string[]>();
+	for (const file of files) {
+		try {
+			const data = await Bun.file(file).json();
+			const slides = data.slides ?? [];
+			for (const slide of slides) {
+				const t = ((slide.title as string) ?? "").trim();
+				if (!t) continue;
+				const decks = titleToDeck.get(t) ?? [];
+				decks.push(file);
+				titleToDeck.set(t, decks);
+			}
+		} catch {
+			// already reported as invalid above
+		}
+	}
+	const crossDeckDupes = [...titleToDeck.entries()].filter(([, decks]) => {
+		// Only flag if same title appears in 2+ DIFFERENT decks
+		const uniqueDecks = new Set(
+			decks.map((f) => f.split("/").slice(0, 2).join("/")),
+		);
+		return uniqueDecks.size > 1;
+	});
+	if (crossDeckDupes.length > 0) {
+		console.log(`\n🔁 Cross-deck duplicate titles (${crossDeckDupes.length}):`);
+		for (const [title, decks] of crossDeckDupes.slice(0, 20)) {
+			const uniqueDecks = [...new Set(decks.map((f) => f.split("/")[1]))];
+			console.log(`   "${title}" — in: ${uniqueDecks.join(", ")}`);
+		}
+		if (crossDeckDupes.length > 20) {
+			console.log(`   ... and ${crossDeckDupes.length - 20} more`);
+		}
+	}
+
 	const totalHours = Math.floor(totalReadingMins / 60);
 	const remainMins = totalReadingMins % 60;
 	const timeStr =
@@ -116,7 +152,7 @@ async function validateAllSlides() {
 	console.log(
 		`\n📊 Summary: ${validCount} valid, ${invalidCount} invalid${dupeWarnings > 0 ? `, ${dupeWarnings} with duplicate titles` : ""}${
 			qualityWarningCount > 0 ? `, ${qualityWarningCount} quality warnings` : ""
-		} | ${totalSlideCount} slides | ~${timeStr} total reading time`,
+		}${crossDeckDupes.length > 0 ? `, ${crossDeckDupes.length} cross-deck duplicate titles` : ""} | ${totalSlideCount} slides | ~${timeStr} total reading time`,
 	);
 
 	if (showQuality && qualityWarningCount > 0) {
@@ -147,11 +183,11 @@ async function validateAllSlides() {
 	}
 
 	if (invalidCount > 0) {
-		process.exit(1);
+		process.exit(EXIT.ERROR);
 	} else if (showQuality && qualityWarningCount > 0) {
-		process.exit(2);
+		process.exit(EXIT.WARNINGS);
 	} else {
-		process.exit(0);
+		process.exit(EXIT.SUCCESS);
 	}
 }
 

@@ -24,6 +24,7 @@
 		"doctor": "bun run scripts/doctor.ts",
 		"dev": "bun run scripts/dev-watch.ts",
 		"stats": "bun run scripts/stats.ts",
+		"stats:csv": "bun run scripts/stats.ts --export csv",
 		"lint": "bun run validate && bun run validate:quality",
 		"team": "bash scripts/setup-agent-team.sh",
 		"team:status": "bash scripts/agent-team-status.sh"

@@ -76,14 +76,12 @@ async function checkToolchain() {
 		warn("biome not available — run: bun install");
 	}
 
-	// python3 (for split scripts)
+	// python3 (deprecated — split scripts are now TypeScript)
 	const py = await run("python3 --version");
 	if (py.code === 0) {
-		ok(`${py.out}`);
+		ok(`${py.out} (python3 available)`);
 	} else {
-		warn(
-			"python3 not found — split-bullet-overflow.py and split-code-diagrams.py will fail",
-		);
+		ok("python3 not found — not needed (split scripts are TypeScript now)");
 	}
 }
 
@@ -201,19 +199,24 @@ async function checkMermaidResidue() {
 
 async function checkSchemaValidation() {
 	section("Schema Validation");
-	const proc = Bun.spawn(["bun", "run", "validate"], {
-		stdout: "pipe",
-		stderr: "pipe",
-	});
-	const out = await new Response(proc.stdout).text();
-	const code = await proc.exited;
-	const lines = out.trim().split("\n");
-	const summary = lines.find((l) => l.includes("📊 Summary:")) ?? "";
-	if (code === 0) {
-		ok(`Schema valid — ${summary.replace("📊 Summary:", "").trim()}`);
+	const validate = await run("bun run validate");
+	// Count lines containing ✅ and ❌
+	const validLines = validate.out
+		.split("\n")
+		.filter((l) => l.includes("✅")).length;
+	const invalidLines = validate.out
+		.split("\n")
+		.filter((l) => l.includes("❌")).length;
+	if (validate.code === 0) {
+		ok(`All ${validLines} slide data files pass schema validation`);
 	} else {
-		fail(`Schema errors found — ${summary.replace("📊 Summary:", "").trim()}`);
-		console.log("    Run: bun run fix");
+		fail(`${invalidLines} file(s) failed schema validation`);
+		// Show first few errors
+		const errLines = validate.out
+			.split("\n")
+			.filter((l) => l.includes("❌") || l.includes("   -"))
+			.slice(0, 10);
+		for (const l of errLines) console.log(`     ${l.trim()}`);
 	}
 }
 

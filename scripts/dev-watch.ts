@@ -18,6 +18,7 @@ import { run } from "./lib/spawn.js";
 
 const DEBOUNCE_MS = 400;
 const timers = new Map<string, ReturnType<typeof setTimeout>>();
+const rendering = new Set<string>();
 
 function timestamp(): string {
 	return new Date().toLocaleTimeString("ja-JP", { hour12: false });
@@ -36,60 +37,70 @@ async function findDataFile(dir: string): Promise<string | null> {
 }
 
 async function renderDeck(deckDir: string): Promise<void> {
-	const config = await findConfig(deckDir);
-	const data = await findDataFile(deckDir);
-
-	if (!config || !data) {
-		console.log(c.yellow(`  ⚠ Missing config or data in ${deckDir}`));
+	if (rendering.has(deckDir)) {
+		// Already rendering this deck — re-schedule once it finishes
+		scheduleRender(deckDir);
 		return;
 	}
+	rendering.add(deckDir);
+	try {
+		const config = await findConfig(deckDir);
+		const data = await findDataFile(deckDir);
 
-	const label = basename(deckDir).slice(15); // strip timestamp prefix
-	console.log(`\n${c.dim(timestamp())} ${c.bold("→ Rendering")} ${label}`);
-
-	const { out, err, code } = await run([
-		"bun",
-		"run",
-		"slides",
-		"render",
-		"-c",
-		config,
-		"--in",
-		data,
-	]);
-
-	if (code === 0) {
-		// Count slides
-		let slideCount = "?";
-		try {
-			const parsed = (await Bun.file(data).json()) as { slides?: unknown[] };
-			slideCount = String(parsed.slides?.length ?? "?");
-		} catch {
-			/* ignore */
+		if (!config || !data) {
+			console.log(c.yellow(`  ⚠ Missing config or data in ${deckDir}`));
+			return;
 		}
-		console.log(c.green(`  ✓ ${label} rendered (${slideCount} slides)`));
-		if (out.trim())
-			console.log(
-				c.dim(
-					out
-						.trim()
-						.split("\n")
-						.map((l) => `    ${l}`)
-						.join("\n"),
-				),
-			);
-	} else {
-		console.log(c.red(`  ✗ Render failed for ${label}`));
-		if (err.trim())
-			console.log(
-				c.red(
-					err
-						.trim()
-						.split("\n")
-						.map((l) => `    ${l}`)
-						.join("\n"),
-				),
-			);
+
+		const label = basename(deckDir).slice(15); // strip timestamp prefix
+		console.log(`\n${c.dim(timestamp())} ${c.bold("→ Rendering")} ${label}`);
+
+		const { out, err, code } = await run([
+			"bun",
+			"run",
+			"slides",
+			"render",
+			"-c",
+			config,
+			"--in",
+			data,
+		]);
+
+		if (code === 0) {
+			// Count slides
+			let slideCount = "?";
+			try {
+				const parsed = (await Bun.file(data).json()) as { slides?: unknown[] };
+				slideCount = String(parsed.slides?.length ?? "?");
+			} catch {
+				/* ignore */
+			}
+			console.log(c.green(`  ✓ ${label} rendered (${slideCount} slides)`));
+			if (out.trim())
+				console.log(
+					c.dim(
+						out
+							.trim()
+							.split("\n")
+							.map((l) => `    ${l}`)
+							.join("\n"),
+					),
+				);
+		} else {
+			console.log(c.red(`  ✗ Render failed for ${label}`));
+			if (err.trim())
+				console.log(
+					c.red(
+						err
+							.trim()
+							.split("\n")
+							.map((l) => `    ${l}`)
+							.join("\n"),
+					),
+				);
+		}
+	} finally {
+		rendering.delete(deckDir);
 	}
 }
 

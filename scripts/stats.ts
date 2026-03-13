@@ -16,6 +16,7 @@ import {
 	SVG_TARGET_RATIO,
 	SUBTITLE_GOOD_RATIO,
 } from "./lib/constants.js";
+import { EXIT } from "./lib/exit-codes.js";
 import { collectPresentations } from "./lib/presentation-loader.js";
 
 // ---------------------------------------------------------------------------
@@ -43,6 +44,11 @@ function gradeColor(g: string): string {
 // ---------------------------------------------------------------------------
 
 const decks = await collectPresentations();
+
+const exportFormat = (() => {
+	const idx = process.argv.indexOf("--export");
+	return idx !== -1 ? process.argv[idx + 1] : null;
+})();
 
 if (decks.length === 0) {
 	console.log("No presentations found in docs/");
@@ -195,3 +201,25 @@ if (lowSvg + lowAssertive + noSubtitle > 0) {
 }
 
 console.log();
+
+// --export csv: write all deck metrics to a CSV file
+if (exportFormat === "csv") {
+	const csvPath = "slide-stats.csv";
+	const header =
+		"dir,topic,slides,readingMins,svgRatio,assertiveRatio,subtitleRatio,grade";
+	const rows = decks.map((d) =>
+		[
+			d.dir,
+			`"${d.topic.replace(/"/g, '""')}"`,
+			d.slides.length,
+			d.metrics.readingMins,
+			d.metrics.svgRatio.toFixed(3),
+			d.metrics.assertiveRatio.toFixed(3),
+			d.metrics.subtitleRatio.toFixed(3),
+			d.metrics.grade,
+		].join(","),
+	);
+	const csv = [header, ...rows].join("\n");
+	await Bun.write(csvPath, csv);
+	console.log(`\n📄 Exported ${decks.length} rows to ${csvPath}`);
+}
