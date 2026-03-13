@@ -10,24 +10,13 @@
  *   - Quality grade distribution (A/B/C/D)
  */
 
-import { Glob } from "bun";
-import { parse as parseYaml } from "yaml";
-import { type SlideRecord, computeDeckMetrics } from "./lib/quality.js";
-
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
-
-interface DeckStats {
-	dir: string;
-	topic: string;
-	slideCount: number;
-	readingMins: number;
-	svgRatio: number; // 0..1
-	subtitleRatio: number; // ratio of content slides with subtitle
-	assertiveRatio: number; // ratio of content slides with assertive title
-	grade: "A" | "B" | "C" | "D";
-}
+import { c } from "./lib/colors.js";
+import {
+	ASSERTIVE_TARGET_RATIO,
+	SVG_TARGET_RATIO,
+	SUBTITLE_GOOD_RATIO,
+} from "./lib/constants.js";
+import { collectPresentations } from "./lib/presentation-loader.js";
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -42,77 +31,18 @@ function pct(ratio: number): string {
 	return `${Math.round(ratio * 100)}%`.padStart(4);
 }
 
-// Colors
-const G = (s: string) => `\x1b[32m${s}\x1b[0m`;
-const Y = (s: string) => `\x1b[33m${s}\x1b[0m`;
-const R = (s: string) => `\x1b[31m${s}\x1b[0m`;
-const B = (s: string) => `\x1b[34m${s}\x1b[0m`;
-const DIM = (s: string) => `\x1b[2m${s}\x1b[0m`;
-const BOLD = (s: string) => `\x1b[1m${s}\x1b[0m`;
-
 function gradeColor(g: string): string {
-	if (g === "A") return G(g);
-	if (g === "B") return B(g);
-	if (g === "C") return Y(g);
-	return R(g);
-}
-
-// ---------------------------------------------------------------------------
-// Collect stats
-// ---------------------------------------------------------------------------
-
-async function collectStats(): Promise<DeckStats[]> {
-	const glob = new Glob("docs/*/slides-data.json");
-	const results: DeckStats[] = [];
-
-	for (const dataPath of glob.scanSync()) {
-		const dir = dataPath.split("/").slice(0, 2).join("/");
-		const configPath = `${dir}/slides.config.yaml`;
-
-		let topic = dir
-			.split("/")[1]
-			.replace(/^\d{14}_/, "")
-			.replace(/-/g, " ");
-		try {
-			const yaml = parseYaml(await Bun.file(configPath).text()) as {
-				topic?: string;
-			};
-			if (yaml.topic) topic = yaml.topic;
-		} catch {
-			/* no config */
-		}
-
-		let slides: SlideRecord[] = [];
-		try {
-			const data = (await Bun.file(dataPath).json()) as {
-				slides?: SlideRecord[];
-			};
-			slides = data.slides ?? [];
-		} catch {
-			continue;
-		}
-
-		const metrics = computeDeckMetrics(slides);
-		results.push({
-			dir,
-			topic,
-			slideCount: slides.length,
-			readingMins: metrics.readingMins,
-			svgRatio: metrics.svgRatio,
-			subtitleRatio: metrics.subtitleRatio,
-			assertiveRatio: metrics.assertiveRatio,
-			grade: metrics.grade,
-		});
-	}
-
-	return results;
+	if (g === "A") return c.green(g);
+	if (g === "B") return c.blue(g);
+	if (g === "C") return c.yellow(g);
+	return c.red(g);
 }
 
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
-const decks = await collectStats();
+const decks = await collectPresentations();
 
 if (decks.length === 0) {
 	console.log("No presentations found in docs/");
@@ -120,59 +50,59 @@ if (decks.length === 0) {
 }
 
 // Aggregates
-const totalSlides = decks.reduce((s, d) => s + d.slideCount, 0);
-const totalMins = decks.reduce((s, d) => s + d.readingMins, 0);
-const avgSvg = decks.reduce((s, d) => s + d.svgRatio, 0) / decks.length;
+const totalSlides = decks.reduce((s, d) => s + d.slides.length, 0);
+const totalMins = decks.reduce((s, d) => s + d.metrics.readingMins, 0);
+const avgSvg = decks.reduce((s, d) => s + d.metrics.svgRatio, 0) / decks.length;
 const avgAssertive =
-	decks.reduce((s, d) => s + d.assertiveRatio, 0) / decks.length;
+	decks.reduce((s, d) => s + d.metrics.assertiveRatio, 0) / decks.length;
 const avgSubtitle =
-	decks.reduce((s, d) => s + d.subtitleRatio, 0) / decks.length;
+	decks.reduce((s, d) => s + d.metrics.subtitleRatio, 0) / decks.length;
 const gradeDist = { A: 0, B: 0, C: 0, D: 0 };
-for (const d of decks) gradeDist[d.grade]++;
+for (const d of decks) gradeDist[d.metrics.grade]++;
 
 const hours = Math.floor(totalMins / 60);
 const mins = totalMins % 60;
 
 // Print overview
-console.log(BOLD("\n📊 Slide Collection Statistics\n"));
-console.log(`  Presentations : ${BOLD(String(decks.length))}`);
-console.log(`  Total slides  : ${BOLD(String(totalSlides))}`);
-console.log(`  Reading time  : ${BOLD(`${hours}h ${mins}m`)}`);
+console.log(c.bold("\n📊 Slide Collection Statistics\n"));
+console.log(`  Presentations : ${c.bold(String(decks.length))}`);
+console.log(`  Total slides  : ${c.bold(String(totalSlides))}`);
+console.log(`  Reading time  : ${c.bold(`${hours}h ${mins}m`)}`);
 
 console.log(
-	BOLD("\n── Quality Metrics (aggregate) ──────────────────────────────\n"),
+	c.bold("\n── Quality Metrics (aggregate) ──────────────────────────────\n"),
 );
 console.log(
-	`  SVG coverage    ${bar(avgSvg)} ${pct(avgSvg)}  ${avgSvg >= 0.5 ? G("✓ target ≥50%") : R("✗ below 50%")}`,
+	`  SVG coverage    ${bar(avgSvg)} ${pct(avgSvg)}  ${avgSvg >= SVG_TARGET_RATIO ? c.green("✓ target ≥50%") : c.red("✗ below 50%")}`,
 );
 console.log(
-	`  Assertive titles${bar(avgAssertive)} ${pct(avgAssertive)}  ${avgAssertive >= 0.6 ? G("✓ target ≥60%") : R("✗ below 60%")}`,
+	`  Assertive titles${bar(avgAssertive)} ${pct(avgAssertive)}  ${avgAssertive >= ASSERTIVE_TARGET_RATIO ? c.green("✓ target ≥60%") : c.red("✗ below 60%")}`,
 );
 console.log(
-	`  Subtitle (BLUF) ${bar(avgSubtitle)} ${pct(avgSubtitle)}  ${avgSubtitle >= 0.3 ? G("✓") : Y("low — add subtitle fields")}`,
+	`  Subtitle (BLUF) ${bar(avgSubtitle)} ${pct(avgSubtitle)}  ${avgSubtitle >= SUBTITLE_GOOD_RATIO ? c.green("✓") : c.yellow("low — add subtitle fields")}`,
 );
 
 console.log(
-	BOLD("\n── Grade Distribution ───────────────────────────────────────\n"),
+	c.bold("\n── Grade Distribution ───────────────────────────────────────\n"),
 );
 console.log(
-	`  ${G("A")} (≥70pts) ${String(gradeDist.A).padStart(3)} decks  ${"█".repeat(Math.round((gradeDist.A / decks.length) * 40))}`,
+	`  ${c.green("A")} (≥70pts) ${String(gradeDist.A).padStart(3)} decks  ${"█".repeat(Math.round((gradeDist.A / decks.length) * 40))}`,
 );
 console.log(
-	`  ${B("B")} (≥50pts) ${String(gradeDist.B).padStart(3)} decks  ${"█".repeat(Math.round((gradeDist.B / decks.length) * 40))}`,
+	`  ${c.blue("B")} (≥50pts) ${String(gradeDist.B).padStart(3)} decks  ${"█".repeat(Math.round((gradeDist.B / decks.length) * 40))}`,
 );
 console.log(
-	`  ${Y("C")} (≥30pts) ${String(gradeDist.C).padStart(3)} decks  ${"█".repeat(Math.round((gradeDist.C / decks.length) * 40))}`,
+	`  ${c.yellow("C")} (≥30pts) ${String(gradeDist.C).padStart(3)} decks  ${"█".repeat(Math.round((gradeDist.C / decks.length) * 40))}`,
 );
 console.log(
-	`  ${R("D")} (<30pts) ${String(gradeDist.D).padStart(3)} decks  ${"█".repeat(Math.round((gradeDist.D / decks.length) * 40))}`,
+	`  ${c.red("D")} (<30pts) ${String(gradeDist.D).padStart(3)} decks  ${"█".repeat(Math.round((gradeDist.D / decks.length) * 40))}`,
 );
 
 // --worst: show only C/D grade decks as improvement targets
 const isWorst = process.argv.includes("--worst") || process.argv.includes("-w");
 if (isWorst) {
 	const targets = decks
-		.filter((d) => d.grade === "C" || d.grade === "D")
+		.filter((d) => d.metrics.grade === "C" || d.metrics.grade === "D")
 		.sort((a, b) => {
 			const gOrder = { A: 0, B: 1, C: 2, D: 3 };
 			return gOrder[b.grade] - gOrder[a.grade]; // D first
@@ -180,30 +110,30 @@ if (isWorst) {
 
 	if (targets.length === 0) {
 		console.log(
-			G("\n  No C/D grade decks — all presentations are B or better!\n"),
+			c.green("\n  No C/D grade decks — all presentations are B or better!\n"),
 		);
 	} else {
 		console.log(
-			BOLD(
+			c.bold(
 				`\n── Improvement Targets (${targets.length} decks) ────────────────────────\n`,
 			),
 		);
-		console.log(DIM("  Grade  SVG    Assert  Subtitle  Slides  Topic"));
-		console.log(DIM("  ─────  ─────  ──────  ────────  ──────  ─────"));
+		console.log(c.dim("  Grade  SVG    Assert  Subtitle  Slides  Topic"));
+		console.log(c.dim("  ─────  ─────  ──────  ────────  ──────  ─────"));
 		for (const d of targets) {
 			const issues: string[] = [];
-			if (d.svgRatio < 0.3) issues.push("SVG");
-			if (d.assertiveRatio < 0.4) issues.push("Titles");
-			if (d.subtitleRatio === 0) issues.push("BLUF");
-			const topic = d.topic.length > 38 ? d.topic.slice(0, 35) + "…" : d.topic;
+			if (d.metrics.svgRatio < 0.3) issues.push("SVG");
+			if (d.metrics.assertiveRatio < 0.4) issues.push("Titles");
+			if (d.metrics.subtitleRatio === 0) issues.push("BLUF");
+			const topic = d.topic.length > 38 ? `${d.topic.slice(0, 35)}…` : d.topic;
 			const issueStr =
-				issues.length > 0 ? R(` ← fix: ${issues.join(", ")}`) : "";
+				issues.length > 0 ? c.red(` ← fix: ${issues.join(", ")}`) : "";
 			console.log(
-				`  ${gradeColor(d.grade)}      ${pct(d.svgRatio)}  ${pct(d.assertiveRatio)}    ${pct(d.subtitleRatio)}    ${String(d.slideCount).padStart(4)}    ${topic}${issueStr}`,
+				`  ${gradeColor(d.metrics.grade)}      ${pct(d.metrics.svgRatio)}  ${pct(d.metrics.assertiveRatio)}    ${pct(d.metrics.subtitleRatio)}    ${String(d.slides.length).padStart(4)}    ${topic}${issueStr}`,
 			);
 		}
 		console.log(
-			DIM(`\n  Run: bun run validate:quality  to see per-slide detail`),
+			c.dim("\n  Run: bun run validate:quality  to see per-slide detail"),
 		);
 	}
 }
@@ -214,10 +144,10 @@ if (
 	(process.argv.includes("--verbose") || process.argv.includes("-v"))
 ) {
 	console.log(
-		BOLD("\n── Per-deck breakdown ───────────────────────────────────────\n"),
+		c.bold("\n── Per-deck breakdown ───────────────────────────────────────\n"),
 	);
-	console.log(DIM("  Grade  SVG    Assert  Subtitle  Slides  Topic"));
-	console.log(DIM("  ─────  ─────  ──────  ────────  ──────  ─────"));
+	console.log(c.dim("  Grade  SVG    Assert  Subtitle  Slides  Topic"));
+	console.log(c.dim("  ─────  ─────  ──────  ────────  ──────  ─────"));
 
 	const sorted = [...decks].sort((a, b) => {
 		const gOrder = { A: 0, B: 1, C: 2, D: 3 };
@@ -225,42 +155,42 @@ if (
 	});
 
 	for (const d of sorted) {
-		const topic = d.topic.length > 45 ? d.topic.slice(0, 42) + "…" : d.topic;
+		const topic = d.topic.length > 45 ? `${d.topic.slice(0, 42)}…` : d.topic;
 		console.log(
-			`  ${gradeColor(d.grade)}      ${pct(d.svgRatio)}  ${pct(d.assertiveRatio)}    ${pct(d.subtitleRatio)}    ${String(d.slideCount).padStart(4)}    ${topic}`,
+			`  ${gradeColor(d.metrics.grade)}      ${pct(d.metrics.svgRatio)}  ${pct(d.metrics.assertiveRatio)}    ${pct(d.metrics.subtitleRatio)}    ${String(d.slides.length).padStart(4)}    ${topic}`,
 		);
 	}
 }
 
 // Opportunities
-const lowSvg = decks.filter((d) => d.svgRatio < 0.3).length;
-const lowAssertive = decks.filter((d) => d.assertiveRatio < 0.4).length;
-const noSubtitle = decks.filter((d) => d.subtitleRatio === 0).length;
+const lowSvg = decks.filter((d) => d.metrics.svgRatio < 0.3).length;
+const lowAssertive = decks.filter((d) => d.metrics.assertiveRatio < 0.4).length;
+const noSubtitle = decks.filter((d) => d.metrics.subtitleRatio === 0).length;
 
 if (lowSvg + lowAssertive + noSubtitle > 0) {
 	console.log(
-		BOLD("\n── Improvement Opportunities ────────────────────────────────\n"),
+		c.bold("\n── Improvement Opportunities ────────────────────────────────\n"),
 	);
 	if (lowSvg > 0)
 		console.log(
-			Y(
+			c.yellow(
 				`  ${lowSvg} decks with <30% SVG coverage — add diagrams (figure-first principle)`,
 			),
 		);
 	if (lowAssertive > 0)
 		console.log(
-			Y(
+			c.yellow(
 				`  ${lowAssertive} decks with <40% assertive titles — rewrite label titles as conclusions`,
 			),
 		);
 	if (noSubtitle > 0)
 		console.log(
-			DIM(
+			c.dim(
 				`  ${noSubtitle} decks with 0% subtitle (BLUF) — add "subtitle" field to key slides`,
 			),
 		);
 	console.log(
-		DIM(`\n  Run: bun run validate:quality  to see per-slide detail`),
+		c.dim("\n  Run: bun run validate:quality  to see per-slide detail"),
 	);
 }
 

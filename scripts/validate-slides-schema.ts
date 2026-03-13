@@ -1,33 +1,25 @@
 #!/usr/bin/env bun
+/**
+ * Exit codes:
+ *   0 — all valid, no issues
+ *   1 — schema errors (invalid slides-data.json)
+ *   2 — quality warnings only (--quality flag, no schema errors)
+ */
 
 import { Glob } from "bun";
 import { z } from "zod";
 import { generationResultSchema } from "../src/generate/slide-schema.js";
 import {
+	type QualityWarning,
 	type SlideRecord,
 	estimateMins,
-	hasSvg,
-	isAssertive,
+	validateSlideQuality,
 } from "./lib/quality.js";
 
 interface ValidationError {
 	file: string;
 	errors: string[];
 }
-
-interface QualityWarning {
-	slideIndex: number;
-	title: string;
-	type: string;
-	message: string;
-}
-
-// ---------------------------------------------------------------------------
-// Quality helpers (Google / Amazon best practices)
-// ---------------------------------------------------------------------------
-
-/** Max recommended chars per bullet (Japanese ~50, English ~80). */
-const MAX_BULLET_CHARS = 60;
 
 /** Return duplicate titles within a single deck */
 function findDuplicateTitles(slides: Array<{ title?: string }>): string[] {
@@ -37,126 +29,6 @@ function findDuplicateTitles(slides: Array<{ title?: string }>): string[] {
 		if (t) seen.set(t, (seen.get(t) ?? 0) + 1);
 	}
 	return [...seen.entries()].filter(([, n]) => n > 1).map(([t]) => t);
-}
-
-/**
- * Check slide quality against Google / Amazon presentation principles.
- * Returns a list of warnings (not errors — deck is still valid).
- */
-function checkQuality(
-	slides: Array<{
-		title?: string;
-		subtitle?: string;
-		content?: string[];
-		code?: string;
-		layout?: string;
-		speakerNotes?: string;
-	}>,
-): QualityWarning[] {
-	const warnings: QualityWarning[] = [];
-
-	let consecutiveTextOnly = 0;
-
-	for (let i = 0; i < slides.length; i++) {
-		const slide = slides[i];
-		const title = (slide.title ?? "").trim();
-		const layout = slide.layout ?? "default";
-		const content = slide.content ?? [];
-		const slideHasSvg = hasSvg(slide as SlideRecord);
-		const hasCode = !!slide.code;
-		const isContentSlide = layout === "default";
-
-		// ── 1. Assertive title check (label title on content slide) ────────
-		if (isContentSlide && !isAssertive(title)) {
-			warnings.push({
-				slideIndex: i + 1,
-				title,
-				type: "label_title",
-				message: `Generic label title "${title}" — state the conclusion instead (e.g. "コストが40%削減できる理由" not "コスト削減")`,
-			});
-		}
-
-		// ── 2. Long bullet warning ──────────────────────────────────────────
-		for (const item of content) {
-			if (
-				!item.startsWith("|") &&
-				!item.startsWith("![") &&
-				!item.includes("<svg") &&
-				item.length > MAX_BULLET_CHARS
-			) {
-				warnings.push({
-					slideIndex: i + 1,
-					title,
-					type: "long_bullet",
-					message: `Bullet too long (${item.length} chars > ${MAX_BULLET_CHARS}): "${item.slice(0, 40)}…" — split or condense for readability`,
-				});
-				break; // one warning per slide
-			}
-		}
-
-		// ── 3. Missing subtitle on key content slides ───────────────────────
-		// Only flag if it's a long (≥ 4 bullets) content slide with no subtitle and no SVG
-		if (
-			isContentSlide &&
-			content.length >= 4 &&
-			!slideHasSvg &&
-			!hasCode &&
-			!slide.subtitle
-		) {
-			warnings.push({
-				slideIndex: i + 1,
-				title,
-				type: "missing_subtitle",
-				message: `Dense text slide with no subtitle (BLUF) — add "subtitle" field with the "so what?" one-liner`,
-			});
-		}
-
-		// ── 4. Consecutive text-only slides ────────────────────────────────
-		if (isContentSlide && !slideHasSvg && !hasCode) {
-			consecutiveTextOnly++;
-			if (consecutiveTextOnly >= 3) {
-				warnings.push({
-					slideIndex: i + 1,
-					title,
-					type: "consecutive_text",
-					message: `3+ consecutive text-only slides (slides ${i - 1}–${i + 1}) — insert an SVG diagram to break the pattern`,
-				});
-			}
-		} else {
-			consecutiveTextOnly = 0;
-		}
-
-		// ── 5. Missing speaker notes on content slides ─────────────────────
-		if (isContentSlide && !slide.speakerNotes && content.length > 0) {
-			warnings.push({
-				slideIndex: i + 1,
-				title,
-				type: "missing_notes",
-				message: `No speaker notes — add "why this matters" / evidence / transition to next slide`,
-			});
-		}
-	}
-
-	// ── 6. Narrative arc check (deck-level) ──────────────────────────────
-	const contentSlides = slides.filter(
-		(s) => (s.layout ?? "default") === "default",
-	);
-	const assertiveCount = contentSlides.filter((s) =>
-		isAssertive(s.title ?? ""),
-	).length;
-	const assertiveRatio =
-		contentSlides.length > 0 ? assertiveCount / contentSlides.length : 1;
-
-	if (contentSlides.length >= 5 && assertiveRatio < 0.6) {
-		warnings.push({
-			slideIndex: 0,
-			title: "(deck-level)",
-			type: "weak_narrative",
-			message: `Only ${Math.round(assertiveRatio * 100)}% of content slides have assertive titles (target ≥60%). Titles should state conclusions, not just topics.`,
-		});
-	}
-
-	return warnings;
 }
 
 // ---------------------------------------------------------------------------
@@ -195,7 +67,9 @@ async function validateAllSlides() {
 			const slides = data.slides ?? [];
 			const dupes = findDuplicateTitles(slides);
 			const mins = estimateMins(slides as SlideRecord[]);
-			const quality = showQuality ? checkQuality(slides) : [];
+			const quality = showQuality
+				? validateSlideQuality(slides as SlideRecord[])
+				: [];
 
 			totalSlideCount += slides.length;
 			totalReadingMins += mins;
@@ -240,12 +114,9 @@ async function validateAllSlides() {
 		totalHours > 0 ? `${totalHours}h ${remainMins}m` : `${totalReadingMins}m`;
 
 	console.log(
-		`\n📊 Summary: ${validCount} valid, ${invalidCount} invalid` +
-			(dupeWarnings > 0 ? `, ${dupeWarnings} with duplicate titles` : "") +
-			(qualityWarningCount > 0
-				? `, ${qualityWarningCount} quality warnings`
-				: "") +
-			` | ${totalSlideCount} slides | ~${timeStr} total reading time`,
+		`\n📊 Summary: ${validCount} valid, ${invalidCount} invalid${dupeWarnings > 0 ? `, ${dupeWarnings} with duplicate titles` : ""}${
+			qualityWarningCount > 0 ? `, ${qualityWarningCount} quality warnings` : ""
+		} | ${totalSlideCount} slides | ~${timeStr} total reading time`,
 	);
 
 	if (showQuality && qualityWarningCount > 0) {
@@ -275,7 +146,13 @@ async function validateAllSlides() {
 		console.log("\n✨ All slides data files are valid!");
 	}
 
-	process.exit(invalidCount > 0 ? 1 : 0);
+	if (invalidCount > 0) {
+		process.exit(1);
+	} else if (showQuality && qualityWarningCount > 0) {
+		process.exit(2);
+	} else {
+		process.exit(0);
+	}
 }
 
 validateAllSlides();

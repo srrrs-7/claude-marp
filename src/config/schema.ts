@@ -1,3 +1,4 @@
+import { isAbsolute, resolve } from "node:path";
 import { z } from "zod";
 
 export const slidesConfigSchema = z.object({
@@ -8,9 +9,6 @@ export const slidesConfigSchema = z.object({
 	slides: z
 		.object({
 			count: z.number().int().min(1).max(200).default(10),
-			includeTableOfContents: z.boolean().default(true),
-			includeTitleSlide: z.boolean().default(true),
-			includeSummarySlide: z.boolean().default(true),
 		})
 		.default({}),
 	marp: z
@@ -34,7 +32,10 @@ export const slidesConfigSchema = z.object({
 		.default({}),
 	output: z
 		.object({
-			dir: z.string().default("./docs"),
+			dir: z
+				.string()
+				.default("./docs")
+				.transform((p) => (isAbsolute(p) ? p : resolve(p))),
 			baseName: z.string().default(""),
 		})
 		.default({}),

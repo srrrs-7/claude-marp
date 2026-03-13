@@ -15,8 +15,10 @@
  *   bun run single aws-cognito
  */
 
-import { Glob } from "bun";
 import { basename, resolve } from "node:path";
+import { Glob } from "bun";
+import { c } from "./lib/colors.js";
+import { run as spawn } from "./lib/spawn.js";
 
 // ---------------------------------------------------------------------------
 // Args
@@ -75,37 +77,11 @@ async function resolveDeckDir(query: string): Promise<string> {
 	}
 	if (candidates.length > 1) {
 		console.error(`✗ Ambiguous — ${candidates.length} decks match "${query}":`);
-		for (const c of candidates) console.error(`  ${basename(c)}`);
+		for (const cand of candidates) console.error(`  ${basename(cand)}`);
 		console.error("  Use a more specific name.");
 		process.exit(1);
 	}
 	return candidates[0];
-}
-
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
-
-const bold = (s: string) => `\x1b[1m${s}\x1b[0m`;
-const green = (s: string) => `\x1b[32m${s}\x1b[0m`;
-const red = (s: string) => `\x1b[31m${s}\x1b[0m`;
-const dim = (s: string) => `\x1b[2m${s}\x1b[0m`;
-const yellow = (s: string) => `\x1b[33m${s}\x1b[0m`;
-
-async function spawn(
-	cmd: string[],
-): Promise<{ code: number; out: string; err: string }> {
-	const proc = Bun.spawn(cmd, {
-		stdout: "pipe",
-		stderr: "pipe",
-		cwd: resolve("."),
-	});
-	const [out, err, code] = await Promise.all([
-		new Response(proc.stdout).text(),
-		new Response(proc.stderr).text(),
-		proc.exited,
-	]);
-	return { code, out, err };
 }
 
 // ---------------------------------------------------------------------------
@@ -117,19 +93,19 @@ const dirName = basename(deckDir);
 const configFile = `${deckDir}/slides.config.yaml`;
 const dataFile = `${deckDir}/slides-data.json`;
 
-console.log(bold(`\n▶ ${dirName}`));
+console.log(c.bold(`\n▶ ${dirName}`));
 
 // ── Validate required files ───────────────────────────────────────────────
 
 if (!(await Bun.file(configFile).exists())) {
-	console.error(red("  ✗ slides.config.yaml not found"));
+	console.error(c.red("  ✗ slides.config.yaml not found"));
 	process.exit(1);
 }
 if (
 	(mode === "render" || mode === "all") &&
 	!(await Bun.file(dataFile).exists())
 ) {
-	console.error(red("  ✗ slides-data.json not found"));
+	console.error(c.red("  ✗ slides-data.json not found"));
 	process.exit(1);
 }
 
@@ -150,9 +126,9 @@ if (mode === "render" || mode === "all") {
 	if (code === 0) {
 		const data = (await Bun.file(dataFile).json()) as { slides?: unknown[] };
 		const count = data.slides?.length ?? "?";
-		console.log(green(`✓  (${count} slides)`));
+		console.log(c.green(`✓  (${count} slides)`));
 	} else {
-		console.log(red("✗  failed"));
+		console.log(c.red("✗  failed"));
 		if (err.trim())
 			console.error(
 				err
@@ -173,12 +149,12 @@ if (mode === "export" || mode === "all") {
 	const mdFiles = Array.from(mdGlob.scanSync());
 
 	if (mdFiles.length === 0) {
-		console.error(red("  ✗ No .md file found — run render first"));
+		console.error(c.red("  ✗ No .md file found — run render first"));
 		process.exit(1);
 	}
 	if (mdFiles.length > 1) {
 		console.log(
-			yellow(`  ⚠ Multiple .md files found, using: ${basename(mdFiles[0])}`),
+			c.yellow(`  ⚠ Multiple .md files found, using: ${basename(mdFiles[0])}`),
 		);
 	}
 
@@ -199,10 +175,10 @@ if (mode === "export" || mode === "all") {
 	]);
 
 	if (code === 0) {
-		const htmlName = basename(mdFile, ".md") + ".html";
-		console.log(green(`✓  → dist/${htmlName}`));
+		const htmlName = `${basename(mdFile, ".md")}.html`;
+		console.log(c.green(`✓  → dist/${htmlName}`));
 	} else {
-		console.log(red("✗  failed"));
+		console.log(c.red("✗  failed"));
 		if (err.trim())
 			console.error(
 				err
@@ -215,4 +191,4 @@ if (mode === "export" || mode === "all") {
 	}
 }
 
-console.log(dim("\n  Done.\n"));
+console.log(c.dim("\n  Done.\n"));

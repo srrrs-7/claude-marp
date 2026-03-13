@@ -2,6 +2,7 @@
 
 import { Glob } from "bun";
 import { parse as parseYaml } from "yaml";
+import { CATEGORY_CONFIGS, type CategoryId } from "./config/categories.js";
 import { type SlideRecord, computeDeckMetrics } from "./lib/quality.js";
 
 // ---------------------------------------------------------------------------
@@ -18,19 +19,6 @@ interface PresentationInfo {
 	grade: "A" | "B" | "C" | "D";
 }
 
-type CategoryId =
-	| "security"
-	| "infra"
-	| "science"
-	| "thinking"
-	| "engineering"
-	| "business"
-	| "ai"
-	| "investment"
-	| "career"
-	| "aws"
-	| "other";
-
 interface Category {
 	id: CategoryId;
 	label: string;
@@ -41,74 +29,12 @@ interface Category {
 // Category classification
 // ---------------------------------------------------------------------------
 
-// Rules are checked in order — first match wins.
-// Priority: security > infra > science > thinking > engineering > aws > business > investment > career > ai > other
-const CATEGORY_RULES: { id: CategoryId; label: string; keywords: RegExp }[] = [
-	{
-		id: "security",
-		label: "Security & Compliance",
-		keywords:
-			/セキュリティ|security|\bisms\b|hipaa|devsecops|oauth|saml|oidc|\bmfa\b|compliance|コンプライアンス|認証|認可|authz|guarduty|waf/i,
-	},
-	{
-		id: "infra",
-		label: "Infrastructure & Networks",
-		keywords:
-			/ケーブル|cable|半導体|semiconductor|splinternet|スプリンターネット|地政学|geopolitics|arpanet|データセンター|datacenter|accidental.standard|偶然.*標準|carbon.aware|炭素認識|グリーン.*ソフト|green.software/i,
-	},
-	{
-		id: "science",
-		label: "Science & Math",
-		keywords:
-			/フェルミ|fermi|物理|physics|渋滞|traffic.jam|colony|コロニー|ベンフォード|benford|カオス|chaos|エントロピー|entropy|ゲーデル|godel|マクスウェル|maxwell|シュレーディンガー|schrodinger|スライム|slime|量子|quantum|タコ|octopus|フラクタル|fractal|素数|prime.num|p値|p-value|再現性|replication|宇宙.*構造|cosmic|シンプソン|simpsons|ティッピング|tipping.point|気候.*変動|climate.tip|リスク補償|risk.compensation|ムーアの法則|moores.law/i,
-	},
-	{
-		id: "thinking",
-		label: "Society & Bias",
-		keywords:
-			/バイアス|bias|ディストピア|ユートピア|dystopia|utopia|確証|社会論|meiji|明治|jazz|ジャズ|improvisation|即興|デジタルツイン|digital.twin|倫理|ethics|エターナル|eternal.sept|マタイ.*効果|matthew.effect|コミュニティ.*死|pokemon|ポケモン.*都市|ゲーム.*産業|game.industry|セレンディ|serendip|偶然の発明|accidental.invent/i,
-	},
-	{
-		id: "engineering",
-		label: "Software Engineering",
-		keywords:
-			/モノリス|monolith|yagni|仕様書|技術選定|分散|distributed|spec.vs|spec-vs|リファクタリング|refactor|アーキテクチャ|architect|マイクロサービス|microservice|テセウス|theseus|コンウェイ|conway|都市計画|urban.plan|職人|shokunin|craftsmanship|agile|アジャイル|\bux\b|カーゴカルト|cargo.cult|グレシャム|gresham|コードベース|codebase|コードレビュー|code.review|プログラミング言語|programming.lang|law.as.code|法律.*コード|最適化|optimiz|写本.*コード|記憶の宮殿/i,
-	},
-	{
-		id: "aws",
-		label: "AWS",
-		keywords: /aws|iam|cognito|vpc|lambda|ネットワーキング|networking/i,
-	},
-	{
-		id: "business",
-		label: "Business & Strategy",
-		keywords:
-			/oss|オープンソース|motivation|動機|フリーミアム|freemium|スタートアップ|startup|ビジネスモデル|ネットワーク効果|network.effect|情報.*非対称|information.asymmetr|起業家|entrepreneur|edison|post.scarcity|ポスト希少|無料.*コスト|true.cost|vibe.cod/i,
-	},
-	{
-		id: "investment",
-		label: "Investment & Finance",
-		keywords:
-			/投資|為替|成長産業|forex|jpy|金融|finance|人民元|yuan|\bcny\b|paradox.of.thrift|倹約.*浪費/i,
-	},
-	{
-		id: "career",
-		label: "Career & Management",
-		keywords:
-			/マネージメント|management|キャリア|年収|海外就業|部下|career|生産性|productivity/i,
-	},
-	{
-		id: "ai",
-		label: "AI & Technology",
-		keywords:
-			/ai|claude|web技術|技術トレンド|agent|llm|ソフトウェアエンジニア|テクノロジ|アプリケーション|rag|transformer|生成|産業革命/i,
-	},
-];
-
-function classify(topic: string, slug: string): Category["id"] {
-	const text = `${topic} ${slug}`;
-	for (const rule of CATEGORY_RULES) {
-		if (rule.keywords.test(text)) return rule.id;
+function classify(topic: string, slug: string): CategoryId {
+	const text = `${topic} ${slug}`.toLowerCase();
+	for (const cat of CATEGORY_CONFIGS) {
+		for (const kw of cat.keywords) {
+			if (text.includes(kw.toLowerCase())) return cat.id;
+		}
 	}
 	return "other";
 }
@@ -611,7 +537,7 @@ document.addEventListener('DOMContentLoaded',()=>{
     let anyVisible=false;
     document.querySelectorAll('.card').forEach(c=>{
       const matchFilter=activeFilter==='all'||c.dataset.category===activeFilter;
-      const matchSearch=!searchQuery||c.querySelector('h3').textContent.toLowerCase().includes(searchQuery);
+      const matchSearch=!searchQuery||c.querySelector('h3').textContent.toLowerCase().normalize('NFKD').includes(searchQuery);
       const matchGrade=activeGrade==='all'||c.dataset.grade===activeGrade;
       const visible=matchFilter&&matchSearch&&matchGrade;
       c.style.display=visible?'':'none';
@@ -646,7 +572,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   });
 
   searchInput.addEventListener('input',()=>{
-    searchQuery=searchInput.value.trim().toLowerCase();
+    searchQuery=searchInput.value.trim().toLowerCase().normalize('NFKD');
     applyFilters();
   });
 
@@ -702,10 +628,10 @@ async function main() {
 	];
 	const categories: Category[] = orderedIds
 		.map((id) => {
-			const rule = CATEGORY_RULES.find((r) => r.id === id);
+			const config = CATEGORY_CONFIGS.find((c) => c.id === id);
 			return {
 				id,
-				label: rule?.label ?? "Other",
+				label: config?.label ?? "Other",
 				presentations: categoryMap.get(id) ?? [],
 			};
 		})

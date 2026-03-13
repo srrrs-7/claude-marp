@@ -1,19 +1,24 @@
 import { resolve } from "node:path";
+import { parseArgs as parseNodeArgs } from "node:util";
+import { z } from "zod";
 import { defaultConfigYaml } from "../config/defaults.js";
 import { loadConfig } from "../config/loader.js";
+import { CONFIG_FILENAME } from "../constants.js";
 import { exportSlides } from "../export/marp.js";
 import { renderSlides } from "../generate/pipeline.js";
 
-type Format = "html" | "pdf" | "pptx";
+const FORMAT_SCHEMA = z.enum(["html", "pdf", "pptx"]);
+type Format = z.infer<typeof FORMAT_SCHEMA>;
 
 interface CliOptions {
 	config?: string;
+	dryRun?: boolean;
 	format: Format;
 	input?: string;
 }
 
 export async function initCommand(): Promise<void> {
-	const configPath = resolve("slides.config.yaml");
+	const configPath = resolve(CONFIG_FILENAME);
 	const file = Bun.file(configPath);
 
 	if (await file.exists()) {
@@ -26,24 +31,31 @@ export async function initCommand(): Promise<void> {
 }
 
 export async function renderCommand(
-	options: Pick<CliOptions, "config" | "input">,
+	options: Pick<CliOptions, "config" | "input" | "dryRun">,
 ): Promise<void> {
-	const input =
-		options.input ??
-		exitWithError(
-			"Please specify input JSON file with --in <path>",
+	if (!options.input) {
+		console.error("Please specify input JSON file with --in <path>");
+		console.error(
 			"The JSON should match the slide schema: { slides: [{ title, content, ... }] }",
 		);
+		process.exit(1);
+	}
 	const config = await loadConfig(options.config);
-	await renderSlides(input, config);
+	await renderSlides(options.input, config, options.dryRun ?? false);
 }
 
 export async function exportCommand(options: CliOptions): Promise<void> {
-	const input =
-		options.input ??
-		exitWithError("Please specify input file with --in <path>");
+	if (!options.input) {
+		console.error("Please specify input file with --in <path>");
+		process.exit(1);
+	}
 	const config = await loadConfig(options.config);
-	await exportSlides(input, options.format, config);
+	await exportSlides(
+		options.input,
+		options.format,
+		config,
+		options.dryRun ?? false,
+	);
 }
 
 export async function parseArgs(args: string[]): Promise<void> {
@@ -66,42 +78,34 @@ export async function parseArgs(args: string[]): Promise<void> {
 }
 
 function parseCliOptions(args: string[]): CliOptions {
-	const options: CliOptions = { format: "html" };
+	const { values } = parseNodeArgs({
+		args,
+		options: {
+			in: { type: "string" },
+			input: { type: "string" },
+			config: { type: "string", short: "c" },
+			format: { type: "string", short: "f" },
+			"dry-run": { type: "boolean" },
+		},
+		strict: false,
+	});
 
-	for (let i = 0; i < args.length; i++) {
-		const arg = args[i];
-		const value = args[i + 1];
-		if (!value) {
-			continue;
-		}
-
-		switch (arg) {
-			case "--in":
-			case "--input":
-				options.input = value;
-				i++;
-				break;
-			case "-c":
-			case "--config":
-				options.config = value;
-				i++;
-				break;
-			case "-f":
-			case "--format":
-				options.format = value as Format;
-				i++;
-				break;
-		}
+	const rawFormat = values.format ?? "html";
+	const formatResult = FORMAT_SCHEMA.safeParse(rawFormat);
+	if (!formatResult.success) {
+		console.error(
+			`Invalid format "${rawFormat}". Valid values: html, pdf, pptx`,
+		);
+		process.exit(1);
 	}
 
-	return options;
-}
-
-function exitWithError(...messages: string[]): never {
-	for (const message of messages) {
-		console.error(message);
-	}
-	process.exit(1);
+	return {
+		input:
+			(values.in as string | undefined) ?? (values.input as string | undefined),
+		config: values.config as string | undefined,
+		format: formatResult.data,
+		dryRun: values["dry-run"] as boolean | undefined,
+	};
 }
 
 function printUsage(): void {
@@ -116,10 +120,12 @@ Commands:
 Render Options:
   --in, --input <path>          Input JSON file (slide data)
   -c, --config <path>           Config file path
+  --dry-run                     Preview output path without writing files
 
 Export Options:
   -f, --format <html|pdf|pptx>  Output format (default: html)
   --in, --input <path>          Input Marp markdown file
   -c, --config <path>           Config file path
+  --dry-run                     Preview output path without running Marp CLI
 `);
 }

@@ -1,14 +1,42 @@
 #!/usr/bin/env bun
 
+import { unlink } from "node:fs/promises";
 import { Glob } from "bun";
 import { z } from "zod";
+import { VALID_LAYOUTS } from "../src/constants.js";
 import { generationResultSchema } from "../src/generate/slide-schema.js";
 
-interface Fix {
-	type: string;
-	description: string;
-	count: number;
+// ---------------------------------------------------------------------------
+// Fix tracker
+// ---------------------------------------------------------------------------
+
+class FixTracker {
+	private map = new Map<string, { description: string; count: number }>();
+
+	register(type: string, description: string): void {
+		const existing = this.map.get(type);
+		if (existing) {
+			existing.count++;
+		} else {
+			this.map.set(type, { description, count: 1 });
+		}
+	}
+
+	get size(): number {
+		return this.map.size;
+	}
+
+	toArray(): Array<{ type: string; description: string; count: number }> {
+		return Array.from(this.map.entries()).map(([type, v]) => ({
+			type,
+			...v,
+		}));
+	}
 }
+
+// ---------------------------------------------------------------------------
+// Main
+// ---------------------------------------------------------------------------
 
 async function autoFixSlides() {
 	const glob = new Glob("docs/**/slides-data.json");
@@ -28,100 +56,54 @@ async function autoFixSlides() {
 		try {
 			const originalData = await Bun.file(file).json();
 			const data = JSON.parse(JSON.stringify(originalData));
-			const fixes: Fix[] = [];
+			const tracker = new FixTracker();
 
-			// Fix: Rename 'bullets' to 'content'
-			if (data.slides && Array.isArray(data.slides)) {
-				for (const slide of data.slides) {
-					if ("bullets" in slide && !("content" in slide)) {
-						slide.content = slide.bullets;
-						slide.bullets = undefined;
-						const fix = fixes.find((f) => f.type === "rename_bullets");
-						if (fix) {
-							fix.count++;
-						} else {
-							fixes.push({
-								type: "rename_bullets",
-								description: "Renamed 'bullets' to 'content'",
-								count: 1,
-							});
-						}
-					}
-				}
-			}
-
-			// Fix: Invalid layout values
-			if (data.slides && Array.isArray(data.slides)) {
-				const validLayouts = ["default", "center", "section"];
-				for (const slide of data.slides) {
-					if (slide.layout && !validLayouts.includes(slide.layout)) {
-						const oldLayout = slide.layout;
-						slide.layout = "default";
-						const fix = fixes.find((f) => f.type === "fix_layout");
-						if (fix) {
-							fix.count++;
-						} else {
-							fixes.push({
-								type: "fix_layout",
-								description: `Fixed invalid layout '${oldLayout}' → 'default'`,
-								count: 1,
-							});
-						}
-					}
-				}
-			}
-
-			// Fix: Add missing codeLanguage when code block exists
-			if (data.slides && Array.isArray(data.slides)) {
-				for (const slide of data.slides) {
-					if (slide.code && !slide.codeLanguage) {
-						slide.codeLanguage = "text";
-						const fix = fixes.find((f) => f.type === "add_codeLanguage");
-						if (fix) {
-							fix.count++;
-						} else {
-							fixes.push({
-								type: "add_codeLanguage",
-								description:
-									'Added missing codeLanguage "text" for code blocks',
-								count: 1,
-							});
-						}
-					}
-				}
-			}
-
-			// Fix: Add missing required fields
 			if (data.slides && Array.isArray(data.slides)) {
 				for (let i = 0; i < data.slides.length; i++) {
 					const slide = data.slides[i];
 
-					if (!slide.title) {
-						slide.title = `Slide ${i + 1}`;
-						const fix = fixes.find((f) => f.type === "add_title");
-						if (fix) {
-							fix.count++;
-						} else {
-							fixes.push({
-								type: "add_title",
-								description: "Added missing title",
-								count: 1,
-							});
-						}
+					// Fix: Rename 'bullets' to 'content'
+					if ("bullets" in slide && !("content" in slide)) {
+						slide.content = slide.bullets;
+						slide.bullets = undefined;
+						tracker.register(
+							"rename_bullets",
+							"Renamed 'bullets' to 'content'",
+						);
 					}
 
+					// Fix: Invalid layout values
+					if (
+						slide.layout &&
+						!(VALID_LAYOUTS as readonly string[]).includes(slide.layout)
+					) {
+						const oldLayout = slide.layout as string;
+						slide.layout = "default";
+						tracker.register(
+							"fix_layout",
+							`Fixed invalid layout '${oldLayout}' → 'default'`,
+						);
+					}
+
+					// Fix: Add missing codeLanguage when code block exists
+					if (slide.code && !slide.codeLanguage) {
+						slide.codeLanguage = "text";
+						tracker.register(
+							"add_codeLanguage",
+							'Added missing codeLanguage "text" for code blocks',
+						);
+					}
+
+					// Fix: Add missing title
+					if (!slide.title) {
+						slide.title = `Slide ${i + 1}`;
+						tracker.register("add_title", "Added missing title");
+					}
+
+					// Fix: Add missing layout
 					if (!slide.layout) {
 						slide.layout = "default";
-						const fix = fixes.find((f) => f.type === "add_layout");
-						if (fix) {
-							fix.count++;
-						} else {
-							fixes.push({
-								type: "add_layout",
-								description: "Added missing layout",
-								count: 1,
-							});
-						}
+						tracker.register("add_layout", "Added missing layout");
 					}
 				}
 			}
@@ -130,11 +112,21 @@ async function autoFixSlides() {
 			try {
 				generationResultSchema.parse(data);
 
-				if (fixes.length > 0) {
-					// Write fixed data
-					await Bun.write(file, JSON.stringify(data, null, 2));
+				if (tracker.size > 0) {
+					// Write backup before modifying
+					const backupPath = `${file}.bak`;
+					await Bun.write(backupPath, JSON.stringify(originalData, null, 2));
+					try {
+						await Bun.write(file, JSON.stringify(data, null, 2));
+						await unlink(backupPath); // Remove backup on success
+					} catch (writeError) {
+						console.error(
+							`   ⚠️  Write failed, backup preserved at ${backupPath}`,
+						);
+						throw writeError;
+					}
 					console.log(`✅ ${file}`);
-					for (const fix of fixes) {
+					for (const fix of tracker.toArray()) {
 						console.log(`   - ${fix.description} (${fix.count} slides)`);
 					}
 					fixedCount++;

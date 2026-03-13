@@ -6,9 +6,6 @@ language: "ja"
 
 slides:
   count: 10
-  includeTableOfContents: true
-  includeTitleSlide: true
-  includeSummarySlide: true
 
 marp:
   theme: "gaia"           # gaia | default | uncover
