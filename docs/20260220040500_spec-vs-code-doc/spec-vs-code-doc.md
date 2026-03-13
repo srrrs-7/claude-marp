@@ -319,6 +319,8 @@ style: |
 
 # なぜ今、対立が激化しているのか（2/2）（1/2）
 
+> *世代交代で価値基準が衝突し仕様書論争が深刻化している*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">世代間・文化間の衝突パターン</text>
@@ -862,6 +864,8 @@ function calculateBillingAmount(
 
 # 「型で全部わかる」という過信（2/2）（1/2）
 
+> *型はWHATを示すがWHYとコンテキストは伝えられない*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">統合的アプローチの判断フロー</text>
@@ -1101,6 +1105,8 @@ function calculateBillingAmount(
 
 # オフショア開発における仕様書の役割（1/2）（1/2）
 
+> *言語バリアのある環境では仕様書が唯一の共通認識手段になる*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ドキュメント棚卸しの進め方</text>
@@ -1163,6 +1169,8 @@ function calculateBillingAmount(
 
 # オフショア開発における仕様書の役割（2/2）（1/2）
 
+> *「あとで書く」文化はオフショア開始と同時に即座に破綻する*
+
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">オフショア開発で仕様書が必須になる理由</text>
@@ -1207,6 +1215,8 @@ function calculateBillingAmount(
 ---
 
 # 「エビデンス」vs「動くコード」（1/2）（1/2）
+
+> *仕様書文化とアジャイル文化では成果物の定義が根本的に異なる*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1265,6 +1275,8 @@ function calculateBillingAmount(
 ---
 
 # 「エビデンス」vs「動くコード」（2/2）（1/2）
+
+> *デモ優先文化では設計書より動くソフトウェアが唯一の証拠になる*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1374,6 +1386,8 @@ function calculateBillingAmount(
 
 # 事例: リモートチームで起きた混乱（2/2）（1/2）
 
+> *仕様書と実装の二重管理が国際チームの信頼崩壊を引き起こした*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
 <rect x="30" y="30" width="350" height="340" fill="#16213e" rx="8"/>
@@ -1451,6 +1465,8 @@ function calculateBillingAmount(
 
 # 本当の問題: ドキュメントの「目的」が定義されていない（1/2）（1/2）
 
+> *「書くか書かないか」ではなく「何のために書くか」が本質の問い*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「書いたけど誰も読まない」症候群の診断</text>
@@ -1500,6 +1516,8 @@ function calculateBillingAmount(
 ---
 
 # 本当の問題: ドキュメントの「目的」が定義されていない（2/2）（1/2）
+
+> *学習・参照・説明の目的別にドキュメント形式を使い分けることが解決策*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="420" fill="#1a1a2e" rx="0"/>
@@ -1560,6 +1578,8 @@ function calculateBillingAmount(
 ---
 
 # Architecture Decision Records (ADR)
+
+> *ADRはコードが表現できないWHYを最小コストで残す唯一の実践*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1636,6 +1656,8 @@ PostgreSQL 17 を採用する
 
 # Living Documentation と Executable Spec（1/2）（1/2）
 
+> *コードとドキュメントを分離しない設計でズレを構造的に防ぐ*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">オンボーディングで露わになるドキュメントの問題</text>
@@ -1679,6 +1701,8 @@ PostgreSQL 17 を採用する
 ---
 
 # Living Documentation と Executable Spec（2/2）（1/2）
+
+> *BDDのGherkinシナリオは自然言語仕様とテストを同時に解決する*
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="420" fill="#1a1a2e" rx="0"/>
@@ -1739,6 +1763,8 @@ PostgreSQL 17 を採用する
 
 # ドキュメント負債の可視化と返済（1/2）（1/2）
 
+> *ドキュメントも技術的負債と同じフレームで種類別に管理すべき*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">統合的アプローチの判断フロー</text>
@@ -1787,6 +1813,8 @@ PostgreSQL 17 を採用する
 ---
 
 # ドキュメント負債の可視化と返済（2/2）（1/2）
+
+> *ADR→オンボーディングの順で返済するとチーム全体の費用対効果が最大*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1895,6 +1923,8 @@ PostgreSQL 17 を採用する
 
 # 今週からできること (テックリード向け)（1/2）（1/2）
 
+> *PRのWHY必須化を即日始めればドキュメント文化は今週から変わる*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ドキュメント棚卸しの進め方</text>
@@ -1956,6 +1986,8 @@ PostgreSQL 17 を採用する
 ---
 
 # 今週からできること (テックリード向け)（2/2）（1/2）
+
+> *Divio4分類でラベリングするだけで既存ドキュメントの価値が見えてくる*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -2019,6 +2051,8 @@ PostgreSQL 17 を採用する
 
 # 文化の橋渡し: 合意形成の進め方（1/2）（1/2）
 
+> *用語を定義するだけで仕様書派とコード派の議論が建設的になる*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="360" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">テックリードのドキュメント改革ロードマップ</text>
@@ -2071,6 +2105,8 @@ PostgreSQL 17 を採用する
 ---
 
 # 文化の橋渡し: 合意形成の進め方（2/2）（1/2）
+
+> *ADR1枚から始める段階的導入が最も低コストで高効果な変革手順*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -2180,6 +2216,8 @@ PostgreSQL 17 を採用する
 
 # まとめ: 「どちらが正しい」は問い方が間違い（1/2）（1/2）
 
+> *対立の本質は目的の不一致——問いを変えることが唯一の解決策*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「書いたけど誰も読まない」症候群の診断</text>
@@ -2229,6 +2267,8 @@ PostgreSQL 17 を採用する
 ---
 
 # まとめ: 「どちらが正しい」は問い方が間違い（2/2）（1/2）
+
+> *チーム規模・オフショア・規制要件で最適解が変わり絶対正義はない*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>

@@ -905,6 +905,8 @@ interface TenantConfig {
 
 # お金: YAGNI 的支出判断（1/2）
 
+> *「いつか使う」貯蓄が非YAGNI——今の基準で支出を判断する*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">YAGNI 的支出の判断基準</text>
@@ -947,6 +949,8 @@ interface TenantConfig {
 ---
 
 # ライフスタイル: ミニマリズムと YAGNI（1/2）
+
+> *今必要なものだけ持つことがYAGNIの生活版実践*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>

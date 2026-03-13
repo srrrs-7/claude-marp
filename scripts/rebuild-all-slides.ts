@@ -68,8 +68,10 @@ console.log(
 // Phase 1 — Collect decks, compute hashes, determine what needs rebuilding
 // ---------------------------------------------------------------------------
 
-const glob = new Glob("docs/*/");
-const allDirs = Array.from(glob.scanSync()).sort();
+const glob = new Glob("docs/*/slides.config.yaml");
+const allDirs = Array.from(glob.scanSync())
+	.map((p) => p.replace(/slides\.config\.yaml$/, ""))
+	.sort();
 
 const dirsToRender: string[] = [];
 const dirsToExport: string[] = [];
