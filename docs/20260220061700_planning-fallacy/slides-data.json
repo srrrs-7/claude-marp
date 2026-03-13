@@ -1,107 +1,107 @@
 {
-	"slides": [
-		{
-			"title": "計画錯誤\n— なぜプロジェクトは常に遅れるのか",
-			"content": [
-				"オペラハウスは予算の15倍・工期4倍で完成した",
-				"内部視点バイアスが楽観的な見積もりを作る",
-				"参照クラス予測という解決策",
-				"<svg viewBox=\"0 0 700 220\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"220\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"40\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">計画 vs 現実</text><rect x=\"60\" y=\"60\" width=\"80\" height=\"120\" fill=\"#4caf50\" rx=\"6\"/><text x=\"100\" y=\"55\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">計画</text><text x=\"100\" y=\"198\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">1年</text><rect x=\"200\" y=\"20\" width=\"80\" height=\"160\" fill=\"#e91e63\" rx=\"6\"/><text x=\"240\" y=\"15\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\">実際</text><text x=\"240\" y=\"198\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">2.3年</text><rect x=\"340\" y=\"50\" width=\"80\" height=\"130\" fill=\"#4caf50\" rx=\"6\"/><text x=\"380\" y=\"45\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">予算</text><text x=\"380\" y=\"198\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">1億円</text><rect x=\"480\" y=\"8\" width=\"80\" height=\"172\" fill=\"#e91e63\" rx=\"6\"/><text x=\"520\" y=\"5\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\">実際</text><text x=\"520\" y=\"198\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">3.2億円</text><line x1=\"50\" y1=\"180\" x2=\"650\" y2=\"180\" stroke=\"#555\" stroke-width=\"1\"/></svg>"
-			],
-			"layout": "center"
-		},
-		{
-			"title": "アジェンダ",
-			"content": [
-				"1. 計画錯誤とは何か",
-				"2. 有名な計画錯誤の事例",
-				"3. なぜ人は楽観的に見積もるのか",
-				"4. 参照クラス予測",
-				"5. ソフトウェア開発への応用"
-			],
-			"layout": "default"
-		},
-		{
-			"title": "計画錯誤とは何か",
-			"content": [],
-			"layout": "section"
-		},
-		{
-			"title": "Kahneman & Tverskyの発見（1/2）",
-			"content": [
-				"**計画錯誤（Planning Fallacy）：**",
-				"Daniel Kahneman & Amos Tversky（1979年）が命名",
-				"「自分のプロジェクトの完了時間・コストを過小評価する傾向」",
-				"<svg viewBox=\"0 0 700 200\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"200\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">Kahnemanの教科書プロジェクト</text><rect x=\"80\" y=\"60\" width=\"120\" height=\"40\" fill=\"#1565c0\" rx=\"8\"/><text x=\"140\" y=\"75\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">チームの予測</text><text x=\"140\" y=\"92\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">2年</text><rect x=\"500\" y=\"60\" width=\"120\" height=\"40\" fill=\"#b71c1c\" rx=\"8\"/><text x=\"560\" y=\"75\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">実際の期間</text><text x=\"560\" y=\"92\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">8年</text><line x1=\"200\" y1=\"80\" x2=\"495\" y2=\"80\" stroke=\"#f9a825\" stroke-width=\"2\" stroke-dasharray=\"6,4\"/><polygon points=\"495,74 508,80 495,86\" fill=\"#f9a825\"/><text x=\"350\" y=\"73\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">4倍の時間</text><text x=\"350\" y=\"140\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"13\" font-family=\"sans-serif\">過去の失敗を無視 → 楽観的な内部視点だけで計画</text><text x=\"350\" y=\"168\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\">専門家でも計画錯誤は避けられない</text></svg>"
-			],
-			"layout": "default"
-		},
-		{
-			"title": "Kahneman & Tverskyの発見（2/2）",
-			"content": [
-				"**特徴：**",
-				"- 過去の類似プロジェクトの失敗を無視する",
-				"- 「今回は違う理由」を見つけて楽観視する",
-				"- グループで決定すると更に楽観的になる（集団思考）",
-				"<svg viewBox=\"0 0 700 180\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"180\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">内部視点 vs 外部視点</text><rect x=\"40\" y=\"50\" width=\"270\" height=\"100\" fill=\"#0d47a1\" rx=\"10\" opacity=\"0.85\"/><text x=\"175\" y=\"78\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">内部視点（Inside View）</text><text x=\"175\" y=\"100\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"12\" font-family=\"sans-serif\">「今回のプロジェクトは特別」</text><text x=\"175\" y=\"120\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"12\" font-family=\"sans-serif\">シナリオを詳細に計画</text><text x=\"175\" y=\"140\" text-anchor=\"middle\" fill=\"#ef5350\" font-size=\"12\" font-family=\"sans-serif\">→ 過小評価を生む</text><rect x=\"390\" y=\"50\" width=\"270\" height=\"100\" fill=\"#1b5e20\" rx=\"10\" opacity=\"0.85\"/><text x=\"525\" y=\"78\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">外部視点（Outside View）</text><text x=\"525\" y=\"100\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"12\" font-family=\"sans-serif\">類似プロジェクトの統計</text><text x=\"525\" y=\"120\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"12\" font-family=\"sans-serif\">過去のベースレート参照</text><text x=\"525\" y=\"140\" text-anchor=\"middle\" fill=\"#66bb6a\" font-size=\"12\" font-family=\"sans-serif\">→ 現実的な見積もり</text></svg>"
-			],
-			"layout": "default"
-		},
-		{
-			"title": "有名な計画錯誤の事例（1/2）",
-			"content": [
-				"**シドニーオペラハウス（1957〜1973年）：**",
-				"予算700万ドル → 実際：1億200万ドル（15倍）",
-				"工期7年予定 → 実際：14年（2倍）",
-				"**スコットランド議会（1997〜2004年）：**",
-				"予算4000万ポンド → 実際：4億3100万ポンド（11倍）",
-				"<svg viewBox=\"0 0 700 200\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"200\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">コスト超過倍率の比較</text><text x=\"90\" y=\"55\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">オペラハウス</text><rect x=\"40\" y=\"60\" width=\"100\" height=\"100\" fill=\"#1a237e\" rx=\"4\"/><rect x=\"40\" y=\"60\" width=\"100\" height=\"100\" fill=\"#e91e63\" rx=\"4\" opacity=\"0.9\"/><text x=\"90\" y=\"115\" text-anchor=\"middle\" fill=\"white\" font-size=\"20\" font-weight=\"bold\" font-family=\"sans-serif\">15x</text><text x=\"240\" y=\"55\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">スコットランド議会</text><rect x=\"190\" y=\"69\" width=\"100\" height=\"91\" fill=\"#4a148c\" rx=\"4\"/><rect x=\"190\" y=\"69\" width=\"100\" height=\"91\" fill=\"#9c27b0\" rx=\"4\" opacity=\"0.9\"/><text x=\"240\" y=\"120\" text-anchor=\"middle\" fill=\"white\" font-size=\"20\" font-weight=\"bold\" font-family=\"sans-serif\">11x</text><text x=\"390\" y=\"55\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">ビッグディッグ</text><rect x=\"340\" y=\"78\" width=\"100\" height=\"82\" fill=\"#b71c1c\" rx=\"4\"/><text x=\"390\" y=\"124\" text-anchor=\"middle\" fill=\"white\" font-size=\"20\" font-weight=\"bold\" font-family=\"sans-serif\">6x</text><text x=\"540\" y=\"55\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">ソフトウェア平均</text><rect x=\"490\" y=\"112\" width=\"100\" height=\"48\" fill=\"#e65100\" rx=\"4\"/><text x=\"540\" y=\"141\" text-anchor=\"middle\" fill=\"white\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">1.3x</text><line x1=\"30\" y1=\"163\" x2=\"660\" y2=\"163\" stroke=\"#444\" stroke-width=\"1\"/><text x=\"350\" y=\"185\" text-anchor=\"middle\" fill=\"#888\" font-size=\"11\" font-family=\"sans-serif\">大規模インフラ：平均45%コスト超過（Flyvbjerg, 2002）</text></svg>"
-			],
-			"layout": "default"
-		},
-		{
-			"title": "有名な計画錯誤の事例（2/2）",
-			"content": [
-				"**ボストン・ビッグディッグ（1982〜2007年）：**",
-				"予算25億ドル → 実際：150億ドル（6倍）",
-				"**ソフトウェアプロジェクト（Standish Group CHAOS Report）：**",
-				"大規模プロジェクトの約66%が予算/期間超過",
-				"約50%が当初目的の機能を達成できず",
-				"<svg viewBox=\"0 0 700 180\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"180\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">ソフトウェアプロジェクトの結果（CHAOS Report）</text><rect x=\"60\" y=\"50\" width=\"160\" height=\"90\" fill=\"#b71c1c\" rx=\"8\"/><text x=\"140\" y=\"88\" text-anchor=\"middle\" fill=\"white\" font-size=\"28\" font-weight=\"bold\" font-family=\"sans-serif\">66%</text><text x=\"140\" y=\"112\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"13\" font-family=\"sans-serif\">予算・期間超過</text><rect x=\"270\" y=\"50\" width=\"160\" height=\"90\" fill=\"#e65100\" rx=\"8\"/><text x=\"350\" y=\"88\" text-anchor=\"middle\" fill=\"white\" font-size=\"28\" font-weight=\"bold\" font-family=\"sans-serif\">50%</text><text x=\"350\" y=\"112\" text-anchor=\"middle\" fill=\"#ffcc80\" font-size=\"13\" font-family=\"sans-serif\">機能未達成</text><rect x=\"480\" y=\"50\" width=\"160\" height=\"90\" fill=\"#1b5e20\" rx=\"8\"/><text x=\"560\" y=\"88\" text-anchor=\"middle\" fill=\"white\" font-size=\"28\" font-weight=\"bold\" font-family=\"sans-serif\">29%</text><text x=\"560\" y=\"112\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"13\" font-family=\"sans-serif\">成功（計画通り）</text><text x=\"350\" y=\"160\" text-anchor=\"middle\" fill=\"#888\" font-size=\"12\" font-family=\"sans-serif\">計画通りに完了するプロジェクトは3割未満</text></svg>"
-			],
-			"layout": "default"
-		},
-		{
-			"title": "参照クラス予測（1/2）",
-			"content": [
-				"**Bent Flyvbjerg（オックスフォード大）の解決策：**",
-				"「参照クラス予測（Reference Class Forecasting）」",
-				"<svg viewBox=\"0 0 700 210\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"210\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">参照クラス予測の3ステップ</text><rect x=\"30\" y=\"50\" width=\"180\" height=\"120\" fill=\"#0d47a1\" rx=\"10\"/><text x=\"120\" y=\"80\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">Step 1</text><text x=\"120\" y=\"100\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">類似プロジェクトの</text><text x=\"120\" y=\"118\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">統計データ収集</text><text x=\"120\" y=\"140\" text-anchor=\"middle\" fill=\"#64b5f6\" font-size=\"11\" font-family=\"sans-serif\">（外部視点）</text><line x1=\"210\" y1=\"110\" x2=\"255\" y2=\"110\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"252,104 265,110 252,116\" fill=\"#f9a825\"/><rect x=\"265\" y=\"50\" width=\"170\" height=\"120\" fill=\"#1b5e20\" rx=\"10\"/><text x=\"350\" y=\"80\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">Step 2</text><text x=\"350\" y=\"100\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">典型的な超過率を</text><text x=\"350\" y=\"118\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">確認・適用</text><text x=\"350\" y=\"140\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"11\" font-family=\"sans-serif\">（ベースレート）</text><line x1=\"435\" y1=\"110\" x2=\"480\" y2=\"110\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"477,104 490,110 477,116\" fill=\"#f9a825\"/><rect x=\"490\" y=\"50\" width=\"180\" height=\"120\" fill=\"#4a148c\" rx=\"10\"/><text x=\"580\" y=\"80\" text-anchor=\"middle\" fill=\"#ce93d8\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">Step 3</text><text x=\"580\" y=\"100\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">リスク調整後の</text><text x=\"580\" y=\"118\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">見積もりを提示</text><text x=\"580\" y=\"140\" text-anchor=\"middle\" fill=\"#ba68c8\" font-size=\"11\" font-family=\"sans-serif\">（現実的な計画）</text><text x=\"350\" y=\"195\" text-anchor=\"middle\" fill=\"#888\" font-size=\"11\" font-family=\"sans-serif\">英国・デンマーク政府の大型インフラプロジェクトで公式採用</text></svg>"
-			],
-			"layout": "default"
-		},
-		{
-			"title": "参照クラス予測（2/2）",
-			"content": [
-				"**例：ITプロジェクトの平均超過率：**",
-				"予算：平均27%超過、スケジュール：平均33%超過",
-				"「1年、1億円」→「14ヶ月、1.27億円」を基本見積もりに",
-				"英国・デンマーク政府の大型インフラプロジェクトで採用",
-				"<svg viewBox=\"0 0 700 180\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"180\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">参照クラス補正の効果（ITプロジェクト）</text><text x=\"120\" y=\"55\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"12\" font-family=\"sans-serif\">楽観的見積もり</text><rect x=\"40\" y=\"65\" width=\"160\" height=\"80\" fill=\"#1565c0\" rx=\"8\"/><text x=\"120\" y=\"100\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-family=\"sans-serif\">1年 / 1億円</text><text x=\"120\" y=\"120\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"12\" font-family=\"sans-serif\">（内部視点）</text><text x=\"350\" y=\"105\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"24\" font-family=\"sans-serif\">→</text><text x=\"270\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">×1.33 (期間)</text><text x=\"430\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">×1.27 (予算)</text><text x=\"560\" y=\"55\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"12\" font-family=\"sans-serif\">参照クラス補正後</text><rect x=\"480\" y=\"65\" width=\"180\" height=\"80\" fill=\"#1b5e20\" rx=\"8\"/><text x=\"570\" y=\"95\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-family=\"sans-serif\">14ヶ月 / 1.27億円</text><text x=\"570\" y=\"115\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"12\" font-family=\"sans-serif\">（外部視点 + 補正）</text><text x=\"350\" y=\"165\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">これが「現実的なスタート地点」</text></svg>"
-			],
-			"layout": "default"
-		},
-		{
-			"title": "まとめ：楽観バイアスを制する",
-			"content": [
-				"✅ **計画錯誤は普遍的な認知バイアス（専門家でも免疫なし）**",
-				"✅ **内部視点は楽観的すぎる → 外部視点（参照クラス）で補正**",
-				"✅ **ソフトウェアの66%は予算・期間超過**",
-				"✅ **「今回は違う」という考え自体が計画錯誤のサイン**",
-				"「あなたのプロジェクトが遅れる理由は特別ではない。それが普通だ」",
-				"<svg viewBox=\"0 0 700 170\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"170\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">計画錯誤を克服するための行動指針</text><rect x=\"30\" y=\"45\" width=\"195\" height=\"95\" fill=\"#0d47a1\" rx=\"8\"/><text x=\"128\" y=\"70\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">認識する</text><text x=\"128\" y=\"92\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">「今回は違う」は</text><text x=\"128\" y=\"110\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">計画錯誤のサイン</text><text x=\"128\" y=\"128\" text-anchor=\"middle\" fill=\"#64b5f6\" font-size=\"10\" font-family=\"sans-serif\">内部視点に気づく</text><rect x=\"253\" y=\"45\" width=\"195\" height=\"95\" fill=\"#1b5e20\" rx=\"8\"/><text x=\"350\" y=\"70\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">データで補正する</text><text x=\"350\" y=\"92\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">参照クラス予測で</text><text x=\"350\" y=\"110\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">ベースレートを適用</text><text x=\"350\" y=\"128\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"10\" font-family=\"sans-serif\">外部視点を取り入れる</text><rect x=\"476\" y=\"45\" width=\"195\" height=\"95\" fill=\"#4a148c\" rx=\"8\"/><text x=\"574\" y=\"70\" text-anchor=\"middle\" fill=\"#ce93d8\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">バッファを設ける</text><text x=\"574\" y=\"92\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">超過率を前提に</text><text x=\"574\" y=\"110\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">計画に組み込む</text><text x=\"574\" y=\"128\" text-anchor=\"middle\" fill=\"#ba68c8\" font-size=\"10\" font-family=\"sans-serif\">リスク調整済み計画</text><text x=\"350\" y=\"158\" text-anchor=\"middle\" fill=\"#888\" font-size=\"11\" font-family=\"sans-serif\">認識 → データ補正 → バッファ設計 の3ステップで計画錯誤に対処する</text></svg>"
-			],
-			"layout": "default"
-		}
-	]
+  "slides": [
+    {
+      "title": "計画錯誤\n— なぜプロジェクトは常に遅れるのか",
+      "content": [
+        "オペラハウスは予算の15倍・工期4倍で完成した",
+        "内部視点バイアスが楽観的な見積もりを作る",
+        "参照クラス予測という解決策",
+        "<svg viewBox=\"0 0 700 220\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"220\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"40\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">計画 vs 現実</text><rect x=\"60\" y=\"60\" width=\"80\" height=\"120\" fill=\"#4caf50\" rx=\"6\"/><text x=\"100\" y=\"55\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">計画</text><text x=\"100\" y=\"198\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">1年</text><rect x=\"200\" y=\"20\" width=\"80\" height=\"160\" fill=\"#e91e63\" rx=\"6\"/><text x=\"240\" y=\"15\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\">実際</text><text x=\"240\" y=\"198\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">2.3年</text><rect x=\"340\" y=\"50\" width=\"80\" height=\"130\" fill=\"#4caf50\" rx=\"6\"/><text x=\"380\" y=\"45\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"13\" font-family=\"sans-serif\">予算</text><text x=\"380\" y=\"198\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">1億円</text><rect x=\"480\" y=\"8\" width=\"80\" height=\"172\" fill=\"#e91e63\" rx=\"6\"/><text x=\"520\" y=\"5\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\">実際</text><text x=\"520\" y=\"198\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">3.2億円</text><line x1=\"50\" y1=\"180\" x2=\"650\" y2=\"180\" stroke=\"#555\" stroke-width=\"1\"/></svg>"
+      ],
+      "layout": "center"
+    },
+    {
+      "title": "アジェンダ",
+      "content": [
+        "1. 計画錯誤とは何か",
+        "2. 有名な計画錯誤の事例",
+        "3. なぜ人は楽観的に見積もるのか",
+        "4. 参照クラス予測",
+        "5. ソフトウェア開発への応用"
+      ],
+      "layout": "default"
+    },
+    {
+      "title": "計画錯誤とは何か",
+      "content": [],
+      "layout": "section"
+    },
+    {
+      "title": "Kahneman & Tverskyの発見（1/2）",
+      "content": [
+        "**計画錯誤（Planning Fallacy）：**",
+        "Daniel Kahneman & Amos Tversky（1979年）が命名",
+        "「自分のプロジェクトの完了時間・コストを過小評価する傾向」",
+        "<svg viewBox=\"0 0 700 200\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"200\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">Kahnemanの教科書プロジェクト</text><rect x=\"80\" y=\"60\" width=\"120\" height=\"40\" fill=\"#1565c0\" rx=\"8\"/><text x=\"140\" y=\"75\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">チームの予測</text><text x=\"140\" y=\"92\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">2年</text><rect x=\"500\" y=\"60\" width=\"120\" height=\"40\" fill=\"#b71c1c\" rx=\"8\"/><text x=\"560\" y=\"75\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">実際の期間</text><text x=\"560\" y=\"92\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">8年</text><line x1=\"200\" y1=\"80\" x2=\"495\" y2=\"80\" stroke=\"#f9a825\" stroke-width=\"2\" stroke-dasharray=\"6,4\"/><polygon points=\"495,74 508,80 495,86\" fill=\"#f9a825\"/><text x=\"350\" y=\"73\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">4倍の時間</text><text x=\"350\" y=\"140\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"13\" font-family=\"sans-serif\">過去の失敗を無視 → 楽観的な内部視点だけで計画</text><text x=\"350\" y=\"168\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\">専門家でも計画錯誤は避けられない</text></svg>"
+      ],
+      "layout": "default"
+    },
+    {
+      "title": "Kahneman & Tverskyの発見（2/2）",
+      "content": [
+        "**特徴：**",
+        "- 過去の類似プロジェクトの失敗を無視する",
+        "- 「今回は違う理由」を見つけて楽観視する",
+        "- グループで決定すると更に楽観的になる（集団思考）",
+        "<svg viewBox=\"0 0 700 180\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"180\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">内部視点 vs 外部視点</text><rect x=\"40\" y=\"50\" width=\"270\" height=\"100\" fill=\"#0d47a1\" rx=\"10\" opacity=\"0.85\"/><text x=\"175\" y=\"78\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">内部視点（Inside View）</text><text x=\"175\" y=\"100\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"12\" font-family=\"sans-serif\">「今回のプロジェクトは特別」</text><text x=\"175\" y=\"120\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"12\" font-family=\"sans-serif\">シナリオを詳細に計画</text><text x=\"175\" y=\"140\" text-anchor=\"middle\" fill=\"#ef5350\" font-size=\"12\" font-family=\"sans-serif\">→ 過小評価を生む</text><rect x=\"390\" y=\"50\" width=\"270\" height=\"100\" fill=\"#1b5e20\" rx=\"10\" opacity=\"0.85\"/><text x=\"525\" y=\"78\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">外部視点（Outside View）</text><text x=\"525\" y=\"100\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"12\" font-family=\"sans-serif\">類似プロジェクトの統計</text><text x=\"525\" y=\"120\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"12\" font-family=\"sans-serif\">過去のベースレート参照</text><text x=\"525\" y=\"140\" text-anchor=\"middle\" fill=\"#66bb6a\" font-size=\"12\" font-family=\"sans-serif\">→ 現実的な見積もり</text></svg>"
+      ],
+      "layout": "default"
+    },
+    {
+      "title": "有名な計画錯誤の事例（1/2）",
+      "content": [
+        "**シドニーオペラハウス（1957〜1973年）：**",
+        "予算700万ドル → 実際：1億200万ドル（15倍）",
+        "工期7年予定 → 実際：14年（2倍）",
+        "**スコットランド議会（1997〜2004年）：**",
+        "予算4000万ポンド → 実際：4億3100万ポンド（11倍）",
+        "<svg viewBox=\"0 0 700 200\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"200\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">コスト超過倍率の比較</text><text x=\"90\" y=\"55\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">オペラハウス</text><rect x=\"40\" y=\"60\" width=\"100\" height=\"100\" fill=\"#1a237e\" rx=\"4\"/><rect x=\"40\" y=\"60\" width=\"100\" height=\"100\" fill=\"#e91e63\" rx=\"4\" opacity=\"0.9\"/><text x=\"90\" y=\"115\" text-anchor=\"middle\" fill=\"white\" font-size=\"20\" font-weight=\"bold\" font-family=\"sans-serif\">15x</text><text x=\"240\" y=\"55\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">スコットランド議会</text><rect x=\"190\" y=\"69\" width=\"100\" height=\"91\" fill=\"#4a148c\" rx=\"4\"/><rect x=\"190\" y=\"69\" width=\"100\" height=\"91\" fill=\"#9c27b0\" rx=\"4\" opacity=\"0.9\"/><text x=\"240\" y=\"120\" text-anchor=\"middle\" fill=\"white\" font-size=\"20\" font-weight=\"bold\" font-family=\"sans-serif\">11x</text><text x=\"390\" y=\"55\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">ビッグディッグ</text><rect x=\"340\" y=\"78\" width=\"100\" height=\"82\" fill=\"#b71c1c\" rx=\"4\"/><text x=\"390\" y=\"124\" text-anchor=\"middle\" fill=\"white\" font-size=\"20\" font-weight=\"bold\" font-family=\"sans-serif\">6x</text><text x=\"540\" y=\"55\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">ソフトウェア平均</text><rect x=\"490\" y=\"112\" width=\"100\" height=\"48\" fill=\"#e65100\" rx=\"4\"/><text x=\"540\" y=\"141\" text-anchor=\"middle\" fill=\"white\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">1.3x</text><line x1=\"30\" y1=\"163\" x2=\"660\" y2=\"163\" stroke=\"#444\" stroke-width=\"1\"/><text x=\"350\" y=\"185\" text-anchor=\"middle\" fill=\"#888\" font-size=\"11\" font-family=\"sans-serif\">大規模インフラ：平均45%コスト超過（Flyvbjerg, 2002）</text></svg>"
+      ],
+      "layout": "default"
+    },
+    {
+      "title": "有名な計画錯誤の事例（2/2）",
+      "content": [
+        "**ボストン・ビッグディッグ（1982〜2007年）：**",
+        "予算25億ドル → 実際：150億ドル（6倍）",
+        "**ソフトウェアプロジェクト（Standish Group CHAOS Report）：**",
+        "大規模プロジェクトの約66%が予算/期間超過",
+        "約50%が当初目的の機能を達成できず",
+        "<svg viewBox=\"0 0 700 180\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"180\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">ソフトウェアプロジェクトの結果（CHAOS Report）</text><rect x=\"60\" y=\"50\" width=\"160\" height=\"90\" fill=\"#b71c1c\" rx=\"8\"/><text x=\"140\" y=\"88\" text-anchor=\"middle\" fill=\"white\" font-size=\"28\" font-weight=\"bold\" font-family=\"sans-serif\">66%</text><text x=\"140\" y=\"112\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"13\" font-family=\"sans-serif\">予算・期間超過</text><rect x=\"270\" y=\"50\" width=\"160\" height=\"90\" fill=\"#e65100\" rx=\"8\"/><text x=\"350\" y=\"88\" text-anchor=\"middle\" fill=\"white\" font-size=\"28\" font-weight=\"bold\" font-family=\"sans-serif\">50%</text><text x=\"350\" y=\"112\" text-anchor=\"middle\" fill=\"#ffcc80\" font-size=\"13\" font-family=\"sans-serif\">機能未達成</text><rect x=\"480\" y=\"50\" width=\"160\" height=\"90\" fill=\"#1b5e20\" rx=\"8\"/><text x=\"560\" y=\"88\" text-anchor=\"middle\" fill=\"white\" font-size=\"28\" font-weight=\"bold\" font-family=\"sans-serif\">29%</text><text x=\"560\" y=\"112\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"13\" font-family=\"sans-serif\">成功（計画通り）</text><text x=\"350\" y=\"160\" text-anchor=\"middle\" fill=\"#888\" font-size=\"12\" font-family=\"sans-serif\">計画通りに完了するプロジェクトは3割未満</text></svg>"
+      ],
+      "layout": "default"
+    },
+    {
+      "title": "参照クラス予測（1/2）",
+      "content": [
+        "**Bent Flyvbjerg（オックスフォード大）の解決策：**",
+        "「参照クラス予測（Reference Class Forecasting）」",
+        "<svg viewBox=\"0 0 700 210\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"210\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">参照クラス予測の3ステップ</text><rect x=\"30\" y=\"50\" width=\"180\" height=\"120\" fill=\"#0d47a1\" rx=\"10\"/><text x=\"120\" y=\"80\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">Step 1</text><text x=\"120\" y=\"100\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">類似プロジェクトの</text><text x=\"120\" y=\"118\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">統計データ収集</text><text x=\"120\" y=\"140\" text-anchor=\"middle\" fill=\"#64b5f6\" font-size=\"11\" font-family=\"sans-serif\">（外部視点）</text><line x1=\"210\" y1=\"110\" x2=\"255\" y2=\"110\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"252,104 265,110 252,116\" fill=\"#f9a825\"/><rect x=\"265\" y=\"50\" width=\"170\" height=\"120\" fill=\"#1b5e20\" rx=\"10\"/><text x=\"350\" y=\"80\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">Step 2</text><text x=\"350\" y=\"100\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">典型的な超過率を</text><text x=\"350\" y=\"118\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">確認・適用</text><text x=\"350\" y=\"140\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"11\" font-family=\"sans-serif\">（ベースレート）</text><line x1=\"435\" y1=\"110\" x2=\"480\" y2=\"110\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"477,104 490,110 477,116\" fill=\"#f9a825\"/><rect x=\"490\" y=\"50\" width=\"180\" height=\"120\" fill=\"#4a148c\" rx=\"10\"/><text x=\"580\" y=\"80\" text-anchor=\"middle\" fill=\"#ce93d8\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">Step 3</text><text x=\"580\" y=\"100\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">リスク調整後の</text><text x=\"580\" y=\"118\" text-anchor=\"middle\" fill=\"white\" font-size=\"12\" font-family=\"sans-serif\">見積もりを提示</text><text x=\"580\" y=\"140\" text-anchor=\"middle\" fill=\"#ba68c8\" font-size=\"11\" font-family=\"sans-serif\">（現実的な計画）</text><text x=\"350\" y=\"195\" text-anchor=\"middle\" fill=\"#888\" font-size=\"11\" font-family=\"sans-serif\">英国・デンマーク政府の大型インフラプロジェクトで公式採用</text></svg>"
+      ],
+      "layout": "default"
+    },
+    {
+      "title": "参照クラス予測（2/2）",
+      "content": [
+        "**例：ITプロジェクトの平均超過率：**",
+        "予算：平均27%超過、スケジュール：平均33%超過",
+        "「1年、1億円」→「14ヶ月、1.27億円」を基本見積もりに",
+        "英国・デンマーク政府の大型インフラプロジェクトで採用",
+        "<svg viewBox=\"0 0 700 180\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"180\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">参照クラス補正の効果（ITプロジェクト）</text><text x=\"120\" y=\"55\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"12\" font-family=\"sans-serif\">楽観的見積もり</text><rect x=\"40\" y=\"65\" width=\"160\" height=\"80\" fill=\"#1565c0\" rx=\"8\"/><text x=\"120\" y=\"100\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-family=\"sans-serif\">1年 / 1億円</text><text x=\"120\" y=\"120\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"12\" font-family=\"sans-serif\">（内部視点）</text><text x=\"350\" y=\"105\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"24\" font-family=\"sans-serif\">→</text><text x=\"270\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">×1.33 (期間)</text><text x=\"430\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">×1.27 (予算)</text><text x=\"560\" y=\"55\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"12\" font-family=\"sans-serif\">参照クラス補正後</text><rect x=\"480\" y=\"65\" width=\"180\" height=\"80\" fill=\"#1b5e20\" rx=\"8\"/><text x=\"570\" y=\"95\" text-anchor=\"middle\" fill=\"white\" font-size=\"14\" font-family=\"sans-serif\">14ヶ月 / 1.27億円</text><text x=\"570\" y=\"115\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"12\" font-family=\"sans-serif\">（外部視点 + 補正）</text><text x=\"350\" y=\"165\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">これが「現実的なスタート地点」</text></svg>"
+      ],
+      "layout": "default"
+    },
+    {
+      "title": "まとめ：楽観バイアスを制する",
+      "content": [
+        "✅ **計画錯誤は普遍的な認知バイアス（専門家でも免疫なし）**",
+        "✅ **内部視点は楽観的すぎる → 外部視点（参照クラス）で補正**",
+        "✅ **ソフトウェアの66%は予算・期間超過**",
+        "✅ **「今回は違う」という考え自体が計画錯誤のサイン**",
+        "「あなたのプロジェクトが遅れる理由は特別ではない。それが普通だ」",
+        "<svg viewBox=\"0 0 700 170\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"700\" height=\"170\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"350\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">計画錯誤を克服するための行動指針</text><rect x=\"30\" y=\"45\" width=\"195\" height=\"95\" fill=\"#0d47a1\" rx=\"8\"/><text x=\"128\" y=\"70\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">認識する</text><text x=\"128\" y=\"92\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">「今回は違う」は</text><text x=\"128\" y=\"110\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">計画錯誤のサイン</text><text x=\"128\" y=\"128\" text-anchor=\"middle\" fill=\"#64b5f6\" font-size=\"10\" font-family=\"sans-serif\">内部視点に気づく</text><rect x=\"253\" y=\"45\" width=\"195\" height=\"95\" fill=\"#1b5e20\" rx=\"8\"/><text x=\"350\" y=\"70\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">データで補正する</text><text x=\"350\" y=\"92\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">参照クラス予測で</text><text x=\"350\" y=\"110\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">ベースレートを適用</text><text x=\"350\" y=\"128\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"10\" font-family=\"sans-serif\">外部視点を取り入れる</text><rect x=\"476\" y=\"45\" width=\"195\" height=\"95\" fill=\"#4a148c\" rx=\"8\"/><text x=\"574\" y=\"70\" text-anchor=\"middle\" fill=\"#ce93d8\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">バッファを設ける</text><text x=\"574\" y=\"92\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">超過率を前提に</text><text x=\"574\" y=\"110\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">計画に組み込む</text><text x=\"574\" y=\"128\" text-anchor=\"middle\" fill=\"#ba68c8\" font-size=\"10\" font-family=\"sans-serif\">リスク調整済み計画</text><text x=\"350\" y=\"158\" text-anchor=\"middle\" fill=\"#888\" font-size=\"11\" font-family=\"sans-serif\">認識 → データ補正 → バッファ設計 の3ステップで計画錯誤に対処する</text></svg>"
+      ],
+      "layout": "default"
+    }
+  ]
 }

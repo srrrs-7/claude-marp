@@ -1,351 +1,353 @@
 {
-	"slides": [
-		{
-			"title": "地図は現実ではない：アーキテクチャ図という必要な嘘",
-			"layout": "center",
-			"content": [
-				"「コロンブスの地図は完全に間違っていた。それでも彼は航海した」",
-				"",
-				"アーキテクチャ図もまた、現実を正確に写し取ったものではない",
-				"しかし、その「嘘」こそがシステム設計を可能にする",
-				"",
-				"嘘の質を管理することがアーキテクトの核心的な仕事である"
-			],
-			"speakerNotes": "オープニング。コロンブスの逸話で掴みをとる。地図が完全に間違っていても航海できた理由を考えさせる。"
-		},
-		{
-			"title": "地図と現実",
-			"layout": "section",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">地図と現実：根本的な乖離</text>\n<rect x=\"40\" y=\"70\" width=\"310\" height=\"280\" rx=\"12\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"195\" y=\"100\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">地図（Map）</text>\n<text x=\"195\" y=\"120\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">アーキテクチャ図・ドキュメント</text>\n<rect x=\"70\" y=\"140\" width=\"255\" height=\"160\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/>\n<text x=\"100\" y=\"165\" fill=\"#f9a825\" font-size=\"11\">[DB]──[API]──[UI]</text>\n<text x=\"100\" y=\"185\" fill=\"#ffffff\" font-size=\"10\">綺麗に整理されている</text>\n<text x=\"100\" y=\"205\" fill=\"#ffffff\" font-size=\"10\">設計者の意図が反映</text>\n<text x=\"100\" y=\"225\" fill=\"#ffffff\" font-size=\"10\">簡略化・抽象化済み</text>\n<text x=\"100\" y=\"248\" fill=\"#aaaaaa\" font-size=\"10\">「こうあるべき」の表現</text>\n<text x=\"100\" y=\"268\" fill=\"#aaaaaa\" font-size=\"10\">静的なスナップショット</text>\n<rect x=\"450\" y=\"70\" width=\"310\" height=\"280\" rx=\"12\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"605\" y=\"100\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">現実（Territory）</text>\n<text x=\"605\" y=\"120\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">実際に動いているシステム</text>\n<rect x=\"480\" y=\"140\" width=\"255\" height=\"160\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/>\n<text x=\"510\" y=\"165\" fill=\"#e91e63\" font-size=\"11\">混沌として複雑</text>\n<text x=\"510\" y=\"185\" fill=\"#ffffff\" font-size=\"10\">レガシーコードが混在</text>\n<text x=\"510\" y=\"205\" fill=\"#ffffff\" font-size=\"10\">予期しない依存関係</text>\n<text x=\"510\" y=\"225\" fill=\"#ffffff\" font-size=\"10\">動的に変化する</text>\n<text x=\"510\" y=\"248\" fill=\"#aaaaaa\" font-size=\"10\">「こうなっている」の現実</text>\n<text x=\"510\" y=\"268\" fill=\"#aaaaaa\" font-size=\"10\">常に変化し続ける</text>\n<line x1=\"350\" y1=\"210\" x2=\"450\" y2=\"210\" stroke=\"#aaaaaa\" stroke-width=\"2\" stroke-dasharray=\"8,4\"/>\n<text x=\"400\" y=\"200\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-weight=\"bold\">≠</text>\n<text x=\"400\" y=\"370\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">地図がどれだけ精密でも、現実を完全に表すことはできない</text>\n</svg>",
-				"第1部",
-				"地図とは何か、現実とは何か",
-				"そして二者の関係を紐解く"
-			],
-			"speakerNotes": "セクション区切り。哲学的な前提から入る。"
-		},
-		{
-			"title": "アルフレッド・コジブスキー「地図は現実ではない」（1/2）",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">コジブスキーの一般意味論</text>\n<rect x=\"30\" y=\"65\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"140\" y=\"96\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">人物</text>\n<text x=\"60\" y=\"125\" fill=\"#ffffff\" font-size=\"11\">Alfred Korzybski</text>\n<text x=\"60\" y=\"145\" fill=\"#aaaaaa\" font-size=\"10\">1879-1950</text>\n<text x=\"60\" y=\"170\" fill=\"#aaaaaa\" font-size=\"10\">ポーランド系アメリカ人</text>\n<text x=\"60\" y=\"188\" fill=\"#aaaaaa\" font-size=\"10\">哲学者・言語学者</text>\n<text x=\"60\" y=\"218\" fill=\"#ffffff\" font-size=\"10\">著書: Science and Sanity</text>\n<text x=\"60\" y=\"238\" fill=\"#ffffff\" font-size=\"10\">(1933)</text>\n<text x=\"60\" y=\"265\" fill=\"#f9a825\" font-size=\"10\">「一般意味論」の創始者</text>\n<rect x=\"280\" y=\"65\" width=\"490\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"525\" y=\"96\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">3つの中核原理</text>\n<rect x=\"300\" y=\"115\" width=\"450\" height=\"60\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.12\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"525\" y=\"140\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">1. 地図は現実ではない</text>\n<text x=\"525\" y=\"160\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">表現は対象そのものではない</text>\n<rect x=\"300\" y=\"190\" width=\"450\" height=\"60\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.12\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n<text x=\"525\" y=\"215\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">2. 地図は領域の全てを網羅しない</text>\n<text x=\"525\" y=\"235\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">必ず抽象化・省略がある</text>\n<rect x=\"300\" y=\"265\" width=\"450\" height=\"60\" rx=\"6\" fill=\"#4db6ac\" opacity=\"0.12\" stroke=\"#4db6ac\" stroke-width=\"1\"/>\n<text x=\"525\" y=\"290\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\">3. 地図は自己言及的</text>\n<text x=\"525\" y=\"310\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">地図について語る地図も存在する</text>\n<text x=\"400\" y=\"375\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">アーキテクチャ図はシステムの「地図」— 現実の近似に過ぎない</text>\n</svg>",
-				"1933年、一般意味論の父が提唱した原理",
-				"「地図は現実ではない／言葉は物事ではない」",
-				"すべての表現・記号は現実の**縮減されたモデル**に過ぎない",
-				""
-			],
-			"speakerNotes": "コジブスキーの科学的意味論を分かりやすく説明。地図は道具であり、現実そのものではないという基本概念を確立する。",
-			"layout": "default"
-		},
-		{
-			"title": "アルフレッド・コジブスキー「地図は現実ではない」（2/2）",
-			"content": [
-				"地図の3つの性質:",
-				"- **省略性**: 現実のすべてを含まない（含めることは不可能）",
-				"- **目的性**: 特定の用途に最適化されている",
-				"- **自己参照性**: 地図自身も表現の一部である"
-			],
-			"speakerNotes": "コジブスキーの科学的意味論を分かりやすく説明。地図は道具であり、現実そのものではないという基本概念を確立する。",
-			"layout": "default"
-		},
-		{
-			"title": "地図の3性質（図解）",
-			"layout": "default",
-			"content": [
-				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">地図の3つの性質 — コジブスキーの原理</text>\n<rect x=\"40\" y=\"70\" width=\"220\" height=\"200\" rx=\"12\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"40\" y=\"70\" width=\"220\" height=\"46\" rx=\"12\" fill=\"#f9a825\"/>\n<text x=\"150\" y=\"100\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"13\" font-weight=\"bold\">省略性</text>\n<text x=\"150\" y=\"118\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\">Incompleteness</text>\n<text x=\"60\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">現実の全てを含まない</text>\n<text x=\"60\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">（含めることは不可能）</text>\n<text x=\"60\" y=\"200\" fill=\"#aaaaaa\" font-size=\"10\">例: 路線図は地形を省く</text>\n<text x=\"60\" y=\"218\" fill=\"#aaaaaa\" font-size=\"10\">例: クラス図は実行時状態を省く</text>\n<text x=\"60\" y=\"245\" fill=\"#f9a825\" font-size=\"10\" font-weight=\"bold\">→ 必要な嘘</text>\n<rect x=\"290\" y=\"70\" width=\"220\" height=\"200\" rx=\"12\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<rect x=\"290\" y=\"70\" width=\"220\" height=\"46\" rx=\"12\" fill=\"#e91e63\"/>\n<text x=\"400\" y=\"100\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-weight=\"bold\">目的性</text>\n<text x=\"400\" y=\"118\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">Purposiveness</text>\n<text x=\"310\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">特定の用途に最適化</text>\n<text x=\"310\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">されている</text>\n<text x=\"310\" y=\"200\" fill=\"#aaaaaa\" font-size=\"10\">例: 観光地図 vs 地質図</text>\n<text x=\"310\" y=\"218\" fill=\"#aaaaaa\" font-size=\"10\">例: C4 L1 vs L4</text>\n<text x=\"310\" y=\"245\" fill=\"#e91e63\" font-size=\"10\" font-weight=\"bold\">→ 読者・用途で変わる</text>\n<rect x=\"540\" y=\"70\" width=\"220\" height=\"200\" rx=\"12\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<rect x=\"540\" y=\"70\" width=\"220\" height=\"46\" rx=\"12\" fill=\"#4db6ac\"/>\n<text x=\"650\" y=\"100\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"13\" font-weight=\"bold\">自己参照性</text>\n<text x=\"650\" y=\"118\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\">Self-Reflexivity</text>\n<text x=\"560\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">地図自身も表現の一部</text>\n<text x=\"560\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">（完全な客観性はない）</text>\n<text x=\"560\" y=\"200\" fill=\"#aaaaaa\" font-size=\"10\">例: 地図を作る人の視点</text>\n<text x=\"560\" y=\"218\" fill=\"#aaaaaa\" font-size=\"10\">例: アーキテクトの世界観</text>\n<text x=\"560\" y=\"245\" fill=\"#4db6ac\" font-size=\"10\" font-weight=\"bold\">→ 嘘の作者を認識せよ</text>\n<text x=\"400\" y=\"315\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">アーキテクチャ図はこの3性質を持つ「構造化された嘘」</text>\n<text x=\"400\" y=\"340\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">嘘を管理することがアーキテクトの仕事</text>\n</svg>"
-			]
-		},
-		{
-			"title": "コジブスキーの原理：地図と現実の関係",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">地図・現実・観察者の三角関係</text>\n<polygon points=\"400,65 100,330 700,330\" fill=\"none\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"340\" y=\"45\" width=\"120\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"67\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">観察者</text>\n<text x=\"400\" y=\"85\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">アーキテクト</text>\n<rect x=\"30\" y=\"310\" width=\"140\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"100\" y=\"332\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">地図</text>\n<text x=\"100\" y=\"350\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">アーキテクチャ図</text>\n<rect x=\"630\" y=\"310\" width=\"140\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"700\" y=\"332\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\">現実</text>\n<text x=\"700\" y=\"350\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">実際のシステム</text>\n<text x=\"185\" y=\"190\" fill=\"#f9a825\" font-size=\"11\">「見た通り」に</text>\n<text x=\"165\" y=\"208\" fill=\"#f9a825\" font-size=\"11\">図に描く</text>\n<text x=\"570\" y=\"190\" fill=\"#4db6ac\" font-size=\"11\">実際の動作を</text>\n<text x=\"560\" y=\"208\" fill=\"#4db6ac\" font-size=\"11\">観察する</text>\n<text x=\"320\" y=\"355\" fill=\"#e91e63\" font-size=\"11\">「図の通り」に</text>\n<text x=\"330\" y=\"373\" fill=\"#e91e63\" font-size=\"11\">実装する</text>\n<rect x=\"180\" y=\"235\" width=\"440\" height=\"55\" rx=\"8\" fill=\"#e91e63\" opacity=\"0.1\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"400\" y=\"260\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">乖離が生まれる瞬間</text>\n<text x=\"400\" y=\"280\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">地図と現実の間の「嘘」が積み重なっていく</text>\n</svg>",
-				"![w:720 center](assets/map-reality-relation.svg)"
-			],
-			"speakerNotes": "SVG図で地図と現実の非対称な関係を可視化。地図は現実を参照するが、現実は地図に制約されない。",
-			"layout": "default"
-		},
-		{
-			"title": "コロンブスの地図 — 完全に間違った地図で新大陸を発見（1/2）",
-			"content": [
-				"1492年、コロンブスの地図は根本的に誤っていた:",
-				"- 地球の直径を**大幅に過小評価**（実際の1/4程度）",
-				"- 大西洋を小さく、アジアを近くに描いた",
-				"- アメリカ大陸の存在を完全に無視"
-			],
-			"speakerNotes": "具体的な歴史的事例。間違った地図でも「目的の達成」に使えることを示す。ただし副作用（偶然の発見）もある。",
-			"layout": "default"
-		},
-		{
-			"title": "コロンブスの地図 — 完全に間違った地図で新大陸を発見（2/2）",
-			"content": [
-				"",
-				"それでも彼はインドに到達できると**確信して出航**した",
-				"間違いを間違いと知らないまま、新大陸を「発見」した",
-				"",
-				"教訓：地図の「正確さ」と「有用性」は別物"
-			],
-			"speakerNotes": "具体的な歴史的事例。間違った地図でも「目的の達成」に使えることを示す。ただし副作用（偶然の発見）もある。",
-			"layout": "default"
-		},
-		{
-			"title": "コロンブスの地図 vs 現実",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">コロンブスの地図：誤った地図でも目的を達成できる</text>\n<rect x=\"30\" y=\"65\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"96\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">コロンブスの地図（1492年）</text>\n<text x=\"50\" y=\"130\" fill=\"#ffffff\" font-size=\"11\">• アジアまでの距離を誤計算</text>\n<text x=\"50\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">• 地球の大きさを過小評価</text>\n<text x=\"50\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">• アメリカ大陸の存在を未認識</text>\n<text x=\"50\" y=\"190\" fill=\"#ffffff\" font-size=\"11\">• 多くの地名が誤り</text>\n<rect x=\"50\" y=\"215\" width=\"280\" height=\"100\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.12\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"190\" y=\"242\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">致命的な誤り</text>\n<text x=\"70\" y=\"268\" fill=\"#ffffff\" font-size=\"10\">インドに到達できると計算</text>\n<text x=\"70\" y=\"288\" fill=\"#ffffff\" font-size=\"10\">→ 実際はアメリカ大陸に上陸</text>\n<rect x=\"430\" y=\"65\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"96\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">なぜ成功したのか</text>\n<text x=\"450\" y=\"130\" fill=\"#ffffff\" font-size=\"11\">• 「西に進む」方向は正しかった</text>\n<text x=\"450\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">• 航行に十分な精度だった</text>\n<text x=\"450\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">• 目的（富・名声）は達成</text>\n<text x=\"450\" y=\"190\" fill=\"#ffffff\" font-size=\"11\">• 新大陸という別の価値を発見</text>\n<rect x=\"450\" y=\"215\" width=\"280\" height=\"100\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.12\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n<text x=\"590\" y=\"242\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">教訓</text>\n<text x=\"470\" y=\"268\" fill=\"#ffffff\" font-size=\"10\">正確な地図は不要</text>\n<text x=\"470\" y=\"288\" fill=\"#ffffff\" font-size=\"10\">「航行可能」であれば十分</text>\n<text x=\"400\" y=\"375\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">アーキテクチャ図も同様 — 完璧でなくても「判断に使える」ことが重要</text>\n</svg>",
-				"![w:720 center](assets/columbus-maps.svg)"
-			],
-			"speakerNotes": "左：コロンブスの想像地図（欧州と近くにあるアジア）、右：実際の世界地図（巨大な大西洋とアメリカ大陸）。視覚的な衝撃で地図の誤りを伝える。",
-			"layout": "default"
-		},
-		{
-			"title": "地図の価値は「正確さ」ではなく「航行可能性」（1/2）",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">地図の価値：航行可能性のスペクトラム</text><line x1=\"60\" y1=\"200\" x2=\"740\" y2=\"200\" stroke=\"#444\" stroke-width=\"2\"/><polygon points=\"740,193 756,200 740,207\" fill=\"#444\"/><text x=\"770\" y=\"204\" fill=\"#aaaaaa\" font-size=\"11\">精度</text><line x1=\"400\" y1=\"360\" x2=\"400\" y2=\"60\" stroke=\"#444\" stroke-width=\"2\"/><polygon points=\"393,60 400,44 407,60\" fill=\"#444\"/><text x=\"400\" y=\"40\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">有用性</text><circle cx=\"180\" cy=\"120\" r=\"30\" fill=\"#4db6ac\" opacity=\"0.8\"/><text x=\"180\" y=\"115\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\" font-weight=\"bold\">地下鉄</text><text x=\"180\" y=\"132\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"9\">路線図</text><text x=\"180\" y=\"165\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">精度: 低</text><text x=\"180\" y=\"183\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"10\">有用性: 高</text><circle cx=\"340\" cy=\"140\" r=\"25\" fill=\"#f9a825\" opacity=\"0.8\"/><text x=\"340\" y=\"137\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\" font-weight=\"bold\">C4</text><text x=\"340\" y=\"152\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"9\">モデル</text><text x=\"340\" y=\"185\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">精度: 中</text><text x=\"340\" y=\"203\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">有用性: 高</text><circle cx=\"580\" cy=\"160\" r=\"20\" fill=\"#e91e63\" opacity=\"0.8\"/><text x=\"580\" y=\"157\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"9\" font-weight=\"bold\">完全</text><text x=\"580\" y=\"172\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"9\">仕様書</text><text x=\"580\" y=\"205\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">精度: 高</text><text x=\"580\" y=\"223\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">有用性: 低</text><circle cx=\"680\" cy=\"280\" r=\"15\" fill=\"#aaaaaa\" opacity=\"0.6\"/><text x=\"680\" y=\"310\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">過剰な詳細</text><text x=\"680\" y=\"328\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">精度: 最高</text><text x=\"680\" y=\"346\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"9\">有用性: 最低</text><text x=\"200\" y=\"375\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">精度が高いほど有用とは限らない — 目的に合わせた「適切な精度」を選ぶ</text></svg>",
-				"Harry Beck の地下鉄路線図（1931年）:",
-				"- 実際の地理的距離は完全に無視",
-				"- トポロジカルな接続関係のみを保持",
-				"- **乗客が次の駅に乗り換えられるか** だけに最適化"
-			],
-			"speakerNotes": "ロンドン地下鉄路線図の例は有名。地理的に不正確でも機能的に完璧な地図の実例。",
-			"layout": "default"
-		},
-		{
-			"title": "地図の価値は「正確さ」ではなく「航行可能性」（2/2）",
-			"content": [
-				"",
-				"優れた地図の条件 (Navigability Principle):",
-				"- 目的に照らして必要な情報を含む",
-				"- 目的に照らして不要な情報を捨てる",
-				"- 使用者がそれで「航行できる」"
-			],
-			"speakerNotes": "ロンドン地下鉄路線図の例は有名。地理的に不正確でも機能的に完璧な地図の実例。",
-			"layout": "default"
-		},
-		{
-			"title": "航行可能性の原則（図解）",
-			"layout": "default",
-			"content": [
-				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">航行可能性の原則 — 地図の価値基準</text>\n<rect x=\"40\" y=\"62\" width=\"340\" height=\"260\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"210\" y=\"90\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">地理的に正確な地図</text>\n<line x1=\"80\" y1=\"170\" x2=\"340\" y2=\"170\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<circle cx=\"100\" cy=\"130\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"115\" y=\"135\" fill=\"#ffffff\" font-size=\"10\">King's Cross</text>\n<circle cx=\"220\" cy=\"145\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"235\" y=\"150\" fill=\"#ffffff\" font-size=\"10\">Oxford Circus</text>\n<circle cx=\"310\" cy=\"155\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"270\" y=\"165\" fill=\"#ffffff\" font-size=\"10\">Victoria</text>\n<circle cx=\"150\" cy=\"210\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"165\" y=\"215\" fill=\"#ffffff\" font-size=\"10\">London Bridge</text>\n<circle cx=\"260\" cy=\"230\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"275\" y=\"235\" fill=\"#ffffff\" font-size=\"10\">Waterloo</text>\n<text x=\"210\" y=\"285\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">地理的に正確</text>\n<text x=\"210\" y=\"300\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">→ でも乗り換えルートが分からない</text>\n<rect x=\"420\" y=\"62\" width=\"340\" height=\"260\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"590\" y=\"90\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">Beck の路線図 (1931)</text>\n<line x1=\"460\" y1=\"120\" x2=\"740\" y2=\"120\" stroke=\"#e91e63\" stroke-width=\"3\"/>\n<line x1=\"460\" y1=\"170\" x2=\"740\" y2=\"170\" stroke=\"#f9a825\" stroke-width=\"3\"/>\n<line x1=\"460\" y1=\"220\" x2=\"740\" y2=\"220\" stroke=\"#4db6ac\" stroke-width=\"3\"/>\n<line x1=\"590\" y1=\"100\" x2=\"590\" y2=\"240\" stroke=\"#aaaaaa\" stroke-width=\"2\"/>\n<circle cx=\"590\" cy=\"120\" r=\"7\" fill=\"#ffffff\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<circle cx=\"590\" cy=\"170\" r=\"7\" fill=\"#ffffff\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<circle cx=\"590\" cy=\"220\" r=\"7\" fill=\"#ffffff\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"124\" fill=\"#ffffff\" font-size=\"9\">King's Cross</text>\n<text x=\"600\" y=\"174\" fill=\"#ffffff\" font-size=\"9\">Oxford Circus</text>\n<text x=\"600\" y=\"224\" fill=\"#ffffff\" font-size=\"9\">Waterloo</text>\n<text x=\"590\" y=\"278\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">地理的に不正確</text>\n<text x=\"590\" y=\"295\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">→ でも乗り換えが一目瞭然</text>\n<text x=\"400\" y=\"340\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-weight=\"bold\">航行可能性 = 地図の真の価値。正確さではなく「使えるか」</text>\n</svg>"
-			]
-		},
-		{
-			"title": "アーキテクチャ図の嘘",
-			"layout": "section",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">アーキテクチャ図の嘘：設計 vs 実際</text>\n<rect x=\"30\" y=\"65\" width=\"340\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"96\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"13\" font-weight=\"bold\">設計時のアーキテクチャ図</text>\n<rect x=\"70\" y=\"120\" width=\"260\" height=\"180\" rx=\"6\" fill=\"#4db6ac\" opacity=\"0.1\" stroke=\"#4db6ac\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/>\n<text x=\"200\" y=\"148\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\">[Frontend]</text>\n<text x=\"200\" y=\"170\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">↓</text>\n<text x=\"200\" y=\"192\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\">[API Gateway]</text>\n<text x=\"200\" y=\"214\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">↓</text>\n<text x=\"200\" y=\"236\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\">[Service A] [Service B]</text>\n<text x=\"200\" y=\"258\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">↓</text>\n<text x=\"200\" y=\"280\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\">[Database]</text>\n<rect x=\"430\" y=\"65\" width=\"340\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"96\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">実際のシステム（5年後）</text>\n<rect x=\"460\" y=\"120\" width=\"280\" height=\"180\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.1\" stroke=\"#e91e63\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/>\n<text x=\"600\" y=\"145\" fill=\"#e91e63\" font-size=\"10\" text-anchor=\"middle\">Legacy [Frontend] + New React App</text>\n<text x=\"600\" y=\"165\" fill=\"#aaaaaa\" font-size=\"9\" text-anchor=\"middle\">↕ 直接呼び出し（設計外）</text>\n<text x=\"600\" y=\"185\" fill=\"#e91e63\" font-size=\"10\" text-anchor=\"middle\">[API Gateway] + 迂回ルート×3</text>\n<text x=\"600\" y=\"205\" fill=\"#aaaaaa\" font-size=\"9\" text-anchor=\"middle\">↕ 循環依存</text>\n<text x=\"600\" y=\"225\" fill=\"#e91e63\" font-size=\"10\" text-anchor=\"middle\">Service A←→B（相互依存）</text>\n<text x=\"600\" y=\"248\" fill=\"#aaaaaa\" font-size=\"9\" text-anchor=\"middle\">+ Service C（設計になかった）</text>\n<text x=\"600\" y=\"268\" fill=\"#e91e63\" font-size=\"10\" text-anchor=\"middle\">DB×3（分割されていた）</text>\n<text x=\"400\" y=\"365\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">設計図の嘘は時間とともに蓄積する — 管理しなければ有害な嘘になる</text>\n</svg>",
-				"第2部",
-				"設計図はなぜ常に「嘘」をつくのか",
-				"そしてその嘘の種類とは何か"
-			],
-			"speakerNotes": "セクション2。ソフトウェアの世界に話を転換する。"
-		},
-		{
-			"title": "設計時のアーキテクチャ図 vs 実際のシステムの乖離",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">4種類のアーキテクチャ図の嘘</text>\n<rect x=\"30\" y=\"65\" width=\"350\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"205\" y=\"92\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">嘘の種類1：省略の嘘</text>\n<text x=\"50\" y=\"118\" fill=\"#ffffff\" font-size=\"11\">エラーハンドリング・リトライロジックを省略</text>\n<text x=\"50\" y=\"138\" fill=\"#ffffff\" font-size=\"11\">認証フローを「box → box」で単純化</text>\n<text x=\"50\" y=\"158\" fill=\"#f9a825\" font-size=\"10\">→ 理解を助けるが実装者を迷わせる</text>\n<rect x=\"420\" y=\"65\" width=\"350\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"595\" y=\"92\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">嘘の種類2：時間の嘘</text>\n<text x=\"440\" y=\"118\" fill=\"#ffffff\" font-size=\"11\">設計時の図が古くなっている</text>\n<text x=\"440\" y=\"138\" fill=\"#ffffff\" font-size=\"11\">変更されたが図が更新されない</text>\n<text x=\"440\" y=\"158\" fill=\"#e91e63\" font-size=\"10\">→ 最も危険な嘘（誤った判断を招く）</text>\n<rect x=\"30\" y=\"220\" width=\"350\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"205\" y=\"247\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\">嘘の種類3：抽象化の嘘</text>\n<text x=\"50\" y=\"273\" fill=\"#ffffff\" font-size=\"11\">「マイクロサービス」と書いてあるが実体は</text>\n<text x=\"50\" y=\"293\" fill=\"#ffffff\" font-size=\"11\">モノリスの一部を分離しただけ</text>\n<text x=\"50\" y=\"313\" fill=\"#4db6ac\" font-size=\"10\">→ 概念が実態と乖離している</text>\n<rect x=\"420\" y=\"220\" width=\"350\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"2\"/>\n<text x=\"595\" y=\"247\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"12\" font-weight=\"bold\">嘘の種類4：意図の嘘</text>\n<text x=\"440\" y=\"273\" fill=\"#ffffff\" font-size=\"11\">「あるべき姿」を「現状」として表示</text>\n<text x=\"440\" y=\"293\" fill=\"#ffffff\" font-size=\"11\">ロードマップを現状図として共有</text>\n<text x=\"440\" y=\"313\" fill=\"#aaaaaa\" font-size=\"10\">→ 期待値と現実のギャップを生む</text>\n</svg>",
-				"![w:720 center](assets/arch-diagram-decay.svg)"
-			],
-			"speakerNotes": "タイムラインで劣化を可視化。設計時は正確でも、時間とともに図と現実の乖離が拡大する。",
-			"layout": "default"
-		},
-		{
-			"title": "4種類のアーキテクチャ図の嘘",
-			"content": ["![w:720 center](assets/four-lies-classification.svg)"],
-			"speakerNotes": "4象限で嘘を分類。意図的/無意識 × 有益/有害の2軸。省略・抽象化は必要な嘘、過去形・理想は有害な嘘。",
-			"layout": "default"
-		},
-		{
-			"title": "C4モデル — 抽象化レベルで嘘の質を管理する",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">C4モデル：抽象化レベルで嘘を管理する</text>\n<rect x=\"200\" y=\"60\" width=\"400\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"86\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">Context（C1）</text>\n<text x=\"400\" y=\"106\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">システム全体 vs 外部世界</text>\n<line x1=\"400\" y1=\"120\" x2=\"400\" y2=\"148\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/>\n<polygon points=\"393,148 400,162 407,148\" fill=\"#aaaaaa\"/>\n<rect x=\"200\" y=\"162\" width=\"400\" height=\"55\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"186\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">Container（C2）</text>\n<text x=\"400\" y=\"204\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">アプリ・DB・サービスの配置</text>\n<line x1=\"400\" y1=\"217\" x2=\"400\" y2=\"243\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/>\n<polygon points=\"393,243 400,257 407,243\" fill=\"#aaaaaa\"/>\n<rect x=\"200\" y=\"257\" width=\"400\" height=\"55\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"281\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"13\" font-weight=\"bold\">Component（C3）</text>\n<text x=\"400\" y=\"299\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">モジュール・サービス内部の構造</text>\n<line x1=\"400\" y1=\"312\" x2=\"400\" y2=\"338\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/>\n<polygon points=\"393,338 400,352 407,338\" fill=\"#aaaaaa\"/>\n<rect x=\"200\" y=\"352\" width=\"400\" height=\"30\" rx=\"6\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1\"/>\n<text x=\"400\" y=\"372\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">Code（C4）— クラス・メソッドレベル</text>\n<text x=\"40\" y=\"92\" text-anchor=\"end\" fill=\"#f9a825\" font-size=\"10\">高抽象度</text>\n<text x=\"40\" y=\"370\" text-anchor=\"end\" fill=\"#aaaaaa\" font-size=\"10\">低抽象度</text>\n<text x=\"760\" y=\"92\" fill=\"#f9a825\" font-size=\"10\">嘘: 少</text>\n<text x=\"760\" y=\"370\" fill=\"#aaaaaa\" font-size=\"10\">嘘: 多</text>\n<line x1=\"745\" y1=\"100\" x2=\"745\" y2=\"370\" stroke=\"#aaaaaa\" stroke-width=\"1\" stroke-dasharray=\"3,3\"/>\n</svg>",
-				"![w:700 center](assets/c4-model-layers.svg)"
-			],
-			"speakerNotes": "Simon Brown のC4モデル。4層の抽象化レベルそれぞれに適切な「嘘の質」を割り当てる。",
-			"layout": "default"
-		},
-		{
-			"title": "C4モデルの実践：各層の嘘の使い分け（1/2）",
-			"content": [
-				"**L1 Context**: ビジネス価値と外部システムの関係",
-				"- 嘘の種類: 大規模な省略（内部構造を完全に隠す）",
-				"- 読者: CTO、経営層、外部ステークホルダー",
-				"",
-				"**L2 Container**: サービス・データストアの境界",
-				"- 嘘の種類: 実装の抽象化（スケーリング戦略を隠す）"
-			],
-			"speakerNotes": "C4の各層を実例で説明。読者層と嘘の種類のマッピングが核心。",
-			"layout": "default"
-		},
-		{
-			"title": "C4モデルの実践：各層の嘘の使い分け（2/2）",
-			"content": [
-				"- 読者: 開発リード、アーキテクト",
-				"",
-				"**L3 Component**: モジュール・責務の分離",
-				"- 嘘の種類: インターフェースのみ（実装を隠す）",
-				"- 読者: 実装担当エンジニア",
-				"",
-				"**L4 Code**: クラス・関数の詳細（自動生成推奨）"
-			],
-			"speakerNotes": "C4の各層を実例で説明。読者層と嘘の種類のマッピングが核心。",
-			"layout": "default"
-		},
-		{
-			"title": "必要な嘘と有害な嘘",
-			"layout": "section",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">必要な嘘 vs 有害な嘘：判断基準</text>\n<rect x=\"30\" y=\"65\" width=\"340\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"96\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"14\" font-weight=\"bold\">必要な嘘（Good Lies）</text>\n<text x=\"50\" y=\"128\" fill=\"#ffffff\" font-size=\"11\">• 意図的な抽象化</text>\n<text x=\"50\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">• 目的に合った省略</text>\n<text x=\"50\" y=\"172\" fill=\"#ffffff\" font-size=\"11\">• 聴衆に合わせた表現</text>\n<text x=\"50\" y=\"194\" fill=\"#ffffff\" font-size=\"11\">• 「これは省略です」と明示</text>\n<rect x=\"50\" y=\"220\" width=\"280\" height=\"100\" rx=\"6\" fill=\"#4db6ac\" opacity=\"0.1\" stroke=\"#4db6ac\" stroke-width=\"1\"/>\n<text x=\"190\" y=\"248\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\">判断テスト</text>\n<text x=\"70\" y=\"272\" fill=\"#ffffff\" font-size=\"10\">「この図で正しい判断ができるか？」</text>\n<text x=\"70\" y=\"292\" fill=\"#4db6ac\" font-size=\"10\">Yes → 必要な嘘</text>\n<rect x=\"430\" y=\"65\" width=\"340\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"96\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">有害な嘘（Bad Lies）</text>\n<text x=\"450\" y=\"128\" fill=\"#ffffff\" font-size=\"11\">• 意図せず古くなった情報</text>\n<text x=\"450\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">• 誤解を招く簡略化</text>\n<text x=\"450\" y=\"172\" fill=\"#ffffff\" font-size=\"11\">• 現実と乖離した理想図</text>\n<text x=\"450\" y=\"194\" fill=\"#ffffff\" font-size=\"11\">• 更新されない「死んだ」図</text>\n<rect x=\"450\" y=\"220\" width=\"280\" height=\"100\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.1\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"590\" y=\"248\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">判断テスト</text>\n<text x=\"470\" y=\"272\" fill=\"#ffffff\" font-size=\"10\">「この図で誤った判断をするか？」</text>\n<text x=\"470\" y=\"292\" fill=\"#e91e63\" font-size=\"10\">Yes → 有害な嘘</text>\n<text x=\"400\" y=\"380\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">アーキテクトの仕事 = 嘘を管理すること（排除することではない）</text>\n</svg>",
-				"第3部",
-				"どの嘘は許容され、どの嘘は危険か",
-				"判断基準とリスク管理"
-			],
-			"speakerNotes": "セクション3。嘘の評価基準を確立する。"
-		},
-		{
-			"title": "良い嘘：航行可能なモデル",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">良い嘘：航行可能なモデルの条件</text>\n<rect x=\"30\" y=\"65\" width=\"225\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"143\" y=\"94\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">目的明確性</text>\n<text x=\"50\" y=\"120\" fill=\"#ffffff\" font-size=\"10\">「何を決めるための図か」</text>\n<text x=\"50\" y=\"138\" fill=\"#ffffff\" font-size=\"10\">が明示されている</text>\n<text x=\"50\" y=\"162\" fill=\"#aaaaaa\" font-size=\"10\">例: 「採用面接用の</text>\n<text x=\"50\" y=\"180\" fill=\"#aaaaaa\" font-size=\"10\">概要説明図」</text>\n<rect x=\"50\" y=\"210\" width=\"155\" height=\"100\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.12\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n<text x=\"128\" y=\"235\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" font-weight=\"bold\">達成できると：</text>\n<text x=\"65\" y=\"257\" fill=\"#ffffff\" font-size=\"10\">• 誤用されない</text>\n<text x=\"65\" y=\"275\" fill=\"#ffffff\" font-size=\"10\">• 期待値が合う</text>\n<rect x=\"288\" y=\"65\" width=\"225\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"401\" y=\"94\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">更新可能性</text>\n<text x=\"305\" y=\"120\" fill=\"#ffffff\" font-size=\"10\">変更が容易で追跡可能</text>\n<text x=\"305\" y=\"138\" fill=\"#ffffff\" font-size=\"10\">「いつ変わったか」が分かる</text>\n<text x=\"305\" y=\"162\" fill=\"#aaaaaa\" font-size=\"10\">例: diagrams-as-code</text>\n<text x=\"305\" y=\"180\" fill=\"#aaaaaa\" font-size=\"10\">でgit管理</text>\n<rect x=\"305\" y=\"210\" width=\"165\" height=\"100\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.12\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"388\" y=\"235\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\" font-weight=\"bold\">達成できると：</text>\n<text x=\"320\" y=\"257\" fill=\"#ffffff\" font-size=\"10\">• 古い嘘が残らない</text>\n<text x=\"320\" y=\"275\" fill=\"#ffffff\" font-size=\"10\">• 変更履歴を追跡</text>\n<rect x=\"546\" y=\"65\" width=\"224\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"658\" y=\"94\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"13\" font-weight=\"bold\">聴衆適合性</text>\n<text x=\"563\" y=\"120\" fill=\"#ffffff\" font-size=\"10\">読む人に合わせた抽象度</text>\n<text x=\"563\" y=\"138\" fill=\"#ffffff\" font-size=\"10\">必要な情報だけを見せる</text>\n<text x=\"563\" y=\"162\" fill=\"#aaaaaa\" font-size=\"10\">例: 経営者用/開発者用</text>\n<text x=\"563\" y=\"180\" fill=\"#aaaaaa\" font-size=\"10\">で別々の図を用意</text>\n<rect x=\"563\" y=\"210\" width=\"165\" height=\"100\" rx=\"6\" fill=\"#4db6ac\" opacity=\"0.12\" stroke=\"#4db6ac\" stroke-width=\"1\"/>\n<text x=\"646\" y=\"235\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"10\" font-weight=\"bold\">達成できると：</text>\n<text x=\"578\" y=\"257\" fill=\"#ffffff\" font-size=\"10\">• 混乱しない</text>\n<text x=\"578\" y=\"275\" fill=\"#ffffff\" font-size=\"10\">• 正しく使われる</text>\n</svg>",
-				"![w:720 center](assets/good-bad-lie-flow.svg)"
-			],
-			"speakerNotes": "判断フロー図で良い嘘と悪い嘘を区別。「この図で意思決定できるか」が核心的な問い。",
-			"layout": "default"
-		},
-		{
-			"title": "悪い嘘：決断を歪めるモデル — 実例（1/2）",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">悪い嘘の実例：判断を歪めるアーキテクチャ図</text><rect x=\"30\" y=\"65\" width=\"340\" height=\"180\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"200\" y=\"95\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">例1: マイクロサービス「図」</text><rect x=\"70\" y=\"115\" width=\"80\" height=\"40\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/><text x=\"110\" y=\"140\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">Service A</text><line x1=\"150\" y1=\"135\" x2=\"195\" y2=\"135\" stroke=\"#f9a825\" stroke-width=\"1\"/><polygon points=\"195,128 210,135 195,142\" fill=\"#f9a825\"/><rect x=\"210\" y=\"115\" width=\"80\" height=\"40\" rx=\"4\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"250\" y=\"140\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">Service B</text><text x=\"200\" y=\"175\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">「独立した疎結合」と図示</text><rect x=\"50\" y=\"195\" width=\"260\" height=\"30\" rx=\"4\" fill=\"#e91e63\" opacity=\"0.12\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"180\" y=\"215\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">実際: DBを共有、直接SQL呼び出し</text><text x=\"200\" y=\"245\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">→ 「安全に変更できる」という誤判断を招く</text><rect x=\"430\" y=\"65\" width=\"340\" height=\"180\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"600\" y=\"95\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">例2: スケーラビリティ「図」</text><rect x=\"470\" y=\"115\" width=\"80\" height=\"40\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/><text x=\"510\" y=\"140\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">Load Balancer</text><line x1=\"550\" y1=\"135\" x2=\"575\" y2=\"135\" stroke=\"#f9a825\" stroke-width=\"1\"/><polygon points=\"575,128 590,135 575,142\" fill=\"#f9a825\"/><rect x=\"590\" y=\"115\" width=\"140\" height=\"40\" rx=\"4\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"660\" y=\"132\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">Server×N</text><text x=\"660\" y=\"148\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"8\">（水平スケール）</text><text x=\"600\" y=\"175\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">「無限にスケール」と図示</text><rect x=\"450\" y=\"195\" width=\"280\" height=\"30\" rx=\"4\" fill=\"#e91e63\" opacity=\"0.12\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"590\" y=\"215\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">実際: DBはシングルポイント、スケール不可</text><text x=\"600\" y=\"245\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">→ 「安心して増やせる」という誤判断を招く</text><rect x=\"30\" y=\"280\" width=\"740\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/><text x=\"400\" y=\"308\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">悪い嘘の共通点</text><text x=\"400\" y=\"332\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">理想の姿を現状として示す → 誤った確信 → 誤った意思決定 → 深刻なトラブル</text><text x=\"400\" y=\"352\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">発見が遅れるほど損害が大きい</text></svg>",
-				"**Knight Capital Group (2012)** — システム構成の誤認",
-				"- 古い設計図を信じてデプロイ手順を誤る",
-				"- 45分で4億4000万ドルの損失",
-				"- 原因：「死んだドキュメント」による誤った前提"
-			],
-			"speakerNotes": "実際の事故事例。どちらも「死んだドキュメント」か「目的を誤った省略」が原因。嘘の危険性を実感させる。",
-			"layout": "default"
-		},
-		{
-			"title": "悪い嘘：決断を歪めるモデル — 実例（2/2）",
-			"content": [
-				"",
-				"**Boeing 737 MAX MCAS** — アーキテクチャの隠蔽",
-				"- パイロット向け訓練資料にMCASの存在を省略",
-				"- 「良い省略」が「悪い省略」に転化した事例",
-				"- 省略の判断は常に目的と読者を考慮すべき"
-			],
-			"speakerNotes": "実際の事故事例。どちらも「死んだドキュメント」か「目的を誤った省略」が原因。嘘の危険性を実感させる。",
-			"layout": "default"
-		},
-		{
-			"title": "生きたドキュメント vs 死んだドキュメント",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">生きたドキュメント vs 死んだドキュメント</text>\n<rect x=\"30\" y=\"65\" width=\"340\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"96\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"13\" font-weight=\"bold\">生きたドキュメント</text>\n<text x=\"50\" y=\"128\" fill=\"#4db6ac\" font-size=\"11\">• コードと一緒に進化する</text>\n<text x=\"50\" y=\"150\" fill=\"#4db6ac\" font-size=\"11\">• CI/CDで自動生成</text>\n<text x=\"50\" y=\"172\" fill=\"#4db6ac\" font-size=\"11\">• テストで検証可能</text>\n<text x=\"50\" y=\"194\" fill=\"#4db6ac\" font-size=\"11\">• 変更者が更新する義務</text>\n<rect x=\"50\" y=\"218\" width=\"280\" height=\"100\" rx=\"6\" fill=\"#4db6ac\" opacity=\"0.1\" stroke=\"#4db6ac\" stroke-width=\"1\"/>\n<text x=\"190\" y=\"244\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\" font-weight=\"bold\">ツール例</text>\n<text x=\"70\" y=\"268\" fill=\"#ffffff\" font-size=\"10\">Structurizr / PlantUML + git</text>\n<text x=\"70\" y=\"288\" fill=\"#ffffff\" font-size=\"10\">OpenAPI + swagger-ui</text>\n<rect x=\"430\" y=\"65\" width=\"340\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"96\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">死んだドキュメント</text>\n<text x=\"450\" y=\"128\" fill=\"#e91e63\" font-size=\"11\">• 作成後更新されない</text>\n<text x=\"450\" y=\"150\" fill=\"#e91e63\" font-size=\"11\">• コードと乖離する</text>\n<text x=\"450\" y=\"172\" fill=\"#e91e63\" font-size=\"11\">• 誰も責任を持たない</text>\n<text x=\"450\" y=\"194\" fill=\"#e91e63\" font-size=\"11\">• 「参考程度」になる</text>\n<rect x=\"450\" y=\"218\" width=\"280\" height=\"100\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.1\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"590\" y=\"244\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\">典型的なパターン</text>\n<text x=\"470\" y=\"268\" fill=\"#ffffff\" font-size=\"10\">Confluenceの古い設計書</text>\n<text x=\"470\" y=\"288\" fill=\"#ffffff\" font-size=\"10\">リリース後更新されないREADME</text>\n<text x=\"400\" y=\"380\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">死んだドキュメントは「有害な嘘」の温床になる</text>\n</svg>",
-				"![w:720 center](assets/living-dead-docs.svg)"
-			],
-			"speakerNotes": "生きたドキュメントはコードから自動生成され常に現実を反映。死んだドキュメントは手動管理で陳腐化する。",
-			"layout": "default"
-		},
-		{
-			"title": "実践への応用",
-			"layout": "section",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">実践への応用：嘘管理の3ステップ</text><rect x=\"30\" y=\"70\" width=\"220\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"140\" y=\"100\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">Step 1</text><text x=\"140\" y=\"120\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\">棚卸し</text><text x=\"50\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">現在の図を全て洗い出す</text><text x=\"50\" y=\"172\" fill=\"#ffffff\" font-size=\"11\">最終更新日を確認</text><text x=\"50\" y=\"194\" fill=\"#ffffff\" font-size=\"11\">誰が管理しているか確認</text><rect x=\"50\" y=\"220\" width=\"178\" height=\"80\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.12\" stroke=\"#f9a825\" stroke-width=\"1\"/><text x=\"139\" y=\"246\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\">目標</text><text x=\"65\" y=\"268\" fill=\"#aaaaaa\" font-size=\"10\">「図のインベントリ」を作成</text><text x=\"65\" y=\"288\" fill=\"#aaaaaa\" font-size=\"10\">現状把握が最初の一歩</text><rect x=\"290\" y=\"70\" width=\"220\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"400\" y=\"100\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">Step 2</text><text x=\"400\" y=\"120\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\">分類</text><text x=\"310\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">必要な嘘 vs 有害な嘘</text><text x=\"310\" y=\"172\" fill=\"#ffffff\" font-size=\"11\">各図の目的を確認</text><text x=\"310\" y=\"194\" fill=\"#ffffff\" font-size=\"11\">古い図を有害認定</text><rect x=\"310\" y=\"220\" width=\"178\" height=\"80\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.12\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"399\" y=\"246\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\">目標</text><text x=\"325\" y=\"268\" fill=\"#aaaaaa\" font-size=\"10\">更新が必要な図を特定</text><text x=\"325\" y=\"288\" fill=\"#aaaaaa\" font-size=\"10\">廃止すべき図を決定</text><rect x=\"550\" y=\"70\" width=\"220\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/><text x=\"660\" y=\"100\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"14\" font-weight=\"bold\">Step 3</text><text x=\"660\" y=\"120\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\">仕組みづくり</text><text x=\"570\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">Diagrams-as-code 導入</text><text x=\"570\" y=\"172\" fill=\"#ffffff\" font-size=\"11\">PR時に図の更新を義務化</text><text x=\"570\" y=\"194\" fill=\"#ffffff\" font-size=\"11\">四半期ごとのレビュー</text><rect x=\"570\" y=\"220\" width=\"178\" height=\"80\" rx=\"6\" fill=\"#4db6ac\" opacity=\"0.12\" stroke=\"#4db6ac\" stroke-width=\"1\"/><text x=\"659\" y=\"246\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\" font-weight=\"bold\">目標</text><text x=\"585\" y=\"268\" fill=\"#aaaaaa\" font-size=\"10\">「嘘が自動管理」される</text><text x=\"585\" y=\"288\" fill=\"#aaaaaa\" font-size=\"10\">仕組みを作る</text></svg>",
-				"第4部",
-				"嘘を管理する実践的アプローチ",
-				"Architecture as Code と ADR"
-			],
-			"speakerNotes": "セクション4。具体的なツールとプラクティスを紹介。"
-		},
-		{
-			"title": "Architecture as Code — diagrams as code",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">Architecture as Code：図をコードで管理する</text>\n<rect x=\"30\" y=\"65\" width=\"340\" height=\"180\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"94\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">従来のアプローチ</text>\n<text x=\"50\" y=\"122\" fill=\"#ffffff\" font-size=\"11\">1. Visio/draw.ioで図を作成</text>\n<text x=\"50\" y=\"144\" fill=\"#ffffff\" font-size=\"11\">2. Confluenceにアップロード</text>\n<text x=\"50\" y=\"166\" fill=\"#ffffff\" font-size=\"11\">3. コード変更 → 図は忘れる</text>\n<text x=\"50\" y=\"188\" fill=\"#ffffff\" font-size=\"11\">4. 半年後: 図が古くなる</text>\n<text x=\"50\" y=\"210\" fill=\"#e91e63\" font-size=\"11\">→ 死んだドキュメント完成</text>\n<rect x=\"430\" y=\"65\" width=\"340\" height=\"180\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"94\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"13\" font-weight=\"bold\">Architecture as Code</text>\n<text x=\"450\" y=\"122\" fill=\"#ffffff\" font-size=\"11\">1. PlantUML/Mermaidで記述</text>\n<text x=\"450\" y=\"144\" fill=\"#ffffff\" font-size=\"11\">2. コードと同じgitリポジトリ</text>\n<text x=\"450\" y=\"166\" fill=\"#ffffff\" font-size=\"11\">3. PRレビューで図も更新</text>\n<text x=\"450\" y=\"188\" fill=\"#ffffff\" font-size=\"11\">4. CI/CDで自動生成・配布</text>\n<text x=\"450\" y=\"210\" fill=\"#4db6ac\" font-size=\"11\">→ 常に最新の「地図」</text>\n<rect x=\"30\" y=\"270\" width=\"740\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n<text x=\"400\" y=\"298\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">メリット：バージョン管理 + diff で嘘の変化を追跡できる</text>\n<text x=\"400\" y=\"322\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">「このリリースでアーキテクチャがどう変わったか」が git log で分かる</text>\n<text x=\"400\" y=\"342\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">地図の嘘も、コードと同じ速度で更新される</text>\n</svg>",
-				"図をコードとして管理することで「生きたドキュメント」を実現:"
-			],
-			"layout": "default"
-		},
-		{
-			"title": "Architecture as Code — diagrams as code（コード例）",
-			"content": [],
-			"code": "# Structurizr DSL (C4モデル対応)\nworkspace {\n  model {\n    user = person \"ユーザー\"\n    system = softwareSystem \"決済システム\" {\n      webapp = container \"Web App\" \"React\" \"HTTPS\"\n      api = container \"API Server\" \"Node.js\" \"REST\"\n      db = container \"Database\" \"PostgreSQL\" \"SQL\"\n    }\n    user -> webapp \"注文する\"\n    webapp -> api \"REST API\"\n    api -> db \"クエリ\"\n  }\n  views {\n    container system \"ContainerView\" {\n      include *\n      autoLayout lr\n    }\n  }\n}",
-			"codeLanguage": "dsl",
-			"layout": "default"
-		},
-		{
-			"title": "ADR — アーキテクチャ決定記録で「なぜ」を保存する（1/2）",
-			"content": [
-				"Architecture Decision Records (ADR) の構造:",
-				"- **Status**: Proposed / Accepted / Deprecated / Superseded",
-				"- **Context**: なぜこの決定が必要だったか（当時の地図）",
-				"- **Decision**: 何を選択したか",
-				"- **Consequences**: トレードオフと予想される影響"
-			],
-			"speakerNotes": "ADRは設計の「なぜ」を記録する。図が嘘になった経緯と理由を保存することで、将来の誤判断を防ぐ。",
-			"layout": "default"
-		},
-		{
-			"title": "ADR — アーキテクチャ決定記録で「なぜ」を保存する（2/2）",
-			"content": [
-				"",
-				"ADRが解決する問題:",
-				"- 「なぜここがこんな構造になっているのか誰も知らない」を防ぐ",
-				"- 地図が変わった理由（改訂履歴）を残す",
-				"- 将来の意思決定者への「嘘の文脈」の引き継ぎ"
-			],
-			"speakerNotes": "ADRは設計の「なぜ」を記録する。図が嘘になった経緯と理由を保存することで、将来の誤判断を防ぐ。",
-			"layout": "default"
-		},
-		{
-			"title": "ADRの構造（図解）",
-			"layout": "default",
-			"content": [
-				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"34\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">ADR — 嘘の文脈を未来に引き継ぐ</text>\n<rect x=\"40\" y=\"60\" width=\"720\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"80\" y=\"83\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">Status:</text>\n<text x=\"160\" y=\"83\" fill=\"#ffffff\" font-size=\"12\">Proposed → Accepted → Deprecated → Superseded</text>\n<text x=\"80\" y=\"99\" fill=\"#aaaaaa\" font-size=\"10\">この決定が今どの状態か（生きているか死んでいるか）</text>\n<rect x=\"40\" y=\"125\" width=\"220\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<text x=\"150\" y=\"148\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">Context（背景）</text>\n<text x=\"55\" y=\"168\" fill=\"#ffffff\" font-size=\"10\">なぜこの決定が必要だったか</text>\n<text x=\"55\" y=\"184\" fill=\"#ffffff\" font-size=\"10\">当時の技術的・組織的制約</text>\n<text x=\"55\" y=\"204\" fill=\"#aaaaaa\" font-size=\"9\">＝ 当時の「地図の前提」</text>\n<rect x=\"290\" y=\"125\" width=\"220\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"1.5\"/>\n<text x=\"400\" y=\"148\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\">Decision（決定）</text>\n<text x=\"305\" y=\"168\" fill=\"#ffffff\" font-size=\"10\">何を選択したか</text>\n<text x=\"305\" y=\"184\" fill=\"#ffffff\" font-size=\"10\">なぜそれを選んだか</text>\n<text x=\"305\" y=\"204\" fill=\"#aaaaaa\" font-size=\"9\">＝ 地図に描いた「嘘の内容」</text>\n<rect x=\"540\" y=\"125\" width=\"220\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"650\" y=\"148\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">Consequences（結果）</text>\n<text x=\"555\" y=\"168\" fill=\"#ffffff\" font-size=\"10\">トレードオフと影響</text>\n<text x=\"555\" y=\"184\" fill=\"#ffffff\" font-size=\"10\">予想される問題</text>\n<text x=\"555\" y=\"204\" fill=\"#aaaaaa\" font-size=\"9\">＝ 嘘の「副作用と限界」</text>\n<rect x=\"40\" y=\"255\" width=\"720\" height=\"75\" rx=\"8\" fill=\"#e91e63\" opacity=\"0.15\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"400\" y=\"278\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">ADRが防ぐ問題</text>\n<text x=\"80\" y=\"298\" fill=\"#ffffff\" font-size=\"10\">「なぜこんな設計になっているか誰も知らない」</text>\n<text x=\"80\" y=\"314\" fill=\"#ffffff\" font-size=\"10\">→ 地図が変わった理由を記録することで将来の誤判断を防ぐ</text>\n</svg>"
-			]
-		},
-		{
-			"title": "嘘を管理するのがアーキテクトの仕事（1/2）",
-			"layout": "center",
-			"content": [
-				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">アーキテクトの役割：嘘を管理する</text>\n<circle cx=\"400\" cy=\"210\" r=\"120\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"198\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">アーキテクト</text>\n<text x=\"400\" y=\"220\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">嘘のキュレーター</text>\n<text x=\"400\" y=\"240\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">Map Manager</text>\n<rect x=\"30\" y=\"65\" width=\"180\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"120\" y=\"90\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\">嘘を識別する</text>\n<text x=\"120\" y=\"110\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">どの図がどの程度古いか</text>\n<line x1=\"210\" y1=\"95\" x2=\"285\" y2=\"150\" stroke=\"#e91e63\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/>\n<rect x=\"590\" y=\"65\" width=\"180\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"680\" y=\"90\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\" font-weight=\"bold\">嘘を分類する</text>\n<text x=\"680\" y=\"110\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">必要 vs 有害を判断</text>\n<line x1=\"590\" y1=\"95\" x2=\"515\" y2=\"150\" stroke=\"#4db6ac\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/>\n<rect x=\"30\" y=\"290\" width=\"180\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"120\" y=\"315\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\">嘘を更新する</text>\n<text x=\"120\" y=\"335\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">定期的なレビュー</text>\n<line x1=\"210\" y1=\"320\" x2=\"283\" y2=\"270\" stroke=\"#f9a825\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/>\n<rect x=\"590\" y=\"290\" width=\"180\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"2\"/>\n<text x=\"680\" y=\"315\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-weight=\"bold\">嘘を共有する</text>\n<text x=\"680\" y=\"335\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">チームへの周知</text>\n<line x1=\"590\" y1=\"320\" x2=\"515\" y2=\"270\" stroke=\"#aaaaaa\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/>\n</svg>",
-				"アーキテクチャ図は「現実」ではなく「道具」である",
-				"",
-				"良いアーキテクトの3つの責務:",
-				"**1. 目的に合った嘘を選ぶ** — 読者と文脈に最適な抽象化レベル"
-			],
-			"speakerNotes": "まとめ。アーキテクトの仕事を「嘘の質を管理すること」と再定義する。コジブスキーの言葉で締める。"
-		},
-		{
-			"title": "嘘を管理するのがアーキテクトの仕事（2/2）",
-			"layout": "center",
-			"content": [
-				"**2. 嘘の鮮度を管理する** — 生きたドキュメントとADRで追跡",
-				"**3. 嘘の限界を明示する** — 「この図はL2まで」「2024年3月時点」",
-				"",
-				"「地図は現実ではない。しかし良い地図は航行を可能にする」",
-				"— あなたのアーキテクチャ図は、チームを正しく航行させているか？"
-			],
-			"speakerNotes": "まとめ。アーキテクトの仕事を「嘘の質を管理すること」と再定義する。コジブスキーの言葉で締める。"
-		},
-		{
-			"title": "参考文献（1/2）",
-			"content": [
-				"**General Semantics / 地図と現実:**",
-				"- [Science and Sanity — Alfred Korzybski (1933)](https://en.wikipedia.org/wiki/Science_and_Sanity)",
-				"- [The Map Is Not The Territory — LessWrong](https://www.lesswrong.com/tag/the-map-is-not-the-territory)",
-				"",
-				"**C4モデル / Architecture as Code:**"
-			],
-			"speakerNotes": "参考文献。C4モデルのサイトとStructurizrは実践的なツールとして特に推薦。",
-			"layout": "default"
-		},
-		{
-			"title": "参考文献（2/2）",
-			"content": [
-				"- [The C4 model for visualising software architecture](https://c4model.com/)",
-				"- [Structurizr DSL Documentation](https://docs.structurizr.com/dsl)",
-				"- [Diagrams as Code 2.0 — Simon Brown](https://www.infoq.com/presentations/diagrams-code-c4/)",
-				"",
-				"**ADR:**",
-				"- [Architecture Decision Records — Michael Nygard](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)"
-			],
-			"speakerNotes": "参考文献。C4モデルのサイトとStructurizrは実践的なツールとして特に推薦。",
-			"layout": "default"
-		}
-	]
+  "slides": [
+    {
+      "title": "地図は現実ではない：アーキテクチャ図という必要な嘘",
+      "layout": "center",
+      "content": [
+        "「コロンブスの地図は完全に間違っていた。それでも彼は航海した」",
+        "",
+        "アーキテクチャ図もまた、現実を正確に写し取ったものではない",
+        "しかし、その「嘘」こそがシステム設計を可能にする",
+        "",
+        "嘘の質を管理することがアーキテクトの核心的な仕事である"
+      ],
+      "speakerNotes": "オープニング。コロンブスの逸話で掴みをとる。地図が完全に間違っていても航海できた理由を考えさせる。"
+    },
+    {
+      "title": "地図と現実",
+      "layout": "section",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">地図と現実：根本的な乖離</text>\n<rect x=\"40\" y=\"70\" width=\"310\" height=\"280\" rx=\"12\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"195\" y=\"100\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">地図（Map）</text>\n<text x=\"195\" y=\"120\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">アーキテクチャ図・ドキュメント</text>\n<rect x=\"70\" y=\"140\" width=\"255\" height=\"160\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/>\n<text x=\"100\" y=\"165\" fill=\"#f9a825\" font-size=\"11\">[DB]──[API]──[UI]</text>\n<text x=\"100\" y=\"185\" fill=\"#ffffff\" font-size=\"10\">綺麗に整理されている</text>\n<text x=\"100\" y=\"205\" fill=\"#ffffff\" font-size=\"10\">設計者の意図が反映</text>\n<text x=\"100\" y=\"225\" fill=\"#ffffff\" font-size=\"10\">簡略化・抽象化済み</text>\n<text x=\"100\" y=\"248\" fill=\"#aaaaaa\" font-size=\"10\">「こうあるべき」の表現</text>\n<text x=\"100\" y=\"268\" fill=\"#aaaaaa\" font-size=\"10\">静的なスナップショット</text>\n<rect x=\"450\" y=\"70\" width=\"310\" height=\"280\" rx=\"12\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"605\" y=\"100\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">現実（Territory）</text>\n<text x=\"605\" y=\"120\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">実際に動いているシステム</text>\n<rect x=\"480\" y=\"140\" width=\"255\" height=\"160\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/>\n<text x=\"510\" y=\"165\" fill=\"#e91e63\" font-size=\"11\">混沌として複雑</text>\n<text x=\"510\" y=\"185\" fill=\"#ffffff\" font-size=\"10\">レガシーコードが混在</text>\n<text x=\"510\" y=\"205\" fill=\"#ffffff\" font-size=\"10\">予期しない依存関係</text>\n<text x=\"510\" y=\"225\" fill=\"#ffffff\" font-size=\"10\">動的に変化する</text>\n<text x=\"510\" y=\"248\" fill=\"#aaaaaa\" font-size=\"10\">「こうなっている」の現実</text>\n<text x=\"510\" y=\"268\" fill=\"#aaaaaa\" font-size=\"10\">常に変化し続ける</text>\n<line x1=\"350\" y1=\"210\" x2=\"450\" y2=\"210\" stroke=\"#aaaaaa\" stroke-width=\"2\" stroke-dasharray=\"8,4\"/>\n<text x=\"400\" y=\"200\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-weight=\"bold\">≠</text>\n<text x=\"400\" y=\"370\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">地図がどれだけ精密でも、現実を完全に表すことはできない</text>\n</svg>",
+        "第1部",
+        "地図とは何か、現実とは何か",
+        "そして二者の関係を紐解く"
+      ],
+      "speakerNotes": "セクション区切り。哲学的な前提から入る。"
+    },
+    {
+      "title": "アルフレッド・コジブスキー「地図は現実ではない」（1/2）",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">コジブスキーの一般意味論</text>\n<rect x=\"30\" y=\"65\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"140\" y=\"96\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">人物</text>\n<text x=\"60\" y=\"125\" fill=\"#ffffff\" font-size=\"11\">Alfred Korzybski</text>\n<text x=\"60\" y=\"145\" fill=\"#aaaaaa\" font-size=\"10\">1879-1950</text>\n<text x=\"60\" y=\"170\" fill=\"#aaaaaa\" font-size=\"10\">ポーランド系アメリカ人</text>\n<text x=\"60\" y=\"188\" fill=\"#aaaaaa\" font-size=\"10\">哲学者・言語学者</text>\n<text x=\"60\" y=\"218\" fill=\"#ffffff\" font-size=\"10\">著書: Science and Sanity</text>\n<text x=\"60\" y=\"238\" fill=\"#ffffff\" font-size=\"10\">(1933)</text>\n<text x=\"60\" y=\"265\" fill=\"#f9a825\" font-size=\"10\">「一般意味論」の創始者</text>\n<rect x=\"280\" y=\"65\" width=\"490\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"525\" y=\"96\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">3つの中核原理</text>\n<rect x=\"300\" y=\"115\" width=\"450\" height=\"60\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.12\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"525\" y=\"140\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">1. 地図は現実ではない</text>\n<text x=\"525\" y=\"160\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">表現は対象そのものではない</text>\n<rect x=\"300\" y=\"190\" width=\"450\" height=\"60\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.12\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n<text x=\"525\" y=\"215\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">2. 地図は領域の全てを網羅しない</text>\n<text x=\"525\" y=\"235\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">必ず抽象化・省略がある</text>\n<rect x=\"300\" y=\"265\" width=\"450\" height=\"60\" rx=\"6\" fill=\"#4db6ac\" opacity=\"0.12\" stroke=\"#4db6ac\" stroke-width=\"1\"/>\n<text x=\"525\" y=\"290\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\">3. 地図は自己言及的</text>\n<text x=\"525\" y=\"310\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">地図について語る地図も存在する</text>\n<text x=\"400\" y=\"375\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">アーキテクチャ図はシステムの「地図」— 現実の近似に過ぎない</text>\n</svg>",
+        "1933年、一般意味論の父が提唱した原理",
+        "「地図は現実ではない／言葉は物事ではない」",
+        "すべての表現・記号は現実の**縮減されたモデル**に過ぎない",
+        ""
+      ],
+      "speakerNotes": "コジブスキーの科学的意味論を分かりやすく説明。地図は道具であり、現実そのものではないという基本概念を確立する。",
+      "layout": "default"
+    },
+    {
+      "title": "アルフレッド・コジブスキー「地図は現実ではない」（2/2）",
+      "content": [
+        "地図の3つの性質:",
+        "- **省略性**: 現実のすべてを含まない（含めることは不可能）",
+        "- **目的性**: 特定の用途に最適化されている",
+        "- **自己参照性**: 地図自身も表現の一部である"
+      ],
+      "speakerNotes": "コジブスキーの科学的意味論を分かりやすく説明。地図は道具であり、現実そのものではないという基本概念を確立する。",
+      "layout": "default"
+    },
+    {
+      "title": "地図の3性質（図解）",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">地図の3つの性質 — コジブスキーの原理</text>\n<rect x=\"40\" y=\"70\" width=\"220\" height=\"200\" rx=\"12\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"40\" y=\"70\" width=\"220\" height=\"46\" rx=\"12\" fill=\"#f9a825\"/>\n<text x=\"150\" y=\"100\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"13\" font-weight=\"bold\">省略性</text>\n<text x=\"150\" y=\"118\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\">Incompleteness</text>\n<text x=\"60\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">現実の全てを含まない</text>\n<text x=\"60\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">（含めることは不可能）</text>\n<text x=\"60\" y=\"200\" fill=\"#aaaaaa\" font-size=\"10\">例: 路線図は地形を省く</text>\n<text x=\"60\" y=\"218\" fill=\"#aaaaaa\" font-size=\"10\">例: クラス図は実行時状態を省く</text>\n<text x=\"60\" y=\"245\" fill=\"#f9a825\" font-size=\"10\" font-weight=\"bold\">→ 必要な嘘</text>\n<rect x=\"290\" y=\"70\" width=\"220\" height=\"200\" rx=\"12\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<rect x=\"290\" y=\"70\" width=\"220\" height=\"46\" rx=\"12\" fill=\"#e91e63\"/>\n<text x=\"400\" y=\"100\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-weight=\"bold\">目的性</text>\n<text x=\"400\" y=\"118\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">Purposiveness</text>\n<text x=\"310\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">特定の用途に最適化</text>\n<text x=\"310\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">されている</text>\n<text x=\"310\" y=\"200\" fill=\"#aaaaaa\" font-size=\"10\">例: 観光地図 vs 地質図</text>\n<text x=\"310\" y=\"218\" fill=\"#aaaaaa\" font-size=\"10\">例: C4 L1 vs L4</text>\n<text x=\"310\" y=\"245\" fill=\"#e91e63\" font-size=\"10\" font-weight=\"bold\">→ 読者・用途で変わる</text>\n<rect x=\"540\" y=\"70\" width=\"220\" height=\"200\" rx=\"12\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<rect x=\"540\" y=\"70\" width=\"220\" height=\"46\" rx=\"12\" fill=\"#4db6ac\"/>\n<text x=\"650\" y=\"100\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"13\" font-weight=\"bold\">自己参照性</text>\n<text x=\"650\" y=\"118\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\">Self-Reflexivity</text>\n<text x=\"560\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">地図自身も表現の一部</text>\n<text x=\"560\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">（完全な客観性はない）</text>\n<text x=\"560\" y=\"200\" fill=\"#aaaaaa\" font-size=\"10\">例: 地図を作る人の視点</text>\n<text x=\"560\" y=\"218\" fill=\"#aaaaaa\" font-size=\"10\">例: アーキテクトの世界観</text>\n<text x=\"560\" y=\"245\" fill=\"#4db6ac\" font-size=\"10\" font-weight=\"bold\">→ 嘘の作者を認識せよ</text>\n<text x=\"400\" y=\"315\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">アーキテクチャ図はこの3性質を持つ「構造化された嘘」</text>\n<text x=\"400\" y=\"340\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">嘘を管理することがアーキテクトの仕事</text>\n</svg>"
+      ]
+    },
+    {
+      "title": "コジブスキーの原理：地図と現実の関係",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">地図・現実・観察者の三角関係</text>\n<polygon points=\"400,65 100,330 700,330\" fill=\"none\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"340\" y=\"45\" width=\"120\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"67\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">観察者</text>\n<text x=\"400\" y=\"85\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">アーキテクト</text>\n<rect x=\"30\" y=\"310\" width=\"140\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"100\" y=\"332\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">地図</text>\n<text x=\"100\" y=\"350\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">アーキテクチャ図</text>\n<rect x=\"630\" y=\"310\" width=\"140\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"700\" y=\"332\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\">現実</text>\n<text x=\"700\" y=\"350\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">実際のシステム</text>\n<text x=\"185\" y=\"190\" fill=\"#f9a825\" font-size=\"11\">「見た通り」に</text>\n<text x=\"165\" y=\"208\" fill=\"#f9a825\" font-size=\"11\">図に描く</text>\n<text x=\"570\" y=\"190\" fill=\"#4db6ac\" font-size=\"11\">実際の動作を</text>\n<text x=\"560\" y=\"208\" fill=\"#4db6ac\" font-size=\"11\">観察する</text>\n<text x=\"320\" y=\"355\" fill=\"#e91e63\" font-size=\"11\">「図の通り」に</text>\n<text x=\"330\" y=\"373\" fill=\"#e91e63\" font-size=\"11\">実装する</text>\n<rect x=\"180\" y=\"235\" width=\"440\" height=\"55\" rx=\"8\" fill=\"#e91e63\" opacity=\"0.1\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"400\" y=\"260\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">乖離が生まれる瞬間</text>\n<text x=\"400\" y=\"280\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">地図と現実の間の「嘘」が積み重なっていく</text>\n</svg>",
+        "![w:720 center](assets/map-reality-relation.svg)"
+      ],
+      "speakerNotes": "SVG図で地図と現実の非対称な関係を可視化。地図は現実を参照するが、現実は地図に制約されない。",
+      "layout": "default"
+    },
+    {
+      "title": "コロンブスの地図 — 完全に間違った地図で新大陸を発見（1/2）",
+      "content": [
+        "1492年、コロンブスの地図は根本的に誤っていた:",
+        "- 地球の直径を**大幅に過小評価**（実際の1/4程度）",
+        "- 大西洋を小さく、アジアを近くに描いた",
+        "- アメリカ大陸の存在を完全に無視"
+      ],
+      "speakerNotes": "具体的な歴史的事例。間違った地図でも「目的の達成」に使えることを示す。ただし副作用（偶然の発見）もある。",
+      "layout": "default"
+    },
+    {
+      "title": "コロンブスの地図 — 完全に間違った地図で新大陸を発見（2/2）",
+      "content": [
+        "",
+        "それでも彼はインドに到達できると**確信して出航**した",
+        "間違いを間違いと知らないまま、新大陸を「発見」した",
+        "",
+        "教訓：地図の「正確さ」と「有用性」は別物"
+      ],
+      "speakerNotes": "具体的な歴史的事例。間違った地図でも「目的の達成」に使えることを示す。ただし副作用（偶然の発見）もある。",
+      "layout": "default"
+    },
+    {
+      "title": "コロンブスの地図 vs 現実",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">コロンブスの地図：誤った地図でも目的を達成できる</text>\n<rect x=\"30\" y=\"65\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"96\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">コロンブスの地図（1492年）</text>\n<text x=\"50\" y=\"130\" fill=\"#ffffff\" font-size=\"11\">• アジアまでの距離を誤計算</text>\n<text x=\"50\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">• 地球の大きさを過小評価</text>\n<text x=\"50\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">• アメリカ大陸の存在を未認識</text>\n<text x=\"50\" y=\"190\" fill=\"#ffffff\" font-size=\"11\">• 多くの地名が誤り</text>\n<rect x=\"50\" y=\"215\" width=\"280\" height=\"100\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.12\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"190\" y=\"242\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">致命的な誤り</text>\n<text x=\"70\" y=\"268\" fill=\"#ffffff\" font-size=\"10\">インドに到達できると計算</text>\n<text x=\"70\" y=\"288\" fill=\"#ffffff\" font-size=\"10\">→ 実際はアメリカ大陸に上陸</text>\n<rect x=\"430\" y=\"65\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"96\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">なぜ成功したのか</text>\n<text x=\"450\" y=\"130\" fill=\"#ffffff\" font-size=\"11\">• 「西に進む」方向は正しかった</text>\n<text x=\"450\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">• 航行に十分な精度だった</text>\n<text x=\"450\" y=\"170\" fill=\"#ffffff\" font-size=\"11\">• 目的（富・名声）は達成</text>\n<text x=\"450\" y=\"190\" fill=\"#ffffff\" font-size=\"11\">• 新大陸という別の価値を発見</text>\n<rect x=\"450\" y=\"215\" width=\"280\" height=\"100\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.12\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n<text x=\"590\" y=\"242\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">教訓</text>\n<text x=\"470\" y=\"268\" fill=\"#ffffff\" font-size=\"10\">正確な地図は不要</text>\n<text x=\"470\" y=\"288\" fill=\"#ffffff\" font-size=\"10\">「航行可能」であれば十分</text>\n<text x=\"400\" y=\"375\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">アーキテクチャ図も同様 — 完璧でなくても「判断に使える」ことが重要</text>\n</svg>",
+        "![w:720 center](assets/columbus-maps.svg)"
+      ],
+      "speakerNotes": "左：コロンブスの想像地図（欧州と近くにあるアジア）、右：実際の世界地図（巨大な大西洋とアメリカ大陸）。視覚的な衝撃で地図の誤りを伝える。",
+      "layout": "default"
+    },
+    {
+      "title": "地図の価値は「正確さ」ではなく「航行可能性」（1/2）",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">地図の価値：航行可能性のスペクトラム</text><line x1=\"60\" y1=\"200\" x2=\"740\" y2=\"200\" stroke=\"#444\" stroke-width=\"2\"/><polygon points=\"740,193 756,200 740,207\" fill=\"#444\"/><text x=\"770\" y=\"204\" fill=\"#aaaaaa\" font-size=\"11\">精度</text><line x1=\"400\" y1=\"360\" x2=\"400\" y2=\"60\" stroke=\"#444\" stroke-width=\"2\"/><polygon points=\"393,60 400,44 407,60\" fill=\"#444\"/><text x=\"400\" y=\"40\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">有用性</text><circle cx=\"180\" cy=\"120\" r=\"30\" fill=\"#4db6ac\" opacity=\"0.8\"/><text x=\"180\" y=\"115\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\" font-weight=\"bold\">地下鉄</text><text x=\"180\" y=\"132\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"9\">路線図</text><text x=\"180\" y=\"165\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">精度: 低</text><text x=\"180\" y=\"183\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"10\">有用性: 高</text><circle cx=\"340\" cy=\"140\" r=\"25\" fill=\"#f9a825\" opacity=\"0.8\"/><text x=\"340\" y=\"137\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"10\" font-weight=\"bold\">C4</text><text x=\"340\" y=\"152\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"9\">モデル</text><text x=\"340\" y=\"185\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">精度: 中</text><text x=\"340\" y=\"203\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">有用性: 高</text><circle cx=\"580\" cy=\"160\" r=\"20\" fill=\"#e91e63\" opacity=\"0.8\"/><text x=\"580\" y=\"157\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"9\" font-weight=\"bold\">完全</text><text x=\"580\" y=\"172\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"9\">仕様書</text><text x=\"580\" y=\"205\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">精度: 高</text><text x=\"580\" y=\"223\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">有用性: 低</text><circle cx=\"680\" cy=\"280\" r=\"15\" fill=\"#aaaaaa\" opacity=\"0.6\"/><text x=\"680\" y=\"310\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">過剰な詳細</text><text x=\"680\" y=\"328\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">精度: 最高</text><text x=\"680\" y=\"346\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"9\">有用性: 最低</text><text x=\"200\" y=\"375\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">精度が高いほど有用とは限らない — 目的に合わせた「適切な精度」を選ぶ</text></svg>",
+        "Harry Beck の地下鉄路線図（1931年）:",
+        "- 実際の地理的距離は完全に無視",
+        "- トポロジカルな接続関係のみを保持",
+        "- **乗客が次の駅に乗り換えられるか** だけに最適化"
+      ],
+      "speakerNotes": "ロンドン地下鉄路線図の例は有名。地理的に不正確でも機能的に完璧な地図の実例。",
+      "layout": "default"
+    },
+    {
+      "title": "地図の価値は「正確さ」ではなく「航行可能性」（2/2）",
+      "content": [
+        "",
+        "優れた地図の条件 (Navigability Principle):",
+        "- 目的に照らして必要な情報を含む",
+        "- 目的に照らして不要な情報を捨てる",
+        "- 使用者がそれで「航行できる」"
+      ],
+      "speakerNotes": "ロンドン地下鉄路線図の例は有名。地理的に不正確でも機能的に完璧な地図の実例。",
+      "layout": "default"
+    },
+    {
+      "title": "航行可能性の原則（図解）",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">航行可能性の原則 — 地図の価値基準</text>\n<rect x=\"40\" y=\"62\" width=\"340\" height=\"260\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"210\" y=\"90\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">地理的に正確な地図</text>\n<line x1=\"80\" y1=\"170\" x2=\"340\" y2=\"170\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<circle cx=\"100\" cy=\"130\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"115\" y=\"135\" fill=\"#ffffff\" font-size=\"10\">King's Cross</text>\n<circle cx=\"220\" cy=\"145\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"235\" y=\"150\" fill=\"#ffffff\" font-size=\"10\">Oxford Circus</text>\n<circle cx=\"310\" cy=\"155\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"270\" y=\"165\" fill=\"#ffffff\" font-size=\"10\">Victoria</text>\n<circle cx=\"150\" cy=\"210\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"165\" y=\"215\" fill=\"#ffffff\" font-size=\"10\">London Bridge</text>\n<circle cx=\"260\" cy=\"230\" r=\"6\" fill=\"#e91e63\"/>\n<text x=\"275\" y=\"235\" fill=\"#ffffff\" font-size=\"10\">Waterloo</text>\n<text x=\"210\" y=\"285\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">地理的に正確</text>\n<text x=\"210\" y=\"300\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">→ でも乗り換えルートが分からない</text>\n<rect x=\"420\" y=\"62\" width=\"340\" height=\"260\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"590\" y=\"90\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">Beck の路線図 (1931)</text>\n<line x1=\"460\" y1=\"120\" x2=\"740\" y2=\"120\" stroke=\"#e91e63\" stroke-width=\"3\"/>\n<line x1=\"460\" y1=\"170\" x2=\"740\" y2=\"170\" stroke=\"#f9a825\" stroke-width=\"3\"/>\n<line x1=\"460\" y1=\"220\" x2=\"740\" y2=\"220\" stroke=\"#4db6ac\" stroke-width=\"3\"/>\n<line x1=\"590\" y1=\"100\" x2=\"590\" y2=\"240\" stroke=\"#aaaaaa\" stroke-width=\"2\"/>\n<circle cx=\"590\" cy=\"120\" r=\"7\" fill=\"#ffffff\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<circle cx=\"590\" cy=\"170\" r=\"7\" fill=\"#ffffff\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<circle cx=\"590\" cy=\"220\" r=\"7\" fill=\"#ffffff\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"124\" fill=\"#ffffff\" font-size=\"9\">King's Cross</text>\n<text x=\"600\" y=\"174\" fill=\"#ffffff\" font-size=\"9\">Oxford Circus</text>\n<text x=\"600\" y=\"224\" fill=\"#ffffff\" font-size=\"9\">Waterloo</text>\n<text x=\"590\" y=\"278\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">地理的に不正確</text>\n<text x=\"590\" y=\"295\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">→ でも乗り換えが一目瞭然</text>\n<text x=\"400\" y=\"340\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-weight=\"bold\">航行可能性 = 地図の真の価値。正確さではなく「使えるか」</text>\n</svg>"
+      ]
+    },
+    {
+      "title": "アーキテクチャ図の嘘",
+      "layout": "section",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">アーキテクチャ図の嘘：設計 vs 実際</text>\n<rect x=\"30\" y=\"65\" width=\"340\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"96\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"13\" font-weight=\"bold\">設計時のアーキテクチャ図</text>\n<rect x=\"70\" y=\"120\" width=\"260\" height=\"180\" rx=\"6\" fill=\"#4db6ac\" opacity=\"0.1\" stroke=\"#4db6ac\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/>\n<text x=\"200\" y=\"148\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\">[Frontend]</text>\n<text x=\"200\" y=\"170\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">↓</text>\n<text x=\"200\" y=\"192\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\">[API Gateway]</text>\n<text x=\"200\" y=\"214\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">↓</text>\n<text x=\"200\" y=\"236\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\">[Service A] [Service B]</text>\n<text x=\"200\" y=\"258\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">↓</text>\n<text x=\"200\" y=\"280\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\">[Database]</text>\n<rect x=\"430\" y=\"65\" width=\"340\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"96\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">実際のシステム（5年後）</text>\n<rect x=\"460\" y=\"120\" width=\"280\" height=\"180\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.1\" stroke=\"#e91e63\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/>\n<text x=\"600\" y=\"145\" fill=\"#e91e63\" font-size=\"10\" text-anchor=\"middle\">Legacy [Frontend] + New React App</text>\n<text x=\"600\" y=\"165\" fill=\"#aaaaaa\" font-size=\"9\" text-anchor=\"middle\">↕ 直接呼び出し（設計外）</text>\n<text x=\"600\" y=\"185\" fill=\"#e91e63\" font-size=\"10\" text-anchor=\"middle\">[API Gateway] + 迂回ルート×3</text>\n<text x=\"600\" y=\"205\" fill=\"#aaaaaa\" font-size=\"9\" text-anchor=\"middle\">↕ 循環依存</text>\n<text x=\"600\" y=\"225\" fill=\"#e91e63\" font-size=\"10\" text-anchor=\"middle\">Service A←→B（相互依存）</text>\n<text x=\"600\" y=\"248\" fill=\"#aaaaaa\" font-size=\"9\" text-anchor=\"middle\">+ Service C（設計になかった）</text>\n<text x=\"600\" y=\"268\" fill=\"#e91e63\" font-size=\"10\" text-anchor=\"middle\">DB×3（分割されていた）</text>\n<text x=\"400\" y=\"365\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">設計図の嘘は時間とともに蓄積する — 管理しなければ有害な嘘になる</text>\n</svg>",
+        "第2部",
+        "設計図はなぜ常に「嘘」をつくのか",
+        "そしてその嘘の種類とは何か"
+      ],
+      "speakerNotes": "セクション2。ソフトウェアの世界に話を転換する。"
+    },
+    {
+      "title": "設計時のアーキテクチャ図 vs 実際のシステムの乖離",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">4種類のアーキテクチャ図の嘘</text>\n<rect x=\"30\" y=\"65\" width=\"350\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"205\" y=\"92\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">嘘の種類1：省略の嘘</text>\n<text x=\"50\" y=\"118\" fill=\"#ffffff\" font-size=\"11\">エラーハンドリング・リトライロジックを省略</text>\n<text x=\"50\" y=\"138\" fill=\"#ffffff\" font-size=\"11\">認証フローを「box → box」で単純化</text>\n<text x=\"50\" y=\"158\" fill=\"#f9a825\" font-size=\"10\">→ 理解を助けるが実装者を迷わせる</text>\n<rect x=\"420\" y=\"65\" width=\"350\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"595\" y=\"92\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">嘘の種類2：時間の嘘</text>\n<text x=\"440\" y=\"118\" fill=\"#ffffff\" font-size=\"11\">設計時の図が古くなっている</text>\n<text x=\"440\" y=\"138\" fill=\"#ffffff\" font-size=\"11\">変更されたが図が更新されない</text>\n<text x=\"440\" y=\"158\" fill=\"#e91e63\" font-size=\"10\">→ 最も危険な嘘（誤った判断を招く）</text>\n<rect x=\"30\" y=\"220\" width=\"350\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"205\" y=\"247\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\">嘘の種類3：抽象化の嘘</text>\n<text x=\"50\" y=\"273\" fill=\"#ffffff\" font-size=\"11\">「マイクロサービス」と書いてあるが実体は</text>\n<text x=\"50\" y=\"293\" fill=\"#ffffff\" font-size=\"11\">モノリスの一部を分離しただけ</text>\n<text x=\"50\" y=\"313\" fill=\"#4db6ac\" font-size=\"10\">→ 概念が実態と乖離している</text>\n<rect x=\"420\" y=\"220\" width=\"350\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"2\"/>\n<text x=\"595\" y=\"247\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"12\" font-weight=\"bold\">嘘の種類4：意図の嘘</text>\n<text x=\"440\" y=\"273\" fill=\"#ffffff\" font-size=\"11\">「あるべき姿」を「現状」として表示</text>\n<text x=\"440\" y=\"293\" fill=\"#ffffff\" font-size=\"11\">ロードマップを現状図として共有</text>\n<text x=\"440\" y=\"313\" fill=\"#aaaaaa\" font-size=\"10\">→ 期待値と現実のギャップを生む</text>\n</svg>",
+        "![w:720 center](assets/arch-diagram-decay.svg)"
+      ],
+      "speakerNotes": "タイムラインで劣化を可視化。設計時は正確でも、時間とともに図と現実の乖離が拡大する。",
+      "layout": "default"
+    },
+    {
+      "title": "4種類のアーキテクチャ図の嘘",
+      "content": [
+        "![w:720 center](assets/four-lies-classification.svg)"
+      ],
+      "speakerNotes": "4象限で嘘を分類。意図的/無意識 × 有益/有害の2軸。省略・抽象化は必要な嘘、過去形・理想は有害な嘘。",
+      "layout": "default"
+    },
+    {
+      "title": "C4モデル — 抽象化レベルで嘘の質を管理する",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">C4モデル：抽象化レベルで嘘を管理する</text>\n<rect x=\"200\" y=\"60\" width=\"400\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"86\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">Context（C1）</text>\n<text x=\"400\" y=\"106\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">システム全体 vs 外部世界</text>\n<line x1=\"400\" y1=\"120\" x2=\"400\" y2=\"148\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/>\n<polygon points=\"393,148 400,162 407,148\" fill=\"#aaaaaa\"/>\n<rect x=\"200\" y=\"162\" width=\"400\" height=\"55\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"186\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">Container（C2）</text>\n<text x=\"400\" y=\"204\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">アプリ・DB・サービスの配置</text>\n<line x1=\"400\" y1=\"217\" x2=\"400\" y2=\"243\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/>\n<polygon points=\"393,243 400,257 407,243\" fill=\"#aaaaaa\"/>\n<rect x=\"200\" y=\"257\" width=\"400\" height=\"55\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"281\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"13\" font-weight=\"bold\">Component（C3）</text>\n<text x=\"400\" y=\"299\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">モジュール・サービス内部の構造</text>\n<line x1=\"400\" y1=\"312\" x2=\"400\" y2=\"338\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/>\n<polygon points=\"393,338 400,352 407,338\" fill=\"#aaaaaa\"/>\n<rect x=\"200\" y=\"352\" width=\"400\" height=\"30\" rx=\"6\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1\"/>\n<text x=\"400\" y=\"372\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">Code（C4）— クラス・メソッドレベル</text>\n<text x=\"40\" y=\"92\" text-anchor=\"end\" fill=\"#f9a825\" font-size=\"10\">高抽象度</text>\n<text x=\"40\" y=\"370\" text-anchor=\"end\" fill=\"#aaaaaa\" font-size=\"10\">低抽象度</text>\n<text x=\"760\" y=\"92\" fill=\"#f9a825\" font-size=\"10\">嘘: 少</text>\n<text x=\"760\" y=\"370\" fill=\"#aaaaaa\" font-size=\"10\">嘘: 多</text>\n<line x1=\"745\" y1=\"100\" x2=\"745\" y2=\"370\" stroke=\"#aaaaaa\" stroke-width=\"1\" stroke-dasharray=\"3,3\"/>\n</svg>",
+        "![w:700 center](assets/c4-model-layers.svg)"
+      ],
+      "speakerNotes": "Simon Brown のC4モデル。4層の抽象化レベルそれぞれに適切な「嘘の質」を割り当てる。",
+      "layout": "default"
+    },
+    {
+      "title": "C4モデルの実践：各層の嘘の使い分け（1/2）",
+      "content": [
+        "**L1 Context**: ビジネス価値と外部システムの関係",
+        "- 嘘の種類: 大規模な省略（内部構造を完全に隠す）",
+        "- 読者: CTO、経営層、外部ステークホルダー",
+        "",
+        "**L2 Container**: サービス・データストアの境界",
+        "- 嘘の種類: 実装の抽象化（スケーリング戦略を隠す）"
+      ],
+      "speakerNotes": "C4の各層を実例で説明。読者層と嘘の種類のマッピングが核心。",
+      "layout": "default"
+    },
+    {
+      "title": "C4モデルの実践：各層の嘘の使い分け（2/2）",
+      "content": [
+        "- 読者: 開発リード、アーキテクト",
+        "",
+        "**L3 Component**: モジュール・責務の分離",
+        "- 嘘の種類: インターフェースのみ（実装を隠す）",
+        "- 読者: 実装担当エンジニア",
+        "",
+        "**L4 Code**: クラス・関数の詳細（自動生成推奨）"
+      ],
+      "speakerNotes": "C4の各層を実例で説明。読者層と嘘の種類のマッピングが核心。",
+      "layout": "default"
+    },
+    {
+      "title": "必要な嘘と有害な嘘",
+      "layout": "section",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">必要な嘘 vs 有害な嘘：判断基準</text>\n<rect x=\"30\" y=\"65\" width=\"340\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"96\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"14\" font-weight=\"bold\">必要な嘘（Good Lies）</text>\n<text x=\"50\" y=\"128\" fill=\"#ffffff\" font-size=\"11\">• 意図的な抽象化</text>\n<text x=\"50\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">• 目的に合った省略</text>\n<text x=\"50\" y=\"172\" fill=\"#ffffff\" font-size=\"11\">• 聴衆に合わせた表現</text>\n<text x=\"50\" y=\"194\" fill=\"#ffffff\" font-size=\"11\">• 「これは省略です」と明示</text>\n<rect x=\"50\" y=\"220\" width=\"280\" height=\"100\" rx=\"6\" fill=\"#4db6ac\" opacity=\"0.1\" stroke=\"#4db6ac\" stroke-width=\"1\"/>\n<text x=\"190\" y=\"248\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\">判断テスト</text>\n<text x=\"70\" y=\"272\" fill=\"#ffffff\" font-size=\"10\">「この図で正しい判断ができるか？」</text>\n<text x=\"70\" y=\"292\" fill=\"#4db6ac\" font-size=\"10\">Yes → 必要な嘘</text>\n<rect x=\"430\" y=\"65\" width=\"340\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"96\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">有害な嘘（Bad Lies）</text>\n<text x=\"450\" y=\"128\" fill=\"#ffffff\" font-size=\"11\">• 意図せず古くなった情報</text>\n<text x=\"450\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">• 誤解を招く簡略化</text>\n<text x=\"450\" y=\"172\" fill=\"#ffffff\" font-size=\"11\">• 現実と乖離した理想図</text>\n<text x=\"450\" y=\"194\" fill=\"#ffffff\" font-size=\"11\">• 更新されない「死んだ」図</text>\n<rect x=\"450\" y=\"220\" width=\"280\" height=\"100\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.1\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"590\" y=\"248\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">判断テスト</text>\n<text x=\"470\" y=\"272\" fill=\"#ffffff\" font-size=\"10\">「この図で誤った判断をするか？」</text>\n<text x=\"470\" y=\"292\" fill=\"#e91e63\" font-size=\"10\">Yes → 有害な嘘</text>\n<text x=\"400\" y=\"380\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">アーキテクトの仕事 = 嘘を管理すること（排除することではない）</text>\n</svg>",
+        "第3部",
+        "どの嘘は許容され、どの嘘は危険か",
+        "判断基準とリスク管理"
+      ],
+      "speakerNotes": "セクション3。嘘の評価基準を確立する。"
+    },
+    {
+      "title": "良い嘘：航行可能なモデル",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">良い嘘：航行可能なモデルの条件</text>\n<rect x=\"30\" y=\"65\" width=\"225\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"143\" y=\"94\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">目的明確性</text>\n<text x=\"50\" y=\"120\" fill=\"#ffffff\" font-size=\"10\">「何を決めるための図か」</text>\n<text x=\"50\" y=\"138\" fill=\"#ffffff\" font-size=\"10\">が明示されている</text>\n<text x=\"50\" y=\"162\" fill=\"#aaaaaa\" font-size=\"10\">例: 「採用面接用の</text>\n<text x=\"50\" y=\"180\" fill=\"#aaaaaa\" font-size=\"10\">概要説明図」</text>\n<rect x=\"50\" y=\"210\" width=\"155\" height=\"100\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.12\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n<text x=\"128\" y=\"235\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" font-weight=\"bold\">達成できると：</text>\n<text x=\"65\" y=\"257\" fill=\"#ffffff\" font-size=\"10\">• 誤用されない</text>\n<text x=\"65\" y=\"275\" fill=\"#ffffff\" font-size=\"10\">• 期待値が合う</text>\n<rect x=\"288\" y=\"65\" width=\"225\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"401\" y=\"94\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">更新可能性</text>\n<text x=\"305\" y=\"120\" fill=\"#ffffff\" font-size=\"10\">変更が容易で追跡可能</text>\n<text x=\"305\" y=\"138\" fill=\"#ffffff\" font-size=\"10\">「いつ変わったか」が分かる</text>\n<text x=\"305\" y=\"162\" fill=\"#aaaaaa\" font-size=\"10\">例: diagrams-as-code</text>\n<text x=\"305\" y=\"180\" fill=\"#aaaaaa\" font-size=\"10\">でgit管理</text>\n<rect x=\"305\" y=\"210\" width=\"165\" height=\"100\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.12\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"388\" y=\"235\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\" font-weight=\"bold\">達成できると：</text>\n<text x=\"320\" y=\"257\" fill=\"#ffffff\" font-size=\"10\">• 古い嘘が残らない</text>\n<text x=\"320\" y=\"275\" fill=\"#ffffff\" font-size=\"10\">• 変更履歴を追跡</text>\n<rect x=\"546\" y=\"65\" width=\"224\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"658\" y=\"94\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"13\" font-weight=\"bold\">聴衆適合性</text>\n<text x=\"563\" y=\"120\" fill=\"#ffffff\" font-size=\"10\">読む人に合わせた抽象度</text>\n<text x=\"563\" y=\"138\" fill=\"#ffffff\" font-size=\"10\">必要な情報だけを見せる</text>\n<text x=\"563\" y=\"162\" fill=\"#aaaaaa\" font-size=\"10\">例: 経営者用/開発者用</text>\n<text x=\"563\" y=\"180\" fill=\"#aaaaaa\" font-size=\"10\">で別々の図を用意</text>\n<rect x=\"563\" y=\"210\" width=\"165\" height=\"100\" rx=\"6\" fill=\"#4db6ac\" opacity=\"0.12\" stroke=\"#4db6ac\" stroke-width=\"1\"/>\n<text x=\"646\" y=\"235\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"10\" font-weight=\"bold\">達成できると：</text>\n<text x=\"578\" y=\"257\" fill=\"#ffffff\" font-size=\"10\">• 混乱しない</text>\n<text x=\"578\" y=\"275\" fill=\"#ffffff\" font-size=\"10\">• 正しく使われる</text>\n</svg>",
+        "![w:720 center](assets/good-bad-lie-flow.svg)"
+      ],
+      "speakerNotes": "判断フロー図で良い嘘と悪い嘘を区別。「この図で意思決定できるか」が核心的な問い。",
+      "layout": "default"
+    },
+    {
+      "title": "悪い嘘：決断を歪めるモデル — 実例（1/2）",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">悪い嘘の実例：判断を歪めるアーキテクチャ図</text><rect x=\"30\" y=\"65\" width=\"340\" height=\"180\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"200\" y=\"95\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">例1: マイクロサービス「図」</text><rect x=\"70\" y=\"115\" width=\"80\" height=\"40\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/><text x=\"110\" y=\"140\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">Service A</text><line x1=\"150\" y1=\"135\" x2=\"195\" y2=\"135\" stroke=\"#f9a825\" stroke-width=\"1\"/><polygon points=\"195,128 210,135 195,142\" fill=\"#f9a825\"/><rect x=\"210\" y=\"115\" width=\"80\" height=\"40\" rx=\"4\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"250\" y=\"140\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">Service B</text><text x=\"200\" y=\"175\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">「独立した疎結合」と図示</text><rect x=\"50\" y=\"195\" width=\"260\" height=\"30\" rx=\"4\" fill=\"#e91e63\" opacity=\"0.12\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"180\" y=\"215\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">実際: DBを共有、直接SQL呼び出し</text><text x=\"200\" y=\"245\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">→ 「安全に変更できる」という誤判断を招く</text><rect x=\"430\" y=\"65\" width=\"340\" height=\"180\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"600\" y=\"95\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">例2: スケーラビリティ「図」</text><rect x=\"470\" y=\"115\" width=\"80\" height=\"40\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/><text x=\"510\" y=\"140\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">Load Balancer</text><line x1=\"550\" y1=\"135\" x2=\"575\" y2=\"135\" stroke=\"#f9a825\" stroke-width=\"1\"/><polygon points=\"575,128 590,135 575,142\" fill=\"#f9a825\"/><rect x=\"590\" y=\"115\" width=\"140\" height=\"40\" rx=\"4\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"660\" y=\"132\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">Server×N</text><text x=\"660\" y=\"148\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"8\">（水平スケール）</text><text x=\"600\" y=\"175\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">「無限にスケール」と図示</text><rect x=\"450\" y=\"195\" width=\"280\" height=\"30\" rx=\"4\" fill=\"#e91e63\" opacity=\"0.12\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"590\" y=\"215\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">実際: DBはシングルポイント、スケール不可</text><text x=\"600\" y=\"245\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">→ 「安心して増やせる」という誤判断を招く</text><rect x=\"30\" y=\"280\" width=\"740\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/><text x=\"400\" y=\"308\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">悪い嘘の共通点</text><text x=\"400\" y=\"332\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">理想の姿を現状として示す → 誤った確信 → 誤った意思決定 → 深刻なトラブル</text><text x=\"400\" y=\"352\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">発見が遅れるほど損害が大きい</text></svg>",
+        "**Knight Capital Group (2012)** — システム構成の誤認",
+        "- 古い設計図を信じてデプロイ手順を誤る",
+        "- 45分で4億4000万ドルの損失",
+        "- 原因：「死んだドキュメント」による誤った前提"
+      ],
+      "speakerNotes": "実際の事故事例。どちらも「死んだドキュメント」か「目的を誤った省略」が原因。嘘の危険性を実感させる。",
+      "layout": "default"
+    },
+    {
+      "title": "悪い嘘：決断を歪めるモデル — 実例（2/2）",
+      "content": [
+        "",
+        "**Boeing 737 MAX MCAS** — アーキテクチャの隠蔽",
+        "- パイロット向け訓練資料にMCASの存在を省略",
+        "- 「良い省略」が「悪い省略」に転化した事例",
+        "- 省略の判断は常に目的と読者を考慮すべき"
+      ],
+      "speakerNotes": "実際の事故事例。どちらも「死んだドキュメント」か「目的を誤った省略」が原因。嘘の危険性を実感させる。",
+      "layout": "default"
+    },
+    {
+      "title": "生きたドキュメント vs 死んだドキュメント",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">生きたドキュメント vs 死んだドキュメント</text>\n<rect x=\"30\" y=\"65\" width=\"340\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"96\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"13\" font-weight=\"bold\">生きたドキュメント</text>\n<text x=\"50\" y=\"128\" fill=\"#4db6ac\" font-size=\"11\">• コードと一緒に進化する</text>\n<text x=\"50\" y=\"150\" fill=\"#4db6ac\" font-size=\"11\">• CI/CDで自動生成</text>\n<text x=\"50\" y=\"172\" fill=\"#4db6ac\" font-size=\"11\">• テストで検証可能</text>\n<text x=\"50\" y=\"194\" fill=\"#4db6ac\" font-size=\"11\">• 変更者が更新する義務</text>\n<rect x=\"50\" y=\"218\" width=\"280\" height=\"100\" rx=\"6\" fill=\"#4db6ac\" opacity=\"0.1\" stroke=\"#4db6ac\" stroke-width=\"1\"/>\n<text x=\"190\" y=\"244\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\" font-weight=\"bold\">ツール例</text>\n<text x=\"70\" y=\"268\" fill=\"#ffffff\" font-size=\"10\">Structurizr / PlantUML + git</text>\n<text x=\"70\" y=\"288\" fill=\"#ffffff\" font-size=\"10\">OpenAPI + swagger-ui</text>\n<rect x=\"430\" y=\"65\" width=\"340\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"96\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">死んだドキュメント</text>\n<text x=\"450\" y=\"128\" fill=\"#e91e63\" font-size=\"11\">• 作成後更新されない</text>\n<text x=\"450\" y=\"150\" fill=\"#e91e63\" font-size=\"11\">• コードと乖離する</text>\n<text x=\"450\" y=\"172\" fill=\"#e91e63\" font-size=\"11\">• 誰も責任を持たない</text>\n<text x=\"450\" y=\"194\" fill=\"#e91e63\" font-size=\"11\">• 「参考程度」になる</text>\n<rect x=\"450\" y=\"218\" width=\"280\" height=\"100\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.1\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"590\" y=\"244\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\">典型的なパターン</text>\n<text x=\"470\" y=\"268\" fill=\"#ffffff\" font-size=\"10\">Confluenceの古い設計書</text>\n<text x=\"470\" y=\"288\" fill=\"#ffffff\" font-size=\"10\">リリース後更新されないREADME</text>\n<text x=\"400\" y=\"380\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">死んだドキュメントは「有害な嘘」の温床になる</text>\n</svg>",
+        "![w:720 center](assets/living-dead-docs.svg)"
+      ],
+      "speakerNotes": "生きたドキュメントはコードから自動生成され常に現実を反映。死んだドキュメントは手動管理で陳腐化する。",
+      "layout": "default"
+    },
+    {
+      "title": "実践への応用",
+      "layout": "section",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">実践への応用：嘘管理の3ステップ</text><rect x=\"30\" y=\"70\" width=\"220\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"140\" y=\"100\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">Step 1</text><text x=\"140\" y=\"120\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\">棚卸し</text><text x=\"50\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">現在の図を全て洗い出す</text><text x=\"50\" y=\"172\" fill=\"#ffffff\" font-size=\"11\">最終更新日を確認</text><text x=\"50\" y=\"194\" fill=\"#ffffff\" font-size=\"11\">誰が管理しているか確認</text><rect x=\"50\" y=\"220\" width=\"178\" height=\"80\" rx=\"6\" fill=\"#f9a825\" opacity=\"0.12\" stroke=\"#f9a825\" stroke-width=\"1\"/><text x=\"139\" y=\"246\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\">目標</text><text x=\"65\" y=\"268\" fill=\"#aaaaaa\" font-size=\"10\">「図のインベントリ」を作成</text><text x=\"65\" y=\"288\" fill=\"#aaaaaa\" font-size=\"10\">現状把握が最初の一歩</text><rect x=\"290\" y=\"70\" width=\"220\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"400\" y=\"100\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">Step 2</text><text x=\"400\" y=\"120\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\">分類</text><text x=\"310\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">必要な嘘 vs 有害な嘘</text><text x=\"310\" y=\"172\" fill=\"#ffffff\" font-size=\"11\">各図の目的を確認</text><text x=\"310\" y=\"194\" fill=\"#ffffff\" font-size=\"11\">古い図を有害認定</text><rect x=\"310\" y=\"220\" width=\"178\" height=\"80\" rx=\"6\" fill=\"#e91e63\" opacity=\"0.12\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"399\" y=\"246\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\">目標</text><text x=\"325\" y=\"268\" fill=\"#aaaaaa\" font-size=\"10\">更新が必要な図を特定</text><text x=\"325\" y=\"288\" fill=\"#aaaaaa\" font-size=\"10\">廃止すべき図を決定</text><rect x=\"550\" y=\"70\" width=\"220\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/><text x=\"660\" y=\"100\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"14\" font-weight=\"bold\">Step 3</text><text x=\"660\" y=\"120\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\">仕組みづくり</text><text x=\"570\" y=\"150\" fill=\"#ffffff\" font-size=\"11\">Diagrams-as-code 導入</text><text x=\"570\" y=\"172\" fill=\"#ffffff\" font-size=\"11\">PR時に図の更新を義務化</text><text x=\"570\" y=\"194\" fill=\"#ffffff\" font-size=\"11\">四半期ごとのレビュー</text><rect x=\"570\" y=\"220\" width=\"178\" height=\"80\" rx=\"6\" fill=\"#4db6ac\" opacity=\"0.12\" stroke=\"#4db6ac\" stroke-width=\"1\"/><text x=\"659\" y=\"246\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\" font-weight=\"bold\">目標</text><text x=\"585\" y=\"268\" fill=\"#aaaaaa\" font-size=\"10\">「嘘が自動管理」される</text><text x=\"585\" y=\"288\" fill=\"#aaaaaa\" font-size=\"10\">仕組みを作る</text></svg>",
+        "第4部",
+        "嘘を管理する実践的アプローチ",
+        "Architecture as Code と ADR"
+      ],
+      "speakerNotes": "セクション4。具体的なツールとプラクティスを紹介。"
+    },
+    {
+      "title": "Architecture as Code — diagrams as code",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">Architecture as Code：図をコードで管理する</text>\n<rect x=\"30\" y=\"65\" width=\"340\" height=\"180\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"94\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">従来のアプローチ</text>\n<text x=\"50\" y=\"122\" fill=\"#ffffff\" font-size=\"11\">1. Visio/draw.ioで図を作成</text>\n<text x=\"50\" y=\"144\" fill=\"#ffffff\" font-size=\"11\">2. Confluenceにアップロード</text>\n<text x=\"50\" y=\"166\" fill=\"#ffffff\" font-size=\"11\">3. コード変更 → 図は忘れる</text>\n<text x=\"50\" y=\"188\" fill=\"#ffffff\" font-size=\"11\">4. 半年後: 図が古くなる</text>\n<text x=\"50\" y=\"210\" fill=\"#e91e63\" font-size=\"11\">→ 死んだドキュメント完成</text>\n<rect x=\"430\" y=\"65\" width=\"340\" height=\"180\" rx=\"10\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"94\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"13\" font-weight=\"bold\">Architecture as Code</text>\n<text x=\"450\" y=\"122\" fill=\"#ffffff\" font-size=\"11\">1. PlantUML/Mermaidで記述</text>\n<text x=\"450\" y=\"144\" fill=\"#ffffff\" font-size=\"11\">2. コードと同じgitリポジトリ</text>\n<text x=\"450\" y=\"166\" fill=\"#ffffff\" font-size=\"11\">3. PRレビューで図も更新</text>\n<text x=\"450\" y=\"188\" fill=\"#ffffff\" font-size=\"11\">4. CI/CDで自動生成・配布</text>\n<text x=\"450\" y=\"210\" fill=\"#4db6ac\" font-size=\"11\">→ 常に最新の「地図」</text>\n<rect x=\"30\" y=\"270\" width=\"740\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n<text x=\"400\" y=\"298\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">メリット：バージョン管理 + diff で嘘の変化を追跡できる</text>\n<text x=\"400\" y=\"322\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">「このリリースでアーキテクチャがどう変わったか」が git log で分かる</text>\n<text x=\"400\" y=\"342\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">地図の嘘も、コードと同じ速度で更新される</text>\n</svg>",
+        "図をコードとして管理することで「生きたドキュメント」を実現:"
+      ],
+      "layout": "default"
+    },
+    {
+      "title": "Architecture as Code — diagrams as code（コード例）",
+      "content": [],
+      "code": "# Structurizr DSL (C4モデル対応)\nworkspace {\n  model {\n    user = person \"ユーザー\"\n    system = softwareSystem \"決済システム\" {\n      webapp = container \"Web App\" \"React\" \"HTTPS\"\n      api = container \"API Server\" \"Node.js\" \"REST\"\n      db = container \"Database\" \"PostgreSQL\" \"SQL\"\n    }\n    user -> webapp \"注文する\"\n    webapp -> api \"REST API\"\n    api -> db \"クエリ\"\n  }\n  views {\n    container system \"ContainerView\" {\n      include *\n      autoLayout lr\n    }\n  }\n}",
+      "codeLanguage": "dsl",
+      "layout": "default"
+    },
+    {
+      "title": "ADR — アーキテクチャ決定記録で「なぜ」を保存する（1/2）",
+      "content": [
+        "Architecture Decision Records (ADR) の構造:",
+        "- **Status**: Proposed / Accepted / Deprecated / Superseded",
+        "- **Context**: なぜこの決定が必要だったか（当時の地図）",
+        "- **Decision**: 何を選択したか",
+        "- **Consequences**: トレードオフと予想される影響"
+      ],
+      "speakerNotes": "ADRは設計の「なぜ」を記録する。図が嘘になった経緯と理由を保存することで、将来の誤判断を防ぐ。",
+      "layout": "default"
+    },
+    {
+      "title": "ADR — アーキテクチャ決定記録で「なぜ」を保存する（2/2）",
+      "content": [
+        "",
+        "ADRが解決する問題:",
+        "- 「なぜここがこんな構造になっているのか誰も知らない」を防ぐ",
+        "- 地図が変わった理由（改訂履歴）を残す",
+        "- 将来の意思決定者への「嘘の文脈」の引き継ぎ"
+      ],
+      "speakerNotes": "ADRは設計の「なぜ」を記録する。図が嘘になった経緯と理由を保存することで、将来の誤判断を防ぐ。",
+      "layout": "default"
+    },
+    {
+      "title": "ADRの構造（図解）",
+      "layout": "default",
+      "content": [
+        "<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"34\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">ADR — 嘘の文脈を未来に引き継ぐ</text>\n<rect x=\"40\" y=\"60\" width=\"720\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"80\" y=\"83\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">Status:</text>\n<text x=\"160\" y=\"83\" fill=\"#ffffff\" font-size=\"12\">Proposed → Accepted → Deprecated → Superseded</text>\n<text x=\"80\" y=\"99\" fill=\"#aaaaaa\" font-size=\"10\">この決定が今どの状態か（生きているか死んでいるか）</text>\n<rect x=\"40\" y=\"125\" width=\"220\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<text x=\"150\" y=\"148\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">Context（背景）</text>\n<text x=\"55\" y=\"168\" fill=\"#ffffff\" font-size=\"10\">なぜこの決定が必要だったか</text>\n<text x=\"55\" y=\"184\" fill=\"#ffffff\" font-size=\"10\">当時の技術的・組織的制約</text>\n<text x=\"55\" y=\"204\" fill=\"#aaaaaa\" font-size=\"9\">＝ 当時の「地図の前提」</text>\n<rect x=\"290\" y=\"125\" width=\"220\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"1.5\"/>\n<text x=\"400\" y=\"148\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\">Decision（決定）</text>\n<text x=\"305\" y=\"168\" fill=\"#ffffff\" font-size=\"10\">何を選択したか</text>\n<text x=\"305\" y=\"184\" fill=\"#ffffff\" font-size=\"10\">なぜそれを選んだか</text>\n<text x=\"305\" y=\"204\" fill=\"#aaaaaa\" font-size=\"9\">＝ 地図に描いた「嘘の内容」</text>\n<rect x=\"540\" y=\"125\" width=\"220\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"650\" y=\"148\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">Consequences（結果）</text>\n<text x=\"555\" y=\"168\" fill=\"#ffffff\" font-size=\"10\">トレードオフと影響</text>\n<text x=\"555\" y=\"184\" fill=\"#ffffff\" font-size=\"10\">予想される問題</text>\n<text x=\"555\" y=\"204\" fill=\"#aaaaaa\" font-size=\"9\">＝ 嘘の「副作用と限界」</text>\n<rect x=\"40\" y=\"255\" width=\"720\" height=\"75\" rx=\"8\" fill=\"#e91e63\" opacity=\"0.15\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n<text x=\"400\" y=\"278\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">ADRが防ぐ問題</text>\n<text x=\"80\" y=\"298\" fill=\"#ffffff\" font-size=\"10\">「なぜこんな設計になっているか誰も知らない」</text>\n<text x=\"80\" y=\"314\" fill=\"#ffffff\" font-size=\"10\">→ 地図が変わった理由を記録することで将来の誤判断を防ぐ</text>\n</svg>"
+      ]
+    },
+    {
+      "title": "嘘を管理するのがアーキテクトの仕事（1/2）",
+      "layout": "center",
+      "content": [
+        "<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">アーキテクトの役割：嘘を管理する</text>\n<circle cx=\"400\" cy=\"210\" r=\"120\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"198\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">アーキテクト</text>\n<text x=\"400\" y=\"220\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">嘘のキュレーター</text>\n<text x=\"400\" y=\"240\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">Map Manager</text>\n<rect x=\"30\" y=\"65\" width=\"180\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"120\" y=\"90\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\">嘘を識別する</text>\n<text x=\"120\" y=\"110\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">どの図がどの程度古いか</text>\n<line x1=\"210\" y1=\"95\" x2=\"285\" y2=\"150\" stroke=\"#e91e63\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/>\n<rect x=\"590\" y=\"65\" width=\"180\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"680\" y=\"90\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\" font-weight=\"bold\">嘘を分類する</text>\n<text x=\"680\" y=\"110\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">必要 vs 有害を判断</text>\n<line x1=\"590\" y1=\"95\" x2=\"515\" y2=\"150\" stroke=\"#4db6ac\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/>\n<rect x=\"30\" y=\"290\" width=\"180\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"120\" y=\"315\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\">嘘を更新する</text>\n<text x=\"120\" y=\"335\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">定期的なレビュー</text>\n<line x1=\"210\" y1=\"320\" x2=\"283\" y2=\"270\" stroke=\"#f9a825\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/>\n<rect x=\"590\" y=\"290\" width=\"180\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"2\"/>\n<text x=\"680\" y=\"315\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-weight=\"bold\">嘘を共有する</text>\n<text x=\"680\" y=\"335\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">チームへの周知</text>\n<line x1=\"590\" y1=\"320\" x2=\"515\" y2=\"270\" stroke=\"#aaaaaa\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/>\n</svg>",
+        "アーキテクチャ図は「現実」ではなく「道具」である",
+        "",
+        "良いアーキテクトの3つの責務:",
+        "**1. 目的に合った嘘を選ぶ** — 読者と文脈に最適な抽象化レベル"
+      ],
+      "speakerNotes": "まとめ。アーキテクトの仕事を「嘘の質を管理すること」と再定義する。コジブスキーの言葉で締める。"
+    },
+    {
+      "title": "嘘を管理するのがアーキテクトの仕事（2/2）",
+      "layout": "center",
+      "content": [
+        "**2. 嘘の鮮度を管理する** — 生きたドキュメントとADRで追跡",
+        "**3. 嘘の限界を明示する** — 「この図はL2まで」「2024年3月時点」",
+        "",
+        "「地図は現実ではない。しかし良い地図は航行を可能にする」",
+        "— あなたのアーキテクチャ図は、チームを正しく航行させているか？"
+      ],
+      "speakerNotes": "まとめ。アーキテクトの仕事を「嘘の質を管理すること」と再定義する。コジブスキーの言葉で締める。"
+    },
+    {
+      "title": "参考文献（1/2）",
+      "content": [
+        "**General Semantics / 地図と現実:**",
+        "- [Science and Sanity — Alfred Korzybski (1933)](https://en.wikipedia.org/wiki/Science_and_Sanity)",
+        "- [The Map Is Not The Territory — LessWrong](https://www.lesswrong.com/tag/the-map-is-not-the-territory)",
+        "",
+        "**C4モデル / Architecture as Code:**"
+      ],
+      "speakerNotes": "参考文献。C4モデルのサイトとStructurizrは実践的なツールとして特に推薦。",
+      "layout": "default"
+    },
+    {
+      "title": "参考文献（2/2）",
+      "content": [
+        "- [The C4 model for visualising software architecture](https://c4model.com/)",
+        "- [Structurizr DSL Documentation](https://docs.structurizr.com/dsl)",
+        "- [Diagrams as Code 2.0 — Simon Brown](https://www.infoq.com/presentations/diagrams-code-c4/)",
+        "",
+        "**ADR:**",
+        "- [Architecture Decision Records — Michael Nygard](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions)"
+      ],
+      "speakerNotes": "参考文献。C4モデルのサイトとStructurizrは実践的なツールとして特に推薦。",
+      "layout": "default"
+    }
+  ]
 }

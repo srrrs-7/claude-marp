@@ -1,0 +1,21 @@
+topic: "mTLS完全ガイド — アーキテクトが知るべき相互認証の全体像"
+language: "ja"
+
+slides:
+  count: 40
+
+output:
+  dir: "docs/20260313081154_mtls"
+  baseName: "mtls"
+
+marp:
+  theme: gaia
+  class: invert
+  paginate: true
+  header: "mTLS完全ガイド"
+  footer: "© 2026"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
