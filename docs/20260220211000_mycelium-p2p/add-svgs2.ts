@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "node:fs";
 const dataPath =
 	"/workspace/main/docs/20260220211000_mycelium-p2p/slides-data.json";
 const data = JSON.parse(readFileSync(dataPath, "utf-8"));

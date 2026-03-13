@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "node:fs";
 const dataPath =
 	"/workspace/main/docs/20260220211500_geological-strata-legacy/slides-data.json";
 const data = JSON.parse(readFileSync(dataPath, "utf-8"));

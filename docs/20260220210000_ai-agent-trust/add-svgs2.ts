@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "node:fs";
 
 const dataPath =
 	"/workspace/main/docs/20260220210000_ai-agent-trust/slides-data.json";

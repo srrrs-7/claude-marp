@@ -1,142 +1,142 @@
 {
-  "slides": [
-    {
-      "title": "錬金術からAIへ",
-      "layout": "center",
-      "content": [
-        "〜知識自動化の2000年史〜",
-        "賢者の石を求める人類の2000年の旅",
-        "<svg viewBox=\"0 0 800 320\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"320\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"400\" y=\"60\" font-size=\"20\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">錬金術師の問い</text><text x=\"400\" y=\"88\" font-size=\"14\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">「卑金属を金に変えられるか？」</text><text x=\"200\" y=\"200\" font-size=\"42\" text-anchor=\"middle\">⚗️</text><text x=\"400\" y=\"200\" font-size=\"42\" text-anchor=\"middle\" fill=\"#f9a825\">→</text><text x=\"600\" y=\"200\" font-size=\"42\" text-anchor=\"middle\">🤖</text><text x=\"200\" y=\"240\" font-size=\"13\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">錬金術師</text><text x=\"600\" y=\"240\" font-size=\"13\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">AI研究者</text><text x=\"400\" y=\"285\" font-size=\"15\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">2000年の夢：知識の自動変換</text></svg>"
-      ]
-    },
-    {
-      "title": "なぜ人類は知識の自動化を夢見るのか？",
-      "layout": "center",
-      "content": [
-        "古代から続く「知を機械化したい」という衝動",
-        "錬金術師もAI研究者も、同じ夢を追っている",
-        "![w:800 center](assets/timeline.svg)"
-      ]
-    },
-    {
-      "title": "第一章：古代〜中世（〜1600年）",
-      "layout": "section",
-      "content": []
-    },
-    {
-      "title": "アリストテレスの知識論（BC4世紀）",
-      "layout": "default",
-      "content": [
-        "知識を「形式（form）」と「質料（matter）」に分離",
-        "アルゴリズムの概念の原型",
-        "「論理学」＝ 推論の自動化への最初の試み",
-        "三段論法: 形式的推論の発明",
-        "<svg viewBox=\"0 0 800 260\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"260\" fill=\"#1a1a2e\" rx=\"10\"/><rect x=\"40\" y=\"60\" width=\"180\" height=\"70\" rx=\"8\" fill=\"#2a2a4e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"130\" y=\"90\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">前提1</text><text x=\"130\" y=\"112\" font-size=\"12\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">すべての人は死ぬ</text><rect x=\"40\" y=\"150\" width=\"180\" height=\"70\" rx=\"8\" fill=\"#2a2a4e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"130\" y=\"180\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">前提2</text><text x=\"130\" y=\"202\" font-size=\"12\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">ソクラテスは人間</text><rect x=\"310\" y=\"105\" width=\"180\" height=\"70\" rx=\"8\" fill=\"#3a1a3e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"400\" y=\"135\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">論理エンジン</text><text x=\"400\" y=\"157\" font-size=\"12\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">三段論法</text><rect x=\"580\" y=\"105\" width=\"180\" height=\"70\" rx=\"8\" fill=\"#1a3a1e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"670\" y=\"135\" font-size=\"14\" fill=\"#4caf50\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">結論</text><text x=\"670\" y=\"157\" font-size=\"12\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">ソクラテスは死ぬ</text><polygon points=\"228,95 310,140 228,95\" fill=\"#f9a825\"/><line x1=\"228\" y1=\"95\" x2=\"308\" y2=\"135\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"304,132 316,143 306,148\" fill=\"#f9a825\"/><polygon points=\"228,185 310,140 228,185\" fill=\"#f9a825\"/><line x1=\"228\" y1=\"185\" x2=\"308\" y2=\"145\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"304,148 316,137 306,132\" fill=\"#f9a825\"/><line x1=\"490\" y1=\"140\" x2=\"576\" y2=\"140\" stroke=\"#4caf50\" stroke-width=\"2\"/><polygon points=\"572,134 582,140 572,146\" fill=\"#4caf50\"/><text x=\"400\" y=\"230\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">形式的推論の自動化 — アルゴリズム思想の起源</text></svg>"
-      ]
-    },
-    {
-      "title": "中世錬金術〜物質変換の自動化",
-      "layout": "default",
-      "content": [
-        "アラビアの錬金術師（8〜12世紀）が化学・薬学を発展",
-        "al-Khwarizmi がアルゴリズムを発明（820年頃）",
-        "「卑金属を金に変える」＝ データを価値に変える",
-        "Homunculus（人工人間）＝ AGIの原型概念",
-        "![w:750 center](assets/alchemy-lab.svg)"
-      ]
-    },
-    {
-      "title": "賢者の石の探求",
-      "layout": "default",
-      "content": [
-        "「あらゆる物質を変換する万能物質」を求め数百年",
-        "AGIへの渇望との構造的一致:",
-        "賢者の石 ≈ 汎用知能（AGI）",
-        "不老不死の霊薬 ≈ 老化の解明・超長寿研究",
-        "「宇宙の真理の理解」≈ 世界モデルの構築",
-        "![w:700 center](assets/philosophers-stone.svg)"
-      ]
-    },
-    {
-      "title": "第二章：機械の夢（1600〜1950年）",
-      "layout": "section",
-      "content": []
-    },
-    {
-      "title": "バベッジとラブレス〜機械的計算の夢（1830年代）",
-      "layout": "default",
-      "content": [
-        "チャールズ・バベッジの解析機関（1837年）",
-        "エイダ・ラブレスが世界初のプログラムを記述",
-        "蒸気機関による「知識の機械化」の試み",
-        "100年早すぎた発明 — 技術の制約で実現せず",
-        "<svg viewBox=\"0 0 800 250\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"250\" fill=\"#1a1a2e\" rx=\"10\"/><rect x=\"30\" y=\"50\" width=\"150\" height=\"80\" rx=\"8\" fill=\"#2a1a1e\" stroke=\"#b5651d\" stroke-width=\"2\"/><text x=\"105\" y=\"83\" font-size=\"13\" fill=\"#b5651d\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">解析機関</text><text x=\"105\" y=\"103\" font-size=\"11\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">1837年</text><text x=\"105\" y=\"120\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">バベッジ設計</text><rect x=\"230\" y=\"50\" width=\"150\" height=\"80\" rx=\"8\" fill=\"#1a2a1e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"305\" y=\"83\" font-size=\"13\" fill=\"#4caf50\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">最初のプログラム</text><text x=\"305\" y=\"103\" font-size=\"11\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">ベルヌーイ数計算</text><text x=\"305\" y=\"120\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">ラブレス記述</text><rect x=\"430\" y=\"50\" width=\"150\" height=\"80\" rx=\"8\" fill=\"#1a1a3e\" stroke=\"#5c6bc0\" stroke-width=\"2\"/><text x=\"505\" y=\"83\" font-size=\"13\" fill=\"#5c6bc0\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">真空管コンピュータ</text><text x=\"505\" y=\"103\" font-size=\"11\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">1940年代</text><text x=\"505\" y=\"120\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">ENIAC等</text><rect x=\"630\" y=\"50\" width=\"140\" height=\"80\" rx=\"8\" fill=\"#1a2a3e\" stroke=\"#29b6f6\" stroke-width=\"2\"/><text x=\"700\" y=\"83\" font-size=\"13\" fill=\"#29b6f6\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">現代CPU</text><text x=\"700\" y=\"103\" font-size=\"11\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">1970年代〜</text><text x=\"700\" y=\"120\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">シリコン集積回路</text><line x1=\"180\" y1=\"90\" x2=\"228\" y2=\"90\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"224,85 232,90 224,95\" fill=\"#f9a825\"/><line x1=\"380\" y1=\"90\" x2=\"428\" y2=\"90\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"424,85 432,90 424,95\" fill=\"#f9a825\"/><line x1=\"580\" y1=\"90\" x2=\"628\" y2=\"90\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"624,85 632,90 624,95\" fill=\"#f9a825\"/><text x=\"400\" y=\"200\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">機械的計算の夢 → 電子計算へ</text><text x=\"400\" y=\"225\" font-size=\"12\" fill=\"#888\" text-anchor=\"middle\" font-family=\"sans-serif\">バベッジの設計思想はノイマン型アーキテクチャの原型</text></svg>"
-      ]
-    },
-    {
-      "title": "チューリングマシン〜知識自動化の理論基盤（1936年）",
-      "layout": "default",
-      "content": [
-        "「思考する機械は可能か？」（チューリングテスト, 1950）",
-        "計算可能性の理論: 何が「自動化」できるか",
-        "Entscheidungsproblem（決定問題）の否定的解答",
-        "「すべての問題を解けるアルゴリズムは存在しない」",
-        "![w:750 center](assets/turing-to-ai.svg)"
-      ]
-    },
-    {
-      "title": "第三章：AIの浮沈（1950〜2010年）",
-      "layout": "section",
-      "content": []
-    },
-    {
-      "title": "シンボリックAIの隆盛と失敗（1950〜1987年）",
-      "layout": "default",
-      "content": [
-        "「知識をルールで表現すれば知性ができる」",
-        "Prolog、エキスパートシステムの全盛（1970〜80年代）",
-        "AIの冬: 現実の複雑さはルールで書けない",
-        "これは錬金術師の「万能変換式」探しと同じ失敗",
-        "<svg viewBox=\"0 0 800 260\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"260\" fill=\"#1a1a2e\" rx=\"10\"/><text x=\"400\" y=\"30\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">シンボリックAI vs. 現実の複雑さ</text><rect x=\"30\" y=\"50\" width=\"340\" height=\"170\" rx=\"8\" fill=\"#1e2a1e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"200\" y=\"75\" font-size=\"14\" fill=\"#4caf50\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">シンボリックAIの世界</text><text x=\"60\" y=\"105\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 明示的ルール</text><text x=\"60\" y=\"128\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 論理演算</text><text x=\"60\" y=\"151\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 予測可能</text><text x=\"60\" y=\"174\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 閉じた世界</text><text x=\"60\" y=\"197\" font-size=\"12\" fill=\"#aaa\" font-family=\"sans-serif\">例: Prolog, MYCIN</text><rect x=\"430\" y=\"50\" width=\"340\" height=\"170\" rx=\"8\" fill=\"#2a1a1e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"600\" y=\"75\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">現実の世界</text><text x=\"460\" y=\"105\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 曖昧・不確かさ</text><text x=\"460\" y=\"128\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 例外だらけ</text><text x=\"460\" y=\"151\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 常識推論が必要</text><text x=\"460\" y=\"174\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 開放系・無限の文脈</text><text x=\"460\" y=\"197\" font-size=\"12\" fill=\"#aaa\" font-family=\"sans-serif\">→ フレーム問題</text><text x=\"400\" y=\"140\" font-size=\"28\" fill=\"#e91e63\" text-anchor=\"middle\">✗</text><text x=\"400\" y=\"235\" font-size=\"12\" fill=\"#888\" text-anchor=\"middle\" font-family=\"sans-serif\">錬金術師の「万能変換式」と同じ壁にぶつかった</text></svg>"
-      ]
-    },
-    {
-      "title": "コネクショニズムの復活〜ニューラルネット（1986〜2012年）",
-      "layout": "default",
-      "content": [
-        "バックプロパゲーション（1986）で学習可能なNNが誕生",
-        "「ルールを書かず、データから学ぶ」への転換",
-        "錬金術の「物質の変換」から「パターンの変換」へ",
-        "AlexNet（2012）で深層学習の実用性を証明",
-        "![w:800 center](assets/ai-evolution.svg)"
-      ]
-    },
-    {
-      "title": "第四章：LLMという現代の賢者の石",
-      "layout": "section",
-      "content": []
-    },
-    {
-      "title": "LLM〜賢者の石に最も近づいた瞬間",
-      "layout": "default",
-      "content": [
-        "GPT-4, Claude, Gemini: 汎用的な知識変換器",
-        "錬金術師が夢見た「あらゆる知識を変換する装置」",
-        "**しかし**: ハルシネーション＝「偽金（Fool's Gold）」",
-        "AGIは本物の賢者の石か、それとも黄鉄鉱か？",
-        "<svg viewBox=\"0 0 800 250\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"250\" fill=\"#1a1a2e\" rx=\"10\"/><text x=\"400\" y=\"30\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">LLMの入力→変換→出力フロー</text><rect x=\"20\" y=\"55\" width=\"160\" height=\"140\" rx=\"8\" fill=\"#2a2a4e\" stroke=\"#5c6bc0\" stroke-width=\"2\"/><text x=\"100\" y=\"85\" font-size=\"13\" fill=\"#5c6bc0\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">入力</text><text x=\"100\" y=\"110\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">テキスト</text><text x=\"100\" y=\"130\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">コード</text><text x=\"100\" y=\"150\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">画像</text><text x=\"100\" y=\"170\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">音声</text><rect x=\"320\" y=\"55\" width=\"160\" height=\"140\" rx=\"8\" fill=\"#2a1a3e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"400\" y=\"85\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">LLM変換器</text><text x=\"400\" y=\"110\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">Transformer</text><text x=\"400\" y=\"130\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">Attention機構</text><text x=\"400\" y=\"150\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">数百億パラメータ</text><text x=\"400\" y=\"170\" font-size=\"11\" fill=\"#888\" text-anchor=\"middle\" font-family=\"sans-serif\">≈ 賢者の石</text><rect x=\"620\" y=\"55\" width=\"160\" height=\"140\" rx=\"8\" fill=\"#1a3a2e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"700\" y=\"85\" font-size=\"13\" fill=\"#4caf50\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">出力</text><text x=\"700\" y=\"110\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">要約・翻訳</text><text x=\"700\" y=\"130\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">コード生成</text><text x=\"700\" y=\"150\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">推論・分析</text><text x=\"700\" y=\"170\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">創作</text><line x1=\"180\" y1=\"125\" x2=\"318\" y2=\"125\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"314,119 322,125 314,131\" fill=\"#f9a825\"/><line x1=\"480\" y1=\"125\" x2=\"618\" y2=\"125\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"614,119 622,125 614,131\" fill=\"#f9a825\"/><text x=\"400\" y=\"225\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\">但しハルシネーション ≈ 偽金（Fool's Gold）に注意</text></svg>"
-      ]
-    },
-    {
-      "title": "まとめ〜変わらない欲望、変わる技術",
-      "layout": "default",
-      "content": [
-        "2000年間、人類は同じ夢を見続けた",
-        "賢者の石を求めた錬金術師 ≈ AGIを求めるAI研究者",
-        "真の問い: 自動化で「何を」達成したいのか？",
-        "**参考文献**: [The Alchemy of AI (MIT)](https://web.mit.edu/) / [Stanford AI Index 2024](https://aiindex.stanford.edu/) / [Turing (1950) Computing Machinery](https://doi.org/10.1093/mind/LIX.236.433)",
-        "![w:750 center](assets/eternal-quest.svg)"
-      ]
-    }
-  ]
+	"slides": [
+		{
+			"title": "錬金術からAIへ",
+			"layout": "center",
+			"content": [
+				"〜知識自動化の2000年史〜",
+				"賢者の石を求める人類の2000年の旅",
+				"<svg viewBox=\"0 0 800 320\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"320\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"400\" y=\"60\" font-size=\"20\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">錬金術師の問い</text><text x=\"400\" y=\"88\" font-size=\"14\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">「卑金属を金に変えられるか？」</text><text x=\"200\" y=\"200\" font-size=\"42\" text-anchor=\"middle\">⚗️</text><text x=\"400\" y=\"200\" font-size=\"42\" text-anchor=\"middle\" fill=\"#f9a825\">→</text><text x=\"600\" y=\"200\" font-size=\"42\" text-anchor=\"middle\">🤖</text><text x=\"200\" y=\"240\" font-size=\"13\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">錬金術師</text><text x=\"600\" y=\"240\" font-size=\"13\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">AI研究者</text><text x=\"400\" y=\"285\" font-size=\"15\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">2000年の夢：知識の自動変換</text></svg>"
+			]
+		},
+		{
+			"title": "なぜ人類は知識の自動化を夢見るのか？",
+			"layout": "center",
+			"content": [
+				"古代から続く「知を機械化したい」という衝動",
+				"錬金術師もAI研究者も、同じ夢を追っている",
+				"![w:800 center](assets/timeline.svg)"
+			]
+		},
+		{
+			"title": "第一章：古代〜中世（〜1600年）",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "アリストテレスの知識論（BC4世紀）",
+			"layout": "default",
+			"content": [
+				"知識を「形式（form）」と「質料（matter）」に分離",
+				"アルゴリズムの概念の原型",
+				"「論理学」＝ 推論の自動化への最初の試み",
+				"三段論法: 形式的推論の発明",
+				"<svg viewBox=\"0 0 800 260\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"260\" fill=\"#1a1a2e\" rx=\"10\"/><rect x=\"40\" y=\"60\" width=\"180\" height=\"70\" rx=\"8\" fill=\"#2a2a4e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"130\" y=\"90\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">前提1</text><text x=\"130\" y=\"112\" font-size=\"12\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">すべての人は死ぬ</text><rect x=\"40\" y=\"150\" width=\"180\" height=\"70\" rx=\"8\" fill=\"#2a2a4e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"130\" y=\"180\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">前提2</text><text x=\"130\" y=\"202\" font-size=\"12\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">ソクラテスは人間</text><rect x=\"310\" y=\"105\" width=\"180\" height=\"70\" rx=\"8\" fill=\"#3a1a3e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"400\" y=\"135\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">論理エンジン</text><text x=\"400\" y=\"157\" font-size=\"12\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">三段論法</text><rect x=\"580\" y=\"105\" width=\"180\" height=\"70\" rx=\"8\" fill=\"#1a3a1e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"670\" y=\"135\" font-size=\"14\" fill=\"#4caf50\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">結論</text><text x=\"670\" y=\"157\" font-size=\"12\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">ソクラテスは死ぬ</text><polygon points=\"228,95 310,140 228,95\" fill=\"#f9a825\"/><line x1=\"228\" y1=\"95\" x2=\"308\" y2=\"135\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"304,132 316,143 306,148\" fill=\"#f9a825\"/><polygon points=\"228,185 310,140 228,185\" fill=\"#f9a825\"/><line x1=\"228\" y1=\"185\" x2=\"308\" y2=\"145\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"304,148 316,137 306,132\" fill=\"#f9a825\"/><line x1=\"490\" y1=\"140\" x2=\"576\" y2=\"140\" stroke=\"#4caf50\" stroke-width=\"2\"/><polygon points=\"572,134 582,140 572,146\" fill=\"#4caf50\"/><text x=\"400\" y=\"230\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">形式的推論の自動化 — アルゴリズム思想の起源</text></svg>"
+			]
+		},
+		{
+			"title": "中世錬金術〜物質変換の自動化",
+			"layout": "default",
+			"content": [
+				"アラビアの錬金術師（8〜12世紀）が化学・薬学を発展",
+				"al-Khwarizmi がアルゴリズムを発明（820年頃）",
+				"「卑金属を金に変える」＝ データを価値に変える",
+				"Homunculus（人工人間）＝ AGIの原型概念",
+				"![w:750 center](assets/alchemy-lab.svg)"
+			]
+		},
+		{
+			"title": "賢者の石の探求",
+			"layout": "default",
+			"content": [
+				"「あらゆる物質を変換する万能物質」を求め数百年",
+				"AGIへの渇望との構造的一致:",
+				"賢者の石 ≈ 汎用知能（AGI）",
+				"不老不死の霊薬 ≈ 老化の解明・超長寿研究",
+				"「宇宙の真理の理解」≈ 世界モデルの構築",
+				"![w:700 center](assets/philosophers-stone.svg)"
+			]
+		},
+		{
+			"title": "第二章：機械の夢（1600〜1950年）",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "バベッジとラブレス〜機械的計算の夢（1830年代）",
+			"layout": "default",
+			"content": [
+				"チャールズ・バベッジの解析機関（1837年）",
+				"エイダ・ラブレスが世界初のプログラムを記述",
+				"蒸気機関による「知識の機械化」の試み",
+				"100年早すぎた発明 — 技術の制約で実現せず",
+				"<svg viewBox=\"0 0 800 250\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"250\" fill=\"#1a1a2e\" rx=\"10\"/><rect x=\"30\" y=\"50\" width=\"150\" height=\"80\" rx=\"8\" fill=\"#2a1a1e\" stroke=\"#b5651d\" stroke-width=\"2\"/><text x=\"105\" y=\"83\" font-size=\"13\" fill=\"#b5651d\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">解析機関</text><text x=\"105\" y=\"103\" font-size=\"11\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">1837年</text><text x=\"105\" y=\"120\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">バベッジ設計</text><rect x=\"230\" y=\"50\" width=\"150\" height=\"80\" rx=\"8\" fill=\"#1a2a1e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"305\" y=\"83\" font-size=\"13\" fill=\"#4caf50\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">最初のプログラム</text><text x=\"305\" y=\"103\" font-size=\"11\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">ベルヌーイ数計算</text><text x=\"305\" y=\"120\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">ラブレス記述</text><rect x=\"430\" y=\"50\" width=\"150\" height=\"80\" rx=\"8\" fill=\"#1a1a3e\" stroke=\"#5c6bc0\" stroke-width=\"2\"/><text x=\"505\" y=\"83\" font-size=\"13\" fill=\"#5c6bc0\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">真空管コンピュータ</text><text x=\"505\" y=\"103\" font-size=\"11\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">1940年代</text><text x=\"505\" y=\"120\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">ENIAC等</text><rect x=\"630\" y=\"50\" width=\"140\" height=\"80\" rx=\"8\" fill=\"#1a2a3e\" stroke=\"#29b6f6\" stroke-width=\"2\"/><text x=\"700\" y=\"83\" font-size=\"13\" fill=\"#29b6f6\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">現代CPU</text><text x=\"700\" y=\"103\" font-size=\"11\" fill=\"#ddd\" text-anchor=\"middle\" font-family=\"sans-serif\">1970年代〜</text><text x=\"700\" y=\"120\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">シリコン集積回路</text><line x1=\"180\" y1=\"90\" x2=\"228\" y2=\"90\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"224,85 232,90 224,95\" fill=\"#f9a825\"/><line x1=\"380\" y1=\"90\" x2=\"428\" y2=\"90\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"424,85 432,90 424,95\" fill=\"#f9a825\"/><line x1=\"580\" y1=\"90\" x2=\"628\" y2=\"90\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"624,85 632,90 624,95\" fill=\"#f9a825\"/><text x=\"400\" y=\"200\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">機械的計算の夢 → 電子計算へ</text><text x=\"400\" y=\"225\" font-size=\"12\" fill=\"#888\" text-anchor=\"middle\" font-family=\"sans-serif\">バベッジの設計思想はノイマン型アーキテクチャの原型</text></svg>"
+			]
+		},
+		{
+			"title": "チューリングマシン〜知識自動化の理論基盤（1936年）",
+			"layout": "default",
+			"content": [
+				"「思考する機械は可能か？」（チューリングテスト, 1950）",
+				"計算可能性の理論: 何が「自動化」できるか",
+				"Entscheidungsproblem（決定問題）の否定的解答",
+				"「すべての問題を解けるアルゴリズムは存在しない」",
+				"![w:750 center](assets/turing-to-ai.svg)"
+			]
+		},
+		{
+			"title": "第三章：AIの浮沈（1950〜2010年）",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "シンボリックAIの隆盛と失敗（1950〜1987年）",
+			"layout": "default",
+			"content": [
+				"「知識をルールで表現すれば知性ができる」",
+				"Prolog、エキスパートシステムの全盛（1970〜80年代）",
+				"AIの冬: 現実の複雑さはルールで書けない",
+				"これは錬金術師の「万能変換式」探しと同じ失敗",
+				"<svg viewBox=\"0 0 800 260\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"260\" fill=\"#1a1a2e\" rx=\"10\"/><text x=\"400\" y=\"30\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">シンボリックAI vs. 現実の複雑さ</text><rect x=\"30\" y=\"50\" width=\"340\" height=\"170\" rx=\"8\" fill=\"#1e2a1e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"200\" y=\"75\" font-size=\"14\" fill=\"#4caf50\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">シンボリックAIの世界</text><text x=\"60\" y=\"105\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 明示的ルール</text><text x=\"60\" y=\"128\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 論理演算</text><text x=\"60\" y=\"151\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 予測可能</text><text x=\"60\" y=\"174\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 閉じた世界</text><text x=\"60\" y=\"197\" font-size=\"12\" fill=\"#aaa\" font-family=\"sans-serif\">例: Prolog, MYCIN</text><rect x=\"430\" y=\"50\" width=\"340\" height=\"170\" rx=\"8\" fill=\"#2a1a1e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"600\" y=\"75\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">現実の世界</text><text x=\"460\" y=\"105\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 曖昧・不確かさ</text><text x=\"460\" y=\"128\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 例外だらけ</text><text x=\"460\" y=\"151\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 常識推論が必要</text><text x=\"460\" y=\"174\" font-size=\"12\" fill=\"#ddd\" font-family=\"sans-serif\">• 開放系・無限の文脈</text><text x=\"460\" y=\"197\" font-size=\"12\" fill=\"#aaa\" font-family=\"sans-serif\">→ フレーム問題</text><text x=\"400\" y=\"140\" font-size=\"28\" fill=\"#e91e63\" text-anchor=\"middle\">✗</text><text x=\"400\" y=\"235\" font-size=\"12\" fill=\"#888\" text-anchor=\"middle\" font-family=\"sans-serif\">錬金術師の「万能変換式」と同じ壁にぶつかった</text></svg>"
+			]
+		},
+		{
+			"title": "コネクショニズムの復活〜ニューラルネット（1986〜2012年）",
+			"layout": "default",
+			"content": [
+				"バックプロパゲーション（1986）で学習可能なNNが誕生",
+				"「ルールを書かず、データから学ぶ」への転換",
+				"錬金術の「物質の変換」から「パターンの変換」へ",
+				"AlexNet（2012）で深層学習の実用性を証明",
+				"![w:800 center](assets/ai-evolution.svg)"
+			]
+		},
+		{
+			"title": "第四章：LLMという現代の賢者の石",
+			"layout": "section",
+			"content": []
+		},
+		{
+			"title": "LLM〜賢者の石に最も近づいた瞬間",
+			"layout": "default",
+			"content": [
+				"GPT-4, Claude, Gemini: 汎用的な知識変換器",
+				"錬金術師が夢見た「あらゆる知識を変換する装置」",
+				"**しかし**: ハルシネーション＝「偽金（Fool's Gold）」",
+				"AGIは本物の賢者の石か、それとも黄鉄鉱か？",
+				"<svg viewBox=\"0 0 800 250\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"250\" fill=\"#1a1a2e\" rx=\"10\"/><text x=\"400\" y=\"30\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">LLMの入力→変換→出力フロー</text><rect x=\"20\" y=\"55\" width=\"160\" height=\"140\" rx=\"8\" fill=\"#2a2a4e\" stroke=\"#5c6bc0\" stroke-width=\"2\"/><text x=\"100\" y=\"85\" font-size=\"13\" fill=\"#5c6bc0\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">入力</text><text x=\"100\" y=\"110\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">テキスト</text><text x=\"100\" y=\"130\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">コード</text><text x=\"100\" y=\"150\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">画像</text><text x=\"100\" y=\"170\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">音声</text><rect x=\"320\" y=\"55\" width=\"160\" height=\"140\" rx=\"8\" fill=\"#2a1a3e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"400\" y=\"85\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">LLM変換器</text><text x=\"400\" y=\"110\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">Transformer</text><text x=\"400\" y=\"130\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">Attention機構</text><text x=\"400\" y=\"150\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">数百億パラメータ</text><text x=\"400\" y=\"170\" font-size=\"11\" fill=\"#888\" text-anchor=\"middle\" font-family=\"sans-serif\">≈ 賢者の石</text><rect x=\"620\" y=\"55\" width=\"160\" height=\"140\" rx=\"8\" fill=\"#1a3a2e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"700\" y=\"85\" font-size=\"13\" fill=\"#4caf50\" text-anchor=\"middle\" font-family=\"sans-serif\" font-weight=\"bold\">出力</text><text x=\"700\" y=\"110\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">要約・翻訳</text><text x=\"700\" y=\"130\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">コード生成</text><text x=\"700\" y=\"150\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">推論・分析</text><text x=\"700\" y=\"170\" font-size=\"11\" fill=\"#ccc\" text-anchor=\"middle\" font-family=\"sans-serif\">創作</text><line x1=\"180\" y1=\"125\" x2=\"318\" y2=\"125\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"314,119 322,125 314,131\" fill=\"#f9a825\"/><line x1=\"480\" y1=\"125\" x2=\"618\" y2=\"125\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"614,119 622,125 614,131\" fill=\"#f9a825\"/><text x=\"400\" y=\"225\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\">但しハルシネーション ≈ 偽金（Fool's Gold）に注意</text></svg>"
+			]
+		},
+		{
+			"title": "まとめ〜変わらない欲望、変わる技術",
+			"layout": "default",
+			"content": [
+				"2000年間、人類は同じ夢を見続けた",
+				"賢者の石を求めた錬金術師 ≈ AGIを求めるAI研究者",
+				"真の問い: 自動化で「何を」達成したいのか？",
+				"**参考文献**: [The Alchemy of AI (MIT)](https://web.mit.edu/) / [Stanford AI Index 2024](https://aiindex.stanford.edu/) / [Turing (1950) Computing Machinery](https://doi.org/10.1093/mind/LIX.236.433)",
+				"![w:750 center](assets/eternal-quest.svg)"
+			]
+		}
+	]
 }

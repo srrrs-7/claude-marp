@@ -1,91 +1,91 @@
 {
-  "slides": [
-    {
-      "title": "平均値という嘘\n— データの罠を見破る",
-      "content": [
-        "平均年収400万円の国で「平均的な人」は存在しない",
-        "平均・中央値・最頻値の使い分け",
-        "ビジネス・政策判断を歪める統計の落とし穴"
-      ],
-      "layout": "center"
-    },
-    {
-      "title": "アジェンダ",
-      "content": [
-        "1. 平均値が嘘をつくとき",
-        "2. 分布の形が重要な理由",
-        "3. 中央値・最頻値・幾何平均",
-        "4. 企業での統計の誤用事例",
-        "5. 正しいデータの読み方"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "平均値が嘘をつくとき",
-      "content": [],
-      "layout": "section"
-    },
-    {
-      "title": "外れ値が平均を歪める",
-      "content": [
-        "「ビル・ゲイツがバーに入ると、全員が億万長者になる」",
-        "<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"32\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\">外れ値が平均を劇的に引き上げる</text><rect x=\"40\" y=\"60\" width=\"720\" height=\"230\" rx=\"8\" fill=\"#16213e\" stroke=\"#334\" stroke-width=\"1\"/><rect x=\"60\" y=\"200\" width=\"40\" height=\"70\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"110\" y=\"190\" width=\"40\" height=\"80\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"160\" y=\"185\" width=\"40\" height=\"85\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"210\" y=\"195\" width=\"40\" height=\"75\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"260\" y=\"180\" width=\"40\" height=\"90\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"310\" y=\"188\" width=\"40\" height=\"82\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"360\" y=\"192\" width=\"40\" height=\"78\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"410\" y=\"186\" width=\"40\" height=\"84\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"460\" y=\"196\" width=\"40\" height=\"74\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"510\" y=\"80\" width=\"40\" height=\"190\" rx=\"3\" fill=\"#e91e63\"/><text x=\"530\" y=\"72\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">外れ値</text><text x=\"530\" y=\"288\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\">ゲイツ氏</text><line x1=\"60\" y1=\"155\" x2=\"760\" y2=\"155\" stroke=\"#f9a825\" stroke-width=\"2\" stroke-dasharray=\"6,4\"/><text x=\"770\" y=\"159\" fill=\"#f9a825\" font-size=\"12\" text-anchor=\"end\">平均値</text><line x1=\"60\" y1=\"190\" x2=\"760\" y2=\"190\" stroke=\"#4caf50\" stroke-width=\"2\" stroke-dasharray=\"6,4\"/><text x=\"770\" y=\"194\" fill=\"#4caf50\" font-size=\"12\" text-anchor=\"end\">中央値</text><text x=\"400\" y=\"330\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"14\">1人の超富裕層により「平均」は大半の人の実態とかけ離れる</text></svg>"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "「平均的な人間」は存在しない（軍のコックピット問題）",
-      "content": [
-        "<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"32\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">米空軍コックピット事件（1950年代）</text><rect x=\"30\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"200\" y=\"80\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"15\" font-weight=\"bold\">Before: 平均値設計</text><ellipse cx=\"200\" cy=\"160\" rx=\"40\" ry=\"50\" fill=\"#37474f\"/><rect x=\"160\" y=\"205\" width=\"80\" height=\"90\" fill=\"#37474f\" rx=\"4\"/><rect x=\"120\" y=\"215\" width=\"40\" height=\"70\" fill=\"#37474f\" rx=\"4\"/><rect x=\"240\" y=\"215\" width=\"40\" height=\"70\" fill=\"#37474f\" rx=\"4\"/><rect x=\"165\" y=\"295\" width=\"30\" height=\"50\" fill=\"#37474f\" rx=\"4\"/><rect x=\"205\" y=\"295\" width=\"30\" height=\"50\" fill=\"#37474f\" rx=\"4\"/><line x1=\"100\" y1=\"255\" x2=\"165\" y2=\"240\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"60\" y=\"248\" fill=\"#e91e63\" font-size=\"11\">腕が届かない</text><line x1=\"300\" y1=\"280\" x2=\"245\" y2=\"265\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"300\" y=\"275\" fill=\"#e91e63\" font-size=\"11\">足が届かない</text><text x=\"200\" y=\"355\" text-anchor=\"middle\" fill=\"#ff6b6b\" font-size=\"13\">4000人全員に合わない</text><rect x=\"430\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"600\" y=\"80\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"15\" font-weight=\"bold\">After: 調整可能設計</text><ellipse cx=\"600\" cy=\"155\" rx=\"40\" ry=\"50\" fill=\"#455a64\"/><rect x=\"560\" y=\"200\" width=\"80\" height=\"90\" fill=\"#455a64\" rx=\"4\"/><rect x=\"520\" y=\"210\" width=\"40\" height=\"70\" fill=\"#455a64\" rx=\"4\"/><rect x=\"640\" y=\"210\" width=\"40\" height=\"70\" fill=\"#455a64\" rx=\"4\"/><rect x=\"565\" y=\"290\" width=\"30\" height=\"50\" fill=\"#455a64\" rx=\"4\"/><rect x=\"605\" y=\"290\" width=\"30\" height=\"50\" fill=\"#455a64\" rx=\"4\"/><rect x=\"540\" y=\"185\" width=\"120\" height=\"8\" rx=\"3\" fill=\"#f9a825\"/><line x1=\"540\" y1=\"189\" x2=\"520\" y2=\"189\" stroke=\"#f9a825\" stroke-width=\"3\"/><polygon points=\"520,189 530,184 530,194\" fill=\"#f9a825\"/><line x1=\"660\" y1=\"189\" x2=\"680\" y2=\"189\" stroke=\"#f9a825\" stroke-width=\"3\"/><polygon points=\"680,189 670,184 670,194\" fill=\"#f9a825\"/><text x=\"600\" y=\"355\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"13\">全員に対応可能</text></svg>",
-        "解決策：調整可能なシートの導入 → 「個人差」を前提にした設計へ"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "分布の形が重要",
-      "content": [],
-      "layout": "section"
-    },
-    {
-      "title": "正規分布 vs 冪乗分布",
-      "content": [
-        "<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">分布の形で「平均」の意味が変わる</text><rect x=\"20\" y=\"45\" width=\"370\" height=\"290\" rx=\"8\" fill=\"#16213e\" stroke=\"#42a5f5\" stroke-width=\"1.5\"/><text x=\"205\" y=\"68\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"14\" font-weight=\"bold\">正規分布（身長・テスト点数）</text><path d=\"M 40 290 Q 100 290 130 200 Q 160 110 205 90 Q 250 110 280 200 Q 310 290 370 290\" fill=\"none\" stroke=\"#42a5f5\" stroke-width=\"2.5\"/><path d=\"M 40 290 Q 100 290 130 200 Q 160 110 205 90 Q 250 110 280 200 Q 310 290 370 290 Z\" fill=\"#42a5f5\" fill-opacity=\"0.15\"/><line x1=\"205\" y1=\"90\" x2=\"205\" y2=\"290\" stroke=\"#f9a825\" stroke-width=\"2\" stroke-dasharray=\"5,3\"/><line x1=\"205\" y1=\"90\" x2=\"205\" y2=\"290\" stroke=\"#4caf50\" stroke-width=\"2\" stroke-dasharray=\"5,3\"/><text x=\"205\" y=\"310\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\">平均=中央値=最頻値</text><text x=\"205\" y=\"325\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\">平均値が代表値として機能する</text><rect x=\"410\" y=\"45\" width=\"370\" height=\"290\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"595\" y=\"68\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">冪乗分布（所得・アクセス数）</text><path d=\"M 430 290 Q 440 80 460 75 Q 480 82 510 150 Q 560 230 650 270 Q 720 285 770 290\" fill=\"none\" stroke=\"#e91e63\" stroke-width=\"2.5\"/><path d=\"M 430 290 Q 440 80 460 75 Q 480 82 510 150 Q 560 230 650 270 Q 720 285 770 290 Z\" fill=\"#e91e63\" fill-opacity=\"0.15\"/><line x1=\"530\" y1=\"75\" x2=\"530\" y2=\"290\" stroke=\"#f9a825\" stroke-width=\"2\" stroke-dasharray=\"5,3\"/><line x1=\"470\" y1=\"75\" x2=\"470\" y2=\"290\" stroke=\"#4caf50\" stroke-width=\"2\" stroke-dasharray=\"5,3\"/><text x=\"470\" y=\"308\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"11\">中央値</text><text x=\"530\" y=\"308\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">平均値</text><text x=\"595\" y=\"325\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\">平均値は大多数の実態を反映しない</text><rect x=\"200\" y=\"340\" width=\"16\" height=\"10\" fill=\"#f9a825\"/><text x=\"220\" y=\"350\" fill=\"#f9a825\" font-size=\"12\">平均値</text><rect x=\"300\" y=\"340\" width=\"16\" height=\"10\" fill=\"#4caf50\"/><text x=\"320\" y=\"350\" fill=\"#4caf50\" font-size=\"12\">中央値</text></svg>"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "二峰性分布の罠",
-      "content": [
-        "<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">二峰性分布：平均値が「谷」に落ちる</text><rect x=\"30\" y=\"45\" width=\"740\" height=\"240\" rx=\"8\" fill=\"#16213e\" stroke=\"#334\" stroke-width=\"1\"/><path d=\"M 50 260 Q 100 260 140 160 Q 170 90 200 80 Q 230 90 260 160 Q 300 240 350 255 Q 400 260 450 255 Q 500 240 540 160 Q 570 90 600 80 Q 630 90 660 160 Q 700 240 740 260\" fill=\"none\" stroke=\"#42a5f5\" stroke-width=\"2.5\"/><path d=\"M 50 260 Q 100 260 140 160 Q 170 90 200 80 Q 230 90 260 160 Q 300 240 350 255 Q 400 260 450 255 Q 500 240 540 160 Q 570 90 600 80 Q 630 90 660 160 Q 700 240 740 260 Z\" fill=\"#42a5f5\" fill-opacity=\"0.12\"/><line x1=\"400\" y1=\"50\" x2=\"400\" y2=\"265\" stroke=\"#e91e63\" stroke-width=\"2.5\" stroke-dasharray=\"6,4\"/><text x=\"400\" y=\"46\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">平均値（谷）</text><circle cx=\"200\" cy=\"80\" r=\"5\" fill=\"#f9a825\"/><text x=\"200\" y=\"72\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\">最頻値A</text><circle cx=\"600\" cy=\"80\" r=\"5\" fill=\"#f9a825\"/><text x=\"600\" y=\"72\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\">最頻値B</text><text x=\"400\" y=\"308\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"14\">例：従業員の通勤時間（近距離 vs 遠距離）</text><text x=\"400\" y=\"330\" text-anchor=\"middle\" fill=\"#ff6b6b\" font-size=\"13\">平均値は「最も少ない人数の値」になる！</text><text x=\"130\" y=\"280\" fill=\"#aaa\" font-size=\"12\">グループA</text><text x=\"560\" y=\"280\" fill=\"#aaa\" font-size=\"12\">グループB</text></svg>",
-        "二峰性分布では平均値は存在しないグループを代表する"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "正しい指標の選び方",
-      "content": [
-        "<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">代表値の使い分けガイド</text><rect x=\"20\" y=\"45\" width=\"230\" height=\"260\" rx=\"8\" fill=\"#16213e\" stroke=\"#42a5f5\" stroke-width=\"1.5\"/><text x=\"135\" y=\"70\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"14\" font-weight=\"bold\">平均値（Mean）</text><text x=\"135\" y=\"95\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\">全値を足して個数で割る</text><rect x=\"35\" y=\"105\" width=\"200\" height=\"2\" fill=\"#334\"/><text x=\"135\" y=\"125\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\">使うべき時：</text><text x=\"135\" y=\"145\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\">正規分布・対称な分布</text><text x=\"135\" y=\"163\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\">例：身長・気温・テスト点数</text><rect x=\"35\" y=\"175\" width=\"200\" height=\"2\" fill=\"#334\"/><text x=\"135\" y=\"195\" text-anchor=\"middle\" fill=\"#ff6b6b\" font-size=\"11\">避けるべき時：</text><text x=\"135\" y=\"215\" text-anchor=\"middle\" fill=\"#ff6b6b\" font-size=\"11\">歪んだ分布・外れ値あり</text><text x=\"135\" y=\"233\" text-anchor=\"middle\" fill=\"#ff6b6b\" font-size=\"11\">例：所得・資産・SNSフォロワー</text><rect x=\"285\" y=\"45\" width=\"230\" height=\"260\" rx=\"8\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"1.5\"/><text x=\"400\" y=\"70\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"bold\">中央値（Median）</text><text x=\"400\" y=\"95\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\">順に並べて真ん中の値</text><rect x=\"300\" y=\"105\" width=\"200\" height=\"2\" fill=\"#334\"/><text x=\"400\" y=\"125\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\">使うべき時：</text><text x=\"400\" y=\"145\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\">歪んだ分布・外れ値あり</text><text x=\"400\" y=\"163\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\">例：所得・資産・不動産価格</text><rect x=\"300\" y=\"175\" width=\"200\" height=\"2\" fill=\"#334\"/><text x=\"400\" y=\"195\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"11\">外れ値の影響を受けない</text><text x=\"400\" y=\"215\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"11\">「真ん中の人」を示す</text><rect x=\"550\" y=\"45\" width=\"230\" height=\"260\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"665\" y=\"70\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">幾何平均（Geometric）</text><text x=\"665\" y=\"95\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\">n個の値の積のn乗根</text><rect x=\"565\" y=\"105\" width=\"200\" height=\"2\" fill=\"#334\"/><text x=\"665\" y=\"125\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\">使うべき時：</text><text x=\"665\" y=\"145\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\">成長率・複利・倍率</text><text x=\"665\" y=\"163\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\">例：年平均成長率・投資リターン</text><rect x=\"565\" y=\"175\" width=\"200\" height=\"2\" fill=\"#334\"/><text x=\"665\" y=\"195\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">算術平均では過大評価に</text><text x=\"665\" y=\"215\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">CAGR計算に必須</text></svg>"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "所得格差とジニ係数",
-      "content": [
-        "<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">ローレンツ曲線とジニ係数 — 格差の可視化</text><rect x=\"60\" y=\"45\" width=\"680\" height=\"270\" rx=\"8\" fill=\"#16213e\" stroke=\"#334\" stroke-width=\"1\"/><line x1=\"100\" y1=\"290\" x2=\"700\" y2=\"290\" stroke=\"#555\" stroke-width=\"1.5\"/><line x1=\"100\" y1=\"290\" x2=\"100\" y2=\"60\" stroke=\"#555\" stroke-width=\"1.5\"/><text x=\"400\" y=\"315\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\">累積人口（%）</text><text x=\"68\" y=\"175\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\" transform=\"rotate(-90 68 175)\">累積所得（%）</text><line x1=\"100\" y1=\"290\" x2=\"700\" y2=\"60\" stroke=\"#4caf50\" stroke-width=\"2\" stroke-dasharray=\"8,4\"/><text x=\"420\" y=\"155\" fill=\"#4caf50\" font-size=\"12\" transform=\"rotate(-30 420 155)\">完全平等線</text><path d=\"M 100 290 Q 250 285 400 260 Q 550 230 700 60\" fill=\"none\" stroke=\"#42a5f5\" stroke-width=\"2.5\"/><path d=\"M 100 290 Q 250 285 400 260 Q 550 230 700 60 L 700 290 Z\" fill=\"#42a5f5\" fill-opacity=\"0.1\"/><path d=\"M 100 290 Q 300 290 500 270 Q 640 255 700 60\" fill=\"none\" stroke=\"#e91e63\" stroke-width=\"2.5\"/><path d=\"M 100 290 Q 300 290 500 270 Q 640 255 700 60 L 700 290 Z\" fill=\"#e91e63\" fill-opacity=\"0.1\"/><text x=\"320\" y=\"265\" fill=\"#42a5f5\" font-size=\"12\">日本（ジニ係数 0.33）</text><text x=\"480\" y=\"245\" fill=\"#e91e63\" font-size=\"12\">米国（ジニ係数 0.49）</text><text x=\"155\" y=\"175\" fill=\"#aaa\" font-size=\"11\">格差</text><text x=\"145\" y=\"190\" fill=\"#aaa\" font-size=\"11\">領域A</text><text x=\"400\" y=\"240\" fill=\"#aaa\" font-size=\"11\">格差領域B</text><text x=\"400\" y=\"340\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"13\">ジニ係数 = 格差領域 / 完全平等三角形の面積（0=完全平等、1=完全不平等）</text></svg>"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "まとめ：平均値を疑う習慣",
-      "content": [
-        "✅ **「平均」は分布が正規分布のときだけ有意義**",
-        "✅ **所得・アクセス数・シェアは冪乗分布 → 中央値を使う**",
-        "✅ **成長率・利回りには幾何平均を使う**",
-        "✅ **「平均的な顧客」「平均的なユーザー」は存在しないかもしれない**",
-        "",
-        "「すべての人が平均より頭がいいと思っている」— Lake Wobegon Effect"
-      ],
-      "layout": "default"
-    }
-  ]
+	"slides": [
+		{
+			"title": "平均値という嘘\n— データの罠を見破る",
+			"content": [
+				"平均年収400万円の国で「平均的な人」は存在しない",
+				"平均・中央値・最頻値の使い分け",
+				"ビジネス・政策判断を歪める統計の落とし穴"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "アジェンダ",
+			"content": [
+				"1. 平均値が嘘をつくとき",
+				"2. 分布の形が重要な理由",
+				"3. 中央値・最頻値・幾何平均",
+				"4. 企業での統計の誤用事例",
+				"5. 正しいデータの読み方"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "平均値が嘘をつくとき",
+			"content": [],
+			"layout": "section"
+		},
+		{
+			"title": "外れ値が平均を歪める",
+			"content": [
+				"「ビル・ゲイツがバーに入ると、全員が億万長者になる」",
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"32\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\">外れ値が平均を劇的に引き上げる</text><rect x=\"40\" y=\"60\" width=\"720\" height=\"230\" rx=\"8\" fill=\"#16213e\" stroke=\"#334\" stroke-width=\"1\"/><rect x=\"60\" y=\"200\" width=\"40\" height=\"70\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"110\" y=\"190\" width=\"40\" height=\"80\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"160\" y=\"185\" width=\"40\" height=\"85\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"210\" y=\"195\" width=\"40\" height=\"75\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"260\" y=\"180\" width=\"40\" height=\"90\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"310\" y=\"188\" width=\"40\" height=\"82\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"360\" y=\"192\" width=\"40\" height=\"78\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"410\" y=\"186\" width=\"40\" height=\"84\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"460\" y=\"196\" width=\"40\" height=\"74\" rx=\"3\" fill=\"#42a5f5\"/><rect x=\"510\" y=\"80\" width=\"40\" height=\"190\" rx=\"3\" fill=\"#e91e63\"/><text x=\"530\" y=\"72\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">外れ値</text><text x=\"530\" y=\"288\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\">ゲイツ氏</text><line x1=\"60\" y1=\"155\" x2=\"760\" y2=\"155\" stroke=\"#f9a825\" stroke-width=\"2\" stroke-dasharray=\"6,4\"/><text x=\"770\" y=\"159\" fill=\"#f9a825\" font-size=\"12\" text-anchor=\"end\">平均値</text><line x1=\"60\" y1=\"190\" x2=\"760\" y2=\"190\" stroke=\"#4caf50\" stroke-width=\"2\" stroke-dasharray=\"6,4\"/><text x=\"770\" y=\"194\" fill=\"#4caf50\" font-size=\"12\" text-anchor=\"end\">中央値</text><text x=\"400\" y=\"330\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"14\">1人の超富裕層により「平均」は大半の人の実態とかけ離れる</text></svg>"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "「平均的な人間」は存在しない（軍のコックピット問題）",
+			"content": [
+				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"32\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">米空軍コックピット事件（1950年代）</text><rect x=\"30\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"200\" y=\"80\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"15\" font-weight=\"bold\">Before: 平均値設計</text><ellipse cx=\"200\" cy=\"160\" rx=\"40\" ry=\"50\" fill=\"#37474f\"/><rect x=\"160\" y=\"205\" width=\"80\" height=\"90\" fill=\"#37474f\" rx=\"4\"/><rect x=\"120\" y=\"215\" width=\"40\" height=\"70\" fill=\"#37474f\" rx=\"4\"/><rect x=\"240\" y=\"215\" width=\"40\" height=\"70\" fill=\"#37474f\" rx=\"4\"/><rect x=\"165\" y=\"295\" width=\"30\" height=\"50\" fill=\"#37474f\" rx=\"4\"/><rect x=\"205\" y=\"295\" width=\"30\" height=\"50\" fill=\"#37474f\" rx=\"4\"/><line x1=\"100\" y1=\"255\" x2=\"165\" y2=\"240\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"60\" y=\"248\" fill=\"#e91e63\" font-size=\"11\">腕が届かない</text><line x1=\"300\" y1=\"280\" x2=\"245\" y2=\"265\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"300\" y=\"275\" fill=\"#e91e63\" font-size=\"11\">足が届かない</text><text x=\"200\" y=\"355\" text-anchor=\"middle\" fill=\"#ff6b6b\" font-size=\"13\">4000人全員に合わない</text><rect x=\"430\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"600\" y=\"80\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"15\" font-weight=\"bold\">After: 調整可能設計</text><ellipse cx=\"600\" cy=\"155\" rx=\"40\" ry=\"50\" fill=\"#455a64\"/><rect x=\"560\" y=\"200\" width=\"80\" height=\"90\" fill=\"#455a64\" rx=\"4\"/><rect x=\"520\" y=\"210\" width=\"40\" height=\"70\" fill=\"#455a64\" rx=\"4\"/><rect x=\"640\" y=\"210\" width=\"40\" height=\"70\" fill=\"#455a64\" rx=\"4\"/><rect x=\"565\" y=\"290\" width=\"30\" height=\"50\" fill=\"#455a64\" rx=\"4\"/><rect x=\"605\" y=\"290\" width=\"30\" height=\"50\" fill=\"#455a64\" rx=\"4\"/><rect x=\"540\" y=\"185\" width=\"120\" height=\"8\" rx=\"3\" fill=\"#f9a825\"/><line x1=\"540\" y1=\"189\" x2=\"520\" y2=\"189\" stroke=\"#f9a825\" stroke-width=\"3\"/><polygon points=\"520,189 530,184 530,194\" fill=\"#f9a825\"/><line x1=\"660\" y1=\"189\" x2=\"680\" y2=\"189\" stroke=\"#f9a825\" stroke-width=\"3\"/><polygon points=\"680,189 670,184 670,194\" fill=\"#f9a825\"/><text x=\"600\" y=\"355\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"13\">全員に対応可能</text></svg>",
+				"解決策：調整可能なシートの導入 → 「個人差」を前提にした設計へ"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "分布の形が重要",
+			"content": [],
+			"layout": "section"
+		},
+		{
+			"title": "正規分布 vs 冪乗分布",
+			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">分布の形で「平均」の意味が変わる</text><rect x=\"20\" y=\"45\" width=\"370\" height=\"290\" rx=\"8\" fill=\"#16213e\" stroke=\"#42a5f5\" stroke-width=\"1.5\"/><text x=\"205\" y=\"68\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"14\" font-weight=\"bold\">正規分布（身長・テスト点数）</text><path d=\"M 40 290 Q 100 290 130 200 Q 160 110 205 90 Q 250 110 280 200 Q 310 290 370 290\" fill=\"none\" stroke=\"#42a5f5\" stroke-width=\"2.5\"/><path d=\"M 40 290 Q 100 290 130 200 Q 160 110 205 90 Q 250 110 280 200 Q 310 290 370 290 Z\" fill=\"#42a5f5\" fill-opacity=\"0.15\"/><line x1=\"205\" y1=\"90\" x2=\"205\" y2=\"290\" stroke=\"#f9a825\" stroke-width=\"2\" stroke-dasharray=\"5,3\"/><line x1=\"205\" y1=\"90\" x2=\"205\" y2=\"290\" stroke=\"#4caf50\" stroke-width=\"2\" stroke-dasharray=\"5,3\"/><text x=\"205\" y=\"310\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\">平均=中央値=最頻値</text><text x=\"205\" y=\"325\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\">平均値が代表値として機能する</text><rect x=\"410\" y=\"45\" width=\"370\" height=\"290\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"595\" y=\"68\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">冪乗分布（所得・アクセス数）</text><path d=\"M 430 290 Q 440 80 460 75 Q 480 82 510 150 Q 560 230 650 270 Q 720 285 770 290\" fill=\"none\" stroke=\"#e91e63\" stroke-width=\"2.5\"/><path d=\"M 430 290 Q 440 80 460 75 Q 480 82 510 150 Q 560 230 650 270 Q 720 285 770 290 Z\" fill=\"#e91e63\" fill-opacity=\"0.15\"/><line x1=\"530\" y1=\"75\" x2=\"530\" y2=\"290\" stroke=\"#f9a825\" stroke-width=\"2\" stroke-dasharray=\"5,3\"/><line x1=\"470\" y1=\"75\" x2=\"470\" y2=\"290\" stroke=\"#4caf50\" stroke-width=\"2\" stroke-dasharray=\"5,3\"/><text x=\"470\" y=\"308\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"11\">中央値</text><text x=\"530\" y=\"308\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">平均値</text><text x=\"595\" y=\"325\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\">平均値は大多数の実態を反映しない</text><rect x=\"200\" y=\"340\" width=\"16\" height=\"10\" fill=\"#f9a825\"/><text x=\"220\" y=\"350\" fill=\"#f9a825\" font-size=\"12\">平均値</text><rect x=\"300\" y=\"340\" width=\"16\" height=\"10\" fill=\"#4caf50\"/><text x=\"320\" y=\"350\" fill=\"#4caf50\" font-size=\"12\">中央値</text></svg>"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "二峰性分布の罠",
+			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">二峰性分布：平均値が「谷」に落ちる</text><rect x=\"30\" y=\"45\" width=\"740\" height=\"240\" rx=\"8\" fill=\"#16213e\" stroke=\"#334\" stroke-width=\"1\"/><path d=\"M 50 260 Q 100 260 140 160 Q 170 90 200 80 Q 230 90 260 160 Q 300 240 350 255 Q 400 260 450 255 Q 500 240 540 160 Q 570 90 600 80 Q 630 90 660 160 Q 700 240 740 260\" fill=\"none\" stroke=\"#42a5f5\" stroke-width=\"2.5\"/><path d=\"M 50 260 Q 100 260 140 160 Q 170 90 200 80 Q 230 90 260 160 Q 300 240 350 255 Q 400 260 450 255 Q 500 240 540 160 Q 570 90 600 80 Q 630 90 660 160 Q 700 240 740 260 Z\" fill=\"#42a5f5\" fill-opacity=\"0.12\"/><line x1=\"400\" y1=\"50\" x2=\"400\" y2=\"265\" stroke=\"#e91e63\" stroke-width=\"2.5\" stroke-dasharray=\"6,4\"/><text x=\"400\" y=\"46\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">平均値（谷）</text><circle cx=\"200\" cy=\"80\" r=\"5\" fill=\"#f9a825\"/><text x=\"200\" y=\"72\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\">最頻値A</text><circle cx=\"600\" cy=\"80\" r=\"5\" fill=\"#f9a825\"/><text x=\"600\" y=\"72\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\">最頻値B</text><text x=\"400\" y=\"308\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"14\">例：従業員の通勤時間（近距離 vs 遠距離）</text><text x=\"400\" y=\"330\" text-anchor=\"middle\" fill=\"#ff6b6b\" font-size=\"13\">平均値は「最も少ない人数の値」になる！</text><text x=\"130\" y=\"280\" fill=\"#aaa\" font-size=\"12\">グループA</text><text x=\"560\" y=\"280\" fill=\"#aaa\" font-size=\"12\">グループB</text></svg>",
+				"二峰性分布では平均値は存在しないグループを代表する"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "正しい指標の選び方",
+			"content": [
+				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">代表値の使い分けガイド</text><rect x=\"20\" y=\"45\" width=\"230\" height=\"260\" rx=\"8\" fill=\"#16213e\" stroke=\"#42a5f5\" stroke-width=\"1.5\"/><text x=\"135\" y=\"70\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"14\" font-weight=\"bold\">平均値（Mean）</text><text x=\"135\" y=\"95\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\">全値を足して個数で割る</text><rect x=\"35\" y=\"105\" width=\"200\" height=\"2\" fill=\"#334\"/><text x=\"135\" y=\"125\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\">使うべき時：</text><text x=\"135\" y=\"145\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\">正規分布・対称な分布</text><text x=\"135\" y=\"163\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\">例：身長・気温・テスト点数</text><rect x=\"35\" y=\"175\" width=\"200\" height=\"2\" fill=\"#334\"/><text x=\"135\" y=\"195\" text-anchor=\"middle\" fill=\"#ff6b6b\" font-size=\"11\">避けるべき時：</text><text x=\"135\" y=\"215\" text-anchor=\"middle\" fill=\"#ff6b6b\" font-size=\"11\">歪んだ分布・外れ値あり</text><text x=\"135\" y=\"233\" text-anchor=\"middle\" fill=\"#ff6b6b\" font-size=\"11\">例：所得・資産・SNSフォロワー</text><rect x=\"285\" y=\"45\" width=\"230\" height=\"260\" rx=\"8\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"1.5\"/><text x=\"400\" y=\"70\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"bold\">中央値（Median）</text><text x=\"400\" y=\"95\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\">順に並べて真ん中の値</text><rect x=\"300\" y=\"105\" width=\"200\" height=\"2\" fill=\"#334\"/><text x=\"400\" y=\"125\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\">使うべき時：</text><text x=\"400\" y=\"145\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\">歪んだ分布・外れ値あり</text><text x=\"400\" y=\"163\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\">例：所得・資産・不動産価格</text><rect x=\"300\" y=\"175\" width=\"200\" height=\"2\" fill=\"#334\"/><text x=\"400\" y=\"195\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"11\">外れ値の影響を受けない</text><text x=\"400\" y=\"215\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"11\">「真ん中の人」を示す</text><rect x=\"550\" y=\"45\" width=\"230\" height=\"260\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"665\" y=\"70\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">幾何平均（Geometric）</text><text x=\"665\" y=\"95\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\">n個の値の積のn乗根</text><rect x=\"565\" y=\"105\" width=\"200\" height=\"2\" fill=\"#334\"/><text x=\"665\" y=\"125\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\">使うべき時：</text><text x=\"665\" y=\"145\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\">成長率・複利・倍率</text><text x=\"665\" y=\"163\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\">例：年平均成長率・投資リターン</text><rect x=\"565\" y=\"175\" width=\"200\" height=\"2\" fill=\"#334\"/><text x=\"665\" y=\"195\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">算術平均では過大評価に</text><text x=\"665\" y=\"215\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">CAGR計算に必須</text></svg>"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "所得格差とジニ係数",
+			"content": [
+				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">ローレンツ曲線とジニ係数 — 格差の可視化</text><rect x=\"60\" y=\"45\" width=\"680\" height=\"270\" rx=\"8\" fill=\"#16213e\" stroke=\"#334\" stroke-width=\"1\"/><line x1=\"100\" y1=\"290\" x2=\"700\" y2=\"290\" stroke=\"#555\" stroke-width=\"1.5\"/><line x1=\"100\" y1=\"290\" x2=\"100\" y2=\"60\" stroke=\"#555\" stroke-width=\"1.5\"/><text x=\"400\" y=\"315\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\">累積人口（%）</text><text x=\"68\" y=\"175\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\" transform=\"rotate(-90 68 175)\">累積所得（%）</text><line x1=\"100\" y1=\"290\" x2=\"700\" y2=\"60\" stroke=\"#4caf50\" stroke-width=\"2\" stroke-dasharray=\"8,4\"/><text x=\"420\" y=\"155\" fill=\"#4caf50\" font-size=\"12\" transform=\"rotate(-30 420 155)\">完全平等線</text><path d=\"M 100 290 Q 250 285 400 260 Q 550 230 700 60\" fill=\"none\" stroke=\"#42a5f5\" stroke-width=\"2.5\"/><path d=\"M 100 290 Q 250 285 400 260 Q 550 230 700 60 L 700 290 Z\" fill=\"#42a5f5\" fill-opacity=\"0.1\"/><path d=\"M 100 290 Q 300 290 500 270 Q 640 255 700 60\" fill=\"none\" stroke=\"#e91e63\" stroke-width=\"2.5\"/><path d=\"M 100 290 Q 300 290 500 270 Q 640 255 700 60 L 700 290 Z\" fill=\"#e91e63\" fill-opacity=\"0.1\"/><text x=\"320\" y=\"265\" fill=\"#42a5f5\" font-size=\"12\">日本（ジニ係数 0.33）</text><text x=\"480\" y=\"245\" fill=\"#e91e63\" font-size=\"12\">米国（ジニ係数 0.49）</text><text x=\"155\" y=\"175\" fill=\"#aaa\" font-size=\"11\">格差</text><text x=\"145\" y=\"190\" fill=\"#aaa\" font-size=\"11\">領域A</text><text x=\"400\" y=\"240\" fill=\"#aaa\" font-size=\"11\">格差領域B</text><text x=\"400\" y=\"340\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"13\">ジニ係数 = 格差領域 / 完全平等三角形の面積（0=完全平等、1=完全不平等）</text></svg>"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "まとめ：平均値を疑う習慣",
+			"content": [
+				"✅ **「平均」は分布が正規分布のときだけ有意義**",
+				"✅ **所得・アクセス数・シェアは冪乗分布 → 中央値を使う**",
+				"✅ **成長率・利回りには幾何平均を使う**",
+				"✅ **「平均的な顧客」「平均的なユーザー」は存在しないかもしれない**",
+				"",
+				"「すべての人が平均より頭がいいと思っている」— Lake Wobegon Effect"
+			],
+			"layout": "default"
+		}
+	]
 }

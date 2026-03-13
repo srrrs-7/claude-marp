@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "node:fs";
 const dataPath =
 	"/workspace/main/docs/20260220212000_metamorphosis-migration/slides-data.json";
 const data = JSON.parse(readFileSync(dataPath, "utf-8"));

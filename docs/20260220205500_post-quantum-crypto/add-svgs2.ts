@@ -1,4 +1,4 @@
-import { readFileSync, writeFileSync } from "fs";
+import { readFileSync, writeFileSync } from "node:fs";
 
 const dataPath =
 	"/workspace/main/docs/20260220205500_post-quantum-crypto/slides-data.json";

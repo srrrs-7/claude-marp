@@ -1,148 +1,148 @@
 {
-  "slides": [
-    {
-      "title": "シュレーディンガーの本番環境",
-      "content": [
-        "〜量子力学で読み解くDevOps〜",
-        "観測するまで本番は「動いている」かつ「落ちている」"
-      ],
-      "layout": "center"
-    },
-    {
-      "title": "量子力学とDevOpsの意外な共通点",
-      "content": [
-        "**量子力学**: 観測するまで状態が確定しない",
-        "**本番環境**: デプロイするまで動くかわからない",
-        "「理論上は正しい」が口癖のエンジニアへ",
-        "![w:700 center](assets/quantum-devops.svg)"
-      ],
-      "layout": "center"
-    },
-    {
-      "title": "原理1：重ね合わせの状態",
-      "content": [],
-      "layout": "section"
-    },
-    {
-      "title": "重ね合わせ〜デプロイ前の「どちらでもある」状態",
-      "content": [
-        "**量子**: 観測前は |0⟩+|1⟩ の重ね合わせ状態",
-        "**本番**: デプロイ前は「動く」+「壊れる」が同時に存在",
-        "**ブルーグリーンデプロイ** = 重ね合わせを維持したまま切り替える",
-        "**カナリアリリース** = 少数のユーザーで波動関数を部分収束",
-        "![w:800 center](assets/superposition.svg)"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "原理2：観測問題とハイゼンバグ",
-      "content": [],
-      "layout": "section"
-    },
-    {
-      "title": "ハイゼンバグ〜観測するとバグが消える",
-      "content": [
-        "**量子**: 観測行為が状態を変える（コペンハーゲン解釈）",
-        "`console.log` を追加したらバグが消えた",
-        "ログレベルを変えたら再現しなくなった",
-        "これは「測定問題」そのもの",
-        "![w:800 center](assets/heisenbug.svg)"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "観測問題の解決策〜Observabilityという「測定装置」",
-      "content": [
-        "**Prometheus**: 量子的測定器 — 状態を定期的にサンプリング",
-        "**Distributed Tracing**: 波動関数の経路記録 — リクエストの軌跡を追う",
-        "**ログ集約**: 状態の観測記録 — 過去の状態を再現可能にする",
-        "**設計原則**: 観測がシステムの振る舞いを変えないように設計せよ",
-        "<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"34\" text-anchor=\"middle\" font-size=\"18\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">Observability の三本柱</text><rect x=\"60\" y=\"60\" width=\"200\" height=\"260\" rx=\"12\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"160\" y=\"92\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">Metrics</text><text x=\"160\" y=\"116\" text-anchor=\"middle\" font-size=\"12\" fill=\"#ffffff\" font-family=\"sans-serif\">数値の時系列データ</text><rect x=\"80\" y=\"130\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"160\" y=\"149\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">CPU / Memory</text><rect x=\"80\" y=\"166\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"160\" y=\"185\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Error Rate</text><rect x=\"80\" y=\"202\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"160\" y=\"221\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Latency (P99)</text><rect x=\"80\" y=\"238\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"160\" y=\"257\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Request Count</text><text x=\"160\" y=\"300\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaaaa\" font-family=\"sans-serif\">Prometheus / Grafana</text><rect x=\"300\" y=\"60\" width=\"200\" height=\"260\" rx=\"12\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"400\" y=\"92\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#e91e63\" font-family=\"sans-serif\">Traces</text><text x=\"400\" y=\"116\" text-anchor=\"middle\" font-size=\"12\" fill=\"#ffffff\" font-family=\"sans-serif\">リクエストの経路追跡</text><rect x=\"320\" y=\"130\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"400\" y=\"149\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Span / Trace ID</text><rect x=\"320\" y=\"166\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"400\" y=\"185\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Service Dependency</text><rect x=\"320\" y=\"202\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"400\" y=\"221\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Latency Breakdown</text><rect x=\"320\" y=\"238\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"400\" y=\"257\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Error Propagation</text><text x=\"400\" y=\"300\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaaaa\" font-family=\"sans-serif\">Jaeger / Zipkin / Tempo</text><rect x=\"540\" y=\"60\" width=\"200\" height=\"260\" rx=\"12\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"640\" y=\"92\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#4caf50\" font-family=\"sans-serif\">Logs</text><text x=\"640\" y=\"116\" text-anchor=\"middle\" font-size=\"12\" fill=\"#ffffff\" font-family=\"sans-serif\">状態の詳細な記録</text><rect x=\"560\" y=\"130\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"640\" y=\"149\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Structured Logging</text><rect x=\"560\" y=\"166\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"640\" y=\"185\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Log Level</text><rect x=\"560\" y=\"202\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"640\" y=\"221\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Correlation ID</text><rect x=\"560\" y=\"238\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"640\" y=\"257\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Audit Trail</text><text x=\"640\" y=\"300\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaaaa\" font-family=\"sans-serif\">Loki / Elasticsearch</text><text x=\"400\" y=\"350\" text-anchor=\"middle\" font-size=\"13\" fill=\"#f9a825\" font-family=\"sans-serif\">三本柱を組み合わせることで「波動関数」を完全観測する</text></svg>"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "原理3：不確定性原理",
-      "content": [],
-      "layout": "section"
-    },
-    {
-      "title": "不確定性原理〜パフォーマンスとコストのトレードオフ",
-      "content": [
-        "**ハイゼンベルク**: 位置と運動量を同時に正確に測定できない",
-        "**システム**: レイテンシとスループットを同時に最小化できない",
-        "コストとパフォーマンスは相反する — 「全部最適」は存在しない",
-        "![w:700 center](assets/uncertainty.svg)"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "量子もつれ〜マイクロサービスの隠れた依存",
-      "content": [
-        "**量子もつれ**: 離れた粒子が瞬時に相関する",
-        "**マイクロサービス**: A障害 → B障害 → C障害… カスケード障害",
-        "「独立しているはず」のサービス間の見えない依存関係",
-        "Circuit Breaker パターン = もつれを切断する観測装置",
-        "![w:850 center](assets/entanglement.svg)"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "デコヒーレンス〜時間とともに劣化するシステム",
-      "content": [
-        "**量子デコヒーレンス**: 量子状態は環境との相互作用で古典的状態に崩壊する",
-        "**システム**: 時間とともに設計意図から乖離し、複雑化・脆弱化する",
-        "「動いているが理由がわからない」レガシーシステムの正体",
-        "<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">技術的負債とデコヒーレンスの進行</text><line x1=\"60\" y1=\"290\" x2=\"760\" y2=\"290\" stroke=\"#555\" stroke-width=\"1\"/><line x1=\"60\" y1=\"60\" x2=\"60\" y2=\"290\" stroke=\"#555\" stroke-width=\"1\"/><text x=\"410\" y=\"320\" text-anchor=\"middle\" font-size=\"12\" fill=\"#aaaaaa\" font-family=\"sans-serif\">時間 (リリースサイクル)</text><text x=\"30\" y=\"180\" text-anchor=\"middle\" font-size=\"12\" fill=\"#aaaaaa\" font-family=\"sans-serif\" transform=\"rotate(-90 30 180)\">コヒーレンス</text><polyline points=\"60,80 160,90 260,110 360,145 460,190 560,240 660,275 760,285\" stroke=\"#4caf50\" stroke-width=\"3\" fill=\"none\"/><text x=\"680\" y=\"268\" font-size=\"11\" fill=\"#4caf50\" font-family=\"sans-serif\">リファクタリングなし</text><polyline points=\"60,80 160,84 260,88 360,85 460,89 560,86 660,82 760,80\" stroke=\"#f9a825\" stroke-width=\"3\" fill=\"none\" stroke-dasharray=\"8,4\"/><text x=\"620\" y=\"72\" font-size=\"11\" fill=\"#f9a825\" font-family=\"sans-serif\">定期リファクタリング</text><circle cx=\"360\" cy=\"145\" r=\"8\" fill=\"#e91e63\"/><text x=\"370\" y=\"138\" font-size=\"11\" fill=\"#e91e63\" font-family=\"sans-serif\">負債限界点</text><circle cx=\"560\" cy=\"240\" r=\"8\" fill=\"#ff5722\"/><text x=\"570\" y=\"233\" font-size=\"11\" fill=\"#ff5722\" font-family=\"sans-serif\">障害多発</text><text x=\"80\" y=\"310\" font-size=\"10\" fill=\"#666\" font-family=\"sans-serif\">v1.0</text><text x=\"230\" y=\"310\" font-size=\"10\" fill=\"#666\" font-family=\"sans-serif\">v2.0</text><text x=\"380\" y=\"310\" font-size=\"10\" fill=\"#666\" font-family=\"sans-serif\">v3.0</text><text x=\"530\" y=\"310\" font-size=\"10\" fill=\"#666\" font-family=\"sans-serif\">v4.0</text><text x=\"680\" y=\"310\" font-size=\"10\" fill=\"#666\" font-family=\"sans-serif\">v5.0</text></svg>"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "解決策：Chaos Engineeringという量子実験",
-      "content": [],
-      "layout": "section"
-    },
-    {
-      "title": "Chaos Monkey〜意図的な観測実験",
-      "content": [
-        "シュレーディンガーは箱を開けるのを恐れた — DevOpsは積極的に開ける",
-        "**Netflix Chaos Monkey**: ランダムな障害注入で耐障害性を検証",
-        "**Game Day**: 計画的な障害実験でチームの対応力を鍛える",
-        "「壊れることを前提に設計する」= 量子の不確定性を受け入れる",
-        "![w:750 center](assets/chaos-engineering.svg)"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "実践的なObservability設計",
-      "content": [
-        "**Three Pillars**: Metrics / Traces / Logs — 三方向からの観測",
-        "**SLO（Service Level Objective）** = 許容される「不確定性の範囲」",
-        "**Error Budget** = 量子的不確定性への余裕 — 使い切ったら凍結",
-        "**Alert疲労の回避**: シグナルとノイズの分離 — 重要な観測だけに集中",
-        "<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">SLI / SLO / SLA / Error Budget の関係</text><rect x=\"50\" y=\"55\" width=\"160\" height=\"80\" rx=\"10\" fill=\"#0f3460\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"130\" y=\"83\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#4caf50\" font-family=\"sans-serif\">SLI</text><text x=\"130\" y=\"103\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Service Level</text><text x=\"130\" y=\"119\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Indicator</text><text x=\"130\" y=\"152\" text-anchor=\"middle\" font-size=\"10\" fill=\"#aaaaaa\" font-family=\"sans-serif\">実測値 (可用性, P99)</text><rect x=\"260\" y=\"55\" width=\"160\" height=\"80\" rx=\"10\" fill=\"#0f3460\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"340\" y=\"83\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">SLO</text><text x=\"340\" y=\"103\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Service Level</text><text x=\"340\" y=\"119\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Objective</text><text x=\"340\" y=\"152\" text-anchor=\"middle\" font-size=\"10\" fill=\"#aaaaaa\" font-family=\"sans-serif\">内部目標値 (99.9%)</text><rect x=\"470\" y=\"55\" width=\"160\" height=\"80\" rx=\"10\" fill=\"#0f3460\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"550\" y=\"83\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#e91e63\" font-family=\"sans-serif\">SLA</text><text x=\"550\" y=\"103\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Service Level</text><text x=\"550\" y=\"119\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Agreement</text><text x=\"550\" y=\"152\" text-anchor=\"middle\" font-size=\"10\" fill=\"#aaaaaa\" font-family=\"sans-serif\">契約値 (99.5%)</text><line x1=\"210\" y1=\"95\" x2=\"260\" y2=\"95\" stroke=\"#ffffff\" stroke-width=\"1.5\"/><polygon points=\"258,90 268,95 258,100\" fill=\"#ffffff\"/><line x1=\"420\" y1=\"95\" x2=\"470\" y2=\"95\" stroke=\"#ffffff\" stroke-width=\"1.5\"/><polygon points=\"468,90 478,95 468,100\" fill=\"#ffffff\"/><rect x=\"50\" y=\"200\" width=\"580\" height=\"100\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"340\" y=\"228\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">Error Budget = 1 - SLO</text><rect x=\"70\" y=\"240\" width=\"400\" height=\"24\" rx=\"4\" fill=\"#0f3460\"/><rect x=\"70\" y=\"240\" width=\"280\" height=\"24\" rx=\"4\" fill=\"#4caf50\"/><text x=\"210\" y=\"257\" text-anchor=\"middle\" font-size=\"11\" fill=\"#ffffff\" font-family=\"sans-serif\">残余バジェット (70%)</text><rect x=\"350\" y=\"240\" width=\"120\" height=\"24\" rx=\"4\" fill=\"#e91e63\"/><text x=\"410\" y=\"257\" text-anchor=\"middle\" font-size=\"11\" fill=\"#ffffff\" font-family=\"sans-serif\">消費済み (30%)</text><text x=\"340\" y=\"290\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaaaa\" font-family=\"sans-serif\">バジェット枯渇 → 新機能リリース凍結、信頼性改善を優先</text><text x=\"680\" y=\"95\" text-anchor=\"middle\" font-size=\"22\" fill=\"#f9a825\" font-family=\"sans-serif\">SLO</text><text x=\"680\" y=\"120\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaaaa\" font-family=\"sans-serif\">&gt; SLA</text><text x=\"680\" y=\"140\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaaaa\" font-family=\"sans-serif\">余裕を持たせる</text></svg>"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "まとめ〜量子力学から学ぶDevOpsの心得（1/2）",
-      "content": [
-        "「正常」は観測によって初めて確定する — 継続的な監視が前提",
-        "測定コストゼロを目指す設計を — 副作用のないObservability",
-        "不確定性は排除できない → 受け入れて設計せよ（Chaos Engineering）",
-        "ハイゼンバグを「観測する」ためのObservability投資を惜しむな"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "まとめ〜量子力学から学ぶDevOpsの心得（2/2）",
-      "content": [
-        "<svg viewBox=\"0 0 800 280\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"280\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">量子力学 × DevOps — 対応まとめ</text><rect x=\"30\" y=\"50\" width=\"340\" height=\"210\" rx=\"10\" fill=\"#0f3460\" stroke=\"#4caf50\" stroke-width=\"1\"/><text x=\"200\" y=\"76\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#4caf50\" font-family=\"sans-serif\">量子力学の概念</text><text x=\"200\" y=\"102\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">重ね合わせ状態</text><text x=\"200\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">観測問題 / 測定崩壊</text><text x=\"200\" y=\"150\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">不確定性原理</text><text x=\"200\" y=\"174\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">量子もつれ</text><text x=\"200\" y=\"198\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">デコヒーレンス</text><text x=\"200\" y=\"222\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">シュレーディンガーの猫</text><rect x=\"430\" y=\"50\" width=\"340\" height=\"210\" rx=\"10\" fill=\"#0f3460\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"600\" y=\"76\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#e91e63\" font-family=\"sans-serif\">DevOpsの実践</text><text x=\"600\" y=\"102\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">ブルーグリーン / カナリア</text><text x=\"600\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Observability / ハイゼンバグ</text><text x=\"600\" y=\"150\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">レイテンシ vs コスト</text><text x=\"600\" y=\"174\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">カスケード障害 / Circuit Breaker</text><text x=\"600\" y=\"198\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">技術的負債 / リファクタリング</text><text x=\"600\" y=\"222\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Chaos Engineering</text><line x1=\"370\" y1=\"102\" x2=\"430\" y2=\"102\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/><line x1=\"370\" y1=\"126\" x2=\"430\" y2=\"126\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/><line x1=\"370\" y1=\"150\" x2=\"430\" y2=\"150\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/><line x1=\"370\" y1=\"174\" x2=\"430\" y2=\"174\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/><line x1=\"370\" y1=\"198\" x2=\"430\" y2=\"198\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/><line x1=\"370\" y1=\"222\" x2=\"430\" y2=\"222\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/></svg>",
-        "**参考文献**:",
-        "[Accelerate (Forsgren et al.)](https://itrevolution.com/accelerate-book/)",
-        "[Site Reliability Engineering (Google)](https://sre.google/sre-book/table-of-contents/)"
-      ],
-      "layout": "default"
-    }
-  ]
+	"slides": [
+		{
+			"title": "シュレーディンガーの本番環境",
+			"content": [
+				"〜量子力学で読み解くDevOps〜",
+				"観測するまで本番は「動いている」かつ「落ちている」"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "量子力学とDevOpsの意外な共通点",
+			"content": [
+				"**量子力学**: 観測するまで状態が確定しない",
+				"**本番環境**: デプロイするまで動くかわからない",
+				"「理論上は正しい」が口癖のエンジニアへ",
+				"![w:700 center](assets/quantum-devops.svg)"
+			],
+			"layout": "center"
+		},
+		{
+			"title": "原理1：重ね合わせの状態",
+			"content": [],
+			"layout": "section"
+		},
+		{
+			"title": "重ね合わせ〜デプロイ前の「どちらでもある」状態",
+			"content": [
+				"**量子**: 観測前は |0⟩+|1⟩ の重ね合わせ状態",
+				"**本番**: デプロイ前は「動く」+「壊れる」が同時に存在",
+				"**ブルーグリーンデプロイ** = 重ね合わせを維持したまま切り替える",
+				"**カナリアリリース** = 少数のユーザーで波動関数を部分収束",
+				"![w:800 center](assets/superposition.svg)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "原理2：観測問題とハイゼンバグ",
+			"content": [],
+			"layout": "section"
+		},
+		{
+			"title": "ハイゼンバグ〜観測するとバグが消える",
+			"content": [
+				"**量子**: 観測行為が状態を変える（コペンハーゲン解釈）",
+				"`console.log` を追加したらバグが消えた",
+				"ログレベルを変えたら再現しなくなった",
+				"これは「測定問題」そのもの",
+				"![w:800 center](assets/heisenbug.svg)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "観測問題の解決策〜Observabilityという「測定装置」",
+			"content": [
+				"**Prometheus**: 量子的測定器 — 状態を定期的にサンプリング",
+				"**Distributed Tracing**: 波動関数の経路記録 — リクエストの軌跡を追う",
+				"**ログ集約**: 状態の観測記録 — 過去の状態を再現可能にする",
+				"**設計原則**: 観測がシステムの振る舞いを変えないように設計せよ",
+				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"34\" text-anchor=\"middle\" font-size=\"18\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">Observability の三本柱</text><rect x=\"60\" y=\"60\" width=\"200\" height=\"260\" rx=\"12\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"160\" y=\"92\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">Metrics</text><text x=\"160\" y=\"116\" text-anchor=\"middle\" font-size=\"12\" fill=\"#ffffff\" font-family=\"sans-serif\">数値の時系列データ</text><rect x=\"80\" y=\"130\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"160\" y=\"149\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">CPU / Memory</text><rect x=\"80\" y=\"166\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"160\" y=\"185\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Error Rate</text><rect x=\"80\" y=\"202\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"160\" y=\"221\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Latency (P99)</text><rect x=\"80\" y=\"238\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"160\" y=\"257\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Request Count</text><text x=\"160\" y=\"300\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaaaa\" font-family=\"sans-serif\">Prometheus / Grafana</text><rect x=\"300\" y=\"60\" width=\"200\" height=\"260\" rx=\"12\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"400\" y=\"92\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#e91e63\" font-family=\"sans-serif\">Traces</text><text x=\"400\" y=\"116\" text-anchor=\"middle\" font-size=\"12\" fill=\"#ffffff\" font-family=\"sans-serif\">リクエストの経路追跡</text><rect x=\"320\" y=\"130\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"400\" y=\"149\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Span / Trace ID</text><rect x=\"320\" y=\"166\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"400\" y=\"185\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Service Dependency</text><rect x=\"320\" y=\"202\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"400\" y=\"221\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Latency Breakdown</text><rect x=\"320\" y=\"238\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"400\" y=\"257\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Error Propagation</text><text x=\"400\" y=\"300\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaaaa\" font-family=\"sans-serif\">Jaeger / Zipkin / Tempo</text><rect x=\"540\" y=\"60\" width=\"200\" height=\"260\" rx=\"12\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"640\" y=\"92\" text-anchor=\"middle\" font-size=\"15\" font-weight=\"bold\" fill=\"#4caf50\" font-family=\"sans-serif\">Logs</text><text x=\"640\" y=\"116\" text-anchor=\"middle\" font-size=\"12\" fill=\"#ffffff\" font-family=\"sans-serif\">状態の詳細な記録</text><rect x=\"560\" y=\"130\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"640\" y=\"149\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Structured Logging</text><rect x=\"560\" y=\"166\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"640\" y=\"185\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Log Level</text><rect x=\"560\" y=\"202\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"640\" y=\"221\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Correlation ID</text><rect x=\"560\" y=\"238\" width=\"160\" height=\"28\" rx=\"6\" fill=\"#0f3460\"/><text x=\"640\" y=\"257\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Audit Trail</text><text x=\"640\" y=\"300\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaaaa\" font-family=\"sans-serif\">Loki / Elasticsearch</text><text x=\"400\" y=\"350\" text-anchor=\"middle\" font-size=\"13\" fill=\"#f9a825\" font-family=\"sans-serif\">三本柱を組み合わせることで「波動関数」を完全観測する</text></svg>"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "原理3：不確定性原理",
+			"content": [],
+			"layout": "section"
+		},
+		{
+			"title": "不確定性原理〜パフォーマンスとコストのトレードオフ",
+			"content": [
+				"**ハイゼンベルク**: 位置と運動量を同時に正確に測定できない",
+				"**システム**: レイテンシとスループットを同時に最小化できない",
+				"コストとパフォーマンスは相反する — 「全部最適」は存在しない",
+				"![w:700 center](assets/uncertainty.svg)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "量子もつれ〜マイクロサービスの隠れた依存",
+			"content": [
+				"**量子もつれ**: 離れた粒子が瞬時に相関する",
+				"**マイクロサービス**: A障害 → B障害 → C障害… カスケード障害",
+				"「独立しているはず」のサービス間の見えない依存関係",
+				"Circuit Breaker パターン = もつれを切断する観測装置",
+				"![w:850 center](assets/entanglement.svg)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "デコヒーレンス〜時間とともに劣化するシステム",
+			"content": [
+				"**量子デコヒーレンス**: 量子状態は環境との相互作用で古典的状態に崩壊する",
+				"**システム**: 時間とともに設計意図から乖離し、複雑化・脆弱化する",
+				"「動いているが理由がわからない」レガシーシステムの正体",
+				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">技術的負債とデコヒーレンスの進行</text><line x1=\"60\" y1=\"290\" x2=\"760\" y2=\"290\" stroke=\"#555\" stroke-width=\"1\"/><line x1=\"60\" y1=\"60\" x2=\"60\" y2=\"290\" stroke=\"#555\" stroke-width=\"1\"/><text x=\"410\" y=\"320\" text-anchor=\"middle\" font-size=\"12\" fill=\"#aaaaaa\" font-family=\"sans-serif\">時間 (リリースサイクル)</text><text x=\"30\" y=\"180\" text-anchor=\"middle\" font-size=\"12\" fill=\"#aaaaaa\" font-family=\"sans-serif\" transform=\"rotate(-90 30 180)\">コヒーレンス</text><polyline points=\"60,80 160,90 260,110 360,145 460,190 560,240 660,275 760,285\" stroke=\"#4caf50\" stroke-width=\"3\" fill=\"none\"/><text x=\"680\" y=\"268\" font-size=\"11\" fill=\"#4caf50\" font-family=\"sans-serif\">リファクタリングなし</text><polyline points=\"60,80 160,84 260,88 360,85 460,89 560,86 660,82 760,80\" stroke=\"#f9a825\" stroke-width=\"3\" fill=\"none\" stroke-dasharray=\"8,4\"/><text x=\"620\" y=\"72\" font-size=\"11\" fill=\"#f9a825\" font-family=\"sans-serif\">定期リファクタリング</text><circle cx=\"360\" cy=\"145\" r=\"8\" fill=\"#e91e63\"/><text x=\"370\" y=\"138\" font-size=\"11\" fill=\"#e91e63\" font-family=\"sans-serif\">負債限界点</text><circle cx=\"560\" cy=\"240\" r=\"8\" fill=\"#ff5722\"/><text x=\"570\" y=\"233\" font-size=\"11\" fill=\"#ff5722\" font-family=\"sans-serif\">障害多発</text><text x=\"80\" y=\"310\" font-size=\"10\" fill=\"#666\" font-family=\"sans-serif\">v1.0</text><text x=\"230\" y=\"310\" font-size=\"10\" fill=\"#666\" font-family=\"sans-serif\">v2.0</text><text x=\"380\" y=\"310\" font-size=\"10\" fill=\"#666\" font-family=\"sans-serif\">v3.0</text><text x=\"530\" y=\"310\" font-size=\"10\" fill=\"#666\" font-family=\"sans-serif\">v4.0</text><text x=\"680\" y=\"310\" font-size=\"10\" fill=\"#666\" font-family=\"sans-serif\">v5.0</text></svg>"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "解決策：Chaos Engineeringという量子実験",
+			"content": [],
+			"layout": "section"
+		},
+		{
+			"title": "Chaos Monkey〜意図的な観測実験",
+			"content": [
+				"シュレーディンガーは箱を開けるのを恐れた — DevOpsは積極的に開ける",
+				"**Netflix Chaos Monkey**: ランダムな障害注入で耐障害性を検証",
+				"**Game Day**: 計画的な障害実験でチームの対応力を鍛える",
+				"「壊れることを前提に設計する」= 量子の不確定性を受け入れる",
+				"![w:750 center](assets/chaos-engineering.svg)"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "実践的なObservability設計",
+			"content": [
+				"**Three Pillars**: Metrics / Traces / Logs — 三方向からの観測",
+				"**SLO（Service Level Objective）** = 許容される「不確定性の範囲」",
+				"**Error Budget** = 量子的不確定性への余裕 — 使い切ったら凍結",
+				"**Alert疲労の回避**: シグナルとノイズの分離 — 重要な観測だけに集中",
+				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">SLI / SLO / SLA / Error Budget の関係</text><rect x=\"50\" y=\"55\" width=\"160\" height=\"80\" rx=\"10\" fill=\"#0f3460\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"130\" y=\"83\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#4caf50\" font-family=\"sans-serif\">SLI</text><text x=\"130\" y=\"103\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Service Level</text><text x=\"130\" y=\"119\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Indicator</text><text x=\"130\" y=\"152\" text-anchor=\"middle\" font-size=\"10\" fill=\"#aaaaaa\" font-family=\"sans-serif\">実測値 (可用性, P99)</text><rect x=\"260\" y=\"55\" width=\"160\" height=\"80\" rx=\"10\" fill=\"#0f3460\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"340\" y=\"83\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">SLO</text><text x=\"340\" y=\"103\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Service Level</text><text x=\"340\" y=\"119\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Objective</text><text x=\"340\" y=\"152\" text-anchor=\"middle\" font-size=\"10\" fill=\"#aaaaaa\" font-family=\"sans-serif\">内部目標値 (99.9%)</text><rect x=\"470\" y=\"55\" width=\"160\" height=\"80\" rx=\"10\" fill=\"#0f3460\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"550\" y=\"83\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#e91e63\" font-family=\"sans-serif\">SLA</text><text x=\"550\" y=\"103\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Service Level</text><text x=\"550\" y=\"119\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Agreement</text><text x=\"550\" y=\"152\" text-anchor=\"middle\" font-size=\"10\" fill=\"#aaaaaa\" font-family=\"sans-serif\">契約値 (99.5%)</text><line x1=\"210\" y1=\"95\" x2=\"260\" y2=\"95\" stroke=\"#ffffff\" stroke-width=\"1.5\"/><polygon points=\"258,90 268,95 258,100\" fill=\"#ffffff\"/><line x1=\"420\" y1=\"95\" x2=\"470\" y2=\"95\" stroke=\"#ffffff\" stroke-width=\"1.5\"/><polygon points=\"468,90 478,95 468,100\" fill=\"#ffffff\"/><rect x=\"50\" y=\"200\" width=\"580\" height=\"100\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"340\" y=\"228\" text-anchor=\"middle\" font-size=\"14\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">Error Budget = 1 - SLO</text><rect x=\"70\" y=\"240\" width=\"400\" height=\"24\" rx=\"4\" fill=\"#0f3460\"/><rect x=\"70\" y=\"240\" width=\"280\" height=\"24\" rx=\"4\" fill=\"#4caf50\"/><text x=\"210\" y=\"257\" text-anchor=\"middle\" font-size=\"11\" fill=\"#ffffff\" font-family=\"sans-serif\">残余バジェット (70%)</text><rect x=\"350\" y=\"240\" width=\"120\" height=\"24\" rx=\"4\" fill=\"#e91e63\"/><text x=\"410\" y=\"257\" text-anchor=\"middle\" font-size=\"11\" fill=\"#ffffff\" font-family=\"sans-serif\">消費済み (30%)</text><text x=\"340\" y=\"290\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaaaa\" font-family=\"sans-serif\">バジェット枯渇 → 新機能リリース凍結、信頼性改善を優先</text><text x=\"680\" y=\"95\" text-anchor=\"middle\" font-size=\"22\" fill=\"#f9a825\" font-family=\"sans-serif\">SLO</text><text x=\"680\" y=\"120\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaaaa\" font-family=\"sans-serif\">&gt; SLA</text><text x=\"680\" y=\"140\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaaaa\" font-family=\"sans-serif\">余裕を持たせる</text></svg>"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "まとめ〜量子力学から学ぶDevOpsの心得（1/2）",
+			"content": [
+				"「正常」は観測によって初めて確定する — 継続的な監視が前提",
+				"測定コストゼロを目指す設計を — 副作用のないObservability",
+				"不確定性は排除できない → 受け入れて設計せよ（Chaos Engineering）",
+				"ハイゼンバグを「観測する」ためのObservability投資を惜しむな"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "まとめ〜量子力学から学ぶDevOpsの心得（2/2）",
+			"content": [
+				"<svg viewBox=\"0 0 800 280\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"280\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" font-size=\"16\" font-weight=\"bold\" fill=\"#f9a825\" font-family=\"sans-serif\">量子力学 × DevOps — 対応まとめ</text><rect x=\"30\" y=\"50\" width=\"340\" height=\"210\" rx=\"10\" fill=\"#0f3460\" stroke=\"#4caf50\" stroke-width=\"1\"/><text x=\"200\" y=\"76\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#4caf50\" font-family=\"sans-serif\">量子力学の概念</text><text x=\"200\" y=\"102\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">重ね合わせ状態</text><text x=\"200\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">観測問題 / 測定崩壊</text><text x=\"200\" y=\"150\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">不確定性原理</text><text x=\"200\" y=\"174\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">量子もつれ</text><text x=\"200\" y=\"198\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">デコヒーレンス</text><text x=\"200\" y=\"222\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">シュレーディンガーの猫</text><rect x=\"430\" y=\"50\" width=\"340\" height=\"210\" rx=\"10\" fill=\"#0f3460\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"600\" y=\"76\" text-anchor=\"middle\" font-size=\"13\" font-weight=\"bold\" fill=\"#e91e63\" font-family=\"sans-serif\">DevOpsの実践</text><text x=\"600\" y=\"102\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">ブルーグリーン / カナリア</text><text x=\"600\" y=\"126\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Observability / ハイゼンバグ</text><text x=\"600\" y=\"150\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">レイテンシ vs コスト</text><text x=\"600\" y=\"174\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">カスケード障害 / Circuit Breaker</text><text x=\"600\" y=\"198\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">技術的負債 / リファクタリング</text><text x=\"600\" y=\"222\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e0e0e0\" font-family=\"sans-serif\">Chaos Engineering</text><line x1=\"370\" y1=\"102\" x2=\"430\" y2=\"102\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/><line x1=\"370\" y1=\"126\" x2=\"430\" y2=\"126\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/><line x1=\"370\" y1=\"150\" x2=\"430\" y2=\"150\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/><line x1=\"370\" y1=\"174\" x2=\"430\" y2=\"174\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/><line x1=\"370\" y1=\"198\" x2=\"430\" y2=\"198\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/><line x1=\"370\" y1=\"222\" x2=\"430\" y2=\"222\" stroke=\"#f9a825\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/></svg>",
+				"**参考文献**:",
+				"[Accelerate (Forsgren et al.)](https://itrevolution.com/accelerate-book/)",
+				"[Site Reliability Engineering (Google)](https://sre.google/sre-book/table-of-contents/)"
+			],
+			"layout": "default"
+		}
+	]
 }

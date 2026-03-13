@@ -1,254 +1,230 @@
 {
-  "slides": [
-    {
-      "title": "コードの地層：地質学が教えるレガシーシステム考古学",
-      "layout": "center",
-      "content": [
-        "Geological Strata × Legacy Code Archaeology",
-        "",
-        "25年分のコードベースを科学的に発掘・分析・改修する"
-      ]
-    },
-    {
-      "title": "Agenda",
-      "layout": "default",
-      "content": [
-        "- 1. コードベースの地層構造",
-        "- 2. コード考古学の手法",
-        "- 3. 化石コードの分類学",
-        "- 4. 技術的断層とコード地震",
-        "- 5. Strangler Fig Pattern：地質学的リファクタリング",
-        "- 6. レガシーマイグレーション戦略"
-      ]
-    },
-    {
-      "title": "コードベースの地層構造",
-      "layout": "section",
-      "content": [
-        "Chapter 1: Code Stratigraphy"
-      ]
-    },
-    {
-      "title": "コードベースの地層構造",
-      "layout": "default",
-      "content": [
-        "![w:900 center](assets/diagram-01.svg)"
-      ]
-    },
-    {
-      "title": "地層累重の法則（Law of Superposition）",
-      "layout": "default",
-      "content": [
-        "<svg viewBox=\"0 0 800 380\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">コードベース地層断面図 — 下が古く 上が新しい</text><rect x=\"60\" y=\"42\" width=\"680\" height=\"48\" fill=\"#1565c0\" rx=\"4\"/><text x=\"80\" y=\"62\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">現代層 (2020-): React Hooks / TypeScript / Server Components</text><text x=\"80\" y=\"80\" fill=\"#90caf9\" font-size=\"10\" font-family=\"sans-serif\">クラウドネイティブ・型安全</text><text x=\"720\" y=\"70\" fill=\"#f9a825\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">2024</text><rect x=\"60\" y=\"96\" width=\"680\" height=\"48\" fill=\"#1976d2\" rx=\"4\"/><text x=\"80\" y=\"116\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">中間層 (2015-): React Class / Angular 2+ / Docker</text><text x=\"80\" y=\"134\" fill=\"#90caf9\" font-size=\"10\" font-family=\"sans-serif\">コンポーネント指向・コンテナ化</text><text x=\"720\" y=\"124\" fill=\"#f9a825\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">2018</text><rect x=\"60\" y=\"150\" width=\"680\" height=\"48\" fill=\"#c62828\" rx=\"4\"/><text x=\"80\" y=\"170\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">旧世代層 (2008-): jQuery / PHP / REST API</text><text x=\"80\" y=\"188\" fill=\"#ffcdd2\" font-size=\"10\" font-family=\"sans-serif\">モノリシック・スパゲッティコード</text><text x=\"720\" y=\"178\" fill=\"#f9a825\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">2012</text><rect x=\"60\" y=\"204\" width=\"680\" height=\"48\" fill=\"#6a1616\" rx=\"4\"/><text x=\"80\" y=\"224\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">古代層 (2000-): Perl CGI / XML / SOAP</text><text x=\"80\" y=\"242\" fill=\"#ef9a9a\" font-size=\"10\" font-family=\"sans-serif\">Y2K対応コード・グローバル変数乱用</text><text x=\"720\" y=\"232\" fill=\"#f9a825\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">2004</text><rect x=\"60\" y=\"258\" width=\"680\" height=\"48\" fill=\"#3e1010\" rx=\"4\"/><text x=\"80\" y=\"278\" fill=\"#ffccbc\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">化石層 (1995-): C/C++ / COBOL / Mainframe</text><text x=\"80\" y=\"296\" fill=\"#d7ccc8\" font-size=\"10\" font-family=\"sans-serif\">誰も触れない聖域・ドキュメントなし</text><text x=\"720\" y=\"286\" fill=\"#f9a825\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">1998</text><line x1=\"40\" y1=\"42\" x2=\"40\" y2=\"306\" stroke=\"#556\" stroke-width=\"2\"/><polygon points=\"40,36 34,50 46,50\" fill=\"#556\"/><text x=\"28\" y=\"175\" fill=\"#78909c\" font-size=\"9\" text-anchor=\"middle\" font-family=\"sans-serif\" transform=\"rotate(-90,28,175)\">← 古い</text><text x=\"400\" y=\"345\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">git log = 地層の年代測定 | 各層はその時代の技術的制約を反映</text></svg>",
-        "- 地質学: **上の地層が新しく、下の地層が古い**",
-        "- コード: 新しいコードが古いコードの上に堆積する",
-        "- `git log` は地層の年代測定に相当する",
-        "- 各層は **その時代の技術的制約** を反映している",
-        "- 古い層を理解せずに新しい層を積むのは危険",
-        "- 地層を無視した建設 = 技術的負債の蓄積"
-      ],
-      "speakerNotes": "ニコラス・ステノが1669年に提唱した地層累重の法則。コードベースでも全く同じ原理が働く。"
-    },
-    {
-      "title": "時代ごとのコーディングスタイル「示準化石」",
-      "layout": "default",
-      "content": [
-        "<svg viewBox=\"0 0 800 380\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">示準化石：コードの時代を特定するパターン</text><line x1=\"60\" y1=\"195\" x2=\"760\" y2=\"195\" stroke=\"#445\" stroke-width=\"2\"/><rect x=\"60\" y=\"148\" width=\"105\" height=\"92\" fill=\"#263238\" rx=\"5\" stroke=\"#546e7a\" stroke-width=\"1\"/><text x=\"112\" y=\"168\" text-anchor=\"middle\" fill=\"#b0bec5\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">1999</text><text x=\"112\" y=\"184\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"10\" font-family=\"sans-serif\">Perl CGI</text><text x=\"112\" y=\"199\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">print \"Content-</text><text x=\"112\" y=\"213\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">type: text/html\"</text><rect x=\"176\" y=\"132\" width=\"107\" height=\"108\" fill=\"#1a237e\" rx=\"5\" stroke=\"#3949ab\" stroke-width=\"1\"/><text x=\"229\" y=\"152\" text-anchor=\"middle\" fill=\"#9fa8da\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">2006</text><text x=\"229\" y=\"168\" text-anchor=\"middle\" fill=\"#ffcc80\" font-size=\"10\" font-family=\"sans-serif\">jQuery</text><text x=\"229\" y=\"183\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">$(document).</text><text x=\"229\" y=\"197\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">ready(fn)</text><rect x=\"294\" y=\"116\" width=\"110\" height=\"124\" fill=\"#1b5e20\" rx=\"5\" stroke=\"#388e3c\" stroke-width=\"1\"/><text x=\"349\" y=\"136\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">2012</text><text x=\"349\" y=\"152\" text-anchor=\"middle\" fill=\"#ffcc80\" font-size=\"10\" font-family=\"sans-serif\">Angular 1.x</text><text x=\"349\" y=\"167\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">$scope.data</text><text x=\"349\" y=\"181\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">ng-model</text><rect x=\"415\" y=\"100\" width=\"110\" height=\"140\" fill=\"#4a148c\" rx=\"5\" stroke=\"#7b1fa2\" stroke-width=\"1\"/><text x=\"470\" y=\"120\" text-anchor=\"middle\" fill=\"#ce93d8\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">2015</text><text x=\"470\" y=\"136\" text-anchor=\"middle\" fill=\"#ffcc80\" font-size=\"10\" font-family=\"sans-serif\">React Class</text><text x=\"470\" y=\"151\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">componentDid</text><text x=\"470\" y=\"165\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">Mount(){}</text><rect x=\"536\" y=\"84\" width=\"110\" height=\"156\" fill=\"#bf360c\" rx=\"5\" stroke=\"#e64a19\" stroke-width=\"1\"/><text x=\"591\" y=\"104\" text-anchor=\"middle\" fill=\"#ffccbc\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">2019</text><text x=\"591\" y=\"120\" text-anchor=\"middle\" fill=\"#ffcc80\" font-size=\"10\" font-family=\"sans-serif\">React Hooks</text><text x=\"591\" y=\"135\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">useEffect(()=></text><text x=\"591\" y=\"149\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">{...}, [])</text><rect x=\"657\" y=\"68\" width=\"103\" height=\"172\" fill=\"#004d40\" rx=\"5\" stroke=\"#00796b\" stroke-width=\"1\"/><text x=\"708\" y=\"88\" text-anchor=\"middle\" fill=\"#80cbc4\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">2024</text><text x=\"708\" y=\"104\" text-anchor=\"middle\" fill=\"#ffcc80\" font-size=\"10\" font-family=\"sans-serif\">Server Comp.</text><text x=\"708\" y=\"119\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">async function</text><text x=\"708\" y=\"133\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">Page(){}</text><text x=\"112\" y=\"256\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">1999</text><text x=\"229\" y=\"256\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">2006</text><text x=\"349\" y=\"256\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">2012</text><text x=\"470\" y=\"256\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">2015</text><text x=\"591\" y=\"256\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">2019</text><text x=\"708\" y=\"256\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">2024</text><text x=\"400\" y=\"290\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">各パターンがコードの「生まれた時代」を示す示準化石</text></svg>",
-        "- **Perl CGI 時代** (1999-): `print \"Content-type: text/html\\n\\n\";`",
-        "- **jQuery 時代** (2006-): `$(document).ready(function() {...})`",
-        "- **Angular 1.x 時代** (2012-): `$scope.data = ...`",
-        "- **React Class 時代** (2015-): `componentDidMount() {...}`",
-        "- **React Hooks 時代** (2019-): `useEffect(() => {...}, [])`",
-        "- **Server Components 時代** (2024-): `async function Page() {...}`"
-      ],
-      "speakerNotes": "示準化石（Index Fossil）は特定の地質時代を示す化石。コードにも同様のパターンがある。"
-    },
-    {
-      "title": "コード考古学の手法",
-      "layout": "section",
-      "content": [
-        "Chapter 2: Code Archaeology Methods"
-      ]
-    },
-    {
-      "title": "コード化石の発掘プロセス",
-      "layout": "default",
-      "content": [
-        "![w:900 center](assets/diagram-02.svg)"
-      ]
-    },
-    {
-      "title": "git blame：放射性炭素年代測定",
-      "content": [
-        "- `git blame` は各コード行の **作成時期と著者** を特定する",
-        "- 地質学の放射性炭素年代測定（C-14法）に相当",
-        "- コード行の「半減期」= 変更されずに残る平均期間"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "git blame：放射性炭素年代測定（コード例）",
-      "content": [],
-      "code": "# Code Carbon Dating\n$ git blame --date=short src/auth/login.ts\n# 2003-04-12  (alice)  function validateUser(u, p) {\n# 2003-04-12  (alice)    var query = \"SELECT * FROM users ...\n# 2019-08-21  (bob)    // TODO: fix SQL injection\n# 2024-01-15  (carol)  const result = await db.query(prepared);",
-      "codeLanguage": "bash",
-      "layout": "default"
-    },
-    {
-      "title": "化石コードの分類学",
-      "layout": "section",
-      "content": [
-        "Chapter 3: Fossil Code Taxonomy"
-      ]
-    },
-    {
-      "title": "コード化石の5分類",
-      "layout": "default",
-      "content": [
-        "- **生きた化石** (Living Fossil): 古いが現役で動作するコード",
-        "- **痕跡器官** (Vestigial Organ): かつて重要だったが今は不要な機能",
-        "- **化石記録** (Fossil Record): コメントやTODOに残る過去の意図",
-        "- **示準化石** (Index Fossil): 時代特定できるコーディングパターン",
-        "- **琥珀** (Amber): 完全に凍結された依存関係（pinned versions）"
-      ]
-    },
-    {
-      "title": "痕跡器官コードの実例",
-      "content": [
-        "- かつてのIE対応コードが典型例"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "痕跡器官コードの実例（コード例）",
-      "content": [],
-      "code": "// Vestigial Code: IE6-8 compatibility (2008)\nfunction addEvent(el, type, fn) {\n  if (el.addEventListener) {\n    el.addEventListener(type, fn, false);\n  } else if (el.attachEvent) { // IE path\n    el.attachEvent('on' + type, fn);\n  } else {\n    el['on' + type] = fn; // fallback\n  }\n}",
-      "codeLanguage": "javascript",
-      "layout": "default"
-    },
-    {
-      "title": "TODO考古学：コメント化石の発掘",
-      "content": [
-        "- TODO/FIXME/HACK は過去の開発者が残した **化石記録**"
-      ],
-      "layout": "default"
-    },
-    {
-      "title": "TODO考古学：コメント化石の発掘（コード例）",
-      "content": [],
-      "code": "# Fossil Excavation\n$ grep -rn 'TODO\\|FIXME\\|HACK\\|XXX' src/ | \\\n  git blame -L | sort -t: -k3\n\n# Results (sorted by date):\n# 2004: HACK: temporary workaround for Oracle bug\n# 2009: TODO: refactor this when we drop IE6\n# 2015: FIXME: race condition under high load\n# 2021: XXX: this entire module needs rewriting",
-      "codeLanguage": "bash",
-      "layout": "default"
-    },
-    {
-      "title": "技術的断層とコード地震",
-      "layout": "section",
-      "content": [
-        "Chapter 4: Technical Fault Lines"
-      ]
-    },
-    {
-      "title": "技術的断層とコード地震のリスクマップ",
-      "layout": "default",
-      "content": [
-        "![w:900 center](assets/diagram-04.svg)"
-      ]
-    },
-    {
-      "title": "コード地震の震度スケール",
-      "layout": "default",
-      "content": [
-        "<svg viewBox=\"0 0 800 380\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">コード地震の震度スケール</text><rect x=\"50\" y=\"48\" width=\"700\" height=\"40\" fill=\"#16213e\" rx=\"4\" stroke=\"#b71c1c\" stroke-width=\"1\"/><rect x=\"50\" y=\"48\" width=\"680\" height=\"40\" fill=\"#b71c1c\" rx=\"4\" opacity=\"0.5\"/><text x=\"95\" y=\"73\" fill=\"#ef5350\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">M9-10</text><text x=\"200\" y=\"73\" fill=\"#ffcdd2\" font-size=\"12\" font-family=\"sans-serif\">ランタイム移行 (Python 2→3) / 全面リプレース</text><text x=\"710\" y=\"73\" fill=\"#ef5350\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">壊滅的</text><rect x=\"50\" y=\"94\" width=\"700\" height=\"40\" fill=\"#16213e\" rx=\"4\" stroke=\"#e53935\" stroke-width=\"1\"/><rect x=\"50\" y=\"94\" width=\"560\" height=\"40\" fill=\"#c62828\" rx=\"4\" opacity=\"0.4\"/><text x=\"95\" y=\"119\" fill=\"#ffcdd2\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">M7-8</text><text x=\"200\" y=\"119\" fill=\"#ef9a9a\" font-size=\"12\" font-family=\"sans-serif\">共有DBスキーマのマイグレーション</text><text x=\"710\" y=\"119\" fill=\"#ef9a9a\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">大震</text><rect x=\"50\" y=\"140\" width=\"700\" height=\"40\" fill=\"#16213e\" rx=\"4\" stroke=\"#ef6c00\" stroke-width=\"1\"/><rect x=\"50\" y=\"140\" width=\"450\" height=\"40\" fill=\"#e65100\" rx=\"4\" opacity=\"0.4\"/><text x=\"95\" y=\"165\" fill=\"#ffccbc\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">M5-6</text><text x=\"200\" y=\"165\" fill=\"#ffab91\" font-size=\"12\" font-family=\"sans-serif\">API仕様の破壊的変更 (Breaking Change)</text><text x=\"710\" y=\"165\" fill=\"#ffab91\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">中震</text><rect x=\"50\" y=\"186\" width=\"700\" height=\"40\" fill=\"#16213e\" rx=\"4\" stroke=\"#f9a825\" stroke-width=\"1\"/><rect x=\"50\" y=\"186\" width=\"340\" height=\"40\" fill=\"#f57f17\" rx=\"4\" opacity=\"0.3\"/><text x=\"95\" y=\"211\" fill=\"#fff9c4\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">M3-4</text><text x=\"200\" y=\"211\" fill=\"#fff176\" font-size=\"12\" font-family=\"sans-serif\">フレームワークのメジャーバージョン更新</text><text x=\"710\" y=\"211\" fill=\"#fff176\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">軽震</text><rect x=\"50\" y=\"232\" width=\"700\" height=\"40\" fill=\"#16213e\" rx=\"4\" stroke=\"#388e3c\" stroke-width=\"1\"/><rect x=\"50\" y=\"232\" width=\"200\" height=\"40\" fill=\"#1b5e20\" rx=\"4\" opacity=\"0.4\"/><text x=\"95\" y=\"257\" fill=\"#c8e6c9\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">M1-2</text><text x=\"200\" y=\"257\" fill=\"#a5d6a7\" font-size=\"12\" font-family=\"sans-serif\">ライブラリのマイナーバージョン更新</text><text x=\"710\" y=\"257\" fill=\"#a5d6a7\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">微震</text><line x1=\"50\" y1=\"292\" x2=\"750\" y2=\"292\" stroke=\"#334\" stroke-width=\"1\"/><text x=\"400\" y=\"320\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"11\" font-family=\"sans-serif\">Python 2→3 の移行は10年かかった：震度の過小評価は致命的</text><text x=\"400\" y=\"346\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">Anti-Corruption Layer で断層の影響を最小化する</text></svg>",
-        "- **M1-2（微震）**: ライブラリのマイナーバージョン更新",
-        "- **M3-4（軽震）**: フレームワークのメジャーバージョン更新",
-        "- **M5-6（中震）**: API仕様の破壊的変更",
-        "- **M7-8（大震）**: 共有DBスキーマのマイグレーション",
-        "- **M9（巨大地震）**: ランタイム/言語の移行（Python 2→3）",
-        "- **M10（文明崩壊）**: 全面リプレースの決断"
-      ],
-      "speakerNotes": "Python 2→3の移行は10年かかった。コード地震の規模を過小評価すると致命的。"
-    },
-    {
-      "title": "断層境界のパターン",
-      "layout": "default",
-      "content": [
-        "- **収束境界**: Legacy → Modern に徐々に統合（理想的）",
-        "- **発散境界**: Legacy と Modern が乖離し続ける（危険）",
-        "- **横ずれ断層**: 同じ機能の新旧実装が並行稼動（混乱）",
-        "- 収束境界を維持するには **Anti-Corruption Layer** が必須",
-        "- 発散を放置すると「技術的大陸移動」が発生",
-        "- 最終的に2つのシステムが完全に分離して保守不能に"
-      ]
-    },
-    {
-      "title": "Strangler Fig Pattern",
-      "layout": "section",
-      "content": [
-        "Chapter 5: Geological Refactoring"
-      ]
-    },
-    {
-      "title": "Strangler Fig Pattern：地質学的リファクタリング",
-      "layout": "default",
-      "content": [
-        "![w:900 center](assets/diagram-03.svg)"
-      ]
-    },
-    {
-      "title": "地質学的リファクタリングの原則",
-      "layout": "default",
-      "content": [
-        "<svg viewBox=\"0 0 800 380\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">地質学的リファクタリング：段階的移行プロセス</text><rect x=\"30\" y=\"45\" width=\"220\" height=\"290\" fill=\"#16213e\" rx=\"8\" stroke=\"#c62828\" stroke-width=\"2\"/><text x=\"140\" y=\"66\" text-anchor=\"middle\" fill=\"#ef5350\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">Phase 1: 現状分析</text><rect x=\"50\" y=\"78\" width=\"180\" height=\"175\" fill=\"#3e1010\" rx=\"5\" stroke=\"#b71c1c\" stroke-width=\"1\"/><text x=\"140\" y=\"100\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">Legacy Monolith</text><text x=\"140\" y=\"118\" text-anchor=\"middle\" fill=\"#ffcdd2\" font-size=\"9\" font-family=\"sans-serif\">Auth + Billing + User</text><text x=\"140\" y=\"134\" text-anchor=\"middle\" fill=\"#ffcdd2\" font-size=\"9\" font-family=\"sans-serif\">Reports + Notifications</text><text x=\"140\" y=\"170\" text-anchor=\"middle\" fill=\"#b71c1c\" font-size=\"22\" font-family=\"sans-serif\">⚡</text><text x=\"140\" y=\"200\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"9\" font-family=\"sans-serif\">全て密結合</text><text x=\"140\" y=\"216\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">断層線：多数</text><text x=\"140\" y=\"318\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"9\" font-family=\"sans-serif\">層序学的分析から開始</text><polygon points=\"258,195 280,185 280,205\" fill=\"#f9a825\"/><line x1=\"250\" y1=\"195\" x2=\"280\" y2=\"195\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"265\" y=\"215\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"8\" font-family=\"sans-serif\">段階的</text><rect x=\"290\" y=\"45\" width=\"220\" height=\"290\" fill=\"#16213e\" rx=\"8\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"400\" y=\"66\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">Phase 2: 移行中</text><rect x=\"310\" y=\"78\" width=\"180\" height=\"105\" fill=\"#3e1010\" rx=\"5\" stroke=\"#b71c1c\" stroke-width=\"1\" opacity=\"0.7\"/><text x=\"400\" y=\"100\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"11\" font-family=\"sans-serif\">Legacy (縮小中)</text><text x=\"400\" y=\"116\" text-anchor=\"middle\" fill=\"#ffcdd2\" font-size=\"9\" font-family=\"sans-serif\">Billing + Reports</text><text x=\"400\" y=\"132\" text-anchor=\"middle\" fill=\"#b0bec5\" font-size=\"9\" font-family=\"sans-serif\">移行待ち</text><rect x=\"310\" y=\"198\" width=\"180\" height=\"75\" fill=\"#1b5e20\" rx=\"5\" stroke=\"#388e3c\" stroke-width=\"1\"/><text x=\"400\" y=\"220\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"11\" font-family=\"sans-serif\">New Service</text><text x=\"400\" y=\"236\" text-anchor=\"middle\" fill=\"#c8e6c9\" font-size=\"9\" font-family=\"sans-serif\">Auth (移行完了)</text><text x=\"400\" y=\"252\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"9\" font-family=\"sans-serif\">Anti-Corruption Layer</text><text x=\"400\" y=\"318\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"9\" font-family=\"sans-serif\">堆積順序を尊重</text><polygon points=\"518,195 540,185 540,205\" fill=\"#f9a825\"/><line x1=\"510\" y1=\"195\" x2=\"540\" y2=\"195\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"525\" y=\"215\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"8\" font-family=\"sans-serif\">風化</text><rect x=\"550\" y=\"45\" width=\"220\" height=\"290\" fill=\"#16213e\" rx=\"8\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"660\" y=\"66\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">Phase 3: 完了</text><rect x=\"568\" y=\"78\" width=\"80\" height=\"60\" fill=\"#1b5e20\" rx=\"5\" stroke=\"#388e3c\" stroke-width=\"1\"/><text x=\"608\" y=\"104\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"10\" font-family=\"sans-serif\">Auth ✓</text><rect x=\"654\" y=\"78\" width=\"80\" height=\"60\" fill=\"#1b5e20\" rx=\"5\" stroke=\"#388e3c\" stroke-width=\"1\"/><text x=\"694\" y=\"104\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"10\" font-family=\"sans-serif\">Users ✓</text><rect x=\"568\" y=\"148\" width=\"80\" height=\"60\" fill=\"#1b5e20\" rx=\"5\" stroke=\"#388e3c\" stroke-width=\"1\"/><text x=\"608\" y=\"174\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"10\" font-family=\"sans-serif\">Billing ✓</text><rect x=\"654\" y=\"148\" width=\"80\" height=\"60\" fill=\"#1b5e20\" rx=\"5\" stroke=\"#388e3c\" stroke-width=\"1\"/><text x=\"694\" y=\"174\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"10\" font-family=\"sans-serif\">Reports ✓</text><rect x=\"568\" y=\"220\" width=\"166\" height=\"48\" fill=\"#0d47a1\" rx=\"5\" stroke=\"#1565c0\" stroke-width=\"1\"/><text x=\"651\" y=\"241\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"10\" font-family=\"sans-serif\">API Gateway</text><text x=\"651\" y=\"257\" text-anchor=\"middle\" fill=\"#64b5f6\" font-size=\"9\" font-family=\"sans-serif\">統合・ルーティング</text><text x=\"660\" y=\"318\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"9\" font-family=\"sans-serif\">自然な風化完了</text></svg>",
-        "- **層序学的分析** を先に行い、構造を理解する",
-        "- **断層線** を特定し、リスクの高い境界を把握する",
-        "- **堆積順序** を尊重し、下層から無闇に掘り返さない",
-        "- **Anti-Corruption Layer** = 地質学の「不整合面」",
-        "- **段階的移行** = 地層の自然な風化プロセスを模倣",
-        "- 一気に壊すのではなく、自然に朽ちさせる"
-      ],
-      "speakerNotes": "Martin Fowlerが提唱したStrangler Fig Patternは、絞め殺しのイチジクが宿主を徐々に置き換える自然現象から着想。"
-    },
-    {
-      "title": "レガシーマイグレーション戦略",
-      "layout": "section",
-      "content": [
-        "Chapter 6: Migration Strategy"
-      ]
-    },
-    {
-      "title": "実践：レガシーコード考古学チェックリスト",
-      "layout": "default",
-      "content": [
-        "- 1. `git log --format='%ai' | sort | head` で **起源年代** を特定",
-        "- 2. `cloc --by-file` で **各層の堆積量**（行数）を計測",
-        "- 3. `git blame` で **年代別コード比率** を算出",
-        "- 4. `grep -rn 'TODO\\|FIXME'` で **化石記録** を発掘",
-        "- 5. 依存関係グラフで **断層線** をマッピング",
-        "- 6. リスクスコアリングで **改修優先度** を決定"
-      ]
-    },
-    {
-      "title": "まとめ：地質学が教えるレガシー対策",
-      "layout": "center",
-      "content": [
-        "レガシーコードは「技術的負債」ではなく「地層」である",
-        "",
-        "地層を理解し、断層を特定し、自然な風化を促す",
-        "",
-        "**考古学者の忍耐と、地質学者の長期視点で**",
-        "**コードベースと向き合おう**"
-      ]
-    },
-    {
-      "title": "References",
-      "layout": "default",
-      "content": [
-        "- **Books & Articles:**",
-        "- [Feathers, M. (2004) Working Effectively with Legacy Code. Prentice Hall](https://www.oreilly.com/library/view/working-effectively-with/0131177052/)",
-        "- [Fowler, M. (2004) StranglerFigApplication. martinfowler.com](https://martinfowler.com/bliki/StranglerFigApplication.html)",
-        "- **Techniques:**",
-        "- [Tornhill, A. (2015) Your Code as a Crime Scene. Pragmatic Bookshelf](https://pragprog.com/titles/atcrime/your-code-as-a-crime-scene/)",
-        "- [Tornhill, A. (2018) Software Design X-Rays. Pragmatic Bookshelf](https://pragprog.com/titles/atevol/software-design-x-rays/)"
-      ]
-    }
-  ]
+	"slides": [
+		{
+			"title": "コードの地層：地質学が教えるレガシーシステム考古学",
+			"layout": "center",
+			"content": [
+				"Geological Strata × Legacy Code Archaeology",
+				"",
+				"25年分のコードベースを科学的に発掘・分析・改修する"
+			]
+		},
+		{
+			"title": "Agenda",
+			"layout": "default",
+			"content": [
+				"- 1. コードベースの地層構造",
+				"- 2. コード考古学の手法",
+				"- 3. 化石コードの分類学",
+				"- 4. 技術的断層とコード地震",
+				"- 5. Strangler Fig Pattern：地質学的リファクタリング",
+				"- 6. レガシーマイグレーション戦略"
+			]
+		},
+		{
+			"title": "コードベースの地層構造",
+			"layout": "section",
+			"content": ["Chapter 1: Code Stratigraphy"]
+		},
+		{
+			"title": "コードベースの地層構造",
+			"layout": "default",
+			"content": ["![w:900 center](assets/diagram-01.svg)"]
+		},
+		{
+			"title": "地層累重の法則（Law of Superposition）",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 380\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">コードベース地層断面図 — 下が古く 上が新しい</text><rect x=\"60\" y=\"42\" width=\"680\" height=\"48\" fill=\"#1565c0\" rx=\"4\"/><text x=\"80\" y=\"62\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">現代層 (2020-): React Hooks / TypeScript / Server Components</text><text x=\"80\" y=\"80\" fill=\"#90caf9\" font-size=\"10\" font-family=\"sans-serif\">クラウドネイティブ・型安全</text><text x=\"720\" y=\"70\" fill=\"#f9a825\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">2024</text><rect x=\"60\" y=\"96\" width=\"680\" height=\"48\" fill=\"#1976d2\" rx=\"4\"/><text x=\"80\" y=\"116\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">中間層 (2015-): React Class / Angular 2+ / Docker</text><text x=\"80\" y=\"134\" fill=\"#90caf9\" font-size=\"10\" font-family=\"sans-serif\">コンポーネント指向・コンテナ化</text><text x=\"720\" y=\"124\" fill=\"#f9a825\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">2018</text><rect x=\"60\" y=\"150\" width=\"680\" height=\"48\" fill=\"#c62828\" rx=\"4\"/><text x=\"80\" y=\"170\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">旧世代層 (2008-): jQuery / PHP / REST API</text><text x=\"80\" y=\"188\" fill=\"#ffcdd2\" font-size=\"10\" font-family=\"sans-serif\">モノリシック・スパゲッティコード</text><text x=\"720\" y=\"178\" fill=\"#f9a825\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">2012</text><rect x=\"60\" y=\"204\" width=\"680\" height=\"48\" fill=\"#6a1616\" rx=\"4\"/><text x=\"80\" y=\"224\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">古代層 (2000-): Perl CGI / XML / SOAP</text><text x=\"80\" y=\"242\" fill=\"#ef9a9a\" font-size=\"10\" font-family=\"sans-serif\">Y2K対応コード・グローバル変数乱用</text><text x=\"720\" y=\"232\" fill=\"#f9a825\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">2004</text><rect x=\"60\" y=\"258\" width=\"680\" height=\"48\" fill=\"#3e1010\" rx=\"4\"/><text x=\"80\" y=\"278\" fill=\"#ffccbc\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">化石層 (1995-): C/C++ / COBOL / Mainframe</text><text x=\"80\" y=\"296\" fill=\"#d7ccc8\" font-size=\"10\" font-family=\"sans-serif\">誰も触れない聖域・ドキュメントなし</text><text x=\"720\" y=\"286\" fill=\"#f9a825\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">1998</text><line x1=\"40\" y1=\"42\" x2=\"40\" y2=\"306\" stroke=\"#556\" stroke-width=\"2\"/><polygon points=\"40,36 34,50 46,50\" fill=\"#556\"/><text x=\"28\" y=\"175\" fill=\"#78909c\" font-size=\"9\" text-anchor=\"middle\" font-family=\"sans-serif\" transform=\"rotate(-90,28,175)\">← 古い</text><text x=\"400\" y=\"345\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">git log = 地層の年代測定 | 各層はその時代の技術的制約を反映</text></svg>",
+				"- 地質学: **上の地層が新しく、下の地層が古い**",
+				"- コード: 新しいコードが古いコードの上に堆積する",
+				"- `git log` は地層の年代測定に相当する",
+				"- 各層は **その時代の技術的制約** を反映している",
+				"- 古い層を理解せずに新しい層を積むのは危険",
+				"- 地層を無視した建設 = 技術的負債の蓄積"
+			],
+			"speakerNotes": "ニコラス・ステノが1669年に提唱した地層累重の法則。コードベースでも全く同じ原理が働く。"
+		},
+		{
+			"title": "時代ごとのコーディングスタイル「示準化石」",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 380\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">示準化石：コードの時代を特定するパターン</text><line x1=\"60\" y1=\"195\" x2=\"760\" y2=\"195\" stroke=\"#445\" stroke-width=\"2\"/><rect x=\"60\" y=\"148\" width=\"105\" height=\"92\" fill=\"#263238\" rx=\"5\" stroke=\"#546e7a\" stroke-width=\"1\"/><text x=\"112\" y=\"168\" text-anchor=\"middle\" fill=\"#b0bec5\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">1999</text><text x=\"112\" y=\"184\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"10\" font-family=\"sans-serif\">Perl CGI</text><text x=\"112\" y=\"199\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">print \"Content-</text><text x=\"112\" y=\"213\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">type: text/html\"</text><rect x=\"176\" y=\"132\" width=\"107\" height=\"108\" fill=\"#1a237e\" rx=\"5\" stroke=\"#3949ab\" stroke-width=\"1\"/><text x=\"229\" y=\"152\" text-anchor=\"middle\" fill=\"#9fa8da\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">2006</text><text x=\"229\" y=\"168\" text-anchor=\"middle\" fill=\"#ffcc80\" font-size=\"10\" font-family=\"sans-serif\">jQuery</text><text x=\"229\" y=\"183\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">$(document).</text><text x=\"229\" y=\"197\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">ready(fn)</text><rect x=\"294\" y=\"116\" width=\"110\" height=\"124\" fill=\"#1b5e20\" rx=\"5\" stroke=\"#388e3c\" stroke-width=\"1\"/><text x=\"349\" y=\"136\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">2012</text><text x=\"349\" y=\"152\" text-anchor=\"middle\" fill=\"#ffcc80\" font-size=\"10\" font-family=\"sans-serif\">Angular 1.x</text><text x=\"349\" y=\"167\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">$scope.data</text><text x=\"349\" y=\"181\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">ng-model</text><rect x=\"415\" y=\"100\" width=\"110\" height=\"140\" fill=\"#4a148c\" rx=\"5\" stroke=\"#7b1fa2\" stroke-width=\"1\"/><text x=\"470\" y=\"120\" text-anchor=\"middle\" fill=\"#ce93d8\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">2015</text><text x=\"470\" y=\"136\" text-anchor=\"middle\" fill=\"#ffcc80\" font-size=\"10\" font-family=\"sans-serif\">React Class</text><text x=\"470\" y=\"151\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">componentDid</text><text x=\"470\" y=\"165\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">Mount(){}</text><rect x=\"536\" y=\"84\" width=\"110\" height=\"156\" fill=\"#bf360c\" rx=\"5\" stroke=\"#e64a19\" stroke-width=\"1\"/><text x=\"591\" y=\"104\" text-anchor=\"middle\" fill=\"#ffccbc\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">2019</text><text x=\"591\" y=\"120\" text-anchor=\"middle\" fill=\"#ffcc80\" font-size=\"10\" font-family=\"sans-serif\">React Hooks</text><text x=\"591\" y=\"135\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">useEffect(()=></text><text x=\"591\" y=\"149\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">{...}, [])</text><rect x=\"657\" y=\"68\" width=\"103\" height=\"172\" fill=\"#004d40\" rx=\"5\" stroke=\"#00796b\" stroke-width=\"1\"/><text x=\"708\" y=\"88\" text-anchor=\"middle\" fill=\"#80cbc4\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">2024</text><text x=\"708\" y=\"104\" text-anchor=\"middle\" fill=\"#ffcc80\" font-size=\"10\" font-family=\"sans-serif\">Server Comp.</text><text x=\"708\" y=\"119\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">async function</text><text x=\"708\" y=\"133\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"8\" font-family=\"sans-serif\">Page(){}</text><text x=\"112\" y=\"256\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">1999</text><text x=\"229\" y=\"256\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">2006</text><text x=\"349\" y=\"256\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">2012</text><text x=\"470\" y=\"256\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">2015</text><text x=\"591\" y=\"256\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">2019</text><text x=\"708\" y=\"256\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">2024</text><text x=\"400\" y=\"290\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">各パターンがコードの「生まれた時代」を示す示準化石</text></svg>",
+				"- **Perl CGI 時代** (1999-): `print \"Content-type: text/html\\n\\n\";`",
+				"- **jQuery 時代** (2006-): `$(document).ready(function() {...})`",
+				"- **Angular 1.x 時代** (2012-): `$scope.data = ...`",
+				"- **React Class 時代** (2015-): `componentDidMount() {...}`",
+				"- **React Hooks 時代** (2019-): `useEffect(() => {...}, [])`",
+				"- **Server Components 時代** (2024-): `async function Page() {...}`"
+			],
+			"speakerNotes": "示準化石（Index Fossil）は特定の地質時代を示す化石。コードにも同様のパターンがある。"
+		},
+		{
+			"title": "コード考古学の手法",
+			"layout": "section",
+			"content": ["Chapter 2: Code Archaeology Methods"]
+		},
+		{
+			"title": "コード化石の発掘プロセス",
+			"layout": "default",
+			"content": ["![w:900 center](assets/diagram-02.svg)"]
+		},
+		{
+			"title": "git blame：放射性炭素年代測定",
+			"content": [
+				"- `git blame` は各コード行の **作成時期と著者** を特定する",
+				"- 地質学の放射性炭素年代測定（C-14法）に相当",
+				"- コード行の「半減期」= 変更されずに残る平均期間"
+			],
+			"layout": "default"
+		},
+		{
+			"title": "git blame：放射性炭素年代測定（コード例）",
+			"content": [],
+			"code": "# Code Carbon Dating\n$ git blame --date=short src/auth/login.ts\n# 2003-04-12  (alice)  function validateUser(u, p) {\n# 2003-04-12  (alice)    var query = \"SELECT * FROM users ...\n# 2019-08-21  (bob)    // TODO: fix SQL injection\n# 2024-01-15  (carol)  const result = await db.query(prepared);",
+			"codeLanguage": "bash",
+			"layout": "default"
+		},
+		{
+			"title": "化石コードの分類学",
+			"layout": "section",
+			"content": ["Chapter 3: Fossil Code Taxonomy"]
+		},
+		{
+			"title": "コード化石の5分類",
+			"layout": "default",
+			"content": [
+				"- **生きた化石** (Living Fossil): 古いが現役で動作するコード",
+				"- **痕跡器官** (Vestigial Organ): かつて重要だったが今は不要な機能",
+				"- **化石記録** (Fossil Record): コメントやTODOに残る過去の意図",
+				"- **示準化石** (Index Fossil): 時代特定できるコーディングパターン",
+				"- **琥珀** (Amber): 完全に凍結された依存関係（pinned versions）"
+			]
+		},
+		{
+			"title": "痕跡器官コードの実例",
+			"content": ["- かつてのIE対応コードが典型例"],
+			"layout": "default"
+		},
+		{
+			"title": "痕跡器官コードの実例（コード例）",
+			"content": [],
+			"code": "// Vestigial Code: IE6-8 compatibility (2008)\nfunction addEvent(el, type, fn) {\n  if (el.addEventListener) {\n    el.addEventListener(type, fn, false);\n  } else if (el.attachEvent) { // IE path\n    el.attachEvent('on' + type, fn);\n  } else {\n    el['on' + type] = fn; // fallback\n  }\n}",
+			"codeLanguage": "javascript",
+			"layout": "default"
+		},
+		{
+			"title": "TODO考古学：コメント化石の発掘",
+			"content": ["- TODO/FIXME/HACK は過去の開発者が残した **化石記録**"],
+			"layout": "default"
+		},
+		{
+			"title": "TODO考古学：コメント化石の発掘（コード例）",
+			"content": [],
+			"code": "# Fossil Excavation\n$ grep -rn 'TODO\\|FIXME\\|HACK\\|XXX' src/ | \\\n  git blame -L | sort -t: -k3\n\n# Results (sorted by date):\n# 2004: HACK: temporary workaround for Oracle bug\n# 2009: TODO: refactor this when we drop IE6\n# 2015: FIXME: race condition under high load\n# 2021: XXX: this entire module needs rewriting",
+			"codeLanguage": "bash",
+			"layout": "default"
+		},
+		{
+			"title": "技術的断層とコード地震",
+			"layout": "section",
+			"content": ["Chapter 4: Technical Fault Lines"]
+		},
+		{
+			"title": "技術的断層とコード地震のリスクマップ",
+			"layout": "default",
+			"content": ["![w:900 center](assets/diagram-04.svg)"]
+		},
+		{
+			"title": "コード地震の震度スケール",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 380\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">コード地震の震度スケール</text><rect x=\"50\" y=\"48\" width=\"700\" height=\"40\" fill=\"#16213e\" rx=\"4\" stroke=\"#b71c1c\" stroke-width=\"1\"/><rect x=\"50\" y=\"48\" width=\"680\" height=\"40\" fill=\"#b71c1c\" rx=\"4\" opacity=\"0.5\"/><text x=\"95\" y=\"73\" fill=\"#ef5350\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">M9-10</text><text x=\"200\" y=\"73\" fill=\"#ffcdd2\" font-size=\"12\" font-family=\"sans-serif\">ランタイム移行 (Python 2→3) / 全面リプレース</text><text x=\"710\" y=\"73\" fill=\"#ef5350\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">壊滅的</text><rect x=\"50\" y=\"94\" width=\"700\" height=\"40\" fill=\"#16213e\" rx=\"4\" stroke=\"#e53935\" stroke-width=\"1\"/><rect x=\"50\" y=\"94\" width=\"560\" height=\"40\" fill=\"#c62828\" rx=\"4\" opacity=\"0.4\"/><text x=\"95\" y=\"119\" fill=\"#ffcdd2\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">M7-8</text><text x=\"200\" y=\"119\" fill=\"#ef9a9a\" font-size=\"12\" font-family=\"sans-serif\">共有DBスキーマのマイグレーション</text><text x=\"710\" y=\"119\" fill=\"#ef9a9a\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">大震</text><rect x=\"50\" y=\"140\" width=\"700\" height=\"40\" fill=\"#16213e\" rx=\"4\" stroke=\"#ef6c00\" stroke-width=\"1\"/><rect x=\"50\" y=\"140\" width=\"450\" height=\"40\" fill=\"#e65100\" rx=\"4\" opacity=\"0.4\"/><text x=\"95\" y=\"165\" fill=\"#ffccbc\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">M5-6</text><text x=\"200\" y=\"165\" fill=\"#ffab91\" font-size=\"12\" font-family=\"sans-serif\">API仕様の破壊的変更 (Breaking Change)</text><text x=\"710\" y=\"165\" fill=\"#ffab91\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">中震</text><rect x=\"50\" y=\"186\" width=\"700\" height=\"40\" fill=\"#16213e\" rx=\"4\" stroke=\"#f9a825\" stroke-width=\"1\"/><rect x=\"50\" y=\"186\" width=\"340\" height=\"40\" fill=\"#f57f17\" rx=\"4\" opacity=\"0.3\"/><text x=\"95\" y=\"211\" fill=\"#fff9c4\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">M3-4</text><text x=\"200\" y=\"211\" fill=\"#fff176\" font-size=\"12\" font-family=\"sans-serif\">フレームワークのメジャーバージョン更新</text><text x=\"710\" y=\"211\" fill=\"#fff176\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">軽震</text><rect x=\"50\" y=\"232\" width=\"700\" height=\"40\" fill=\"#16213e\" rx=\"4\" stroke=\"#388e3c\" stroke-width=\"1\"/><rect x=\"50\" y=\"232\" width=\"200\" height=\"40\" fill=\"#1b5e20\" rx=\"4\" opacity=\"0.4\"/><text x=\"95\" y=\"257\" fill=\"#c8e6c9\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">M1-2</text><text x=\"200\" y=\"257\" fill=\"#a5d6a7\" font-size=\"12\" font-family=\"sans-serif\">ライブラリのマイナーバージョン更新</text><text x=\"710\" y=\"257\" fill=\"#a5d6a7\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">微震</text><line x1=\"50\" y1=\"292\" x2=\"750\" y2=\"292\" stroke=\"#334\" stroke-width=\"1\"/><text x=\"400\" y=\"320\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"11\" font-family=\"sans-serif\">Python 2→3 の移行は10年かかった：震度の過小評価は致命的</text><text x=\"400\" y=\"346\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">Anti-Corruption Layer で断層の影響を最小化する</text></svg>",
+				"- **M1-2（微震）**: ライブラリのマイナーバージョン更新",
+				"- **M3-4（軽震）**: フレームワークのメジャーバージョン更新",
+				"- **M5-6（中震）**: API仕様の破壊的変更",
+				"- **M7-8（大震）**: 共有DBスキーマのマイグレーション",
+				"- **M9（巨大地震）**: ランタイム/言語の移行（Python 2→3）",
+				"- **M10（文明崩壊）**: 全面リプレースの決断"
+			],
+			"speakerNotes": "Python 2→3の移行は10年かかった。コード地震の規模を過小評価すると致命的。"
+		},
+		{
+			"title": "断層境界のパターン",
+			"layout": "default",
+			"content": [
+				"- **収束境界**: Legacy → Modern に徐々に統合（理想的）",
+				"- **発散境界**: Legacy と Modern が乖離し続ける（危険）",
+				"- **横ずれ断層**: 同じ機能の新旧実装が並行稼動（混乱）",
+				"- 収束境界を維持するには **Anti-Corruption Layer** が必須",
+				"- 発散を放置すると「技術的大陸移動」が発生",
+				"- 最終的に2つのシステムが完全に分離して保守不能に"
+			]
+		},
+		{
+			"title": "Strangler Fig Pattern",
+			"layout": "section",
+			"content": ["Chapter 5: Geological Refactoring"]
+		},
+		{
+			"title": "Strangler Fig Pattern：地質学的リファクタリング",
+			"layout": "default",
+			"content": ["![w:900 center](assets/diagram-03.svg)"]
+		},
+		{
+			"title": "地質学的リファクタリングの原則",
+			"layout": "default",
+			"content": [
+				"<svg viewBox=\"0 0 800 380\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">地質学的リファクタリング：段階的移行プロセス</text><rect x=\"30\" y=\"45\" width=\"220\" height=\"290\" fill=\"#16213e\" rx=\"8\" stroke=\"#c62828\" stroke-width=\"2\"/><text x=\"140\" y=\"66\" text-anchor=\"middle\" fill=\"#ef5350\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">Phase 1: 現状分析</text><rect x=\"50\" y=\"78\" width=\"180\" height=\"175\" fill=\"#3e1010\" rx=\"5\" stroke=\"#b71c1c\" stroke-width=\"1\"/><text x=\"140\" y=\"100\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">Legacy Monolith</text><text x=\"140\" y=\"118\" text-anchor=\"middle\" fill=\"#ffcdd2\" font-size=\"9\" font-family=\"sans-serif\">Auth + Billing + User</text><text x=\"140\" y=\"134\" text-anchor=\"middle\" fill=\"#ffcdd2\" font-size=\"9\" font-family=\"sans-serif\">Reports + Notifications</text><text x=\"140\" y=\"170\" text-anchor=\"middle\" fill=\"#b71c1c\" font-size=\"22\" font-family=\"sans-serif\">⚡</text><text x=\"140\" y=\"200\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"9\" font-family=\"sans-serif\">全て密結合</text><text x=\"140\" y=\"216\" text-anchor=\"middle\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">断層線：多数</text><text x=\"140\" y=\"318\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"9\" font-family=\"sans-serif\">層序学的分析から開始</text><polygon points=\"258,195 280,185 280,205\" fill=\"#f9a825\"/><line x1=\"250\" y1=\"195\" x2=\"280\" y2=\"195\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"265\" y=\"215\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"8\" font-family=\"sans-serif\">段階的</text><rect x=\"290\" y=\"45\" width=\"220\" height=\"290\" fill=\"#16213e\" rx=\"8\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"400\" y=\"66\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">Phase 2: 移行中</text><rect x=\"310\" y=\"78\" width=\"180\" height=\"105\" fill=\"#3e1010\" rx=\"5\" stroke=\"#b71c1c\" stroke-width=\"1\" opacity=\"0.7\"/><text x=\"400\" y=\"100\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"11\" font-family=\"sans-serif\">Legacy (縮小中)</text><text x=\"400\" y=\"116\" text-anchor=\"middle\" fill=\"#ffcdd2\" font-size=\"9\" font-family=\"sans-serif\">Billing + Reports</text><text x=\"400\" y=\"132\" text-anchor=\"middle\" fill=\"#b0bec5\" font-size=\"9\" font-family=\"sans-serif\">移行待ち</text><rect x=\"310\" y=\"198\" width=\"180\" height=\"75\" fill=\"#1b5e20\" rx=\"5\" stroke=\"#388e3c\" stroke-width=\"1\"/><text x=\"400\" y=\"220\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"11\" font-family=\"sans-serif\">New Service</text><text x=\"400\" y=\"236\" text-anchor=\"middle\" fill=\"#c8e6c9\" font-size=\"9\" font-family=\"sans-serif\">Auth (移行完了)</text><text x=\"400\" y=\"252\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"9\" font-family=\"sans-serif\">Anti-Corruption Layer</text><text x=\"400\" y=\"318\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"9\" font-family=\"sans-serif\">堆積順序を尊重</text><polygon points=\"518,195 540,185 540,205\" fill=\"#f9a825\"/><line x1=\"510\" y1=\"195\" x2=\"540\" y2=\"195\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"525\" y=\"215\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"8\" font-family=\"sans-serif\">風化</text><rect x=\"550\" y=\"45\" width=\"220\" height=\"290\" fill=\"#16213e\" rx=\"8\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"660\" y=\"66\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">Phase 3: 完了</text><rect x=\"568\" y=\"78\" width=\"80\" height=\"60\" fill=\"#1b5e20\" rx=\"5\" stroke=\"#388e3c\" stroke-width=\"1\"/><text x=\"608\" y=\"104\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"10\" font-family=\"sans-serif\">Auth ✓</text><rect x=\"654\" y=\"78\" width=\"80\" height=\"60\" fill=\"#1b5e20\" rx=\"5\" stroke=\"#388e3c\" stroke-width=\"1\"/><text x=\"694\" y=\"104\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"10\" font-family=\"sans-serif\">Users ✓</text><rect x=\"568\" y=\"148\" width=\"80\" height=\"60\" fill=\"#1b5e20\" rx=\"5\" stroke=\"#388e3c\" stroke-width=\"1\"/><text x=\"608\" y=\"174\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"10\" font-family=\"sans-serif\">Billing ✓</text><rect x=\"654\" y=\"148\" width=\"80\" height=\"60\" fill=\"#1b5e20\" rx=\"5\" stroke=\"#388e3c\" stroke-width=\"1\"/><text x=\"694\" y=\"174\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"10\" font-family=\"sans-serif\">Reports ✓</text><rect x=\"568\" y=\"220\" width=\"166\" height=\"48\" fill=\"#0d47a1\" rx=\"5\" stroke=\"#1565c0\" stroke-width=\"1\"/><text x=\"651\" y=\"241\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"10\" font-family=\"sans-serif\">API Gateway</text><text x=\"651\" y=\"257\" text-anchor=\"middle\" fill=\"#64b5f6\" font-size=\"9\" font-family=\"sans-serif\">統合・ルーティング</text><text x=\"660\" y=\"318\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"9\" font-family=\"sans-serif\">自然な風化完了</text></svg>",
+				"- **層序学的分析** を先に行い、構造を理解する",
+				"- **断層線** を特定し、リスクの高い境界を把握する",
+				"- **堆積順序** を尊重し、下層から無闇に掘り返さない",
+				"- **Anti-Corruption Layer** = 地質学の「不整合面」",
+				"- **段階的移行** = 地層の自然な風化プロセスを模倣",
+				"- 一気に壊すのではなく、自然に朽ちさせる"
+			],
+			"speakerNotes": "Martin Fowlerが提唱したStrangler Fig Patternは、絞め殺しのイチジクが宿主を徐々に置き換える自然現象から着想。"
+		},
+		{
+			"title": "レガシーマイグレーション戦略",
+			"layout": "section",
+			"content": ["Chapter 6: Migration Strategy"]
+		},
+		{
+			"title": "実践：レガシーコード考古学チェックリスト",
+			"layout": "default",
+			"content": [
+				"- 1. `git log --format='%ai' | sort | head` で **起源年代** を特定",
+				"- 2. `cloc --by-file` で **各層の堆積量**（行数）を計測",
+				"- 3. `git blame` で **年代別コード比率** を算出",
+				"- 4. `grep -rn 'TODO\\|FIXME'` で **化石記録** を発掘",
+				"- 5. 依存関係グラフで **断層線** をマッピング",
+				"- 6. リスクスコアリングで **改修優先度** を決定"
+			]
+		},
+		{
+			"title": "まとめ：地質学が教えるレガシー対策",
+			"layout": "center",
+			"content": [
+				"レガシーコードは「技術的負債」ではなく「地層」である",
+				"",
+				"地層を理解し、断層を特定し、自然な風化を促す",
+				"",
+				"**考古学者の忍耐と、地質学者の長期視点で**",
+				"**コードベースと向き合おう**"
+			]
+		},
+		{
+			"title": "References",
+			"layout": "default",
+			"content": [
+				"- **Books & Articles:**",
+				"- [Feathers, M. (2004) Working Effectively with Legacy Code. Prentice Hall](https://www.oreilly.com/library/view/working-effectively-with/0131177052/)",
+				"- [Fowler, M. (2004) StranglerFigApplication. martinfowler.com](https://martinfowler.com/bliki/StranglerFigApplication.html)",
+				"- **Techniques:**",
+				"- [Tornhill, A. (2015) Your Code as a Crime Scene. Pragmatic Bookshelf](https://pragprog.com/titles/atcrime/your-code-as-a-crime-scene/)",
+				"- [Tornhill, A. (2018) Software Design X-Rays. Pragmatic Bookshelf](https://pragprog.com/titles/atevol/software-design-x-rays/)"
+			]
+		}
+	]
 }
