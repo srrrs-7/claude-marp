@@ -1,5 +1,12 @@
 import { describe, expect, test } from "bun:test";
 import {
+	GRADE_A_MIN,
+	GRADE_B_MIN,
+	GRADE_C_MIN,
+	READING_SPEED_EN,
+	READING_SPEED_JA,
+} from "../lib/constants.js";
+import {
 	computeDeckMetrics,
 	estimateMins,
 	hasSvg,
@@ -105,5 +112,39 @@ describe("computeDeckMetrics", () => {
 	test("readingMins is positive for non-empty deck", () => {
 		const slides = [{ title: "タイトル", content: ["本文テキスト"] }];
 		expect(computeDeckMetrics(slides).readingMins).toBeGreaterThanOrEqual(1);
+	});
+
+	test("English language gives more readingMins than Japanese for same content", () => {
+		const slides = [{ title: "a".repeat(1000), content: [] }];
+		const jaMetrics = computeDeckMetrics(slides, "ja");
+		const enMetrics = computeDeckMetrics(slides, "en");
+		expect(enMetrics.readingMins).toBeGreaterThan(jaMetrics.readingMins);
+	});
+});
+
+describe("constants", () => {
+	test("GRADE thresholds are correctly ordered", () => {
+		expect(GRADE_A_MIN).toBeGreaterThan(GRADE_B_MIN);
+		expect(GRADE_B_MIN).toBeGreaterThan(GRADE_C_MIN);
+		expect(GRADE_C_MIN).toBeGreaterThan(0);
+	});
+
+	test("English reading speed is slower than Japanese", () => {
+		// EN speed is lower chars/min → more minutes for same content
+		expect(READING_SPEED_EN).toBeLessThan(READING_SPEED_JA);
+	});
+});
+
+describe("estimateMins language parameter", () => {
+	test("defaults to Japanese speed", () => {
+		const chars = READING_SPEED_JA; // exactly 1 minute at JA speed
+		const slide = { title: "a".repeat(chars), content: [] };
+		expect(estimateMins([slide])).toBe(1);
+	});
+
+	test("uses English speed when language='en'", () => {
+		const chars = READING_SPEED_EN; // exactly 1 minute at EN speed
+		const slide = { title: "a".repeat(chars), content: [] };
+		expect(estimateMins([slide], "en")).toBe(1);
 	});
 });
