@@ -285,6 +285,8 @@ style: |
 
 # 参考文献
 
+> *言語帝国主義の古典書籍とEthnologue・W3Techsの実証データを網羅*
+
 - - **書籍:**
 - - [Linguistic Imperialism - Robert Phillipson](https://www.amazon.com/dp/0194371468)
 - - [The Stories of English - David Crystal](https://www.amazon.com/dp/1585677191)

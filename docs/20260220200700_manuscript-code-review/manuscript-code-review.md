@@ -310,6 +310,8 @@ style: |
 
 # 参考文献
 
+> *写本文化・コードレビュー実践の一次資料を網羅*
+
 - - **History:**
 - - [The Book: A Cover-to-Cover Exploration - Jessica Helfand (2019)](https://yalebooks.yale.edu/book/9780300226652/the-book/)
 - - [Textual Criticism - Wikipedia](https://en.wikipedia.org/wiki/Textual_criticism)

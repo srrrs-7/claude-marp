@@ -304,6 +304,8 @@ style: |
 
 # 参考文献
 
+> *ゲーム理論・OSS持続可能性研究の一次資料を網羅*
+
 - - **Research:**
 - - [The Evolution of Cooperation - R.Axelrod (1984)](https://en.wikipedia.org/wiki/The_Evolution_of_Cooperation)
 - - [Roads and Bridges: The Unseen Labor Behind Our Digital Infrastructure - Nadia Eghbal (2016)](https://www.fordfoundation.org/work/learning/research-reports/roads-and-bridges-the-unseen-labor-behind-our-digital-infrastructure/)

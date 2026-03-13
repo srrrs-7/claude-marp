@@ -172,6 +172,8 @@ style: |
 
 # 情報セキュリティの3要素（CIA トライアド）
 
+> *機密性・完全性・可用性の3軸がセキュリティ対策の評価基準*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">情報セキュリティの3要素（CIA トライアド）</text>
@@ -334,6 +336,8 @@ style: |
 ---
 
 # ISO/IEC 27001:2022 全体構造
+
+> *箇条4〜10のHLS+附属書A管理策で認証要件の全体を定義*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -837,6 +841,8 @@ style: |
 
 # リスク対応の4つの選択肢
 
+> *回避・低減・移転・受容の4択でリスクごとに最適対応を選ぶ*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">リスク対応の4つの選択肢</text>
@@ -918,6 +924,8 @@ style: |
 ---
 
 # リスクレジスターの実例
+
+> *スコア化と残留リスク記録で経営層への説明責任を果たす*
 
 | 資産 | 脅威 | 脆弱性 | 影響 | 可能性 | スコア | 対応 | 残留 |
 |------|------|--------|------|--------|--------|------|------|
@@ -1207,6 +1215,8 @@ style: |
 ---
 
 # ISMS認証審査プロセスの全体像
+
+> *Stage1文書審査→Stage2現地審査→認証→サーベイランスの流れ*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1754,6 +1764,8 @@ style: |
 ---
 
 # ゼロトラストアーキテクチャとISMS管理策の対応
+
+> *ZTA実装がISMSのAnnex A技術管理策の多くを自動的に充足*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>

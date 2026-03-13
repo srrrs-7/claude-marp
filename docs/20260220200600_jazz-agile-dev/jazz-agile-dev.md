@@ -287,6 +287,8 @@ style: |
 
 # 参考文献
 
+> *アジャイル・ジャズ即興・グループ創造性の文献一覧*
+
 - - **Books:**
 - - [Agile Software Development - Robert C. Martin (2002)](https://en.wikipedia.org/wiki/Agile_software_development)
 - - [The Jazz Process - Adrian Cho (2010)](https://www.informit.com/store/jazz-process-collaboration-innovation-and-agility-9780321636461)

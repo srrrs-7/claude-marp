@@ -212,6 +212,8 @@ style: |
 
 # 参考文献
 
+> *Oxford・Stanfordのデジタル遺産研究と実用ガイドの一覧*
+
 - - **学術研究:**
 - - [Are the dead taking over Facebook? (Oxford, 2019)](https://academic.oup.com/)
 - - [Digital Estate Planning (Stanford Law Review)](https://www.stanfordlawreview.org/)

@@ -84,7 +84,6 @@
 		},
 		{
 			"title": "組織的同調圧力",
-			"subtitle": "FOMOが駆動する同調カスケードで文脈なき結論だけが組織全体に伝播する",
 			"layout": "default",
 			"content": [
 				"**「みんなやってるから」** — FOMO (Fear of Missing Out)",
@@ -96,7 +95,6 @@
 		},
 		{
 			"title": "成功の誤帰因",
-			"subtitle": "コードレビューがGoogleを成功させたのではなく優秀な人材と判断力が成功を生んだ",
 			"layout": "default",
 			"content": [
 				"**Aがあり、Bが成功した → AがBの原因？**",
@@ -113,7 +111,6 @@
 		},
 		{
 			"title": "「なぜ」を5回問う",
-			"subtitle": "「K8s導入したい」を5回深掘りすると月1回セールには月次スケールで十分と判明",
 			"layout": "default",
 			"content": [
 				"ファーストプリンシプル思考で技術選定を見直す",
@@ -123,7 +120,6 @@
 		},
 		{
 			"title": "コンテキスト適合の評価フレームワーク",
-			"subtitle": "スケール×チームサイズの4象限で技術選定の適切さを客観的に評価できる",
 			"layout": "default",
 			"content": [
 				"技術選定の4軸で自社の立ち位置を評価する",
@@ -133,7 +129,6 @@
 		},
 		{
 			"title": "「愚かに見える勇気」",
-			"subtitle": "Basecampのクラウド離脱でインフラコスト70%削減—自社最適が業界標準を上回った",
 			"layout": "default",
 			"content": [
 				"業界トレンドに逆らう選択をした企業たち",
@@ -181,6 +176,7 @@
 		},
 		{
 			"title": "参考文献（1/2）",
+			"subtitle": "ファインマンの原著講義からChristensenまで脱カーゴカルトの理論的基盤",
 			"layout": "default",
 			"content": [
 				"- **Research & Lectures:**",
@@ -191,6 +187,7 @@
 		},
 		{
 			"title": "参考文献（2/2）",
+			"subtitle": "コンテキスト適合選定を裏付けるAccelerate・Code Complete・実践記事5選",
 			"layout": "default",
 			"content": [
 				"- McConnell, *Code Complete* 2nd Edition (2004)",

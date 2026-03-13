@@ -278,6 +278,8 @@ style: |
 
 # 参考文献
 
+> *記憶術・認知負荷理論・ソフトウェア設計の一次資料*
+
 - - **Research:**
 - - [Moonwalking with Einstein - Joshua Foer (2011)](https://en.wikipedia.org/wiki/Moonwalking_with_Einstein)
 - - [Cognitive Load Theory - John Sweller (1988)](https://en.wikipedia.org/wiki/Cognitive_load)

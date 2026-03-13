@@ -560,6 +560,8 @@ style: |
 
 # Domain 1 — キーワード総まとめ（1/2）
 
+> *Domain 1の全キーワードを前半でまとめて一括確認する*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデル選択 デシジョンツリー</text>
@@ -1002,6 +1004,8 @@ style: |
 ---
 
 # Domain 2 — キーワード総まとめ（1/2）
+
+> *Domain 2の全キーワードを前半でまとめて一括確認する*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1792,6 +1796,8 @@ style: |
 
 # Domain 3 — キーワード総まとめ A（RAG / KB / Agents）（1/2）
 
+> *RAG/KB/Agentsのキーワードを総まとめして試験直前に確認*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding モデル — ベクトル化フロー</text>
@@ -1849,6 +1855,8 @@ style: |
 ---
 
 # Domain 3 — キーワード総まとめ B（FT / Eval / Flow）（1/2）
+
+> *FT/Eval/FlowのキーワードをBセクションで総まとめして確認*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2240,6 +2248,8 @@ style: |
 
 # Domain 4 — キーワード総まとめ（1/2）
 
+> *Domain 4の全キーワードを一括まとめして最終確認する*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Bedrock Agent — ReAct ループ</text>
@@ -2613,6 +2623,8 @@ style: |
 ---
 
 # Domain 5 — キーワード総まとめ（1/2）
+
+> *Domain 5の全キーワードを一括まとめして最終確認する*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>

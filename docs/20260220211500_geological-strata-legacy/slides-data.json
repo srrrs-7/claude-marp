@@ -225,6 +225,7 @@
 		{
 			"title": "References",
 			"layout": "default",
+			"subtitle": "Feathers・Fowler・Tornhillの4冊が実践の最短距離",
 			"content": [
 				"- **Books & Articles:**",
 				"- [Feathers, M. (2004) Working Effectively with Legacy Code. Prentice Hall](https://www.oreilly.com/library/view/working-effectively-with/0131177052/)",

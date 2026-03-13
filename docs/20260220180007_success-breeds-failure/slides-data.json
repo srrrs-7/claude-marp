@@ -99,6 +99,7 @@
 		},
 		{
 			"title": "サンクコストと組織の慣性",
+			"subtitle": "既存インフラへの巨額投資が撤退不可能にし変化コストが現状維持コストを下回る前に手遅れになる",
 			"layout": "default",
 			"content": [
 				"- 既存インフラへの巨額投資 → 撤退不可能",
@@ -141,6 +142,7 @@
 		},
 		{
 			"title": "「カニバリズムを恐れるな」",
+			"subtitle": "AppleはiPodをiPhoneで意図的に殺した—自己破壊しなければ他社に破壊される",
 			"layout": "default",
 			"content": [
 				"- Apple: iPodをiPhoneで殺した（自己破壊戦略）",

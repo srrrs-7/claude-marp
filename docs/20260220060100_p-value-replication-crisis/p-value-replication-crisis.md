@@ -316,6 +316,8 @@ style: |
 
 # 参考文献
 
+> *再現性危機を実証した主要論文と改革提言の参考文献一覧*
+
 - - **研究・データ:**
 - - Open Science Collaboration (2015) "Estimating the reproducibility of psychological science"
 - - Ioannidis, J.P.A. (2005) "Why Most Published Research Findings Are False"

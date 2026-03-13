@@ -275,6 +275,8 @@ try {
 
 # 参考文献（1/2）
 
+> *ファインマンの原著講義からChristensenまで脱カーゴカルトの理論的基盤*
+
 - - **Research & Lectures:**
 - - [Feynman, "Cargo Cult Science" (1974 Caltech)](http://calteches.library.caltech.edu/51/2/CargoCult.htm)
 - - [Christensen, The Innovator's Dilemma (1997)](https://www.hbs.edu/faculty/Pages/item.aspx?num=46)
@@ -284,6 +286,8 @@ try {
 ---
 
 # 参考文献（2/2）
+
+> *コンテキスト適合選定を裏付けるAccelerate・Code Complete・実践記事5選*
 
 - - McConnell, *Code Complete* 2nd Edition (2004)
 - - Forsgren et al., *Accelerate* (2018)

@@ -311,6 +311,8 @@ style: |
 
 # 参考文献
 
+> *エジソンの発明と経営を深く知るための主要書籍・文献一覧*
+
 - - **書籍:**
 - - [Edison: A Life of Invention - Paul Israel](https://www.amazon.com/dp/0471529427)
 - - [Empires of Light - Jill Jonnes](https://www.amazon.com/dp/0375758844)

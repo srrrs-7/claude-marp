@@ -94,6 +94,8 @@ style: |
 
 # Agenda
 
+> *量子脅威→ショア→HNDL攻撃→NIST標準→格子暗号→対策の6章*
+
 - - 1. 量子コンピュータの脅威
 - - 2. ショアのアルゴリズムとRSAの終焉
 - - 3. 「Harvest Now, Decrypt Later」攻撃

@@ -271,6 +271,8 @@ style: |
 
 # 参考文献
 
+> *ロストテクノロジー・レガシー対策の一次資料を網羅*
+
 - - **History & Science:**
 - - [MIT Research on Roman Concrete (2023)](https://news.mit.edu/2023/roman-concrete-durability-secret-ingredient-0106)
 - - [Lost Technologies - Wikipedia](https://en.wikipedia.org/wiki/Lost_technology)

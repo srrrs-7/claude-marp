@@ -2488,6 +2488,9 @@ section table {
 ;" data-marpit-pagination-total="63" data-size="16:9">
 <header>OIDC vs SAML</header>
 <h1 id="saml-binding-http-redirect-vs-http-post12">SAML Binding: HTTP-Redirect vs HTTP-POST（1/2）</h1>
+<blockquote>
+<p><em>RedirectはGETのURL長制限あり—署名付きResponseはPOST必須</em></p>
+</blockquote>
 <ul>
 <li><svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e" /><br />
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">SAML Binding: HTTP-Redirect vs HTTP-POST</text><br />
@@ -3423,6 +3426,9 @@ section table {
 ;" data-marpit-pagination-total="63" data-size="16:9">
 <header>OIDC vs SAML</header>
 <h1 id="%E3%83%97%E3%83%AD%E3%83%88%E3%82%B3%E3%83%AB%E3%83%95%E3%83%AD%E3%83%BC%E6%AF%94%E8%BC%83%E3%82%B5%E3%83%9E%E3%83%AA%E3%83%BC">プロトコルフロー比較サマリー</h1>
+<blockquote>
+<p><em>SAMLはXMLリダイレクト、OIDCはJSON+JWTで設計思想が対照的</em></p>
+</blockquote>
 <ul>
 <li>
 <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
@@ -4481,6 +4487,9 @@ section table {
 ;" data-marpit-pagination-total="63" data-size="16:9">
 <header>OIDC vs SAML</header>
 <h1 id="id-token-%E3%81%AE%E6%A8%99%E6%BA%96%E3%82%AF%E3%83%AC%E3%83%BC%E3%83%A0-oidc-core-%E4%BB%95%E6%A7%98">ID Token の標準クレーム (OIDC Core 仕様)</h1>
+<blockquote>
+<p><em>sub・iss・aud・exp・iatの5クレームが最低限の必須セット</em></p>
+</blockquote>
 <table>
 <thead>
 <tr>
@@ -4868,6 +4877,9 @@ section table {
 ;" data-marpit-pagination-total="63" data-size="16:9">
 <header>OIDC vs SAML</header>
 <h1 id="saml-assertion-vs-jwt-id-token--%E5%B1%9E%E6%80%A7%E6%AF%94%E8%BC%83">SAML Assertion vs JWT ID Token — 属性比較</h1>
+<blockquote>
+<p><em>JWTは検証がライブラリ1行—SAMLのXML署名検証は複雑</em></p>
+</blockquote>
 <ul>
 <li>
 <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
@@ -8063,6 +8075,9 @@ section table {
 ;" data-marpit-pagination-total="63" data-size="16:9">
 <header>OIDC vs SAML</header>
 <h1 id="%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E5%AF%BE%E7%AD%96%E6%AF%94%E8%BC%83%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%83%AA%E3%82%B9%E3%83%88">セキュリティ対策比較チェックリスト</h1>
+<blockquote>
+<p><em>署名検証・state確認・PKCE・有効期限の4項目が最低限</em></p>
+</blockquote>
 <ul>
 <li>
 <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
@@ -8628,6 +8643,9 @@ section table {
 ;" data-marpit-pagination-total="63" data-size="16:9">
 <header>OIDC vs SAML</header>
 <h1 id="%E4%B8%BB%E8%A6%81-idp%E3%83%BB%E3%83%A9%E3%82%A4%E3%83%96%E3%83%A9%E3%83%AA%E5%AF%BE%E5%BF%9C%E7%8A%B6%E6%B3%81">主要 IdP・ライブラリ対応状況</h1>
+<blockquote>
+<p><em>Okta/Entra/Cognitoが両方対応—実装コストはOIDCが大幅低い</em></p>
+</blockquote>
 <table>
 <thead>
 <tr>
@@ -10411,6 +10429,9 @@ section table {
 ;" data-marpit-pagination-total="63" data-size="16:9">
 <header>OIDC vs SAML</header>
 <h1 id="%E9%81%B8%E6%8A%9E%E3%82%AC%E3%82%A4%E3%83%89--3-%E8%A1%8C%E3%82%B5%E3%83%9E%E3%83%AA%E3%83%BC12">選択ガイド — 3 行サマリー（1/2）</h1>
+<blockquote>
+<p><em>既存エンプラ→SAML継続、新規モバイル/API→OIDC一択</em></p>
+</blockquote>
 <ul>
 <li>
 <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">

@@ -104,7 +104,8 @@
 				"**1. INIT** (コールドスタート時のみ)",
 				"  - Extension init → Runtime init → Function init",
 				"**2. INVOKE**"
-			]
+			],
+			"subtitle": "Init→Invoke→Shutdownの三段階でコンテキスト再利用を理解"
 		},
 		{
 			"title": "Lambda ライフサイクル詳解（2/2）",
@@ -142,7 +143,8 @@
 				"| Java | 21 (Corretto) | ✅ |",
 				"| .NET | 8 | ✅ |",
 				"| カスタム (provided.al2023) | any | - |"
-			]
+			],
+			"subtitle": "SnapStart対応のJava/DotNETがコールドスタート問題を解消"
 		},
 		{
 			"title": "メモリ・CPU・タイムアウト設定",
@@ -232,7 +234,8 @@
 				"| 対応ランタイム | Node.js, Python, Java, Go, .NET | 全て |",
 				"| ネイティブバイナリ | arm64ビルドが必要 | x86_64 |",
 				"新規プロジェクトはGraviton2を推奨（コスト・性能ともに優位）"
-			]
+			],
+			"subtitle": "Graviton2採用でx86比コスト20%削減・性能19%向上"
 		},
 		{
 			"title": "コンテナイメージデプロイ",
@@ -334,7 +337,8 @@
 				"| .NET | 500ms-2s | SnapStart |",
 				"| Go / Rust | 100-200ms | ネイティブバイナリ |",
 				"メモリ増加でInit Durationも短縮される傾向あり"
-			]
+			],
+			"subtitle": "Pythonが最速・Javaが最遅—SnapStartでJavaを逆転できる"
 		},
 		{
 			"title": "Provisioned Concurrencyとは",
@@ -357,7 +361,8 @@
 				"業務時間帯 (9-18時) に10インスタンス確保",
 				"夜間は最小1に削減してコスト節約"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Application Auto Scalingで時間帯別に自動スケールして節約"
 		},
 		{
 			"title": "Provisioned Concurrency — 設定例（コード例）",
@@ -594,7 +599,8 @@
 				"| API Key管理 | × | ✅ |",
 				"| リクエスト変換 | × | ✅ |",
 				"新規はHTTP APIを基本に、必要な機能があればREST APIを検討"
-			]
+			],
+			"subtitle": "OIDC認証・カスタムドメイン・単純ルーティングはHTTP APIで十分"
 		},
 		{
 			"title": "SQS + Lambda イベント駆動パターン",
@@ -810,7 +816,8 @@
 				"| コスト | 従量課金 | 常時起動コスト |",
 				"| 状態管理 | ステートレス | ステートフル可 |",
 				"**Lambda向き**: イベント駆動、バースト、短時間処理 / **コンテナ向き**: 長時間、複雑な依存、WebSocket"
-			]
+			],
+			"subtitle": "コールドスタート許容・実行時間15分以内がLambda適用条件"
 		},
 		{
 			"title": "アーキテクチャパターン選択フロー（1/2）",
@@ -820,7 +827,8 @@
 				"**リアルタイムAPI** → API GW HTTP API + Lambda + DynamoDB",
 				"**非同期ジョブキュー** → SQS + Lambda + DLQ",
 				"**複雑なワークフロー** → Step Functions + Lambda"
-			]
+			],
+			"subtitle": "トリガー・実行時間・ステート要件の三軸でパターンを選択"
 		},
 		{
 			"title": "アーキテクチャパターン選択フロー（2/2）",
@@ -878,7 +886,8 @@
 				"| ConcurrentExecutions | 同時実行数 | 上限の80% |",
 				"| IteratorAge | Streamの遅延 | > 60,000ms |",
 				"| DeadLetterErrors | DLQ書き込み失敗 | > 0 |"
-			]
+			],
+			"subtitle": "Duration/Error/Throttle/ConcurrentExecutionsの4指標を監視"
 		},
 		{
 			"title": "X-Ray トレーシング概要",
@@ -901,7 +910,8 @@
 				"エラー・フォルト・スロットリングの自動分類",
 				"アノテーション（インデックス付き）とメタデータで情報付加"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ビジネスロジックをサブセグメント化して処理時間を精密計測"
 		},
 		{
 			"title": "X-Ray カスタムサブセグメント（コード例）",
@@ -931,7 +941,8 @@
 				"`correlation_id` でリクエストをトレース可能",
 				"ログレベル: DEBUG/INFO/WARNING/ERROR/CRITICAL"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "JSON構造化ログ+Lambda文脈自動付加でログ検索を高速化"
 		},
 		{
 			"title": "Powertools Logger（コード例）",
@@ -947,7 +958,8 @@
 				"CloudWatchへの追加API呼び出し不要（ログに埋め込み）",
 				"ディメンション・名前空間・単位を指定"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "EMF形式でカスタムメトリクスをAPI呼び出しゼロで送信"
 		},
 		{
 			"title": "Powertools Metrics（コード例）",
@@ -963,7 +975,8 @@
 				"エラーパターンの調査・パフォーマンス分析に活用",
 				"定期実行でメトリクスフィルターの代替も可能"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SQLライクなクエリでLambdaログを数秒で横断分析"
 		},
 		{
 			"title": "CloudWatch Logs Insights 活用（コード例）",
@@ -1039,7 +1052,8 @@
 				"ワイルドカード (`*`) の使用を最小限に",
 				"IAM Access Analyzerでポリシーの過剰権限を検出"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "関数ごとに専用ロールを作成し権限クリープを構造的に防ぐ"
 		},
 		{
 			"title": "IAM 最小権限の実装（コード例）",
@@ -1148,7 +1162,8 @@
 				"| ストリーム | Kinesis + Lambda | シャード数設計 |",
 				"| スケジュール | EventBridge Scheduler | タイムゾーン考慮 |",
 				"| 15分超処理 | Fargate/ECS + SQS | Lambda上限超え |"
-			]
+			],
+			"subtitle": "非機能要件マトリクスで客観的なアーキテクチャ選択を実現"
 		},
 		{
 			"title": "参考リソース",

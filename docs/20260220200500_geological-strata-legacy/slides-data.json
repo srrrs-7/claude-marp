@@ -225,6 +225,7 @@
 		},
 		{
 			"title": "References",
+			"subtitle": "レガシーコード対策の実践書と地層学的手法の参照先",
 			"layout": "default",
 			"content": [
 				"- **Books & Articles:**",

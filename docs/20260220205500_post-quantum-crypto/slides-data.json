@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "Agenda",
+			"subtitle": "量子脅威→ショア→HNDL攻撃→NIST標準→格子暗号→対策の6章",
 			"layout": "default",
 			"content": [
 				"- 1. 量子コンピュータの脅威",

@@ -60,7 +60,8 @@
 				"**可用性 (Availability):** 権限を持つ者が必要なときに情報・システムを利用できる状態を確保",
 				"![w:680 center](assets/cia-triangle.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "機密性・完全性・可用性の3軸がセキュリティ対策の評価基準"
 		},
 		{
 			"title": "なぜISMSが必要か — サイバー脅威の現状",
@@ -114,7 +115,8 @@
 				"Annex Aは箇条6.1.3（リスク対応）と8.3で参照する管理策カタログ",
 				"![w:920 center](assets/iso27001-structure.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "箇条4〜10のHLS+附属書A管理策で認証要件の全体を定義"
 		},
 		{
 			"title": "HLS（高位構造）— ISMSに共通する骨格",
@@ -265,7 +267,8 @@
 				"リスクアセスメント結果に基づき、各リスクへの対処方法を選択する",
 				"![w:700 center](assets/risk-response.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "回避・低減・移転・受容の4択でリスクごとに最適対応を選ぶ"
 		},
 		{
 			"title": "適用宣言書（Statement of Applicability / SoA）",
@@ -291,7 +294,8 @@
 				"| メールシステム | フィッシング | 教育不足 | 4 | 3 | **12** | 教育訓練(6.3) | 6 |",
 				"リスクレジスターは**資産台帳・脅威分析・対応計画・SoAを接続する中核文書**として維持"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "スコア化と残留リスク記録で経営層への説明責任を果たす"
 		},
 		{
 			"title": "第4章 主要管理策の詳細",
@@ -424,7 +428,8 @@
 				"ギャップ分析から認証後のサーベイランスまで、3年サイクルで継続的に維持する",
 				"![w:920 center](assets/certification-process.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Stage1文書審査→Stage2現地審査→認証→サーベイランスの流れ"
 		},
 		{
 			"title": "Stage 1 審査（文書審査）— 重点確認事項",
@@ -765,7 +770,8 @@
 				"「すべてを信頼しない」原則をISMSの管理策と組み合わせて実装する",
 				"![w:830 center](assets/zero-trust.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ZTA実装がISMSのAnnex A技術管理策の多くを自動的に充足"
 		},
 		{
 			"title": "まとめ — ISMSの価値と将来展望",

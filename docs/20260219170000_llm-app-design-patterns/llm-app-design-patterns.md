@@ -494,6 +494,8 @@ style: |
 
 # コスト・レイテンシ・品質のトレードオフ（1/2）
 
+> *3指標の同時最適化は不可能—要件優先度を先に定義*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
@@ -1520,6 +1522,8 @@ print(result.sentiment, result.score)
 
 # プロンプトエンジニアリングの限界（1/2）
 
+> *コンテキスト長・スタイル一貫性・コスト削減はFTが優位*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
@@ -2530,6 +2534,8 @@ print(result.sentiment, result.score)
 
 # GraphRAG（2/2）（1/2）
 
+> *コミュニティサマリーで大規模グラフの要約検索を実現*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
@@ -3002,6 +3008,8 @@ print(response)
 ---
 
 # RAGアンチパターン（1/2）
+
+> *チャンク設計軽視・評価省略・再ランク未適用が三大失敗*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3828,6 +3836,8 @@ trainer.train()
 
 # モデル評価と過学習の検出（1/2）（1/2）
 
+> *Train/Evalロス乖離の早期検知で無駄な学習を回避*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
@@ -3891,6 +3901,8 @@ trainer.train()
 ---
 
 # モデル評価と過学習の検出（2/2）（1/2）
+
+> *タスク固有評価メトリクスが汎用メトリクスより信頼できる*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -4119,6 +4131,8 @@ trainer.train()
 ---
 
 # プロダクション展開（2/2）（1/2）
+
+> *Blue/Greenデプロイでモデル切替時のダウンタイムをゼロに*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -4352,6 +4366,8 @@ trainer.train()
 
 # RAG vs Fine-tuning の選択基準（2/2）（1/2）
 
+> *両者の組み合わせが複雑ユースケースの最適解になる*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
@@ -4411,6 +4427,8 @@ trainer.train()
 ---
 
 # Fine-tuningアンチパターン（1/2）
+
+> *知識注入目的のFT・少量データ・評価省略が三大アンチパターン*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -4870,6 +4888,8 @@ trainer.train()
 ---
 
 # Reflexionパターン（2/2）（1/2）
+
+> *自己評価ループがReflexionの核心—外部報酬なしで改善*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -5639,6 +5659,8 @@ response = client.messages.create(
 
 # エラーハンドリング・リトライ・フォールバック（2/2）（1/2）
 
+> *フォールバック戦略の優先順位設計が本番品質を左右*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
@@ -5862,6 +5884,8 @@ response = client.messages.create(
 ---
 
 # エージェントの観測可能性（2/2）（1/2）
+
+> *LangSmith/Langfuseでエージェントの思考過程を可視化*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -6583,6 +6607,8 @@ for chunk in agent.stream(
 
 # LLM-as-a-Judge（1/2）（1/2）
 
+> *強力モデルによる自動評価で人手コストを90%削減可能*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
@@ -6642,6 +6668,8 @@ for chunk in agent.stream(
 ---
 
 # LLM-as-a-Judge（2/2）（1/2）
+
+> *Position BiasとSelf-Biasが自動評価精度の主な誤差源*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -7011,6 +7039,8 @@ print(result)
 
 # 評価ツール比較（1/2）（1/2）
 
+> *Braintrustが評価の実験管理とA/Bテストを統合している*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
@@ -7077,6 +7107,8 @@ print(result)
 ---
 
 # 評価ツール比較（2/2）（1/2）
+
+> *OSSツールはセルフホストでデータをコントロールできる利点*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -7355,6 +7387,8 @@ print(result)
 ---
 
 # 評価アンチパターン（1/2）
+
+> *評価省略・汚染セット・単一指標が三大アンチパターン*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -7762,6 +7796,8 @@ print(result)
 
 # ストリーミングレスポンス設計（1/2）（1/2）
 
+> *トークンごとの送信でユーザーの知覚待ち時間を70%削減*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
@@ -7822,6 +7858,8 @@ print(result)
 ---
 
 # ストリーミングレスポンス設計（2/2）（1/2）
+
+> *SSEかWebSocketでクライアントへのストリーム実装*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -8277,6 +8315,8 @@ print(result)
 
 # 観測可能性スタック（2/2）（1/2）
 
+> *LLM専用計装ツールで分散トレーシングの可視化を実現*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
@@ -8512,6 +8552,8 @@ print(result)
 
 # セキュリティ（2/2）（1/2）
 
+> *APIキーローテーションとシークレット管理が漏洩防止の基本*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
@@ -8628,6 +8670,8 @@ print(result)
 ---
 
 # コスト最適化（2/2）（1/2）
+
+> *Batch APIと非同期処理で優先度低タスクのコストを半減*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -8860,6 +8904,8 @@ print(result)
 
 # デプロイパターン比較（2/2）（1/2）
 
+> *コンテナデプロイがモデル管理の柔軟性と制御を最大化*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
@@ -8934,6 +8980,8 @@ print(result)
 ---
 
 # ユースケース別アプローチ比較マトリクス
+
+> *ユースケースと制約の組み合わせが最適アーキテクチャを決める*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -9046,6 +9094,8 @@ print(result)
 ---
 
 # 段階的実装戦略（2/2）（1/2）
+
+> *各フェーズのEval基盤を整えてから次フェーズに進む*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -9328,6 +9378,8 @@ print(result)
 
 # 技術スタック選択ガイド（2026年版）（1/2）（1/2）
 
+> *LlamaIndex+Qdrantがフルコントロール志向の標準構成*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
@@ -9395,6 +9447,8 @@ print(result)
 
 # 技術スタック選択ガイド（2026年版）（2/2）（1/2）
 
+> *評価スタックの選択がLLMOps成熟度を最も左右する*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
@@ -9454,6 +9508,8 @@ print(result)
 ---
 
 # 設計レビューチェックリスト（1/2）（1/2）
+
+> *評価・コスト・セキュリティの三点確認が設計品質を決める*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -9518,6 +9574,8 @@ print(result)
 ---
 
 # 設計レビューチェックリスト（2/2）（1/2）
+
+> *フォールバック設計の欠如が単一障害点を生み出す*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>

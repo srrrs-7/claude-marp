@@ -243,6 +243,8 @@ style: |
 
 # 参考文献
 
+> *Evans・McCulloch・Unicodeの主要文献がemoji言語研究の基盤*
+
 - - **書籍:**
 - - [The Emoji Code - Vyvyan Evans](https://www.amazon.com/dp/1250129060)
 - - [Because Internet - Gretchen McCulloch](https://www.amazon.com/dp/0735210934)

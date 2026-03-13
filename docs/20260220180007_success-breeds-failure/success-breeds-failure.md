@@ -96,6 +96,8 @@ style: |
 
 # Kodakの呪い — 発明者が自らの発明を封印した
 
+> *自社発明を封印した結果37年後に連邦破産法適用*
+
 - - 1975年: Kodak社員がデジタルカメラを発明
 - - 経営判断:「フィルム事業を脅かす」として市場投入を封印
 - - 2000年代: デジタル化の波に乗り遅れ急落
@@ -107,6 +109,8 @@ style: |
 ---
 
 # Nokiaの転落 — 世界シェア40%からの消滅
+
+> *シェア40%の絶頂からわずか6年でスマホ事業売却に追い込まれた*
 
 - - 2007年: 携帯電話世界シェア40%、利益率20%超
 - - iPhone発表時の反応:「タッチスクリーン? 玩具だ」
@@ -120,6 +124,8 @@ style: |
 
 # Blockbusterの拒絶 — 5000万ドルの判断ミス
 
+> *5000万ドルの買収提案を笑い飛ばし10年後に破産した*
+
 - <svg viewBox='0 0 800 220' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='220' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>Blockbuster vs Netflix — 逆転の軌跡</text><line x1='80' y1='180' x2='750' y2='180' stroke='#555' stroke-width='2'/><line x1='80' y1='180' x2='80' y2='40' stroke='#555' stroke-width='2'/><text x='40' y='110' text-anchor='middle' fill='#999' font-size='10' transform='rotate(-90 40 110)'>時価総額</text><polyline points='120,60 200,55 280,80 360,130 440,165 560,175 680,178' fill='none' stroke='#e74c3c' stroke-width='3'/><text x='135' y='52' fill='#e74c3c' font-size='10'>Blockbuster</text><polyline points='120,175 200,172 280,165 360,140 440,100 560,60 680,45' fill='none' stroke='#2ecc71' stroke-width='3'/><text x='685' y='42' fill='#2ecc71' font-size='10'>Netflix</text><text x='120' y='195' text-anchor='middle' fill='#aaa' font-size='9'>2000</text><text x='280' y='195' text-anchor='middle' fill='#aaa' font-size='9'>2004</text><text x='440' y='195' text-anchor='middle' fill='#aaa' font-size='9'>2008</text><text x='600' y='195' text-anchor='middle' fill='#aaa' font-size='9'>2012</text><text x='680' y='195' text-anchor='middle' fill='#e74c3c' font-size='9'>破産</text><circle cx='120' cy='175' r='5' fill='#f9a825'/><text x='155' y='160' fill='#f9a825' font-size='8'>Netflix: 買収提案$50M</text><text x='155' y='172' fill='#f9a825' font-size='8'>笑い飛ばされる</text></svg>
 - - 2000年: Netflixが「DVD部門ごと5000万ドルで買収してほしい」と提案
 - - Blockbuster CEO の反応: 笑い飛ばした
@@ -132,6 +138,8 @@ style: |
 ---
 
 # IntelのモバイルCPU — マージンに殺された
+
+> *短期マージン優先の判断がARMにモバイル市場を全て明け渡した*
 
 - - 2006年: Steve JobsがIntelに「iPhone用チップを」と依頼
 - - Intel:「マージンが低すぎる。PC用CPUの方が利益率が高い」
@@ -180,6 +188,8 @@ style: |
 
 # サンクコストと組織の慣性
 
+> *既存インフラへの巨額投資が撤退不可能にし変化コストが現状維持コストを下回る前に手遅れになる*
+
 - - 既存インフラへの巨額投資 → 撤退不可能
 - - 社内スキルの偏り → 新技術の学習コストが膨大
 - - 組織文化の固着 → 「成功体験の呪い」
@@ -226,6 +236,8 @@ style: |
 ---
 
 # 「カニバリズムを恐れるな」
+
+> *AppleはiPodをiPhoneで意図的に殺した—自己破壊しなければ他社に破壊される*
 
 - - Apple: iPodをiPhoneで殺した（自己破壊戦略）
 - - Amazon: 書店事業をKindleで、小売をAWSで再定義

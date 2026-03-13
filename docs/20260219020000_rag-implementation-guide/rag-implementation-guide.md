@@ -618,6 +618,8 @@ style: |
 
 # Amazon Bedrock Knowledge Base — 概要・特徴
 
+> *Bedrock KBはS3自動同期+OSS Serverlessで最速RAGを数クリックで構築*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
@@ -1996,6 +1998,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 ---
 
 # Amazon OpenSearch Service 概要
+
+> *OpenSearch Serviceはベクトル検索・全文検索・ハイブリッドを1サービスで提供*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -5520,6 +5524,8 @@ LIMIT 5;
 
 # RAGセキュリティ・コスト最適化 統括まとめ
 
+> *RAGセキュリティはインジェクション防御・認可・PII、コスト削減はキャッシュ・チャンク最適化*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
@@ -5690,6 +5696,8 @@ LIMIT 5;
 ---
 
 # 全セクション早見表（試験直前総まとめ）
+
+> *全セクションの主要サービス・数値・設計判断を1ページで総復習する*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>

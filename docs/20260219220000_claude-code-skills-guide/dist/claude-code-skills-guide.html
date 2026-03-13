@@ -1153,6 +1153,9 @@ section h2 {
 ;" data-marpit-pagination-total="58" data-size="16:9">
 <header>Claude Code スキルガイドライン</header>
 <h1 id="skillmd-%E3%81%AE%E4%BB%95%E7%B5%84%E3%81%BF--%E5%AE%9F%E8%A1%8C%E3%83%95%E3%83%AD%E3%83%BC">SKILL.md の仕組み — 実行フロー</h1>
+<blockquote>
+<p><em>ユーザー→スキル呼び出し→SKILL.md読み込み→実行の4ステップ</em></p>
+</blockquote>
 <ul>
 <li><svg viewBox='0 0 800 130' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='10' y='40' width='130' height='50' rx='8' fill='#5B21B6' /><text x='75' y='61' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>SKILL.md</text><text x='75' y='78' text-anchor='middle' fill='#DDD6FE' font-size='11'>定義ファイル</text><line x1='140' y1='65' x2='165' y2='65' stroke='#A78BFA' stroke-width='2' /><polygon points='172,65 162,60 162,70' fill='#A78BFA' /><rect x='172' y='40' width='130' height='50' rx='8' fill='#1D4ED8' /><text x='237' y='61' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>/コマンド</text><text x='237' y='78' text-anchor='middle' fill='#BFDBFE' font-size='11'>呼び出し</text><line x1='302' y1='65' x2='327' y2='65' stroke='#60A5FA' stroke-width='2' /><polygon points='334,65 324,60 324,70' fill='#60A5FA' /><rect x='334' y='40' width='130' height='50' rx='8' fill='#065F46' /><text x='399' y='61' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>フェーズ実行</text><text x='399' y='78' text-anchor='middle' fill='#A7F3D0' font-size='11'>対話・処理</text><line x1='464' y1='65' x2='489' y2='65' stroke='#34D399' stroke-width='2' /><polygon points='496,65 486,60 486,70' fill='#34D399' /><rect x='496' y='40' width='130' height='50' rx='8' fill='#92400E' /><text x='561' y='61' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>バリデーション</text><text x='561' y='78' text-anchor='middle' fill='#FDE68A' font-size='11'>品質検証</text><line x1='626' y1='65' x2='651' y2='65' stroke='#FBBF24' stroke-width='2' /><polygon points='658,65 648,60 648,70' fill='#FBBF24' /><rect x='658' y='40' width='130' height='50' rx='8' fill='#1F2937' /><rect x='658' y='40' width='130' height='50' rx='8' fill='none' stroke='#6B7280' stroke-width='1.5' /><text x='723' y='61' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>完了・報告</text><text x='723' y='78' text-anchor='middle' fill='#9CA3AF' font-size='11'>出力確認</text></svg></li>
 <li><code>.claude/skills/&lt;name&gt;/SKILL.md</code> に配置するだけで <code>/コマンド</code> として自動登録</li>
@@ -1483,6 +1486,9 @@ section h2 {
 ;" data-marpit-pagination-total="58" data-size="16:9">
 <header>Claude Code スキルガイドライン</header>
 <h1 id="%E5%91%BC%E3%81%B3%E5%87%BA%E3%81%97%E6%96%B9%E3%81%A8%E7%B5%B1%E5%90%88">呼び出し方と統合</h1>
+<blockquote>
+<p><em>/コマンドかツール呼び出しでスキルを即時起動できる</em></p>
+</blockquote>
 <ul>
 <li>
 <p><svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" /><br />
@@ -2465,6 +2471,9 @@ section h2 {
 ;" data-marpit-pagination-total="58" data-size="16:9">
 <header>Claude Code スキルガイドライン</header>
 <h1 id="generate--review-slides12">/generate &amp; /review-slides（1/2）</h1>
+<blockquote>
+<p><em>生成と品質レビューを分離することで反復改善サイクルを実現</em></p>
+</blockquote>
 <ul>
 <li>
 <p><svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" /><br />
@@ -6477,6 +6486,9 @@ section h2 {
 ;" data-marpit-pagination-total="58" data-size="16:9">
 <header>Claude Code スキルガイドライン</header>
 <h1 id="%E3%82%B9%E3%82%AD%E3%83%AB%E3%81%AE%E3%83%87%E3%82%A3%E3%83%AC%E3%82%AF%E3%83%88%E3%83%AA%E6%A7%8B%E9%80%A0">スキルのディレクトリ構造</h1>
+<blockquote>
+<p><em>SKILL.md+サポートファイルのシンプル構成で誰でも作成できる</em></p>
+</blockquote>
 <ul>
 <li>
 <p><svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" /><br />
@@ -10928,6 +10940,9 @@ section h2 {
 ;" data-marpit-pagination-total="58" data-size="16:9">
 <header>Claude Code スキルガイドライン</header>
 <h1 id="%E5%8F%82%E8%80%83%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B912">参考リソース（1/2）</h1>
+<blockquote>
+<p><em>Claude Code公式ドキュメントとCLAUDE.mdがスキル開発の基盤</em></p>
+</blockquote>
 <ul>
 <li><strong>公式ドキュメント:</strong></li>
 <li>
@@ -11103,6 +11118,9 @@ section h2 {
 ;" data-marpit-pagination-total="58" data-size="16:9">
 <header>Claude Code スキルガイドライン</header>
 <h1 id="%E5%8F%82%E8%80%83%E3%83%AA%E3%82%BD%E3%83%BC%E3%82%B922">参考リソース（2/2）</h1>
+<blockquote>
+<p><em>CLAUDE.mdとサンプルSKILL.mdが実装の最速参照先</em></p>
+</blockquote>
 <ul>
 <li>
 <ul>

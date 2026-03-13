@@ -152,6 +152,7 @@
 		},
 		{
 			"title": "参考文献",
+			"subtitle": "絵文字研究の決定版2冊とUnicode公式統計・Emojipediaで一次情報を確認",
 			"content": [
 				"- **書籍:**",
 				"- [The Emoji Code - Vyvyan Evans](https://www.amazon.com/dp/1250129060)",
@@ -160,7 +161,8 @@
 				"- [Unicode Emoji Statistics](https://unicode.org/emoji/charts/emoji-counts.html)",
 				"- [Emojipedia](https://emojipedia.org/)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Evans・McCulloch・Unicodeの主要文献がemoji言語研究の基盤"
 		}
 	]
 }

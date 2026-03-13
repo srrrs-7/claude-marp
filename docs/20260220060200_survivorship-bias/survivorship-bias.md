@@ -239,6 +239,8 @@ style: |
 
 # 参考文献
 
+> *WaldからTalebまで生存者バイアス研究の主要文献一覧*
+
 - - **書籍:**
 - - Taleb, N.N. "The Black Swan" (2007)
 - - Ellenberg, J. "How Not to Be Wrong" (2014)

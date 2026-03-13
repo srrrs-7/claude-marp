@@ -160,7 +160,8 @@
 				"**HTTP-Redirect Binding:** SAMLRequest を URL クエリパラメータで送信",
 				"  → URL 長さ制限あり（〜2KB）。SAMLRequest に使用が一般的",
 				"**HTTP-POST Binding:** HTML フォームの hidden フィールドに埋め込み"
-			]
+			],
+			"subtitle": "RedirectはGETのURL長制限あり—署名付きResponseはPOST必須"
 		},
 		{
 			"title": "SAML Binding: HTTP-Redirect vs HTTP-POST（2/2）",
@@ -218,7 +219,8 @@
 				"| リプレイ対策 | Conditions/InResponseTo | nonce + exp |",
 				"| バックチャンネル通信 | なし | あり (安全) |",
 				"| モバイル対応 | ✗ 困難 | ✓ PKCE で対応 |"
-			]
+			],
+			"subtitle": "SAMLはXMLリダイレクト、OIDCはJSON+JWTで設計思想が対照的"
 		},
 		{
 			"title": "Part 3: トークン・アサーション構造",
@@ -272,7 +274,8 @@
 				"| `iat` | ✓ | 発行時刻 |",
 				"| `nonce` | 条件付 | リプレイ攻撃防止 (リクエスト時に送った値) |",
 				"| `email` `name` `picture` | オプション | scope に応じて含まれる |"
-			]
+			],
+			"subtitle": "sub・iss・aud・exp・iatの5クレームが最低限の必須セット"
 		},
 		{
 			"title": "Access Token vs ID Token — 役割の分離",
@@ -297,7 +300,8 @@
 				"| **対象者** | AudienceRestriction | `aud` クレーム |",
 				"| **ユーザー識別** | NameID (Format 指定) | `sub` (不変) |",
 				"| **属性** | AttributeStatement (柔軟) | Claims (標準化) |"
-			]
+			],
+			"subtitle": "JWTは検証がライブラリ1行—SAMLのXML署名検証は複雑"
 		},
 		{
 			"title": "クレームマッピング: IdP → SP 属性変換",
@@ -489,7 +493,8 @@
 				"| 不正リダイレクト | ACS URL ホワイトリスト | redirect_uri 完全一致 |",
 				"| 中間者攻撃 | 全通信 TLS 必須 | HTTPS 必須 + HSTS |",
 				"| トークン漏洩 | SAMLResponse の短命化 | 短命 Access Token + Refresh Token |"
-			]
+			],
+			"subtitle": "署名検証・state確認・PKCE・有効期限の4項目が最低限"
 		},
 		{
 			"title": "共通セキュリティ ベストプラクティス",
@@ -527,7 +532,8 @@
 				"| **AWS IAM Identity Center** | ✓ | ✓ | 外部 IdP との連携 |",
 				"| **Google Identity** | — | ✓ | OIDC のみ |",
 				"| **GitHub OAuth** | — | ✓ | OAuth 2.0 / OIDC |"
-			]
+			],
+			"subtitle": "Okta/Entra/Cognitoが両方対応—実装コストはOIDCが大幅低い"
 		},
 		{
 			"title": "SAML → OIDC 移行パターン (4 フェーズ)",
@@ -620,7 +626,8 @@
 				"**新規プロジェクト:** → **OIDC + PKCE** (モバイル・SPA・API・マイクロサービス全て対応)",
 				"**既存エンタープライズ SSO:** → **SAML 維持** (AD 統合・コスト・リスクを考慮)",
 				"**移行計画:** → **マルチプロトコル IdP** で並存しながら段階移行"
-			]
+			],
+			"subtitle": "既存エンプラ→SAML継続、新規モバイル/API→OIDC一択"
 		},
 		{
 			"title": "選択ガイド — 3 行サマリー（2/2）",

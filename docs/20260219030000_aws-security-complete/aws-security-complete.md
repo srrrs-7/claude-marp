@@ -114,6 +114,8 @@ style: |
 
 # Security Specialty 試験概要・出題分布
 
+> *SCS-C02は7ドメイン・65問・170分、IAMとネットワークセキュリティが最重要領域*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">セキュリティ多層防御モデル</text><rect x="40" y="70" width="720" height="52" rx="6" fill="#c0392b" opacity="0.75"/><text x="400" y="92" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">データ層</text><text x="400" y="110" fill="#ffffff" font-size="11" text-anchor="middle">KMS・Macie・RDS暗号化</text><rect x="90" y="130" width="620" height="52" rx="6" fill="#e91e63" opacity="0.75"/><text x="400" y="152" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">アプリ層</text><text x="400" y="170" fill="#ffffff" font-size="11" text-anchor="middle">WAF・Cognito・Secrets Manager</text><rect x="140" y="190" width="520" height="52" rx="6" fill="#f39c12" opacity="0.75"/><text x="400" y="212" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">コンピュート層</text><text x="400" y="230" fill="#ffffff" font-size="11" text-anchor="middle">Inspector・SSM・IAM Role</text><rect x="190" y="250" width="420" height="52" rx="6" fill="#27ae60" opacity="0.75"/><text x="400" y="272" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">ネットワーク層</text><text x="400" y="290" fill="#ffffff" font-size="11" text-anchor="middle">SG・NACL・VPC・Shield</text><rect x="240" y="310" width="320" height="52" rx="6" fill="#2980b9" opacity="0.75"/><text x="400" y="332" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">境界防御</text><text x="400" y="350" fill="#ffffff" font-size="11" text-anchor="middle">CloudFront・R53・Global Accel.</text><text x="400" y="382" fill="#cccccc" font-size="11" text-anchor="middle">Defense in Depth — 各層で独立したセキュリティコントロール</text></svg>
 | ドメイン | 出題割合 | 主要サービス |
 | --- | --- | --- |
@@ -138,6 +140,8 @@ style: |
 ---
 
 # IAM概要・エンティティ
+
+> *IAMのエンティティ(User/Role/Group)とPolicyの4種を基礎として最初に整理*
 
 - <svg viewBox="0 0 800 375" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="375" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">ゼロトラストアーキテクチャ</text><rect x="60" y="70" width="180" height="110" rx="8" fill="#16213e" stroke="#2980b9" stroke-width="2"/><text x="150" y="102" fill="#2980b9" font-size="13" text-anchor="middle" font-weight="bold">IDの確認</text><text x="150" y="128" fill="#cccccc" font-size="11" text-anchor="middle">IAM / MFA</text><text x="150" y="148" fill="#cccccc" font-size="11" text-anchor="middle">常に検証</text><rect x="280" y="70" width="180" height="110" rx="8" fill="#16213e" stroke="#27ae60" stroke-width="2"/><text x="370" y="102" fill="#27ae60" font-size="13" text-anchor="middle" font-weight="bold">最小権限</text><text x="370" y="128" fill="#cccccc" font-size="11" text-anchor="middle">Least Privilege</text><text x="370" y="148" fill="#cccccc" font-size="11" text-anchor="middle">Permission Boundary</text><rect x="500" y="70" width="180" height="110" rx="8" fill="#16213e" stroke="#f39c12" stroke-width="2"/><text x="590" y="102" fill="#f39c12" font-size="13" text-anchor="middle" font-weight="bold">継続監視</text><text x="590" y="128" fill="#cccccc" font-size="11" text-anchor="middle">CloudTrail</text><text x="590" y="148" fill="#cccccc" font-size="11" text-anchor="middle">GuardDuty</text><rect x="60" y="210" width="180" height="110" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="150" y="242" fill="#e91e63" font-size="13" text-anchor="middle" font-weight="bold">マイクロセグメント</text><text x="150" y="268" fill="#cccccc" font-size="11" text-anchor="middle">SG / NACL</text><text x="150" y="288" fill="#cccccc" font-size="11" text-anchor="middle">PrivateLink</text><rect x="280" y="210" width="180" height="110" rx="8" fill="#16213e" stroke="#8e44ad" stroke-width="2"/><text x="370" y="242" fill="#8e44ad" font-size="13" text-anchor="middle" font-weight="bold">データ保護</text><text x="370" y="268" fill="#cccccc" font-size="11" text-anchor="middle">KMS暗号化</text><text x="370" y="288" fill="#cccccc" font-size="11" text-anchor="middle">Macie検知</text><rect x="500" y="210" width="180" height="110" rx="8" fill="#16213e" stroke="#16a085" stroke-width="2"/><text x="590" y="242" fill="#16a085" font-size="13" text-anchor="middle" font-weight="bold">自動応答</text><text x="590" y="268" fill="#cccccc" font-size="11" text-anchor="middle">EventBridge</text><text x="590" y="288" fill="#cccccc" font-size="11" text-anchor="middle">Lambda修復</text><rect x="690" y="130" width="90" height="90" rx="45" fill="#f9a825" opacity="0.15" stroke="#f9a825" stroke-width="2"/><text x="735" y="166" fill="#f9a825" font-size="11" text-anchor="middle" font-weight="bold">Never</text><text x="735" y="182" fill="#f9a825" font-size="11" text-anchor="middle" font-weight="bold">Trust</text><text x="735" y="198" fill="#f9a825" font-size="11" text-anchor="middle" font-weight="bold">Always</text><text x="735" y="214" fill="#f9a825" font-size="11" text-anchor="middle" font-weight="bold">Verify</text><text x="400" y="355" fill="#cccccc" font-size="11" text-anchor="middle">ネットワーク境界ではなくIDとデータを中心にセキュリティを設計</text></svg>
 | エンティティ | 説明 | 用途 |
@@ -396,6 +400,8 @@ style: |
 
 # IAM試験ポイントまとめ10選
 
+> *IAM試験ポイント10選でPermission Boundary・SCP・ABAC・Access Analyzerを確認*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">AWS 共有責任モデル</text><rect x="40" y="50" width="340" height="310" rx="8" fill="#1a3a5c" stroke="#2980b9" stroke-width="2"/><text x="210" y="78" fill="#2980b9" font-size="15" text-anchor="middle" font-weight="bold">AWS 責任範囲</text><rect x="60" y="90" width="300" height="56" rx="6" fill="#2980b9" opacity="0.7"/><text x="210" y="123" fill="#ffffff" font-size="13" text-anchor="middle">物理インフラ</text><rect x="60" y="170" width="300" height="56" rx="6" fill="#2980b9" opacity="0.7"/><text x="210" y="203" fill="#ffffff" font-size="13" text-anchor="middle">ハイパーバイザー</text><rect x="60" y="250" width="300" height="56" rx="6" fill="#2980b9" opacity="0.7"/><text x="210" y="283" fill="#ffffff" font-size="13" text-anchor="middle">マネージドサービス基盤</text><rect x="420" y="50" width="340" height="310" rx="8" fill="#3a1a1a" stroke="#e91e63" stroke-width="2"/><text x="590" y="78" fill="#e91e63" font-size="15" text-anchor="middle" font-weight="bold">お客様 責任範囲</text><rect x="440" y="90" width="300" height="56" rx="6" fill="#e91e63" opacity="0.7"/><text x="590" y="123" fill="#ffffff" font-size="13" text-anchor="middle">OS・ミドルウェア</text><rect x="440" y="170" width="300" height="56" rx="6" fill="#e91e63" opacity="0.7"/><text x="590" y="203" fill="#ffffff" font-size="13" text-anchor="middle">アプリケーション</text><rect x="440" y="250" width="300" height="56" rx="6" fill="#e91e63" opacity="0.7"/><text x="590" y="283" fill="#ffffff" font-size="13" text-anchor="middle">データ・IAM設定</text><line x1="400" y1="50" x2="400" y2="360" stroke="#f9a825" stroke-width="2" stroke-dasharray="6,3"/><text x="400" y="378" fill="#f9a825" font-size="12" text-anchor="middle">責任の境界線</text></svg>
 | # | 試験ポイント | キーワード |
 | --- | --- | --- |
@@ -450,6 +456,8 @@ style: |
 ---
 
 # KMS概要・キー種類
+
+> *KMSのCMK種類と暗号化モードの違いが試験のデータ保護問題で最頻出*
 
 | キー種類 | 管理主体 | 説明 | コスト |
 | --- | --- | --- | --- |
@@ -694,6 +702,8 @@ client.rotate_secret(
 ---
 
 # データ保護試験ポイントまとめ10選
+
+> *データ保護試験ポイント10選でKMS・Secrets Manager・S3暗号化・ACMを確認*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">AWS 共有責任モデル</text><rect x="40" y="50" width="340" height="310" rx="8" fill="#1a3a5c" stroke="#2980b9" stroke-width="2"/><text x="210" y="78" fill="#2980b9" font-size="15" text-anchor="middle" font-weight="bold">AWS 責任範囲</text><rect x="60" y="90" width="300" height="56" rx="6" fill="#2980b9" opacity="0.7"/><text x="210" y="123" fill="#ffffff" font-size="13" text-anchor="middle">物理インフラ</text><rect x="60" y="170" width="300" height="56" rx="6" fill="#2980b9" opacity="0.7"/><text x="210" y="203" fill="#ffffff" font-size="13" text-anchor="middle">ハイパーバイザー</text><rect x="60" y="250" width="300" height="56" rx="6" fill="#2980b9" opacity="0.7"/><text x="210" y="283" fill="#ffffff" font-size="13" text-anchor="middle">マネージドサービス基盤</text><rect x="420" y="50" width="340" height="310" rx="8" fill="#3a1a1a" stroke="#e91e63" stroke-width="2"/><text x="590" y="78" fill="#e91e63" font-size="15" text-anchor="middle" font-weight="bold">お客様 責任範囲</text><rect x="440" y="90" width="300" height="56" rx="6" fill="#e91e63" opacity="0.7"/><text x="590" y="123" fill="#ffffff" font-size="13" text-anchor="middle">OS・ミドルウェア</text><rect x="440" y="170" width="300" height="56" rx="6" fill="#e91e63" opacity="0.7"/><text x="590" y="203" fill="#ffffff" font-size="13" text-anchor="middle">アプリケーション</text><rect x="440" y="250" width="300" height="56" rx="6" fill="#e91e63" opacity="0.7"/><text x="590" y="283" fill="#ffffff" font-size="13" text-anchor="middle">データ・IAM設定</text><line x1="400" y1="50" x2="400" y2="360" stroke="#f9a825" stroke-width="2" stroke-dasharray="6,3"/><text x="400" y="378" fill="#f9a825" font-size="12" text-anchor="middle">責任の境界線</text></svg>
 | # | 試験ポイント | キーワード |
@@ -977,6 +987,8 @@ client.rotate_secret(
 
 # ネットワークセキュリティ試験ポイントまとめ
 
+> *ネットワークセキュリティ試験ポイントでSG/NACL・WAF・Network Firewall・PrivateLinkを確認*
+
 | # | 試験ポイント | キーワード |
 | --- | --- | --- |
 | 1 | SGはステートフル・NACLはステートレス（戻り通信の扱い） | ステートフル |
@@ -1256,6 +1268,8 @@ fields @timestamp, requestParameters.bucketName
 
 # 脅威検知試験ポイントまとめ10選
 
+> *脅威検知試験ポイント10選でGuardDuty・Security Hub・Detective・CloudTrailを確認*
+
 - <svg viewBox="0 0 800 340" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="28" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">ID境界 vs ネットワーク境界</text><rect x="30" y="55" width="350" height="270" rx="8" fill="#1a2a1a" stroke="#c0392b" stroke-width="2"/><text x="205" y="80" fill="#c0392b" font-size="14" text-anchor="middle" font-weight="bold">従来型: ネットワーク境界</text><rect x="55" y="90" width="300" height="180" rx="40" fill="#c0392b" opacity="0.12" stroke="#c0392b" stroke-width="1" stroke-dasharray="6,3"/><text x="205" y="135" fill="#c0392b" font-size="12" text-anchor="middle">城壁モデル</text><text x="205" y="155" fill="#cccccc" font-size="11" text-anchor="middle">VPN / ファイアウォール</text><text x="205" y="175" fill="#cccccc" font-size="11" text-anchor="middle">内部は信頼</text><text x="205" y="195" fill="#cccccc" font-size="11" text-anchor="middle">外部は非信頼</text><text x="205" y="280" fill="#e91e63" font-size="11" text-anchor="middle">✗ VPN突破で内部漏洩</text><text x="205" y="298" fill="#e91e63" font-size="11" text-anchor="middle">✗ ラテラルムーブメント</text><text x="205" y="316" fill="#e91e63" font-size="11" text-anchor="middle">✗ 内部不正に無防備</text><rect x="420" y="55" width="350" height="270" rx="8" fill="#1a2a3a" stroke="#27ae60" stroke-width="2"/><text x="595" y="80" fill="#27ae60" font-size="14" text-anchor="middle" font-weight="bold">現代型: ID境界</text><circle cx="595" cy="175" r="80" fill="none" stroke="#2980b9" stroke-width="2" opacity="0.6"/><circle cx="595" cy="175" r="60" fill="none" stroke="#27ae60" stroke-width="2" opacity="0.6"/><circle cx="595" cy="175" r="40" fill="none" stroke="#f9a825" stroke-width="2" opacity="0.6"/><text x="595" y="180" fill="#f9a825" font-size="11" text-anchor="middle" font-weight="bold">ID</text><text x="595" y="265" fill="#cccccc" font-size="10" text-anchor="middle">IAM PoLP</text><text x="595" y="280" fill="#cccccc" font-size="10" text-anchor="middle">Zero Trust</text><text x="595" y="302" fill="#27ae60" font-size="11" text-anchor="middle">✓ 場所に依存しない認証</text><text x="595" y="320" fill="#27ae60" font-size="11" text-anchor="middle">✓ 最小権限で自動制限</text><text x="595" y="338" fill="#27ae60" font-size="11" text-anchor="middle">✓ 全アクセスを記録</text></svg>
 | # | 試験ポイント | キーワード |
 | --- | --- | --- |
@@ -1399,6 +1413,8 @@ fields @timestamp, requestParameters.bucketName
 
 # コンプライアンス試験ポイントまとめ
 
+> *コンプライアンス試験ポイントでOrganizations・Config・Audit Manager・Artifactを確認*
+
 | # | 試験ポイント | キーワード |
 | --- | --- | --- |
 | 1 | Inspector v2はCISベンチマーク評価なし（v1のみ） | v2の制限 |
@@ -1539,6 +1555,8 @@ def isolate_ec2_handler(event, context):
 ---
 
 # IR試験ポイントまとめ（1/2）
+
+> *IRフレームワークの6フェーズと試験頻出ポイントを前半で確認する*
 
 - <svg viewBox="0 0 800 385" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="385" fill="#1a1a2e"/><text x="400" y="28" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">コンプライアンスフレームワーク</text><rect x="50" y="55" width="200" height="110" rx="6" fill="#16213e" stroke="#2980b9" stroke-width="2"/><text x="150" y="83" fill="#2980b9" font-size="13" text-anchor="middle" font-weight="bold">SOC 2 Type II</text><text x="150" y="110" fill="#cccccc" font-size="11" text-anchor="middle">セキュリティ・可用性</text><text x="150" y="130" fill="#cccccc" font-size="11" text-anchor="middle">機密性・処理整合性</text><rect x="270" y="55" width="200" height="110" rx="6" fill="#16213e" stroke="#27ae60" stroke-width="2"/><text x="370" y="83" fill="#27ae60" font-size="13" text-anchor="middle" font-weight="bold">ISO 27001</text><text x="370" y="110" fill="#cccccc" font-size="11" text-anchor="middle">情報セキュリティ</text><text x="370" y="130" fill="#cccccc" font-size="11" text-anchor="middle">マネジメントシステム</text><rect x="490" y="55" width="200" height="110" rx="6" fill="#16213e" stroke="#f39c12" stroke-width="2"/><text x="590" y="83" fill="#f39c12" font-size="13" text-anchor="middle" font-weight="bold">PCI DSS</text><text x="590" y="110" fill="#cccccc" font-size="11" text-anchor="middle">クレジットカード</text><text x="590" y="130" fill="#cccccc" font-size="11" text-anchor="middle">データ保護基準</text><rect x="50" y="185" width="200" height="110" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="150" y="213" fill="#e91e63" font-size="13" text-anchor="middle" font-weight="bold">GDPR/個人情報保護</text><text x="150" y="240" fill="#cccccc" font-size="11" text-anchor="middle">EU個人データ保護</text><text x="150" y="260" fill="#cccccc" font-size="11" text-anchor="middle">データ主体の権利</text><rect x="270" y="185" width="200" height="110" rx="6" fill="#16213e" stroke="#8e44ad" stroke-width="2"/><text x="370" y="213" fill="#8e44ad" font-size="13" text-anchor="middle" font-weight="bold">HIPAA</text><text x="370" y="240" fill="#cccccc" font-size="11" text-anchor="middle">医療情報保護</text><text x="370" y="260" fill="#cccccc" font-size="11" text-anchor="middle">米国法律要件</text><rect x="490" y="185" width="200" height="110" rx="6" fill="#16213e" stroke="#16a085" stroke-width="2"/><text x="590" y="213" fill="#16a085" font-size="13" text-anchor="middle" font-weight="bold">FedRAMP</text><text x="590" y="240" fill="#cccccc" font-size="11" text-anchor="middle">米国政府クラウド</text><text x="590" y="260" fill="#cccccc" font-size="11" text-anchor="middle">セキュリティ認可</text><rect x="40" y="320" width="720" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="400" y="342" fill="#f9a825" font-size="13" text-anchor="middle" font-weight="bold">AWS Artifact でコンプライアンスレポートを取得</text><text x="400" y="360" fill="#cccccc" font-size="11" text-anchor="middle">AWS は 100+ コンプライアンスプログラムに対応 — お客様はビジネス要件に応じて活用</text></svg>
 - **インシデントレスポンスの重要ポイント:**
@@ -1689,6 +1707,8 @@ def isolate_ec2_handler(event, context):
 
 # 試験ポイント総まとめ①
 
+> *全ドメインの試験ポイントを統合した1枚目まとめで本番直前に要点を確認*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">セキュリティ多層防御モデル</text><rect x="40" y="70" width="720" height="52" rx="6" fill="#c0392b" opacity="0.75"/><text x="400" y="92" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">データ層</text><text x="400" y="110" fill="#ffffff" font-size="11" text-anchor="middle">KMS・Macie・RDS暗号化</text><rect x="90" y="130" width="620" height="52" rx="6" fill="#e91e63" opacity="0.75"/><text x="400" y="152" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">アプリ層</text><text x="400" y="170" fill="#ffffff" font-size="11" text-anchor="middle">WAF・Cognito・Secrets Manager</text><rect x="140" y="190" width="520" height="52" rx="6" fill="#f39c12" opacity="0.75"/><text x="400" y="212" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">コンピュート層</text><text x="400" y="230" fill="#ffffff" font-size="11" text-anchor="middle">Inspector・SSM・IAM Role</text><rect x="190" y="250" width="420" height="52" rx="6" fill="#27ae60" opacity="0.75"/><text x="400" y="272" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">ネットワーク層</text><text x="400" y="290" fill="#ffffff" font-size="11" text-anchor="middle">SG・NACL・VPC・Shield</text><rect x="240" y="310" width="320" height="52" rx="6" fill="#2980b9" opacity="0.75"/><text x="400" y="332" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">境界防御</text><text x="400" y="350" fill="#ffffff" font-size="11" text-anchor="middle">CloudFront・R53・Global Accel.</text><text x="400" y="382" fill="#cccccc" font-size="11" text-anchor="middle">Defense in Depth — 各層で独立したセキュリティコントロール</text></svg>
 | # | セクション | 最重要ポイント |
 | --- | --- | --- |
@@ -1707,6 +1727,8 @@ def isolate_ec2_handler(event, context):
 ---
 
 # 試験ポイント総まとめ②
+
+> *全ドメインの試験ポイント2枚目で残りの重要概念を最終確認する*
 
 | # | セクション | 最重要ポイント |
 | --- | --- | --- |

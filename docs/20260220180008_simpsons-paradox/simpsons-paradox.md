@@ -97,6 +97,8 @@ style: |
 
 # UCバークレー入試差別訴訟 (1973)
 
+> *全体では男性有利に見えたが6学部別では女性が全て上回り学部選択が交絡変数と判明*
+
 - 全体の合格率: 男性44% vs 女性35% → **性差別？**
 - しかし6学部それぞれでは女性の合格率 >= 男性
 - 女性は競争率の高い学部に多く出願していた
@@ -108,6 +110,8 @@ style: |
 
 # 数字で見るメカニズム
 
+> *処置Aが各グループで優位でも重症患者への配分偏りで全体集計では逆転する*
+
 - なぜ部分と全体で結論が逆転するのか？
 - 
 - <svg viewBox='0 0 800 300' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='300' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd700' font-size='14' font-weight='bold'>処置A vs 処置B: 治療効果の数値例</text><rect x='40' y='45' width='350' height='100' fill='#2a2a4a' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='215' y='65' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>軽症グループ</text><text x='120' y='90' text-anchor='middle' fill='#aaa' font-size='11'>処置A: 81/87 = 93%</text><text x='300' y='90' text-anchor='middle' fill='#aaa' font-size='11'>処置B: 234/270 = 87%</text><text x='215' y='120' text-anchor='middle' fill='#4ecdc4' font-size='12'>A > B (93% vs 87%)</text><rect x='410' y='45' width='350' height='100' fill='#2a2a4a' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='585' y='65' text-anchor='middle' fill='#e67e22' font-size='13' font-weight='bold'>重症グループ</text><text x='490' y='90' text-anchor='middle' fill='#aaa' font-size='11'>処置A: 192/263 = 73%</text><text x='680' y='90' text-anchor='middle' fill='#aaa' font-size='11'>処置B: 55/80 = 69%</text><text x='585' y='120' text-anchor='middle' fill='#4ecdc4' font-size='12'>A > B (73% vs 69%)</text><rect x='150' y='170' width='500' height='60' fill='#5a1a1a' rx='8'/><text x='400' y='195' text-anchor='middle' fill='#ff6b6b' font-size='14' font-weight='bold'>全体合計</text><text x='260' y='215' text-anchor='middle' fill='#aaa' font-size='11'>処置A: 273/350 = 78%</text><text x='540' y='215' text-anchor='middle' fill='#aaa' font-size='11'>処置B: 289/350 = 83%</text><text x='400' y='255' text-anchor='middle' fill='#ff6b6b' font-size='14' font-weight='bold'>全体では B > A に逆転!</text><text x='400' y='280' text-anchor='middle' fill='#ffd700' font-size='11'>原因: 処置Aは重症患者に多く適用された（サンプル配分の偏り）</text></svg>
@@ -116,6 +120,8 @@ style: |
 ---
 
 # ワクチン有効率での誤解
+
+> *全年齢層でワクチンが有効でも高齢者の接種率と基礎リスクの相関で集計値が逆転する*
 
 - 「ワクチン接種者の方が感染率が高い」という主張
 - 年齢層別に分析すると全セグメントでワクチン有効
@@ -134,6 +140,8 @@ style: |
 ---
 
 # 「機能Aの方がCVR高い」の罠
+
+> *モバイル・PCそれぞれBが優位でもデバイス配分の不均等で集計ではAが上回る*
 
 - 全体CVR: デザインA = 4.2%, デザインB = 3.8%
 - しかしセグメント別に見ると...
@@ -159,6 +167,8 @@ style: |
 
 # 新機能ロールアウトでの誤判定
 
+> *地域別デモグラフィックの差を無視した地域別テストで「CVR倍増」の誤判定が生まれる*
+
 - 地域・時間帯セグメントを無視したA/Bテストの危険性
 - 
 - <svg viewBox='0 0 800 280' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='280' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd700' font-size='14' font-weight='bold'>地域別ロールアウトの罠</text><rect x='50' y='50' width='220' height='80' fill='#1b4332' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='160' y='75' text-anchor='middle' fill='#4ecdc4' font-size='12' font-weight='bold'>東京（新機能ON）</text><text x='160' y='95' text-anchor='middle' fill='#fff' font-size='11'>CVR: 8.5%</text><text x='160' y='115' text-anchor='middle' fill='#aaa' font-size='10'>高所得、テックリテラシー高</text><rect x='290' y='50' width='220' height='80' fill='#5a1a1a' rx='8'/><text x='400' y='75' text-anchor='middle' fill='#ff6b6b' font-size='12' font-weight='bold'>地方都市（新機能OFF）</text><text x='400' y='95' text-anchor='middle' fill='#fff' font-size='11'>CVR: 4.2%</text><text x='400' y='115' text-anchor='middle' fill='#aaa' font-size='10'>異なるデモグラフィック</text><rect x='530' y='50' width='220' height='80' fill='#2a2a4a' rx='8'/><text x='640' y='75' text-anchor='middle' fill='#e67e22' font-size='12' font-weight='bold'>結論</text><text x='640' y='95' text-anchor='middle' fill='#fff' font-size='11'>「新機能でCVR倍増」</text><text x='640' y='115' text-anchor='middle' fill='#ff6b6b' font-size='10'>本当に新機能の効果？</text><line x1='50' y1='155' x2='750' y2='155' stroke='#555' stroke-width='1'/><text x='400' y='180' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>正しいアプローチ</text><rect x='80' y='195' width='200' height='40' fill='#1b4332' rx='6'/><text x='180' y='220' text-anchor='middle' fill='#4ecdc4' font-size='11'>同一地域内でランダム化</text><rect x='300' y='195' width='200' height='40' fill='#1b4332' rx='6'/><text x='400' y='220' text-anchor='middle' fill='#4ecdc4' font-size='11'>層別ランダム化配信</text><rect x='520' y='195' width='200' height='40' fill='#1b4332' rx='6'/><text x='620' y='220' text-anchor='middle' fill='#4ecdc4' font-size='11'>交絡変数の事前特定</text><text x='400' y='265' text-anchor='middle' fill='#aaa' font-size='11'>A/Bテストの前提: 処置群と対照群は同質でなければならない</text></svg>
@@ -176,6 +186,8 @@ style: |
 
 # 交絡変数を探せ
 
+> *DAGで交絡構造を可視化しセグメント別逆転の有無と処置群の同質性を必ず確認する*
+
 - 因果推論の基礎: DAG（有向非巡回グラフ）で構造を可視化
 - 
 - <svg viewBox='0 0 800 280' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='280' fill='#1a1a2e' rx='12'/><text x='200' y='30' text-anchor='middle' fill='#ff6b6b' font-size='14' font-weight='bold'>交絡がある場合</text><circle cx='100' cy='120' r='35' fill='#5a1a1a' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='100' y='117' text-anchor='middle' fill='#fff' font-size='11'>処置X</text><text x='100' y='132' text-anchor='middle' fill='#aaa' font-size='9'>(デザイン)</text><circle cx='300' cy='120' r='35' fill='#5a1a1a' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='300' y='117' text-anchor='middle' fill='#fff' font-size='11'>結果Y</text><text x='300' y='132' text-anchor='middle' fill='#aaa' font-size='9'>(CVR)</text><circle cx='200' cy='40' r='30' fill='#4a3a1a' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='200' y='37' text-anchor='middle' fill='#ffd700' font-size='11'>交絡Z</text><text x='200' y='52' text-anchor='middle' fill='#ffd700' font-size='9'>(デバイス)</text><line x1='140' y1='120' x2='260' y2='120' stroke='#ff6b6b' stroke-width='2'/><polygon points='258,115 268,120 258,125' fill='#ff6b6b'/><line x1='175' y1='55' x2='120' y2='90' stroke='#ffd700' stroke-width='2'/><polygon points='123,85 115,93 127,92' fill='#ffd700'/><line x1='225' y1='55' x2='280' y2='90' stroke='#ffd700' stroke-width='2'/><polygon points='277,85 285,93 273,92' fill='#ffd700'/><text x='200' y='185' text-anchor='middle' fill='#ff6b6b' font-size='11'>X→Yの因果が歪む</text><text x='580' y='30' text-anchor='middle' fill='#4ecdc4' font-size='14' font-weight='bold'>交絡を制御した場合</text><circle cx='480' cy='120' r='35' fill='#1b4332' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='480' y='117' text-anchor='middle' fill='#fff' font-size='11'>処置X</text><text x='480' y='132' text-anchor='middle' fill='#aaa' font-size='9'>(デザイン)</text><circle cx='680' cy='120' r='35' fill='#1b4332' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='680' y='117' text-anchor='middle' fill='#fff' font-size='11'>結果Y</text><text x='680' y='132' text-anchor='middle' fill='#aaa' font-size='9'>(CVR)</text><line x1='520' y1='120' x2='640' y2='120' stroke='#4ecdc4' stroke-width='2'/><polygon points='638,115 648,120 638,125' fill='#4ecdc4'/><circle cx='580' cy='40' r='30' fill='#2a2a4a' stroke='#555' stroke-width='2' stroke-dasharray='5,5'/><text x='580' y='37' text-anchor='middle' fill='#aaa' font-size='11'>交絡Z</text><text x='580' y='52' text-anchor='middle' fill='#aaa' font-size='9'>(制御済)</text><text x='580' y='185' text-anchor='middle' fill='#4ecdc4' font-size='11'>純粋なX→Y効果を推定</text><text x='400' y='230' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>チェック方法</text><text x='400' y='255' text-anchor='middle' fill='#aaa' font-size='12'>1. セグメント別に結果を確認 → 逆転がないか？</text><text x='400' y='275' text-anchor='middle' fill='#aaa' font-size='12'>2. 処置群と対照群のデモグラフィックは同質か？</text></svg>
@@ -184,6 +196,8 @@ style: |
 ---
 
 # 層別化分析のプロトコル
+
+> *事後セグメント探索はp-hackingになるため交絡変数仮説と層別化計画を事前登録する*
 
 - **事前にセグメント仮説を立てる** ことが最重要
 - 
@@ -194,6 +208,8 @@ style: |
 
 # 統計的有意性 vs 実用的有意性
 
+> *p値だけでは不十分—p値+効果量+信頼区間の3点セットで初めて意思決定に使える*
+
 - **N=100万なら0.001%の差でもp<0.05**
 - 統計的有意 =/= ビジネス的に意味がある
 - 
@@ -203,6 +219,8 @@ style: |
 ---
 
 # ベイズA/Bテストの優位性
+
+> *「AがBに勝つ確率94%」という直感的な確率でいつでも安全に早期停止できる*
 
 - 古典的頻度論の限界を超える
 - 

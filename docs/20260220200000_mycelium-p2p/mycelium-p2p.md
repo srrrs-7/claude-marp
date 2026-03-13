@@ -354,6 +354,8 @@ async function redistributeLoad(nodes: PeerNode[]) {
 
 # References
 
+> *菌糸ネットワーク研究とP2P設計の一次資料を網羅*
+
 - - **Research & Data:**
 - - [Simard, S. (1997) Net transfer of carbon between ectomycorrhizal tree species in the field. Nature 388](https://www.nature.com/articles/40557)
 - - [Beiler, K.J. et al. (2010) Architecture of the wood-wide web. New Phytologist](https://nph.onlinelibrary.wiley.com/journal/14698137)

@@ -290,6 +290,8 @@ style: |
 
 # SKILL.md の仕組み — 実行フロー
 
+> *ユーザー→スキル呼び出し→SKILL.md読み込み→実行の4ステップ*
+
 - <svg viewBox='0 0 800 130' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='10' y='40' width='130' height='50' rx='8' fill='#5B21B6'/><text x='75' y='61' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>SKILL.md</text><text x='75' y='78' text-anchor='middle' fill='#DDD6FE' font-size='11'>定義ファイル</text><line x1='140' y1='65' x2='165' y2='65' stroke='#A78BFA' stroke-width='2'/><polygon points='172,65 162,60 162,70' fill='#A78BFA'/><rect x='172' y='40' width='130' height='50' rx='8' fill='#1D4ED8'/><text x='237' y='61' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>/コマンド</text><text x='237' y='78' text-anchor='middle' fill='#BFDBFE' font-size='11'>呼び出し</text><line x1='302' y1='65' x2='327' y2='65' stroke='#60A5FA' stroke-width='2'/><polygon points='334,65 324,60 324,70' fill='#60A5FA'/><rect x='334' y='40' width='130' height='50' rx='8' fill='#065F46'/><text x='399' y='61' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>フェーズ実行</text><text x='399' y='78' text-anchor='middle' fill='#A7F3D0' font-size='11'>対話・処理</text><line x1='464' y1='65' x2='489' y2='65' stroke='#34D399' stroke-width='2'/><polygon points='496,65 486,60 486,70' fill='#34D399'/><rect x='496' y='40' width='130' height='50' rx='8' fill='#92400E'/><text x='561' y='61' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>バリデーション</text><text x='561' y='78' text-anchor='middle' fill='#FDE68A' font-size='11'>品質検証</text><line x1='626' y1='65' x2='651' y2='65' stroke='#FBBF24' stroke-width='2'/><polygon points='658,65 648,60 648,70' fill='#FBBF24'/><rect x='658' y='40' width='130' height='50' rx='8' fill='#1F2937'/><rect x='658' y='40' width='130' height='50' rx='8' fill='none' stroke='#6B7280' stroke-width='1.5'/><text x='723' y='61' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>完了・報告</text><text x='723' y='78' text-anchor='middle' fill='#9CA3AF' font-size='11'>出力確認</text></svg>
 - `.claude/skills/<name>/SKILL.md` に配置するだけで `/コマンド` として自動登録
 - **エラー時**: セルフヒーリングループ（最大3回リトライ）で自動修正
@@ -305,6 +307,8 @@ style: |
 ---
 
 # 呼び出し方と統合
+
+> */コマンドかツール呼び出しでスキルを即時起動できる*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">スキルの呼び出し方 — コマンド統合フロー</text>
@@ -508,6 +512,8 @@ bash .codex/install-skills.sh
 ---
 
 # /generate & /review-slides（1/2）
+
+> *生成と品質レビューを分離することで反復改善サイクルを実現*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">/generate スキル — コンテンツ生成ワークフロー</text>
@@ -1378,6 +1384,8 @@ bash .codex/install-skills.sh
 
 # スキルのディレクトリ構造
 
+> *SKILL.md+サポートファイルのシンプル構成で誰でも作成できる*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">スキルのディレクトリ構造</text>
   <rect x="100" y="60" width="600" height="300" fill="#16213e" rx="8"/>
@@ -2218,6 +2226,8 @@ AskUserQuestion(
 
 # 参考リソース（1/2）
 
+> *Claude Code公式ドキュメントとCLAUDE.mdがスキル開発の基盤*
+
 - **公式ドキュメント:**
 -   - [Claude Code 公式サイト](https://claude.ai/code)
 -   - [Anthropic ドキュメント](https://docs.anthropic.com)
@@ -2227,6 +2237,8 @@ AskUserQuestion(
 ---
 
 # 参考リソース（2/2）
+
+> *CLAUDE.mdとサンプルSKILL.mdが実装の最速参照先*
 
 -   - `CLAUDE.md` — プロジェクト全体ガイドライン
 -   - `.claude/skills/` — 既存スキルの実装例（6種）

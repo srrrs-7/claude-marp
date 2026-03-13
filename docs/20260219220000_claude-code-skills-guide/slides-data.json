@@ -58,7 +58,8 @@
 				"`.claude/skills/<name>/SKILL.md` に配置するだけで `/コマンド` として自動登録",
 				"**エラー時**: セルフヒーリングループ（最大3回リトライ）で自動修正"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ユーザー→スキル呼び出し→SKILL.md読み込み→実行の4ステップ"
 		},
 		{
 			"title": "スキルの種類 — 組み込み vs カスタム",
@@ -75,7 +76,8 @@
 				"Claude Code CLI と完全統合: `.claude/skills/` 配下を自動スキャン",
 				"Codex (OpenAI) にも同じスキルを配布可能: `.codex/skills/`"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "/コマンドかツール呼び出しでスキルを即時起動できる"
 		},
 		{
 			"title": "呼び出し方と統合（コード例）",
@@ -121,7 +123,8 @@
 				"  → テンプレート再利用による高速スライド量産に最適",
 				""
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "生成と品質レビューを分離することで反復改善サイクルを実現"
 		},
 		{
 			"title": "/generate & /review-slides（2/2）",
@@ -341,7 +344,8 @@
 				"Codex 用: `.codex/skills/` に同期（`bash .codex/install-skills.sh`）",
 				"Git リポジトリで一括管理・バージョン管理が可能"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SKILL.md+サポートファイルのシンプル構成で誰でも作成できる"
 		},
 		{
 			"title": "スキルのディレクトリ構造（コード例）",
@@ -569,7 +573,8 @@
 				"  - [Anthropic ドキュメント](https://docs.anthropic.com)",
 				"**プロジェクト内リソース:**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Claude Code公式ドキュメントとCLAUDE.mdがスキル開発の基盤"
 		},
 		{
 			"title": "参考リソース（2/2）",
@@ -579,7 +584,8 @@
 				"  - `.claude/rules/` — 詳細ルール集（スキーマ・デザイン等）",
 				"  - `.claude/agents/` — エージェント定義（slide-creator 等）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CLAUDE.mdとサンプルSKILL.mdが実装の最速参照先"
 		},
 		{
 			"title": "ご清聴ありがとうございました",

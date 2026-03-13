@@ -300,6 +300,8 @@ style: |
 
 # 参考文献
 
+> *Lancet・Stanford・Niantic公式など主要データソース一覧*
+
 - - **学術研究:**
 - - [Pokemon GO and Physical Activity (The Lancet, 2016)](https://www.thelancet.com/journals/landig/)
 - - [Influence of Pokemon GO on Physical Activity (JMIR, 2017)](https://www.jmir.org/)

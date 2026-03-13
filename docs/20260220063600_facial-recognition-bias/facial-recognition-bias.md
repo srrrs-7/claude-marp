@@ -200,6 +200,8 @@ style: |
 
 # 参考文献
 
+> *Gender Shades・EU AI Actなど顔認識バイアス研究の基本文献*
+
 - - **学術研究:**
 - - [Gender Shades (Buolamwini & Gebru, 2018)](http://gendershades.org/)
 - - [Coded Bias (Netflix Documentary)](https://www.netflix.com/title/81328723)

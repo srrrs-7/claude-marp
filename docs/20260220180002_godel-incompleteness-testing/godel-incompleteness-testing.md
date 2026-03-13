@@ -296,6 +296,8 @@ def test_addition_commutative(a, b):
 
 # 参考文献（1/2）
 
+> *数学基礎論・テスト理論の一次資料を網羅した参照リスト*
+
 - **数学・理論:**
 - - [Godel, K. (1931) "Uber formal unentscheidbare Satze"](https://en.wikipedia.org/wiki/G%C3%B6del%27s_incompleteness_theorems)
 - - [Turing, A. (1936) "On Computable Numbers"](https://en.wikipedia.org/wiki/Turing%27s_proof)
@@ -306,6 +308,8 @@ def test_addition_commutative(a, b):
 ---
 
 # 参考文献（2/2）
+
+> *数学・テスト理論・カオスエンジニアリングの一次資料を網羅*
 
 - - [Dijkstra, E.W. "Notes on Structured Programming" (EWD249)](https://www.cs.utexas.edu/~EWD/ewd02xx/EWD249.PDF)
 - - [Claessen & Hughes (2000) "QuickCheck" - ICFP](https://www.cs.tufts.edu/~nr/cs257/archive/john-hughes/quick.pdf)

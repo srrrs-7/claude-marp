@@ -206,6 +206,8 @@ style: |
 
 # 学習パラダイムの概要
 
+> *教師あり・なし・強化学習の3分類が全AIの基礎*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">学習パラダイムの概要</text>
@@ -516,6 +518,8 @@ style: |
 
 # 勾配降下法の原理
 
+> *損失の勾配方向へパラメータを繰り返し更新する*
+
 - <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="320" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">勾配降下法の原理</text>
@@ -556,6 +560,8 @@ style: |
 ---
 
 # SGD → Adam → AdamW の進化
+
+> *適応的学習率+重み減衰でAdamWが現在の標準*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -767,6 +773,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # パーセプトロンからMLPへ
 
+> *非線形活性化の追加で線形分離不能問題を解決*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">パーセプトロン → MLP の進化</text>
@@ -859,6 +867,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # 誤差逆伝播法 (Backpropagation)
+
+> *連鎖律で全層の勾配を効率計算し学習を可能に*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="300" fill="#1a1a2e"/>
@@ -1101,6 +1111,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # Attention 機構の原理
 
+> *重要箇所への動的な重み付けで長距離依存を解決*
+
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Attention 機構の原理</text>
@@ -1154,6 +1166,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # Transformer アーキテクチャ
+
+> *Self-Attentionのみで再帰不要・並列計算を実現*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="340" fill="#1a1a2e"/>
@@ -1571,6 +1585,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # Kaplan スケーリング則 (2020)
 
+> *パラメータ・データ・計算が冪乗則で性能を決定する*
+
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Kaplan スケーリング則 (2020) — 損失 vs 規模</text>
@@ -1668,6 +1684,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # RLHF: 強化学習による人間フィードバック
+
+> *人間の好み学習で安全で役立つ応答を最適化*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="300" fill="#1a1a2e"/>
@@ -1981,6 +1999,8 @@ class LoRALayer(nn.Module):
 
 # 分散学習の並列化戦略
 
+> *データ・モデル・パイプライン並列の組み合わせが必須*
+
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">分散学習の並列化戦略</text>
@@ -2084,6 +2104,8 @@ class LoRALayer(nn.Module):
 ---
 
 # Mixture of Experts (MoE)
+
+> *トークンごとに少数専門家を選択し推論コストを削減*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="300" fill="#1a1a2e"/>
