@@ -13,13 +13,4 @@ setup-hooks: ## Install git hooks from scripts/hooks/
 	@echo "✅ Git hooks installed"
 
 claude: ## Launch Claude Code (normal mode)
-	claude
-
-claude-team: ## Launch Claude Code with tmux split panes for agent teams
-	claude --teammate-mode tmux
-
-claude-dangerous: ## Launch Claude Code in dangerous mode (bypass permissions)
-	claude --dangerously-skip-permissions
-
-claude-team-dangerous: ## Launch Claude Code with tmux + dangerous mode
 	claude --teammate-mode tmux --dangerously-skip-permissions
