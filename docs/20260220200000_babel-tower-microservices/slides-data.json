@@ -23,7 +23,8 @@
 				"![w:750 center](assets/babel-myth.svg)"
 			],
 			"speakerNotes": "創世記11章に記されるバベルの塔。人類が共通言語を持っていた時代に、天に届く塔を建てようとした。神はこれを見て、言語を混乱させ、人々を世界中に散らした。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "共通言語の喪失が分散システムの混乱を招く"
 		},
 		{
 			"title": "モノリスという「塔」",
@@ -34,7 +35,8 @@
 				"![w:700 center](assets/monolith-tower.svg)"
 			],
 			"speakerNotes": "モノリシックアーキテクチャは初期には理に適っている。しかし機能が積み重なるにつれ、バベルの塔のように手が付けられない巨大な構造体になる。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "機能追加のたびに塔は高くなりデプロイが儀式化する"
 		},
 		{
 			"title": "マイクロサービスへの分散",
@@ -46,7 +48,8 @@
 				"<svg viewBox=\"0 0 800 320\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"320\" fill=\"#1a1a2e\"/><rect x=\"60\" y=\"60\" width=\"140\" height=\"200\" rx=\"8\" fill=\"#2d2d4e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"130\" y=\"100\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">MONOLITH</text><text x=\"130\" y=\"122\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"10\">UI Layer</text><rect x=\"80\" y=\"130\" width=\"100\" height=\"18\" rx=\"3\" fill=\"#3a3a5e\"/><text x=\"130\" y=\"143\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Business Logic</text><rect x=\"80\" y=\"155\" width=\"100\" height=\"18\" rx=\"3\" fill=\"#3a3a5e\"/><text x=\"130\" y=\"168\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Data Access</text><rect x=\"80\" y=\"180\" width=\"100\" height=\"18\" rx=\"3\" fill=\"#3a3a5e\"/><text x=\"130\" y=\"193\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Auth Module</text><rect x=\"80\" y=\"205\" width=\"100\" height=\"18\" rx=\"3\" fill=\"#3a3a5e\"/><text x=\"130\" y=\"218\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Notifications</text><text x=\"130\" y=\"270\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">単一デプロイ単位</text><polygon points=\"230,160 260,155 260,165\" fill=\"#f9a825\"/><line x1=\"210\" y1=\"160\" x2=\"260\" y2=\"160\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"245\" y=\"148\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">分解</text><g><rect x=\"280\" y=\"50\" width=\"100\" height=\"50\" rx=\"6\" fill=\"#1e3a5f\" stroke=\"#42a5f5\" stroke-width=\"2\"/><text x=\"330\" y=\"72\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"11\" font-weight=\"bold\">UI Service</text><text x=\"330\" y=\"88\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Port: 3000</text></g><g><rect x=\"410\" y=\"50\" width=\"100\" height=\"50\" rx=\"6\" fill=\"#1e3a5f\" stroke=\"#42a5f5\" stroke-width=\"2\"/><text x=\"460\" y=\"72\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"11\" font-weight=\"bold\">Auth Service</text><text x=\"460\" y=\"88\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Port: 8001</text></g><g><rect x=\"540\" y=\"50\" width=\"110\" height=\"50\" rx=\"6\" fill=\"#1e3a5f\" stroke=\"#42a5f5\" stroke-width=\"2\"/><text x=\"595\" y=\"72\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"11\" font-weight=\"bold\">Order Service</text><text x=\"595\" y=\"88\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Port: 8002</text></g><g><rect x=\"280\" y=\"140\" width=\"100\" height=\"50\" rx=\"6\" fill=\"#1e3a5f\" stroke=\"#42a5f5\" stroke-width=\"2\"/><text x=\"330\" y=\"162\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"11\" font-weight=\"bold\">Notify Svc</text><text x=\"330\" y=\"178\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Port: 8003</text></g><g><rect x=\"410\" y=\"140\" width=\"100\" height=\"50\" rx=\"6\" fill=\"#1e3a5f\" stroke=\"#42a5f5\" stroke-width=\"2\"/><text x=\"460\" y=\"162\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"11\" font-weight=\"bold\">Pay Service</text><text x=\"460\" y=\"178\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Port: 8004</text></g><g><rect x=\"540\" y=\"140\" width=\"110\" height=\"50\" rx=\"6\" fill=\"#1e3a5f\" stroke=\"#42a5f5\" stroke-width=\"2\"/><text x=\"595\" y=\"162\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"11\" font-weight=\"bold\">User Service</text><text x=\"595\" y=\"178\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Port: 8005</text></g><text x=\"460\" y=\"240\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">独立したデプロイ単位</text><text x=\"460\" y=\"258\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\">各サービスが独自のDBを持つ</text></svg>"
 			],
 			"speakerNotes": "2010年代、大企業を中心にマイクロサービスへの移行が始まった。独立したデプロイ、スケーリングの自由、チームの自律性が魅力だった。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "独立の自由を求めた結果API言語の乱立が始まった"
 		},
 		{
 			"title": "言語の混乱 ― APIの爆発",
@@ -58,7 +61,8 @@
 				"![w:800 center](assets/api-babel.svg)"
 			],
 			"speakerNotes": "マイクロサービスが増えるにつれ、各チームが独自のプロトコル・フォーマット・バージョンを選択し始めた。バベルの言語混乱が現代に再現された。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "REST・gRPC・GraphQLの乱立がバベルを現代に再現している"
 		},
 		{
 			"title": "Conway's Law ― アーキテクチャと組織",
@@ -69,7 +73,8 @@
 				"![w:850 center](assets/conways-law.svg)"
 			],
 			"speakerNotes": "1968年にMelvin Conwayが発見した法則。組織の構造がそのままシステム設計に反映される。バベルの民族分散は、現代のチームのサイロ化と同じ。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "組織のサイロ化がそのままサービスのサイロ化になる"
 		},
 		{
 			"title": "「名を上げよう」＝ 履歴書駆動開発",
@@ -80,7 +85,8 @@
 				"<svg viewBox=\"0 0 800 280\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"280\" fill=\"#1a1a2e\"/><rect x=\"40\" y=\"30\" width=\"320\" height=\"220\" rx=\"10\" fill=\"#1a2e1a\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"200\" y=\"58\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"bold\">技術的な理由</text><rect x=\"60\" y=\"70\" width=\"280\" height=\"32\" rx=\"5\" fill=\"#2a3e2a\"/><text x=\"200\" y=\"91\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"11\">スケーラビリティが実際にボトルネック</text><rect x=\"60\" y=\"110\" width=\"280\" height=\"32\" rx=\"5\" fill=\"#2a3e2a\"/><text x=\"200\" y=\"131\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"11\">独立デプロイが本当に必要</text><rect x=\"60\" y=\"150\" width=\"280\" height=\"32\" rx=\"5\" fill=\"#2a3e2a\"/><text x=\"200\" y=\"171\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"11\">チーム規模がアーキテクチャを支えられる</text><rect x=\"60\" y=\"190\" width=\"280\" height=\"32\" rx=\"5\" fill=\"#2a3e2a\"/><text x=\"200\" y=\"211\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"11\">組織の境界が明確に存在する</text><rect x=\"440\" y=\"30\" width=\"320\" height=\"220\" rx=\"10\" fill=\"#2e1a1a\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"600\" y=\"58\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">RDD（履歴書駆動）な理由</text><rect x=\"460\" y=\"70\" width=\"280\" height=\"32\" rx=\"5\" fill=\"#3e2a2a\"/><text x=\"600\" y=\"91\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"11\">「Kubernetes を使ってみたい」</text><rect x=\"460\" y=\"110\" width=\"280\" height=\"32\" rx=\"5\" fill=\"#3e2a2a\"/><text x=\"600\" y=\"131\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"11\">「転職市場で Kafka の経験が有利」</text><rect x=\"460\" y=\"150\" width=\"280\" height=\"32\" rx=\"5\" fill=\"#3e2a2a\"/><text x=\"600\" y=\"171\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"11\">「他社がやっているから」</text><rect x=\"460\" y=\"190\" width=\"280\" height=\"32\" rx=\"5\" fill=\"#3e2a2a\"/><text x=\"600\" y=\"211\" text-anchor=\"middle\" fill=\"#ef9a9a\" font-size=\"11\">「技術的に面白そう」</text><text x=\"400\" y=\"268\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\">「我々はこれを本当に必要としているか？」</text></svg>"
 			],
 			"speakerNotes": "バベルの塔建設の動機の一つは「名声」だった。同様に、エンジニアが新技術を採用する理由がキャリアへの欲望であることも少なくない。技術的な必要性と動機を分離して考える必要がある。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "「名を上げよう」の動機が技術選択を歪める本質"
 		},
 		{
 			"title": "建設の停止 ― 技術的負債の蓄積",
@@ -92,7 +98,8 @@
 				"![w:800 center](assets/tech-debt-maze.svg)"
 			],
 			"speakerNotes": "マイクロサービス化が進むにつれ、その複雑性が速度向上の恩恵を上回り始める。Netflixでは専任の分散システムチームが必要になった。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "依存関係の爆発で誰も全体を把握できなくなる"
 		},
 		{
 			"title": "第二章：共通言語の再発明",
@@ -113,7 +120,8 @@
 				"<svg viewBox=\"0 0 800 260\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"260\" fill=\"#1a1a2e\"/><rect x=\"320\" y=\"80\" width=\"160\" height=\"100\" rx=\"10\" fill=\"#2d2d4e\" stroke=\"#f9a825\" stroke-width=\"3\"/><text x=\"400\" y=\"125\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">Schema</text><text x=\"400\" y=\"143\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">Registry</text><text x=\"400\" y=\"165\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\">Avro / Protobuf</text><g><rect x=\"40\" y=\"40\" width=\"110\" height=\"44\" rx=\"6\" fill=\"#1e3a5f\" stroke=\"#42a5f5\" stroke-width=\"2\"/><text x=\"95\" y=\"58\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"10\" font-weight=\"bold\">Producer A</text><text x=\"95\" y=\"74\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Kafka Client</text></g><g><rect x=\"40\" y=\"108\" width=\"110\" height=\"44\" rx=\"6\" fill=\"#1e3a5f\" stroke=\"#42a5f5\" stroke-width=\"2\"/><text x=\"95\" y=\"126\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"10\" font-weight=\"bold\">Producer B</text><text x=\"95\" y=\"142\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Kafka Client</text></g><g><rect x=\"40\" y=\"176\" width=\"110\" height=\"44\" rx=\"6\" fill=\"#1e3a5f\" stroke=\"#42a5f5\" stroke-width=\"2\"/><text x=\"95\" y=\"194\" text-anchor=\"middle\" fill=\"#42a5f5\" font-size=\"10\" font-weight=\"bold\">Producer C</text><text x=\"95\" y=\"210\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Kafka Client</text></g><g><rect x=\"650\" y=\"40\" width=\"110\" height=\"44\" rx=\"6\" fill=\"#1a3a1a\" stroke=\"#66bb6a\" stroke-width=\"2\"/><text x=\"705\" y=\"58\" text-anchor=\"middle\" fill=\"#66bb6a\" font-size=\"10\" font-weight=\"bold\">Consumer X</text><text x=\"705\" y=\"74\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Kafka Client</text></g><g><rect x=\"650\" y=\"108\" width=\"110\" height=\"44\" rx=\"6\" fill=\"#1a3a1a\" stroke=\"#66bb6a\" stroke-width=\"2\"/><text x=\"705\" y=\"126\" text-anchor=\"middle\" fill=\"#66bb6a\" font-size=\"10\" font-weight=\"bold\">Consumer Y</text><text x=\"705\" y=\"142\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Kafka Client</text></g><g><rect x=\"650\" y=\"176\" width=\"110\" height=\"44\" rx=\"6\" fill=\"#1a3a1a\" stroke=\"#66bb6a\" stroke-width=\"2\"/><text x=\"705\" y=\"194\" text-anchor=\"middle\" fill=\"#66bb6a\" font-size=\"10\" font-weight=\"bold\">Consumer Z</text><text x=\"705\" y=\"210\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\">Kafka Client</text></g><line x1=\"150\" y1=\"62\" x2=\"318\" y2=\"118\" stroke=\"#f9a825\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/><line x1=\"150\" y1=\"130\" x2=\"318\" y2=\"130\" stroke=\"#f9a825\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/><line x1=\"150\" y1=\"198\" x2=\"318\" y2=\"142\" stroke=\"#f9a825\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/><line x1=\"480\" y1=\"118\" x2=\"648\" y2=\"62\" stroke=\"#66bb6a\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/><line x1=\"480\" y1=\"130\" x2=\"648\" y2=\"130\" stroke=\"#66bb6a\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/><line x1=\"480\" y1=\"142\" x2=\"648\" y2=\"198\" stroke=\"#66bb6a\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/><text x=\"400\" y=\"240\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">スキーマを一元管理して「共通言語」を強制</text></svg>"
 			],
 			"speakerNotes": "分散化による言語混乱を解決するために、現代エンジニアリングは共通のスキーマと契約によって語彙を再統一しようとしている。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "スキーマ一元管理で現代の共通語彙を再構築できる"
 		},
 		{
 			"title": "サービスメッシュ ― 通訳の自動化",
@@ -125,7 +133,8 @@
 				"![w:800 center](assets/service-mesh.svg)"
 			],
 			"speakerNotes": "言語の混乱に対応するために「通訳者」が必要になった。サービスメッシュはアプリケーションコードを変更せずに通信を管理する自動通訳レイヤー。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "サイドカーが言語の違いを透過的に吸収する"
 		},
 		{
 			"title": "マイクロサービスの正しい使いどころ",
@@ -136,7 +145,8 @@
 				"✅ 組織規模がアーキテクチャ複雑性を支えられる場合"
 			],
 			"speakerNotes": "マイクロサービスはすべての問題の解決策ではない。Conwayの法則を逆利用し、組織構造に合ったアーキテクチャを選ぶことが重要。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ドメイン境界に沿った分割のみが持続可能な分散になる"
 		},
 		{
 			"title": "教訓 ― 神話が語る真実",
@@ -160,7 +170,8 @@
 				"**参考**: _Building Microservices_ (Sam Newman) / _Team Topologies_ (Skelton & Pais)"
 			],
 			"speakerNotes": "神話と現代技術の対応を整理すると、3000年前の人類が直面した問題と、現代のエンジニアが直面する問題が驚くほど一致することがわかる。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "神話の対応表が3000年前と現代の問題の同型を示す"
 		}
 	]
 }

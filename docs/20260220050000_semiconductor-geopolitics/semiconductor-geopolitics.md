@@ -126,6 +126,8 @@ style: |
 
 # アジェンダ
 
+> *6パートで半導体の技術・地政学・AIトレンドを体系的に解説する*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">半導体サプライチェーンのリスク層</text>
@@ -193,6 +195,8 @@ style: |
 
 # 現代の「石油」— なぜ今チップなのか（1/2）
 
+> *半導体はスマホ・自動車・兵器の全てを動かし現代文明の生命線となった*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">先端ファブの地理的集中</text>
@@ -228,6 +232,8 @@ style: |
 ---
 
 # 現代の「石油」— なぜ今チップなのか（2/2）
+
+> *チップのない1日は現代文明には存在しない—普及浸透の圧倒的現実*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -273,6 +279,8 @@ style: |
 
 # チップとは何か（エンジニア向け基礎）（1/2）
 
+> *3nmチップは1mm²に1億個のトランジスタ—製造工程は1000〜2000ステップ*
+
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">地政学リスクがエンジニアに与える影響</text>
@@ -314,6 +322,8 @@ style: |
 
 # チップとは何か（エンジニア向け基礎）（2/2）
 
+> *光より小さい構造を原子数個精度で作る—一度構築した工場は再現不可能*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">EDA ツールと IP コアの独占構造</text>
@@ -344,7 +354,7 @@ style: |
 
 ---
 
-# 半導体の用途：すべてのものの中にある（1/2）
+# 半導体の用途：すべてのものの中にある（1/2）（1/2）
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="360" fill="#1a1a2e" rx="0"/>
@@ -369,6 +379,14 @@ style: |
 - **ロジックチップ（CPU/GPU/ASIC）:**
 - - スマートフォン、PC、データセンター、AI推論
 - - 最先端プロセス（3〜7nm）が必要
+
+
+---
+
+# 半導体の用途：すべてのものの中にある（1/2）（2/2）
+
+> *メモリ三社寡占の実態—DRAMとNANDで世界のデジタルインフラを支配*
+
 - 
 - **メモリ（DRAM/NAND）:**
 - - スマートフォン、サーバー、SSD
@@ -377,7 +395,7 @@ style: |
 
 ---
 
-# 半導体の用途：すべてのものの中にある（2/2）
+# 半導体の用途：すべてのものの中にある（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -397,6 +415,14 @@ style: |
 - 
 - **パワー半導体:**
 - - EV、電力インフラ、家電
+
+
+---
+
+# 半導体の用途：すべてのものの中にある（2/2）（2/2）
+
+> *旧世代28nm以上のアナログ・センサーが車載とIoT市場を今も支える*
+
 - - SiC・GaN材料が次世代主力
 - 
 - **アナログ・センサー:**
@@ -437,6 +463,8 @@ style: |
 
 # 設計層：EDAツールとIPの独占（1/2）
 
+> *EDA3社と米国の輸出禁止が中国の先端チップ設計を実質封鎖している*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">EDA ツールと IP コアの独占構造</text>
@@ -468,6 +496,8 @@ style: |
 ---
 
 # 設計層：EDAツールとIPの独占（2/2）
+
+> *ArmなきモバイルチップはなくApple・QualcommのTSMC依存は極めて高い*
 
 - <svg viewBox="0 0 800 345" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="360" fill="#1a1a2e" rx="0"/>
@@ -502,6 +532,8 @@ style: |
 ---
 
 # 製造層：TSMCの圧倒的優位（1/2）
+
+> *TSMC先端プロセスシェア90%超—Samsung・Intelとの差は歩留まりで決定的*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -546,7 +578,7 @@ style: |
 
 ---
 
-# 製造層：TSMCの圧倒的優位（2/2）
+# 製造層：TSMCの圧倒的優位（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -571,6 +603,14 @@ style: |
 - - 1987年創業、Morris Changが「製造専業」モデルを発明
 - - 顧客（Apple/Nvidia/Qualcomm）と競合しない → 信頼の蓄積
 - - 設備投資額: 年間300〜400億ドル（競合の追随を許さない）
+
+
+---
+
+# 製造層：TSMCの圧倒的優位（2/2）（2/2）
+
+> *Apple一社がTSMC売上の25%—先端チップ売上は全体の60%に達する*
+
 - 
 - **TSMC の収益構成（2023）:**
 - - 先端プロセス（7nm以下）: 売上の約60%
@@ -587,6 +627,8 @@ style: |
 ---
 
 # 材料・化学品：意外な弱点（1/2）
+
+> *JSR・東京応化・信越化学—日本3社がフォトレジスト世界シェア90%超を握る*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -624,7 +666,7 @@ style: |
 
 ---
 
-# 材料・化学品：意外な弱点（2/2）
+# 材料・化学品：意外な弱点（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -655,6 +697,14 @@ style: |
 - - 日韓関係悪化（2019年）で韓国工場が生産危機に陥った事例
 - 
 - **シリコンウェーハ:**
+
+
+---
+
+# 材料・化学品：意外な弱点（2/2）（2/2）
+
+> *信越半導体・SUMCOでウェーハ世界60%—日本は見えない急所として深く刺さる*
+
 - - 信越半導体・SUMCO（日本）で世界シェア60%
 - - ウェーハなければチップは作れない
 - 
@@ -705,7 +755,7 @@ style: |
 
 ---
 
-# アメリカ：CHIPS Act と輸出規制の実態（1/2）
+# アメリカ：CHIPS Act と輸出規制の実態（1/2）（1/2）
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -731,6 +781,14 @@ style: |
 - **強み:**
 - - 設計（Apple/Nvidia/Qualcomm/AMD）
 - - EDAツール（Synopsys/Cadence）
+
+
+---
+
+# アメリカ：CHIPS Act と輸出規制の実態（1/2）（2/2）
+
+> *知的財産・ソフトウェア全般が米国の輸出管理の対象となっている現実*
+
 - - 知的財産・ソフトウェア全般
 - 
 - **CHIPS and Science Act（2022年）:**
@@ -739,7 +797,7 @@ style: |
 
 ---
 
-# アメリカ：CHIPS Act と輸出規制の実態（2/2）
+# アメリカ：CHIPS Act と輸出規制の実態（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -764,6 +822,14 @@ style: |
 - - TSMC・Samsung・Intelが米国内工場建設を決定
 - - 目標: 2030年までに先端チップ製造能力の米国内比率20%
 - 
+
+
+---
+
+# アメリカ：CHIPS Act と輸出規制の実態（2/2）（2/2）
+
+> *Entity List・装置全面禁止・同盟国への同調要請が三重の対中封鎖を形成*
+
 - **輸出規制（Entity List）:**
 - - Huawei・SMIC・その他中国企業へのEDA/チップ輸出禁止
 - - 2022年10月: 先端半導体製造装置の対中輸出を全面禁止
@@ -772,7 +838,7 @@ style: |
 
 ---
 
-# 中国：Made in China 2025の現実（1/2）
+# 中国：Made in China 2025の現実（1/2）（1/2）
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -811,6 +877,14 @@ style: |
 - **野望と現実:**
 - - 目標: 2025年までに半導体自給率70% → **実際は15〜20%**
 - - 中芯国際（SMIC）: 最先端は7nm相当、量産困難
+
+
+---
+
+# 中国：Made in China 2025の現実（1/2）（2/2）
+
+> *EDA・EUV・最先端材料の全てで依存が続く中国の自立化の現実*
+
 - - EDA・EUV・最先端材料すべてで依存が続く
 - 
 - **中国の弱点:**
@@ -819,7 +893,7 @@ style: |
 
 ---
 
-# 中国：Made in China 2025の現実（2/2）
+# 中国：Made in China 2025の現実（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -839,6 +913,14 @@ style: |
 - - 高性能EDA: 米国製に頼らざるを得ない
 - - 人材: トップ研究者の多くが海外在住
 - 
+
+
+---
+
+# 中国：Made in China 2025の現実（2/2）（2/2）
+
+> *国家ICファンド3500億元超を投入しても先端プロセスへの道は閉ざされたまま*
+
 - **中国の対応策:**
 - - 国家主導の巨額投資（国家ICファンド: 累計3,500億元超）
 - - 成熟プロセス（28nm〜）の能力増強で市場席巻を狙う
@@ -847,7 +929,7 @@ style: |
 
 ---
 
-# ファーウェイ制裁と「7nmの壁」（1/2）
+# ファーウェイ制裁と「7nmの壁」（1/2）（1/2）
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -869,6 +951,14 @@ style: |
 - **ファーウェイへの打撃:**
 - - 2019年: Entity Listに追加 → Androidサービス停止
 - - 2020年: TSMCとの取引禁止 → スマートフォン事業が実質停止
+
+
+---
+
+# ファーウェイ制裁と「7nmの壁」（1/2）（2/2）
+
+> *SMIC 7nm相当で制裁下での反撃を見せたが歩留まりと量産能力に限界がある*
+
 - - 売上: 2020年の約8,600億元 → 2021年は約6,340億元に急落
 - 
 - **ファーウェイの「反撃」— Kirin 9000S（2023年）:**
@@ -877,7 +967,7 @@ style: |
 
 ---
 
-# ファーウェイ制裁と「7nmの壁」（2/2）
+# ファーウェイ制裁と「7nmの壁」（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -915,6 +1005,14 @@ style: |
 - - EUVなしでDUVを多重露光して実現
 - - 世界が驚いた: 「制裁をくぐり抜けた」と報道
 - 
+
+
+---
+
+# ファーウェイ制裁と「7nmの壁」（2/2）（2/2）
+
+> *EUVなしでの量産は歩留まり低・コスト高・性能差大—先端への道は閉ざされている*
+
 - **実態:**
 - - 歩留まりが低く量産コストが高い
 - - 性能はApple A17 Proと比べ大幅劣位
@@ -923,7 +1021,7 @@ style: |
 
 ---
 
-# オランダ・ASMLの板挟み（1/2）
+# オランダ・ASMLの板挟み（1/2）（1/2）
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -949,6 +1047,14 @@ style: |
 - **ASMLとは:**
 - - オランダ（フィリップス系）発祥のリソグラフィ装置メーカー
 - - EUV露光装置: **世界で唯一** 製造できる企業
+
+
+---
+
+# オランダ・ASMLの板挟み（1/2）（2/2）
+
+> *約300億円・年産50台のEUV独占がASMLを地政学の板挟みに追い込んだ*
+
 - - 1台の価格: **約2億ユーロ**（約300億円）
 - - 年間生産台数: 50〜60台（超精密・時間がかかる）
 - 
@@ -957,7 +1063,7 @@ style: |
 
 ---
 
-# オランダ・ASMLの板挟み（2/2）
+# オランダ・ASMLの板挟み（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -977,6 +1083,14 @@ style: |
 - - アメリカの圧力: 「中国へのEUV輸出禁止に協力せよ」
 - - 中国は重要顧客: SMIC等への売上が全体の30%超
 - - 2019年: オランダ政府、中国へのEUV輸出ライセンス不発行
+
+
+---
+
+# オランダ・ASMLの板挟み（2/2）（2/2）
+
+> *中国売上比率低下とDUV追加規制がASMLの本音と外交的苦境を象徴する*
+
 - - 2023年: DUV（旧世代）も輸出規制対象に拡大
 - 
 - **ASMLの本音:**
@@ -986,7 +1100,7 @@ style: |
 
 ---
 
-# 韓国（Samsung/SK Hynix）の立場（1/2）
+# 韓国（Samsung/SK Hynix）の立場（1/2）（1/2）
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1016,6 +1130,14 @@ style: |
 - **Samsung の二重ジレンマ:**
 - - 中国に巨大な半導体工場（メモリ）を保有（NAND: 40%、DRAM: 一部）
 - - アメリカから「中国工場の先端化禁止」を要求される
+
+
+---
+
+# 韓国（Samsung/SK Hynix）の立場（1/2）（2/2）
+
+> *中国市場依存とHBM独占供給の狭間で韓国が迫られるバランス外交の実態*
+
 - - 中国市場での売上を失えば経営に深刻な影響
 - 
 - **SK Hynix の状況:**
@@ -1024,7 +1146,7 @@ style: |
 
 ---
 
-# 韓国（Samsung/SK Hynix）の立場（2/2）
+# 韓国（Samsung/SK Hynix）の立場（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1062,6 +1184,14 @@ style: |
 - - Nvidiaの AI GPU（H100/H200）の性能はHBMに依存
 - - 米国から「中国向けHBM禁止」の規制が強化
 - 
+
+
+---
+
+# 韓国（Samsung/SK Hynix）の立場（2/2）（2/2）
+
+> *Chip4参加と中国工場維持—米韓同盟と経済関係を同時維持するソウルの賭け*
+
 - **韓国政府の対応:**
 - - 米韓同盟を重視しながら中国との経済関係も維持
 - - 「チップ同盟（Chip 4）」= 米・日・台・韓の連携枠組みに参加
@@ -1070,7 +1200,7 @@ style: |
 
 ---
 
-# 日本の復権：ラピダス計画の野望（1/2）
+# 日本の復権：ラピダス計画の野望（1/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1108,6 +1238,14 @@ style: |
 - **日本の半導体の歴史:**
 - - 1980年代: DRAM世界シェア80%（NEC・東芝・日立）
 - - 1990年代: 米国の圧力（日米半導体協定）と韓国の台頭で凋落
+
+
+---
+
+# 日本の復権：ラピダス計画の野望（1/2）（2/2）
+
+> *2010年代の凋落から2027年2nm量産を目指すラピダス計画の野望と現実*
+
 - - 2010年代: ルネサス・東芝メモリ（Kioxia）のみ生き残り
 - 
 - **ラピダス（Rapidus）計画（2022年設立）:**
@@ -1116,7 +1254,7 @@ style: |
 
 ---
 
-# 日本の復権：ラピダス計画の野望（2/2）
+# 日本の復権：ラピダス計画の野望（2/2）（1/2）
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1155,6 +1293,14 @@ style: |
 - - パートナー: IBMの技術支援、imec（ベルギー）との共同研究
 - - 工場: 北海道千歳市に建設中
 - - 国家補助金: 3,300億円以上（さらに増額見込み）
+
+
+---
+
+# 日本の復権：ラピダス計画の野望（2/2）（2/2）
+
+> *TSMCの40年を5年で追うのは至難だが材料・装置サプライチェーン強化に意義*
+
 - 
 - **現実的評価:**
 - - TSMCの40年のノウハウを5年で追いつくのは至難
@@ -1203,7 +1349,7 @@ style: |
 
 ---
 
-# なぜ誰もTSMCに追いつけないのか（1/2）
+# なぜ誰もTSMCに追いつけないのか（1/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1241,6 +1387,14 @@ style: |
 - **技術的優位（Learning Curve）:**
 - - 累積製造経験が世界断トツ → 歩留まり改善の速度が他社の追随を許さない
 - - 3nmから2nmへの移行: TSMCは2年サイクル、競合は5年以上
+
+
+---
+
+# なぜ誰もTSMCに追いつけないのか（1/2）（2/2）
+
+> *顧客エコシステムとのカスタム依存がTSMCからの移行を実質不可能にする*
+
 - 
 - **顧客エコシステム:**
 - - Apple・Nvidia・AMD・Qualcomm・Broadcomがすべてカスタマイズ済み
@@ -1249,7 +1403,7 @@ style: |
 
 ---
 
-# なぜ誰もTSMCに追いつけないのか（2/2）
+# なぜ誰もTSMCに追いつけないのか（2/2）（1/2）
 
 - <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="420" fill="#1a1a2e" rx="0"/>
@@ -1282,6 +1436,14 @@ style: |
 - 
 - **投資の圧倒性:**
 - - 年間設備投資: 300〜400億ドル（Samsung・Intel・GlobalFoundriesの合計を超える）
+
+
+---
+
+# なぜ誰もTSMCに追いつけないのか（2/2）（2/2）
+
+> *EUV保有50%超と24時間文化—ハードとソフト両面でTSMCは模倣不可能*
+
 - - EUV保有台数: TSMCが世界保有台数の50%以上
 - 
 - **文化的要因:**
@@ -1291,7 +1453,7 @@ style: |
 
 ---
 
-# 台湾有事シナリオ：世界経済への影響（1/2）
+# 台湾有事シナリオ：世界経済への影響（1/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1322,6 +1484,14 @@ style: |
 - **もし台湾海峡で軍事衝突が起きたら:**
 - 
 - **即時影響（1〜3ヶ月）:**
+
+
+---
+
+# 台湾有事シナリオ：世界経済への影響（1/2）（2/2）
+
+> *台湾有事で先端チップ90%停止—スマホ・PC・サーバー生産が世界規模で止まる*
+
 - - 先端チップの世界供給が90%以上停止
 - - スマートフォン・PC・サーバー生産がすべて停止
 - - 自動車生産停止（半導体不足再来の比ではない）
@@ -1331,7 +1501,7 @@ style: |
 
 ---
 
-# 台湾有事シナリオ：世界経済への影響（2/2）
+# 台湾有事シナリオ：世界経済への影響（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1362,6 +1532,14 @@ style: |
 - - 世界GDP 約**10兆ドル**の損失（試算: AIIBレポート）
 - - AIインフラ拡張が完全停止
 - - 代替手段なし（Samsung追加投資でも2〜3年で追いつけない）
+
+
+---
+
+# 台湾有事シナリオ：世界経済への影響（2/2）（2/2）
+
+> *先端製造拠点の再構築には最低10年—デジタル経済の根幹崩壊が現実のリスク*
+
 - 
 - **長期影響（3年以上）:**
 - - 先端製造拠点の再構築に最低10年
@@ -1371,7 +1549,7 @@ style: |
 
 ---
 
-# 「シリコンシールド」理論（1/2）
+# 「シリコンシールド」理論（1/2）（1/2）
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1398,6 +1576,14 @@ style: |
 - **シリコンシールドとは:**
 - 台湾が先端半導体製造を独占することで、
 - 軍事侵攻を抑止する「経済的核抑止力」として機能する理論
+
+
+---
+
+# 「シリコンシールド」理論（1/2）（2/2）
+
+> *中国自身の半導体依存が台湾攻撃を抑止する—シリコンシールドの論理的根拠*
+
 - 
 - **理論の論拠:**
 - - 中国が台湾を攻撃 → TSMCが破壊される
@@ -1407,7 +1593,7 @@ style: |
 
 ---
 
-# 「シリコンシールド」理論（2/2）
+# 「シリコンシールド」理論（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1438,6 +1624,14 @@ style: |
 - 
 - **理論への反論:**
 - - 中国が電撃戦でTSMCを無傷で占領できれば「盾」が矛になる
+
+
+---
+
+# 「シリコンシールド」理論（2/2）（2/2）
+
+> *面子優先リスクとキーエンジニア脱出—シリコンシールドを揺るがす2つの弱点*
+
 - - 習近平政権の「面子」優先でリスク計算が変わるリスク
 - - TSMCのキーエンジニアが海外脱出すれば工場は機能停止
 - 
@@ -1447,7 +1641,9 @@ style: |
 
 ---
 
-# TSMCの地政学的分散戦略（1/2）
+# TSMCの地政学的分散戦略（1/2）（1/2）
+
+> *Fab21でアリゾナ先端製造を始めたTSMCが台湾外への分散を本格始動*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1475,6 +1671,14 @@ style: |
 - 
 - **アリゾナ工場（米国）:**
 - - Fab 21: 4nm/3nm → 2024年量産開始
+
+
+---
+
+# TSMCの地政学的分散戦略（1/2）（2/2）
+
+> *400億ドル投資でも台湾比2〜3倍のコスト—アリゾナ工場が直面する現実*
+
 - - 投資額: **400億ドル**（当初250億→拡大）
 - - 課題: 人材不足・コスト高（台湾比2〜3倍）
 - 
@@ -1484,7 +1688,9 @@ style: |
 
 ---
 
-# TSMCの地政学的分散戦略（2/2）
+# TSMCの地政学的分散戦略（2/2）（1/2）
+
+> *熊本第1・第2工場と1.2兆円の補助金—日本拠点がTSMCの第二の柱になる*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1523,6 +1729,14 @@ style: |
 - - 第2工場: 6nm → 2027年予定
 - - 補助金: 日本政府から最大1.2兆円
 - 
+
+
+---
+
+# TSMCの地政学的分散戦略（2/2）（2/2）
+
+> *Bosch・Infineon・NXPとの合弁で欧州車載向け28nmを確保するドレスデン戦略*
+
 - **ドレスデン工場（ドイツ）:**
 - - Bosch・Infineon・NXPとの合弁（ESMC）
 - - 28/22nm（車載向け）→ 2027年開業予定
@@ -1580,7 +1794,7 @@ style: |
 
 ---
 
-# Nvidia・TPU・専用ASICの戦い（1/2）
+# Nvidia・TPU・専用ASICの戦い（1/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1618,6 +1832,14 @@ style: |
 - **Nvidia の一人勝ち（現在）:**
 - - H100/H200/B200: AI学習用GPU市場の70〜80%
 - - CUDA エコシステム: 10年以上の囲い込みで移行コストが高い
+
+
+---
+
+# Nvidia・TPU・専用ASICの戦い（1/2）（2/2）
+
+> *GoogleTPUがGemini学習を支え内製AIインフラの自律性を確保している*
+
 - - TSMCの最先端プロセスを優先的に確保
 - 
 - **Google TPU（Tensor Processing Unit）:**
@@ -1627,7 +1849,9 @@ style: |
 
 ---
 
-# Nvidia・TPU・専用ASICの戦い（2/2）
+# Nvidia・TPU・専用ASICの戦い（2/2）（1/2）
+
+> *AmazonTrainium・Inferentia—クラウド各社がNvidiaへの依存低減を加速*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1662,6 +1886,14 @@ style: |
 - 
 - **独自ASIC（専用AI推論チップ）:**
 - - Amazon Trainium/Inferentia
+
+
+---
+
+# Nvidia・TPU・専用ASICの戦い（2/2）（2/2）
+
+> *Meta・Microsoft・AmazonのASIC開発競争がTSMC先端プロセス需要を増大させる*
+
 - - Meta MTIA
 - - Microsoft Maia
 - - 「Nvidiaへの依存を下げたい」各社が独自開発を加速
@@ -1671,7 +1903,7 @@ style: |
 
 ---
 
-# 先端パッケージング（HBM・CoWoS）の台頭（1/2）
+# 先端パッケージング（HBM・CoWoS）の台頭（1/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1709,6 +1941,14 @@ style: |
 - **なぜパッケージングが重要になったか:**
 - 微細化（ムーアの法則）が鈍化 → 複数チップを近接配置して性能向上
 - 
+
+
+---
+
+# 先端パッケージング（HBM・CoWoS）の台頭（1/2）（2/2）
+
+> *SK HynixとNvidiaの深い依存—HBM禁輸が発動すれば中国AIは即座に詰む*
+
 - **HBM（High Bandwidth Memory）:**
 - - DRAMチップを縦に積層し、超広帯域メモリを実現
 - - AIチップ（H100/H200等）に不可欠
@@ -1718,7 +1958,7 @@ style: |
 
 ---
 
-# 先端パッケージング（HBM・CoWoS）の台頭（2/2）
+# 先端パッケージング（HBM・CoWoS）の台頭（2/2）（1/2）
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="360" fill="#1a1a2e" rx="0"/>
@@ -1743,6 +1983,14 @@ style: |
 - **CoWoS（Chip on Wafer on Substrate）:**
 - - TSMCが開発した先端パッケージング技術
 - - GPUとHBMを同一基板に実装 → データ転送速度が桁違い
+
+
+---
+
+# 先端パッケージング（HBM・CoWoS）の台頭（2/2）（2/2）
+
+> *NvidiaH100の性能はTSMCのCoWoSに依存—先端パッケージングが次の戦場*
+
 - - Nvidia H100の性能の鍵はTSMCのCoWoSにある
 - 
 - **地政学的含意:**
@@ -1752,7 +2000,7 @@ style: |
 
 ---
 
-# 中国の迂回策：Huawei Kirin 9000Sの衝撃（1/2）
+# 中国の迂回策：Huawei Kirin 9000Sの衝撃（1/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1790,6 +2038,14 @@ style: |
 - **2023年8月の衝撃:**
 - - Huawei Mate 60 Pro 発売
 - - 搭載チップ: Kirin 9000S（SMIC N+2プロセス、7nm相当）
+
+
+---
+
+# 中国の迂回策：Huawei Kirin 9000Sの衝撃（1/2）（2/2）
+
+> *DUV多重露光で7nm相当を実現したSMICの技術力が制裁の抜け穴を証明した*
+
 - - 制裁下でEUVなしでここまで到達したことに世界が驚愕
 - 
 - **SMICの技術:**
@@ -1799,7 +2055,9 @@ style: |
 
 ---
 
-# 中国の迂回策：Huawei Kirin 9000Sの衝撃（2/2）
+# 中国の迂回策：Huawei Kirin 9000Sの衝撃（2/2）（1/2）
+
+> *歩留まり低・量産少・性能差大—Kirin 9000Sの限界が対中制裁の有効性を示す*
 
 - <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="420" fill="#1a1a2e" rx="0"/>
@@ -1833,6 +2091,14 @@ style: |
 - **限界と実態:**
 - - 歩留まり: TSMCの約30〜50%（コスト2〜3倍）
 - - 量産能力: 限定的（SMIC全体で月100万枚レベル）
+
+
+---
+
+# 中国の迂回策：Huawei Kirin 9000Sの衝撃（2/2）（2/2）
+
+> *DUV追加規制の連鎖で中国の自力更生には依然として長い時間が必要*
+
 - - 性能: Apple A17 Proと比べ電力効率で大幅劣位
 - 
 - **制裁強化の連鎖:**
@@ -1864,7 +2130,7 @@ style: |
 
 ---
 
-# ソフトウェアエンジニアにとっての意味（1/2）
+# ソフトウェアエンジニアにとっての意味（1/2）（1/2）
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1886,6 +2152,14 @@ style: |
 - **クラウドコストへの影響:**
 - - AIチップ不足 → GPU時間の高騰 → 推論コストの上昇
 - - 2024〜2025年のNvidiaチップ待機リスト（数ヶ月待ち）
+
+
+---
+
+# ソフトウェアエンジニアにとっての意味（1/2）（2/2）
+
+> *CUDA・ARM・エッジAIのスキル需要急増—チップ制約がモデル設計の前提になる*
+
 - 
 - **技術選択への影響:**
 - - 「CUDA最適化」スキルの希少性と価値上昇
@@ -1895,7 +2169,7 @@ style: |
 
 ---
 
-# ソフトウェアエンジニアにとっての意味（2/2）
+# ソフトウェアエンジニアにとっての意味（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1915,6 +2189,14 @@ style: |
 - 
 - **サービス提供リスク:**
 - - 地政学リスクがインフラのダウンタイムリスクに直結
+
+
+---
+
+# ソフトウェアエンジニアにとっての意味（2/2）（2/2）
+
+> *台湾有事はクラウド長期調達危機—半導体関連スタートアップが最もホットな分野*
+
 - - 台湾有事 = クラウドインフラの長期調達危機
 - 
 - **キャリア的示唆:**
@@ -1924,7 +2206,7 @@ style: |
 
 ---
 
-# ハードウェアセキュリティリスク（1/2）
+# ハードウェアセキュリティリスク（1/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1944,6 +2226,14 @@ style: |
 - **サプライチェーン攻撃:**
 - - 製造段階でのバックドア埋め込みリスク
 - - 2018年: Supermicro「スパイチップ」疑惑（Bloomberg報道）
+
+
+---
+
+# ハードウェアセキュリティリスク（1/2）（2/2）
+
+> *偽造チップ流通と信頼できる製造元管理が国防・医療・航空の安全を左右する*
+
 - - 国防・政府機関が「信頼できる製造元」を重要視する理由
 - 
 - **チップの出所管理:**
@@ -1953,7 +2243,9 @@ style: |
 
 ---
 
-# ハードウェアセキュリティリスク（2/2）
+# ハードウェアセキュリティリスク（2/2）（1/2）
+
+> *航空・医療・軍事分野では偽造チップ1個が致命的リスクになりうる*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1974,6 +2266,14 @@ style: |
 - 
 - **プロセッサ脆弱性:**
 - - Spectre/Meltdown: アーキテクチャレベルの脆弱性
+
+
+---
+
+# ハードウェアセキュリティリスク（2/2）（2/2）
+
+> *製造微細化によるサイドチャネル攻撃増加—TEEとハードウェアルートオブトラストが鍵*
+
 - - 製造プロセスの微細化によりサイドチャネル攻撃リスクが増加
 - 
 - **セキュリティエンジニアへの示唆:**
@@ -2030,7 +2330,7 @@ style: |
 ---
 
 <!-- _class: lead -->
-# まとめ：「半導体を制する者が世界を制す」（2/2）
+# まとめ：「半導体を制する者が世界を制す」（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -2068,6 +2368,13 @@ style: |
 - - 制裁・輸出規制はコードと同じくらい技術を制約する
 - - AIの未来はシリコンの地政学と不可分
 - 
+
+
+---
+
+<!-- _class: lead -->
+# まとめ：「半導体を制する者が世界を制す」（2/2）（2/2）
+
 - **エンジニアとして知っておくべきこと:**
 - あなたが書くコードは、どこかの工場で作られたチップで動いている
 - そのチップがどこで作られ、誰に管理されているかを知ることは
@@ -2077,6 +2384,8 @@ style: |
 ---
 
 # 参考文献・リソース (1/2)（1/2）
+
+> *Chip War・The Chip Letter・SemiAnalysis—半導体地政学を学ぶ三大必読リソース*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -2121,7 +2430,7 @@ style: |
 
 ---
 
-# 参考文献・リソース (1/2)（2/2）
+# 参考文献・リソース (1/2)（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -2159,6 +2468,14 @@ style: |
 - - [TSMC Annual Report 2023](https://investor.tsmc.com/english/annual-reports)
 - - [SEMI World Fab Forecast](https://www.semi.org/en/products-services/market-data/world-fab-forecast)
 - - [Semiconductor Industry Association (SIA)](https://www.semiconductors.org/data/)
+
+
+---
+
+# 参考文献・リソース (1/2)（2/2）（2/2）
+
+> *CSIS・ASMLレポート—地政学的文脈で半導体を読み解くための公式一次資料*
+
 - 
 - **地政学分析:**
 - - [CSIS: Semiconductors and the US-China Innovation Race](https://www.csis.org/programs/strategic-technologies-program/semiconductors)
@@ -2168,6 +2485,8 @@ style: |
 ---
 
 # 参考文献・リソース (2/2)（1/2）
+
+> *IEEE Spectrum・AnandTech・WikiChip—技術深掘りのための専門メディア厳選*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -2212,7 +2531,7 @@ style: |
 
 ---
 
-# 参考文献・リソース (2/2)（2/2）
+# 参考文献・リソース (2/2)（2/2）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -2232,6 +2551,14 @@ style: |
 - - [Asianometry YouTube Channel — TSMC/ASML/半導体産業解説](https://www.youtube.com/@Asianometry)
 - - [Real Engineering: How ASML Makes EUV Machines](https://www.youtube.com/watch?v=_t-3_Q2-Abs)
 - 
+
+
+---
+
+# 参考文献・リソース (2/2)（2/2）（2/2）
+
+> *半導体産業新聞・EE Times Japan・経産省戦略—日本語で学ぶ国内視点リソース*
+
 - **日本語リソース:**
 - - [半導体産業新聞](https://www.semiconportal.com/)
 - - [EE Times Japan](https://eetimes.itmedia.co.jp/ee/)

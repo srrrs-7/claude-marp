@@ -118,6 +118,8 @@ style: |
 
 # アジェンダ
 
+> *6ステップでフェルミ推定をビジネス意思決定に活かす全体像*
+
 - <svg viewBox="0 0 800 430" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="430" fill="#1a1a2e" rx="12"/>
 <text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">本日のプログラム</text>
 
@@ -189,7 +191,7 @@ style: |
 
 ---
 
-# フェルミ推定の定義
+# フェルミ推定の定義（1/2）
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">オーダーオブマグニチュード（桁の正確さ）</text>
@@ -237,6 +239,17 @@ style: |
 - **正確なデータなしに、論理的推論だけで概算を出す思考法**
 - 
 - - 名前の由来: 物理学者エンリコ・フェルミ（ノーベル賞受賞者）
+
+<!--
+フェルミはシカゴ原子炉の設計で核分裂の連鎖反応を紙と鉛筆で推定した話をする。
+-->
+
+---
+
+# フェルミ推定の定義（2/2）
+
+> *フェルミ推定は「正確な答え」でなく「思考の質」を鍛える技法*
+
 - - 有名な問い: 「シカゴに調律師は何人いるか?」
 - - 答えの精度より**分解プロセス**が重要
 - - 「桁の正確さ」（オーダーオブマグニチュード）を目指す
@@ -248,15 +261,28 @@ style: |
 
 ---
 
-# なぜエンジニアに有効か（1/2）
+# なぜエンジニアに有効か（1/2）（1/2）
 
-- <svg viewBox='0 0 780 300' style='max-height:58vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+> *エンジニアの分解思考とフェルミ推定は本質的に同じ構造をもつ*
+
+- <svg viewBox='0 0 780 300' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs/>
 -   <text x='390' y='28' text-anchor='middle' fill='#222' font-size='16' font-weight='bold'>エンジニア思考 ＝ フェルミ思考</text>
 -   <rect x='30' y='45' width='310' height='40' rx='8' fill='#1a73e8'/>
 -   <text x='185' y='70' text-anchor='middle' fill='white' font-size='16' font-weight='bold'>エンジニア思考</text>
 -   <rect x='440' y='45' width='310' height='40' rx='8' fill='#34a853'/>
 -   <text x='595' y='70' text-anchor='middle' fill='white' font-size='16' font-weight='bold'>フェルミ推定</text>
+
+<!--
+参加者のエンジニア経験と結びつける。「レイテンシをどう見積もる？」と問いかけてもよい。
+-->
+
+---
+
+# なぜエンジニアに有効か（1/2）（2/2）
+
+> *データがなくても構造的に考えれば10倍精度の概算が出せる*
+
 -   <text x='390' y='130' text-anchor='middle' fill='#888' font-size='26'>⟺</text>
 -   <text x='390' y='175' text-anchor='middle' fill='#888' font-size='26'>⟺</text>
 -   <text x='390' y='220' text-anchor='middle' fill='#888' font-size='26'>⟺</text>
@@ -271,7 +297,9 @@ style: |
 
 ---
 
-# なぜエンジニアに有効か（2/2）
+# なぜエンジニアに有効か（2/2）（1/2）
+
+> *仮説検証サイクルをフェルミ推定で高速に回せる*
 
 -   <text x='595' y='129' text-anchor='middle' fill='#1a5c2a' font-size='14'>問題の分解</text>
 -   <rect x='30' y='152' width='310' height='38' rx='6' fill='#e8f0fe'/>
@@ -280,6 +308,17 @@ style: |
 -   <text x='595' y='176' text-anchor='middle' fill='#1a5c2a' font-size='14'>数値仮定</text>
 -   <rect x='30' y='199' width='310' height='38' rx='6' fill='#e8f0fe'/>
 -   <text x='185' y='223' text-anchor='middle' fill='#1a3c6a' font-size='14'>キャパシティ試算</text>
+
+<!--
+参加者のエンジニア経験と結びつける。「レイテンシをどう見積もる？」と問いかけてもよい。
+-->
+
+---
+
+# なぜエンジニアに有効か（2/2）（2/2）
+
+> *「なぜその数字か」を説明できることが意思決定の信頼を生む*
+
 -   <rect x='440' y='199' width='310' height='38' rx='6' fill='#e6f4ea'/>
 -   <text x='595' y='223' text-anchor='middle' fill='#1a5c2a' font-size='14'>計算・検証</text>
 -   <rect x='30' y='246' width='310' height='38' rx='6' fill='#e8f0fe'/>
@@ -294,15 +333,28 @@ style: |
 
 ---
 
-# 思考の3ステップ（1/2）
+# 思考の3ステップ（1/2）（1/2）
 
-- <svg viewBox='0 0 780 280' style='max-height:55vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+> *問題分解・基準値選択・計算の3ステップが推定の骨格をなす*
+
+- <svg viewBox='0 0 780 280' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs/>
 -   <!-- Step 1 -->
 -   <rect x='30' y='60' width='200' height='160' rx='12' fill='#1a73e8' opacity='0.9'/>
 -   <text x='130' y='100' text-anchor='middle' fill='white' font-size='36' font-weight='bold'>1</text>
 -   <text x='130' y='135' text-anchor='middle' fill='white' font-size='20' font-weight='bold'>分解する</text>
 -   <text x='130' y='163' text-anchor='middle' fill='#cce3ff' font-size='14'>問題を</text>
+
+<!--
+3ステップを板書しながら説明するのもよい。後の実習で必ずこの枠組みを使う。
+-->
+
+---
+
+# 思考の3ステップ（1/2）（2/2）
+
+> *基準値は人口・面積・時間など身近な数字を出発点にする*
+
 -   <text x='130' y='183' text-anchor='middle' fill='#cce3ff' font-size='14'>小さく切り出す</text>
 -   <!-- Arrow 1→2 -->
 -   <line x1='235' y1='140' x2='285' y2='140' stroke='#555' stroke-width='3'/>
@@ -317,7 +369,9 @@ style: |
 
 ---
 
-# 思考の3ステップ（2/2）
+# 思考の3ステップ（2/2）（1/2）
+
+> *計算精度より分解の妥当性を問うことが訓練の核心だ*
 
 -   <text x='405' y='135' text-anchor='middle' fill='white' font-size='20' font-weight='bold'>仮説を立てる</text>
 -   <text x='405' y='163' text-anchor='middle' fill='#c8f0d8' font-size='14'>数値を</text>
@@ -326,6 +380,17 @@ style: |
 -   <line x1='510' y1='140' x2='560' y2='140' stroke='#555' stroke-width='3'/>
 -   <polygon points='560,133 575,140 560,147' fill='#555'/>
 -   <!-- Step 3 -->
+
+<!--
+3ステップを板書しながら説明するのもよい。後の実習で必ずこの枠組みを使う。
+-->
+
+---
+
+# 思考の3ステップ（2/2）（2/2）
+
+> *ステップを踏むことで答えのないビジネス問題に仮説が立てられる*
+
 -   <rect x='580' y='60' width='200' height='160' rx='12' fill='#ea4335' opacity='0.9'/>
 -   <text x='680' y='100' text-anchor='middle' fill='white' font-size='36' font-weight='bold'>3</text>
 -   <text x='680' y='135' text-anchor='middle' fill='white' font-size='20' font-weight='bold'>計算・検証</text>
@@ -395,9 +460,11 @@ style: |
 
 ---
 
-# Step 1: 問題を分解する（1/2）
+# Step 1: 問題を分解する（1/2）（1/2）
 
-- <svg viewBox='0 0 780 360' style='max-height:60vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+> *問題をMECEに分解することが精度よりも先に来る*
+
+- <svg viewBox='0 0 780 360' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs/>
 -   <text x='390' y='22' text-anchor='middle' fill='#222' font-size='15' font-weight='bold'>「美容院件数」の分解ツリー</text>
 -   <rect x='280' y='35' width='220' height='48' rx='8' fill='#1a73e8'/>
@@ -409,6 +476,17 @@ style: |
 -   <line x1='195' y1='103' x2='195' y2='123' stroke='#555' stroke-width='2'/>
 -   <line x1='585' y1='103' x2='585' y2='123' stroke='#555' stroke-width='2'/>
 -   <text x='390' y='112' text-anchor='middle' fill='#e53935' font-size='20' font-weight='bold'>÷</text>
+
+<!--
+ここで「分解の仕方は一つではない」ことを強調。供給側（店舗数）から考えてもよい。
+-->
+
+---
+
+# Step 1: 問題を分解する（1/2）（2/2）
+
+> *分解の粒度が細かすぎると計算が複雑になり誤差が増える*
+
 -   <rect x='60' y='123' width='270' height='48' rx='8' fill='#34a853'/>
 -   <text x='195' y='144' text-anchor='middle' fill='white' font-size='13' font-weight='bold'>月間延べ利用者数</text>
 -   <text x='195' y='161' text-anchor='middle' fill='#c8f0d8' font-size='11'>（需要）</text>
@@ -428,7 +506,9 @@ style: |
 
 ---
 
-# Step 1: 問題を分解する（2/2）
+# Step 1: 問題を分解する（2/2）（1/2）
+
+> *分解後に各要素の基準値を独立に見積もることが鍵*
 
 -   <rect x='35' y='211' width='110' height='52' rx='6' fill='#e6f4ea' stroke='#34a853' stroke-width='1.5'/>
 -   <text x='90' y='232' text-anchor='middle' fill='#1a5c2a' font-size='12' font-weight='bold'>東京人口</text>
@@ -442,6 +522,17 @@ style: |
 -   <line x1='585' y1='171' x2='585' y2='191' stroke='#555' stroke-width='1.5'/>
 -   <line x1='585' y1='191' x2='505' y2='191' stroke='#555' stroke-width='1.5'/>
 -   <line x1='585' y1='191' x2='665' y2='191' stroke='#555' stroke-width='1.5'/>
+
+<!--
+ここで「分解の仕方は一つではない」ことを強調。供給側（店舗数）から考えてもよい。
+-->
+
+---
+
+# Step 1: 問題を分解する（2/2）（2/2）
+
+> *計算ミスより分解ミスの方が最終誤差への影響が大きい*
+
 -   <line x1='505' y1='191' x2='505' y2='211' stroke='#555' stroke-width='1.5'/>
 -   <line x1='665' y1='191' x2='665' y2='211' stroke='#555' stroke-width='1.5'/>
 -   <rect x='455' y='211' width='100' height='52' rx='6' fill='#fce8e6' stroke='#ea4335' stroke-width='1.5'/>
@@ -520,6 +611,8 @@ style: |
 
 # Step 3: 計算して答えを出す（1/2）
 
+> *概算は「オーダーが合う」レベルで意思決定に十分使える*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">計算プロセスの可視化</text>
 <rect x="60" y="70" width="280" height="60" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
@@ -558,7 +651,7 @@ style: |
 
 ---
 
-# Step 3: 計算して答えを出す（2/2）
+# Step 3: 計算して答えを出す（2/2）（1/2）
 
 - <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e" rx="12"/>
 <text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">推定結果まとめ</text>
@@ -576,6 +669,15 @@ style: |
 - 1,120万回 ÷ 200回/店舗/月 = **5.6万店舗**
 - 
 - ---
+
+<!--
+答えを出すときは「〜万件」という桁で捉えることを強調する。
+-->
+
+---
+
+# Step 3: 計算して答えを出す（2/2）（2/2）
+
 - 
 - **推定結果: 約 5〜6万件**
 - 
@@ -588,6 +690,8 @@ style: |
 ---
 
 # 解答と考察（1/2）
+
+> *複数経路の答え合わせで精度を検証できる*
 
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">感度分析: 仮定の違いで答えが変わる</text>
@@ -623,6 +727,8 @@ style: |
 ---
 
 # 解答と考察（2/2）
+
+> *解答のズレを分析すると次回の分解精度が上がる*
 
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">振り返り: 何を学ぶか</text>
@@ -682,6 +788,8 @@ style: |
 
 # 実習問題一覧（1/2）
 
+> *5分制限で答えを出す練習が最速の習得法*
+
 - <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">グループワークの進め方</text>
 
@@ -740,6 +848,8 @@ style: |
 
 # 実習問題一覧（2/2）
 
+> *実習問題を解くことで頭の中の「分解筋」が育つ*
+
 - **進め方:**
 - - 3〜4人でグループを作る
 - - ホワイトボード/付箋で思考を可視化
@@ -753,6 +863,8 @@ style: |
 ---
 
 # 問題 A: 日本のコンビニの数（1/2）
+
+> *人口密度と商圏面積から5万5千店を導出できる*
 
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">問題A: 日本のコンビニ — 分解ヒント</text>
@@ -784,6 +896,8 @@ style: |
 ---
 
 # 問題 A: 日本のコンビニの数（2/2）
+
+> *コンビニ密度×面積で日本全体の店舗数を概算できる*
 
 - <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">問題A 解くためのポイント</text>
@@ -820,6 +934,8 @@ style: |
 
 # 問題 B: 東京のタクシー台数（1/2）
 
+> *稼働時間と乗客需要から3万台を近似できる*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">問題B: 東京のタクシー — 分解ヒント</text>
 <rect x="60" y="70" width="680" height="60" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
@@ -853,6 +969,8 @@ style: |
 
 # 問題 B: 東京のタクシー台数（2/2）
 
+> *需要側から積み上げると台数の上限と下限が見えてくる*
+
 - - タクシー利用シーン（雨の日、深夜、ビジネス等）
 - - 1台のタクシーが1日に何人乗せるかを考える
 - - 需要側（利用者数）と供給側（稼働台数）の両方から
@@ -866,6 +984,8 @@ style: |
 ---
 
 # グループワーク & 発表（1/2）
+
+> *グループで異なる分解アプローチを比較することで学びが深まる*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">発表の構成</text>
@@ -908,6 +1028,8 @@ style: |
 
 # グループワーク & 発表（2/2）
 
+> *発表では「なぜその分解か」の根拠説明が最重要ポイント*
+
 - - 最終的な推定値
 - 
 - 聴衆のポイント:
@@ -921,6 +1043,8 @@ style: |
 ---
 
 # 解答・解説（1/2）
+
+> *解説では複数の正解パターンを示し思考の多様性を示す*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">解答解説: コンビニ vs タクシー</text>
@@ -955,6 +1079,8 @@ style: |
 
 # 解答・解説（2/2）
 
+> *解答のズレから自分の基準値の偏りを把握できる*
+
 - 実際: 東京都内 約 **3.5万台**（2023年、国交省）
 - 推定のポイント: 法人タクシーの営業区域規制を考慮
 - 
@@ -984,15 +1110,28 @@ style: |
 
 ---
 
-# TAM・SAM・SOM の概念（1/2）
+# TAM・SAM・SOM の概念（1/2）（1/2）
 
-- <svg viewBox='0 0 780 320' style='max-height:55vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+> *TAMはビジネスポテンシャルの天井、SAMは自社が届く範囲*
+
+- <svg viewBox='0 0 780 320' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs/>
 -   <!-- TAM outer circle -->
 -   <circle cx='390' cy='170' r='150' fill='#4285f4' opacity='0.25'/>
 -   <!-- SAM middle circle -->
 -   <circle cx='390' cy='180' r='100' fill='#34a853' opacity='0.35'/>
 -   <!-- SOM inner circle -->
+
+<!--
+ビジネスプランでは3つを区別することが重要。フェルミ推定はTAM推定に特に使える。
+-->
+
+---
+
+# TAM・SAM・SOM の概念（1/2）（2/2）
+
+> *SAMとSOMの差が現在の競争上の制約を表している*
+
 -   <circle cx='390' cy='190' r='55' fill='#ea4335' opacity='0.55'/>
 -   <!-- Labels -->
 -   <text x='390' y='195' text-anchor='middle' fill='white' font-size='18' font-weight='bold'>SOM</text>
@@ -1007,7 +1146,9 @@ style: |
 
 ---
 
-# TAM・SAM・SOM の概念（2/2）
+# TAM・SAM・SOM の概念（2/2）（1/2）
+
+> *TAM推定はフェルミ推定と同じ分解ロジックで計算できる*
 
 -   <text x='560' y='60' text-anchor='middle' fill='#1a3c6a' font-size='15' font-weight='bold'>TAM</text>
 -   <text x='560' y='77' text-anchor='middle' fill='#1a3c6a' font-size='11'>全体市場</text>
@@ -1016,6 +1157,17 @@ style: |
 -   <line x1='480' y1='110' x2='520' y2='70' stroke='#666' stroke-width='1.5'/>
 -   <!-- Right side definitions -->
 -   <text x='660' y='80' text-anchor='start' fill='#333' font-size='13' font-weight='bold'>TAM: Total Addressable Market</text>
+
+<!--
+ビジネスプランでは3つを区別することが重要。フェルミ推定はTAM推定に特に使える。
+-->
+
+---
+
+# TAM・SAM・SOM の概念（2/2）（2/2）
+
+> *SOM = SAM × 獲得可能率で投資判断の根拠を作れる*
+
 -   <text x='660' y='98' text-anchor='start' fill='#555' font-size='11'>その製品カテゴリの世界全体需要</text>
 -   <text x='660' y='130' text-anchor='start' fill='#333' font-size='13' font-weight='bold'>SAM: Serviceable Available Market</text>
 -   <text x='660' y='148' text-anchor='start' fill='#555' font-size='11'>自社がサービス提供できる市場</text>
@@ -1076,6 +1228,8 @@ style: |
 
 # 実例: 日本のフードデリバリー市場（1/2）
 
+> *市場規模推定は「誰が・何回・いくら払うか」に分解して計算する*
+
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">フードデリバリー市場推定</text>
 <rect x="60" y="70" width="680" height="60" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
@@ -1115,6 +1269,8 @@ style: |
 
 # 実例: 日本のフードデリバリー市場（2/2）
 
+> *ボトムアップ推定とトップダウン推定の交差点が現実に近い*
+
 - - 1回あたり単価: 1,500円（料理＋配送料）
 - 
 - **推定市場規模:**
@@ -1128,15 +1284,28 @@ style: |
 
 ---
 
-# ビジネス意思決定への活用（1/2）
+# ビジネス意思決定への活用（1/2）（1/2）
 
-- <svg viewBox='0 0 780 310' style='max-height:58vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+> *フェルミ推定で意思決定スピードを上げながら精度を担保できる*
+
+- <svg viewBox='0 0 780 310' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs/>
 -   <text x='390' y='25' text-anchor='middle' fill='#222' font-size='16' font-weight='bold'>フェルミ推定が活きるビジネスシーン</text>
 -   <rect x='30' y='45' width='210' height='110' rx='10' fill='#e8f0fe' stroke='#4285f4' stroke-width='1.5'/>
 -   <text x='135' y='82' text-anchor='middle' fill='#1a73e8' font-size='26'>🚀</text>
 -   <text x='135' y='108' text-anchor='middle' fill='#1a3c6a' font-size='13' font-weight='bold'>新規事業評価</text>
 -   <text x='135' y='127' text-anchor='middle' fill='#444' font-size='11'>「市場規模は十分か?」</text>
+
+<!--
+特にエンジニアがPdMやビジネス側と話す時に役立つ。数字で話す癖をつける。
+-->
+
+---
+
+# ビジネス意思決定への活用（1/2）（2/2）
+
+> *会議前に5分のフェルミ推定が議論の質を大幅に高める*
+
 -   <text x='135' y='144' text-anchor='middle' fill='#444' font-size='11'>を即座に試算</text>
 -   <rect x='285' y='45' width='210' height='110' rx='10' fill='#e6f4ea' stroke='#34a853' stroke-width='1.5'/>
 -   <text x='390' y='82' text-anchor='middle' fill='#34a853' font-size='26'>📊</text>
@@ -1151,7 +1320,9 @@ style: |
 
 ---
 
-# ビジネス意思決定への活用（2/2）
+# ビジネス意思決定への活用（2/2）（1/2）
+
+> *不確かなデータより構造的な仮説の方が意思決定に使いやすい*
 
 -   <text x='645' y='82' text-anchor='middle' fill='#ea4335' font-size='26'>💰</text>
 -   <text x='645' y='108' text-anchor='middle' fill='#9c1009' font-size='13' font-weight='bold'>ROI試算</text>
@@ -1160,6 +1331,17 @@ style: |
 -   <rect x='155' y='180' width='210' height='110' rx='10' fill='#fff3e0' stroke='#fb8c00' stroke-width='1.5'/>
 -   <text x='260' y='217' text-anchor='middle' fill='#fb8c00' font-size='26'>🔍</text>
 -   <text x='260' y='243' text-anchor='middle' fill='#7a3d00' font-size='13' font-weight='bold'>競合分析</text>
+
+<!--
+特にエンジニアがPdMやビジネス側と話す時に役立つ。数字で話す癖をつける。
+-->
+
+---
+
+# ビジネス意思決定への活用（2/2）（2/2）
+
+> *フェルミ推定は合意形成ツールとして組織内の認識齟齬を消す*
+
 -   <text x='260' y='262' text-anchor='middle' fill='#444' font-size='11'>競合の売上規模を</text>
 -   <text x='260' y='279' text-anchor='middle' fill='#444' font-size='11'>外部情報から推定</text>
 -   <rect x='415' y='180' width='210' height='110' rx='10' fill='#f3e5f5' stroke='#9c27b0' stroke-width='1.5'/>
@@ -1196,6 +1378,8 @@ style: |
 ---
 
 # 数字を「感覚」に変換する
+
+> *絶対値より比率で語ると聴衆の理解が速い*
 
 - <svg viewBox="0 0 800 415" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="415" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">数字を「感覚」に変換する</text>
@@ -1246,9 +1430,11 @@ style: |
 
 ---
 
-# 視覚化で説得力を高める（1/2）
+# 視覚化で説得力を高める（1/2）（1/2）
 
-- <svg viewBox='0 0 780 310' style='max-height:58vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+> *視覚化はフェルミ推定の「なぜ」を非専門家に伝える橋渡しだ*
+
+- <svg viewBox='0 0 780 310' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 -   <defs/>
 -   <text x='390' y='22' text-anchor='middle' fill='#222' font-size='15' font-weight='bold'>目的に合わせたグラフ選択</text>
 -   <rect x='30' y='38' width='170' height='145' rx='8' fill='#f8f9fa' stroke='#dee2e6' stroke-width='1'/>
@@ -1259,6 +1445,17 @@ style: |
 -   <rect x='144' y='90' width='22' height='83' fill='#4285f4' opacity='0.8'/>
 -   <line x1='42' y1='173' x2='178' y2='173' stroke='#555' stroke-width='1'/>
 -   <text x='115' y='192' text-anchor='middle' fill='#777' font-size='10'>コンビニ数など</text>
+
+<!--
+「数字があるだけ」より「数字の意味を伝える」ことが重要。グラフは目的に合わせて選ぶ。
+-->
+
+---
+
+# 視覚化で説得力を高める（1/2）（2/2）
+
+> *ファネル図で分解の流れを示すと説得力が格段に上がる*
+
 -   <rect x='210' y='38' width='170' height='145' rx='8' fill='#f8f9fa' stroke='#dee2e6' stroke-width='1'/>
 -   <text x='295' y='58' text-anchor='middle' fill='#555' font-size='11' font-weight='bold'>折れ線（推移）</text>
 -   <polyline points='228,155 255,135 282,118 310,122 337,100 368,108' fill='none' stroke='#34a853' stroke-width='2.5'/>
@@ -1278,7 +1475,9 @@ style: |
 
 ---
 
-# 視覚化で説得力を高める（2/2）
+# 視覚化で説得力を高める（2/2）（1/2）
+
+> *棒グラフと誤差範囲の組み合わせが不確実性を正直に伝える*
 
 -   <text x='442' y='127' text-anchor='middle' fill='white' font-size='9'>分解A</text>
 -   <rect x='495' y='110' width='75' height='24' rx='4' fill='#34a853'/>
@@ -1291,6 +1490,17 @@ style: |
 -   <text x='485' y='165' text-anchor='middle' fill='#333' font-size='9'>要素2</text>
 -   <text x='475' y='192' text-anchor='middle' fill='#777' font-size='10'>推定プロセス可視化</text>
 -   <rect x='570' y='38' width='178' height='145' rx='8' fill='#f8f9fa' stroke='#dee2e6' stroke-width='1'/>
+
+<!--
+「数字があるだけ」より「数字の意味を伝える」ことが重要。グラフは目的に合わせて選ぶ。
+-->
+
+---
+
+# 視覚化で説得力を高める（2/2）（2/2）
+
+> *図一枚で仮説の全体構造を見せることが意思決定者への最短路*
+
 -   <text x='659' y='58' text-anchor='middle' fill='#555' font-size='11' font-weight='bold'>感度分析（3シナリオ）</text>
 -   <rect x='588' y='72' width='140' height='22' rx='3' fill='#ea4335' opacity='0.8'/>
 -   <text x='598' y='88' fill='white' font-size='10'>楽観: 8万件</text>
@@ -1338,6 +1548,8 @@ style: |
 
 # 本日のキーポイント（1/2）
 
+> *フェルミ推定の価値は精度でなく「思考を外に出す」プロセスにある*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">本日のキーポイント</text>
 
@@ -1368,6 +1580,8 @@ style: |
 
 # 本日のキーポイント（2/2）
 
+> *訓練を続けると「分解反射」が身につき判断が速くなる*
+
 - 
 - **3. 市場規模推定はビジネスの言語**
 - 「人数×頻度×単価」の公式を使いこなす
@@ -1382,6 +1596,8 @@ style: |
 ---
 
 # フェルミ思考を日常に（1/2）
+
+> *日常の数字を疑う習慣が判断精度を累積的に上げる*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">フェルミ思考を日常に</text>
@@ -1412,6 +1628,8 @@ style: |
 ---
 
 # フェルミ思考を日常に（2/2）
+
+> *日常の問いをフェルミ推定で考える習慣が思考筋を育てる*
 
 - <svg viewBox="0 0 800 415" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="415" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">チームでフェルミ推定を活用する</text>
@@ -1448,6 +1666,8 @@ style: |
 
 # 参考資料（1/2）
 
+> *良書と実践の組み合わせが推定精度を最速で高める*
+
 - **書籍:**
 - - [フェルミ推定の技術 - 東大物理学者が教える](https://www.amazon.co.jp/dp/4046057041)
 - - [地頭力を鍛える（細谷功）](https://www.amazon.co.jp/dp/4492555986)
@@ -1460,6 +1680,8 @@ style: |
 ---
 
 # 参考資料（2/2）
+
+> *ウェブリソースでリアルケーススタディを積み重ねられる*
 
 - 
 - **オンライン資料:**

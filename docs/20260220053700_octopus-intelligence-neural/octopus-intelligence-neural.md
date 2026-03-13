@@ -7,6 +7,71 @@ paginate: true
 header: "分散知性の生物学"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -25,6 +90,8 @@ style: |
 
 # タコはなぜ異質か（1/2）
 
+> *5億ニューロンの70%が腕に宿る—中央集権から解放された知性*
+
 - タコの基本スペック：
 - - **ニューロン数：** 約5億個（ネコとほぼ同じ）
 - - **脳の分布：** 中央脳に30%、**8本の腕に70%**
@@ -35,6 +102,8 @@ style: |
 ---
 
 # タコはなぜ異質か（2/2）
+
+> *5億年前に分岐した独立知性—収斂進化が分散設計を独自に発明*
 
 - - **寿命：** 1〜2年（この短命で高知性を獲得）
 - 最も近い知性を持つ脊椎動物（魚・鳥・哺乳類）と5億年以上前に分岐した**独立した知性の進化**
@@ -50,6 +119,8 @@ style: |
 ---
 
 # 腕が「考える」という革命的な設計（1/2）
+
+> *腕が中央脳なしで自律判断—エッジコンピューティングの生物版*
 
 - タコの腕は中央脳の指令なしに自律的に動く：
 - 中央脳：「右前の腕でエサをとれ」と大まかな指令のみ
@@ -76,6 +147,8 @@ style: |
 
 # 中央集権 vs 分散の性能比較
 
+> *故障耐性・並列処理は分散型優位、複雑統合は中央型優位*
+
 | 特性 | 中央集権型脳（人間） | 分散型脳（タコ） |
 |:---|:---|:---|
 | 応答速度 | 遅い（長距離通信） | 速い（局所処理） |
@@ -90,6 +163,8 @@ style: |
 
 # ディープラーニングとタコ型の対比（1/2）
 
+> *フェデレーテッドラーニングはタコ型—データを外に出さず学習*
+
 - **従来のディープラーニング（人間型）：**
 - 全データを中央のGPUに集めて処理
 - → 通信コスト・プライバシー問題・スケール限界
@@ -100,6 +175,8 @@ style: |
 ---
 
 # ディープラーニングとタコ型の対比（2/2）
+
+> *差分モデルのみ送信—Google・AppleがスマホのFL予測に採用済み*
 
 - 各デバイス（腕）が局所的に学習
 - 重みの更新情報のみを中央に送る
@@ -119,6 +196,8 @@ style: |
 
 # 色盲なのに色を偽装できる謎（1/2）
 
+> *色盲なのに数百万の色を偽装—皮膚光受容センサーが謎を解く鍵*
+
 - タコの目：**単色（色盲）**
 - タコの皮膚擬態：**数百万の色パターンを再現**
 - **仮説（2015年 Sci Adv）：** 瞳孔の形を変えることで異なる波長の光を順次受光
@@ -128,6 +207,8 @@ style: |
 ---
 
 # 色盲なのに色を偽装できる謎（2/2）
+
+> *ハードウェア制約をソフトウェア処理で超える—タコの証明*
 
 - → 時系列の明暗情報から色を推定する
 - （オプシンが皮膚にも存在し、直接光を感知する可能性も）
@@ -146,6 +227,8 @@ style: |
 
 # エッジAIとタコ型アーキテクチャ（1/2）
 
+> *エッジで処理・差分だけ集約—中央障害でもノードは生き続ける*
+
 - **タコ型設計の原則をシステムに適用：**
 - 1. **エッジで処理する** — 全データを中央に送らない（レイテンシ・帯域削減）
 - 2. **局所自律性を持つ** — 中央が落ちても各ノードは動き続ける
@@ -155,6 +238,8 @@ style: |
 ---
 
 # エッジAIとタコ型アーキテクチャ（2/2）
+
+> *自律エージェント群が疎に協調する未来AIアーキテクチャの雛形*
 
 - 3. **疎な中央通信** — 結果・差分のみを中央に送る
 - 4. **故障を前提とする** — 腕1本が死んでも残り7本で機能
@@ -166,6 +251,8 @@ style: |
 ---
 
 # まとめ：タコが教える分散知性
+
+> *タコは5億年前にフェデレーテッドAIを発明していた*
 
 - ✅ **中央集権は「統合」に強く、「速度」に弱い**
 - ✅ **分散は「速度・耐障害性」に強く、「統合」に弱い**

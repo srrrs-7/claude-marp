@@ -90,6 +90,8 @@ style: |
 
 # アジェンダ
 
+> *切り替えコストと深い集中の回復が本日の核心テーマ*
+
 - 1. マルチタスクの神話
 - 2. 注意の切り替えコスト
 - 3. スマートフォンの認知コスト
@@ -107,6 +109,8 @@ style: |
 
 # 脳はシングルコアである（1/2）
 
+> *マルチタスクは同時処理ではなく高速切り替え—脳は1度に1つしか処理できない*
+
 - **認知科学の結論：**
 - 人間の注意資源は一度に一つのことにしか向けられない
 - 「マルチタスク」= 実際には高速なタスク切り替え
@@ -116,6 +120,8 @@ style: |
 ---
 
 # 脳はシングルコアである（2/2）
+
+> *自称マルチタスカーは3項目全てでモノタスカーより劣ることが判明*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="260" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">マルチタスカー vs モノタスカー — 認知能力比較</text><rect x="30" y="50" width="340" height="180" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="76" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">自称マルチタスカー (Ophir 2009)</text><rect x="50" y="90" width="300" height="18" rx="4" fill="#333"/><rect x="50" y="90" width="90" height="18" rx="4" fill="#e91e63" opacity="0.8"/><text x="360" y="104" fill="#e91e63" font-size="10" font-family="sans-serif">30%</text><text x="50" y="88" fill="#aaa" font-size="10" font-family="sans-serif">無関係情報の無視能力</text><rect x="50" y="118" width="300" height="18" rx="4" fill="#333"/><rect x="50" y="118" width="80" height="18" rx="4" fill="#e91e63" opacity="0.8"/><text x="360" y="132" fill="#e91e63" font-size="10" font-family="sans-serif">27%</text><text x="50" y="116" fill="#aaa" font-size="10" font-family="sans-serif">作業記憶の管理</text><rect x="50" y="146" width="300" height="18" rx="4" fill="#333"/><rect x="50" y="146" width="100" height="18" rx="4" fill="#e91e63" opacity="0.8"/><text x="360" y="160" fill="#e91e63" font-size="10" font-family="sans-serif">33%</text><text x="50" y="144" fill="#aaa" font-size="10" font-family="sans-serif">タスク切り替え速度</text><text x="200" y="212" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">3項目すべてで劣る</text><text x="200" y="230" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">頻繁にマルチタスクする人ほど苦手</text><rect x="430" y="50" width="340" height="180" rx="10" fill="#16213e" stroke="#69f0ae" stroke-width="2"/><text x="600" y="76" text-anchor="middle" fill="#69f0ae" font-size="13" font-weight="bold" font-family="sans-serif">モノタスカー</text><rect x="450" y="90" width="300" height="18" rx="4" fill="#333"/><rect x="450" y="90" width="260" height="18" rx="4" fill="#69f0ae" opacity="0.7"/><text x="760" y="104" fill="#69f0ae" font-size="10" font-family="sans-serif">87%</text><text x="450" y="88" fill="#aaa" font-size="10" font-family="sans-serif">無関係情報の無視能力</text><rect x="450" y="118" width="300" height="18" rx="4" fill="#333"/><rect x="450" y="118" width="250" height="18" rx="4" fill="#69f0ae" opacity="0.7"/><text x="760" y="132" fill="#69f0ae" font-size="10" font-family="sans-serif">83%</text><text x="450" y="116" fill="#aaa" font-size="10" font-family="sans-serif">作業記憶の管理</text><rect x="450" y="146" width="300" height="18" rx="4" fill="#333"/><rect x="450" y="146" width="240" height="18" rx="4" fill="#69f0ae" opacity="0.7"/><text x="760" y="160" fill="#69f0ae" font-size="10" font-family="sans-serif">80%</text><text x="450" y="144" fill="#aaa" font-size="10" font-family="sans-serif">タスク切り替え速度</text><text x="600" y="212" text-anchor="middle" fill="#69f0ae" font-size="12" font-weight="bold" font-family="sans-serif">3項目すべてで優れる</text><text x="600" y="230" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">例外: 自動化された行動（歩行）は同時実行可能</text></svg>
 - **「マルチタスクが得意」な人は存在するか：**
@@ -129,6 +135,8 @@ style: |
 
 # 注意の切り替えコスト（1/2）
 
+> *タスク切り替え後に完全集中が戻るまで平均23分かかる*
+
 - **「スイッチングコスト」：**
 - タスクAからタスクBに切り替えると「残存注意」が残る
 - 完全に集中するまでに平均23分かかる（Mark 2005年）
@@ -139,6 +147,8 @@ style: |
 
 # 注意の切り替えコスト（2/2）
 
+> *スマホは机の上に置くだけで作業記憶容量が40%失われる*
+
 - 合計6回の注意切り替え × 再集中までのコスト
 - → 深い思考に費やせる時間が大幅に減少
 - <svg viewBox="0 0 720 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="720" height="220" fill="#1a1a2e"/><text x="360" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">スマートフォンの存在が認知に与える影響</text><rect x="60" y="50" width="280" height="130" rx="10" fill="#1b2a3b" stroke="#4caf50" stroke-width="2"/><text x="200" y="75" text-anchor="middle" fill="#4caf50" font-size="13" font-weight="bold">スマホなし（引き出しの中）</text><rect x="80" y="90" width="240" height="22" rx="4" fill="#4caf50"/><text x="200" y="105" text-anchor="middle" fill="white" font-size="12">作業記憶容量: 100%</text><rect x="80" y="120" width="240" height="22" rx="4" fill="#4caf50"/><text x="200" y="135" text-anchor="middle" fill="white" font-size="12">集中スコア: 100%</text><rect x="80" y="150" width="240" height="22" rx="4" fill="#4caf50"/><text x="200" y="165" text-anchor="middle" fill="white" font-size="12">認知負荷: 低</text><rect x="380" y="50" width="280" height="130" rx="10" fill="#2a1b1b" stroke="#e91e63" stroke-width="2"/><text x="520" y="75" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">スマホあり（机の上）</text><rect x="400" y="90" width="168" height="22" rx="4" fill="#e91e63"/><rect x="568" y="90" width="72" height="22" rx="4" fill="#333"/><text x="520" y="105" text-anchor="middle" fill="white" font-size="12">作業記憶容量: 60%</text><rect x="400" y="120" width="144" height="22" rx="4" fill="#e91e63"/><rect x="544" y="120" width="96" height="22" rx="4" fill="#333"/><text x="520" y="135" text-anchor="middle" fill="white" font-size="12">集中スコア: 53%</text><rect x="400" y="150" width="240" height="22" rx="4" fill="#b71c1c"/><text x="520" y="165" text-anchor="middle" fill="white" font-size="12">認知負荷: 高（画面を見なくても）</text><text x="360" y="205" text-anchor="middle" fill="#aaa" font-size="11">Ward et al. 2017 — スマホは存在するだけで注意を奪う</text></svg>
@@ -147,6 +157,8 @@ style: |
 ---
 
 # ディープワークと生産性（1/2）
+
+> *深い思考こそが21世紀の希少スキル—シャローワークとは別次元の価値*
 
 - **Cal Newport「Deep Work」（2016年）：**
 - ディープワーク：認知能力を限界まで使う邪魔のない集中作業
@@ -157,6 +169,8 @@ style: |
 ---
 
 # ディープワークと生産性（2/2）
+
+> *通知OFF・タイムブロックで深い集中を意図的に作り出す*
 
 - 「つながり続ける」文化はこの能力を破壊する
 - **実用的戦略：**
@@ -169,6 +183,8 @@ style: |
 ---
 
 # まとめ：シングルタスクの力
+
+> *並行作業は生産性40%低下、コンテキストスイッチが集中を破壊する*
 
 - ✅ **マルチタスク = 高速切り替え。脳は同時処理できない**
 - ✅ **注意の切り替えには平均23分の再集中コストがある**

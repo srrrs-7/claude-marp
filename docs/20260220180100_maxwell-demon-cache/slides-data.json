@@ -242,6 +242,7 @@
 		},
 		{
 			"title": "「CSで最も難しい2つの問題」の起源（1/2）（2/2）",
+			"subtitle": "キャッシュ無効化の困難は時間の非対称性・分散不確実性・完全性不可能の3要因",
 			"content": [
 				"  <text x=\"670\" y=\"117\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">あるか把握不能</text>",
 				"  <line x1=\"570\" y1=\"110\" x2=\"448\" y2=\"162\" stroke=\"#4fc3f7\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/>",
@@ -292,6 +293,7 @@
 		},
 		{
 			"title": "「CSで最も難しい2つの問題」の起源（2/2）（2/2）",
+			"subtitle": "情報を持つことの代償は整合性維持コスト——マクスウェルの悪魔と同型の問題",
 			"content": [
 				"  <line x1=\"140\" y1=\"130\" x2=\"350\" y2=\"175\" stroke=\"#888\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/>",
 				"  <line x1=\"400\" y1=\"130\" x2=\"400\" y2=\"175\" stroke=\"#888\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/>",
@@ -573,6 +575,7 @@
 		},
 		{
 			"title": "Cache-Control ヘッダー徹底解説（2/2）",
+			"subtitle": "max-age・stale-while-revalidate・immutableで鮮度と速度を両立させる",
 			"content": [
 				"  <rect x=\"280\" y=\"145\" width=\"240\" height=\"50\" rx=\"8\" fill=\"#0d0d1a\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>",
 				"  <text x=\"400\" y=\"165\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">鮮度チェック (is fresh?)</text>",
@@ -958,6 +961,7 @@
 		},
 		{
 			"title": "参考文献（1/2）（2/2）",
+			"subtitle": "物理学・情報理論の原典3本とキャッシュ実装RFC文献を網羅",
 			"content": [
 				"  <text x=\"450\" y=\"90\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">HTTP Caching — MDN Web Docs</text>",
 				"  <text x=\"450\" y=\"110\" fill=\"#ccc\" font-size=\"11\" font-family=\"sans-serif\">CAP Theorem — Brewer (2000)</text>",
@@ -977,6 +981,7 @@
 		},
 		{
 			"title": "参考文献（2/2）",
+			"subtitle": "HTTP/CDN/RFC標準文書とFastlyのサロゲートキー実装を参照",
 			"content": [
 				"- [HTTP Caching - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)",
 				"- [CAP Theorem - Brewer (2000)](https://en.wikipedia.org/wiki/CAP_theorem)",

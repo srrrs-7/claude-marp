@@ -8,6 +8,7 @@
 		{
 			"title": "目次",
 			"layout": "default",
+			"subtitle": "10x神話の起源から「本当に生産性を上げるもの」まで6章で解説",
 			"content": [
 				"- 1. 10xエンジニアの起源",
 				"- 2. 元の研究の問題点",
@@ -25,6 +26,7 @@
 		{
 			"title": "1968年の伝説的研究",
 			"layout": "default",
+			"subtitle": "サンプル12人の研究が50年間業界を支配した",
 			"content": [
 				"![w:900 center](assets/myth-origin.svg)",
 				"- **Sackman, Erikson & Grant (1968)**: プログラマー間の生産性差を測定",
@@ -48,6 +50,7 @@
 		{
 			"title": "なぜ28倍は信頼できないか",
 			"layout": "default",
+			"subtitle": "外れ値1人が倍率を操作—再現実験なし",
 			"content": [
 				"![w:900 center](assets/invisible-productivity.svg)",
 				"- **サンプルサイズ**: たった12人のプログラマー",
@@ -66,6 +69,7 @@
 		{
 			"title": "コード行数の罠",
 			"layout": "default",
+			"subtitle": "DORA指標はチームのフローを測り個人LOCを捨てた",
 			"content": [
 				"![w:900 center](assets/dora-metrics.svg)",
 				"- **LOC (Lines of Code)** で測定 → コード量 = 生産性？",
@@ -79,6 +83,7 @@
 		{
 			"title": "見えない生産性",
 			"layout": "default",
+			"subtitle": "コードレビュー・設計判断が測定外の価値を生む",
 			"content": [
 				"![w:900 center](assets/productivity-research.svg)",
 				"- **コードレビュー**: 他人のコード品質を向上させる",
@@ -97,6 +102,7 @@
 		{
 			"title": "「天才個人」モデルの限界",
 			"layout": "default",
+			"subtitle": "心理的安全性がIQより強くチーム成果を左右する",
 			"content": [
 				"![w:900 center](assets/team-vs-individual.svg)",
 				"- Linuxカーネル: Linus Torvaldsだけでなく数千人の貢献者",
@@ -110,6 +116,7 @@
 		{
 			"title": "環境が生産性を決める",
 			"layout": "default",
+			"subtitle": "同一エンジニアが環境変化で3〜5倍差になる",
 			"content": [
 				"![w:900 center](assets/environment-productivity.svg)",
 				"- **SPACE framework** (GitHub/MS/University of Victoria):",
@@ -128,6 +135,7 @@
 		{
 			"title": "10x神話がもたらす弊害",
 			"layout": "default",
+			"subtitle": "有害行動を容認するロックスター文化の温床",
 			"content": [
 				"![w:900 center](assets/research-problems.svg)",
 				"- **ロックスターカルチャー**: 一部の「天才」に過度に依存する組織",
@@ -141,6 +149,7 @@
 		{
 			"title": "Googleの「No Brilliant Jerks」方針",
 			"layout": "default",
+			"subtitle": "有害1人の損失が10x貢献者の利益を上回る",
 			"content": [
 				"![w:900 center](assets/brilliant-jerks.svg)",
 				"- Netflix, Google等: 「優秀だが有害な人を雇わない」方針",
@@ -158,6 +167,7 @@
 		{
 			"title": "エビデンスに基づく生産性向上",
 			"layout": "default",
+			"subtitle": "DX・CI/CD・心理的安全がチーム速度を決定する",
 			"content": [
 				"![w:900 center](assets/evidence-based-productivity.svg)",
 				"- **Developer Experience (DX)**: 開発者の日常体験を改善する",
@@ -171,6 +181,7 @@
 		{
 			"title": "まとめ",
 			"layout": "default",
+			"subtitle": "10xチームを作ることが10x個人を探すより現実的な解",
 			"content": [
 				"- 「10xエンジニア」の元の研究は方法論に重大な問題がある",
 				"- 生産性はコード行数では測れない — 見えない価値を見る",
@@ -183,6 +194,7 @@
 		{
 			"title": "参考文献",
 			"layout": "default",
+			"subtitle": "Sackman(1968)〜Accelerate(2018)ら4文献が本デッキの典拠",
 			"content": [
 				"- **研究:**",
 				"- Sackman, H. et al. (1968) \"Exploratory experimental studies\"",

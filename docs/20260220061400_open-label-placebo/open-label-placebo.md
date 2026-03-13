@@ -7,6 +7,71 @@ paginate: true
 header: "プラセボ効果の科学"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -23,6 +88,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *仕組みを知っていても偽薬効果は発現する、期待と儀式が薬理作用*
 
 - 1. 古典的プラセボ効果
 - 2. オープンラベルプラセボの発見
@@ -59,12 +126,22 @@ style: |
 
 ---
 
-# 「偽薬と知っていても効く」実験（1/2）
+# 「偽薬と知っていても効く」実験（1/2）（1/2）
+
+> *IBS患者の59%がプラセボ告知投与で症状改善、無治療群の35%を大幅超過*
 
 - **Ted Kaptchuk（ハーバード大学）の研究：**
 - 大腸過敏症（IBS）患者を2グループに分割
 - A群：「プラセボ（偽薬）です」と告知して投与
 - B群：治療なし
+
+
+---
+
+# 「偽薬と知っていても効く」実験（1/2）（2/2）
+
+> *IBS患者でOLP群59% vs 無治療群35%—知っていても有意差が出た*
+
 - ---
 - **驚くべき結果：**
 - A群（プラセボと知っている群）の59%が症状改善
@@ -80,12 +157,18 @@ style: |
 
 ---
 
-# 「偽薬と知っていても効く」実験（2/2）
+# 「偽薬と知っていても効く」実験（2/2）（1/2）
 
 - → 偽薬と知っていても有意な差
 - ---
 - **他の対象での確認：**
 - - 腰痛（Carvalho 2016年）
+
+
+---
+
+# 「偽薬と知っていても効く」実験（2/2）（2/2）
+
 - - がん治療後の疲労（Hoenemeyer 2018年）
 - - ADHD（Sandler 2010年）
 - ---
@@ -130,6 +213,8 @@ style: |
 ---
 
 # まとめ：信念が生物学を変える
+
+> *期待と儀式がオピオイド・ドーパミン放出を誘発し実際の治癒を生む*
 
 - ✅ **プラセボ効果は「気のせい」ではなく測定可能な生物学的反応**
 - ✅ **「偽薬と知っていても効く」= 意識より深い学習システムが働く**

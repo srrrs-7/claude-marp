@@ -7,6 +7,71 @@ paginate: true
 header: "計画錯誤とプロジェクト管理"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -25,6 +90,8 @@ style: |
 
 # アジェンダ
 
+> *人は最良シナリオで計画し、実際の完了時間は平均2〜3倍になる*
+
 - 1. 計画錯誤とは何か
 - 2. 有名な計画錯誤の事例
 - 3. なぜ人は楽観的に見積もるのか
@@ -42,6 +109,8 @@ style: |
 
 # Kahneman & Tverskyの発見（1/2）
 
+> *専門家でさえ実体験より楽観的シナリオを選ぶ*
+
 - **計画錯誤（Planning Fallacy）：**
 - Daniel Kahneman & Amos Tversky（1979年）が命名
 - 「自分のプロジェクトの完了時間・コストを過小評価する傾向」
@@ -51,6 +120,8 @@ style: |
 ---
 
 # Kahneman & Tverskyの発見（2/2）
+
+> *内部視点が過小評価を生む—外部視点が唯一の解*
 
 - **特徴：**
 - - 過去の類似プロジェクトの失敗を無視する
@@ -62,6 +133,8 @@ style: |
 ---
 
 # 有名な計画錯誤の事例（1/2）
+
+> *大型公共工事の平均コスト超過は45%—これが統計的現実*
 
 - **シドニーオペラハウス（1957〜1973年）：**
 - 予算700万ドル → 実際：1億200万ドル（15倍）
@@ -75,6 +148,8 @@ style: |
 
 # 有名な計画錯誤の事例（2/2）
 
+> *ソフトウェアの66%が超過—「今回は違う」が証明された嘘*
+
 - **ボストン・ビッグディッグ（1982〜2007年）：**
 - 予算25億ドル → 実際：150億ドル（6倍）
 - **ソフトウェアプロジェクト（Standish Group CHAOS Report）：**
@@ -87,6 +162,8 @@ style: |
 
 # 参照クラス予測（1/2）
 
+> *英国政府も採用する3ステップで現実的見積もりに変える*
+
 - **Bent Flyvbjerg（オックスフォード大）の解決策：**
 - 「参照クラス予測（Reference Class Forecasting）」
 - <svg viewBox="0 0 700 210" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="700" height="210" fill="#1a1a2e" rx="12"/><text x="350" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">参照クラス予測の3ステップ</text><rect x="30" y="50" width="180" height="120" fill="#0d47a1" rx="10"/><text x="120" y="80" text-anchor="middle" fill="#90caf9" font-size="13" font-weight="bold" font-family="sans-serif">Step 1</text><text x="120" y="100" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">類似プロジェクトの</text><text x="120" y="118" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">統計データ収集</text><text x="120" y="140" text-anchor="middle" fill="#64b5f6" font-size="11" font-family="sans-serif">（外部視点）</text><line x1="210" y1="110" x2="255" y2="110" stroke="#f9a825" stroke-width="2"/><polygon points="252,104 265,110 252,116" fill="#f9a825"/><rect x="265" y="50" width="170" height="120" fill="#1b5e20" rx="10"/><text x="350" y="80" text-anchor="middle" fill="#a5d6a7" font-size="13" font-weight="bold" font-family="sans-serif">Step 2</text><text x="350" y="100" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">典型的な超過率を</text><text x="350" y="118" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">確認・適用</text><text x="350" y="140" text-anchor="middle" fill="#81c784" font-size="11" font-family="sans-serif">（ベースレート）</text><line x1="435" y1="110" x2="480" y2="110" stroke="#f9a825" stroke-width="2"/><polygon points="477,104 490,110 477,116" fill="#f9a825"/><rect x="490" y="50" width="180" height="120" fill="#4a148c" rx="10"/><text x="580" y="80" text-anchor="middle" fill="#ce93d8" font-size="13" font-weight="bold" font-family="sans-serif">Step 3</text><text x="580" y="100" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">リスク調整後の</text><text x="580" y="118" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">見積もりを提示</text><text x="580" y="140" text-anchor="middle" fill="#ba68c8" font-size="11" font-family="sans-serif">（現実的な計画）</text><text x="350" y="195" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">英国・デンマーク政府の大型インフラプロジェクトで公式採用</text></svg>
@@ -95,6 +172,8 @@ style: |
 ---
 
 # 参照クラス予測（2/2）
+
+> *IT平均27%超過を前提にすると計画の出発点が変わる*
 
 - **例：ITプロジェクトの平均超過率：**
 - 予算：平均27%超過、スケジュール：平均33%超過
@@ -106,6 +185,8 @@ style: |
 ---
 
 # まとめ：楽観バイアスを制する
+
+> *外部視点+バッファ設計で楽観バイアスを構造的に克服する*
 
 - ✅ **計画錯誤は普遍的な認知バイアス（専門家でも免疫なし）**
 - ✅ **内部視点は楽観的すぎる → 外部視点（参照クラス）で補正**

@@ -18,6 +18,7 @@
 		{
 			"title": "ダンバー数とは",
 			"layout": "default",
+			"subtitle": "新皮質の大きさが決める150人という社会的結合の上限",
 			"content": [
 				"人類学者ロビン・ダンバー（1992年）の発見",
 				"霊長類の**新皮質サイズ**と**集団サイズ**に強い相関がある",
@@ -29,6 +30,7 @@
 		{
 			"title": "なぜ150人が限界なのか",
 			"layout": "default",
+			"subtitle": "150人超えると個人的信頼が崩壊しルールと官僚制が入る",
 			"content": [
 				"全員の**関係性・信頼度・スキル**を脳で記憶する認知コスト",
 				"150人を超えると個人的な信頼が機能しなくなる",
@@ -40,6 +42,7 @@
 		{
 			"title": "ソフトウェアチームへの適用",
 			"layout": "default",
+			"subtitle": "5〜150人の各フェーズで必要なアーキテクチャパターンが変わる",
 			"content": [
 				"各層でのコミュニケーション密度と責任範囲",
 				"",
@@ -54,6 +57,7 @@
 		{
 			"title": "コンウェイの法則",
 			"layout": "default",
+			"subtitle": "チーム間の会話の少なさがそのままAPIの粗さに反映される",
 			"content": [
 				"Melvin Conway (1968):",
 				"*\"Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations.\"*",
@@ -64,6 +68,7 @@
 		{
 			"title": "逆コンウェイ作戦",
 			"layout": "default",
+			"subtitle": "望むアーキテクチャを先に描いてから組織を合わせる設計戦略",
 			"content": [
 				"**望むアーキテクチャがあるなら、先に組織を設計する**",
 				"Team Topologies (Skelton & Pais, 2019) の中核思想",
@@ -74,6 +79,7 @@
 		{
 			"title": "Amazon「2-Pizza Rule」の科学",
 			"layout": "default",
+			"subtitle": "20人チームでは通信チャネルが190本に爆発し協調不可能になる",
 			"content": [
 				"チームが大きすぎると**調整コスト**が爆発する",
 				"通信チャネル数 = n(n-1)/2",
@@ -89,6 +95,7 @@
 		{
 			"title": "チームトポロジーの4類型",
 			"layout": "default",
+			"subtitle": "4つの類型と3つの相互作用モードでチーム設計を体系化できる",
 			"content": [
 				"Skelton & Pais (2019) が提唱した4つのチーム類型",
 				"",
@@ -98,6 +105,7 @@
 		{
 			"title": "「認知負荷」の設計",
 			"layout": "default",
+			"subtitle": "外在的負荷を排除して1チームが担える複雑度の上限を広げる",
 			"content": [
 				"チームが担当できるシステムの複雑度には**上限がある**",
 				"",
@@ -107,6 +115,7 @@
 		{
 			"title": "スタートアップ成長のフェーズ変化",
 			"layout": "default",
+			"subtitle": "150人の壁がアーキテクチャ分割の必然的タイミングになる",
 			"content": [
 				"人数の閾値でアーキテクチャの再設計が不可避になる",
 				"",
@@ -116,6 +125,7 @@
 		{
 			"title": "リモートワークとダンバー数",
 			"layout": "default",
+			"subtitle": "弱いつながりは増えるが強い信頼はオンラインで育ちにくい",
 			"content": [
 				"非同期コミュニケーションでダンバー数はどう変化するか？",
 				"",
@@ -136,6 +146,7 @@
 		},
 		{
 			"title": "参考文献（1/2）",
+			"subtitle": "Dunbar・Conway・Team Topologies・Man-Monthの基礎4文献",
 			"layout": "default",
 			"content": [
 				"- **Foundational Research:**",
@@ -146,6 +157,7 @@
 		},
 		{
 			"title": "参考文献（2/2）",
+			"subtitle": "Spotify・Amazon・Team Topologies・Accelerate の実践事例5文献",
 			"layout": "default",
 			"content": [
 				"- Skelton & Pais, *Team Topologies* (2019)",

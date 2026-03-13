@@ -90,6 +90,8 @@ style: |
 
 # アジェンダ
 
+> *7±2の認知限界がUI・API・教育設計を支配する*
+
 - 1. ミラーの法則の発見
 - 2. ワーキングメモリの仕組み
 - 3. UIデザインへの応用
@@ -107,6 +109,8 @@ style: |
 
 # 7±2という魔法の数字（1/2）
 
+> *電話番号を3チャンク分割するだけで記憶負荷が激減*
+
 - **George A. Miller（1956年 Psychological Review）：**
 - 「The Magical Number Seven, Plus or Minus Two」
 - 人間のワーキングメモリが同時に保持できる「チャンク」数 = 7±2
@@ -115,12 +119,20 @@ style: |
 
 ---
 
-# 7±2という魔法の数字（2/2）
+# 7±2という魔法の数字（2/2）（1/2）
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">ミラーの法則の応用範囲</text><rect x="30" y="45" width="175" height="90" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="117" y="70" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">UI設計</text><text x="117" y="92" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">メニュー7以下</text><text x="117" y="112" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">フォームフィールド制限</text><rect x="220" y="45" width="175" height="90" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="307" y="70" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">API設計</text><text x="307" y="92" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">エンドポイント数制限</text><text x="307" y="112" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">レスポンス情報の整理</text><rect x="410" y="45" width="175" height="90" rx="10" fill="#16213e" stroke="#00897b" stroke-width="2"/><text x="497" y="70" text-anchor="middle" font-size="13" fill="#00897b" font-weight="bold" font-family="sans-serif">教育設計</text><text x="497" y="92" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">1授業の概念数を制限</text><text x="497" y="112" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">カリキュラム構造化</text><rect x="600" y="45" width="170" height="90" rx="10" fill="#16213e" stroke="#3f51b5" stroke-width="2"/><text x="685" y="70" text-anchor="middle" font-size="13" fill="#3f51b5" font-weight="bold" font-family="sans-serif">音楽・芸術</text><text x="685" y="92" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">一小節の音符数</text><text x="685" y="112" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">視覚的グルーピング</text><rect x="200" y="160" width="400" height="70" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="400" y="185" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">現代的再解釈</text><text x="400" y="208" text-anchor="middle" font-size="12" fill="#ccccdd" font-family="sans-serif">Cowan (2001): 真の容量は4チャンク</text><text x="400" y="226" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">7±2は「チャンク化後」の上限、生の情報処理は3〜5が現実的</text></svg>
 - - 音楽の音符：一度に認識できる数に限界
 - ---
 - **影響の広がり：**
+
+
+---
+
+# 7±2という魔法の数字（2/2）（2/2）
+
+> *現代研究では真の容量は4チャンク—設計上限は5が安全*
+
 - 認知心理学・UI設計・カリキュラム設計・API設計・軍事作戦計画
 - 「7」という数字が普遍的な基準として使われるように
 - ---
@@ -130,6 +142,8 @@ style: |
 ---
 
 # UIデザインへの応用（1/2）
+
+> *ナビ7超えで認知オーバーロード—離脱率急増*
 
 - **ナビゲーション設計：**
 - 上部メニューの項目数は7以下が推奨
@@ -142,12 +156,20 @@ style: |
 
 ---
 
-# UIデザインへの応用（2/2）
+# UIデザインへの応用（2/2）（1/2）
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">チャンク分割によるUI改善例</text><rect x="30" y="50" width="350" height="90" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="205" y="74" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">悪い例：連続入力</text><rect x="60" y="85" width="290" height="35" rx="4" fill="#2a1a2e" stroke="#e91e63" stroke-width="1"/><text x="205" y="108" text-anchor="middle" font-size="15" fill="#ccaacc" font-family="monospace">09012345678</text><text x="205" y="130" text-anchor="middle" font-size="11" fill="#e91e63" font-family="sans-serif">11個の独立した数字 → 認知負荷高</text><rect x="420" y="50" width="350" height="90" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="595" y="74" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">良い例：チャンク分割</text><rect x="448" y="85" width="80" height="35" rx="4" fill="#1a2e1a" stroke="#f9a825" stroke-width="1"/><text x="488" y="108" text-anchor="middle" font-size="16" fill="#f9a825" font-family="monospace">090</text><text x="540" y="108" text-anchor="middle" font-size="16" fill="#f9a825" font-family="sans-serif">-</text><rect x="555" y="85" width="90" height="35" rx="4" fill="#1a2e1a" stroke="#f9a825" stroke-width="1"/><text x="600" y="108" text-anchor="middle" font-size="16" fill="#f9a825" font-family="monospace">1234</text><text x="658" y="108" text-anchor="middle" font-size="16" fill="#f9a825" font-family="sans-serif">-</text><rect x="668" y="85" width="90" height="35" rx="4" fill="#1a2e1a" stroke="#f9a825" stroke-width="1"/><text x="713" y="108" text-anchor="middle" font-size="16" fill="#f9a825" font-family="monospace">5678</text><text x="595" y="130" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">3チャンク → 認知負荷低</text><rect x="30" y="160" width="350" height="75" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1"/><text x="205" y="182" text-anchor="middle" font-size="12" fill="#e91e63" font-weight="bold" font-family="sans-serif">色数：多すぎる例（8色）</text><rect x="50" y="193" width="26" height="26" rx="4" fill="#e91e63"/><rect x="82" y="193" width="26" height="26" rx="4" fill="#f9a825"/><rect x="114" y="193" width="26" height="26" rx="4" fill="#00897b"/><rect x="146" y="193" width="26" height="26" rx="4" fill="#3f51b5"/><rect x="178" y="193" width="26" height="26" rx="4" fill="#9c27b0"/><rect x="210" y="193" width="26" height="26" rx="4" fill="#f57c00"/><rect x="242" y="193" width="26" height="26" rx="4" fill="#26c6da"/><rect x="274" y="193" width="26" height="26" rx="4" fill="#8bc34a"/><text x="205" y="228" text-anchor="middle" font-size="10" fill="#e91e63" font-family="sans-serif">記憶・識別が困難</text><rect x="420" y="160" width="350" height="75" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="595" y="182" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold" font-family="sans-serif">色数：適切な例（3色）</text><rect x="480" y="193" width="36" height="36" rx="6" fill="#f9a825"/><rect x="540" y="193" width="36" height="36" rx="6" fill="#e91e63"/><rect x="600" y="193" width="36" height="36" rx="6" fill="#16213e" stroke="#ffffff" stroke-width="1"/><text x="595" y="228" text-anchor="middle" font-size="10" fill="#f9a825" font-family="sans-serif">認識・記憶が容易</text></svg>
 - 多すぎると認知負荷で離脱率が増加
 - ---
 - **電話番号の入力UI：**
+
+
+---
+
+# UIデザインへの応用（2/2）（2/2）
+
+> *色数3〜5・入力フィールド分割で完了率が向上する*
+
 - 090-1234-5678 → 3チャンクに分割
 - 連続した11桁より、3桁+4桁+4桁が入力しやすい
 - ---
@@ -159,6 +181,8 @@ style: |
 
 # チャンキングという解決策（1/2）
 
+> *グループ化で11要素を3チャンクに圧縮できる*
+
 - **チャンキング（Chunking）：**
 - 個々の情報をグループ化して1つの「チャンク」として扱う
 - <svg viewBox="0 0 800 250" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="250" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">チャンキングの概念図</text><text x="200" y="55" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">チャンキング前</text><rect x="40" y="65" width="36" height="36" rx="5" fill="#2a1a2e" stroke="#e91e63" stroke-width="2"/><rect x="82" y="65" width="36" height="36" rx="5" fill="#2a1a2e" stroke="#e91e63" stroke-width="2"/><rect x="124" y="65" width="36" height="36" rx="5" fill="#2a1a2e" stroke="#e91e63" stroke-width="2"/><rect x="166" y="65" width="36" height="36" rx="5" fill="#2a1a2e" stroke="#e91e63" stroke-width="2"/><rect x="208" y="65" width="36" height="36" rx="5" fill="#2a1a2e" stroke="#e91e63" stroke-width="2"/><rect x="250" y="65" width="36" height="36" rx="5" fill="#2a1a2e" stroke="#e91e63" stroke-width="2"/><rect x="292" y="65" width="36" height="36" rx="5" fill="#2a1a2e" stroke="#e91e63" stroke-width="2"/><rect x="334" y="65" width="36" height="36" rx="5" fill="#2a1a2e" stroke="#e91e63" stroke-width="2"/><rect x="376" y="65" width="36" height="36" rx="5" fill="#2a1a2e" stroke="#e91e63" stroke-width="2"/><rect x="418" y="65" width="36" height="36" rx="5" fill="#2a1a2e" stroke="#e91e63" stroke-width="2"/><rect x="460" y="65" width="36" height="36" rx="5" fill="#2a1a2e" stroke="#e91e63" stroke-width="2"/><text x="58" y="89" text-anchor="middle" fill="#e91e63" font-size="12" font-family="monospace">0</text><text x="100" y="89" text-anchor="middle" fill="#e91e63" font-size="12" font-family="monospace">9</text><text x="142" y="89" text-anchor="middle" fill="#e91e63" font-size="12" font-family="monospace">0</text><text x="184" y="89" text-anchor="middle" fill="#e91e63" font-size="12" font-family="monospace">1</text><text x="226" y="89" text-anchor="middle" fill="#e91e63" font-size="12" font-family="monospace">2</text><text x="268" y="89" text-anchor="middle" fill="#e91e63" font-size="12" font-family="monospace">3</text><text x="310" y="89" text-anchor="middle" fill="#e91e63" font-size="12" font-family="monospace">4</text><text x="352" y="89" text-anchor="middle" fill="#e91e63" font-size="12" font-family="monospace">5</text><text x="394" y="89" text-anchor="middle" fill="#e91e63" font-size="12" font-family="monospace">6</text><text x="436" y="89" text-anchor="middle" fill="#e91e63" font-size="12" font-family="monospace">7</text><text x="478" y="89" text-anchor="middle" fill="#e91e63" font-size="12" font-family="monospace">8</text><text x="260" y="120" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">11個の独立した数字 — 7±2を超過</text><polygon points="390,130 400,145 410,130" fill="#f9a825"/><polygon points="390,148 400,163 410,148" fill="#f9a825"/><text x="200" y="185" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">チャンキング後</text><rect x="40" y="195" width="110" height="40" rx="8" fill="#1a2e1a" stroke="#f9a825" stroke-width="2"/><rect x="165" y="195" width="130" height="40" rx="8" fill="#1a2e1a" stroke="#f9a825" stroke-width="2"/><rect x="310" y="195" width="130" height="40" rx="8" fill="#1a2e1a" stroke="#f9a825" stroke-width="2"/><text x="95" y="221" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="monospace">090</text><text x="230" y="221" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="monospace">1234</text><text x="375" y="221" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="monospace">5678</text><text x="200" y="248" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">3チャンク — 快適な認知負荷</text><rect x="530" y="50" width="230" height="185" rx="12" fill="#16213e" stroke="#4a4a8a" stroke-width="2"/><text x="645" y="75" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">チャンキングの効果</text><rect x="550" y="88" width="10" height="10" rx="2" fill="#f9a825"/><text x="570" y="98" fill="#aaa" font-size="11" font-family="sans-serif">記憶の負荷を3分の1に</text><rect x="550" y="110" width="10" height="10" rx="2" fill="#f9a825"/><text x="570" y="120" fill="#aaa" font-size="11" font-family="sans-serif">意味的グループで理解促進</text><rect x="550" y="132" width="10" height="10" rx="2" fill="#f9a825"/><text x="570" y="142" fill="#aaa" font-size="11" font-family="sans-serif">入力エラーの低減</text><rect x="550" y="154" width="10" height="10" rx="2" fill="#f9a825"/><text x="570" y="164" fill="#aaa" font-size="11" font-family="sans-serif">パターン認識の活用</text><rect x="550" y="176" width="10" height="10" rx="2" fill="#f9a825"/><text x="570" y="186" fill="#aaa" font-size="11" font-family="sans-serif">ユーザー完了率の向上</text><text x="645" y="228" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">7±2制約を設計で克服</text></svg>
@@ -167,6 +191,8 @@ style: |
 ---
 
 # チャンキングという解決策（2/2）
+
+> *熟達とはチャンクの大きさが成長すること—量ではなく質*
 
 - 初心者：個々の文字・記号に注意が向かう
 - 熟練者：「for文のパターン」「エラーハンドリングの定型」として認識
@@ -180,6 +206,8 @@ style: |
 ---
 
 # まとめ：認知限界を設計の武器に
+
+> *7±2をチャンキング・段階開示・視覚階層で克服する*
 
 - ✅ **ワーキングメモリ容量：4〜7チャンク（個人差あり）**
 - ✅ **メニュー・フォーム・色は7以下に抑えると認知負荷が下がる**

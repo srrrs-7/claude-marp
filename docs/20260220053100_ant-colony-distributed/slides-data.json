@@ -12,6 +12,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "5つのテーマがアリから分散設計の本質を体系的に紐解く",
 			"content": [
 				"1. アリのコロニーの驚くべき事実",
 				"2. スティグマジー：間接的コミュニケーション",
@@ -28,6 +29,7 @@
 		},
 		{
 			"title": "女王アリは「命令」しない",
+			"subtitle": "中央不在でも秩序が生まれる—指揮官なき自律分散の証明",
 			"content": [
 				"**誤解：** 女王アリが全体を指揮している",
 				"**現実：** 女王は産卵のみ。指示を出す機能を持たない",
@@ -39,6 +41,7 @@
 		},
 		{
 			"title": "スティグマジー：フェロモンで「間接通信」",
+			"subtitle": "環境へのフェロモン書き込みが疎結合通信の完璧なモデル",
 			"content": [
 				"アリは直接会話しない。**環境を介して通信する**",
 				"<svg viewBox=\"0 0 800 260\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"260\" fill=\"#1a1a2e\"/><rect x=\"30\" y=\"100\" width=\"60\" height=\"40\" rx=\"8\" fill=\"#e91e63\"/><text x=\"60\" y=\"125\" text-anchor=\"middle\" font-size=\"11\" fill=\"white\" font-weight=\"bold\">巣</text><rect x=\"710\" y=\"100\" width=\"60\" height=\"40\" rx=\"8\" fill=\"#f9a825\"/><text x=\"740\" y=\"125\" text-anchor=\"middle\" font-size=\"11\" fill=\"#1a1a2e\" font-weight=\"bold\">食料</text><path d=\"M90,120 Q200,50 400,60 Q600,50 710,120\" stroke=\"#ffffff\" stroke-width=\"1\" fill=\"none\" stroke-dasharray=\"4,3\" opacity=\"0.3\"/><path d=\"M90,120 Q250,180 400,170 Q550,160 710,120\" stroke=\"#f9a825\" stroke-width=\"4\" fill=\"none\" opacity=\"0.8\"/><path d=\"M90,120 Q250,200 400,200 Q580,195 710,120\" stroke=\"#f9a825\" stroke-width=\"2\" fill=\"none\" opacity=\"0.4\"/><circle cx=\"200\" cy=\"143\" r=\"5\" fill=\"#f9a825\" opacity=\"0.9\"/><circle cx=\"280\" cy=\"158\" r=\"4\" fill=\"#f9a825\" opacity=\"0.8\"/><circle cx=\"360\" cy=\"165\" r=\"5\" fill=\"#f9a825\" opacity=\"0.9\"/><circle cx=\"450\" cy=\"162\" r=\"4\" fill=\"#f9a825\" opacity=\"0.7\"/><circle cx=\"540\" cy=\"148\" r=\"5\" fill=\"#f9a825\" opacity=\"0.9\"/><circle cx=\"630\" cy=\"133\" r=\"4\" fill=\"#f9a825\" opacity=\"0.8\"/><circle cx=\"240\" cy=\"148\" r=\"12\" fill=\"#e91e63\"/><text x=\"240\" y=\"152\" text-anchor=\"middle\" font-size=\"10\" fill=\"white\">🐜</text><circle cx=\"480\" cy=\"155\" r=\"12\" fill=\"#e91e63\"/><text x=\"480\" y=\"159\" text-anchor=\"middle\" font-size=\"10\" fill=\"white\">🐜</text><text x=\"400\" y=\"30\" text-anchor=\"middle\" font-size=\"12\" fill=\"white\">--- 短距離ルート（揮発が遅い） ---</text><text x=\"400\" y=\"245\" text-anchor=\"middle\" font-size=\"11\" fill=\"#f9a825\">フェロモン濃度 = 情報 ｜ 揮発 = TTL ｜ 経路強化 = 正のフィードバック</text></svg>",
@@ -49,6 +52,7 @@
 		},
 		{
 			"title": "アリの行動ルールは3つだけ",
+			"subtitle": "3ルールだけが50万匹の集合知を生む—シンプルさが鍵",
 			"content": [
 				"**1. フェロモン濃度に応じてルートを選ぶ**",
 				"**2. 食料を運ぶ時はフェロモンを残す**",
@@ -84,6 +88,7 @@
 		},
 		{
 			"title": "ACOアルゴリズムの仕組み（1/2）",
+			"subtitle": "正のフィードバックと揮発TTLで最短経路が自然収束する",
 			"content": [
 				"1992年 Marco Dorigo が提案した組み合わせ最適化手法",
 				"**巡回セールスマン問題（TSP）** への応用が有名",
@@ -106,6 +111,7 @@
 		},
 		{
 			"title": "中央集権的設計の問題",
+			"subtitle": "SPOFはアリが2億5000万年前に解決済—中央集権を疑え",
 			"content": [
 				"**単一障害点（SPOF）：** 中央サーバーが落ちると全滅",
 				"**スケーラビリティの壁：** 全処理が1点に集中",

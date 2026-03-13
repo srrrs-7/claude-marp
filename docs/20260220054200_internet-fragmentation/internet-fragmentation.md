@@ -7,6 +7,71 @@ paginate: true
 header: "インターネットの分裂"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -23,6 +88,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *スプリンターネットが進行中、2030年までに3大ブロック確定へ*
 
 - 1. スプリンターネットとは何か
 - 2. 中国のグレートファイアウォール
@@ -48,6 +115,8 @@ style: |
 
 # 「一つのインターネット」という幻想（2/2）
 
+> *2026年現在、3モデルが並立し分断は不可逆に*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">2026年の現実：各国の「国内網」化</text><rect x="40" y="55" width="160" height="220" rx="8" fill="#0d47a1" stroke="#42a5f5" stroke-width="2"/><text x="120" y="80" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">中国</text><text x="120" y="100" text-anchor="middle" fill="#90caf9" font-size="11" font-family="sans-serif">170万件ブロック</text><text x="120" y="118" text-anchor="middle" fill="#90caf9" font-size="11" font-family="sans-serif">Baidu/WeChat</text><text x="120" y="136" text-anchor="middle" fill="#90caf9" font-size="11" font-family="sans-serif">並行宇宙構築済</text><rect x="40" y="185" width="160" height="50" rx="4" fill="#c62828"/><text x="120" y="215" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">完全遮断可能</text><rect x="220" y="55" width="160" height="220" rx="8" fill="#880e4f" stroke="#f48fb1" stroke-width="2"/><text x="300" y="80" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">ロシア</text><text x="300" y="100" text-anchor="middle" fill="#f8bbd0" font-size="11" font-family="sans-serif">RuNet分離法</text><text x="300" y="118" text-anchor="middle" fill="#f8bbd0" font-size="11" font-family="sans-serif">西側から切断可能</text><text x="300" y="136" text-anchor="middle" fill="#f8bbd0" font-size="11" font-family="sans-serif">VPN急増中</text><rect x="220" y="185" width="160" height="50" rx="4" fill="#c62828"/><text x="300" y="215" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">切断実験済み</text><rect x="400" y="55" width="160" height="220" rx="8" fill="#1b5e20" stroke="#66bb6a" stroke-width="2"/><text x="480" y="80" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">EU</text><text x="480" y="100" text-anchor="middle" fill="#a5d6a7" font-size="11" font-family="sans-serif">GDPR/DSA/DMA</text><text x="480" y="118" text-anchor="middle" fill="#a5d6a7" font-size="11" font-family="sans-serif">価値観規制空間</text><text x="480" y="136" text-anchor="middle" fill="#a5d6a7" font-size="11" font-family="sans-serif">ブリュッセル効果</text><rect x="400" y="185" width="160" height="50" rx="4" fill="#2e7d32"/><text x="480" y="215" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">規制的分断</text><rect x="580" y="55" width="160" height="220" rx="8" fill="#e65100" stroke="#ffb74d" stroke-width="2"/><text x="660" y="80" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">インド・ブラジル</text><text x="660" y="100" text-anchor="middle" fill="#ffe0b2" font-size="11" font-family="sans-serif">データローカル化</text><text x="660" y="118" text-anchor="middle" fill="#ffe0b2" font-size="11" font-family="sans-serif">国内サーバ義務化</text><text x="660" y="136" text-anchor="middle" fill="#ffe0b2" font-size="11" font-family="sans-serif">急成長新興国</text><rect x="580" y="185" width="160" height="50" rx="4" fill="#e65100"/><text x="660" y="215" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">法的分断</text><text x="400" y="305" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">→ インターネットは実質的に複数の「国内網」に分裂</text></svg>
 
 
@@ -68,6 +137,8 @@ style: |
 
 # 世界最大のファイアウォール（2/2）
 
+> *西側サービスを締め出し、国産代替で完結する閉鎖圏*
+
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">西側サービス vs 中国版並行宇宙</text><rect x="30" y="50" width="340" height="200" rx="8" fill="#880e4f" stroke="#f48fb1" stroke-width="2"/><text x="200" y="76" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">ブロックされた西側サービス</text><text x="200" y="102" text-anchor="middle" fill="#ef9a9a" font-size="12" font-family="sans-serif">Google / YouTube / Gmail</text><text x="200" y="124" text-anchor="middle" fill="#ef9a9a" font-size="12" font-family="sans-serif">Facebook / Instagram / Twitter</text><text x="200" y="146" text-anchor="middle" fill="#ef9a9a" font-size="12" font-family="sans-serif">Wikipedia（中国語版含む）</text><text x="200" y="168" text-anchor="middle" fill="#ef9a9a" font-size="12" font-family="sans-serif">WhatsApp / Telegram</text><text x="200" y="190" text-anchor="middle" fill="#ef9a9a" font-size="12" font-family="sans-serif">NYT / BBC / Reuters</text><text x="200" y="235" text-anchor="middle" fill="#c62828" font-size="11" font-family="sans-serif">170万件以上をブロック</text><rect x="430" y="50" width="340" height="200" rx="8" fill="#0d47a1" stroke="#42a5f5" stroke-width="2"/><text x="600" y="76" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">中国版並行デジタル宇宙</text><text x="600" y="102" text-anchor="middle" fill="#90caf9" font-size="12" font-family="sans-serif">Baidu（検索）/ Bilibili（動画）</text><text x="600" y="124" text-anchor="middle" fill="#90caf9" font-size="12" font-family="sans-serif">WeChat（SNS+決済）</text><text x="600" y="146" text-anchor="middle" fill="#90caf9" font-size="12" font-family="sans-serif">Weibo（マイクロブログ）</text><text x="600" y="168" text-anchor="middle" fill="#90caf9" font-size="12" font-family="sans-serif">Baidu百科（百科事典）</text><text x="600" y="190" text-anchor="middle" fill="#90caf9" font-size="12" font-family="sans-serif">人民日報 / 新華社</text><text x="600" y="235" text-anchor="middle" fill="#42a5f5" font-size="11" font-family="sans-serif">完全な代替エコシステム</text><text x="385" y="155" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">≠</text></svg>
 
 
@@ -81,6 +152,8 @@ style: |
 
 # 2022年：西側との切断が加速（1/2）
 
+> *RuNet分離法で外部遮断スイッチが既に稼働中*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">RuNet：ロシア独立インターネットの構造</text><rect x="50" y="50" width="700" height="80" rx="10" fill="#1b5e20" stroke="#66bb6a" stroke-width="2"/><text x="400" y="83" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold" font-family="sans-serif">グローバルインターネット</text><text x="400" y="108" text-anchor="middle" fill="#a5d6a7" font-size="12" font-family="sans-serif">（西側プラットフォーム・CDN・BGPルーティング）</text><rect x="200" y="170" width="400" height="80" rx="10" fill="#880e4f" stroke="#f48fb1" stroke-width="2"/><text x="400" y="203" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold" font-family="sans-serif">国境ゲートウェイ（ТСПУ）</text><text x="400" y="228" text-anchor="middle" fill="#f8bbd0" font-size="12" font-family="sans-serif">有事に外部接続を遮断できる国家管理スイッチ</text><rect x="100" y="290" width="240" height="40" rx="8" fill="#c62828"/><text x="220" y="316" text-anchor="middle" fill="#fff" font-size="12" font-family="sans-serif">RuNet（国内のみ）</text><rect x="460" y="290" width="240" height="40" rx="8" fill="#37474f"/><text x="580" y="316" text-anchor="middle" fill="#fff" font-size="12" font-family="sans-serif">外部接続（平時のみ許可）</text><line x1="400" y1="130" x2="400" y2="168" stroke="#42a5f5" stroke-width="2"/><polygon points="395,162 400,170 405,162" fill="#42a5f5"/><line x1="300" y1="250" x2="220" y2="288" stroke="#ef9a9a" stroke-width="2"/><polygon points="216,282 220,290 225,283" fill="#ef9a9a"/><line x1="500" y1="250" x2="580" y2="288" stroke="#90caf9" stroke-width="2"/><polygon points="575,283 580,291 585,284" fill="#90caf9"/></svg>
 - **RuNet分離法（2019年）：** 国内トラフィックを国境ゲートウェイ経由に集約
 - 有事に西側インターネットから切断可能な設計
@@ -89,6 +162,8 @@ style: |
 ---
 
 # 2022年：西側との切断が加速（2/2）
+
+> *ブロックが強まるほどVPN利用が2692%増という逆説*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">ロシアのブロックと逆説的なVPN急増</text><rect x="30" y="50" width="340" height="190" rx="8" fill="#c62828" stroke="#ef9a9a" stroke-width="2"/><text x="200" y="76" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">ブロックされたサービス</text><text x="200" y="102" text-anchor="middle" fill="#ffcdd2" font-size="12" font-family="sans-serif">Instagram / Facebook（2022年）</text><text x="200" y="124" text-anchor="middle" fill="#ffcdd2" font-size="12" font-family="sans-serif">Twitter/X（2022年）</text><text x="200" y="146" text-anchor="middle" fill="#ffcdd2" font-size="12" font-family="sans-serif">LinkedIn（2016年〜）</text><text x="200" y="168" text-anchor="middle" fill="#ffcdd2" font-size="12" font-family="sans-serif">Apple Pay / Google Pay</text><text x="200" y="190" text-anchor="middle" fill="#ffcdd2" font-size="12" font-family="sans-serif">多数のニュースサイト</text><rect x="430" y="50" width="340" height="190" rx="8" fill="#1b5e20" stroke="#66bb6a" stroke-width="2"/><text x="600" y="76" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">逆説：VPN利用急増</text><text x="600" y="108" text-anchor="middle" fill="#a5d6a7" font-size="12" font-family="sans-serif">2022年2月: VPNダウンロード</text><text x="600" y="128" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">2,692%増</text><text x="600" y="158" text-anchor="middle" fill="#a5d6a7" font-size="12" font-family="sans-serif">ブロックされた市民が</text><text x="600" y="178" text-anchor="middle" fill="#a5d6a7" font-size="12" font-family="sans-serif">VPNで外部情報にアクセス</text><text x="600" y="210" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif">検閲は完全には機能しない</text><text x="400" y="260" text-anchor="middle" fill="#90caf9" font-size="12" font-family="sans-serif">情報統制の強化がかえって情報リテラシーを高める皮肉</text></svg>
 
@@ -103,12 +178,16 @@ style: |
 
 # EUの「第三の道」（1/2）
 
+> *米中と異なる「価値観ベース規制」が第三極を形成*
+
 - <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">3つのデジタル秩序モデル比較</text><rect x="30" y="50" width="220" height="240" rx="10" fill="#0d47a1" stroke="#42a5f5" stroke-width="2"/><text x="140" y="80" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold" font-family="sans-serif">米国モデル</text><text x="140" y="108" text-anchor="middle" fill="#90caf9" font-size="12" font-family="sans-serif">自由市場優先</text><text x="140" y="130" text-anchor="middle" fill="#90caf9" font-size="11" font-family="sans-serif">民間プラットフォーム主導</text><text x="140" y="150" text-anchor="middle" fill="#90caf9" font-size="11" font-family="sans-serif">規制は最小限</text><text x="140" y="175" text-anchor="middle" fill="#42a5f5" font-size="11" font-family="sans-serif">Google / Meta / Amazon</text><text x="140" y="195" text-anchor="middle" fill="#42a5f5" font-size="11" font-family="sans-serif">が世界を席巻</text><rect x="30" y="255" width="220" height="25" rx="4" fill="#1976d2"/><text x="140" y="272" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">自由度：高 / 国家管理：低</text><rect x="290" y="50" width="220" height="240" rx="10" fill="#880e4f" stroke="#f48fb1" stroke-width="2"/><text x="400" y="80" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold" font-family="sans-serif">中国モデル</text><text x="400" y="108" text-anchor="middle" fill="#f8bbd0" font-size="12" font-family="sans-serif">国家統制優先</text><text x="400" y="130" text-anchor="middle" fill="#f8bbd0" font-size="11" font-family="sans-serif">政府が全通信を管理</text><text x="400" y="150" text-anchor="middle" fill="#f8bbd0" font-size="11" font-family="sans-serif">国産サービスに閉鎖</text><text x="400" y="175" text-anchor="middle" fill="#f48fb1" font-size="11" font-family="sans-serif">Baidu / WeChat / Weibo</text><text x="400" y="195" text-anchor="middle" fill="#f48fb1" font-size="11" font-family="sans-serif">が国内完結</text><rect x="290" y="255" width="220" height="25" rx="4" fill="#c62828"/><text x="400" y="272" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">自由度：低 / 国家管理：高</text><rect x="550" y="50" width="220" height="240" rx="10" fill="#1b5e20" stroke="#66bb6a" stroke-width="2"/><text x="660" y="80" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold" font-family="sans-serif">EUモデル</text><text x="660" y="108" text-anchor="middle" fill="#a5d6a7" font-size="12" font-family="sans-serif">価値観規制優先</text><text x="660" y="130" text-anchor="middle" fill="#a5d6a7" font-size="11" font-family="sans-serif">民主主義・基本権保護</text><text x="660" y="150" text-anchor="middle" fill="#a5d6a7" font-size="11" font-family="sans-serif">GDPR/DSA/DMA/AI法</text><text x="660" y="175" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif">ブリュッセル効果で</text><text x="660" y="195" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif">世界標準に影響</text><rect x="550" y="255" width="220" height="25" rx="4" fill="#2e7d32"/><text x="660" y="272" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">自由度：中 / 規制：価値観ベース</text></svg>
 
 
 ---
 
 # EUの「第三の道」（2/2）
+
+> *EU規制が米国企業を動かし世界標準を塗り替える*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">EU主要規制とブリュッセル効果</text><rect x="30" y="50" width="175" height="80" rx="8" fill="#1b5e20" stroke="#66bb6a" stroke-width="2"/><text x="117" y="80" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">GDPR</text><text x="117" y="100" text-anchor="middle" fill="#a5d6a7" font-size="11" font-family="sans-serif">個人データ保護</text><text x="117" y="118" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">2018年施行</text><rect x="215" y="50" width="175" height="80" rx="8" fill="#0d47a1" stroke="#42a5f5" stroke-width="2"/><text x="302" y="80" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">DSA</text><text x="302" y="100" text-anchor="middle" fill="#90caf9" font-size="11" font-family="sans-serif">プラットフォーム義務</text><text x="302" y="118" text-anchor="middle" fill="#42a5f5" font-size="10" font-family="sans-serif">2022年成立</text><rect x="400" y="50" width="175" height="80" rx="8" fill="#880e4f" stroke="#f48fb1" stroke-width="2"/><text x="487" y="80" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">DMA</text><text x="487" y="100" text-anchor="middle" fill="#f8bbd0" font-size="11" font-family="sans-serif">デジタル市場競争</text><text x="487" y="118" text-anchor="middle" fill="#f48fb1" font-size="10" font-family="sans-serif">2022年成立</text><rect x="585" y="50" width="185" height="80" rx="8" fill="#e65100" stroke="#ffb74d" stroke-width="2"/><text x="677" y="80" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold" font-family="sans-serif">AI法</text><text x="677" y="100" text-anchor="middle" fill="#ffe0b2" font-size="11" font-family="sans-serif">AIリスク分類規制</text><text x="677" y="118" text-anchor="middle" fill="#ffb74d" font-size="10" font-family="sans-serif">2024年成立</text><line x1="117" y1="130" x2="400" y2="168" stroke="#42a5f5" stroke-width="1"/><line x1="302" y1="130" x2="400" y2="168" stroke="#42a5f5" stroke-width="1"/><line x1="487" y1="130" x2="400" y2="168" stroke="#42a5f5" stroke-width="1"/><line x1="677" y1="130" x2="400" y2="168" stroke="#42a5f5" stroke-width="1"/><rect x="200" y="168" width="400" height="50" rx="8" fill="#37474f" stroke="#f9a825" stroke-width="2"/><text x="400" y="190" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">ブリュッセル効果</text><text x="400" y="208" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">EUの規制が世界のプラットフォームに事実上の標準として波及</text><text x="400" y="255" text-anchor="middle" fill="#90caf9" font-size="12" font-family="sans-serif">米国企業もEU基準に合わせることで全世界に統一規格が適用される</text></svg>
 
@@ -117,12 +196,16 @@ style: |
 
 # デジタル主権 vs 自由な情報流通
 
+> *どちらを選ぶかが国家のデジタル戦略の根本分岐点*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">トレードオフ：デジタル主権 vs 情報の自由</text><rect x="30" y="50" width="340" height="270" rx="10" fill="#0d47a1" stroke="#42a5f5" stroke-width="2"/><text x="200" y="80" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">デジタル主権のメリット</text><text x="60" y="112" fill="#a5d6a7" font-size="12" font-family="sans-serif">+ 国家安全保障の確保</text><text x="60" y="138" fill="#a5d6a7" font-size="12" font-family="sans-serif">+ 外国サービス依存リスクを低減</text><text x="60" y="164" fill="#a5d6a7" font-size="12" font-family="sans-serif">+ データを自国に留置</text><text x="60" y="190" fill="#a5d6a7" font-size="12" font-family="sans-serif">+ 有害コンテンツの国内規制</text><text x="60" y="220" fill="#ef9a9a" font-size="12" font-family="sans-serif">- 技術革新の阻害</text><text x="60" y="246" fill="#ef9a9a" font-size="12" font-family="sans-serif">- 国際競争力の低下</text><text x="60" y="272" fill="#ef9a9a" font-size="12" font-family="sans-serif">- 情報の偏りと自国民の孤立化</text><rect x="430" y="50" width="340" height="270" rx="10" fill="#1b5e20" stroke="#66bb6a" stroke-width="2"/><text x="600" y="80" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">情報自由流通のメリット</text><text x="460" y="112" fill="#a5d6a7" font-size="12" font-family="sans-serif">+ グローバルなイノベーション促進</text><text x="460" y="138" fill="#a5d6a7" font-size="12" font-family="sans-serif">+ 市民の知る権利の保障</text><text x="460" y="164" fill="#a5d6a7" font-size="12" font-family="sans-serif">+ 国際的な学術・ビジネス連携</text><text x="460" y="190" fill="#a5d6a7" font-size="12" font-family="sans-serif">+ 権威主義への抵抗手段</text><text x="460" y="220" fill="#ef9a9a" font-size="12" font-family="sans-serif">- 外国からの偽情報・干渉</text><text x="460" y="246" fill="#ef9a9a" font-size="12" font-family="sans-serif">- プラットフォーム独占問題</text><text x="460" y="272" fill="#ef9a9a" font-size="12" font-family="sans-serif">- 個人データの国外流出</text><text x="380" y="190" text-anchor="middle" fill="#fff" font-size="22" font-family="sans-serif" font-weight="bold">⇄</text><text x="400" y="340" text-anchor="middle" fill="#90caf9" font-size="12" font-family="sans-serif">どちらを優先するかが各国のデジタル政策の根本的な分岐点</text></svg>
 
 
 ---
 
 # まとめ：分裂するネットの意味
+
+> *日本はどのモデルに属するか選択を迫られている*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">スプリンターネット化の進行タイムライン</text><line x1="60" y1="100" x2="740" y2="100" stroke="#42a5f5" stroke-width="3"/><polygon points="734,94 742,100 734,106" fill="#42a5f5"/><circle cx="120" cy="100" r="8" fill="#f9a825"/><text x="120" y="85" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">2003</text><text x="120" y="120" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">黄金の盾</text><text x="120" y="134" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">（中国）</text><circle cx="220" cy="100" r="8" fill="#e91e63"/><text x="220" y="85" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">2016</text><text x="220" y="120" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">LinkedIn</text><text x="220" y="134" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">ロシアブロック</text><circle cx="340" cy="100" r="8" fill="#e91e63"/><text x="340" y="85" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">2018</text><text x="340" y="120" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">GDPR施行</text><text x="340" y="134" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">（EU）</text><circle cx="460" cy="100" r="8" fill="#e91e63"/><text x="460" y="85" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">2019</text><text x="460" y="120" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">RuNet</text><text x="460" y="134" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">分離法</text><circle cx="560" cy="100" r="8" fill="#e91e63"/><text x="560" y="85" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">2022</text><text x="560" y="120" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">RuNet加速</text><text x="560" y="134" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">DSA/DMA施行</text><circle cx="680" cy="100" r="8" fill="#66bb6a"/><text x="680" y="85" text-anchor="middle" fill="#66bb6a" font-size="11" font-weight="bold" font-family="sans-serif">2026</text><text x="680" y="120" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">AI法適用開始</text><text x="680" y="134" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">分断さらに深化</text><text x="400" y="185" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">主要メッセージ</text><text x="400" y="210" text-anchor="middle" fill="#fff" font-size="12" font-family="sans-serif">インターネットの「グローバルな一体性」は幻想になりつつある</text><text x="400" y="232" text-anchor="middle" fill="#fff" font-size="12" font-family="sans-serif">3つのモデル（米・中・EU）が互いに影響しながら並立する</text><text x="400" y="254" text-anchor="middle" fill="#fff" font-size="12" font-family="sans-serif">エンジニアは「検閲に強い設計」を理解し選択できるべきだ</text><text x="400" y="280" text-anchor="middle" fill="#90caf9" font-size="11" font-family="sans-serif">「インターネットは人類の共有財産から、国家の道具に変わりつつある」</text></svg>
 - ✅ **日本はどのモデルに属するか選択を迫られている**

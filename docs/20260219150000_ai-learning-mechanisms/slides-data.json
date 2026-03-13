@@ -21,7 +21,8 @@
 				"**VC 次元**: 仮説クラスの表現力 — 高いほど過学習リスクも増大",
 				"**学習の本質**: 訓練データを記憶するのではなく汎化すること"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "汎化こそが学習の本質—記憶ではなく未知データへの適応が目標"
 		},
 		{
 			"title": "本資料の構成 (1/2)",
@@ -33,7 +34,8 @@
 				"**5.** 自己教師あり学習と事前学習",
 				"**6.** スケーリング則"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "最適化・NN基礎・深層学習・事前学習・スケーリング則を6章で構成"
 		},
 		{
 			"title": "本資料の構成 (2/2)",
@@ -45,7 +47,8 @@
 				"**11.** 解釈可能性と評価",
 				"**12.** まとめと展望"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ファインチューニング・データエンジニアリング・分散学習・評価を後半6章で"
 		},
 		{
 			"title": "1. 機械学習の3パラダイム",
@@ -76,7 +79,8 @@
 				"主なタスク: 分類 / 回帰 / 系列ラベリング / 構造予測",
 				"決定境界の複雑さとサンプル数のトレードオフが鍵"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "汎化誤差の最小化が目標—経験的リスクと期待リスクのギャップを埋める"
 		},
 		{
 			"title": "教師なし・自己教師あり学習",
@@ -89,7 +93,8 @@
 				"**自己教師あり**: データ自身からプレテキストタスクを自動生成",
 				"例: マスクトークン予測 / 画像回転予測 / 対照学習"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "教師なし学習は密度構造の発見、自己教師あり学習は自動プレテキストで代替"
 		},
 		{
 			"title": "強化学習の基礎",
@@ -102,7 +107,8 @@
 				"**ベルマン方程式**: Q*(s,a) = r + γ max_{a'} Q*(s',a')",
 				"応用: ゲームAI (AlphaGo) / ロボティクス / RLHF"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "MDP×ベルマン方程式でQ*を求めRLHFや自律エージェントの基盤を形成"
 		},
 		{
 			"title": "汎化誤差と過学習",
@@ -115,7 +121,8 @@
 				"k-fold クロスバリデーション: 小データでの分散低減に有効",
 				"テストセットは一度だけ使用 — 複数回使うと過楽観なバイアス"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "過学習は訓練データの記憶—k-foldとテスト一回限り使用が汎化の鉄則"
 		},
 		{
 			"title": "バイアス・バリアンス・トレードオフ",
@@ -128,7 +135,8 @@
 				"**Benign Overfitting**: 補間しながらも汎化できる理論的条件",
 				"深層モデルはバイアス低・バリアンス高だが二重降下で回避"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "二重降下とBenign Overfittingで深層モデルのバイアス低・バリアンス高を克服"
 		},
 		{
 			"title": "正則化手法",
@@ -141,7 +149,8 @@
 				"**Mixup / CutMix**: サンプル間の線形補間で汎化性向上",
 				"**Label Smoothing**: y = 0.9·one_hot + 0.1/K で過信を抑制"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "L2/L1/Dropout/Early Stopping/Mixup—6種の正則化で過学習を多層防御"
 		},
 		{
 			"title": "2. 最適化と損失関数",
@@ -162,7 +171,8 @@
 				"**Focal Loss**: 難サンプルに重みを置く — 不均衡データ向け",
 				"**InfoNCE / Contrastive**: 対照学習の目的関数"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "MSE/CE/KL/Huber/Focal/InfoNCE—タスクと分布の性質で損失関数を選択"
 		},
 		{
 			"title": "勾配降下法の原理",
@@ -202,7 +212,8 @@
 				"**Inverse Square Root**: Transformer 原論文の手法",
 				"**LR Finder**: 小バッチで sweep して最適学習率を探索"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Warmup→Cosine Decayの組み合わせがTransformerの学習安定化に不可欠"
 		},
 		{
 			"title": "損失地形と局所最適解",
@@ -215,7 +226,8 @@
 				"過パラメータ化が不思議なほど良い最小値へ収束しやすくする",
 				"ランダム性 (SGD ノイズ) が暗黙的にフラット最小値を選択"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SAMでフラット最小を明示的に探索—シャープ最小より汎化性能が高い"
 		},
 		{
 			"title": "勾配クリッピングと学習安定化",
@@ -228,7 +240,8 @@
 				"**Dynamic Loss Scaling**: FP16 のアンダーフロー防止",
 				"Gradient Checkpointing: 活性化を再計算でメモリ節約"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "勾配クリッピング+BF16+LayerNormの三点セットがLLM学習安定化の標準"
 		},
 		{
 			"title": "3. ニューラルネットワーク基礎",
@@ -260,7 +273,8 @@
 				"**GELU**: z·Φ(z) — BERT / GPT 系で標準採用",
 				"**SiLU (Swish)**: z·σ(z) — LLaMA / Gemma 系で採用"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ReLUからGELU/SiLUへ—活性化関数の選択でBERT系とLLaMA系が分岐"
 		},
 		{
 			"title": "誤差逆伝播法 (Backpropagation)",
@@ -283,7 +297,8 @@
 				"**RMSNorm**: γx/RMS(x) — LayerNorm より計算効率が高い",
 				"**GroupNorm**: チャネルをグループ分けして正規化 — 小バッチでも安定"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "BatchNorm→LayerNorm→RMSNormの進化がTransformerの学習効率を決定"
 		},
 		{
 			"title": "ドロップアウトと正則化",
@@ -296,7 +311,8 @@
 				"LLM では Dropout より Weight Decay が主流",
 				"過学習の種類に応じた正則化手法の選択が重要"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "LLMではDropoutよりWeight Decayが主流—過学習の種類で手法を選択"
 		},
 		{
 			"title": "残差接続 (ResNet)",
@@ -309,7 +325,8 @@
 				"**Pre-Activation ResNet**: BN + ReLU → Conv の順で勾配流改善",
 				"Transformer の残差接続も同じ原理 — 深さへの鍵"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "残差接続で勾配の直接経路を確保—152層の超深層化を可能にした鍵"
 		},
 		{
 			"title": "初期化戦略",
@@ -321,7 +338,8 @@
 				"**正規直交初期化**: 勾配ノルムの等尺性保持 (Saxe et al., 2014)",
 				"μP (Maximal Update Parameterization): スケール不変の初期化"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "He初期化がReLUの標準—ゼロ初期化の対称性破壊問題を回避する"
 		},
 		{
 			"title": "4. 深層学習アーキテクチャ",
@@ -341,7 +359,8 @@
 				"**特徴マップの積み上げ**: チャネル数 ↑ × 空間解像度 ↓ が基本設計",
 				"受容野 (Receptive Field): 深い層ほど入力の広い領域を統合"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "局所受容野×重み共有×特徴マップ積み上げがCNNの3原則"
 		},
 		{
 			"title": "CNNの進化",
@@ -353,7 +372,8 @@
 				"**EfficientNet (2019)**: NAS + Compound Scaling — 精度・効率の最前線",
 				"**ConvNeXt (2022)**: Transformer 設計を CNN に導入"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AlexNet2012→ConvNeXt2022の10年—Transformer設計をCNNに逆輸入"
 		},
 		{
 			"title": "RNN / LSTM の仕組み",
@@ -365,7 +385,8 @@
 				"**GRU (Cho 2014)**: LSTM を簡略化 — 2 ゲートでパラメータ削減",
 				"Seq2Seq + Attention: RNN 時代の機械翻訳標準手法"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "LSTMの3ゲート+Cell stateが長期依存問題を解決、GRUは2ゲートで軽量化"
 		},
 		{
 			"title": "Attention 機構の原理",
@@ -400,7 +421,8 @@
 				"**Causal Masking**: デコーダでは未来トークンを -∞ でマスク",
 				"**Flash Attention**: IO-aware 実装で 4〜10× 高速化 (Dao 2022)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Multi-Head Attentionで構文/意味/照応を並列捕捉、FlashAttentionで4-10倍高速化"
 		},
 		{
 			"title": "位置エンコーディング",
@@ -413,7 +435,8 @@
 				"**ALiBi**: Attention スコアに線形バイアス — 学習超えの長文外挿に強い",
 				"**YaRN / LongRoPE**: コンテキスト長拡張に対応した RoPE 変種"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "RoPEが相対位置をLLaMA標準に—ALiBiで学習長超えの外挿も可能"
 		},
 		{
 			"title": "Vision Transformer (ViT)",
@@ -426,7 +449,8 @@
 				"**Swin Transformer**: 階層構造 + Window Attention — 物体検出に最適",
 				"**MAE**: ランダムマスクパッチの復元による自己教師あり事前学習"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ViTは大規模事前学習でResNetを凌駕、MAEで自己教師あり学習も実現"
 		},
 		{
 			"title": "5. 自己教師あり学習と事前学習",
@@ -443,7 +467,8 @@
 				"自然言語はテキスト自体がプレテキストタスクの宝庫 (次トークン予測)",
 				"事前学習の品質が下流タスクの上限を決める"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ラベルなし大規模データを活用—事前学習品質が下流タスクの上限を決定"
 		},
 		{
 			"title": "マスク言語モデリング (BERT)",
@@ -456,7 +481,8 @@
 				"**RoBERTa**: NSP 廃止 + 大バッチ + 動的マスキング → 大幅改善",
 				"**DeBERTa**: 分離注意機構 + 絶対位置デコーダ → さらなる向上"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "BERTのMLM15%マスクで双方向文脈を学習、RoBERTaでNSP廃止し大幅改善"
 		},
 		{
 			"title": "自己回帰型事前学習 (GPT 系)",
@@ -469,7 +495,8 @@
 				"Causal Masking: 未来トークンへのアクセスを禁止",
 				"スケールアップの一貫性: 損失はべき乗則で改善し続ける"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GPT-1→GPT-3の進化で次トークン予測からIn-context Learningを発見"
 		},
 		{
 			"title": "対照学習 (Contrastive Learning)",
@@ -481,7 +508,8 @@
 				"**CLIP** (Radford 2021): 画像-テキストペア 4億件から共同表現を学習",
 				"Hard Negative Mining: 難しい負例ほど表現品質の向上に有効"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "InfoNCE+SimCLRで類似表現を近づけ、CLIPで画像-テキスト4億ペアから共同表現"
 		},
 		{
 			"title": "MAE / SimMIM",
@@ -493,7 +521,8 @@
 				"**BEiT**: dVAE 由来の離散トークン予測 — DALL-E の離散 VAE を利用",
 				"下流転移: Fine-tuning / Linear Probe で BERT 類似の転移学習"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "MAEは75%マスク復元で冗長な画像から高品質な視覚表現を獲得"
 		},
 		{
 			"title": "Instruction Tuning の登場",
@@ -506,7 +535,8 @@
 				"**Alpaca / Vicuna**: ChatGPT 出力を教師データとしたオープンモデル",
 				"指示の品質と多様性がモデルの汎化能力を決定する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "InstructGPT=SFT+RLHFで有害出力を削減、指示品質が汎化能力を決定"
 		},
 		{
 			"title": "思考連鎖 (CoT) 事前学習",
@@ -519,7 +549,8 @@
 				"**Process Reward Model (PRM)**: 各推論ステップの正しさを評価",
 				"**GRPO / REINFORCE++**: RL で推論品質を直接最適化"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CoT→STaR→o1/R1と推論能力が進化、PRMでステップ単位の品質評価を実現"
 		},
 		{
 			"title": "6. スケーリング則",
@@ -547,7 +578,8 @@
 				"**LLaMA / Mistral**: Chinchilla 則に基づく高効率トレーニング",
 				"Llama 3: 405B / 15T tokens — 推論コスト最適化を重視"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Chinchilla則でN=D∝C^0.5—データとモデルを等比率で増やすべき"
 		},
 		{
 			"title": "創発能力 (Emergent Abilities)",
@@ -559,7 +591,8 @@
 				"**Chain-of-Thought**: 中間推論ステップの自発的展開",
 				"Calibration の破綻: 大規模化で confidence が過剰になる傾向"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "スケール閾値で突然能力が出現するEmergence、ICLとCoTが代表的事例"
 		},
 		{
 			"title": "データ・計算・モデルの最適配分",
@@ -571,7 +604,8 @@
 				"データ反復: 同データの複数エポック — 1〜2 エポックが実用的最大",
 				"GPT-4 / Gemini 1.5 Ultra はパラメータを非公開 — 新しい配分の可能性"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Compute-optimalはN∝D、推論効率重視なら小モデル+多データが優位"
 		},
 		{
 			"title": "7. ファインチューニングとアライメント",
@@ -588,7 +622,8 @@
 				"解決策: SFT データと事前学習データの混合 / 低学習率",
 				"**データ品質 >> データ量**: 1000件の高品質データが大量低品質データを超える"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "データ品質>>データ量—1000件の高品質データが大量低品質を超える"
 		},
 		{
 			"title": "RLHF: 強化学習による人間フィードバック",
@@ -611,7 +646,8 @@
 				"**Overoptimization**: KL 増大で実際の人間評価が低下する現象",
 				"**Ensemble RM**: 複数報酬モデルの統計で不確実性を推定"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "報酬ハッキングとOveroptimizationがRLHFの最大リスク、Ensemble RMで緩和"
 		},
 		{
 			"title": "PPO 最適化",
@@ -623,7 +659,8 @@
 				"KL ペナルティ: 参照モデルとの KL 発散をペナルティとして加算",
 				"実装の複雑さ: RM / Actor / Critic / Reference の4モデルを同時管理"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "PPOはClip+KLペナルティで安定学習、4モデル同時管理の複雑さが課題"
 		},
 		{
 			"title": "DPO: 直接選好最適化",
@@ -657,7 +694,8 @@
 				"**DeepSeek-R1-Zero**: SFT なしで RL のみで推論能力が自発的に出現",
 				"Self-Play: モデルが自らに対して学習 — 能力のブートストラップ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GRPOで価値関数不要、DeepSeek-R1-ZeroがSFTなしで推論能力を自発的に獲得"
 		},
 		{
 			"title": "PEFT: パラメータ効率的ファインチューニング",
@@ -670,7 +708,8 @@
 				"**IA³**: スケーリングベクターで活性化を調整 — Few-shot PEFT",
 				"**LoRA**: 低ランク行列近似 — 現在最も広く使われる手法"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "LoRAが最も広く使われるPEFT—全パラメータの約1%で高品質ファインチューニング"
 		},
 		{
 			"title": "LoRA / QLoRA",
@@ -701,7 +740,8 @@
 				"**多言語不均衡**: 日本語/中国語等は英語の 1/50 以下",
 				"法的問題: 著作権データの扱い — Books3, LibGen 等で訴訟"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "データ混合比とコード比率が推論能力を左右—多言語は英語の1/50以下"
 		},
 		{
 			"title": "データキュレーションパイプライン",
@@ -713,7 +753,8 @@
 				"**Quality Classifier**: GPT-4 / Claude でアノテートし品質スコアを付与",
 				"規模が増えるほどフィルタリングの精度が全体品質を左右"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "言語識別→重複排除→品質フィルタ→有害除去のパイプラインが品質の鍵"
 		},
 		{
 			"title": "データ汚染と評価セット独立性",
@@ -726,7 +767,8 @@
 				"テストセットは一度だけ使用 — 複数回使うと過楽観バイアス",
 				"コミュニティへの提言: 評価データは秘匿し公開を最小限に"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "評価データの汚染が実能力を偽装—LiveBenchが定期更新で汚染を防止"
 		},
 		{
 			"title": "合成データと自己改善ループ",
@@ -738,7 +780,8 @@
 				"合成データの限界: 多様性欠如 / 幻覚の伝播 / モデル崩壊リスク",
 				"**検証可能タスク** (数学・コード): 自動報酬で合成データの品質保証"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "合成データはモデル崩壊リスクあり、検証可能タスクで品質保証が不可欠"
 		},
 		{
 			"title": "9. 分散学習・並列化",
@@ -766,7 +809,8 @@
 				"**Expert 並列**: MoE の各 Expert を異なる GPU に配置",
 				"**FSDP** (PyTorch): ZeRO-3 相当のパラメータシャーディング"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Megatron-LMのテンソル並列でAllReduceが律速—NVLink帯域が実質的ボトルネック"
 		},
 		{
 			"title": "パイプライン並列化",
@@ -778,7 +822,8 @@
 				"**Interleaved 1F1B**: 仮想ステージを使いバブルをさらに削減",
 				"最適ステージ数: バブル率と通信コストのトレードオフ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "1F1B+Interleaved方式でGPUバブルを最小化—最適ステージ数はトレードオフ"
 		},
 		{
 			"title": "ZeRO / 3D 並列",
@@ -790,7 +835,8 @@
 				"**3D 並列**: データ並列 × テンソル並列 × パイプライン並列の組み合わせ",
 				"Megatron-DeepSpeed: 100B+ 規模の学習で実績"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ZeRO-3+3D並列でパラメータ・勾配・オプティマイザ状態すべてをシャーディング"
 		},
 		{
 			"title": "混合精度学習と勾配チェックポイント",
@@ -802,7 +848,8 @@
 				"**Gradient Checkpointing**: 活性化を再計算 → メモリ O(√n) へ削減",
 				"FlashAttention-2/3: IO-aware な計算で GPU HBM 帯域を最大活用"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "BF16+Gradient Checkpointing+FlashAttentionの組み合わせがLLM学習の標準"
 		},
 		{
 			"title": "10. 最新研究トレンド",
@@ -830,7 +877,8 @@
 				"**DeepSeek-R1**: RL で自発的な長い思考連鎖を誘導",
 				"二重スケーリング: 事前学習コスト × 推論コストの両軸で性能向上"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Best-of-N+PRMとMCTSで推論コストをスケール—事前学習に加え第2の軸に"
 		},
 		{
 			"title": "マルチモーダル学習",
@@ -842,7 +890,8 @@
 				"**Video-LLM**: 時系列フレームを処理するための時間的整合機構",
 				"統合アーキテクチャ: モダリティ固有エンコーダ + 統一 Transformer"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CLIP→LLaVA→GPT-4Vと進化、モダリティ固有エンコーダ+統一Transformerが標準"
 		},
 		{
 			"title": "拡散モデルの学習",
@@ -855,7 +904,8 @@
 				"**Stable Diffusion**: Latent Diffusion — 潜在空間でのノイズ除去",
 				"**Flow Matching**: 確率フロー ODE で拡散を統一的に定式化"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "DDPMのノイズ予測→DDIMで10倍高速化→Latent DiffusionでStable Diffusionへ"
 		},
 		{
 			"title": "World Models と予測学習",
@@ -867,10 +917,12 @@
 				"**Sora** 等の動画生成: 暗黙的に World Model を学習している可能性",
 				"AGI への道: 世界の因果構造を内化したモデルの構築"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "World ModelでRL高速化、JEPAが次のパラダイムを提示するLeCunの主張"
 		},
 		{
 			"title": "Constitutional AI と RLAIF",
+			"subtitle": "Constitutional AI+RAIFでスケーラブルなアライメントを実現—Helpful/Harmless/Honestの3H原則",
 			"content": [
 				"**Anthropic (2022)**: 原則集 (Constitution) に基づく自己批判・改訂",
 				"**RLAIF**: 人手ではなく AI フィードバックで RL — スケーラブル",
@@ -883,6 +935,7 @@
 		},
 		{
 			"title": "Speculative Decoding",
+			"subtitle": "Speculative Decodingで2〜3倍高速化—Draft+並列検証で自己回帰のbandwidth律速を克服",
 			"content": [
 				"**問題**: LLM の自己回帰生成は GPU の memory bandwidth 律速",
 				"**Speculative Decoding** (Chen 2023): Draft モデルで複数トークン先読み",
@@ -900,6 +953,7 @@
 		},
 		{
 			"title": "主要ベンチマーク概観",
+			"subtitle": "MMLU〜FrontierMathの6ベンチマークで能力評価—現行モデルはFrontierMathで1%未満",
 			"content": [
 				"<svg viewBox=\"0 0 800 260\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"260\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">主要AIベンチマーク</text>\n  <!-- Benchmark grid -->\n  <rect x=\"30\" y=\"55\" width=\"220\" height=\"55\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"140\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">MMLU</text>\n  <text x=\"140\" y=\"98\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">57科目の知識 (0-shot)</text>\n  <rect x=\"290\" y=\"55\" width=\"220\" height=\"55\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"400\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">HumanEval</text>\n  <text x=\"400\" y=\"98\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">コード生成 (pass@1)</text>\n  <rect x=\"550\" y=\"55\" width=\"220\" height=\"55\" rx=\"4\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"660\" y=\"78\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">MATH</text>\n  <text x=\"660\" y=\"98\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">数学推論 (競技レベル)</text>\n  <rect x=\"30\" y=\"130\" width=\"220\" height=\"55\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"140\" y=\"153\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">HellaSwag</text>\n  <text x=\"140\" y=\"173\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">常識推論・文脈補完</text>\n  <rect x=\"290\" y=\"130\" width=\"220\" height=\"55\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"400\" y=\"153\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">BIG-Bench</text>\n  <text x=\"400\" y=\"173\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">創発能力テスト (200+)</text>\n  <rect x=\"550\" y=\"130\" width=\"220\" height=\"55\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"660\" y=\"153\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">MT-Bench</text>\n  <text x=\"660\" y=\"173\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">マルチターン対話評価</text>\n  <text x=\"400\" y=\"215\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" opacity=\"0.8\">注: ベンチマーク汚染・饱和問題が近年深刻化</text>\n</svg>",
 				"**MMLU** (2021): 57 分野 14,000 問 — 幅広い知識評価",
@@ -913,6 +967,7 @@
 		},
 		{
 			"title": "Mechanistic Interpretability",
+			"subtitle": "Circuit Analysis+SAEでニューロン回路を解明—Anthropicが百万規模の特徴辞書を構築",
 			"content": [
 				"目標: 「なぜその答えを出したか」を回路レベルで解明",
 				"**Circuit Analysis**: サブネットワーク (circuit) が特定タスクを担当",
@@ -925,6 +980,7 @@
 		},
 		{
 			"title": "内部表現の可視化",
+			"subtitle": "Probing+Logit Lens+RepEで内部表現を可視化—概念は残差ストリームの線形方向に存在",
 			"content": [
 				"<svg viewBox=\"0 0 800 280\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"280\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">内部表現の可視化 (t-SNE / Probing)</text>\n  <!-- t-SNE scatter plot simulation -->\n  <!-- Cluster 1: animals -->\n  <ellipse cx=\"180\" cy=\"160\" rx=\"70\" ry=\"55\" fill=\"#f9a825\" opacity=\"0.12\"/>\n  <circle cx=\"155\" cy=\"150\" r=\"5\" fill=\"#f9a825\" opacity=\"0.8\"/>\n  <circle cx=\"175\" cy=\"165\" r=\"5\" fill=\"#f9a825\" opacity=\"0.8\"/>\n  <circle cx=\"195\" cy=\"145\" r=\"5\" fill=\"#f9a825\" opacity=\"0.8\"/>\n  <circle cx=\"210\" cy=\"175\" r=\"5\" fill=\"#f9a825\" opacity=\"0.8\"/>\n  <circle cx=\"165\" cy=\"180\" r=\"5\" fill=\"#f9a825\" opacity=\"0.8\"/>\n  <text x=\"180\" y=\"228\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">動物概念</text>\n  <!-- Cluster 2: numbers -->\n  <ellipse cx=\"420\" cy=\"120\" rx=\"65\" ry=\"50\" fill=\"#e91e63\" opacity=\"0.12\"/>\n  <circle cx=\"400\" cy=\"110\" r=\"5\" fill=\"#e91e63\" opacity=\"0.8\"/>\n  <circle cx=\"425\" cy=\"125\" r=\"5\" fill=\"#e91e63\" opacity=\"0.8\"/>\n  <circle cx=\"440\" cy=\"105\" r=\"5\" fill=\"#e91e63\" opacity=\"0.8\"/>\n  <circle cx=\"410\" cy=\"140\" r=\"5\" fill=\"#e91e63\" opacity=\"0.8\"/>\n  <circle cx=\"445\" cy=\"130\" r=\"5\" fill=\"#e91e63\" opacity=\"0.8\"/>\n  <text x=\"420\" y=\"185\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">数値概念</text>\n  <!-- Cluster 3: places -->\n  <ellipse cx=\"620\" cy=\"175\" rx=\"60\" ry=\"50\" fill=\"#ffffff\" opacity=\"0.10\"/>\n  <circle cx=\"600\" cy=\"165\" r=\"5\" fill=\"#ffffff\" opacity=\"0.7\"/>\n  <circle cx=\"625\" cy=\"180\" r=\"5\" fill=\"#ffffff\" opacity=\"0.7\"/>\n  <circle cx=\"640\" cy=\"160\" r=\"5\" fill=\"#ffffff\" opacity=\"0.7\"/>\n  <circle cx=\"610\" cy=\"195\" r=\"5\" fill=\"#ffffff\" opacity=\"0.7\"/>\n  <circle cx=\"645\" cy=\"190\" r=\"5\" fill=\"#ffffff\" opacity=\"0.7\"/>\n  <text x=\"620\" y=\"238\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">場所概念</text>\n  <!-- Axes labels -->\n  <text x=\"400\" y=\"270\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">t-SNE 次元削減: 高次元埋め込み空間に概念クラスターが形成される</text>\n</svg>",
 				"**Probing**: 線形分類器でニューロン表現に格納された情報を検査",
@@ -938,6 +994,7 @@
 		},
 		{
 			"title": "評価の限界と課題",
+			"subtitle": "ベンチマーク飽和・汚染・ゲームプレイの3問題が評価の信頼性を損なう根本的課題",
 			"content": [
 				"**ベンチマーク飽和**: モデルが人間レベルを超えても能力差が見えない",
 				"**データ汚染**: 訓練データとの重複で過楽観な結果",
@@ -955,6 +1012,7 @@
 		},
 		{
 			"title": "学習パラダイムの変遷まとめ",
+			"subtitle": "特徴量エンジニアリング→深層学習→Transformer→RLHF→TTCへの学習パラダイムの変遷",
 			"content": [
 				"<svg viewBox=\"0 0 800 260\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n  <rect width=\"800\" height=\"260\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">AI学習パラダイムの変遷</text>\n  <!-- Timeline -->\n  <line x1=\"60\" y1=\"130\" x2=\"740\" y2=\"130\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n  <polygon points=\"740,130 726,123 726,137\" fill=\"#f9a825\"/>\n  <circle cx=\"120\" cy=\"130\" r=\"10\" fill=\"#e91e63\"/>\n  <text x=\"120\" y=\"110\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"9\">1960-80s</text>\n  <text x=\"120\" y=\"150\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"9\">パーセプトロン</text>\n  <text x=\"120\" y=\"163\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"8\">ルールベース</text>\n  <circle cx=\"240\" cy=\"130\" r=\"10\" fill=\"#e91e63\"/>\n  <text x=\"240\" y=\"110\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"9\">1990-2000s</text>\n  <text x=\"240\" y=\"150\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"9\">SVM / RF</text>\n  <text x=\"240\" y=\"163\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"8\">特徴量エンジニアリング</text>\n  <circle cx=\"380\" cy=\"130\" r=\"10\" fill=\"#e91e63\"/>\n  <text x=\"380\" y=\"110\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"9\">2012</text>\n  <text x=\"380\" y=\"150\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"9\">Deep Learning</text>\n  <text x=\"380\" y=\"163\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"8\">AlexNet · GPU時代</text>\n  <circle cx=\"520\" cy=\"130\" r=\"10\" fill=\"#e91e63\"/>\n  <text x=\"520\" y=\"110\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"9\">2017-20</text>\n  <text x=\"520\" y=\"150\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"9\">Transformer</text>\n  <text x=\"520\" y=\"163\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"8\">BERT / GPT</text>\n  <circle cx=\"660\" cy=\"130\" r=\"12\" fill=\"#f9a825\"/>\n  <text x=\"660\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"9\">2022+</text>\n  <text x=\"660\" y=\"150\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"9\">RLHF / DPO</text>\n  <text x=\"660\" y=\"163\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"8\">アライメント時代</text>\n</svg>",
 				"**1990-2010**: 特徴量エンジニアリング + 浅い学習 (SVM, Boosting)",
@@ -968,6 +1026,7 @@
 		},
 		{
 			"title": "未解決問題と今後の方向性",
+			"subtitle": "幻覚・継続学習・合成知識・安全性・エネルギー効率の5課題がAI研究の未解決フロンティア",
 			"content": [
 				"**幻覚問題**: 事実根拠のない自信ある出力の根絶",
 				"**継続学習**: 壊滅的忘却なしに新知識を追加更新",

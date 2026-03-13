@@ -97,6 +97,8 @@ style: |
 
 # 自己紹介
 
+> *失敗談から学ぶ—YAGNI違反の代償を体験者が正直に語る*
+
 - エンジニア歴 N 年
 - YAGNI に救われた人間
 - 同時に YAGNI を無視して失敗し続けた人間
@@ -133,6 +135,8 @@ style: |
 ---
 
 # YAGNIとは
+
+> *YAGNI = 推測による実装を全廃する予測懐疑論の原則*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -176,6 +180,8 @@ style: |
 
 # 誕生の背景: エクストリームプログラミング
 
+> *XPの哲学は「変化に備える設計」ではなく「変化に対応する設計」*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">エクストリームプログラミング と YAGNI</text>
@@ -211,6 +217,8 @@ style: |
 ---
 
 # Martin Fowler の言葉
+
+> *Fowlerの一言—推測による機能にコストを払うのは合理的でない*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -298,6 +306,8 @@ class UserRepository {
 
 # なぜ YAGNI が難しいか
 
+> *過剰自信・不確実性回避・快感の3バイアスがYAGNIを難しくする*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">YAGNI を難しくする心理的要因</text>
@@ -353,6 +363,8 @@ class UserRepository {
 
 # 本質: 未来への過投資という病
 
+> *未来への過投資は必ず損—来た未来にだけコストを払うのが最善*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">未来への過投資という病</text>
@@ -394,6 +406,8 @@ class UserRepository {
 
 # 失敗1: 積読
 
+> *積読の読了率20%以下—「面白そう」で買う習慣が生む純損失*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">失敗1: 積読 — YAGNI 違反の典型例</text>
@@ -431,6 +445,8 @@ class UserRepository {
 
 # 失敗2: 使わないガジェット購入
 
+> *ガジェット不使用率60%—「今すぐ使う」フィルターで損失を防げる*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">失敗2: 使わないガジェット — スペック過剰投資</text>
@@ -466,6 +482,8 @@ class UserRepository {
 
 # 失敗3: 役に立たなかった資格
 
+> *業務活用率50%以下の資格—必要になってから取れば全て活きる*
+
 - 「将来使えそう」な資格を複数取得した
 - 実際に業務で活用した資格: 半数以下
 - 勉強時間: 各資格に 100〜300 時間
@@ -476,6 +494,8 @@ class UserRepository {
 ---
 
 # 失敗4: 過度な準備で動けなかった
+
+> *準備過剰で機会を逃す分析麻痺—最低限で動けば失敗コストは小さい*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -535,6 +555,8 @@ interface TenantConfig {
 ---
 
 # 失敗6: キャリアの迷走
+
+> *流行3技術を追った3年間が本業スキルの停滞を招いた教訓*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -635,6 +657,8 @@ interface TenantConfig {
 
 # モノ: ワードローブ戦略
 
+> *80:20則—全服の20%しか着ないクローゼットにYAGNI原則を適用*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">YAGNI ワードローブ戦略 — 80:20の法則</text>
@@ -669,6 +693,8 @@ interface TenantConfig {
 
 # モノ: ガジェット購入ルール
 
+> *3ステップフィルターで衝動購入をゼロにするYAGNI購入判断術*
+
 - **YAGNI 違反例**: スペックへの過投資
 - 「将来 4K 動画編集するかも」→ 実際はしない
 - **YAGNI 実践の購入判断フロー**
@@ -680,6 +706,8 @@ interface TenantConfig {
 ---
 
 # モノ: 本の選び方
+
+> *JIT読書—今困っていることに直結する本だけ買えば読了率は9割超*
 
 - **YAGNI 違反例**: 「面白そう」で買う積読
 - **YAGNI 実践**: Just-in-Time 読書
@@ -698,6 +726,8 @@ interface TenantConfig {
 ---
 
 # 時間: やらないことリスト
+
+> *Not Todoリスト—「しない」を決めることで集中すべき本質が見える*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -734,6 +764,8 @@ interface TenantConfig {
 ---
 
 # 時間: 「ゆとり」の価値
+
+> *戦略的空白—スケジュールのバッファが創造性と判断力を生み出す*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -783,6 +815,8 @@ interface TenantConfig {
 
 # 学習: 技術トレンドとの付き合い方
 
+> *幻滅期で消えるトレンドを3基準でフィルターし本業投資を守る*
+
 - **YAGNI 違反例**: 全トレンドをキャッチアップしようとする
 - Hype Cycle の「幻滅期」で消えるものが多い
 - **YAGNI 実践の判断基準**
@@ -803,6 +837,8 @@ interface TenantConfig {
 
 # キャリア: 今の仕事に集中する
 
+> *今の仕事で圧倒的な成果を出すことで転職機会は自然に引き寄せられる*
+
 - **YAGNI 違反例**: 常に「次のキャリア」を考えて今が疎かに
 - 「転職活動しながら今の仕事もこなす」の両立失敗
 - **YAGNI 実践**: 今の仕事で圧倒的な成果を出す
@@ -813,6 +849,8 @@ interface TenantConfig {
 ---
 
 # キャリア: 転職タイミングの判断
+
+> *3つのシグナルだけが転職の正当理由—なんとなくは理由にならない*
 
 - **YAGNI 的転職判断**: 「今」必要性が生じているか？
 - 転職すべきシグナル（YAGNI 的）
@@ -841,6 +879,8 @@ interface TenantConfig {
 
 # 思考: 意思決定の簡素化
 
+> *完全情報を待つな—3ルールで「十分に良い選択」を素早く下せる*
+
 - **YAGNI 違反例**: 全ての選択肢を調べ尽くしてから決める
 - 「完全な情報」を得ようとするが、それは不可能
 - **YAGNI 実践の意思決定ルール**
@@ -863,7 +903,7 @@ interface TenantConfig {
 
 ---
 
-# お金: YAGNI 的支出判断
+# お金: YAGNI 的支出判断（1/2）
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -890,6 +930,14 @@ interface TenantConfig {
 - **YAGNI 違反例**: 「いつか使う日のため」の過剰貯蓄
 - または: 「将来のため」という名の衝動買い
 - **YAGNI 的支出の判断基準**
+
+
+---
+
+# お金: YAGNI 的支出判断（2/2）
+
+> *今の生活の質向上を基準に—将来のため割合が高すぎる支出を断つ*
+
 - ① 今の生活の質を上げるか？
 - ② 1ヶ月後に後悔しないか？
 - ③ 「将来のため」の割合が高すぎないか？
@@ -898,7 +946,7 @@ interface TenantConfig {
 
 ---
 
-# ライフスタイル: ミニマリズムと YAGNI
+# ライフスタイル: ミニマリズムと YAGNI（1/2）
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -932,6 +980,14 @@ interface TenantConfig {
 - ミニマリズム = 「今必要なものだけ持つ」
 - これは YAGNI そのもの
 - モノを減らすメリット
+
+
+---
+
+# ライフスタイル: ミニマリズムと YAGNI（2/2）
+
+> *検索・選択・移動コストを三重に削減するミニマリストの合理性*
+
 - ① 探す時間ゼロ（検索コスト削減）
 - ② 選択疲れゼロ（認知コスト削減）
 - ③ 引越し・移動が楽（変更コスト削減）
@@ -948,6 +1004,8 @@ interface TenantConfig {
 ---
 
 # 人生のリファクタリング
+
+> *不要な習慣・役割・依存を削除し続けることが人生の変更耐性を高める*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -979,6 +1037,8 @@ interface TenantConfig {
 ---
 
 # 定期的なレビューのすすめ
+
+> *月次30分・年次半日のレビューで人生を定期的にリファクタリングする*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1019,6 +1079,8 @@ interface TenantConfig {
 
 # 原則1: 今必要なことだけやる
 
+> *毎朝3タスクに絞り今日の問題を今日解くことが最高の未来投資*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">原則1: 「今」にフォーカスする</text>
@@ -1051,6 +1113,8 @@ interface TenantConfig {
 
 # 原則2: 捨てる勇気を持つ
 
+> *削除は退行でなく前進—使っていないものを手放すことで本質が見える*
+
 - **「削除」は後退ではなく、前進である**
 - 使っていないコードを消すように、使っていないものを手放す
 - 「いつか使うかも」は「使わない」の言い訳
@@ -1069,6 +1133,8 @@ interface TenantConfig {
 
 # ツール: 1ヶ月ルール
 
+> *1ヶ月ルールで欲しいの70%が消える—これが最強のYAGNIフィルター*
+
 - **モノの購入・学習の開始 → 1ヶ月待つ**
 - 「欲しい！」「やりたい！」と思ったら、メモして 1ヶ月待つ
 - 1ヶ月後にまだ必要なら、それは本当に必要なもの
@@ -1079,6 +1145,8 @@ interface TenantConfig {
 ---
 
 # 落とし穴: YAGNI は怠惰ではない
+
+> *YAGNIは省エネではなく集中—今の役割を完璧に果たすことが本義*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1112,6 +1180,8 @@ interface TenantConfig {
 
 # 落とし穴: 必要なものまで削らない
 
+> *健康・睡眠・基礎学習は削れない—YAGNIは推測投資に適用する原則*
+
 - YAGNI の誤用: 「健康管理」「人間関係」を削る
 - 基盤となるもの（健康・睡眠・基礎学習）は削ってはいけない
 - 判断基準: 「今必要か」ではなく「将来も必要か」
@@ -1131,6 +1201,8 @@ interface TenantConfig {
 ---
 
 # YAGNI と東洋哲学
+
+> *YAGNIは禅・老子と同根—エンジニアは古来の知恵を既に手にしている*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1175,6 +1247,8 @@ interface TenantConfig {
 
 # 今日から始める3つのこと
 
+> *1ヶ月ルール・今日リスト・何か一つ捨てる—今日から始める3ステップ*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">今日から始める3つのこと</text>
@@ -1212,6 +1286,8 @@ interface TenantConfig {
 ---
 
 # 参考文献・リソース
+
+> *YAGNIとミニマリズムの二大思想を1デッキで学べる厳選文献リスト*
 
 - **YAGNI・XP 関連**
 - [Martin Fowler — Yagni](https://martinfowler.com/bliki/Yagni.html)

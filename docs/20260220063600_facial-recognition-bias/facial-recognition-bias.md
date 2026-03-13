@@ -7,6 +7,71 @@ paginate: true
 header: "顔認識AIとバイアス"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -24,6 +89,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *バイアスが誤認逮捕を生む構造と公平なAIの条件を問う*
 
 - 1. 顔認識AIの仕組みと普及
 - 2. ジョイ・ブオラムウィニの告発
@@ -63,7 +130,7 @@ style: |
 
 # なぜ精度に差が出るのか
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#f9a825" font-weight="bold">バイアスの3つの源泉</text><rect x="40" y="55" width="210" height="190" fill="#1e2a4e" rx="10" stroke="#4a90d9" stroke-width="2"/><text x="145" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#f9a825" font-weight="bold">データバイアス</text><text x="145" y="110" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">学習データの70%以上</text><text x="145" y="130" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">が白人男性</text><text x="145" y="158" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">インターネット上の</text><text x="145" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">画像自体が欧米中心</text><text x="145" y="210" text-anchor="middle" font-family="sans-serif" font-size="30" fill="#4a90d9">70%</text><rect x="295" y="55" width="210" height="190" fill="#1e2a4e" rx="10" stroke="#e91e63" stroke-width="2"/><text x="400" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#e91e63" font-weight="bold">開発者バイアス</text><text x="400" y="110" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">AI研究者の80%以上</text><text x="400" y="130" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">が男性・大多数が白人</text><text x="400" y="158" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">多様な顔でテストせず</text><text x="400" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">問題を認識できない</text><text x="400" y="210" text-anchor="middle" font-family="sans-serif" font-size="30" fill="#e91e63">80%</text><rect x="550" y="55" width="210" height="190" fill="#1e2a4e" rx="10" stroke="#66cc66" stroke-width="2"/><text x="655" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#66cc66" font-weight="bold">評価指標バイアス</text><text x="655" y="110" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">「全体精度」だけで</text><text x="655" y="130" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">サブグループを見ない</text><text x="655" y="158" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">全体99%でも</text><text x="655" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">特定集団で65%</text><text x="655" y="210" text-anchor="middle" font-family="sans-serif" font-size="28" fill="#66cc66">隠蔽</text><text x="400" y="280" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#aaa">「平均」は差別を隠す — サブグループ分析が不可欠</text></svg>
+- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#f9a825" font-weight="bold">バイアスの3つの源泉</text><rect x="40" y="55" width="210" height="190" fill="#1e2a4e" rx="10" stroke="#4a90d9" stroke-width="2"/><text x="145" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#f9a825" font-weight="bold">データバイアス</text><text x="145" y="110" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">学習データの70%以上</text><text x="145" y="130" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">が白人男性</text><text x="145" y="158" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">インターネット上の</text><text x="145" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">画像自体が欧米中心</text><text x="145" y="210" text-anchor="middle" font-family="sans-serif" font-size="30" fill="#4a90d9">70%</text><rect x="295" y="55" width="210" height="190" fill="#1e2a4e" rx="10" stroke="#e91e63" stroke-width="2"/><text x="400" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#e91e63" font-weight="bold">開発者バイアス</text><text x="400" y="110" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">AI研究者の80%以上</text><text x="400" y="130" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">が男性・大多数が白人</text><text x="400" y="158" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">多様な顔でテストせず</text><text x="400" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">問題を認識できない</text><text x="400" y="210" text-anchor="middle" font-family="sans-serif" font-size="30" fill="#e91e63">80%</text><rect x="550" y="55" width="210" height="190" fill="#1e2a4e" rx="10" stroke="#66cc66" stroke-width="2"/><text x="655" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#66cc66" font-weight="bold">評価指標バイアス</text><text x="655" y="110" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">「全体精度」だけで</text><text x="655" y="130" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">サブグループを見ない</text><text x="655" y="158" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">全体99%でも</text><text x="655" y="175" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">特定集団で65%</text><text x="655" y="210" text-anchor="middle" font-family="sans-serif" font-size="28" fill="#66cc66">隠蔽</text><text x="400" y="280" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#aaa">「平均」は差別を隠す — サブグループ分析が不可欠</text></svg>
 
 
 ---

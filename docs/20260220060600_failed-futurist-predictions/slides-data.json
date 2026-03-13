@@ -12,6 +12,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "専門家予測の失敗構造とスーパーフォーキャスターの手法を解説",
 			"content": [
 				"1. 専門家予測の精度は？",
 				"2. 有名な外れ予測の事例",
@@ -37,10 +38,12 @@
 				"- 「ヘッジホッグ型」（1つの大きな考えに固執）は最も精度が低い",
 				"<svg viewBox=\"0 0 800 260\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"260\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"16\" fill=\"#f9a825\" font-weight=\"bold\">予測精度スコア比較（Brier Score ベース）</text><rect x=\"60\" y=\"45\" width=\"200\" height=\"40\" rx=\"4\" fill=\"#2d2d4e\"/><rect x=\"60\" y=\"45\" width=\"42\" height=\"40\" rx=\"4\" fill=\"#aaaaaa\"/><text x=\"270\" y=\"72\" text-anchor=\"end\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#ffffff\">チンパンジー（ランダム）</text><text x=\"110\" y=\"72\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\">21%</text><rect x=\"60\" y=\"100\" width=\"200\" height=\"40\" rx=\"4\" fill=\"#2d2d4e\"/><rect x=\"60\" y=\"100\" width=\"52\" height=\"40\" rx=\"4\" fill=\"#e91e63\"/><text x=\"270\" y=\"127\" text-anchor=\"end\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#ffffff\">ヘッジホッグ型専門家</text><text x=\"115\" y=\"127\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\">26%</text><rect x=\"60\" y=\"155\" width=\"200\" height=\"40\" rx=\"4\" fill=\"#2d2d4e\"/><rect x=\"60\" y=\"155\" width=\"90\" height=\"40\" rx=\"4\" fill=\"#f9a825\"/><text x=\"270\" y=\"182\" text-anchor=\"end\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#ffffff\">キツネ型専門家</text><text x=\"115\" y=\"182\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#1a1a2e\">45%</text><rect x=\"60\" y=\"210\" width=\"200\" height=\"40\" rx=\"4\" fill=\"#2d2d4e\"/><rect x=\"60\" y=\"210\" width=\"160\" height=\"40\" rx=\"4\" fill=\"#4caf50\"/><text x=\"270\" y=\"237\" text-anchor=\"end\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#ffffff\">スーパーフォーキャスター</text><text x=\"145\" y=\"237\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#1a1a2e\">80%</text><text x=\"400\" y=\"72\" text-anchor=\"start\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#888\">基準線</text><text x=\"400\" y=\"127\" text-anchor=\"start\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#e91e63\">メディア最愛の専門家</text><text x=\"400\" y=\"182\" text-anchor=\"start\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#f9a825\">多角的視点の持ち主</text><text x=\"400\" y=\"237\" text-anchor=\"start\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#4caf50\">GJPトップ2%</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "専門家の予測精度はランダムよりわずかに高い程度にすぎない"
 		},
 		{
 			"title": "Philip Tetlock の20年間の研究（2/2）",
+			"subtitle": "メディアに出る断言型専門家ほど予測精度が低いという逆説",
 			"content": [
 				"- 「キツネ型」（多様な視点を持つ）はより高い精度",
 				"- 専門性の深さと予測精度には相関がない",
@@ -54,6 +57,7 @@
 		},
 		{
 			"title": "有名な外れ予測（1/2）（1/2）",
+			"subtitle": "IBM・DEC・Gatesの技術予測3連発がことごとく外れた",
 			"content": [
 				"**技術予測の失敗：**",
 				"- IBM（1943年）：「世界のコンピュータ市場は5台分」",
@@ -70,10 +74,12 @@
 				"- 1964年：「2000年には核融合発電が普及」",
 				"<svg viewBox=\"0 0 800 200\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"200\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"24\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f9a825\" font-weight=\"bold\">技術予測の失敗タイムライン</text><line x1=\"60\" y1=\"100\" x2=\"740\" y2=\"100\" stroke=\"#444\" stroke-width=\"2\"/><polygon points=\"740,95 755,100 740,105\" fill=\"#444\"/><circle cx=\"120\" cy=\"100\" r=\"8\" fill=\"#e91e63\"/><text x=\"120\" y=\"80\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#cccccc\">1943</text><text x=\"120\" y=\"130\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#e91e63\">IBM</text><text x=\"120\" y=\"145\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#cccccc\">市場は5台</text><circle cx=\"280\" cy=\"100\" r=\"8\" fill=\"#e91e63\"/><text x=\"280\" y=\"80\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#cccccc\">1977</text><text x=\"280\" y=\"130\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#e91e63\">DEC</text><text x=\"280\" y=\"145\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#cccccc\">個人PCは不要</text><circle cx=\"460\" cy=\"100\" r=\"8\" fill=\"#e91e63\"/><text x=\"460\" y=\"80\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#cccccc\">1995</text><text x=\"460\" y=\"130\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#e91e63\">Gates</text><text x=\"460\" y=\"145\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#cccccc\">Internet一時的</text><circle cx=\"640\" cy=\"100\" r=\"8\" fill=\"#f9a825\"/><text x=\"640\" y=\"80\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#cccccc\">2007</text><text x=\"640\" y=\"130\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#f9a825\">iPhone</text><text x=\"640\" y=\"145\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#cccccc\">普及を予測できず</text><text x=\"400\" y=\"185\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#888\">赤=外れた予測  金=見逃した変化</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "技術予測の失敗は過信と単一視点への固執から生まれる"
 		},
 		{
 			"title": "有名な外れ予測（2/2）",
+			"subtitle": "過大・過小評価はランダムでなく領域によって偏る傾向がある",
 			"content": [
 				"- 1980年代：「2000年には火星に人類が到達」",
 				"- 2000年代：「2020年には汎用AIが完成」",
@@ -96,10 +102,12 @@
 				"1. 問題を「フェルミ推定」式に分解する",
 				"<svg viewBox=\"0 0 800 230\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"230\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"15\" fill=\"#f9a825\" font-weight=\"bold\">スーパーフォーキャスター vs CIA アナリスト</text><rect x=\"60\" y=\"50\" width=\"300\" height=\"150\" rx=\"10\" fill=\"#2d2d4e\" style=\"filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.5))\"/><text x=\"210\" y=\"78\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#4caf50\" font-weight=\"bold\">スーパーフォーキャスター</text><text x=\"210\" y=\"105\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#cccccc\">一般人（公募）</text><text x=\"210\" y=\"128\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#cccccc\">機密情報なし</text><text x=\"210\" y=\"151\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#cccccc\">オープン情報のみ使用</text><text x=\"210\" y=\"183\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"18\" fill=\"#4caf50\" font-weight=\"bold\">予測精度 ↑↑↑</text><rect x=\"440\" y=\"50\" width=\"300\" height=\"150\" rx=\"10\" fill=\"#2d2d4e\" style=\"filter:drop-shadow(2px 2px 4px rgba(0,0,0,0.5))\"/><text x=\"590\" y=\"78\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#e91e63\" font-weight=\"bold\">CIA アナリスト</text><text x=\"590\" y=\"105\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#cccccc\">専門訓練を受けたエリート</text><text x=\"590\" y=\"128\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#cccccc\">機密情報にアクセス可能</text><text x=\"590\" y=\"151\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#cccccc\">国家情報機関所属</text><text x=\"590\" y=\"183\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"18\" fill=\"#e91e63\" font-weight=\"bold\">予測精度 ↓</text><text x=\"400\" y=\"145\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"20\" fill=\"#f9a825\" font-weight=\"bold\">&gt;</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "一般人がCIAアナリストより高い予測精度を出せた理由"
 		},
 		{
 			"title": "スーパーフォーキャスターの手法（2/2）",
+			"subtitle": "基準率・数値化・定期更新の3習慣が予測精度を大幅に向上させる",
 			"content": [
 				"2. 基準率（Base Rate）から出発する",
 				"3. 反証となる情報を積極的に探す",
@@ -113,6 +121,7 @@
 		},
 		{
 			"title": "まとめ：外れる予測と当たる予測",
+			"subtitle": "確信の強さと精度は無関係、キャリブレーションこそが予測の本質",
 			"content": [
 				"✅ **専門家の予測精度はランダムよりわずかに高い程度**",
 				"✅ **確信が強い予測ほど外れやすい（ヘッジホッグの罠）**",

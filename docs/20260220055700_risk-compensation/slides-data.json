@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "安全装置が油断を誘発しリスクを元の水準に戻してしまう",
 			"content": [
 				"1. リスク補償とは何か",
 				"2. 交通安全のパラドックス",
@@ -33,7 +34,8 @@
 				"実際の事故率はほぼ一定に保たれる傾向がある",
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">リスクホメオスタシス均衡モデル</text><rect x=\"60\" y=\"60\" width=\"160\" height=\"60\" rx=\"8\" fill=\"#283593\"/><text x=\"140\" y=\"86\" text-anchor=\"middle\" fill=\"white\" font-size=\"13\" font-family=\"sans-serif\">安全装置の</text><text x=\"140\" y=\"104\" text-anchor=\"middle\" fill=\"white\" font-size=\"13\" font-family=\"sans-serif\">導入</text><rect x=\"320\" y=\"60\" width=\"160\" height=\"60\" rx=\"8\" fill=\"#e91e63\"/><text x=\"400\" y=\"86\" text-anchor=\"middle\" fill=\"white\" font-size=\"13\" font-family=\"sans-serif\">主観的安全感</text><text x=\"400\" y=\"104\" text-anchor=\"middle\" fill=\"white\" font-size=\"13\" font-family=\"sans-serif\">の上昇</text><rect x=\"580\" y=\"60\" width=\"160\" height=\"60\" rx=\"8\" fill=\"#283593\"/><text x=\"660\" y=\"86\" text-anchor=\"middle\" fill=\"white\" font-size=\"13\" font-family=\"sans-serif\">リスク行動</text><text x=\"660\" y=\"104\" text-anchor=\"middle\" fill=\"white\" font-size=\"13\" font-family=\"sans-serif\">の増加</text><polygon points=\"226,90 238,86 238,94\" fill=\"#f9a825\"/><line x1=\"220\" y1=\"90\" x2=\"238\" y2=\"90\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"486,90 498,86 498,94\" fill=\"#f9a825\"/><line x1=\"480\" y1=\"90\" x2=\"498\" y2=\"90\" stroke=\"#f9a825\" stroke-width=\"2\"/><rect x=\"320\" y=\"200\" width=\"160\" height=\"60\" rx=\"8\" fill=\"#4a148c\"/><text x=\"400\" y=\"226\" text-anchor=\"middle\" fill=\"white\" font-size=\"13\" font-family=\"sans-serif\">許容リスク</text><text x=\"400\" y=\"244\" text-anchor=\"middle\" fill=\"white\" font-size=\"13\" font-family=\"sans-serif\">レベル（目標値）</text><line x1=\"660\" y1=\"120\" x2=\"660\" y2=\"250\" stroke=\"#f9a825\" stroke-width=\"2\" stroke-dasharray=\"6,4\"/><line x1=\"660\" y1=\"250\" x2=\"480\" y2=\"250\" stroke=\"#f9a825\" stroke-width=\"2\" stroke-dasharray=\"6,4\"/><polygon points=\"480,246 468,250 480,254\" fill=\"#f9a825\"/><line x1=\"140\" y1=\"120\" x2=\"140\" y2=\"230\" stroke=\"#aaa\" stroke-width=\"1.5\" stroke-dasharray=\"4,4\"/><line x1=\"140\" y1=\"230\" x2=\"320\" y2=\"230\" stroke=\"#aaa\" stroke-width=\"1.5\" stroke-dasharray=\"4,4\"/><polygon points=\"320,226 332,230 320,234\" fill=\"#aaa\"/><text x=\"400\" y=\"300\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-family=\"sans-serif\">→ 行動が変化し、リスクは目標値へと回帰する</text><text x=\"400\" y=\"330\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\" font-family=\"sans-serif\">事故率は安全装置の導入前後でほぼ変わらない</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "安全が高まると行動が変わりリスクは目標値へ回帰する"
 		},
 		{
 			"title": "リスク補償の発生メカニズム",
@@ -54,7 +56,8 @@
 				"Ian Walker（2006）— ヘルメット非着用時の方が車は広く避けて通る",
 				"<svg viewBox=\"0 0 800 320\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"320\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"400\" y=\"32\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">ヘルメット着用と車の追い越し距離（模式図）</text><line x1=\"80\" y1=\"260\" x2=\"740\" y2=\"260\" stroke=\"#555\" stroke-width=\"2\"/><line x1=\"80\" y1=\"260\" x2=\"80\" y2=\"70\" stroke=\"#555\" stroke-width=\"2\"/><text x=\"400\" y=\"286\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\" font-family=\"sans-serif\">走行状況</text><text x=\"55\" y=\"266\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">0</text><text x=\"55\" y=\"186\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">50</text><text x=\"55\" y=\"106\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">100</text><text x=\"30\" y=\"180\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\" transform=\"rotate(-90,30,180)\">追い越し距離(cm)</text><line x1=\"80\" y1=\"186\" x2=\"740\" y2=\"186\" stroke=\"#333\" stroke-width=\"1\" stroke-dasharray=\"4,4\"/><line x1=\"80\" y1=\"106\" x2=\"740\" y2=\"106\" stroke=\"#333\" stroke-width=\"1\" stroke-dasharray=\"4,4\"/><rect x=\"160\" y=\"136\" width=\"140\" height=\"124\" fill=\"#e91e63\" opacity=\"0.85\" rx=\"4\"/><text x=\"230\" y=\"128\" text-anchor=\"middle\" fill=\"#f48fb1\" font-size=\"12\" font-family=\"sans-serif\">ヘルメット着用</text><text x=\"230\" y=\"256\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">約75cm</text><rect x=\"500\" y=\"106\" width=\"140\" height=\"154\" fill=\"#42a5f5\" opacity=\"0.85\" rx=\"4\"/><text x=\"570\" y=\"98\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"12\" font-family=\"sans-serif\">ヘルメット非着用</text><text x=\"570\" y=\"256\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">約82cm</text><line x1=\"230\" y1=\"136\" x2=\"570\" y2=\"106\" stroke=\"#f9a825\" stroke-width=\"1.5\" stroke-dasharray=\"5,4\"/><polygon points=\"570,106 558,106 563,115\" fill=\"#f9a825\"/><text x=\"400\" y=\"296\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">ヘルメット非着用の方が車は広く避ける — 逆説的な安全効果</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ヘルメット非着用の方が車が広く避けるという逆説"
 		},
 		{
 			"title": "ペルツマン効果：シートベルト義務化",
@@ -71,7 +74,8 @@
 				"**金融：** 預金保険制度 → 銀行の過剰リスク投資（モラルハザード）",
 				"<svg viewBox=\"0 0 800 240\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"240\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">分野別リスク補償の構造</text><rect x=\"40\" y=\"55\" width=\"210\" height=\"140\" rx=\"8\" fill=\"#1a237e\" stroke=\"#5c6bc0\" stroke-width=\"1.5\"/><text x=\"145\" y=\"78\" text-anchor=\"middle\" fill=\"#7986cb\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">自動車・交通</text><text x=\"145\" y=\"100\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">ABS → 急ブレーキ多用</text><text x=\"145\" y=\"118\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">シートベルト → 速度UP</text><text x=\"145\" y=\"136\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">自動運転 → 注意散漫</text><text x=\"145\" y=\"175\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">共通パターン:</text><text x=\"145\" y=\"190\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">安全感 → 行動増大</text><rect x=\"295\" y=\"55\" width=\"210\" height=\"140\" rx=\"8\" fill=\"#1b5e20\" stroke=\"#66bb6a\" stroke-width=\"1.5\"/><text x=\"400\" y=\"78\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">デジタル・セキュリティ</text><text x=\"400\" y=\"100\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">FW強化 → 内部意識低下</text><text x=\"400\" y=\"118\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">2FA → 弱いパスワード</text><text x=\"400\" y=\"136\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">暗号化 → 送信量増加</text><text x=\"400\" y=\"175\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">共通パターン:</text><text x=\"400\" y=\"190\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">ツール依存 → 人的ミス</text><rect x=\"550\" y=\"55\" width=\"210\" height=\"140\" rx=\"8\" fill=\"#4a148c\" stroke=\"#ab47bc\" stroke-width=\"1.5\"/><text x=\"655\" y=\"78\" text-anchor=\"middle\" fill=\"#ce93d8\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">金融</text><text x=\"655\" y=\"100\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">預金保険 → 過剰投資</text><text x=\"655\" y=\"118\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">Too Big to Fail</text><text x=\"655\" y=\"136\" text-anchor=\"middle\" fill=\"white\" font-size=\"11\" font-family=\"sans-serif\">→ さらに大きなリスク</text><text x=\"655\" y=\"175\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">共通パターン:</text><text x=\"655\" y=\"190\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">救済期待 → モラルHZ</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "2FA・自動運転・預金保険でも同じ油断メカニズムが働く"
 		},
 		{
 			"title": "設計への応用フレームワーク",
@@ -89,7 +93,8 @@
 				"設計では「安全を意識させ続ける仕組み」が重要",
 				"「人を安全にしたいなら、安全だと感じさせすぎてはいけない」"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "安全を意識させ続ける設計こそが最も効果的な安全策"
 		}
 	]
 }

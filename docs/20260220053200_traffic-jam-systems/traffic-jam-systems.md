@@ -7,6 +7,71 @@ paginate: true
 header: "渋滞の科学"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -23,6 +88,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *ファントム渋滞の物理からシステム設計のバックプレッシャーまで*
 
 - 1. 渋滞の逆説：なぜ原因がないのに起きるか
 - 2. ファントム渋滞のメカニズム
@@ -41,6 +108,8 @@ style: |
 
 # あなたが渋滞の「原因」を追い越した経験
 
+> *原因不在の渋滞が波動として後方伝播する逆説*
+
 - 渋滞を抜けたとき、前に事故も工事も何もなかった…
 - これを**ファントム渋滞（Ghost Traffic Jam）**という
 - **数字で見る渋滞の奇妙さ：**
@@ -53,6 +122,8 @@ style: |
 
 # ファントム渋滞のメカニズム（1/2）
 
+> *ブレーキ増幅連鎖—後続車の過剰反応がファントム渋滞を生む*
+
 - 誰か1人がほんの少しブレーキを踏む（原因：脇見、スマホ）
 - 後続車がより強くブレーキを踏む（**反応の遅延**）
 - <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ブレーキ増幅連鎖</text><rect x="620" y="60" width="130" height="36" rx="8" fill="#43a047"/><text x="685" y="83" text-anchor="middle" fill="white" font-size="13">車F: 通常走行</text><rect x="460" y="60" width="130" height="36" rx="8" fill="#43a047"/><text x="525" y="83" text-anchor="middle" fill="white" font-size="13">車E: 通常走行</text><rect x="300" y="60" width="130" height="36" rx="8" fill="#f9a825"/><text x="365" y="83" text-anchor="middle" fill="white" font-size="13">車D: -5km/h</text><rect x="140" y="60" width="130" height="36" rx="8" fill="#ef6c00"/><text x="205" y="83" text-anchor="middle" fill="white" font-size="13">車C: -20km/h</text><rect x="20" y="60" width="100" height="36" rx="8" fill="#e91e63"/><text x="70" y="83" text-anchor="middle" fill="white" font-size="12">車B: 停止</text><line x1="590" y1="78" x2="450" y2="78" stroke="#aaa" stroke-width="2"/><line x1="430" y1="78" x2="290" y2="78" stroke="#f9a825" stroke-width="2"/><line x1="270" y1="78" x2="130" y2="78" stroke="#ef6c00" stroke-width="2"/><line x1="110" y1="78" x2="70" y2="78" stroke="#e91e63" stroke-width="2"/><text x="685" y="130" text-anchor="middle" fill="#43a047" font-size="12">Δ速度: 0</text><text x="525" y="130" text-anchor="middle" fill="#43a047" font-size="12">Δ速度: 0</text><text x="365" y="130" text-anchor="middle" fill="#f9a825" font-size="12">Δ速度: -5</text><text x="205" y="130" text-anchor="middle" fill="#ef6c00" font-size="12">Δ速度: -20</text><text x="70" y="130" text-anchor="middle" fill="#e91e63" font-size="12">Δ速度: -100</text><text x="400" y="175" text-anchor="middle" fill="white" font-size="14">最初の小さなブレーキが後方に向かって「増幅」される</text><rect x="50" y="200" width="700" height="80" rx="10" fill="#0d1b4b" stroke="#f9a825" stroke-width="1"/><text x="400" y="228" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">なぜ増幅するのか？</text><text x="400" y="252" text-anchor="middle" fill="white" font-size="13">人間の反応時間: 約1.0秒 → ブレーキタイミングが遅れる</text><text x="400" y="272" text-anchor="middle" fill="white" font-size="13">安全マージンをとって「強め」にブレーキ → 過剰反応の連鎖</text></svg>
@@ -61,6 +132,8 @@ style: |
 ---
 
 # ファントム渋滞のメカニズム（2/2）
+
+> *最初のブレーキは10秒で消え、渋滞は1時間残り続ける*
 
 - さらに後続車はもっと強くブレーキ（**増幅効果**）
 - 数キロ後方では車が完全停止
@@ -78,6 +151,8 @@ style: |
 
 # LWR理論：交通流の流体力学（1/2）
 
+> *流量＝密度×速度—LWR理論が交通の相転移を予測する*
+
 - Lighthill-Whitham-Richards（1955-1956）の交通流理論
 - **交通の3変数：**
 - - **密度 ρ（台/km）：** 道路の混雑度
@@ -89,6 +164,8 @@ style: |
 
 # LWR理論：交通流の流体力学（2/2）
 
+> *臨界密度を超えた瞬間、流量は崩壊する相転移*
+
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">q = ρ × v の崩壊メカニズム</text><rect x="60" y="55" width="680" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="80" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">密度 ρ 低</text><text x="200" y="98" text-anchor="middle" fill="#aaa" font-size="11">自由流域 — 速度高・流量増</text><text x="400" y="80" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">ρ = 臨界密度</text><text x="400" y="98" text-anchor="middle" fill="#aaa" font-size="11">流量最大点</text><text x="600" y="80" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">ρ 高（渋滞流域）</text><text x="600" y="98" text-anchor="middle" fill="#aaa" font-size="11">速度急落・流量崩壊</text><line x1="80" y1="240" x2="740" y2="240" stroke="#555" stroke-width="2"/><line x1="80" y1="120" x2="80" y2="240" stroke="#555" stroke-width="2"/><text x="410" y="262" text-anchor="middle" fill="#aaa" font-size="11">密度 ρ →</text><text x="35" y="185" text-anchor="middle" fill="#aaa" font-size="11" transform="rotate(-90,35,185)">速度 v →</text><polyline points="80,130 180,133 280,139 360,148 420,165 460,185 500,208 540,228 600,238 680,240" fill="none" stroke="#42a5f5" stroke-width="3"/><circle cx="360" cy="148" r="7" fill="#f9a825"/><line x1="360" y1="120" x2="360" y2="240" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,4"/><text x="360" y="115" text-anchor="middle" fill="#f9a825" font-size="11">臨界密度</text><text x="200" y="175" fill="#43a047" font-size="12">q = ρ×v 増加中</text><text x="500" y="175" fill="#e91e63" font-size="12">q = ρ×v 崩壊</text></svg>
 - - **流量 q（台/h）：** 単位時間の通過台数
 - q = ρ × v（流量 = 密度 × 速度）
@@ -99,6 +176,8 @@ style: |
 
 # 密度-速度-流量の関係（1/2）
 
+> *自由流域では密度増で流量増、臨界超過で流量崩壊に転換*
+
 - 自由流域（密度低）：速度高・流量増加
 - 臨界密度（約25台/km/車線）：流量が最大
 - <svg viewBox="0 0 800 310" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="310" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">密度 vs 流量（基本図）</text><line x1="80" y1="270" x2="740" y2="270" stroke="#555" stroke-width="2"/><line x1="80" y1="50" x2="80" y2="270" stroke="#555" stroke-width="2"/><text x="410" y="295" text-anchor="middle" fill="#aaa" font-size="12">密度 ρ（台/km） →</text><text x="28" y="160" text-anchor="middle" fill="#aaa" font-size="11" transform="rotate(-90,28,160)">流量 q（台/h）</text><text x="80" y="285" text-anchor="middle" fill="#aaa" font-size="10">0</text><text x="220" y="285" text-anchor="middle" fill="#43a047" font-size="10">15</text><text x="360" y="285" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">25</text><text x="500" y="285" text-anchor="middle" fill="#aaa" font-size="10">40</text><text x="640" y="285" text-anchor="middle" fill="#e91e63" font-size="10">60</text><polyline points="80,270 180,210 250,165 360,80 420,100 500,145 580,190 640,220 700,248 740,265" fill="none" stroke="#42a5f5" stroke-width="3"/><line x1="360" y1="50" x2="360" y2="270" stroke="#f9a825" stroke-width="2" stroke-dasharray="6,4"/><text x="360" y="45" text-anchor="middle" fill="#f9a825" font-size="12">臨界密度</text><rect x="82" y="52" width="276" height="216" fill="#43a047" fill-opacity="0.07"/><text x="220" y="75" text-anchor="middle" fill="#43a047" font-size="13" font-weight="bold">自由流域</text><text x="220" y="93" text-anchor="middle" fill="#43a047" font-size="11">密度↑ → 流量↑</text><rect x="362" y="52" width="376" height="216" fill="#e91e63" fill-opacity="0.07"/><text x="550" y="75" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">渋滞流域</text><text x="550" y="93" text-anchor="middle" fill="#e91e63" font-size="11">密度↑ → 流量↓</text></svg>
@@ -107,6 +186,8 @@ style: |
 ---
 
 # 密度-速度-流量の関係（2/2）
+
+> *ヒステリシス—渋滞は発生より解消に高いコストを要する*
 
 - 渋滞流域（密度高）：速度急落・流量も低下
 - これは**ヒステリシス**を示す：
@@ -124,6 +205,8 @@ style: |
 ---
 
 # 25台に1台で渋滞が消える実験
+
+> *AV4%混在で燃費14%改善—少数の平滑化装置が系全体を変える*
 
 - 2024年 University of Illinois の実験結果
 - **実験：** 高速道路で25台に1台だけAV（自動運転車）を混在
@@ -144,6 +227,8 @@ style: |
 
 # 渋滞＝バックプレッシャー問題（1/2）
 
+> *スロークエリ1件がカスケード障害に化ける渋滞と同じ構造*
+
 - ソフトウェアシステムでも同じ現象が起きる：
 - **HTTPリクエストの渋滞：**
 - 1つのスロークエリ → タイムアウト増加 → スレッドプール枯渇
@@ -155,6 +240,8 @@ style: |
 
 # 渋滞＝バックプレッシャー問題（2/2）
 
+> *サーキットブレーカーは迂回路、バックプレッシャーは早期検知*
+
 - **対策：**
 - - サーキットブレーカー = 渋滞の「迂回路」
 - - バックプレッシャー = 渋滞の早期検知
@@ -164,6 +251,8 @@ style: |
 ---
 
 # 臨界密度を超えさせない設計
+
+> *臨界点手前で設計する—飽和域への侵入を防ぐのが最善策*
 
 - 渋滞は**臨界密度を超えた瞬間**に相転移的に発生する
 - **システム設計の対応：**
@@ -179,6 +268,8 @@ style: |
 ---
 
 # まとめ：渋滞から学ぶシステム思考
+
+> *局所原因が大域障害を起こし、ヒステリシスで回復を遅らせる*
 
 - ✅ **局所的な原因が大域的な障害を起こす**
 - ✅ **波動は物質の流れと逆方向に伝播する** — 問題の源は下流にある

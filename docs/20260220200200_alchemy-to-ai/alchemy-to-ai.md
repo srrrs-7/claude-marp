@@ -7,6 +7,71 @@ paginate: true
 header: "錬金術からAIへ"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.05em;
   }
@@ -45,6 +110,8 @@ style: |
 
 # アリストテレスの知識論（BC4世紀）
 
+> *三段論法が推論を自動化したいという最初の試みだった*
+
 - 知識を「形式（form）」と「質料（matter）」に分離
 - アルゴリズムの概念の原型
 - 「論理学」＝ 推論の自動化への最初の試み
@@ -56,6 +123,8 @@ style: |
 
 # 中世錬金術〜物質変換の自動化
 
+> *al-Khwarizmiのアルゴリズム発明が知識自動化の土台を作った*
+
 - アラビアの錬金術師（8〜12世紀）が化学・薬学を発展
 - al-Khwarizmi がアルゴリズムを発明（820年頃）
 - 「卑金属を金に変える」＝ データを価値に変える
@@ -66,6 +135,8 @@ style: |
 ---
 
 # 賢者の石の探求
+
+> *賢者の石とAGIは汎用変換器という同じ夢の追求だ*
 
 - 「あらゆる物質を変換する万能物質」を求め数百年
 - AGIへの渇望との構造的一致:
@@ -85,6 +156,8 @@ style: |
 
 # バベッジとラブレス〜機械的計算の夢（1830年代）
 
+> *バベッジの設計思想がノイマン型アーキテクチャの原型になった*
+
 - チャールズ・バベッジの解析機関（1837年）
 - エイダ・ラブレスが世界初のプログラムを記述
 - 蒸気機関による「知識の機械化」の試み
@@ -95,6 +168,8 @@ style: |
 ---
 
 # チューリングマシン〜知識自動化の理論基盤（1936年）
+
+> *すべての問題を解けるアルゴリズムは存在しないを証明した*
 
 - 「思考する機械は可能か？」（チューリングテスト, 1950）
 - 計算可能性の理論: 何が「自動化」できるか
@@ -113,6 +188,8 @@ style: |
 
 # シンボリックAIの隆盛と失敗（1950〜1987年）
 
+> *ルールベースの限界がAIの冬を引き起こした根本原因*
+
 - 「知識をルールで表現すれば知性ができる」
 - Prolog、エキスパートシステムの全盛（1970〜80年代）
 - AIの冬: 現実の複雑さはルールで書けない
@@ -123,6 +200,8 @@ style: |
 ---
 
 # コネクショニズムの復活〜ニューラルネット（1986〜2012年）
+
+> *データから学ぶへの転換がディープラーニングを生んだ*
 
 - バックプロパゲーション（1986）で学習可能なNNが誕生
 - 「ルールを書かず、データから学ぶ」への転換
@@ -141,6 +220,8 @@ style: |
 
 # LLM〜賢者の石に最も近づいた瞬間
 
+> *GPT-4は賢者の石に最接近したがハルシネーションが黄鉄鉱だ*
+
 - GPT-4, Claude, Gemini: 汎用的な知識変換器
 - 錬金術師が夢見た「あらゆる知識を変換する装置」
 - **しかし**: ハルシネーション＝「偽金（Fool's Gold）」
@@ -151,6 +232,8 @@ style: |
 ---
 
 # まとめ〜変わらない欲望、変わる技術
+
+> *2000年間変わらない知識自動化の夢と変わる技術手段*
 
 - 2000年間、人類は同じ夢を見続けた
 - 賢者の石を求めた錬金術師 ≈ AGIを求めるAI研究者

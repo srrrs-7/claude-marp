@@ -7,6 +7,71 @@ paginate: true
 header: "熟達と練習の科学"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -25,6 +90,8 @@ style: |
 
 # アジェンダ
 
+> *1万時間則は特定分野限定、意図的練習の質がスキル習得の真の鍵*
+
 - 1. 「1万時間」の起源
 - 2. 元の研究が言っていること
 - 3. 意図的な練習（Deliberate Practice）
@@ -40,12 +107,22 @@ style: |
 
 ---
 
-# Gladwellの誤訳（1/2）
+# Gladwellの誤訳（1/2）（1/2）
+
+> *Gladwellは相関を因果に書き換えて法則化した*
 
 - **Malcolm Gladwell「Outliers」（2008年）：**
 - 「1万時間の法則」として広まった
 - 「チェスのグランドマスター・ビートルズ・Billの共通点は1万時間」
 - ---
+
+
+---
+
+# Gladwellの誤訳（1/2）（2/2）
+
+> *1993年の元論文は「平均値」を記録したに過ぎない*
+
 - **元の研究（K. Anders Ericsson 1993年）：**
 - ベルリン音楽院のバイオリン奏者を調査
 - トップ奏者は20歳までに平均1万時間練習していた
@@ -55,6 +132,8 @@ style: |
 ---
 
 # Gladwellの誤訳（2/2）
+
+> *時間より質—Ericssonの反論が誤解の核心を突く*
 
 - → Gladwellが「1万時間練習すれば一流になれる」と解釈
 - ---
@@ -67,12 +146,22 @@ style: |
 
 ---
 
-# 意図的な練習（Deliberate Practice）（1/2）
+# 意図的な練習（Deliberate Practice）（1/2）（1/2）
+
+> *明確な目標+フィードバック+ゾーン外の3条件が上達を生む*
 
 - **Ericsson の定義：**
 - 単なる「繰り返し」ではなく高度に構造化された練習
 - ---
 - **意図的な練習の特徴：**
+
+
+---
+
+# 意図的な練習（Deliberate Practice）（1/2）（2/2）
+
+> *コンフォートゾーン内の練習は30年続けても上達しない*
+
 - 1. **明確な目標**：「次の四半音を正確に弾く」等の具体的目標
 - 2. **コンフォートゾーンの外**：現在できることより少し難しい課題
 - 3. **即時フィードバック**：コーチや録音で即座に修正
@@ -81,12 +170,22 @@ style: |
 
 ---
 
-# 意図的な練習（Deliberate Practice）（2/2）
+# 意図的な練習（Deliberate Practice）（2/2）（1/2）
+
+> *集中できる限界は1日3〜4時間—量より密度が決め手*
 
 - 4. **フルコンセントレーション**：1〜4時間が限界（その後質が落ちる）
 - ---
 - **「ただやるだけ」の危険：**
 - 30年ゴルフをやっても下手な人がいる理由
+
+
+---
+
+# 意図的な練習（Deliberate Practice）（2/2）（2/2）
+
+> *フィードバックループを回すほど精度が上がる*
+
 - 「楽しく打つ」練習はコンフォートゾーン内 → 上達しない
 - ---
 - プロは1日3〜4時間の意図的練習が限界（疲弊するため）
@@ -95,12 +194,22 @@ style: |
 
 ---
 
-# 才能・練習・環境（1/2）
+# 才能・練習・環境（1/2）（1/2）
+
+> *遺伝がチェス上達速度の40〜70%を説明する双子研究*
 
 - **ゲノム研究が示す才能の影響：**
 - 双子研究：チェスの上達速度の差の40〜70%は遺伝で説明
 - 音楽の絶対音感：APT9遺伝子バリアント保持者に多い
 - ---
+
+
+---
+
+# 才能・練習・環境（1/2）（2/2）
+
+> *練習で説明できる差はゲームで26%—残り74%は才能と環境*
+
 - **分野による違い（Hambrick et al. 2014年）：**
 - 練習量で説明できるパフォーマンス差：
 - - ゲーム：26%
@@ -109,12 +218,22 @@ style: |
 
 ---
 
-# 才能・練習・環境（2/2）
+# 才能・練習・環境（2/2）（1/2）
+
+> *スポーツ18%・音楽21%—練習量だけでは一流になれない*
 
 - - 音楽：21%
 - - スポーツ：18%
 - = 残り74〜82%は練習以外の要因（才能・環境・開始年齢）
 - ---
+
+
+---
+
+# 才能・練習・環境（2/2）（2/2）
+
+> *臨界期に始めた子の脳可塑性は大人とは別次元*
+
 - **開始年齢の重要性：**
 - 「臨界期」が存在する（言語・音楽・スポーツ）
 - 子供の頃から始めた場合の脳可塑性が大人とは異なる
@@ -124,6 +243,8 @@ style: |
 ---
 
 # まとめ：1万時間の正しい理解
+
+> *質のある練習×フィードバック×継続=真の成長への公式*
 
 - ✅ **「1万時間やれば一流」は誤解 — 元研究はそう言っていない**
 - ✅ **重要なのは「意図的な練習」— コンフォートゾーンを超えたフィードバック付き練習**

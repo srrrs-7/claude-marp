@@ -7,6 +7,71 @@ paginate: true
 header: "統計的推定の誤解"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -25,6 +90,8 @@ style: |
 
 # アジェンダ
 
+> *信頼区間の誤解を解くことがデータ分析精度向上の最初の一歩*
+
 - 1. 信頼区間の正しい定義
 - 2. なぜ誤解されるのか
 - 3. p値との関係
@@ -42,12 +109,20 @@ style: |
 
 ---
 
-# 95%信頼区間の正しい定義（1/2）
+# 95%信頼区間の正しい定義（1/2）（1/2）
+
+> *95%CIは特定の区間に真値が入る確率ではなく手続きの信頼性の話*
 
 - **よくある誤解：**
 - 「真の値が95%の確率でこの区間に含まれる」
 - → 間違い（頻度主義統計では「確率」はデータに対して定義されない）
 - ---
+
+
+---
+
+# 95%信頼区間の正しい定義（1/2）（2/2）
+
 - **正しい定義：**
 - 同じ方法で100回実験し100個の信頼区間を作ったとき、
 - そのうち95個が真の母数を含む
@@ -56,12 +131,22 @@ style: |
 
 ---
 
-# 95%信頼区間の正しい定義（2/2）
+# 95%信頼区間の正しい定義（2/2）（1/2）
+
+> *特定の区間に真の値が入るかどうかは確率ではなく0か1かしかない*
 
 - = 手続きの信頼性であり、特定の区間の確率ではない
 - ---
 - **つまり：**
 - ある特定の「[2.3, 5.8]」という区間について
+
+
+---
+
+# 95%信頼区間の正しい定義（2/2）（2/2）
+
+> *研究者ですら正確に理解できていないことがHoekstra調査で判明した*
+
 - 真の値がその中にあるかどうかは0か1かのどちらか
 - 「95%の確率で」は間違い
 - ---
@@ -71,6 +156,8 @@ style: |
 ---
 
 # p値の誤用と再現性の危機（1/2）
+
+> *p<0.05は帰無仮説下での稀さを示すだけで効果の大きさを示さない*
 
 - **p値（p-value）の正しい定義：**
 - 帰無仮説が正しいとしたとき、観測されたデータ以上に
@@ -83,12 +170,22 @@ style: |
 
 ---
 
-# p値の誤用と再現性の危機（2/2）
+# p値の誤用と再現性の危機（2/2）（1/2）
+
+> *p>0.05は効果がないという証明にはならないことが最大の誤解の源*
 
 - 「p値は効果の大きさを示す」→ 誤り（サンプル数で変わる）
 - 「p > 0.05 なら効果がない」→ 誤り（証明できないだけ）
 - ---
 - **再現性の危機との関係：**
+
+
+---
+
+# p値の誤用と再現性の危機（2/2）（2/2）
+
+> *p-hackingと出版バイアスが心理学の再現率39%崩壊の主因*
+
 - - 心理学：100本の研究を追試 → 再現できたのは36〜39%（2015年）
 - - p-hacking：たくさん試してp<0.05を探す
 - - 出版バイアス：有意な結果しか論文にならない
@@ -97,12 +194,22 @@ style: |
 
 ---
 
-# ベイズ統計という別のアプローチ（1/2）
+# ベイズ統計という別のアプローチ（1/2）（1/2）
+
+> *ベイズ信用区間こそが直感的な95%確率の正しい表現方法である*
 
 - **ベイズ信用区間（Credible Interval）：**
 - 「95%の確率で真の値がこの範囲にある」を
 - 正当に主張できる区間（事後分布から計算）
 - ---
+
+
+---
+
+# ベイズ統計という別のアプローチ（1/2）（2/2）
+
+> *事前知識をモデル化できるベイズは直感的で小サンプルにも有効*
+
 - **ベイズ統計の特徴：**
 - - 事前知識（prior）をモデルに組み込める
 - - 結果は「確率」として直感的に解釈できる
@@ -112,6 +219,8 @@ style: |
 ---
 
 # ベイズ統計という別のアプローチ（2/2）
+
+> *頻度主義は手続きの信頼性を問い、ベイズは仮説の確からしさを問う*
 
 - - サンプルが小さくても有効
 - ---
@@ -125,6 +234,8 @@ style: |
 ---
 
 # まとめ：統計の正直な使い方
+
+> *p値とCIを正しく使うとp-hacking根絶と再現性向上に直結する*
 
 - ✅ **95%信頼区間 = 手続きの信頼性（特定区間の確率ではない）**
 - ✅ **p < 0.05 ≠ 「効果がある」（サンプル数・多重比較を考慮）**

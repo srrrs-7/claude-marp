@@ -12,6 +12,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "量子超越性は達成されたが実用的優位性はまだない",
 			"content": [
 				"1. 量子コンピュータの原理",
 				"2. 量子超越性の実態",
@@ -39,7 +40,8 @@
 				"n量子ビット = 2^n 状態を同時に保持",
 				"300量子ビット = 2^300 ≈ 宇宙の原子の数より多い状態"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "300量子ビットで宇宙の原子数を超える状態を同時保持"
 		},
 		{
 			"title": "量子ビット：重ね合わせと干渉（2/2）",
@@ -52,7 +54,8 @@
 				"**量子もつれ（Entanglement）：**",
 				"複数の量子ビットを相関させることで計算を加速"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "正解を得るには干渉で確率を増幅する必要がある"
 		},
 		{
 			"title": "量子超越性の実態",
@@ -72,7 +75,8 @@
 				"**IBMの反論：**",
 				"「2.5日で解ける（ストレージ最適化で）」"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Googleの主張はIBMに「2.5日で解ける」と反論された"
 		},
 		{
 			"title": "量子超越性：実態と批判（2/2）（1/2）",
@@ -92,7 +96,8 @@
 				"---",
 				"量子超越性 ≠ 量子有用性（Quantum Advantage）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "量子超越性は人工問題での勝利で実用価値はほぼゼロ"
 		},
 		{
 			"title": "量子コンピュータが得意・不得意なこと（1/2）",
@@ -105,7 +110,8 @@
 				"---",
 				"**二乗程度の高速化（有用だが革命的ではない）：**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "得意なのは暗号解読・分子設計・特定最適化だけ"
 		},
 		{
 			"title": "量子コンピュータが得意・不得意なこと（2/2）",
@@ -118,7 +124,8 @@
 				"- データの読み書き（入出力がボトルネック）",
 				"- エラー率が高い現在は小規模問題のみ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "通常のデータ処理や動画再生は古典PCの方が速い"
 		},
 		{
 			"title": "現在の技術水準と課題（1/2）",
@@ -131,7 +138,8 @@
 				"---",
 				"**最大の課題：量子デコヒーレンス**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "RSA解読に必要な量子ビット数は現在の1万倍以上"
 		},
 		{
 			"title": "現在の技術水準と課題（2/2）",
@@ -144,7 +152,8 @@
 				"- 実用的優位性はまだ限定的",
 				"<svg viewBox=\"0 0 800 180\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"180\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" font-family=\"sans-serif\" font-size=\"16\" font-weight=\"bold\" fill=\"#f9a825\" text-anchor=\"middle\">量子コンピューティング・ロードマップ</text><line x1=\"60\" y1=\"90\" x2=\"740\" y2=\"90\" stroke=\"#333\" stroke-width=\"3\"/><polygon points=\"740,84 760,90 740,96\" fill=\"#333\"/><rect x=\"60\" y=\"60\" width=\"140\" height=\"60\" rx=\"8\" fill=\"#e91e63\" opacity=\"0.85\"/><text x=\"130\" y=\"86\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"white\" text-anchor=\"middle\">NISQ時代</text><text x=\"130\" y=\"106\" font-family=\"sans-serif\" font-size=\"11\" fill=\"white\" text-anchor=\"middle\">〜2027年頃</text><rect x=\"230\" y=\"60\" width=\"170\" height=\"60\" rx=\"8\" fill=\"#f9a825\" opacity=\"0.85\"/><text x=\"315\" y=\"86\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1a1a2e\" text-anchor=\"middle\">誤り訂正量子計算</text><text x=\"315\" y=\"106\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#1a1a2e\" text-anchor=\"middle\">2028〜2035年頃</text><rect x=\"430\" y=\"60\" width=\"170\" height=\"60\" rx=\"8\" fill=\"#4fc3f7\" opacity=\"0.85\"/><text x=\"515\" y=\"86\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"#1a1a2e\" text-anchor=\"middle\">フォールトトレラント</text><text x=\"515\" y=\"106\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#1a1a2e\" text-anchor=\"middle\">2035〜2040年代</text><rect x=\"620\" y=\"60\" width=\"110\" height=\"60\" rx=\"8\" fill=\"#4caf50\" opacity=\"0.85\"/><text x=\"675\" y=\"86\" font-family=\"sans-serif\" font-size=\"13\" font-weight=\"bold\" fill=\"white\" text-anchor=\"middle\">実用化</text><text x=\"675\" y=\"106\" font-family=\"sans-serif\" font-size=\"11\" fill=\"white\" text-anchor=\"middle\">2040年代以降?</text><text x=\"130\" y=\"145\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#e91e63\" text-anchor=\"middle\">← 現在ここ</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "デコヒーレンスで量子状態は0.1ms以内に崩壊する"
 		},
 		{
 			"title": "まとめ：量子コンピュータの現実",
@@ -156,7 +165,8 @@
 				"",
 				"量子コンピュータは「別のエンジン」— 既存のPCを速くするものではない"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "実用化まで10〜20年、量子PCは万能ではない"
 		}
 	]
 }

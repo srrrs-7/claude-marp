@@ -137,6 +137,8 @@ style: |
 
 # 試験のポイント早見
 
+> *消去法と「最も適切」基準を使えばBest Practice問題は90%以上正解できる*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">Amazon Bedrock — サービスマップ</text>
@@ -536,7 +538,7 @@ style: |
 
 ---
 
-# Domain 1 — キーワード総まとめ
+# Domain 1 — キーワード総まとめ（1/2）
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -582,6 +584,14 @@ style: |
 - **AI/ML 基礎**: AI（知能模倣） / ML（データ学習） / DL（深層NN） / GenAI（コンテンツ生成）
 - **タスク**: 分類 / 回帰 / クラスタリング / 強化学習 / 推薦
 - **指標**: Accuracy / Precision / Recall / F1 / AUC-ROC / RMSE
+
+
+---
+
+# Domain 1 — キーワード総まとめ（2/2）
+
+> *AI Services（Rekognition等）とML Services（SageMaker）の層の違いがサービス選択問題の基準になる*
+
 - **問題**: 過学習（Dropout/正則化）/ 未学習（モデル複雑化）
 - **AI Services**: Rekognition / Comprehend / Textract / Transcribe / Translate / Polly
 - **ML Services**: SageMaker（フル ML）/ Bedrock（FM マネージド）
@@ -953,7 +963,7 @@ style: |
 
 ---
 
-# Domain 2 — キーワード総まとめ
+# Domain 2 — キーワード総まとめ（1/2）
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -986,6 +996,14 @@ style: |
 - **FM / LLM**: Foundation Model（汎用大規模モデル）/ Large Language Model
 - **Token / Context Window**: 処理単位 / 一度に扱える最大トークン数
 - **Temperature / Top-p / Top-k**: 出力の多様性・創造性を制御
+
+
+---
+
+# Domain 2 — キーワード総まとめ（2/2）
+
+> *RAGでHallucination軽減・RLHFでAlignment—この2つが責任あるAI問題のキー*
+
 - **Hallucination**: 事実と異なる自信ある生成 → RAG / Grounding で軽減
 - **RLHF / Alignment**: 人間フィードバック強化学習 / 人間価値観への適合
 - **Prompt 手法**: Zero-shot / Few-shot / CoT / Role / XML
@@ -1698,7 +1716,7 @@ style: |
 
 ---
 
-# Domain 3 — キーワード総まとめ A（RAG / KB / Agents）
+# Domain 3 — キーワード総まとめ A（RAG / KB / Agents）（1/2）
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1740,6 +1758,14 @@ style: |
 - **RAG**: Retrieval-Augmented Generation — 検索拡張生成
 - **Chunking**: 文書の分割（Fixed / Semantic / Hierarchical）
 - **Embedding**: テキスト → ベクトル変換（Titan / Cohere）
+
+
+---
+
+# Domain 3 — キーワード総まとめ A（RAG / KB / Agents）（2/2）
+
+> *HYBRID検索はOpenSearch Serverlessのみ対応、RAG中心のD3が試験全体の30%を占める*
+
 - **Vector DB**: ベクトル類似検索 DB（OpenSearch / Aurora / Pinecone）
 - **Knowledge Base**: Bedrock の RAG 管理機能
 - **Action Group**: Agent が呼べる API セット（OpenAPI + Lambda）
@@ -1748,7 +1774,7 @@ style: |
 
 ---
 
-# Domain 3 — キーワード総まとめ B（FT / Eval / Flow）
+# Domain 3 — キーワード総まとめ B（FT / Eval / Flow）（1/2）
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1780,6 +1806,14 @@ style: |
 - **Fine-tuning**: モデルをタスク特化で再学習（JSONL 形式）
 - **Continued Pre-training**: ドメイン語彙・知識の追加学習
 - **LoRA**: 低コストなアダプタ学習（少数パラメータ更新）
+
+
+---
+
+# Domain 3 — キーワード総まとめ B（FT / Eval / Flow）（2/2）
+
+> *Provisioned Throughputで高スループット保証、BERTScoreとROUGEで生成品質を定量評価する*
+
 - **Distillation**: 大モデル → 小モデルへの知識転移
 - **ROUGE / BERTScore**: 要約・生成評価指標
 - **Prompt Flow**: マルチステップ推論ワークフロー構築
@@ -2114,7 +2148,7 @@ style: |
 
 ---
 
-# Domain 4 — キーワード総まとめ
+# Domain 4 — キーワード総まとめ（1/2）
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2127,6 +2161,14 @@ style: |
 - **Responsible AI 6 原則**: 公平性 / 説明可能性 / プライバシー / 堅牢性 / 透明性 / 統治
 - **Guardrails 5 フィルタ**: Content / Denied Topics / Word / PII / Grounding Check
 - **Hallucination 対策**: RAG / Grounding Check / Temperature 低下 / CoT
+
+
+---
+
+# Domain 4 — キーワード総まとめ（2/2）
+
+> *PII検出はComprehend・マスキングはGuardrails・暗号化はKMS—3サービスの役割分担を確認*
+
 - **PII**: 検出（Comprehend）/ マスキング（Guardrails）/ 暗号化（KMS）
 - **RLHF / Alignment**: 人間価値観への適合学習
 - **A2I**: 低信頼度時の人間レビューワークフロー
@@ -2464,7 +2506,7 @@ style: |
 
 ---
 
-# Domain 5 — キーワード総まとめ
+# Domain 5 — キーワード総まとめ（1/2）
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2530,6 +2572,14 @@ style: |
 - **Shared Responsibility**: AWS（インフラ）vs 顧客（設定・データ管理）
 - **Least Privilege**: 最小権限の原則 — IAM Role + 一時クレデンシャル
 - **Explicit Deny**: Deny が Allow より優先（IAM の基本）
+
+
+---
+
+# Domain 5 — キーワード総まとめ（2/2）
+
+> *KMSは静止中データの暗号化、VPC EndpointはネットワークIsolationのみ—混同がひっかけ問題の核心*
+
 - **KMS**: 静止中データの暗号化キー管理（CMK / AWS Managed）
 - **VPC Endpoint**: ネットワーク分離 — 暗号化とは別概念
 - **CloudTrail**: API 操作監査ログ（全リージョン有効化 + S3 保存推奨）
@@ -3277,6 +3327,8 @@ style: |
 
 # セキュリティ設定の落とし穴
 
+> *VPCエンドポイント≠暗号化、Bedrockのデフォルト非学習、Explicit Deny優先—6つの誤解を暗記する*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">Amazon Bedrock — サービスマップ</text>
@@ -3328,6 +3380,8 @@ style: |
 ---
 
 # Guardrails 設定の誤解パターン
+
+> *Guardrailsは明示的作成・紐付けが必須—Agentsにも適用可能でPIIはANONYMIZEでマスキングされる*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3381,6 +3435,8 @@ style: |
 
 # トークン・コスト誤解パターン
 
+> *出力トークンは入力の2〜5倍高コスト、日本語は英語比2〜3倍のトークン数—コスト計算問題の必須知識*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">プロンプトエンジニアリング 手法比較</text>
@@ -3420,6 +3476,8 @@ style: |
 
 # レイテンシ誤解パターン
 
+> *Provisioned Throughputはスループット保証のみ、Temperature=0は速度に影響しない—5つの誤解を暗記*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデルコスト比較 (per 1K tokens, 概算)</text>
@@ -3447,7 +3505,7 @@ style: |
 
 ---
 
-# Domain 1 — セルフチェック
+# Domain 1 — セルフチェック（1/2）
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3489,6 +3547,14 @@ style: |
 - [ ] AI / ML / DL / GenAI の違いを 1 文で説明できる
 - [ ] 教師あり・教師なし・強化学習のユースケースを選べる
 - [ ] Accuracy / Precision / Recall / F1 の違いを理解している
+
+
+---
+
+# Domain 1 — セルフチェック（2/2）
+
+> *3層AI/ML/Framework・Rekognition/Comprehend/Textract使い分け・SageMaker vs Bedrockが重要*
+
 - [ ] 過学習・未学習の原因と対策を述べられる
 - [ ] Rekognition / Comprehend / Textract の使い分けができる
 - [ ] Transcribe / Translate / Polly を正しく選べる
@@ -3497,7 +3563,7 @@ style: |
 
 ---
 
-# Domain 2–3 — セルフチェック
+# Domain 2–3 — セルフチェック（1/2）
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3529,6 +3595,14 @@ style: |
 - [ ] Token / Context Window / Temperature の意味を説明できる
 - [ ] Zero-shot / Few-shot / CoT を使い分けられる
 - [ ] RAG の仕組みとコンポーネント（Chunking / Embedding / Retrieval）を説明できる
+
+
+---
+
+# Domain 2–3 — セルフチェック（2/2）
+
+> *RAG vs FT選択基準・Bedrock 4機能（KB/Agents/Guardrails/Eval）・カスタマイズ4択を完全理解する*
+
 - [ ] RAG vs Fine-tuning の選択基準を言える
 - [ ] Bedrock の主要機能（KB / Agents / Guardrails / Eval）を理解している
 - [ ] カスタマイズ 4 択（Prompt / RAG / FT / Pre-training）を比較できる
@@ -3537,7 +3611,7 @@ style: |
 
 ---
 
-# Domain 4–5 — セルフチェック
+# Domain 4–5 — セルフチェック（1/2）
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3550,6 +3624,14 @@ style: |
 - [ ] 責任ある AI の 6 原則を言える
 - [ ] Bedrock Guardrails の 5 フィルタ種別を知っている
 - [ ] Hallucination の軽減手法（RAG / Grounding / CoT）を選べる
+
+
+---
+
+# Domain 4–5 — セルフチェック（2/2）
+
+> *IAM版共有責任モデル・InvokeModelアクション・VPCエンドポイント≠暗号化の3点セット確認*
+
 - [ ] 共有責任モデルの AI 版（AWS vs 顧客の責任境界）を説明できる
 - [ ] Bedrock IAM アクション（InvokeModel 等）を知っている
 - [ ] VPC エンドポイント ≠ 暗号化 の違いを理解している
@@ -3559,6 +3641,8 @@ style: |
 ---
 
 # 試験当日の戦略
+
+> *2.6分/問の時間配分でフラグ活用・消去法・キーワード抽出の3戦略を試験当日に実行する*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3632,6 +3716,8 @@ style: |
 ---
 
 # 学習リソース一覧
+
+> *AWS Skill Builder公式模擬試験とBlackBeltの組み合わせが最もコスト効率の高い合格学習法*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>

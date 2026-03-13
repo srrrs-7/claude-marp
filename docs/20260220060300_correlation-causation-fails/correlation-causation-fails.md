@@ -7,6 +7,71 @@ paginate: true
 header: "相関と因果"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -23,6 +88,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *高い相関係数は因果関係の存在を1%も保証しない基本原則*
 
 - 1. 相関と因果の違い
 - 2. 疑似相関の実例
@@ -48,6 +115,8 @@ style: |
 
 # チョコレート消費量とノーベル賞受賞者数（1/2）
 
+> *r=0.79の高相関でも背後に「豊かさ」という交絡因子がある*
+
 - **Franz Messerli（2012年 NEJM）：**
 - 国別のチョコレート消費量とノーベル賞受賞者数の相関
 - r = 0.791（非常に高い相関）
@@ -67,6 +136,8 @@ style: |
 ---
 
 # チョコレート消費量とノーベル賞受賞者数（2/2）
+
+> *相関係数だけを見ると誤った政策立案につながる*
 
 - チョコレートとノーベル賞に直接の因果関係はない
 - ---
@@ -93,6 +164,8 @@ style: |
 ---
 
 # 疑似相関の代表例（1/2）
+
+> *アイス販売と溺死の相関は「夏」という交絡因子の産物*
 
 - **Tyler Vigen（Spurious Correlations）の事例：**
 - - ニコラス・ケイジの映画出演数 × プールでの溺死者数（r=0.67）
@@ -126,6 +199,8 @@ style: |
 ---
 
 # 因果推論の方法論（1/2）
+
+> *RCT・DiD・操作変数法が観察データから因果を取り出す*
 
 - **「Gold Standard」：ランダム化比較試験（RCT）**
 - - 参加者をランダムに介入群と対照群に分ける
@@ -161,6 +236,8 @@ style: |
 
 # 機械学習と因果推論（1/2）
 
+> *MLモデルは相関を学習するだけで因果を理解しない*
+
 - **ML の課題：相関に過学習する**
 - 画像認識モデルが「空の色」でコケを分類した事例
 - 医療AIが「医療機器の存在」を患者の重症度と誤学習
@@ -179,6 +256,8 @@ style: |
 ---
 
 # 機械学習と因果推論（2/2）
+
+> *因果を考慮しないMLは分布シフトで予測が崩壊する*
 
 - 因果関係に基づくモデルはより頑健
 - ---

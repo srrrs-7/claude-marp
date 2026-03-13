@@ -18,7 +18,8 @@
 				"4. チューリングテストの限界",
 				"5. LLMは意識を持つか：現時点での考察"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ハードプロブレムからLLM意識判定まで—答えのない問いの構造を解剖する"
 		},
 		{
 			"title": "意識のハードプロブレム",
@@ -63,7 +64,8 @@
 				"Jacksonの答え：**Yes** — 赤の「赤さ」という体験は物理的知識に還元できない",
 				"→ 意識には物質的説明を超えた側面がある可能性"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "赤さの体験は物理知識に還元不可—クオリアは情報処理を超える"
 		},
 		{
 			"title": "哲学的ゾンビ",
@@ -97,7 +99,8 @@
 				"テキストで会話して人間と区別できなければ「知的」とみなす",
 				"<svg viewBox=\"0 0 800 280\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"280\" fill=\"#1a1a2e\"/><rect x=\"30\" y=\"30\" width=\"160\" height=\"220\" rx=\"10\" fill=\"#1b5e20\" opacity=\"0.9\"/><text x=\"110\" y=\"60\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#a5d6a7\">審査員</text><circle cx=\"110\" cy=\"120\" r=\"28\" fill=\"#388e3c\"/><text x=\"110\" y=\"125\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"white\">Human</text><text x=\"110\" y=\"200\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#c8e6c9\">チャットのみで</text><text x=\"110\" y=\"218\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#c8e6c9\">判定する</text><rect x=\"320\" y=\"20\" width=\"160\" height=\"110\" rx=\"10\" fill=\"#e65100\" opacity=\"0.85\"/><text x=\"400\" y=\"55\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#ffe0b2\">回答者A</text><circle cx=\"400\" cy=\"90\" r=\"22\" fill=\"#ef6c00\"/><text x=\"400\" y=\"95\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"11\" fill=\"white\">人間</text><rect x=\"320\" y=\"150\" width=\"160\" height=\"110\" rx=\"10\" fill=\"#01579b\" opacity=\"0.85\"/><text x=\"400\" y=\"185\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#b3e5fc\">回答者B</text><circle cx=\"400\" cy=\"220\" r=\"22\" fill=\"#0277bd\"/><text x=\"400\" y=\"225\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"11\" fill=\"white\">AI</text><line x1=\"207\" y1=\"130\" x2=\"315\" y2=\"80\" stroke=\"#f9a825\" stroke-width=\"1.5\" stroke-dasharray=\"6,3\"/><line x1=\"207\" y1=\"140\" x2=\"315\" y2=\"205\" stroke=\"#f9a825\" stroke-width=\"1.5\" stroke-dasharray=\"6,3\"/><rect x=\"510\" y=\"50\" width=\"250\" height=\"180\" rx=\"10\" fill=\"#263238\" opacity=\"0.9\"/><text x=\"635\" y=\"85\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#eceff1\">チューリングテスト</text><text x=\"635\" y=\"112\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#b0bec5\">どちらが人間か判定</text><text x=\"635\" y=\"135\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#b0bec5\">できなければ…</text><text x=\"635\" y=\"165\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"14\" font-weight=\"bold\" fill=\"#f9a825\">AIは「知的」とみなす</text><text x=\"635\" y=\"210\" text-anchor=\"middle\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#e91e63\">※ 意識の証明ではない</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "中国語の部屋—構文処理は意味理解でも意識でもない"
 		},
 		{
 			"title": "「人間と区別できなければ知能がある」は正しいか（2/2）",
@@ -128,7 +131,8 @@
 				"**科学者の一般的な見解：**",
 				"- LLMは確率的に次のトークンを予測するモデル"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "否定も肯定も証明不可能—LLMの意識判定基準が存在しない"
 		},
 		{
 			"title": "2023年：Googleエンジニアの主張と反響（2/2）",

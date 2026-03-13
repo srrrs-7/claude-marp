@@ -15,6 +15,7 @@
 		},
 		{
 			"title": "「10倍」の出処 — Sackman 1968年研究（1/2）",
+			"subtitle": "n=12の小規模実験を「10倍神話」に拡大解釈した研究の起源",
 			"layout": "default",
 			"content": [
 				"- Sackman, Erikson & Grant (1968): プログラマー間の性能比較",
@@ -25,6 +26,7 @@
 		},
 		{
 			"title": "「10倍」の出処 — Sackman 1968年研究（2/2）",
+			"subtitle": "n=12・品質未測定の実験が「10倍」という数字を生んだ",
 			"layout": "default",
 			"content": [
 				"  - 「コードの品質」は一切測定していない",
@@ -35,6 +37,7 @@
 		},
 		{
 			"title": "Twitterでの炎上と神話化",
+			"subtitle": "2019年ツイートが「ロックスター採用」を業界全体に拡散させた",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 180\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"180\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"25\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">2019年 Kirani ツイート炎上 — 神話が拡散するまで</text><rect x=\"30\" y=\"40\" width=\"140\" height=\"110\" rx=\"8\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/><text x=\"100\" y=\"65\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#2196f3\" text-anchor=\"middle\" font-weight=\"bold\">ツイート投稿</text><text x=\"100\" y=\"85\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">「ダークモードを使う」</text><text x=\"100\" y=\"100\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">「MTGに出ない」</text><text x=\"100\" y=\"118\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#e91e63\" text-anchor=\"middle\">1.5万RT</text><polygon points=\"175,95 195,85 195,105\" fill=\"#aaa\"/><line x1=\"170\" y1=\"95\" x2=\"195\" y2=\"95\" stroke=\"#aaa\" stroke-width=\"2\"/><rect x=\"200\" y=\"40\" width=\"140\" height=\"110\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"270\" y=\"65\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\">炎上</text><text x=\"270\" y=\"85\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">反論・批判続出</text><text x=\"270\" y=\"100\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">技術コミュニティ</text><text x=\"270\" y=\"115\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">大分裂</text><polygon points=\"345,95 365,85 365,105\" fill=\"#aaa\"/><line x1=\"340\" y1=\"95\" x2=\"365\" y2=\"95\" stroke=\"#aaa\" stroke-width=\"2\"/><rect x=\"370\" y=\"40\" width=\"160\" height=\"110\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"450\" y=\"65\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\">有害な影響</text><text x=\"450\" y=\"85\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">ロックスター文化助長</text><text x=\"450\" y=\"100\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">チームワーク軽視</text><text x=\"450\" y=\"115\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">採用基準の歪み</text><rect x=\"560\" y=\"40\" width=\"210\" height=\"110\" rx=\"8\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"665\" y=\"65\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#4caf50\" text-anchor=\"middle\" font-weight=\"bold\">教訓</text><text x=\"665\" y=\"85\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">神話は研究より速く伝播</text><text x=\"665\" y=\"100\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">文脈なきデータは危険</text><text x=\"665\" y=\"115\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">データで神話を解体せよ</text></svg>",
@@ -53,6 +56,7 @@
 		},
 		{
 			"title": "生産性のばらつきは実在する",
+			"subtitle": "コード行数は不適切な指標、削除したコードが最大貢献かもしれない",
 			"layout": "default",
 			"content": [
 				"- 複数の追試で個人差 2〜10倍は確認されている",
@@ -65,6 +69,7 @@
 		},
 		{
 			"title": "「何の10倍か」問題",
+			"subtitle": "測定軸を変えると「10倍エンジニア」は別人になる",
 			"layout": "default",
 			"content": [
 				"| 測定軸 | 高生産性者の特徴 | 問題点 |",
@@ -80,6 +85,7 @@
 		},
 		{
 			"title": "コンテキスト依存性",
+			"subtitle": "得意ドメインで10倍・未知ドメインで0.5倍になる同一人物",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 200\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"200\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"22\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">同一人物の生産性はコンテキストで大きく変動する</text><rect x=\"30\" y=\"35\" width=\"100\" height=\"145\" rx=\"6\" fill=\"#16213e\" stroke=\"#aaa\" stroke-width=\"1\"/><text x=\"80\" y=\"58\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\">エンジニアX</text><rect x=\"160\" y=\"35\" width=\"80\" height=\"145\" rx=\"4\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/><text x=\"200\" y=\"55\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">得意ドメイン</text><rect x=\"165\" y=\"110\" width=\"70\" height=\"65\" rx=\"3\" fill=\"#f9a825\" opacity=\"0.8\"/><text x=\"200\" y=\"148\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#1a1a2e\" text-anchor=\"middle\" font-weight=\"bold\">10x</text><rect x=\"260\" y=\"35\" width=\"80\" height=\"145\" rx=\"4\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"300\" y=\"55\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">未知ドメイン</text><rect x=\"265\" y=\"163\" width=\"70\" height=\"12\" rx=\"3\" fill=\"#e91e63\" opacity=\"0.8\"/><text x=\"300\" y=\"183\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#e91e63\" text-anchor=\"middle\">0.5x</text><rect x=\"360\" y=\"35\" width=\"80\" height=\"145\" rx=\"4\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"1\"/><text x=\"400\" y=\"55\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">熟知のコード</text><rect x=\"365\" y=\"80\" width=\"70\" height=\"95\" rx=\"3\" fill=\"#4caf50\" opacity=\"0.8\"/><text x=\"400\" y=\"133\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#1a1a2e\" text-anchor=\"middle\" font-weight=\"bold\">7x</text><rect x=\"460\" y=\"35\" width=\"80\" height=\"145\" rx=\"4\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"1\"/><text x=\"500\" y=\"55\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">新規プロジェクト</text><rect x=\"465\" y=\"140\" width=\"70\" height=\"35\" rx=\"3\" fill=\"#2196f3\" opacity=\"0.8\"/><text x=\"500\" y=\"163\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#fff\" text-anchor=\"middle\">2x</text><rect x=\"560\" y=\"35\" width=\"80\" height=\"145\" rx=\"4\" fill=\"#16213e\" stroke=\"#ff9800\" stroke-width=\"1\"/><text x=\"600\" y=\"55\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">最適ツール</text><rect x=\"565\" y=\"90\" width=\"70\" height=\"85\" rx=\"3\" fill=\"#ff9800\" opacity=\"0.8\"/><text x=\"600\" y=\"138\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#1a1a2e\" text-anchor=\"middle\" font-weight=\"bold\">6x</text><rect x=\"660\" y=\"35\" width=\"110\" height=\"145\" rx=\"6\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"715\" y=\"65\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#4caf50\" text-anchor=\"middle\" font-weight=\"bold\">結論</text><text x=\"715\" y=\"88\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">「10倍」は</text><text x=\"715\" y=\"105\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">固有能力でなく</text><text x=\"715\" y=\"122\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#f9a825\" text-anchor=\"middle\">適合度</text><text x=\"715\" y=\"140\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">正しい人を</text><text x=\"715\" y=\"157\" font-family=\"sans-serif\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\">正しい場所に</text></svg>",
@@ -90,6 +96,7 @@
 		},
 		{
 			"title": "チーム効果の方が大きい",
+			"subtitle": "心理的安全性が生産性を最大5倍変動させ個人差を上回る",
 			"layout": "default",
 			"content": [
 				"- Google「Project Aristotle」(2015): 生産性の最大要因は心理的安全性",
@@ -109,6 +116,7 @@
 		},
 		{
 			"title": "AI補助でベースラインが上がる",
+			"subtitle": "Copilotで全員が底上げされ、10倍→3倍・1倍→2倍に相対差が縮小",
 			"layout": "default",
 			"content": [
 				"- GitHub Copilot使用で平均 **55%高速化** (GitHub, 2022)",
@@ -120,6 +128,7 @@
 		},
 		{
 			"title": "新しい「希少能力」",
+			"subtitle": "コード生成がAIに代替される今、問題定義力が差別化要因になる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 200\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"200\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"22\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">AI時代に希少になる能力 vs. コモディティ化する能力</text><rect x=\"30\" y=\"38\" width=\"340\" height=\"145\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"200\" y=\"62\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\">コモディティ化（AIが代替）</text><text x=\"200\" y=\"85\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\">コード生成・補完</text><text x=\"200\" y=\"103\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\">定型的なバグ修正</text><text x=\"200\" y=\"121\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\">ボイラープレート作成</text><text x=\"200\" y=\"139\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\">基本的なリファクタリング</text><text x=\"200\" y=\"157\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\">ドキュメント生成</text><rect x=\"430\" y=\"38\" width=\"340\" height=\"145\" rx=\"8\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"600\" y=\"62\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#4caf50\" text-anchor=\"middle\" font-weight=\"bold\">希少化（人間の価値）</text><text x=\"600\" y=\"85\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\">問題定義・正しい問いを立てる</text><text x=\"600\" y=\"103\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\">アーキテクチャのトレードオフ判断</text><text x=\"600\" y=\"121\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\">「作らない」「消す」判断</text><text x=\"600\" y=\"139\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\">AI生成コードの倫理審査</text><text x=\"600\" y=\"157\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\">組織への技術的影響力</text><text x=\"400\" y=\"98\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\">↔</text></svg>",
@@ -130,6 +139,7 @@
 		},
 		{
 			"title": "「乗数効果」エンジニア",
+			"subtitle": "チーム全員を2倍にする人材が10倍エンジニアより組織貢献が大きい",
 			"layout": "default",
 			"content": [
 				"- 自分が10倍 vs チーム全員を2倍にする人",
@@ -140,6 +150,7 @@
 		},
 		{
 			"title": "採用への含意（1/2）",
+			"subtitle": "「天才を探す」採用がコーディングテスト偏重と多様性欠如を招く",
 			"layout": "default",
 			"content": [
 				"- 「10倍エンジニアを探す」採用戦略の問題点:",
@@ -150,6 +161,7 @@
 		},
 		{
 			"title": "採用への含意（2/2）",
+			"subtitle": "採用基準をコミュニケーション・学習意欲・ドメイン適合度に切り替える",
 			"layout": "default",
 			"content": [
 				"- より効果的な採用基準:",
@@ -171,6 +183,7 @@
 		},
 		{
 			"title": "参考文献",
+			"subtitle": "Sackman1968・Project Aristotle・Copilot研究・神話解体記事の7文献",
 			"layout": "default",
 			"content": [
 				"- **Research:**",

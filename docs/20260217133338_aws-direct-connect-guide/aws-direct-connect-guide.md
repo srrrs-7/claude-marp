@@ -1,7 +1,6 @@
 ---
 marp: true
 theme: gaia
-class: invert
 size: 16:9
 paginate: true
 style: |
@@ -84,6 +83,8 @@ style: |
 
 # アジェンダ (1/2)
 
+> *概要→物理接続→VIF→Private→Public→Transit→選定→冗長化の8章構成*
+
 - 1. **AWS Direct Connect 概要** — 専用線接続の基本と物理構成
 - 2. **物理接続の基礎** — Dedicated / Hosted / LAG
 - 3. **Virtual Interface (VIF)** — 3種類のVIFと基本パラメータ
@@ -95,6 +96,8 @@ style: |
 
 # アジェンダ (2/2)
 
+> *Transit VIF・DX Gateway・冗長化・VPNフェイルオーバーまで網羅する後半5章*
+
 - 6. **Transit VIF 詳細** — TGW連携とマルチVPC接続
 - 7. **VIF 選定ガイド** — Private vs Transit の判断基準
 - 8. **DX Gateway 詳細** — クロスアカウント・マルチリージョン
@@ -105,6 +108,8 @@ style: |
 ---
 
 # AWS Direct Connect とは
+
+> *専用線で50Mbps〜100Gbpsの安定低レイテンシ接続、100以上のDXロケーションをグローバル展開*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <rect x="30" y="150" width="160" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -135,6 +140,8 @@ style: |
 ---
 
 # DX の主なユースケース
+
+> *大容量移行・ハイブリッド・リアルタイム・規制対応・DRのすべてにDXが適合*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX 主なユースケース</text>
@@ -206,6 +213,8 @@ style: |
 
 # DX ロケーションとパートナー
 
+> *日本はEquinix TY2/NTT堂島、NTT/KDDI/IIJ等がHosted Connection提供*
+
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX ロケーションとパートナー</text>
   <rect x="30" y="70" width="180" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -260,6 +269,8 @@ style: |
 
 # 物理接続のコンポーネント
 
+> *カスタマールーター→クロスコネクト→DXルーター→AWSバックボーンの4段構成*
+
 - <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">物理接続コンポーネント詳細</text>
   <rect x="30" y="70" width="170" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -305,6 +316,8 @@ style: |
 
 # Dedicated Connection
 
+> *1G/10G/100G専用ポート・最大50 VIF、LOA-CFA発行後2〜4週間でクロスコネクト工事*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="35" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Dedicated Connection</text>
   <rect x="60" y="80" width="200" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -341,6 +354,8 @@ style: |
 ---
 
 # Hosted Connection
+
+> *パートナー経由で50Mbps〜10Gbps提供、VIF は1つのみでDedicatedより短いリードタイム*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="35" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Hosted Connection</text>
@@ -426,6 +441,8 @@ style: |
 ---
 
 # LAG (Link Aggregation Group)
+
+> *最大4本の同帯域・同ロケーション接続を1論理接続に集約、最小リンク数設定で自動フェイルオーバー*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">LAG (Link Aggregation Group)</text>
@@ -532,6 +549,8 @@ Connect</text>
 
 # VIF とは何か
 
+> *802.1Q VLANで1物理接続を論理分割、Dedicated最大50 VIF・Hosted は1 VIFのみ*
+
 - <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF (Virtual Interface) とは何か</text>
   <rect x="30" y="75" width="200" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -571,6 +590,8 @@ Connect</text>
 
 # VIF の3種類
 
+> *Private VIF→VGW/DX GW、Public VIF→パブリックエンドポイント、Transit VIF→DX GW→TGW*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF の 3 種類</text>
   <rect x="40" y="70" width="220" height="90" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -601,7 +622,7 @@ Connect</text>
 
 ---
 
-# VLAN タグと BGP セッション
+# VLAN タグと BGP セッション（1/2）
 
 - <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VLAN タグと BGP セッション</text>
@@ -631,6 +652,14 @@ VLAN 分離</text>
 - - **VLAN ID**: 1〜4094 の範囲で指定（物理接続内で一意）
 - - **BGP ASN**: お客様側の AS 番号（パブリック or プライベート ASN）
 -   - AWS 側: Private/Transit VIF = **64512**、Public VIF = **7224**
+
+
+---
+
+# VLAN タグと BGP セッション（2/2）
+
+> *BGP MD5認証は強く推奨、ピアリングIPは/30または/31サブネット、Public VIFはパブリックIP必須*
+
 - - **BGP ピアリング IP**: /30 または /31 サブネットで指定
 -   - AWS 割り当て or お客様指定（Public VIF はパブリック IP 必須）
 - - **BGP MD5 認証**: オプションだが **強く推奨**
@@ -797,6 +826,8 @@ VLAN 分離</text>
 
 # Private VIF の概要
 
+> *プライベートIPでVPC内に直接アクセス、Jumbo Frame MTU 9001でスループット向上*
+
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Private VIF 概要</text>
   <rect x="30" y="75" width="170" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -867,6 +898,8 @@ VLAN 分離</text>
 
 # Virtual Private Gateway (VGW)
 
+> *VPCにアタッチするAWS側仮想ルーター、1VPC:1VGW・リージョン固定・カスタムASN指定可*
+
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Virtual Private Gateway (VGW)</text>
   <rect x="30" y="75" width="170" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -900,6 +933,8 @@ VLAN 分離</text>
 ---
 
 # VGW の制約事項
+
+> *1VPC:1VGW・ECMP非対応・トランジットルーティング不可、Private VIF最大30個まで接続*
 
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">VGW の制約事項</text>
@@ -938,6 +973,8 @@ VLAN 分離</text>
 ---
 
 # Private VIF + VGW 構成パターン（2/2）
+
+> *VPC CIDRはBGP自動広報、オンプレルートはカスタマーBGPで広報、AS PATHで経路制御*
 
 - **設計ポイント:**
 - - VPC CIDR が BGP で自動広報される（ルート伝搬有効化が必要）
@@ -988,6 +1025,8 @@ VLAN 分離</text>
 
 # Private VIF の BGP ルーティング（1/2）
 
+> *VPC CIDRはBGP自動広報、オンプレ→AWS方向は最大100プレフィックスまで受信可能*
+
 - <svg viewBox="0 0 800 290" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="290" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">BGP ルーティング基礎 (Private VIF)</text>
   <rect x="30" y="75" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1017,6 +1056,8 @@ VLAN 分離</text>
 ---
 
 # Private VIF の BGP ルーティング（2/2）
+
+> *100プレフィックス超過でBGPセッションダウン、DXは同一プレフィックスでVPNより常に優先*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">BGP 経路優先度制御</text>
@@ -1051,6 +1092,8 @@ VLAN 分離</text>
 
 # Jumbo Frame と MTU 設定（1/2）
 
+> *Private VIF MTU 9001・Transit VIF 8500・Public VIF 1500固定の3段階制限*
+
 - - **Private VIF**: MTU **9001** まで対応（Jumbo Frame）
 - - **Transit VIF**: MTU **8500** まで対応
 - - **Public VIF**: MTU **1500** 固定（Jumbo Frame 非対応）
@@ -1060,6 +1103,8 @@ VLAN 分離</text>
 ---
 
 # Jumbo Frame と MTU 設定（2/2）
+
+> *パス上の全ホップでMTU統一が必要、不一致時はPMTUDで自動調整*
 
 -   - VGW またはTGW側でも Jumbo Frame 対応が必要
 -   - VPC 内の EC2 インスタンスの MTU 設定も合わせる
@@ -1101,6 +1146,8 @@ VLAN 分離</text>
 ---
 
 # Public VIF の概要
+
+> *パブリックIPでS3/DynamoDB等に直接アクセス、VPC/VGW/TGWが不要なのが特徴*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF 概要</text>
@@ -1162,6 +1209,8 @@ CloudFront ...</text>
 
 # アクセス可能なサービス一覧
 
+> *S3/Glacier/DynamoDB/CloudFront等全リージョンのパブリックサービスにアクセス可能*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF でアクセス可能な AWS サービス</text>
   <rect x="30" y="70" width="220" height="60" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
@@ -1202,7 +1251,7 @@ CloudFront ...</text>
 
 ---
 
-# Public VIF の BGP ルーティング
+# Public VIF の BGP ルーティング（1/2）
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF BGP 経路制御</text>
@@ -1229,6 +1278,14 @@ CloudFront ...</text>
 - - **AWS → オンプレ**: Amazon が所有する **パブリック IP プレフィックス** を広報
 -   - 全リージョンのプレフィックスが広報される（数千プレフィックス）
 -   - BGP コミュニティでリージョン単位のフィルタリング可能
+
+
+---
+
+# Public VIF の BGP ルーティング（2/2）
+
+> *Public VIF受信プレフィックス上限1,000（Private VIFの10倍）、RIR登録IPとROA検証が必須*
+
 - - **オンプレ → AWS**: お客様の **パブリック IP プレフィックス** を広報
 -   - RIR に登録された IP アドレスが必要
 -   - AWS が **ROA (Route Origin Authorization)** で検証
@@ -1237,7 +1294,7 @@ CloudFront ...</text>
 
 ---
 
-# Public VIF のユースケース
+# Public VIF のユースケース（1/2）
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF ユースケース</text>
@@ -1264,6 +1321,14 @@ CloudFront ...</text>
 - - **S3 大容量転送**: TB〜PB 級のデータ移行を安定した帯域で実行
 -   - VPC エンドポイントと異なり、VPC を経由しない直接アクセス
 - - **AWS API アクセス**: マネジメントコンソール、CLI、SDK の通信を専用線化
+
+
+---
+
+# Public VIF のユースケース（2/2）
+
+> *VPC外からS3直接アクセスにPublic VIFが有効、VPC内からはGateway Endpoint（無料）で十分*
+
 - - **CloudFront オリジン取得**: DX 経由でオリジンサーバーに低レイテンシ接続
 - - **Public VIF vs VPC Gateway Endpoint**:
 -   - S3 へのアクセスは **Gateway Endpoint（無料）** で十分なケースが多い
@@ -1313,6 +1378,8 @@ CloudFront ...</text>
 
 # Transit VIF の概要
 
+> *Transit VIF→DX GW→TGWで1本のVIFから複数VPC接続、ECMPで負荷分散対応*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">Transit VIF 概要</text>
   <rect x="30" y="75" width="170" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1352,7 +1419,7 @@ CloudFront ...</text>
 
 ---
 
-# Transit Gateway (TGW) の基礎
+# Transit Gateway (TGW) の基礎（1/2）
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">Transit Gateway — ハブ & スポーク</text>
@@ -1393,6 +1460,14 @@ CloudFront ...</text>
 - - **リージョナルなネットワークハブ** — VPC、VPN、DX を集約
 - - **ハブ＆スポーク** トポロジで VPC 間通信を実現
 - - **ルートテーブル** による柔軟な経路制御（セグメンテーション可能）
+
+
+---
+
+# Transit Gateway (TGW) の基礎（2/2）
+
+> *TGWアタッチメントでVPC/VPN/DX GWを管理、リージョン間ピアリングで最大50 Gbps*
+
 - - **TGW アタッチメント** で接続先を管理:
 -   - VPC アタッチメント / VPN アタッチメント / DX Gateway アタッチメント
 - - **TGW ピアリング** でリージョン間接続も可能
@@ -1441,6 +1516,8 @@ CloudFront ...</text>
 ---
 
 # DX Gateway + TGW 連携構成
+
+> *DX GWはグローバルリソース、1 DX GWにTGW最大3個・Allowed Prefixesで広報制限*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway + TGW 連携構成</text>
@@ -1525,6 +1602,8 @@ CloudFront ...</text>
 
 # Transit VIF の制約と注意点
 
+> *DX GW必須・1 DX GW最大3 TGW・MTU 8500、同一DX GWにPrivate VIFとTransit VIFは共存不可*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Transit VIF の制約と注意点</text>
   <rect x="30" y="70" width="340" height="70" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
@@ -1553,7 +1632,7 @@ CloudFront ...</text>
 
 ---
 
-# TGW ピアリングとの組合せ
+# TGW ピアリングとの組合せ（1/2）
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">TGW ピアリングとの組合せ</text>
@@ -1586,6 +1665,14 @@ Peering</text>
 - - **TGW ピアリング**: 異なるリージョンの TGW 同士を接続
 - - DX + TGW + ピアリングで **マルチリージョン・フルメッシュ** 接続が可能
 - - 構成例: オンプレ → DX → TGW(東京) ↔ TGW(大阪) → VPC(大阪)
+
+
+---
+
+# TGW ピアリングとの組合せ（2/2）
+
+> *ピアリング帯域50 Gbps上限、リージョン間転送料金発生、ルートは静的設定が必要*
+
 - - **注意点**:
 -   - ピアリング経由のトラフィックはリージョン間転送料金が発生
 -   - ピアリングの帯域は **50 Gbps** が上限
@@ -1717,6 +1804,8 @@ Peering</text>
 
 # 構成パターン別コスト比較（1/2）
 
+> *Private VIF×10は追加料金なし、DX GWも無料でDXポートコストのみで運用可能*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">構成パターン別コスト比較 (概算)</text>
   <rect x="30" y="70" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -1749,6 +1838,8 @@ Peering</text>
 ---
 
 # 構成パターン別コスト比較（2/2）
+
+> *Transit VIF構成はTGWアタッチメント$0.07/時間×11≈$560/月+データ処理$0.02/GB*
 
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コスト最適化ポイント</text>
@@ -1812,6 +1903,8 @@ Peering</text>
 
 # DX Gateway の役割
 
+> *DX GWはグローバル無料リソース、DX GW無しでは同一リージョンのVGWにしか接続不可*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway の主な役割</text>
   <rect x="30" y="75" width="200" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
@@ -1872,7 +1965,7 @@ Peering</text>
 
 ---
 
-# 許可プレフィックスとルーティング
+# 許可プレフィックスとルーティング（1/2）
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">許可プレフィックスとルーティング制御</text>
@@ -1899,6 +1992,14 @@ Peering</text>
 - - **Allowed Prefixes (許可プレフィックス)**: DX GW で広報するルートを制限
 - - VGW 関連付け時: AWS → オンプレ方向のプレフィックスをフィルタ
 -   - デフォルト: VPC CIDR がそのまま広報
+
+
+---
+
+# 許可プレフィックスとルーティング（2/2）
+
+> *TGW→オンプレはTGWルートテーブルのルートを広報、受け入れはAllowed Prefixesで制限*
+
 -   - カスタム: サマリルートや特定サブネットのみ広報
 - - TGW 関連付け時: 双方向でプレフィックスを制御
 -   - TGW → オンプレ: TGW ルートテーブルのルートを広報
@@ -1908,6 +2009,8 @@ Peering</text>
 ---
 
 # クロスアカウント共有（1/2）
+
+> *Organizations不要でアカウントIDのみで共有、関連付け提案→承認のフローで接続*
 
 - <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway クロスアカウント共有</text>
@@ -1940,6 +2043,8 @@ Peering</text>
 ---
 
 # クロスアカウント共有（2/2）
+
+> *1 DX GWあたりVGW 30個・TGW 3個まで関連付け可能、承認フローで接続確立*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">クロスアカウント共有の手順</text>
@@ -2183,7 +2288,7 @@ Peering</text>
 
 ---
 
-# 開発・テスト環境の冗長化
+# 開発・テスト環境の冗長化（1/2）
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">開発・テスト環境の冗長化</text>
@@ -2208,6 +2313,14 @@ Peering</text>
 - - **単一 DX ロケーション** に2本の接続（コスト優先）
 - - SLA の保証なし — ロケーション障害時は全断
 - - **VPN バックアップ** との併用を推奨:
+
+
+---
+
+# 開発・テスト環境の冗長化（2/2）
+
+> *DX障害時のVPNバックアップは重要トラフィックのみ、本番は最低High Resiliencyが必要*
+
 -   - DX 障害時に VPN で最低限の接続を維持
 -   - VPN の帯域は DX より小さいため、重要トラフィックのみ
 - - LAG を使って2本を束ねることも可能
@@ -2257,6 +2370,8 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 # BFD と SiteLink（1/2）
 
+> *BFDでBGPデフォルト90秒の障害検知を300ms以下に短縮、DX接続での有効化を強く推奨*
+
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">BFD (Bidirectional Forwarding Detection)</text>
   <rect x="80" y="100" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2284,6 +2399,8 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 ---
 
 # BFD と SiteLink（2/2）
+
+> *SiteLinkでDXロケーション間をAWSバックボーン経由で直接通信、拠点間接続にも活用可能*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">SiteLink — 拠点間 DX 経由通信</text>
@@ -2319,7 +2436,7 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 ---
 
-# 移行戦略: VPN → DX
+# 移行戦略: VPN → DX（1/2）
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VPN → DX 移行ステップ</text>
@@ -2349,6 +2466,14 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 - **段階的移行の推奨手順:**
 - 1. **準備**: DX 接続の申請・物理回線の手配（2〜4週間）
 - 2. **並行運用**: VPN を維持しつつ DX を追加接続
+
+
+---
+
+# 移行戦略: VPN → DX（2/2）
+
+> *DXとVPNの同一プレフィックスでは自動的にDXが優先、VPNをバックアップとして残すのが推奨*
+
 - 3. **ルーティング切替**: BGP で DX を優先（AS PATH / MED 調整）
 - 4. **検証**: トラフィックが DX 経由であることを CloudWatch で確認
 - 5. **VPN バックアップ化**: VPN を待機系として残す or 撤去
@@ -2358,6 +2483,8 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 ---
 
 # 設計時のベストプラクティス
+
+> *本番は最低High Resiliency・BFD有効化・BGP MD5認証・100プレフィックス上限管理が必須*
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">設計時のベストプラクティス</text>
@@ -2438,6 +2565,8 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 # 参考リンク（1/2）
 
+> *公式ドキュメント・設計ガイド・料金の3カテゴリで実務参照を完結できる*
+
 - - **公式ドキュメント:**
 -   - [AWS Direct Connect ユーザーガイド](https://docs.aws.amazon.com/directconnect/latest/UserGuide/)
 -   - [Direct Connect FAQ](https://aws.amazon.com/directconnect/faqs/)
@@ -2447,6 +2576,8 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 ---
 
 # 参考リンク（2/2）
+
+> *冗長化推奨モデル・ブログ・料金ページで設計検証から実装まで対応*
 
 -   - [AWS Direct Connect Resiliency Recommendations](https://aws.amazon.com/directconnect/resiliency-recommendation/)
 -   - [Networking & Content Delivery Blog](https://aws.amazon.com/blogs/networking-and-content-delivery/)

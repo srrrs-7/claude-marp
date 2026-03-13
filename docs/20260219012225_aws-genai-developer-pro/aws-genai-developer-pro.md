@@ -82,7 +82,7 @@ style: |
 
 ---
 
-# 本日のアジェンダ（1/2）
+# 本日のアジェンダ（1/2）（1/2）
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
@@ -122,6 +122,14 @@ style: |
 - **試験概要** — 形式・評価領域・合格スコア・準備方法
 - **Domain 1（20%）** — AI/ML の基礎: 機械学習種類・ML ワークフロー・AWS AI サービス
 - **Domain 2（24%）** — 生成 AI の基礎: FM の仕組み・プロンプトエンジニアリング・ハルシネーション
+
+
+---
+
+# 本日のアジェンダ（1/2）（2/2）
+
+> *Domain 3が最重要28%、Bedrock全機能+責任あるAI+セキュリティが試験の核心*
+
 - **Domain 3（28%）** — Foundation Models の活用: Bedrock・RAG・Agents・カスタマイズ
 - **Domain 4（14%）** — 責任ある AI: 原則・バイアス・SageMaker Clarify
 - **Domain 5（14%）** — セキュリティ: Guardrails・IAM・データガバナンス
@@ -131,6 +139,8 @@ style: |
 ---
 
 # 試験の位置づけ
+
+> *AWS Certified Generative AI Developer Professional、3年有効で有効期間3年*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
@@ -161,6 +171,8 @@ style: |
 ---
 
 # 本資料の使い方
+
+> *合格スコア750/1000、65問の単一/複数選択、試験ガイドとサンプル問題も必ず参照*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
@@ -219,7 +231,7 @@ style: |
 
 ---
 
-# 試験形式・詳細
+# 試験形式・詳細（1/2）
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
@@ -259,6 +271,14 @@ style: |
 - **問題数**: 85 問（採点対象 65 問 + ノンスコアリング 20 問）
 - **試験時間**: 170 分（約 2 分/問のペース配分）
 - **出題形式**: 単一回答・複数回答の選択式（記述問題なし）
+
+
+---
+
+# 試験形式・詳細（2/2）
+
+> *受験料USD 300、合格スコア750/1000、ピアソンVUEまたはオンライン監督試験*
+
 - **受験料**: USD 300（Professional レベル）
 - **言語**: 英語（日本語試験 UI は選択可能）
 - **合格スコア**: 750/1000 スケールスコア
@@ -275,6 +295,8 @@ style: |
 ---
 
 # 試験準備の目安
+
+> *AWS経験1年以上なら4〜6週間、Bedrock Knowledge Bases/Agents/Guardrailsの実装経験が必須*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -318,6 +340,8 @@ style: |
 
 # 合格に向けたアプローチ
 
+> *Domain 3（28%）が最重点、Bedrockを実際に操作して各機能を手を動かして理解すること*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/><text x="400" y="32" font-family="sans-serif" font-size="21" fill="#f9a825" text-anchor="middle" font-weight="bold">合格に向けたアプローチ</text><rect x="15" y="70" width="170" height="240" fill="#16213e" rx="8"/><rect x="15" y="70" width="170" height="7" fill="#e91e63" rx="4"/><text x="100" y="108" font-family="sans-serif" font-size="16" fill="#e91e63" text-anchor="middle" font-weight="bold">W1-2</text><text x="100" y="140" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">AWS AI/ML + Bedrock基礎</text><rect x="135" y="70" width="170" height="240" fill="#16213e" rx="8"/><rect x="135" y="70" width="170" height="7" fill="#0d7377" rx="4"/><text x="220" y="108" font-family="sans-serif" font-size="16" fill="#0d7377" text-anchor="middle" font-weight="bold">W3-4</text><text x="220" y="140" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">RAG・Agents・Guardrails</text><rect x="255" y="70" width="170" height="240" fill="#16213e" rx="8"/><rect x="255" y="70" width="170" height="7" fill="#6b2d8b" rx="4"/><text x="340" y="108" font-family="sans-serif" font-size="16" fill="#6b2d8b" text-anchor="middle" font-weight="bold">W5-6</text><text x="340" y="140" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">責任あるAI・セキュリティ</text><rect x="375" y="70" width="170" height="240" fill="#16213e" rx="8"/><rect x="375" y="70" width="170" height="7" fill="#1a6b3c" rx="4"/><text x="460" y="108" font-family="sans-serif" font-size="16" fill="#1a6b3c" text-anchor="middle" font-weight="bold">W7-8</text><text x="460" y="140" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">模擬試験・弱点復習</text></svg>
 - **Week 1-2**: AWS AI/ML サービスの全体像 + Bedrock の基礎操作（コンソール・API）
 - **Week 3-4**: RAG・Agents・Guardrails の実装 + プロンプトエンジニアリング実践
@@ -347,6 +371,8 @@ style: |
 
 # 機械学習の種類
 
+> *教師あり・教師なし・強化学習・半教師あり・自己教師ありの5種類、LLMはRLHFで改善*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/><text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">機械学習の種類 — 試験ポイント</text><rect x="15" y="70" width="230" height="260" fill="#16213e" rx="8"/><rect x="15" y="70" width="230" height="7" fill="#e91e63" rx="4"/><text x="130" y="110" font-family="sans-serif" font-size="16" fill="#e91e63" text-anchor="middle" font-weight="bold">教師あり学習</text><text x="130" y="145" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">ラベル付きデータ</text><text x="130" y="175" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">分類・回帰・SageMaker</text><rect x="285" y="70" width="230" height="260" fill="#16213e" rx="8"/><rect x="285" y="70" width="230" height="7" fill="#0d7377" rx="4"/><text x="400" y="110" font-family="sans-serif" font-size="16" fill="#0d7377" text-anchor="middle" font-weight="bold">教師なし学習</text><text x="400" y="145" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">ラベルなしデータ</text><text x="400" y="175" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">クラスタリング・次元削減</text><rect x="555" y="70" width="230" height="260" fill="#16213e" rx="8"/><rect x="555" y="70" width="230" height="7" fill="#6b2d8b" rx="4"/><text x="670" y="110" font-family="sans-serif" font-size="16" fill="#6b2d8b" text-anchor="middle" font-weight="bold">強化学習</text><text x="670" y="145" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal">報酬最大化</text><text x="670" y="175" font-family="sans-serif" font-size="11" fill="#b0b8d0" text-anchor="middle" font-weight="normal">ゲームAI・RLHF</text></svg>
 - **教師あり学習（Supervised Learning）**: ラベル付きデータから予測モデルを学習。分類（スパム判定）・回帰（価格予測）
 - **教師なし学習（Unsupervised Learning）**: ラベルなしデータからパターン発見。クラスタリング・次元削減・異常検知
@@ -365,6 +391,8 @@ style: |
 ---
 
 # ML モデルの主要評価指標
+
+> *クラス不均衡時はAccuracyより F1 Score、がん診断など偽陰性を減らす場合はRecall優先*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/><text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">ML モデル評価指標 — 使い分け</text><rect x="20" y="70" width="240" height="130" fill="#16213e" rx="8"/><rect x="20" y="70" width="240" height="6" fill="#e91e63" rx="3"/><text x="140" y="105" font-family="sans-serif" font-size="17" fill="#e91e63" text-anchor="middle" font-weight="bold">Accuracy</text><text x="140" y="130" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">全体正解率</text><text x="140" y="152" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">クラス不均衡時は不適</text><rect x="275" y="70" width="240" height="130" fill="#16213e" rx="8"/><rect x="275" y="70" width="240" height="6" fill="#0d7377" rx="3"/><text x="395" y="105" font-family="sans-serif" font-size="17" fill="#0d7377" text-anchor="middle" font-weight="bold">Precision</text><text x="395" y="130" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">陽性予測適合率</text><text x="395" y="152" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">偽陽性最小化</text><rect x="530" y="70" width="240" height="130" fill="#16213e" rx="8"/><rect x="530" y="70" width="240" height="6" fill="#6b2d8b" rx="3"/><text x="650" y="105" font-family="sans-serif" font-size="17" fill="#6b2d8b" text-anchor="middle" font-weight="bold">Recall</text><text x="650" y="130" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">実陽性検出率</text><text x="650" y="152" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">偽陰性最小化（医療）</text><rect x="20" y="220" width="240" height="130" fill="#16213e" rx="8"/><rect x="20" y="220" width="240" height="6" fill="#1a6b3c" rx="3"/><text x="140" y="255" font-family="sans-serif" font-size="17" fill="#1a6b3c" text-anchor="middle" font-weight="bold">F1 Score</text><text x="140" y="280" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">調和平均</text><text x="140" y="302" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">不均衡データ</text><rect x="275" y="220" width="240" height="130" fill="#16213e" rx="8"/><rect x="275" y="220" width="240" height="6" fill="#b45309" rx="3"/><text x="395" y="255" font-family="sans-serif" font-size="17" fill="#b45309" text-anchor="middle" font-weight="bold">AUC-ROC</text><text x="395" y="280" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">判別能力</text><text x="395" y="302" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">0.5〜1.0</text><rect x="530" y="220" width="240" height="130" fill="#16213e" rx="8"/><rect x="530" y="220" width="240" height="6" fill="#0891b2" rx="3"/><text x="650" y="255" font-family="sans-serif" font-size="17" fill="#0891b2" text-anchor="middle" font-weight="bold">RMSE/MAE</text><text x="650" y="280" font-family="sans-serif" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal">回帰誤差</text><text x="650" y="302" font-family="sans-serif" font-size="10" fill="#b0b8d0" text-anchor="middle" font-weight="normal">外れ値感度</text></svg>
 - **Accuracy（精度）**: 全サンプル中の正解率。クラス不均衡時は不適切（95% 正解でも実は全部「陰性」予測かも）
@@ -385,6 +413,8 @@ style: |
 ---
 
 # Amazon SageMaker — 主要機能
+
+> *Studio/Autopilot/Training/Endpoints/Pipelines/Model Registryが6大機能、MLワークフロー全体をカバー*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
@@ -422,6 +452,8 @@ style: |
 ---
 
 # SageMaker — 追加コンポーネント
+
+> *Clarify(SHAP)・Feature Store・Model Monitor・Ground Truth・JumpStart・Data Wranglerで完全なMLOps*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -465,6 +497,8 @@ style: |
 
 # Domain 1 — 試験対策チェックリスト
 
+> *SageMaker主要コンポーネントとML評価指標（F1/AUC-ROC）の理解がDomain 1の核心*
+
 - ✅ 教師あり/なし/強化学習の違いと AWS サービスへの対応を説明できる
 - ✅ Precision・Recall・F1 の計算と使い分け（クラス不均衡時は Accuracy より F1）
 - ✅ AWS AI サービスを適切なユースケースに対応付けられる（Rekognition=画像、Comprehend=NLP）
@@ -505,6 +539,8 @@ style: |
 
 # 生成 AI と Foundation Models
 
+> *FMは数十億〜数千億パラメータの汎用モデル、Zero-shotで多様タスクに対応できるのが革新点*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
 <text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">Transformer アーキテクチャ</text>
@@ -543,6 +579,8 @@ style: |
 
 # Transformer アーキテクチャの仕組み
 
+> *Transformerデコーダ型がLLMの基盤、Scaling Lawでパラメータ・データ・計算量増加が性能向上に直結*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="32" font-family="sans-serif" font-size="19" fill="#f9a825" text-anchor="middle" font-weight="bold">トークン・エンベディング・コンテキストウィンドウ</text>
@@ -579,6 +617,8 @@ style: |
 ---
 
 # トークン・エンベディング・コンテキストウィンドウ
+
+> *コンテキストウィンドウが処理能力の上限、RAGではチャンキングで長文書をウィンドウに収める*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
@@ -632,6 +672,8 @@ style: |
 
 # LLM 推論パラメータ
 
+> *事実確認・コード生成→低Temperature、創作・アイデア出し→高Temperature が基本原則*
+
 - **Temperature（0〜2）**: 出力の多様性。低い値（0.1）→確定的・一貫性高い / 高い値（1.5）→創造的・ランダム
 - **Top-P（0〜1）**: 累積確率が P を超えるまでの上位トークンからサンプリング（Nucleus Sampling）
 - **Top-K**: 上位 K 個のトークンの中からサンプリング。K=1 → Greedy（最高確率を常に選択）
@@ -650,6 +692,8 @@ style: |
 ---
 
 # 高度なプロンプト技法
+
+> *ReActがBedrock Agentsの基盤、Reflection・ToTで複雑問題の精度向上、Prompt Injection対策必須*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
@@ -690,6 +734,8 @@ style: |
 
 # プロンプトの構成要素
 
+> *指示・コンテキスト・入力データ・出力形式の4要素、具体的・肯定的・Few-shot提示が3大ベストプラクティス*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">ハルシネーション（幻覚）の原因</text>
@@ -729,6 +775,8 @@ style: |
 ---
 
 # ハルシネーション（幻覚）とは
+
+> *確率的生成で「それらしい嘘」が生まれる、知識カットオフとコンテキスト不足が主要原因*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -777,6 +825,8 @@ style: |
 
 # ハルシネーション対策
 
+> *RAGが最も効果的、Guardrails Groundingで自動検証・Temperature低下・CoTで決定論的回答を誘導*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">Domain 2 — 重要ポイントまとめ</text>
@@ -819,6 +869,8 @@ style: |
 
 # Domain 2 — 試験対策チェックリスト
 
+> *FM仕組み・プロンプト技法（Zero-shot/Few-shot/CoT）・ハルシネーション対策がDomain 2の核心*
+
 - ✅ FM と従来 ML モデルの違いを説明できる（汎用性・スケール・Zero-shot 対応）
 - ✅ トークン・エンベディング・コンテキストウィンドウの概念を理解
 - ✅ Temperature / Top-P / Top-K がモデル出力に与える影響を説明できる
@@ -845,6 +897,8 @@ style: |
 ---
 
 # Bedrock Foundation Models の特徴
+
+> *Claudeは200Kトークン長文対応、Titanはテキスト+Embeddings、モデル選択はタスク・コスト・レイテンシで決定*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
@@ -889,6 +943,8 @@ style: |
 
 # RAG（Retrieval-Augmented Generation）とは
 
+> *クエリ→エンベディング→ベクトルDB検索→FM入力→生成の5ステップでハルシネーションを大幅軽減*
+
 - **RAG の定義**: 外部ナレッジベースから関連情報を取得（Retrieve）して FM の回答生成（Generate）を補強するパターン
 - **解決する問題**: ① 知識カットオフ ② ハルシネーション ③ 社内固有情報への対応（Fine-tuning 不要）
 - **基本フロー**: クエリ → エンベディング変換 → ベクトル DB 類似検索 → 関連チャンク取得 → FM に入力 → 回答生成
@@ -908,6 +964,8 @@ style: |
 
 # Amazon Bedrock Knowledge Bases
 
+> *S3・Confluence・SharePointを自動処理、RetrieveAndGenerateで引用付き回答生成が可能*
+
 - **定義**: S3 のドキュメントを自動的に処理し、ベクトル DB と統合するマネージド RAG サービス
 - **データソース**: Amazon S3 / Confluence / SharePoint / Salesforce / Web Crawler
 - **処理フロー**: ドキュメント読み込み → チャンキング → エンベディング（Titan）→ ベクトル DB 保存
@@ -926,6 +984,8 @@ style: |
 ---
 
 # Amazon Bedrock Agents
+
+> *ReActパターンでOpenAPI定義のLambda関数を自律呼び出し、Return Controlで高リスクアクション前に人間確認*
 
 - **定義**: FM を使ってマルチステップタスクを自律実行するエージェント構築サービス
 - **仕組み（ReAct パターン）**: FM が Reasoning（推論）→ Action（ツール実行）→ Observation（結果確認）を繰り返す
@@ -952,6 +1012,8 @@ style: |
 ---
 
 # Fine-tuning と Continued Pre-training
+
+> *Fine-tuningは特定タスク精度向上、Continued Pre-trainingはドメイン特化、カタストロフィック忘却に注意*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -995,6 +1057,8 @@ style: |
 
 # Bedrock Model Evaluation
 
+> *ROUGE/BERTScoreで自動評価、A/BテストでFine-tuning前後を比較、CloudWatch統合でリアルタイム監視*
+
 - **自動評価（Automatic Evaluation）**: 定義済みデータセットでモデルを自動採点
 - **人手評価（Human Evaluation）**: AWS Managed Team または プライベートチームが回答を採点
 - **評価指標（テキスト生成）**: ROUGE（要約）/ BERTScore（意味的類似度）/ カスタム指標
@@ -1006,6 +1070,8 @@ style: |
 ---
 
 # Domain 3 — 試験対策チェックリスト
+
+> *RAG処理フロー・Bedrock Agents仕組み・Fine-tuningとContinued Pre-trainingの違いがDomain 3の核心*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1062,6 +1128,8 @@ style: |
 
 # 責任ある AI の原則
 
+> *公平性・説明可能性・プライバシー・安全性・制御可能性・正確性の6原則がAWS責任あるAIの基盤*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">説明可能AI（XAI）— 手法比較</text>
@@ -1105,6 +1173,8 @@ style: |
 
 # AI バイアスの種類と対策
 
+> *学習データ・選択・測定・確認バイアスの4種類、SageMaker Clarifyでバイアス測定が必須対策*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">ヒューマンインザループ (HITL) 設計</text>
@@ -1137,6 +1207,8 @@ style: |
 ---
 
 # 説明可能 AI（XAI）と透明性
+
+> *SHAPが標準手法でフィーチャー貢献度を数値化、SageMaker Clarifyで自動SHAP値算出とモデルカード生成*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1180,6 +1252,8 @@ style: |
 
 # Amazon SageMaker Clarify
 
+> *学習前/後のバイアス検出とSHAP値可視化、Model Monitorと組み合わせてリアルタイムバイアスモニタリング*
+
 - **目的**: ML モデルのバイアス検出とモデル説明性（SHAP）を提供する SageMaker の機能
 - **バイアス検出①（学習前）**: データセット内のバイアス指標を計算（Class Imbalance・DPL など）
 - **バイアス検出②（学習後）**: モデル予測のバイアス指標（Equal Opportunity・Demographic Parity）を算出
@@ -1191,6 +1265,8 @@ style: |
 ---
 
 # ヒューマンインザループ（HITL）
+
+> *医療・融資・採用などの高リスク判断にA2I・Ground Truth Plus・Return Controlで人間確認を組み込む*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1238,6 +1314,8 @@ style: |
 ---
 
 # Domain 4 — 試験対策チェックリスト
+
+> *責任あるAI6原則・Clarify（バイアス検出・SHAP）・HITL実装がDomain 4の全問題を包含*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
@@ -1291,6 +1369,8 @@ style: |
 
 # Bedrock セキュリティ設計の基本
 
+> *IAM最小権限+VPC PrivateLink+KMS暗号化+CloudTrailの4セットがBedrockセキュリティの基本*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="32" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">IAM と最小権限設計 — Bedrock</text>
@@ -1330,6 +1410,8 @@ style: |
 ---
 
 # Amazon Bedrock Guardrails — 詳細
+
+> *コンテンツフィルタ・トピック拒否・PII保護・Groundingの4機能でモデル入出力を完全制御*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1380,6 +1462,8 @@ style: |
 
 # AI データガバナンス
 
+> *PII収集最小化・データリネージ・Feature Storeバージョニング・AWS Artifactでコンプライアンス自動化*
+
 - **データ分類**: 機密レベルに応じた分類（Public / Internal / Confidential / Restricted）と保護措置
 - **個人情報（PII）の取り扱い**: GDPR・個人情報保護法に準拠。収集最小化・目的外利用禁止・削除権対応
 - **学習データの品質管理**: データリネージ（出所追跡）・バージョン管理・品質スコアの記録
@@ -1392,6 +1476,8 @@ style: |
 
 # IAM と最小権限設計
 
+> *InvokeModelアクション単位で権限設定、Organizations SCPでリージョン・モデルを組織全体で制限*
+
 - **最小権限の原則**: 必要最低限の権限のみを付与。`*` ワイルドカードを避ける
 - **Bedrock の IAM アクション粒度**: `bedrock:InvokeModel`（モデル呼び出し）/ `bedrock:CreateKnowledgeBase`（KB 作成）/ `bedrock:InvokeAgent`（Agent 実行）
 - **リソースポリシー**: 特定のモデル ARN にのみアクセスを許可（Cross-Account も設定可能）
@@ -1403,6 +1489,8 @@ style: |
 ---
 
 # Domain 5 — 試験対策チェックリスト
+
+> *Guardrails4機能・VPC PrivateLink・IAM最小権限・CloudTrail監査ログがDomain 5の試験範囲*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
@@ -1447,6 +1535,8 @@ style: |
 
 # 試験でよく出るパターン
 
+> *RAG=Knowledge Bases、ハルシネーション→RAG+Guardrails、リアルタイム情報→RAGが正解パターン*
+
 - **「最適なサービスを選べ」系**: RAG が必要→Bedrock KB / 画像分析→Rekognition / NLP→Comprehend
 - **「最もコスト効率の良い方法は」系**: Prompt Engineering < RAG < Fine-tuning < Pre-training の順でコスト上昇
 - **「ハルシネーションを減らすには」系**: RAG（Knowledge Bases）+ Guardrails（Grounding チェック）
@@ -1478,6 +1568,8 @@ style: |
 ---
 
 # まとめ — 試験合格のための最重要ポイント
+
+> *Domain 3（Bedrock全機能）が28%最重点、Bedrockの実際の操作経験が合格の鍵*
 
 - **Domain 1（20%）**: 機械学習の種類・評価指標（F1/AUC-ROC）・SageMaker コンポーネントを体系的に理解
 - **Domain 2（24%）**: FM の仕組み・プロンプト技法（Zero-shot/Few-shot/CoT）・ハルシネーション対策

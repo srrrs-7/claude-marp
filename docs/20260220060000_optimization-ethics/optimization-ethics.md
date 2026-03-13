@@ -7,6 +7,71 @@ paginate: true
 header: "最適化と倫理"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -42,6 +107,8 @@ style: |
 
 # 目的関数が世界観を決める（1/2）
 
+> *「最短」「最安」「最低CO₂」は互いに矛盾する別の解*
+
 - **最適化の構造：**
 - 目的関数（何を最大化・最小化するか）を設定 → 数学が解を出す
 - **問題：同じ状況でも目的関数が違えば解が全く変わる**
@@ -52,6 +119,8 @@ style: |
 ---
 
 # 目的関数が世界観を決める（2/2）
+
+> *クリック最大化はフィルターバブルと過激化を生み出す*
 
 - **SNSの推薦アルゴリズム：**
 - - クリック率最大化 → 怒り・恐怖コンテンツが増幅される
@@ -70,6 +139,8 @@ style: |
 
 # Amazonの採用AIと公平性の失敗（1/2）
 
+> *過去の偏った採用データが差別を「最適化」して再生産*
+
 - **Amazon採用AI（2018年廃止）：**
 - 過去10年の採用データで学習 → 女性候補者を低く評価
 - 理由：過去の採用が男性に偏っていたため
@@ -82,6 +153,8 @@ style: |
 
 # Amazonの採用AIと公平性の失敗（2/2）
 
+> *YouTube過激化もFacebook感情実験も同じ構造の問題*
+
 - 視聴継続時間最適化 → より過激な動画を次々と推薦
 - 穏健な政治チャンネル → 陰謀論へと誘導
 - **Facebookの感情伝染実験（2014年）：**
@@ -92,6 +165,8 @@ style: |
 ---
 
 # 公平性の不可能定理（1/2）
+
+> *個人・グループ・反事実の3つの公平性は同時に満たせない*
 
 - **Chouldechova & Roth（2018年）：**
 - 複数の「公平性」の定義は数学的に同時に満たせない
@@ -105,6 +180,8 @@ style: |
 
 # 公平性の不可能定理（2/2）
 
+> *COMPASは全体正解率同じでも誤りパターンが人種で逆転*
+
 - 3. **反事実的公平性**：属性を変えても結果が変わらない
 - **COMPAS（再犯予測AI）の事例：**
 - 黒人被告を白人より2倍高く「再犯リスク高」と評価
@@ -116,6 +193,8 @@ style: |
 ---
 
 # まとめ：アルゴリズムは中立でない
+
+> *「誰のための最適化か」を問うことがAI倫理の核心*
 
 - 最適化は常に「何を」最適化するかの価値判断を含む
 - クリック最大化はフィルターバブルと過激化を生む

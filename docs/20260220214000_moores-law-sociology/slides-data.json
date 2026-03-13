@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "目次",
+			"subtitle": "4フェーズ12章で観察が神話になる過程を追う",
 			"content": [
 				"1. ムーアの法則とは何か",
 				"2. 1965年：経験的観察の誕生",
@@ -23,6 +24,7 @@
 		},
 		{
 			"title": "目次 (2/2)",
+			"subtitle": "神話化・反例・Post-Moore時代まで網羅した後半",
 			"content": [
 				"7. Phase 4：神話化と文化的影響",
 				"8. トランジスタ数の推移",
@@ -41,10 +43,12 @@
 				"「集積回路上のトランジスタ数は約2年で倍増する」",
 				""
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "2年で2倍の観察が産業の目標に変わった——法則でなく預言だ"
 		},
 		{
 			"title": "ムーアの法則とは何か（2/2）",
+			"subtitle": "4データ点の観察が60年間の産業憲法になった",
 			"content": [
 				"- 物理法則ではなく**経験的観察**に基づく予測",
 				"- 元の論文：Electronics誌「Cramming more components onto integrated circuits」",
@@ -62,7 +66,8 @@
 				"- データポイント：わずか**4つ**の集積回路の観察",
 				"- 1959年(1素子)→1962年(8素子)→1964年(32素子)→1965年(64素子)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "4ページの論文が半導体産業60年のロードマップを決定した"
 		},
 		{
 			"title": "1965年：Electronics誌に掲載された4ページ（2/2）",
@@ -72,7 +77,8 @@
 				"",
 				"**社会学的ポイント：科学論文ではなく「業界の合意形成」から始まった**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ゴードン・ムーアは予測したのではなく目標を植え付けた"
 		},
 		{
 			"title": "社会学的フレームワーク：マートンの自己実現的予言（1/2）",
@@ -83,7 +89,8 @@
 				"「最初の誤った状況定義が、新しい行動を呼び起こし、",
 				"当初の誤った考えを真実にしてしまう」"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "信じるから達成する——予言の社会学が半導体産業を動かした"
 		},
 		{
 			"title": "社会学的フレームワーク：マートンの自己実現的予言（2/2）",
@@ -94,7 +101,8 @@
 				"- **株式市場バブル**：「上がる」という期待 → 投資集中 → 実際に上昇",
 				"- **ムーアの法則**：「2倍になる」という予測 → 投資集中 → 実際に2倍に"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ムーアの法則はマートン理論の最大規模の実証例だ"
 		},
 		{
 			"title": "Phase 1：経験的観察（1965-1975）（1/2）",
@@ -105,7 +113,8 @@
 				"- ムーアは既存データから**トレンドライン**を引いただけ",
 				"- Fairchild/Intelの社内知見に基づく観察"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "最初の10年は純粋な観察——予言色はまだなかった重要な事実"
 		},
 		{
 			"title": "Phase 1：経験的観察（1965-1975）（2/2）",
@@ -116,7 +125,8 @@
 				"",
 				"**重要：この時点では「予測」であり「法則」ではない**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "観察期に業界が揃って法則を信じ始めたことが次の相を生んだ"
 		},
 		{
 			"title": "Phase 2：産業目標化（1975-1995）（1/2）",
@@ -127,7 +137,8 @@
 				"- 1977年：カルバー・ミードが「ムーアの法則」と命名",
 				"- 1980年代：半導体産業の**投資計画の基準**に採用"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "観察から目標へ——IntelとIBMが法則を設計基準に採用した転換点"
 		},
 		{
 			"title": "Phase 2：産業目標化（1975-1995）（2/2）",
@@ -138,10 +149,12 @@
 				"",
 				"**転換点：記述的観察が規範的目標になった瞬間**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "競合全社が同じ目標を採用することで予言が強制力を持った"
 		},
 		{
 			"title": "ITRSロードマップ：予言の制度化（1/2）",
+			"subtitle": "15年先の技術目標を業界全体で合意—予言が制度化した瞬間",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">ITRSロードマップ：予言の制度化</text><rect x=\"40\" y=\"50\" width=\"720\" height=\"50\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"400\" y=\"73\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">ITRS (International Technology Roadmap for Semiconductors): 1992年から2016年まで半導体業界の共通目標</text><text x=\"400\" y=\"91\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">年間数千万ドルの投資で「予言を維持する」機関</text><rect x=\"40\" y=\"115\" width=\"340\" height=\"215\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"210\" y=\"138\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">ロードマップの構造</text><rect x=\"58\" y=\"150\" width=\"304\" height=\"32\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"171\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">15年先まで技術目標を定義</text><rect x=\"58\" y=\"190\" width=\"304\" height=\"32\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"211\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">2年ごとに実績と目標を更新</text><rect x=\"58\" y=\"230\" width=\"304\" height=\"32\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"251\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">全主要企業の技術者が参加</text><rect x=\"58\" y=\"270\" width=\"304\" height=\"44\" rx=\"5\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"210\" y=\"291\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">「目標が現実を生み出す」</text><text x=\"210\" y=\"307\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">予言が法則になる瞬間</text><rect x=\"420\" y=\"115\" width=\"340\" height=\"215\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"590\" y=\"138\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">制度化の効果</text><rect x=\"438\" y=\"150\" width=\"304\" height=\"32\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"171\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">共通目標 → 業界の協調</text><rect x=\"438\" y=\"190\" width=\"304\" height=\"32\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"211\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">重複投資の削減</text><rect x=\"438\" y=\"230\" width=\"304\" height=\"32\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"251\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">技術的課題の早期特定</text><rect x=\"438\" y=\"270\" width=\"304\" height=\"44\" rx=\"5\" fill=\"#e91e63\" fill-opacity=\"0.15\"/><text x=\"590\" y=\"291\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">2016年：ロードマップ終了</text><text x=\"590\" y=\"307\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">物理限界で予言が成立しなくなった</text></svg>",
 				"**International Technology Roadmap for Semiconductors**",
@@ -154,6 +167,7 @@
 		},
 		{
 			"title": "ITRSロードマップ：予言の制度化（2/2）",
+			"subtitle": "工場投資が$1Mから$20Bへ—制度化が規模を変えた",
 			"content": [
 				"",
 				"**投資規模の変化：**",
@@ -172,7 +186,8 @@
 				"- ムーアの法則を「維持しなければ脱落する」という競争圧力",
 				"- 投資家は「ムーア則に従う企業」に資金を集中"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "予言の圧力が物理限界への挑戦を強制した最も純粋な自己実現期"
 		},
 		{
 			"title": "Phase 3：自己実現的予言（1995-2015）（2/2）",
@@ -183,7 +198,8 @@
 				"",
 				"**パラドックス：法則が正しいから投資するのではなく、投資するから法則が正しくなる**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "限界を破るたびに次の限界への信頼が強まる正のフィードバック"
 		},
 		{
 			"title": "トランジスタ数の推移（対数スケール）",
@@ -205,7 +221,8 @@
 				"",
 				"**名前の力：「法則」という名称が権威と永続性を付与した**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "「法則」という命名が権威を与え自己実現を加速した言語の力"
 		},
 		{
 			"title": "変容プロセスの全体像",
@@ -221,7 +238,8 @@
 				"- Dennardスケーリングは2006年に終了",
 				"- クロック周波数は3-5GHzで頭打ち"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "物理的減速後も「精神的ムーアの法則」が文化として生き続ける"
 		},
 		{
 			"title": "Phase 4：神話化と文化的影響（2015年〜）（2/2）",
@@ -231,7 +249,8 @@
 				"",
 				"**文化的機能：「技術進歩は指数関数的」という信念体系の基盤**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AI・量子・3Dが「新ムーア」を自称——神話の継承が始まった"
 		},
 		{
 			"title": "神話の社会的機能（1/2）",
@@ -242,7 +261,8 @@
 				"- **秩序付け機能**：混沌とした技術変化に「法則」という秩序を与える",
 				"- **正当化機能**：巨額投資を「法則に従う合理的行動」として正当化"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "神話は共通の目標を作り集団行動を調整する——産業神話の効用"
 		},
 		{
 			"title": "神話の社会的機能（2/2）",
@@ -252,7 +272,8 @@
 				"",
 				"**ムーアの法則は半導体産業の「創世神話」として機能している**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "神話が消えると投資と人材が散逸する——意図的に維持する価値がある"
 		},
 		{
 			"title": "ムーアの法則が生んだ副産物（1/2）",
@@ -262,7 +283,8 @@
 				"- **レイ・カーツワイルの収穫加速の法則**：すべての技術は指数関数的に進歩する",
 				"- **スタートアップ文化**：「10x成長」「指数関数型組織」の正当化根拠"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "スマホ・クラウド・AIはムーアの法則の副産物として生まれた"
 		},
 		{
 			"title": "ムーアの法則が生んだ副産物（2/2）",
@@ -272,7 +294,8 @@
 				"",
 				"**危険性：指数関数的成長が「自然法則」として内面化されている**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "予言が産業生態系全体を設計した——意図せぬ最大の成果だ"
 		},
 		{
 			"title": "反例：ムーアの法則が当てはまらない領域（1/2）",
@@ -283,7 +306,8 @@
 				"- **バッテリー技術**：50年で密度は5-8倍（ムーア則なら100万倍）",
 				"- **太陽電池効率**：理論限界（Shockley-Queisser限界 ~33%）に漸近"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "バッテリー・量子エラー率は二乗則で改善しない——法則の射程を知れ"
 		},
 		{
 			"title": "反例：ムーアの法則が当てはまらない領域（2/2）",
@@ -293,7 +317,8 @@
 				"",
 				"**ムーアの法則の成功は「例外的」であり「普遍的」ではない**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "適用外を知ることで新しい「法則」が必要な領域が見える"
 		},
 		{
 			"title": "Post-Moore時代の性能向上手法",
@@ -308,7 +333,8 @@
 				"- 技術予測は「中立的な観察」ではなく**社会を動かす力**を持つ",
 				"- 「法則」という命名が予測に**制度的権威**を付与した"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "予言の力は技術ではなく社会的信頼と制度化にある——これが核心"
 		},
 		{
 			"title": "社会学から見た教訓（2/2）",
@@ -318,7 +344,8 @@
 				"",
 				"**科学社会学の重要性：技術の「社会的構成」を理解する必要がある**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "次の産業神話を作るには目標共有・制度化・信頼構築が必要だ"
 		},
 		{
 			"title": "次の「ムーアの法則」は何か（1/2）",
@@ -329,10 +356,12 @@
 				"- **スケーリング則（AI）**：「モデルを大きくすれば性能は上がる」",
 				"  - Chinchillaスケーリング → 投資の正当化根拠に"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AI算力・量子誤り率・バッテリー密度が候補——何が定着するか"
 		},
 		{
 			"title": "次の「ムーアの法則」は何か（2/2）",
+			"subtitle": "ライト則・ギルダー則も同じ構造—次の自己実現予言が動き出す",
 			"content": [
 				"- **ライトの法則（製造）**：累積生産量が2倍で20%コスト減",
 				"  - テスラのバッテリー戦略の根拠",
@@ -351,10 +380,12 @@
 				"- 技術予測は「発見」ではなく**「社会的合意の形成」**である",
 				"- 十分な投資と信念があれば、予測は**自己実現**する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "観察→目標→制度→神話の4段階が任意の「ムーア則」を作る"
 		},
 		{
 			"title": "まとめ：予言が世界を作る（2/2）",
+			"subtitle": "投資が止まれば法則が終わる—AIスケーリング則も同じ運命",
 			"content": [
 				"- 「法則」という名前が持つ**パフォーマティブな力**",
 				"- Post-Moore時代でも「指数関数的成長」の神話は形を変えて存続する",

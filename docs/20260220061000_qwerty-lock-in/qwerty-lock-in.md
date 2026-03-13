@@ -7,6 +7,71 @@ paginate: true
 header: "経路依存と技術ロックイン"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -25,6 +90,8 @@ style: |
 
 # アジェンダ
 
+> *最適でない規格が一度定着すると技術的優位では覆せない仕組みを解明*
+
 - 1. QWERTYの起源
 - 2. Dvorak配列との比較
 - 3. 切り替えコストと慣性
@@ -42,6 +109,8 @@ style: |
 
 # タイプライターの呪い（1/2）
 
+> *キー絡まり防止の理由が消えてもQWERTYは慣性で生き残った*
+
 - **QWERTY配列（1873年）：**
 - クリストファー・ショールズがRemington社向けに設計
 - **目的：キーの絡まり防止**
@@ -52,6 +121,8 @@ style: |
 ---
 
 # タイプライターの呪い（2/2）
+
+> *最も使う文字がホームポジションにない—非効率が今も標準*
 
 - 物理的なキー絡まりは存在しない → QWERTYの理由が消えた
 - しかしQWERTYはそのまま引き継がれた
@@ -66,6 +137,8 @@ style: |
 
 # Dvorak配列と切り替えコスト（1/2）
 
+> *Dvorakは手の移動距離をQWERTYの1/3に削減するが誰も変えない*
+
 - **Dvorak配列（1936年）：**
 - 頻出文字をホームポジションに集中
 - 英語で手の移動距離がQWERTYの1/3
@@ -75,6 +148,8 @@ style: |
 ---
 
 # Dvorak配列と切り替えコスト（2/2）
+
+> *切り替えコストとネットワーク効果が合理的な改善を阻む*
 
 - 2. 互換性：他人のキーボードが使えなくなる
 - 3. ネットワーク効果：全員が変えない限り変えると損
@@ -89,6 +164,8 @@ style: |
 
 # 他のロックイン事例（1/2）
 
+> *ローマ馬車幅から始まる鉄道軌間は数十兆円の変更コストで固定*
+
 - **鉄道軌間（ゲージ）：**
 - ローマの馬車幅（4フィート8.5インチ）がそのまま標準軌間に
 - 日本は新幹線と在来線でゲージが違い新幹線に在来線直通不可
@@ -97,12 +174,18 @@ style: |
 
 ---
 
-# 他のロックイン事例（2/2）
+# 他のロックイン事例（2/2）（1/2）
 
 - Pythonに移行したくても「COBOLわかる人がいない」問題
 - ---
 - **FAX：**
 - 日本の企業・行政でのFAX依存。電子化したくても全員が変えないと無意味
+
+
+---
+
+# 他のロックイン事例（2/2）（2/2）
+
 - ---
 - **電気の周波数（東日本50Hz vs 西日本60Hz）：**
 - 明治時代にドイツ製・米国製発電機を別々に導入したまま
@@ -112,6 +195,8 @@ style: |
 ---
 
 # まとめ：慣性を超える条件
+
+> *ロックインを破るには圧倒的優位・強制調整・後方互換の3条件が必要*
 
 - ✅ **QWERTYは「悪い技術が生き残る」経路依存の象徴**
 - ✅ **切り替えコスト + ネットワーク効果 = ロックイン**

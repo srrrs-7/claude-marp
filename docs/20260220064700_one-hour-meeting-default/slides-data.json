@@ -18,7 +18,8 @@
 				"4. 非同期コミュニケーションの台頭",
 				"5. 会議改革の実践"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "30分設定と非同期化で生産性を2倍にする道筋"
 		},
 		{
 			"title": "会議の実態とコスト",
@@ -33,7 +34,8 @@
 				"無駄な会議コスト：米国全体で年間約37兆円（$283 billion）",
 				"<svg viewBox=\"0 0 800 280\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"280\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"400\" y=\"32\" text-anchor=\"middle\" font-size=\"16\" fill=\"#f9a825\" font-weight=\"bold\" font-family=\"sans-serif\">管理職の週間時間配分</text><rect x=\"60\" y=\"50\" width=\"200\" height=\"180\" fill=\"#e91e63\" rx=\"6\"/><text x=\"160\" y=\"145\" text-anchor=\"middle\" font-size=\"28\" fill=\"#ffffff\" font-weight=\"bold\" font-family=\"sans-serif\">45%</text><text x=\"160\" y=\"170\" text-anchor=\"middle\" font-size=\"13\" fill=\"#ffffff\" font-family=\"sans-serif\">会議</text><rect x=\"290\" y=\"100\" width=\"150\" height=\"130\" fill=\"#3f51b5\" rx=\"6\"/><text x=\"365\" y=\"170\" text-anchor=\"middle\" font-size=\"24\" fill=\"#ffffff\" font-weight=\"bold\" font-family=\"sans-serif\">30%</text><text x=\"365\" y=\"195\" text-anchor=\"middle\" font-size=\"13\" fill=\"#ffffff\" font-family=\"sans-serif\">個人作業</text><rect x=\"470\" y=\"130\" width=\"120\" height=\"100\" fill=\"#00897b\" rx=\"6\"/><text x=\"530\" y=\"185\" text-anchor=\"middle\" font-size=\"20\" fill=\"#ffffff\" font-weight=\"bold\" font-family=\"sans-serif\">15%</text><text x=\"530\" y=\"207\" text-anchor=\"middle\" font-size=\"13\" fill=\"#ffffff\" font-family=\"sans-serif\">メール</text><rect x=\"620\" y=\"155\" width=\"100\" height=\"75\" fill=\"#f57c00\" rx=\"6\"/><text x=\"670\" y=\"197\" text-anchor=\"middle\" font-size=\"16\" fill=\"#ffffff\" font-weight=\"bold\" font-family=\"sans-serif\">10%</text><text x=\"670\" y=\"216\" text-anchor=\"middle\" font-size=\"13\" fill=\"#ffffff\" font-family=\"sans-serif\">その他</text><line x1=\"50\" y1=\"230\" x2=\"750\" y2=\"230\" stroke=\"#444466\" stroke-width=\"1\"/><text x=\"400\" y=\"260\" text-anchor=\"middle\" font-size=\"12\" fill=\"#888899\" font-family=\"sans-serif\">出典: Bain &amp; Company 2014</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "管理職の45%が会議—年間37兆円のコスト"
 		},
 		{
 			"title": "会議は最大のコスト中心（2/2）",
@@ -50,7 +52,8 @@
 				"「仕事は与えられた時間を使い切るように膨張する」",
 				"<svg viewBox=\"0 0 800 300\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"300\" fill=\"#1a1a2e\" rx=\"12\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" font-size=\"15\" fill=\"#f9a825\" font-weight=\"bold\" font-family=\"sans-serif\">Parkinsonの法則：会議時間の膨張</text><rect x=\"60\" y=\"60\" width=\"120\" height=\"80\" fill=\"#00897b\" rx=\"8\" opacity=\"0.9\"/><text x=\"120\" y=\"96\" text-anchor=\"middle\" font-size=\"13\" fill=\"#ffffff\" font-family=\"sans-serif\">実質的な</text><text x=\"120\" y=\"113\" text-anchor=\"middle\" font-size=\"13\" fill=\"#ffffff\" font-family=\"sans-serif\">内容</text><text x=\"120\" y=\"160\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaacc\" font-family=\"sans-serif\">25分相当</text><rect x=\"220\" y=\"60\" width=\"220\" height=\"80\" fill=\"#e91e63\" rx=\"8\" opacity=\"0.9\"/><text x=\"330\" y=\"96\" text-anchor=\"middle\" font-size=\"13\" fill=\"#ffffff\" font-family=\"sans-serif\">Parkinsons膨張</text><text x=\"330\" y=\"113\" text-anchor=\"middle\" font-size=\"11\" fill=\"#ffccdd\" font-family=\"sans-serif\">（雑談・脱線・繰り返し）</text><text x=\"330\" y=\"160\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaaacc\" font-family=\"sans-serif\">+35分の無駄</text><rect x=\"60\" y=\"60\" width=\"380\" height=\"80\" fill=\"none\" stroke=\"#f9a825\" stroke-width=\"2\" rx=\"8\" stroke-dasharray=\"6,3\"/><text x=\"250\" y=\"170\" text-anchor=\"middle\" font-size=\"20\" fill=\"#f9a825\" font-weight=\"bold\" font-family=\"sans-serif\">1時間会議 = 60分消費</text><polygon points=\"490,100 530,85 530,115\" fill=\"#f9a825\"/><rect x=\"530\" y=\"60\" width=\"120\" height=\"80\" fill=\"#3f51b5\" rx=\"8\" opacity=\"0.9\"/><text x=\"590\" y=\"96\" text-anchor=\"middle\" font-size=\"13\" fill=\"#ffffff\" font-family=\"sans-serif\">同じ内容</text><rect x=\"530\" y=\"60\" width=\"120\" height=\"80\" fill=\"none\" stroke=\"#f9a825\" stroke-width=\"2\" rx=\"8\" stroke-dasharray=\"6,3\"/><text x=\"590\" y=\"160\" text-anchor=\"middle\" font-size=\"20\" fill=\"#00897b\" font-weight=\"bold\" font-family=\"sans-serif\">30分会議 = 25分終了</text><text x=\"400\" y=\"220\" text-anchor=\"middle\" font-size=\"14\" fill=\"#ccccdd\" font-family=\"sans-serif\">設定時間を短くするだけで会議は短くなる</text><text x=\"400\" y=\"260\" text-anchor=\"middle\" font-size=\"13\" fill=\"#f9a825\" font-family=\"sans-serif\">「30分のカレンダー招待」が最も効果的な改善策</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "30分設定にするだけで会議は25分で終わる"
 		},
 		{
 			"title": "Parkinsonの法則（2/2）",
@@ -63,7 +66,8 @@
 				"**GoogleとAppleの「立ち会議（Standing Meeting）」：**",
 				"立ったまま行う会議は平均34%短くなる（Washington University研究）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "制約が膨張を防ぐ—立ち会議で平均34%短縮"
 		},
 		{
 			"title": "非同期コミュニケーション（1/2）",
@@ -83,7 +87,8 @@
 				"---",
 				"「1週間会議ゼロ」を試した企業の73%が生産性向上を報告"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "会議ゼロ1週間で73%の企業が生産性向上を報告"
 		},
 		{
 			"title": "まとめ：会議を科学する",

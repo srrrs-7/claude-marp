@@ -7,6 +7,71 @@ paginate: true
 header: "都市科学"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -41,6 +106,8 @@ style: |
 
 # 都市は人口に比例しない（1/2）
 
+> *β<1でインフラは省エネ、β>1でイノベーションが加速する*
+
 - **線形 vs べき乗：人口と都市指標の関係**
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Y = Y₀ × N^β　（べき乗則）</text><line x1="80" y1="280" x2="720" y2="280" stroke="#555" stroke-width="2"/><line x1="80" y1="280" x2="80" y2="40" stroke="#555" stroke-width="2"/><text x="400" y="310" text-anchor="middle" fill="#aaa" font-size="13">人口 N（対数スケール）</text><text x="30" y="165" text-anchor="middle" fill="#aaa" font-size="13" transform="rotate(-90,30,165)">都市指標 Y（対数）</text><polyline points="80,260 200,210 340,165 500,120 660,80 720,60" fill="none" stroke="#e91e63" stroke-width="3"/><polyline points="80,260 200,220 340,185 500,155 660,130 720,118" fill="none" stroke="#4caf50" stroke-width="3"/><polyline points="80,260 200,233 340,210 500,188 660,168 720,160" fill="none" stroke="#2196f3" stroke-width="3"/><circle cx="560" cy="95" r="6" fill="#e91e63"/><text x="575" y="100" fill="#e91e63" font-size="13">β=1.15（スーパーリニア）</text><circle cx="560" cy="125" r="6" fill="#4caf50"/><text x="575" y="130" fill="#4caf50" font-size="13">β=1.00（線形）</text><circle cx="560" cy="155" r="6" fill="#2196f3"/><text x="575" y="160" fill="#2196f3" font-size="13">β=0.85（サブリニア）</text><text x="130" y="295" fill="#888" font-size="11">10万</text><text x="290" y="295" fill="#888" font-size="11">50万</text><text x="460" y="295" fill="#888" font-size="11">200万</text><text x="630" y="295" fill="#888" font-size="11">1000万</text></svg>
 
@@ -48,6 +115,8 @@ style: |
 ---
 
 # 都市は人口に比例しない（2/2）
+
+> *規模の経済と規模の加速が同時に都市に現れる*
 
 - **β < 1（サブリニア）：インフラ・生物的要素**
 - 人口2倍 → ガソリンスタンドは1.85倍で済む
@@ -68,6 +137,8 @@ style: |
 
 # サブリニア vs スーパーリニア：具体指標
 
+> *特許・GDP・犯罪すべてβ≈1.15で人口2倍→2.22倍になる*
+
 - **β指数による都市指標の分類**
 - <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><rect x="40" y="40" width="340" height="240" rx="8" fill="#0d2137" stroke="#2196f3" stroke-width="2"/><text x="210" y="70" text-anchor="middle" fill="#2196f3" font-size="15" font-weight="bold">β ≈ 0.85（サブリニア）</text><text x="210" y="95" text-anchor="middle" fill="#aaa" font-size="12">規模の経済 — 大都市ほど効率的</text><text x="70" y="125" fill="#81d4fa" font-size="13">⬡ ガソリンスタンド</text><text x="70" y="150" fill="#81d4fa" font-size="13">⬡ 道路総延長</text><text x="70" y="175" fill="#81d4fa" font-size="13">⬡ 電力消費量</text><text x="70" y="200" fill="#81d4fa" font-size="13">⬡ 警察署・病院の数</text><text x="70" y="225" fill="#81d4fa" font-size="13">⬡ 水道配管総延長</text><text x="210" y="260" text-anchor="middle" fill="#2196f3" font-size="12">人口2倍 → 1.85倍</text><rect x="420" y="40" width="340" height="240" rx="8" fill="#1a0d2e" stroke="#e91e63" stroke-width="2"/><text x="590" y="70" text-anchor="middle" fill="#e91e63" font-size="15" font-weight="bold">β ≈ 1.15（スーパーリニア）</text><text x="590" y="95" text-anchor="middle" fill="#aaa" font-size="12">規模の加速 — 大都市ほど激しい</text><text x="450" y="125" fill="#f48fb1" font-size="13">⬡ 特許出願数・GDP</text><text x="450" y="150" fill="#f48fb1" font-size="13">⬡ 賃金水準</text><text x="450" y="175" fill="#f48fb1" font-size="13">⬡ 犯罪件数</text><text x="450" y="200" fill="#f48fb1" font-size="13">⬡ 感染症伝播速度</text><text x="450" y="225" fill="#f48fb1" font-size="13">⬡ レストラン・エンタメ</text><text x="590" y="260" text-anchor="middle" fill="#e91e63" font-size="12">人口2倍 → 2.22倍</text></svg>
 
@@ -75,6 +146,8 @@ style: |
 ---
 
 # サンタフェ研究所の分析（2/2）
+
+> *東京・NY・ラゴスで同一のβ指数が成立する普遍則*
 
 - **都市指標ごとのβ値（世界数千都市の実測）**
 - <svg viewBox="0 0 800 290" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="290" fill="#1a1a2e"/><line x1="200" y1="20" x2="200" y2="255" stroke="#f9a825" stroke-width="2" stroke-dasharray="4,3"/><text x="200" y="270" text-anchor="middle" fill="#f9a825" font-size="11">β=1.0（線形）</text><text x="60" y="48" text-anchor="end" fill="#aaa" font-size="12">特許出願数</text><rect x="200" y="35" width="115" height="18" fill="#e91e63" rx="3"/><text x="320" y="48" fill="#f48fb1" font-size="11">β=1.27</text><text x="60" y="78" text-anchor="end" fill="#aaa" font-size="12">GDP</text><rect x="200" y="65" width="95" height="18" fill="#e91e63" rx="3"/><text x="300" y="78" fill="#f48fb1" font-size="11">β=1.15</text><text x="60" y="108" text-anchor="end" fill="#aaa" font-size="12">賃金水準</text><rect x="200" y="95" width="88" height="18" fill="#e91e63" rx="3"/><text x="293" y="108" fill="#f48fb1" font-size="11">β=1.12</text><text x="60" y="138" text-anchor="end" fill="#aaa" font-size="12">犯罪件数</text><rect x="200" y="125" width="90" height="18" fill="#ff5722" rx="3"/><text x="295" y="138" fill="#ffab91" font-size="11">β=1.16</text><text x="60" y="168" text-anchor="end" fill="#aaa" font-size="12">感染症速度</text><rect x="200" y="155" width="82" height="18" fill="#ff5722" rx="3"/><text x="287" y="168" fill="#ffab91" font-size="11">β=1.10</text><text x="60" y="198" text-anchor="end" fill="#aaa" font-size="12">ガソリンスタンド</text><rect x="120" y="185" width="80" height="18" fill="#2196f3" rx="3"/><text x="118" y="198" text-anchor="end" fill="#81d4fa" font-size="11">β=0.77</text><text x="60" y="228" text-anchor="end" fill="#aaa" font-size="12">道路総延長</text><rect x="140" y="215" width="60" height="18" fill="#2196f3" rx="3"/><text x="138" y="228" text-anchor="end" fill="#81d4fa" font-size="11">β=0.83</text><text x="400" y="15" text-anchor="middle" fill="#aaa" font-size="11">← サブリニア（β&lt;1）　|　スーパーリニア（β&gt;1）→</text></svg>
@@ -100,6 +173,8 @@ style: |
 ---
 
 # まとめ：スケールが変える世界
+
+> *インフラより人のつながりを最大化する都市設計が最適*
 
 - **スケーリング則の全体像**
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><rect x="40" y="20" width="170" height="90" rx="8" fill="#0d2137" stroke="#2196f3" stroke-width="2"/><text x="125" y="48" text-anchor="middle" fill="#81d4fa" font-size="12" font-weight="bold">インフラ</text><text x="125" y="68" text-anchor="middle" fill="#aaa" font-size="11">β = 0.85</text><text x="125" y="88" text-anchor="middle" fill="#81d4fa" font-size="11">大都市ほど効率的</text><rect x="230" y="20" width="170" height="90" rx="8" fill="#1a0d2e" stroke="#e91e63" stroke-width="2"/><text x="315" y="48" text-anchor="middle" fill="#f48fb1" font-size="12" font-weight="bold">イノベーション</text><text x="315" y="68" text-anchor="middle" fill="#aaa" font-size="11">β = 1.15</text><text x="315" y="88" text-anchor="middle" fill="#f48fb1" font-size="11">大都市ほど加速</text><rect x="420" y="20" width="170" height="90" rx="8" fill="#1a1a0d" stroke="#ff5722" stroke-width="2"/><text x="505" y="48" text-anchor="middle" fill="#ffab91" font-size="12" font-weight="bold">犯罪・格差</text><text x="505" y="68" text-anchor="middle" fill="#aaa" font-size="11">β = 1.15</text><text x="505" y="88" text-anchor="middle" fill="#ffab91" font-size="11">大都市ほど深刻</text><rect x="610" y="20" width="160" height="90" rx="8" fill="#1a1a1a" stroke="#9e9e9e" stroke-width="2"/><text x="690" y="48" text-anchor="middle" fill="#e0e0e0" font-size="12" font-weight="bold">企業</text><text x="690" y="68" text-anchor="middle" fill="#aaa" font-size="11">β &lt; 1</text><text x="690" y="88" text-anchor="middle" fill="#e0e0e0" font-size="11">大きいほど鈍化</text><rect x="200" y="155" width="400" height="90" rx="8" fill="#0d1a0d" stroke="#f9a825" stroke-width="2"/><text x="400" y="185" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">スケーリング則の示唆</text><text x="400" y="210" text-anchor="middle" fill="#ffe082" font-size="12">都市計画：インフラへの過剰投資を避け</text><text x="400" y="230" text-anchor="middle" fill="#ffe082" font-size="12">人のつながりと多様性を最大化せよ</text><line x1="125" y1="110" x2="300" y2="155" stroke="#555" stroke-width="1"/><line x1="315" y1="110" x2="370" y2="155" stroke="#555" stroke-width="1"/><line x1="505" y1="110" x2="430" y2="155" stroke="#555" stroke-width="1"/><line x1="690" y1="110" x2="500" y2="155" stroke="#555" stroke-width="1"/></svg>

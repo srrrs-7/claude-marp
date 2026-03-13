@@ -7,6 +7,71 @@ paginate: true
 header: "時間の物理学"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -41,6 +106,8 @@ style: |
 
 # 物理法則に時間の方向はない（1/2）
 
+> *物理法則はt→-t対称で「過去→未来」を区別しない*
+
 - **物理法則の時間対称性：**
 - ニュートン力学・量子力学・相対性理論
 - → いずれも時間を逆転させても同じ式が成立する
@@ -52,6 +119,8 @@ style: |
 ---
 
 # 物理法則に時間の方向はない（2/2）
+
+> *エントロピー増大だけが時間の矢の唯一の物理的根拠*
 
 - 私たちは過去を覚えているが未来は覚えていない
 - 割れたコップは元に戻らない
@@ -72,6 +141,8 @@ style: |
 
 # 相対性理論：時間は伸び縮みする（1/2）
 
+> *光速近くで旅すると地球では224年が経過する*
+
 - **特殊相対性理論（1905年）：**
 - 速く動くほど時間は遅れる（時間の遅れ）
 - 光速99.9%で10年旅すると地球では224年経過
@@ -85,6 +156,8 @@ style: |
 
 # 相対性理論：時間は伸び縮みする（2/2）
 
+> *ブロック宇宙論では過去・現在・未来が等しく実在する*
+
 - **ブロック宇宙論（Block Universe）：**
 - アインシュタイン自身の解釈：
 - 「過去・現在・未来はすべて等しく実在する」
@@ -96,6 +169,8 @@ style: |
 ---
 
 # 量子力学と時間（1/2）
+
+> *Wheeler-DeWitt方程式から時間変数が消える*
 
 - **ホイーラー・ドウィット方程式：**
 - 量子重力理論を記述する方程式 — 時間変数が現れない
@@ -109,6 +184,8 @@ style: |
 
 # 量子力学と時間（2/2）
 
+> *Rovelliは「時間は存在せず変化だけがある」と主張*
+
 - 因果関係が時間の方向と一致しない場合がある
 - **ループ量子重力理論：**
 - Carlo Rovelli：時間は創発的な概念
@@ -120,6 +197,8 @@ style: |
 ---
 
 # 「現在」は存在するか（1/2）
+
+> *同時性の相対性で普遍的な「今」は定義できない*
 
 - **同時性の相対性：**
 - 異なる速度で動く観測者にとって「同時」の出来事は異なる
@@ -133,6 +212,8 @@ style: |
 
 # 「現在」は存在するか（2/2）
 
+> *意識の「今」は実際には0.5秒前の過去である*
+
 - 観測とは常に過去を見ることである
 - **脳が作る「今」：**
 - 神経処理に約0.5秒かかるため、意識的な「今」は実際には過去
@@ -143,6 +224,8 @@ style: |
 ---
 
 # まとめ：時間という幻想
+
+> *時間は物理法則の外側にある創発的な概念かもしれない*
 
 - ✅ **物理法則自体は時間に方向を持たない**
 - ✅ **「時間の矢」はエントロピー増大（統計的事実）から生まれる**

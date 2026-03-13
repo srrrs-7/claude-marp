@@ -233,6 +233,8 @@ authParams.code_challenge_method = 'S256';
 
 # クライアントクレデンシャルフロー (RFC 6749 §4.4) — M2M 認証
 
+> *ベストプラクティスの体系的適用が設計リスクを大幅に低減し運用コストを削減する*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">クライアントクレデンシャルフロー — M2M 認証</text>
@@ -324,6 +326,8 @@ grant_type=client_credentials&scope=payments:write
 
 # トークンエンドポイント — grant_type 別パラメータ詳解
 
+> *PrivateLinkはトラフィックをAWSバックボーンに閉じてデータ漏洩リスクを根絶する*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">トークンエンドポイント — grant_type 別パラメータ</text>
 <text x="110" y="58" font-size="11" fill="#f9a825" text-anchor="middle">grant_type</text>
@@ -373,6 +377,8 @@ grant_type=client_credentials&scope=payments:write
 
 # トークンイントロスペクション (RFC 7662) — リソースサーバー統合
 
+> *イントロスペクションはOpaqueトークンの即時有効性検証を可能にする*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">トークンイントロスペクション (RFC 7662) — RS統合</text>
 <rect x="50" y="50" width="180" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -418,6 +424,8 @@ token=eyJhbGc...&token_type_hint=access_token
 ---
 
 # トークン失効 (RFC 7009) — 即時無効化
+
+> *トークン失効はログアウト・紛失・インシデント時の全セッション強制終了に不可欠*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">トークン失効 (RFC 7009) — 即時無効化</text>
@@ -621,6 +629,8 @@ token=def50200...&token_type_hint=refresh_token
 
 # Discovery ドキュメント — /.well-known/openid-configuration
 
+> *Discovery documentでOIDCクライアントの設定自動化とURLハードコードを排除する*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Discovery ドキュメント — /.well-known/openid-configuration</text>
 <rect x="20" y="50" width="760" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -772,6 +782,8 @@ token=def50200...&token_type_hint=refresh_token
 
 # UserInfo エンドポイント — スコープとクレームマッピング
 
+> *PrivateLinkはトラフィックをAWSバックボーンに閉じてデータ漏洩リスクを根絶する*
+
 - **認証**: Bearer `access_token`（scope に `openid` が必要）
 - **スコープ → クレーム**: `profile` → name/picture/locale、`email` → email/email_verified
 - **レスポンス**: JSON or JWT（署名 / 暗号化も可能）
@@ -800,6 +812,8 @@ Authorization: Bearer eyJhbGc...
 ---
 
 # OIDC セッション管理 — check_session_iframe
+
+> *OIDCはOAuth2上にアイデンティティ層を追加しフェデレーション認証を標準化する*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OIDC セッション管理 — check_session_iframe</text>
@@ -831,6 +845,8 @@ Authorization: Bearer eyJhbGc...
 ---
 
 # Front-Channel Logout — iframe ブロードキャスト
+
+> *この内容の正確な理解が実装品質とセキュリティ体制を根本から強化する*
 
 - **動作**: OP が全 RP の `frontchannel_logout_uri` を iframe で呼び出しセッション削除
 - **`iss` / `sid`**: ログアウト URI に付加。複数セッション時の正確な特定に使用
@@ -887,6 +903,8 @@ https://rp.example.com/logout
 
 # RP-Initiated Logout — エンドユーザー主導ログアウト
 
+> *すべての要件を満たすことが本番環境での安全な運用を保証する唯一の方法*
+
 - **動作**: RP が OP の `end_session_endpoint` にリダイレクトしてログアウト要求
 - **`id_token_hint`**: OP がユーザーを確認するために推奨（必須ではない）
 - **`post_logout_redirect_uri`**: ログアウト後のリダイレクト先（RP 側で事前登録必要）
@@ -913,6 +931,8 @@ https://<domain>.auth.ap-northeast-1.amazoncognito.com/logout
 ---
 
 # カスタムクレーム設計 — ネームスペースと外部 IdP マッピング
+
+> *すべての要件を満たすことが本番環境での安全な運用を保証する唯一の方法*
 
 - **ネームスペース必須**: `https://` URI プレフィックスで標準クレームとの衝突防止
 - **Cognito**: `Pre Token Generation` Lambda Trigger でクレームを追加・変換
@@ -1035,6 +1055,8 @@ exports.handler = async (event) => {
 
 # RAR — Rich Authorization Requests (RFC 9396) — 精緻な認可要求
 
+> *AIによる医療診断と創薬加速が数百万人規模の命を救う可能性を持つ*
+
 - **目的**: `scope` 文字列では表現不可能な複雑な認可詳細を構造化 JSON で送信
 - **`authorization_details`**: 型 (`type`) + 対象リソース + アクション + 金額等を指定
 - **適用先**: 金融 API (PSD2) / 医療 / 電子処方箋 / 法人間契約
@@ -1064,6 +1086,8 @@ exports.handler = async (event) => {
 
 # JARM — JWT Secured Authorization Response Mode
 
+> *JWTはステートレス認証の標準だが実装の落とし穴が多く署名検証が最重要*
+
 - **目的**: 認可レスポンス（code + state）を JWT で署名 / 暗号化
 - **`response_mode`**: `jwt` / `query.jwt` / `fragment.jwt` / `form_post.jwt`
 - **検証必須**: `iss` / `aud`（client_id）/ `exp` を検証 → Mix-Up 攻撃防止
@@ -1091,6 +1115,8 @@ GET /callback?response=eyJhbGciOiJSUzI1NiJ9...
 ---
 
 # OAuth2 + mTLS クライアント認証 (RFC 8705) — 証明書バインドトークン
+
+> *OAuth2の認可フロー選択がセキュリティとユーザー体験の両立を決める*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OAuth2 + mTLS クライアント認証 (RFC 8705)</text>

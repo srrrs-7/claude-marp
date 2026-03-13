@@ -83,6 +83,8 @@ style: |
 
 # アジェンダ (1/2)
 
+> *12セクション構成でLLM脅威からガバナンスまで完全網羅*
+
 - **Section 1**: 脅威ランドスケープ — OWASP LLM Top 10、攻撃サーフェス
 - **Section 2**: プロンプトインジェクション — Direct/Indirect、ジェイルブレイク、防御策
 - **Section 3**: データ保護・プライバシー — 記憶化リスク、PII検出、GDPR対応
@@ -95,6 +97,8 @@ style: |
 
 # アジェンダ (2/2)
 
+> *エージェント・AWS実装・インシデント対応・コンプライアンスを後半で構成*
+
 - **Section 7**: AIエージェントセキュリティ — ツールリスク、権限昇格、サンドボックス
 - **Section 8**: AWS AIセキュリティ — Bedrock Guardrails、IAM、CloudTrail監査
 - **Section 9**: 検出・監視 — 異常検出、SIEM連携、レッドチーミング
@@ -106,6 +110,8 @@ style: |
 ---
 
 # 生成AIセキュリティとは
+
+> *企業の70%以上が導入済みの生成AI、従来のWAFが通用しない新脅威への対処法*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -165,6 +171,8 @@ style: |
 
 # 生成AI時代のセキュリティ課題
 
+> *企業70%以上が導入済みの生成AI、対策速度が技術進化に追いつかない現実*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
@@ -199,6 +207,8 @@ style: |
 
 # OWASP LLM Top 10 概観
 
+> *OWASP LLM Top 10の10カテゴリ—プロンプトインジェクションから記憶化まで*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
@@ -216,6 +226,8 @@ style: |
 ---
 
 # 攻撃サーフェスの拡大
+
+> *入力・モデル・知識・ツール・エージェントの5層が独立した攻撃ベクターに*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -266,6 +278,8 @@ Mitigate</text>
 
 # 従来のセキュリティ vs AI時代のセキュリティ
 
+> *自然言語が攻撃媒体になり確率的動作を持つシステムの防御は従来手法で不可能*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
@@ -315,6 +329,8 @@ Env</text>
 ---
 
 # 脅威アクターと動機
+
+> *国家支援・サイバー犯罪・ハクティビストの3アクターがLLMを悪用し攻撃高度化*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -371,6 +387,8 @@ Service</text>
 
 # 被害事例・インシデント事例
 
+> *Samsung機密漏洩・Air Canada誤約束・Bing Chat脱獄が示す実害の実態*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
@@ -420,6 +438,8 @@ Output</text>
 ---
 
 # リスクの分類（CIA + AI固有次元）
+
+> *CIA+AI固有次元で脅威を分類—記憶化・バックドア・DoSがAI特有のリスク*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -483,6 +503,8 @@ Report</text>
 
 # セキュリティフレームワーク概観
 
+> *OWASP/MITRE ATLAS/NIST AI RMF/EU AI Actの4フレームワーク連携が必須*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
@@ -541,6 +563,8 @@ Report</text>
 
 # プロンプトインジェクションとは
 
+> *LLMはシステムプロンプトとユーザー入力を意味的に区別できない根本的欠陥*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
@@ -575,6 +599,8 @@ Report</text>
 
 # ダイレクトインジェクション
 
+> *システムプロンプトの上書きと役割乗っ取りが直接インジェクションの典型手法*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
@@ -606,6 +632,8 @@ Report</text>
 ---
 
 # インダイレクト（間接）インジェクション
+
+> *外部ドキュメントに埋め込んだ指示がRAG経由で全ユーザーに影響する広範囲攻撃*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -656,6 +684,8 @@ Mitigate</text>
 
 # ジェイルブレイク技法
 
+> *ロールプレイ・仮定の話・エンコード回避の3手法でジェイルブレイクを実行*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
@@ -705,6 +735,8 @@ Env</text>
 ---
 
 # マルチモーダルインジェクション
+
+> *画像内テキスト・ステガノグラフィ・音声注入でマルチモーダル経由の攻撃が可能*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -761,6 +793,8 @@ Service</text>
 
 # 攻撃デモ・実際の事例
 
+> *Bing ChatとLLMメールエージェントの実被害事例が間接インジェクションの危険を実証*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
@@ -809,6 +843,8 @@ Output</text>
 ---
 
 # プロンプトインジェクション検出技術
+
+> *DeBERTa分類器+埋め込み距離+フィンガープリントの3段階検出でインジェクションを防御*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -872,6 +908,8 @@ Report</text>
 
 # プロンプトインジェクション防御策
 
+> *XMLタグ分離+最小権限+入力サニタイゼーションの3層防御がインジェクション対策の基本*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
@@ -922,6 +960,8 @@ Report</text>
 
 # プロンプトインジェクション テスト・バリデーション
 
+> *Garak/PyRIT/Promptfooの3ツールでCI/CD統合型のLLM脆弱性自動テストを実現*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
@@ -964,6 +1004,8 @@ Report</text>
 
 # トレーニングデータのプライバシーリスク
 
+> *LLMはトレーニングデータを逐語的に記憶—GDPRの削除権対応が技術的に極めて困難*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
@@ -981,6 +1023,8 @@ Report</text>
 ---
 
 # データ漏洩・記憶化（Memorization）
+
+> *逐語的記憶化と抽出攻撃が示すプライバシーリスク—差分プライバシーで緩和*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1031,6 +1075,8 @@ Mitigate</text>
 
 # プライバシー保護技術
 
+> *差分プライバシー・連合学習・機密計算の3手法でAIプライバシー保護を多層実装*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
@@ -1080,6 +1126,8 @@ Env</text>
 ---
 
 # データガバナンス
+
+> *データカタログ+リネージ+同意管理でAIシステムのデータガバナンスを確立*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1136,6 +1184,8 @@ Service</text>
 
 # PII検出と匿名化
 
+> *NER+正規表現+コンテキスト検出の3手法でPIIを精度高く自動検出*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
@@ -1185,6 +1235,8 @@ Output</text>
 ---
 
 # RAGにおけるデータ保護
+
+> *ドキュメントACL+埋め込みプライバシー+チャンク漏洩対策でRAGのデータ保護を実現*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1248,6 +1300,8 @@ Report</text>
 
 # GDPR・個人情報保護法との関係
 
+> *GDPR忘れられる権利・アルゴリズム意思決定の説明義務・データ最小化がAI規制の核心*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
@@ -1298,6 +1352,8 @@ Report</text>
 
 # データ分類と取り扱いポリシー
 
+> *AI固有の3段階データ分類—AIトレーニング可/RAG参照のみ/AI利用禁止で管理*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
@@ -1340,6 +1396,8 @@ Report</text>
 
 # モデル汚染（Model Poisoning）
 
+> *わずか0.1%の汚染データで有意な影響—モデル汚染はサプライチェーン全体が標的*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
@@ -1357,6 +1415,8 @@ Report</text>
 ---
 
 # バックドア攻撃
+
+> *特定トリガーでバックドアが発動—正常時に検出不可能な潜伏型攻撃の脅威*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1407,6 +1467,8 @@ Mitigate</text>
 
 # モデル盗用（Model Extraction）
 
+> *GPT-3.5相当のモデル抽出が約$2,000で可能—知財と競争優位が脅かされる*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
@@ -1456,6 +1518,8 @@ Env</text>
 ---
 
 # メンバーシップ推論攻撃
+
+> *メンバーシップ推論攻撃で医療・金融の機密Fine-tuningデータ漏洩リスクが深刻*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1512,6 +1576,8 @@ Service</text>
 
 # 敵対的サンプル（Adversarial Examples）
 
+> *人間に知覚不可能な微小変更でモデルを誤認識させる敵対的サンプルの多様な手法*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
@@ -1561,6 +1627,8 @@ Output</text>
 ---
 
 # モデル完全性の検証
+
+> *SHA-256ハッシュ+デジタル署名+picklescanの3層でモデル完全性を検証*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1624,6 +1692,8 @@ Report</text>
 
 # モデルカード・透明性
 
+> *モデルカードとDatasheets for Datasetsで用途・制限・バイアスの透明性を確保*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
@@ -1682,6 +1752,8 @@ Report</text>
 
 # AI/MLサプライチェーンの脅威
 
+> *Foundation Model→Fine-tuning→ライブラリ→アプリの各層に独立した攻撃面が存在*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
@@ -1716,6 +1788,8 @@ Report</text>
 
 # 悪意あるモデルの配布
 
+> *HuggingFaceでRCEペイロード含む悪意あるモデルが複数発見—Pickle形式が危険*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
@@ -1733,6 +1807,8 @@ Report</text>
 ---
 
 # 依存パッケージの脆弱性
+
+> *LangChain CVSS 9.8の任意コード実行脆弱性が示す間接依存の爆発的リスク*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1783,6 +1859,8 @@ Mitigate</text>
 
 # HuggingFace等のモデルハブのリスク
 
+> *75万以上のモデルが無審査で公開—HuggingFaceの自動スキャンは回避可能*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
@@ -1832,6 +1910,8 @@ Env</text>
 ---
 
 # SBOMとAI（AI-BOM）
+
+> *AI-BOMでモデル+データ+コード+アルゴリズムの成分表を作成し透明性を確保*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1887,6 +1967,8 @@ Service</text>
 ---
 
 # サプライチェーン検証ベストプラクティス
+
+> *公式ソース優先+ハッシュ検証+プライベートレジストリの3段階でサプライチェーンを保護*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1945,6 +2027,8 @@ Output</text>
 ---
 
 # RAGアーキテクチャとリスク
+
+> *ドキュメントインジェクション・アクセス制御違反・メタデータ漏洩がRAGの3大リスク*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2008,6 +2092,8 @@ Report</text>
 
 # ベクターDBのセキュリティ
 
+> *認証・暗号化・名前空間分離の3要素でベクターDBのセキュリティを確保*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
@@ -2058,6 +2144,8 @@ Report</text>
 
 # ドキュメントインジェクション
 
+> *ナレッジベースへの悪意あるドキュメント登録が全ユーザーに影響する広範囲攻撃*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
@@ -2092,6 +2180,8 @@ Report</text>
 
 # 間接プロンプトインジェクション in RAG
 
+> *公開Webからの自動クロールRAGが白文字埋め込み指示で全ユーザーへ被害を拡大*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
@@ -2109,6 +2199,8 @@ Report</text>
 ---
 
 # アクセス制御とRAG
+
+> *ABAC+ACL付きベクター検索でユーザー権限に基づくRAGアクセス制御を実装*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2159,6 +2251,8 @@ Mitigate</text>
 
 # RAG固有のデータ漏洩リスク
 
+> *ソース開示・チャンク漏洩・メタデータ漏洩の3種がRAG固有のデータ漏洩リスク*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
@@ -2208,6 +2302,8 @@ Env</text>
 ---
 
 # セキュアRAG設計パターン
+
+> *信頼境界の明確化・ドキュメント承認フロー・出力フィルタリングの3パターンでセキュアRAGを実現*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2272,6 +2368,8 @@ Service</text>
 
 # AIエージェントのリスクプロファイル
 
+> *自律実行+ツール連携+長時間タスクの組み合わせがエージェントの攻撃面を激化*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
@@ -2321,6 +2419,8 @@ Output</text>
 ---
 
 # ツール使用のリスク（コード実行・API呼び出し）
+
+> *サンドボックスなしコード実行とコマンドインジェクションが直接的なOS侵害につながる*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2384,6 +2484,8 @@ Report</text>
 
 # 自律エージェントの脅威
 
+> *目標ミスアライメント・リソース獲得・副作用の3種が自律エージェント固有の脅威*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
@@ -2434,6 +2536,8 @@ Report</text>
 
 # エージェントの権限昇格
 
+> *水平・垂直・インジェクション経由の権限昇格がエージェントの最大リスク*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
@@ -2468,6 +2572,8 @@ Report</text>
 
 # マルチエージェントシステムのリスク
 
+> *1エージェントの侵害が横方向移動でマルチエージェント全体に感染拡大する危険*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
@@ -2485,6 +2591,8 @@ Report</text>
 ---
 
 # Prompt Injection in Agents
+
+> *ツール自動実行のため被害が直接かつ即時—メールエージェントとコード生成が高リスク*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2535,6 +2643,8 @@ Mitigate</text>
 
 # エージェントの行動制限・サンドボックス
 
+> *ツールセット制限+gVisor/Firecracker+エグレスフィルタリングの3層でエージェントを制限*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
@@ -2584,6 +2694,8 @@ Env</text>
 ---
 
 # エージェントセキュリティのベストプラクティス
+
+> *最小権限+POLA+明示的承認モデルの3原則がエージェントセキュリティの設計基盤*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2648,6 +2760,8 @@ Service</text>
 
 # Amazon Bedrockのセキュリティ機能
 
+> *Bedrockはデータ不使用+PrivateLink+デフォルト暗号化でセキュアなAIインフラを提供*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
@@ -2697,6 +2811,8 @@ Output</text>
 ---
 
 # Guardrails for Bedrock
+
+> *Guardrailsの6段階コンテンツフィルタ+PIIマスキング+禁止トピックで多層防御を実現*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2760,6 +2876,8 @@ Report</text>
 
 # AWS IAM for AI Services
 
+> *条件キーでモデルARN単位の細粒度制御—Bedrock特有のIAMポリシー設計が重要*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
@@ -2810,6 +2928,8 @@ Report</text>
 
 # VPC/PrivateLinkでのAIサービス分離
 
+> *VPCエンドポイント+エンドポイントポリシー+セキュリティグループでAIサービスをネットワーク分離*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
@@ -2844,6 +2964,8 @@ Report</text>
 
 # Amazon Macie + AIデータ保護
 
+> *MacieがS3のPII/PHIを自動スキャン—Fine-tuningデータセットの事前クレンジングに必須*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
@@ -2861,6 +2983,8 @@ Report</text>
 ---
 
 # AWS CloudTrail + AI監査
+
+> *CloudTrail LakeのSQLクエリでBedrock APIの横断分析と異常アクセス自動検出*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2911,6 +3035,8 @@ Mitigate</text>
 
 # SageMakerセキュリティ
 
+> *VPCモード+IAMロール分離+KMS暗号化の3要素でSageMakerセキュリティを確保*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
@@ -2960,6 +3086,8 @@ Env</text>
 ---
 
 # Amazon Comprehend + PII検出
+
+> *Comprehendが25種以上のPIIをリアルタイム検出し自動匿名化—バッチ処理も対応*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3015,6 +3143,8 @@ Service</text>
 ---
 
 # AWS AI Security Architecture
+
+> *IAM→VPC→Guardrails→アプリ検証→監査の5層多層防御がAWS AIセキュリティの核心*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3073,6 +3203,8 @@ Output</text>
 ---
 
 # AIシステムの監視戦略
+
+> *インフラ/モデル動作/入出力コンテンツ/ビジネス指標の4レイヤー監視で品質劣化を検知*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3136,6 +3268,8 @@ Report</text>
 
 # 異常検出・行動分析
 
+> *ベースライン構築+時系列異常+セマンティック異常の3段階でAIシステムの脅威を検出*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
@@ -3186,6 +3320,8 @@ Report</text>
 
 # ログ分析とSIEM連携
 
+> *CloudTrail+VPCフローログ+LLM入出力ログをOpenSearchで統合してSIEM連携*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
@@ -3220,6 +3356,8 @@ Report</text>
 
 # レッドチーミング for AI
 
+> *GarakとPyRITの自動化+人間の創造的攻撃を組み合わせてAIレッドチーミングを実施*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
@@ -3237,6 +3375,8 @@ Report</text>
 ---
 
 # ベンチマーク・テストフレームワーク
+
+> *HarmBench/TrustLLM/MT-Benchで有害性・安全性・会話能力を多角的に評価*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3286,6 +3426,8 @@ Mitigate</text>
 ---
 
 # インシデント検出の実践
+
+> *ジェイルブレイク・インジェクション成功・機密漏洩の3シナリオでインシデント対応を自動化*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3345,6 +3487,8 @@ Env</text>
 
 # AI固有のインシデント分類
 
+> *入力攻撃・データ漏洩・モデル侵害の3クラス分類でAI固有インシデントを体系化*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">API レート制限 & アクセス制御</text>
@@ -3400,6 +3544,8 @@ Service</text>
 
 # インシデント対応プレイブック
 
+> *検出→封じ込め→調査→復旧→改善の5フェーズプレイブックでAIインシデントに対応*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
@@ -3449,6 +3595,8 @@ Output</text>
 ---
 
 # フォレンジックとAI
+
+> *モデルウェイトスナップショット+不変ログ+パラメータ記録でAIフォレンジックを実施*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3512,6 +3660,8 @@ Report</text>
 
 # モデルのロールバック戦略
 
+> *MLflowバージョン管理+SageMakerレジストリ+ブルーグリーンデプロイで安全なロールバック*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
@@ -3562,6 +3712,8 @@ Report</text>
 
 # コミュニケーションと報告
 
+> *CISO→経営層への明確なエスカレーションとGDPR 72時間通知が規制対応の核心*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
@@ -3604,6 +3756,8 @@ Report</text>
 
 # AI規制の動向（EU AI Act等）
 
+> *EU AI Actのリスク分類と高リスクAI要件—技術文書・ログ記録・人間監視が義務*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
@@ -3621,6 +3775,8 @@ Report</text>
 ---
 
 # 責任あるAI（Responsible AI）
+
+> *公平性・透明性・説明可能性の3原則がResponsible AIの最低基準*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3671,6 +3827,8 @@ Mitigate</text>
 
 # AIリスク管理フレームワーク（NIST AI RMF）
 
+> *NIST AI RMFのGovern/Map/Measure/Manageの4機能でAIリスクを体系管理*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">モデルサプライチェーンセキュリティ</text>
@@ -3720,6 +3878,8 @@ Env</text>
 ---
 
 # ISO/IEC 42001（AI管理システム）
+
+> *ISO/IEC 42001がISO 27001と統合運用推奨—AI管理システムの初の国際標準*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3776,6 +3936,8 @@ Service</text>
 
 # 組織的ガバナンス体制
 
+> *AI委員会+リスクオーナー+ポリシー階層化でAIガバナンス体制を組織に定着*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">PII 検出 & 匿名化フロー</text>
@@ -3825,6 +3987,8 @@ Output</text>
 ---
 
 # AIポリシー・ガイドライン策定
+
+> *AI利用ポリシー+データ分類+ベンダー評価基準の3文書でガイドライン体系を構築*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -3888,6 +4052,8 @@ Report</text>
 
 # 監査とコンプライアンス検証
 
+> *内部監査+外部ペネトレーション+AWS Config継続監視で多層コンプライアンスを維持*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">LLM 脅威ランドスケープ</text>
@@ -3946,6 +4112,8 @@ Report</text>
 
 # セキュリティ成熟度モデル
 
+> *Level 1〜5の成熟度モデルで組織のAIセキュリティ現状診断と改善優先度を決定*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">入力・出力バリデーションパイプライン</text>
@@ -3980,6 +4148,8 @@ Report</text>
 
 # 実装ロードマップ
 
+> *1-3月基盤→4-6月防御→7-9月検出→10-12月成熟の12ヶ月ロードマップ*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">Guardrails アーキテクチャ（多層防御）</text>
@@ -3997,6 +4167,8 @@ Report</text>
 ---
 
 # ツール・リソース・参考文献
+
+> *Garak/PyRIT/OWASP/MITRE ATLAS/AWS Bedrock公式の5リソースが実装の出発点*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -4046,6 +4218,8 @@ Mitigate</text>
 ---
 
 # まとめ — 生成AIセキュリティの要点
+
+> *多層防御+脅威追随+AWS活用の3原則が生成AIセキュリティの実践的結論*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>

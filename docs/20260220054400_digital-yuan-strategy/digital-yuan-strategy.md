@@ -7,6 +7,71 @@ paginate: true
 header: "通貨覇権と制裁回避"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -26,6 +91,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *制裁回避とドル覇権挑戦がe-CNY戦略の本質*
 
 - 1. デジタル人民元（e-CNY）とは何か
 - 2. なぜ今なのか：制裁リスクとドル覇権
@@ -51,6 +118,8 @@ style: |
 
 # デジタル人民元は「現金のデジタル版」ではない（1/2）
 
+> *使途・期限を制限できる政策実行ツールが本質*
+
 - **表向きの説明：**
 - 現金をデジタル化したもの。スマホで使える
 - ---
@@ -61,6 +130,8 @@ style: |
 ---
 
 # デジタル人民元は「現金のデジタル版」ではない（2/2）
+
+> *完全な取引監視で匿名現金取引が消える*
 
 -   「この資金は食料にのみ使用可能」「2週間以内に使わないと失効」
 - - **完全な取引監視：** 全取引が中国人民銀行に可視
@@ -80,6 +151,8 @@ style: |
 
 # ロシア制裁が中国に見せた「本当のリスク」（1/2）
 
+> *SWIFT遮断と6,000億ドル凍結が中国に警告を発した*
+
 - **2022年2月：ロシアへの金融制裁**
 - - SWIFTからロシア銀行を締め出し
 - - 外貨準備（6,000億ドル）を凍結
@@ -91,6 +164,8 @@ style: |
 ---
 
 # ロシア制裁が中国に見せた「本当のリスク」（2/2）
+
+> *3.2兆ドルの外貨準備が人質になりうると悟った*
 
 - **中国が見たもの：**
 - 「同じことが中国に起きたら？」
@@ -118,6 +193,8 @@ style: |
 
 # CIPS：中国独自の国際送金ネットワーク（1/2）
 
+> *SWIFT11,000機関に対しCIPSは100カ国1,500機関に拡大中*
+
 - **SWIFT（Society for Worldwide Interbank Financial Telecommunication）：**
 - 200カ国・11,000以上の金融機関が参加する国際決済メッセージ網
 - 米国の管轄下に置かれており、制裁の道具として機能
@@ -128,6 +205,8 @@ style: |
 ---
 
 # CIPS：中国独自の国際送金ネットワーク（2/2）
+
+> *e-CNY+CIPSの組み合わせでドル・SWIFT不要の取引が可能*
 
 - 2015年に中国が独自構築した国際送金網
 - 2024年：100カ国以上・1,500以上の機関が参加
@@ -153,6 +232,8 @@ style: |
 
 # 一帯一路の「通貨レイヤー」（1/2）
 
+> *デジタル基盤の上にe-CNY決済網を組み込む三層戦略*
+
 - **デジタルシルクロード（DSR）：**
 - インフラ（港・道路）の建設に加えて、
 - デジタルインフラ（5G・海底ケーブル・データセンター）を整備
@@ -164,6 +245,8 @@ style: |
 ---
 
 # 一帯一路の「通貨レイヤー」（2/2）
+
+> *制裁リスク国にとって人民元建て決済は魅力的な選択肢*
 
 - ドル不足の国でも人民元建てで取引できる
 - 特に「制裁リスクのある国」には魅力的
@@ -184,6 +267,8 @@ style: |
 ---
 
 # まとめ：デジタル人民元の地政学的意味
+
+> *通貨覇権の挑戦は軍事力より静かで強力な支配手段*
 
 - ✅ **e-CNYの目的は利便性より制裁回避とドル覇権への挑戦**
 - ✅ **プログラマブルマネーは国家の政策実行能力を飛躍的に強化する**

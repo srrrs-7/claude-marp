@@ -94,6 +94,8 @@ style: |
 
 # 目次 (1/2)
 
+> *Luhmann信頼論からPoLP実装まで11章で解説*
+
 - - 1. 信頼とは何か -- Luhmannの社会学
 - - 2. AIエージェントへの信頼の構造
 - - 3. 信頼の委譲チェーン
@@ -105,6 +107,8 @@ style: |
 ---
 
 # 目次 (2/2)
+
+> *崩壊・設計・SUDO問題の4章でまとめる*
 
 - - 7. 信頼構築のロードマップ
 - - 8. 信頼の崩壊と回復
@@ -154,6 +158,8 @@ style: |
 
 # Niklas Luhmann -- 信頼の社会学
 
+> *信頼は複雑性を縮減する機構—なければ行動不能になる*
+
 - - ドイツの社会学者 (1927-1998)
 - - 著書『信頼 -- 社会的複雑性の縮減メカニズム』(1968)
 - - **信頼の定義**: 複雑性を縮減する社会的メカニズム
@@ -166,6 +172,8 @@ style: |
 ---
 
 # 信頼の2つの形態（1/2）
+
+> *人格的信頼と制度的信頼は構造が異なる*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -202,6 +210,8 @@ style: |
 ---
 
 # 信頼の2つの形態（2/2）
+
+> *AIには制度的信頼設計が人格的信頼より有効*
 
 -   - 仕組み・制度への信頼
 -   - ルールと監査に基づく
@@ -326,12 +336,22 @@ style: |
 
 ---
 
-# なぜ信頼が必要なのか
+# なぜ信頼が必要なのか（1/2）
+
+> *不確実性を受け入れる意思決定こそ信頼の本質*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">なぜ信頼が必要なのか：3つの理由</text><rect x="30" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="140" y="95" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">理由1: 複雑性</text><text x="50" y="125" fill="#ffffff" font-size="11">AIの判断ロジックを</text><text x="50" y="145" fill="#ffffff" font-size="11">全て検証するのは不可能</text><text x="50" y="165" fill="#ffffff" font-size="11">毎回の出力を人間が</text><text x="50" y="185" fill="#ffffff" font-size="11">確認するコストは∞</text><rect x="50" y="215" width="178" height="80" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="139" y="258" text-anchor="middle" fill="#f9a825" font-size="11">→ 信頼なしには</text><text x="139" y="278" text-anchor="middle" fill="#f9a825" font-size="11">　利用できない</text><rect x="290" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="95" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">理由2: 速度</text><text x="310" y="125" fill="#ffffff" font-size="11">リアルタイム判断が必要</text><text x="310" y="145" fill="#ffffff" font-size="11">人間のレビューを待てない</text><text x="310" y="165" fill="#ffffff" font-size="11">自律的な行動が前提</text><text x="310" y="185" fill="#ffffff" font-size="11">承認待ちがボトルネック</text><rect x="310" y="215" width="178" height="80" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="399" y="258" text-anchor="middle" fill="#e91e63" font-size="11">→ 委任なしには</text><text x="399" y="278" text-anchor="middle" fill="#e91e63" font-size="11">　価値を出せない</text><rect x="550" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="660" y="95" text-anchor="middle" fill="#4db6ac" font-size="13" font-weight="bold">理由3: スケール</text><text x="570" y="125" fill="#ffffff" font-size="11">人間の監督能力に限界</text><text x="570" y="145" fill="#ffffff" font-size="11">並列処理・大量タスク</text><text x="570" y="165" fill="#ffffff" font-size="11">人間1人 vs エージェント∞</text><text x="570" y="185" fill="#ffffff" font-size="11">監視コストが線形増大</text><rect x="570" y="215" width="178" height="80" rx="6" fill="#4db6ac" opacity="0.12" stroke="#4db6ac" stroke-width="1"/><text x="659" y="258" text-anchor="middle" fill="#4db6ac" font-size="11">→ 制度化なしには</text><text x="659" y="278" text-anchor="middle" fill="#4db6ac" font-size="11">　管理できない</text><text x="400" y="365" text-anchor="middle" fill="#aaaaaa" font-size="11">信頼は「甘え」ではなく「必要条件」</text></svg>
 - - AIエージェントの出力を**毎回全て検証する**のは非現実的
 - - 検証コストがAI使用の利益を上回る → 意味がない
 - - しかし**検証なしに全て受け入れる**のは危険
+
+
+---
+
+# なぜ信頼が必要なのか（2/2）
+
+> *信頼なき自律エージェントはリスク源になる*
+
 - - 信頼 = 「どこまで検証を省略できるか」の閾値
 - 
 - **Luhmannの洞察:**
@@ -440,6 +460,8 @@ style: |
 
 # Claude Code の権限モデル（1/2）
 
+> *段階的権限付与がLeast Privilegeの実装例*
+
 - - **Read**: ファイル読み取り → 自動許可
 - - **Edit/Write**: ファイル編集 → 設定で自動許可可能
 - - **Bash**: シェルコマンド → コマンドごとに許可設定
@@ -449,6 +471,8 @@ style: |
 ---
 
 # Claude Code の権限モデル（2/2）
+
+> *権限昇格は監査ログと承認フローで制御する*
 
 - 
 - **設計思想:**
@@ -461,6 +485,8 @@ style: |
 
 # Principle of Least Privilege（1/2）
 
+> *タスク完了に必要な最小権限のみを付与する*
+
 - - **最小権限の原則** -- セキュリティの基本原則
 - - 起源: 1975年 Saltzer & Schroeder
 - - 「全てのプログラムと全てのユーザーは、
@@ -470,6 +496,8 @@ style: |
 ---
 
 # Principle of Least Privilege（2/2）
+
+> *過剰権限は攻撃面積を広げ事故を拡大する*
 
 - - Unix: root vs 一般ユーザー
 - - AWS IAM: ポリシーベースのアクセス制御
@@ -517,6 +545,8 @@ style: |
 
 # いつSUDO権限を与えるのか（1/2）
 
+> *実績×監査×可逆性の3条件が揃った時だけ*
+
 - - **SUDO = 全権委任** -- 最も危険な信頼の形
 - - Unixで `sudo` を打つ時、あなたは何を信頼しているか？
 -   - そのコマンドが意図通り動くこと
@@ -526,6 +556,8 @@ style: |
 ---
 
 # いつSUDO権限を与えるのか（2/2）
+
+> *権限付与は累積的—一度与えると取り戻せない*
 
 -   - 取り消し可能であること(最悪の場合)
 - - AIに `--dangerously-skip-permissions` を与える時も同じ
@@ -537,6 +569,8 @@ style: |
 
 # 信頼の崩壊と回復（1/2）
 
+> *一度失った信頼の回復には構築の10倍の時間がかかる*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">信頼の崩壊：典型的なパターン</text><rect x="30" y="65" width="340" height="130" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="94" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">パターン1: 能力の失望</text><text x="50" y="120" fill="#ffffff" font-size="11">「できる」と信じたが、実はできなかった</text><text x="50" y="142" fill="#ffffff" font-size="11">例: AIが誤った情報を自信満々に提示</text><text x="50" y="164" fill="#aaaaaa" font-size="10">→ 能力への信頼が崩壊（回復困難）</text><rect x="430" y="65" width="340" height="130" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="94" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">パターン2: 誠実さへの疑念</text><text x="450" y="120" fill="#ffffff" font-size="11">「正直」と信じたが、隠蔽があった</text><text x="450" y="142" fill="#ffffff" font-size="11">例: AIが自分の限界を隠す</text><text x="450" y="164" fill="#aaaaaa" font-size="10">→ 誠実性への信頼が崩壊（最も深刻）</text><rect x="30" y="225" width="340" height="130" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="254" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">パターン3: 整合性の欠如</text><text x="50" y="280" fill="#ffffff" font-size="11">「一貫している」と思ったが、ブレる</text><text x="50" y="300" fill="#ffffff" font-size="11">例: 同じ質問に毎回違う答え</text><text x="50" y="322" fill="#aaaaaa" font-size="10">→ 予測可能性への信頼が崩壊</text><rect x="430" y="225" width="340" height="130" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="600" y="254" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold">共通の教訓</text><text x="450" y="280" fill="#ffffff" font-size="11">信頼は「期待の充足」によって維持</text><text x="450" y="300" fill="#ffffff" font-size="11">一度でも大きく裏切ると回復は困難</text><text x="450" y="322" fill="#aaaaaa" font-size="10">→ 信頼の約束は守れる範囲のみ</text></svg>
 - - **信頼の非対称性**: 構築は遅く、崩壊は一瞬
 - - AIエージェントが本番環境を壊したら？
@@ -547,6 +581,8 @@ style: |
 ---
 
 # 信頼の崩壊と回復（2/2）
+
+> *透明性と説明責任が信頼回復の唯一の道*
 
 - - **回復の条件 (Luhmann)**:
 -   - 原因の透明な説明
@@ -658,7 +694,9 @@ style: |
 
 ---
 
-# 制度的信頼の設計
+# 制度的信頼の設計（1/2）
+
+> *監査・認証・制限の三層構造が制度信頼を支える*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -700,6 +738,14 @@ style: |
 - - **監査ログ**: 全てのAI操作を記録する
 - - **サンドボックス**: 本番環境と分離された実行環境
 - - **ロールバック**: いつでも元に戻せる仕組み
+
+
+---
+
+# 制度的信頼の設計（2/2）
+
+> *技術的担保なき信頼宣言はリスクを隠蔽するだけ*
+
 - - **レビュー**: 人間によるサンプルチェック
 - - **設定ファイル**: CLAUDE.md = AIへの制度的契約
 - 
@@ -708,12 +754,22 @@ style: |
 
 ---
 
-# 現実のケーススタディ
+# 現実のケーススタディ（1/2）
+
+> *失敗事例は全て権限過多か監視不足が原因*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">現実のケーススタディ：Claude Code の信頼モデル</text><rect x="30" y="65" width="350" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="205" y="96" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">信頼の設計</text><rect x="50" y="115" width="290" height="50" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="195" y="138" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">明示的な権限モデル</text><text x="195" y="156" text-anchor="middle" fill="#ffffff" font-size="10">--allow-read, --allow-write で明示</text><rect x="50" y="178" width="290" height="50" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="195" y="201" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">インタラクティブ確認</text><text x="195" y="219" text-anchor="middle" fill="#ffffff" font-size="10">重要操作前に必ず承認を求める</text><rect x="50" y="241" width="290" height="50" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="195" y="264" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">透明な行動ログ</text><text x="195" y="282" text-anchor="middle" fill="#ffffff" font-size="10">全操作がユーザーに見える</text><rect x="420" y="65" width="350" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="595" y="96" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">信頼を脅かす要素</text><rect x="440" y="115" width="290" height="50" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="585" y="138" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">--dangerously-skip-permissions</text><text x="585" y="156" text-anchor="middle" fill="#ffffff" font-size="10">全権限付与 → 信頼の根拠が薄れる</text><rect x="440" y="178" width="290" height="50" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="585" y="201" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">Prompt Injection攻撃</text><text x="585" y="219" text-anchor="middle" fill="#ffffff" font-size="10">外部入力による権限昇格試み</text><rect x="440" y="241" width="290" height="50" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="585" y="264" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">エージェントの連鎖</text><text x="585" y="282" text-anchor="middle" fill="#ffffff" font-size="10">委任が深くなると検証が困難に</text><text x="400" y="380" text-anchor="middle" fill="#aaaaaa" font-size="11">Claude Code は信頼の「工学的実装」の好例</text></svg>
 - - **GitHub Copilot**: Lv.2 (Suggest) -- 提案のみ、人間が判断
 - - **Claude Code**: Lv.1-4 -- 段階的権限、設定で制御
 - - **Devin**: Lv.3-4 -- 自律的にコード書き・実行
+
+
+---
+
+# 現実のケーススタディ（2/2）
+
+> *成功事例はPoLP+段階拡大+ロールバック設計が共通*
+
 - - **自動運転 (Tesla FSD)**: Lv.4 -- 監視付き自律運転
 - - **高頻度取引 (HFT)**: Lv.5 -- 完全自律(ただし厳格な制約)
 - 
@@ -759,6 +815,8 @@ style: |
 
 # AIエージェント信頼設計の7原則
 
+> *最小権限・監査・可逆性・透明性が核心4原則*
+
 - - **1. デフォルト最小権限**: 必要になるまで権限を与えない
 - - **2. 段階的エスカレーション**: 実績に応じて権限を拡大
 - - **3. 可逆性の確保**: いつでも元に戻せる設計
@@ -772,6 +830,8 @@ style: |
 
 # まとめ
 
+> *SUDO権限は信頼の証明の後—信頼は設計するもの*
+
 - - Luhmannの信頼論はAI時代にこそ重要
 - - 信頼 = 複雑性の縮減 → AIの出力を全て検証しなくて済む
 - - 最小権限の原則はAIエージェントにも適用される
@@ -784,6 +844,8 @@ style: |
 ---
 
 # 参考文献
+
+> *Luhmann・Saltzer・Claude・OWASPの4文献が基盤*
 
 - - **Sociology:**
 - - [Trust and Power - Niklas Luhmann (1979)](https://en.wikipedia.org/wiki/Niklas_Luhmann)

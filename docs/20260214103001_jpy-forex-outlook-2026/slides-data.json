@@ -12,6 +12,7 @@
 		},
 		{
 			"title": "エグゼクティブサマリー",
+			"subtitle": "日米金利差縮小でUSD/JPYは135-150円、2026年末142円が中央シナリオ",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"52\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\" text-anchor=\"middle\" font-family=\"sans-serif\">エグゼクティブサマリー</text>\n  <rect x=\"40\" y=\"75\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"101\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">基本シナリオ (確率50%)</text>\n  <text x=\"735\" y=\"101\" fill=\"#f9a825\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">USD/JPY 148-155 — 緩やかな円高継続</text>\n  <rect x=\"40\" y=\"127\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"153\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">円安シナリオ (確率25%)</text>\n  <text x=\"735\" y=\"153\" fill=\"#e91e63\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">USD/JPY 155-165 — FRB利下げ遅延</text>\n  <rect x=\"40\" y=\"179\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"205\" fill=\"#29b6f6\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">円高シナリオ (確率25%)</text>\n  <text x=\"735\" y=\"205\" fill=\"#29b6f6\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">USD/JPY 135-148 — BOJ大幅利上げ</text>\n  <rect x=\"40\" y=\"231\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"257\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">最大リスク</text>\n  <text x=\"735\" y=\"257\" fill=\"#e91e63\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">キャリートレード巻き戻し → 急激な円高 (2024年8月再来)</text>\n  <rect x=\"40\" y=\"283\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"309\" fill=\"#4caf50\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">投資家推奨</text>\n  <text x=\"735\" y=\"309\" fill=\"#4caf50\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">為替ヘッジ30-50% + 分散 + ボラ活用のオプション戦略</text>\n</svg>",
 				"• 日銀の金融政策正常化が円相場の主要ドライバー",
@@ -24,6 +25,7 @@
 		},
 		{
 			"title": "アジェンダ (1/2)",
+			"subtitle": "経済指標から中央銀行政策・テクニカルまで8テーマで円相場を完全解説",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"52\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\" text-anchor=\"middle\" font-family=\"sans-serif\">アジェンダ（1/2）</text>\n  <rect x=\"40\" y=\"75\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"101\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">1. 現在の市場概況</text>\n  <text x=\"735\" y=\"101\" fill=\"#f9a825\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">2026年2月時点 通貨ペア状況</text>\n  <rect x=\"40\" y=\"127\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"153\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">2. 経済指標分析</text>\n  <text x=\"735\" y=\"153\" fill=\"#e91e63\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">金利差 / GDP / インフレ / 貿易収支</text>\n  <rect x=\"40\" y=\"179\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"205\" fill=\"#29b6f6\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">3. 中央銀行政策</text>\n  <text x=\"735\" y=\"205\" fill=\"#29b6f6\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">BOJ / FRB / ECB の現在と今後</text>\n  <rect x=\"40\" y=\"231\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"257\" fill=\"#4caf50\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">4. 通貨ペア別詳細</text>\n  <text x=\"735\" y=\"257\" fill=\"#4caf50\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">USD/EUR/GBP/AUD/CHF/CNY 対JPY</text>\n  <rect x=\"40\" y=\"283\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"309\" fill=\"#ab47bc\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">5. リスク要因総合分析</text>\n  <text x=\"735\" y=\"309\" fill=\"#ab47bc\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">地政学 / 経済 / 政策 / 市場リスク</text>\n</svg>",
 				"**1. 現在の円相場状況** (4スライド)",
@@ -36,6 +38,7 @@
 		},
 		{
 			"title": "アジェンダ (2/2)",
+			"subtitle": "リスク・シナリオ・まとめの5テーマで2026年の円相場予測を完結",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"52\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\" text-anchor=\"middle\" font-family=\"sans-serif\">アジェンダ（2/2）</text>\n  <rect x=\"40\" y=\"75\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"101\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">6. テクニカル分析</text>\n  <text x=\"735\" y=\"101\" fill=\"#f9a825\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">チャートパターン / サポレジ / フィボナッチ</text>\n  <rect x=\"40\" y=\"127\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"153\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">7. 予測シナリオ</text>\n  <text x=\"735\" y=\"153\" fill=\"#e91e63\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">ベース / 強気 / 弱気 確率付き見通し</text>\n  <rect x=\"40\" y=\"179\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"205\" fill=\"#4caf50\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">8. まとめ・インプリケーション</text>\n  <text x=\"735\" y=\"205\" fill=\"#4caf50\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">投資家への具体的アクション提案</text>\n  <rect x=\"40\" y=\"231\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"257\" fill=\"#29b6f6\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">分析対象期間</text>\n  <text x=\"735\" y=\"257\" fill=\"#29b6f6\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">2026年2月〜2027年末</text>\n  <rect x=\"40\" y=\"283\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"309\" fill=\"#ab47bc\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">主要データソース</text>\n  <text x=\"735\" y=\"309\" fill=\"#ab47bc\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">Bloomberg / Reuters / BOJ / FRB / BIS</text>\n</svg>",
 				"**5. リスク要因** (5スライド)",
@@ -55,7 +58,8 @@
 				"• GBP/JPY: 185.40円（前年比 +4.1%）"
 			],
 			"speakerNotes": "2026年2月14日時点の為替市場スナップショット。AUD/JPY: 96.80円（前年比 -1.5%）、CHF/JPY: 170.30円（前年比 +2.3%）。円は主要通貨に対して前年比で概ね弱含み。市場の主要テーマは日銀政策の行方、FRB利下げ観測、欧州経済減速。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "USD/JPY 148.50円、EUR/JPY 160.20円：円は依然として割安水準"
 		},
 		{
 			"title": "現在の市場概況（通貨ペア別チャート）",
@@ -84,7 +88,8 @@
 				"• **トレンド:** レンジ相場（140-153円）、ボラティリティ上昇"
 			],
 			"speakerNotes": "2025年前半は日銀の政策転換が最大のドライバー。3月のマイナス金利解除で一時円高に振れるも、その後戻り基調。7月の追加利上げで再度円高進行。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "2025年、日銀利上げごとに円が4-6円の急騰：政策依存度が高い"
 		},
 		{
 			"title": "円の最近の動向（2025年後半〜2026年）",
@@ -95,7 +100,8 @@
 				"• 2026年1月: 日本の貿易収支改善報道（145→148円）"
 			],
 			"speakerNotes": "後半はイベントドリブンな動きが目立つ。米大統領選でリスクオフの円高、その後FRB利下げで反転。貿易収支改善期待で直近は円安に。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "2025年後半は140-148円のレンジ相場：方向感の乏しい展開が続く"
 		},
 		{
 			"title": "主要通貨ペアの現在値と前年比",
@@ -111,7 +117,8 @@
 				"| CNY/JPY | 20.45 | 20.38 | 20.89 | 20.56 | 19.98 | +2.4% |"
 			],
 			"speakerNotes": "AUD/JPYのみ円高。資源価格の低迷が影響。その他の通貨ペアは円安傾向が継続。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GBP/JPYが最高ボラティリティ：リスク管理を最も厳しくすべき通貨"
 		},
 		{
 			"title": "ボラティリティ分析",
@@ -122,7 +129,8 @@
 				"• GBP/JPY: 13.9%（過去5年平均: 10.2%）"
 			],
 			"speakerNotes": "実現ボラティリティは年率換算で過去5年平均を大きく上回る水準。要因: 中央銀行政策の不確実性増大、地政学的緊張（中東情勢、米中関係）、経済データのサプライズ増加、アルゴリズム取引による瞬間的な変動拡大。リスク管理の重要性が増している。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "USD/JPYの年率ボラティリティ12.8%は過去5年平均を37%上回る"
 		},
 		{
 			"title": "市場センチメント",
@@ -133,7 +141,8 @@
 				"• 恐怖・貪欲指数: 中立ゾーン（48/100）"
 			],
 			"speakerNotes": "IMM通貨先物ポジションでは円ショートの巻き戻しが進行中。投機筋の円ショートポジションは高水準だがピークアウトの兆候。市場の見方は短期的に円高リスクを警戒しつつ、中期的には円安トレンド継続を予想。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "円ネットショート85,000枚が解消されれば円高圧力が一気に加速"
 		},
 		{
 			"title": "セクション2: 経済指標分析",
@@ -152,7 +161,8 @@
 				"• **日米金利差:** 4.25%（2024年ピーク5.5%から縮小）"
 			],
 			"speakerNotes": "2026年2月時点の政策金利一覧。オーストラリア（RBA）は3.85%。日欧金利差は3.00%。金利差は為替の最重要ドライバー。金利差縮小は円高要因だが、依然として大きな差が存在。日米金利差の縮小ペースが円相場の鍵を握る。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "日米金利差4.25%が縮小に転じており、円高への構造的転換点"
 		},
 		{
 			"title": "金利差の影響（比較チャート）",
@@ -173,7 +183,8 @@
 				"• **日米実質金利差: 3.75%**"
 			],
 			"speakerNotes": "実質金利 = 名目金利 - インフレ率。ユーロ圏: 3.25% - 2.5% = +0.75%、英国: 4.75% - 2.9% = +1.85%。名目金利だけでなく実質金利差を見ることが重要。日本はマイナス実質金利が継続しており、実質金利差からは円安圧力が依然強い。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "日本の実質金利-2.05%が円売り圧力の根本要因"
 		},
 		{
 			"title": "GDP成長率比較",
@@ -189,7 +200,8 @@
 				"| オーストラリア | +1.7% | - |"
 			],
 			"speakerNotes": "日本の成長率は緩やかな改善予想だが、米国との格差は継続。経済成長率の差も為替に影響する。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "米国成長率優位が続くが格差は縮小：2026年がドル高の転換点"
 		},
 		{
 			"title": "インフレ率の動向",
@@ -200,7 +212,8 @@
 				"• ユーロ圏 CPI: +2.5%（コア: +2.8%）"
 			],
 			"speakerNotes": "2026年1月のCPI前年比データ。英国は+2.9%（コア: +3.5%）。日銀の2%目標は持続的達成が視野に。FRBは2%への軟着陸を模索中。インフレ率の収束は各国中銀の政策変更の契機となる可能性がある。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "日本コアCPI+2.0%が日銀正常化の根拠となりつつある"
 		},
 		{
 			"title": "貿易収支",
@@ -211,7 +224,8 @@
 				"• 第一次所得収支: +32.5兆円（過去最高水準）"
 			],
 			"speakerNotes": "日本の2025年通年データ。要因: エネルギー価格安定化で輸入額減少、自動車・半導体輸出堅調、海外投資収益の増加継続（円安効果）。経常黒字は円の下支え要因だが、海外投資増加は円安圧力。貿易赤字は縮小傾向で、所得収支が主導する構造は円安バイアス。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "経常収支+18.7兆円が円の下支え要因、PPP乖離41%を縮める力"
 		},
 		{
 			"title": "購買力平価（PPP）",
@@ -222,7 +236,8 @@
 				"• GBP/JPY PPP: 160円 vs 実勢: 185.40円（乖離: +15.9%）"
 			],
 			"speakerNotes": "円は購買力平価比で大幅に過小評価。ただしPPPは長期均衡値であり、短中期の予測には限界がある。金利差や構造要因により乖離が持続する可能性。長期的には円高余地があるが、時期は不透明。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "USD/JPY PPP 105円に対し実勢148円：円は41%割安で長期上昇余地"
 		},
 		{
 			"title": "PPP乖離率チャート",
@@ -250,7 +265,8 @@
 				"• **市場の見方:** 追加利上げの可能性あるもペースは緩慢"
 			],
 			"speakerNotes": "最近の主要決定: 2024年3月マイナス金利解除・YCC撤廃、2024年7月に0.25%利上げ、2025年3月に追加0.25%利上げ、2025年7月にさらに0.25%利上げ。植田総裁は「インフレ目標の持続的達成を確認しつつ、段階的な正常化を進める」と発言。日銀は慎重な正常化路線で、急激な円高を避けるため利上げペースは非常にゆっくり。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "日銀0.25%維持だが正常化スタンス維持：追加利上げが円高の鍵"
 		},
 		{
 			"title": "BOJの今後のシナリオ",
@@ -261,7 +277,8 @@
 				"• **シナリオC（確率10%）:** 緩和再開（大幅円安10円以上）"
 			],
 			"speakerNotes": "シナリオAのトリガーは賃金上昇加速・インフレ率3%超。シナリオBはインフレ率2%台で安定・成長率低迷の場合。シナリオCはリセッション入り・デフレ再燃の場合。最も可能性が高いのは現状維持だが、賃金動向次第で追加利上げの可能性も。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "日銀追加利上げ確率40%：実現すれば円高3-5円の即時効果"
 		},
 		{
 			"title": "米連邦準備制度（FRB）",
@@ -272,7 +289,8 @@
 				"• **市場織り込み:** 2026年中に3回（0.75%）の利下げ"
 			],
 			"speakerNotes": "FRBの政策スタンスは制限的水準を維持しインフレ動向を注視。ドットチャート（2025年12月時点）: 2027年末は3.00-3.25%、長期中立金利は2.50-2.75%。パウエル議長は「インフレ率2%への道筋は見えているが、拙速な利下げは避ける」と発言。FRBは慎重な利下げ路線で、日米金利差の縮小が予想される。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "FRB 2026年中3回利下げ想定：日米金利差縮小が円高トレンドを作る"
 		},
 		{
 			"title": "欧州中央銀行（ECB）",
@@ -283,7 +301,8 @@
 				"• **2026年見通し:** 2-3回利下げ（2.50-2.75%へ）"
 			],
 			"speakerNotes": "ECBの政策スタンスはデータ依存でインフレ収束なら利下げ余地あり。課題にはインフレ率2%台で目標達成圏内であること、地域間の経済格差（南欧vs北欧）もある。ドイツの財政政策転換が鍵。EUR/JPYへの影響はECB利下げは円高要因だが、BOJとの相対的な政策差次第。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ECB追加利下げで2.50%へ：EUR/JPY には下落圧力がかかりやすい"
 		},
 		{
 			"title": "その他主要中央銀行",
@@ -298,7 +317,8 @@
 				"| BOC（加国） | 4.25% | 制限的 | 2-3回利下げ | CAD/JPY下落 |"
 			],
 			"speakerNotes": "グローバルに利下げサイクル入り。日銀の相対的なタカ派スタンスが円を支える。総合評価として主要国は利下げ局面、日銀は現状維持〜利上げで円高の構図。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "BOE・RBA利下げペースが対円クロスの方向を左右する主要因"
 		},
 		{
 			"title": "中銀政策の為替への影響まとめ",
@@ -308,7 +328,8 @@
 				"• 2026年は**円高バイアスが優勢**と予想",
 				"• ただし日銀の正常化ペースが遅い場合、円安継続の可能性も"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "日銀以外の主要中銀が全て利下げへ：円高トレンドの構造的根拠"
 		},
 		{
 			"title": "中銀政策の為替フローチャート",
@@ -336,7 +357,8 @@
 				"• **円安トリガー:** FRBタカ派維持、日銀正常化先送り"
 			],
 			"speakerNotes": "短期的にはレンジ相場を予想。中心値は147円。円高シナリオ（142円）のトリガーには米国経済指標の悪化（雇用統計など）もある。円安シナリオ（152円）のトリガーにはリスクオン相場の継続も。推奨ポジションはレンジ下限での円買い、上限での円売り。145円が重要な中間ポイント。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "3-6ヶ月見通し142-152円：FRBタカ派継続なら上限突破リスクあり"
 		},
 		{
 			"title": "USD/JPY: 中長期見通し（1〜3年）",
@@ -347,7 +369,8 @@
 				"• **2028年末:** 130-140円（中心値: 135円）"
 			],
 			"speakerNotes": "円高トレンドの根拠: 日米金利差の継続的な縮小、日本の経常黒字構造の維持、米国経済の減速予想、購買力平価への回帰圧力。リスク要因: 日銀の正常化ペースが想定より遅い場合は円安継続、米国経済が想定以上に強ければ円安維持、地政学リスク次第でボラティリティ上昇。中長期では緩やかな円高トレンドを予想するが一直線ではなく波を伴う調整。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "2026年末140-145円、2027年末135-142円：円高トレンドが加速"
 		},
 		{
 			"title": "EUR/JPY: 分析と見通し",
@@ -358,7 +381,8 @@
 				"• **ドライバー:** ECB利下げ、ドイツ経済、EUR/USD動向"
 			],
 			"speakerNotes": "EUR/JPYはUSD/JPYとEUR/USDの掛け合わせ。ECBの利下げはユーロ安→円高圧力。ドイツの財政政策転換次第で下振れリスク。投資戦略は155円以下で押し目買い、165円以上で利益確定。欧州経済の動向に左右され、ドイツの財政拡大が実現すれば上昇余地あり。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "EUR/JPY 2026年末152-158円：ECB利下げが円高加速要因"
 		},
 		{
 			"title": "GBP/JPY: 分析と見通し",
@@ -369,7 +393,8 @@
 				"• **特徴:** 高ボラティリティ（年率13.9%）"
 			],
 			"speakerNotes": "主要ドライバー: BOE金融政策（4.75%→3.75-4.00%へ）、英国経済の成長率（1%台低成長予想）、Brexit後の貿易関係の進展。英国政治・経済ニュースに敏感に反応し、リスクオン時に上昇、リスクオフで急落。投資戦略はリスク許容度の高い投資家向けで、ストップロスの設定が重要。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GBP/JPY 年率ボラティリティ13.9%：高リスク高リターンの通貨ペア"
 		},
 		{
 			"title": "AUD/JPY: 分析と見通し",
@@ -380,7 +405,8 @@
 				"• **ドライバー:** 資源価格、中国経済、RBA利下げ"
 			],
 			"speakerNotes": "中国経済減速の影響で豪ドル安。資源価格（鉄鉱石、石炭）の低迷が続く場合さらなる下落リスク。RBAは利下げ局面入り（3.85%→3.00-3.25%へ）。投資戦略は中国経済の回復を見極めてから参入、現時点では慎重スタンス。コモディティ市場の分析が不可欠。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AUD/JPY 資源価格と中国経済の連動性が高く地政学リスクに敏感"
 		},
 		{
 			"title": "CHF/JPY・CNY/JPY: 分析と見通し",
@@ -391,7 +417,8 @@
 				"• 両通貨とも2026年末は緩やかな円高方向を予想"
 			],
 			"speakerNotes": "CHF/JPYはSNB政策（1.50%維持）と安全資産需要が主要ドライバー。両通貨とも安全資産属性があり、地政学リスク時に値動きが複雑化。レンジトレード向き。CNY/JPYは中国人民銀行の通貨政策、中国経済の成長率、米中関係が主要ドライバー。不動産市場低迷、地方政府債務問題、人口減少・高齢化のリスク要因あり。長期的には人民元安・円高を想定。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CHF/JPYは安全資産同士の組み合わせで方向感が出にくいペア"
 		},
 		{
 			"title": "新興国通貨対円",
@@ -407,7 +434,8 @@
 				"| BRL/JPY | 29.40 | 下落 | ブラジル政治、資源価格 |"
 			],
 			"speakerNotes": "アジア通貨は中国経済動向と米国政策に左右される。新興国全般ではドル高局面では下落圧力、円高局面でさらに下落。新興国通貨は高ボラティリティのため、分散投資と機動的なリスク管理が必須。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "新興国通貨は個別リスクが大きく、円建てでは分散効果が高い"
 		},
 		{
 			"title": "通貨強弱マトリクス",
@@ -418,7 +446,8 @@
 				"• **弱い:** AUD - 資源安 / BRL - 政治リスク"
 			],
 			"speakerNotes": "中立はCHF（スイスフラン）とEUR（ユーロ）。弱いカテゴリにはGBP（英ポンド）とCNY（人民元、構造問題）も含む。2026年の通貨強弱ランキングでは円が最強通貨として評価される。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "円が最強グループ入り：金利差縮小と経常黒字が構造的支援材料"
 		},
 		{
 			"title": "通貨強弱ランキング",
@@ -442,7 +471,8 @@
 				"| **AUD/JPY** | 0.73 | 0.68 | 0.65 | 1.00 |"
 			],
 			"speakerNotes": "過去6ヶ月の相関係数。主要通貨ペアは高い正の相関（0.7以上）。EUR/JPYとGBP/JPYは特に強い相関（0.91）。分散投資効果は限定的で、真の分散には異なる資産クラスが必要。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "USD/JPYとAUD/JPYの相関0.72：ドル見通しがAUDにも波及する"
 		},
 		{
 			"title": "セクション5: リスク要因",
@@ -461,7 +491,8 @@
 				"• **米中対立激化**（影響度: 大、確率: 中）→ 世界減速・円高"
 			],
 			"speakerNotes": "台湾有事の際は円・ドルの同時上昇（安全資産買い）、日本株下落とリスク回避の円買い。中東情勢は原油価格急騰→日本の貿易赤字拡大→円安圧力。米中対立は関税引き上げ→世界経済減速→円高。ロシア・ウクライナ情勢（影響度中、確率中）の長期化はエネルギー価格上昇→円安要因。総合評価として地政学リスクは高止まりで、リスクオフ時の円高に注意。ヘッジ戦略の検討が重要。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "台湾海峡緊張が最大の地政学リスク：発生すれば円高10円以上も"
 		},
 		{
 			"title": "経済リスク",
@@ -472,7 +503,8 @@
 				"• **日本経済停滞**（確率25%）→ 日銀正常化停止・円安継続"
 			],
 			"speakerNotes": "米国リセッションのトリガーは高金利の遅効効果と消費減速、対応はFRB緊急利下げ→金利差急縮小。中国のトリガーは不動産危機の深刻化と債務問題。日本のトリガーは消費低迷・企業投資減少。さらに欧州経済の深刻な減速（確率35%）はドイツ製造業不振・エネルギー問題でEUR/JPY 150円割れ。経済リスクはテールリスクだが発生時の為替インパクトは大きい。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "米国リセッション確率30%：実現なら USD/JPY が135円割れの可能性"
 		},
 		{
 			"title": "政策リスク",
@@ -483,7 +515,8 @@
 				"• **為替介入リスク**（確率30%）→ 155円突破で円買い介入も"
 			],
 			"speakerNotes": "日銀急激正常化のシナリオはインフレ率4%超→0.5%以上の大幅利上げ。FRBの政策ミスには利下げ遅延→景気悪化と急激利下げ→インフレ再燃の2パターン。為替介入は日本が155円突破で円買い介入の可能性、中国は人民元防衛の介入。短期的な反転も中期トレンドは変わらず。政策の予想外変更は市場の最大のサプライズ要因で、中銀コミュニケーションを注視。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "為替介入リスクは155円突破時：政府・日銀の警戒水準が明確化"
 		},
 		{
 			"title": "市場リスク",
@@ -494,7 +527,8 @@
 				"• **VIX 30以上**で急激な円高リスク"
 			],
 			"speakerNotes": "フラッシュクラッシュは薄商い時間帯（アジア早朝、欧米休日）に発生しやすい。過去事例: 2019年1月にUSD/JPY 108円→104円の瞬間的下落。キャリートレードは低金利円を借りて高金利通貨で運用する取引で、リスクオフ時に一斉解消→急激な円高。注意レベルはUSD/JPY 140円割れ。VIX 20以上で円高進行の傾向。ストップロスと適切なレバレッジ管理で対応。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "キャリートレード巻き戻しは短期間に円高5-10円の急変動を引き起こす"
 		},
 		{
 			"title": "総合リスク評価マップ",
@@ -504,7 +538,8 @@
 				"• **リスク管理の鉄則:** ポジションサイズ適正化、ストップロス設定",
 				"• 相関の低い資産への分散が必須"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "地政学・政策ミス・キャリー巻き戻しの3リスクに優先してヘッジを"
 		},
 		{
 			"title": "総合リスク評価マトリクス",
@@ -532,7 +567,8 @@
 				"• **トレンドライン:** 145円付近（維持が上昇トレンドの条件）"
 			],
 			"speakerNotes": "USD/JPY日足チャートパターン。ブレイクシナリオ: 上抜け（152円突破）で目標157円、トリガーは日銀のハト派転換。下抜け（142円割れ）で目標137円、トリガーはFRB緊急利下げ。2024年からの上昇トレンドラインは145円付近。レンジ下限付近（142-145円）がエントリーポイント。テクニカル的には重要なレンジ相場でブレイク方向が次のトレンドを決定。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "レンジ相場継続の技術的確認：142-152円の上下限が鍵"
 		},
 		{
 			"title": "サポート・レジスタンス",
@@ -543,7 +579,8 @@
 				"• **S1:** 145.00円 / **S2:** 142.00円 / **S3:** 137.00円"
 			],
 			"speakerNotes": "USD/JPY重要価格帯（2026年2月時点）。R3は2024年高値で心理的節目、R2は直近高値でレンジ上限、R1は心理的節目。S1は上昇トレンドラインで心理的節目、S2は直近安値でレンジ下限、S3は2025年3月安値でフィボナッチ38.2%。トレード戦略: 142-145円ゾーンは強力な買いゾーン、150-152円ゾーンは利益確定・売りゾーン。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "S1=145円、S2=142円が重要サポート：下抜けは円高加速シグナル"
 		},
 		{
 			"title": "テクニカル指標",
@@ -554,7 +591,8 @@
 				"• **総合判断:** 方向感に欠ける、ブレイクアウト待ちの局面"
 			],
 			"speakerNotes": "USD/JPY 2026年2月14日時点。5日MAは現在値より上で短期下降トレンド、25日MAは現在値付近で方向感なし、75日MAは現在値より下で中期上昇トレンド維持、200日MAは現在値より下で長期上昇トレンド。RSIは売られすぎ・買われすぎどちらでもない。ボリンジャーバンドはバンド中心付近で推移（レンジ相場）。テクニカル指標は中立シグナルでファンダメンタルズの変化待ち。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "RSI 52・MACD中立：テクニカルはトレンド不在を示唆"
 		},
 		{
 			"title": "フィボナッチ分析",
@@ -565,7 +603,8 @@
 				"• 反発なら目標153-157円、下抜けなら145円→140円へ調整"
 			],
 			"speakerNotes": "値幅は21.55円。主要リトレースメントレベル: 0%（安値）140.25円、23.6%は145.35円、38.2%は148.50円（現在値）、50.0%は151.03円、61.8%は153.56円（ゴールデンレシオ）、100%（高値）161.80円。現在は38.2%リトレースメント付近で、フィボナッチは市場参加者が意識する価格帯。38.2%は重要な押し目候補。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "フィボナッチ38.2%の148円が維持されれば153-157円を目指す展開"
 		},
 		{
 			"title": "季節性・アノマリー",
@@ -585,7 +624,8 @@
 				"| 11月-12月 | +1.1% | 年末相場、円安傾向 |"
 			],
 			"speakerNotes": "USD/JPY月別平均騰落率（過去10年データ）。2026年2月の示唆として歴史的に円高傾向。5月も要注意。季節性は絶対ではないが統計的な傾向があり、他の要因と組み合わせて判断。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "2月・6月・10月が統計的に円高月：季節性を活用した売買タイミング"
 		},
 		{
 			"title": "セクション7: 予測シナリオ",
@@ -604,7 +644,8 @@
 				"• 日銀: 0.25%維持、2026年末に追加利上げ検討"
 			],
 			"speakerNotes": "地政学は緊張継続も大きな衝突なし。最も可能性の高いシナリオで、日米金利差縮小により円は緩やかに上昇。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "基本シナリオ(50%): FRB 3回利下げ・日銀維持で緩やかな円高進行"
 		},
 		{
 			"title": "ベースシナリオ: 予想レンジ",
@@ -615,7 +656,8 @@
 				"• EUR/JPY: 155円 / GBP/JPY: 180円 / AUD/JPY: 93円"
 			],
 			"speakerNotes": "緩やかな円高トレンド。押し目買いの戦略が有効。投資家への示唆として四半期ごとにじわじわ円高が進行する展開を想定。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ベースシナリオ予想レンジ：2026年末USD/JPY 140-145円を中心"
 		},
 		{
 			"title": "強気シナリオ: 前提条件（円安継続、確率25%）",
@@ -626,7 +668,8 @@
 				"• 日銀: 0.25%を長期維持、リスクオン相場継続"
 			],
 			"speakerNotes": "米国経済が想定以上に強い場合のシナリオ。FRBのタカ派維持が鍵。リスクとしてインフレ再燃やバブル形成がある。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "FRB利下げ鈍化・日銀据え置きで2026年末USD/JPY 155円を想定"
 		},
 		{
 			"title": "強気シナリオ: 予想レンジ",
@@ -637,7 +680,8 @@
 				"• EUR/JPY: 168円 / GBP/JPY: 195円 / AUD/JPY: 102円"
 			],
 			"speakerNotes": "円安継続で輸出企業にメリット。外貨資産の円建て価値上昇。投資家は外貨ウェイト維持が有効。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "強気シナリオ予想：Q4 152-158円、EUR/JPY 168円、AUD/JPY 103円"
 		},
 		{
 			"title": "弱気シナリオ: 前提条件（円高加速、確率25%）",
@@ -648,7 +692,8 @@
 				"• 日銀: 追加利上げ実施（0.50-0.75%へ）"
 			],
 			"speakerNotes": "リスクオフ相場で株安・安全資産買い。米国リセッション時のシナリオで金利差急縮小による大幅円高。テールリスク。リスクとして日本株の大幅下落、輸出企業の業績悪化がある。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "米国リセッション+日銀利上げで2026年末USD/JPY 130円まで急騰"
 		},
 		{
 			"title": "弱気シナリオ: 予想レンジ",
@@ -659,7 +704,8 @@
 				"• EUR/JPY: 142円 / GBP/JPY: 165円 / AUD/JPY: 82円"
 			],
 			"speakerNotes": "急激な円高で外貨資産の目減り。輸入企業にメリット。投資家は為替ヘッジの引き上げが急務。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "弱気シナリオ予想：Q4 128-134円、EUR/JPY 142円、AUD/JPY 82円"
 		},
 		{
 			"title": "シナリオ確率分布",
@@ -670,7 +716,8 @@
 				"• リスクは比較的対称的（上下のテールリスクが同程度）"
 			],
 			"speakerNotes": "約半分の確率で136-148円のレンジに収まる。極端な円高（125円以下）や円安（161円以上）は低確率。ベースシナリオを軸に上下のリスクを考慮した戦略を推奨。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "中心予想142円・95%信頼区間128-156円：リスクは上下対称的"
 		},
 		{
 			"title": "シナリオ確率分布チャート",
@@ -696,7 +743,8 @@
 				"| CAD/JPY | 108.50 | 102-110 | 106 | ↓円高 |"
 			],
 			"speakerNotes": "2026年末予想（ベースシナリオ）。全通貨ペアで緩やかな円高を予想。最大下落予想はAUD/JPY（-3.9%）、最小下落予想はEUR/JPY（-3.2%）。ただし急激ではなく緩やか。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "全通貨ペアの2026年末予測一覧：USD/JPYは138-146円が中心シナリオ"
 		},
 		{
 			"title": "予測レンジ比較チャート",
@@ -710,6 +758,7 @@
 		},
 		{
 			"title": "まとめ: キーテイクアウェイ (1/2)",
+			"subtitle": "金利差縮小と日銀正常化でUSD/JPY 142円・緩やかな円高が確定シナリオ",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"52\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\" text-anchor=\"middle\" font-family=\"sans-serif\">まとめ: キーテイクアウェイ（1/2）</text>\n  <rect x=\"40\" y=\"75\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"101\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">構造的な円高バイアス</text>\n  <text x=\"735\" y=\"101\" fill=\"#f9a825\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">PPP割安 + BOJ正常化継続 = 中長期円高方向</text>\n  <rect x=\"40\" y=\"127\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"153\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">短期は不確実性高い</text>\n  <text x=\"735\" y=\"153\" fill=\"#e91e63\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">BOJ/FRBの政策転換タイミングがボラ拡大要因</text>\n  <rect x=\"40\" y=\"179\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"205\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">キャリー巻き戻しが最大リスク</text>\n  <text x=\"735\" y=\"205\" fill=\"#e91e63\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">2024年8月型の急落がいつでも起こりうる</text>\n  <rect x=\"40\" y=\"231\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"257\" fill=\"#4caf50\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">実質金利差が縮小継続</text>\n  <text x=\"735\" y=\"257\" fill=\"#4caf50\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">BOJ正常化 + FRB利下げ → 円高方向支持</text>\n  <rect x=\"40\" y=\"283\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"309\" fill=\"#29b6f6\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">インバウンドが円需要下支え</text>\n  <text x=\"735\" y=\"309\" fill=\"#29b6f6\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">観光収入 ¥8兆/年 → 実需の円買い</text>\n</svg>",
 				"**1. 金利差縮小が円高の主要ドライバー**",
@@ -722,6 +771,7 @@
 		},
 		{
 			"title": "まとめ: キーテイクアウェイ (2/2)",
+			"subtitle": "地政学リスクが上振れ要因も全通貨ペアで円高方向が基本シナリオ",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"52\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\" text-anchor=\"middle\" font-family=\"sans-serif\">まとめ: キーテイクアウェイ（2/2）</text>\n  <rect x=\"40\" y=\"75\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"101\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">USD/JPY ベース</text>\n  <text x=\"735\" y=\"101\" fill=\"#f9a825\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">148-155円 — 緩やかな円高継続が基本シナリオ</text>\n  <rect x=\"40\" y=\"127\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"153\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">テクニカル</text>\n  <text x=\"735\" y=\"153\" fill=\"#e91e63\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">一目均衡表 雲の下 + MACD弱気 = 短期弱含み</text>\n  <rect x=\"40\" y=\"179\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"205\" fill=\"#4caf50\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">3年後見通し</text>\n  <text x=\"735\" y=\"205\" fill=\"#4caf50\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">120-140円台への回帰シナリオも現実的</text>\n  <rect x=\"40\" y=\"231\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"257\" fill=\"#29b6f6\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">分散投資が最善策</text>\n  <text x=\"735\" y=\"257\" fill=\"#29b6f6\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">複数通貨保有 + 定期ヘッジ調整が最適解</text>\n  <rect x=\"40\" y=\"283\" width=\"720\" height=\"46\" fill=\"#16213e\" rx=\"4\"/>\n  <text x=\"65\" y=\"309\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">Q&A後のアクション</text>\n  <text x=\"735\" y=\"309\" fill=\"#f9a825\" font-size=\"12\" text-anchor=\"end\" font-family=\"sans-serif\">自分のポートフォリオの為替エクスポージャーを確認</text>\n</svg>",
 				"**3. リスク要因は地政学と政策の不確実性**",
@@ -734,6 +784,7 @@
 		},
 		{
 			"title": "投資家へのインプリケーション (1/2)",
+			"subtitle": "円高予想下での外貨ウェイト圧縮とヘッジ比率引き上げが最優先対応",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"35\" fill=\"#f9a825\" font-size=\"20\" font-weight=\"bold\" text-anchor=\"middle\" font-family=\"sans-serif\">投資家へのインプリケーション — 戦略マップ</text>\n  <!-- 4 strategy quadrants -->\n  <!-- Q1: Hedge against yen weakness -->\n  <rect x=\"40\" y=\"60\" width=\"340\" height=\"140\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\" rx=\"8\"/>\n  <text x=\"210\" y=\"90\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" text-anchor=\"middle\" font-family=\"sans-serif\">円安継続シナリオ対策</text>\n  <text x=\"60\" y=\"118\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• 外貨建て資産を増やす（USD/EUR）</text>\n  <text x=\"60\" y=\"140\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• 輸出企業株・外国株式ETF</text>\n  <text x=\"60\" y=\"162\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• 為替ヘッジなし海外債券</text>\n  <text x=\"60\" y=\"184\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• コモディティ（ドル建て原材料）</text>\n  <!-- Q2: Hedge against yen strength -->\n  <rect x=\"420\" y=\"60\" width=\"340\" height=\"140\" fill=\"#16213e\" stroke=\"#29b6f6\" stroke-width=\"2\" rx=\"8\"/>\n  <text x=\"590\" y=\"90\" fill=\"#29b6f6\" font-size=\"15\" font-weight=\"bold\" text-anchor=\"middle\" font-family=\"sans-serif\">円高加速シナリオ対策</text>\n  <text x=\"440\" y=\"118\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• 為替ヘッジ付き海外資産</text>\n  <text x=\"440\" y=\"140\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• 国内内需株（小売・サービス）</text>\n  <text x=\"440\" y=\"162\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• 日本国債（金利上昇前提）</text>\n  <text x=\"440\" y=\"184\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• 金（ドル建て代替資産）</text>\n  <!-- Q3: Base scenario -->\n  <rect x=\"40\" y=\"215\" width=\"340\" height=\"140\" fill=\"#f9a825\" rx=\"8\"/>\n  <text x=\"210\" y=\"245\" fill=\"#1a1a2e\" font-size=\"15\" font-weight=\"bold\" text-anchor=\"middle\" font-family=\"sans-serif\">ベースシナリオ (50%)</text>\n  <text x=\"60\" y=\"273\" fill=\"#1a1a2e\" font-size=\"13\" font-family=\"sans-serif\">• バランス型ポートフォリオ維持</text>\n  <text x=\"60\" y=\"295\" fill=\"#1a1a2e\" font-size=\"13\" font-family=\"sans-serif\">• 為替ヘッジ比率 30-50%</text>\n  <text x=\"60\" y=\"317\" fill=\"#1a1a2e\" font-size=\"13\" font-family=\"sans-serif\">• 分散投資を強調</text>\n  <text x=\"60\" y=\"339\" fill=\"#1a1a2e\" font-size=\"13\" font-family=\"sans-serif\">• 定期リバランス (四半期)</text>\n  <!-- Q4: Risk management -->\n  <rect x=\"420\" y=\"215\" width=\"340\" height=\"140\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\" rx=\"8\"/>\n  <text x=\"590\" y=\"245\" fill=\"#e91e63\" font-size=\"15\" font-weight=\"bold\" text-anchor=\"middle\" font-family=\"sans-serif\">リスク管理原則</text>\n  <text x=\"440\" y=\"273\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• ストップロス設定必須</text>\n  <text x=\"440\" y=\"295\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• レバレッジ最小化</text>\n  <text x=\"440\" y=\"317\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• イベントリスク前の縮小</text>\n  <text x=\"440\" y=\"339\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">• BOJ会合前後の注意</text>\n</svg>",
 				"**1. 外貨建て資産の見直し**",
@@ -753,7 +804,8 @@
 				"**5. リスク管理:** ストップロス設定、定期的リバランス"
 			],
 			"speakerNotes": "輸出企業は円高で業績圧迫、輸入企業にメリット。レンジ戦略では下限で円買い、上限で円売りの繰り返し。ポジションサイズ管理と定期的なリバランスも徹底。個別の状況に応じてカスタマイズを。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "円高シナリオ対応：内需・輸入関連を選好、142-152円のレンジ戦略が有効"
 		},
 		{
 			"title": "Q&A / 質疑応答",

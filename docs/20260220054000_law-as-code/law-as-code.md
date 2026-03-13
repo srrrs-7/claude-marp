@@ -87,7 +87,9 @@ style: |
 
 ---
 
-# アジェンダ
+# アジェンダ（1/2）
+
+> *法律のコード構造・バグ・バージョン管理—立法をソフトウェアとして読む*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 -   <rect width="800" height="280" fill="#1a1a2e"/>
@@ -108,6 +110,14 @@ style: |
 -   <line x1="560" y1="73" x2="588" y2="73" stroke="#555" stroke-width="2"/>
 -   <polygon points="588,68 600,73 588,78" fill="#555"/>
 -   <rect x="600" y="46" width="140" height="55" rx="8" fill="#16213e" stroke="#7986cb" stroke-width="2"/>
+
+
+---
+
+# アジェンダ（2/2）
+
+> *実践事例からAI立法展望まで—法とコードの融合が変える統治の未来*
+
 -   <text x="670" y="68" text-anchor="middle" fill="#7986cb" font-size="11" font-weight="bold" font-family="sans-serif">4. 実践事例</text>
 -   <text x="670" y="86" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">Law as Code</text>
 -   <!-- row 2: AI展望 -->
@@ -146,6 +156,8 @@ style: |
 
 # 法律はif/then/elseの集合体（2/2）
 
+> *民法709条はIF/THEN—法律はプログラムと同じ条件分岐の集合体*
+
 - **民法 709条（不法行為）：**
 - IF (故意または過失) AND (権利侵害) AND (損害発生) AND (因果関係)
 - THEN 損害賠償責任あり
@@ -164,6 +176,8 @@ style: |
 ---
 
 # 法律のスコープと名前空間
+
+> *国際法・憲法・民法はネームスペース階層—上位が下位をオーバーライド*
 
 - <svg viewBox="0 0 800 160" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="160" fill="#1a1a2e"/><rect x="20" y="20" width="370" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="205" y="44" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">lex specialis（特別法優先）</text><text x="205" y="68" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">特別法 overrides 一般法</text><text x="205" y="90" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">class SpecialLaw(GeneralLaw):</text><text x="205" y="110" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">  def rule(self): ...</text><text x="205" y="132" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">→ Pythonのクラス継承・メソッドオーバーライド</text><rect x="410" y="20" width="370" height="120" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="1.5"/><text x="595" y="44" font-family="sans-serif" font-size="14" font-weight="bold" fill="#4db6ac" text-anchor="middle">遡及立法の禁止</text><text x="595" y="68" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">過去に遡って適用することは原則禁止</text><text x="595" y="90" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">// MAJOR version bump</text><text x="595" y="110" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">v1.0.0 → v2.0.0 (breaking)</text><text x="595" y="132" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">→ SemVer のメジャーバージョン変更</text></svg>
 - **法律の名前空間：** 国法 > 都道府県法 > 市町村条例
@@ -191,7 +205,7 @@ class SpecialLaw(GeneralLaw):  # 特別法
 ---
 
 <!-- _class: lead -->
-# 法律のバグ
+# 法律のバグ（1/2）
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 -   <rect width="800" height="300" fill="#1a1a2e"/>
@@ -212,6 +226,13 @@ class SpecialLaw(GeneralLaw):  # 特別法
 -   <text x="660" y="96" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">条件は満たすが</text>
 -   <text x="660" y="114" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">目的は達成できない</text>
 -   <text x="660" y="136" text-anchor="middle" fill="#4db6ac" font-size="10" font-family="monospace">Logic Error</text>
+
+
+---
+
+<!-- _class: lead -->
+# 法律のバグ（2/2）
+
 -   <!-- fixes row -->
 -   <rect x="30" y="185" width="220" height="50" rx="8" fill="#0d2137" stroke="#888" stroke-width="1.5"/>
 -   <text x="140" y="205" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">修正方法: 判例（パッチ）</text>
@@ -249,7 +270,9 @@ class SpecialLaw(GeneralLaw):  # 特別法
 
 ---
 
-# 法律のバグ：抜け穴と矛盾（2/2）
+# 法律のバグ：抜け穴と矛盾（2/2）（1/2）
+
+> *抜け穴は仕様の意図しない分岐—立法者のエッジケース漏れがバグになる*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 -   <rect width="800" height="300" fill="#1a1a2e"/>
@@ -269,6 +292,14 @@ class SpecialLaw(GeneralLaw):  # 特別法
 -   <text x="120" y="165" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">制定</text>
 -   <text x="280" y="165" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">一部改正</text>
 -   <text x="520" y="165" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">大改正</text>
+
+
+---
+
+# 法律のバグ：抜け穴と矛盾（2/2）（2/2）
+
+> *法改正ごとに新バグが混入—パッチの副作用は法律も同じ構造問題*
+
 -   <text x="680" y="165" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">現行法</text>
 -   <!-- feature branch: 法案 -->
 -   <line x1="280" y1="128" x2="390" y2="80" stroke="#4db6ac" stroke-width="2"/>
@@ -298,6 +329,8 @@ class SpecialLaw(GeneralLaw):  # 特別法
 ---
 
 # 法律改正 = プルリクエスト
+
+> *法改正は国会を経たPR—差分管理・レビュー・マージがGitと等価*
 
 | 立法プロセス | Git |
 |:---|:---|
@@ -339,7 +372,9 @@ class SpecialLaw(GeneralLaw):  # 特別法
 
 ---
 
-# 実際に法律をコード化している国（2/2）
+# 実際に法律をコード化している国（2/2）（1/2）
+
+> *エストニア・シンガポールが証明—法律のコード化は行政効率を劇的に改善*
 
 - <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 -   <rect width="800" height="320" fill="#1a1a2e"/>
@@ -363,6 +398,14 @@ class SpecialLaw(GeneralLaw):  # 特別法
 -   <rect x="410" y="55" width="150" height="70" rx="8" fill="#16213e" stroke="#7986cb" stroke-width="2"/>
 -   <text x="485" y="83" text-anchor="middle" fill="#7986cb" font-size="12" font-weight="bold" font-family="sans-serif">ケース入力</text>
 -   <text x="485" y="100" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">事実データ</text>
+
+
+---
+
+# 実際に法律をコード化している国（2/2）（2/2）
+
+> *Computedフィールドが自動判定—宣言的法律コードが審査官を不要にする*
+
 -   <text x="485" y="116" text-anchor="middle" fill="#aaa" font-size="9" font-family="monospace">facts.json</text>
 -   <line x1="560" y1="90" x2="588" y2="90" stroke="#555" stroke-width="2"/>
 -   <polygon points="588,85 600,90 588,95" fill="#555"/>
@@ -405,6 +448,8 @@ class SpecialLaw(GeneralLaw):  # 特別法
 ---
 
 # 法律と自然言語処理（2/2）
+
+> *GPTは法令の矛盾を発見するが「ハルシネーション判決」は許容できない*
 
 - - 契約書レビュー：大手法律事務所が導入
 - - 法令の矛盾発見：実験的に政府機関で試行

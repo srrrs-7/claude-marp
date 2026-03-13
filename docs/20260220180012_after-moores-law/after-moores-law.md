@@ -99,6 +99,8 @@ style: |
 
 # なぜ壁に当たったか — 物理的限界
 
+> *量子・熱・光・経済の4つの壁が重なり「小さく速く安く」の三位一体が崩壊した*
+
 - - **量子トンネル効果**: 回路が5nm以下になると電子がゲートを透過してしまう
 - - **発熱密度**: 消費電力が面積に比例して増大 — デナード則の崩壊（2006年頃）
 - - **光の回折限界**: EUVリソグラフィでも微細化に限界がある
@@ -119,6 +121,8 @@ style: |
 
 # アプローチ1: 特化型チップ (ASIC/TPU/NPU)
 
+> *汎用性を捨て特定ワークロードに特化することで100〜1000倍の電力効率を実現する*
+
 - - **汎用性を捨てて特化** → 特定ワークロードで100〜1000倍の効率
 - - **Google TPU**: AI推論に特化、行列演算を高速処理
 - - **Apple Neural Engine**: スマートフォンでのオンデバイスAI
@@ -130,6 +134,8 @@ style: |
 ---
 
 # アプローチ2: 3Dチップスタッキング
+
+> *垂直積層で帯域幅を10倍・レイテンシを1/10にしメモリウォール問題を根本解決する*
 
 - - **水平微細化の限界** → **垂直方向への積層**で帯域幅を革命的に向上
 - - **HBM（High Bandwidth Memory）**: DRAMを垂直積層、AI訓練の必需品
@@ -143,6 +149,8 @@ style: |
 
 # アプローチ3: ニューロモーフィックチップ
 
+> *脳型の事象駆動アーキテクチャでフォンノイマンのメモリ壁を排除し消費電力を1/1000にする*
+
 - - **脳を模倣**: ニューロンとシナプスの動作をハードウェアで再現
 - - **非フォンノイマン**: データと計算を分離しない — メモリ壁問題を根本解決
 - - **事象駆動**: スパイクが発生した時だけ計算 → 超低消費電力
@@ -155,7 +163,9 @@ style: |
 
 # アプローチ4: 光コンピューティング
 
-- <svg viewBox='0 0 800 210' style='max-height:42vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='210' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>電子 vs 光子コンピューティング</text><rect x='40' y='50' width='320' height='130' rx='10' fill='#16213e' stroke='#e74c3c' stroke-width='2'/><text x='200' y='75' text-anchor='middle' fill='#e74c3c' font-size='13' font-weight='bold'>電子ベース（現行）</text><text x='200' y='98' text-anchor='middle' fill='#aaa' font-size='11'>行列演算: O(n²) 演算が必要</text><text x='200' y='118' text-anchor='middle' fill='#aaa' font-size='11'>発熱: ジュール熱が不可避</text><text x='200' y='138' text-anchor='middle' fill='#aaa' font-size='11'>速度: 光速の約1%</text><text x='200' y='162' text-anchor='middle' fill='#e74c3c' font-size='11'>AIモデル推論に膨大な電力</text><rect x='440' y='50' width='320' height='130' rx='10' fill='#16213e' stroke='#4ecdc4' stroke-width='2'/><text x='600' y='75' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>光子ベース（次世代）</text><text x='600' y='98' text-anchor='middle' fill='#aaa' font-size='11'>行列演算: レンズ通過でO(1)</text><text x='600' y='118' text-anchor='middle' fill='#aaa' font-size='11'>発熱: 極めて低い</text><text x='600' y='138' text-anchor='middle' fill='#aaa' font-size='11'>速度: 光速（真空中）</text><text x='600' y='162' text-anchor='middle' fill='#4ecdc4' font-size='11'>AI推論を100x〜1000x高速化</text><text x='400' y='195' text-anchor='middle' fill='#f9a825' font-size='10'>課題: 非線形演算・精度・電気-光変換コスト — Lightmatter等が先行</text></svg>
+> *光干渉で行列演算をO(1)時間・極低発熱で処理しAI推論を最大1000倍高速化できる*
+
+- <svg viewBox='0 0 800 210' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='210' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>電子 vs 光子コンピューティング</text><rect x='40' y='50' width='320' height='130' rx='10' fill='#16213e' stroke='#e74c3c' stroke-width='2'/><text x='200' y='75' text-anchor='middle' fill='#e74c3c' font-size='13' font-weight='bold'>電子ベース（現行）</text><text x='200' y='98' text-anchor='middle' fill='#aaa' font-size='11'>行列演算: O(n²) 演算が必要</text><text x='200' y='118' text-anchor='middle' fill='#aaa' font-size='11'>発熱: ジュール熱が不可避</text><text x='200' y='138' text-anchor='middle' fill='#aaa' font-size='11'>速度: 光速の約1%</text><text x='200' y='162' text-anchor='middle' fill='#e74c3c' font-size='11'>AIモデル推論に膨大な電力</text><rect x='440' y='50' width='320' height='130' rx='10' fill='#16213e' stroke='#4ecdc4' stroke-width='2'/><text x='600' y='75' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>光子ベース（次世代）</text><text x='600' y='98' text-anchor='middle' fill='#aaa' font-size='11'>行列演算: レンズ通過でO(1)</text><text x='600' y='118' text-anchor='middle' fill='#aaa' font-size='11'>発熱: 極めて低い</text><text x='600' y='138' text-anchor='middle' fill='#aaa' font-size='11'>速度: 光速（真空中）</text><text x='600' y='162' text-anchor='middle' fill='#4ecdc4' font-size='11'>AI推論を100x〜1000x高速化</text><text x='400' y='195' text-anchor='middle' fill='#f9a825' font-size='10'>課題: 非線形演算・精度・電気-光変換コスト — Lightmatter等が先行</text></svg>
 - - **光子で計算**: 電子の代わりに光の干渉・回折パターンを利用
 - - **行列演算が光速**: レンズを通すだけで行列乗算が完了（O(1)時間）
 - - **AI/MLワークロードに最適**: 推論処理の大部分は行列演算
@@ -166,6 +176,8 @@ style: |
 ---
 
 # アプローチ5: 量子コンピューティングの現実
+
+> *量子は汎用計算の代替ではなく分子シミュレーションや最適化に特化した加速器として活用する*
 
 - - **NISQ時代（Noisy Intermediate-Scale Quantum）**: エラー率がまだ高い
 - - **2024年**: Google Willow で量子誤り訂正の重要なマイルストーン達成
@@ -187,6 +199,8 @@ style: |
 
 # 「ハードウェアロトリー」の終わり
 
+> *待てば速くなる時代が終わりアルゴリズム効率とメモリ設計が直接の競争優位になった*
+
 - - **かつて**: 「待てば速くなる」— ムーアの法則がソフトウェアの非効率を吸収
 - - **現在**: ハードウェアは自動的に速くならない → **ソフトウェアが性能の責任を持つ**
 - - **プロフィッツの法則**: ソフトウェアの肥大化がハードウェアの進歩を打ち消す
@@ -199,7 +213,9 @@ style: |
 
 # アーキテクチャの再設計
 
-- <svg viewBox='0 0 800 200' style='max-height:40vh;width:auto;display:block;margin:0 auto;letter-spacing:0' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>メモリ階層とアクセスレイテンシ</text><rect x='60' y='50' width='680' height='28' rx='5' fill='#2ecc71' fill-opacity='0.7'/><text x='400' y='69' text-anchor='middle' fill='#fff' font-size='12' font-weight='bold'>L1キャッシュ: ~1ns (1x) — 高頻度データはここに収める</text><rect x='100' y='86' width='600' height='26' rx='5' fill='#f39c12' fill-opacity='0.7'/><text x='400' y='103' text-anchor='middle' fill='#fff' font-size='11'>L2キャッシュ: ~5ns (5x)</text><rect x='140' y='120' width='520' height='24' rx='5' fill='#e67e22' fill-opacity='0.7'/><text x='400' y='136' text-anchor='middle' fill='#fff' font-size='11'>L3キャッシュ: ~20ns (20x)</text><rect x='200' y='152' width='400' height='22' rx='5' fill='#e74c3c' fill-opacity='0.8'/><text x='400' y='167' text-anchor='middle' fill='#fff' font-size='11'>メインメモリ: ~100ns (100x) ← ここがメモリウォール</text><text x='400' y='190' text-anchor='middle' fill='#aaa' font-size='10'>データローカリティ設計でキャッシュヒット率を上げることが現代の競争優位</text></svg>
+> *キャッシュヒット率とデータローカリティの設計がムーア後時代の性能差を決定する*
+
+- <svg viewBox='0 0 800 200' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>メモリ階層とアクセスレイテンシ</text><rect x='60' y='50' width='680' height='28' rx='5' fill='#2ecc71' fill-opacity='0.7'/><text x='400' y='69' text-anchor='middle' fill='#fff' font-size='12' font-weight='bold'>L1キャッシュ: ~1ns (1x) — 高頻度データはここに収める</text><rect x='100' y='86' width='600' height='26' rx='5' fill='#f39c12' fill-opacity='0.7'/><text x='400' y='103' text-anchor='middle' fill='#fff' font-size='11'>L2キャッシュ: ~5ns (5x)</text><rect x='140' y='120' width='520' height='24' rx='5' fill='#e67e22' fill-opacity='0.7'/><text x='400' y='136' text-anchor='middle' fill='#fff' font-size='11'>L3キャッシュ: ~20ns (20x)</text><rect x='200' y='152' width='400' height='22' rx='5' fill='#e74c3c' fill-opacity='0.8'/><text x='400' y='167' text-anchor='middle' fill='#fff' font-size='11'>メインメモリ: ~100ns (100x) ← ここがメモリウォール</text><text x='400' y='190' text-anchor='middle' fill='#aaa' font-size='10'>データローカリティ設計でキャッシュヒット率を上げることが現代の競争優位</text></svg>
 - - **データローカリティ**: キャッシュヒット率がパフォーマンスを支配
 - - **メモリ帯域幅**: 計算能力よりメモリアクセスがボトルネック（メモリウォール）
 - - **並列性の設計**: マルチコア/SIMD/GPGPUを前提としたアルゴリズム設計
@@ -224,6 +240,8 @@ style: |
 ---
 
 # AIモデルの計算効率革命
+
+> *量子化・蒸留・MoEの組み合わせでモデル精度を維持しながら計算コストを1/4〜1/10に削減できる*
 
 - - ハードウェア高速化の鈍化 → **ソフトウェア/アルゴリズム側の効率化**が加速
 - - **量子化**: FP32 → INT8/INT4 で推論速度4〜8倍、品質ほぼ維持

@@ -112,6 +112,8 @@ style: |
 
 # インターネットの99%は海の底にある（1/2）
 
+> *400本・130万kmのケーブルが世界データ通信の99%を担う*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">海底ケーブルの規模感</text>
@@ -162,6 +164,8 @@ style: |
 ---
 
 # インターネットの99%は海の底にある（2/2）
+
+> *衛星の100倍以上の容量で低遅延を実現するのが海底光ファイバ*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
@@ -231,7 +235,9 @@ style: |
 
 ---
 
-# ケーブルの歴史 — 1858年から現代へ
+# ケーブルの歴史 — 1858年から現代へ（1/2）
+
+> *1858年から160年かけてインターネットの物理基盤が完成した*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
@@ -281,6 +287,14 @@ style: |
 - **通信ケーブルの進化タイムライン**
 - - **1858年**: 大西洋横断電信ケーブル（英米間） — 数週間→数分に短縮
 - - **1956年**: 初の大西洋電話ケーブル TAT-1（36回線）
+
+
+---
+
+# ケーブルの歴史 — 1858年から現代へ（2/2）
+
+> *修復は水深別の専用船が必要で完了まで数週間かかる*
+
 - - **1988年**: 初の光ファイバー海底ケーブル TAT-8（40,000回線相当）
 - - **2000年代**: インターネットバブルで大量敷設 → 過剰供給
 - - **2010年代**: Google/Facebook/Amazonが独自ケーブル参入
@@ -299,6 +313,8 @@ style: |
 
 # テレコム連合 vs ハイパースケーラー（1/2）
 
+> *テレコム連合からGAFAMの単独所有へシフトが加速している*
+
 - **従来型: テレコム企業コンソーシアム**
 - - NTT・KDDI・AT&T・Vodafone 等が費用を分担して共同所有
 - - 例: SEA-ME-WE 5（欧〜中東〜アジア: 20社超の共同出資）
@@ -310,7 +326,9 @@ style: |
 
 # テレコム連合 vs ハイパースケーラー（2/2）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+> *Googleは独自ケーブル網でCDN遅延とコストを最小化する*
+
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -353,7 +371,9 @@ style: |
 
 # ハイパースケーラーの独自ケーブル戦略（1/2）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+> *ハイパースケーラーはケーブル所有でクラウド競争優位を確保*
+
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -395,7 +415,9 @@ style: |
 
 # ハイパースケーラーの独自ケーブル戦略（2/2）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+> *Metaのケーブルは容量世界最大クラスの自社専用インフラ*
+
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -438,7 +460,9 @@ style: |
 
 # 海底ケーブル敷設船 — 世界のインフラを担う数十隻（1/2）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+> *敷設船は世界に数十隻しかなく需要過多で修復が遅延する*
+
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -480,6 +504,8 @@ style: |
 ---
 
 # 海底ケーブル敷設船 — 世界のインフラを担う数十隻（2/2）
+
+> *敷設船不足が海底ケーブル冗長化の最大のボトルネック*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -575,6 +601,8 @@ style: |
 
 # 自然障害 — 地震・海流・津波（1/2）
 
+> *地震・海底地滑りで太平洋ケーブルが同時多断線した事例*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">切断原因の内訳（統計）</text>
@@ -618,6 +646,8 @@ style: |
 
 # 自然障害 — 地震・海流・津波（2/2）
 
+> *台湾地震でアジア全域の通信が数週間停止した前例がある*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">切断原因の内訳（統計）</text>
@@ -660,6 +690,8 @@ style: |
 ---
 
 # 漁船・アンカー事故（全障害の70〜80%）（1/2）
+
+> *漁船のアンカーと底引き網が全障害の70〜80%の原因*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -705,6 +737,8 @@ style: |
 
 # 漁船・アンカー事故（全障害の70〜80%）（2/2）
 
+> *遵守が任意のIALA海図と浅海ケーブル無防備が年間数百件を招く*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">切断原因の内訳（統計）</text>
@@ -748,6 +782,8 @@ style: |
 ---
 
 # 意図的破壊工作の疑惑 — バルト海事件（2024年）（1/2）
+
+> *バルト海のケーブル断線はロシアによる故意破壊の疑いあり*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -808,6 +844,8 @@ style: |
 ---
 
 # 意図的破壊工作の疑惑 — バルト海事件（2024年）（2/2）
+
+> *「Yi Peng 3」がアンカー引きずり証拠残しNATOの調査要求を拒絶*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -885,6 +923,8 @@ style: |
 
 # チョークポイント — 紅海・台湾海峡・南シナ海（1/2）
 
+> *紅海・台湾海峡・南シナ海はケーブルの地政学的急所*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">紅海チョークポイントの脆弱性</text>
@@ -935,6 +975,8 @@ style: |
 ---
 
 # チョークポイント — 紅海・台湾海峡・南シナ海（2/2）
+
+> *単一チョークポイントが切断されると大陸間通信が壊滅する*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -987,6 +1029,8 @@ style: |
 ---
 
 # ロシアの海底調査船活動（1/2）
+
+> *ロシアの調査船が海底ケーブルルートを事前マッピングしている*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -1043,6 +1087,8 @@ style: |
 
 # ロシアの海底調査船活動（2/2）
 
+> *平時の調査活動が有事の破壊工作の準備になっている可能性*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">海底ケーブルをめぐる地政学的アクター</text>
@@ -1098,6 +1144,8 @@ style: |
 
 # 盗聴疑惑 — NSAとSEA-ME-WEの暗い関係（1/2）
 
+> *NSAがケーブル着陸点で傍受した内部文書がSNOWDENで暴露*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">陸揚げ局と盗聴の急所</text>
@@ -1148,6 +1196,8 @@ style: |
 ---
 
 # 盗聴疑惑 — NSAとSEA-ME-WEの暗い関係（2/2）
+
+> *陸揚げ局経由の物理盗聴と中国系企業排除が安全保障の核心*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
@@ -1252,6 +1302,8 @@ style: |
 
 # 2024年スエズ/アフリカ沖障害の実態（1/2）
 
+> *2024年アフリカ沖断線でSub-Saharan Africa全体が数週間影響*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">BGP自動再ルーティングの仕組み</text>
@@ -1305,6 +1357,8 @@ style: |
 ---
 
 # 2024年スエズ/アフリカ沖障害の実態（2/2）
+
+> *欧亜帯域25〜30%喪失でインドのIT業務が数日停止した実例*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -1363,6 +1417,8 @@ style: |
 
 # BGPルーティングと障害伝播（1/2）
 
+> *BGPは障害を自動迂回するが帯域制約で速度低下は避けられない*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">クラウドサービスへの影響シナリオ</text>
@@ -1420,6 +1476,8 @@ style: |
 
 # BGPルーティングと障害伝播（2/2）
 
+> *障害伝播はBGP収束時間の数分間で世界中に波及する*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">金融システムのケーブル依存</text>
@@ -1467,6 +1525,8 @@ style: |
 
 # クラウドサービスへの影響シナリオ（1/2）
 
+> *クラウドのマルチリージョン設計でも海底断線は防ぎきれない*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">金融システムのケーブル依存</text>
@@ -1513,6 +1573,8 @@ style: |
 ---
 
 # クラウドサービスへの影響シナリオ（2/2）
+
+> *SLA99.9%は海底断線を考慮していない設計上の死角がある*
 
 - <svg viewBox="0 0 800 330" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="330" fill="#1a1a2e"/>
@@ -1571,6 +1633,8 @@ style: |
 
 # 金融システムへの波及 — SWIFTとFX市場（1/2）
 
+> *SWIFTはケーブル障害で決済遅延が発生し市場が不安定化*
+
 - <svg viewBox="0 0 800 330" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="330" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ケーブル切断から修復までのタイムライン</text>
@@ -1628,6 +1692,8 @@ style: |
 
 # 金融システムへの波及 — SWIFTとFX市場（2/2）
 
+> *主要チョークポイント同時切断でGDPに1日数千億円の損害が出る*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">「冗長構成なのになぜ壊れるのか」</text>
@@ -1677,6 +1743,8 @@ style: |
 ---
 
 # 修復にかかる時間とコスト（1/2）
+
+> *修復コストは1件平均100万ドルで修復完了まで平均6週間*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -1728,6 +1796,8 @@ style: |
 
 # 修復にかかる時間とコスト（2/2）
 
+> *深海切断の修復は2〜3ヶ月・複数同時なら最長6ヶ月かかる*
+
 - - 修理船の日当: **数十万ドル**
 - 
 - **実際の修復期間（実績）**
@@ -1747,6 +1817,8 @@ style: |
 ---
 
 # 現在の冗長化設計の限界（1/2）
+
+> *冗長化設計は陸側に偏りチョークポイントの多重化が不十分*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -1801,6 +1873,8 @@ style: |
 ---
 
 # 現在の冗長化設計の限界（2/2）
+
+> *同一海峡に集中するルート設計が「単一障害点」を生む*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -1864,6 +1938,8 @@ style: |
 
 # 各国の監視・防衛強化の動き（1/2）
 
+> *フランス・英国・日本が海底インフラ専任の監視部隊を設立*
+
 - **EU: 海底インフラ保護指令（2023年〜）**
 - - 重要インフラの脆弱性評価を義務化
 - - 加盟国の海底インフラ保護計画の策定要求
@@ -1875,7 +1951,7 @@ style: |
 
 ---
 
-# 各国の監視・防衛強化の動き（2/2）
+# 各国の監視・防衛強化の動き（2/2）（1/2）
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -1926,6 +2002,14 @@ style: |
 - 
 - **日本**
 - - 経済安保推進法（2022年）: 海底ケーブルを特定重要インフラに追加
+
+
+---
+
+# 各国の監視・防衛強化の動き（2/2）（2/2）
+
+> *経済安保法で海底ケーブルを特定重要インフラに指定し国内強化へ*
+
 - - KDDI/NTT: 国内陸揚げ局の冗長化・強化を推進
 - 
 - **米国**
@@ -1935,6 +2019,8 @@ style: |
 ---
 
 # NATOの海底インフラ保護戦略（1/2）
+
+> *NATOは海底インフラをCritical Infrastructureとして軍事保護*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -1993,6 +2079,8 @@ style: |
 ---
 
 # NATOの海底インフラ保護戦略（2/2）
+
+> *同盟間のケーブル監視データ共有体制が急速に整備されている*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -2078,6 +2166,8 @@ style: |
 
 # インフラ依存の再認識（1/2）
 
+> *システム設計者は海底断線を想定したDR計画を持つべき*
+
 - **「クラウドは海の底」という認識**
 - - クラウドのグローバルリージョン間通信も物理ケーブルに依存
 - - 「可用性99.99%」の保証は単一リージョン内の話
@@ -2089,6 +2179,8 @@ style: |
 ---
 
 # インフラ依存の再認識（2/2）
+
+> *Starlinkは補完手段で代替ではなく遅延・容量に根本的限界*
 
 - - 「マルチリージョン = 障害耐性がある」
 - - 「CDNがあればオリジン障害は関係ない」
@@ -2102,6 +2194,8 @@ style: |
 
 # 障害時アーキテクチャの考慮点（1/2）
 
+> *マルチキャリア・マルチパスで海底断線への依存度を下げる*
+
 - **ケーブル障害を前提とした設計パターン**
 - - **地理的分散**: 同一チョークポイントを通らない複数経路
 - - **非同期化**: クリティカルパスから国際通信を外す
@@ -2113,6 +2207,8 @@ style: |
 ---
 
 # 障害時アーキテクチャの考慮点（2/2）
+
+> *障害時に自動でトラフィックを迂回させるアーキテクチャが必要*
 
 - - 国際ケーブル障害は「フォースマジュール（不可抗力）」扱いが多い
 - - SLAの免責条項を確認: クラウドベンダーの責任範囲はどこまでか
@@ -2140,6 +2236,8 @@ style: |
 
 # 参考文献・リソース（1/2）
 
+> *ITU・ICPC・各国政府の規制動向が設計制約に直結する*
+
 - **インフラ・技術解説**
 - - [TeleGeography: Submarine Cable Map](https://www.submarinecablemap.com/)
 - - [ICPC (International Cable Protection Committee)](https://www.iscpc.org/)
@@ -2151,6 +2249,8 @@ style: |
 ---
 
 # 参考文献・リソース（2/2）
+
+> *信頼性ある設計にはTeleGeographyとNATO文書が必読の一次資料*
 
 - - [Atlantic Council: Invisible and Vital (2021)](https://www.atlanticcouncil.org/)
 - - [CSIS: Undersea Cables: Indispensable, Insecure (2019)](https://www.csis.org/)

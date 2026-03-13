@@ -88,6 +88,8 @@ style: |
 
 # アジェンダ
 
+> *相変化の物理法則から次の沸点予測まで6章で俯瞰する*
+
 - 1. 物理学の相変化（相転移）とは
 - 2. S字カーブと臨界点
 - 3. 技術普及のキャズム理論
@@ -104,12 +106,22 @@ style: |
 
 ---
 
-# 水の相変化に学ぶ
+# 水の相変化に学ぶ（1/2）
+
+> *固体→液体→気体と同じ不連続跳躍が技術普及に起きる*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">水の状態変化：連続した温度変化 → 不連続な相変化</text><rect x="40" y="50" width="160" height="70" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="120" y="82" text-anchor="middle" fill="#4fc3f7" font-size="15" font-family="sans-serif" font-weight="bold">氷 (固体)</text><text x="120" y="104" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">0℃以下</text><rect x="320" y="50" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="82" text-anchor="middle" fill="#f9a825" font-size="15" font-family="sans-serif" font-weight="bold">水 (液体)</text><text x="400" y="104" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">0℃〜100℃</text><rect x="600" y="50" width="160" height="70" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="680" y="82" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif" font-weight="bold">蒸気 (気体)</text><text x="680" y="104" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">100℃以上</text><line x1="200" y1="85" x2="318" y2="85" stroke="#ffffff" stroke-width="2"/><polygon points="318,79 330,85 318,91" fill="#ffffff"/><line x1="480" y1="85" x2="598" y2="85" stroke="#ffffff" stroke-width="2"/><polygon points="598,79 610,85 598,91" fill="#ffffff"/><text x="259" y="75" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">0℃: 融解</text><text x="539" y="75" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">100℃: 沸点</text><text x="259" y="100" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">相変化①</text><text x="539" y="100" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">相変化②</text><rect x="40" y="160" width="720" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="400" y="182" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">温度上昇は連続的</text><text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">しかし状態の変化は突然・不連続に起きる（臨界点を超えた瞬間）</text><line x1="60" y1="290" x2="740" y2="290" stroke="#555577" stroke-width="2"/><line x1="60" y1="340" x2="60" y2="240" stroke="#555577" stroke-width="2"/><text x="400" y="310" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">温度 →</text><text x="42" y="270" text-anchor="end" fill="#aaaaaa" font-size="11" font-family="sans-serif">状態</text><polyline points="60,280 240,278 270,250 330,248 400,247 480,246 520,220 540,200 600,198 740,196" stroke="#4fc3f7" stroke-width="3" fill="none"/><line x1="270" y1="240" x2="270" y2="295" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,4"/><text x="270" y="308" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">0℃</text><line x1="520" y1="240" x2="520" y2="295" stroke="#e91e63" stroke-width="1" stroke-dasharray="4,4"/><text x="520" y="308" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">100℃</text><text x="400" y="355" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">ヘミングウェイ：「破産は徐々に、そして突然起きる」</text></svg>
 - **水は99℃まで「熱い水」だが、100℃で突然「蒸気」になる**
 - 温度の変化は連続的だが、状態の変化は不連続（突然起きる）
 - 「臨界点」を超えると系全体が一気に変化する
+
+
+---
+
+# 水の相変化に学ぶ（2/2）
+
+> *S字曲線の変曲点は相転移点——そこで市場が一気に動く*
+
 - ---
 - 技術の普及も同じパターンを示す：
 - ゆっくり、ゆっくり...そして**突然、爆発的に**
@@ -142,6 +154,8 @@ style: |
 
 # なぜS字になるのか ― ネットワーク効果
 
+> *メトカーフ則がティッピングポイントを生み急成長を引き起こす*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">ネットワーク効果：ノード数 n → 接続数 n(n-1)/2</text><rect x="30" y="45" width="220" height="290" rx="8" fill="#16213e" stroke="#555577" stroke-width="1"/><text x="140" y="70" text-anchor="middle" fill="#aaaaaa" font-size="13" font-family="sans-serif">初期 (n=3)</text><circle cx="140" cy="120" r="14" fill="#4fc3f7"/><circle cx="90" cy="190" r="14" fill="#4fc3f7"/><circle cx="190" cy="190" r="14" fill="#4fc3f7"/><line x1="140" y1="120" x2="90" y2="190" stroke="#4fc3f7" stroke-width="1.5" opacity="0.6"/><line x1="140" y1="120" x2="190" y2="190" stroke="#4fc3f7" stroke-width="1.5" opacity="0.6"/><line x1="90" y1="190" x2="190" y2="190" stroke="#4fc3f7" stroke-width="1.5" opacity="0.6"/><text x="140" y="240" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">3接続 — 価値低</text><rect x="290" y="45" width="220" height="290" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="400" y="70" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">臨界点 (n=6)</text><circle cx="400" cy="110" r="13" fill="#f9a825"/><circle cx="340" cy="150" r="13" fill="#f9a825"/><circle cx="460" cy="150" r="13" fill="#f9a825"/><circle cx="360" cy="205" r="13" fill="#f9a825"/><circle cx="440" cy="205" r="13" fill="#f9a825"/><circle cx="400" cy="250" r="13" fill="#f9a825"/><line x1="400" y1="110" x2="340" y2="150" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="400" y1="110" x2="460" y2="150" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="400" y1="110" x2="360" y2="205" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="400" y1="110" x2="440" y2="205" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="400" y1="110" x2="400" y2="250" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="340" y1="150" x2="460" y2="150" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="340" y1="150" x2="360" y2="205" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="340" y1="150" x2="440" y2="205" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="460" y1="150" x2="360" y2="205" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="460" y1="150" x2="440" y2="205" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="360" y1="205" x2="440" y2="205" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="360" y1="205" x2="400" y2="250" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="440" y1="205" x2="400" y2="250" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="340" y1="150" x2="400" y2="250" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><line x1="460" y1="150" x2="400" y2="250" stroke="#f9a825" stroke-width="1.2" opacity="0.5"/><text x="400" y="280" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">15接続 — 相変化</text><rect x="550" y="45" width="220" height="290" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1"/><text x="660" y="70" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">飽和期 (n=10)</text><text x="660" y="175" text-anchor="middle" fill="#e91e63" font-size="36" font-weight="bold" font-family="sans-serif">45</text><text x="660" y="200" text-anchor="middle" fill="#e91e63" font-size="14" font-family="sans-serif">接続数</text><text x="660" y="240" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">使わない方が</text><text x="660" y="258" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コストになる</text><text x="400" y="360" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">Metcalfeの法則: 価値 ∝ n² — 臨界点を超えると価値が爆発的に増大</text></svg>
 - **初期（液体の加熱）：** 少数の先駆者が採用。メリットは限定的
 - **臨界点（沸点到達）：** 採用者がネットワーク効果の閾値を超える
@@ -168,12 +182,22 @@ style: |
 
 ---
 
-# キャズムを超えた技術、超えなかった技術
+# キャズムを超えた技術、超えなかった技術（1/2）
+
+> *スマホは超えた、VRはまだ——何が分岐を決めるのか*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">相変化した技術 vs 失敗した技術</text><rect x="40" y="50" width="340" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="75" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">相変化に成功</text><rect x="58" y="88" width="304" height="40" rx="6" fill="#1a1a2e"/><text x="210" y="108" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">スマートフォン（2007-2012）</text><text x="210" y="124" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">5年でフィーチャーフォンを置換</text><rect x="58" y="136" width="304" height="40" rx="6" fill="#1a1a2e"/><text x="210" y="156" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">SNS（Facebook 2006-2012）</text><text x="210" y="172" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">6年でコミュニケーションを再定義</text><rect x="58" y="184" width="304" height="40" rx="6" fill="#1a1a2e"/><text x="210" y="204" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">EV（テスラ 2020-2023）</text><text x="210" y="220" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">補助金+インフラ整備で転換開始</text><rect x="58" y="232" width="304" height="40" rx="6" fill="#1a1a2e"/><text x="210" y="252" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">クラウド（AWS 2012-2018）</text><text x="210" y="268" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">コスト優位+エコシステムで定着</text><rect x="58" y="280" width="304" height="34" rx="6" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="302" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">共通：外部ショック or 経済的閾値突破</text><rect x="420" y="50" width="340" height="280" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="75" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">キャズムを越えられず</text><rect x="438" y="88" width="304" height="40" rx="6" fill="#1a1a2e"/><text x="590" y="108" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">Google Glass（2013-2015）</text><text x="590" y="124" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">プライバシー懸念+社会規範の障壁</text><rect x="438" y="136" width="304" height="40" rx="6" fill="#1a1a2e"/><text x="590" y="156" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">3Dテレビ（2010-2013）</text><text x="590" y="172" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">コンテンツ不足+体験価値の低さ</text><rect x="438" y="184" width="304" height="40" rx="6" fill="#1a1a2e"/><text x="590" y="204" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">QRコード（日本→欧米 2000s）</text><text x="590" y="220" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">スマホ普及まで「橋」がなかった</text><rect x="438" y="232" width="304" height="40" rx="6" fill="#1a1a2e"/><text x="590" y="252" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">Segway（2001-）</text><text x="590" y="268" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">インフラ要件+価格の壁</text><rect x="438" y="280" width="304" height="34" rx="6" fill="#e91e63" fill-opacity="0.2"/><text x="590" y="302" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">共通：社会的障壁 or コスト>価値</text></svg>
 - **キャズムを超えた：**
 - iPhone（2007）→ タッチスクリーンが「当たり前」に相変化
 - Zoom（2020）→ パンデミックが臨界点のトリガーに
+
+
+---
+
+# キャズムを超えた技術、超えなかった技術（2/2）
+
+> *超えた技術の共通点はキラーユースケースの存在だ*
+
 - ChatGPT（2022）→ 2ヶ月で1億ユーザーの史上最速の相変化
 - **キャズムで止まった：**
 - Google Glass（2013）→ 社会的受容の臨界点に達しなかった
@@ -188,12 +212,22 @@ style: |
 
 ---
 
-# 技術の相変化を引き起こす4つの条件
+# 技術の相変化を引き起こす4つの条件（1/2）
+
+> *臨界質量・インフラ・ユースケース・価格——4条件が揃う時が転換点*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">相変化の4条件：全てが揃った瞬間に系全体が変化する</text><rect x="40" y="55" width="160" height="200" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="120" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">① 価格の閾値</text><text x="120" y="115" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ムーアの法則で</text><text x="120" y="133" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コストが臨界点以下</text><text x="120" y="160" text-anchor="middle" fill="#f9a825" font-size="22" font-family="sans-serif">$↓</text><text x="120" y="190" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">スマホ普及:</text><text x="120" y="207" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">3万円以下で爆発</text><rect x="220" y="55" width="160" height="200" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="300" y="85" text-anchor="middle" fill="#4fc3f7" font-size="13" font-family="sans-serif" font-weight="bold">② ネットワーク密度</text><text x="300" y="115" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">接続先が</text><text x="300" y="133" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">十分に増える</text><text x="300" y="160" text-anchor="middle" fill="#4fc3f7" font-size="22" font-family="sans-serif">◉</text><text x="300" y="190" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">SNS:</text><text x="300" y="207" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">知り合いも使う</text><rect x="400" y="55" width="160" height="200" rx="10" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="480" y="85" text-anchor="middle" fill="#81c784" font-size="13" font-family="sans-serif" font-weight="bold">③ インフラ整備</text><text x="480" y="115" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">技術を支える</text><text x="480" y="133" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">基盤が完成</text><text x="480" y="160" text-anchor="middle" fill="#81c784" font-size="22" font-family="sans-serif">⚡</text><text x="480" y="190" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">4G回線:</text><text x="480" y="207" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">TikTok動画が相変化</text><rect x="580" y="55" width="160" height="200" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="660" y="85" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">④ 社会的受容</text><text x="660" y="115" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">文化的・心理的</text><text x="660" y="133" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">抵抗が閾値以下</text><text x="660" y="160" text-anchor="middle" fill="#e91e63" font-size="22" font-family="sans-serif">♡</text><text x="660" y="190" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">Google Glass失敗:</text><text x="660" y="207" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">社会的受容が不足</text><rect x="180" y="290" width="440" height="60" rx="8" fill="#1a1a2e" stroke="#f9a825" stroke-width="2"/><text x="400" y="316" text-anchor="middle" fill="#f9a825" font-size="15" font-family="sans-serif" font-weight="bold">4条件が同時に揃う = 相変化のトリガー</text><text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1つでも欠けると臨界点に達しない → キャズムに落ちる</text></svg>
 - **1. 価格の閾値** ― ムーアの法則でハードウェアコストが臨界点を下回る
 - 例：スマートフォンが3万円以下になった瞬間、途上国で爆発的普及
 - **2. ネットワーク密度** ― 接続先が十分に増える
+
+
+---
+
+# 技術の相変化を引き起こす4つの条件（2/2）
+
+> *4条件のどれが欠けているかを診断すれば見通しが立つ*
+
 - 例：Fax、メール、SNSは「知り合いも使っている」で相変化
 - **3. インフラの整備** ― 技術を支える基盤が完成する
 - 例：4G回線の普及がモバイル動画（TikTok等）の相変化条件
@@ -203,6 +237,8 @@ style: |
 ---
 
 # 外部ショックが相変化を加速する（1/2）
+
+> *COVID-19がリモートワークを5年分前倒しした歴史的証拠*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">パンデミックという「圧力変化」が相変化を加速した (2020)</text><line x1="60" y1="320" x2="740" y2="320" stroke="#555577" stroke-width="2"/><line x1="60" y1="60" x2="60" y2="320" stroke="#555577" stroke-width="2"/><text x="400" y="345" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">時間軸 →</text><text x="42" y="192" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">普及率</text><polyline points="60,300 200,295 260,290 310,280 400,150 480,120 560,105 640,100 740,98" stroke="#4fc3f7" stroke-width="3" fill="none" stroke-dasharray="8,4"/><polyline points="60,300 200,296 260,240 290,130 340,100 400,92 480,89 560,88 640,87 740,86" stroke="#f9a825" stroke-width="3" fill="none"/><line x1="270" y1="60" x2="270" y2="325" stroke="#e91e63" stroke-width="2" stroke-dasharray="5,5"/><text x="270" y="50" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">2020年3月</text><text x="270" y="38" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">パンデミック宣言</text><rect x="560" y="80" width="170" height="100" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="645" y="102" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">実際の普及曲線</text><line x1="568" y1="115" x2="588" y2="115" stroke="#f9a825" stroke-width="3"/><text x="645" y="120" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">(外部ショックあり)</text><text x="645" y="145" text-anchor="middle" fill="#4fc3f7" font-size="11" font-family="sans-serif">自然普及曲線</text><line x1="568" y1="158" x2="588" y2="158" stroke="#4fc3f7" stroke-width="3" stroke-dasharray="8,4"/><text x="645" y="163" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">(ショックなし)</text><text x="145" y="340" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">2018-2020</text><text x="400" y="340" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">2020-2022</text><text x="650" y="340" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">2022-2026</text><text x="80" y="150" fill="#4fc3f7" font-size="11" font-family="sans-serif">リモートワーク:</text><text x="80" y="166" fill="#4fc3f7" font-size="10" font-family="sans-serif">10年→2週間</text><text x="80" y="195" fill="#81c784" font-size="11" font-family="sans-serif">EC比率:</text><text x="80" y="211" fill="#81c784" font-size="10" font-family="sans-serif">3年→3ヶ月</text></svg>
 - **パンデミック（2020）が加速した相変化：**
@@ -214,6 +250,8 @@ style: |
 ---
 
 # 外部ショックが相変化を加速する（2/2）
+
+> *外部ショックは相転移の触媒——潜在エネルギーを一瞬で解放する*
 
 - ---
 - 物理学でいう**「圧力変化」**に相当
@@ -231,6 +269,8 @@ style: |
 
 # なぜVRはまだ相変化しないのか（1/2）
 
+> *キラーユースケース不在とデバイス価格が臨界質量を阻んでいる*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">VR：なぜ相変化が起きないのか — 条件充足度</text><g transform="translate(200,200)"><polygon points="0,-120 104,-60 104,60 0,120 -104,60 -104,-60" fill="none" stroke="#333355" stroke-width="1"/><polygon points="0,-80 69,-40 69,40 0,80 -69,40 -69,-40" fill="none" stroke="#333355" stroke-width="1"/><polygon points="0,-40 35,-20 35,20 0,40 -35,20 -35,-40" fill="none" stroke="#333355" stroke-width="1"/><line x1="0" y1="0" x2="0" y2="-120" stroke="#333355" stroke-width="1"/><line x1="0" y1="0" x2="104" y2="-60" stroke="#333355" stroke-width="1"/><line x1="0" y1="0" x2="104" y2="60" stroke="#333355" stroke-width="1"/><line x1="0" y1="0" x2="0" y2="120" stroke="#333355" stroke-width="1"/><line x1="0" y1="0" x2="-104" y2="60" stroke="#333355" stroke-width="1"/><line x1="0" y1="0" x2="-104" y2="-60" stroke="#333355" stroke-width="1"/><polygon points="0,-96 50,-28 42,36 0,48 -104,60 -83,-48" fill="#e91e63" fill-opacity="0.3" stroke="#e91e63" stroke-width="2"/><text x="0" y="-132" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">技術成熟度</text><text x="120" y="-62" text-anchor="start" fill="#ffffff" font-size="11" font-family="sans-serif">価格</text><text x="120" y="66" text-anchor="start" fill="#ffffff" font-size="11" font-family="sans-serif">コンテンツ</text><text x="0" y="142" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ネットワーク</text><text x="-122" y="66" text-anchor="end" fill="#ffffff" font-size="11" font-family="sans-serif">インフラ</text><text x="-122" y="-62" text-anchor="end" fill="#ffffff" font-size="11" font-family="sans-serif">社会的受容</text></g><rect x="430" y="60" width="340" height="260" rx="8" fill="#16213e" stroke="#555577" stroke-width="1"/><text x="600" y="88" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">充足度スコア</text><text x="450" y="118" fill="#4fc3f7" font-size="12" font-family="sans-serif">技術成熟度</text><rect x="570" y="104" width="160" height="14" rx="3" fill="#333355"/><rect x="570" y="104" width="128" height="14" rx="3" fill="#4fc3f7"/><text x="704" y="116" fill="#4fc3f7" font-size="11" font-family="sans-serif">80%</text><text x="450" y="148" fill="#e91e63" font-size="12" font-family="sans-serif">価格</text><rect x="570" y="134" width="160" height="14" rx="3" fill="#333355"/><rect x="570" y="134" width="40" height="14" rx="3" fill="#e91e63"/><text x="704" y="146" fill="#e91e63" font-size="11" font-family="sans-serif">25%</text><text x="450" y="178" fill="#e91e63" font-size="12" font-family="sans-serif">コンテンツ</text><rect x="570" y="164" width="160" height="14" rx="3" fill="#333355"/><rect x="570" y="164" width="35" height="14" rx="3" fill="#e91e63"/><text x="704" y="176" fill="#e91e63" font-size="11" font-family="sans-serif">22%</text><text x="450" y="208" fill="#f9a825" font-size="12" font-family="sans-serif">ネットワーク</text><rect x="570" y="194" width="160" height="14" rx="3" fill="#333355"/><rect x="570" y="194" width="64" height="14" rx="3" fill="#f9a825"/><text x="704" y="206" fill="#f9a825" font-size="11" font-family="sans-serif">40%</text><text x="450" y="238" fill="#e91e63" font-size="12" font-family="sans-serif">インフラ</text><rect x="570" y="224" width="160" height="14" rx="3" fill="#333355"/><rect x="570" y="224" width="80" height="14" rx="3" fill="#e91e63"/><text x="704" y="236" fill="#e91e63" font-size="11" font-family="sans-serif">50%</text><text x="450" y="268" fill="#e91e63" font-size="12" font-family="sans-serif">社会的受容</text><rect x="570" y="254" width="160" height="14" rx="3" fill="#333355"/><rect x="570" y="254" width="24" height="14" rx="3" fill="#e91e63"/><text x="704" y="266" fill="#e91e63" font-size="11" font-family="sans-serif">15%</text><text x="600" y="300" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">3条件が同時に不足 → 相変化なし</text></svg>
 - **VR/MRの現状（2025年）：**
 - 技術は十分に成熟（Meta Quest 3、Apple Vision Pro）
@@ -241,6 +281,8 @@ style: |
 ---
 
 # なぜVRはまだ相変化しないのか（2/2）
+
+> *2条件が揃えばVRも一夜で市場が変わる——今はその直前だ*
 
 - 価格：Vision Proは$3,499 → 大衆の閾値を超えていない
 - コンテンツ：「キラーアプリ」がまだない
@@ -258,12 +300,22 @@ style: |
 
 ---
 
-# 2025-2030年に相変化が予測される技術
+# 2025-2030年に相変化が予測される技術（1/2）
+
+> *GenAI・自動運転・空間コンピューティングが次の相転移候補だ*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">2025-2030年 相変化予測タイムライン</text><line x1="80" y1="200" x2="720" y2="200" stroke="#555577" stroke-width="3"/><polygon points="720,193 740,200 720,207" fill="#555577"/><text x="80" y="220" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">2025</text><text x="240" y="220" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">2026</text><text x="400" y="220" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">2027</text><text x="560" y="220" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">2028</text><text x="720" y="220" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">2030+</text><line x1="80" y1="195" x2="80" y2="205" stroke="#555577" stroke-width="2"/><line x1="240" y1="195" x2="240" y2="205" stroke="#555577" stroke-width="2"/><line x1="400" y1="195" x2="400" y2="205" stroke="#555577" stroke-width="2"/><line x1="560" y1="195" x2="560" y2="205" stroke="#555577" stroke-width="2"/><circle cx="200" cy="130" r="45" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="122" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">AIエージェント</text><text x="200" y="140" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">条件:90%</text><line x1="200" y1="175" x2="200" y2="200" stroke="#f9a825" stroke-width="2"/><circle cx="360" cy="290" r="40" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="360" y="282" text-anchor="middle" fill="#4fc3f7" font-size="11" font-family="sans-serif" font-weight="bold">自動運転L4</text><text x="360" y="298" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">条件:65%</text><line x1="360" y1="250" x2="360" y2="200" stroke="#4fc3f7" stroke-width="2"/><circle cx="520" cy="120" r="42" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="520" y="112" text-anchor="middle" fill="#81c784" font-size="11" font-family="sans-serif" font-weight="bold">量子コンピュータ</text><text x="520" y="128" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">商用応用</text><text x="520" y="143" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">条件:50%</text><line x1="520" y1="162" x2="520" y2="200" stroke="#81c784" stroke-width="2"/><circle cx="660" cy="300" r="38" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="660" y="292" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif" font-weight="bold">核融合発電</text><text x="660" y="308" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">条件:30%</text><line x1="660" y1="262" x2="660" y2="200" stroke="#e91e63" stroke-width="2"/><text x="400" y="360" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">円の大きさ = 相変化の社会的インパクト</text></svg>
 - **1. 自動運転（レベル4）** ― 技術+規制+保険の三重条件が揃いつつある
 - **2. AI エージェント** ― LLMの性能向上+API統合で臨界点が近い
 - **3. 量子コンピューティング** ― 商用応用がエラー訂正で実用段階に
+
+
+---
+
+# 2025-2030年に相変化が予測される技術（2/2）
+
+> *転換点を先読みした企業が市場を取る——今が賭け時だ*
+
 - **4. 核融合発電** ― 商用化の時間軸が初めて10年以内に
 - ---
 - **予測のコツ：** 「技術の成熟度」ではなく「残りの条件は何か」を見る

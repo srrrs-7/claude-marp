@@ -7,6 +7,71 @@ paginate: true
 header: "規格戦争の経済学"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -23,6 +88,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *技術優位よりエコシステム戦略と普及速度が規格戦争を決する*
 
 - 1. ビデオ規格戦争の経緯
 - 2. なぜBetaは負けたのか
@@ -41,6 +108,8 @@ style: |
 
 # Beta vs VHS（1975〜1988年）（1/2）
 
+> *技術的優位より録画時間2時間という実用性がVHS勝利を決めた*
+
 - **Betamax（ソニー、1975年）：**
 - 先行参入・高画質・コンパクトな本体
 - 当初の評価：「技術的に優れた規格」
@@ -53,6 +122,8 @@ style: |
 ---
 
 # Beta vs VHS（1975〜1988年）（2/2）
+
+> *ライセンスを開放し機種を増やしたJVCの戦略がBetaを葬った*
 
 - **ソニーの戦略ミス：**
 - 他社へのライセンス拒否 → 単独規格の維持
@@ -67,6 +138,8 @@ style: |
 
 # ネットワーク効果と経路依存（1/2）
 
+> *レンタル店のVHSコンテンツが増えるほどVHSが選ばれる正循環*
+
 - **ネットワーク効果：**
 - 利用者が増えるほど製品の価値が高まる
 - VHS：レンタル店のVHSコンテンツが増える → VHSを買う人が増える
@@ -78,6 +151,8 @@ style: |
 ---
 
 # ネットワーク効果と経路依存（2/2）
+
+> *一度勝者が決まると技術的劣位でも覆すのは極めて難しい*
 
 - 早期の選択が後の選択肢を制約する
 - 一度勝者が決まると技術的劣位でも覆すのが難しくなる
@@ -92,6 +167,8 @@ style: |
 
 # 現代技術戦争への応用（1/2）
 
+> *PS3へのBlu-ray搭載がVHSと同じ普及戦略でHD-DVDを倒した*
+
 - **Blu-ray vs HD-DVD（2006〜2008年）：**
 - Blu-ray：ソニーが積極的にライセンス & Paramount独占契約
 - BD陣営がPSゲーム機（PS3）でBDを普及 → 勝利
@@ -103,6 +180,8 @@ style: |
 ---
 
 # 現代技術戦争への応用（2/2）
+
+> *OpenAI vs Metaのオープン対クローズ戦争はVHS対Betaの再演*
 
 - Androidのオープンライセンス戦略（VHSと同じ）
 - iOSはクローズドエコシステムで高付加価値戦略（Betaと同じ）
@@ -116,6 +195,8 @@ style: |
 ---
 
 # まとめ：技術は勝負を決めない
+
+> *技術優位でなくライセンス戦略とネットワーク効果が規格を決めた*
 
 - ✅ **Betaは技術的に優れていたがVHSに負けた**
 - ✅ **勝因：録画時間・ライセンス戦略・ネットワーク効果**

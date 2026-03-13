@@ -7,6 +7,71 @@ paginate: true
 header: "気候と臨界点"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -42,6 +107,8 @@ style: |
 
 # 臨界点を超えると自己加速する（1/2）
 
+> *雪だるま式のフィードバックで元の状態に戻れなくなる*
+
 - **定義：**
 - 小さな変化が自己強化フィードバックを起こし
 - 元の状態に戻れない転換点
@@ -54,6 +121,8 @@ style: |
 ---
 
 # 臨界点を超えると自己加速する（2/2）
+
+> *気候システムは温暖化→氷融解→反射率低下の正のループ*
 
 - - 銀行取り付け騒ぎ：噂が現実を作る
 - ---
@@ -85,6 +154,8 @@ style: |
 
 # カスケードリスク：連鎖崩壊（1/2）
 
+> *一つが崩れると人類の排出がゼロでも連鎖が止まらない*
+
 - **Domino Tipping（2018年研究：Science誌）：**
 - 個々のティッピングポイントが連鎖する「カスケード」リスク
 - <svg viewBox="0 0 800 230" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="230" fill="#1a1a2e"/><text x="400" y="24" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">カスケード連鎖崩壊シナリオ</text><rect x="20" y="40" width="130" height="44" rx="6" fill="#006064"/><text x="85" y="58" text-anchor="middle" fill="#80deea" font-size="11" font-weight="bold">北極海氷消失</text><text x="85" y="74" text-anchor="middle" fill="white" font-size="10">アルベド減少</text><rect x="200" y="40" width="130" height="44" rx="6" fill="#4a148c"/><text x="265" y="58" text-anchor="middle" fill="#ce93d8" font-size="11" font-weight="bold">永久凍土融解</text><text x="265" y="74" text-anchor="middle" fill="white" font-size="10">メタン放出</text><rect x="380" y="40" width="130" height="44" rx="6" fill="#0d47a1"/><text x="445" y="58" text-anchor="middle" fill="#90caf9" font-size="11" font-weight="bold">グリーンランド</text><text x="445" y="74" text-anchor="middle" fill="white" font-size="10">氷床崩壊</text><rect x="560" y="40" width="130" height="44" rx="6" fill="#b71c1c"/><text x="625" y="58" text-anchor="middle" fill="#ef9a9a" font-size="11" font-weight="bold">AMOC弱体化</text><text x="625" y="74" text-anchor="middle" fill="white" font-size="10">欧州寒冷化</text><polygon points="152,62 160,57 160,67" fill="#f9a825"/><line x1="150" y1="62" x2="200" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="332,62 340,57 340,67" fill="#f9a825"/><line x1="330" y1="62" x2="380" y2="62" stroke="#f9a825" stroke-width="2"/><polygon points="512,62 520,57 520,67" fill="#f9a825"/><line x1="510" y1="62" x2="560" y2="62" stroke="#f9a825" stroke-width="2"/><rect x="560" y="120" width="220" height="44" rx="6" fill="#e65100"/><text x="670" y="138" text-anchor="middle" fill="white" font-size="11" font-weight="bold">気温さらに上昇</text><text x="670" y="154" text-anchor="middle" fill="#ffcc80" font-size="10">人為排出ゼロでも継続</text><polygon points="670,116 665,108 675,108" fill="#e91e63"/><line x1="670" y1="108" x2="670" y2="84" stroke="#e91e63" stroke-width="2"/><text x="400" y="205" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">一つが崩れると止められない連鎖が始まる</text></svg>
@@ -92,12 +163,22 @@ style: |
 
 ---
 
-# カスケードリスク：連鎖崩壊（2/2）
+# カスケードリスク：連鎖崩壊（2/2）（1/2）
+
+> *気候システム自身の加速で温暖化が自律的に継続する*
 
 - ---
 - **「地球温暖化の温暖化」：**
 - 気候システム自身がフィードバックで温暖化を加速
 - 人類の排出量がゼロでも続く可能性
+
+
+---
+
+# カスケードリスク：連鎖崩壊（2/2）（2/2）
+
+> *「1.5°C安全」は誤解で正確には確率低減にすぎない*
+
 - ---
 - **閾値の不確実性：**
 - 何度で何が起きるかは誤差範囲が大きい
@@ -107,6 +188,8 @@ style: |
 ---
 
 # まとめ：ティッピングポイントが示すこと
+
+> *1.5°C超過でカスケード連鎖崩壊リスクが現実化する*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">不可逆性の概念図：転換点を超えると戻れない</text><line x1="60" y1="220" x2="740" y2="220" stroke="#555" stroke-width="2"/><line x1="60" y1="220" x2="60" y2="50" stroke="#555" stroke-width="2"/><text x="400" y="240" text-anchor="middle" fill="#aaa" font-size="12">時間 →</text><text x="35" y="135" text-anchor="middle" fill="#aaa" font-size="12" transform="rotate(-90,35,135)">気温</text><polyline points="60,200 160,196 240,188 300,175 340,155 360,130 380,100 400,80 440,68 540,60 700,55" fill="none" stroke="#e91e63" stroke-width="3"/><line x1="355" y1="50" x2="355" y2="225" stroke="#f9a825" stroke-width="2" stroke-dasharray="6,4"/><text x="355" y="44" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">転換点</text><path d="M380,100 Q420,95 450,115 Q480,135 490,180 Q500,200 530,210" fill="none" stroke="#4fc3f7" stroke-width="2" stroke-dasharray="5,4"/><text x="560" y="215" fill="#4fc3f7" font-size="11">仮に排出ゼロでも</text><text x="560" y="228" fill="#4fc3f7" font-size="11">「戻れない軌跡」</text><circle cx="355" cy="130" r="7" fill="#f9a825"/><text x="370" y="128" fill="#f9a825" font-size="11" font-weight="bold">1.5〜2°C</text><rect x="60" y="245" width="200" height="26" rx="4" fill="#1c3a1c"/><text x="160" y="262" text-anchor="middle" fill="#a5d6a7" font-size="11">転換前: 政策で制御可能</text><rect x="280" y="245" width="200" height="26" rx="4" fill="#3e1a1a"/><text x="380" y="262" text-anchor="middle" fill="#ef9a9a" font-size="11">転換後: 自律的加速・不可逆</text></svg>
 - ✅ **気候変動は線形ではなく、閾値を超えると自己加速する**

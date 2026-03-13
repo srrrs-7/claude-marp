@@ -87,6 +87,8 @@ style: |
 
 # アジェンダ
 
+> *放置すれば必ず腐る—熱力学がコード腐敗の必然性を証明する*
+
 - 1. 熱力学第二法則とエントロピー
 - 2. ソフトウェアエントロピー（ソフトウェア腐敗）
 - 3. 技術的負債との数学的類似
@@ -103,6 +105,8 @@ style: |
 ---
 
 # 宇宙の根本法則：無秩序は増大する（1/2）
+
+> *孤立系は自然に無秩序へ向かう—コードも放置すれば必ず腐る*
 
 - **熱力学第二法則：**
 - 孤立系のエントロピーは時間とともに増大するか、一定である
@@ -128,6 +132,8 @@ style: |
 
 # コードは触るたびに複雑になる（1/2）
 
+> *バグ修正が条件分岐を生み、機能追加が依存関係を増やす構造*
+
 - **ソフトウェアエントロピー（別名：ソフトウェア腐敗）の法則：**
 - 修正を加えるたびにシステムは複雑になる傾向がある
 - ---
@@ -138,6 +144,8 @@ style: |
 ---
 
 # コードは触るたびに複雑になる（2/2）
+
+> *Lehmanの法則—投資なき開発は転換点以降で複雑性が急加速*
 
 - <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">コードエントロピー増大曲線（Lehman の法則）</text><line x1="60" y1="270" x2="750" y2="270" stroke="#555" stroke-width="1.5"/><line x1="60" y1="270" x2="60" y2="55" stroke="#555" stroke-width="1.5"/><text x="400" y="295" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">時間（リリース回数）</text><text x="25" y="165" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif" transform="rotate(-90,25,165)">複雑性</text><polyline points="60,250 130,235 200,215 280,190 370,158 470,120 580,78 700,55" fill="none" stroke="#e91e63" stroke-width="3"/><text x="710" y="52" fill="#e91e63" font-size="11" font-family="sans-serif">放置</text><polyline points="60,250 130,242 200,234 280,226 370,218 470,210 580,202 700,194" fill="none" stroke="#4caf50" stroke-width="3" stroke-dasharray="8,4"/><text x="710" y="191" fill="#4caf50" font-size="11" font-family="sans-serif">投資</text><circle cx="370" cy="158" r="6" fill="#f9a825"/><text x="375" y="148" fill="#f9a825" font-size="11" font-family="sans-serif">転換点</text><text x="375" y="138" fill="#aaaaaa" font-size="10" font-family="sans-serif">ここで対処しないと急加速</text></svg>
 - - 機能追加が想定外の依存関係を生む
@@ -160,6 +168,8 @@ style: |
 ---
 
 # 負債は複利で増加する（1/2）
+
+> *Cunninghamの負債は複利—乱雑なコードへの変更がさらに乱雑化*
 
 - Ward Cunningham（技術的負債の提唱者）の本来の意味：
 - 「素早く出荷するために今の理解で書くことは、将来再解釈するコストを生む」
@@ -200,6 +210,8 @@ style: |
 
 # ボーイスカウトルール（1/2）
 
+> *触れるたびに少し改善—継続的なエントロピー輸出で腐敗を防ぐ*
+
 - <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><rect x="30" y="20" width="340" height="150" rx="8" fill="#2a1a1a" stroke="#e91e63" stroke-width="2"/><text x="200" y="48" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">触れる前のキャンプ地</text><text x="200" y="78" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">変数名: x, y, tmp</text><text x="200" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">コメント: なし</text><text x="200" y="122" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">重複: 3箇所</text><text x="200" y="152" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">エントロピー: 高</text><rect x="430" y="20" width="340" height="150" rx="8" fill="#1a2e1a" stroke="#4caf50" stroke-width="2"/><text x="600" y="48" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">触れた後のキャンプ地</text><text x="600" y="78" text-anchor="middle" fill="#fff" font-size="12" font-family="sans-serif">変数名: userId, count</text><text x="600" y="100" text-anchor="middle" fill="#fff" font-size="12" font-family="sans-serif">コメント: 目的を追記</text><text x="600" y="122" text-anchor="middle" fill="#fff" font-size="12" font-family="sans-serif">重複: 2箇所（1つ削除）</text><text x="600" y="152" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">エントロピー: 少し低下</text><polygon points="375,95 425,95 415,88 415,102" fill="#f9a825"/></svg>
 - 「来た時よりも美しく」
 - Robert C. Martin（Uncle Bob）が提唱
@@ -218,6 +230,8 @@ style: |
 ---
 
 # まとめ：宇宙の法則とコード管理
+
+> *技術的負債は複利増加—早期返済が最も経済合理的な判断*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="260" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-family="sans-serif" font-weight="bold">今日のTake-away</text><rect x="30" y="45" width="355" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="40" y="68" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">無秩序は宇宙の自然な方向</text><text x="40" y="90" fill="#dddddd" font-size="11" font-family="sans-serif">コードも放置すれば必ず腐る</text><rect x="415" y="45" width="355" height="65" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="425" y="68" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">秩序には外部エネルギーが必要</text><text x="425" y="90" fill="#dddddd" font-size="11" font-family="sans-serif">リファクタリング時間は投資</text><rect x="30" y="130" width="355" height="65" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="1.5"/><text x="40" y="153" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">技術的負債は複利で増える</text><text x="40" y="175" fill="#dddddd" font-size="11" font-family="sans-serif">早期返済が最も経済合理的</text><rect x="415" y="130" width="355" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="425" y="153" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">ボーイスカウトルール</text><text x="425" y="175" fill="#dddddd" font-size="11" font-family="sans-serif">触れるたびに少しずつ改善する</text><text x="400" y="230" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif" font-style="italic">「良いコードは維持されるものではなく、継続的に更新されるものだ」</text></svg>
 - ✅ **無秩序は宇宙の自然な方向** — コードも放置すれば必ず腐る

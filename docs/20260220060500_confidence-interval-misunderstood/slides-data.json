@@ -12,6 +12,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "信頼区間の誤解を解くことがデータ分析精度向上の最初の一歩",
 			"content": [
 				"1. 信頼区間の正しい定義",
 				"2. なぜ誤解されるのか",
@@ -30,6 +31,7 @@
 		},
 		{
 			"title": "95%信頼区間の正しい定義（1/2）（1/2）",
+			"subtitle": "95%CIは特定の区間に真値が入る確率ではなく手続きの信頼性の話",
 			"content": [
 				"**よくある誤解：**",
 				"「真の値が95%の確率でこの区間に含まれる」",
@@ -50,6 +52,7 @@
 		},
 		{
 			"title": "95%信頼区間の正しい定義（2/2）（1/2）",
+			"subtitle": "特定の区間に真の値が入るかどうかは確率ではなく0か1かしかない",
 			"content": [
 				"= 手続きの信頼性であり、特定の区間の確率ではない",
 				"---",
@@ -60,6 +63,7 @@
 		},
 		{
 			"title": "95%信頼区間の正しい定義（2/2）（2/2）",
+			"subtitle": "研究者ですら正確に理解できていないことがHoekstra調査で判明した",
 			"content": [
 				"真の値がその中にあるかどうかは0か1かのどちらか",
 				"「95%の確率で」は間違い",
@@ -70,6 +74,7 @@
 		},
 		{
 			"title": "p値の誤用と再現性の危機（1/2）",
+			"subtitle": "p<0.05は帰無仮説下での稀さを示すだけで効果の大きさを示さない",
 			"content": [
 				"**p値（p-value）の正しい定義：**",
 				"帰無仮説が正しいとしたとき、観測されたデータ以上に",
@@ -83,6 +88,7 @@
 		},
 		{
 			"title": "p値の誤用と再現性の危機（2/2）（1/2）",
+			"subtitle": "p>0.05は効果がないという証明にはならないことが最大の誤解の源",
 			"content": [
 				"「p値は効果の大きさを示す」→ 誤り（サンプル数で変わる）",
 				"「p > 0.05 なら効果がない」→ 誤り（証明できないだけ）",
@@ -99,10 +105,12 @@
 				"- 出版バイアス：有意な結果しか論文にならない",
 				"<svg viewBox=\"0 0 800 170\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"170\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"22\" text-anchor=\"middle\" font-size=\"15\" fill=\"#f9a825\" font-family=\"sans-serif\" font-weight=\"bold\">p-hacking：有意な結果が出るまで試し続ける</text><rect x=\"40\" y=\"38\" width=\"100\" height=\"50\" rx=\"8\" fill=\"#2d2d4e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/><text x=\"90\" y=\"60\" text-anchor=\"middle\" font-size=\"11\" fill=\"#ccc\" font-family=\"sans-serif\">分析1</text><text x=\"90\" y=\"75\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e74c3c\" font-family=\"sans-serif\">p=0.12</text><line x1=\"140\" y1=\"63\" x2=\"175\" y2=\"63\" stroke=\"#555\" stroke-width=\"2\"/><polygon points=\"171,58 181,63 171,68\" fill=\"#555\"/><rect x=\"180\" y=\"38\" width=\"100\" height=\"50\" rx=\"8\" fill=\"#2d2d4e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/><text x=\"230\" y=\"60\" text-anchor=\"middle\" font-size=\"11\" fill=\"#ccc\" font-family=\"sans-serif\">分析2</text><text x=\"230\" y=\"75\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e74c3c\" font-family=\"sans-serif\">p=0.08</text><line x1=\"280\" y1=\"63\" x2=\"315\" y2=\"63\" stroke=\"#555\" stroke-width=\"2\"/><polygon points=\"311,58 321,63 311,68\" fill=\"#555\"/><rect x=\"320\" y=\"38\" width=\"100\" height=\"50\" rx=\"8\" fill=\"#2d2d4e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/><text x=\"370\" y=\"60\" text-anchor=\"middle\" font-size=\"11\" fill=\"#ccc\" font-family=\"sans-serif\">分析3</text><text x=\"370\" y=\"75\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e74c3c\" font-family=\"sans-serif\">p=0.09</text><line x1=\"420\" y1=\"63\" x2=\"455\" y2=\"63\" stroke=\"#555\" stroke-width=\"2\"/><polygon points=\"451,58 461,63 451,68\" fill=\"#555\"/><rect x=\"460\" y=\"38\" width=\"100\" height=\"50\" rx=\"8\" fill=\"#2d2d4e\" stroke=\"#27ae60\" stroke-width=\"2\"/><text x=\"510\" y=\"60\" text-anchor=\"middle\" font-size=\"11\" fill=\"#ccc\" font-family=\"sans-serif\">分析4</text><text x=\"510\" y=\"75\" text-anchor=\"middle\" font-size=\"12\" fill=\"#27ae60\" font-family=\"sans-serif\" font-weight=\"bold\">p=0.03 ✓</text><line x1=\"560\" y1=\"63\" x2=\"595\" y2=\"63\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"591,58 601,63 591,68\" fill=\"#f9a825\"/><rect x=\"600\" y=\"38\" width=\"160\" height=\"50\" rx=\"8\" fill=\"#1a3a1a\" stroke=\"#27ae60\" stroke-width=\"2\"/><text x=\"680\" y=\"57\" text-anchor=\"middle\" font-size=\"11\" fill=\"#27ae60\" font-family=\"sans-serif\" font-weight=\"bold\">論文発表!</text><text x=\"680\" y=\"75\" text-anchor=\"middle\" font-size=\"10\" fill=\"#aaa\" font-family=\"sans-serif\">「有意差あり p&lt;0.05」</text><text x=\"400\" y=\"125\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e74c3c\" font-family=\"sans-serif\">→ 分析1〜3は捨てられる（出版バイアス）</text><text x=\"400\" y=\"145\" text-anchor=\"middle\" font-size=\"12\" fill=\"#aaa\" font-family=\"sans-serif\">多重比較問題：20回試せば1回は偶然 p&lt;0.05 になる</text><text x=\"400\" y=\"162\" text-anchor=\"middle\" font-size=\"11\" fill=\"#666\" font-family=\"sans-serif\">（第一種の過誤 = α = 0.05）</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "p-hackingと出版バイアスが心理学の再現率39%崩壊の主因"
 		},
 		{
 			"title": "ベイズ統計という別のアプローチ（1/2）（1/2）",
+			"subtitle": "ベイズ信用区間こそが直感的な95%確率の正しい表現方法である",
 			"content": [
 				"**ベイズ信用区間（Credible Interval）：**",
 				"「95%の確率で真の値がこの範囲にある」を",
@@ -119,10 +127,12 @@
 				"- 結果は「確率」として直感的に解釈できる",
 				"<svg viewBox=\"0 0 800 190\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"190\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"20\" text-anchor=\"middle\" font-size=\"14\" fill=\"#f9a825\" font-family=\"sans-serif\" font-weight=\"bold\">ベイズ更新：事前分布 → 尤度 → 事後分布</text><text x=\"130\" y=\"45\" text-anchor=\"middle\" font-size=\"13\" fill=\"#4fc3f7\" font-family=\"sans-serif\" font-weight=\"bold\">事前分布 (Prior)</text><text x=\"130\" y=\"62\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaa\" font-family=\"sans-serif\">実験前の知識・信念</text><ellipse cx=\"130\" cy=\"120\" rx=\"80\" ry=\"55\" fill=\"#4fc3f7\" opacity=\"0.15\" stroke=\"#4fc3f7\" stroke-width=\"1.5\"/><ellipse cx=\"130\" cy=\"108\" rx=\"55\" ry=\"35\" fill=\"#4fc3f7\" opacity=\"0.2\"/><ellipse cx=\"130\" cy=\"100\" rx=\"30\" ry=\"18\" fill=\"#4fc3f7\" opacity=\"0.3\"/><text x=\"130\" y=\"104\" text-anchor=\"middle\" font-size=\"12\" fill=\"#4fc3f7\" font-family=\"sans-serif\">広い</text><text x=\"130\" y=\"118\" text-anchor=\"middle\" font-size=\"11\" fill=\"#4fc3f7\" font-family=\"sans-serif\">不確実</text><line x1=\"218\" y1=\"110\" x2=\"268\" y2=\"110\" stroke=\"#f9a825\" stroke-width=\"2.5\"/><polygon points=\"264,104 274,110 264,116\" fill=\"#f9a825\"/><text x=\"244\" y=\"102\" text-anchor=\"middle\" font-size=\"11\" fill=\"#f9a825\" font-family=\"sans-serif\">×</text><text x=\"244\" y=\"125\" text-anchor=\"middle\" font-size=\"11\" fill=\"#f9a825\" font-family=\"sans-serif\">データ</text><text x=\"400\" y=\"45\" text-anchor=\"middle\" font-size=\"13\" fill=\"#e91e63\" font-family=\"sans-serif\" font-weight=\"bold\">尤度 (Likelihood)</text><text x=\"400\" y=\"62\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaa\" font-family=\"sans-serif\">観測データの確からしさ</text><ellipse cx=\"400\" cy=\"120\" rx=\"55\" ry=\"42\" fill=\"#e91e63\" opacity=\"0.15\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><ellipse cx=\"400\" cy=\"112\" rx=\"35\" ry=\"26\" fill=\"#e91e63\" opacity=\"0.2\"/><ellipse cx=\"400\" cy=\"106\" rx=\"18\" ry=\"14\" fill=\"#e91e63\" opacity=\"0.3\"/><text x=\"400\" y=\"110\" text-anchor=\"middle\" font-size=\"12\" fill=\"#e91e63\" font-family=\"sans-serif\">鋭い</text><text x=\"400\" y=\"124\" text-anchor=\"middle\" font-size=\"11\" fill=\"#e91e63\" font-family=\"sans-serif\">ピーク</text><line x1=\"463\" y1=\"110\" x2=\"513\" y2=\"110\" stroke=\"#f9a825\" stroke-width=\"2.5\"/><polygon points=\"509,104 519,110 509,116\" fill=\"#f9a825\"/><text x=\"489\" y=\"102\" text-anchor=\"middle\" font-size=\"11\" fill=\"#f9a825\" font-family=\"sans-serif\">=</text><text x=\"489\" y=\"125\" text-anchor=\"middle\" font-size=\"11\" fill=\"#f9a825\" font-family=\"sans-serif\">正規化</text><text x=\"660\" y=\"45\" text-anchor=\"middle\" font-size=\"13\" fill=\"#27ae60\" font-family=\"sans-serif\" font-weight=\"bold\">事後分布 (Posterior)</text><text x=\"660\" y=\"62\" text-anchor=\"middle\" font-size=\"11\" fill=\"#aaa\" font-family=\"sans-serif\">更新された信念</text><ellipse cx=\"660\" cy=\"120\" rx=\"65\" ry=\"50\" fill=\"#27ae60\" opacity=\"0.12\" stroke=\"#27ae60\" stroke-width=\"1.5\"/><ellipse cx=\"660\" cy=\"110\" rx=\"40\" ry=\"30\" fill=\"#27ae60\" opacity=\"0.2\"/><ellipse cx=\"660\" cy=\"104\" rx=\"20\" ry=\"16\" fill=\"#27ae60\" opacity=\"0.35\"/><text x=\"660\" y=\"108\" text-anchor=\"middle\" font-size=\"12\" fill=\"#27ae60\" font-family=\"sans-serif\">絞られた</text><text x=\"660\" y=\"122\" text-anchor=\"middle\" font-size=\"11\" fill=\"#27ae60\" font-family=\"sans-serif\">分布</text><text x=\"400\" y=\"175\" text-anchor=\"middle\" font-size=\"12\" fill=\"#aaa\" font-family=\"sans-serif\">事後分布の95%HDI (Highest Density Interval) = ベイズ信用区間</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "事前知識をモデル化できるベイズは直感的で小サンプルにも有効"
 		},
 		{
 			"title": "ベイズ統計という別のアプローチ（2/2）",
+			"subtitle": "頻度主義は手続きの信頼性を問い、ベイズは仮説の確からしさを問う",
 			"content": [
 				"- サンプルが小さくても有効",
 				"---",
@@ -136,6 +146,7 @@
 		},
 		{
 			"title": "まとめ：統計の正直な使い方",
+			"subtitle": "p値とCIを正しく使うとp-hacking根絶と再現性向上に直結する",
 			"content": [
 				"✅ **95%信頼区間 = 手続きの信頼性（特定区間の確率ではない）**",
 				"✅ **p < 0.05 ≠ 「効果がある」（サンプル数・多重比較を考慮）**",

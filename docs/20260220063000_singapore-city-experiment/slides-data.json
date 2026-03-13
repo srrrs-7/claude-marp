@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "6セクションでシンガポール国家設計モデルの全体構造を解説する",
 			"content": [
 				"![w:800 center](assets/svg-sg-agenda.svg)",
 				"1. シンガポールの奇跡",
@@ -29,6 +30,7 @@
 		},
 		{
 			"title": "1965年 → 2025年の変貌",
+			"subtitle": "天然資源ゼロから1人あたりGDP6.5万ドル、60年の設計の成果",
 			"content": [
 				"![w:800 center](assets/svg-timeline.svg)",
 				"**1965年：** マレーシアから追放される形で独立",
@@ -42,6 +44,7 @@
 		},
 		{
 			"title": "成功の鍵：「全てを設計する」思想",
+			"subtitle": "住宅から民族比率まで政府設計、自由放任の対極モデル",
 			"content": [
 				"![w:800 center](assets/svg-sg-success-keys.svg)",
 				"シンガポールは**自然に発展した都市ではない**",
@@ -59,6 +62,7 @@
 		},
 		{
 			"title": "実用主義（Pragmatism）の徹底",
+			"subtitle": "「機能するか」で全決定、大臣年収100万ドルで汚職を根絶",
 			"content": [
 				"![w:800 center](assets/svg-pragmatism.svg)",
 				"**「イデオロギーではなく、何が機能するかで決める」**",
@@ -77,6 +81,7 @@
 		},
 		{
 			"title": "HDB（住宅開発庁）の驚異",
+			"subtitle": "民族割当で公営住宅80%に誘導、ゲットー化を構造的に阻止",
 			"content": [
 				"![w:800 center](assets/svg-hdb.svg)",
 				"国民の**80%**が政府建設の公営住宅（HDB）に住む",
@@ -100,6 +105,7 @@
 		},
 		{
 			"title": "デジタル政府の実績",
+			"subtitle": "行政98%オンライン化、GovTechが3,000名超で政府をスタートアップ化",
 			"content": [
 				"![w:800 center](assets/svg-sg-digital-gov.svg)",
 				"**SingPass** ― 国民全員に発行されるデジタルID",
@@ -113,6 +119,7 @@
 		},
 		{
 			"title": "交通管理 ― 車を「持たせない」設計",
+			"subtitle": "COE80万円+ERP課金で渋滞を市場メカニズムで解決",
 			"content": [
 				"![w:800 center](assets/svg-transport.svg)",
 				"**COE（Certificate of Entitlement）** ― 車の「所有権」をオークション制に",
@@ -131,6 +138,7 @@
 		},
 		{
 			"title": "批判と課題",
+			"subtitle": "報道自由度世界126位、繁栄と自由は本当にトレードオフか",
 			"content": [
 				"![w:800 center](assets/svg-freedom.svg)",
 				"**報道の自由度：** 世界126位（2024年、国境なき記者団）",
@@ -144,6 +152,7 @@
 		},
 		{
 			"title": "「ベネボレント・ディクテーターシップ」モデル",
+			"subtitle": "OSSのBDFLと同型、小組織では最効率だがスケールに疑問",
 			"content": [
 				"**善意の独裁** ― 「国民のために最善の判断をする」リーダー",
 				"リー・クアンユー：「民主主義は手段であって目的ではない」",
@@ -162,6 +171,7 @@
 		},
 		{
 			"title": "シンガポールモデルとプラットフォーム設計",
+			"subtitle": "国家設計とプラットフォーム設計は驚くほど相似形",
 			"content": [
 				"**1. 全てを設計する** ― Apple的クローズドエコシステム",
 				"**2. 市場メカニズムで制御** ― AWSの従量課金モデル",
@@ -185,6 +195,7 @@
 		},
 		{
 			"title": "参考文献",
+			"subtitle": "シンガポール設計思想の出典と政策データを確認できる資料集",
 			"content": [
 				"- **書籍:**",
 				"- [From Third World to First - Lee Kuan Yew](https://www.amazon.com/dp/0060197765)",

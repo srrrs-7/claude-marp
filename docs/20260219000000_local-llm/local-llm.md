@@ -167,6 +167,8 @@ style: |
 
 # LLMの仕組みおさらい
 
+> *推論はTrainingより桁違いに安価、ローカル実行が現実的になった理由はここにある*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">LLM のアーキテクチャ概要</text>
   <rect x="30" y="80" width="120" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -206,6 +208,8 @@ style: |
 ---
 
 # ローカルLLMの定義
+
+> *データ外部送信なし・オフライン動作・API料金ゼロの3大メリット、ラップトップでも実行可能*
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ローカルLLM の定義</text>
@@ -333,6 +337,8 @@ style: |
 
 # 2024-2026年のトレンド
 
+> *7BモデルがGPT-3.5相当に到達、Apple SiliconとオープンソースでローカルAI時代が到来*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">2024-2026 ローカルLLM トレンド</text>
   <rect x="30" y="70" width="220" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
@@ -419,6 +425,8 @@ Apple Silicon 最適化</text>
 
 # プライバシー・データセキュリティ
 
+> *医療・法務・金融データも外部送信なしで安全処理、エアギャップ環境でも完全動作*
+
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">プライバシー・データセキュリティ比較</text>
   <rect x="30" y="70" width="340" height="70" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
@@ -454,6 +462,8 @@ Apple Silicon 最適化</text>
 
 # コスト比較：クラウドAPI vs ローカル
 
+> *RTX 4060 Ti ($400)が約4〜6ヶ月でペイバック、大量バッチ処理でコスト差が顕著*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コスト比較：クラウド API vs ローカル</text>
   <text x="200" y="60" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">クラウドAPI (GPT-4o)</text>
@@ -487,6 +497,8 @@ Apple Silicon 最適化</text>
 ---
 
 # オフライン利用・低レイテンシ
+
+> *ネットワーク遅延ゼロでLlama 3 8Bが50〜100 tok/s、SLAを自社でコントロール可能*
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">オフライン・低レイテンシのメリット</text>
@@ -582,6 +594,8 @@ Apple Silicon 最適化</text>
 
 # Meta: Llama 3.x シリーズ
 
+> *1B〜90Bのラインナップ、バランス良好でコミュニティ最大・ファインチューニング事例豊富*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Meta Llama 3.x シリーズ</text>
   <rect x="30" y="70" width="220" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
@@ -616,6 +630,8 @@ Apple Silicon 最適化</text>
 
 # Mistral AI: Mistral / Mixtral
 
+> *MoEアーキテクチャで実質13B相当の計算量、Apache 2.0で商用利用しやすい欧州発モデル*
+
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Mistral AI: Mistral / Mixtral</text>
   <rect x="30" y="70" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -644,6 +660,8 @@ Apple Silicon 最適化</text>
 
 # Microsoft: Phi-4
 
+> *14Bながら驚異的な推論性能、MIT License完全商用利用可で教育・推論タスクに最適*
+
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Microsoft Phi-4 — 小型高性能モデル</text>
   <rect x="100" y="80" width="600" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -671,6 +689,8 @@ Apple Silicon 最適化</text>
 ---
 
 # Google: Gemma 3
+
+> *128Kコンテキスト・140言語対応、1B〜27BでGemini技術を転用したマルチモーダル対応モデル*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Google Gemma 3 シリーズ</text>
@@ -705,6 +725,8 @@ Apple Silicon 最適化</text>
 ---
 
 # DeepSeek / Qwen / その他注目モデル
+
+> *DeepSeek-R1はMITライセンスGPT-4o級、Qwen 2.5-Coderはコード特化で32Bまで対応*
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DeepSeek / Qwen / その他注目モデル</text>
@@ -843,6 +865,8 @@ Mixtral 8x7B</text>
 
 # 主要フォーマット比較：GGUF / AWQ / GPTQ
 
+> *ローカル汎用はGGUF、GPU本番はAWQ/EXL2、bitsandbytesはHuggingFace動的量子化向け*
+
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">主要フォーマット比較</text>
   <rect x="30" y="70" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -888,6 +912,8 @@ GPU 必須</text>
 ---
 
 # 量子化レベルの比較
+
+> *Q4_K_Mが精度劣化最小の推奨、VRAM 4-8GBならQ4、8-12GBならQ5/Q8が実用的*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">量子化レベル別スペック比較 (7B モデル)</text>
@@ -1014,6 +1040,8 @@ Linux/GPU</text>
 
 # Ollama：一番手軽なローカルLLM実行環境
 
+> *OpenAI互換APIをlocalhost:11434で提供、CUDA/ROCm/Metalを自動検出してワンクリック実行*
+
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Ollama 概要</text>
   <rect x="30" y="75" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -1051,6 +1079,8 @@ GPU自動検出</text>
 
 # LM Studio：GUIで直感的にローカルLLM
 
+> *HuggingFaceブラウザ内蔵でGGUFモデルをGUIでダウンロード、非エンジニアとの共有に最適*
+
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">LM Studio — GUI でローカルLLM</text>
   <rect x="30" y="75" width="340" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -1078,6 +1108,8 @@ GPU自動検出</text>
 ---
 
 # llama.cpp：軽量・高速な低レベル実行
+
+> *CPU/ARM/Metal/CUDA/Vulkan全対応のC++推論エンジン、-nglでGPU層数を細かく制御*
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">llama.cpp — 軽量・高速 C++ 推論エンジン</text>
@@ -1114,6 +1146,8 @@ GPU自動検出</text>
 ---
 
 # vLLM：本番・高スループット向け
+
+> *PagedAttentionでスループット最大24倍向上、連続バッチングでGPU稼働率を最大化*
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">vLLM — 本番・高スループット推論</text>
@@ -1258,6 +1292,8 @@ VRAM 重要</text>
 
 # Apple Silicon（Metal）の活用
 
+> *M3 Pro 36GBでLlama 3 70B Q4が20-30 tok/s、RTX 4090比でワットあたり性能が高い*
+
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Apple Silicon (Metal) の活用</text>
   <rect x="100" y="70" width="600" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -1290,6 +1326,8 @@ VRAM 重要</text>
 ---
 
 # コスパ最適化ガイド
+
+> *RTX 4060 Ti 16GBが$400-600で34B Q4まで快適、RTX 4090は70B Q4が最高コスパ*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コスパ最適化ガイド</text>
@@ -1743,6 +1781,8 @@ qa = RetrievalQA.from_chain_type(
 
 # Function Calling / ツール利用
 
+> *Llama 3.3 70B / Qwen 2.5-72Bが最も安定、LangChain/LlamaIndexでエージェント化が容易*
+
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Function Calling / ツール利用</text>
   <rect x="30" y="75" width="200" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1781,6 +1821,8 @@ qa = RetrievalQA.from_chain_type(
 ---
 
 # マルチモーダル活用
+
+> *Llama 3.2 11B/90B VisionとGemma 3 12B/27Bが高品質、Moondream2はエッジ向け1.8B*
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">マルチモーダル ローカルLLM</text>
@@ -1848,6 +1890,8 @@ qa = RetrievalQA.from_chain_type(
 
 # コーディング支援
 
+> *VS Code+Continue+OllamaでCopilot代替、社内コード漏洩なしでコードレビュー・テスト生成*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コーディング支援ユースケース</text>
   <rect x="30" y="70" width="220" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -1884,6 +1928,8 @@ qa = RetrievalQA.from_chain_type(
 ---
 
 # ドキュメント処理・社内データ活用
+
+> *議事録自動生成・社内RAG・多言語翻訳・ログ分析を完全オフラインで実現*
 
 - <svg viewBox="0 0 800 430" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="430" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ドキュメント処理・社内データ活用</text>
@@ -1923,6 +1969,8 @@ qa = RetrievalQA.from_chain_type(
 
 # セキュリティ・コンプライアンス用途
 
+> *GDPR/HIPAA/金融規制でデータ外部送信禁止の要件を満たす唯一の実用的AI手段*
+
 - <svg viewBox="0 0 800 430" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="430" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">セキュリティ・コンプライアンス用途</text>
   <rect x="30" y="75" width="340" height="80" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
@@ -1953,6 +2001,8 @@ qa = RetrievalQA.from_chain_type(
 ---
 
 # エッジデプロイ
+
+> *産業IoT・医療機器・自動車・Jetsonで1B〜3B SLMがエッジAIの主役*
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">エッジデプロイ アーキテクチャ</text>
@@ -2019,7 +2069,7 @@ qa = RetrievalQA.from_chain_type(
 
 ---
 
-# ベンチマーク：モデル・ツール別性能比較
+# ベンチマーク：モデル・ツール別性能比較（1/2）
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">モデル・ツール別 性能ベンチマーク (RTX 4090)</text>
@@ -2056,6 +2106,14 @@ qa = RetrievalQA.from_chain_type(
 - **速度指標（tokens/sec）目安**:
 - RTX 4090 + llama3.2:3b-q4 → 約150-200 tok/s
 - RTX 4090 + llama3.1:8b-q4 → 約80-120 tok/s
+
+
+---
+
+# ベンチマーク：モデル・ツール別性能比較（2/2）
+
+> *RTX 4090で70B Q4が20-35 tok/s、M4 Max 128GBなら30-40 tok/sで最高のモバイル性能*
+
 - RTX 4090 + llama3.3:70b-q4 → 約20-35 tok/s
 - M3 Pro (36GB) + llama3.3:70b-q4 → 約15-25 tok/s
 - M4 Max (128GB) + llama3.3:70b-q4 → 約30-40 tok/s
@@ -2065,6 +2123,8 @@ qa = RetrievalQA.from_chain_type(
 ---
 
 # 推論最適化テクニック
+
+> *Flash Attention 2・Speculative Decoding・KVキャッシュ量子化の組み合わせで2〜3倍高速化*
 
 - <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">推論最適化テクニック</text>
@@ -2123,6 +2183,8 @@ NPU デバイス普及</text>
 
 # ローカルLLMの課題と制限
 
+> *GPU/Apple Silicon必須・最新フロンティアモデルはクラウド優勢、Fine-tuningは大容量GPU依然必要*
+
 - <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">ローカルLLM の課題と制限</text>
   <rect x="30" y="70" width="340" height="75" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
@@ -2155,6 +2217,8 @@ NPU デバイス普及</text>
 ---
 
 # 2026年以降の展望
+
+> *SLM 3B以下がユースケースの大半をカバー、オープンソースとクローズドの性能差が急速縮小*
 
 - <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">2026年以降の技術展望</text>

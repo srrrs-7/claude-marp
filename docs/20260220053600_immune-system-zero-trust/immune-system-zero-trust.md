@@ -90,6 +90,8 @@ style: |
 
 # アジェンダ
 
+> *40億年の免疫進化がゼロトラスト設計の生物学的モデルを示す*
+
 - 1. 境界型セキュリティの崩壊
 - 2. 免疫システムの設計原則
 - 3. ゼロトラストアーキテクチャとの対応
@@ -113,6 +115,8 @@ style: |
 ---
 
 # 「城壁」モデルはなぜ機能しなくなったか
+
+> *境界消滅・内部不正・SolarWinds—「内側は安全」前提が崩壊した*
 
 - <svg viewBox="0 0 800 190" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="190" fill="#1a1a2e"/><rect x="30" y="20" width="180" height="140" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="120" y="48" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">2010年以前</text><text x="120" y="72" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">社内ネットワーク</text><text x="120" y="92" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">=「安全な内側」</text><text x="120" y="118" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">境界が明確</text><text x="120" y="140" text-anchor="middle" fill="#4caf50" font-size="10" font-family="sans-serif">城壁モデルが有効</text><rect x="310" y="20" width="460" height="140" rx="8" fill="#2a1a1a" stroke="#e91e63" stroke-width="2"/><text x="540" y="48" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">クラウド時代・リモートワーク以降</text><text x="370" y="78" fill="#aaa" font-size="11" font-family="sans-serif">☁ クラウド: 境界消滅</text><text x="370" y="100" fill="#aaa" font-size="11" font-family="sans-serif">💻 端末が社外に</text><text x="540" y="78" fill="#e91e63" font-size="11" font-family="sans-serif">内部不正増加</text><text x="540" y="100" fill="#e91e63" font-size="11" font-family="sans-serif">SolarWinds侵害</text><text x="450" y="138" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif" font-weight="bold">「内側は安全」の前提が崩壊</text><polygon points="215,90 305,90 295,84 295,96" fill="#f9a825"/></svg>
 - - クラウド移行で「内側」の境界が消滅
@@ -147,6 +151,8 @@ style: |
 
 # T細胞の「ゼロトラスト認証」（対応）
 
+> *MHC証明書をT細胞認証—毎回確認が最小権限の本質的実装*
+
 - → **「内側だから安全」ではなく「毎回証明書を確認する」**
 - ---
 - ゼロトラストの対応：
@@ -164,6 +170,8 @@ style: |
 ---
 
 # 免疫 vs ゼロトラストの対応表
+
+> *自然免疫WAFと適応免疫SIEMの2層が多層防御を実現する*
 
 | 免疫システム | ゼロトラスト |
 |:---|:---|
@@ -206,6 +214,8 @@ style: |
 
 # トレードオフ：感度 vs 特異度
 
+> *感度と特異度のトレードオフ—過剰検知が自己免疫疾患になる*
+
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0"><rect width="800" height="300" fill="#1a1a2e"/><line x1="80" y1="240" x2="700" y2="240" stroke="#888" stroke-width="2"/><line x1="80" y1="240" x2="80" y2="40" stroke="#888" stroke-width="2"/><polygon points="695,234 710,240 695,246" fill="#888"/><polygon points="74,45 80,30 86,45" fill="#888"/><text x="712" y="244" fill="#aaa" font-size="11" font-family="sans-serif">感度</text><text x="55" y="35" fill="#aaa" font-size="11" font-family="sans-serif">FP率</text><path d="M 110 228 Q 390 240 670 55" stroke="#e91e63" stroke-width="3" fill="none"/><line x1="80" y1="240" x2="670" y2="55" stroke="#555" stroke-width="1" stroke-dasharray="5 4"/><circle cx="270" cy="188" r="9" fill="#4caf50"/><circle cx="460" cy="120" r="9" fill="#f9a825"/><text x="282" y="183" fill="#4caf50" font-size="11" font-family="sans-serif" font-weight="bold">低感度（見逃し多）</text><text x="472" y="116" fill="#f9a825" font-size="11" font-family="sans-serif" font-weight="bold">高感度（誤検知多）</text><text x="390" y="22" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">感度・特異度のトレードオフ（ROC曲線）</text><text x="360" y="175" fill="#555" font-size="10" font-family="sans-serif">ランダム</text><text x="390" y="268" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">最適点はビジネスリスクで決まる</text></svg>
 - → **免疫系は「許容できる自己免疫レベル」に調整されている**
 - - 感度を上げる = 見逃し減（FN↓）、誤検知増（FP↑）
@@ -222,6 +232,8 @@ style: |
 ---
 
 # まとめ：生物から学ぶゼロトラスト
+
+> *内側を信頼せず毎回認証—40億年の免疫進化がゼロトラストの答え*
 
 - ✅ **「内側」を信頼するな** — 境界は無意味。毎回認証する
 - ✅ **多層防御** — 1層突破は想定内。次の層で止める

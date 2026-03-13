@@ -70,6 +70,7 @@
 		},
 		{
 			"title": "コアコンピタンスの罠",
+			"subtitle": "合理的な既存顧客への最適化が破壊的イノベーターに対する致命的な盲点を生む",
 			"layout": "default",
 			"content": [
 				"- Christensenの「イノベーターのジレンマ」(1997)",
@@ -82,6 +83,7 @@
 		},
 		{
 			"title": "「現在の顧客」への最適化",
+			"subtitle": "既存顧客の声に忠実であるほど、未来の市場変化を感知する能力が失われていく",
 			"layout": "default",
 			"content": [
 				"- 既存顧客の声を聞く = **未来の顧客への鈍感化**",
@@ -109,6 +111,7 @@
 		},
 		{
 			"title": "プロダクトの「成功の罠」",
+			"subtitle": "DAU増加が変化リスク回避を強制しイノベーション停止を構造的に生み出す",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 800 200' style='max-height:42vh;width:auto;display:block;margin:0 auto;letter-spacing:0'><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>成功 → 慢心 → 衰退のサイクル</text><rect x='60' y='55' width='140' height='50' rx='8' fill='#2d5016'/><text x='130' y='78' text-anchor='middle' fill='#4ecdc4' font-size='12' font-weight='bold'>成功</text><text x='130' y='96' text-anchor='middle' fill='#aaa' font-size='9'>DAU急増・高評価</text><polygon points='208,80 228,75 228,85' fill='#f9a825'/><line x1='200' y1='80' x2='228' y2='80' stroke='#f9a825' stroke-width='2'/><rect x='240' y='55' width='140' height='50' rx='8' fill='#5a3a00'/><text x='310' y='78' text-anchor='middle' fill='#f9a825' font-size='12' font-weight='bold'>慢心</text><text x='310' y='96' text-anchor='middle' fill='#aaa' font-size='9'>「壊すな」圧力増大</text><polygon points='388,80 408,75 408,85' fill='#e91e63'/><line x1='380' y1='80' x2='408' y2='80' stroke='#e91e63' stroke-width='2'/><rect x='420' y='55' width='140' height='50' rx='8' fill='#5a1a1a'/><text x='490' y='78' text-anchor='middle' fill='#ff6b6b' font-size='12' font-weight='bold'>停滞</text><text x='490' y='96' text-anchor='middle' fill='#aaa' font-size='9'>イノベーション消滅</text><polygon points='568,80 588,75 588,85' fill='#e91e63'/><line x1='560' y1='80' x2='588' y2='80' stroke='#e91e63' stroke-width='2'/><rect x='600' y='55' width='140' height='50' rx='8' fill='#7f1d1d'/><text x='670' y='78' text-anchor='middle' fill='#ff8888' font-size='12' font-weight='bold'>衰退</text><text x='670' y='96' text-anchor='middle' fill='#aaa' font-size='9'>競合に追い抜かれる</text><rect x='150' y='135' width='500' height='40' rx='8' fill='#16213e' stroke='#e91e63' stroke-width='1'/><text x='400' y='155' text-anchor='middle' fill='#e91e63' font-size='11' font-weight='bold'>Twitter / Reddit — 大規模ユーザーが変化を阻害する</text><text x='400' y='170' text-anchor='middle' fill='#aaa' font-size='10'>「壊すな」の圧力が「改善するな」に変質する</text></svg>",
@@ -121,6 +124,7 @@
 		},
 		{
 			"title": "技術スタックの「勝利の呪縛」",
+			"subtitle": "過去の成功技術への過剰な忠誠心が採用難と技術的負債を指数関数的に悪化させる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 800 200' style='max-height:40vh;width:auto;display:block;margin:0 auto;letter-spacing:0'><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>技術選択の「成功の呪縛」サイクル</text><rect x='80' y='55' width='140' height='45' rx='8' fill='#2d5016'/><text x='150' y='75' text-anchor='middle' fill='#fff' font-size='11' font-weight='bold'>技術Xで成功</text><text x='150' y='92' text-anchor='middle' fill='#aaa' font-size='9'>IPO / 大型受注</text><polygon points='228,77 248,72 248,82' fill='#f9a825'/><line x1='220' y1='77' x2='248' y2='77' stroke='#f9a825' stroke-width='2'/><rect x='260' y='55' width='140' height='45' rx='8' fill='#5a3a00'/><text x='330' y='75' text-anchor='middle' fill='#fff' font-size='11' font-weight='bold'>Xへの固執</text><text x='330' y='92' text-anchor='middle' fill='#aaa' font-size='9'>「実績があるから」</text><polygon points='408,77 428,72 428,82' fill='#f9a825'/><line x1='400' y1='77' x2='428' y2='77' stroke='#f9a825' stroke-width='2'/><rect x='440' y='55' width='140' height='45' rx='8' fill='#5a1a1a'/><text x='510' y='75' text-anchor='middle' fill='#fff' font-size='11' font-weight='bold'>新技術スルー</text><text x='510' y='92' text-anchor='middle' fill='#aaa' font-size='9'>移行コストを理由に</text><polygon points='588,77 608,72 608,82' fill='#e74c3c'/><line x1='580' y1='77' x2='608' y2='77' stroke='#e74c3c' stroke-width='2'/><rect x='620' y='55' width='140' height='45' rx='8' fill='#7f1d1d'/><text x='690' y='75' text-anchor='middle' fill='#ff8888' font-size='11' font-weight='bold'>技術的負債</text><text x='690' y='92' text-anchor='middle' fill='#aaa' font-size='9'>採用困難・速度低下</text><text x='400' y='145' text-anchor='middle' fill='#e74c3c' font-size='13' font-weight='bold'>「成功した技術」が「変化できない理由」になる</text><text x='400' y='168' text-anchor='middle' fill='#aaa' font-size='11'>技術選択は結婚ではなく、リースであるべき</text></svg>",

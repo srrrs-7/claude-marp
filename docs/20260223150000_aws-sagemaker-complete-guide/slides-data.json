@@ -40,7 +40,8 @@
 				"**Part 7** セキュリティ・ネットワーク（Slide 79–88）",
 				"**Part 8–10** コスト最適化・アーキテクチャパターン・まとめ（Slide 89–108）"
 			],
-			"speakerNotes": "全 108 枚を 10 のパートに分けて解説します。試験範囲に合わせて重要度の高いパート（MLOps・推論・セキュリティ）は特に丁寧に解説します。"
+			"speakerNotes": "全 108 枚を 10 のパートに分けて解説します。試験範囲に合わせて重要度の高いパート（MLOps・推論・セキュリティ）は特に丁寧に解説します。",
+			"subtitle": "MLOps・推論・セキュリティの3領域が試験の重点カバー範囲"
 		},
 		{
 			"title": "Part 2: データ準備・特徴量管理",
@@ -65,7 +66,8 @@
 				"**エクスポート**：Python スクリプト / SageMaker Pipeline / Feature Store に直接出力",
 				"**外部接続**：Snowflake / Databricks / Salesforce / SAP など SaaS 連携対応"
 			],
-			"speakerNotes": "試験頻出: Quick Model は本格的なモデル学習前に特徴量の有効性を高速に確認できる機能です。バイアス分析の指標（CI・DPPL・KL Divergence）も出題されます。Data Wrangler でエクスポートした Python コードは SageMaker Processing Job で実行できます。"
+			"speakerNotes": "試験頻出: Quick Model は本格的なモデル学習前に特徴量の有効性を高速に確認できる機能です。バイアス分析の指標（CI・DPPL・KL Divergence）も出題されます。Data Wrangler でエクスポートした Python コードは SageMaker Processing Job で実行できます。",
+			"subtitle": "300+変換をGUIで実行—前処理コードをゼロにして時間を80%削減"
 		},
 		{
 			"title": "SageMaker Feature Store アーキテクチャ",
@@ -102,7 +104,8 @@
 				"**Auto-labeling**：ラベル済みデータで ML モデルを学習し高信頼度データを自動付与（コスト削減）",
 				"**ワークフォース**：Mechanical Turk（一般公開）/ Private（社内）/ AWS Marketplace Vendor"
 			],
-			"speakerNotes": "試験頻出: Ground Truth Plus は Ground Truth のフルマネージド版で、ワークフォース管理・品質保証・SLA 対応をすべて AWS が担当します。コスト重視なら Mechanical Turk、機密データなら Private Team を選択します。Semantic Segmentation と 3D Point Cloud は画像系の中でも特に計算コストが高いタスクです。"
+			"speakerNotes": "試験頻出: Ground Truth Plus は Ground Truth のフルマネージド版で、ワークフォース管理・品質保証・SLA 対応をすべて AWS が担当します。コスト重視なら Mechanical Turk、機密データなら Private Team を選択します。Semantic Segmentation と 3D Point Cloud は画像系の中でも特に計算コストが高いタスクです。",
+			"subtitle": "人間+機械の組み合わせで高品質ラベルをコスト効率最大化"
 		},
 		{
 			"title": "SageMaker Processing ジョブアーキテクチャ",
@@ -127,7 +130,8 @@
 				"**大規模 ETL・複雑な変換パイプライン** → AWS Glue",
 				"**ストリーミングデータの特徴量取り込み** → Kinesis Data Streams → Feature Store"
 			],
-			"speakerNotes": "試験の選択問題で最も重要なサービス選択ガイドです。ポイント: ①GUI ベースの前処理 → Data Wrangler（Glue でも ETL はできるが GUI が特徴）、②特徴量の再利用・一貫性 → Feature Store、③ラベリング → Ground Truth、④スケーラブルなバッチ処理 → Processing Job または Glue、⑤ストリーミング → Kinesis + Feature Store。"
+			"speakerNotes": "試験の選択問題で最も重要なサービス選択ガイドです。ポイント: ①GUI ベースの前処理 → Data Wrangler（Glue でも ETL はできるが GUI が特徴）、②特徴量の再利用・一貫性 → Feature Store、③ラベリング → Ground Truth、④スケーラブルなバッチ処理 → Processing Job または Glue、⑤ストリーミング → Kinesis + Feature Store。",
+			"subtitle": "Wrangler=前処理、FeatureStore=再利用、GroundTruth=ラベリング"
 		},
 		{
 			"title": "Data Wrangler ワークフロー詳細",
@@ -166,7 +170,8 @@
 				"**Fine-tuning サポート**：多くのモデルでドメイン特化学習が可能（QLoRA対応）",
 				"**Private Hub**：カスタムモデルを組織内で共有・バージョン管理"
 			],
-			"speakerNotes": "試験では JumpStart vs Bedrock の選択基準が出題。JumpStart = SageMaker 上でモデルをホストし完全なコントロールが可能 (VPC 分離, カスタムコンテナ, Fine-tuning 自由度)。Bedrock = API 経由のフルマネージド、インフラ管理不要。モデルのカスタマイズ深度と運用負荷のトレードオフで選択する。"
+			"speakerNotes": "試験では JumpStart vs Bedrock の選択基準が出題。JumpStart = SageMaker 上でモデルをホストし完全なコントロールが可能 (VPC 分離, カスタムコンテナ, Fine-tuning 自由度)。Bedrock = API 経由のフルマネージド、インフラ管理不要。モデルのカスタマイズ深度と運用負荷のトレードオフで選択する。",
+			"subtitle": "Llama・Stable Diffusion等をワンクリックでデプロイ可能"
 		},
 		{
 			"title": "SageMaker Training Job アーキテクチャ",
@@ -197,7 +202,8 @@
 				"**Inferentia/Trainium**：ml.trn1 系 - AWS カスタムチップ (コスト効率最大70%削減)",
 				"**Spot Training**：最大90%コスト削減（中断耐性のあるチェックポイント必須）"
 			],
-			"speakerNotes": "インスタンス選択は試験頻出。ml.p3.2xlarge が最も一般的な GPU 学習インスタンス。ml.p4d.24xlarge は NVLink + EFA 搭載で分散学習に最適。AWS Trainium (trn1) は LLM 学習専用チップで、同等 GPU 比 50-70% コスト削減。Inferentia (inf2) は推論専用。試験: 高スループット推論 = inf2, LLM 学習コスト削減 = trn1 と覚える。"
+			"speakerNotes": "インスタンス選択は試験頻出。ml.p3.2xlarge が最も一般的な GPU 学習インスタンス。ml.p4d.24xlarge は NVLink + EFA 搭載で分散学習に最適。AWS Trainium (trn1) は LLM 学習専用チップで、同等 GPU 比 50-70% コスト削減。Inferentia (inf2) は推論専用。試験: 高スループット推論 = inf2, LLM 学習コスト削減 = trn1 と覚える。",
+			"subtitle": "モデルサイズがGPUメモリ収容範囲内かで選択肢が決まる"
 		},
 		{
 			"title": "Managed Spot Training チェックポイントフロー",
@@ -222,7 +228,8 @@
 				"**Explainability**：SHAP値による特徴量重要度レポートを自動生成",
 				"**対話モード**：Jupyter Notebook に候補コードを自動生成（確認・カスタマイズ可）"
 			],
-			"speakerNotes": "Autopilot の 3 モードは試験で問われる。Ensembling は AutoGluon ベースのアンサンブルで小〜中規模データに高精度。HPO モードは大規模データで複数アルゴリズムを並列チューニング。Time Series は DeepAR+ が SageMaker 独自の時系列予測アルゴリズム (LSTM ベース)。対話モードでは候補パイプラインコードを生成して ML エンジニアがカスタマイズ可能。"
+			"speakerNotes": "Autopilot の 3 モードは試験で問われる。Ensembling は AutoGluon ベースのアンサンブルで小〜中規模データに高精度。HPO モードは大規模データで複数アルゴリズムを並列チューニング。Time Series は DeepAR+ が SageMaker 独自の時系列予測アルゴリズム (LSTM ベース)。対話モードでは候補パイプラインコードを生成して ML エンジニアがカスタマイズ可能。",
+			"subtitle": "AutoMLで最良アルゴリズムを自動選択—手動比較作業が不要"
 		},
 		{
 			"title": "HyperParameter Tuning ベイズ最適化",
@@ -253,7 +260,8 @@
 				"**プロファイラー**：Step時間, DataLoader時間, I/Oボトルネック, ホット操作検出",
 				"**使用方法**：Estimator に rules=[Rule.sagemaker(rule_configs.vanishing_gradient())] を追加"
 			],
-			"speakerNotes": "ビルトインルールは設定1行で追加可能。VanishingGradient は活性化関数の選択ミス (Sigmoid/Tanh の深いネットワーク) を早期検出。LowGPUUtilization は GPU 利用率が低い時に通知 → バッチサイズ増加やインスタンスダウングレードを推奨。ProfilerReport HTML では各ステップの時間内訳 (DataLoader ボトルネック等) を可視化。カスタムルールは Lambda 関数として実装可能。"
+			"speakerNotes": "ビルトインルールは設定1行で追加可能。VanishingGradient は活性化関数の選択ミス (Sigmoid/Tanh の深いネットワーク) を早期検出。LowGPUUtilization は GPU 利用率が低い時に通知 → バッチサイズ増加やインスタンスダウングレードを推奨。ProfilerReport HTML では各ステップの時間内訳 (DataLoader ボトルネック等) を可視化。カスタムルールは Lambda 関数として実装可能。",
+			"subtitle": "消失勾配・過学習を学習中にリアルタイム検出して自動停止"
 		},
 		{
 			"title": "SageMaker Clarify バイアス検出フロー",
@@ -272,7 +280,8 @@
 				"**Kernel SHAP**：モデル非依存の説明手法（任意のモデルに適用可）",
 				"**用途**：モデルカード生成, 規制対応 (GDPR 説明責任), デバッグ"
 			],
-			"speakerNotes": "公平性指標の詳細: CI = (n_a - n_d) / (n_a + n_d)、0に近いほど均衡。DI = (予測正例率_a) / (予測正例率_d)、0.8〜1.25 が通常許容範囲。SHAP: Shapley 値の近似で、特徴量の全組み合わせに対する限界貢献度を計算。Kernel SHAP は線形モデル近似で任意のブラックボックスモデルに適用可能。グローバル説明 (全体の特徴量重要度) とローカル説明 (個別予測の根拠) の両方を提供。GDPR 第35条の「自動意思決定に対する説明権」に対応。"
+			"speakerNotes": "公平性指標の詳細: CI = (n_a - n_d) / (n_a + n_d)、0に近いほど均衡。DI = (予測正例率_a) / (予測正例率_d)、0.8〜1.25 が通常許容範囲。SHAP: Shapley 値の近似で、特徴量の全組み合わせに対する限界貢献度を計算。Kernel SHAP は線形モデル近似で任意のブラックボックスモデルに適用可能。グローバル説明 (全体の特徴量重要度) とローカル説明 (個別予測の根拠) の両方を提供。GDPR 第35条の「自動意思決定に対する説明権」に対応。",
+			"subtitle": "Bias検出+SHAP説明可能性を1サービスで提供—規制対応に必須"
 		},
 		{
 			"title": "トレーニング最適化 全体俯瞰",
@@ -317,7 +326,8 @@
 				"**統合**：Pipelines, Lambda, EventBridge, CodePipeline との CI/CD 連携"
 			],
 			"layout": "default",
-			"speakerNotes": "試験キーワード: Model Package Group (グループ) と Model Package (個別バージョン) の違いを明確に区別する。承認ステータスは 'Approved' でないとデプロイをブロックする設定を Pipeline に組み込むことで誤ったモデルの本番展開を防止できる。Lambda から update_model_package() API を呼び出して承認ステータスを変更する連携パターンも覚えておく。"
+			"speakerNotes": "試験キーワード: Model Package Group (グループ) と Model Package (個別バージョン) の違いを明確に区別する。承認ステータスは 'Approved' でないとデプロイをブロックする設定を Pipeline に組み込むことで誤ったモデルの本番展開を防止できる。Lambda から update_model_package() API を呼び出して承認ステータスを変更する連携パターンも覚えておく。",
+			"subtitle": "Pending→Approved→Rejectedで本番デプロイを承認フロー管理"
 		},
 		{
 			"title": "CI/CD MLOps (CodePipeline + SageMaker)",
@@ -348,7 +358,8 @@
 				"**Data Capture**：Endpoint の入出力を S3 に自動記録（サンプリング率設定可）"
 			],
 			"layout": "default",
-			"speakerNotes": "試験頻出: 4 種類の Monitor の違いを正確に理解する。Data Quality は Ground Truth 不要で特徴量の分布変化を検知。Model Quality は正解ラベル (Ground Truth) が必要で予測精度の劣化を検知。Bias Drift と Feature Attribution Drift は SageMaker Clarify と統合されており、公平性と SHAP 値の変化を監視する。Model Quality Monitor は Merge Records で後から Ground Truth とマージする仕組みが特徴的。"
+			"speakerNotes": "試験頻出: 4 種類の Monitor の違いを正確に理解する。Data Quality は Ground Truth 不要で特徴量の分布変化を検知。Model Quality は正解ラベル (Ground Truth) が必要で予測精度の劣化を検知。Bias Drift と Feature Attribution Drift は SageMaker Clarify と統合されており、公平性と SHAP 値の変化を監視する。Model Quality Monitor は Merge Records で後から Ground Truth とマージする仕組みが特徴的。",
+			"subtitle": "4種類の監視を全て有効化—未検知ドリフトは精度劣化の根本原因"
 		},
 		{
 			"title": "Model Cards ドキュメントフロー",
@@ -379,7 +390,8 @@
 				"**コスト管理**：Spot Training, Serverless Inference, Auto Scaling の組み合わせ"
 			],
 			"layout": "default",
-			"speakerNotes": "実践的なMLOps設計のベストプラクティス集。再現性確保のためにコード・データ・環境 (Docker) の全てをバージョン管理する。アカウント分離は爆発半径 (blast radius) を制限し、本番環境へのアクセスを最小化する。自動化の連鎖 (Data Capture → Monitor → EventBridge → Pipeline 再実行) が Level 3 MLOps の核心。コスト管理では Spot インスタンス (Training) + Serverless (低頻度推論) + Auto Scaling (高負荷) の組み合わせが効果的。"
+			"speakerNotes": "実践的なMLOps設計のベストプラクティス集。再現性確保のためにコード・データ・環境 (Docker) の全てをバージョン管理する。アカウント分離は爆発半径 (blast radius) を制限し、本番環境へのアクセスを最小化する。自動化の連鎖 (Data Capture → Monitor → EventBridge → Pipeline 再実行) が Level 3 MLOps の核心。コスト管理では Spot インスタンス (Training) + Serverless (低頻度推論) + Auto Scaling (高負荷) の組み合わせが効果的。",
+			"subtitle": "IaC+自動テスト+承認ゲートの三層が本番品質を保証する"
 		},
 		{
 			"title": "マルチ環境デプロイパイプライン",
@@ -424,7 +436,8 @@
 				"**冷却期間**：ScaleIn/ScaleOut クールダウンで過剰なスケーリングを防止"
 			],
 			"layout": "default",
-			"speakerNotes": "Auto ScalingはApplication Auto Scalingサービスを利用。最も重要なメトリクスはSageMakerVariantInvocationsPerInstance（インスタンス1台あたりの呼び出し数）。Target Trackingが最もシンプルで推奨される方法。Real-timeではScale-to-zeroは不可（常時最低1台）。これはServerless Inferenceを選ぶ理由になる。"
+			"speakerNotes": "Auto ScalingはApplication Auto Scalingサービスを利用。最も重要なメトリクスはSageMakerVariantInvocationsPerInstance（インスタンス1台あたりの呼び出し数）。Target Trackingが最もシンプルで推奨される方法。Real-timeではScale-to-zeroは不可（常時最低1台）。これはServerless Inferenceを選ぶ理由になる。",
+			"subtitle": "TargetTrackingでInvocationsPerInstanceをターゲットに自動拡縮"
 		},
 		{
 			"title": "Auto Scaling ポリシー比較",
@@ -449,7 +462,8 @@
 				"**vs Real-time**：常時稼働コスト不要 vs 低レイテンシ保証 のトレードオフ"
 			],
 			"layout": "default",
-			"speakerNotes": "Serverless Inferenceはアイドル時コストゼロが最大のメリット。間欠的なトラフィック（1日数百リクエスト等）に最適。GPUインスタンスは非対応のため、CPU推論のみ。試験では「間欠的トラフィック」「コスト最適化」というキーワードが出たらServerlessを選ぶ。ペイロード上限4MBを超える場合はAsync Inferenceを選択。"
+			"speakerNotes": "Serverless Inferenceはアイドル時コストゼロが最大のメリット。間欠的なトラフィック（1日数百リクエスト等）に最適。GPUインスタンスは非対応のため、CPU推論のみ。試験では「間欠的トラフィック」「コスト最適化」というキーワードが出たらServerlessを選ぶ。ペイロード上限4MBを超える場合はAsync Inferenceを選択。",
+			"subtitle": "コールドスタート数秒あり—断続トラフィックの低コスト最適解"
 		},
 		{
 			"title": "Async Inference キューイングアーキテクチャ",
@@ -468,7 +482,8 @@
 				"**エラーハンドリング**：failure_path (S3) に失敗リクエストの詳細を保存"
 			],
 			"layout": "default",
-			"speakerNotes": "Async Inferenceの数値を暗記する: ペイロード1GB、タイムアウト3600秒。Scale-to-zero機能は試験頻出。failure_pathパラメータでエラー詳細をS3に保存することも覚えておく。SNS通知と組み合わせてイベント駆動アーキテクチャを構築できる。動画処理・音声認識などGPU処理が必要で間欠的な大容量ワークロードに最適。"
+			"speakerNotes": "Async Inferenceの数値を暗記する: ペイロード1GB、タイムアウト3600秒。Scale-to-zero機能は試験頻出。failure_pathパラメータでエラー詳細をS3に保存することも覚えておく。SNS通知と組み合わせてイベント駆動アーキテクチャを構築できる。動画処理・音声認識などGPU処理が必要で間欠的な大容量ワークロードに最適。",
+			"subtitle": "15分タイムアウト+SNS通知で非同期大規模推論を実現"
 		},
 		{
 			"title": "Batch Transform パイプラインフロー",
@@ -487,7 +502,8 @@
 				"**ユースケース**：大規模データの一括スコアリング（数百万件の顧客データ等）"
 			],
 			"layout": "default",
-			"speakerNotes": "Batch Transformの最適化には複数のパラメータを組み合わせる。SplitType=Line + BatchStrategy=MultiRecordが高スループットの基本設定。MaxConcurrentTransformsを増やすと並列度が上がるが、インスタンスのCPU/メモリ上限に注意。AssembleWith=Lineで入力と同じ行数の出力を保証できる。FilterSpecはJMESPath式で入出力の列を選択できる。"
+			"speakerNotes": "Batch Transformの最適化には複数のパラメータを組み合わせる。SplitType=Line + BatchStrategy=MultiRecordが高スループットの基本設定。MaxConcurrentTransformsを増やすと並列度が上がるが、インスタンスのCPU/メモリ上限に注意。AssembleWith=Lineで入力と同じ行数の出力を保証できる。FilterSpecはJMESPath式で入出力の列を選択できる。",
+			"subtitle": "MaxConcurrentTransforms調整でスループット最大化が可能"
 		},
 		{
 			"title": "Multi-Model Endpoint アーキテクチャ",
@@ -518,7 +534,8 @@
 				"**移行**：シャドウで品質確認後 → Blue/Green デプロイで正式切り替え"
 			],
 			"layout": "default",
-			"speakerNotes": "ShadowProductionVariantsはEndpointConfigのオプション。samplingPercentage=100で全リクエストコピー。シャドウのレスポンスはDiscardされ課金対象ではあるが本番には影響しない。Data CaptureはS3に入出力を保存しオフライン品質評価に利用する。"
+			"speakerNotes": "ShadowProductionVariantsはEndpointConfigのオプション。samplingPercentage=100で全リクエストコピー。シャドウのレスポンスはDiscardされ課金対象ではあるが本番には影響しない。Data CaptureはS3に入出力を保存しオフライン品質評価に利用する。",
+			"subtitle": "本番トラフィックを新モデルに複製してリスクゼロで性能検証"
 		},
 		{
 			"title": "Inference Recommender フロー",
@@ -549,7 +566,8 @@
 				"**効果**：クラウドで最大2.5倍高速化, エッジで最大25倍フットプリント削減"
 			],
 			"layout": "default",
-			"speakerNotes": "試験頻出: Neoが対応するFWとデバイスの組み合わせ。Inferentia(inf1)はNeo必須。Jetsonシリーズは幅広くサポート。ARM/Qualcommなどヘテロジニアスなエッジ環境に対応できるのがNeoの強み。最適化技術はTVM由来のグラフIR変換とハードウェア固有カーネル生成。"
+			"speakerNotes": "試験頻出: Neoが対応するFWとデバイスの組み合わせ。Inferentia(inf1)はNeo必須。Jetsonシリーズは幅広くサポート。ARM/Qualcommなどヘテロジニアスなエッジ環境に対応できるのがNeoの強み。最適化技術はTVM由来のグラフIR変換とハードウェア固有カーネル生成。",
+			"subtitle": "TF/PyTorch/ONNXをエッジ向けコンパイルで最大2倍高速化"
 		},
 		{
 			"title": "大規模 LLM 推論: LMI コンテナ",
@@ -568,7 +586,8 @@
 				"**最適インスタンス**：ml.p4d.24xlarge (8×A100 80GB) / ml.p3.16xlarge (8×V100)"
 			],
 			"layout": "default",
-			"speakerNotes": "LMIはserving.propertiesというファイルに設定を記述。option.tensor_parallel_degree=8でGPU8枚分割。option.rolling_batch=vllmでContinuous Batching有効化。option.dtype=fp16/int8で精度設定。70Bモデルはml.p4d.24xlarge(640GB GPU合計)が最低限必要。INT4量子化で半分のメモリで動作可能。"
+			"speakerNotes": "LMIはserving.propertiesというファイルに設定を記述。option.tensor_parallel_degree=8でGPU8枚分割。option.rolling_batch=vllmでContinuous Batching有効化。option.dtype=fp16/int8で精度設定。70Bモデルはml.p4d.24xlarge(640GB GPU合計)が最低限必要。INT4量子化で半分のメモリで動作可能。",
+			"subtitle": "テンソル並列でGPU間にモデルを分割—超大規模LLMを推論"
 		},
 		{
 			"title": "推論コスト最適化マトリクス",
@@ -599,7 +618,8 @@
 				"**生成 AI 統合**：Amazon Bedrock モデルを Canvas から呼び出し可能（2024〜）"
 			],
 			"layout": "default",
-			"speakerNotes": "Canvas は 2024 年時点で幅広い問題タイプをサポートしています。表形式データは最も一般的なユースケースで、分類・回帰が中心です。時系列予測では自動的に最適アルゴリズムを選択します。画像・テキスト・文書分析も追加されており、さらに Bedrock との統合で生成 AI 機能も利用できます。"
+			"speakerNotes": "Canvas は 2024 年時点で幅広い問題タイプをサポートしています。表形式データは最も一般的なユースケースで、分類・回帰が中心です。時系列予測では自動的に最適アルゴリズムを選択します。画像・テキスト・文書分析も追加されており、さらに Bedrock との統合で生成 AI 機能も利用できます。",
+			"subtitle": "ノーコードで分類・回帰・予測・NLP・画像モデルを自動構築"
 		},
 		{
 			"title": "Canvas から Studio へのモデル共有",
@@ -626,7 +646,8 @@
 				"**導入メリット**：ML 専門家不要で2週間→2時間で予測モデルをデプロイ可能"
 			],
 			"layout": "default",
-			"speakerNotes": "Canvas は幅広い業種・ユースケースに対応します。重要なのは「ML 専門家なしで数時間でモデルを作れる」という点です。従来2週間かかっていた分析が2時間に短縮された事例もあります。ただし、精度・解釈性・ガバナンスが重要なユースケースはデータサイエンティストのレビューを組み合わせることを推奨します。"
+			"speakerNotes": "Canvas は幅広い業種・ユースケースに対応します。重要なのは「ML 専門家なしで数時間でモデルを作れる」という点です。従来2週間かかっていた分析が2時間に短縮された事例もあります。ただし、精度・解釈性・ガバナンスが重要なユースケースはデータサイエンティストのレビューを組み合わせることを推奨します。",
+			"subtitle": "需要予測・チャーン予測をコードゼロで30日以内に本番化"
 		},
 		{
 			"title": "Part 7: セキュリティ・ネットワーク",
@@ -657,7 +678,8 @@
 				"**SCPs (Service Control Policies)**：Organizations レベルで SageMaker 操作を組織全体で制限"
 			],
 			"layout": "default",
-			"speakerNotes": "IAM 設計のポイントは最小権限原則の徹底です。SageMaker Execution Role は Training・Endpoint・Studio が引き受けるサービスロールで、S3 はバケット単位・ECR は特定リポジトリのみのアクセスに絞ります。Role Manager を使うと DS/MLOps/DE の3ペルソナに対応したロールを素早く作成できます。クロスアカウントでのモデル共有時は Resource Policy と Assume Role の組み合わせが必要です。SCPs で組織全体の操作を制限することでガバナンスを強化できます。"
+			"speakerNotes": "IAM 設計のポイントは最小権限原則の徹底です。SageMaker Execution Role は Training・Endpoint・Studio が引き受けるサービスロールで、S3 はバケット単位・ECR は特定リポジトリのみのアクセスに絞ります。Role Manager を使うと DS/MLOps/DE の3ペルソナに対応したロールを素早く作成できます。クロスアカウントでのモデル共有時は Resource Policy と Assume Role の組み合わせが必要です。SCPs で組織全体の操作を制限することでガバナンスを強化できます。",
+			"subtitle": "実行ロール+パスロール分離でPoLPを徹底—権限昇格を防止"
 		},
 		{
 			"title": "データ暗号化アーキテクチャ (KMS 統合)",
@@ -682,7 +704,8 @@
 				"**AWS Audit Manager**：SageMaker アクティビティを自動収集してコンプライアンス証拠生成"
 			],
 			"layout": "default",
-			"speakerNotes": "SageMaker は主要なコンプライアンスフレームワークに対応しています。HIPAA は BAA 締結が前提で、CMK 暗号化・VPC 分離・CloudTrail が必須要件です。PCI DSS はカード情報を扱う場合に必要で、ネットワーク分離と暗号化が中心です。GDPR ではリージョン固定とデータ削除権への対応が必要で、SageMaker Clarify で説明責任を果たせます。AWS Audit Manager を使うと SageMaker 操作の証拠を自動収集できます。"
+			"speakerNotes": "SageMaker は主要なコンプライアンスフレームワークに対応しています。HIPAA は BAA 締結が前提で、CMK 暗号化・VPC 分離・CloudTrail が必須要件です。PCI DSS はカード情報を扱う場合に必要で、ネットワーク分離と暗号化が中心です。GDPR ではリージョン固定とデータ削除権への対応が必要で、SageMaker Clarify で説明責任を果たせます。AWS Audit Manager を使うと SageMaker 操作の証拠を自動収集できます。",
+			"subtitle": "暗号化+VPC+PrivateLink+監査ログの4点が必須要件"
 		},
 		{
 			"title": "マルチアカウント設計 (AWS Organizations)",
@@ -707,7 +730,8 @@
 				"**Studio**：RootAccess=DISABLED, 共有EFSはユーザープレフィックスで分離"
 			],
 			"layout": "default",
-			"speakerNotes": "SageMaker セキュリティのベストプラクティスをまとめます。ネットワークは VPC 必須化と PrivateLink が最重要です。暗号化は S3/EBS/EFS すべてに CMK を適用し転送中も TLS を強制します。IAM は最小権限の徹底と Role Manager でのペルソナ管理が効果的です。監査のため CloudTrail を全リージョンで有効化し S3 オブジェクトレベルのログも取得します。コンテナは ECR スキャンと root 無効化が重要です。Studio では RootAccess=DISABLED と EFS プレフィックスによるユーザー分離を設定します。"
+			"speakerNotes": "SageMaker セキュリティのベストプラクティスをまとめます。ネットワークは VPC 必須化と PrivateLink が最重要です。暗号化は S3/EBS/EFS すべてに CMK を適用し転送中も TLS を強制します。IAM は最小権限の徹底と Role Manager でのペルソナ管理が効果的です。監査のため CloudTrail を全リージョンで有効化し S3 オブジェクトレベルのログも取得します。コンテナは ECR スキャンと root 無効化が重要です。Studio では RootAccess=DISABLED と EFS プレフィックスによるユーザー分離を設定します。",
+			"subtitle": "ネットワーク隔離+暗号化+最小権限の三層防御が基本"
 		},
 		{
 			"title": "Part 8: コスト最適化",
@@ -744,7 +768,8 @@
 				"**Savings Plans**：定常ワークロードは1〜3年 Savings Plans で最大64%割引"
 			],
 			"layout": "default",
-			"speakerNotes": "これらの施策を組み合わせることで全体コストの60〜80%削減が現実的。優先度: Spot Training > アイドル停止 > 推論タイプ最適化 > Savings Plans の順で効果が大きい。"
+			"speakerNotes": "これらの施策を組み合わせることで全体コストの60〜80%削減が現実的。優先度: Spot Training > アイドル停止 > 推論タイプ最適化 > Savings Plans の順で効果が大きい。",
+			"subtitle": "Spot+Savings Plans+Auto停止で学習コストを最大90%削減"
 		},
 		{
 			"title": "SageMaker Savings Plans",
@@ -813,7 +838,8 @@
 				"**説明責任** → Clarify (バイアス/SHAP) + Model Cards + Lineage Tracking"
 			],
 			"layout": "default",
-			"speakerNotes": "これらのパターンを設計問題として解けるように練習すること。SAA/SAP と異なりMLワークロードの特性を理解した上でのサービス選択が求められる。"
+			"speakerNotes": "これらのパターンを設計問題として解けるように練習すること。SAA/SAP と異なりMLワークロードの特性を理解した上でのサービス選択が求められる。",
+			"subtitle": "問題文のキーワードからサービス選択パターンを即引き出せ"
 		},
 		{
 			"title": "Part 10: まとめ・サービス選択ガイド",
@@ -845,7 +871,8 @@
 				"5. **Distributed Training**: データ並列(SMDDP)= データ分割, モデル並列(SMP)= レイヤー分割"
 			],
 			"layout": "default",
-			"speakerNotes": "TOP 10は必須暗記項目。特に推論4タイプの制限値(Serverless: 4MB/60秒, Async: 1GB/1時間, RT: 6MB/60秒)と、MME/MCEの選択基準は高頻出。Feature Store の Online/Offline 二重構造はほぼ毎回出題。"
+			"speakerNotes": "TOP 10は必須暗記項目。特に推論4タイプの制限値(Serverless: 4MB/60秒, Async: 1GB/1時間, RT: 6MB/60秒)と、MME/MCEの選択基準は高頻出。Feature Store の Online/Offline 二重構造はほぼ毎回出題。",
+			"subtitle": "Feature Store・Pipelines・Clarifyが最頻出サービス群"
 		},
 		{
 			"title": "試験重要ポイント TOP 20（2/2）",
@@ -857,7 +884,8 @@
 				"10. **JumpStart vs Bedrock**: SageMaker制御(JumpStart) vs フルマネージドAPI(Bedrock)"
 			],
 			"layout": "default",
-			"speakerNotes": "TOP 10は必須暗記項目。特に推論4タイプの制限値(Serverless: 4MB/60秒, Async: 1GB/1時間, RT: 6MB/60秒)と、MME/MCEの選択基準は高頻出。Feature Store の Online/Offline 二重構造はほぼ毎回出題。"
+			"speakerNotes": "TOP 10は必須暗記項目。特に推論4タイプの制限値(Serverless: 4MB/60秒, Async: 1GB/1時間, RT: 6MB/60秒)と、MME/MCEの選択基準は高頻出。Feature Store の Online/Offline 二重構造はほぼ毎回出題。",
+			"subtitle": "Blue/Green vs Canary vs Shadowの使い分けが必出問題"
 		},
 		{
 			"title": "参考リソース・学習ガイド",
@@ -870,7 +898,8 @@
 				"**実践演習**：SageMaker Studio Lab で無料ハンズオン可能（AWS アカウント不要）"
 			],
 			"layout": "default",
-			"speakerNotes": "試験対策には公式ドキュメントと実際のハンズオンが最も有効。Studio Lab は無料でAWSアカウント不要のため、まず手を動かすことを推奨。Well-Architected ML Framework は設計問題の思考フレームとして活用すること。"
+			"speakerNotes": "試験対策には公式ドキュメントと実際のハンズオンが最も有効。Studio Lab は無料でAWSアカウント不要のため、まず手を動かすことを推奨。Well-Architected ML Framework は設計問題の思考フレームとして活用すること。",
+			"subtitle": "公式Workshop+Udemyで合格者の80%が学習ルートを統一"
 		}
 	]
 }

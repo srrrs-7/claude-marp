@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "転換率・コスト構造・失敗条件の3軸でフリーミアムの経済学を解剖する",
 			"content": [
 				"1. フリーミアムの定義と経済学",
 				"2. 転換率の現実",
@@ -33,7 +34,8 @@
 				"「Free」+「Premium」の合成語",
 				"**基本モデル：** 基本機能を無料で提供（Free）、高度な機能・容量・サポートは有料（Premium）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Free+Premiumの構造: 99%無料ユーザーを1-5%が支える"
 		},
 		{
 			"title": "「Freemium」という造語の起源（2/2）",
@@ -45,7 +47,8 @@
 				"2. 無料で試した後、価値を感じたユーザーが転換する",
 				"3. 有料ユーザーの利益がフリーユーザーのコストを上回る"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "限界コストほぼゼロのデジタル財でのみ成立する構造"
 		},
 		{
 			"title": "転換率の現実",
@@ -61,7 +64,8 @@
 				"Dropbox：約4%　／　LinkedIn Premium：約0.5-1%",
 				"一般的なSaaS：1-5%"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Spotify27%・Dropbox4%・LinkedIn0.75%の転換率の現実"
 		},
 		{
 			"title": "業界別の転換率データ（2/2）",
@@ -71,7 +75,8 @@
 				"**これが成立する条件：** デジタル財のフリーユーザーあたりの限界コストが限りなくゼロに近いこと",
 				"→ 追加1ユーザーでサーバーコストが爆増するなら破綻"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "95-99%が無料のままでも成立するのは限界コストがゼロだから"
 		},
 		{
 			"title": "Spotifyの収益構造",
@@ -86,10 +91,12 @@
 				"有料サブスクライバー：2.4億人（転換率40%）、売上：138億ユーロ",
 				"**フリーユーザーの「コスト」：** 楽曲再生ごとに著作権料が発生（約$0.004/再生）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "6億ユーザー中2.4億が有料化した40%転換率が強さの源泉"
 		},
 		{
 			"title": "Spotifyはなぜフリーを維持できるか（2/2）",
+			"subtitle": "広告収入・転換可能性・口コミ・競合防止の4源泉がフリーコストを正当化する",
 			"content": [
 				"<svg viewBox=\"0 0 800 250\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"250\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"bold\">フリーユーザーの4つの価値源</text><rect x=\"30\" y=\"50\" width=\"170\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"115\" y=\"80\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">広告収入</text><text x=\"115\" y=\"100\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"10\">直接的収益貢献</text><rect x=\"220\" y=\"50\" width=\"170\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"305\" y=\"80\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\" font-weight=\"bold\">転換可能性</text><text x=\"305\" y=\"100\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"10\">将来の有料化</text><rect x=\"410\" y=\"50\" width=\"170\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/><text x=\"495\" y=\"80\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"12\" font-weight=\"bold\">口コミ効果</text><text x=\"495\" y=\"100\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"10\">ネットワーク拡大</text><rect x=\"600\" y=\"50\" width=\"170\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"685\" y=\"80\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">競合防止</text><text x=\"685\" y=\"100\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"10\">Apple Music等へ</text><text x=\"685\" y=\"116\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"10\">流出を防ぐ</text><rect x=\"60\" y=\"165\" width=\"680\" height=\"55\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/><text x=\"400\" y=\"190\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">フリーユーザーコスト（著作権料 $0.004/再生）</text><text x=\"400\" y=\"210\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"11\">広告収入でカバー → ネット収支をプラスに保つ</text></svg>",
 				"フリーユーザーへの広告収入でこれをカバー",
@@ -113,7 +120,8 @@
 				"大半がフリーユーザーで収益化に失敗",
 				"2016年からフリー機能を次々と制限 → ユーザーが一斉に離脱"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Evernoteはフリー機能が十分すぎて誰も有料にならなかった"
 		},
 		{
 			"title": "失敗パターン：フリー層を拡大しすぎる（2/2）",
@@ -122,10 +130,12 @@
 				"フリー制限後 → 信頼を失い有料にも移行されなかった",
 				"**フリーミアム設計の原則：** 「フリーは最低限の価値を提供し、有料は大幅な価値向上を提供する」"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "フリー制限後の信頼崩壊が示す最初から設計に組み込む原則"
 		},
 		{
 			"title": "まとめ：フリーミアムの経済学",
+			"subtitle": "転換率1-5%でも成立する数学的構造を理解して最初から設計に組み込む",
 			"content": [
 				"<svg viewBox=\"0 0 800 260\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"260\" fill=\"#1a1a2e\"/><rect x=\"30\" y=\"20\" width=\"340\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"200\" y=\"48\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\" font-weight=\"bold\">成立する条件</text><text x=\"200\" y=\"68\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"11\">デジタル財の限界コスト≒ゼロ</text><text x=\"200\" y=\"85\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"10\">転換率1-5%でも黒字になる</text><rect x=\"430\" y=\"20\" width=\"340\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"600\" y=\"48\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">Spotify成功の秘訣</text><text x=\"600\" y=\"68\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"11\">広告収入+高転換率+ネットワーク効果</text><text x=\"600\" y=\"85\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"10\">3つの収益源を組み合わせ</text><rect x=\"30\" y=\"130\" width=\"340\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"200\" y=\"158\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">失敗パターン</text><text x=\"200\" y=\"178\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"11\">フリー機能が十分すぎる</text><text x=\"200\" y=\"195\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"10\">Evernote の轍を踏まない</text><rect x=\"430\" y=\"130\" width=\"340\" height=\"80\" rx=\"8\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/><text x=\"600\" y=\"158\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"12\" font-weight=\"bold\">設計原則</text><text x=\"600\" y=\"178\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"11\">最初からフリー制限を設計に組み込む</text><text x=\"600\" y=\"195\" text-anchor=\"middle\" fill=\"#cccccc\" font-size=\"10\">信頼崩壊を事前に防ぐ</text><rect x=\"100\" y=\"228\" width=\"600\" height=\"26\" rx=\"6\" fill=\"#16213e\" stroke=\"#888\" stroke-width=\"1\"/><text x=\"400\" y=\"246\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">「フリーミアムは戦略ではなく、それ自体がビジネスモデルだ」</text></svg>",
 				"✅ **転換率1-5%でも成立するのはデジタル財の限界コストがほぼゼロだから**",

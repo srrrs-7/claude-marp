@@ -7,6 +7,71 @@ paginate: true
 header: "ゲームとUX設計"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -23,6 +88,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *体験→フロー→AHA Momentの3段階でUXを設計する*
 
 - 1. ゲームチュートリアルの原則
 - 2. フロー理論とゲームデザイン
@@ -41,6 +108,8 @@ style: |
 ---
 
 # 「ゲームには説明書がいらない」設計（1/2）
+
+> *アクティブラーニングが説明より記憶定着率を高める*
 
 - **優れたゲームの学習原則：**
 - 「やれば分かる」= アクティブラーニングの徹底
@@ -61,6 +130,8 @@ style: |
 
 # フロー理論とゲームデザイン（1/2）
 
+> *スキル×難易度バランスが没入状態を生む*
+
 - **Mihaly Csikszentmihalyi の「フロー理論」：**
 - 完全に集中し、時間の感覚が消えるほど没入した状態
 - **フローが生まれる条件：** スキルとチャレンジのバランス、明確な目標と即時フィードバック、自己コントロールの感覚
@@ -79,6 +150,8 @@ style: |
 
 # SaaSオンボーディングへの応用（1/2）
 
+> *AHA Momentまでの最短経路が定着率を決める*
+
 - **「AHA Moment」の設計：**
 - ユーザーが「これは使える！」と感じる瞬間まで最速で到達させる
 ![w:750 center](data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="750" height="200" fill="#1a1a2e" rx="10"/><text x="375" y="28" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">AHA Moment までの最短経路設計</text><rect x="30" y="50" width="100" height="50" rx="8" fill="#263238" stroke="#78909c" stroke-width="1"/><text x="80" y="71" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">登録</text><text x="80" y="89" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">サインアップ</text><polygon points="135,75 145,79 135,83" fill="#f9a825"/><rect x="150" y="50" width="110" height="50" rx="8" fill="#263238" stroke="#78909c" stroke-width="1"/><text x="205" y="71" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">最初の操作</text><text x="205" y="89" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">コア機能体験</text><polygon points="265,75 275,79 265,83" fill="#f9a825"/><rect x="280" y="45" width="130" height="60" rx="8" fill="rgba(249,168,37,0.3)" stroke="#f9a825" stroke-width="2"/><text x="345" y="68" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f9a825" text-anchor="middle">AHA Moment</text><text x="345" y="86" font-family="sans-serif" font-size="10" fill="white" text-anchor="middle">「これは使える！」</text><text x="345" y="100" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">価値を実感</text><polygon points="415,75 425,79 415,83" fill="#4caf50"/><rect x="430" y="50" width="100" height="50" rx="8" fill="#1b2a1b" stroke="#4caf50" stroke-width="1"/><text x="480" y="71" font-family="sans-serif" font-size="11" fill="#4caf50" text-anchor="middle">継続利用</text><text x="480" y="89" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">習慣化・定着</text><rect x="80" y="130" width="100" height="40" rx="6" fill="#1b2a4a" stroke="#2196f3" stroke-width="1"/><text x="130" y="148" font-family="sans-serif" font-size="10" fill="#81d4fa" text-anchor="middle">Twitter</text><text x="130" y="163" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">5人フォロー</text><rect x="250" y="130" width="100" height="40" rx="6" fill="#1b2a4a" stroke="#2196f3" stroke-width="1"/><text x="300" y="148" font-family="sans-serif" font-size="10" fill="#81d4fa" text-anchor="middle">Dropbox</text><text x="300" y="163" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">ファイル同期</text><rect x="420" y="130" width="100" height="40" rx="6" fill="#1b2a4a" stroke="#2196f3" stroke-width="1"/><text x="470" y="148" font-family="sans-serif" font-size="10" fill="#81d4fa" text-anchor="middle">Slack</text><text x="470" y="163" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">初メッセージ</text></svg>)
@@ -95,6 +168,8 @@ style: |
 ---
 
 # まとめ：ゲームから学ぶ学習設計
+
+> *ゲーム設計の4原則を今日のプロダクトに即適用できる*
 
 - ✅ **説明より体験：「やれば分かる」設計がユーザーを引き込む**
 - ✅ **フロー状態：スキルとチャレンジのバランスが没入を生む**

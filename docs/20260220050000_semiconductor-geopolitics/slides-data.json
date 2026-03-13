@@ -14,6 +14,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "6パートで半導体の技術・地政学・AIトレンドを体系的に解説する",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"26\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">半導体サプライチェーンのリスク層</text>\n<rect x=\"100\" y=\"50\" width=\"600\" height=\"50\" fill=\"#2a1a0a\" rx=\"8\"/>\n<text x=\"400\" y=\"82\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">Lv.4 地政学リスク: 台湾有事・制裁・輸出規制</text>\n<rect x=\"100\" y=\"110\" width=\"600\" height=\"50\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"142\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Lv.3 集中リスク: TSMC・ASML・韓国メモリへの過度な依存</text>\n<rect x=\"100\" y=\"170\" width=\"600\" height=\"50\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"202\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Lv.2 技術リスク: ムーアの法則鈍化・歩留まり・人材不足</text>\n<rect x=\"100\" y=\"230\" width=\"600\" height=\"50\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"262\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Lv.1 需要リスク: AIブーム後の調整・在庫サイクル</text>\n<line x1=\"400\" y1=\"300\" x2=\"400\" y2=\"333\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"400,345 394,333 406,333\" fill=\"#f9a825\"/>\n<text x=\"400\" y=\"360\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">リスクは重なり合う — 単一イベントが全層を同時に揺らす可能性</text>\n</svg>",
@@ -34,6 +35,7 @@
 		},
 		{
 			"title": "現代の「石油」— なぜ今チップなのか（1/2）",
+			"subtitle": "半導体はスマホ・自動車・兵器の全てを動かし現代文明の生命線となった",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"16\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">先端ファブの地理的集中</text>\n<rect x=\"50\" y=\"50\" width=\"200\" height=\"260\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"150\" y=\"80\" font-size=\"18\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">台湾</text>\n<text x=\"150\" y=\"106\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">TSMC</text>\n<text x=\"150\" y=\"128\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">先端ロジック</text>\n<text x=\"150\" y=\"148\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">シェア 90%超</text>\n<text x=\"150\" y=\"175\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">3nm / 2nm</text>\n<text x=\"150\" y=\"195\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">年投資 $300-400B</text>\n<rect x=\"300\" y=\"50\" width=\"200\" height=\"260\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"80\" font-size=\"18\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">韓国</text>\n<text x=\"400\" y=\"106\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Samsung</text>\n<text x=\"400\" y=\"126\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">SK Hynix</text>\n<text x=\"400\" y=\"150\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">メモリ世界首位</text>\n<text x=\"400\" y=\"172\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">HBM → AI必須</text>\n<rect x=\"550\" y=\"50\" width=\"200\" height=\"260\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"650\" y=\"80\" font-size=\"18\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">その他</text>\n<text x=\"650\" y=\"106\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Intel (米)</text>\n<text x=\"650\" y=\"126\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">GlobalFoundries</text>\n<text x=\"650\" y=\"148\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ラピダス (日)</text>\n<text x=\"650\" y=\"168\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">SMIC (中)</text>\n<text x=\"650\" y=\"190\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">TSMC Arizona</text>\n<text x=\"400\" y=\"340\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">先端製造は台湾・韓国の2カ国に極度集中 → 地政学リスクの震源地</text>\n</svg>",
@@ -46,6 +48,7 @@
 		},
 		{
 			"title": "現代の「石油」— なぜ今チップなのか（2/2）",
+			"subtitle": "チップのない1日は現代文明には存在しない—普及浸透の圧倒的現実",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"26\" font-size=\"16\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">半導体産業の核心数値</text>\n<rect x=\"50\" y=\"45\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"67\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">TSMC 先端シェア</text>\n<rect x=\"500\" y=\"45\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"67\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">90%超</text>\n<rect x=\"50\" y=\"87\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"109\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Arm アーキテクチャ普及率</text>\n<rect x=\"500\" y=\"87\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"109\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">スマホ CPU 95%以上</text>\n<rect x=\"50\" y=\"129\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"151\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Apple の TSMC 売上比率</text>\n<rect x=\"500\" y=\"129\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"151\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 25%</text>\n<rect x=\"50\" y=\"171\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"193\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">CHIPS Act 補助金</text>\n<rect x=\"500\" y=\"171\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"193\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">$527億</text>\n<rect x=\"50\" y=\"213\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"235\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">台湾有事 GDP損失試算</text>\n<rect x=\"500\" y=\"213\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"235\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 $10兆</text>\n<rect x=\"50\" y=\"255\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"277\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ASML EUV 1台の価格</text>\n<rect x=\"500\" y=\"255\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"277\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 2億ユーロ (300億円)</text>\n<rect x=\"50\" y=\"297\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"319\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">先端パッケージ EUV 年産台数</text>\n<rect x=\"500\" y=\"297\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"319\" font-size=\"14\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">50-60台</text>\n<text x=\"400\" y=\"365\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">これらの数値が「半導体地政学」のリアルを物語る</text>\n</svg>",
@@ -58,6 +61,7 @@
 		},
 		{
 			"title": "チップとは何か（エンジニア向け基礎）（1/2）",
+			"subtitle": "3nmチップは1mm²に1億個のトランジスタ—製造工程は1000〜2000ステップ",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 370\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">地政学リスクがエンジニアに与える影響</text>\n<rect x=\"50\" y=\"60\" width=\"200\" height=\"260\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"150\" y=\"90\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">インフラコスト</text>\n<text x=\"150\" y=\"115\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">AI GPU不足</text>\n<text x=\"150\" y=\"138\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ GPU時間高騰</text>\n<text x=\"150\" y=\"162\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">CUDA最適化</text>\n<text x=\"150\" y=\"185\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">スキル価値↑</text>\n<text x=\"150\" y=\"215\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">数ヶ月待ちの</text>\n<text x=\"150\" y=\"235\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">チップ待機リスト</text>\n<rect x=\"300\" y=\"60\" width=\"200\" height=\"260\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"90\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">技術選択</text>\n<text x=\"400\" y=\"115\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ARM vs x86:</text>\n<text x=\"400\" y=\"138\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Apple Silicon=TSMC依存</text>\n<text x=\"400\" y=\"162\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">エッジAIモデル設計は</text>\n<text x=\"400\" y=\"185\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">チップ制約が前提に</text>\n<text x=\"400\" y=\"215\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">HW/FWエンジニア</text>\n<text x=\"400\" y=\"235\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">需要が急増</text>\n<rect x=\"550\" y=\"60\" width=\"200\" height=\"260\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"650\" y=\"90\" font-size=\"15\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">リスク管理</text>\n<text x=\"650\" y=\"115\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">台湾有事=</text>\n<text x=\"650\" y=\"138\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">クラウド調達危機</text>\n<text x=\"650\" y=\"162\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">HWセキュリティ</text>\n<text x=\"650\" y=\"185\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">サプライチェーン攻撃</text>\n<text x=\"650\" y=\"215\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Spectre/Meltdown級</text>\n<text x=\"650\" y=\"235\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">脆弱性のリスク↑</text>\n<text x=\"400\" y=\"360\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">あなたのコードは地政学に依存したチップで動いている</text>\n</svg>",
@@ -71,6 +75,7 @@
 		},
 		{
 			"title": "チップとは何か（エンジニア向け基礎）（2/2）",
+			"subtitle": "光より小さい構造を原子数個精度で作る—一度構築した工場は再現不可能",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"26\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">EDA ツールと IP コアの独占構造</text>\n<rect x=\"50\" y=\"50\" width=\"340\" height=\"140\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"220\" y=\"80\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">EDA ツール 3社寡占</text>\n<text x=\"220\" y=\"105\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Synopsys (米)</text>\n<text x=\"220\" y=\"126\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Cadence (米)</text>\n<text x=\"220\" y=\"147\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Siemens EDA (独)</text>\n<text x=\"220\" y=\"170\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 輸出禁止 = 中国の設計が止まる</text>\n<rect x=\"410\" y=\"50\" width=\"340\" height=\"140\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"580\" y=\"80\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">Arm (英・SoftBank)</text>\n<text x=\"580\" y=\"105\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">スマホ CPU の 95%以上が Arm</text>\n<text x=\"580\" y=\"126\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Armライセンスなし</text>\n<text x=\"580\" y=\"148\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">= モバイルチップ作れない</text>\n<text x=\"580\" y=\"170\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 設計段階での依存が根深い</text>\n<rect x=\"50\" y=\"210\" width=\"700\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"235\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">ファブレス企業 (Apple/Nvidia/Qualcomm/AMD)</text>\n<text x=\"400\" y=\"256\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">設計のみ → 製造は TSMC に外注 → 二重依存が生まれる</text>\n<text x=\"400\" y=\"315\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">EDA + Arm + TSMC のトリプルロックが中国の進出を阻む</text>\n</svg>",
@@ -94,6 +99,7 @@
 		},
 		{
 			"title": "半導体の用途：すべてのものの中にある（1/2）（2/2）",
+			"subtitle": "メモリ三社寡占の実態—DRAMとNANDで世界のデジタルインフラを支配",
 			"layout": "default",
 			"content": [
 				"",
@@ -114,6 +120,7 @@
 		},
 		{
 			"title": "半導体の用途：すべてのものの中にある（2/2）（2/2）",
+			"subtitle": "旧世代28nm以上のアナログ・センサーが車載とIoT市場を今も支える",
 			"layout": "default",
 			"content": [
 				"- SiC・GaN材料が次世代主力",
@@ -137,6 +144,7 @@
 		},
 		{
 			"title": "設計層：EDAツールとIPの独占（1/2）",
+			"subtitle": "EDA3社と米国の輸出禁止が中国の先端チップ設計を実質封鎖している",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"26\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">EDA ツールと IP コアの独占構造</text>\n<rect x=\"50\" y=\"50\" width=\"340\" height=\"140\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"220\" y=\"80\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">EDA ツール 3社寡占</text>\n<text x=\"220\" y=\"105\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Synopsys (米)</text>\n<text x=\"220\" y=\"126\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Cadence (米)</text>\n<text x=\"220\" y=\"147\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Siemens EDA (独)</text>\n<text x=\"220\" y=\"170\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 輸出禁止 = 中国の設計が止まる</text>\n<rect x=\"410\" y=\"50\" width=\"340\" height=\"140\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"580\" y=\"80\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">Arm (英・SoftBank)</text>\n<text x=\"580\" y=\"105\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">スマホ CPU の 95%以上が Arm</text>\n<text x=\"580\" y=\"126\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Armライセンスなし</text>\n<text x=\"580\" y=\"148\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">= モバイルチップ作れない</text>\n<text x=\"580\" y=\"170\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 設計段階での依存が根深い</text>\n<rect x=\"50\" y=\"210\" width=\"700\" height=\"55\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"235\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">ファブレス企業 (Apple/Nvidia/Qualcomm/AMD)</text>\n<text x=\"400\" y=\"256\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">設計のみ → 製造は TSMC に外注 → 二重依存が生まれる</text>\n<text x=\"400\" y=\"315\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">EDA + Arm + TSMC のトリプルロックが中国の進出を阻む</text>\n</svg>",
@@ -150,6 +158,7 @@
 		},
 		{
 			"title": "設計層：EDAツールとIPの独占（2/2）",
+			"subtitle": "ArmなきモバイルチップはなくApple・QualcommのTSMC依存は極めて高い",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 345\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"360\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">ムーアの法則の鈍化と先端パッケージングへの転換</text>\n<rect x=\"70\" y=\"190\" width=\"50\" height=\"100\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"100\" y=\"170\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">250nm</text>\n<text x=\"100\" y=\"308\" font-size=\"9\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">1990s</text><rect x=\"160\" y=\"175\" width=\"50\" height=\"115\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"190\" y=\"155\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">130nm</text>\n<text x=\"190\" y=\"308\" font-size=\"9\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">2000s</text><rect x=\"250\" y=\"155\" width=\"50\" height=\"135\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"280\" y=\"135\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">22nm</text>\n<text x=\"280\" y=\"308\" font-size=\"9\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">2010s</text><rect x=\"340\" y=\"130\" width=\"50\" height=\"160\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"370\" y=\"110\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">7nm</text>\n<text x=\"370\" y=\"308\" font-size=\"9\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">2018</text><rect x=\"430\" y=\"110\" width=\"50\" height=\"180\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"460\" y=\"90\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">5nm</text>\n<text x=\"460\" y=\"308\" font-size=\"9\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">2020</text><rect x=\"520\" y=\"90\" width=\"50\" height=\"200\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"550\" y=\"70\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">3nm</text>\n<text x=\"550\" y=\"308\" font-size=\"9\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">2022</text><rect x=\"610\" y=\"75\" width=\"50\" height=\"215\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"640\" y=\"55\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">2nm</text>\n<text x=\"640\" y=\"308\" font-size=\"9\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">2024</text><rect x=\"700\" y=\"65\" width=\"50\" height=\"225\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"730\" y=\"45\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">1.X nm</text>\n<text x=\"730\" y=\"308\" font-size=\"9\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">2026E</text>\n<text x=\"400\" y=\"325\" font-size=\"11\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">微細化の速度が鈍化 → 先端パッケージング (HBM/CoWoS/Chiplet) が新フロンティア</text>\n</svg>",
@@ -163,6 +172,7 @@
 		},
 		{
 			"title": "製造層：TSMCの圧倒的優位（1/2）",
+			"subtitle": "TSMC先端プロセスシェア90%超—Samsung・Intelとの差は歩留まりで決定的",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"26\" font-size=\"16\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">半導体産業の核心数値</text>\n<rect x=\"50\" y=\"45\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"67\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">TSMC 先端シェア</text>\n<rect x=\"500\" y=\"45\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"67\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">90%超</text>\n<rect x=\"50\" y=\"87\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"109\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Arm アーキテクチャ普及率</text>\n<rect x=\"500\" y=\"87\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"109\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">スマホ CPU 95%以上</text>\n<rect x=\"50\" y=\"129\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"151\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Apple の TSMC 売上比率</text>\n<rect x=\"500\" y=\"129\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"151\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 25%</text>\n<rect x=\"50\" y=\"171\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"193\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">CHIPS Act 補助金</text>\n<rect x=\"500\" y=\"171\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"193\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">$527億</text>\n<rect x=\"50\" y=\"213\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"235\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">台湾有事 GDP損失試算</text>\n<rect x=\"500\" y=\"213\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"235\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 $10兆</text>\n<rect x=\"50\" y=\"255\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"277\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ASML EUV 1台の価格</text>\n<rect x=\"500\" y=\"255\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"277\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 2億ユーロ (300億円)</text>\n<rect x=\"50\" y=\"297\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"319\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">先端パッケージ EUV 年産台数</text>\n<rect x=\"500\" y=\"297\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"319\" font-size=\"14\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">50-60台</text>\n<text x=\"400\" y=\"365\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">これらの数値が「半導体地政学」のリアルを物語る</text>\n</svg>",
@@ -186,6 +196,7 @@
 		},
 		{
 			"title": "製造層：TSMCの圧倒的優位（2/2）（2/2）",
+			"subtitle": "Apple一社がTSMC売上の25%—先端チップ売上は全体の60%に達する",
 			"layout": "default",
 			"content": [
 				"",
@@ -201,6 +212,7 @@
 		},
 		{
 			"title": "材料・化学品：意外な弱点（1/2）",
+			"subtitle": "JSR・東京応化・信越化学—日本3社がフォトレジスト世界シェア90%超を握る",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"26\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">日本の「見えない急所」— 材料・化学品の独占</text>\n<rect x=\"40\" y=\"55\" width=\"220\" height=\"48\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"150\" y=\"75\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">フォトレジスト</text>\n<text x=\"150\" y=\"95\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">世界シェア 90%超</text>\n<rect x=\"270\" y=\"55\" width=\"490\" height=\"48\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"515\" y=\"82\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">JSR・東京応化・信越化学</text>\n<rect x=\"40\" y=\"120\" width=\"220\" height=\"48\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"150\" y=\"140\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">フッ化水素(HF)</text>\n<text x=\"150\" y=\"160\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">高純度品を独占</text>\n<rect x=\"270\" y=\"120\" width=\"490\" height=\"48\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"515\" y=\"147\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">三菱ケミカル・ステラケミファ</text>\n<rect x=\"40\" y=\"185\" width=\"220\" height=\"48\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"150\" y=\"205\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">シリコンウェーハ</text>\n<text x=\"150\" y=\"225\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">世界シェア 60%</text>\n<rect x=\"270\" y=\"185\" width=\"490\" height=\"48\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"515\" y=\"212\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">信越半導体・SUMCO</text>\n<rect x=\"40\" y=\"250\" width=\"220\" height=\"48\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"150\" y=\"270\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">特殊ガス</text>\n<text x=\"150\" y=\"290\" font-size=\"11\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">製造工程に不可欠</text>\n<rect x=\"270\" y=\"250\" width=\"490\" height=\"48\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"515\" y=\"277\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">日本・米国数社</text>\n<text x=\"400\" y=\"340\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">2019年日韓摩擦: フッ化水素輸出規制 → 韓国半導体工場が生産危機</text>\n<text x=\"400\" y=\"362\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ 日本は「見えない急所」として半導体サプライチェーンに深く刺さっている</text>\n</svg>",
@@ -224,6 +236,7 @@
 		},
 		{
 			"title": "材料・化学品：意外な弱点（2/2）（2/2）",
+			"subtitle": "信越半導体・SUMCOでウェーハ世界60%—日本は見えない急所として深く刺さる",
 			"layout": "default",
 			"content": [
 				"- 信越半導体・SUMCO（日本）で世界シェア60%",
@@ -256,6 +269,7 @@
 		},
 		{
 			"title": "アメリカ：CHIPS Act と輸出規制の実態（1/2）（2/2）",
+			"subtitle": "知的財産・ソフトウェア全般が米国の輸出管理の対象となっている現実",
 			"layout": "default",
 			"content": [
 				"- 知的財産・ソフトウェア全般",
@@ -276,6 +290,7 @@
 		},
 		{
 			"title": "アメリカ：CHIPS Act と輸出規制の実態（2/2）（2/2）",
+			"subtitle": "Entity List・装置全面禁止・同盟国への同調要請が三重の対中封鎖を形成",
 			"layout": "default",
 			"content": [
 				"**輸出規制（Entity List）:**",
@@ -296,6 +311,7 @@
 		},
 		{
 			"title": "中国：Made in China 2025の現実（1/2）（2/2）",
+			"subtitle": "EDA・EUV・最先端材料の全てで依存が続く中国の自立化の現実",
 			"layout": "default",
 			"content": [
 				"- EDA・EUV・最先端材料すべてで依存が続く",
@@ -316,6 +332,7 @@
 		},
 		{
 			"title": "中国：Made in China 2025の現実（2/2）（2/2）",
+			"subtitle": "国家ICファンド3500億元超を投入しても先端プロセスへの道は閉ざされたまま",
 			"layout": "default",
 			"content": [
 				"**中国の対応策:**",
@@ -336,6 +353,7 @@
 		},
 		{
 			"title": "ファーウェイ制裁と「7nmの壁」（1/2）（2/2）",
+			"subtitle": "SMIC 7nm相当で制裁下での反撃を見せたが歩留まりと量産能力に限界がある",
 			"layout": "default",
 			"content": [
 				"- 売上: 2020年の約8,600億元 → 2021年は約6,340億元に急落",
@@ -356,6 +374,7 @@
 		},
 		{
 			"title": "ファーウェイ制裁と「7nmの壁」（2/2）（2/2）",
+			"subtitle": "EUVなしでの量産は歩留まり低・コスト高・性能差大—先端への道は閉ざされている",
 			"layout": "default",
 			"content": [
 				"**実態:**",
@@ -376,6 +395,7 @@
 		},
 		{
 			"title": "オランダ・ASMLの板挟み（1/2）（2/2）",
+			"subtitle": "約300億円・年産50台のEUV独占がASMLを地政学の板挟みに追い込んだ",
 			"layout": "default",
 			"content": [
 				"- 1台の価格: **約2億ユーロ**（約300億円）",
@@ -396,6 +416,7 @@
 		},
 		{
 			"title": "オランダ・ASMLの板挟み（2/2）（2/2）",
+			"subtitle": "中国売上比率低下とDUV追加規制がASMLの本音と外交的苦境を象徴する",
 			"layout": "default",
 			"content": [
 				"- 2023年: DUV（旧世代）も輸出規制対象に拡大",
@@ -417,6 +438,7 @@
 		},
 		{
 			"title": "韓国（Samsung/SK Hynix）の立場（1/2）（2/2）",
+			"subtitle": "中国市場依存とHBM独占供給の狭間で韓国が迫られるバランス外交の実態",
 			"layout": "default",
 			"content": [
 				"- 中国市場での売上を失えば経営に深刻な影響",
@@ -437,6 +459,7 @@
 		},
 		{
 			"title": "韓国（Samsung/SK Hynix）の立場（2/2）（2/2）",
+			"subtitle": "Chip4参加と中国工場維持—米韓同盟と経済関係を同時維持するソウルの賭け",
 			"layout": "default",
 			"content": [
 				"**韓国政府の対応:**",
@@ -457,6 +480,7 @@
 		},
 		{
 			"title": "日本の復権：ラピダス計画の野望（1/2）（2/2）",
+			"subtitle": "2010年代の凋落から2027年2nm量産を目指すラピダス計画の野望と現実",
 			"layout": "default",
 			"content": [
 				"- 2010年代: ルネサス・東芝メモリ（Kioxia）のみ生き残り",
@@ -477,6 +501,7 @@
 		},
 		{
 			"title": "日本の復権：ラピダス計画の野望（2/2）（2/2）",
+			"subtitle": "TSMCの40年を5年で追うのは至難だが材料・装置サプライチェーン強化に意義",
 			"layout": "default",
 			"content": [
 				"",
@@ -509,6 +534,7 @@
 		},
 		{
 			"title": "なぜ誰もTSMCに追いつけないのか（1/2）（2/2）",
+			"subtitle": "顧客エコシステムとのカスタム依存がTSMCからの移行を実質不可能にする",
 			"layout": "default",
 			"content": [
 				"",
@@ -529,6 +555,7 @@
 		},
 		{
 			"title": "なぜ誰もTSMCに追いつけないのか（2/2）（2/2）",
+			"subtitle": "EUV保有50%超と24時間文化—ハードとソフト両面でTSMCは模倣不可能",
 			"layout": "default",
 			"content": [
 				"- EUV保有台数: TSMCが世界保有台数の50%以上",
@@ -550,6 +577,7 @@
 		},
 		{
 			"title": "台湾有事シナリオ：世界経済への影響（1/2）（2/2）",
+			"subtitle": "台湾有事で先端チップ90%停止—スマホ・PC・サーバー生産が世界規模で止まる",
 			"layout": "default",
 			"content": [
 				"- 先端チップの世界供給が90%以上停止",
@@ -571,6 +599,7 @@
 		},
 		{
 			"title": "台湾有事シナリオ：世界経済への影響（2/2）（2/2）",
+			"subtitle": "先端製造拠点の再構築には最低10年—デジタル経済の根幹崩壊が現実のリスク",
 			"layout": "default",
 			"content": [
 				"",
@@ -592,6 +621,7 @@
 		},
 		{
 			"title": "「シリコンシールド」理論（1/2）（2/2）",
+			"subtitle": "中国自身の半導体依存が台湾攻撃を抑止する—シリコンシールドの論理的根拠",
 			"layout": "default",
 			"content": [
 				"",
@@ -613,6 +643,7 @@
 		},
 		{
 			"title": "「シリコンシールド」理論（2/2）（2/2）",
+			"subtitle": "面子優先リスクとキーエンジニア脱出—シリコンシールドを揺るがす2つの弱点",
 			"layout": "default",
 			"content": [
 				"- 習近平政権の「面子」優先でリスク計算が変わるリスク",
@@ -624,6 +655,7 @@
 		},
 		{
 			"title": "TSMCの地政学的分散戦略（1/2）（1/2）",
+			"subtitle": "Fab21でアリゾナ先端製造を始めたTSMCが台湾外への分散を本格始動",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 370\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">HBM と CoWoS — AIチップの心臓部</text>\n<rect x=\"100\" y=\"70\" width=\"220\" height=\"200\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"210\" y=\"100\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">GPU (Nvidia H100)</text>\n<text x=\"210\" y=\"122\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">TSMC 4nm製造</text>\n<text x=\"210\" y=\"150\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">演算ユニット</text>\n<text x=\"210\" y=\"172\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">80GB HBM2e</text>\n<rect x=\"480\" y=\"70\" width=\"220\" height=\"200\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"590\" y=\"100\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">HBM3e (SK Hynix)</text>\n<text x=\"590\" y=\"122\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">DRAMを縦積み</text>\n<text x=\"590\" y=\"150\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">帯域幅: 1TB/s超</text>\n<text x=\"590\" y=\"172\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">容量: 96GB</text>\n<rect x=\"270\" y=\"185\" width=\"260\" height=\"40\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"210\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">CoWoS (TSMC特許)</text>\n<line x1=\"320\" y1=\"185\" x2=\"320\" y2=\"172\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"320,160 326,172 314,172\" fill=\"#f9a825\"/>\n<line x1=\"480\" y1=\"185\" x2=\"480\" y2=\"172\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"480,160 486,172 474,172\" fill=\"#f9a825\"/>\n<text x=\"400\" y=\"310\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">GPU + HBM を同一基板上に実装 → データ転送が桁違いに高速</text>\n<text x=\"400\" y=\"335\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">HBM禁輸 → 中国AI開発が詰む  /  CoWoS不足 → Nvidiaの出荷遅延</text>\n</svg>",
@@ -635,6 +667,7 @@
 		},
 		{
 			"title": "TSMCの地政学的分散戦略（1/2）（2/2）",
+			"subtitle": "400億ドル投資でも台湾比2〜3倍のコスト—アリゾナ工場が直面する現実",
 			"layout": "default",
 			"content": [
 				"- 投資額: **400億ドル**（当初250億→拡大）",
@@ -646,6 +679,7 @@
 		},
 		{
 			"title": "TSMCの地政学的分散戦略（2/2）（1/2）",
+			"subtitle": "熊本第1・第2工場と1.2兆円の補助金—日本拠点がTSMCの第二の柱になる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"26\" font-size=\"16\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">半導体産業の核心数値</text>\n<rect x=\"50\" y=\"45\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"67\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">TSMC 先端シェア</text>\n<rect x=\"500\" y=\"45\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"67\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">90%超</text>\n<rect x=\"50\" y=\"87\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"109\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Arm アーキテクチャ普及率</text>\n<rect x=\"500\" y=\"87\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"109\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">スマホ CPU 95%以上</text>\n<rect x=\"50\" y=\"129\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"151\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Apple の TSMC 売上比率</text>\n<rect x=\"500\" y=\"129\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"151\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 25%</text>\n<rect x=\"50\" y=\"171\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"193\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">CHIPS Act 補助金</text>\n<rect x=\"500\" y=\"171\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"193\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">$527億</text>\n<rect x=\"50\" y=\"213\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"235\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">台湾有事 GDP損失試算</text>\n<rect x=\"500\" y=\"213\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"235\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 $10兆</text>\n<rect x=\"50\" y=\"255\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"277\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ASML EUV 1台の価格</text>\n<rect x=\"500\" y=\"255\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"277\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 2億ユーロ (300億円)</text>\n<rect x=\"50\" y=\"297\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"319\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">先端パッケージ EUV 年産台数</text>\n<rect x=\"500\" y=\"297\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"319\" font-size=\"14\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">50-60台</text>\n<text x=\"400\" y=\"365\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">これらの数値が「半導体地政学」のリアルを物語る</text>\n</svg>",
@@ -657,6 +691,7 @@
 		},
 		{
 			"title": "TSMCの地政学的分散戦略（2/2）（2/2）",
+			"subtitle": "Bosch・Infineon・NXPとの合弁で欧州車載向け28nmを確保するドレスデン戦略",
 			"layout": "default",
 			"content": [
 				"**ドレスデン工場（ドイツ）:**",
@@ -690,6 +725,7 @@
 		},
 		{
 			"title": "Nvidia・TPU・専用ASICの戦い（1/2）（2/2）",
+			"subtitle": "GoogleTPUがGemini学習を支え内製AIインフラの自律性を確保している",
 			"layout": "default",
 			"content": [
 				"- TSMCの最先端プロセスを優先的に確保",
@@ -701,6 +737,7 @@
 		},
 		{
 			"title": "Nvidia・TPU・専用ASICの戦い（2/2）（1/2）",
+			"subtitle": "AmazonTrainium・Inferentia—クラウド各社がNvidiaへの依存低減を加速",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 370\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"28\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">地政学リスクがエンジニアに与える影響</text>\n<rect x=\"50\" y=\"60\" width=\"200\" height=\"260\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"150\" y=\"90\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">インフラコスト</text>\n<text x=\"150\" y=\"115\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">AI GPU不足</text>\n<text x=\"150\" y=\"138\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">→ GPU時間高騰</text>\n<text x=\"150\" y=\"162\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">CUDA最適化</text>\n<text x=\"150\" y=\"185\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">スキル価値↑</text>\n<text x=\"150\" y=\"215\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">数ヶ月待ちの</text>\n<text x=\"150\" y=\"235\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">チップ待機リスト</text>\n<rect x=\"300\" y=\"60\" width=\"200\" height=\"260\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"90\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">技術選択</text>\n<text x=\"400\" y=\"115\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ARM vs x86:</text>\n<text x=\"400\" y=\"138\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Apple Silicon=TSMC依存</text>\n<text x=\"400\" y=\"162\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">エッジAIモデル設計は</text>\n<text x=\"400\" y=\"185\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">チップ制約が前提に</text>\n<text x=\"400\" y=\"215\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">HW/FWエンジニア</text>\n<text x=\"400\" y=\"235\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">需要が急増</text>\n<rect x=\"550\" y=\"60\" width=\"200\" height=\"260\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"650\" y=\"90\" font-size=\"15\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">リスク管理</text>\n<text x=\"650\" y=\"115\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">台湾有事=</text>\n<text x=\"650\" y=\"138\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">クラウド調達危機</text>\n<text x=\"650\" y=\"162\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">HWセキュリティ</text>\n<text x=\"650\" y=\"185\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">サプライチェーン攻撃</text>\n<text x=\"650\" y=\"215\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Spectre/Meltdown級</text>\n<text x=\"650\" y=\"235\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">脆弱性のリスク↑</text>\n<text x=\"400\" y=\"360\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">あなたのコードは地政学に依存したチップで動いている</text>\n</svg>",
@@ -712,6 +749,7 @@
 		},
 		{
 			"title": "Nvidia・TPU・専用ASICの戦い（2/2）（2/2）",
+			"subtitle": "Meta・Microsoft・AmazonのASIC開発競争がTSMC先端プロセス需要を増大させる",
 			"layout": "default",
 			"content": [
 				"- Meta MTIA",
@@ -733,6 +771,7 @@
 		},
 		{
 			"title": "先端パッケージング（HBM・CoWoS）の台頭（1/2）（2/2）",
+			"subtitle": "SK HynixとNvidiaの深い依存—HBM禁輸が発動すれば中国AIは即座に詰む",
 			"layout": "default",
 			"content": [
 				"**HBM（High Bandwidth Memory）:**",
@@ -754,6 +793,7 @@
 		},
 		{
 			"title": "先端パッケージング（HBM・CoWoS）の台頭（2/2）（2/2）",
+			"subtitle": "NvidiaH100の性能はTSMCのCoWoSに依存—先端パッケージングが次の戦場",
 			"layout": "default",
 			"content": [
 				"- Nvidia H100の性能の鍵はTSMCのCoWoSにある",
@@ -775,6 +815,7 @@
 		},
 		{
 			"title": "中国の迂回策：Huawei Kirin 9000Sの衝撃（1/2）（2/2）",
+			"subtitle": "DUV多重露光で7nm相当を実現したSMICの技術力が制裁の抜け穴を証明した",
 			"layout": "default",
 			"content": [
 				"- 制裁下でEUVなしでここまで到達したことに世界が驚愕",
@@ -786,6 +827,7 @@
 		},
 		{
 			"title": "中国の迂回策：Huawei Kirin 9000Sの衝撃（2/2）（1/2）",
+			"subtitle": "歩留まり低・量産少・性能差大—Kirin 9000Sの限界が対中制裁の有効性を示す",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 420\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"420\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"30\" font-size=\"17\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">米・中・台の戦略的三角形</text>\n<rect x=\"300\" y=\"55\" width=\"200\" height=\"65\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"85\" font-size=\"18\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">アメリカ</text>\n<text x=\"400\" y=\"108\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">設計 / EDA / ソフト</text>\n<rect x=\"80\" y=\"310\" width=\"180\" height=\"65\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"170\" y=\"340\" font-size=\"18\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">中国</text>\n<text x=\"170\" y=\"362\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">巨大市場 / 成熟製造</text>\n<rect x=\"540\" y=\"310\" width=\"180\" height=\"65\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"630\" y=\"340\" font-size=\"16\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">台湾 (TSMC)</text>\n<text x=\"630\" y=\"362\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">先端製造の中枢</text>\n<line x1=\"300\" y1=\"105\" x2=\"214.82388074442238\" y2=\"299.0122716377046\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"210,310 209.33001656327468,296.6003312654934 220.31774492557008,301.4242120099158\" fill=\"#f9a825\"/>\n<line x1=\"540\" y1=\"105\" x2=\"587.1565258377079\" y2=\"298.3417559346024\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"590,310 581.3274038050091,299.76349301574845 592.9856478704068,296.9200188534564\" fill=\"#f9a825\"/>\n<line x1=\"260\" y1=\"342\" x2=\"528\" y2=\"342\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"540,342 528,348 528,336\" fill=\"#f9a825\"/>\n<text x=\"160\" y=\"220\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">輸出規制</text>\n<text x=\"160\" y=\"240\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">CHIPS Act</text>\n<text x=\"640\" y=\"220\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">安全保障</text>\n<text x=\"640\" y=\"240\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">台湾防衛</text>\n<text x=\"400\" y=\"360\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">経済依存</text>\n<text x=\"400\" y=\"378\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">最大顧客</text>\n<rect x=\"310\" y=\"190\" width=\"180\" height=\"50\" fill=\"#2a1a0a\" rx=\"8\"/>\n<text x=\"400\" y=\"215\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">シリコンシールド</text>\n<text x=\"400\" y=\"232\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">= 経済的核抑止力</text>\n</svg>",
@@ -797,6 +839,7 @@
 		},
 		{
 			"title": "中国の迂回策：Huawei Kirin 9000Sの衝撃（2/2）（2/2）",
+			"subtitle": "DUV追加規制の連鎖で中国の自力更生には依然として長い時間が必要",
 			"layout": "default",
 			"content": [
 				"- 性能: Apple A17 Proと比べ電力効率で大幅劣位",
@@ -825,6 +868,7 @@
 		},
 		{
 			"title": "ソフトウェアエンジニアにとっての意味（1/2）（2/2）",
+			"subtitle": "CUDA・ARM・エッジAIのスキル需要急増—チップ制約がモデル設計の前提になる",
 			"layout": "default",
 			"content": [
 				"",
@@ -846,6 +890,7 @@
 		},
 		{
 			"title": "ソフトウェアエンジニアにとっての意味（2/2）（2/2）",
+			"subtitle": "台湾有事はクラウド長期調達危機—半導体関連スタートアップが最もホットな分野",
 			"layout": "default",
 			"content": [
 				"- 台湾有事 = クラウドインフラの長期調達危機",
@@ -867,6 +912,7 @@
 		},
 		{
 			"title": "ハードウェアセキュリティリスク（1/2）（2/2）",
+			"subtitle": "偽造チップ流通と信頼できる製造元管理が国防・医療・航空の安全を左右する",
 			"layout": "default",
 			"content": [
 				"- 国防・政府機関が「信頼できる製造元」を重要視する理由",
@@ -878,6 +924,7 @@
 		},
 		{
 			"title": "ハードウェアセキュリティリスク（2/2）（1/2）",
+			"subtitle": "航空・医療・軍事分野では偽造チップ1個が致命的リスクになりうる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"26\" font-size=\"15\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">半導体サプライチェーンのリスク層</text>\n<rect x=\"100\" y=\"50\" width=\"600\" height=\"50\" fill=\"#2a1a0a\" rx=\"8\"/>\n<text x=\"400\" y=\"82\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">Lv.4 地政学リスク: 台湾有事・制裁・輸出規制</text>\n<rect x=\"100\" y=\"110\" width=\"600\" height=\"50\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"142\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Lv.3 集中リスク: TSMC・ASML・韓国メモリへの過度な依存</text>\n<rect x=\"100\" y=\"170\" width=\"600\" height=\"50\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"400\" y=\"202\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Lv.2 技術リスク: ムーアの法則鈍化・歩留まり・人材不足</text>\n<rect x=\"100\" y=\"230\" width=\"600\" height=\"50\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"400\" y=\"262\" font-size=\"13\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Lv.1 需要リスク: AIブーム後の調整・在庫サイクル</text>\n<line x1=\"400\" y1=\"300\" x2=\"400\" y2=\"333\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<polygon points=\"400,345 394,333 406,333\" fill=\"#f9a825\"/>\n<text x=\"400\" y=\"360\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">リスクは重なり合う — 単一イベントが全層を同時に揺らす可能性</text>\n</svg>",
@@ -889,6 +936,7 @@
 		},
 		{
 			"title": "ハードウェアセキュリティリスク（2/2）（2/2）",
+			"subtitle": "製造微細化によるサイドチャネル攻撃増加—TEEとハードウェアルートオブトラストが鍵",
 			"layout": "default",
 			"content": [
 				"- 製造プロセスの微細化によりサイドチャネル攻撃リスクが増加",
@@ -933,6 +981,7 @@
 		},
 		{
 			"title": "参考文献・リソース (1/2)（1/2）",
+			"subtitle": "Chip War・The Chip Letter・SemiAnalysis—半導体地政学を学ぶ三大必読リソース",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"26\" font-size=\"16\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">半導体産業の核心数値</text>\n<rect x=\"50\" y=\"45\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"67\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">TSMC 先端シェア</text>\n<rect x=\"500\" y=\"45\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"67\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">90%超</text>\n<rect x=\"50\" y=\"87\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"109\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Arm アーキテクチャ普及率</text>\n<rect x=\"500\" y=\"87\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"109\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">スマホ CPU 95%以上</text>\n<rect x=\"50\" y=\"129\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"151\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Apple の TSMC 売上比率</text>\n<rect x=\"500\" y=\"129\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"151\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 25%</text>\n<rect x=\"50\" y=\"171\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"193\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">CHIPS Act 補助金</text>\n<rect x=\"500\" y=\"171\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"193\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">$527億</text>\n<rect x=\"50\" y=\"213\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"235\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">台湾有事 GDP損失試算</text>\n<rect x=\"500\" y=\"213\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"235\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 $10兆</text>\n<rect x=\"50\" y=\"255\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"277\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ASML EUV 1台の価格</text>\n<rect x=\"500\" y=\"255\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"277\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 2億ユーロ (300億円)</text>\n<rect x=\"50\" y=\"297\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"319\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">先端パッケージ EUV 年産台数</text>\n<rect x=\"500\" y=\"297\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"319\" font-size=\"14\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">50-60台</text>\n<text x=\"400\" y=\"365\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">これらの数値が「半導体地政学」のリアルを物語る</text>\n</svg>",
@@ -956,6 +1005,7 @@
 		},
 		{
 			"title": "参考文献・リソース (1/2)（2/2）（2/2）",
+			"subtitle": "CSIS・ASMLレポート—地政学的文脈で半導体を読み解くための公式一次資料",
 			"layout": "default",
 			"content": [
 				"",
@@ -966,6 +1016,7 @@
 		},
 		{
 			"title": "参考文献・リソース (2/2)（1/2）",
+			"subtitle": "IEEE Spectrum・AnandTech・WikiChip—技術深掘りのための専門メディア厳選",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect x=\"0\" y=\"0\" width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"0\"/>\n<text x=\"400\" y=\"26\" font-size=\"16\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">半導体産業の核心数値</text>\n<rect x=\"50\" y=\"45\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"67\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">TSMC 先端シェア</text>\n<rect x=\"500\" y=\"45\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"67\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">90%超</text>\n<rect x=\"50\" y=\"87\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"109\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Arm アーキテクチャ普及率</text>\n<rect x=\"500\" y=\"87\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"109\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">スマホ CPU 95%以上</text>\n<rect x=\"50\" y=\"129\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"151\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">Apple の TSMC 売上比率</text>\n<rect x=\"500\" y=\"129\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"151\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 25%</text>\n<rect x=\"50\" y=\"171\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"193\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">CHIPS Act 補助金</text>\n<rect x=\"500\" y=\"171\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"193\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">$527億</text>\n<rect x=\"50\" y=\"213\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"235\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">台湾有事 GDP損失試算</text>\n<rect x=\"500\" y=\"213\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"235\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 $10兆</text>\n<rect x=\"50\" y=\"255\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"277\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">ASML EUV 1台の価格</text>\n<rect x=\"500\" y=\"255\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"277\" font-size=\"14\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">約 2億ユーロ (300億円)</text>\n<rect x=\"50\" y=\"297\" width=\"440\" height=\"32\" fill=\"#16213e\" rx=\"8\"/>\n<text x=\"270\" y=\"319\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">先端パッケージ EUV 年産台数</text>\n<rect x=\"500\" y=\"297\" width=\"250\" height=\"32\" fill=\"#0f3460\" rx=\"8\"/>\n<text x=\"625\" y=\"319\" font-size=\"14\" fill=\"#888\" text-anchor=\"middle\" font-weight=\"bold\" font-family=\"sans-serif\">50-60台</text>\n<text x=\"400\" y=\"365\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-weight=\"normal\" font-family=\"sans-serif\">これらの数値が「半導体地政学」のリアルを物語る</text>\n</svg>",
@@ -989,6 +1040,7 @@
 		},
 		{
 			"title": "参考文献・リソース (2/2)（2/2）（2/2）",
+			"subtitle": "半導体産業新聞・EE Times Japan・経産省戦略—日本語で学ぶ国内視点リソース",
 			"layout": "default",
 			"content": [
 				"**日本語リソース:**",

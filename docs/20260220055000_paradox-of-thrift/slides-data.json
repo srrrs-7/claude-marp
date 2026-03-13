@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "個人の合理的節約が集合すると経済収縮を招く逆説の構造と政策的含意を解明",
 			"content": [
 				"1. 節約のパラドックスとは何か",
 				"2. ケインズの経済学的証明",
@@ -35,7 +36,8 @@
 				"**Keynesのパラドックス（1936年）：**",
 				"全員が同時に節約しようとすると経済全体が収縮する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "個人の節約が合計すると経済を縮小させる合成の誤謬"
 		},
 		{
 			"title": "「倹約は美徳」は嘘か（2/2）",
@@ -51,6 +53,7 @@
 		},
 		{
 			"title": "乗数効果：消費が消費を呼ぶ（1/2）",
+			"subtitle": "貯蓄率20%の場合1万円の消費は連鎖で5万円のGDP増加を生む乗数効果",
 			"content": [
 				"<svg viewBox=\"0 0 800 200\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"200\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">乗数効果：消費が次の消費を生む連鎖</text><rect x=\"30\" y=\"45\" width=\"130\" height=\"50\" rx=\"8\" fill=\"#f9a825\"/><text x=\"95\" y=\"68\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">Aさん</text><text x=\"95\" y=\"86\" text-anchor=\"middle\" fill=\"#1a1a2e\" font-size=\"11\" font-family=\"sans-serif\">1万円消費</text><rect x=\"220\" y=\"45\" width=\"130\" height=\"50\" rx=\"8\" fill=\"#4caf50\"/><text x=\"285\" y=\"68\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">Bさん</text><text x=\"285\" y=\"86\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">8,000円収入</text><rect x=\"410\" y=\"45\" width=\"130\" height=\"50\" rx=\"8\" fill=\"#4caf50\" fill-opacity=\"0.85\"/><text x=\"475\" y=\"68\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">Cさん</text><text x=\"475\" y=\"86\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">6,400円収入</text><rect x=\"600\" y=\"45\" width=\"130\" height=\"50\" rx=\"8\" fill=\"#4caf50\" fill-opacity=\"0.7\"/><text x=\"665\" y=\"68\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">…</text><text x=\"665\" y=\"86\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">連鎖が続く</text><polygon points=\"165,70 215,70 205,65 205,75\" fill=\"#f9a825\"/><polygon points=\"355,70 405,70 395,65 395,75\" fill=\"#4caf50\"/><polygon points=\"545,70 595,70 585,65 585,75\" fill=\"#4caf50\"/><rect x=\"200\" y=\"135\" width=\"400\" height=\"40\" rx=\"8\" fill=\"#e91e63\"/><text x=\"400\" y=\"160\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-family=\"sans-serif\" font-weight=\"bold\">合計 GDP増加 = 5万円（乗数=5）</text></svg>",
 				"**乗数効果（Multiplier Effect）：**",
@@ -76,6 +79,7 @@
 		},
 		{
 			"title": "日本の失われた30年とパラドックス（1/2）",
+			"subtitle": "バブル崩壊後の過剰貯蓄がゼロ金利下でも需要を回復させなかった30年間の実証",
 			"content": [
 				"**バブル崩壊後（1992年〜）：**",
 				"資産価値の暴落 → 家計・企業が負債返済を優先",
@@ -95,6 +99,7 @@
 		},
 		{
 			"title": "日本の失われた30年とパラドックス（2/2）",
+			"subtitle": "ゼロ金利でも企業が借りない流動性の罠により財政出動が唯一の需要創出手段になった",
 			"content": [
 				"<svg viewBox=\"0 0 800 180\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"180\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">バランスシート不況：企業が借金返済を優先する罠</text><rect x=\"30\" y=\"45\" width=\"180\" height=\"100\" rx=\"8\" fill=\"#2a1a1a\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"120\" y=\"72\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">バブル崩壊</text><text x=\"120\" y=\"94\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">資産価値暴落</text><text x=\"120\" y=\"114\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">負債だけ残る</text><rect x=\"250\" y=\"45\" width=\"180\" height=\"100\" rx=\"8\" fill=\"#2a1a1a\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"340\" y=\"72\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">返済優先</text><text x=\"340\" y=\"94\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">ゼロ金利でも</text><text x=\"340\" y=\"114\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">借りない・使わない</text><rect x=\"470\" y=\"45\" width=\"180\" height=\"100\" rx=\"8\" fill=\"#2a1a1a\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"560\" y=\"72\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">流動性の罠</text><text x=\"560\" y=\"94\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">金融政策無効化</text><text x=\"560\" y=\"114\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">需要が回復しない</text><rect x=\"660\" y=\"45\" width=\"110\" height=\"100\" rx=\"8\" fill=\"#1e3a1e\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"715\" y=\"72\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"11\" font-family=\"sans-serif\" font-weight=\"bold\">財政出動</text><text x=\"715\" y=\"94\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">政府が</text><text x=\"715\" y=\"110\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">直接需要</text><text x=\"715\" y=\"126\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">を作る</text><polygon points=\"215,95 245,95 237,88 237,102\" fill=\"#e91e63\"/><polygon points=\"435,95 465,95 457,88 457,102\" fill=\"#e91e63\"/><polygon points=\"655,95 655,95 648,88 648,102\" fill=\"#e91e63\"/><polygon points=\"650,95 655,88 655,102\" fill=\"#e91e63\"/><line x1=\"650\" y1=\"95\" x2=\"660\" y2=\"95\" stroke=\"#4caf50\" stroke-width=\"2\"/></svg>",
 				"2000年代：5-8%",
@@ -115,6 +120,7 @@
 		},
 		{
 			"title": "個人の合理性 vs 集団の合理性（1/2）",
+			"subtitle": "個人にとって最適な行動が全員で実行されると集団全体を悪化させる合成の誤謬",
 			"content": [
 				"**合成の誤謬（Fallacy of Composition）：**",
 				"個々人にとって正しいことが、全員がやると誤りになる現象",
@@ -133,6 +139,7 @@
 		},
 		{
 			"title": "個人の合理性 vs 集団の合理性（2/2）",
+			"subtitle": "経済政策は個人合理性が集団を破壊するループを財政支出によって断ち切る試み",
 			"content": [
 				"- 銀行のリストラ合理化 → 全銀行が同時にやると信用収縮",
 				"- 企業が賃金を下げる → 全企業がやると消費が減り売上も下がる",
@@ -151,6 +158,7 @@
 		},
 		{
 			"title": "まとめ：経済学の逆説",
+			"subtitle": "個人の節約美徳が集合すると不況の罠になる逆説を財政政策でのみ打開できる",
 			"content": [
 				"✅ **個人の節約は美徳。全員の節約は不況の引き金**",
 				"✅ **乗数効果：1円の消費は経済全体で数円のGDPを生む**",

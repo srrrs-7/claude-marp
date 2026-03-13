@@ -12,6 +12,7 @@
 		},
 		{
 			"title": "目次",
+			"subtitle": "6章でゲーム理論をプラットフォーム競争に適用",
 			"content": [
 				"1. 囚人のジレンマとは",
 				"2. ナッシュ均衡の直感的理解",
@@ -24,6 +25,7 @@
 		},
 		{
 			"title": "目次 (2/2)",
+			"subtitle": "Tit-for-Tat・規制・OSSまで後半5章を網羅",
 			"content": [
 				"7. Tit-for-Tat戦略の実例",
 				"8. 規制という外部強制力",
@@ -42,7 +44,8 @@
 				"- 2人のプレイヤーが**同時に**「協力」か「裏切り」を選択",
 				"- 個人の最適戦略（裏切り）が、全体の最適（協力）と矛盾"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "個人合理性が集合的最悪解を生む——プラットフォーム競争の本質"
 		},
 		{
 			"title": "囚人のジレンマとは（2/2）",
@@ -53,7 +56,8 @@
 				"",
 				"**核心：個人的合理性が集団的非合理性を生む**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "2社がともに裏切るのが「均衡」——なぜ協力が難しいかが分かる"
 		},
 		{
 			"title": "ナッシュ均衡：誰も動けない状態（1/2）",
@@ -64,10 +68,12 @@
 				"- どのプレイヤーも、**一方的に**戦略を変えても得をしない状態",
 				"- 囚人のジレンマでは「両者裏切り」がナッシュ均衡"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "誰も一方的に逸脱できない状態が均衡——プラットフォーム膠着の説明"
 		},
 		{
 			"title": "ナッシュ均衡：誰も動けない状態（2/2）",
+			"subtitle": "囲い込みがナッシュ均衡—自発的オープン化は起きない",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">ナッシュ均衡：プラットフォームの「罠」</text><rect x=\"40\" y=\"50\" width=\"720\" height=\"55\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"400\" y=\"74\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">ナッシュ均衡 = 「誰も単独で戦略を変えても得をしない状態」</text><text x=\"400\" y=\"96\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">互いの戦略が「最適応答」になっているため、自発的な変化が起きない</text><rect x=\"40\" y=\"120\" width=\"340\" height=\"210\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"210\" y=\"145\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">Apple App Store の均衡</text><rect x=\"58\" y=\"157\" width=\"304\" height=\"38\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"176\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">現状: 30%手数料 + 審査制</text><text x=\"210\" y=\"192\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">開発者は従うしかない (iOS市場が必要)</text><rect x=\"58\" y=\"203\" width=\"304\" height=\"38\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"222\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Appleは変える理由がない</text><text x=\"210\" y=\"238\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">(独占的地位が報酬を最大化)</text><rect x=\"58\" y=\"249\" width=\"304\" height=\"38\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"268\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">開発者も一人では動けない</text><text x=\"210\" y=\"284\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">(競合も同じ条件下)</text><rect x=\"58\" y=\"295\" width=\"304\" height=\"26\" rx=\"5\" fill=\"#e91e63\" fill-opacity=\"0.2\"/><text x=\"210\" y=\"313\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">均衡からの脱出 = 外部強制力のみ</text><rect x=\"420\" y=\"120\" width=\"340\" height=\"210\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"590\" y=\"145\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">Google Play の均衡</text><rect x=\"438\" y=\"157\" width=\"304\" height=\"38\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"176\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">現状: 15-30%手数料 + 代替ストアOK</text><text x=\"590\" y=\"192\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">競争圧力でAppleより低い手数料</text><rect x=\"438\" y=\"203\" width=\"304\" height=\"38\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"222\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">でも下げすぎると収益が減る</text><text x=\"590\" y=\"238\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">(株主への義務がある)</text><rect x=\"438\" y=\"249\" width=\"304\" height=\"38\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"268\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">開発者はApple+Googleに依存</text><text x=\"590\" y=\"284\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">(代替手段が実質ない)</text><rect x=\"438\" y=\"295\" width=\"304\" height=\"26\" rx=\"5\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"590\" y=\"313\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">二重の均衡 = 開発者の選択肢なし</text></svg>",
 				"- パレート最適（両者協力）とは異なる",
@@ -98,7 +104,8 @@
 				"",
 				"**フォーク定理：繰り返しゲームでは協力も均衡になりうる**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "繰り返しが互恵的協力を可能にした——報復と信頼の15年史"
 		},
 		{
 			"title": "Tit-for-Tat：最強の戦略（1/2）",
@@ -110,10 +117,12 @@
 				"- **勝者：Tit-for-Tat**（アナトール・ラパポート提出）",
 				""
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "協力から始め、裏切りには即報復——シンプルさが最強の理由"
 		},
 		{
 			"title": "Tit-for-Tat：最強の戦略（2/2）",
+			"subtitle": "善良・報復・寛容・明確の4特性が協力を最大化する",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">Tit-for-Tat：なぜシンプルが最強なのか</text><rect x=\"40\" y=\"50\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"150\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">Tit-for-Tat</text><text x=\"150\" y=\"93\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">「針には針を」</text><rect x=\"58\" y=\"105\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"150\" y=\"128\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">第1手：必ず協力する</text><rect x=\"58\" y=\"149\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"150\" y=\"172\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">以降：相手の前手を模倣</text><rect x=\"58\" y=\"193\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"150\" y=\"216\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">協力→協力で返す</text><rect x=\"58\" y=\"237\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#e91e63\" fill-opacity=\"0.25\"/><text x=\"150\" y=\"260\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">裏切り→即座に報復</text><rect x=\"58\" y=\"281\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"150\" y=\"304\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">報復後は許す（元に戻す）</text><rect x=\"290\" y=\"50\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"400\" y=\"75\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">なぜ強い？</text><rect x=\"308\" y=\"90\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"110\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">やさしい</text><text x=\"400\" y=\"128\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" font-family=\"sans-serif\">自分から裏切らない</text><rect x=\"308\" y=\"150\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"170\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">報復可能</text><text x=\"400\" y=\"188\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" font-family=\"sans-serif\">相手の裏切りに即反応</text><rect x=\"308\" y=\"210\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"230\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">寛容</text><text x=\"400\" y=\"248\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" font-family=\"sans-serif\">恨みを持ち越さない</text><rect x=\"308\" y=\"270\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"290\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">明確</text><text x=\"400\" y=\"308\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" font-family=\"sans-serif\">相手が予測しやすい</text><rect x=\"540\" y=\"50\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"650\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">プラットフォームへの示唆</text><rect x=\"558\" y=\"90\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"650\" y=\"110\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">APIを開放して協力を示す</text><text x=\"650\" y=\"128\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" font-family=\"sans-serif\">→ エコシステムが育つ</text><rect x=\"558\" y=\"150\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"650\" y=\"170\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">条件変更で開発者が離脱</text><text x=\"650\" y=\"188\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\" font-family=\"sans-serif\">→ 報復として去る</text><rect x=\"558\" y=\"210\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"650\" y=\"230\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">規約改善で戻ってくる</text><text x=\"650\" y=\"248\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" font-family=\"sans-serif\">→ 信頼回復の機会</text><rect x=\"558\" y=\"270\" width=\"184\" height=\"50\" rx=\"6\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"650\" y=\"290\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">一貫したルール</text><text x=\"650\" y=\"308\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" font-family=\"sans-serif\">→ 予測可能性が信頼を生む</text></svg>",
 				"**4つの特性：**",
@@ -138,10 +147,12 @@
 				"- **1990年代のブラウザ戦争**：IE vs Netscape（裏切り均衡）",
 				"  - 独自拡張の応酬 → Web断片化 → 開発者の疲弊"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "標準化機関は囚人のジレンマを解く外部強制力として機能する"
 		},
 		{
 			"title": "W3C標準化：強制された協力（2/2）",
+			"subtitle": "第三者制度設計が協力を強制—W3CがHTMLを統一した",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">W3C標準化の成果：協力の持続メカニズム</text><rect x=\"40\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"210\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">標準化が生んだ価値</text><rect x=\"58\" y=\"88\" width=\"304\" height=\"44\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"107\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">開発者: 1つのコードで全ブラウザ対応</text><text x=\"210\" y=\"123\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 開発コスト 1/3以下に</text><rect x=\"58\" y=\"140\" width=\"304\" height=\"44\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"159\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">ユーザー: どのブラウザでも同じ体験</text><text x=\"210\" y=\"175\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ Web普及が加速</text><rect x=\"58\" y=\"192\" width=\"304\" height=\"44\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"211\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">企業: 標準への投資が業界全体を成長</text><text x=\"210\" y=\"227\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ パイが拡大し全員が得をする</text><rect x=\"58\" y=\"244\" width=\"304\" height=\"44\" rx=\"5\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"210\" y=\"266\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">ゲーム理論的帰結</text><text x=\"210\" y=\"282\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">協力均衡 > ナッシュ均衡（競争）</text><rect x=\"58\" y=\"296\" width=\"304\" height=\"26\" rx=\"5\" fill=\"#e91e63\" fill-opacity=\"0.15\"/><text x=\"210\" y=\"314\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">しかし外部強制なしには維持困難</text><rect x=\"420\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"590\" y=\"75\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">協力を維持する仕組み</text><rect x=\"438\" y=\"88\" width=\"304\" height=\"44\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"107\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">W3C会員制度：参加コストで</text><text x=\"590\" y=\"123\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ フリーライダーを排除</text><rect x=\"438\" y=\"140\" width=\"304\" height=\"44\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"159\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">標準策定プロセスの透明性</text><text x=\"590\" y=\"175\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ 信頼の構築と維持</text><rect x=\"438\" y=\"192\" width=\"304\" height=\"44\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"211\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">「逸脱 = 孤立」という抑止力</text><text x=\"590\" y=\"227\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ 独自拡張は「嫌われ者」に</text><rect x=\"438\" y=\"244\" width=\"304\" height=\"44\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"263\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">長期的関係の確約</text><text x=\"590\" y=\"279\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ 繰り返しゲームの条件を満たす</text><rect x=\"438\" y=\"296\" width=\"304\" height=\"26\" rx=\"5\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"590\" y=\"314\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">標準化機関 = 協力の制度的保証</text></svg>",
 				"- **W3Cの役割**：「繰り返しゲーム」のルール設定者",
@@ -154,6 +165,7 @@
 		},
 		{
 			"title": "ブラウザ戦争から標準化へ：協力の進化",
+			"subtitle": "Chrome65%支配で協力と独占が逆転—新たなジレンマへ",
 			"content": [
 				"**3つの時代の構造変化**",
 				"",
@@ -176,6 +188,7 @@
 		},
 		{
 			"title": "Meta のLlama戦略：ゲーム理論的分析（1/2）",
+			"subtitle": "OpenAI包囲網をOSSで崩す—MetaのR&D費用社会化戦略",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">MetaのLlama戦略：ゲーム理論的解析</text><rect x=\"40\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"210\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">なぜOSSにするのか？</text><rect x=\"58\" y=\"88\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"107\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">OpenAI/Google独占を防ぐ</text><text x=\"210\" y=\"123\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 競合の「差別化」を消す</text><rect x=\"58\" y=\"140\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"159\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">コミュニティに無料で開発させる</text><text x=\"210\" y=\"175\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ R&D コストを社会化</text><rect x=\"58\" y=\"192\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"211\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">AI基盤がコモディティ化する</text><text x=\"210\" y=\"227\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ Metaの広告事業が相対的に強化</text><rect x=\"58\" y=\"244\" width=\"304\" height=\"68\" rx=\"6\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"210\" y=\"266\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">ゲーム理論的解釈</text><text x=\"210\" y=\"284\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「協力」で他者の裏切りを無力化する</text><text x=\"210\" y=\"300\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 支配戦略を変更させる</text><rect x=\"420\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"590\" y=\"75\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">リスクとトレードオフ</text><rect x=\"438\" y=\"88\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"107\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">中国・悪意ある組織も利用可能</text><text x=\"590\" y=\"123\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ コントロールを失う</text><rect x=\"438\" y=\"140\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"159\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">競合も同じ技術を使える</text><text x=\"590\" y=\"175\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ 差別化が困難になる</text><rect x=\"438\" y=\"192\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"211\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">AI安全性への責任</text><text x=\"590\" y=\"227\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ 倫理的コスト</text><rect x=\"438\" y=\"244\" width=\"304\" height=\"68\" rx=\"6\" fill=\"#e91e63\" fill-opacity=\"0.15\"/><text x=\"590\" y=\"266\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">本質的問い</text><text x=\"590\" y=\"284\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">短期の競争優位 vs</text><text x=\"590\" y=\"300\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">長期のエコシステム支配</text></svg>",
 				"**なぜMetaはLlamaをオープンソース化したのか**",
@@ -188,6 +201,7 @@
 		},
 		{
 			"title": "Meta のLlama戦略：ゲーム理論的分析（2/2）",
+			"subtitle": "ゲームのルール自体を変えるメタ戦略—市場をオープンにシフト",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-family=\"sans-serif\" font-weight=\"bold\">Metaのオープンソース戦略：ゲームのルールを変えるメタ戦略</text><rect x=\"40\" y=\"50\" width=\"340\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"210\" y=\"78\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">従来のゲーム構造</text><text x=\"210\" y=\"108\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">OpenAI / Google → 囲い込み</text><text x=\"210\" y=\"130\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">「裏切り」が支配戦略</text><text x=\"210\" y=\"162\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">プロプライエタリLLM = 護城河</text><text x=\"210\" y=\"182\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">API課金 = ロックイン戦略</text><rect x=\"80\" y=\"210\" width=\"250\" height=\"90\" rx=\"6\" fill=\"#1a1a2e\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"205\" y=\"238\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">Metaの不利な立場:</text><text x=\"205\" y=\"258\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">消費者向けAI製品なし</text><text x=\"205\" y=\"278\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">OpenAIに後れをとる</text><rect x=\"420\" y=\"50\" width=\"340\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#81c784\" stroke-width=\"2\"/><text x=\"590\" y=\"78\" text-anchor=\"middle\" fill=\"#81c784\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">Metaのメタ戦略</text><text x=\"440\" y=\"108\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Llama をオープンソース化</text><text x=\"440\" y=\"130\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">「協力」に見せかけた支配戦略の転換</text><line x1=\"440\" y1=\"145\" x2=\"740\" y2=\"145\" stroke=\"#333355\" stroke-width=\"1\"/><text x=\"440\" y=\"168\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">直接的利益:</text><text x=\"440\" y=\"186\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">広告最適化に使える(自社LLM必要)</text><text x=\"440\" y=\"210\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">戦略的利益:</text><text x=\"440\" y=\"228\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">OpenAI/Googleの囲い込みを無力化</text><text x=\"440\" y=\"252\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">コミュニティ効果:</text><text x=\"440\" y=\"270\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">外部貢献 = 無料R&D</text><text x=\"440\" y=\"295\" fill=\"#81c784\" font-size=\"11\" font-family=\"sans-serif\">→ 市場全体をオープンにシフト</text></svg>",
 				"",
@@ -200,6 +214,7 @@
 		},
 		{
 			"title": "規制という外部強制力（1/2）",
+			"subtitle": "EU DMAがAppleの裏切り戦略を強制的に協力へ転換させた",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-family=\"sans-serif\" font-weight=\"bold\">EU DMA：利得行列を書き換える外部強制力</text><rect x=\"40\" y=\"50\" width=\"340\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#555577\" stroke-width=\"2\"/><text x=\"210\" y=\"78\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">DMA以前のゲーム</text><text x=\"210\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Apple: Lightning独占（裏切り）</text><text x=\"210\" y=\"130\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">ユーザーはロックイン</text><text x=\"210\" y=\"155\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">App Store独占（裏切り）</text><text x=\"210\" y=\"177\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">30%手数料が支配戦略</text><text x=\"210\" y=\"225\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"36\" font-family=\"sans-serif\">→</text><text x=\"210\" y=\"270\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">裏切り均衡が安定</text><rect x=\"420\" y=\"50\" width=\"340\" height=\"270\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"590\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">DMA後のゲーム（2024年〜）</text><text x=\"440\" y=\"108\" fill=\"#81c784\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">USB-C統一強制</text><text x=\"440\" y=\"128\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">Lightningコネクタが違法に</text><text x=\"440\" y=\"152\" fill=\"#81c784\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">サイドローディング義務化</text><text x=\"440\" y=\"172\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">App Store独占が崩壊</text><text x=\"440\" y=\"196\" fill=\"#81c784\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">iMessage RCS対応</text><text x=\"440\" y=\"216\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">相互運用性の義務化</text><line x1=\"440\" y1=\"232\" x2=\"740\" y2=\"232\" stroke=\"#333355\" stroke-width=\"1\"/><text x=\"590\" y=\"258\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\" font-weight=\"bold\">裏切りペナルティ↑</text><text x=\"590\" y=\"280\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">→ 協力が支配戦略に変わる</text><text x=\"590\" y=\"302\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">メカニズムデザインの実例</text></svg>",
 				"**EU DMA（デジタル市場法）の囚人のジレンマ的効果**",
@@ -212,6 +227,7 @@
 		},
 		{
 			"title": "規制という外部強制力（2/2）",
+			"subtitle": "罰金でペナルティを上げ裏切りを不採算に—メカニズムデザイン",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">規制という外部強制力：EU DMAの設計</text><rect x=\"40\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"210\" y=\"75\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">DMA以前：ナッシュ均衡の罠</text><rect x=\"58\" y=\"88\" width=\"304\" height=\"40\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Apple: 高手数料が最適応答</text><text x=\"210\" y=\"124\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">(開発者に代替なし)</text><rect x=\"58\" y=\"136\" width=\"304\" height=\"40\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"156\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">開発者: 従うことが最適応答</text><text x=\"210\" y=\"172\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">(iOS市場から外れると損失)</text><rect x=\"58\" y=\"184\" width=\"304\" height=\"40\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"204\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">規制当局: 取り締まる法律なし</text><text x=\"210\" y=\"220\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">(デジタル市場に適した法がない)</text><rect x=\"58\" y=\"232\" width=\"304\" height=\"86\" rx=\"5\" fill=\"#e91e63\" fill-opacity=\"0.2\"/><text x=\"210\" y=\"254\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">均衡は自発的に崩れない</text><text x=\"210\" y=\"272\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">全員が「合理的」に行動しているため</text><text x=\"210\" y=\"290\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">外部からの力なしに変化しない</text><rect x=\"420\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"590\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">DMA後：ゲームのルール変更</text><rect x=\"438\" y=\"88\" width=\"304\" height=\"40\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">代替ストア許可 + 相互運用性義務</text><text x=\"590\" y=\"124\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 裏切りのコストが増大</text><rect x=\"438\" y=\"136\" width=\"304\" height=\"40\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"156\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">違反に数十億ユーロの罰金</text><text x=\"590\" y=\"172\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 支配戦略を変更する</text><rect x=\"438\" y=\"184\" width=\"304\" height=\"40\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"204\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">新均衡：一定の開放性が義務に</text><text x=\"590\" y=\"220\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 協力が「強制的に」最適応答に</text><rect x=\"438\" y=\"232\" width=\"304\" height=\"86\" rx=\"5\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"590\" y=\"254\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">ゲーム理論的解釈</text><text x=\"590\" y=\"272\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">規制 = ペイオフ行列の再設計</text><text x=\"590\" y=\"290\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 社会的最適が新しい均衡に</text></svg>",
 				"",
@@ -224,6 +240,7 @@
 		},
 		{
 			"title": "オープンソースと囚人のジレンマ（1/2）",
+			"subtitle": "OSSの無賃乗車が蔓延—メンテナ疲弊の根本原因",
 			"content": [
 				"**OSSの「フリーライダー問題」**",
 				"",
@@ -235,6 +252,7 @@
 		},
 		{
 			"title": "オープンソースと囚人のジレンマ（2/2）",
+			"subtitle": "GPLが裏切りを法的に封鎖—ライセンスが均衡を変える",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">OSSと囚人のジレンマ：コピーレフトの解決策</text><rect x=\"40\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"210\" y=\"75\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">問題：企業の「無賃乗車」</text><rect x=\"58\" y=\"88\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"107\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Linux カーネルを製品に組み込む</text><text x=\"210\" y=\"123\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ 改良を非公開にする（裏切り）</text><rect x=\"58\" y=\"140\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"159\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">全企業が裏切れば</text><text x=\"210\" y=\"175\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ OSSエコシステムが衰退</text><rect x=\"58\" y=\"192\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"211\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">全員にとって損失</text><text x=\"210\" y=\"227\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ ナッシュ均衡が悪化</text><rect x=\"58\" y=\"244\" width=\"304\" height=\"68\" rx=\"6\" fill=\"#e91e63\" fill-opacity=\"0.2\"/><text x=\"210\" y=\"266\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">ゲーム理論的分析</text><text x=\"210\" y=\"284\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">一回限りのゲームなら裏切りが最適</text><text x=\"210\" y=\"300\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ フリーライダー問題</text><rect x=\"420\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"590\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">解決：GPL「コピーレフト」</text><rect x=\"438\" y=\"88\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"107\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">GPLコードを使うなら</text><text x=\"590\" y=\"123\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 改良もOSSで公開義務</text><rect x=\"438\" y=\"140\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"159\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">「裏切り」を法的に封鎖</text><text x=\"590\" y=\"175\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 支配戦略を協力に変える</text><rect x=\"438\" y=\"192\" width=\"304\" height=\"44\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"211\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Android (Apache) vs Linux (GPL)</text><text x=\"590\" y=\"227\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ ライセンスが戦略を決める</text><rect x=\"438\" y=\"244\" width=\"304\" height=\"68\" rx=\"6\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"590\" y=\"266\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">外部ルールで均衡を変える</text><text x=\"590\" y=\"284\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">囚人のジレンマを繰り返しゲームに</text><text x=\"590\" y=\"300\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 協力が安定均衡になる</text></svg>",
 				"",
@@ -247,6 +265,7 @@
 		},
 		{
 			"title": "繰り返しゲームで協力が成立する5条件（1/2）",
+			"subtitle": "将来の重みと観測可能性が協力均衡の2大条件",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">繰り返しゲームで協力が成立する5条件</text><rect x=\"40\" y=\"55\" width=\"340\" height=\"115\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"60\" y=\"78\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">①将来の影の長さ</text><text x=\"60\" y=\"100\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">繰り返しが十分長い（≥5回）</text><text x=\"60\" y=\"120\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">例：長期API契約、マルチプラットフォーム開発</text><text x=\"60\" y=\"155\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 将来の報酬が裏切りコストを超える</text><rect x=\"420\" y=\"55\" width=\"340\" height=\"115\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"440\" y=\"78\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">②透明性</text><text x=\"440\" y=\"100\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">相手の行動が観察可能</text><text x=\"440\" y=\"120\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">例：App Store審査基準の公開、規約変更の通知</text><text x=\"440\" y=\"155\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ 裏切りを即座に検知できる</text><rect x=\"40\" y=\"185\" width=\"340\" height=\"115\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"60\" y=\"208\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">③報復可能性</text><text x=\"60\" y=\"230\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">裏切りへの即時対応能力</text><text x=\"60\" y=\"250\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">例：Twitterがアクセス制限→開発者が代替を構築</text><text x=\"60\" y=\"285\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">→ 裏切りのコストが明確になる</text><rect x=\"420\" y=\"185\" width=\"340\" height=\"115\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"440\" y=\"208\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">④参加者の少なさ</text><text x=\"440\" y=\"230\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">プレイヤーが多すぎると調整困難</text><text x=\"440\" y=\"250\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">例：主要ブラウザ3-4社なら標準化できる</text><text x=\"440\" y=\"285\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ 寡占状態が協力を促進</text><rect x=\"220\" y=\"310\" width=\"360\" height=\"40\" rx=\"8\" fill=\"#f9a825\" fill-opacity=\"0.15\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"400\" y=\"335\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">⑤共通利益の存在：市場が拡大するほど全員が得をする</text></svg>",
 				"**フォーク定理の実践的応用**",
@@ -260,6 +279,7 @@
 		},
 		{
 			"title": "繰り返しゲームで協力が成立する5条件（2/2）",
+			"subtitle": "報復可能・少数プレイヤー・共通利益で協力が安定する",
 			"content": [
 				"3. **報復が可能**",
 				"   - 相手の裏切りに対して対抗策がある（代替技術の存在）",
@@ -279,10 +299,12 @@
 				"- **裏切り**：安全性を無視して開発速度を最大化する",
 				""
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "安全投資は競争で不利——だから自発的解決は不可能で規制が必要"
 		},
 		{
 			"title": "AI安全性：究極の囚人のジレンマ（2/2）",
+			"subtitle": "安全性軽視が加速—AIアームレースが裏切り均衡に向かう",
 			"content": [
 				"**現状：裏切り均衡に向かっている兆候**",
 				"- 「AIアームレース」論調の加速",
@@ -306,10 +328,12 @@
 				"| 利得変更 | ペナルティ/報酬 | GPL、反トラスト法 |",
 				"| 透明性 | 裏切りの可視化 | オープンスタンダード |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ルール設計で囚人ゲームを協力ゲームに変える——政策立案の本質"
 		},
 		{
 			"title": "プラットフォーム競争の未来予測（1/2）",
+			"subtitle": "規制主導・AIアームレース・オープン化の3シナリオが並走",
 			"content": [
 				"**ゲーム理論が示すシナリオ**",
 				"",
@@ -321,6 +345,7 @@
 		},
 		{
 			"title": "プラットフォーム競争の未来予測（2/2）",
+			"subtitle": "単一均衡はない—領域ごとに協力と競争が混在する未来",
 			"content": [
 				"  - 安全性無視の開発競争 → 技術的危機が協力を促す",
 				"- **シナリオ3：オープン化の連鎖**",
@@ -339,10 +364,12 @@
 				"- 個人的合理性は**集団的非合理性**を生む（囲い込みの罠）",
 				"- 繰り返しゲームでは**評判と報復**が協力を可能にする"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ゲーム理論は競争の必然を予測する——感情でなく数学で判断せよ"
 		},
 		{
 			"title": "まとめ：数学が照らすプラットフォームの未来（2/2）",
+			"subtitle": "Tit-for-Tat＋制度設計＋国際機関の3層対策が必要",
 			"content": [
 				"- **制度設計**（標準化団体、規制）が利得行列を変える",
 				"- **Tit-for-Tat**の「善良・報復・寛容・明確」が最強戦略",

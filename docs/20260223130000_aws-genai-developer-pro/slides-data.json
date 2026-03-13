@@ -26,7 +26,8 @@
 				"**Domain 4**: プロンプトエンジニアリング — CoT・ReAct・Few-shot・インジェクション対策"
 			],
 			"layout": "default",
-			"speakerNotes": "前半4ドメインのアジェンダ。"
+			"speakerNotes": "前半4ドメインのアジェンダ。",
+			"subtitle": "7ドメインで試験範囲を体系化、BedrockとRAGが最重要領域"
 		},
 		{
 			"title": "アジェンダ (2/2)",
@@ -37,7 +38,8 @@
 				"**まとめ**: 試験頻出ポイント & 重要AWSサービス一覧"
 			],
 			"layout": "default",
-			"speakerNotes": "後半3ドメイン＋まとめ。"
+			"speakerNotes": "後半3ドメイン＋まとめ。",
+			"subtitle": "MLOpsとセキュリティが近年の出題増加分野、見落とし禁物"
 		},
 		{
 			"title": "生成AIとは？従来のAIとの違い",
@@ -416,7 +418,8 @@
 				"**安全ガードレール**: 有害コンテンツ・PII取扱い等の指示を明記"
 			],
 			"layout": "default",
-			"speakerNotes": "システムプロンプトはセッション全体を通じて有効な隠れたコンテキスト。ユーザーには見えない（通常）が全ターンに適用される。Claude等ではAssistantロール冒頭の先回り記述も可能（Prefill）。最大長の制約に注意（コスト増加要因）。Bedrock Guardrailsと組み合わせて多層防御を構築。"
+			"speakerNotes": "システムプロンプトはセッション全体を通じて有効な隠れたコンテキスト。ユーザーには見えない（通常）が全ターンに適用される。Claude等ではAssistantロール冒頭の先回り記述も可能（Prefill）。最大長の制約に注意（コスト増加要因）。Bedrock Guardrailsと組み合わせて多層防御を構築。",
+			"subtitle": "ロール定義+制約+フォーマットの三層構造が精度を決める"
 		},
 		{
 			"title": "プロンプトインジェクション攻撃と対策",
@@ -457,7 +460,8 @@
 				"**変数サポート**: {{variable}} 形式で動的パラメータを埋め込み"
 			],
 			"layout": "default",
-			"speakerNotes": "Bedrock Prompt ManagementはConsoleまたはAPIでプロンプトを管理するサービス。バージョン番号（draft/1/2...）でイテレーション管理。Prompt FlowsノードでIDを参照し本番変更なしでプロンプト更新可能。組織のプロンプトライブラリとして活用。IAMポリシーでアクセス制御。"
+			"speakerNotes": "Bedrock Prompt ManagementはConsoleまたはAPIでプロンプトを管理するサービス。バージョン番号（draft/1/2...）でイテレーション管理。Prompt FlowsノードでIDを参照し本番変更なしでプロンプト更新可能。組織のプロンプトライブラリとして活用。IAMポリシーでアクセス制御。",
+			"subtitle": "バージョン管理で本番プロンプトを安全にロールバック可能"
 		},
 		{
 			"title": "AIエージェントとは：アーキテクチャ",
@@ -679,7 +683,8 @@
 				"**Prompt Caching**: 繰り返しプロンプトのコスト削減"
 			],
 			"layout": "default",
-			"speakerNotes": "試験直前の最終確認用チートシート。各概念の定義と対応するAWSサービス/機能を暗記する。特に混同しやすいFine-tuning vs CPT vs RAGの使い分けは毎回出題される。"
+			"speakerNotes": "試験直前の最終確認用チートシート。各概念の定義と対応するAWSサービス/機能を暗記する。特に混同しやすいFine-tuning vs CPT vs RAGの使い分けは毎回出題される。",
+			"subtitle": "RAG・エージェント・ガードレールが試験の最頻出3領域"
 		},
 		{
 			"title": "重要概念クイックリファレンス（2/2）",
@@ -691,7 +696,8 @@
 				"**Faithfulness**: RAG回答がソース文書に根拠を持つか"
 			],
 			"layout": "default",
-			"speakerNotes": "試験直前の最終確認用チートシート。各概念の定義と対応するAWSサービス/機能を暗記する。特に混同しやすいFine-tuning vs CPT vs RAGの使い分けは毎回出題される。"
+			"speakerNotes": "試験直前の最終確認用チートシート。各概念の定義と対応するAWSサービス/機能を暗記する。特に混同しやすいFine-tuning vs CPT vs RAGの使い分けは毎回出題される。",
+			"subtitle": "Bedrock API/SDK呼び出しパターンの暗記が合格への近道"
 		},
 		{
 			"title": "参考リソース・学習リソース（1/2）",
@@ -703,7 +709,8 @@
 				"[Amazon SageMaker ドキュメント](https://docs.aws.amazon.com/sagemaker/latest/dg/)"
 			],
 			"layout": "default",
-			"speakerNotes": "試験準備には公式の試験ガイドに記載されたドメインとウェイトを確認した上で学習計画を立てる。AWS Skill Builderの公式コースは試験に直結した内容が多い。ハンズオンで実際にBedrockを操作することで記憶が定着する。"
+			"speakerNotes": "試験準備には公式の試験ガイドに記載されたドメインとウェイトを確認した上で学習計画を立てる。AWS Skill Builderの公式コースは試験に直結した内容が多い。ハンズオンで実際にBedrockを操作することで記憶が定着する。",
+			"subtitle": "公式ドキュメント+Workshopで実技問題の正答率が上がる"
 		},
 		{
 			"title": "参考リソース・学習リソース（2/2）",
@@ -715,7 +722,8 @@
 				"[Bedrock Workshop (GitHub)](https://github.com/aws-samples/amazon-bedrock-workshop)"
 			],
 			"layout": "default",
-			"speakerNotes": "試験準備には公式の試験ガイドに記載されたドメインとウェイトを確認した上で学習計画を立てる。AWS Skill Builderの公式コースは試験に直結した内容が多い。ハンズオンで実際にBedrockを操作することで記憶が定着する。"
+			"speakerNotes": "試験準備には公式の試験ガイドに記載されたドメインとウェイトを確認した上で学習計画を立てる。AWS Skill Builderの公式コースは試験に直結した内容が多い。ハンズオンで実際にBedrockを操作することで記憶が定着する。",
+			"subtitle": "模擬試験2周で頻出パターンを体感—最後の1週間で仕上げ"
 		}
 	]
 }

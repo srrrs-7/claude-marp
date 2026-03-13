@@ -87,6 +87,8 @@ style: |
 
 # 目次
 
+> *コード行数バイアスから乗数効果・DORA指標まで6章で検証*
+
 - - 1. 「生産的な一日」の定義
 - - 2. コード行数バイアス
 - - 3. 見えない仕事の価値
@@ -104,6 +106,8 @@ style: |
 ---
 
 # あなたは今日、生産的でしたか？
+
+> *コミット数バイアスが見えない価値を消している*
 
 ![w:800 center](assets/svg-perception.svg)
 - - 多くの開発者の回答: 「たくさんコードを書いた日 = 良い日」
@@ -131,6 +135,8 @@ style: |
 
 # コード = 生産性という幻想
 
+> *最良のコードは書かれなかったコードである*
+
 ![w:800 center](assets/svg-loc.svg)
 - - **Bill Gates**: 「コード行数で進捗を測るのは重量で飛行機の進捗を測るようなもの」
 - - LOC (Lines of Code) は1960年代からの計測手法
@@ -143,6 +149,8 @@ style: |
 ---
 
 # Activity ≠ Progress
+
+> *自己評価「生産的」の72%は集中コーディング日*
 
 ![w:800 center](assets/svg-nc-activity-progress.svg)
 - - **GitHub調査 (2024)**: 開発者の自己評価「生産的な日」の特徴
@@ -163,6 +171,8 @@ style: |
 
 # Glue Work — チームを支える接着剤
 
+> *コミットログに残らない仕事がチームを支える*
+
 ![w:800 center](assets/svg-glue.svg)
 - - **Tanya Reilly (2019)**: "Being Glue" — 組織を機能させる見えない仕事
 - - コードレビュー: バグを未然に防ぎ、知識を共有する
@@ -175,6 +185,8 @@ style: |
 ---
 
 # 乗数効果 (Multiplier Effect)
+
+> *チーム全体を速くする方が自分を速くするより大*
 
 ![w:800 center](assets/svg-multiplier.svg)
 - - **自分で100行のコードを書く** → 100行分の価値
@@ -195,6 +207,8 @@ style: |
 
 # コードを書かなくなる問題
 
+> *シニアの一言が3ヶ月の手戻りを防ぐ*
+
 ![w:800 center](assets/svg-nc-no-code-day.svg)
 - - シニアになるほどコードを書く時間が減る
 - - 会議、レビュー、設計、メンタリングに時間を使う
@@ -207,6 +221,8 @@ style: |
 ---
 
 # Staff+ エンジニアの一日
+
+> *コーディング20%—残り80%が組織の乗数効果*
 
 ![w:800 center](assets/svg-nc-staff-plus-day.svg)
 - - **Gergely Orosz (2023)**: Staff Engineerの典型的な時間配分
@@ -230,6 +246,8 @@ style: |
 
 # DORA指標が教えること
 
+> *4指標はすべてチーム単位—個人行数は無関係*
+
 - - **DORA (DevOps Research and Assessment)**: チーム生産性の4指標
 - - デプロイ頻度: どれだけ頻繁にリリースできるか
 - - リードタイム: コミットからデプロイまでの時間
@@ -241,6 +259,8 @@ style: |
 ---
 
 # SPACE Framework
+
+> *Activityは5次元中の1つに過ぎない*
 
 ![w:800 center](assets/svg-dora.svg)
 - - **GitHub/MS/University of Victoria (2021)**: 開発者生産性の5次元
@@ -255,6 +275,8 @@ style: |
 ---
 
 # まとめ
+
+> *ノーコードデーを罪悪感なく過ごせるチームが最強*
 
 - - 「コードを書いた = 生産的」は危険なバイアス
 - - 見えない仕事 (Glue Work) がチームを支えている

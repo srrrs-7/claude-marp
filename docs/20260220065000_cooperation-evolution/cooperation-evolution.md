@@ -89,6 +89,8 @@ style: |
 
 # アジェンダ
 
+> *利己的遺伝子からしっぺ返し戦略まで協力の全機序*
+
 - 1. 進化のパラドックス
 - 2. 囚人のジレンマ
 - 3. Axelrodのトーナメント
@@ -105,6 +107,8 @@ style: |
 ---
 
 # 利己的遺伝子はなぜ協力を生むか（1/2）
+
+> *rB>Cを満たせば血縁者支援が遺伝子的に合理的*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="30" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">ダーウィンのパラドックス</text><rect x="30" y="50" width="340" height="160" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="76" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">古典的ダーウィニズムの予測</text><text x="50" y="105" font-size="12" fill="#ccccdd" font-family="sans-serif">「最も適した個体が生き残る」</text><text x="50" y="128" font-size="12" fill="#ccccdd" font-family="sans-serif">→ 自己利益の最大化が合理的</text><text x="50" y="151" font-size="12" fill="#ccccdd" font-family="sans-serif">→ 他者を助ける行動は不利</text><text x="50" y="174" font-size="12" fill="#e91e63" font-family="sans-serif">→ 利他行動は「起きないはず」</text><text x="50" y="197" font-size="12" fill="#ccccdd" font-family="sans-serif">× 現実と矛盾</text><rect x="430" y="50" width="340" height="160" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="600" y="76" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">実際に観察される協力行動</text><text x="450" y="105" font-size="12" fill="#ccccdd" font-family="sans-serif">ミツバチ → 女王のために死ぬ</text><text x="450" y="128" font-size="12" fill="#ccccdd" font-family="sans-serif">アリ → 集団のために働く</text><text x="450" y="151" font-size="12" fill="#ccccdd" font-family="sans-serif">ヒト → 見知らぬ他人を助ける</text><text x="450" y="174" font-size="12" fill="#f9a825" font-family="sans-serif">→ 利他行動が普遍的に存在</text><text x="450" y="197" font-size="12" fill="#f9a825" font-family="sans-serif">✓ 説明が必要な現実</text><text x="400" y="234" text-anchor="middle" font-size="13" fill="#888899" font-family="sans-serif">Hamilton (1964) が包括適応度理論でこのパラドックスを解いた</text></svg>
 - **ダーウィンのパラドックス：**
@@ -132,6 +136,8 @@ style: |
 
 # 囚人のジレンマ（2/2）
 
+> *繰り返しゲームで協力が個人合理的戦略に変わる*
+
 - 個人の合理的戦略 = 「告白（裏切る）」
 - しかし全員が裏切ると両方に悪い結果
 - = 「個人の合理性」vs「集団の最適解」の対立
@@ -158,6 +164,8 @@ style: |
 ---
 
 # まとめ：協力の普遍的な論理
+
+> *しっぺ返し戦略の4原則が人間社会の制度設計の雛形*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" font-size="17" fill="#f9a825" font-weight="bold">協力の進化 — 4つのメカニズム</text><rect x="40" y="55" width="340" height="120" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="82" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold">血縁選択</text><text x="210" y="105" text-anchor="middle" font-size="11" fill="#ccc">r × B &gt; C を満たせば</text><text x="210" y="123" text-anchor="middle" font-size="11" fill="#ccc">血縁者への利他行動が進化</text><text x="210" y="145" text-anchor="middle" font-size="10" fill="#888">例: アリ・ミツバチ・ヒト家族</text><text x="210" y="163" text-anchor="middle" font-size="10" fill="#888">Hamilton (1964)</text><rect x="420" y="55" width="340" height="120" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="82" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold">互恵的利他主義</text><text x="590" y="105" text-anchor="middle" font-size="11" fill="#ccc">繰り返し交流で非血縁間でも</text><text x="590" y="123" text-anchor="middle" font-size="11" fill="#ccc">協力が安定する</text><text x="590" y="145" text-anchor="middle" font-size="10" fill="#888">例: 吸血コウモリ・人間の互助</text><text x="590" y="163" text-anchor="middle" font-size="10" fill="#888">Trivers (1971)</text><rect x="40" y="195" width="340" height="120" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="210" y="222" text-anchor="middle" font-size="13" fill="#4fc3f7" font-weight="bold">評判と間接互恵</text><text x="210" y="245" text-anchor="middle" font-size="11" fill="#ccc">他者に親切にすると評判が上がり</text><text x="210" y="263" text-anchor="middle" font-size="11" fill="#ccc">第三者から助けを受けやすくなる</text><text x="210" y="285" text-anchor="middle" font-size="10" fill="#888">例: ヒト社会の評判システム</text><text x="210" y="303" text-anchor="middle" font-size="10" fill="#888">Nowak &amp; Sigmund (1998)</text><rect x="420" y="195" width="340" height="120" rx="10" fill="#16213e" stroke="#a0c060" stroke-width="2"/><text x="590" y="222" text-anchor="middle" font-size="13" fill="#a0c060" font-weight="bold">ネットワーク互恵</text><text x="590" y="245" text-anchor="middle" font-size="11" fill="#ccc">空間構造・ネットワーク上で</text><text x="590" y="263" text-anchor="middle" font-size="11" fill="#ccc">協力者クラスターが形成される</text><text x="590" y="285" text-anchor="middle" font-size="10" fill="#888">例: SNS・地域コミュニティ</text><text x="590" y="303" text-anchor="middle" font-size="10" fill="#888">Nowak &amp; May (1992)</text><text x="400" y="345" text-anchor="middle" font-size="11" fill="#f9a825">「協力は単なる美徳ではない。それは自然が数十億年かけて発見した最適戦略だ」</text></svg>
 - ✅ **利己的な遺伝子が協力を生む：血縁選択・互恵的利他主義**

@@ -150,7 +150,8 @@
 				"require_client_certificate: true で相互認証を強制（省略すると片方向TLSになる）",
 				"validation_context で信頼するCA証明書を指定し、不正なクライアント証明書を拒否する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "2箇所の設定漏れが片方向TLSになる最大の落とし穴"
 		},
 		{
 			"title": "EnvoyプロキシでmTLSを設定する：実装はDownstreamとUpstreamを分けて考える（コード例）",
@@ -201,7 +202,8 @@
 				"Roleで許可するドメイン・有効期間・鍵サイズを制限し、最小権限の原則を証明書発行に適用する",
 				"pki_int（中間CA）を分離することでRoot CAをオフラインに保ち、侵害リスクを最小化できる"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "TTL短縮と自動更新で証明書失効リスクをゼロにできる"
 		},
 		{
 			"title": "Vault PKI SecretsエンジンでmTLS証明書を自動発行する：運用コストを90%削減する設計（コード例）",

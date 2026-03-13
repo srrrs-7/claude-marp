@@ -89,6 +89,8 @@ style: |
 
 # アジェンダ
 
+> *コーディング休止が生産性を上げる科学的根拠を体系的に提示*
+
 - 1. 「コードを書く＝生産的」という幻想
 - 2. 脳科学・認知科学の視点
 - 3. 研究が示す証拠
@@ -118,7 +120,9 @@ style: |
 
 ---
 
-# 活動量 ≠ 成果：データが示す乖離
+# 活動量 ≠ 成果：データが示す乖離（1/2）
+
+> *コミット数と価値創出の相関係数は0.3以下*
 
 - <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -148,6 +152,14 @@ style: |
 - **McKinsey 調査（2023）:**
 - - エンジニアの実作業のうち **コーディング：約32%**
 - - 残り68%：会議・レビュー・調査・コミュニケーション
+
+
+---
+
+# 活動量 ≠ 成果：データが示す乖離（2/2）
+
+> *LOC増加と価値創出に相関がないデータが従来指標を否定する*
+
 - **GitHub の分析:**
 - - Pull Request マージまでの中央値：**3.6日**
 - - コードを書く時間：約1.2日 ／ 残りは待機・レビュー・修正
@@ -156,7 +168,9 @@ style: |
 
 ---
 
-# ベロシティの罠：Sprint Velocity と価値創出
+# ベロシティの罠：Sprint Velocity と価値創出（1/2）
+
+> *ポイント消化は出力指標であり成果指標ではない*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -182,6 +196,14 @@ style: |
 - **Sprint Velocity とは:**
 - - 1スプリントで完了したストーリーポイント数
 - - しかし「点数を稼ぐ」行動にインセンティブが歪む
+
+
+---
+
+# ベロシティの罠：Sprint Velocity と価値創出（2/2）
+
+> *速く走ることと正しい方向に走ることは別の問題である*
+
 - **「ベロシティ信仰」のリスク:**
 - - 小さく分割しやすいタスクが優先される
 - - リファクタリング・設計・調査が後回しに
@@ -191,6 +213,8 @@ style: |
 ---
 
 # 「忙しい」エンジニアのパラドックス（1/2）
+
+> *常にコードを書くエンジニアが最も生産的とは限らない逆説*
 
 - <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -223,6 +247,8 @@ style: |
 
 # 「忙しい」エンジニアのパラドックス（2/2）
 
+> *割り込みと文脈切替のコストが集中の価値を消し去る*
+
 - **しかし実際は:**
 - - 深く考える時間：ゼロ
 - - 設計を見直す時間：ゼロ
@@ -232,6 +258,8 @@ style: |
 ---
 
 # 書き続けることのコスト：技術的負債の蓄積（1/2）
+
+> *急いで書いたコードが将来の速度を奪う複利的な負の蓄積*
 
 - <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -263,6 +291,8 @@ style: |
 ---
 
 # 書き続けることのコスト：技術的負債の蓄積（2/2）
+
+> *リファクタリングなし開発継続がいずれシステム全停止を招く*
 
 - - 設計をスキップしてコーディングを急いだ
 - - 仕様が固まる前に実装を始めた
@@ -312,6 +342,8 @@ style: |
 
 # デフォルトモードネットワーク（DMN）が創造する（1/2）
 
+> *意識が解放された時こそ脳が最も創造的な問題解決を行う*
+
 - **DMN（Default Mode Network）とは:**
 - - 何もしていない・ボーッとしているときに活性化する脳回路
 - - 前頭前皮質・楔前部・後帯状皮質が連動
@@ -321,6 +353,8 @@ style: |
 ---
 
 # デフォルトモードネットワーク（DMN）が創造する（2/2）
+
+> *画面から離れる時間がDMN活性化で突破口を生み出す*
 
 - <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -353,6 +387,8 @@ style: |
 
 # インキュベーション効果：「寝かせる」ことの力（1/2）
 
+> *問題を意識から離すことで無意識が解を温め表出させる*
+
 - **インキュベーション効果（Incubation Effect）:**
 - - 問題に取り組んだ後、意図的に「休む」と解決率が上がる現象
 - **Sio & Ormerod（2009）メタ分析:**
@@ -362,6 +398,8 @@ style: |
 ---
 
 # インキュベーション効果：「寝かせる」ことの力（2/2）
+
+> *仕事を止める勇気がブレークスルーを加速する科学的根拠*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -403,6 +441,8 @@ style: |
 
 # フロー状態の誤解：コストとリターン（1/2）
 
+> *フロー突入には平均23分かかり割り込みが価値を破壊する*
+
 - **フロー（Flow）状態の特徴（Csikszentmihalyi, 1990）:**
 - - 完全な集中・時間感覚の消失・自己意識の低下
 - **フローの「前コスト」:**
@@ -412,6 +452,8 @@ style: |
 ---
 
 # フロー状態の誤解：コストとリターン（2/2）
+
+> *フロー時間を確保するために非コーディング日が有効な手段*
 
 - <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -449,6 +491,8 @@ style: |
 ---
 
 # Cal Newport「ディープワーク」理論（1/2）
+
+> *集中の深さが知的生産の質と量を指数関数的に決定する*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -491,6 +535,8 @@ style: |
 ---
 
 # Cal Newport「ディープワーク」理論（2/2）
+
+> *浅い仕事に費やす時間を削り深い仕事を週4時間確保する*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -543,6 +589,8 @@ style: |
 
 # 熟慮的実践（Deliberate Practice）とは（1/2）
 
+> *意識的な不快ゾーン練習が普通の経験より10倍速く上達させる*
+
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">割り込みのコスト — 23分の回復時間</text>
@@ -574,6 +622,8 @@ style: |
 
 # 熟慮的実践（Deliberate Practice）とは（2/2）
 
+> *コード以外の思考・設計・読書が次のコーディングの質を決める*
+
 - - 快適ゾーンをわずかに超えた難易度
 - - 即時のフィードバック
 - - **意識的な振り返りと修正**
@@ -583,6 +633,8 @@ style: |
 ---
 
 # Stack Overflow 調査：生産性を下げる要因 Top 5（1/2）
+
+> *会議・割り込み・不明仕様が生産性を最も破壊する3大要因*
 
 - <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -613,6 +665,8 @@ style: |
 
 # Stack Overflow 調査：生産性を下げる要因 Top 5（2/2）
 
+> *エンジニア自身が認識する障害を取り除くと生産性が即座に改善*
+
 - 4. **過剰なミーティング** — 41%
 - 5. **コード以外の作業量** — 37%
 - → Top 5 のうち **コーディング自体が原因のものはゼロ**
@@ -623,6 +677,8 @@ style: |
 
 # Google の 20% ルール再考（1/2）
 
+> *業務時間の20%を自由時間にするとGmail・Mapsが生まれた*
+
 - **20% ルールとは:**
 - - 就業時間の 20% を自由なプロジェクトに使える制度
 - - Gmail, Google Maps, Google News が誕生
@@ -632,6 +688,8 @@ style: |
 ---
 
 # Google の 20% ルール再考（2/2）
+
+> *余白を制度化することで革新的アイデアが組織的に創出される*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -672,6 +730,8 @@ style: |
 
 # アーキテクチャ思考・システム設計（1/2）
 
+> *コードを書く前の設計思考が後工程のコスト10倍差を生む*
+
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動の価値マップ</text>
@@ -703,6 +763,8 @@ style: |
 
 # アーキテクチャ思考・システム設計（2/2）
 
+> *ホワイトボード時間への投資がリリース後のリファクタを不要にする*
+
 - - DORA メトリクス：設計品質と **デプロイ頻度** は正相関
 - - アーキテクチャの問題は後から直すと **10〜100倍** のコスト
 - **具体的なアクティビティ:**
@@ -712,6 +774,8 @@ style: |
 ---
 
 # 仕様書・RFC・ADR を書く（1/2）
+
+> *文書化はコーディング作業でなく意思決定の記録と合意形成*
 
 - <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -746,6 +810,8 @@ style: |
 
 # 仕様書・RFC・ADR を書く（2/2）
 
+> *ADR一枚が6ヶ月後の「なぜこうした？」論争を防ぐ*
+
 - - なぜそのアーキテクチャを選んだかを記録
 - - 未来の自分・チームへの説明書
 - **文章化が強制する思考:**
@@ -755,6 +821,8 @@ style: |
 ---
 
 # コードを読む（書くより難しい）（1/2）
+
+> *他者コードの読解力が自分のコード品質を最も効率よく高める*
 
 - <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -789,6 +857,8 @@ style: |
 
 # コードを読む（書くより難しい）（2/2）
 
+> *OSS名作コードの精読が設計センスを書くより速く育てる*
+
 - - OSS の優れたコードベースを読む（Linux, Ruby on Rails など）
 - - 「なぜこう書いたか」を考えながら読む
 - **コードを書かない日のアクティビティ:**
@@ -798,6 +868,8 @@ style: |
 ---
 
 # 1on1・ホワイトボード・ペア思考（1/2）
+
+> *対話による思考整理が一人での詰まりを数分で突破させる*
 
 - <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -830,6 +902,8 @@ style: |
 
 # 1on1・ホワイトボード・ペア思考（2/2）
 
+> *ペアでの問題設定の見直しが解法より早く正解へ導く*
+
 - - 線を引く行為が思考を可視化・整理する
 - - チームの共通認識を形成
 - **1on1 の価値（見過ごされがち）:**
@@ -840,6 +914,8 @@ style: |
 ---
 
 # 休養・散歩・「ボーッとする」時間の科学（1/2）
+
+> *散歩中の脳がオフィスの集中より創造的思考を生成する*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -871,6 +947,8 @@ style: |
 ---
 
 # 休養・散歩・「ボーッとする」時間の科学（2/2）
+
+> *意図的な休息が次の集中セッションの質を決定する*
 
 - - 睡眠中に海馬から皮質へ記憶が転送・統合される
 - - 睡眠不足は技術的判断力を著しく低下させる
@@ -928,6 +1006,8 @@ style: |
 
 # 「コードを書かない日」カレンダーの作り方（1/2）
 
+> *週1日の非コーディング日設定が習慣化の最初の具体的一手*
+
 - <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動のROI可視化</text>
@@ -961,6 +1041,8 @@ style: |
 
 # 「コードを書かない日」カレンダーの作り方（2/2）
 
+> *チームカレンダーに予め入れることで権利として守り抜ける*
+
 - - 金：振り返り・ドキュメント・学習・来週の設計メモ
 - **ステップ 2：「保護時間」を先にブロック**
 - - 会議は月・木午後に集約する
@@ -970,6 +1052,8 @@ style: |
 ---
 
 # チームへの説明：成果で語る（1/2）
+
+> *LoC削減でなく不具合率・設計品質・KPI改善で正当化する*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1002,6 +1086,8 @@ style: |
 
 # チームへの説明：成果で語る（2/2）
 
+> *マネージャーが納得する言語は成果と数字だけである*
+
 - - 「今日は RFC を書きました → 実装コストが X% 削減見込み」
 - - 「設計に1日使いました → バグが Y件 防げます」
 - **数字で語る:**
@@ -1011,6 +1097,8 @@ style: |
 ---
 
 # KPI の再定義：Lines of Code から何へ（1/2）
+
+> *コード行数でなく価値創出・障害率・技術負債で評価する時代*
 
 - <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1046,6 +1134,8 @@ style: |
 ---
 
 # KPI の再定義：Lines of Code から何へ（2/2）
+
+> *開発者体験指標がエンジニア組織の持続可能性を測る*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1084,6 +1174,8 @@ style: |
 ---
 
 # Exercise 1：直近1週間の活動を分類する（1/2）
+
+> *自分の時間配分を可視化して非価値活動の比率を把握する*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1127,6 +1219,8 @@ style: |
 
 # Exercise 1：直近1週間の活動を分類する（2/2）
 
+> *分類結果が次週の時間再配分アクションの起点となる*
+
 - - B：思考・設計（問題を考えた時間）
 - - C：コミュニケーション（会議・Slack・レビュー）
 - - D：学習・調査（読む・調べる）
@@ -1136,6 +1230,8 @@ style: |
 ---
 
 # Exercise 2：「非コーディング日」を設計する（1/2）
+
+> *来週実行できる具体的な非コーディング日計画を今日立てる*
 
 - <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1170,6 +1266,8 @@ style: |
 
 # Exercise 2：「非コーディング日」を設計する（2/2）
 
+> *活動内容と期待成果を明文化して実行可能性を高める*
+
 - - その日に何をするかを具体的に書く（「休む」はOK）
 - **問い:**
 - - その日に何をすることで、残りの4日のコードが良くなるか？
@@ -1179,6 +1277,8 @@ style: |
 ---
 
 # Exercise 3：チームでシェア・ディスカッション（1/2）
+
+> *個人計画をチームで共有し互いの実行を支援し合う*
 
 - <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1208,6 +1308,8 @@ style: |
 ---
 
 # Exercise 3：チームでシェア・ディスカッション（2/2）
+
+> *チームで合意した非コーディング日文化が制度として定着する*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1281,6 +1383,8 @@ style: |
 
 # アクションアイテム（1/2）
 
+> *今日から始める3つの具体的行動で変化を小さく起こす*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">熟慮的実践 — 成長を生む「コードを書かない日」</text>
@@ -1323,6 +1427,8 @@ style: |
 
 # アクションアイテム（2/2）
 
+> *チーム合意とKPI再定義が非コーディング文化を組織に根付かせる*
+
 - **チームでできること:**
 - - ベロシティ以外の指標（DORA）を導入する
 - - 非コーディング活動を1on1 で報告する文化をつくる
@@ -1334,6 +1440,8 @@ style: |
 
 # 参考文献・リンク（1/2）
 
+> *科学的根拠となる認知科学・生産性研究の主要文献リスト*
+
 - **書籍・理論:**
 - - [Cal Newport『Deep Work』(2016)](https://calnewport.com/deep-work/)
 - - [Paul Graham『Maker's Schedule, Manager's Schedule』(2009)](http://paulgraham.com/makersschedule.html)
@@ -1343,6 +1451,8 @@ style: |
 ---
 
 # 参考文献・リンク（2/2）
+
+> *実践に使えるツール・ポッドキャスト・コミュニティリソース集*
 
 - **研究・データ:**
 - - [Gloria Mark — Context Switching Study (2005)](https://www.ics.uci.edu/~gmark/chi08-mark.pdf)

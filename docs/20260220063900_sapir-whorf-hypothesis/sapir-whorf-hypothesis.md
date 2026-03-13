@@ -7,6 +7,71 @@ paginate: true
 header: "言語と認知の関係"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -23,6 +88,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *強い仮説の崩壊から色・方位実験で実証された弱い影響まで*
 
 - 1. サピア＝ウォーフ仮説とは
 - 2. 強い仮説は否定された
@@ -48,6 +115,8 @@ style: |
 
 # 言語が思考を制約するという仮説
 
+> *火災保険調査員Whorがホピ族言語から気づいた「言語が現実を切り分ける」仮説*
+
 - Edward Sapir（言語人類学者）とBenjamin Lee Whorf（火災保険調査員）
 - ホピ族の言語研究から仮説を提唱（1930〜40年代）
 - <svg viewBox="0 0 760 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><defs><style>.t{font-family:sans-serif;fill:#fff}.ts{font-family:sans-serif;fill:#ddd;font-size:12px}.th{font-family:sans-serif;fill:#f9a825;font-size:15px;font-weight:bold}</style></defs><rect width="760" height="240" fill="#1a1a2e" rx="8"/><text x="380" y="28" class="th" text-anchor="middle">仮説の誕生：Sapir と Whorf</text><circle cx="160" cy="120" r="70" fill="#1565c0" opacity="0.8"/><text x="160" y="108" class="t" text-anchor="middle" font-size="14" font-weight="bold">Edward Sapir</text><text x="160" y="128" class="ts" text-anchor="middle">言語人類学者</text><text x="160" y="148" class="ts" text-anchor="middle">イェール大学教授</text><circle cx="600" cy="120" r="70" fill="#6a1570" opacity="0.8"/><text x="600" y="108" class="t" text-anchor="middle" font-size="14" font-weight="bold">Benjamin Whorf</text><text x="600" y="128" class="ts" text-anchor="middle">火災保険調査員</text><text x="600" y="148" class="ts" text-anchor="middle">アマチュア言語学者</text><rect x="290" y="80" width="180" height="80" rx="8" fill="#e91e63" opacity="0.85"/><text x="380" y="108" class="t" text-anchor="middle" font-size="13" font-weight="bold">ホピ族の言語</text><text x="380" y="128" class="ts" text-anchor="middle">時間表現が英語と</text><text x="380" y="148" class="ts" text-anchor="middle">根本的に異なる</text><line x1="232" y1="120" x2="288" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="288,113 304,120 288,127" fill="#f9a825"/><line x1="472" y1="120" x2="528" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="528,113 544,120 528,127" fill="#f9a825"/><text x="380" y="215" class="ts" text-anchor="middle">1930〜40年代に共同研究 → 言語相対性仮説を提唱</text></svg>
@@ -71,6 +140,8 @@ style: |
 
 # プログラミング言語と思考（1/2）
 
+> *関数型・OOP・論理型はそれぞれ異なる問題の切り方を自然に強制する*
+
 - **「使う言語が考え方を変える」：**
 - 関数型言語（Haskell, Elm）：副作用を考えない思考が自然に
 - オブジェクト指向（Java, C++）：状態の変化として世界を見る
@@ -81,6 +152,8 @@ style: |
 ---
 
 # プログラミング言語と思考（2/2）
+
+> *複数パラダイムを習得するほど問題の切り方が広がり設計力が上がる*
 
 - 上位の抽象言語を知っていると低レベルの問題が見えにくくなる
 - アセンブラ出身者はメモリ管理の感覚がある
@@ -105,6 +178,8 @@ style: |
 ---
 
 # まとめ：言語は思考の「レンズ」
+
+> *言語は思考を決定しないが形成する — 多言語・多パラダイムが視野を広げる*
 
 - ✅ **強い言語的決定論は否定されたが、弱い仮説は実験で支持**
 - ✅ **言語は色・方向・時間の認識に影響する**

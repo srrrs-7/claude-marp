@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "Agenda",
+			"subtitle": "観察行為がバグを消す—非侵襲的観測とObservabilityが唯一の解",
 			"layout": "default",
 			"content": [
 				"- 1. 量子力学の観察者効果",
@@ -41,7 +42,8 @@
 				"- ソフトウェアでも全く同じ現象が起きる",
 				"- デバッグツールがシステムの振る舞いを変えてしまう"
 			],
-			"speakerNotes": "量子力学の観察者効果は哲学的議論を呼んだが、ソフトウェアでは非常に具体的・実践的な問題。"
+			"speakerNotes": "量子力学の観察者効果は哲学的議論を呼んだが、ソフトウェアでは非常に具体的・実践的な問題。",
+			"subtitle": "デバッガ起動で変わるタイミング—観測がバグを消す物理的理由"
 		},
 		{
 			"title": "バグの量子力学分類",
@@ -119,7 +121,8 @@
 				"- **ネットワーク遅延**: tcpdump がパケット処理を微妙に遅延",
 				"- **Docker volume**: 開発環境のファイルシステムが本番と異なるinode挙動",
 				"- 全て「観察道具が系を擾乱する」パターン"
-			]
+			],
+			"subtitle": "本番環境の負荷・データ・スケールがHeisenBugを発現させる"
 		},
 		{
 			"title": "Heisenbugの捕まえ方",
@@ -139,7 +142,8 @@
 				"- **Core Dump 事後解析**: クラッシュ後にメモリダンプを分析",
 				"- **Chaos Engineering**: ランダム障害注入でHeisenbugを炙り出す",
 				"- 原則: **系を変えずに観測する** 手法を選ぶ"
-			]
+			],
+			"subtitle": "eBPF・分散トレース・構造化ログで観測影響ゼロに近づける"
 		},
 		{
 			"title": "再現テスト戦略",
@@ -153,7 +157,8 @@
 				"- 5. **Property-Based Testing**: 不変条件でHeisenbugの症状を検出",
 				"- 6. **Canary Release**: 本番環境の一部で長時間観測"
 			],
-			"speakerNotes": "rrはMozillaが開発したdeterministic replay debugger。Heisenbugの再現に非常に有効。"
+			"speakerNotes": "rrはMozillaが開発したdeterministic replay debugger。Heisenbugの再現に非常に有効。",
+			"subtitle": "Race Conditionの確率的再現—stressツールとシード固定が鍵"
 		},
 		{
 			"title": "観察者効果を逆手に取る",
@@ -173,7 +178,8 @@
 				"- **Metrics Pipeline**: Prometheus + Grafana で常時監視",
 				"- 「観測できないシステムは制御できない」",
 				"- 量子力学の教訓: 観測は不可避、なら最小コストで最大情報を得よ"
-			]
+			],
+			"subtitle": "観察可能性を設計に組み込めばHeisenBugは激減する"
 		},
 		{
 			"title": "まとめ：不確定性と共存する（1/2）",

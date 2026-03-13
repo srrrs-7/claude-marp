@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "Agenda",
+			"subtitle": "OSSコモンズは自治モデルで維持可能—フリーライダーが崩壊の原因",
 			"layout": "default",
 			"content": [
 				"- 1. コモンズの悲劇とは",
@@ -38,7 +39,8 @@
 				"- OSSは現代の最大の「コモンズ」",
 				"- npm, PyPI, crates.io は全て共有牧草地"
 			],
-			"speakerNotes": "ハーディンの1968年のScience論文は環境問題の文脈だったが、OSSにも完全に当てはまる。"
+			"speakerNotes": "ハーディンの1968年のScience論文は環境問題の文脈だったが、OSSにも完全に当てはまる。",
+			"subtitle": "個人の合理的利用が全体崩壊を招く構造的罠"
 		},
 		{
 			"title": "OSSエコシステムの構造的問題",
@@ -52,6 +54,7 @@
 		},
 		{
 			"title": "数字で見るOSSの現実",
+			"subtitle": "世界経済の根幹を支えるOSSの60%が無報酬の1〜2人に依存している",
 			"layout": "default",
 			"content": [
 				"- Fortune 500企業の **96%** がOSSを使用",
@@ -69,6 +72,7 @@
 		},
 		{
 			"title": "left-pad事件（2016）",
+			"subtitle": "11行のコードへの依存がコモンズの脆弱性を世界規模で露呈した",
 			"layout": "default",
 			"content": [
 				"- **11行** のnpmパッケージが突然削除される",
@@ -81,6 +85,7 @@
 		},
 		{
 			"title": "Log4Shell（2021）",
+			"subtitle": "数兆ドル規模の産業が無給ボランティア2名の対応に依存していた現実",
 			"layout": "default",
 			"content": [
 				"- Apache Log4j に **CVSS 10.0** の致命的脆弱性",
@@ -98,6 +103,7 @@
 		},
 		{
 			"title": "エリノア・オストロム：コモンズは管理できる",
+			"subtitle": "コミュニティ自治という第3の道がOSSを国家にも市場にも依存せず持続させる",
 			"layout": "default",
 			"content": [
 				"- **2009年ノーベル経済学賞**: 「コモンズの悲劇は不可避ではない」と実証",
@@ -120,7 +126,8 @@
 				"- 4. **監視**: CI/CD, コードレビュー, セキュリティ監査",
 				"- 5. **段階的制裁**: Warn → Ban → Fork で違反者に対応",
 				"- 6. **紛争解決**: Governance Committee, BDFL 制度"
-			]
+			],
+			"subtitle": "RFC+ガバナンス+制裁でコモンズを自治管理できる"
 		},
 		{
 			"title": "持続可能なOSSモデル",
@@ -129,6 +136,7 @@
 		},
 		{
 			"title": "OSSファンディングモデル比較",
+			"subtitle": "資金調達モデルの選択がプロジェクトの自律性と持続性を左右する",
 			"layout": "default",
 			"content": [
 				"- **Corporate Sponsorship**: React (Meta), Go (Google), Rust (Mozilla→Foundation)",
@@ -141,6 +149,7 @@
 		},
 		{
 			"title": "成功事例：Rustの持続可能性モデル",
+			"subtitle": "オストロムの8原則を体現したRust Foundationがコモンズ自治の証明になった",
 			"layout": "default",
 			"content": [
 				"- Mozilla からスピンオフ → **Rust Foundation** 設立 (2021)",
@@ -158,6 +167,7 @@
 		},
 		{
 			"title": "フリーライダーから共有地の管理者へ",
+			"subtitle": "npm installの先にいる人への小さな貢献がコモンズ崩壊を防ぐ唯一の手段",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">OSSメンテナーの燃え尽きモデル</text><line x1=\"60\" y1=\"300\" x2=\"750\" y2=\"300\" stroke=\"#445\" stroke-width=\"2\"/><line x1=\"60\" y1=\"50\" x2=\"60\" y2=\"300\" stroke=\"#445\" stroke-width=\"2\"/><text x=\"30\" y=\"180\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"10\" font-family=\"sans-serif\" transform=\"rotate(-90,30,180)\">負荷 / 達成感</text><text x=\"400\" y=\"330\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"10\" font-family=\"sans-serif\">時間 →</text><text x=\"80\" y=\"320\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">開始</text><text x=\"250\" y=\"320\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">成長期</text><text x=\"440\" y=\"320\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">人気プロジェクト</text><text x=\"640\" y=\"320\" fill=\"#78909c\" font-size=\"9\" font-family=\"sans-serif\">燃え尽き</text><path d=\"M 80 240 Q 200 180 350 150 Q 450 135 580 200 Q 650 240 720 290\" fill=\"none\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"200\" y=\"172\" fill=\"#4caf50\" font-size=\"9\" font-family=\"sans-serif\">達成感</text><path d=\"M 80 260 Q 200 250 350 200 Q 450 160 580 110 Q 650 80 720 60\" fill=\"none\" stroke=\"#ef5350\" stroke-width=\"2\"/><text x=\"450\" y=\"148\" fill=\"#ef5350\" font-size=\"9\" font-family=\"sans-serif\">バグ報告・PR数</text><path d=\"M 80 280 Q 200 275 350 260 Q 450 245 580 260 Q 650 270 720 280\" fill=\"none\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"520\" y=\"256\" fill=\"#f9a825\" font-size=\"9\" font-family=\"sans-serif\">メンテナー精神的余裕</text><circle cx=\"580\" cy=\"110\" r=\"8\" fill=\"#ef5350\"/><text x=\"590\" y=\"108\" fill=\"#ef5350\" font-size=\"9\" font-family=\"sans-serif\">weekly 2.5億DL</text><text x=\"590\" y=\"120\" fill=\"#ef9a9a\" font-size=\"8\" font-family=\"sans-serif\">月収$400 (core-js)</text><circle cx=\"720\" cy=\"60\" r=\"8\" fill=\"#b71c1c\"/><text x=\"650\" y=\"55\" fill=\"#ef9a9a\" font-size=\"9\" font-family=\"sans-serif\">log4j脆弱性対応</text><text x=\"650\" y=\"67\" fill=\"#ef9a9a\" font-size=\"8\" font-family=\"sans-serif\">ボランティア2名</text><line x1=\"420\" y1=\"50\" x2=\"420\" y2=\"300\" stroke=\"#334\" stroke-width=\"1\" stroke-dasharray=\"5 3\"/><text x=\"421\" y=\"68\" fill=\"#78909c\" font-size=\"8\" font-family=\"sans-serif\">left-pad 事件</text><text x=\"421\" y=\"80\" fill=\"#78909c\" font-size=\"8\" font-family=\"sans-serif\">削除 (2016)</text><text x=\"400\" y=\"358\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"10\" font-family=\"sans-serif\">「使うだけ」が合理的な選択でも、全員がそうすると commons は崩壊する</text></svg>",

@@ -93,6 +93,8 @@ style: |
 
 # アジェンダ
 
+> *渋滞の物理を7トピックで解説し自動運転への示唆まで導く*
+
 - **1.** 渋滞の基本現象と「幽霊渋滞」
 - **2.** 交通流の数学的基礎
 - **3.** 流体力学との類似性
@@ -116,6 +118,8 @@ style: |
 ---
 
 # 渋滞の基本現象
+
+> *渋滞は車が多すぎるせいでなく密度が臨界点を超えた結果だ*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -154,6 +158,8 @@ style: |
 ---
 
 # 「幽霊渋滞」の実験証明
+
+> *幽霊渋滞の実験は「原因除去後も渋滞は残る」を証明した*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -203,6 +209,8 @@ style: |
 
 # 交通流の数学的基礎：LWR理論
 
+> *LWR理論は交通流を流体方程式で記述し渋滞の伝播を予測する*
+
 - **Lighthill-Whitham-Richards モデル（1955-56年）**
 - - 連続方程式: ∂k/∂t + ∂q/∂x = 0
 - - 流量-密度関係: q = Q(k)（基本図）
@@ -229,6 +237,8 @@ style: |
 ---
 
 # 流体力学の基本概念（1/2）
+
+> *流体力学の連続方程式が交通流密度の変化を支配している*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -264,6 +274,8 @@ style: |
 ---
 
 # 流体力学の基本概念（2/2）
+
+> *交通流は非圧縮流体と同じ方程式で密度波として伝播する*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -304,6 +316,8 @@ style: |
 
 # 密度波・衝撃波とは（1/2）
 
+> *密度波は流れと逆方向に伝わり、それが渋滞の「逆走」を生む*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">密度波: 粒子ではなく「状態」が伝播する</text>
@@ -332,6 +346,8 @@ style: |
 ---
 
 # 密度波・衝撃波とは（2/2）
+
+> *衝撃波の発生条件は流速の不連続性、臨界密度を超えると起きる*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -375,6 +391,8 @@ style: |
 
 # イベントループとは何か（1/2）
 
+> *イベントループはキューが枯渇しない限り高スループットを維持する*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">イベントループ = 交通流のデジタル版</text>
@@ -411,6 +429,8 @@ style: |
 
 # イベントループとは何か（2/2）
 
+> *コールバックの積み重なりが道路の追突連鎖と同じ構造をもつ*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">キュー爆発のメカニズム (M/M/1 モデル)</text>
@@ -444,6 +464,8 @@ style: |
 
 # キューの詰まりと渋滞の共通構造（1/2）
 
+> *キューの詰まりは渋滞と同じく「流入>流出」の瞬間に発生する*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">渋滞とキュー: 同じ数学構造</text>
@@ -474,6 +496,8 @@ style: |
 
 # キューの詰まりと渋滞の共通構造（2/2）
 
+> *バックプレッシャーの設計が渋滞防止の工学的解と一致する*
+
 - - ① 一時的な流入過多が蓄積を引き起こす
 - - ② 蓄積がさらに遅延を生み（ヘッドウェイ短縮/レイテンシ増加）
 - - ③ 自己強化ループが安定した「詰まり状態」を形成する
@@ -497,6 +521,8 @@ style: |
 ---
 
 # 自己組織化臨界現象（SOC）（1/2）
+
+> *SOCは臨界状態を自ら維持するシステムの普遍的な特性だ*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -531,6 +557,8 @@ style: |
 ---
 
 # 自己組織化臨界現象（SOC）（2/2）
+
+> *ひとつの小さな撹乱が全体のカスケード崩壊を引き起こす*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -570,6 +598,8 @@ style: |
 
 # セルオートマトンモデル（1/2）
 
+> *セルオートマトンは単純なルールから複雑な渋滞パターンを再現する*
+
 - **Nagel-Schreckenberg (NaSch) モデル（1992年）:**
 - - 道路をセル列に離散化、車はセル上を移動
 - **4つの更新ルール（各ステップで並列実行）:**
@@ -579,6 +609,8 @@ style: |
 ---
 
 # セルオートマトンモデル（2/2）
+
+> *NaSch則の速度±1ルールが現実の追従行動を近似する*
 
 - - ② 前車との距離で減速: v ← min(v, gap)
 - - ③ ランダム化（確率 p）: v ← max(v-1, 0)  ← **渋滞の種**
@@ -603,6 +635,8 @@ style: |
 ---
 
 # ヒステリシス効果の詳細（1/2）
+
+> *ヒステリシスは「渋滞を消す」のに「生む」より多くの努力を要する*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -634,6 +668,8 @@ style: |
 
 # ヒステリシス効果の詳細（2/2）
 
+> *密度を下げても元の自由流に戻るには閾値を大きく割る必要がある*
+
 - - 渋滞発生: 密度 k > k_cr で流量が急落下（急速な相転移）
 - - 渋滞解消: k が k_cr を大幅に下回るまで渋滞継続（回復が遅い）
 - **数値例:** k_cr = 40台/km（発生）→ k = 15台/km 以下で解消
@@ -644,6 +680,8 @@ style: |
 
 # 復元力の非対称性（1/2）
 
+> *回復力の非対称性が渋滞対策コストを過小評価させる原因だ*
+
 - **なぜ復元が遅いのか — 3つの非対称性:**
 - - **① 加速の物理的限界**: 車は 0→100 km/h に時間がかかる（制動より遅い）
 - - **② 情報伝達の方向性**: 前方情報は後続に届くが後方情報は届かない
@@ -653,6 +691,8 @@ style: |
 ---
 
 # 復元力の非対称性（2/2）
+
+> *回復には生成の2〜3倍のエネルギーが必要で予防が最善策だ*
 
 - **イベントループの対応:**
 - - GC pause が発生すると完了まで処理が止まる
@@ -678,6 +718,8 @@ style: |
 ---
 
 # ワーク①：渋滞シミュレーション体験（1/2）
+
+> *シミュレーションを体験することで理論が直感として定着する*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -711,6 +753,8 @@ style: |
 ---
 
 # ワーク①：渋滞シミュレーション体験（2/2）
+
+> *車間距離の差が渋滞発生タイミングに与える影響を実感できる*
 
 - - **Step 4**: 「先頭が動いてから最後尾が動くまで」の遅延を測る
 - **議論ポイント:**
@@ -759,6 +803,8 @@ async function consumer() {
 
 # 工学的示唆と対策（1/2）
 
+> *可変速度制御と流入制御が密度の臨界超えを防ぐ工学的解だ*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">工学的解決策: 交通 ↔ ソフトウェア</text>
@@ -796,6 +842,8 @@ async function consumer() {
 ---
 
 # 工学的示唆と対策（2/2）
+
+> *自動運転の協調走行は渋滞の相転移点を根本的に引き上げる*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -835,6 +883,8 @@ async function consumer() {
 
 # まとめ
 
+> *渋滞は除去不能だが制御可能、相転移前の介入が唯一の解だ*
+
 - **3つの主要メッセージ:**
 - **① 渋滞は創発現象** — 原因なしに自発的に生まれ、SOC的に臨界状態を維持する
 - **② 流体力学・キュー理論と同じ数学構造** — 連続方程式・衝撃波・ヒステリシスが共通
@@ -847,6 +897,8 @@ async function consumer() {
 ---
 
 # 参考文献
+
+> *一次資料を読むことで渋滞研究の奥深さと広がりが体感できる*
 
 - **研究論文・書籍:**
 - [Sugiyama et al. (2008)](https://iopscience.iop.org/article/10.1088/1367-2630/10/3/033001) — 幽霊渋滞の実験的実証

@@ -13,6 +13,7 @@
 		},
 		{
 			"title": "目次",
+			"subtitle": "7セクションで構造的に解説—全体像を先に掴む",
 			"content": [
 				"1. コモンズの悲劇とは何か",
 				"2. デジタルコモンズへの拡張",
@@ -41,7 +42,8 @@
 				"- 共有の牧草地を複数の牧夫が利用する状況",
 				"- 各個人にとっては牛を1頭追加することが合理的"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "共有資源は個人合理性の集積で必ず枯渇する——OSSも同じ"
 		},
 		{
 			"title": "ガレット・ハーディンの「コモンズの悲劇」(1968)（2/2）",
@@ -52,7 +54,8 @@
 				"",
 				"「自由なコモンズにおける自由は、全てを破滅に導く」— Hardin, 1968"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "海の漁場と同じメカニズムがOSSライブラリを蝕んでいる"
 		},
 		{
 			"title": "コモンズの悲劇：構造図",
@@ -74,7 +77,8 @@
 				"",
 				"**決定的な違い:** デジタル資源は「消費」されないが、メンテナンスコストは消費される"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "無形財も枯渇する——メンテナの時間と意欲が限界資源だ"
 		},
 		{
 			"title": "第2部：インターネットの地下室",
@@ -91,6 +95,7 @@
 		},
 		{
 			"title": "数字で見る現実（1/2）",
+			"subtitle": "現代ソフトウェアの90%がOSSに依存—基盤は脆弱",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-family=\"sans-serif\" font-weight=\"bold\">OSSへの依存：巨大な利用 vs 極小な投資</text><rect x=\"40\" y=\"50\" width=\"220\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"150\" y=\"78\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">コード依存度</text><text x=\"150\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"36\" font-family=\"sans-serif\" font-weight=\"bold\">80%</text><text x=\"150\" y=\"134\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">現代ソフトウェアの</text><text x=\"150\" y=\"152\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">OSS比率</text><rect x=\"290\" y=\"50\" width=\"220\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"400\" y=\"78\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">企業依存度</text><text x=\"400\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"36\" font-family=\"sans-serif\" font-weight=\"bold\">99%</text><text x=\"400\" y=\"134\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">Fortune 500企業の</text><text x=\"400\" y=\"152\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">OSS使用率</text><rect x=\"540\" y=\"50\" width=\"220\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"2\"/><text x=\"650\" y=\"78\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">npmパッケージ</text><text x=\"650\" y=\"105\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"30\" font-family=\"sans-serif\" font-weight=\"bold\">200万+</text><text x=\"650\" y=\"130\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">レジストリ登録数</text><text x=\"650\" y=\"150\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">（急増中）</text><rect x=\"40\" y=\"220\" width=\"340\" height=\"110\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"210\" y=\"248\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">依存の集中</text><text x=\"60\" y=\"275\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">重要インフラ: 1-3人のメンテナに依存</text><text x=\"60\" y=\"298\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">メンテナの60%が燃え尽き症候群</text><text x=\"60\" y=\"318\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">→ 単一障害点リスク</text><rect x=\"420\" y=\"220\" width=\"340\" height=\"110\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"590\" y=\"248\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">投資の非対称性</text><text x=\"440\" y=\"275\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">大企業のOSS投資: 収益の0.01%未満</text><text x=\"440\" y=\"298\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">依存する年商: 数千億ドル規模</text><text x=\"440\" y=\"318\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">→ コモンズの悲劇そのもの</text></svg>",
 				"**OSSへの依存度**",
@@ -103,6 +108,7 @@
 		},
 		{
 			"title": "数字で見る現実（2/2）",
+			"subtitle": "メンテナ3人で世界を支え、60%が燃え尽きる",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">OSSサポート格差：数字の現実</text><!-- Bar chart: contributors --><rect x=\"80\" y=\"60\" width=\"300\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"230\" y=\"83\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">OSS貢献者の分布</text><!-- Bars --><rect x=\"105\" y=\"110\" width=\"40\" height=\"65\" rx=\"4\" fill=\"#f9a825\"/><text x=\"125\" y=\"105\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">80%</text><text x=\"125\" y=\"190\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">上位2%が</text><text x=\"125\" y=\"202\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">貢献</text><rect x=\"175\" y=\"148\" width=\"40\" height=\"27\" rx=\"4\" fill=\"#e91e63\"/><text x=\"195\" y=\"143\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">15%</text><text x=\"195\" y=\"190\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">次の18%</text><rect x=\"245\" y=\"168\" width=\"40\" height=\"7\" rx=\"4\" fill=\"#666699\"/><text x=\"265\" y=\"163\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">5%</text><text x=\"265\" y=\"190\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">残り80%</text><!-- Critical projects box --><rect x=\"420\" y=\"50\" width=\"340\" height=\"270\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"590\" y=\"75\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">インフラ系OSSの現状</text><rect x=\"440\" y=\"90\" width=\"300\" height=\"40\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"106\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">Log4j：インターネットの</text><text x=\"590\" y=\"121\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">95%以上のJavaシステムで使用</text><rect x=\"440\" y=\"140\" width=\"300\" height=\"40\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"156\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">OpenSSL：HTTPS通信の</text><text x=\"590\" y=\"171\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">66%を支える（2社で保守）</text><rect x=\"440\" y=\"190\" width=\"300\" height=\"40\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"206\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">curl：140億デバイス以上で</text><text x=\"590\" y=\"221\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">動作（主に1人が保守）</text><rect x=\"440\" y=\"240\" width=\"300\" height=\"40\" rx=\"6\" fill=\"#e91e63\" fill-opacity=\"0.25\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"590\" y=\"260\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">「重要すぎて失敗できない」が</text><text x=\"590\" y=\"275\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">「少人数で維持」という矛盾</text></svg>",
 				"- 重要インフラの多くは **1-3人** のメンテナに依存",
@@ -128,6 +134,7 @@
 		},
 		{
 			"title": "Log4Shell: 技術的詳細",
+			"subtitle": "CVSS最高点10.0—1行のログで世界中のサーバーが陥落",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-family=\"sans-serif\" font-weight=\"bold\">世界インフラを3人のボランティアが支えた現実</text><circle cx=\"400\" cy=\"145\" r=\"65\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"3\"/><text x=\"400\" y=\"132\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"36\" font-family=\"sans-serif\" font-weight=\"bold\">3人</text><text x=\"400\" y=\"158\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-family=\"sans-serif\">フルタイム: 0人</text><text x=\"400\" y=\"176\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">全員ボランティア</text><line x1=\"350\" y1=\"108\" x2=\"200\" y2=\"70\" stroke=\"#4fc3f7\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/><rect x=\"40\" y=\"45\" width=\"160\" height=\"40\" rx=\"5\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/><text x=\"120\" y=\"62\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"10\" font-family=\"sans-serif\">Apache Hadoop</text><text x=\"120\" y=\"78\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\" font-family=\"sans-serif\">Log4j依存</text><line x1=\"370\" y1=\"100\" x2=\"240\" y2=\"65\" stroke=\"#4fc3f7\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/><rect x=\"200\" y=\"40\" width=\"120\" height=\"40\" rx=\"5\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/><text x=\"260\" y=\"57\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"10\" font-family=\"sans-serif\">Elasticsearch</text><text x=\"260\" y=\"73\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\" font-family=\"sans-serif\">Log4j依存</text><line x1=\"430\" y1=\"100\" x2=\"550\" y2=\"65\" stroke=\"#4fc3f7\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/><rect x=\"480\" y=\"40\" width=\"120\" height=\"40\" rx=\"5\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/><text x=\"540\" y=\"57\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"10\" font-family=\"sans-serif\">VMware</text><text x=\"540\" y=\"73\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\" font-family=\"sans-serif\">Log4j依存</text><line x1=\"450\" y1=\"108\" x2=\"600\" y2=\"70\" stroke=\"#4fc3f7\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/><rect x=\"600\" y=\"45\" width=\"160\" height=\"40\" rx=\"5\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/><text x=\"680\" y=\"62\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"10\" font-family=\"sans-serif\">Apple iCloud</text><text x=\"680\" y=\"78\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\" font-family=\"sans-serif\">Log4j依存</text><rect x=\"40\" y=\"240\" width=\"340\" height=\"90\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"210\" y=\"265\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">メンテナの現実</text><text x=\"60\" y=\"288\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">年間の寄付: ごくわずか</text><text x=\"60\" y=\"308\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">クリスマス休暇: 返上してパッチ対応</text><text x=\"60\" y=\"325\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">→ 無給、本業の傍らで世界を救った</text><rect x=\"420\" y=\"240\" width=\"340\" height=\"90\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/><text x=\"590\" y=\"265\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">依存する側の現実</text><text x=\"440\" y=\"288\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Log4j依存サービスの年商: 数千億ドル</text><text x=\"440\" y=\"308\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">パッチ適用コスト: 数千億円規模</text><text x=\"440\" y=\"325\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">→ 無償提供への依存がリスクを生む</text></svg>",
 				"**CVE-2021-44228 — CVSS 10.0 (最高深刻度)**",
@@ -148,6 +155,7 @@
 		},
 		{
 			"title": "Log4jの「メンテナ」問題（1/2）",
+			"subtitle": "フルタイムメンテナ0人—数千億ドル依存の構造的矛盾",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">Log4jメンテナの実態：1人が世界を支える</text><rect x=\"40\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"210\" y=\"75\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">メンテナの日常</text><rect x=\"58\" y=\"88\" width=\"304\" height=\"40\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">本業を持つボランティア</text><text x=\"210\" y=\"124\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">趣味・志でOSSに貢献</text><rect x=\"58\" y=\"136\" width=\"304\" height=\"40\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"156\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">年間 1,000+ issue/PR対応</text><text x=\"210\" y=\"172\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">無償で時間を提供</text><rect x=\"58\" y=\"184\" width=\"304\" height=\"40\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"204\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">脆弱性発覚後：即時対応を要求される</text><text x=\"210\" y=\"220\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">「あなたが直すべき」というプレッシャー</text><rect x=\"58\" y=\"232\" width=\"304\" height=\"40\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"210\" y=\"252\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">実際のLog4jメンテナの言葉：</text><text x=\"210\" y=\"268\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">「私は義務を負っていない」</text><rect x=\"58\" y=\"280\" width=\"304\" height=\"34\" rx=\"5\" fill=\"#e91e63\" fill-opacity=\"0.2\"/><text x=\"210\" y=\"302\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">→ バーンアウトと離脱の連鎖</text><rect x=\"420\" y=\"50\" width=\"340\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"590\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">非対称性の実態</text><rect x=\"438\" y=\"88\" width=\"304\" height=\"56\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"110\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">受益側（企業）</text><text x=\"590\" y=\"128\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">無料で無制限に利用</text><text x=\"590\" y=\"136\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">問題が起きれば要求だけをする</text><rect x=\"438\" y=\"152\" width=\"304\" height=\"56\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"174\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">提供側（メンテナ）</text><text x=\"590\" y=\"192\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">全コストを自己負担</text><text x=\"590\" y=\"200\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">責任だけが一方的に増大する</text><rect x=\"438\" y=\"216\" width=\"304\" height=\"80\" rx=\"5\" fill=\"#1a1a2e\"/><text x=\"590\" y=\"238\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">2021 Log4j収益: $0</text><text x=\"590\" y=\"256\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">Amazon EC2収益 (同年): $65B</text><text x=\"590\" y=\"274\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">Log4jに依存しながら...</text><rect x=\"438\" y=\"304\" width=\"304\" height=\"20\" rx=\"5\" fill=\"#e91e63\" fill-opacity=\"0.2\"/><text x=\"590\" y=\"319\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">寄付額：わずか数百ドル</text></svg>",
 				"**世界のインフラを支えていた体制:**",
@@ -160,6 +168,7 @@
 		},
 		{
 			"title": "Log4jの「メンテナ」問題（2/2）",
+			"subtitle": "年間寄付はゼロ同然、補償なしのクリスマス返上作業",
 			"content": [
 				"- 年間の寄付額: ごくわずか",
 				"",
@@ -184,6 +193,7 @@
 		},
 		{
 			"title": "xz攻撃が示したもの（1/2）",
+			"subtitle": "2年の信頼構築で攻撃—人間の脆弱性が標的にされた",
 			"content": [
 				"**技術的脆弱性ではなく、人間の脆弱性**",
 				"",
@@ -195,6 +205,7 @@
 		},
 		{
 			"title": "xz攻撃が示したもの（2/2）",
+			"subtitle": "偶然の発見がなければ全Linuxサーバーが陥落していた",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">xz攻撃が示した脆弱性の構造</text><!-- Attack flow --><rect x=\"40\" y=\"60\" width=\"160\" height=\"56\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"120\" y=\"85\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">国家関与の攻撃者</text><text x=\"120\" y=\"103\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">2年間の準備</text><!-- Arrow --><line x1=\"200\" y1=\"88\" x2=\"240\" y2=\"88\" stroke=\"#e91e63\" stroke-width=\"2\"/><polygon points=\"240,83 255,88 240,93\" fill=\"#e91e63\"/><!-- Target --><rect x=\"255\" y=\"60\" width=\"160\" height=\"56\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"335\" y=\"85\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">xz-utils</text><text x=\"335\" y=\"103\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">ボランティア1人が保守</text><!-- Arrow --><line x1=\"415\" y1=\"88\" x2=\"455\" y2=\"88\" stroke=\"#e91e63\" stroke-width=\"2\"/><polygon points=\"455,83 470,88 455,93\" fill=\"#e91e63\"/><!-- Impact --><rect x=\"470\" y=\"60\" width=\"290\" height=\"56\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"615\" y=\"85\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">SSHバックドア（未遂）</text><text x=\"615\" y=\"103\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Linuxサーバー全体への影響リスク</text><!-- Lessons boxes --><rect x=\"40\" y=\"150\" width=\"350\" height=\"180\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"215\" y=\"173\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">攻撃が成功した理由</text><rect x=\"55\" y=\"185\" width=\"320\" height=\"32\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"215\" y=\"206\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">維持者1人 → ソーシャルエンジニアリングの標的</text><rect x=\"55\" y=\"224\" width=\"320\" height=\"32\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"215\" y=\"245\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">コードレビューなし → バックドアが見逃された</text><rect x=\"55\" y=\"263\" width=\"320\" height=\"32\" rx=\"6\" fill=\"#e91e63\" fill-opacity=\"0.25\"/><text x=\"215\" y=\"284\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">依存関係の深さ → 影響範囲が把握されていない</text><rect x=\"410\" y=\"150\" width=\"350\" height=\"180\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"585\" y=\"173\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">構造的問題</text><rect x=\"425\" y=\"185\" width=\"320\" height=\"32\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"585\" y=\"206\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">重要インフラがボランティアに依存</text><rect x=\"425\" y=\"224\" width=\"320\" height=\"32\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"585\" y=\"245\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">「誰でも信頼」文化 vs セキュリティ</text><rect x=\"425\" y=\"263\" width=\"320\" height=\"32\" rx=\"6\" fill=\"#e91e63\" fill-opacity=\"0.25\"/><text x=\"585\" y=\"284\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">偶然の発見 → 体系的対策の欠如</text></svg>",
 				"- ビルドシステムのテストファイルにバックドアを隠蔽",
@@ -224,7 +235,8 @@
 				"> 「企業から深夜にIssueが来て、『セキュリティ脆弱性を今すぐ直せ』と要求される。私はこれを無給で、本業の傍らでやっている」",
 				""
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "「もう辞める」——著名OSSが突然メンテナ不在になる前兆を知れ"
 		},
 		{
 			"title": "メンテナの声（2/2）",
@@ -236,7 +248,8 @@
 				"",
 				"— 匿名のOSSメンテナたちの証言"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "善意だけでは続かない——持続可能なモデルへの転換が急務だ"
 		},
 		{
 			"title": "第6部：解決策と未来",
@@ -257,10 +270,12 @@
 				"1. **認識の転換**: OSSは「無料」ではなく「公共財」である",
 				"2. **企業の責任**: 利用に見合った貢献の制度化"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "使うだけでなく貢献する——それがデジタルコモンズの持続条件"
 		},
 		{
 			"title": "まとめ：デジタルコモンズを守るために（2/2）",
+			"subtitle": "技術ではなく制度で守る—5つの行動指針",
 			"content": [
 				"3. **政府の役割**: デジタルインフラへの公共投資",
 				"4. **コミュニティ**: メンテナの精神的健康と持続可能な参加",

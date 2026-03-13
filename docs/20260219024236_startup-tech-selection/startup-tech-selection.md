@@ -90,12 +90,20 @@ style: |
 
 ---
 
-# 本資料の目的と対象者
+# 本資料の目的と対象者（1/2）
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術選定マトリクス</text><text x="190" y="68" fill="#e91e63" font-size="13" text-anchor="middle">コスト</text><text x="330" y="68" fill="#e91e63" font-size="13" text-anchor="middle">スケール</text><text x="470" y="68" fill="#e91e63" font-size="13" text-anchor="middle">開発速度</text><text x="610" y="68" fill="#e91e63" font-size="13" text-anchor="middle">エコシステム</text><text x="110" y="110" fill="#ffffff" font-size="14" text-anchor="end">AWS</text><rect x="124" y="84" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">85</text><rect x="264" y="84" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><rect x="404" y="84" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">70</text><rect x="544" y="84" width="132" height="42" fill="#27ae60" rx="4"/><text x="610" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><text x="110" y="160" fill="#ffffff" font-size="14" text-anchor="end">GCP</text><rect x="124" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">80</text><rect x="264" y="134" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">90</text><rect x="404" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="470" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">75</text><rect x="544" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="610" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">85</text><text x="110" y="210" fill="#ffffff" font-size="14" text-anchor="end">Azure</text><rect x="124" y="184" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">75</text><rect x="264" y="184" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">90</text><rect x="404" y="184" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">72</text><rect x="544" y="184" width="132" height="42" fill="#f39c12" rx="4"/><text x="610" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">88</text><text x="110" y="260" fill="#ffffff" font-size="14" text-anchor="end">OSS自前</text><rect x="124" y="234" width="132" height="42" fill="#27ae60" rx="4"/><text x="190" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><rect x="264" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="330" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">60</text><rect x="404" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">50</text><rect x="544" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="610" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">70</text><text x="400" y="385" fill="#cccccc" font-size="11" text-anchor="middle">スコア: 100=最高評価</text></svg>
 - **対象者**: スタートアップ投資家・事業責任者・CTO候補
 - **本資料で分かること**:
 - - クラウド3社（AWS/GCP/Azure）の選択基準
+
+
+---
+
+# 本資料の目的と対象者（2/2）
+
+> *ステージ別スタック・コスト最適化・よくある選定ミスの3点が本資料で学べる最重要項目*
+
 - - ステージ別（Seed/A/B）の推奨技術スタック
 - - コスト最適化の実践的手法
 - - よくある技術選定ミスと回避策
@@ -105,6 +113,8 @@ style: |
 ---
 
 # アジェンダ（1/2）（1/2）
+
+> *Ch.1〜Ch.2でスタートアップ失敗事例とクラウド3社比較を学び技術選定の土台を作る*
 
 - **第1章** — なぜ今、技術選定が重要か（スタートアップの失敗事例）
 - **第2章** — クラウド3社比較
@@ -116,6 +126,8 @@ style: |
 
 # アジェンダ（1/2）（2/2）
 
+> *Ch.3でSpot/Reserved/FinOpsのコスト戦略を学びフェーズ別コスト目安とアラート設定を習得する*
+
 - - ユースケース別・ステージ別推奨
 - **第3章** — コスト最適化戦略
 - - Spot インスタンス・Reserved・FinOps
@@ -126,6 +138,8 @@ style: |
 
 # アジェンダ（2/2）（1/2）
 
+> *Ch.4でSeed期・Series A期の推奨スタックをフロント/バック/DB/認証/CI/CDで具体的に学ぶ*
+
 - **第4章** — OSS技術スタック選定
 - - フロントエンド / バックエンド / DB / 認証 / CI/CD
 - - Seed 期・Series A 期 推奨スタック
@@ -135,6 +149,8 @@ style: |
 ---
 
 # アジェンダ（2/2）（2/2）
+
+> *Ch.5〜Ch.6でMVP→Series A→Series Bの技術変遷と意思決定5軸・投資家DD対策を習得する*
 
 - - MVP → Series A → Series B の技術変遷
 - - 採用しやすいスタックの選び方
@@ -153,12 +169,20 @@ style: |
 
 ---
 
-# スタートアップの失敗 — 技術的要因
+# スタートアップの失敗 — 技術的要因（1/2）
 
 - <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">Build / Buy / OSS 判断フロー</text><rect x="320" y="50" width="160" height="44" rx="22" fill="#f9a825"/><text x="400" y="77" fill="#000" font-size="13" text-anchor="middle" font-weight="bold">要件明確？</text><line x1="320" y1="72" x2="171.28163278194978" y2="125.9104081165432" stroke="#e91e63" stroke-width="2"/><polygon points="160,130 169.23683684022137,120.26959172556829 173.3264287236782,131.5512245075181" fill="#e91e63"/><text x="220" y="115" fill="#e91e63" font-size="11" text-anchor="middle">NO</text><rect x="70" y="130" width="180" height="44" rx="6" fill="#16213e" stroke="#27ae60" stroke-width="2"/><text x="160" y="157" fill="#27ae60" font-size="13" text-anchor="middle">OSS で検証</text><line x1="480" y1="72" x2="569.6196257288584" y2="123.97938292273784" stroke="#f9a825" stroke-width="2"/><polygon points="580,130 566.6093171902273,129.16957005830866 572.6299342674895,118.78919578716702" fill="#f9a825"/><text x="540" y="115" fill="#f9a825" font-size="11" text-anchor="middle">YES</text><rect x="490" y="130" width="200" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="590" y="157" fill="#ffffff" font-size="13" text-anchor="middle">競合優位になる？</text><line x1="590" y1="174" x2="590" y2="228" stroke="#27ae60" stroke-width="2"/><polygon points="590,240 584,228 596,228" fill="#27ae60"/><text x="600" y="215" fill="#27ae60" font-size="11">YES</text><rect x="510" y="240" width="160" height="44" rx="6" fill="#27ae60"/><text x="590" y="267" fill="#ffffff" font-size="13" text-anchor="middle" font-weight="bold">BUILD</text><line x1="490" y1="152" x2="350.35029886919483" y2="233.9278246634057" stroke="#e91e63" stroke-width="2"/><polygon points="340,240 347.31421120089766,228.75267522880827 353.386386537492,239.1029740980031" fill="#e91e63"/><text x="390" y="210" fill="#e91e63" font-size="11">NO</text><rect x="260" y="240" width="160" height="44" rx="6" fill="#2980b9"/><text x="340" y="267" fill="#ffffff" font-size="13" text-anchor="middle" font-weight="bold">BUY/SaaS</text><line x1="160" y1="174" x2="160" y2="228" stroke="#f39c12" stroke-width="2"/><polygon points="160,240 154,228 166,228" fill="#f39c12"/><rect x="70" y="240" width="180" height="44" rx="6" fill="#16213e" stroke="#f39c12" stroke-width="2"/><text x="160" y="267" fill="#f39c12" font-size="13" text-anchor="middle">スケール後見直し</text><text x="160" y="340" fill="#27ae60" font-size="12" text-anchor="middle" font-weight="bold">OSS</text><text x="160" y="358" fill="#cccccc" font-size="11" text-anchor="middle">低コスト・柔軟</text><text x="350" y="340" fill="#2980b9" font-size="12" text-anchor="middle" font-weight="bold">BUY</text><text x="350" y="358" fill="#cccccc" font-size="11" text-anchor="middle">速度・保守性</text><text x="600" y="340" fill="#27ae60" font-size="12" text-anchor="middle" font-weight="bold">BUILD</text><text x="600" y="358" fill="#cccccc" font-size="11" text-anchor="middle">差別化・制御</text></svg>
 - **CB Insights 調査（2024）**: スタートアップ失敗の技術的要因 TOP3
 - ① **スケーリング失敗** (32%) — 成長に技術が追いつかなかった
 - ② **開発速度の停滞** (28%) — 過剰な技術負債で機能開発が止まった
+
+
+---
+
+# スタートアップの失敗 — 技術的要因（2/2）
+
+> *DB移行に$500K〜$2Mと3〜12ヶ月の機能開発停止が発生—Seed期の技術選定ミスが致命傷になる*
+
 - ③ **コスト超過** (21%) — クラウドコストが予算を圧迫
 - **早期の技術選定ミスが Series A 以降に致命傷になる**
 - - DB 移行コスト: $500K〜$2M（エンジニアリング工数換算）
@@ -176,6 +200,8 @@ style: |
 
 # 投資家から見た技術スタック（1/2）
 
+> *スケーラビリティ・技術負債・セキュリティがSeries A投資家がTech DDで必ず確認する3大ポイント*
+
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">チームサイズ vs 技術複雑度</text><line x1="80" y1="320" x2="740" y2="320" stroke="#cccccc" stroke-width="2"/><line x1="740" y1="320" x2="748" y2="320" stroke="#cccccc" stroke-width="2"/><polygon points="760,320 748,326 748,314" fill="#cccccc"/><line x1="80" y1="320" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="350" fill="#cccccc" font-size="12" text-anchor="middle">チームサイズ (人)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">技術複雑度</text><text x="80" y="337" fill="#cccccc" font-size="11" text-anchor="middle">1</text><text x="220" y="337" fill="#cccccc" font-size="11" text-anchor="middle">5</text><text x="360" y="337" fill="#cccccc" font-size="11" text-anchor="middle">10</text><text x="500" y="337" fill="#cccccc" font-size="11" text-anchor="middle">20</text><text x="640" y="337" fill="#cccccc" font-size="11" text-anchor="middle">50</text><polyline points="80,290 180,270 280,240 380,200 480,170 580,150 660,145" fill="none" stroke="#27ae60" stroke-width="3"/><polyline points="80,240 180,200 280,160 380,130 480,110 580,100 660,95" fill="none" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,4"/><rect x="130" y="280" width="100" height="30" rx="4" fill="#27ae60" opacity="0.2"/><text x="180" y="300" fill="#27ae60" font-size="11" text-anchor="middle">モノリス推奨</text><rect x="490" y="155" width="130" height="30" rx="4" fill="#2980b9" opacity="0.2"/><text x="555" y="175" fill="#2980b9" font-size="11" text-anchor="middle">マイクロサービス</text><text x="590" y="88" fill="#e91e63" font-size="11">過剰複雑</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">Conway's Law: チーム構造がシステム設計を決める</text></svg>
 - **Tech Due Diligence（DD）で投資家が見るポイント**
 - - **スケーラビリティ**: 10x ユーザー増加に対応できるか
@@ -186,6 +212,8 @@ style: |
 ---
 
 # 投資家から見た技術スタック（2/2）
+
+> *採用可能性とコスト構造がSeries A DDの重要評価軸—CTOへの技術インタビューが合否を決める*
 
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">コスト軌跡比較（クラウド vs オンプレ）</text><line x1="80" y1="310" x2="720" y2="310" stroke="#cccccc" stroke-width="2"/><line x1="720" y1="310" x2="728" y2="310" stroke="#cccccc" stroke-width="2"/><polygon points="740,310 728,316 728,304" fill="#cccccc"/><line x1="80" y1="310" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="340" fill="#cccccc" font-size="12" text-anchor="middle">期間 (月)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">累計コスト</text><polyline points="80,200 120,195 200,185 360,175 520,165 680,155" fill="none" stroke="#c0392b" stroke-width="3"/><text x="690" y="152" fill="#c0392b" font-size="12">オンプレ</text><polyline points="80,305 120,295 200,275 360,240 520,210 680,185" fill="none" stroke="#27ae60" stroke-width="3"/><text x="690" y="182" fill="#27ae60" font-size="12">クラウド</text><polyline points="80,260 120,248 200,225 360,200 520,182 680,168" fill="none" stroke="#f39c12" stroke-width="2" stroke-dasharray="8,4"/><text x="690" y="165" fill="#f39c12" font-size="12">ハイブリッド</text><line x1="420" y1="90" x2="420" y2="310" stroke="#cccccc" stroke-width="1" stroke-dasharray="4,4"/><text x="420" y="85" fill="#cccccc" font-size="11" text-anchor="middle">損益分岐 ~18ヶ月</text><text x="80" y="327" fill="#cccccc" font-size="11" text-anchor="middle">0</text><text x="200" y="327" fill="#cccccc" font-size="11" text-anchor="middle">6</text><text x="320" y="327" fill="#cccccc" font-size="11" text-anchor="middle">12</text><text x="440" y="327" fill="#cccccc" font-size="11" text-anchor="middle">18</text><text x="560" y="327" fill="#cccccc" font-size="11" text-anchor="middle">24</text><text x="680" y="327" fill="#cccccc" font-size="11" text-anchor="middle">30</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">初期コスト↓ 長期スケールでクラウドが逆転する場合あり</text></svg>
 - - **採用可能性**: その技術スタックでエンジニアを採用できるか
@@ -198,6 +226,8 @@ style: |
 
 # 技術負債の蓄積速度（1/2）
 
+> *Seed期に1日の手抜きがSeries Aで1週間のコストになる—技術負債は複利で積み上がる*
+
 - <svg viewBox="0 0 800 370" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="370" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">開発者エコシステム比較</text><text x="107.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">GitHubスター</text><rect x="80" y="65" width="99.75" height="18" fill="#27ae60" rx="3" opacity="0.85"/><text x="76" y="79" fill="#cccccc" font-size="10" text-anchor="end">TypeScript</text><rect x="80" y="87" width="89.25" height="18" fill="#2980b9" rx="3" opacity="0.85"/><text x="76" y="101" fill="#cccccc" font-size="10" text-anchor="end">Go</text><rect x="80" y="109" width="94.5" height="18" fill="#f39c12" rx="3" opacity="0.85"/><text x="76" y="123" fill="#cccccc" font-size="10" text-anchor="end">Python</text><rect x="80" y="131" width="92.4" height="18" fill="#e91e63" rx="3" opacity="0.85"/><text x="76" y="145" fill="#cccccc" font-size="10" text-anchor="end">Rust</text><rect x="80" y="153" width="73.5" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="76" y="167" fill="#cccccc" font-size="10" text-anchor="end">Java</text><text x="262.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">求人数</text><rect x="235" y="65" width="94.5" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="235" y="87" width="84" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="235" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="235" y="131" width="57.75000000000001" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="235" y="153" width="89.25" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="417.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">パッケージ</text><rect x="390" y="65" width="102.89999999999999" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="390" y="87" width="84" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="390" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="390" y="131" width="78.75" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="390" y="153" width="94.5" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="572.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">コミュニティ</text><rect x="545" y="65" width="96.60000000000001" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="545" y="87" width="89.25" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="545" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="545" y="131" width="84" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="545" y="153" width="84" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><rect x="60" y="340" width="14" height="14" fill="#27ae60" rx="2"/><text x="78" y="353" fill="#cccccc" font-size="11">TypeScript</text><rect x="200" y="340" width="14" height="14" fill="#2980b9" rx="2"/><text x="218" y="353" fill="#cccccc" font-size="11">Go</text><rect x="340" y="340" width="14" height="14" fill="#f39c12" rx="2"/><text x="358" y="353" fill="#cccccc" font-size="11">Python</text><rect x="480" y="340" width="14" height="14" fill="#e91e63" rx="2"/><text x="498" y="353" fill="#cccccc" font-size="11">Rust</text><rect x="620" y="340" width="14" height="14" fill="#8e44ad" rx="2"/><text x="638" y="353" fill="#cccccc" font-size="11">Java</text></svg>
 - **「技術負債は複利で積み上がる」**
 - - Seed期に1日分の手抜き → Series A で1週間分のコスト
@@ -208,6 +238,8 @@ style: |
 ---
 
 # 技術負債の蓄積速度（2/2）
+
+> *型なしJS・テストなし・ハードコード・過剰結合モノリスの4つが技術負債の主因—最初から規律を守る*
 
 - - ❌ 型なし JavaScript（バグの発見が本番後）
 - - ❌ テストなし重要ロジック（リファクタリング不能）
@@ -297,6 +329,8 @@ style: |
 
 # ネットワーク・CDN比較（1/2）
 
+> *AWSはLambda@Edge対応・GCPはAnycast・AzureはVerizon/Akamai経由でCDN特性が異なる*
+
 - **CDN / エッジ比較**
 - - **AWS CloudFront**: 600+ エッジロケーション / Lambda@Edge
 - - **GCP Cloud CDN**: Anycast / 最短レイテンシー / Firebase Hosting
@@ -307,6 +341,8 @@ style: |
 ---
 
 # ネットワーク・CDN比較（2/2）
+
+> *データ転送OUTはAWS $0.085/GB・GCP $0.08〜0.12・Azure $0.087—同一VPC内転送は全社無料*
 
 - <svg viewBox="0 0 800 330" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="330" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">スケーラビリティ成長パス</text><rect x="60" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#27ae60" stroke-width="2"/><text x="140" y="88" fill="#27ae60" font-size="16" text-anchor="middle" font-weight="bold">MVP</text><text x="140" y="108" fill="#cccccc" font-size="11" text-anchor="middle">0-1K ユーザー</text><text x="140" y="132" fill="#ffffff" font-size="12" text-anchor="middle">モノリス</text><text x="140" y="150" fill="#ffffff" font-size="12" text-anchor="middle">Simple DB</text><line x1="220" y1="120" x2="308" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="320,120 308,126 308,114" fill="#f9a825"/><rect x="260" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#f39c12" stroke-width="2"/><text x="340" y="88" fill="#f39c12" font-size="16" text-anchor="middle" font-weight="bold">Growth</text><text x="340" y="108" fill="#cccccc" font-size="11" text-anchor="middle">1K-100K</text><text x="340" y="132" fill="#ffffff" font-size="12" text-anchor="middle">マイクロ分割</text><text x="340" y="150" fill="#ffffff" font-size="12" text-anchor="middle">キャッシュ導入</text><line x1="420" y1="120" x2="508" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="520,120 508,126 508,114" fill="#f9a825"/><rect x="460" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="540" y="88" fill="#e91e63" font-size="16" text-anchor="middle" font-weight="bold">Scale</text><text x="540" y="108" fill="#cccccc" font-size="11" text-anchor="middle">100K-10M</text><text x="540" y="132" fill="#ffffff" font-size="12" text-anchor="middle">マルチリージョン</text><text x="540" y="150" fill="#ffffff" font-size="12" text-anchor="middle">CQRS/Event</text><line x1="620" y1="120" x2="708" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="720,120 708,126 708,114" fill="#f9a825"/><rect x="640" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#8e44ad" stroke-width="2"/><text x="720" y="88" fill="#8e44ad" font-size="16" text-anchor="middle" font-weight="bold">Hyper</text><text x="720" y="108" fill="#cccccc" font-size="11" text-anchor="middle">10M+</text><text x="720" y="132" fill="#ffffff" font-size="12" text-anchor="middle">グローバルCDN</text><text x="720" y="150" fill="#ffffff" font-size="12" text-anchor="middle">Cell Architecture</text><text x="60" y="220" fill="#cccccc" font-size="12">技術複雑度</text><rect x="60" y="230" width="700" height="16" rx="8" fill="#16213e"/><rect x="60" y="230" width="175" height="16" rx="8" fill="#27ae60" opacity="0.8"/><rect x="60" y="230" width="350" height="16" rx="8" fill="#f39c12" opacity="0.8"/><rect x="60" y="230" width="525" height="16" rx="8" fill="#e91e63" opacity="0.8"/><rect x="60" y="230" width="700" height="16" rx="8" fill="#8e44ad" opacity="0.8"/><text x="60" y="265" fill="#cccccc" font-size="12">コスト</text><rect x="60" y="270" width="700" height="16" rx="8" fill="#16213e"/><rect x="60" y="270" width="100" height="16" rx="8" fill="#27ae60" opacity="0.8"/><rect x="60" y="270" width="250" height="16" rx="8" fill="#f39c12" opacity="0.8"/><rect x="60" y="270" width="500" height="16" rx="8" fill="#e91e63" opacity="0.8"/><rect x="60" y="270" width="700" height="16" rx="8" fill="#8e44ad" opacity="0.8"/><text x="400" y="315" fill="#cccccc" font-size="11" text-anchor="middle">→ ステージに合わせた技術選定が重要</text></svg>
 - - AWS: $0.085〜0.09/GB（最初10TB）
@@ -335,6 +371,8 @@ style: |
 
 # 価格モデルの違い（1/2）
 
+> *AWSは秒課金・GCPは自動CUD（30〜57%割引）・AzureはHybrid Benefit—価格モデルの本質的差異*
+
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">チームサイズ vs 技術複雑度</text><line x1="80" y1="320" x2="740" y2="320" stroke="#cccccc" stroke-width="2"/><line x1="740" y1="320" x2="748" y2="320" stroke="#cccccc" stroke-width="2"/><polygon points="760,320 748,326 748,314" fill="#cccccc"/><line x1="80" y1="320" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="350" fill="#cccccc" font-size="12" text-anchor="middle">チームサイズ (人)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">技術複雑度</text><text x="80" y="337" fill="#cccccc" font-size="11" text-anchor="middle">1</text><text x="220" y="337" fill="#cccccc" font-size="11" text-anchor="middle">5</text><text x="360" y="337" fill="#cccccc" font-size="11" text-anchor="middle">10</text><text x="500" y="337" fill="#cccccc" font-size="11" text-anchor="middle">20</text><text x="640" y="337" fill="#cccccc" font-size="11" text-anchor="middle">50</text><polyline points="80,290 180,270 280,240 380,200 480,170 580,150 660,145" fill="none" stroke="#27ae60" stroke-width="3"/><polyline points="80,240 180,200 280,160 380,130 480,110 580,100 660,95" fill="none" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,4"/><rect x="130" y="280" width="100" height="30" rx="4" fill="#27ae60" opacity="0.2"/><text x="180" y="300" fill="#27ae60" font-size="11" text-anchor="middle">モノリス推奨</text><rect x="490" y="155" width="130" height="30" rx="4" fill="#2980b9" opacity="0.2"/><text x="555" y="175" fill="#2980b9" font-size="11" text-anchor="middle">マイクロサービス</text><text x="590" y="88" fill="#e91e63" font-size="11">過剰複雑</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">Conway's Law: チーム構造がシステム設計を決める</text></svg>
 - **課金モデル比較**
 - - **AWS**: 秒課金（EC2/Lambda）。最も細かい割引プランが揃う
@@ -345,6 +383,8 @@ style: |
 ---
 
 # 価格モデルの違い（2/2）
+
+> *AWS Spotは90%割引・GCP Preemptibleは24時間固定停止・Seed期はクレジットで実質$0運用可能*
 
 - **Spot/Preemptible 比較**:
 - - AWS Spot: 最大90%割引・中断通知2分前
@@ -357,6 +397,8 @@ style: |
 
 # グローバルリージョン比較（1/2）
 
+> *AWSは33リージョン105AZで世界最多・Azureは地域数最多・GCPは40リージョンで拡張中*
+
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">コスト軌跡比較（クラウド vs オンプレ）</text><line x1="80" y1="310" x2="720" y2="310" stroke="#cccccc" stroke-width="2"/><line x1="720" y1="310" x2="728" y2="310" stroke="#cccccc" stroke-width="2"/><polygon points="740,310 728,316 728,304" fill="#cccccc"/><line x1="80" y1="310" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="340" fill="#cccccc" font-size="12" text-anchor="middle">期間 (月)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">累計コスト</text><polyline points="80,200 120,195 200,185 360,175 520,165 680,155" fill="none" stroke="#c0392b" stroke-width="3"/><text x="690" y="152" fill="#c0392b" font-size="12">オンプレ</text><polyline points="80,305 120,295 200,275 360,240 520,210 680,185" fill="none" stroke="#27ae60" stroke-width="3"/><text x="690" y="182" fill="#27ae60" font-size="12">クラウド</text><polyline points="80,260 120,248 200,225 360,200 520,182 680,168" fill="none" stroke="#f39c12" stroke-width="2" stroke-dasharray="8,4"/><text x="690" y="165" fill="#f39c12" font-size="12">ハイブリッド</text><line x1="420" y1="90" x2="420" y2="310" stroke="#cccccc" stroke-width="1" stroke-dasharray="4,4"/><text x="420" y="85" fill="#cccccc" font-size="11" text-anchor="middle">損益分岐 ~18ヶ月</text><text x="80" y="327" fill="#cccccc" font-size="11" text-anchor="middle">0</text><text x="200" y="327" fill="#cccccc" font-size="11" text-anchor="middle">6</text><text x="320" y="327" fill="#cccccc" font-size="11" text-anchor="middle">12</text><text x="440" y="327" fill="#cccccc" font-size="11" text-anchor="middle">18</text><text x="560" y="327" fill="#cccccc" font-size="11" text-anchor="middle">24</text><text x="680" y="327" fill="#cccccc" font-size="11" text-anchor="middle">30</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">初期コスト↓ 長期スケールでクラウドが逆転する場合あり</text></svg>
 - **2026年時点リージョン数**
 - - **AWS**: 33リージョン / 105 Availability Zones（世界最多）
@@ -367,6 +409,8 @@ style: |
 ---
 
 # グローバルリージョン比較（2/2）
+
+> *AWS東京+大阪の2リージョンでDR設計が容易—グローバル展開を考えるならAWSが最も豊富*
 
 - **日本展開時の選択**:
 - - AWS: 東京 + 大阪（2リージョン）→ DR設計が容易
@@ -393,6 +437,8 @@ style: |
 
 # ステージ別クラウド推奨（1/2）
 
+> *Seed期はAWS Activate $100Kが第一推奨—AI重視のみGCP Google for Startups $200Kを選ぶ*
+
 - <svg viewBox="0 0 800 390" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="390" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術負債の蓄積と対処タイミング</text><line x1="60" y1="300" x2="740" y2="300" stroke="#cccccc" stroke-width="2"/><line x1="740" y1="300" x2="743" y2="300" stroke="#cccccc" stroke-width="2"/><polygon points="755,300 743,306 743,294" fill="#cccccc"/><line x1="60" y1="300" x2="60" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="60" y1="60" x2="60" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="60,40 66,52 54,52" fill="#cccccc"/><text x="400" y="330" fill="#cccccc" font-size="12" text-anchor="middle">時間</text><text x="20" y="190" fill="#cccccc" font-size="11" text-anchor="middle" transform="rotate(-90,20,190)">負債量</text><polyline points="60,295 150,270 240,230 290,215 330,200 370,190 410,175 430,160 460,155 490,145 510,150 550,135 600,120 650,110 720,100" fill="none" stroke="#e91e63" stroke-width="3"/><line x1="330" y1="80" x2="330" y2="300" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,4"/><text x="330" y="75" fill="#27ae60" font-size="11" text-anchor="middle">リファクタ</text><line x1="510" y1="80" x2="510" y2="300" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,4"/><text x="510" y="75" fill="#27ae60" font-size="11" text-anchor="middle">リファクタ</text><rect x="60" y="60" width="680" height="80" fill="#e91e63" opacity="0.08"/><text x="400" y="108" fill="#e91e63" font-size="12" text-anchor="middle" opacity="0.6">危険ゾーン（開発速度が急低下）</text><rect x="280" y="160" width="200" height="40" fill="#27ae60" opacity="0.15" rx="4"/><text x="380" y="185" fill="#27ae60" font-size="12" text-anchor="middle">適切な管理ゾーン</text><text x="400" y="375" fill="#cccccc" font-size="11" text-anchor="middle">定期的なリファクタで開発速度を維持する</text></svg>
 - **Seed 期（〜Series A前）**
 - - **第一推奨: AWS** — Activate $100K + 最大エコシステム + 採用しやすさ
@@ -404,6 +450,8 @@ style: |
 ---
 
 # ステージ別クラウド推奨（2/2）
+
+> *Series B以降はEnterprise顧客→Azure、AI事業→GCPを追加検討—Seed期はAWS/GCPの二択に集中*
 
 - - コスト最適化（Reserved / Spot）を本格開始
 - **Series B 期以降**
@@ -417,6 +465,8 @@ style: |
 
 # スタートアップ活用事例（AWS）（1/2）
 
+> *Stripe・Airbnb・NetflixのSeed期からAWSを活用した事例がAWSエコシステムの信頼性を証明する*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術選定マトリクス</text><text x="190" y="68" fill="#e91e63" font-size="13" text-anchor="middle">コスト</text><text x="330" y="68" fill="#e91e63" font-size="13" text-anchor="middle">スケール</text><text x="470" y="68" fill="#e91e63" font-size="13" text-anchor="middle">開発速度</text><text x="610" y="68" fill="#e91e63" font-size="13" text-anchor="middle">エコシステム</text><text x="110" y="110" fill="#ffffff" font-size="14" text-anchor="end">AWS</text><rect x="124" y="84" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">85</text><rect x="264" y="84" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><rect x="404" y="84" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">70</text><rect x="544" y="84" width="132" height="42" fill="#27ae60" rx="4"/><text x="610" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><text x="110" y="160" fill="#ffffff" font-size="14" text-anchor="end">GCP</text><rect x="124" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">80</text><rect x="264" y="134" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">90</text><rect x="404" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="470" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">75</text><rect x="544" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="610" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">85</text><text x="110" y="210" fill="#ffffff" font-size="14" text-anchor="end">Azure</text><rect x="124" y="184" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">75</text><rect x="264" y="184" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">90</text><rect x="404" y="184" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">72</text><rect x="544" y="184" width="132" height="42" fill="#f39c12" rx="4"/><text x="610" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">88</text><text x="110" y="260" fill="#ffffff" font-size="14" text-anchor="end">OSS自前</text><rect x="124" y="234" width="132" height="42" fill="#27ae60" rx="4"/><text x="190" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><rect x="264" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="330" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">60</text><rect x="404" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">50</text><rect x="544" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="610" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">70</text><text x="400" y="385" fill="#cccccc" font-size="11" text-anchor="middle">スコア: 100=最高評価</text></svg>
 - **AWS Activate 活用成功事例**
 - - **Stripe**: 初期 AWS で構築 → 今も AWS メイン。PaymentはEC2+SQS
@@ -427,6 +477,8 @@ style: |
 ---
 
 # スタートアップ活用事例（AWS）（2/2）
+
+> *freee・LayerX・UbieがPCI DSS・AI・HIPAA要件にAWSマネージドサービスを最大活用して成長した*
 
 - **日本のスタートアップ事例**
 - - **freee**: AWS メイン。会計SaaS で PCI DSS 対応に AWS を活用
@@ -439,6 +491,8 @@ style: |
 
 # スタートアップ活用事例（GCP / Azure）（1/2）
 
+> *Snapchat・Spotify・DuolingoのGCP活用事例はBigQuery・Firebase・Vertex AIの組み合わせが共通*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術スタック層比較</text><text x="300" y="60" fill="#cccccc" font-size="13" text-anchor="middle">クラウドネイティブ</text><text x="560" y="60" fill="#cccccc" font-size="13" text-anchor="middle">従来型</text><text x="90" y="103" fill="#cccccc" font-size="12" text-anchor="end">インフラ</text><rect x="100" y="75" width="380" height="44" fill="#2980b9" rx="6" opacity="0.85"/><text x="290" y="102" fill="#ffffff" font-size="13" text-anchor="middle">AWS/GCP/Azure</text><rect x="500" y="75" width="250" height="44" fill="#16213e" rx="6" stroke="#2980b9" stroke-width="1"/><text x="625" y="102" fill="#ffffff" font-size="13" text-anchor="middle">自社DC</text><text x="90" y="165" fill="#cccccc" font-size="12" text-anchor="end">コンテナ</text><rect x="100" y="137" width="380" height="44" fill="#8e44ad" rx="6" opacity="0.85"/><text x="290" y="164" fill="#ffffff" font-size="13" text-anchor="middle">EKS/GKE/AKS</text><rect x="500" y="137" width="250" height="44" fill="#16213e" rx="6" stroke="#8e44ad" stroke-width="1"/><text x="625" y="164" fill="#ffffff" font-size="13" text-anchor="middle">Kubernetes</text><text x="90" y="227" fill="#cccccc" font-size="12" text-anchor="end">バックエンド</text><rect x="100" y="199" width="380" height="44" fill="#27ae60" rx="6" opacity="0.85"/><text x="290" y="226" fill="#ffffff" font-size="13" text-anchor="middle">Node.js/Go/Python</text><rect x="500" y="199" width="250" height="44" fill="#16213e" rx="6" stroke="#27ae60" stroke-width="1"/><text x="625" y="226" fill="#ffffff" font-size="13" text-anchor="middle">Java/PHP</text><text x="90" y="289" fill="#cccccc" font-size="12" text-anchor="end">フロントエンド</text><rect x="100" y="261" width="380" height="44" fill="#e67e22" rx="6" opacity="0.85"/><text x="290" y="288" fill="#ffffff" font-size="13" text-anchor="middle">Next.js/Nuxt</text><rect x="500" y="261" width="250" height="44" fill="#16213e" rx="6" stroke="#e67e22" stroke-width="1"/><text x="625" y="288" fill="#ffffff" font-size="13" text-anchor="middle">SPA/SSR</text><text x="90" y="351" fill="#cccccc" font-size="12" text-anchor="end">データ</text><rect x="100" y="323" width="380" height="44" fill="#e91e63" rx="6" opacity="0.85"/><text x="290" y="350" fill="#ffffff" font-size="13" text-anchor="middle">RDS/Firestore</text><rect x="500" y="323" width="250" height="44" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="1"/><text x="625" y="350" fill="#ffffff" font-size="13" text-anchor="middle">PostgreSQL</text></svg>
 - **GCP活用事例**
 - - **Snapchat**: BigQuery + GCP でリアルタイム分析基盤
@@ -449,6 +503,8 @@ style: |
 ---
 
 # スタートアップ活用事例（GCP / Azure）（2/2）
+
+> *GitHub・AdobeのAzure事例と日本SaaSのTeams統合需要が事業ドメインによるクラウド相性の違いを示す*
 
 - **Azure活用事例**
 - - **GitHub**: Azure買収後、Azure DevOps と統合
@@ -461,6 +517,8 @@ style: |
 
 # マルチクラウド vs シングルクラウド（1/2）
 
+> *マルチクラウドは運用複雑度が2〜3倍に増加—エンジニアのスキル分散がスタートアップには致命的*
+
 - <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">Build / Buy / OSS 判断フロー</text><rect x="320" y="50" width="160" height="44" rx="22" fill="#f9a825"/><text x="400" y="77" fill="#000" font-size="13" text-anchor="middle" font-weight="bold">要件明確？</text><line x1="320" y1="72" x2="171.28163278194978" y2="125.9104081165432" stroke="#e91e63" stroke-width="2"/><polygon points="160,130 169.23683684022137,120.26959172556829 173.3264287236782,131.5512245075181" fill="#e91e63"/><text x="220" y="115" fill="#e91e63" font-size="11" text-anchor="middle">NO</text><rect x="70" y="130" width="180" height="44" rx="6" fill="#16213e" stroke="#27ae60" stroke-width="2"/><text x="160" y="157" fill="#27ae60" font-size="13" text-anchor="middle">OSS で検証</text><line x1="480" y1="72" x2="569.6196257288584" y2="123.97938292273784" stroke="#f9a825" stroke-width="2"/><polygon points="580,130 566.6093171902273,129.16957005830866 572.6299342674895,118.78919578716702" fill="#f9a825"/><text x="540" y="115" fill="#f9a825" font-size="11" text-anchor="middle">YES</text><rect x="490" y="130" width="200" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="590" y="157" fill="#ffffff" font-size="13" text-anchor="middle">競合優位になる？</text><line x1="590" y1="174" x2="590" y2="228" stroke="#27ae60" stroke-width="2"/><polygon points="590,240 584,228 596,228" fill="#27ae60"/><text x="600" y="215" fill="#27ae60" font-size="11">YES</text><rect x="510" y="240" width="160" height="44" rx="6" fill="#27ae60"/><text x="590" y="267" fill="#ffffff" font-size="13" text-anchor="middle" font-weight="bold">BUILD</text><line x1="490" y1="152" x2="350.35029886919483" y2="233.9278246634057" stroke="#e91e63" stroke-width="2"/><polygon points="340,240 347.31421120089766,228.75267522880827 353.386386537492,239.1029740980031" fill="#e91e63"/><text x="390" y="210" fill="#e91e63" font-size="11">NO</text><rect x="260" y="240" width="160" height="44" rx="6" fill="#2980b9"/><text x="340" y="267" fill="#ffffff" font-size="13" text-anchor="middle" font-weight="bold">BUY/SaaS</text><line x1="160" y1="174" x2="160" y2="228" stroke="#f39c12" stroke-width="2"/><polygon points="160,240 154,228 166,228" fill="#f39c12"/><rect x="70" y="240" width="180" height="44" rx="6" fill="#16213e" stroke="#f39c12" stroke-width="2"/><text x="160" y="267" fill="#f39c12" font-size="13" text-anchor="middle">スケール後見直し</text><text x="160" y="340" fill="#27ae60" font-size="12" text-anchor="middle" font-weight="bold">OSS</text><text x="160" y="358" fill="#cccccc" font-size="11" text-anchor="middle">低コスト・柔軟</text><text x="350" y="340" fill="#2980b9" font-size="12" text-anchor="middle" font-weight="bold">BUY</text><text x="350" y="358" fill="#cccccc" font-size="11" text-anchor="middle">速度・保守性</text><text x="600" y="340" fill="#27ae60" font-size="12" text-anchor="middle" font-weight="bold">BUILD</text><text x="600" y="358" fill="#cccccc" font-size="11" text-anchor="middle">差別化・制御</text></svg>
 - **マルチクラウドのメリット**
 - - ベンダーロックイン回避・価格交渉力の向上
@@ -472,6 +530,8 @@ style: |
 ---
 
 # マルチクラウド vs シングルクラウド（2/2）
+
+> *Series B以前はシングルクラウド集中投資が強推奨—最初からマルチクラウドはコスト削減より複雑さが上回る*
 
 - - エンジニアのスキル分散（専門性が育たない）
 - - コスト監視・セキュリティ設定の二重管理
@@ -525,6 +585,8 @@ style: |
 
 # フリーティア・プログラム最大活用（1/2）
 
+> *AWS Activate $100KはSeed期の2〜3年分の運用コストをカバーできる最大活用すべきプログラム*
+
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">コスト軌跡比較（クラウド vs オンプレ）</text><line x1="80" y1="310" x2="720" y2="310" stroke="#cccccc" stroke-width="2"/><line x1="720" y1="310" x2="728" y2="310" stroke="#cccccc" stroke-width="2"/><polygon points="740,310 728,316 728,304" fill="#cccccc"/><line x1="80" y1="310" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="340" fill="#cccccc" font-size="12" text-anchor="middle">期間 (月)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">累計コスト</text><polyline points="80,200 120,195 200,185 360,175 520,165 680,155" fill="none" stroke="#c0392b" stroke-width="3"/><text x="690" y="152" fill="#c0392b" font-size="12">オンプレ</text><polyline points="80,305 120,295 200,275 360,240 520,210 680,185" fill="none" stroke="#27ae60" stroke-width="3"/><text x="690" y="182" fill="#27ae60" font-size="12">クラウド</text><polyline points="80,260 120,248 200,225 360,200 520,182 680,168" fill="none" stroke="#f39c12" stroke-width="2" stroke-dasharray="8,4"/><text x="690" y="165" fill="#f39c12" font-size="12">ハイブリッド</text><line x1="420" y1="90" x2="420" y2="310" stroke="#cccccc" stroke-width="1" stroke-dasharray="4,4"/><text x="420" y="85" fill="#cccccc" font-size="11" text-anchor="middle">損益分岐 ~18ヶ月</text><text x="80" y="327" fill="#cccccc" font-size="11" text-anchor="middle">0</text><text x="200" y="327" fill="#cccccc" font-size="11" text-anchor="middle">6</text><text x="320" y="327" fill="#cccccc" font-size="11" text-anchor="middle">12</text><text x="440" y="327" fill="#cccccc" font-size="11" text-anchor="middle">18</text><text x="560" y="327" fill="#cccccc" font-size="11" text-anchor="middle">24</text><text x="680" y="327" fill="#cccccc" font-size="11" text-anchor="middle">30</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">初期コスト↓ 長期スケールでクラウドが逆転する場合あり</text></svg>
 - **AWS フリーティア（12ヶ月間）主要枠**
 - - EC2 t2.micro: 750時間/月
@@ -537,6 +599,8 @@ style: |
 
 # フリーティア・プログラム最大活用（2/2）
 
+> *AWS Activate $100K+GCP $200Kの組み合わせでSeed期コストを実質ゼロにできる—$500アラートは必須*
+
 - **活用戦略 for Seed期**:
 - - AWS Activate で最大$100K → 実質2〜3年の運用コストをカバー
 - - GCP の$200K クレジットで AI/ML を並行活用
@@ -547,6 +611,8 @@ style: |
 ---
 
 # Spot / Preemptible インスタンス戦略（1/2）
+
+> *Spotインスタンス最大90%割引—バッチ・CI/CD・MLトレーニング・ステージング環境に最適なコスト削減手段*
 
 - <svg viewBox="0 0 800 370" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="370" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">開発者エコシステム比較</text><text x="107.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">GitHubスター</text><rect x="80" y="65" width="99.75" height="18" fill="#27ae60" rx="3" opacity="0.85"/><text x="76" y="79" fill="#cccccc" font-size="10" text-anchor="end">TypeScript</text><rect x="80" y="87" width="89.25" height="18" fill="#2980b9" rx="3" opacity="0.85"/><text x="76" y="101" fill="#cccccc" font-size="10" text-anchor="end">Go</text><rect x="80" y="109" width="94.5" height="18" fill="#f39c12" rx="3" opacity="0.85"/><text x="76" y="123" fill="#cccccc" font-size="10" text-anchor="end">Python</text><rect x="80" y="131" width="92.4" height="18" fill="#e91e63" rx="3" opacity="0.85"/><text x="76" y="145" fill="#cccccc" font-size="10" text-anchor="end">Rust</text><rect x="80" y="153" width="73.5" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="76" y="167" fill="#cccccc" font-size="10" text-anchor="end">Java</text><text x="262.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">求人数</text><rect x="235" y="65" width="94.5" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="235" y="87" width="84" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="235" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="235" y="131" width="57.75000000000001" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="235" y="153" width="89.25" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="417.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">パッケージ</text><rect x="390" y="65" width="102.89999999999999" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="390" y="87" width="84" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="390" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="390" y="131" width="78.75" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="390" y="153" width="94.5" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="572.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">コミュニティ</text><rect x="545" y="65" width="96.60000000000001" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="545" y="87" width="89.25" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="545" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="545" y="131" width="84" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="545" y="153" width="84" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><rect x="60" y="340" width="14" height="14" fill="#27ae60" rx="2"/><text x="78" y="353" fill="#cccccc" font-size="11">TypeScript</text><rect x="200" y="340" width="14" height="14" fill="#2980b9" rx="2"/><text x="218" y="353" fill="#cccccc" font-size="11">Go</text><rect x="340" y="340" width="14" height="14" fill="#f39c12" rx="2"/><text x="358" y="353" fill="#cccccc" font-size="11">Python</text><rect x="480" y="340" width="14" height="14" fill="#e91e63" rx="2"/><text x="498" y="353" fill="#cccccc" font-size="11">Rust</text><rect x="620" y="340" width="14" height="14" fill="#8e44ad" rx="2"/><text x="638" y="353" fill="#cccccc" font-size="11">Java</text></svg>
 - **Spot インスタンスとは**
@@ -561,6 +627,8 @@ style: |
 
 # Spot / Preemptible インスタンス戦略（2/2）
 
+> *ECS+Spot Fleetを使えば本番APIサーバーでもSpotを安全に混用してコストを70%以上削減できる*
+
 - - ✅ 機械学習 トレーニングジョブ
 - - ✅ 開発・ステージング環境
 - **不適切なワークロード**:
@@ -572,6 +640,8 @@ style: |
 ---
 
 # Reserved / Committed Use の見極め（1/2）
+
+> *3ヶ月以上同スペックで稼働実績がありSavings Plansが最大72%割引—月$5,000超えた時点で購入検討*
 
 - <svg viewBox="0 0 800 390" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="390" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術負債の蓄積と対処タイミング</text><line x1="60" y1="300" x2="740" y2="300" stroke="#cccccc" stroke-width="2"/><line x1="740" y1="300" x2="743" y2="300" stroke="#cccccc" stroke-width="2"/><polygon points="755,300 743,306 743,294" fill="#cccccc"/><line x1="60" y1="300" x2="60" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="60" y1="60" x2="60" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="60,40 66,52 54,52" fill="#cccccc"/><text x="400" y="330" fill="#cccccc" font-size="12" text-anchor="middle">時間</text><text x="20" y="190" fill="#cccccc" font-size="11" text-anchor="middle" transform="rotate(-90,20,190)">負債量</text><polyline points="60,295 150,270 240,230 290,215 330,200 370,190 410,175 430,160 460,155 490,145 510,150 550,135 600,120 650,110 720,100" fill="none" stroke="#e91e63" stroke-width="3"/><line x1="330" y1="80" x2="330" y2="300" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,4"/><text x="330" y="75" fill="#27ae60" font-size="11" text-anchor="middle">リファクタ</text><line x1="510" y1="80" x2="510" y2="300" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,4"/><text x="510" y="75" fill="#27ae60" font-size="11" text-anchor="middle">リファクタ</text><rect x="60" y="60" width="680" height="80" fill="#e91e63" opacity="0.08"/><text x="400" y="108" fill="#e91e63" font-size="12" text-anchor="middle" opacity="0.6">危険ゾーン（開発速度が急低下）</text><rect x="280" y="160" width="200" height="40" fill="#27ae60" opacity="0.15" rx="4"/><text x="380" y="185" fill="#27ae60" font-size="12" text-anchor="middle">適切な管理ゾーン</text><text x="400" y="375" fill="#cccccc" font-size="11" text-anchor="middle">定期的なリファクタで開発速度を維持する</text></svg>
 - **Reserved Instance (RI) / Savings Plans 概要**
@@ -585,6 +655,8 @@ style: |
 
 # Reserved / Committed Use の見極め（2/2）
 
+> *AWS Savings Plans=EC2/Lambda/Fargate横断で最も柔軟・GCP CUD=自動割引で判断が最も簡単*
+
 - - ✅ **購入すべき**: 月次コストが$5,000超えている
 - - ❌ **待つべき**: スケック変更可能性が高い（Seed期前半）
 - - ❌ **待つべき**: 利用実績が2ヶ月未満
@@ -595,6 +667,8 @@ style: |
 ---
 
 # コンテナ・サーバーレスでコスト削減（1/2）
+
+> *ECS Bin PackingとLambdaのリクエスト×時間×メモリ課金でサーバー利用率を最大化してコスト削減する*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術選定マトリクス</text><text x="190" y="68" fill="#e91e63" font-size="13" text-anchor="middle">コスト</text><text x="330" y="68" fill="#e91e63" font-size="13" text-anchor="middle">スケール</text><text x="470" y="68" fill="#e91e63" font-size="13" text-anchor="middle">開発速度</text><text x="610" y="68" fill="#e91e63" font-size="13" text-anchor="middle">エコシステム</text><text x="110" y="110" fill="#ffffff" font-size="14" text-anchor="end">AWS</text><rect x="124" y="84" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">85</text><rect x="264" y="84" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><rect x="404" y="84" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">70</text><rect x="544" y="84" width="132" height="42" fill="#27ae60" rx="4"/><text x="610" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><text x="110" y="160" fill="#ffffff" font-size="14" text-anchor="end">GCP</text><rect x="124" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">80</text><rect x="264" y="134" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">90</text><rect x="404" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="470" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">75</text><rect x="544" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="610" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">85</text><text x="110" y="210" fill="#ffffff" font-size="14" text-anchor="end">Azure</text><rect x="124" y="184" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">75</text><rect x="264" y="184" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">90</text><rect x="404" y="184" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">72</text><rect x="544" y="184" width="132" height="42" fill="#f39c12" rx="4"/><text x="610" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">88</text><text x="110" y="260" fill="#ffffff" font-size="14" text-anchor="end">OSS自前</text><rect x="124" y="234" width="132" height="42" fill="#27ae60" rx="4"/><text x="190" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><rect x="264" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="330" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">60</text><rect x="404" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">50</text><rect x="544" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="610" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">70</text><text x="400" y="385" fill="#cccccc" font-size="11" text-anchor="middle">スコア: 100=最高評価</text></svg>
 - **コンテナ化によるコスト最適化**
@@ -607,6 +681,8 @@ style: |
 ---
 
 # コンテナ・サーバーレスでコスト削減（2/2）
+
+> *Lambda有利は100万/日未満・EC2/コンテナ有利は100万/日超—アイドル時ゼロコストが最大のメリット*
 
 - - 課金: リクエスト数 × 実行時間 × メモリ量
 - - メリット: アイドル時はゼロコスト
@@ -633,6 +709,8 @@ style: |
 
 # コスト監視ツール比較（1/2）
 
+> *Cost Explorer無料・Budgets $0.02/予算・Trusted Advisor・Compute Optimizerの4ツールを組み合わせて活用*
+
 - <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">Build / Buy / OSS 判断フロー</text><rect x="320" y="50" width="160" height="44" rx="22" fill="#f9a825"/><text x="400" y="77" fill="#000" font-size="13" text-anchor="middle" font-weight="bold">要件明確？</text><line x1="320" y1="72" x2="171.28163278194978" y2="125.9104081165432" stroke="#e91e63" stroke-width="2"/><polygon points="160,130 169.23683684022137,120.26959172556829 173.3264287236782,131.5512245075181" fill="#e91e63"/><text x="220" y="115" fill="#e91e63" font-size="11" text-anchor="middle">NO</text><rect x="70" y="130" width="180" height="44" rx="6" fill="#16213e" stroke="#27ae60" stroke-width="2"/><text x="160" y="157" fill="#27ae60" font-size="13" text-anchor="middle">OSS で検証</text><line x1="480" y1="72" x2="569.6196257288584" y2="123.97938292273784" stroke="#f9a825" stroke-width="2"/><polygon points="580,130 566.6093171902273,129.16957005830866 572.6299342674895,118.78919578716702" fill="#f9a825"/><text x="540" y="115" fill="#f9a825" font-size="11" text-anchor="middle">YES</text><rect x="490" y="130" width="200" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="590" y="157" fill="#ffffff" font-size="13" text-anchor="middle">競合優位になる？</text><line x1="590" y1="174" x2="590" y2="228" stroke="#27ae60" stroke-width="2"/><polygon points="590,240 584,228 596,228" fill="#27ae60"/><text x="600" y="215" fill="#27ae60" font-size="11">YES</text><rect x="510" y="240" width="160" height="44" rx="6" fill="#27ae60"/><text x="590" y="267" fill="#ffffff" font-size="13" text-anchor="middle" font-weight="bold">BUILD</text><line x1="490" y1="152" x2="350.35029886919483" y2="233.9278246634057" stroke="#e91e63" stroke-width="2"/><polygon points="340,240 347.31421120089766,228.75267522880827 353.386386537492,239.1029740980031" fill="#e91e63"/><text x="390" y="210" fill="#e91e63" font-size="11">NO</text><rect x="260" y="240" width="160" height="44" rx="6" fill="#2980b9"/><text x="340" y="267" fill="#ffffff" font-size="13" text-anchor="middle" font-weight="bold">BUY/SaaS</text><line x1="160" y1="174" x2="160" y2="228" stroke="#f39c12" stroke-width="2"/><polygon points="160,240 154,228 166,228" fill="#f39c12"/><rect x="70" y="240" width="180" height="44" rx="6" fill="#16213e" stroke="#f39c12" stroke-width="2"/><text x="160" y="267" fill="#f39c12" font-size="13" text-anchor="middle">スケール後見直し</text><text x="160" y="340" fill="#27ae60" font-size="12" text-anchor="middle" font-weight="bold">OSS</text><text x="160" y="358" fill="#cccccc" font-size="11" text-anchor="middle">低コスト・柔軟</text><text x="350" y="340" fill="#2980b9" font-size="12" text-anchor="middle" font-weight="bold">BUY</text><text x="350" y="358" fill="#cccccc" font-size="11" text-anchor="middle">速度・保守性</text><text x="600" y="340" fill="#27ae60" font-size="12" text-anchor="middle" font-weight="bold">BUILD</text><text x="600" y="358" fill="#cccccc" font-size="11" text-anchor="middle">差別化・制御</text></svg>
 - **AWS ネイティブツール**
 - - **Cost Explorer**: 過去・予測コストを視覚化。無料
@@ -644,6 +722,8 @@ style: |
 ---
 
 # コスト監視ツール比較（2/2）
+
+> *まずAWS Budgetsだけ設定するのがスタートアップ推奨—InfracostやCloudHealthは複雑さが増すので後から*
 
 - **サードパーティ FinOps ツール**
 - - **Infracost**: Terraform の変更がコストに与える影響を PR で通知
@@ -674,6 +754,8 @@ style: |
 
 # コスト最適化チェックリスト（1/2）
 
+> *AWS Budgets $500アラート・Cost Explorer最大コスト特定・開発環境自動停止の3つが今すぐできる必須対策*
+
 - **今すぐできる（Seed 期必須）**
 - - [ ] AWS Budgets を月$500でアラート設定
 - - [ ] Cost Explorer で最大コスト要因を特定
@@ -684,6 +766,8 @@ style: |
 ---
 
 # コスト最適化チェックリスト（2/2）
+
+> *Series AでSpot+On-demand混合・Savings Plans購入・月次コストレビュー・S3ライフサイクルを本格実施する*
 
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">チームサイズ vs 技術複雑度</text><line x1="80" y1="320" x2="740" y2="320" stroke="#cccccc" stroke-width="2"/><line x1="740" y1="320" x2="748" y2="320" stroke="#cccccc" stroke-width="2"/><polygon points="760,320 748,326 748,314" fill="#cccccc"/><line x1="80" y1="320" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="350" fill="#cccccc" font-size="12" text-anchor="middle">チームサイズ (人)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">技術複雑度</text><text x="80" y="337" fill="#cccccc" font-size="11" text-anchor="middle">1</text><text x="220" y="337" fill="#cccccc" font-size="11" text-anchor="middle">5</text><text x="360" y="337" fill="#cccccc" font-size="11" text-anchor="middle">10</text><text x="500" y="337" fill="#cccccc" font-size="11" text-anchor="middle">20</text><text x="640" y="337" fill="#cccccc" font-size="11" text-anchor="middle">50</text><polyline points="80,290 180,270 280,240 380,200 480,170 580,150 660,145" fill="none" stroke="#27ae60" stroke-width="3"/><polyline points="80,240 180,200 280,160 380,130 480,110 580,100 660,95" fill="none" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,4"/><rect x="130" y="280" width="100" height="30" rx="4" fill="#27ae60" opacity="0.2"/><text x="180" y="300" fill="#27ae60" font-size="11" text-anchor="middle">モノリス推奨</text><rect x="490" y="155" width="130" height="30" rx="4" fill="#2980b9" opacity="0.2"/><text x="555" y="175" fill="#2980b9" font-size="11" text-anchor="middle">マイクロサービス</text><text x="590" y="88" fill="#e91e63" font-size="11">過剰複雑</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">Conway's Law: チーム構造がシステム設計を決める</text></svg>
 - **Series A で実施**
@@ -706,6 +790,8 @@ style: |
 
 # OSS 選定の判断軸（1/2）
 
+> *GitHub Stars1K以上・求人数確認・マネージドサービス有無・移行容易性の4フィルターで技術を選ぶ*
+
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">コスト軌跡比較（クラウド vs オンプレ）</text><line x1="80" y1="310" x2="720" y2="310" stroke="#cccccc" stroke-width="2"/><line x1="720" y1="310" x2="728" y2="310" stroke="#cccccc" stroke-width="2"/><polygon points="740,310 728,316 728,304" fill="#cccccc"/><line x1="80" y1="310" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="340" fill="#cccccc" font-size="12" text-anchor="middle">期間 (月)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">累計コスト</text><polyline points="80,200 120,195 200,185 360,175 520,165 680,155" fill="none" stroke="#c0392b" stroke-width="3"/><text x="690" y="152" fill="#c0392b" font-size="12">オンプレ</text><polyline points="80,305 120,295 200,275 360,240 520,210 680,185" fill="none" stroke="#27ae60" stroke-width="3"/><text x="690" y="182" fill="#27ae60" font-size="12">クラウド</text><polyline points="80,260 120,248 200,225 360,200 520,182 680,168" fill="none" stroke="#f39c12" stroke-width="2" stroke-dasharray="8,4"/><text x="690" y="165" fill="#f39c12" font-size="12">ハイブリッド</text><line x1="420" y1="90" x2="420" y2="310" stroke="#cccccc" stroke-width="1" stroke-dasharray="4,4"/><text x="420" y="85" fill="#cccccc" font-size="11" text-anchor="middle">損益分岐 ~18ヶ月</text><text x="80" y="327" fill="#cccccc" font-size="11" text-anchor="middle">0</text><text x="200" y="327" fill="#cccccc" font-size="11" text-anchor="middle">6</text><text x="320" y="327" fill="#cccccc" font-size="11" text-anchor="middle">12</text><text x="440" y="327" fill="#cccccc" font-size="11" text-anchor="middle">18</text><text x="560" y="327" fill="#cccccc" font-size="11" text-anchor="middle">24</text><text x="680" y="327" fill="#cccccc" font-size="11" text-anchor="middle">30</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">初期コスト↓ 長期スケールでクラウドが逆転する場合あり</text></svg>
 - **技術選定で使う5つのフィルター**
 - ① **GitHub Stars / Activity**: 死んだプロジェクトを使わない（1K stars 以上推奨）
@@ -717,6 +803,8 @@ style: |
 
 # OSS 選定の判断軸（2/2）
 
+> *SaaS版で学習コストを下げて標準APIに準拠した技術を選ぶ—ゴールデンルールは最初につまらない技術を選ぶこと*
+
 - ④ **SaaS 版の存在**: 初期は SaaS版で学習コストを下げる
 - ⑤ **移行容易性**: 標準 API / プロトコルに準拠しているか
 - **避けるべき選択**: ベンダー独自フォーク・コミュニティの小さいOSS
@@ -726,6 +814,8 @@ style: |
 ---
 
 # フロントエンド比較
+
+> *Next.js 15+shadcn/ui+Tailwind CSSがReactエコシステム最大でVercelで即デプロイできる最速フロントエンド*
 
 - <svg viewBox="0 0 800 370" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="370" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">開発者エコシステム比較</text><text x="107.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">GitHubスター</text><rect x="80" y="65" width="99.75" height="18" fill="#27ae60" rx="3" opacity="0.85"/><text x="76" y="79" fill="#cccccc" font-size="10" text-anchor="end">TypeScript</text><rect x="80" y="87" width="89.25" height="18" fill="#2980b9" rx="3" opacity="0.85"/><text x="76" y="101" fill="#cccccc" font-size="10" text-anchor="end">Go</text><rect x="80" y="109" width="94.5" height="18" fill="#f39c12" rx="3" opacity="0.85"/><text x="76" y="123" fill="#cccccc" font-size="10" text-anchor="end">Python</text><rect x="80" y="131" width="92.4" height="18" fill="#e91e63" rx="3" opacity="0.85"/><text x="76" y="145" fill="#cccccc" font-size="10" text-anchor="end">Rust</text><rect x="80" y="153" width="73.5" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="76" y="167" fill="#cccccc" font-size="10" text-anchor="end">Java</text><text x="262.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">求人数</text><rect x="235" y="65" width="94.5" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="235" y="87" width="84" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="235" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="235" y="131" width="57.75000000000001" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="235" y="153" width="89.25" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="417.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">パッケージ</text><rect x="390" y="65" width="102.89999999999999" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="390" y="87" width="84" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="390" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="390" y="131" width="78.75" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="390" y="153" width="94.5" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="572.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">コミュニティ</text><rect x="545" y="65" width="96.60000000000001" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="545" y="87" width="89.25" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="545" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="545" y="131" width="84" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="545" y="153" width="84" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><rect x="60" y="340" width="14" height="14" fill="#27ae60" rx="2"/><text x="78" y="353" fill="#cccccc" font-size="11">TypeScript</text><rect x="200" y="340" width="14" height="14" fill="#2980b9" rx="2"/><text x="218" y="353" fill="#cccccc" font-size="11">Go</text><rect x="340" y="340" width="14" height="14" fill="#f39c12" rx="2"/><text x="358" y="353" fill="#cccccc" font-size="11">Python</text><rect x="480" y="340" width="14" height="14" fill="#e91e63" rx="2"/><text x="498" y="353" fill="#cccccc" font-size="11">Rust</text><rect x="620" y="340" width="14" height="14" fill="#8e44ad" rx="2"/><text x="638" y="353" fill="#cccccc" font-size="11">Java</text></svg>
 - **フレームワーク比較（2026年）**
@@ -744,6 +834,8 @@ style: |
 
 # バックエンド言語・フレームワーク（1/2）
 
+> *TypeScript/Node.jsは採用しやすさ最大・Pythonは AI/ML親和性・Goは高パフォーマンスの特性を持つ*
+
 - **言語別特性**
 - - **TypeScript（Node.js）**: フロントと共有型・採用しやすい・エコシステム最大
 - - **Python（FastAPI）**: AI/ML との親和性・データサイエンス連携
@@ -754,6 +846,8 @@ style: |
 ---
 
 # バックエンド言語・フレームワーク（2/2）
+
+> *Seed期はNode.js+HonoかPython+FastAPI、AI重視はPython+FastAPI—チームが得意な言語の選択が最優先*
 
 - <svg viewBox="0 0 800 390" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="390" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術負債の蓄積と対処タイミング</text><line x1="60" y1="300" x2="740" y2="300" stroke="#cccccc" stroke-width="2"/><line x1="740" y1="300" x2="743" y2="300" stroke="#cccccc" stroke-width="2"/><polygon points="755,300 743,306 743,294" fill="#cccccc"/><line x1="60" y1="300" x2="60" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="60" y1="60" x2="60" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="60,40 66,52 54,52" fill="#cccccc"/><text x="400" y="330" fill="#cccccc" font-size="12" text-anchor="middle">時間</text><text x="20" y="190" fill="#cccccc" font-size="11" text-anchor="middle" transform="rotate(-90,20,190)">負債量</text><polyline points="60,295 150,270 240,230 290,215 330,200 370,190 410,175 430,160 460,155 490,145 510,150 550,135 600,120 650,110 720,100" fill="none" stroke="#e91e63" stroke-width="3"/><line x1="330" y1="80" x2="330" y2="300" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,4"/><text x="330" y="75" fill="#27ae60" font-size="11" text-anchor="middle">リファクタ</text><line x1="510" y1="80" x2="510" y2="300" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,4"/><text x="510" y="75" fill="#27ae60" font-size="11" text-anchor="middle">リファクタ</text><rect x="60" y="60" width="680" height="80" fill="#e91e63" opacity="0.08"/><text x="400" y="108" fill="#e91e63" font-size="12" text-anchor="middle" opacity="0.6">危険ゾーン（開発速度が急低下）</text><rect x="280" y="160" width="200" height="40" fill="#27ae60" opacity="0.15" rx="4"/><text x="380" y="185" fill="#27ae60" font-size="12" text-anchor="middle">適切な管理ゾーン</text><text x="400" y="375" fill="#cccccc" font-size="11" text-anchor="middle">定期的なリファクタで開発速度を維持する</text></svg>
 - **フレームワーク推奨**:
@@ -767,6 +861,8 @@ style: |
 
 # データベース選定 — SQL vs NoSQL（1/2）
 
+> *まずPostgreSQLが業界ベストプラクティス—ACID・JSONB・チームのSQL習熟度の3条件で95%のケースに対応*
+
 - **「まずPostgreSQL」が業界のベストプラクティス**
 - **PostgreSQLを選ぶべき場合（ほぼすべて）**:
 - - ACID トランザクションが必要（決済・在庫・ユーザーデータ）
@@ -777,6 +873,8 @@ style: |
 ---
 
 # データベース選定 — SQL vs NoSQL（2/2）
+
+> *NoSQL選択は「スケールするから」という理由は禁止—PostgreSQLは適切なインデックスで数千万レコードを処理できる*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術選定マトリクス</text><text x="190" y="68" fill="#e91e63" font-size="13" text-anchor="middle">コスト</text><text x="330" y="68" fill="#e91e63" font-size="13" text-anchor="middle">スケール</text><text x="470" y="68" fill="#e91e63" font-size="13" text-anchor="middle">開発速度</text><text x="610" y="68" fill="#e91e63" font-size="13" text-anchor="middle">エコシステム</text><text x="110" y="110" fill="#ffffff" font-size="14" text-anchor="end">AWS</text><rect x="124" y="84" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">85</text><rect x="264" y="84" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><rect x="404" y="84" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">70</text><rect x="544" y="84" width="132" height="42" fill="#27ae60" rx="4"/><text x="610" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><text x="110" y="160" fill="#ffffff" font-size="14" text-anchor="end">GCP</text><rect x="124" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">80</text><rect x="264" y="134" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">90</text><rect x="404" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="470" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">75</text><rect x="544" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="610" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">85</text><text x="110" y="210" fill="#ffffff" font-size="14" text-anchor="end">Azure</text><rect x="124" y="184" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">75</text><rect x="264" y="184" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">90</text><rect x="404" y="184" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">72</text><rect x="544" y="184" width="132" height="42" fill="#f39c12" rx="4"/><text x="610" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">88</text><text x="110" y="260" fill="#ffffff" font-size="14" text-anchor="end">OSS自前</text><rect x="124" y="234" width="132" height="42" fill="#27ae60" rx="4"/><text x="190" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><rect x="264" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="330" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">60</text><rect x="404" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">50</text><rect x="544" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="610" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">70</text><text x="400" y="385" fill="#cccccc" font-size="11" text-anchor="middle">スコア: 100=最高評価</text></svg>
 - **NoSQL を選ぶべき場合**:
@@ -791,6 +889,8 @@ style: |
 
 # PostgreSQL 詳細活用（1/2）
 
+> *JSONB・pgvector・Row Level Security・全文検索・TimescaleがPostgreSQL一本で全て実装できる理由*
+
 - **PostgreSQL の見落とされがちな強力な機能**
 - - **JSONB**: スキーマレスなデータも PostgreSQL 一本で管理
 - - **pgvector**: ベクトル検索（RAG・推薦システム）を追加費用なしで実装
@@ -801,6 +901,8 @@ style: |
 ---
 
 # PostgreSQL 詳細活用（2/2）
+
+> *Supabaseで認証+ストレージ+RealtimeをSeed期に統合管理、Series A以降はAurora PGに移行する標準経路*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術スタック層比較</text><text x="300" y="60" fill="#cccccc" font-size="13" text-anchor="middle">クラウドネイティブ</text><text x="560" y="60" fill="#cccccc" font-size="13" text-anchor="middle">従来型</text><text x="90" y="103" fill="#cccccc" font-size="12" text-anchor="end">インフラ</text><rect x="100" y="75" width="380" height="44" fill="#2980b9" rx="6" opacity="0.85"/><text x="290" y="102" fill="#ffffff" font-size="13" text-anchor="middle">AWS/GCP/Azure</text><rect x="500" y="75" width="250" height="44" fill="#16213e" rx="6" stroke="#2980b9" stroke-width="1"/><text x="625" y="102" fill="#ffffff" font-size="13" text-anchor="middle">自社DC</text><text x="90" y="165" fill="#cccccc" font-size="12" text-anchor="end">コンテナ</text><rect x="100" y="137" width="380" height="44" fill="#8e44ad" rx="6" opacity="0.85"/><text x="290" y="164" fill="#ffffff" font-size="13" text-anchor="middle">EKS/GKE/AKS</text><rect x="500" y="137" width="250" height="44" fill="#16213e" rx="6" stroke="#8e44ad" stroke-width="1"/><text x="625" y="164" fill="#ffffff" font-size="13" text-anchor="middle">Kubernetes</text><text x="90" y="227" fill="#cccccc" font-size="12" text-anchor="end">バックエンド</text><rect x="100" y="199" width="380" height="44" fill="#27ae60" rx="6" opacity="0.85"/><text x="290" y="226" fill="#ffffff" font-size="13" text-anchor="middle">Node.js/Go/Python</text><rect x="500" y="199" width="250" height="44" fill="#16213e" rx="6" stroke="#27ae60" stroke-width="1"/><text x="625" y="226" fill="#ffffff" font-size="13" text-anchor="middle">Java/PHP</text><text x="90" y="289" fill="#cccccc" font-size="12" text-anchor="end">フロントエンド</text><rect x="100" y="261" width="380" height="44" fill="#e67e22" rx="6" opacity="0.85"/><text x="290" y="288" fill="#ffffff" font-size="13" text-anchor="middle">Next.js/Nuxt</text><rect x="500" y="261" width="250" height="44" fill="#16213e" rx="6" stroke="#e67e22" stroke-width="1"/><text x="625" y="288" fill="#ffffff" font-size="13" text-anchor="middle">SPA/SSR</text><text x="90" y="351" fill="#cccccc" font-size="12" text-anchor="end">データ</text><rect x="100" y="323" width="380" height="44" fill="#e91e63" rx="6" opacity="0.85"/><text x="290" y="350" fill="#ffffff" font-size="13" text-anchor="middle">RDS/Firestore</text><rect x="500" y="323" width="250" height="44" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="1"/><text x="625" y="350" fill="#ffffff" font-size="13" text-anchor="middle">PostgreSQL</text></svg>
 - - **Timescale**: 時系列データも PostgreSQL 拡張で対応
@@ -814,6 +916,8 @@ style: |
 
 # キャッシュ・セッション管理（1/2）
 
+> *RedisはセッションストアからAPIキャッシュ・レート制限・ジョブキュー・PubSubまで5用途で活用できる*
+
 - **Redis の用途別活用**
 - - **セッションストア**: JWTより Redis セッションの方が失効制御しやすい
 - - **APIキャッシュ**: 頻繁に呼ばれる DB クエリ結果を TTL 付きキャッシュ
@@ -824,6 +928,8 @@ style: |
 ---
 
 # キャッシュ・セッション管理（2/2）
+
+> *Upstash RedisがSeed期Serverless推奨・ElastiCacheはSeries A以降・Redis CloudはマルチクラウドのSaaS版*
 
 - <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">Build / Buy / OSS 判断フロー</text><rect x="320" y="50" width="160" height="44" rx="22" fill="#f9a825"/><text x="400" y="77" fill="#000" font-size="13" text-anchor="middle" font-weight="bold">要件明確？</text><line x1="320" y1="72" x2="171.28163278194978" y2="125.9104081165432" stroke="#e91e63" stroke-width="2"/><polygon points="160,130 169.23683684022137,120.26959172556829 173.3264287236782,131.5512245075181" fill="#e91e63"/><text x="220" y="115" fill="#e91e63" font-size="11" text-anchor="middle">NO</text><rect x="70" y="130" width="180" height="44" rx="6" fill="#16213e" stroke="#27ae60" stroke-width="2"/><text x="160" y="157" fill="#27ae60" font-size="13" text-anchor="middle">OSS で検証</text><line x1="480" y1="72" x2="569.6196257288584" y2="123.97938292273784" stroke="#f9a825" stroke-width="2"/><polygon points="580,130 566.6093171902273,129.16957005830866 572.6299342674895,118.78919578716702" fill="#f9a825"/><text x="540" y="115" fill="#f9a825" font-size="11" text-anchor="middle">YES</text><rect x="490" y="130" width="200" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="590" y="157" fill="#ffffff" font-size="13" text-anchor="middle">競合優位になる？</text><line x1="590" y1="174" x2="590" y2="228" stroke="#27ae60" stroke-width="2"/><polygon points="590,240 584,228 596,228" fill="#27ae60"/><text x="600" y="215" fill="#27ae60" font-size="11">YES</text><rect x="510" y="240" width="160" height="44" rx="6" fill="#27ae60"/><text x="590" y="267" fill="#ffffff" font-size="13" text-anchor="middle" font-weight="bold">BUILD</text><line x1="490" y1="152" x2="350.35029886919483" y2="233.9278246634057" stroke="#e91e63" stroke-width="2"/><polygon points="340,240 347.31421120089766,228.75267522880827 353.386386537492,239.1029740980031" fill="#e91e63"/><text x="390" y="210" fill="#e91e63" font-size="11">NO</text><rect x="260" y="240" width="160" height="44" rx="6" fill="#2980b9"/><text x="340" y="267" fill="#ffffff" font-size="13" text-anchor="middle" font-weight="bold">BUY/SaaS</text><line x1="160" y1="174" x2="160" y2="228" stroke="#f39c12" stroke-width="2"/><polygon points="160,240 154,228 166,228" fill="#f39c12"/><rect x="70" y="240" width="180" height="44" rx="6" fill="#16213e" stroke="#f39c12" stroke-width="2"/><text x="160" y="267" fill="#f39c12" font-size="13" text-anchor="middle">スケール後見直し</text><text x="160" y="340" fill="#27ae60" font-size="12" text-anchor="middle" font-weight="bold">OSS</text><text x="160" y="358" fill="#cccccc" font-size="11" text-anchor="middle">低コスト・柔軟</text><text x="350" y="340" fill="#2980b9" font-size="12" text-anchor="middle" font-weight="bold">BUY</text><text x="350" y="358" fill="#cccccc" font-size="11" text-anchor="middle">速度・保守性</text><text x="600" y="340" fill="#27ae60" font-size="12" text-anchor="middle" font-weight="bold">BUILD</text><text x="600" y="358" fill="#cccccc" font-size="11" text-anchor="middle">差別化・制御</text></svg>
 - - **PubSub**: リアルタイム通知のメッセージブローカー
@@ -836,6 +942,8 @@ style: |
 ---
 
 # 認証・ID管理
+
+> *NextAuth.jsまたはSupabase Authがコスト$0で最速—BtoB SaaMLで SAML必要時にAuth0またはKeycloakに移行*
 
 - **認証ソリューション比較**
 | | NextAuth.js | Supabase Auth | Auth0 | Keycloak |
@@ -853,6 +961,8 @@ style: |
 ---
 
 # IaC — Terraform vs CDK vs Pulumi
+
+> *TerraformがマルチクラウドのIaC標準—最初からリポジトリを用意して後付けの痛みを避けることが重要*
 
 - <svg viewBox="0 0 800 330" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="330" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">スケーラビリティ成長パス</text><rect x="60" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#27ae60" stroke-width="2"/><text x="140" y="88" fill="#27ae60" font-size="16" text-anchor="middle" font-weight="bold">MVP</text><text x="140" y="108" fill="#cccccc" font-size="11" text-anchor="middle">0-1K ユーザー</text><text x="140" y="132" fill="#ffffff" font-size="12" text-anchor="middle">モノリス</text><text x="140" y="150" fill="#ffffff" font-size="12" text-anchor="middle">Simple DB</text><line x1="220" y1="120" x2="308" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="320,120 308,126 308,114" fill="#f9a825"/><rect x="260" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#f39c12" stroke-width="2"/><text x="340" y="88" fill="#f39c12" font-size="16" text-anchor="middle" font-weight="bold">Growth</text><text x="340" y="108" fill="#cccccc" font-size="11" text-anchor="middle">1K-100K</text><text x="340" y="132" fill="#ffffff" font-size="12" text-anchor="middle">マイクロ分割</text><text x="340" y="150" fill="#ffffff" font-size="12" text-anchor="middle">キャッシュ導入</text><line x1="420" y1="120" x2="508" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="520,120 508,126 508,114" fill="#f9a825"/><rect x="460" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="540" y="88" fill="#e91e63" font-size="16" text-anchor="middle" font-weight="bold">Scale</text><text x="540" y="108" fill="#cccccc" font-size="11" text-anchor="middle">100K-10M</text><text x="540" y="132" fill="#ffffff" font-size="12" text-anchor="middle">マルチリージョン</text><text x="540" y="150" fill="#ffffff" font-size="12" text-anchor="middle">CQRS/Event</text><line x1="620" y1="120" x2="708" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="720,120 708,126 708,114" fill="#f9a825"/><rect x="640" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#8e44ad" stroke-width="2"/><text x="720" y="88" fill="#8e44ad" font-size="16" text-anchor="middle" font-weight="bold">Hyper</text><text x="720" y="108" fill="#cccccc" font-size="11" text-anchor="middle">10M+</text><text x="720" y="132" fill="#ffffff" font-size="12" text-anchor="middle">グローバルCDN</text><text x="720" y="150" fill="#ffffff" font-size="12" text-anchor="middle">Cell Architecture</text><text x="60" y="220" fill="#cccccc" font-size="12">技術複雑度</text><rect x="60" y="230" width="700" height="16" rx="8" fill="#16213e"/><rect x="60" y="230" width="175" height="16" rx="8" fill="#27ae60" opacity="0.8"/><rect x="60" y="230" width="350" height="16" rx="8" fill="#f39c12" opacity="0.8"/><rect x="60" y="230" width="525" height="16" rx="8" fill="#e91e63" opacity="0.8"/><rect x="60" y="230" width="700" height="16" rx="8" fill="#8e44ad" opacity="0.8"/><text x="60" y="265" fill="#cccccc" font-size="12">コスト</text><rect x="60" y="270" width="700" height="16" rx="8" fill="#16213e"/><rect x="60" y="270" width="100" height="16" rx="8" fill="#27ae60" opacity="0.8"/><rect x="60" y="270" width="250" height="16" rx="8" fill="#f39c12" opacity="0.8"/><rect x="60" y="270" width="500" height="16" rx="8" fill="#e91e63" opacity="0.8"/><rect x="60" y="270" width="700" height="16" rx="8" fill="#8e44ad" opacity="0.8"/><text x="400" y="315" fill="#cccccc" font-size="11" text-anchor="middle">→ ステージに合わせた技術選定が重要</text></svg>
 - **インフラ as Code（IaC）比較**
@@ -872,6 +982,8 @@ style: |
 
 # CI/CD 比較
 
+> *GitHub Actionsがコードと同リポジトリ管理・Dependabot+CodeQLセキュリティスキャンが標準装備で最適*
+
 - **CI/CD ツール比較**
 | | GitHub Actions | CircleCI | GitLab CI | Jenkins |
 |--|---------------|---------|-----------|---------|
@@ -889,6 +1001,8 @@ style: |
 
 # コンテナオーケストレーション（1/2）
 
+> *Seed期はECS Fargateで設定最小・Series A以降でEKS検討—マイクロサービスが5つ以上になってからk8sを導入*
+
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">チームサイズ vs 技術複雑度</text><line x1="80" y1="320" x2="740" y2="320" stroke="#cccccc" stroke-width="2"/><line x1="740" y1="320" x2="748" y2="320" stroke="#cccccc" stroke-width="2"/><polygon points="760,320 748,326 748,314" fill="#cccccc"/><line x1="80" y1="320" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="350" fill="#cccccc" font-size="12" text-anchor="middle">チームサイズ (人)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">技術複雑度</text><text x="80" y="337" fill="#cccccc" font-size="11" text-anchor="middle">1</text><text x="220" y="337" fill="#cccccc" font-size="11" text-anchor="middle">5</text><text x="360" y="337" fill="#cccccc" font-size="11" text-anchor="middle">10</text><text x="500" y="337" fill="#cccccc" font-size="11" text-anchor="middle">20</text><text x="640" y="337" fill="#cccccc" font-size="11" text-anchor="middle">50</text><polyline points="80,290 180,270 280,240 380,200 480,170 580,150 660,145" fill="none" stroke="#27ae60" stroke-width="3"/><polyline points="80,240 180,200 280,160 380,130 480,110 580,100 660,95" fill="none" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,4"/><rect x="130" y="280" width="100" height="30" rx="4" fill="#27ae60" opacity="0.2"/><text x="180" y="300" fill="#27ae60" font-size="11" text-anchor="middle">モノリス推奨</text><rect x="490" y="155" width="130" height="30" rx="4" fill="#2980b9" opacity="0.2"/><text x="555" y="175" fill="#2980b9" font-size="11" text-anchor="middle">マイクロサービス</text><text x="590" y="88" fill="#e91e63" font-size="11">過剰複雑</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">Conway's Law: チーム構造がシステム設計を決める</text></svg>
 - **Seed期: ECS Fargate（Kubernetes不要）**
 - - 設定が少ない・k8s の複雑さなし
@@ -902,6 +1016,8 @@ style: |
 
 # コンテナオーケストレーション（2/2）
 
+> *k8sはインフラエンジニアを専任で雇えるフェーズから—チームにk8s経験者がいなければECS Fargateで十分*
+
 - - Helm Charts でサービスをテンプレート化
 - - Argo CD でGitOps デプロイ
 - **判断基準**:
@@ -913,6 +1029,8 @@ style: |
 ---
 
 # モニタリング・可観測性（1/2）
+
+> *Seed期最小構成はCloudWatch+Uptime+Sentryフリープランの組み合わせで$0から始められる*
 
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">コスト軌跡比較（クラウド vs オンプレ）</text><line x1="80" y1="310" x2="720" y2="310" stroke="#cccccc" stroke-width="2"/><line x1="720" y1="310" x2="728" y2="310" stroke="#cccccc" stroke-width="2"/><polygon points="740,310 728,316 728,304" fill="#cccccc"/><line x1="80" y1="310" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="340" fill="#cccccc" font-size="12" text-anchor="middle">期間 (月)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">累計コスト</text><polyline points="80,200 120,195 200,185 360,175 520,165 680,155" fill="none" stroke="#c0392b" stroke-width="3"/><text x="690" y="152" fill="#c0392b" font-size="12">オンプレ</text><polyline points="80,305 120,295 200,275 360,240 520,210 680,185" fill="none" stroke="#27ae60" stroke-width="3"/><text x="690" y="182" fill="#27ae60" font-size="12">クラウド</text><polyline points="80,260 120,248 200,225 360,200 520,182 680,168" fill="none" stroke="#f39c12" stroke-width="2" stroke-dasharray="8,4"/><text x="690" y="165" fill="#f39c12" font-size="12">ハイブリッド</text><line x1="420" y1="90" x2="420" y2="310" stroke="#cccccc" stroke-width="1" stroke-dasharray="4,4"/><text x="420" y="85" fill="#cccccc" font-size="11" text-anchor="middle">損益分岐 ~18ヶ月</text><text x="80" y="327" fill="#cccccc" font-size="11" text-anchor="middle">0</text><text x="200" y="327" fill="#cccccc" font-size="11" text-anchor="middle">6</text><text x="320" y="327" fill="#cccccc" font-size="11" text-anchor="middle">12</text><text x="440" y="327" fill="#cccccc" font-size="11" text-anchor="middle">18</text><text x="560" y="327" fill="#cccccc" font-size="11" text-anchor="middle">24</text><text x="680" y="327" fill="#cccccc" font-size="11" text-anchor="middle">30</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">初期コスト↓ 長期スケールでクラウドが逆転する場合あり</text></svg>
 - **可観測性の3本柱**: Metrics / Logs / Traces
@@ -926,6 +1044,8 @@ style: |
 
 # モニタリング・可観測性（2/2）
 
+> *Series AのAll-in-oneはDatadog・OSSスタックはPrometheus+Grafana+Loki—アラートは行動につながるもののみ*
+
 - - **UX**: Vercel Analytics / PostHog
 - **Series A の本格構成**:
 - - **All-in-one**: Datadog（高価だが統合運用が楽）
@@ -937,6 +1057,8 @@ style: |
 ---
 
 # API 設計 — REST vs GraphQL vs gRPC
+
+> *Seed期はREST（OpenAPI）またはtRPC・GraphQLは複数クライアント時・gRPCはサービス間通信に限定する*
 
 - <svg viewBox="0 0 800 370" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="370" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">開発者エコシステム比較</text><text x="107.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">GitHubスター</text><rect x="80" y="65" width="99.75" height="18" fill="#27ae60" rx="3" opacity="0.85"/><text x="76" y="79" fill="#cccccc" font-size="10" text-anchor="end">TypeScript</text><rect x="80" y="87" width="89.25" height="18" fill="#2980b9" rx="3" opacity="0.85"/><text x="76" y="101" fill="#cccccc" font-size="10" text-anchor="end">Go</text><rect x="80" y="109" width="94.5" height="18" fill="#f39c12" rx="3" opacity="0.85"/><text x="76" y="123" fill="#cccccc" font-size="10" text-anchor="end">Python</text><rect x="80" y="131" width="92.4" height="18" fill="#e91e63" rx="3" opacity="0.85"/><text x="76" y="145" fill="#cccccc" font-size="10" text-anchor="end">Rust</text><rect x="80" y="153" width="73.5" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="76" y="167" fill="#cccccc" font-size="10" text-anchor="end">Java</text><text x="262.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">求人数</text><rect x="235" y="65" width="94.5" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="235" y="87" width="84" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="235" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="235" y="131" width="57.75000000000001" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="235" y="153" width="89.25" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="417.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">パッケージ</text><rect x="390" y="65" width="102.89999999999999" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="390" y="87" width="84" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="390" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="390" y="131" width="78.75" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="390" y="153" width="94.5" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="572.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">コミュニティ</text><rect x="545" y="65" width="96.60000000000001" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="545" y="87" width="89.25" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="545" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="545" y="131" width="84" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="545" y="153" width="84" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><rect x="60" y="340" width="14" height="14" fill="#27ae60" rx="2"/><text x="78" y="353" fill="#cccccc" font-size="11">TypeScript</text><rect x="200" y="340" width="14" height="14" fill="#2980b9" rx="2"/><text x="218" y="353" fill="#cccccc" font-size="11">Go</text><rect x="340" y="340" width="14" height="14" fill="#f39c12" rx="2"/><text x="358" y="353" fill="#cccccc" font-size="11">Python</text><rect x="480" y="340" width="14" height="14" fill="#e91e63" rx="2"/><text x="498" y="353" fill="#cccccc" font-size="11">Rust</text><rect x="620" y="340" width="14" height="14" fill="#8e44ad" rx="2"/><text x="638" y="353" fill="#cccccc" font-size="11">Java</text></svg>
 - **設計スタイル比較**
@@ -957,6 +1079,8 @@ style: |
 
 # 決済 — Stripe でスタートする（1/2）
 
+> *Stripeは国内スタートアップ70%以上が採用—SCAutomaticとBillingとRadarが競合差別化の3大機能*
+
 - **なぜ Stripe 一択か**
 - - 国内シェア70%以上のスタートアップが採用
 - - 手数料: 2.9% + 30¢（日本: 3.6% + 30¢）
@@ -968,6 +1092,8 @@ style: |
 ---
 
 # 決済 — Stripe でスタートする（2/2）
+
+> *Stripe CheckoutとElements・Payment Intents APIの3段階でカスタマイズ度と実装速度のトレードオフを選ぶ*
 
 - <svg viewBox="0 0 800 390" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="390" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術負債の蓄積と対処タイミング</text><line x1="60" y1="300" x2="740" y2="300" stroke="#cccccc" stroke-width="2"/><line x1="740" y1="300" x2="743" y2="300" stroke="#cccccc" stroke-width="2"/><polygon points="755,300 743,306 743,294" fill="#cccccc"/><line x1="60" y1="300" x2="60" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="60" y1="60" x2="60" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="60,40 66,52 54,52" fill="#cccccc"/><text x="400" y="330" fill="#cccccc" font-size="12" text-anchor="middle">時間</text><text x="20" y="190" fill="#cccccc" font-size="11" text-anchor="middle" transform="rotate(-90,20,190)">負債量</text><polyline points="60,295 150,270 240,230 290,215 330,200 370,190 410,175 430,160 460,155 490,145 510,150 550,135 600,120 650,110 720,100" fill="none" stroke="#e91e63" stroke-width="3"/><line x1="330" y1="80" x2="330" y2="300" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,4"/><text x="330" y="75" fill="#27ae60" font-size="11" text-anchor="middle">リファクタ</text><line x1="510" y1="80" x2="510" y2="300" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,4"/><text x="510" y="75" fill="#27ae60" font-size="11" text-anchor="middle">リファクタ</text><rect x="60" y="60" width="680" height="80" fill="#e91e63" opacity="0.08"/><text x="400" y="108" fill="#e91e63" font-size="12" text-anchor="middle" opacity="0.6">危険ゾーン（開発速度が急低下）</text><rect x="280" y="160" width="200" height="40" fill="#27ae60" opacity="0.15" rx="4"/><text x="380" y="185" fill="#27ae60" font-size="12" text-anchor="middle">適切な管理ゾーン</text><text x="400" y="375" fill="#cccccc" font-size="11" text-anchor="middle">定期的なリファクタで開発速度を維持する</text></svg>
 - **統合パターン**:
@@ -996,6 +1122,8 @@ style: |
 
 # OSS 選定チェックリスト（1/2）
 
+> *GitHub活動・Open Issues・マネージドSaaS版・Stack Overflow回答数の4項目が採用前の必須チェック*
+
 - **技術採用前の必須チェック**
 - - [ ] GitHub のコミット頻度が直近3ヶ月でアクティブか
 - - [ ] Open Issues の未解決件数が増え続けていないか
@@ -1006,6 +1134,8 @@ style: |
 ---
 
 # OSS 選定チェックリスト（2/2）
+
+> *ライセンス確認（GPL商用注意）・採用市場サイズ・Dependabot脆弱性チェック・2世代以上遅れないことが重要*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術スタック層比較</text><text x="300" y="60" fill="#cccccc" font-size="13" text-anchor="middle">クラウドネイティブ</text><text x="560" y="60" fill="#cccccc" font-size="13" text-anchor="middle">従来型</text><text x="90" y="103" fill="#cccccc" font-size="12" text-anchor="end">インフラ</text><rect x="100" y="75" width="380" height="44" fill="#2980b9" rx="6" opacity="0.85"/><text x="290" y="102" fill="#ffffff" font-size="13" text-anchor="middle">AWS/GCP/Azure</text><rect x="500" y="75" width="250" height="44" fill="#16213e" rx="6" stroke="#2980b9" stroke-width="1"/><text x="625" y="102" fill="#ffffff" font-size="13" text-anchor="middle">自社DC</text><text x="90" y="165" fill="#cccccc" font-size="12" text-anchor="end">コンテナ</text><rect x="100" y="137" width="380" height="44" fill="#8e44ad" rx="6" opacity="0.85"/><text x="290" y="164" fill="#ffffff" font-size="13" text-anchor="middle">EKS/GKE/AKS</text><rect x="500" y="137" width="250" height="44" fill="#16213e" rx="6" stroke="#8e44ad" stroke-width="1"/><text x="625" y="164" fill="#ffffff" font-size="13" text-anchor="middle">Kubernetes</text><text x="90" y="227" fill="#cccccc" font-size="12" text-anchor="end">バックエンド</text><rect x="100" y="199" width="380" height="44" fill="#27ae60" rx="6" opacity="0.85"/><text x="290" y="226" fill="#ffffff" font-size="13" text-anchor="middle">Node.js/Go/Python</text><rect x="500" y="199" width="250" height="44" fill="#16213e" rx="6" stroke="#27ae60" stroke-width="1"/><text x="625" y="226" fill="#ffffff" font-size="13" text-anchor="middle">Java/PHP</text><text x="90" y="289" fill="#cccccc" font-size="12" text-anchor="end">フロントエンド</text><rect x="100" y="261" width="380" height="44" fill="#e67e22" rx="6" opacity="0.85"/><text x="290" y="288" fill="#ffffff" font-size="13" text-anchor="middle">Next.js/Nuxt</text><rect x="500" y="261" width="250" height="44" fill="#16213e" rx="6" stroke="#e67e22" stroke-width="1"/><text x="625" y="288" fill="#ffffff" font-size="13" text-anchor="middle">SPA/SSR</text><text x="90" y="351" fill="#cccccc" font-size="12" text-anchor="end">データ</text><rect x="100" y="323" width="380" height="44" fill="#e91e63" rx="6" opacity="0.85"/><text x="290" y="350" fill="#ffffff" font-size="13" text-anchor="middle">RDS/Firestore</text><rect x="500" y="323" width="250" height="44" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="1"/><text x="625" y="350" fill="#ffffff" font-size="13" text-anchor="middle">PostgreSQL</text></svg>
 - - [ ] 日本語求人での採用可能性（採用市場サイズ）
@@ -1034,6 +1164,8 @@ style: |
 
 # Seed 期 — MVP 最速構築の原則（1/2）
 
+> *Seed期4原則：モノリスから始める・マネージドサービス最大活用・Day1からCI/CD・TypeScript必須*
+
 - **Seed 期の技術指針**
 - ① **モノリスから始める**: マイクロサービスは早すぎる
 - ② **マネージドサービス最大活用**: Supabase + Vercel で運用ゼロ
@@ -1044,6 +1176,8 @@ style: |
 ---
 
 # Seed 期 — MVP 最速構築の原則（2/2）
+
+> *k8s/マイクロサービス/複雑なキャッシュ/自前認証の4つをやらないことがSeed期を最速で乗り越える鍵*
 
 - <svg viewBox="0 0 800 330" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="330" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">スケーラビリティ成長パス</text><rect x="60" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#27ae60" stroke-width="2"/><text x="140" y="88" fill="#27ae60" font-size="16" text-anchor="middle" font-weight="bold">MVP</text><text x="140" y="108" fill="#cccccc" font-size="11" text-anchor="middle">0-1K ユーザー</text><text x="140" y="132" fill="#ffffff" font-size="12" text-anchor="middle">モノリス</text><text x="140" y="150" fill="#ffffff" font-size="12" text-anchor="middle">Simple DB</text><line x1="220" y1="120" x2="308" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="320,120 308,126 308,114" fill="#f9a825"/><rect x="260" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#f39c12" stroke-width="2"/><text x="340" y="88" fill="#f39c12" font-size="16" text-anchor="middle" font-weight="bold">Growth</text><text x="340" y="108" fill="#cccccc" font-size="11" text-anchor="middle">1K-100K</text><text x="340" y="132" fill="#ffffff" font-size="12" text-anchor="middle">マイクロ分割</text><text x="340" y="150" fill="#ffffff" font-size="12" text-anchor="middle">キャッシュ導入</text><line x1="420" y1="120" x2="508" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="520,120 508,126 508,114" fill="#f9a825"/><rect x="460" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="540" y="88" fill="#e91e63" font-size="16" text-anchor="middle" font-weight="bold">Scale</text><text x="540" y="108" fill="#cccccc" font-size="11" text-anchor="middle">100K-10M</text><text x="540" y="132" fill="#ffffff" font-size="12" text-anchor="middle">マルチリージョン</text><text x="540" y="150" fill="#ffffff" font-size="12" text-anchor="middle">CQRS/Event</text><line x1="620" y1="120" x2="708" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="720,120 708,126 708,114" fill="#f9a825"/><rect x="640" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#8e44ad" stroke-width="2"/><text x="720" y="88" fill="#8e44ad" font-size="16" text-anchor="middle" font-weight="bold">Hyper</text><text x="720" y="108" fill="#cccccc" font-size="11" text-anchor="middle">10M+</text><text x="720" y="132" fill="#ffffff" font-size="12" text-anchor="middle">グローバルCDN</text><text x="720" y="150" fill="#ffffff" font-size="12" text-anchor="middle">Cell Architecture</text><text x="60" y="220" fill="#cccccc" font-size="12">技術複雑度</text><rect x="60" y="230" width="700" height="16" rx="8" fill="#16213e"/><rect x="60" y="230" width="175" height="16" rx="8" fill="#27ae60" opacity="0.8"/><rect x="60" y="230" width="350" height="16" rx="8" fill="#f39c12" opacity="0.8"/><rect x="60" y="230" width="525" height="16" rx="8" fill="#e91e63" opacity="0.8"/><rect x="60" y="230" width="700" height="16" rx="8" fill="#8e44ad" opacity="0.8"/><text x="60" y="265" fill="#cccccc" font-size="12">コスト</text><rect x="60" y="270" width="700" height="16" rx="8" fill="#16213e"/><rect x="60" y="270" width="100" height="16" rx="8" fill="#27ae60" opacity="0.8"/><rect x="60" y="270" width="250" height="16" rx="8" fill="#f39c12" opacity="0.8"/><rect x="60" y="270" width="500" height="16" rx="8" fill="#e91e63" opacity="0.8"/><rect x="60" y="270" width="700" height="16" rx="8" fill="#8e44ad" opacity="0.8"/><text x="400" y="315" fill="#cccccc" font-size="11" text-anchor="middle">→ ステージに合わせた技術選定が重要</text></svg>
 - ⑤ **テストは最重要ロジックのみ**: 全てテストは後回し
@@ -1058,6 +1192,8 @@ style: |
 
 # Series A 期 — スケールへの備え（1/2）
 
+> *Multi-AZ+ALBヘルスチェック+自動バックアップでSeries Aに必要な99.9%可用性を達成する*
+
 - **Series A で対応すべき技術課題**
 - **SLA・信頼性**:
 - - Multi-AZ 構成（RDS / ECS）で99.9%可用性
@@ -1068,12 +1204,20 @@ style: |
 
 ---
 
-# Series A 期 — スケールへの備え（2/2）
+# Series A 期 — スケールへの備え（2/2）（1/2）
 
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">チームサイズ vs 技術複雑度</text><line x1="80" y1="320" x2="740" y2="320" stroke="#cccccc" stroke-width="2"/><line x1="740" y1="320" x2="748" y2="320" stroke="#cccccc" stroke-width="2"/><polygon points="760,320 748,326 748,314" fill="#cccccc"/><line x1="80" y1="320" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="350" fill="#cccccc" font-size="12" text-anchor="middle">チームサイズ (人)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">技術複雑度</text><text x="80" y="337" fill="#cccccc" font-size="11" text-anchor="middle">1</text><text x="220" y="337" fill="#cccccc" font-size="11" text-anchor="middle">5</text><text x="360" y="337" fill="#cccccc" font-size="11" text-anchor="middle">10</text><text x="500" y="337" fill="#cccccc" font-size="11" text-anchor="middle">20</text><text x="640" y="337" fill="#cccccc" font-size="11" text-anchor="middle">50</text><polyline points="80,290 180,270 280,240 380,200 480,170 580,150 660,145" fill="none" stroke="#27ae60" stroke-width="3"/><polyline points="80,240 180,200 280,160 380,130 480,110 580,100 660,95" fill="none" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,4"/><rect x="130" y="280" width="100" height="30" rx="4" fill="#27ae60" opacity="0.2"/><text x="180" y="300" fill="#27ae60" font-size="11" text-anchor="middle">モノリス推奨</text><rect x="490" y="155" width="130" height="30" rx="4" fill="#2980b9" opacity="0.2"/><text x="555" y="175" fill="#2980b9" font-size="11" text-anchor="middle">マイクロサービス</text><text x="590" y="88" fill="#e91e63" font-size="11">過剰複雑</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">Conway's Law: チーム構造がシステム設計を決める</text></svg>
 - - WAF（AWS WAF / Cloudflare）導入
 - - VPC + Private Subnet 設計
 - - Secret Manager で環境変数を安全管理
+
+
+---
+
+# Series A 期 — スケールへの備え（2/2）（2/2）
+
+> *ブランチ戦略統一・コードレビュー必須・CI自動化・オンコール体制がSeries A開発プロセスの4本柱*
+
 - **開発プロセス**:
 - - ブランチ戦略（GitHub Flow / GitFlow）の統一
 - - コードレビュー必須 + CI でlint/test を自動化
@@ -1083,6 +1227,8 @@ style: |
 ---
 
 # Series B 期 — プロダクション品質（1/2）
+
+> *Series BのマルチリージョンとDB sharding・CDN+Edgeでグローバル対応—コンプライアンス対応も本格化*
 
 - **Series B 以降の技術課題**
 - **スケーラビリティ**:
@@ -1094,12 +1240,20 @@ style: |
 
 ---
 
-# Series B 期 — プロダクション品質（2/2）
+# Series B 期 — プロダクション品質（2/2）（1/2）
 
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">コスト軌跡比較（クラウド vs オンプレ）</text><line x1="80" y1="310" x2="720" y2="310" stroke="#cccccc" stroke-width="2"/><line x1="720" y1="310" x2="728" y2="310" stroke="#cccccc" stroke-width="2"/><polygon points="740,310 728,316 728,304" fill="#cccccc"/><line x1="80" y1="310" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="340" fill="#cccccc" font-size="12" text-anchor="middle">期間 (月)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">累計コスト</text><polyline points="80,200 120,195 200,185 360,175 520,165 680,155" fill="none" stroke="#c0392b" stroke-width="3"/><text x="690" y="152" fill="#c0392b" font-size="12">オンプレ</text><polyline points="80,305 120,295 200,275 360,240 520,210 680,185" fill="none" stroke="#27ae60" stroke-width="3"/><text x="690" y="182" fill="#27ae60" font-size="12">クラウド</text><polyline points="80,260 120,248 200,225 360,200 520,182 680,168" fill="none" stroke="#f39c12" stroke-width="2" stroke-dasharray="8,4"/><text x="690" y="165" fill="#f39c12" font-size="12">ハイブリッド</text><line x1="420" y1="90" x2="420" y2="310" stroke="#cccccc" stroke-width="1" stroke-dasharray="4,4"/><text x="420" y="85" fill="#cccccc" font-size="11" text-anchor="middle">損益分岐 ~18ヶ月</text><text x="80" y="327" fill="#cccccc" font-size="11" text-anchor="middle">0</text><text x="200" y="327" fill="#cccccc" font-size="11" text-anchor="middle">6</text><text x="320" y="327" fill="#cccccc" font-size="11" text-anchor="middle">12</text><text x="440" y="327" fill="#cccccc" font-size="11" text-anchor="middle">18</text><text x="560" y="327" fill="#cccccc" font-size="11" text-anchor="middle">24</text><text x="680" y="327" fill="#cccccc" font-size="11" text-anchor="middle">30</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">初期コスト↓ 長期スケールでクラウドが逆転する場合あり</text></svg>
 - - SOC 2 Type II 取得（BtoB 必須）
 - - GDPR / 個人情報保護法への完全対応
 - - ISO 27001 検討（Enterprise顧客要件）
+
+
+---
+
+# Series B 期 — プロダクション品質（2/2）（2/2）
+
+> *Platform Engineering・FinOps専任・セキュリティエンジニア採用がSeries B以降の組織課題*
+
 - **組織・プロセス**:
 - - Platform Engineering チーム設立
 - - FinOps 専任担当 or チーム
@@ -1109,6 +1263,8 @@ style: |
 ---
 
 # 採用しやすいスタックの選び方（1/2）
+
+> *Next.js/React・TypeScript（Node）・PostgreSQLがそれぞれ採用市場で最も求人数が多いスタック*
 
 - **採用市場での技術スタック人気（2026年）**
 - **フロントエンド採用しやすい順**:
@@ -1120,12 +1276,20 @@ style: |
 
 ---
 
-# 採用しやすいスタックの選び方（2/2）
+# 採用しやすいスタックの選び方（2/2）（1/2）
 
 - <svg viewBox="0 0 800 370" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="370" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">開発者エコシステム比較</text><text x="107.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">GitHubスター</text><rect x="80" y="65" width="99.75" height="18" fill="#27ae60" rx="3" opacity="0.85"/><text x="76" y="79" fill="#cccccc" font-size="10" text-anchor="end">TypeScript</text><rect x="80" y="87" width="89.25" height="18" fill="#2980b9" rx="3" opacity="0.85"/><text x="76" y="101" fill="#cccccc" font-size="10" text-anchor="end">Go</text><rect x="80" y="109" width="94.5" height="18" fill="#f39c12" rx="3" opacity="0.85"/><text x="76" y="123" fill="#cccccc" font-size="10" text-anchor="end">Python</text><rect x="80" y="131" width="92.4" height="18" fill="#e91e63" rx="3" opacity="0.85"/><text x="76" y="145" fill="#cccccc" font-size="10" text-anchor="end">Rust</text><rect x="80" y="153" width="73.5" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="76" y="167" fill="#cccccc" font-size="10" text-anchor="end">Java</text><text x="262.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">求人数</text><rect x="235" y="65" width="94.5" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="235" y="87" width="84" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="235" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="235" y="131" width="57.75000000000001" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="235" y="153" width="89.25" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="417.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">パッケージ</text><rect x="390" y="65" width="102.89999999999999" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="390" y="87" width="84" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="390" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="390" y="131" width="78.75" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="390" y="153" width="94.5" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><text x="572.5" y="58" fill="#cccccc" font-size="11" text-anchor="middle">コミュニティ</text><rect x="545" y="65" width="96.60000000000001" height="18" fill="#27ae60" rx="3" opacity="0.85"/><rect x="545" y="87" width="89.25" height="18" fill="#2980b9" rx="3" opacity="0.85"/><rect x="545" y="109" width="99.75" height="18" fill="#f39c12" rx="3" opacity="0.85"/><rect x="545" y="131" width="84" height="18" fill="#e91e63" rx="3" opacity="0.85"/><rect x="545" y="153" width="84" height="18" fill="#8e44ad" rx="3" opacity="0.85"/><rect x="60" y="340" width="14" height="14" fill="#27ae60" rx="2"/><text x="78" y="353" fill="#cccccc" font-size="11">TypeScript</text><rect x="200" y="340" width="14" height="14" fill="#2980b9" rx="2"/><text x="218" y="353" fill="#cccccc" font-size="11">Go</text><rect x="340" y="340" width="14" height="14" fill="#f39c12" rx="2"/><text x="358" y="353" fill="#cccccc" font-size="11">Python</text><rect x="480" y="340" width="14" height="14" fill="#e91e63" rx="2"/><text x="498" y="353" fill="#cccccc" font-size="11">Rust</text><rect x="620" y="340" width="14" height="14" fill="#8e44ad" rx="2"/><text x="638" y="353" fill="#cccccc" font-size="11">Java</text></svg>
 - PostgreSQL / MySQL > MongoDB > Redis > DynamoDB
 - **クラウドスキル**:
 - AWS > Azure > GCP の順でエンジニア数が多い
+
+
+---
+
+# 採用しやすいスタックの選び方（2/2）（2/2）
+
+> *NextとTypeScriptで採用JDを書けることが2026年のエンジニア採用で最も有効な技術スタック設計*
+
 - **実践アドバイス**:
 - - 採用JDに「Next.js・TypeScript経験者」と書けるスタックを選ぶ
 - - マニアックな技術は CTO の自己満足になりがち
@@ -1135,6 +1299,8 @@ style: |
 ---
 
 # エンジニア採用視点での選定（1/2）
+
+> *最新技術・意思決定参加・スケールプロダクトへの貢献が優秀エンジニアの採用を決める3つの条件*
 
 - **採用に有利な技術スタック設計**
 - **第一線のエンジニアが惹かれる条件**:
@@ -1146,6 +1312,8 @@ style: |
 ---
 
 # エンジニア採用視点での選定（2/2）
+
+> *TypeScriptフルスタック+AI活用+Remote firstの組み合わせが2026年の優秀エンジニア採用に最も効く*
 
 - <svg viewBox="0 0 800 390" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="390" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術負債の蓄積と対処タイミング</text><line x1="60" y1="300" x2="740" y2="300" stroke="#cccccc" stroke-width="2"/><line x1="740" y1="300" x2="743" y2="300" stroke="#cccccc" stroke-width="2"/><polygon points="755,300 743,306 743,294" fill="#cccccc"/><line x1="60" y1="300" x2="60" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="60" y1="60" x2="60" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="60,40 66,52 54,52" fill="#cccccc"/><text x="400" y="330" fill="#cccccc" font-size="12" text-anchor="middle">時間</text><text x="20" y="190" fill="#cccccc" font-size="11" text-anchor="middle" transform="rotate(-90,20,190)">負債量</text><polyline points="60,295 150,270 240,230 290,215 330,200 370,190 410,175 430,160 460,155 490,145 510,150 550,135 600,120 650,110 720,100" fill="none" stroke="#e91e63" stroke-width="3"/><line x1="330" y1="80" x2="330" y2="300" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,4"/><text x="330" y="75" fill="#27ae60" font-size="11" text-anchor="middle">リファクタ</text><line x1="510" y1="80" x2="510" y2="300" stroke="#27ae60" stroke-width="1" stroke-dasharray="4,4"/><text x="510" y="75" fill="#27ae60" font-size="11" text-anchor="middle">リファクタ</text><rect x="60" y="60" width="680" height="80" fill="#e91e63" opacity="0.08"/><text x="400" y="108" fill="#e91e63" font-size="12" text-anchor="middle" opacity="0.6">危険ゾーン（開発速度が急低下）</text><rect x="280" y="160" width="200" height="40" fill="#27ae60" opacity="0.15" rx="4"/><text x="380" y="185" fill="#27ae60" font-size="12" text-anchor="middle">適切な管理ゾーン</text><text x="400" y="375" fill="#cccccc" font-size="11" text-anchor="middle">定期的なリファクタで開発速度を維持する</text></svg>
 - **採用で差が出るポイント**:
@@ -1167,6 +1335,8 @@ style: |
 
 # テックリード・CTO の役割（1/2）
 
+> *Seed期CTOはコードを書きながら採用を担当・Series AはアーキテクチャビジョンにシフトするCTO像*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">技術選定マトリクス</text><text x="190" y="68" fill="#e91e63" font-size="13" text-anchor="middle">コスト</text><text x="330" y="68" fill="#e91e63" font-size="13" text-anchor="middle">スケール</text><text x="470" y="68" fill="#e91e63" font-size="13" text-anchor="middle">開発速度</text><text x="610" y="68" fill="#e91e63" font-size="13" text-anchor="middle">エコシステム</text><text x="110" y="110" fill="#ffffff" font-size="14" text-anchor="end">AWS</text><rect x="124" y="84" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">85</text><rect x="264" y="84" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><rect x="404" y="84" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">70</text><rect x="544" y="84" width="132" height="42" fill="#27ae60" rx="4"/><text x="610" y="110" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><text x="110" y="160" fill="#ffffff" font-size="14" text-anchor="end">GCP</text><rect x="124" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">80</text><rect x="264" y="134" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">90</text><rect x="404" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="470" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">75</text><rect x="544" y="134" width="132" height="42" fill="#f39c12" rx="4"/><text x="610" y="160" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">85</text><text x="110" y="210" fill="#ffffff" font-size="14" text-anchor="end">Azure</text><rect x="124" y="184" width="132" height="42" fill="#f39c12" rx="4"/><text x="190" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">75</text><rect x="264" y="184" width="132" height="42" fill="#27ae60" rx="4"/><text x="330" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">90</text><rect x="404" y="184" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">72</text><rect x="544" y="184" width="132" height="42" fill="#f39c12" rx="4"/><text x="610" y="210" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">88</text><text x="110" y="260" fill="#ffffff" font-size="14" text-anchor="end">OSS自前</text><rect x="124" y="234" width="132" height="42" fill="#27ae60" rx="4"/><text x="190" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">95</text><rect x="264" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="330" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">60</text><rect x="404" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="470" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">50</text><rect x="544" y="234" width="132" height="42" fill="#c0392b" rx="4"/><text x="610" y="260" fill="#ffffff" font-size="14" text-anchor="middle" font-weight="bold">70</text><text x="400" y="385" fill="#cccccc" font-size="11" text-anchor="middle">スコア: 100=最高評価</text></svg>
 - **CTO に求められる技術選定力**
 - **Seed 期 CTO**:
@@ -1179,6 +1349,8 @@ style: |
 ---
 
 # テックリード・CTO の役割（2/2）
+
+> *Series B以降はVP of Engineeringに実行を委任してCTOは事業戦略と技術戦略の整合に集中する*
 
 - - 個人の実装からチームの生産性向上にシフト
 - - アーキテクチャ方針を確立し、技術的ビジョンを語る
@@ -1221,12 +1393,20 @@ style: |
 
 ---
 
-# 投資家向け Tech Due Diligence チェックリスト（1/2）
+# 投資家向け Tech Due Diligence チェックリスト（1/2）（1/2）
 
 - <svg viewBox="0 0 800 330" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="330" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">スケーラビリティ成長パス</text><rect x="60" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#27ae60" stroke-width="2"/><text x="140" y="88" fill="#27ae60" font-size="16" text-anchor="middle" font-weight="bold">MVP</text><text x="140" y="108" fill="#cccccc" font-size="11" text-anchor="middle">0-1K ユーザー</text><text x="140" y="132" fill="#ffffff" font-size="12" text-anchor="middle">モノリス</text><text x="140" y="150" fill="#ffffff" font-size="12" text-anchor="middle">Simple DB</text><line x1="220" y1="120" x2="308" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="320,120 308,126 308,114" fill="#f9a825"/><rect x="260" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#f39c12" stroke-width="2"/><text x="340" y="88" fill="#f39c12" font-size="16" text-anchor="middle" font-weight="bold">Growth</text><text x="340" y="108" fill="#cccccc" font-size="11" text-anchor="middle">1K-100K</text><text x="340" y="132" fill="#ffffff" font-size="12" text-anchor="middle">マイクロ分割</text><text x="340" y="150" fill="#ffffff" font-size="12" text-anchor="middle">キャッシュ導入</text><line x1="420" y1="120" x2="508" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="520,120 508,126 508,114" fill="#f9a825"/><rect x="460" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="540" y="88" fill="#e91e63" font-size="16" text-anchor="middle" font-weight="bold">Scale</text><text x="540" y="108" fill="#cccccc" font-size="11" text-anchor="middle">100K-10M</text><text x="540" y="132" fill="#ffffff" font-size="12" text-anchor="middle">マルチリージョン</text><text x="540" y="150" fill="#ffffff" font-size="12" text-anchor="middle">CQRS/Event</text><line x1="620" y1="120" x2="708" y2="120" stroke="#f9a825" stroke-width="2"/><polygon points="720,120 708,126 708,114" fill="#f9a825"/><rect x="640" y="60" width="160" height="120" rx="8" fill="#16213e" stroke="#8e44ad" stroke-width="2"/><text x="720" y="88" fill="#8e44ad" font-size="16" text-anchor="middle" font-weight="bold">Hyper</text><text x="720" y="108" fill="#cccccc" font-size="11" text-anchor="middle">10M+</text><text x="720" y="132" fill="#ffffff" font-size="12" text-anchor="middle">グローバルCDN</text><text x="720" y="150" fill="#ffffff" font-size="12" text-anchor="middle">Cell Architecture</text><text x="60" y="220" fill="#cccccc" font-size="12">技術複雑度</text><rect x="60" y="230" width="700" height="16" rx="8" fill="#16213e"/><rect x="60" y="230" width="175" height="16" rx="8" fill="#27ae60" opacity="0.8"/><rect x="60" y="230" width="350" height="16" rx="8" fill="#f39c12" opacity="0.8"/><rect x="60" y="230" width="525" height="16" rx="8" fill="#e91e63" opacity="0.8"/><rect x="60" y="230" width="700" height="16" rx="8" fill="#8e44ad" opacity="0.8"/><text x="60" y="265" fill="#cccccc" font-size="12">コスト</text><rect x="60" y="270" width="700" height="16" rx="8" fill="#16213e"/><rect x="60" y="270" width="100" height="16" rx="8" fill="#27ae60" opacity="0.8"/><rect x="60" y="270" width="250" height="16" rx="8" fill="#f39c12" opacity="0.8"/><rect x="60" y="270" width="500" height="16" rx="8" fill="#e91e63" opacity="0.8"/><rect x="60" y="270" width="700" height="16" rx="8" fill="#8e44ad" opacity="0.8"/><text x="400" y="315" fill="#cccccc" font-size="11" text-anchor="middle">→ ステージに合わせた技術選定が重要</text></svg>
 - **投資検討時の技術確認事項**
 - **アーキテクチャ評価**
 - - [ ] スケーラビリティの設計は適切か
+
+
+---
+
+# 投資家向け Tech Due Diligence チェックリスト（1/2）（2/2）
+
+> *技術負債返済計画・SPOF対策・CTOの判断力がSeries A投資家のTech DD評価基準*
+
 - - [ ] 技術負債の量と返済計画があるか
 - - [ ] 単一障害点（SPOF）の有無と対策
 - **チーム評価**
@@ -1236,6 +1416,8 @@ style: |
 ---
 
 # 投資家向け Tech Due Diligence チェックリスト（2/2）
+
+> *採用可能なスタック・ユニットエコノミクス推移・インフラコスト試算・個人情報/GDPR対応がDD必須確認項目*
 
 - - [ ] 採用できる技術スタックか（採用パイプライン）
 - **コスト構造**
@@ -1250,6 +1432,8 @@ style: |
 
 # 参考リンク（1/2）（1/2）
 
+> *AWS Activate・Google for Startups・Microsoft for Startups Founders Hubの3プログラムを最大活用する*
+
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">チームサイズ vs 技術複雑度</text><line x1="80" y1="320" x2="740" y2="320" stroke="#cccccc" stroke-width="2"/><line x1="740" y1="320" x2="748" y2="320" stroke="#cccccc" stroke-width="2"/><polygon points="760,320 748,326 748,314" fill="#cccccc"/><line x1="80" y1="320" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="350" fill="#cccccc" font-size="12" text-anchor="middle">チームサイズ (人)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">技術複雑度</text><text x="80" y="337" fill="#cccccc" font-size="11" text-anchor="middle">1</text><text x="220" y="337" fill="#cccccc" font-size="11" text-anchor="middle">5</text><text x="360" y="337" fill="#cccccc" font-size="11" text-anchor="middle">10</text><text x="500" y="337" fill="#cccccc" font-size="11" text-anchor="middle">20</text><text x="640" y="337" fill="#cccccc" font-size="11" text-anchor="middle">50</text><polyline points="80,290 180,270 280,240 380,200 480,170 580,150 660,145" fill="none" stroke="#27ae60" stroke-width="3"/><polyline points="80,240 180,200 280,160 380,130 480,110 580,100 660,95" fill="none" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,4"/><rect x="130" y="280" width="100" height="30" rx="4" fill="#27ae60" opacity="0.2"/><text x="180" y="300" fill="#27ae60" font-size="11" text-anchor="middle">モノリス推奨</text><rect x="490" y="155" width="130" height="30" rx="4" fill="#2980b9" opacity="0.2"/><text x="555" y="175" fill="#2980b9" font-size="11" text-anchor="middle">マイクロサービス</text><text x="590" y="88" fill="#e91e63" font-size="11">過剰複雑</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">Conway's Law: チーム構造がシステム設計を決める</text></svg>
 - **クラウド公式**
 - - [AWS Activate（スタートアッププログラム）](https://aws.amazon.com/activate/)
@@ -1261,6 +1445,8 @@ style: |
 ---
 
 # 参考リンク（1/2）（2/2）
+
+> *AWS Cost Management・FinOps Foundation・AWS Well-Architectedの組み合わせがコスト最適化の公式情報源*
 
 - - [AWS Cost Management ドキュメント](https://docs.aws.amazon.com/cost-management/)
 - - [FinOps Foundation](https://www.finops.org/)
@@ -1274,6 +1460,8 @@ style: |
 
 # 参考リンク（2/2）（1/2）
 
+> *Next.js・Supabase・Terraform・shadcn/uiの4つが本資料推奨OSS実装スタックの公式ドキュメント*
+
 - <svg viewBox="0 0 800 395" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="395" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="18" text-anchor="middle" font-weight="bold">コスト軌跡比較（クラウド vs オンプレ）</text><line x1="80" y1="310" x2="720" y2="310" stroke="#cccccc" stroke-width="2"/><line x1="720" y1="310" x2="728" y2="310" stroke="#cccccc" stroke-width="2"/><polygon points="740,310 728,316 728,304" fill="#cccccc"/><line x1="80" y1="310" x2="80" y2="60" stroke="#cccccc" stroke-width="2"/><line x1="80" y1="60" x2="80" y2="52" stroke="#cccccc" stroke-width="2"/><polygon points="80,40 86,52 74,52" fill="#cccccc"/><text x="400" y="340" fill="#cccccc" font-size="12" text-anchor="middle">期間 (月)</text><text x="30" y="190" fill="#cccccc" font-size="12" text-anchor="middle" transform="rotate(-90,30,190)">累計コスト</text><polyline points="80,200 120,195 200,185 360,175 520,165 680,155" fill="none" stroke="#c0392b" stroke-width="3"/><text x="690" y="152" fill="#c0392b" font-size="12">オンプレ</text><polyline points="80,305 120,295 200,275 360,240 520,210 680,185" fill="none" stroke="#27ae60" stroke-width="3"/><text x="690" y="182" fill="#27ae60" font-size="12">クラウド</text><polyline points="80,260 120,248 200,225 360,200 520,182 680,168" fill="none" stroke="#f39c12" stroke-width="2" stroke-dasharray="8,4"/><text x="690" y="165" fill="#f39c12" font-size="12">ハイブリッド</text><line x1="420" y1="90" x2="420" y2="310" stroke="#cccccc" stroke-width="1" stroke-dasharray="4,4"/><text x="420" y="85" fill="#cccccc" font-size="11" text-anchor="middle">損益分岐 ~18ヶ月</text><text x="80" y="327" fill="#cccccc" font-size="11" text-anchor="middle">0</text><text x="200" y="327" fill="#cccccc" font-size="11" text-anchor="middle">6</text><text x="320" y="327" fill="#cccccc" font-size="11" text-anchor="middle">12</text><text x="440" y="327" fill="#cccccc" font-size="11" text-anchor="middle">18</text><text x="560" y="327" fill="#cccccc" font-size="11" text-anchor="middle">24</text><text x="680" y="327" fill="#cccccc" font-size="11" text-anchor="middle">30</text><text x="400" y="380" fill="#cccccc" font-size="11" text-anchor="middle">初期コスト↓ 長期スケールでクラウドが逆転する場合あり</text></svg>
 - **OSS スタック・ベストプラクティス**
 - - [Next.js 公式ドキュメント](https://nextjs.org/docs)
@@ -1285,6 +1473,8 @@ style: |
 ---
 
 # 参考リンク（2/2）（2/2）
+
+> *Stack Overflow Developer Survey・CNCF Annual Survey・a16z/Stripe Engineering Blogが技術トレンドの一次情報源*
 
 - **採用・組織**
 - - [Stack Overflow Developer Survey 2025](https://survey.stackoverflow.co/2025/)

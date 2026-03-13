@@ -7,6 +7,71 @@ paginate: true
 header: "孤独の健康科学"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -23,6 +88,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *孤独は喫煙15本/日と同等の健康リスク、社会的絆が最強の長寿因子*
 
 - 1. 孤独の健康リスクのデータ
 - 2. 孤独の生物学的メカニズム
@@ -41,6 +108,8 @@ style: |
 
 # 衝撃的な数値（1/2）
 
+> *148研究・30万人が証明した孤独の死亡リスク上昇26〜32%*
+
 - **Holt-Lunstad（2015年 PLOS Medicine）のメタ分析：**
 - 148の研究、30万人以上のデータを統合
 - <svg viewBox="0 0 700 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="700" height="220" fill="#1a1a2e" rx="10"/><text x="350" y="28" fill="#f9a825" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">社会的孤立による死亡リスク増加（対照群比）</text><rect x="60" y="50" width="180" height="130" fill="#e91e63" opacity="0.85" rx="4"/><rect x="280" y="62" width="180" height="118" fill="#f9a825" opacity="0.85" rx="4"/><rect x="500" y="44" width="140" height="136" fill="#7c4dff" opacity="0.85" rx="4"/><text x="150" y="46" fill="white" font-size="24" font-weight="bold" text-anchor="middle" font-family="sans-serif">29%</text><text x="370" y="58" fill="white" font-size="24" font-weight="bold" text-anchor="middle" font-family="sans-serif">26%</text><text x="570" y="40" fill="white" font-size="24" font-weight="bold" text-anchor="middle" font-family="sans-serif">32%</text><text x="150" y="196" fill="#ccc" font-size="13" text-anchor="middle" font-family="sans-serif">孤独感</text><text x="150" y="210" fill="#ccc" font-size="11" text-anchor="middle" font-family="sans-serif">（主観的）</text><text x="370" y="196" fill="#ccc" font-size="13" text-anchor="middle" font-family="sans-serif">社会的孤立</text><text x="370" y="210" fill="#ccc" font-size="11" text-anchor="middle" font-family="sans-serif">（客観的）</text><text x="570" y="196" fill="#ccc" font-size="13" text-anchor="middle" font-family="sans-serif">独居</text></svg>
@@ -49,6 +118,8 @@ style: |
 ---
 
 # 衝撃的な数値（2/2）
+
+> *喫煙より危険—英国・日本が孤独担当大臣を設置した根拠*
 
 - 孤独 vs 喫煙 vs 肥満：死亡リスク比較
 - <svg viewBox="0 0 700 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="700" height="260" fill="#1a1a2e" rx="10"/><text x="350" y="28" fill="#f9a825" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">死亡リスク増加率の比較（対照群比）</text><rect x="60" y="50" width="170" height="150" fill="#e91e63" opacity="0.9" rx="4"/><rect x="270" y="50" width="170" height="150" fill="#ff7043" opacity="0.9" rx="4"/><rect x="480" y="86" width="160" height="114" fill="#26a69a" opacity="0.9" rx="4"/><text x="145" y="42" fill="white" font-size="22" font-weight="bold" text-anchor="middle" font-family="sans-serif">32%</text><text x="355" y="42" fill="white" font-size="22" font-weight="bold" text-anchor="middle" font-family="sans-serif">30%</text><text x="560" y="80" fill="white" font-size="22" font-weight="bold" text-anchor="middle" font-family="sans-serif">18%</text><text x="145" y="215" fill="#ccc" font-size="13" text-anchor="middle" font-family="sans-serif">独居・孤立</text><text x="355" y="215" fill="#ccc" font-size="13" text-anchor="middle" font-family="sans-serif">喫煙（1日15本）</text><text x="560" y="215" fill="#ccc" font-size="13" text-anchor="middle" font-family="sans-serif">肥満</text><line x1="60" y1="230" x2="640" y2="230" stroke="#555" stroke-width="1"/><text x="350" y="252" fill="#aaa" font-size="11" text-anchor="middle" font-family="sans-serif">出典: Holt-Lunstad et al. (2015) PLOS Medicine</text></svg>
@@ -60,6 +131,8 @@ style: |
 
 # 孤独の生物学的メカニズム（1/2）
 
+> *扁桃体の過活性化が慢性炎症を起こし疾病リスクを高める*
+
 - 孤独 → ストレス反応の慢性化カスケード
 - <svg viewBox="0 0 700 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="700" height="260" fill="#1a1a2e" rx="10"/><rect x="20" y="90" width="120" height="50" fill="#e91e63" rx="8"/><text x="80" y="110" fill="white" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">孤独感</text><text x="80" y="127" fill="white" font-size="11" text-anchor="middle" font-family="sans-serif">（主観的）</text><polygon points="148,115 162,108 162,122" fill="#f9a825"/><rect x="168" y="90" width="130" height="50" fill="#7c4dff" rx="8"/><text x="233" y="110" fill="white" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">脅威認識システム</text><text x="233" y="127" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif">HPA軸が過活性化</text><polygon points="306,115 320,108 320,122" fill="#f9a825"/><rect x="326" y="90" width="130" height="50" fill="#0288d1" rx="8"/><text x="391" y="110" fill="white" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">コルチゾール</text><text x="391" y="127" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif">慢性的に上昇</text><polygon points="464,115 478,108 478,122" fill="#f9a825"/><rect x="484" y="70" width="190" height="95" fill="#c62828" rx="8"/><text x="579" y="95" fill="white" font-size="12" font-weight="bold" text-anchor="middle" font-family="sans-serif">身体への影響</text><text x="579" y="113" fill="#ffcdd2" font-size="10" text-anchor="middle" font-family="sans-serif">炎症反応の促進</text><text x="579" y="128" fill="#ffcdd2" font-size="10" text-anchor="middle" font-family="sans-serif">血圧・心拍数の上昇</text><text x="579" y="143" fill="#ffcdd2" font-size="10" text-anchor="middle" font-family="sans-serif">免疫機能の低下</text><text x="350" y="200" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">孤独な人の扁桃体は「見知らぬ顔」に過剰反応</text><text x="350" y="220" fill="#aaa" font-size="11" text-anchor="middle" font-family="sans-serif">→ 社会的脅威を検出する超高感度モードが常時ON</text></svg>
 
@@ -67,6 +140,8 @@ style: |
 ---
 
 # 孤独の生物学的メカニズム（2/2）
+
+> *炎症遺伝子が過発現—孤独は文字通り体を変える*
 
 - 孤独の悪循環 — 抜け出せないスパイラル
 - <svg viewBox="0 0 700 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="700" height="280" fill="#1a1a2e" rx="10"/><ellipse cx="350" cy="140" rx="90" ry="36" fill="#e91e63" opacity="0.9"/><text x="350" y="135" fill="white" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">孤独・孤立</text><text x="350" y="152" fill="white" font-size="11" text-anchor="middle" font-family="sans-serif">社会的接触の減少</text><ellipse cx="155" cy="55" rx="90" ry="32" fill="#7c4dff" opacity="0.9"/><text x="155" y="50" fill="white" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">脳の過警戒モード</text><text x="155" y="66" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif">扁桃体が過活性化</text><ellipse cx="545" cy="55" rx="90" ry="32" fill="#0288d1" opacity="0.9"/><text x="545" y="50" fill="white" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">炎症遺伝子発現</text><text x="545" y="66" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif">Cole et al. 2007</text><ellipse cx="155" cy="228" rx="90" ry="32" fill="#ff7043" opacity="0.9"/><text x="155" y="223" fill="white" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">他者への不信感</text><text x="155" y="239" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif">つながりを回避</text><ellipse cx="545" cy="228" rx="90" ry="32" fill="#388e3c" opacity="0.9"/><text x="545" y="223" fill="white" font-size="11" font-weight="bold" text-anchor="middle" font-family="sans-serif">疾病リスク上昇</text><text x="545" y="239" fill="white" font-size="10" text-anchor="middle" font-family="sans-serif">がん・心臓病・感染症</text><line x1="262" y1="136" x2="248" y2="82" stroke="#f9a825" stroke-width="2"/><polygon points="248,82 240,94 256,90" fill="#f9a825"/><line x1="438" y1="136" x2="452" y2="82" stroke="#f9a825" stroke-width="2"/><polygon points="452,82 444,94 460,90" fill="#f9a825"/><line x1="262" y1="146" x2="248" y2="200" stroke="#f9a825" stroke-width="2"/><polygon points="248,200 240,188 256,192" fill="#f9a825"/><line x1="438" y1="146" x2="452" y2="200" stroke="#f9a825" stroke-width="2"/><polygon points="452,200 444,188 460,196" fill="#f9a825"/><line x1="245" y1="228" x2="310" y2="155" stroke="#aaa" stroke-width="1.5" stroke-dasharray="4"/><polygon points="310,155 300,162 312,168" fill="#aaa"/></svg>
@@ -78,6 +153,8 @@ style: |
 ---
 
 # SNSと孤独の逆説（1/2）
+
+> *SNS3時間超でうつ症状急増—受動的閲覧が最も有害*
 
 - **「つながっているのに孤独」：**
 - SNS友達1000人 vs リアルな友人3人
@@ -96,6 +173,8 @@ style: |
 ---
 
 # まとめ：つながりは生存本能
+
+> *対面+身体的接触が最高効果—SNS交流だけでは孤独を解けない*
 
 - 対処法の有効性比較
 - <svg viewBox="0 0 700 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="700" height="200" fill="#1a1a2e" rx="10"/><text x="350" y="24" fill="#f9a825" font-size="13" font-weight="bold" text-anchor="middle" font-family="sans-serif">孤独感の軽減効果：介入法別エビデンス強度</text><rect x="60" y="40" width="250" height="28" fill="#e91e63" rx="4"/><text x="320" y="59" fill="white" font-size="12" font-weight="bold" font-family="sans-serif"> 対面交流・身体的接触</text><rect x="60" y="80" width="210" height="28" fill="#f9a825" rx="4"/><text x="280" y="99" fill="white" font-size="12" font-weight="bold" font-family="sans-serif"> 地域コミュニティ参加</text><rect x="60" y="120" width="160" height="28" fill="#26a69a" rx="4"/><text x="230" y="139" fill="white" font-size="12" font-weight="bold" font-family="sans-serif"> 認知行動療法（CBT）</text><rect x="60" y="160" width="100" height="28" fill="#0288d1" rx="4"/><text x="170" y="179" fill="white" font-size="12" font-weight="bold" font-family="sans-serif"> SNS交流のみ</text><text x="316" y="59" fill="#333" font-size="12" font-weight="bold" font-family="sans-serif">最高効果</text><text x="276" y="99" fill="#333" font-size="12" font-weight="bold" font-family="sans-serif">高効果</text><text x="226" y="139" fill="#333" font-size="12" font-weight="bold" font-family="sans-serif">中効果</text><text x="166" y="179" fill="#333" font-size="12" font-weight="bold" font-family="sans-serif">低効果</text></svg>

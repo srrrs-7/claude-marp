@@ -93,6 +93,8 @@ GitOpsとPlatform Engineeringの全体像を解説するセッションです。
 
 # アジェンダ
 
+> *Platform EngineeringからGitOps実装まで全体像を7テーマで体系的に学ぶ*
+
 - <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825" font-family="sans-serif">アジェンダ</text><rect x="30" y="80" width="140" height="60" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="100" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Developer</text><polygon points="175,110 190,104 190,116" fill="#60a5fa"/><line x1="170" y1="110" x2="192" y2="110" stroke="#60a5fa" stroke-width="2"/><rect x="200" y="80" width="140" height="60" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="270" y="108" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Git Repo</text><text x="270" y="128" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="sans-serif">Source of Truth</text><polygon points="345,110 360,104 360,116" fill="#60a5fa"/><line x1="340" y1="110" x2="362" y2="110" stroke="#60a5fa" stroke-width="2"/><rect x="370" y="80" width="140" height="60" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="440" y="108" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">CI Pipeline</text><text x="440" y="128" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Build &amp; Test</text><polygon points="515,110 530,104 530,116" fill="#60a5fa"/><line x1="510" y1="110" x2="532" y2="110" stroke="#60a5fa" stroke-width="2"/><rect x="540" y="80" width="140" height="60" rx="10" fill="#16213e" stroke="#34d399" stroke-width="2"/><text x="610" y="108" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">CD Agent</text><text x="610" y="128" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif">ArgoCD / Flux</text><line x1="610" y1="140" x2="610" y2="230" stroke="#60a5fa" stroke-width="2" stroke-dasharray="6,3"/><polygon points="604,228 616,228 610,242" fill="#60a5fa"/><rect x="480" y="250" width="260" height="100" rx="10" fill="#0f3460" stroke="#a78bfa" stroke-width="2"/><text x="610" y="280" text-anchor="middle" fill="#ffffff" font-size="14" font-family="sans-serif">Kubernetes Cluster</text><rect x="500" y="295" width="100" height="36" rx="6" fill="#16213e" stroke="#a78bfa" stroke-width="1.5"/><text x="550" y="318" text-anchor="middle" fill="#a78bfa" font-size="11" font-family="sans-serif">Pod (App)</text><rect x="620" y="295" width="100" height="36" rx="6" fill="#16213e" stroke="#a78bfa" stroke-width="1.5"/><text x="670" y="318" text-anchor="middle" fill="#a78bfa" font-size="11" font-family="sans-serif">Pod (App)</text><text x="100" y="290" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Pull-based Sync</text><line x1="100" y1="300" x2="480" y2="300" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/><text x="200" y="370" text-anchor="middle" fill="#a0a0b0" font-size="11" font-family="sans-serif">Immutable infrastructure / Declarative config / Automated reconciliation</text></svg>
 - 1. Platform Engineering とは何か
 - 2. GitOps の基本概念と 4 原則
@@ -757,6 +759,11 @@ ArgoCDの内部コンポーネントと連携を詳しく説明します。
 - Namespace 作成 → インストール → 初期パスワード取得 → ポートフォワード
 - 最小 3 コマンドで動作確認まで完了
 
+
+---
+
+# ArgoCD セットアップ（コード例）
+
 ```bash
 # 1. Namespace 作成 & インストール
 kubectl create namespace argocd
@@ -775,9 +782,6 @@ kubectl port-forward svc/argocd-server -n argocd 8080:443
 argocd login localhost:8080 --username admin --insecure
 ```
 
-<!--
-ArgoCDのインストールから初回アクセスまでの手順を示します。
--->
 
 ---
 
@@ -785,6 +789,11 @@ ArgoCDのインストールから初回アクセスまでの手順を示しま�
 
 - <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825" font-family="sans-serif">Application 定義 (YAML)</text><circle cx="400" cy="200" r="120" fill="none" stroke="#a78bfa" stroke-width="2" stroke-dasharray="8,4"/><rect x="320" y="60" width="160" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="90" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">Git Repository</text><polygon points="530,155 520,145 540,145" fill="#60a5fa"/><rect x="545" y="130" width="160" height="50" rx="8" fill="#16213e" stroke="#60a5fa" stroke-width="2"/><text x="625" y="155" text-anchor="middle" fill="#60a5fa" font-size="13" font-family="sans-serif">Desired State</text><polygon points="550,262 540,272 560,272" fill="#e91e63"/><rect x="545" y="270" width="160" height="50" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="625" y="300" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">Actual State</text><polygon points="268,270 258,260 278,260" fill="#34d399"/><rect x="95" y="270" width="160" height="50" rx="8" fill="#16213e" stroke="#34d399" stroke-width="2"/><text x="175" y="295" text-anchor="middle" fill="#34d399" font-size="13" font-family="sans-serif">Reconcile</text><text x="175" y="311" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif">Apply Diff</text><polygon points="255,148 265,138 245,138" fill="#a78bfa"/><rect x="95" y="130" width="160" height="50" rx="8" fill="#16213e" stroke="#a78bfa" stroke-width="2"/><text x="175" y="155" text-anchor="middle" fill="#a78bfa" font-size="13" font-family="sans-serif">Observe</text><text x="175" y="171" text-anchor="middle" fill="#a78bfa" font-size="11" font-family="sans-serif">Watch Cluster</text><rect x="340" y="172" width="120" height="56" rx="8" fill="#0f3460" stroke="#ffffff" stroke-width="1.5"/><text x="400" y="198" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ArgoCD</text><text x="400" y="218" text-anchor="middle" fill="#a78bfa" font-size="11" font-family="sans-serif">Controller</text><text x="400" y="370" text-anchor="middle" fill="#a0a0b0" font-size="11" font-family="sans-serif">Continuous reconciliation loop — drift auto-healed within seconds</text></svg>
 - ArgoCD Application CRD — リポジトリと同期先クラスタを宣言
+
+
+---
+
+# Application 定義 (YAML)（コード例）
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -809,9 +818,6 @@ spec:
       - CreateNamespace=true
 ```
 
-<!--
-ArgoCD Application CRDのYAML定義例。automated syncでGitOpsを完全自動化できます。
--->
 
 ---
 
@@ -900,11 +906,18 @@ FluxとArgoCDの機能比較マトリクスを解説します。ユースケー�
 
 # Helm + ArgoCD 統合
 
+> *HelmチャートをArgoCDで直接デプロイする構成がバージョン固定と再現性を保証する*
+
 - <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825" font-family="sans-serif">Helm + ArgoCD 統合</text><rect x="280" y="55" width="240" height="55" rx="10" fill="#2d1b69" stroke="#a78bfa" stroke-width="2"/><text x="400" y="82" text-anchor="middle" fill="#ffffff" font-size="14" font-family="sans-serif">Developer Portal</text><text x="400" y="99" text-anchor="middle" fill="#a78bfa" font-size="11" font-family="sans-serif">Backstage / Custom UI</text><line x1="400" y1="110" x2="400" y2="140" stroke="#60a5fa" stroke-width="1.5"/><polygon points="394,138 406,138 400,150" fill="#60a5fa"/><rect x="250" y="150" width="300" height="55" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/><text x="400" y="177" text-anchor="middle" fill="#ffffff" font-size="14" font-family="sans-serif">Platform API / Orchestrator</text><text x="400" y="194" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="sans-serif">Crossplane · Backstage Scaffolder</text><line x1="160" y1="205" x2="250" y2="205" stroke="#34d399" stroke-width="1.5"/><line x1="550" y1="205" x2="640" y2="205" stroke="#34d399" stroke-width="1.5"/><polygon points="158,199 146,205 158,211" fill="#34d399"/><polygon points="642,199 654,205 642,211" fill="#34d399"/><rect x="50" y="175" width="130" height="55" rx="8" fill="#16213e" stroke="#34d399" stroke-width="2"/><text x="115" y="202" text-anchor="middle" fill="#34d399" font-size="12" font-family="sans-serif">CI/CD</text><text x="115" y="218" text-anchor="middle" fill="#a0a0b0" font-size="10" font-family="sans-serif">GitHub Actions</text><rect x="620" y="175" width="130" height="55" rx="8" fill="#16213e" stroke="#34d399" stroke-width="2"/><text x="685" y="202" text-anchor="middle" fill="#34d399" font-size="12" font-family="sans-serif">Observability</text><text x="685" y="218" text-anchor="middle" fill="#a0a0b0" font-size="10" font-family="sans-serif">Grafana / OTel</text><line x1="320" y1="205" x2="320" y2="270" stroke="#e91e63" stroke-width="1.5"/><line x1="480" y1="205" x2="480" y2="270" stroke="#e91e63" stroke-width="1.5"/><polygon points="314,268 326,268 320,280" fill="#e91e63"/><polygon points="474,268 486,268 480,280" fill="#e91e63"/><rect x="200" y="280" width="160" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="280" y="307" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">Kubernetes</text><text x="280" y="323" text-anchor="middle" fill="#a0a0b0" font-size="10" font-family="sans-serif">Cluster Fleet</text><rect x="440" y="280" width="160" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="520" y="307" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">Cloud Infra</text><text x="520" y="323" text-anchor="middle" fill="#a0a0b0" font-size="10" font-family="sans-serif">AWS / GCP / Azure</text><text x="400" y="370" text-anchor="middle" fill="#a0a0b0" font-size="11" font-family="sans-serif">IDP abstracts complexity — developers focus on code, not infrastructure</text></svg>
 - ArgoCD は Helm チャートを直接デプロイ可能
 - Application リソースで `repoURL` と `chart` を指定
 - `targetRevision` でチャートバージョンを固定
 - values.yaml を Git で管理し GitOps と統合
+
+
+---
+
+# Helm + ArgoCD 統合（コード例）
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -939,10 +952,17 @@ spec:
 
 # Kustomize + ArgoCD
 
+> *base/overlays構成でKustomizeがArgoCDと統合し環境差分を宣言的に管理できる*
+
 - <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825" font-family="sans-serif">Kustomize + ArgoCD</text><rect x="30" y="70" width="140" height="60" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="100" y="98" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Developer</text><text x="100" y="116" text-anchor="middle" fill="#a0a0b0" font-size="10" font-family="sans-serif">Selects Template</text><polygon points="172,100 187,94 187,106" fill="#60a5fa"/><line x1="170" y1="100" x2="189" y2="100" stroke="#60a5fa" stroke-width="2"/><rect x="195" y="70" width="160" height="60" rx="10" fill="#16213e" stroke="#a78bfa" stroke-width="2"/><text x="275" y="98" text-anchor="middle" fill="#a78bfa" font-size="12" font-family="sans-serif">Scaffolder</text><text x="275" y="116" text-anchor="middle" fill="#a0a0b0" font-size="10" font-family="sans-serif">Backstage / Yeoman</text><polygon points="357,100 372,94 372,106" fill="#60a5fa"/><line x1="355" y1="100" x2="374" y2="100" stroke="#60a5fa" stroke-width="2"/><rect x="380" y="70" width="160" height="60" rx="10" fill="#16213e" stroke="#34d399" stroke-width="2"/><text x="460" y="98" text-anchor="middle" fill="#34d399" font-size="12" font-family="sans-serif">Repo Created</text><text x="460" y="116" text-anchor="middle" fill="#a0a0b0" font-size="10" font-family="sans-serif">Git + CI Config</text><polygon points="542,100 557,94 557,106" fill="#60a5fa"/><line x1="540" y1="100" x2="559" y2="100" stroke="#60a5fa" stroke-width="2"/><rect x="565" y="70" width="160" height="60" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="645" y="98" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">Auto Deploy</text><text x="645" y="116" text-anchor="middle" fill="#a0a0b0" font-size="10" font-family="sans-serif">GitOps Pipeline</text><rect x="150" y="180" width="500" height="140" rx="10" fill="#0f2035" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="6,3"/><text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">Golden Path Template Bundle</text><rect x="170" y="220" width="120" height="44" rx="6" fill="#16213e" stroke="#60a5fa" stroke-width="1.5"/><text x="230" y="247" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="sans-serif">Dockerfile</text><rect x="310" y="220" width="120" height="44" rx="6" fill="#16213e" stroke="#60a5fa" stroke-width="1.5"/><text x="370" y="247" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="sans-serif">K8s Manifests</text><rect x="450" y="220" width="120" height="44" rx="6" fill="#16213e" stroke="#60a5fa" stroke-width="1.5"/><text x="510" y="247" text-anchor="middle" fill="#60a5fa" font-size="11" font-family="sans-serif">CI/CD YAML</text><rect x="170" y="278" width="120" height="30" rx="6" fill="#16213e" stroke="#34d399" stroke-width="1.5"/><text x="230" y="298" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">OTel Config</text><rect x="310" y="278" width="120" height="30" rx="6" fill="#16213e" stroke="#34d399" stroke-width="1.5"/><text x="370" y="298" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">RBAC Policy</text><rect x="450" y="278" width="120" height="30" rx="6" fill="#16213e" stroke="#34d399" stroke-width="1.5"/><text x="510" y="298" text-anchor="middle" fill="#34d399" font-size="10" font-family="sans-serif">Secret Template</text><text x="400" y="370" text-anchor="middle" fill="#a0a0b0" font-size="11" font-family="sans-serif">New service ready in minutes with all org standards pre-applied</text></svg>
 - Kustomize はオーバーレイでリソースをカスタマイズ
 - base/ + overlays/prod/ の構成で環境差分を管理
 - ArgoCD は `kustomize` ソースタイプを自動検出
+
+
+---
+
+# Kustomize + ArgoCD（コード例）
 
 ```yaml
 # ディレクトリ構成
@@ -1181,10 +1201,17 @@ spec:
 
 # Terraform 基本構文
 
+> *main.tf・variables.tf・outputs.tfの3ファイル分割とモジュール化が再利用可能なIaCの基本形*
+
 - <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825" font-family="sans-serif">Terraform 基本構文</text><rect x="30" y="70" width="330" height="200" rx="12" fill="#0f2035" stroke="#60a5fa" stroke-width="2"/><text x="195" y="100" text-anchor="middle" fill="#60a5fa" font-size="14" font-weight="bold" font-family="sans-serif">Stream-Aligned Teams</text><rect x="55" y="115" width="130" height="50" rx="8" fill="#16213e" stroke="#60a5fa" stroke-width="1.5"/><text x="120" y="143" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Team Alpha</text><rect x="210" y="115" width="130" height="50" rx="8" fill="#16213e" stroke="#60a5fa" stroke-width="1.5"/><text x="275" y="143" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Team Beta</text><rect x="55" y="185" width="130" height="50" rx="8" fill="#16213e" stroke="#60a5fa" stroke-width="1.5"/><text x="120" y="213" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Team Gamma</text><rect x="210" y="185" width="130" height="50" rx="8" fill="#16213e" stroke="#60a5fa" stroke-width="1.5"/><text x="275" y="213" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Team Delta</text><text x="195" y="255" text-anchor="middle" fill="#a0a0b0" font-size="10" font-family="sans-serif">Business value delivery</text><rect x="440" y="70" width="330" height="200" rx="12" fill="#1a2a0f" stroke="#34d399" stroke-width="2"/><text x="605" y="100" text-anchor="middle" fill="#34d399" font-size="14" font-weight="bold" font-family="sans-serif">Platform Team</text><rect x="490" y="115" width="230" height="50" rx="8" fill="#16213e" stroke="#34d399" stroke-width="1.5"/><text x="605" y="140" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">IDP · CI/CD · Observability</text><rect x="490" y="175" width="230" height="50" rx="8" fill="#16213e" stroke="#34d399" stroke-width="1.5"/><text x="605" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Security · Networking · IaC</text><text x="605" y="255" text-anchor="middle" fill="#a0a0b0" font-size="10" font-family="sans-serif">Platform capability delivery</text><line x1="365" y1="170" x2="440" y2="170" stroke="#f9a825" stroke-width="2"/><polygon points="438,164 450,170 438,176" fill="#f9a825"/><text x="402" y="162" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">X-as-a-Service</text><line x1="440" y1="190" x2="365" y2="190" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/><polygon points="367,184 355,190 367,196" fill="#e91e63"/><text x="402" y="207" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">Feedback</text><text x="400" y="310" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Team Topologies: Enabling — not blocking — collaboration model</text><text x="400" y="345" text-anchor="middle" fill="#a0a0b0" font-size="11" font-family="sans-serif">Platform provides self-service APIs · Stream teams own product delivery</text></svg>
 - main.tf でリソース定義、variables.tf で入力変数、outputs.tf で出力値を管理
 - モジュール分割で再利用性を高める
 - `terraform.tfvars` で環境別の変数値を上書き
+
+
+---
+
+# Terraform 基本構文（コード例）
 
 ```hcl
 # main.tf
@@ -2122,6 +2149,11 @@ output "public_ip" {
 - Backstage scaffolderでサービスの雛形を自動生成
 - テンプレートYAMLでパラメータ・Gitリポジトリ作成・CIパイプライン設定を一括管理
 
+
+---
+
+# Scaffoldingテンプレート — Backstage Scaffolder（コード例）
+
 ```yaml
 apiVersion: scaffolder.backstage.io/v1beta3
 kind: Template
@@ -2294,6 +2326,11 @@ spec:
 
 - <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825" font-family="sans-serif">GitHub Actions統合 — GitOps Workflow</text><rect x="80" y="60" width="640" height="70" rx="10" fill="#2d1b69" stroke="#a78bfa" stroke-width="2"/><text x="400" y="95" text-anchor="middle" fill="#ffffff" font-size="15" font-family="sans-serif">Developer Layer</text><text x="400" y="116" text-anchor="middle" fill="#a78bfa" font-size="12" font-family="sans-serif">Self-service Portal · Golden Paths · Backstage Catalog</text><polygon points="394,132 406,132 400,148" fill="#60a5fa"/><rect x="80" y="155" width="640" height="70" rx="10" fill="#1e3a5f" stroke="#60a5fa" stroke-width="2"/><text x="400" y="190" text-anchor="middle" fill="#ffffff" font-size="15" font-family="sans-serif">Platform Layer</text><text x="400" y="211" text-anchor="middle" fill="#60a5fa" font-size="12" font-family="sans-serif">IDP · CI/CD · Observability · Security · Networking</text><polygon points="394,228 406,228 400,244" fill="#34d399"/><rect x="80" y="250" width="640" height="70" rx="10" fill="#1a3a2a" stroke="#34d399" stroke-width="2"/><text x="400" y="285" text-anchor="middle" fill="#ffffff" font-size="15" font-family="sans-serif">Infrastructure Layer</text><text x="400" y="306" text-anchor="middle" fill="#34d399" font-size="12" font-family="sans-serif">Kubernetes · Cloud Providers · On-Premise · IaC (Terraform)</text><rect x="80" y="340" width="640" height="44" rx="10" fill="#0f1f0f" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="367" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">Team Topologies: Platform Team enables Stream-Aligned Teams</text></svg>
 - mainブランチへのマージをトリガーにイメージビルド・GitOpsリポジトリ更新を自動実行
+
+
+---
+
+# GitHub Actions統合 — GitOps Workflow（コード例）
 
 ```yaml
 name: GitOps Deploy
@@ -3554,6 +3591,11 @@ jobs:
 - <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825" font-family="sans-serif">Policy as Code (OPA/Kyverno)</text><circle cx="400" cy="200" r="120" fill="none" stroke="#a78bfa" stroke-width="2" stroke-dasharray="8,4"/><rect x="320" y="60" width="160" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="90" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">Git Repository</text><polygon points="530,155 520,145 540,145" fill="#60a5fa"/><rect x="545" y="130" width="160" height="50" rx="8" fill="#16213e" stroke="#60a5fa" stroke-width="2"/><text x="625" y="155" text-anchor="middle" fill="#60a5fa" font-size="13" font-family="sans-serif">Desired State</text><polygon points="550,262 540,272 560,272" fill="#e91e63"/><rect x="545" y="270" width="160" height="50" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="625" y="300" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">Actual State</text><polygon points="268,270 258,260 278,260" fill="#34d399"/><rect x="95" y="270" width="160" height="50" rx="8" fill="#16213e" stroke="#34d399" stroke-width="2"/><text x="175" y="295" text-anchor="middle" fill="#34d399" font-size="13" font-family="sans-serif">Reconcile</text><text x="175" y="311" text-anchor="middle" fill="#34d399" font-size="11" font-family="sans-serif">Apply Diff</text><polygon points="255,148 265,138 245,138" fill="#a78bfa"/><rect x="95" y="130" width="160" height="50" rx="8" fill="#16213e" stroke="#a78bfa" stroke-width="2"/><text x="175" y="155" text-anchor="middle" fill="#a78bfa" font-size="13" font-family="sans-serif">Observe</text><text x="175" y="171" text-anchor="middle" fill="#a78bfa" font-size="11" font-family="sans-serif">Watch Cluster</text><rect x="340" y="172" width="120" height="56" rx="8" fill="#0f3460" stroke="#ffffff" stroke-width="1.5"/><text x="400" y="198" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ArgoCD</text><text x="400" y="218" text-anchor="middle" fill="#a78bfa" font-size="11" font-family="sans-serif">Controller</text><text x="400" y="370" text-anchor="middle" fill="#a0a0b0" font-size="11" font-family="sans-serif">Continuous reconciliation loop — drift auto-healed within seconds</text></svg>
 - Kyverno ClusterPolicy で最新タグイメージのデプロイを拒否
 - OPA Gatekeeper では Rego でカスタムポリシーを記述
+
+
+---
+
+# Policy as Code (OPA/Kyverno)（コード例）
 
 ```yaml
 apiVersion: kyverno.io/v1

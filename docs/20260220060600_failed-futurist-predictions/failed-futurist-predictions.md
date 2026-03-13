@@ -7,6 +7,71 @@ paginate: true
 header: "未来予測の失敗学"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -25,6 +90,8 @@ style: |
 
 # アジェンダ
 
+> *専門家予測の失敗構造とスーパーフォーキャスターの手法を解説*
+
 - 1. 専門家予測の精度は？
 - 2. 有名な外れ予測の事例
 - 3. 予測が外れる理由の分析
@@ -42,6 +109,8 @@ style: |
 
 # Philip Tetlock の20年間の研究（1/2）
 
+> *専門家の予測精度はランダムよりわずかに高い程度にすぎない*
+
 - **「Expert Political Judgment」（2005年）：**
 - 300人の専門家に2万件の予測を依頼し追跡調査
 - ---
@@ -55,6 +124,8 @@ style: |
 
 # Philip Tetlock の20年間の研究（2/2）
 
+> *メディアに出る断言型専門家ほど予測精度が低いという逆説*
+
 - - 「キツネ型」（多様な視点を持つ）はより高い精度
 - - 専門性の深さと予測精度には相関がない
 - ---
@@ -66,12 +137,20 @@ style: |
 
 ---
 
-# 有名な外れ予測（1/2）
+# 有名な外れ予測（1/2）（1/2）
 
 - **技術予測の失敗：**
 - - IBM（1943年）：「世界のコンピュータ市場は5台分」
 - - DEC創業者（1977年）：「個人がコンピュータを持つ理由はない」
 - - Microsoftのゲイツ（1995年）：「インターネットは一時的な流行」
+
+
+---
+
+# 有名な外れ予測（1/2）（2/2）
+
+> *技術予測の失敗は過信と単一視点への固執から生まれる*
+
 - ---
 - **過大評価された予測：**
 - - 1964年：「2000年には核融合発電が普及」
@@ -81,6 +160,8 @@ style: |
 ---
 
 # 有名な外れ予測（2/2）
+
+> *過大・過小評価はランダムでなく領域によって偏る傾向がある*
 
 - - 1980年代：「2000年には火星に人類が到達」
 - - 2000年代：「2020年には汎用AIが完成」
@@ -95,6 +176,8 @@ style: |
 
 # スーパーフォーキャスターの手法（1/2）
 
+> *一般人がCIAアナリストより高い予測精度を出せた理由*
+
 - **GJP（Good Judgment Project）の発見：**
 - 一般人から選ばれた「スーパーフォーキャスター」が
 - CIAのアナリストより高い予測精度を示した
@@ -108,6 +191,8 @@ style: |
 
 # スーパーフォーキャスターの手法（2/2）
 
+> *基準率・数値化・定期更新の3習慣が予測精度を大幅に向上させる*
+
 - 2. 基準率（Base Rate）から出発する
 - 3. 反証となる情報を積極的に探す
 - 4. 予測を数値化し、定期的に更新する
@@ -120,6 +205,8 @@ style: |
 ---
 
 # まとめ：外れる予測と当たる予測
+
+> *確信の強さと精度は無関係、キャリブレーションこそが予測の本質*
 
 - ✅ **専門家の予測精度はランダムよりわずかに高い程度**
 - ✅ **確信が強い予測ほど外れやすい（ヘッジホッグの罠）**

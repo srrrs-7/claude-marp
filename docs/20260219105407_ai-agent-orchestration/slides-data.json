@@ -36,7 +36,8 @@
 				"実証済みユースケース：コード生成・カスタマーサポート・データ分析パイプライン",
 				"テックリードへの影響：アーキテクチャ設計の新しい判断軸が必要"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "2025年フレームワーク成熟で単体LLMの限界を超え並列処理とコード生成が本番利用可能に"
 		},
 		{
 			"title": "単体エージェント vs マルチエージェント",
@@ -72,7 +73,8 @@
 				"**注意点**: ボトルネック発生・全体レイテンシ = 各ステップの合計",
 				"**まずここから**: シンプルさと制御性が最も高いパターン"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SequentialパターンはA→B→Cで全体レイテンシが各ステップ合計—シンプルさ最優先の出発点"
 		},
 		{
 			"title": "パターン2: Parallel Execution",
@@ -84,7 +86,8 @@
 				"**実装ポイント**: `asyncio.gather()` または `Promise.all()` パターン",
 				"**注意点**: 結果の集約（aggregation）ロジックの設計が重要"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Parallelパターンはasyncio.gather/Promise.allで独立タスクを並列化し結果集約ロジックが重要"
 		},
 		{
 			"title": "パターン3: Supervisor / Orchestrator",
@@ -94,7 +97,8 @@
 				"動的ルーティング：タスク内容に応じてWorker選択が変わる",
 				"![w:850 center](assets/pattern-supervisor.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "パターン選択が信頼性とスループットを左右する"
 		},
 		{
 			"title": "パターン4: Multi-Agent Network",
@@ -104,7 +108,8 @@
 				"集合知による高品質な出力（ピアレビュー・ディベート型）",
 				"![w:850 center](assets/pattern-multiagent.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "役割分担の明確化がマルチエージェントの失敗を防ぐ"
 		},
 		{
 			"title": "パターン5: Hierarchical（入れ子型）",
@@ -114,7 +119,8 @@
 				"例：ソフトウェア開発エージェント（PM → Tech Lead → Dev Team）",
 				"![w:850 center](assets/pattern-hierarchical.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "パターン選択が信頼性とスループットを左右する"
 		},
 		{
 			"title": "パターン6: Human-in-the-Loop",
@@ -124,7 +130,8 @@
 				"実装：interrupt点の設計 + 非同期待機 + タイムアウト処理",
 				"![w:850 center](assets/pattern-hitl.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "パターン選択が信頼性とスループットを左右する"
 		},
 		{
 			"title": "パターン選択ガイド",
@@ -137,7 +144,8 @@
 				"**Hierarchical**: 大規模複合タスク & チーム構造を反映したい",
 				"**HitL**: 高リスク判断 & コンプライアンス要件あり → 必須パターン"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Sequential→Parallel→Supervisor→Multi-agent→Hierarchical→HitLの6パターンを要件で選択する"
 		},
 		{
 			"title": "Tool Use & Function Calling",
@@ -148,7 +156,8 @@
 				"**設計原則**: 単一責任・冪等性・タイムアウト設定・明確なエラーメッセージ",
 				"**セキュリティ**: 実行権限の最小化・入力バリデーション・サンドボックス実行"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ツールは単一責任・冪等性・タイムアウト・明確なエラーメッセージの4原則で設計する"
 		},
 		{
 			"title": "状態管理の重要性",
@@ -160,7 +169,8 @@
 				"**共有状態**: 複数エージェントがアクセスする状態には排他制御を設計",
 				"**状態スキーマ**: TypedDictやPydanticで状態の形式を厳密定義する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "LLMはステートレス—インメモリvs永続化DB・チェックポイント・排他制御を設計する必要がある"
 		},
 		{
 			"title": "エラーハンドリング戦略",
@@ -172,7 +182,8 @@
 				"**エラー伝播の制御**: 下位エラーを上位に伝播させるか吸収するか",
 				"**Circuit breaker**: 連続失敗時にエージェント呼び出しを一時停止"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Retry/Fallback/Graceful Degradation/回路遮断の組み合わせでエージェントの障害耐性を確保する"
 		},
 		{
 			"title": "フレームワーク比較",
@@ -192,7 +203,8 @@
 				"**スケーラビリティ**: 非同期・並列実行・マルチモデル対応",
 				"**学習コスト**: チームの習熟曲線・ドキュメント品質"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "制御性・可観測性・エコシステム・スケーラビリティ・学習コストの5軸でフレームワークを選択する"
 		},
 		{
 			"title": "LangGraph — 概要と特徴",
@@ -204,7 +216,8 @@
 				"**採用シーン**: 状態遷移が明確・チェックポイントが必要・HitLフロー",
 				"**注意点**: 学習曲線がやや高い・小規模ならover-engineering"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "LangGraphは状態機械ベースの複雑ワークフロー・循環処理・HitLフローに最も適している"
 		},
 		{
 			"title": "LangGraph — コード例",
@@ -231,7 +244,8 @@
 				"**採用シーン**: ペアプロ型・コードレビュー・インタラクティブな問題解決",
 				"**注意点**: 会話が長くなるとコスト増大・制御フローが不明瞭になりやすい"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AutoGen v0.4はActor Modelベースの会話型—コードレビューやインタラクティブな問題解決に最適"
 		},
 		{
 			"title": "AutoGen — コード例",
@@ -258,7 +272,8 @@
 				"**採用シーン**: プロトタイプ・小中規模チーム型タスク・非技術者との協働",
 				"**注意点**: 複雑な状態管理・条件分岐には不向き"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CrewAIのRole/Goal/Backstory設計はプロトタイプと非技術者との協働に最適で学習コストが低い"
 		},
 		{
 			"title": "CrewAI — コード例",
@@ -284,7 +299,8 @@
 				"**採用シーン**: Claude最大活用・シンプルなツール使用エージェント・PoC",
 				"**注意点**: マルチモデル対応なし・エコシステムはまだ成長途上"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Claude SDK はComputer Use・Prompt Caching・Batches API統合でClaude特化PoCに最適"
 		},
 		{
 			"title": "Claude Agent SDK — コード例",
@@ -310,7 +326,8 @@
 				"**Claude SDK**: シンプル◎ / Claude特化 / PoC向け / 公式サポート",
 				"**選択のポイント**: チームスキル × ユースケース複雑度 × 運用コスト"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "LangGraph複雑フロー・AutoGenコード実行・CrewAI直感性・Claude SDKシンプルの4択で選ぶ"
 		},
 		{
 			"title": "ユースケース別フレームワーク選択",
@@ -321,7 +338,8 @@
 				"**カスタマーサポートBot** → Supervisor + Claude SDK（シンプル・統合容易）",
 				"**研究・調査エージェント** → LangGraph（条件分岐・ループ制御）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ユースケース別にAutoGen/LangGraph/CrewAI/Claude SDKを最適に選び開発速度と保守性を両立"
 		},
 		{
 			"title": "コスト・スケーラビリティ比較",
@@ -333,7 +351,8 @@
 				"**モデル分担戦略**: 軽タスクはHaiku・重タスクはSonnet/Opusで使い分け",
 				"**コスト管理**: トークン使用量のメトリクス収集とアラート設定が必須"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "エージェント間コンテキスト引き回しが最大コスト—Prompt CacheとHaiku/Sonnet分担で最大60%削減"
 		},
 		{
 			"title": "実践的設計パターン・本番運用",
@@ -353,7 +372,8 @@
 				"**インターフェース設計**: 入出力スキーマをZod/Pydanticで厳密定義",
 				"**テスタビリティ**: 各エージェントを独立してユニットテスト可能に"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "1エージェント1責務でResearcher/Analyzer/Writer/Reviewerを分離しユニットテスト可能に保つ"
 		},
 		{
 			"title": "設計原則2: Observability First",
@@ -365,7 +385,8 @@
 				"**構造化ログ**: JSON形式でスパン・エージェント名・コスト・レイテンシを記録",
 				"PoC段階からObservabilityを組み込む（後付けは困難）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "PoC段階からLangSmith/OTelでトレースIDと入出力ログを付与し後付けの困難を回避する"
 		},
 		{
 			"title": "状態管理アーキテクチャ",
@@ -384,7 +405,8 @@
 				"**タイムアウト設計**: 各エージェント呼び出しに最大待機時間を設定",
 				"**結果の整合性**: 並列処理後の集約ロジックで重複・矛盾を検出"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Fan-out/Fan-inパターンでタスクを並列展開しSemaphore・タイムアウト・整合性チェックで制御する"
 		},
 		{
 			"title": "ツール設計のベストプラクティス",
@@ -396,7 +418,8 @@
 				"**タイムアウト**: 全外部呼び出しにタイムアウト設定（5-30秒が目安）",
 				"**ドライランモード**: 本番操作前にwhat-ifシミュレーションを挟む設計"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "冪等性・明確なエラーメッセージ・JSON Schemaバリデーション・ドライランでツールを堅牢化する"
 		},
 		{
 			"title": "エラーリカバリーパターン",
@@ -416,7 +439,8 @@
 				"**コンテキスト圧縮**: 長い会話履歴を要約して渡すトークン数削減",
 				"**コスト予算アラート**: Anthropic APIの使用量をCloudWatchで監視"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Prompt Cache60%削減・モデル階層化・Batches API50%削減・コンテキスト圧縮でコストを最適化"
 		},
 		{
 			"title": "モニタリング・可観測性",
@@ -436,7 +460,8 @@
 				"**LangSmith/Arize**: 失敗トレースのフィルタリングとビジュアル分析",
 				"**Mock Tools**: 外部依存をモック化してエージェントロジックだけをテスト"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "失敗トレースのローカル再現・ステップ実行・LangSmithビジュアル分析・Mock Toolsでデバッグする"
 		},
 		{
 			"title": "セキュリティ考慮事項",
@@ -447,7 +472,8 @@
 				"**秘匿情報管理**: APIキー・認証情報はシークレットマネージャーで管理",
 				"**出力検証**: エージェント出力を本番システムに渡す前にバリデーション"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Prompt Injection対策・最小権限・コンテナ隔離・シークレット管理・出力検証でエージェントを保護"
 		},
 		{
 			"title": "スケーリング戦略",
@@ -459,7 +485,8 @@
 				"**キャッシュ戦略**: 同一クエリのエージェント実行結果をRedisでキャッシュ",
 				"**コールドスタート対策**: ウォームアッププールでレイテンシスパイクを抑制"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ステートレスワーカーのコンテナ水平展開・非同期キュー・TPM制限吸収でエージェントをスケールする"
 		},
 		{
 			"title": "実際のアーキテクチャ例: カスタマーサポートBot",
@@ -480,7 +507,8 @@
 				"Review Agent: コードレビュー・セキュリティチェック",
 				"Integrator Agent: PR作成・CI/CDトリガー"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Planner→Implementers並列→Test→Review→Integratorの5エージェントでコード生成パイプラインを自動化"
 		},
 		{
 			"title": "アンチパターン集",
@@ -491,7 +519,8 @@
 				"❌ **ブラックボックス運用**: ログなしで本番運用 → Observability Firstを徹底",
 				"❌ **過剰エンジニアリング**: 単純タスクにHierarchical構成 → まずSequentialから"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "God Agent/無限ループ/コンテキスト汚染/ブラックボックス運用/過剰設計の5アンチパターンを回避する"
 		},
 		{
 			"title": "ワークショップ演習",
@@ -512,7 +541,8 @@
 				"**グループで議論**: どのオーケストレーションパターンを使うか？その理由は？",
 				"ヒント: ステップの依存関係と並列化できる箇所を特定してみましょう"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ステップ依存関係と並列化可能箇所を特定してEコマース商品説明生成のパターンを設計する"
 		},
 		{
 			"title": "演習2: フレームワーク選択",
@@ -523,7 +553,8 @@
 				"**グループで議論**: どのフレームワークを選ぶか？チームの習熟曲線は？",
 				"ヒント: 開発速度 vs 長期保守性 のトレードオフを考えてみましょう"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "開発速度vs長期保守性のトレードオフでPython未経験チームの社内QAシステムフレームワークを選ぶ"
 		},
 		{
 			"title": "演習3: アーキテクチャ設計",
@@ -535,10 +566,12 @@
 				"**グループで設計**: エージェント構成図をホワイトボードに書いてみましょう",
 				"考慮点: 精度・コスト・HitLポイント・エラーハンドリング"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "精度・コスト・HitLポイント・エラーハンドリングを考慮して月次財務レポート生成を設計する"
 		},
 		{
 			"title": "演習まとめ・ディスカッション",
+			"subtitle": "まずSequentialで動かしボトルネックを計測してから並列化—PoC→小規模本番→段階スケールで進める",
 			"content": [
 				"各グループの設計を共有・フィードバック",
 				"**共通の落とし穴**: シンプルすぎる vs 複雑すぎる設計のバランス",
@@ -561,6 +594,7 @@
 		},
 		{
 			"title": "参考資料・さらに学ぶために",
+			"subtitle": "LangGraph/AutoGen v0.4/CrewAI/Claude SDK公式ドキュメントとReAct/AgentBench論文で学習を深める",
 			"content": [
 				"**公式ドキュメント**",
 				"[LangGraph Documentation](https://langchain-ai.github.io/langgraph/)",

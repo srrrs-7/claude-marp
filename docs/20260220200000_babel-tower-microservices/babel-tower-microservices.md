@@ -7,6 +7,71 @@ paginate: true
 header: "バベルの塔とマイクロサービス"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.05em;
   }
@@ -40,6 +105,8 @@ style: |
 
 # バベルの塔の神話
 
+> *共通言語の喪失が分散システムの混乱を招く*
+
 - 天に届く塔を建てようとした人類の野望
 - 神が言語を混乱させて民族を分散させた
 - 今も続く「共通言語」への渇望
@@ -53,6 +120,8 @@ style: |
 
 # モノリスという「塔」
 
+> *機能追加のたびに塔は高くなりデプロイが儀式化する*
+
 - 開発初期: 単一DBに全機能を積み上げる構造
 - 「天に届く」ほど巨大化するモノリス
 - デプロイは全体を止める大儀式
@@ -65,6 +134,8 @@ style: |
 ---
 
 # マイクロサービスへの分散
+
+> *独立の自由を求めた結果API言語の乱立が始まった*
 
 - モノリスの限界が明らかになってきた
 - チームごとに独立したサービスを所有
@@ -80,6 +151,8 @@ style: |
 
 # 言語の混乱 ― APIの爆発
 
+> *REST・gRPC・GraphQLの乱立がバベルを現代に再現している*
+
 - REST / gRPC / GraphQL / Thrift / Avro...
 - JSON vs Protocol Buffers vs MessagePack
 - バージョン管理: `/v1` `/v2` `/v3` `/v4`...
@@ -94,6 +167,8 @@ style: |
 
 # Conway's Law ― アーキテクチャと組織
 
+> *組織のサイロ化がそのままサービスのサイロ化になる*
+
 - "Organizations design systems that mirror their communication structure" — Melvin Conway, 1968
 - チームのサイロ化 → サービスのサイロ化
 - 民族の分散 = チームの分散
@@ -107,6 +182,8 @@ style: |
 
 # 「名を上げよう」＝ 履歴書駆動開発
 
+> *「名を上げよう」の動機が技術選択を歪める本質*
+
 - **バベルの動機**: 「さあ、名を上げよう」（創世記11:4）
 - 新技術導入の本当の動機とは？
 - 技術的判断 vs. キャリア動機
@@ -119,6 +196,8 @@ style: |
 ---
 
 # 建設の停止 ― 技術的負債の蓄積
+
+> *依存関係の爆発で誰も全体を把握できなくなる*
 
 - サービス数の爆発（Netflixは700以上のサービス）
 - 依存関係の複雑化: 誰も全体を把握できない
@@ -143,6 +222,8 @@ style: |
 
 # Schema Registry ― 語彙の統一
 
+> *スキーマ一元管理で現代の共通語彙を再構築できる*
+
 - **Apache Kafka Schema Registry**: Avro/Protobuf スキーマの一元管理
 - **OpenAPI / gRPC Proto**: API仕様の共有と自動生成
 - **Contract Testing (Pact)**: サービス間の約束を自動検証
@@ -158,6 +239,8 @@ style: |
 
 # サービスメッシュ ― 通訳の自動化
 
+> *サイドカーが言語の違いを透過的に吸収する*
+
 - Istio / Envoy / Linkerd: 自動「通訳者」
 - sidecar proxy が全通信を管理・変換
 - mTLS暗号化・ロードバランシング・サーキットブレーカー
@@ -171,6 +254,8 @@ style: |
 ---
 
 # マイクロサービスの正しい使いどころ
+
+> *ドメイン境界に沿った分割のみが持続可能な分散になる*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">境界コンテキスト (Bounded Context) による分割基準</text><rect x="30" y="45" width="220" height="220" rx="10" fill="#1e1e3a" stroke="#42a5f5" stroke-width="2"/><text x="140" y="70" text-anchor="middle" fill="#42a5f5" font-size="12" font-weight="bold">注文ドメイン</text><rect x="50" y="82" width="180" height="28" rx="4" fill="#2a2a4a"/><text x="140" y="100" text-anchor="middle" fill="#ccc" font-size="10">注文作成 / 注文履歴</text><rect x="50" y="116" width="180" height="28" rx="4" fill="#2a2a4a"/><text x="140" y="134" text-anchor="middle" fill="#ccc" font-size="10">カート管理</text><rect x="50" y="150" width="180" height="28" rx="4" fill="#2a2a4a"/><text x="140" y="168" text-anchor="middle" fill="#ccc" font-size="10">配送ステータス</text><rect x="50" y="186" width="180" height="28" rx="4" fill="#2a2a4a"/><text x="140" y="204" text-anchor="middle" fill="#ccc" font-size="10">注文通知</text><rect x="290" y="45" width="220" height="220" rx="10" fill="#1e1e3a" stroke="#e91e63" stroke-width="2"/><text x="400" y="70" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">ユーザードメイン</text><rect x="310" y="82" width="180" height="28" rx="4" fill="#2a2a4a"/><text x="400" y="100" text-anchor="middle" fill="#ccc" font-size="10">認証 / 認可</text><rect x="310" y="116" width="180" height="28" rx="4" fill="#2a2a4a"/><text x="400" y="134" text-anchor="middle" fill="#ccc" font-size="10">プロフィール管理</text><rect x="310" y="150" width="180" height="28" rx="4" fill="#2a2a4a"/><text x="400" y="168" text-anchor="middle" fill="#ccc" font-size="10">権限・ロール</text><rect x="310" y="186" width="180" height="28" rx="4" fill="#2a2a4a"/><text x="400" y="204" text-anchor="middle" fill="#ccc" font-size="10">セッション管理</text><rect x="550" y="45" width="220" height="220" rx="10" fill="#1e1e3a" stroke="#66bb6a" stroke-width="2"/><text x="660" y="70" text-anchor="middle" fill="#66bb6a" font-size="12" font-weight="bold">決済ドメイン</text><rect x="570" y="82" width="180" height="28" rx="4" fill="#2a2a4a"/><text x="660" y="100" text-anchor="middle" fill="#ccc" font-size="10">決済処理</text><rect x="570" y="116" width="180" height="28" rx="4" fill="#2a2a4a"/><text x="660" y="134" text-anchor="middle" fill="#ccc" font-size="10">返金・取消</text><rect x="570" y="150" width="180" height="28" rx="4" fill="#2a2a4a"/><text x="660" y="168" text-anchor="middle" fill="#ccc" font-size="10">請求書生成</text><rect x="570" y="186" width="180" height="28" rx="4" fill="#2a2a4a"/><text x="660" y="204" text-anchor="middle" fill="#ccc" font-size="10">決済履歴</text><line x1="250" y1="155" x2="288" y2="155" stroke="#f9a825" stroke-width="2" stroke-dasharray="4,3"/><polygon points="288,151 296,155 288,159" fill="#f9a825"/><line x1="510" y1="155" x2="548" y2="155" stroke="#f9a825" stroke-width="2" stroke-dasharray="4,3"/><polygon points="548,151 556,155 548,159" fill="#f9a825"/><text x="400" y="280" text-anchor="middle" fill="#aaa" font-size="10">各ドメインが独立したDB・サービス・チームを持つ</text></svg>
 - ✅ ドメイン境界に沿った分割（DDD: Bounded Context）
@@ -194,6 +279,8 @@ style: |
 ---
 
 # まとめ ― 神話と現代技術の対応
+
+> *神話の対応表が3000年前と現代の問題の同型を示す*
 
 | 神話 | 現代技術 |
 |------|---------|

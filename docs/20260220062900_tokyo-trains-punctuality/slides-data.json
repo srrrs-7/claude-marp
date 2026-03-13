@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "6テーマで東京定時運行の技術・文化・設計原則を体系的に学ぶ",
 			"content": [
 				"![w:800 center](assets/svg-agenda.svg)",
 				"1. 世界が驚く東京の定時運行",
@@ -29,6 +30,7 @@
 		},
 		{
 			"title": "各国の鉄道定時率比較",
+			"subtitle": "日本は「1分」基準でも99.3%、欧米の5〜10倍厳格",
 			"content": [
 				"![w:800 center](assets/svg-punctuality.svg)",
 				"**日本（新幹線）：** 定時率 99.3%（遅延の定義：1分以上）",
@@ -42,6 +44,7 @@
 		},
 		{
 			"title": "「遅延証明書」という文化",
+			"subtitle": "5分遅延が社会問題になる国は世界で日本だけ",
 			"content": [
 				"電車が5分以上遅延すると**遅延証明書**が発行される",
 				"会社・学校に遅刻した時の「公式な言い訳」",
@@ -59,6 +62,7 @@
 		},
 		{
 			"title": "ATC（Automatic Train Control）",
+			"subtitle": "15秒ごとに速度指令を更新し時速285kmを秒単位制御",
 			"content": [
 				"![w:800 center](assets/svg-atc.svg)",
 				"**軌道回路** ― レールに電流を流し、列車の位置を検知",
@@ -83,6 +87,7 @@
 		},
 		{
 			"title": "ATOS（Autonomous Decentralized Transport Operation control System）",
+			"subtitle": "1日12,000本を同時最適化、人間では不可能なスケール",
 			"content": [
 				"![w:800 center](assets/svg-atos.svg)",
 				"**JR東日本が開発した世界最先端の運行管理システム**",
@@ -96,6 +101,7 @@
 		},
 		{
 			"title": "遅延回復の驚異的な速さ",
+			"subtitle": "3分の遅延を3〜4周で自己修復する分散制御の実例",
 			"content": [
 				"![w:800 center](assets/svg-recovery.svg)",
 				"**山手線で3分の遅延が発生した場合：**",
@@ -115,6 +121,7 @@
 		},
 		{
 			"title": "乗降時間を最小化する設計",
+			"subtitle": "整列乗車という暗黙のAPIが全体スループットを決める",
 			"content": [
 				"![w:800 center](assets/svg-boarding.svg)",
 				"**整列乗車** ― ホームにマーキングされた位置に並ぶ",
@@ -133,6 +140,7 @@
 		},
 		{
 			"title": "秒単位の停車技術",
+			"subtitle": "±10cm精度の手動停車が最終品質を担保する理由",
 			"content": [
 				"![w:800 center](assets/svg-driver.svg)",
 				"運転士の停車位置精度：**±10cm以内**（ホームドア対応）",
@@ -151,6 +159,7 @@
 		},
 		{
 			"title": "東京の鉄道から学ぶシステム設計原則",
+			"subtitle": "多層防御×自己回復×標準化で99.3%信頼性を実現",
 			"content": [
 				"![w:800 center](assets/svg-principles.svg)",
 				"**1. 多層防御** ― ATC + ATOS + 人間 の3層で信頼性確保",
@@ -175,6 +184,7 @@
 		},
 		{
 			"title": "参考文献",
+			"subtitle": "定時運行システムの数値と設計原則を検証できる一次資料集",
 			"content": [
 				"- **書籍・論文:**",
 				"- [新幹線のひみつ - JR東海](https://www.amazon.co.jp/)",

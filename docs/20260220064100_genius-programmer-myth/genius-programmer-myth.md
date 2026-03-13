@@ -87,6 +87,8 @@ style: |
 
 # 目次
 
+> *10x神話の起源から「本当に生産性を上げるもの」まで6章で解説*
+
 - - 1. 10xエンジニアの起源
 - - 2. 元の研究の問題点
 - - 3. 生産性は何で測るか
@@ -106,6 +108,8 @@ style: |
 ---
 
 # 1968年の伝説的研究
+
+> *サンプル12人の研究が50年間業界を支配した*
 
 ![w:900 center](assets/myth-origin.svg)
 - - **Sackman, Erikson & Grant (1968)**: プログラマー間の生産性差を測定
@@ -133,6 +137,8 @@ style: |
 
 # なぜ28倍は信頼できないか
 
+> *外れ値1人が倍率を操作—再現実験なし*
+
 ![w:900 center](assets/invisible-productivity.svg)
 - - **サンプルサイズ**: たった12人のプログラマー
 - - **測定方法**: デバッグ時間とコーディング時間を別々に測定
@@ -152,6 +158,8 @@ style: |
 
 # コード行数の罠
 
+> *DORA指標はチームのフローを測り個人LOCを捨てた*
+
 ![w:900 center](assets/dora-metrics.svg)
 - - **LOC (Lines of Code)** で測定 → コード量 = 生産性？
 - - 「最良のコードは書かれなかったコードである」
@@ -164,6 +172,8 @@ style: |
 ---
 
 # 見えない生産性
+
+> *コードレビュー・設計判断が測定外の価値を生む*
 
 ![w:900 center](assets/productivity-research.svg)
 - - **コードレビュー**: 他人のコード品質を向上させる
@@ -184,6 +194,8 @@ style: |
 
 # 「天才個人」モデルの限界
 
+> *心理的安全性がIQより強くチーム成果を左右する*
+
 ![w:900 center](assets/team-vs-individual.svg)
 - - Linuxカーネル: Linus Torvaldsだけでなく数千人の貢献者
 - - Wikipedia: 個人の天才ではなく集合知
@@ -196,6 +208,8 @@ style: |
 ---
 
 # 環境が生産性を決める
+
+> *同一エンジニアが環境変化で3〜5倍差になる*
 
 ![w:900 center](assets/environment-productivity.svg)
 - - **SPACE framework** (GitHub/MS/University of Victoria):
@@ -216,6 +230,8 @@ style: |
 
 # 10x神話がもたらす弊害
 
+> *有害行動を容認するロックスター文化の温床*
+
 ![w:900 center](assets/research-problems.svg)
 - - **ロックスターカルチャー**: 一部の「天才」に過度に依存する組織
 - - **バス係数1**: その人が辞めたらプロジェクトが止まる
@@ -228,6 +244,8 @@ style: |
 ---
 
 # Googleの「No Brilliant Jerks」方針
+
+> *有害1人の損失が10x貢献者の利益を上回る*
 
 ![w:900 center](assets/brilliant-jerks.svg)
 - - Netflix, Google等: 「優秀だが有害な人を雇わない」方針
@@ -247,6 +265,8 @@ style: |
 
 # エビデンスに基づく生産性向上
 
+> *DX・CI/CD・心理的安全がチーム速度を決定する*
+
 ![w:900 center](assets/evidence-based-productivity.svg)
 - - **Developer Experience (DX)**: 開発者の日常体験を改善する
 - - **CI/CD**: 自動化でフィードバックループを短縮する
@@ -259,6 +279,8 @@ style: |
 ---
 
 # まとめ
+
+> *10xチームを作ることが10x個人を探すより現実的な解*
 
 - - 「10xエンジニア」の元の研究は方法論に重大な問題がある
 - - 生産性はコード行数では測れない — 見えない価値を見る

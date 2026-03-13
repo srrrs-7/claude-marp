@@ -7,6 +7,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "AIが増幅する確証バイアスの全体像を7段階で把握する",
 			"content": [
 				"**1.** 確証バイアスの認知科学",
 				"**2.** LLMの訓練とバイアスの種類",
@@ -27,6 +28,7 @@
 		},
 		{
 			"title": "確証バイアスとは",
+			"subtitle": "確証バイアスは全人類が持つ認知の省エネ機能、AIが規模を拡大する",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">確証バイアスの定義と仕組み</text>\n<circle cx=\"400\" cy=\"200\" r=\"130\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"185\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">確証バイアス</text>\n<text x=\"400\" y=\"208\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Confirmation Bias</text>\n<text x=\"400\" y=\"228\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">既存の信念を確認する情報を</text>\n<text x=\"400\" y=\"246\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">過大評価する認知の傾向</text>\n<rect x=\"30\" y=\"60\" width=\"190\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"125\" y=\"85\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\">選択的注意</text>\n<text x=\"125\" y=\"105\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">都合の良い情報のみ見る</text>\n<line x1=\"220\" y1=\"90\" x2=\"278\" y2=\"145\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<polygon points=\"278,139 284,150 271,150\" fill=\"#e91e63\"/>\n<rect x=\"580\" y=\"60\" width=\"190\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"675\" y=\"85\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"11\" font-weight=\"bold\">解釈のバイアス</text>\n<text x=\"675\" y=\"105\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">曖昧な情報を好意的に解釈</text>\n<line x1=\"580\" y1=\"90\" x2=\"522\" y2=\"145\" stroke=\"#4db6ac\" stroke-width=\"1.5\"/>\n<polygon points=\"516,139 529,150 522,139\" fill=\"#4db6ac\"/>\n<rect x=\"30\" y=\"300\" width=\"190\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"125\" y=\"325\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\">記憶の偏り</text>\n<text x=\"125\" y=\"345\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">信念に合った事例を記憶</text>\n<line x1=\"220\" y1=\"330\" x2=\"278\" y2=\"268\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<polygon points=\"278,275 284,263 271,263\" fill=\"#f9a825\"/>\n<rect x=\"580\" y=\"300\" width=\"190\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"2\"/>\n<text x=\"675\" y=\"325\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-weight=\"bold\">検索バイアス</text>\n<text x=\"675\" y=\"345\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">反証より確証を積極的に探す</text>\n<line x1=\"580\" y1=\"330\" x2=\"522\" y2=\"268\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/>\n<polygon points=\"516,275 529,263 522,275\" fill=\"#aaaaaa\"/>\n</svg>",
 				"**定義**: 自分の既存の信念・仮説を支持する情報を優先的に探し・解釈する認知バイアス",
@@ -57,7 +59,8 @@
 				"**示唆**: 人は反証（7）よりも確証（E）を求める傾向が強い",
 				"→ **Falsification** より **Verification** への強い認知的傾向"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "人間は反証より確証を探す—正答率10%以下"
 		},
 		{
 			"title": "デジタル時代のバイアス増幅",
@@ -69,7 +72,8 @@
 				"**実証研究**: Facebook実験で政治的エコーチェンバーの自己強化を確認 (Bakshy et al. 2015)",
 				"**問題**: LLMが登場し、会話レベルで一段と高度化した"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SNSアルゴリズムが確証バイアスを加速させる"
 		},
 		{
 			"title": "AIによるバイアス増幅ループ（図解）",
@@ -101,7 +105,8 @@
 				"**Garbage In, Garbage Out**: データの偏りはモデルの偏りに直結",
 				"→ ユーザーの偏りとモデルの偏りが **共鳴・相互強化** する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Webクロールデータがインターネット偏見を内包する"
 		},
 		{
 			"title": "RLHF とは何か",
@@ -121,7 +126,8 @@
 				"Anthropic研究 (2023): GPT-4, Claude-2, Llama-2 すべてで迎合性を確認",
 				"→ 「正しい答え」より「**ユーザーが聞きたい答え**」を生成する傾向"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "RLHFが迎合性を強化し批判的思考を弱める"
 		},
 		{
 			"title": "Sycophancy（迎合性）の実証比較",
@@ -149,7 +155,8 @@
 				"実験 (Perez et al. 2022): 誤った前提を与えると **69%** のケースでモデルが追従",
 				"→ LLMは「真実の追求者」でなく「**対話の調和者**」として学習される"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AIが誤った前提の質問に同調して誤答を強化"
 		},
 		{
 			"title": "フィルターバブル × AI の相乗効果",
@@ -170,7 +177,8 @@
 				"**結果**: 「客観的情報を検索した」という錯覚を与えながらバイアスを強化",
 				"→ 対策なしのRAGは「バイアスに **公的権威** を与えるシステム」になりうる"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "検索強化生成が特定ソース偏重で偏りを深める"
 		},
 		{
 			"title": "エコーチェンバーの3層構造（図解）",
@@ -197,7 +205,8 @@
 				"[Bail et al. (2018)](https://science.sciencemag.org/content/360/6392/1103) — SNSエコーチェンバーの実証（AIの前史）",
 				"→ 「**AIが賢くなるほど、バイアスを隠すのが巧みになる**」"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GPT-4もClaudeも確証バイアス増幅を実証済み"
 		},
 		{
 			"title": "インタラクティブワーク",
@@ -206,6 +215,7 @@
 		},
 		{
 			"title": "ワークショップ：バイアスを探せ！",
+			"subtitle": "バイアス発見は訓練で身につく、自己観察が第一歩",
 			"content": [
 				"**グループワーク（15分）:**",
 				"**Step 1**: 自分の専門領域で「信じている仮説」を1つ書き出す",
@@ -218,6 +228,7 @@
 		},
 		{
 			"title": "ワーク：結果共有と考察",
+			"subtitle": "他者の発見を聞くことで自分の盲点を照らし合える",
 			"content": [
 				"**各グループ発表のポイント:**",
 				"確認されたバイアスパターンの類型化（同調・省略・強調・反論回避）",
@@ -244,7 +255,8 @@
 				"**ただし限界もある:**",
 				"Constitutionの設計者自身のバイアスは残る → 「批判的思考」を原則に明示することが重要"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AIによるAI評価で人間評価者バイアスを低減"
 		},
 		{
 			"title": "Red-teaming 実践",
@@ -257,7 +269,8 @@
 				"**手法④: Multi-source Validation** — 複数LLM・検索エンジンと比較",
 				"→ Red-teamingは **デプロイ後も継続** が重要（バイアスはモデル更新で変化する）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "赤チームで意図的にバイアスを探す体制が不可欠"
 		},
 		{
 			"title": "エンジニアのチェックリスト",
@@ -270,7 +283,8 @@
 				"⑤ 出力に根拠引用を必須にする（ハルシネーション低減）",
 				"⑥ 定期的なバイアス評価テストをCI/CDに組み込む"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "多様な観点での評価と反証質問が設計に必要"
 		},
 		{
 			"title": "バイアス対策の設計原則（図解）",
@@ -281,6 +295,7 @@
 		},
 		{
 			"title": "まとめ",
+			"subtitle": "AIとの付き合い方は問いの質で決まる、批判的思考が鍵",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"36\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"15\" font-weight=\"bold\">まとめ：AIと確証バイアスの関係</text>\n<rect x=\"30\" y=\"65\" width=\"220\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"140\" y=\"92\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">問題の根本</text>\n<text x=\"50\" y=\"118\" fill=\"#ffffff\" font-size=\"10\">• 人間は元来バイアスを持つ</text>\n<text x=\"50\" y=\"136\" fill=\"#ffffff\" font-size=\"10\">• AIはその人間から学習</text>\n<text x=\"50\" y=\"154\" fill=\"#ffffff\" font-size=\"10\">• バイアスが自動化・加速される</text>\n<text x=\"50\" y=\"178\" fill=\"#aaaaaa\" font-size=\"10\">→ 悪循環の自動化</text>\n<rect x=\"290\" y=\"65\" width=\"220\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"92\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">増幅の仕組み</text>\n<text x=\"310\" y=\"118\" fill=\"#ffffff\" font-size=\"10\">• 学習データのバイアス</text>\n<text x=\"310\" y=\"136\" fill=\"#ffffff\" font-size=\"10\">• Sycophancy（迎合性）</text>\n<text x=\"310\" y=\"154\" fill=\"#ffffff\" font-size=\"10\">• フィルターバブル効果</text>\n<text x=\"310\" y=\"178\" fill=\"#aaaaaa\" font-size=\"10\">→ 3重の増幅構造</text>\n<rect x=\"550\" y=\"65\" width=\"220\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#4db6ac\" stroke-width=\"2\"/>\n<text x=\"660\" y=\"92\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"12\" font-weight=\"bold\">対策の方向性</text>\n<text x=\"570\" y=\"118\" fill=\"#ffffff\" font-size=\"10\">• Constitutional AI</text>\n<text x=\"570\" y=\"136\" fill=\"#ffffff\" font-size=\"10\">• Red-teaming</text>\n<text x=\"570\" y=\"154\" fill=\"#ffffff\" font-size=\"10\">• 多様性確保</text>\n<text x=\"570\" y=\"178\" fill=\"#aaaaaa\" font-size=\"10\">→ 完全解決は不可能</text>\n<rect x=\"30\" y=\"230\" width=\"350\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"205\" y=\"258\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">エンジニアへの示唆</text>\n<text x=\"50\" y=\"284\" fill=\"#ffffff\" font-size=\"11\">• AIを「信頼しすぎない」設計</text>\n<text x=\"50\" y=\"304\" fill=\"#ffffff\" font-size=\"11\">• 批判的視点を必ず含める</text>\n<text x=\"50\" y=\"324\" fill=\"#ffffff\" font-size=\"11\">• 定期的なバイアス監査</text>\n<text x=\"50\" y=\"350\" fill=\"#aaaaaa\" font-size=\"10\">「AIが正しい」ではなく「AIを検証する」</text>\n<rect x=\"420\" y=\"230\" width=\"350\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"595\" y=\"258\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">未解決の問題</text>\n<text x=\"440\" y=\"284\" fill=\"#ffffff\" font-size=\"11\">• 完全なバイアス除去は不可能</text>\n<text x=\"440\" y=\"304\" fill=\"#ffffff\" font-size=\"11\">• 文化的バイアスの評価困難</text>\n<text x=\"440\" y=\"324\" fill=\"#ffffff\" font-size=\"11\">• 増幅ループの検出限界</text>\n<text x=\"440\" y=\"350\" fill=\"#aaaaaa\" font-size=\"10\">これからの研究課題</text>\n</svg>",
 				"**3つの主要メッセージ:**",
@@ -301,10 +316,12 @@
 				"Interpretability研究によるバイアス起源の特定（Anthropic Mechanistic Interpretability）",
 				"Pluralistic Alignment — 多様な価値観を同時に尊重する訓練手法の探求"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "バイアス除去とモデル能力のトレードオフが未解決"
 		},
 		{
 			"title": "参考文献 (1/2)",
+			"subtitle": "一次資料に当たる習慣が、AIバイアスへの最大の防御になる",
 			"content": [
 				"**研究論文:**",
 				"[Wason (1966)](https://psycnet.apa.org/record/1966-01287-001) — 選択課題の原著",
@@ -317,6 +334,7 @@
 		},
 		{
 			"title": "参考文献 (2/2)",
+			"subtitle": "多様な情報源を横断することで確証バイアスを構造的に崩せる",
 			"content": [
 				"**Further Reading & Tools:**",
 				"[Constitutional AI (Anthropic, 2022)](https://arxiv.org/abs/2212.15006) — CAI原著論文",

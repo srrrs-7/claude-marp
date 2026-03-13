@@ -7,6 +7,71 @@ paginate: true
 header: "素数と暗号理論"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -40,6 +105,8 @@ style: |
 
 # 素数の基本性質（1/2）
 
+> *素数定理でn以下の素数はn/ln(n)個に収束する*
+
 - **定義：** 1と自分自身でしか割り切れない2以上の整数
 - 2, 3, 5, 7, 11, 13, 17, 19, 23, 29...
 - **素数定理（1896年）：** n以下の素数の個数 ≈ n / ln(n)
@@ -50,6 +117,8 @@ style: |
 ---
 
 # 素数の基本性質（2/2）
+
+> *現在の最大素数は41,024,320桁でスパコンが発見した*
 
 - **無限に存在する（ユークリッドの証明、紀元前300年）：**
 - もし有限個なら、それら全ての積 + 1 は素数になる → 矛盾
@@ -75,6 +144,8 @@ style: |
 
 # リーマン予想 — 150年の未解決問題（1/2）
 
+> *ゴールドバッハ・双子素数予想はいずれも未証明のまま*
+
 - **ゴールドバッハ予想（1742年）：** 2より大きいすべての偶数は2つの素数の和
 - 4=2+2, 6=3+3, 100=3+97... — 未証明
 - **双子素数予想：** 差が2の素数ペア（11,13）（17,19）は無限に存在する — 未証明
@@ -83,6 +154,8 @@ style: |
 ---
 
 # リーマン予想 — ゼータ関数と複素平面
+
+> *ゼロ点が実部1/2の直線上という予想に賞金100万ドルが懸かる*
 
 - ゼータ関数のゼロ点は実部 1/2 の直線上にある（リーマン予想）
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="28" fill="#f9a825" font-size="15" font-weight="bold" text-anchor="middle" font-family="sans-serif">リーマンゼータ関数：複素平面上のゼロ点概念図</text><!-- axes --><line x1="100" y1="170" x2="700" y2="170" stroke="#555" stroke-width="2"/><line x1="400" y1="40" x2="400" y2="310" stroke="#555" stroke-width="2"/><!-- axis labels --><text x="710" y="174" fill="#888" font-size="13" font-family="sans-serif">Re(s)</text><text x="404" y="35" fill="#888" font-size="13" font-family="sans-serif">Im(s)</text><!-- Re(s) tick labels --><text x="250" y="185" fill="#888" font-size="12" text-anchor="middle" font-family="sans-serif">0</text><text x="400" y="185" fill="#888" font-size="12" text-anchor="middle" font-family="sans-serif">1/2</text><text x="550" y="185" fill="#888" font-size="12" text-anchor="middle" font-family="sans-serif">1</text><!-- tick marks --><line x1="250" y1="165" x2="250" y2="175" stroke="#555" stroke-width="2"/><line x1="400" y1="165" x2="400" y2="175" stroke="#555" stroke-width="2"/><line x1="550" y1="165" x2="550" y2="175" stroke="#555" stroke-width="2"/><!-- critical strip (0 to 1) shading --><rect x="250" y="40" width="300" height="270" fill="#2a2a4e" opacity="0.5"/><!-- critical line Re=1/2 --><line x1="400" y1="40" x2="400" y2="310" stroke="#e91e63" stroke-width="3" stroke-dasharray="8,4"/><!-- known zeros on critical line (non-trivial zeros) --><circle cx="400" cy="95" r="8" fill="#f9a825"/><text x="415" y="99" fill="#f9a825" font-size="12" font-family="sans-serif">ρ₁ ≈ 1/2 + 14.13i</text><circle cx="400" cy="118" r="8" fill="#f9a825"/><text x="415" y="122" fill="#f9a825" font-size="12" font-family="sans-serif">ρ₂ ≈ 1/2 + 21.02i</text><circle cx="400" cy="140" r="8" fill="#f9a825"/><text x="415" y="144" fill="#f9a825" font-size="12" font-family="sans-serif">ρ₃ ≈ 1/2 + 25.01i</text><circle cx="400" cy="245" r="8" fill="#f9a825"/><circle cx="400" cy="222" r="8" fill="#f9a825"/><circle cx="400" cy="200" r="8" fill="#f9a825"/><!-- trivial zeros on negative real axis --><circle cx="167" cy="170" r="6" fill="#555"/><text x="160" y="160" fill="#888" font-size="11" text-anchor="middle" font-family="sans-serif">-2</text><circle cx="100" cy="170" r="6" fill="#555"/><text x="100" y="160" fill="#888" font-size="11" text-anchor="middle" font-family="sans-serif">-4</text><!-- labels --><text x="390" y="325" fill="#e91e63" font-size="13" text-anchor="middle" font-family="sans-serif">臨界線 Re(s)=1/2</text><text x="200" y="60" fill="#6688aa" font-size="12" font-family="sans-serif">自明なゼロ点</text><text x="620" y="60" fill="#aaa" font-size="12" font-family="sans-serif">臨界帯（0 ≤ Re ≤ 1）</text></svg>
@@ -98,6 +171,8 @@ style: |
 ---
 
 # RSA暗号の仕組み（1/2）
+
+> *2048ビットRSA鍵の因数分解は宇宙年齢より長い時間がかかる*
 
 - **核心：素因数分解の非対称性**
 - 掛け算 → 簡単：17 × 19 = 323
@@ -118,6 +193,8 @@ style: |
 
 # 量子コンピュータへの脅威（1/2）
 
+> *Shorのアルゴリズムが実用化するとRSA暗号が理論上無力化*
+
 - **Shorのアルゴリズム（1994年）：** 量子コンピュータを使えば素因数分解が多項式時間で解ける
 - = RSA暗号が理論上無力化される
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="240" fill="#1a1a2e"/><text x="400" y="28" fill="#f9a825" font-size="15" font-weight="bold" text-anchor="middle" font-family="sans-serif">古典 vs 量子：素因数分解の計算量比較</text><!-- axis --><line x1="80" y1="200" x2="720" y2="200" stroke="#555" stroke-width="2"/><line x1="80" y1="200" x2="80" y2="50" stroke="#555" stroke-width="2"/><text x="730" y="204" fill="#888" font-size="12" font-family="sans-serif">鍵長(bit)</text><text x="84" y="45" fill="#888" font-size="12" font-family="sans-serif">計算時間</text><!-- x ticks --><line x1="200" y1="196" x2="200" y2="204" stroke="#555" stroke-width="1"/><text x="200" y="216" fill="#888" font-size="11" text-anchor="middle" font-family="sans-serif">512</text><line x1="360" y1="196" x2="360" y2="204" stroke="#555" stroke-width="1"/><text x="360" y="216" fill="#888" font-size="11" text-anchor="middle" font-family="sans-serif">1024</text><line x1="520" y1="196" x2="520" y2="204" stroke="#555" stroke-width="1"/><text x="520" y="216" fill="#888" font-size="11" text-anchor="middle" font-family="sans-serif">2048</text><line x1="680" y1="196" x2="680" y2="204" stroke="#555" stroke-width="1"/><text x="680" y="216" fill="#888" font-size="11" text-anchor="middle" font-family="sans-serif">4096</text><!-- classical curve (sub-exponential, grows fast) --><polyline points="80,195 200,170 360,130 520,80 680,55" stroke="#e91e63" stroke-width="3" fill="none"/><!-- quantum curve (polynomial, grows slowly) --><polyline points="80,195 200,192 360,188 520,183 680,177" stroke="#88cc88" stroke-width="3" fill="none"/><!-- y labels qualitative --><text x="68" y="204" fill="#888" font-size="11" text-anchor="end" font-family="sans-serif">短</text><text x="68" y="54" fill="#888" font-size="11" text-anchor="end" font-family="sans-serif">長</text><!-- legend --><line x1="120" y1="68" x2="155" y2="68" stroke="#e91e63" stroke-width="3"/><text x="162" y="73" fill="#e91e63" font-size="13" font-family="sans-serif">古典コンピュータ（準指数時間）</text><line x1="120" y1="90" x2="155" y2="90" stroke="#88cc88" stroke-width="3"/><text x="162" y="95" fill="#88cc88" font-size="13" font-family="sans-serif">量子コンピュータ・Shorのアルゴリズム（多項式時間）</text></svg>
@@ -127,6 +204,8 @@ style: |
 ---
 
 # 量子コンピュータへの脅威（2/2）
+
+> *2030年までに既存システムの耐量子暗号移行完了が必要*
 
 - **耐量子暗号（Post-Quantum Cryptography）：**
 - NIST標準化（2024年完了）— 格子暗号、ハッシュベース署名など
@@ -138,6 +217,8 @@ style: |
 ---
 
 # まとめ：2000年の数学が支えるインターネット
+
+> *リーマン予想の解明がRSA暗号の未来を左右する*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="15" font-weight="bold" text-anchor="middle" font-family="sans-serif">素数 — 純粋数学からセキュリティへの旅</text><!-- Center node --><circle cx="400" cy="160" r="55" fill="#2a2a4a" stroke="#f9a825" stroke-width="3"/><text x="400" y="153" fill="#f9a825" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">素数の</text><text x="400" y="172" fill="#f9a825" font-size="14" font-weight="bold" text-anchor="middle" font-family="sans-serif">分布</text><!-- Surrounding nodes --><circle cx="160" cy="90" r="45" fill="#1a3a2a" stroke="#88cc88" stroke-width="2"/><text x="160" y="83" fill="#88cc88" font-size="12" text-anchor="middle" font-family="sans-serif">素数定理</text><text x="160" y="100" fill="#ccc" font-size="11" text-anchor="middle" font-family="sans-serif">π(x) ≈ x/ln(x)</text><circle cx="640" cy="90" r="45" fill="#3a1a2a" stroke="#e91e63" stroke-width="2"/><text x="640" y="83" fill="#e91e63" font-size="12" text-anchor="middle" font-family="sans-serif">リーマン</text><text x="640" y="100" fill="#ccc" font-size="11" text-anchor="middle" font-family="sans-serif">予想（未解決）</text><circle cx="150" cy="240" r="45" fill="#2a2a3a" stroke="#88aaff" stroke-width="2"/><text x="150" y="233" fill="#88aaff" font-size="12" text-anchor="middle" font-family="sans-serif">RSA暗号</text><text x="150" y="250" fill="#ccc" font-size="11" text-anchor="middle" font-family="sans-serif">素因数分解の困難</text><circle cx="650" cy="240" r="45" fill="#3a2a1a" stroke="#ffaa44" stroke-width="2"/><text x="650" y="233" fill="#ffaa44" font-size="12" text-anchor="middle" font-family="sans-serif">量子脅威</text><text x="650" y="250" fill="#ccc" font-size="11" text-anchor="middle" font-family="sans-serif">Shorのアルゴリズム</text><!-- connecting lines --><line x1="355" y1="120" x2="200" y2="105" stroke="#555" stroke-width="2"/><line x1="445" y1="120" x2="600" y2="105" stroke="#555" stroke-width="2"/><line x1="355" y1="200" x2="195" y2="225" stroke="#555" stroke-width="2"/><line x1="445" y1="200" x2="605" y2="225" stroke="#555" stroke-width="2"/></svg>
 - ✅ **素数は無限に存在するが分布は謎のまま**

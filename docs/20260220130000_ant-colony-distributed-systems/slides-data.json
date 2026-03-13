@@ -15,6 +15,7 @@
 		},
 		{
 			"title": "女王は命令していない（1/2）（1/2）",
+			"subtitle": "中央制御なしにコロニーが機能する、分散知性の核心",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 340' style='max-height:62vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -27,6 +28,7 @@
 		},
 		{
 			"title": "女王は命令していない（1/2）（2/2）",
+			"subtitle": "女王の役割は産卵のみ、組織運営はワーカーの自律に委ねる",
 			"layout": "default",
 			"content": [
 				"  <text x='200' y='82' text-anchor='middle' font-size='14' fill='#e94560' font-weight='bold'>❌ 中央集権モデル（誤解）</text>",
@@ -40,6 +42,7 @@
 		},
 		{
 			"title": "女王は命令していない（2/2）（1/2）",
+			"subtitle": "ローカル情報のみで動くアリが大域的最適解を導く仕組み",
 			"layout": "default",
 			"content": [
 				"  <text x='580' y='82' text-anchor='middle' font-size='14' fill='#00b4d8' font-weight='bold'>✅ 分散自律モデル（実態）</text>",
@@ -52,6 +55,7 @@
 		},
 		{
 			"title": "女王は命令していない（2/2）（2/2）",
+			"subtitle": "中央集権排除が耐障害性と適応性を同時に実現する",
 			"layout": "default",
 			"content": [
 				"  <text x='390' y='210' text-anchor='middle' font-size='18' font-weight='bold' fill='#ffd166'>💡 コロニーの知性は「個々のルール」から創発する</text>",
@@ -65,6 +69,7 @@
 		},
 		{
 			"title": "アジェンダ（1/2）",
+			"subtitle": "フェロモン→創発→分散設計の順で体系的に理解する",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><rect x=\"40\" y=\"40\" width=\"340\" height=\"140\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"210\" y=\"68\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">Ch.1 アリのコロニーとは</text><text x=\"60\" y=\"96\" fill=\"#ffffff\" font-size=\"12\">- フェロモンコミュニケーション</text><text x=\"60\" y=\"116\" fill=\"#ffffff\" font-size=\"12\">- スティグマジー</text><text x=\"60\" y=\"136\" fill=\"#ffffff\" font-size=\"12\">- 役割の自発的分業</text><text x=\"60\" y=\"156\" fill=\"#ffffff\" font-size=\"12\">- 自己組織化と耐障害性</text><rect x=\"420\" y=\"40\" width=\"340\" height=\"140\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"590\" y=\"68\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">Ch.2 創発とは何か</text><text x=\"440\" y=\"96\" fill=\"#ffffff\" font-size=\"12\">- 創発の定義</text><text x=\"440\" y=\"116\" fill=\"#ffffff\" font-size=\"12\">- 単純ルール→複雑行動</text><text x=\"440\" y=\"136\" fill=\"#ffffff\" font-size=\"12\">- 創発の条件</text><text x=\"440\" y=\"156\" fill=\"#ffffff\" font-size=\"12\">- Boidsとの比較</text><rect x=\"40\" y=\"220\" width=\"340\" height=\"140\" rx=\"10\" fill=\"#16213e\" stroke=\"#00b4d8\" stroke-width=\"2\"/><text x=\"210\" y=\"248\" text-anchor=\"middle\" fill=\"#00b4d8\" font-size=\"14\" font-weight=\"bold\">Ch.3 分散システム翻訳</text><text x=\"60\" y=\"276\" fill=\"#ffffff\" font-size=\"12\">- コロニー↔システム対応</text><text x=\"60\" y=\"296\" fill=\"#ffffff\" font-size=\"12\">- P2P設計・Gossip</text><text x=\"60\" y=\"316\" fill=\"#ffffff\" font-size=\"12\">- CAP定理</text><text x=\"60\" y=\"336\" fill=\"#ffffff\" font-size=\"12\">- スケールアウト・耐障害性</text><rect x=\"420\" y=\"220\" width=\"340\" height=\"140\" rx=\"10\" fill=\"#16213e\" stroke=\"#7c4dff\" stroke-width=\"2\"/><text x=\"590\" y=\"248\" text-anchor=\"middle\" fill=\"#7c4dff\" font-size=\"14\" font-weight=\"bold\">Ch.4-6 事例・実践・まとめ</text><text x=\"440\" y=\"276\" fill=\"#ffffff\" font-size=\"12\">- Kafka, DynamoDB, k8s</text><text x=\"440\" y=\"296\" fill=\"#ffffff\" font-size=\"12\">- BitTorrent, Consul</text><text x=\"440\" y=\"316\" fill=\"#ffffff\" font-size=\"12\">- 設計実践・演習</text><text x=\"440\" y=\"336\" fill=\"#ffffff\" font-size=\"12\">- まとめ・Q&amp;A</text></svg>",
@@ -76,6 +81,7 @@
 		},
 		{
 			"title": "アジェンダ（2/2）",
+			"subtitle": "実装事例と演習で理論を実践知に転換する構成",
 			"layout": "default",
 			"content": [
 				"**Ch.5** 設計実践・ケーススタディ",
@@ -96,6 +102,7 @@
 		},
 		{
 			"title": "アリのコロニーとは（1/2）",
+			"subtitle": "数百万個体が単一中枢なしに機能する生物的分散システム",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"35\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\">コロニーの構成員</text><rect x=\"30\" y=\"55\" width=\"220\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"140\" y=\"80\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">女王アリ</text><text x=\"50\" y=\"104\" fill=\"#aaaaaa\" font-size=\"11\">- 産卵のみ担当</text><text x=\"50\" y=\"122\" fill=\"#aaaaaa\" font-size=\"11\">- 命令は出さない</text><text x=\"50\" y=\"140\" fill=\"#aaaaaa\" font-size=\"11\">- 寿命: 数十年</text><text x=\"50\" y=\"158\" fill=\"#aaaaaa\" font-size=\"11\">- 1コロニー1匹</text><rect x=\"290\" y=\"55\" width=\"220\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"400\" y=\"80\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">働きアリ</text><text x=\"310\" y=\"104\" fill=\"#aaaaaa\" font-size=\"11\">- 採食・育児・建設</text><text x=\"310\" y=\"122\" fill=\"#aaaaaa\" font-size=\"11\">- 自律的に役割決定</text><text x=\"310\" y=\"140\" fill=\"#aaaaaa\" font-size=\"11\">- 寿命: 数週間〜数ヶ月</text><text x=\"310\" y=\"158\" fill=\"#aaaaaa\" font-size=\"11\">- 数百〜数百万匹</text><rect x=\"550\" y=\"55\" width=\"220\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#00b4d8\" stroke-width=\"2\"/><text x=\"660\" y=\"80\" text-anchor=\"middle\" fill=\"#00b4d8\" font-size=\"13\" font-weight=\"bold\">雄アリ</text><text x=\"570\" y=\"104\" fill=\"#aaaaaa\" font-size=\"11\">- 交配のみ担当</text><text x=\"570\" y=\"122\" fill=\"#aaaaaa\" font-size=\"11\">- 交配後に死亡</text><text x=\"570\" y=\"140\" fill=\"#aaaaaa\" font-size=\"11\">- 季節限定で出現</text><text x=\"570\" y=\"158\" fill=\"#aaaaaa\" font-size=\"11\">- 一時的な存在</text><rect x=\"150\" y=\"220\" width=\"500\" height=\"140\" rx=\"8\" fill=\"#0f3460\" stroke=\"#7c4dff\" stroke-width=\"1.5\"/><text x=\"400\" y=\"245\" text-anchor=\"middle\" fill=\"#7c4dff\" font-size=\"13\" font-weight=\"bold\">コロニーの本質</text><text x=\"400\" y=\"270\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">中央制御なし — 局所的なルールから全体知性が生まれる</text><text x=\"400\" y=\"292\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">各個体は単純なアルゴリズムを実行しているだけ</text><text x=\"400\" y=\"314\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">= 分散システムの完璧なモデル</text><text x=\"400\" y=\"345\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">種によって1万〜2000万匹規模のコロニーを形成</text></svg>",
@@ -108,6 +115,7 @@
 		},
 		{
 			"title": "アリのコロニーとは（2/2）",
+			"subtitle": "個体の単純行動の積み重ねがコロニー全体の知性を生む",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">アリのコロニー vs 分散システム</text><rect x=\"30\" y=\"50\" width=\"360\" height=\"310\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"210\" y=\"76\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">アリのコロニー</text><text x=\"50\" y=\"105\" fill=\"#aaaaaa\" font-size=\"12\">個体: 働きアリ</text><text x=\"50\" y=\"128\" fill=\"#aaaaaa\" font-size=\"12\">通信: フェロモン</text><text x=\"50\" y=\"151\" fill=\"#aaaaaa\" font-size=\"12\">状態: 環境に記録</text><text x=\"50\" y=\"174\" fill=\"#aaaaaa\" font-size=\"12\">障害対応: 他が代替</text><text x=\"50\" y=\"197\" fill=\"#aaaaaa\" font-size=\"12\">意思決定: 多数決的収束</text><text x=\"50\" y=\"220\" fill=\"#aaaaaa\" font-size=\"12\">スケール: 自動的に拡張</text><text x=\"50\" y=\"243\" fill=\"#aaaaaa\" font-size=\"12\">リーダー: 存在しない</text><rect x=\"410\" y=\"50\" width=\"360\" height=\"310\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"590\" y=\"76\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">分散システム</text><text x=\"430\" y=\"105\" fill=\"#aaaaaa\" font-size=\"12\">個体: マイクロサービス</text><text x=\"430\" y=\"128\" fill=\"#aaaaaa\" font-size=\"12\">通信: メッセージング</text><text x=\"430\" y=\"151\" fill=\"#aaaaaa\" font-size=\"12\">状態: 分散KVストア</text><text x=\"430\" y=\"174\" fill=\"#aaaaaa\" font-size=\"12\">障害対応: レプリケーション</text><text x=\"430\" y=\"197\" fill=\"#aaaaaa\" font-size=\"12\">意思決定: Consensus</text><text x=\"430\" y=\"220\" fill=\"#aaaaaa\" font-size=\"12\">スケール: オートスケール</text><text x=\"430\" y=\"243\" fill=\"#aaaaaa\" font-size=\"12\">リーダー: Raft選出</text><line x1=\"400\" y1=\"90\" x2=\"400\" y2=\"340\" stroke=\"#7c4dff\" stroke-width=\"1\" stroke-dasharray=\"4,4\"/><text x=\"400\" y=\"330\" text-anchor=\"middle\" fill=\"#7c4dff\" font-size=\"11\">↕ 対応</text></svg>",
@@ -121,6 +129,7 @@
 		},
 		{
 			"title": "フェロモンコミュニケーション（1/2）（1/2）",
+			"subtitle": "間接的化学シグナルが中央指令なしに全体を協調させる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 320' style='max-height:60vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -137,6 +146,7 @@
 		},
 		{
 			"title": "フェロモンコミュニケーション（1/2）（2/2）",
+			"subtitle": "フェロモン揮発による自然な忘却が過去の経路を淘汰する",
 			"layout": "default",
 			"content": [
 				"  <rect x='160' y='100' width='60' height='30' rx='5' fill='#55efc4'/>",
@@ -154,6 +164,7 @@
 		},
 		{
 			"title": "フェロモンコミュニケーション（2/2）（1/2）",
+			"subtitle": "正帰還と負帰還の均衡が最短経路を動的に選択する",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">フェロモン強度と経路選択</text><rect x=\"80\" y=\"60\" width=\"60\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"110\" y=\"95\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\">巣</text><rect x=\"660\" y=\"60\" width=\"60\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"690\" y=\"95\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\">餌場</text><path d=\"M140 90 Q250 40 400 50 Q550 60 660 90\" stroke=\"#f9a825\" stroke-width=\"6\" fill=\"none\" opacity=\"0.9\"/><text x=\"400\" y=\"42\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">強化された経路（多数が通過）</text><path d=\"M140 90 Q250 160 400 200 Q550 240 660 90\" stroke=\"#aaaaaa\" stroke-width=\"2\" fill=\"none\" opacity=\"0.5\" stroke-dasharray=\"6,4\"/><text x=\"400\" y=\"230\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">使われなくなった迂回路（蒸発）</text><circle cx=\"200\" cy=\"72\" r=\"8\" fill=\"#f9a825\"/><circle cx=\"320\" cy=\"54\" r=\"8\" fill=\"#f9a825\"/><circle cx=\"480\" cy=\"54\" r=\"8\" fill=\"#f9a825\"/><circle cx=\"600\" cy=\"72\" r=\"8\" fill=\"#f9a825\"/><text x=\"400\" y=\"290\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-weight=\"bold\">正のフィードバックループ</text><rect x=\"120\" y=\"310\" width=\"200\" height=\"60\" rx=\"6\" fill=\"#0f3460\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"220\" y=\"334\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">多くのアリが通る</text><text x=\"220\" y=\"355\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">↓ フェロモン濃度UP</text><rect x=\"480\" y=\"310\" width=\"200\" height=\"60\" rx=\"6\" fill=\"#0f3460\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"580\" y=\"334\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">最短経路が選ばれる</text><text x=\"580\" y=\"355\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">↓ さらに多く通る</text><line x1=\"320\" y1=\"340\" x2=\"480\" y2=\"340\" stroke=\"#7c4dff\" stroke-width=\"2\"/><polygon points=\"478,334 490,340 478,346\" fill=\"#7c4dff\"/></svg>",
@@ -171,6 +182,7 @@
 		},
 		{
 			"title": "フェロモンコミュニケーション（2/2）（2/2）",
+			"subtitle": "環境変化に対しフェロモン場が自動的に再収束する",
 			"layout": "default",
 			"content": [
 				"  <text x='650' y='90' text-anchor='middle' font-size='11' fill='#636e72'>正のフィードバック</text>",
@@ -189,6 +201,7 @@
 		},
 		{
 			"title": "スティグマジー — 環境媒介型協調（1/2）",
+			"subtitle": "媒体を介した間接協調がP2P通信コストを不要にする",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">スティグマジー: 環境を介した間接協調</text><rect x=\"60\" y=\"60\" width=\"200\" height=\"120\" rx=\"8\" fill=\"#16213e\" stroke=\"#00b4d8\" stroke-width=\"2\"/><text x=\"160\" y=\"86\" text-anchor=\"middle\" fill=\"#00b4d8\" font-size=\"12\" font-weight=\"bold\">アリAの行動</text><text x=\"80\" y=\"110\" fill=\"#aaaaaa\" font-size=\"11\">環境に痕跡を残す</text><text x=\"80\" y=\"130\" fill=\"#aaaaaa\" font-size=\"11\">（フェロモン分泌）</text><text x=\"80\" y=\"150\" fill=\"#aaaaaa\" font-size=\"11\">直接通信なし</text><rect x=\"300\" y=\"60\" width=\"200\" height=\"120\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"400\" y=\"86\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">環境（土・空気）</text><text x=\"320\" y=\"110\" fill=\"#aaaaaa\" font-size=\"11\">痕跡を蓄積・保持</text><text x=\"320\" y=\"130\" fill=\"#aaaaaa\" font-size=\"11\">時間で蒸発（減衰）</text><text x=\"320\" y=\"150\" fill=\"#aaaaaa\" font-size=\"11\">共有メモリとして機能</text><rect x=\"540\" y=\"60\" width=\"200\" height=\"120\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"640\" y=\"86\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">アリBの反応</text><text x=\"560\" y=\"110\" fill=\"#aaaaaa\" font-size=\"11\">環境の痕跡を読む</text><text x=\"560\" y=\"130\" fill=\"#aaaaaa\" font-size=\"11\">行動を調整する</text><text x=\"560\" y=\"150\" fill=\"#aaaaaa\" font-size=\"11\">再度痕跡を強化</text><line x1=\"260\" y1=\"120\" x2=\"300\" y2=\"120\" stroke=\"#00b4d8\" stroke-width=\"2\"/><polygon points=\"298,114 310,120 298,126\" fill=\"#00b4d8\"/><line x1=\"500\" y1=\"120\" x2=\"540\" y2=\"120\" stroke=\"#e91e63\" stroke-width=\"2\"/><polygon points=\"538,114 550,120 538,126\" fill=\"#e91e63\"/><rect x=\"160\" y=\"230\" width=\"480\" height=\"130\" rx=\"10\" fill=\"#0f3460\" stroke=\"#7c4dff\" stroke-width=\"2\"/><text x=\"400\" y=\"258\" text-anchor=\"middle\" fill=\"#7c4dff\" font-size=\"13\" font-weight=\"bold\">分散システムとの対応</text><text x=\"200\" y=\"285\" fill=\"#ffffff\" font-size=\"12\">スティグマジー</text><text x=\"480\" y=\"285\" fill=\"#ffffff\" font-size=\"12\">分散システム</text><text x=\"200\" y=\"308\" fill=\"#aaaaaa\" font-size=\"11\">環境（土/空気）</text><text x=\"480\" y=\"308\" fill=\"#aaaaaa\" font-size=\"11\">分散KVストア / メッセージキュー</text><text x=\"200\" y=\"330\" fill=\"#aaaaaa\" font-size=\"11\">痕跡の蒸発</text><text x=\"480\" y=\"330\" fill=\"#aaaaaa\" font-size=\"11\">TTL / イベント期限切れ</text><line x1=\"395\" y1=\"270\" x2=\"395\" y2=\"340\" stroke=\"#7c4dff\" stroke-width=\"1\" stroke-dasharray=\"3,3\"/></svg>",
@@ -212,6 +225,7 @@
 		},
 		{
 			"title": "スティグマジー — 環境媒介型協調（2/2）（2/2）",
+			"subtitle": "環境状態が次の行動のトリガー、コードで言うイベント駆動",
 			"layout": "default",
 			"content": [
 				"**工学への示唆**",
@@ -222,6 +236,7 @@
 		},
 		{
 			"title": "役割の自発的分業（1/2）",
+			"subtitle": "固定の役職なしに状況応答で役割が動的に割り当てられる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">閾値モデルによる役割分担</text><rect x=\"30\" y=\"50\" width=\"360\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"210\" y=\"76\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">役割割り当てプロセス</text><rect x=\"50\" y=\"90\" width=\"320\" height=\"55\" rx=\"6\" fill=\"#0f3460\"/><text x=\"210\" y=\"114\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">タスク刺激の検知</text><text x=\"210\" y=\"132\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">（ゴミが溜まっている / 幼虫が空腹）</text><line x1=\"210\" y1=\"145\" x2=\"210\" y2=\"165\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><polygon points=\"203,163 210,175 217,163\" fill=\"#f9a825\"/><rect x=\"50\" y=\"175\" width=\"320\" height=\"55\" rx=\"6\" fill=\"#0f3460\"/><text x=\"210\" y=\"199\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">個体固有の閾値と比較</text><text x=\"210\" y=\"217\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">（刺激 ≥ 閾値 → 行動する）</text><line x1=\"210\" y1=\"230\" x2=\"210\" y2=\"250\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><polygon points=\"203,248 210,260 217,248\" fill=\"#f9a825\"/><rect x=\"50\" y=\"260\" width=\"320\" height=\"55\" rx=\"6\" fill=\"#0f3460\"/><text x=\"210\" y=\"284\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">タスク実行で刺激減少</text><text x=\"210\" y=\"302\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">（他のアリは別のタスクへ）</text><rect x=\"420\" y=\"50\" width=\"360\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"600\" y=\"76\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">マイクロサービスへの翻訳</text><text x=\"440\" y=\"106\" fill=\"#aaaaaa\" font-size=\"12\">閾値 → サービスのキャパシティ設定</text><text x=\"440\" y=\"130\" fill=\"#aaaaaa\" font-size=\"12\">刺激 → キューの深さ/メトリクス</text><text x=\"440\" y=\"154\" fill=\"#aaaaaa\" font-size=\"12\">行動 → オートスケールのトリガー</text><text x=\"440\" y=\"178\" fill=\"#aaaaaa\" font-size=\"12\">役割変化 → 動的タスクルーティング</text><text x=\"440\" y=\"225\" fill=\"#ffffff\" font-size=\"12\">例: Kubernetes HPA</text><text x=\"440\" y=\"248\" fill=\"#aaaaaa\" font-size=\"11\">CPU使用率（刺激）が閾値超過</text><text x=\"440\" y=\"268\" fill=\"#aaaaaa\" font-size=\"11\">→ Podが自動追加（役割分担）</text><text x=\"440\" y=\"288\" fill=\"#aaaaaa\" font-size=\"11\">→ 負荷が分散（刺激減少）</text></svg>",
@@ -245,6 +260,7 @@
 		},
 		{
 			"title": "役割の自発的分業（2/2）（2/2）",
+			"subtitle": "需給に応じた役割シフトが常に最適な資源配置を実現する",
 			"layout": "default",
 			"content": [
 				"**分散システムへの示唆**",
@@ -255,6 +271,7 @@
 		},
 		{
 			"title": "自己組織化と耐障害性（1/2）（1/2）",
+			"subtitle": "局所ルールの積み重ねが中央設計なしに秩序を生む",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 300' style='max-height:58vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -271,6 +288,7 @@
 		},
 		{
 			"title": "自己組織化と耐障害性（1/2）（2/2）",
+			"subtitle": "個体の消滅がシステム全体に影響しない多重冗長設計",
 			"layout": "default",
 			"content": [
 				"  <text x='140' y='95' text-anchor='middle' font-size='10' fill='white'>育児</text>",
@@ -287,6 +305,7 @@
 		},
 		{
 			"title": "自己組織化と耐障害性（2/2）（1/2）",
+			"subtitle": "障害時に役割を動的に再配分して機能継続する適応機構",
 			"layout": "default",
 			"content": [
 				"  <text x='580' y='68' text-anchor='middle' font-size='13' font-weight='bold' fill='#2d3436'>採餌班 50% 死亡後</text>",
@@ -303,6 +322,7 @@
 		},
 		{
 			"title": "自己組織化と耐障害性（2/2）（2/2）",
+			"subtitle": "単一障害点ゼロのシステムが生物進化で実証済み",
 			"layout": "default",
 			"content": [
 				"  <circle cx='700' cy='115' r='18' fill='#b2bec3'/>",
@@ -329,6 +349,7 @@
 		},
 		{
 			"title": "創発（Emergence）の定義（1/2）",
+			"subtitle": "部品の総和を超える全体特性が自発的に現れる現象",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"15\" font-weight=\"bold\">創発: 階層的に現れる新性質</text><rect x=\"30\" y=\"50\" width=\"740\" height=\"90\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"400\" y=\"78\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">レベル3: システム全体</text><text x=\"400\" y=\"104\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">最適経路探索・集合知・問題解決能力（個体には存在しない）</text><rect x=\"80\" y=\"170\" width=\"640\" height=\"75\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"400\" y=\"196\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">レベル2: グループ相互作用</text><text x=\"400\" y=\"220\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">フェロモン経路・分業パターン・群れ行動</text><rect x=\"200\" y=\"275\" width=\"400\" height=\"75\" rx=\"8\" fill=\"#16213e\" stroke=\"#00b4d8\" stroke-width=\"2\"/><text x=\"400\" y=\"301\" text-anchor=\"middle\" fill=\"#00b4d8\" font-size=\"13\" font-weight=\"bold\">レベル1: 個体</text><text x=\"400\" y=\"325\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">単純な刺激-反応ルール 5〜7種類のみ</text><line x1=\"400\" y1=\"140\" x2=\"400\" y2=\"170\" stroke=\"#7c4dff\" stroke-width=\"2\"/><polygon points=\"393,168 400,180 407,168\" fill=\"#7c4dff\"/><line x1=\"400\" y1=\"245\" x2=\"400\" y2=\"275\" stroke=\"#7c4dff\" stroke-width=\"2\"/><polygon points=\"393,273 400,285 407,273\" fill=\"#7c4dff\"/></svg>",
@@ -342,6 +363,7 @@
 		},
 		{
 			"title": "創発（Emergence）の定義（2/2）",
+			"subtitle": "上位レベルの特性は下位ルールから予測できない創発物",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"15\" font-weight=\"bold\">創発 vs 集約 — 違いは？</text><rect x=\"30\" y=\"55\" width=\"360\" height=\"150\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"210\" y=\"80\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">創発的性質</text><text x=\"50\" y=\"108\" fill=\"#aaaaaa\" font-size=\"12\">- 個体レベルでは存在しない</text><text x=\"50\" y=\"130\" fill=\"#aaaaaa\" font-size=\"12\">- 予測不可能（設計されていない）</text><text x=\"50\" y=\"152\" fill=\"#aaaaaa\" font-size=\"12\">- 相互作用から生まれる</text><text x=\"50\" y=\"174\" fill=\"#aaaaaa\" font-size=\"12\">例: アリの最適経路、意識</text><rect x=\"420\" y=\"55\" width=\"360\" height=\"150\" rx=\"8\" fill=\"#16213e\" stroke=\"#00b4d8\" stroke-width=\"2\"/><text x=\"600\" y=\"80\" text-anchor=\"middle\" fill=\"#00b4d8\" font-size=\"13\" font-weight=\"bold\">集約的性質</text><text x=\"440\" y=\"108\" fill=\"#aaaaaa\" font-size=\"12\">- 個体の足し合わせ</text><text x=\"440\" y=\"130\" fill=\"#aaaaaa\" font-size=\"12\">- 予測可能（設計通り）</text><text x=\"440\" y=\"152\" fill=\"#aaaaaa\" font-size=\"12\">- 個体の総和</text><text x=\"440\" y=\"174\" fill=\"#aaaaaa\" font-size=\"12\">例: 総重量、総コスト</text><rect x=\"100\" y=\"240\" width=\"600\" height=\"120\" rx=\"8\" fill=\"#0f3460\" stroke=\"#7c4dff\" stroke-width=\"2\"/><text x=\"400\" y=\"266\" text-anchor=\"middle\" fill=\"#7c4dff\" font-size=\"13\" font-weight=\"bold\">分散システム設計への示唆</text><text x=\"400\" y=\"294\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">創発を「設計する」のではなく「生まれやすい環境を整える」</text><text x=\"400\" y=\"318\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\">局所ルール + 相互作用 → 全体最適化</text><text x=\"400\" y=\"344\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">中央制御を減らすほど創発が起きやすい</text></svg>",
@@ -355,6 +377,7 @@
 		},
 		{
 			"title": "単純ルール → 複雑行動（1/2）（1/2）",
+			"subtitle": "3条件だけで群れの整合した飛行が自然発生する",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 320' style='max-height:60vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -369,6 +392,7 @@
 		},
 		{
 			"title": "単純ルール → 複雑行動（1/2）（2/2）",
+			"subtitle": "単純な局所ルールが複雑な大域パターンを自律生成する",
 			"layout": "default",
 			"content": [
 				"  <text x='40' y='114' font-size='11' fill='#aaa'>  高濃度方向へ進む</text>",
@@ -384,6 +408,7 @@
 		},
 		{
 			"title": "単純ルール → 複雑行動（2/2）（1/2）",
+			"subtitle": "セルオートマトンが証明する「単純→複雑」の計算原理",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">ACO アルゴリズム — 単純ルール4つ</text><rect x=\"30\" y=\"55\" width=\"360\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"210\" y=\"80\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">ルール1: フェロモン追従</text><text x=\"50\" y=\"106\" fill=\"#aaaaaa\" font-size=\"11\">次ノードを確率的に選択</text><text x=\"50\" y=\"126\" fill=\"#aaaaaa\" font-size=\"11\">P(i→j) ∝ τᵢⱼᵅ × ηᵢⱼᵝ</text><text x=\"50\" y=\"146\" fill=\"#aaaaaa\" font-size=\"11\">τ=フェロモン量, η=ヒューリスティック</text><text x=\"50\" y=\"166\" fill=\"#aaaaaa\" font-size=\"11\">α,β でバランスを調整</text><rect x=\"410\" y=\"55\" width=\"360\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"590\" y=\"80\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">ルール2: フェロモン付与</text><text x=\"430\" y=\"106\" fill=\"#aaaaaa\" font-size=\"11\">経路完了後に強化</text><text x=\"430\" y=\"126\" fill=\"#aaaaaa\" font-size=\"11\">Δτ = Q / Lₖ</text><text x=\"430\" y=\"146\" fill=\"#aaaaaa\" font-size=\"11\">Q=定数, L=経路長</text><text x=\"430\" y=\"166\" fill=\"#aaaaaa\" font-size=\"11\">短い経路ほど強く強化</text><rect x=\"30\" y=\"225\" width=\"360\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#00b4d8\" stroke-width=\"2\"/><text x=\"210\" y=\"250\" text-anchor=\"middle\" fill=\"#00b4d8\" font-size=\"12\" font-weight=\"bold\">ルール3: 蒸発</text><text x=\"50\" y=\"276\" fill=\"#aaaaaa\" font-size=\"11\">τᵢⱼ ← (1-ρ) × τᵢⱼ</text><text x=\"50\" y=\"296\" fill=\"#aaaaaa\" font-size=\"11\">ρ=蒸発率（0〜1）</text><text x=\"50\" y=\"316\" fill=\"#aaaaaa\" font-size=\"11\">古い解が忘れられる効果</text><text x=\"50\" y=\"336\" fill=\"#aaaaaa\" font-size=\"11\">局所最適からの脱出</text><rect x=\"410\" y=\"225\" width=\"360\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#7c4dff\" stroke-width=\"2\"/><text x=\"590\" y=\"250\" text-anchor=\"middle\" fill=\"#7c4dff\" font-size=\"12\" font-weight=\"bold\">ルール4: デーモン行動</text><text x=\"430\" y=\"276\" fill=\"#aaaaaa\" font-size=\"11\">グローバル最良解の強化</text><text x=\"430\" y=\"296\" fill=\"#aaaaaa\" font-size=\"11\">（ACS の場合）</text><text x=\"430\" y=\"316\" fill=\"#aaaaaa\" font-size=\"11\">中央集権的な補助的操作</text><text x=\"430\" y=\"336\" fill=\"#aaaaaa\" font-size=\"11\">収束速度を向上</text></svg>",
@@ -399,6 +424,7 @@
 		},
 		{
 			"title": "単純ルール → 複雑行動（2/2）（2/2）",
+			"subtitle": "各エージェントが持つ情報は局所だけで十分、集中知識不要",
 			"layout": "default",
 			"content": [
 				"  <text x='554' y='132' font-size='11' fill='#aaa'>if 需要 &lt; 閾値:</text>",
@@ -414,6 +440,7 @@
 		},
 		{
 			"title": "創発の条件（1/2）",
+			"subtitle": "非線形相互作用と正帰還が創発を引き起こす必要十分条件",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"15\" font-weight=\"bold\">創発が起きる4条件</text><rect x=\"30\" y=\"55\" width=\"360\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"210\" y=\"80\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">1. 局所的相互作用</text><text x=\"50\" y=\"106\" fill=\"#aaaaaa\" font-size=\"12\">個体は近隣とのみ相互作用</text><text x=\"50\" y=\"128\" fill=\"#aaaaaa\" font-size=\"12\">大域的な情報は不要</text><text x=\"50\" y=\"150\" fill=\"#aaaaaa\" font-size=\"12\">例: フェロモン接触範囲内のアリ</text><text x=\"50\" y=\"172\" fill=\"#aaaaaa\" font-size=\"12\">→ P2P / ゴシッププロトコル</text><rect x=\"410\" y=\"55\" width=\"360\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"590\" y=\"80\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">2. ポジティブフィードバック</text><text x=\"430\" y=\"106\" fill=\"#aaaaaa\" font-size=\"12\">良い行動が増幅される仕組み</text><text x=\"430\" y=\"128\" fill=\"#aaaaaa\" font-size=\"12\">フェロモン強化 → さらに追従</text><text x=\"430\" y=\"150\" fill=\"#aaaaaa\" font-size=\"12\">例: 人気経路がさらに強化</text><text x=\"430\" y=\"172\" fill=\"#aaaaaa\" font-size=\"12\">→ キャッシュヒット率向上</text><rect x=\"30\" y=\"230\" width=\"360\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#00b4d8\" stroke-width=\"2\"/><text x=\"210\" y=\"255\" text-anchor=\"middle\" fill=\"#00b4d8\" font-size=\"13\" font-weight=\"bold\">3. ネガティブフィードバック</text><text x=\"50\" y=\"281\" fill=\"#aaaaaa\" font-size=\"12\">暴走を防ぐ減衰機構</text><text x=\"50\" y=\"303\" fill=\"#aaaaaa\" font-size=\"12\">フェロモン蒸発で古い情報を忘却</text><text x=\"50\" y=\"325\" fill=\"#aaaaaa\" font-size=\"12\">→ TTL / レート制限</text><rect x=\"410\" y=\"230\" width=\"360\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#7c4dff\" stroke-width=\"2\"/><text x=\"590\" y=\"255\" text-anchor=\"middle\" fill=\"#7c4dff\" font-size=\"13\" font-weight=\"bold\">4. ランダム性</text><text x=\"430\" y=\"281\" fill=\"#aaaaaa\" font-size=\"12\">確率的な選択で多様性確保</text><text x=\"430\" y=\"303\" fill=\"#aaaaaa\" font-size=\"12\">局所最適からの脱出</text><text x=\"430\" y=\"325\" fill=\"#aaaaaa\" font-size=\"12\">→ ジッタ / カナリアリリース</text></svg>",
@@ -427,6 +454,7 @@
 		},
 		{
 			"title": "創発の条件（2/2）",
+			"subtitle": "多数の単純エージェントが密に相互作用する時に創発が起きる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"15\" font-weight=\"bold\">創発条件のシステム実装対応表</text><rect x=\"30\" y=\"50\" width=\"740\" height=\"50\" rx=\"6\" fill=\"#0f3460\"/><text x=\"50\" y=\"81\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">創発条件</text><text x=\"250\" y=\"81\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">アリのコロニー</text><text x=\"500\" y=\"81\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">分散システム</text><rect x=\"30\" y=\"100\" width=\"740\" height=\"50\" rx=\"4\" fill=\"#16213e\"/><text x=\"50\" y=\"131\" fill=\"#ffffff\" font-size=\"12\">局所的相互作用</text><text x=\"250\" y=\"131\" fill=\"#aaaaaa\" font-size=\"12\">フェロモン接触</text><text x=\"500\" y=\"131\" fill=\"#aaaaaa\" font-size=\"12\">ゴシップ / P2P</text><rect x=\"30\" y=\"152\" width=\"740\" height=\"50\" rx=\"4\" fill=\"#0f3460\"/><text x=\"50\" y=\"183\" fill=\"#ffffff\" font-size=\"12\">ポジティブFB</text><text x=\"250\" y=\"183\" fill=\"#aaaaaa\" font-size=\"12\">経路強化</text><text x=\"500\" y=\"183\" fill=\"#aaaaaa\" font-size=\"12\">キャッシュ / CDN</text><rect x=\"30\" y=\"204\" width=\"740\" height=\"50\" rx=\"4\" fill=\"#16213e\"/><text x=\"50\" y=\"235\" fill=\"#ffffff\" font-size=\"12\">ネガティブFB</text><text x=\"250\" y=\"235\" fill=\"#aaaaaa\" font-size=\"12\">フェロモン蒸発</text><text x=\"500\" y=\"235\" fill=\"#aaaaaa\" font-size=\"12\">TTL / サーキットブレーカ</text><rect x=\"30\" y=\"256\" width=\"740\" height=\"50\" rx=\"4\" fill=\"#0f3460\"/><text x=\"50\" y=\"287\" fill=\"#ffffff\" font-size=\"12\">ランダム性</text><text x=\"250\" y=\"287\" fill=\"#aaaaaa\" font-size=\"12\">確率的選択</text><text x=\"500\" y=\"287\" fill=\"#aaaaaa\" font-size=\"12\">ジッタ / カオスエンジニアリング</text><rect x=\"30\" y=\"330\" width=\"740\" height=\"45\" rx=\"6\" fill=\"#0f3460\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"400\" y=\"358\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\">4条件が揃うと → 中央制御なしに全体最適化が達成される</text></svg>",
@@ -457,6 +485,7 @@
 		},
 		{
 			"title": "Boids（鳥の群れ）との比較（2/2）",
+			"subtitle": "Boidsとアリの違いは媒体の有無、両者とも中央制御は不要",
 			"layout": "default",
 			"content": [
 				"**Boids の3ルール（Craig Reynolds, 1987）**",
@@ -484,6 +513,7 @@
 		},
 		{
 			"title": "コロニー ↔ 分散システム対応表（1/2）（1/2）",
+			"subtitle": "フェロモン=メッセージキュー、巣=DB、役割=マイクロサービス",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 340' style='max-height:62vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -500,6 +530,7 @@
 		},
 		{
 			"title": "コロニー ↔ 分散システム対応表（1/2）（2/2）",
+			"subtitle": "生物の解法がシステム設計に直接マッピングできる",
 			"layout": "default",
 			"content": [
 				"  <text x='195' y='65' text-anchor='middle' font-size='12' fill='#2d3436'>フェロモン経路</text>",
@@ -517,6 +548,7 @@
 		},
 		{
 			"title": "コロニー ↔ 分散システム対応表（2/2）（1/2）",
+			"subtitle": "耐障害性・スケーラビリティをコロニーは億年前に解決済み",
 			"layout": "default",
 			"content": [
 				"  <text x='585' y='145' text-anchor='middle' font-size='12' fill='#2d3436'>イベントソーシング・共有キュー</text>",
@@ -534,6 +566,7 @@
 		},
 		{
 			"title": "コロニー ↔ 分散システム対応表（2/2）（2/2）",
+			"subtitle": "生物概念を工学に翻訳する表がアーキテクチャ設計の羅針盤",
 			"layout": "default",
 			"content": [
 				"  <text x='195' y='265' text-anchor='middle' font-size='12' fill='#2d3436'>局所情報のみで判断</text>",
@@ -551,6 +584,7 @@
 		},
 		{
 			"title": "P2P設計とは",
+			"subtitle": "中央サーバなしに全ノードが対等通信する分散ネットワーク",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">中央集権 vs P2P設計</text><rect x=\"30\" y=\"50\" width=\"350\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"205\" y=\"76\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\">中央集権型</text><circle cx=\"205\" cy=\"160\" r=\"28\" fill=\"#e91e63\" opacity=\"0.4\"/><text x=\"205\" y=\"165\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">中央</text><circle cx=\"100\" cy=\"100\" r=\"14\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><text x=\"100\" y=\"105\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">N1</text><line x1=\"114\" y1=\"106\" x2=\"178\" y2=\"140\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><circle cx=\"310\" cy=\"100\" r=\"14\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><text x=\"310\" y=\"105\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">N2</text><line x1=\"296\" y1=\"106\" x2=\"232\" y2=\"140\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><circle cx=\"80\" cy=\"240\" r=\"14\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><text x=\"80\" y=\"245\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">N3</text><line x1=\"94\" y1=\"234\" x2=\"178\" y2=\"175\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><circle cx=\"330\" cy=\"240\" r=\"14\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><text x=\"330\" y=\"245\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"9\">N4</text><line x1=\"316\" y1=\"234\" x2=\"232\" y2=\"175\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><text x=\"205\" y=\"305\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">SPOFリスク: 中央がダウン</text><text x=\"205\" y=\"325\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">→ 全体が停止</text><rect x=\"420\" y=\"50\" width=\"350\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"595\" y=\"76\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">P2P型（アリ型）</text><circle cx=\"500\" cy=\"130\" r=\"14\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"500\" y=\"135\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"9\">N1</text><circle cx=\"600\" cy=\"100\" r=\"14\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"600\" y=\"105\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"9\">N2</text><circle cx=\"690\" cy=\"140\" r=\"14\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"690\" y=\"145\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"9\">N3</text><circle cx=\"670\" cy=\"230\" r=\"14\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"670\" y=\"235\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"9\">N4</text><circle cx=\"555\" cy=\"250\" r=\"14\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"555\" y=\"255\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"9\">N5</text><circle cx=\"460\" cy=\"215\" r=\"14\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"460\" y=\"220\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"9\">N6</text><line x1=\"514\" y1=\"130\" x2=\"586\" y2=\"106\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"614\" y1=\"104\" x2=\"676\" y2=\"132\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"686\" y1=\"154\" x2=\"676\" y2=\"218\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"658\" y1=\"236\" x2=\"569\" y2=\"250\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"541\" y1=\"252\" x2=\"474\" y2=\"228\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"462\" y1=\"201\" x2=\"496\" y2=\"138\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"575\" y=\"305\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">SPOF なし: 一部障害でも</text><text x=\"575\" y=\"325\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">→ 動作継続</text></svg>",
@@ -569,6 +603,7 @@
 		},
 		{
 			"title": "Gossipプロトコル（1/2）（1/2）",
+			"subtitle": "噂の伝播方式で障害耐性ある情報拡散を全ノードに届ける",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 320' style='max-height:60vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -585,6 +620,7 @@
 		},
 		{
 			"title": "Gossipプロトコル（1/2）（2/2）",
+			"subtitle": "指数的な情報伝播がO(log N)ラウンドで全ノード到達を保証",
 			"layout": "default",
 			"content": [
 				"  <text x='200' y='95' text-anchor='middle' font-size='10' fill='white'>Node B</text>",
@@ -601,6 +637,7 @@
 		},
 		{
 			"title": "Gossipプロトコル（2/2）（1/2）",
+			"subtitle": "一部のノード障害が全体の情報拡散に影響しない設計",
 			"layout": "default",
 			"content": [
 				"  <circle cx='560' cy='80' r='20' fill='#00b4d8'/>",
@@ -617,6 +654,7 @@
 		},
 		{
 			"title": "Gossipプロトコル（2/2）（2/2）",
+			"subtitle": "フェロモンとGossipは同じ確率的伝播パターンの工学版",
 			"layout": "default",
 			"content": [
 				"  <line x1='580' y1='88' x2='625' y2='105' stroke='#00b4d8' stroke-width='1.5'/>",
@@ -634,6 +672,7 @@
 		},
 		{
 			"title": "CAP定理と結果整合性（1/2）",
+			"subtitle": "C・A・Pを同時に満たせない制約でシステム設計方針が決まる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">CAP定理: 3つのうち2つしか選べない</text><polygon points=\"400,60 180,330 620,330\" fill=\"none\" stroke=\"#7c4dff\" stroke-width=\"2\"/><circle cx=\"400\" cy=\"60\" r=\"50\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"400\" y=\"54\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">C</text><text x=\"400\" y=\"72\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">一貫性</text><circle cx=\"180\" cy=\"330\" r=\"50\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"180\" y=\"324\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">A</text><text x=\"180\" y=\"342\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">可用性</text><circle cx=\"620\" cy=\"330\" r=\"50\" fill=\"#16213e\" stroke=\"#00b4d8\" stroke-width=\"2\"/><text x=\"620\" y=\"324\" text-anchor=\"middle\" fill=\"#00b4d8\" font-size=\"12\" font-weight=\"bold\">P</text><text x=\"620\" y=\"342\" text-anchor=\"middle\" fill=\"#00b4d8\" font-size=\"11\">分断耐性</text><text x=\"290\" y=\"200\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">CP系</text><text x=\"290\" y=\"216\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">HBase, Zookeeper</text><text x=\"510\" y=\"200\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">AP系</text><text x=\"510\" y=\"216\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">Cassandra, DynamoDB</text><text x=\"400\" y=\"340\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">CA系</text><text x=\"400\" y=\"356\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"10\">単一ノードRDB（分散では非現実的）</text></svg>",
@@ -647,6 +686,7 @@
 		},
 		{
 			"title": "CAP定理と結果整合性（2/2）",
+			"subtitle": "結果整合性はコロニーが自然に実践する分散合意の工学化",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">結果整合性 — アリ型の一貫性モデル</text><rect x=\"30\" y=\"55\" width=\"220\" height=\"280\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"140\" y=\"80\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">ノードA</text><rect x=\"50\" y=\"95\" width=\"160\" height=\"36\" rx=\"4\" fill=\"#0f3460\"/><text x=\"130\" y=\"118\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Write: x=1</text><rect x=\"50\" y=\"148\" width=\"160\" height=\"36\" rx=\"4\" fill=\"#0f3460\" opacity=\"0.6\"/><text x=\"130\" y=\"171\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">伝播中...</text><rect x=\"50\" y=\"201\" width=\"160\" height=\"36\" rx=\"4\" fill=\"#0f3460\"/><text x=\"130\" y=\"224\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">Read: x=1 ✓</text><rect x=\"290\" y=\"55\" width=\"220\" height=\"280\" rx=\"8\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><text x=\"400\" y=\"80\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"12\" font-weight=\"bold\">ノードB（一時的に古い）</text><rect x=\"310\" y=\"95\" width=\"160\" height=\"36\" rx=\"4\" fill=\"#0f3460\" opacity=\"0.4\"/><text x=\"390\" y=\"118\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">Read: x=0 (古い)</text><rect x=\"310\" y=\"148\" width=\"160\" height=\"36\" rx=\"4\" fill=\"#0f3460\" opacity=\"0.6\"/><text x=\"390\" y=\"171\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">更新受信中...</text><rect x=\"310\" y=\"201\" width=\"160\" height=\"36\" rx=\"4\" fill=\"#0f3460\"/><text x=\"390\" y=\"224\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">Read: x=1 ✓ (収束)</text><rect x=\"550\" y=\"55\" width=\"220\" height=\"280\" rx=\"8\" fill=\"#16213e\" stroke=\"#00b4d8\" stroke-width=\"1.5\"/><text x=\"660\" y=\"80\" text-anchor=\"middle\" fill=\"#00b4d8\" font-size=\"12\" font-weight=\"bold\">ノードC</text><rect x=\"570\" y=\"95\" width=\"160\" height=\"36\" rx=\"4\" fill=\"#0f3460\" opacity=\"0.4\"/><text x=\"650\" y=\"118\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">Read: x=0 (古い)</text><rect x=\"570\" y=\"148\" width=\"160\" height=\"36\" rx=\"4\" fill=\"#0f3460\" opacity=\"0.6\"/><text x=\"650\" y=\"171\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">更新受信中...</text><rect x=\"570\" y=\"201\" width=\"160\" height=\"36\" rx=\"4\" fill=\"#0f3460\"/><text x=\"650\" y=\"224\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">Read: x=1 ✓ (収束)</text><text x=\"400\" y=\"370\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\">最終的に全ノードが同じ状態に収束 = アリのフェロモン伝播と同じ</text></svg>",
@@ -660,6 +700,7 @@
 		},
 		{
 			"title": "スケールアウト設計（1/2）",
+			"subtitle": "水平追加で性能を線形拡張、ノード数に比例してスループット増",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">スケールアウト: アリ型の拡張</text><rect x=\"30\" y=\"55\" width=\"340\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><text x=\"200\" y=\"80\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"12\" font-weight=\"bold\">初期状態 (3ノード)</text><circle cx=\"200\" cy=\"150\" r=\"28\" fill=\"#0f3460\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"200\" y=\"155\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">N1</text><circle cx=\"110\" cy=\"240\" r=\"28\" fill=\"#0f3460\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"110\" y=\"245\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">N2</text><circle cx=\"290\" cy=\"240\" r=\"28\" fill=\"#0f3460\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"290\" y=\"245\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">N3</text><line x1=\"178\" y1=\"164\" x2=\"132\" y2=\"226\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"222\" y1=\"164\" x2=\"268\" y2=\"226\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"138\" y1=\"240\" x2=\"262\" y2=\"240\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"200\" y=\"310\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">処理能力: 100%</text><rect x=\"420\" y=\"55\" width=\"350\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"595\" y=\"80\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\">スケールアウト後 (6ノード)</text><circle cx=\"595\" cy=\"130\" r=\"22\" fill=\"#0f3460\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"595\" y=\"135\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">N1</text><circle cx=\"500\" cy=\"180\" r=\"22\" fill=\"#0f3460\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"500\" y=\"185\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">N2</text><circle cx=\"690\" cy=\"180\" r=\"22\" fill=\"#0f3460\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"690\" y=\"185\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">N3</text><circle cx=\"460\" cy=\"255\" r=\"22\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"460\" y=\"260\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">N4+</text><circle cx=\"595\" cy=\"275\" r=\"22\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"595\" y=\"280\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">N5+</text><circle cx=\"730\" cy=\"255\" r=\"22\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"730\" y=\"260\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\">N6+</text><line x1=\"578\" y1=\"140\" x2=\"516\" y2=\"170\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"612\" y1=\"140\" x2=\"674\" y2=\"170\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"480\" y1=\"192\" x2=\"471\" y2=\"243\" stroke=\"#e91e63\" stroke-width=\"1.5\" stroke-dasharray=\"4,2\"/><line x1=\"595\" y1=\"202\" x2=\"595\" y2=\"253\" stroke=\"#e91e63\" stroke-width=\"1.5\" stroke-dasharray=\"4,2\"/><line x1=\"678\" y1=\"195\" x2=\"720\" y2=\"243\" stroke=\"#e91e63\" stroke-width=\"1.5\" stroke-dasharray=\"4,2\"/><text x=\"595\" y=\"315\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">処理能力: 200%</text></svg>",
@@ -673,6 +714,7 @@
 		},
 		{
 			"title": "スケールアウト設計（2/2）",
+			"subtitle": "コロニーと同様に個体追加だけでシステム処理能力を拡張できる",
 			"layout": "default",
 			"content": [
 				"- **ステートレス設計**: サーバーに状態を持たせない",
@@ -691,10 +733,12 @@
 				"**障害前提設計（Design for Failure）**",
 				"- アリのコロニーは「障害は必ず起きる」という前提で動く",
 				"- 個々のアリの死は「通常のイベント」として扱われる"
-			]
+			],
+			"subtitle": "ヘルスチェック+自動再起動が平均復旧時間を最小化する"
 		},
 		{
 			"title": "耐障害性設計（1/2）（2/2）",
+			"subtitle": "障害を前提とした設計がMTTRを最小化する",
 			"layout": "default",
 			"content": [
 				"- コロニーレベルでは何事もなかったように動き続ける",
@@ -705,6 +749,7 @@
 		},
 		{
 			"title": "耐障害性設計（2/2）",
+			"subtitle": "ヘルスチェック・冗長化・自動復旧がアリの行動から学べる三原則",
 			"layout": "default",
 			"content": [
 				"- 障害注入テスト = フェロモン経路を意図的に断つ",
@@ -728,6 +773,7 @@
 		},
 		{
 			"title": "Apache Kafka（1/2）（1/2）",
+			"subtitle": "フェロモントレイルと同じ持続するログストリームで協調する",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 320' style='max-height:60vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -745,6 +791,7 @@
 		},
 		{
 			"title": "Apache Kafka（1/2）（2/2）",
+			"subtitle": "パーティション=フェロモン経路、Consumer Group=ワーカーアリ集団",
 			"layout": "default",
 			"content": [
 				"  <rect x='35' y='160' width='150' height='30' rx='4' fill='#0f3460'/>",
@@ -762,6 +809,7 @@
 		},
 		{
 			"title": "Apache Kafka（2/2）（1/2）",
+			"subtitle": "ブローカー障害時もレプリカが即座に引き継ぐ高可用設計",
 			"layout": "default",
 			"content": [
 				"  <rect x='295' y='150' width='190' height='25' rx='3' fill='#0f3460'/>",
@@ -779,6 +827,7 @@
 		},
 		{
 			"title": "Apache Kafka（2/2）（2/2）",
+			"subtitle": "億件/秒のイベントをアリのフェロモン経路と同原理で処理する",
 			"layout": "default",
 			"content": [
 				"  <rect x='595' y='160' width='150' height='30' rx='4' fill='#0f3460'/>",
@@ -797,6 +846,7 @@
 		},
 		{
 			"title": "Amazon DynamoDB（1/2）（1/2）",
+			"subtitle": "結果整合性で世界規模の可用性と低レイテンシを両立する",
 			"layout": "default",
 			"content": [
 				"**DynamoDB ＝ スティグマジー的な結果整合性**",
@@ -807,6 +857,7 @@
 		},
 		{
 			"title": "Amazon DynamoDB（1/2）（2/2）",
+			"subtitle": "コロニーが局所情報で動くようにDynamoDBも局所レプリカで応答",
 			"layout": "default",
 			"content": [
 				"- 各ノードは独立してリクエストを処理",
@@ -817,6 +868,7 @@
 		},
 		{
 			"title": "Amazon DynamoDB（2/2）（1/2）",
+			"subtitle": "コンシステントハッシュがノード追加を無停止でスケールする",
 			"layout": "default",
 			"content": [
 				"- 書き込み → 一部のレプリカに即座に反映",
@@ -827,6 +879,7 @@
 		},
 		{
 			"title": "Amazon DynamoDB（2/2）（2/2）",
+			"subtitle": "AZ障害時も複数レプリカが即時引き継ぐ自律障害回復",
 			"layout": "default",
 			"content": [
 				"**アリとの対応**",
@@ -847,6 +900,7 @@
 		},
 		{
 			"title": "Kubernetes（1/2）（2/2）",
+			"subtitle": "宣言的状態管理がアリの役割補充と同じ自己修復を実現する",
 			"layout": "default",
 			"content": [
 				"- 「こうあるべき状態」を宣言するだけ",
@@ -858,6 +912,7 @@
 		},
 		{
 			"title": "Kubernetes（2/2）（1/2）",
+			"subtitle": "Podの自動スケールはワーカーアリの需要応答分業と等価",
 			"layout": "default",
 			"content": [
 				"- 各Nodeのリソース状況をローカルに把握",
@@ -868,6 +923,7 @@
 		},
 		{
 			"title": "Kubernetes（2/2）（2/2）",
+			"subtitle": "ノード消滅を前提に設計するChaos Engineeringの実践",
 			"layout": "default",
 			"content": [
 				"**アリとの対応**",
@@ -888,6 +944,7 @@
 		},
 		{
 			"title": "BitTorrent（1/2）（2/2）",
+			"subtitle": "P2Pファイル共有はフェロモン伝播と同じ分散情報流通の工学化",
 			"layout": "default",
 			"content": [
 				"- トラッカー（またはDHT）でピアを発見",
@@ -898,6 +955,7 @@
 		},
 		{
 			"title": "BitTorrent（2/2）",
+			"subtitle": "ピア数増加が速度向上に直結する正帰還がコロニーと同原理",
 			"layout": "default",
 			"content": [
 				"**アリとの完全な対応**",
@@ -911,6 +969,7 @@
 		},
 		{
 			"title": "Consul / etcd（1/2）（1/2）",
+			"subtitle": "分散KVStoreがRaftで強整合性を保ちサービスディスカバリを実現",
 			"layout": "default",
 			"content": [
 				"**分散サービスディスカバリ ＝ フェロモンマップ**",
@@ -921,6 +980,7 @@
 		},
 		{
 			"title": "Consul / etcd（1/2）（2/2）",
+			"subtitle": "ヘルスチェック失敗を即座に伝播しルーティングを自動更新する",
 			"layout": "default",
 			"content": [
 				"- ヘルスチェック: 生存しているかを定期確認",
@@ -931,6 +991,7 @@
 		},
 		{
 			"title": "Consul / etcd（2/2）（1/2）",
+			"subtitle": "Leaderが落ちても過半数ノードが生存すれば5秒以内に再選出",
 			"layout": "default",
 			"content": [
 				"- 過半数の合意でデータを確定（多数決原理）",
@@ -941,6 +1002,7 @@
 		},
 		{
 			"title": "Consul / etcd（2/2）（2/2）",
+			"subtitle": "設定変更をリアルタイムにWatch配信するGossipベース伝播",
 			"layout": "default",
 			"content": [
 				"**アリとの対応**",
@@ -951,6 +1013,7 @@
 		},
 		{
 			"title": "事例比較まとめ（1/2）（1/2）",
+			"subtitle": "5つの事例すべてにフェロモン・創発・耐障害性が共通する",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 320' style='max-height:60vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -969,6 +1032,7 @@
 		},
 		{
 			"title": "事例比較まとめ（1/2）（2/2）",
+			"subtitle": "スケール・整合性・耐障害性のトレードオフが選択を決める",
 			"layout": "default",
 			"content": [
 				"  <rect x='0' y='38' width='780' height='44' fill='#fff9c4'/>",
@@ -987,6 +1051,7 @@
 		},
 		{
 			"title": "事例比較まとめ（2/2）（1/2）",
+			"subtitle": "コロニー原則を適用した製品が業界標準として生き残っている",
 			"layout": "default",
 			"content": [
 				"  <text x='640' y='109' text-anchor='middle' font-size='11' fill='#636e72'>一貫性ハッシング</text>",
@@ -1005,6 +1070,7 @@
 		},
 		{
 			"title": "事例比較まとめ（2/2）（2/2）",
+			"subtitle": "アリから学んだ設計が現代の数十億ユーザーを支えている",
 			"layout": "default",
 			"content": [
 				"  <text x='450' y='197' text-anchor='middle' font-size='11' fill='#636e72'>結果整合性</text>",
@@ -1034,6 +1100,7 @@
 		},
 		{
 			"title": "よくある落とし穴（1/2）",
+			"subtitle": "分散化のコスト増大を見落とすと運用地獄に陥る",
 			"layout": "default",
 			"content": [
 				"**「創発を期待しすぎる」Anti-Pattern**",
@@ -1047,6 +1114,7 @@
 		},
 		{
 			"title": "よくある落とし穴（2/2）（1/2）",
+			"subtitle": "デバッグ困難性と結果整合性の誤解が本番障害を生む",
 			"layout": "default",
 			"content": [
 				"- 誤解:「分散なんだから全体は把握できなくていい」",
@@ -1057,6 +1125,7 @@
 		},
 		{
 			"title": "よくある落とし穴（2/2）（2/2）",
+			"subtitle": "複雑性とオーバーヘッドを許容できる規模かを事前に問う",
 			"layout": "default",
 			"content": [
 				"- 誤解:「結果整合性なら何でもいい」",
@@ -1067,6 +1136,7 @@
 		},
 		{
 			"title": "自システムへの適用フレームワーク（1/2）（1/2）",
+			"subtitle": "自システムにコロニー原則を適用する6ステップの判断軸",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 310' style='max-height:58vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -1082,6 +1152,7 @@
 		},
 		{
 			"title": "自システムへの適用フレームワーク（1/2）（2/2）",
+			"subtitle": "問題の分解可能性と独立性が分散適用の前提条件",
 			"layout": "default",
 			"content": [
 				"  <text x='40' y='144' font-size='11' fill='#aaa'>判断ルールを定義する</text>",
@@ -1098,6 +1169,7 @@
 		},
 		{
 			"title": "自システムへの適用フレームワーク（2/2）（1/2）",
+			"subtitle": "フィードバックループ設計がシステム自律調整の中核",
 			"layout": "default",
 			"content": [
 				"  <text x='297' y='126' font-size='11' fill='#aaa'>正と負のフィードバック</text>",
@@ -1114,6 +1186,7 @@
 		},
 		{
 			"title": "自システムへの適用フレームワーク（2/2）（2/2）",
+			"subtitle": "段階的移行で既存システムリスクを最小化しながら分散化する",
 			"layout": "default",
 			"content": [
 				"  <text x='647' y='102' text-anchor='middle' font-size='13' font-weight='bold' fill='#55efc4'>観測性の確保</text>",
@@ -1130,6 +1203,7 @@
 		},
 		{
 			"title": "ケーススタディ演習（1/2）",
+			"subtitle": "理論をリアルな障害シナリオで検証し設計判断を鍛える",
 			"layout": "default",
 			"content": [
 				"**グループワーク（30分）**",
@@ -1143,6 +1217,7 @@
 		},
 		{
 			"title": "ケーススタディ演習（2/2）",
+			"subtitle": "グループでトレードオフを議論し実装判断の根拠を言語化する",
 			"layout": "default",
 			"content": [
 				"- 在庫の二重販売は絶対に防ぐ",
@@ -1156,6 +1231,7 @@
 		},
 		{
 			"title": "グループディスカッション（1/2）",
+			"subtitle": "自チームのシステムにアリ原則を適用できる箇所を特定する",
 			"layout": "default",
 			"content": [
 				"**発表・フィードバック**",
@@ -1168,6 +1244,7 @@
 		},
 		{
 			"title": "グループディスカッション（2/2）",
+			"subtitle": "具体的改善アイデアをチームで合意し翌週のアクションに変える",
 			"layout": "default",
 			"content": [
 				"",
@@ -1191,6 +1268,7 @@
 		},
 		{
 			"title": "今日学んだこと（1/2）",
+			"subtitle": "フェロモン・スティグマジー・創発が分散設計の三本柱",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\">学習マップ: アリ → 分散システム</text><rect x=\"30\" y=\"50\" width=\"220\" height=\"55\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"140\" y=\"83\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">フェロモン通信</text><line x1=\"250\" y1=\"77\" x2=\"310\" y2=\"77\" stroke=\"#7c4dff\" stroke-width=\"2\"/><polygon points=\"308,71 320,77 308,83\" fill=\"#7c4dff\"/><rect x=\"320\" y=\"50\" width=\"220\" height=\"55\" rx=\"6\" fill=\"#0f3460\" stroke=\"#7c4dff\" stroke-width=\"1.5\"/><text x=\"430\" y=\"83\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">Gossipプロトコル</text><rect x=\"30\" y=\"130\" width=\"220\" height=\"55\" rx=\"6\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"140\" y=\"163\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\">スティグマジー</text><line x1=\"250\" y1=\"157\" x2=\"310\" y2=\"157\" stroke=\"#7c4dff\" stroke-width=\"2\"/><polygon points=\"308,151 320,157 308,163\" fill=\"#7c4dff\"/><rect x=\"320\" y=\"130\" width=\"220\" height=\"55\" rx=\"6\" fill=\"#0f3460\" stroke=\"#7c4dff\" stroke-width=\"1.5\"/><text x=\"430\" y=\"163\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">イベントソーシング</text><rect x=\"30\" y=\"210\" width=\"220\" height=\"55\" rx=\"6\" fill=\"#16213e\" stroke=\"#00b4d8\" stroke-width=\"2\"/><text x=\"140\" y=\"243\" text-anchor=\"middle\" fill=\"#00b4d8\" font-size=\"11\">役割分担（閾値）</text><line x1=\"250\" y1=\"237\" x2=\"310\" y2=\"237\" stroke=\"#7c4dff\" stroke-width=\"2\"/><polygon points=\"308,231 320,237 308,243\" fill=\"#7c4dff\"/><rect x=\"320\" y=\"210\" width=\"220\" height=\"55\" rx=\"6\" fill=\"#0f3460\" stroke=\"#7c4dff\" stroke-width=\"1.5\"/><text x=\"430\" y=\"243\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">HPA / オートスケール</text><rect x=\"30\" y=\"290\" width=\"220\" height=\"55\" rx=\"6\" fill=\"#16213e\" stroke=\"#7c4dff\" stroke-width=\"2\"/><text x=\"140\" y=\"323\" text-anchor=\"middle\" fill=\"#7c4dff\" font-size=\"11\">創発的最適化</text><line x1=\"250\" y1=\"317\" x2=\"310\" y2=\"317\" stroke=\"#7c4dff\" stroke-width=\"2\"/><polygon points=\"308,311 320,317 308,323\" fill=\"#7c4dff\"/><rect x=\"320\" y=\"290\" width=\"220\" height=\"55\" rx=\"6\" fill=\"#0f3460\" stroke=\"#7c4dff\" stroke-width=\"1.5\"/><text x=\"430\" y=\"323\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">ACO最適化アルゴリズム</text><rect x=\"580\" y=\"50\" width=\"190\" height=\"300\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"675\" y=\"76\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\">実システム事例</text><text x=\"600\" y=\"106\" fill=\"#aaaaaa\" font-size=\"11\">Apache Kafka</text><text x=\"600\" y=\"132\" fill=\"#aaaaaa\" font-size=\"11\">Amazon DynamoDB</text><text x=\"600\" y=\"158\" fill=\"#aaaaaa\" font-size=\"11\">Kubernetes</text><text x=\"600\" y=\"184\" fill=\"#aaaaaa\" font-size=\"11\">BitTorrent</text><text x=\"600\" y=\"210\" fill=\"#aaaaaa\" font-size=\"11\">Consul / etcd</text></svg>",
@@ -1203,6 +1281,7 @@
 		},
 		{
 			"title": "今日学んだこと（2/2）",
+			"subtitle": "Kafka・DynamoDB・Kubernetesがアリ原則の工学的実装",
 			"layout": "default",
 			"content": [
 				"4. **P2P = アリのコロニーの工学的実装** — Kafka・DynamoDB・K8sに流れる同じ原理",
@@ -1214,6 +1293,7 @@
 		},
 		{
 			"title": "女王なき組織設計の哲学（1/2）",
+			"subtitle": "人間組織もアリのように中央集権なしに高成果を出せる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"15\" font-weight=\"bold\">中央制御 vs 自律分散: 哲学的比較</text><rect x=\"30\" y=\"55\" width=\"350\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><text x=\"205\" y=\"80\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"13\" font-weight=\"bold\">中央集権型（従来）</text><text x=\"205\" y=\"114\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"20\">♛</text><line x1=\"205\" y1=\"130\" x2=\"120\" y2=\"175\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><line x1=\"205\" y1=\"130\" x2=\"205\" y2=\"175\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><line x1=\"205\" y1=\"130\" x2=\"290\" y2=\"175\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><circle cx=\"120\" cy=\"185\" r=\"12\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><circle cx=\"205\" cy=\"185\" r=\"12\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><circle cx=\"290\" cy=\"185\" r=\"12\" fill=\"#16213e\" stroke=\"#aaaaaa\" stroke-width=\"1.5\"/><text x=\"205\" y=\"240\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">単一障害点 / ボトルネック</text><text x=\"205\" y=\"260\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">スケール困難</text><text x=\"205\" y=\"280\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\">設計者の限界が上限</text><rect x=\"420\" y=\"55\" width=\"350\" height=\"300\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"595\" y=\"80\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">自律分散型（アリ型）</text><circle cx=\"500\" cy=\"140\" r=\"14\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><circle cx=\"595\" cy=\"120\" r=\"14\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><circle cx=\"690\" cy=\"140\" r=\"14\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><circle cx=\"545\" cy=\"200\" r=\"14\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><circle cx=\"645\" cy=\"200\" r=\"14\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><line x1=\"514\" y1=\"140\" x2=\"581\" y2=\"124\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"609\" y1=\"124\" x2=\"676\" y2=\"136\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"510\" y1=\"150\" x2=\"535\" y2=\"190\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"609\" y1=\"130\" x2=\"555\" y2=\"190\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"680\" y1=\"150\" x2=\"655\" y2=\"190\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><line x1=\"559\" y1=\"200\" x2=\"631\" y2=\"200\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"595\" y=\"250\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">SPOF なし / 水平スケール</text><text x=\"595\" y=\"270\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">自己修復 / 創発的最適化</text><text x=\"595\" y=\"290\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\">設計者の想定を超えた知性</text></svg>",
@@ -1227,6 +1307,7 @@
 		},
 		{
 			"title": "女王なき組織設計の哲学（2/2）",
+			"subtitle": "自律・分散・創発が次世代の組織設計原則になりつつある",
 			"layout": "default",
 			"content": [
 				"",
@@ -1240,6 +1321,7 @@
 		},
 		{
 			"title": "参考文献・ツール（1/2）",
+			"subtitle": "実装の第一歩に使えるライブラリとアルゴリズム一覧",
 			"layout": "default",
 			"content": [
 				"**書籍**",
@@ -1252,6 +1334,7 @@
 		},
 		{
 			"title": "参考文献・ツール（2/2）",
+			"subtitle": "理論を深掘りするための論文・書籍リソース集",
 			"layout": "default",
 			"content": [
 				"- [Kafka: a Distributed Messaging System (LinkedIn, 2011)](https://www.microsoft.com/en-us/research/publication/kafka-a-distributed-messaging-system-for-log-processing/)",

@@ -14,6 +14,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "6ステップでフェルミ推定をビジネス意思決定に活かす全体像",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 430\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"430\" fill=\"#1a1a2e\" rx=\"12\"/>\n<text x=\"400\" y=\"40\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\">本日のプログラム</text>\n\n<rect x=\"80\" y=\"80\" width=\"640\" height=\"46\" rx=\"8\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/>\n<rect x=\"80\" y=\"80\" width=\"90\" height=\"46\" rx=\"8\" fill=\"#2196f3\" opacity=\"0.8\"/>\n<text x=\"125\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\">Ch.1</text>\n<text x=\"350\" y=\"108\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\">フェルミ推定とは</text>\n<text x=\"660\" y=\"108\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"13\">20分</text>\n\n<rect x=\"80\" y=\"150\" width=\"640\" height=\"46\" rx=\"8\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<rect x=\"80\" y=\"150\" width=\"90\" height=\"46\" rx=\"8\" fill=\"#4caf50\" opacity=\"0.8\"/>\n<text x=\"125\" y=\"178\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\">Ch.2</text>\n<text x=\"350\" y=\"178\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\">美容院問題を解く</text>\n<text x=\"660\" y=\"178\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"13\">25分</text>\n\n<rect x=\"80\" y=\"220\" width=\"640\" height=\"46\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<rect x=\"80\" y=\"220\" width=\"90\" height=\"46\" rx=\"8\" fill=\"#e91e63\" opacity=\"0.8\"/>\n<text x=\"125\" y=\"248\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\">Ch.3</text>\n<text x=\"350\" y=\"248\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\">ワークショップ実習</text>\n<text x=\"660\" y=\"248\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\">30分</text>\n\n<rect x=\"80\" y=\"290\" width=\"640\" height=\"46\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<rect x=\"80\" y=\"290\" width=\"90\" height=\"46\" rx=\"8\" fill=\"#f9a825\" opacity=\"0.8\"/>\n<text x=\"125\" y=\"318\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\">Ch.4</text>\n<text x=\"350\" y=\"318\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\">市場規模推定応用</text>\n<text x=\"660\" y=\"318\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\">25分</text>\n\n<rect x=\"80\" y=\"360\" width=\"640\" height=\"46\" rx=\"8\" fill=\"#16213e\" stroke=\"#ab47bc\" stroke-width=\"2\"/>\n<rect x=\"80\" y=\"360\" width=\"90\" height=\"46\" rx=\"8\" fill=\"#ab47bc\" opacity=\"0.8\"/>\n<text x=\"125\" y=\"388\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\">Ch.5</text>\n<text x=\"350\" y=\"388\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"14\">数字で語るコツ</text>\n<text x=\"660\" y=\"388\" text-anchor=\"middle\" fill=\"#ab47bc\" font-size=\"13\">15分</text>\n\n</svg>",
@@ -47,6 +48,7 @@
 		},
 		{
 			"title": "フェルミ推定の定義（2/2）",
+			"subtitle": "フェルミ推定は「正確な答え」でなく「思考の質」を鍛える技法",
 			"layout": "default",
 			"content": [
 				"- 有名な問い: 「シカゴに調律師は何人いるか?」",
@@ -58,6 +60,7 @@
 		},
 		{
 			"title": "なぜエンジニアに有効か（1/2）（1/2）",
+			"subtitle": "エンジニアの分解思考とフェルミ推定は本質的に同じ構造をもつ",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 300' style='max-height:58vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -72,6 +75,7 @@
 		},
 		{
 			"title": "なぜエンジニアに有効か（1/2）（2/2）",
+			"subtitle": "データがなくても構造的に考えれば10倍精度の概算が出せる",
 			"layout": "default",
 			"content": [
 				"  <text x='390' y='130' text-anchor='middle' fill='#888' font-size='26'>⟺</text>",
@@ -86,6 +90,7 @@
 		},
 		{
 			"title": "なぜエンジニアに有効か（2/2）（1/2）",
+			"subtitle": "仮説検証サイクルをフェルミ推定で高速に回せる",
 			"layout": "default",
 			"content": [
 				"  <text x='595' y='129' text-anchor='middle' fill='#1a5c2a' font-size='14'>問題の分解</text>",
@@ -100,6 +105,7 @@
 		},
 		{
 			"title": "なぜエンジニアに有効か（2/2）（2/2）",
+			"subtitle": "「なぜその数字か」を説明できることが意思決定の信頼を生む",
 			"layout": "default",
 			"content": [
 				"  <rect x='440' y='199' width='310' height='38' rx='6' fill='#e6f4ea'/>",
@@ -114,6 +120,7 @@
 		},
 		{
 			"title": "思考の3ステップ（1/2）（1/2）",
+			"subtitle": "問題分解・基準値選択・計算の3ステップが推定の骨格をなす",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 280' style='max-height:55vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -128,6 +135,7 @@
 		},
 		{
 			"title": "思考の3ステップ（1/2）（2/2）",
+			"subtitle": "基準値は人口・面積・時間など身近な数字を出発点にする",
 			"layout": "default",
 			"content": [
 				"  <text x='130' y='183' text-anchor='middle' fill='#cce3ff' font-size='14'>小さく切り出す</text>",
@@ -142,6 +150,7 @@
 		},
 		{
 			"title": "思考の3ステップ（2/2）（1/2）",
+			"subtitle": "計算精度より分解の妥当性を問うことが訓練の核心だ",
 			"layout": "default",
 			"content": [
 				"  <text x='405' y='135' text-anchor='middle' fill='white' font-size='20' font-weight='bold'>仮説を立てる</text>",
@@ -156,6 +165,7 @@
 		},
 		{
 			"title": "思考の3ステップ（2/2）（2/2）",
+			"subtitle": "ステップを踏むことで答えのないビジネス問題に仮説が立てられる",
 			"layout": "default",
 			"content": [
 				"  <rect x='580' y='60' width='200' height='160' rx='12' fill='#ea4335' opacity='0.9'/>",
@@ -202,6 +212,7 @@
 		},
 		{
 			"title": "Step 1: 問題を分解する（1/2）（1/2）",
+			"subtitle": "問題をMECEに分解することが精度よりも先に来る",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 360' style='max-height:60vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -221,6 +232,7 @@
 		},
 		{
 			"title": "Step 1: 問題を分解する（1/2）（2/2）",
+			"subtitle": "分解の粒度が細かすぎると計算が複雑になり誤差が増える",
 			"layout": "default",
 			"content": [
 				"  <rect x='60' y='123' width='270' height='48' rx='8' fill='#34a853'/>",
@@ -240,6 +252,7 @@
 		},
 		{
 			"title": "Step 1: 問題を分解する（2/2）（1/2）",
+			"subtitle": "分解後に各要素の基準値を独立に見積もることが鍵",
 			"layout": "default",
 			"content": [
 				"  <rect x='35' y='211' width='110' height='52' rx='6' fill='#e6f4ea' stroke='#34a853' stroke-width='1.5'/>",
@@ -259,6 +272,7 @@
 		},
 		{
 			"title": "Step 1: 問題を分解する（2/2）（2/2）",
+			"subtitle": "計算ミスより分解ミスの方が最終誤差への影響が大きい",
 			"layout": "default",
 			"content": [
 				"  <line x1='505' y1='191' x2='505' y2='211' stroke='#555' stroke-width='1.5'/>",
@@ -295,6 +309,7 @@
 		},
 		{
 			"title": "Step 3: 計算して答えを出す（1/2）",
+			"subtitle": "概算は「オーダーが合う」レベルで意思決定に十分使える",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\" rx=\"12\"/>\n<text x=\"400\" y=\"35\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">計算プロセスの可視化</text>\n<rect x=\"60\" y=\"70\" width=\"280\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"97\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"13\" font-weight=\"bold\">需要側</text>\n<text x=\"200\" y=\"118\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">1,400万 × 80% × 1回</text>\n<line x1=\"340\" y1=\"100\" x2=\"380\" y2=\"100\" stroke=\"#aaa\" stroke-width=\"1.5\"/>\n<polygon points=\"380,93 394,100 380,107\" fill=\"#aaa\"/>\n<rect x=\"385\" y=\"70\" width=\"150\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"460\" y=\"97\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">1,120万</text>\n<text x=\"460\" y=\"115\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">回/月</text>\n<rect x=\"60\" y=\"180\" width=\"280\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"207\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"13\" font-weight=\"bold\">供給側</text>\n<text x=\"200\" y=\"228\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">8人/日 × 25日</text>\n<line x1=\"340\" y1=\"210\" x2=\"380\" y2=\"210\" stroke=\"#aaa\" stroke-width=\"1.5\"/>\n<polygon points=\"380,203 394,210 380,217\" fill=\"#aaa\"/>\n<rect x=\"385\" y=\"180\" width=\"150\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"460\" y=\"207\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">200</text>\n<text x=\"460\" y=\"225\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">人/月/店</text>\n<line x1=\"540\" y1=\"100\" x2=\"600\" y2=\"155\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<line x1=\"540\" y1=\"210\" x2=\"600\" y2=\"155\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"650\" y=\"148\" fill=\"#f9a825\" font-size=\"20\">÷</text>\n<rect x=\"200\" y=\"290\" width=\"400\" height=\"60\" rx=\"12\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"318\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\">= 約 5.6万件</text>\n<text x=\"400\" y=\"338\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">1,120万 ÷ 200 = 56,000</text>\n</svg>",
@@ -340,10 +355,12 @@
 				"**推定結果: 5〜6万件 → ほぼ一致！**",
 				""
 			],
-			"speakerNotes": "実際の数字と一致したことで参加者の自信につながる。ずれた場合の話も忘れずに。"
+			"speakerNotes": "実際の数字と一致したことで参加者の自信につながる。ずれた場合の話も忘れずに。",
+			"subtitle": "複数経路の答え合わせで精度を検証できる"
 		},
 		{
 			"title": "解答と考察（2/2）",
+			"subtitle": "解答のズレを分析すると次回の分解精度が上がる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 390\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"390\" fill=\"#1a1a2e\" rx=\"12\"/>\n<text x=\"400\" y=\"35\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">振り返り: 何を学ぶか</text>\n\n<circle cx=\"80\" cy=\"108\" r=\"22\" fill=\"#2196f3\" opacity=\"0.9\"/>\n<text x=\"80\" y=\"114\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"16\" font-weight=\"bold\">1</text>\n<text x=\"140\" y=\"102\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\">仮定の置き方で答えが変わる</text>\n<text x=\"140\" y=\"122\" fill=\"#aaa\" font-size=\"12\">→ 感度分析が大切</text>\n\n<circle cx=\"80\" cy=\"180\" r=\"22\" fill=\"#4caf50\" opacity=\"0.9\"/>\n<text x=\"80\" y=\"186\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"16\" font-weight=\"bold\">2</text>\n<text x=\"140\" y=\"174\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\">「思考の筋道」が価値</text>\n<text x=\"140\" y=\"194\" fill=\"#aaa\" font-size=\"12\">→ 正確さより論理</text>\n\n<circle cx=\"80\" cy=\"252\" r=\"22\" fill=\"#e91e63\" opacity=\"0.9\"/>\n<text x=\"80\" y=\"258\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"16\" font-weight=\"bold\">3</text>\n<text x=\"140\" y=\"246\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\">実データで検証する習慣</text>\n<text x=\"140\" y=\"266\" fill=\"#aaa\" font-size=\"12\">→ ずれた原因を探す</text>\n\n<circle cx=\"80\" cy=\"324\" r=\"22\" fill=\"#f9a825\" opacity=\"0.9\"/>\n<text x=\"80\" y=\"330\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"16\" font-weight=\"bold\">4</text>\n<text x=\"140\" y=\"318\" fill=\"#ffffff\" font-size=\"14\" font-weight=\"bold\">どの仮定がずれたか分析</text>\n<text x=\"140\" y=\"338\" fill=\"#aaa\" font-size=\"12\">→ 次回の改善に</text>\n\n</svg>",
@@ -374,10 +391,12 @@
 				"**問題 B**: 東京都内を走るタクシーは何台か?",
 				""
 			],
-			"speakerNotes": "グループ分けはランダムが望ましい。付箋やホワイトボードがあると効果的。"
+			"speakerNotes": "グループ分けはランダムが望ましい。付箋やホワイトボードがあると効果的。",
+			"subtitle": "5分制限で答えを出す練習が最速の習得法"
 		},
 		{
 			"title": "実習問題一覧（2/2）",
+			"subtitle": "実習問題を解くことで頭の中の「分解筋」が育つ",
 			"layout": "default",
 			"content": [
 				"**進め方:**",
@@ -399,10 +418,12 @@
 				"",
 				"- 日本の人口: 約1.2億人"
 			],
-			"speakerNotes": "ヒントを出しすぎないようにする。詰まっているグループにだけヒントを示す。"
+			"speakerNotes": "ヒントを出しすぎないようにする。詰まっているグループにだけヒントを示す。",
+			"subtitle": "人口密度と商圏面積から5万5千店を導出できる"
 		},
 		{
 			"title": "問題 A: 日本のコンビニの数（2/2）",
+			"subtitle": "コンビニ密度×面積で日本全体の店舗数を概算できる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 420\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"420\" fill=\"#1a1a2e\" rx=\"12\"/>\n<text x=\"400\" y=\"35\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">問題A 解くためのポイント</text>\n\n<rect x=\"60\" y=\"80\" width=\"680\" height=\"64\" rx=\"10\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/>\n<rect x=\"60\" y=\"80\" width=\"8\" height=\"64\" rx=\"4\" fill=\"#2196f3\"/>\n<text x=\"120\" y=\"108\" fill=\"#2196f3\" font-size=\"14\" font-weight=\"bold\">都市部 vs 地方</text>\n<text x=\"120\" y=\"130\" fill=\"#ffffff\" font-size=\"12\">都市は密度高、地方は少ない</text>\n\n<rect x=\"60\" y=\"170\" width=\"680\" height=\"64\" rx=\"10\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<rect x=\"60\" y=\"170\" width=\"8\" height=\"64\" rx=\"4\" fill=\"#4caf50\"/>\n<text x=\"120\" y=\"198\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"bold\">1店あたりの来客数</text>\n<text x=\"120\" y=\"220\" fill=\"#ffffff\" font-size=\"12\">1日何人が利用するか逆算</text>\n\n<rect x=\"60\" y=\"260\" width=\"680\" height=\"64\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<rect x=\"60\" y=\"260\" width=\"8\" height=\"64\" rx=\"4\" fill=\"#e91e63\"/>\n<text x=\"120\" y=\"288\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">商圏の考え方</text>\n<text x=\"120\" y=\"310\" fill=\"#ffffff\" font-size=\"12\">徒歩・自転車圏内の人口</text>\n\n<rect x=\"200\" y=\"360\" width=\"400\" height=\"40\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"400\" y=\"384\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">制限時間: 15分</text>\n</svg>",
@@ -425,10 +446,12 @@
 				"",
 				"- 東京の人口: 約1,400万人"
 			],
-			"speakerNotes": "タクシーは規制産業なので供給制限がある点を後の解説で触れる。"
+			"speakerNotes": "タクシーは規制産業なので供給制限がある点を後の解説で触れる。",
+			"subtitle": "稼働時間と乗客需要から3万台を近似できる"
 		},
 		{
 			"title": "問題 B: 東京のタクシー台数（2/2）",
+			"subtitle": "需要側から積み上げると台数の上限と下限が見えてくる",
 			"layout": "default",
 			"content": [
 				"- タクシー利用シーン（雨の日、深夜、ビジネス等）",
@@ -441,6 +464,7 @@
 		},
 		{
 			"title": "グループワーク & 発表（1/2）",
+			"subtitle": "グループで異なる分解アプローチを比較することで学びが深まる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"400\" fill=\"#1a1a2e\" rx=\"12\"/>\n<text x=\"400\" y=\"35\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">発表の構成</text>\n\n<rect x=\"80\" y=\"90\" width=\"180\" height=\"120\" rx=\"10\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/>\n<circle cx=\"170\" cy=\"125\" r=\"25\" fill=\"#2196f3\"/>\n<text x=\"170\" y=\"132\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"18\" font-weight=\"bold\">①</text>\n<text x=\"170\" y=\"170\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"14\" font-weight=\"bold\">分解</text>\n<text x=\"170\" y=\"190\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">どう変数を選んだか</text>\n\n<rect x=\"300\" y=\"90\" width=\"180\" height=\"120\" rx=\"10\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<circle cx=\"390\" cy=\"125\" r=\"25\" fill=\"#4caf50\"/>\n<text x=\"390\" y=\"132\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"18\" font-weight=\"bold\">②</text>\n<text x=\"390\" y=\"170\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"bold\">仮定</text>\n<text x=\"390\" y=\"190\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">各変数の数値と根拠</text>\n\n<rect x=\"520\" y=\"90\" width=\"180\" height=\"120\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<circle cx=\"610\" cy=\"125\" r=\"25\" fill=\"#e91e63\"/>\n<text x=\"610\" y=\"132\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"18\" font-weight=\"bold\">③</text>\n<text x=\"610\" y=\"170\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">計算</text>\n<text x=\"610\" y=\"190\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\">掛け合わせの過程</text>\n\n<rect x=\"80\" y=\"250\" width=\"640\" height=\"60\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"278\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"14\" font-weight=\"bold\">最終的な推定値</text>\n<text x=\"400\" y=\"298\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">「なぜその数になったか」のストーリーが重要</text>\n<rect x=\"200\" y=\"340\" width=\"400\" height=\"36\" rx=\"6\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"1.5\"/>\n<text x=\"400\" y=\"362\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"13\">各グループ3分で発表</text>\n</svg>",
@@ -454,6 +478,7 @@
 		},
 		{
 			"title": "グループワーク & 発表（2/2）",
+			"subtitle": "発表では「なぜその分解か」の根拠説明が最重要ポイント",
 			"layout": "default",
 			"content": [
 				"- 最終的な推定値",
@@ -466,6 +491,7 @@
 		},
 		{
 			"title": "解答・解説（1/2）",
+			"subtitle": "解説では複数の正解パターンを示し思考の多様性を示す",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\" rx=\"12\"/>\n<text x=\"400\" y=\"35\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">解答解説: コンビニ vs タクシー</text>\n<rect x=\"40\" y=\"70\" width=\"340\" height=\"260\" rx=\"12\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/>\n<text x=\"210\" y=\"100\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"15\" font-weight=\"bold\">問題A: コンビニ</text>\n<text x=\"210\" y=\"135\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"26\" font-weight=\"bold\">5.5万店</text>\n<text x=\"210\" y=\"160\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\">2024年・業界団体統計</text>\n<rect x=\"60\" y=\"175\" width=\"300\" height=\"36\" rx=\"6\" fill=\"#0d1117\"/>\n<text x=\"210\" y=\"198\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">商圏: 2,000人に1店が目安</text>\n<rect x=\"60\" y=\"220\" width=\"300\" height=\"36\" rx=\"6\" fill=\"#0d1117\"/>\n<text x=\"210\" y=\"243\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\">推定正確度: ±20%以内</text>\n<rect x=\"420\" y=\"70\" width=\"340\" height=\"260\" rx=\"12\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"590\" y=\"100\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"15\" font-weight=\"bold\">問題B: タクシー</text>\n<text x=\"590\" y=\"135\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"26\" font-weight=\"bold\">3.5万台</text>\n<text x=\"590\" y=\"160\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"12\">2023年・国交省統計</text>\n<rect x=\"440\" y=\"175\" width=\"300\" height=\"36\" rx=\"6\" fill=\"#0d1117\"/>\n<text x=\"590\" y=\"198\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">規制産業: 供給側制限あり</text>\n<rect x=\"440\" y=\"220\" width=\"300\" height=\"36\" rx=\"6\" fill=\"#0d1117\"/>\n<text x=\"590\" y=\"243\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\">需要推定では多くなりがち</text>\n</svg>",
@@ -479,6 +505,7 @@
 		},
 		{
 			"title": "解答・解説（2/2）",
+			"subtitle": "解答のズレから自分の基準値の偏りを把握できる",
 			"layout": "default",
 			"content": [
 				"実際: 東京都内 約 **3.5万台**（2023年、国交省）",
@@ -499,6 +526,7 @@
 		},
 		{
 			"title": "TAM・SAM・SOM の概念（1/2）（1/2）",
+			"subtitle": "TAMはビジネスポテンシャルの天井、SAMは自社が届く範囲",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 320' style='max-height:55vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -513,6 +541,7 @@
 		},
 		{
 			"title": "TAM・SAM・SOM の概念（1/2）（2/2）",
+			"subtitle": "SAMとSOMの差が現在の競争上の制約を表している",
 			"layout": "default",
 			"content": [
 				"  <circle cx='390' cy='190' r='55' fill='#ea4335' opacity='0.55'/>",
@@ -527,6 +556,7 @@
 		},
 		{
 			"title": "TAM・SAM・SOM の概念（2/2）（1/2）",
+			"subtitle": "TAM推定はフェルミ推定と同じ分解ロジックで計算できる",
 			"layout": "default",
 			"content": [
 				"  <text x='560' y='60' text-anchor='middle' fill='#1a3c6a' font-size='15' font-weight='bold'>TAM</text>",
@@ -541,6 +571,7 @@
 		},
 		{
 			"title": "TAM・SAM・SOM の概念（2/2）（2/2）",
+			"subtitle": "SOM = SAM × 獲得可能率で投資判断の根拠を作れる",
 			"layout": "default",
 			"content": [
 				"  <text x='660' y='98' text-anchor='start' fill='#555' font-size='11'>その製品カテゴリの世界全体需要</text>",
@@ -574,6 +605,7 @@
 		},
 		{
 			"title": "実例: 日本のフードデリバリー市場（1/2）",
+			"subtitle": "市場規模推定は「誰が・何回・いくら払うか」に分解して計算する",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 390\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"390\" fill=\"#1a1a2e\" rx=\"12\"/>\n<text x=\"400\" y=\"35\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">フードデリバリー市場推定</text>\n<rect x=\"60\" y=\"70\" width=\"680\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"108\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"14\" font-weight=\"bold\">日本 × フードデリバリー（Uber Eats等）</text>\n<line x1=\"400\" y1=\"130\" x2=\"400\" y2=\"155\" stroke=\"#444\" stroke-width=\"1.5\"/>\n<polygon points=\"393,155 400,169 407,155\" fill=\"#444\"/>\n\n<rect x=\"60\" y=\"170\" width=\"680\" height=\"34\" rx=\"4\" fill=\"#555\" opacity=\"0.7\"/>\n<text x=\"72\" y=\"192\" fill=\"#ffffff\" font-size=\"11\">日本全人口</text>\n<text x=\"732\" y=\"192\" text-anchor=\"end\" fill=\"#ffffff\" font-size=\"12\" font-weight=\"bold\">1.2億人</text>\n\n<rect x=\"120\" y=\"214\" width=\"560\" height=\"34\" rx=\"4\" fill=\"#666\" opacity=\"0.6\"/>\n<text x=\"132\" y=\"236\" fill=\"#ffffff\" font-size=\"11\">都市部（3割）</text>\n<text x=\"672\" y=\"236\" text-anchor=\"end\" fill=\"#ffffff\" font-size=\"12\" font-weight=\"bold\">3,600万人</text>\n\n<rect x=\"180\" y=\"258\" width=\"440\" height=\"34\" rx=\"4\" fill=\"#2196f3\" opacity=\"0.49999999999999994\"/>\n<text x=\"192\" y=\"280\" fill=\"#ffffff\" font-size=\"11\">デリバリー利用率20%</text>\n<text x=\"612\" y=\"280\" text-anchor=\"end\" fill=\"#ffffff\" font-size=\"12\" font-weight=\"bold\">720万人</text>\n\n<rect x=\"240\" y=\"302\" width=\"320\" height=\"34\" rx=\"4\" fill=\"#4caf50\" opacity=\"0.3999999999999999\"/>\n<text x=\"252\" y=\"324\" fill=\"#ffffff\" font-size=\"11\">年24回利用×1,500円</text>\n<text x=\"552\" y=\"324\" text-anchor=\"end\" fill=\"#ffffff\" font-size=\"12\" font-weight=\"bold\">約2,592億円</text>\n\n</svg>",
@@ -588,6 +620,7 @@
 		},
 		{
 			"title": "実例: 日本のフードデリバリー市場（2/2）",
+			"subtitle": "ボトムアップ推定とトップダウン推定の交差点が現実に近い",
 			"layout": "default",
 			"content": [
 				"- 1回あたり単価: 1,500円（料理＋配送料）",
@@ -601,6 +634,7 @@
 		},
 		{
 			"title": "ビジネス意思決定への活用（1/2）（1/2）",
+			"subtitle": "フェルミ推定で意思決定スピードを上げながら精度を担保できる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 310' style='max-height:58vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -615,6 +649,7 @@
 		},
 		{
 			"title": "ビジネス意思決定への活用（1/2）（2/2）",
+			"subtitle": "会議前に5分のフェルミ推定が議論の質を大幅に高める",
 			"layout": "default",
 			"content": [
 				"  <text x='135' y='144' text-anchor='middle' fill='#444' font-size='11'>を即座に試算</text>",
@@ -629,6 +664,7 @@
 		},
 		{
 			"title": "ビジネス意思決定への活用（2/2）（1/2）",
+			"subtitle": "不確かなデータより構造的な仮説の方が意思決定に使いやすい",
 			"layout": "default",
 			"content": [
 				"  <text x='645' y='82' text-anchor='middle' fill='#ea4335' font-size='26'>💰</text>",
@@ -643,6 +679,7 @@
 		},
 		{
 			"title": "ビジネス意思決定への活用（2/2）（2/2）",
+			"subtitle": "フェルミ推定は合意形成ツールとして組織内の認識齟齬を消す",
 			"layout": "default",
 			"content": [
 				"  <text x='260' y='262' text-anchor='middle' fill='#444' font-size='11'>競合の売上規模を</text>",
@@ -682,10 +719,12 @@
 				"",
 				"→ 「○○と比べると□□倍」という表現が有効"
 			],
-			"speakerNotes": "プレゼンでは数字をそのまま言わず、必ず「変換」する習慣をつける。"
+			"speakerNotes": "プレゼンでは数字をそのまま言わず、必ず「変換」する習慣をつける。",
+			"subtitle": "絶対値より比率で語ると聴衆の理解が速い"
 		},
 		{
 			"title": "視覚化で説得力を高める（1/2）（1/2）",
+			"subtitle": "視覚化はフェルミ推定の「なぜ」を非専門家に伝える橋渡しだ",
 			"layout": "default",
 			"content": [
 				"<svg viewBox='0 0 780 310' style='max-height:58vh;width:auto;display:block;margin:0 auto;letter-spacing:0'>",
@@ -704,6 +743,7 @@
 		},
 		{
 			"title": "視覚化で説得力を高める（1/2）（2/2）",
+			"subtitle": "ファネル図で分解の流れを示すと説得力が格段に上がる",
 			"layout": "default",
 			"content": [
 				"  <rect x='210' y='38' width='170' height='145' rx='8' fill='#f8f9fa' stroke='#dee2e6' stroke-width='1'/>",
@@ -723,6 +763,7 @@
 		},
 		{
 			"title": "視覚化で説得力を高める（2/2）（1/2）",
+			"subtitle": "棒グラフと誤差範囲の組み合わせが不確実性を正直に伝える",
 			"layout": "default",
 			"content": [
 				"  <text x='442' y='127' text-anchor='middle' fill='white' font-size='9'>分解A</text>",
@@ -741,6 +782,7 @@
 		},
 		{
 			"title": "視覚化で説得力を高める（2/2）（2/2）",
+			"subtitle": "図一枚で仮説の全体構造を見せることが意思決定者への最短路",
 			"layout": "default",
 			"content": [
 				"  <text x='659' y='58' text-anchor='middle' fill='#555' font-size='11' font-weight='bold'>感度分析（3シナリオ）</text>",
@@ -768,6 +810,7 @@
 		},
 		{
 			"title": "本日のキーポイント（1/2）",
+			"subtitle": "フェルミ推定の価値は精度でなく「思考を外に出す」プロセスにある",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\" rx=\"12\"/>\n<text x=\"400\" y=\"35\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">本日のキーポイント</text>\n\n<rect x=\"60\" y=\"80\" width=\"680\" height=\"90\" rx=\"12\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/>\n<circle cx=\"120\" cy=\"125\" r=\"30\" fill=\"#2196f3\"/>\n<text x=\"120\" y=\"132\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"22\" font-weight=\"bold\">1</text>\n<text x=\"430\" y=\"116\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"15\" font-weight=\"bold\">分解×仮定×計算の3ステップ</text>\n<text x=\"430\" y=\"142\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">正確さより思考の筋道が価値を生む</text>\n\n<rect x=\"60\" y=\"200\" width=\"680\" height=\"90\" rx=\"12\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<circle cx=\"120\" cy=\"245\" r=\"30\" fill=\"#4caf50\"/>\n<text x=\"120\" y=\"252\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"22\" font-weight=\"bold\">2</text>\n<text x=\"430\" y=\"236\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"15\" font-weight=\"bold\">エンジニア思考 = フェルミ思考</text>\n<text x=\"430\" y=\"262\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">要件分解・PoC・仮説検証はそのまま応用できる</text>\n\n</svg>",
@@ -781,6 +824,7 @@
 		},
 		{
 			"title": "本日のキーポイント（2/2）",
+			"subtitle": "訓練を続けると「分解反射」が身につき判断が速くなる",
 			"layout": "default",
 			"content": [
 				"",
@@ -802,10 +846,12 @@
 				"- 🗞️ ニュースを見たら「市場規模はいくら?」と考える",
 				"- 🛒 買い物中に「この店の年商はいくら?」と推定する"
 			],
-			"speakerNotes": "最後に具体的な行動変容を促す。参加者に「まず1つやってみる」ことを宣言させてもよい。"
+			"speakerNotes": "最後に具体的な行動変容を促す。参加者に「まず1つやってみる」ことを宣言させてもよい。",
+			"subtitle": "日常の数字を疑う習慣が判断精度を累積的に上げる"
 		},
 		{
 			"title": "フェルミ思考を日常に（2/2）",
+			"subtitle": "日常の問いをフェルミ推定で考える習慣が思考筋を育てる",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 415\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"415\" fill=\"#1a1a2e\" rx=\"12\"/>\n<text x=\"400\" y=\"35\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-weight=\"bold\">チームでフェルミ推定を活用する</text>\n\n<rect x=\"60\" y=\"80\" width=\"680\" height=\"65\" rx=\"10\" fill=\"#16213e\" stroke=\"#2196f3\" stroke-width=\"2\"/>\n<text x=\"100\" y=\"118\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"28\">💬</text>\n<text x=\"430\" y=\"108\" text-anchor=\"middle\" fill=\"#2196f3\" font-size=\"14\" font-weight=\"bold\">会議で</text>\n<text x=\"430\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">「その数字の根拠は?」と問う習慣</text>\n\n<rect x=\"60\" y=\"170\" width=\"680\" height=\"65\" rx=\"10\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"100\" y=\"208\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"28\">📊</text>\n<text x=\"430\" y=\"198\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"14\" font-weight=\"bold\">KPI設定前に</text>\n<text x=\"430\" y=\"220\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">「達成可能か」をフェルミで試算</text>\n\n<rect x=\"60\" y=\"260\" width=\"680\" height=\"65\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"100\" y=\"298\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"28\">👥</text>\n<text x=\"430\" y=\"288\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\">チームで</text>\n<text x=\"430\" y=\"310\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\">週1回フェルミ推定ゲームをやってみる</text>\n\n<rect x=\"200\" y=\"360\" width=\"400\" height=\"36\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"400\" y=\"382\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\">継続することで精度が上がる</text>\n</svg>",
@@ -819,6 +865,7 @@
 		},
 		{
 			"title": "参考資料（1/2）",
+			"subtitle": "良書と実践の組み合わせが推定精度を最速で高める",
 			"layout": "default",
 			"content": [
 				"**書籍:**",
@@ -830,6 +877,7 @@
 		},
 		{
 			"title": "参考資料（2/2）",
+			"subtitle": "ウェブリソースでリアルケーススタディを積み重ねられる",
 			"layout": "default",
 			"content": [
 				"",

@@ -7,6 +7,71 @@ paginate: true
 header: "カオス理論とソフトウェアバグ"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -23,6 +88,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *初期条件の微小差が本番障害に指数爆発する5つの切り口*
 
 - 1. カオス理論とは何か
 - 2. バタフライ効果の数学
@@ -41,6 +108,8 @@ style: |
 
 # 1961年：ローレンツの偶然の発見（1/2）
 
+> *0.02%の丸め誤差が2ヶ月後の予測を完全に変えた歴史的発見*
+
 - 気象学者 Edward Lorenz が気象シミュレーションを再実行
 - **途中から再開するために小数点以下を丸めた：**
 - 0.506127 → 0.506（0.02%の差）
@@ -50,6 +119,8 @@ style: |
 ---
 
 # 1961年：ローレンツの偶然の発見（2/2）
+
+> *同じ初期点から全く異なる軌跡—初期誤差は指数関数的に拡大*
 
 - **2ヶ月後の予測が完全に異なる結果になった**
 - この発見が「カオス理論」の出発点
@@ -61,6 +132,8 @@ style: |
 
 # バタフライ効果の数式的な理解（1/2）
 
+> *λ>0でδ(t)は指数爆発—カオス系に長期予測は原理的に不可能*
+
 - ローレンツ方程式（大幅に簡略化）：
 - 誤差の成長：δ(t) = δ₀ × e^(λt)
 - λ（リアプノフ指数）> 0 のとき → 初期誤差が指数関数的に拡大
@@ -70,6 +143,8 @@ style: |
 ---
 
 # バタフライ効果の数式的な理解（2/2）
+
+> *t=10で22000倍、t=100で天文学的—誤差管理の限界を知る*
 
 - **具体例：** λ = 1 の場合
 - - t=1 : 誤差は e倍（2.7倍）
@@ -96,6 +171,8 @@ style: |
 
 # 「再現しないバグ」の正体（2/2）
 
+> *ASLR・浮動小数点・外部状態—全て初期条件の微小差が原因*
+
 - ASLR（Address Space Layout Randomization）で毎回アドレスが変わる
 - 
 - **3. 浮動小数点の丸め誤差**
@@ -117,6 +194,8 @@ style: |
 
 # バタフライ効果が起きた本番障害の実例（2/2）
 
+> *WAFルールの微小変更→全世界27分停止—典型的カオス的障害*
+
 - **事例：Cloudflare 2019年障害**
 - 原因：正規表現のバックトラッキング（Re2DoS）
 - 影響：CPU使用率100% → 全サービスダウン 27分
@@ -133,6 +212,8 @@ style: |
 
 # カオスモンキー：意図的に障害を起こす（1/2）
 
+> *偶発障害を制御された実験に変える—NetflixのChaos Monkey哲学*
+
 - Netflix が2011年に開発したカオスエンジニアリングツール
 - **哲学：** 本番環境で偶発的に起きる障害なら、意図的に制御された形で先に経験した方が安全
 - <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><circle cx="160" cy="100" r="60" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="160" y="94" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#e91e63">偶発的な</text><text x="160" y="112" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#e91e63">障害</text><circle cx="640" cy="100" r="60" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="640" y="94" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4caf50">制御された</text><text x="640" y="112" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#4caf50">実験</text><rect x="280" y="75" width="240" height="50" rx="8" fill="#f9a825" opacity="0.15" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="97" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#f9a825">Chaos Monkey</text><text x="400" y="115" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaa">意図的に変換</text><line x1="220" y1="100" x2="280" y2="100" stroke="#f9a825" stroke-width="2"/><polygon points="278,95 288,100 278,105" fill="#f9a825"/><line x1="520" y1="100" x2="580" y2="100" stroke="#4caf50" stroke-width="2"/><polygon points="578,95 588,100 578,105" fill="#4caf50"/><text x="160" y="180" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">予測不能・損害大</text><text x="640" y="180" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#888">学習可能・安全</text></svg>
@@ -141,6 +222,8 @@ style: |
 ---
 
 # カオスモンキー：意図的に障害を起こす（2/2）
+
+> *Chaos Monkey・Latency Monkey等で故障耐性を意図的に鍛える*
 
 - **Simian Army の種類：**
 - - Chaos Monkey：ランダムにサーバーを強制終了
@@ -152,6 +235,8 @@ style: |
 ---
 
 # カオスを「設計」する
+
+> *Feature Flag・変更管理・監視でカオスを設計に組み込む*
 
 | カオス理論の概念 | エンジニアリングの対応 |
 |:---|:---|

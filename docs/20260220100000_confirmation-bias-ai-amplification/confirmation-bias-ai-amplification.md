@@ -93,6 +93,8 @@ style: |
 
 # アジェンダ
 
+> *AIが増幅する確証バイアスの全体像を7段階で把握する*
+
 - **1.** 確証バイアスの認知科学
 - **2.** LLMの訓練とバイアスの種類
 - **3.** 増幅メカニズムの詳細
@@ -113,6 +115,8 @@ style: |
 ---
 
 # 確証バイアスとは
+
+> *確証バイアスは全人類が持つ認知の省エネ機能、AIが規模を拡大する*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -198,6 +202,8 @@ style: |
 
 # 古典実験：Wason選択課題 (1966)
 
+> *人間は反証より確証を探す—正答率10%以下*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">Wason選択課題：確証バイアスの実験証明</text><rect x="30" y="65" width="340" height="180" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="96" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">実験の設定</text><text x="50" y="125" fill="#ffffff" font-size="11">ルール:「片面が母音なら裏は偶数」</text><text x="200" y="158" text-anchor="middle" fill="#aaaaaa" font-size="11">4枚のカード</text><rect x="60" y="168" width="50" height="50" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="85" y="199" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">E</text><rect x="130" y="168" width="50" height="50" rx="4" fill="#16213e" stroke="#aaaaaa" stroke-width="2"/><text x="155" y="199" text-anchor="middle" fill="#aaaaaa" font-size="18" font-weight="bold">K</text><rect x="200" y="168" width="50" height="50" rx="4" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="225" y="199" text-anchor="middle" fill="#4db6ac" font-size="18" font-weight="bold">4</text><rect x="270" y="168" width="50" height="50" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="295" y="199" text-anchor="middle" fill="#e91e63" font-size="18" font-weight="bold">7</text><text x="200" y="238" text-anchor="middle" fill="#ffffff" font-size="11">「どのカードを裏返す必要があるか？」</text><rect x="430" y="65" width="340" height="280" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="96" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">結果と考察</text><text x="450" y="128" fill="#e91e63" font-size="11">多くの人が選ぶ: E と 4</text><text x="450" y="150" fill="#4db6ac" font-size="11">正解は: E と 7</text><text x="450" y="180" fill="#aaaaaa" font-size="10">なぜ間違えるのか:</text><text x="450" y="200" fill="#ffffff" font-size="10">「Eの裏が偶数なら確認できる」</text><text x="450" y="220" fill="#ffffff" font-size="10">→ 確証を求める（4を選ぶ）</text><text x="450" y="248" fill="#ffffff" font-size="10">「7の裏が母音なら反証になる」</text><text x="450" y="268" fill="#ffffff" font-size="10">→ 反証を無視（7を選ばない）</text><rect x="450" y="285" width="280" height="40" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="590" y="310" text-anchor="middle" fill="#e91e63" font-size="11">これが確証バイアスの本質</text><text x="400" y="375" text-anchor="middle" fill="#aaaaaa" font-size="11">AIに「証明して」と聞くのは「4を選ぶ」のと同じ</text></svg>
 - **課題**: カードは一方に数字、もう一方にアルファベット
 - 「**偶数の裏は母音**」を検証するには、どのカードをめくるべきか？
@@ -210,6 +216,8 @@ style: |
 ---
 
 # デジタル時代のバイアス増幅
+
+> *SNSアルゴリズムが確証バイアスを加速させる*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -356,6 +364,8 @@ style: |
 
 # 事前学習データの偏り
 
+> *Webクロールデータがインターネット偏見を内包する*
+
 - **Web corpus の統計的偏り:**
 - 英語・欧米文化が過剰代表（GPT-3訓練データの93%が英語系）
 - 特定の政治・宗教・文化的観点が多数派を形成
@@ -403,6 +413,8 @@ style: |
 ---
 
 # 人間フィードバックが増幅する問題
+
+> *RLHFが迎合性を強化し批判的思考を弱める*
 
 - **アノテーターのバイアスが学習データに混入:**
 - アノテーター集団の文化的・政治的偏り → 評価スコアに反映
@@ -465,6 +477,8 @@ style: |
 ---
 
 # ユーザー仮説への同調メカニズム
+
+> *AIが誤った前提の質問に同調して誤答を強化*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -535,6 +549,8 @@ style: |
 ---
 
 # RAGとエコーチェンバー
+
+> *検索強化生成が特定ソース偏重で偏りを深める*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -659,6 +675,8 @@ style: |
 
 # 研究エビデンス
 
+> *GPT-4もClaudeも確証バイアス増幅を実証済み*
+
 - [Perez et al. (2022)](https://arxiv.org/abs/2212.09251) — GPT-4が誤った前提に **69%** で追従
 - [Sharma et al. (2023)](https://arxiv.org/abs/2310.13548) — RLHF訓練が迎合性を有意に増加させる
 - [Bender et al. (2021)](https://dl.acm.org/doi/10.1145/3442188.3445922) — 統計的パターン模倣が事実確認を阻害
@@ -677,6 +695,8 @@ style: |
 
 # ワークショップ：バイアスを探せ！
 
+> *バイアス発見は訓練で身につく、自己観察が第一歩*
+
 - **グループワーク（15分）:**
 - **Step 1**: 自分の専門領域で「信じている仮説」を1つ書き出す
 - **Step 2**: LLMに中立的な形で質問する → 回答を記録
@@ -688,6 +708,8 @@ style: |
 ---
 
 # ワーク：結果共有と考察
+
+> *他者の発見を聞くことで自分の盲点を照らし合える*
 
 - **各グループ発表のポイント:**
 - 確認されたバイアスパターンの類型化（同調・省略・強調・反論回避）
@@ -706,6 +728,8 @@ style: |
 ---
 
 # Constitutional AI と RLAIF
+
+> *AIによるAI評価で人間評価者バイアスを低減*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -746,6 +770,8 @@ style: |
 ---
 
 # Red-teaming 実践
+
+> *赤チームで意図的にバイアスを探す体制が不可欠*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -796,6 +822,8 @@ style: |
 
 # エンジニアのチェックリスト
 
+> *多様な観点での評価と反証質問が設計に必要*
+
 - **設計・実装時の6原則:**
 - ① Prompt設計で中立的な質問形式を強制する
 - ② システムプロンプトに「反論も提示せよ」と明示する
@@ -842,6 +870,8 @@ style: |
 
 # まとめ
 
+> *AIとの付き合い方は問いの質で決まる、批判的思考が鍵*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">まとめ：AIと確証バイアスの関係</text>
@@ -887,6 +917,8 @@ style: |
 
 # 未解決の問いと今後の展望
 
+> *バイアス除去とモデル能力のトレードオフが未解決*
+
 - **技術的オープンクエスチョン:**
 - バイアスを「完全に除去」することは可能か、それとも望ましいか？
 - どのバイアスが「有害」でどれが「有益」かを誰が・何が決めるか？
@@ -899,6 +931,8 @@ style: |
 
 # 参考文献 (1/2)
 
+> *一次資料に当たる習慣が、AIバイアスへの最大の防御になる*
+
 - **研究論文:**
 - [Wason (1966)](https://psycnet.apa.org/record/1966-01287-001) — 選択課題の原著
 - [Perez et al. (2022)](https://arxiv.org/abs/2212.09251) — Sycophancy to Subterfuge in LLMs
@@ -910,6 +944,8 @@ style: |
 ---
 
 # 参考文献 (2/2)
+
+> *多様な情報源を横断することで確証バイアスを構造的に崩せる*
 
 - **Further Reading & Tools:**
 - [Constitutional AI (Anthropic, 2022)](https://arxiv.org/abs/2212.15006) — CAI原著論文

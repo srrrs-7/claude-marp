@@ -93,6 +93,8 @@ style: |
 
 # アジェンダ
 
+> *幻覚を創造に変える5つのユースケースと実践設計を学ぶ*
+
 - **Part 1** ハルシネーションとは（10分）
 - **Part 2** 逆転の発想（5分）
 - **Part 3** ユースケース分類（15分）
@@ -104,6 +106,8 @@ style: |
 ---
 
 # 本日のゴール
+
+> *幻覚を制御して創造的アウトプットを量産できるようになる*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
@@ -150,6 +154,8 @@ style: |
 ---
 
 # そもそも「ハルシネーション」とは
+
+> *幻覚は確率的言語生成の本質であり消去不能な特性だ*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
@@ -305,6 +311,8 @@ style: |
 
 # 従来の認識 —「修正すべきバグ」
 
+> *バグ扱いの幻覚は修正しようとすると創造性まで失われる*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Title bar -->
@@ -360,6 +368,8 @@ style: |
 ---
 
 # ランダム性こそ創造性のエンジン
+
+> *ランダム性が多様なアイデアを生み、人間の選択肢を広げる*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
@@ -455,6 +465,8 @@ style: |
 
 # UC1 — フィクション・小説執筆
 
+> *プロットの飛躍と意外な展開を幻覚で意図的に生成できる*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Title -->
@@ -543,6 +555,8 @@ user: 2157年、火星コロニーで起きた謎の停電事件を
 
 # UC2 — 歌詞・詩の生成
 
+> *予測不能な言葉の連想が詩的表現の質を高める*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Music note decoration -->
@@ -620,6 +634,8 @@ user: テーマ「孤独な深夜のデバッグ」で、
 
 # UC3 — ブレインストーミング支援
 
+> *幻覚を使えば人間が思いつかない発想の種を大量に得られる*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Center: LLM Brainstorm engine -->
@@ -692,6 +708,8 @@ user: 「宅配ピザ × ブロックチェーン × 瞑想アプリ」を
 
 # UC4 — 代替案・反論の生成
 
+> *反論・代替案の自動生成が意思決定の盲点を照らし出す*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Your idea box -->
@@ -760,6 +778,8 @@ user: 新しいマイクロサービスに
 ---
 
 # UC5 — デバッグ仮説・エラー原因の発散
+
+> *デバッグ仮説の発散生成で見落としていた原因を発見できる*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
@@ -981,6 +1001,8 @@ user: 本番環境でのみ、特定のAPIエンドポイントが
 ---
 
 # 「正確さを求めない」プロンプト設計
+
+> *「正確さを求めない」プロンプトが幻覚を意図的に引き出す鍵*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
@@ -1244,6 +1266,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 
 # 使うべきでないシーン
 
+> *事実・法律・医療・数値など検証必須の領域では幻覚は有害*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="44" text-anchor="middle" fill="#e91e63" font-size="18" font-weight="bold">⚠️ ハルシネーション活用 禁止ゾーン</text>
@@ -1287,6 +1311,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 ---
 
 # 事実確認が必要な領域
+
+> *事実確認が必要な領域での幻覚は信頼損失と法的リスクを生む*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
@@ -1381,6 +1407,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 
 # 人間のキュレーションが不可欠
 
+> *AIの出力は人間が選別・検証してこそ価値になる*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Role division -->
@@ -1460,7 +1488,9 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 
 ---
 
-# 今日から使えるチェックリスト
+# 今日から使えるチェックリスト（1/2）
+
+> *用途別パラメータを事前設定すると再現性が高まる*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
@@ -1495,6 +1525,14 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 - [ ] 用途を確認: 「正確さが不要」か？
 - [ ] temperature を 0.9〜1.3 に設定する
 - [ ] プロンプトに「自由に」「ありえなくてもOK」を追加
+
+
+---
+
+# 今日から使えるチェックリスト（2/2）
+
+> *チェックリストを持つことで幻覚活用と事実確認を使い分けられる*
+
 - [ ] 一度に 10〜20個以上生成する（量が命）
 - [ ] 出力から「面白いもの」を人間が選ぶ
 - [ ] 選んだアイデアをさらに深掘りする（別プロンプトで）
@@ -1504,6 +1542,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 ---
 
 # 参考リンク（1/2）
+
+> *幻覚研究の最前線は「制御可能な創造性」の実現を目指している*
 
 - **研究・論文:**
 - [Attention Is All You Need (Vaswani et al., 2017)](https://arxiv.org/abs/1706.03762)
@@ -1518,6 +1558,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 
 # 参考リンク（2/2）  / Q&A（1/2）
 
+> *質疑応答で理解を深め実務への適用を具体化する*
+
 - **実践ガイド:**
 - [Prompt Engineering Guide](https://www.promptingguide.ai/)
 - [Lil'Log: Hallucination in Large Language Models](https://lilianweng.github.io/posts/2023-03-15-prompt-engineering/)
@@ -1527,6 +1569,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 ---
 
 # 参考リンク（2/2）  / Q&A（2/2）
+
+> *持ち帰るべき問いは「自分の業務のどこに幻覚が使えるか」だ*
 
 - [LangChain](https://www.langchain.com/) — プロンプト管理・チェーン構築
 - [Guidance (guidance-ai)](https://github.com/guidance-ai/guidance) — 出力の構造化・制御

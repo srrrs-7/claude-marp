@@ -46,7 +46,8 @@
 				"**スコア**: 100-1000点（合格: 750点）"
 			],
 			"layout": "default",
-			"speakerNotes": "SCS-C02は2023年7月にリリース。前バージョン(SCS-C01)から大幅刷新。"
+			"speakerNotes": "SCS-C02は2023年7月にリリース。前バージョン(SCS-C01)から大幅刷新。",
+			"subtitle": "SCS-C02は6ドメイン・170問—対策の優先度を正確に把握せよ"
 		},
 		{
 			"title": "Domain 1: 脅威検知・インシデント対応",
@@ -71,7 +72,8 @@
 				"**検知カテゴリ**:",
 				"- Backdoor / CryptoCurrency マイニング"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GuardDutyが機械学習で未知の脅威を24時間検知する"
 		},
 		{
 			"title": "Amazon GuardDuty（2/2）",
@@ -82,7 +84,8 @@
 				"**有効化**: リージョンごと、マルチアカウント対応（Organizations）",
 				"**重要**: エージェント不要、API呼び出しのみで動作"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GuardDutyが機械学習で未知の脅威を24時間検知する"
 		},
 		{
 			"title": "GuardDuty: 主要な Finding タイプ（1/2）",
@@ -93,7 +96,8 @@
 				"- `Backdoor:EC2/C&CActivity.B` — C2通信検知",
 				"**IAM 関連**:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GuardDutyが機械学習で未知の脅威を24時間検知する"
 		},
 		{
 			"title": "GuardDuty: 主要な Finding タイプ（2/2）",
@@ -104,7 +108,8 @@
 				"**S3 関連**:",
 				"- `Policy:S3/BucketBlockPublicAccessDisabled` — パブリックアクセス無効化"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GuardDutyが機械学習で未知の脅威を24時間検知する"
 		},
 		{
 			"title": "GuardDuty: マルチアカウント管理（1/2）",
@@ -115,7 +120,8 @@
 				"- 委任管理者アカウント (Delegated Administrator) を設定",
 				"- 全メンバーアカウントの Finding を一元集約"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GuardDutyが機械学習で未知の脅威を24時間検知する"
 		},
 		{
 			"title": "GuardDuty: マルチアカウント管理（2/2）",
@@ -126,7 +132,8 @@
 				"- SNS 通知 → セキュリティチーム連絡",
 				"- S3 への Finding エクスポート → Athena で分析"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GuardDutyが機械学習で未知の脅威を24時間検知する"
 		},
 		{
 			"title": "AWS Security Hub（1/2）",
@@ -137,7 +144,8 @@
 				"**セキュリティ標準**:",
 				"- AWS Foundational Security Best Practices (FSBP)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Security Hubが全サービスの脅威を単一画面で一元管理"
 		},
 		{
 			"title": "AWS Security Hub（2/2）",
@@ -148,7 +156,8 @@
 				"**自動修復**: Security Hub + EventBridge + Lambda / Step Functions",
 				"**重要**: Finding は ASFF (Amazon Security Finding Format) で標準化"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Security Hubが全サービスの脅威を単一画面で一元管理"
 		},
 		{
 			"title": "Amazon Detective（1/2）",
@@ -159,7 +168,8 @@
 				"**調査できること**:",
 				"- IPアドレス・ユーザーの行動パターン分析"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "DetectiveがGuardDuty/CloudTrailを統合し侵害調査を自動化する"
 		},
 		{
 			"title": "Amazon Detective（2/2）",
@@ -170,7 +180,8 @@
 				"**データ保持**: 最大12ヶ月",
 				"**注意**: GuardDuty を先に有効化する必要あり"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "DetectiveがGuardDuty/CloudTrailを統合し侵害調査を自動化する"
 		},
 		{
 			"title": "インシデント対応ワークフロー (AWS)",
@@ -181,7 +192,8 @@
 				"**3. 分析 (Analyze)**: Detective / CloudTrail / VPC Flow Logs",
 				"**4. 封じ込め (Contain)**: SG変更 / EC2隔離 / IAMキー無効化"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "初動72時間の対応品質が被害範囲と復旧コストを左右する"
 		},
 		{
 			"title": "EC2 インシデント対応の自動化（1/2）",
@@ -192,7 +204,8 @@
 				"**隔離ステップ**:",
 				"- 1. EC2 を隔離用 Security Group に変更"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "初動72時間の対応品質が被害範囲と復旧コストを左右する"
 		},
 		{
 			"title": "EC2 インシデント対応の自動化（2/2）",
@@ -203,7 +216,8 @@
 				"- 4. Auto Scaling Group から切り離し",
 				"**注意**: EC2 を終了せずスナップショットを先に取る"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "初動72時間の対応品質が被害範囲と復旧コストを左右する"
 		},
 		{
 			"title": "IAM アクセスキー漏洩対応（1/2）",
@@ -214,7 +228,8 @@
 				"1. 漏洩したアクセスキーを無効化 (`UpdateAccessKey --status Inactive`)",
 				"2. 侵害された IAM ユーザーにアクセス拒否ポリシーをアタッチ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "IAM設計の誤りが最多のAWSセキュリティ侵害原因"
 		},
 		{
 			"title": "IAM アクセスキー漏洩対応（2/2）",
@@ -225,7 +240,8 @@
 				"5. 新しいアクセスキーを発行し Secrets Manager に保存",
 				"**重要**: 削除より先に「無効化」してログを保全"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "IAM設計の誤りが最多のAWSセキュリティ侵害原因"
 		},
 		{
 			"title": "AWS Systems Manager Incident Manager",
@@ -236,10 +252,12 @@
 				"- **エスカレーション**: オンコールローテーション管理",
 				"- **連絡計画**: SNS / PagerDuty / OpsGenie との統合"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "初動72時間の対応品質が被害範囲と復旧コストを左右する"
 		},
 		{
 			"title": "Domain 1 まとめ: 重要ポイント",
+			"subtitle": "GuardDuty+Security Hub+Detective+EventBridge Lambdaの4ツール統合がDomain1の核心",
 			"content": [
 				"![w:750 center](assets/waf-rule-chain.svg)",
 				"**GuardDuty**: エージェント不要の機械学習脅威検知、Organizations対応",
@@ -271,7 +289,8 @@
 				"- 管理イベント (Management Events): デフォルト有効",
 				"- データイベント (Data Events): S3/Lambda/DDB 操作（追加料金）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CloudTrailなしにはインシデント調査の証跡が消滅する"
 		},
 		{
 			"title": "CloudTrail: マルチリージョン・組織証跡（1/2）",
@@ -282,7 +301,8 @@
 				"- メンバーアカウントは変更・削除不可",
 				"**マルチリージョン証跡**:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CloudTrailなしにはインシデント調査の証跡が消滅する"
 		},
 		{
 			"title": "CloudTrail: マルチリージョン・組織証跡（2/2）",
@@ -293,7 +313,8 @@
 				"**ベストプラクティス**:",
 				"- CloudTrail ログ専用バケット + バケットポリシーで保護"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CloudTrailなしにはインシデント調査の証跡が消滅する"
 		},
 		{
 			"title": "CloudTrail Insights（1/2）",
@@ -304,7 +325,8 @@
 				"- 異常に多いAPI呼び出し（例: 通常の10倍のEC2起動）",
 				"- エラー率の急激な変化"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CloudTrailなしにはインシデント調査の証跡が消滅する"
 		},
 		{
 			"title": "CloudTrail Insights（2/2）",
@@ -315,7 +337,8 @@
 				"- `ApiErrorRateInsight`: エラー頻度の異常",
 				"**活用**: 過剰な IAM API コールによる内部不正の早期検知"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CloudTrailなしにはインシデント調査の証跡が消滅する"
 		},
 		{
 			"title": "Amazon CloudWatch: セキュリティ監視（1/2）",
@@ -326,7 +349,8 @@
 				"- リアルタイムクエリで脅威パターン検索",
 				"**メトリクスフィルター + アラームの活用例**:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "メトリクスフィルターとアラームが異常を即座にトリガーする"
 		},
 		{
 			"title": "Amazon CloudWatch: セキュリティ監視（2/2）",
@@ -337,7 +361,8 @@
 				"- IAM ポリシー変更の検知",
 				"- Security Group 変更の検知"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "メトリクスフィルターとアラームが異常を即座にトリガーする"
 		},
 		{
 			"title": "CloudWatch: 重要なメトリクスフィルターパターン（1/2）",
@@ -348,7 +373,8 @@
 				"**MFA なしコンソールログイン**:",
 				"`{ $.eventName = \"ConsoleLogin\" && $.additionalEventData.MFAUsed = \"No\" }`"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "パターンマッチングフィルターが重要イベントを見落とさない"
 		},
 		{
 			"title": "CloudWatch: 重要なメトリクスフィルターパターン（2/2）",
@@ -359,7 +385,8 @@
 				"**Security Group 変更**:",
 				"`{ $.eventName = \"AuthorizeSecurityGroupIngress\" }`"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "パターンマッチングフィルターが重要イベントを見落とさない"
 		},
 		{
 			"title": "VPC Flow Logs",
@@ -370,7 +397,8 @@
 				"**レコードフィールド**: srcaddr, dstaddr, srcport, dstport, protocol, packets, bytes, action",
 				"**action の値**: ACCEPT / REJECT"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "VPC設計の初期誤りが後続の全修正コストを膨らませる"
 		},
 		{
 			"title": "VPC Flow Logs: 分析クエリ例（1/2）",
@@ -381,7 +409,8 @@
 				"```sql",
 				"SELECT srcaddr, COUNT(*) as attempts"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "VPC設計の初期誤りが後続の全修正コストを膨らませる"
 		},
 		{
 			"title": "VPC Flow Logs: 分析クエリ例（2/2）",
@@ -392,7 +421,8 @@
 				"ORDER BY attempts DESC",
 				"LIMIT 10;"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "VPC設計の初期誤りが後続の全修正コストを膨らませる"
 		},
 		{
 			"title": "VPC Flow Logs: 分析クエリ例（コード例）",
@@ -415,7 +445,8 @@
 				"**パーティション**: 日付・リージョンで分割し、クエリコストを削減",
 				"**CloudTrail Lake との比較**:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SQLでCloudTrailを分析しインシデント調査コストを削減する"
 		},
 		{
 			"title": "Amazon Athena によるログ分析（2/2）",
@@ -426,7 +457,8 @@
 				"**セキュリティユースケース**:",
 				"- 特定IPからのAPI呼び出し一覧"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SQLでCloudTrailを分析しインシデント調査コストを削減する"
 		},
 		{
 			"title": "AWS CloudTrail Lake（1/2）",
@@ -437,7 +469,8 @@
 				"**保持期間**: 7年（Governance-compliant モード）",
 				"**統合**: CloudTrail Lake で AWS Organizations の全アカウントを統合分析"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CloudTrailなしにはインシデント調査の証跡が消滅する"
 		},
 		{
 			"title": "AWS CloudTrail Lake（2/2）",
@@ -448,7 +481,8 @@
 				"- イベントデータの自動インデックス化",
 				"- クロスアカウント分析が容易"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CloudTrailなしにはインシデント調査の証跡が消滅する"
 		},
 		{
 			"title": "Amazon EventBridge: セキュリティ自動化（1/2）",
@@ -459,7 +493,8 @@
 				"**主なセキュリティパターン**:",
 				"- GuardDuty Finding → Lambda で EC2 隔離"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "EventBridgeルールがセキュリティイベントへの自動応答を実現する"
 		},
 		{
 			"title": "Amazon EventBridge: セキュリティ自動化（2/2）",
@@ -470,7 +505,8 @@
 				"**EventBridge Pipes**: フィルタリング・変換を組み込んだストリーム処理",
 				"**クロスアカウント**: イベントバスでセキュリティアカウントに集約"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "EventBridgeルールがセキュリティイベントへの自動応答を実現する"
 		},
 		{
 			"title": "Amazon OpenSearch Service: ログ分析（1/2）",
@@ -481,7 +517,8 @@
 				"**取り込みパターン**:",
 				"- CloudWatch Logs → Lambda (サブスクリプションフィルター) → OpenSearch"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "OpenSearchが大規模ログのリアルタイム検索と可視化を提供する"
 		},
 		{
 			"title": "Amazon OpenSearch Service: ログ分析（2/2）",
@@ -492,7 +529,8 @@
 				"**暗号化**: ノード間通信 TLS + 保存データ KMS暗号化",
 				"**アクセス制御**: きめ細かなアクセス制御 (FGAC) + SAML"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "OpenSearchが大規模ログのリアルタイム検索と可視化を提供する"
 		},
 		{
 			"title": "AWS Config: 設定変更の記録と評価（1/2）",
@@ -503,7 +541,8 @@
 				"- マネージドルール: `s3-bucket-public-read-prohibited`など200以上",
 				"- カスタムルール: Lambda で独自ロジック"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AWS Configが設定ドリフトを即座に検知し準拠を維持する"
 		},
 		{
 			"title": "AWS Config: 設定変更の記録と評価（2/2）",
@@ -514,10 +553,12 @@
 				"**マルチアカウント**: Conformance Pack で組織全体に展開",
 				"**重要**: Config はリアルタイムではなく変更検出 (eventual consistency)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AWS Configが設定ドリフトを即座に検知し準拠を維持する"
 		},
 		{
 			"title": "Domain 2 まとめ: 重要ポイント",
+			"subtitle": "CloudTrailの組織証跡+CloudWatchメトリクスフィルター+Athena分析がDomain2の重点3点",
 			"content": [
 				"![w:750 center](assets/waf-rule-chain.svg)",
 				"**CloudTrail**: 全API記録、ログファイル検証で改ざん防止、組織証跡で一元管理",
@@ -549,7 +590,8 @@
 				"**サブネット設計**:",
 				"- Public: ALB, NAT Gateway（インターネット向け）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "VPC設計の初期誤りが後続の全修正コストを膨らませる"
 		},
 		{
 			"title": "VPC セキュリティ設計: 基本原則（2/2）",
@@ -560,7 +602,8 @@
 				"**重要な違い**:",
 				"- Security Group: ステートフル、インスタンスレベル、許可のみ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "VPC設計の初期誤りが後続の全修正コストを膨らませる"
 		},
 		{
 			"title": "Security Group vs NACL",
@@ -571,7 +614,8 @@
 				"| レベル | インスタンス | サブネット |",
 				"| ステート | ステートフル | ステートレス |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SGはステートフル・NACLはステートレス—二層の役割を理解する"
 		},
 		{
 			"title": "VPC エンドポイント（1/2）",
@@ -582,7 +626,8 @@
 				"- S3, DynamoDB のみ対応",
 				"- ルートテーブルにエントリ追加"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "VPC設計の初期誤りが後続の全修正コストを膨らませる"
 		},
 		{
 			"title": "VPC エンドポイント（2/2）",
@@ -593,7 +638,8 @@
 				"- ENI でプライベートIPを持つ",
 				"**セキュリティ**: エンドポイントポリシーで通信先S3バケットを制限可能"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "VPC設計の初期誤りが後続の全修正コストを膨らませる"
 		},
 		{
 			"title": "AWS WAF (Web Application Firewall)（1/2）",
@@ -604,7 +650,8 @@
 				"**WAF ルール**:",
 				"- IP セット: 特定IPのブロック/許可"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "WAFマネージドルールがOWASP Top10を自動でブロック"
 		},
 		{
 			"title": "AWS WAF (Web Application Firewall)（2/2）",
@@ -615,7 +662,8 @@
 				"- 正規表現パターン: SQL インジェクション, XSS 検知",
 				"**ログ**: Kinesis Data Firehose に送信 → S3/OpenSearch"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "WAFマネージドルールがOWASP Top10を自動でブロック"
 		},
 		{
 			"title": "AWS Shield（1/2）",
@@ -626,7 +674,8 @@
 				"- L3/L4 攻撃（SYN フラッド, UDP フラッド）を自動防御",
 				"**Shield Advanced** (有料, $3,000/月):"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Shield AdvancedがL3-L7の全DDoS攻撃を自動緩和する"
 		},
 		{
 			"title": "AWS Shield（2/2）",
@@ -637,7 +686,8 @@
 				"- コスト保護（DDoS によるスケーリングコスト払い戻し）",
 				"- Route53, CloudFront, ALB, EC2 EIP を保護"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Shield AdvancedがL3-L7の全DDoS攻撃を自動緩和する"
 		},
 		{
 			"title": "AWS Network Firewall（1/2）",
@@ -648,7 +698,8 @@
 				"**機能**:",
 				"- Suricata 互換のルールエンジン（IDS/IPS）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AWS Network FirewallがVPC境界でL3-L7の全検査を実施する"
 		},
 		{
 			"title": "AWS Network Firewall（2/2）",
@@ -659,7 +710,8 @@
 				"**配置**: 専用サブネット (Firewall Subnet) に配置",
 				"**トラフィックフロー**: IGW → Network Firewall → アプリ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AWS Network FirewallがVPC境界でL3-L7の全検査を実施する"
 		},
 		{
 			"title": "Amazon Inspector（1/2）",
@@ -670,7 +722,8 @@
 				"- EC2: OS パッケージの CVE 脆弱性",
 				"- Lambda: コードと依存関係の脆弱性"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Inspectorの継続スキャンがパッチ未適用を即座に可視化"
 		},
 		{
 			"title": "Amazon Inspector（2/2）",
@@ -681,7 +734,8 @@
 				"**自動**: プッシュ時に ECR イメージを自動スキャン",
 				"**リスクスコア**: 環境の実際の設定を考慮した優先度付き"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Inspectorの継続スキャンがパッチ未適用を即座に可視化"
 		},
 		{
 			"title": "AWS Systems Manager: セキュリティ活用（1/2）",
@@ -692,7 +746,8 @@
 				"- セッションログを CloudWatch/S3 に記録",
 				"**Patch Manager**: OS パッチの自動適用"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SSMがSSH不要のセキュアなEC2アクセスと構成管理を実現する"
 		},
 		{
 			"title": "AWS Systems Manager: セキュリティ活用（2/2）",
@@ -703,7 +758,8 @@
 				"**Parameter Store**: 設定値・シークレットの安全な保存",
 				"**Inventory**: インストール済みソフトウェア一覧収集"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SSMがSSH不要のセキュアなEC2アクセスと構成管理を実現する"
 		},
 		{
 			"title": "EC2 セキュリティハードニング（1/2）",
@@ -714,7 +770,8 @@
 				"- `HttpTokens=required` に設定",
 				"**EC2 Image Builder**: セキュアなゴールデン AMI の自動作成"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CIS Benchmarkに基づくハードニングが既知攻撃の大半を遮断する"
 		},
 		{
 			"title": "EC2 セキュリティハードニング（2/2）",
@@ -725,7 +782,8 @@
 				"**EBS 暗号化**: デフォルト暗号化設定を有効化",
 				"**Nitro Enclaves**: 機密データの隔離処理"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CIS Benchmarkに基づくハードニングが既知攻撃の大半を遮断する"
 		},
 		{
 			"title": "コンテナセキュリティ (ECS/EKS)（1/2）",
@@ -736,7 +794,8 @@
 				"- ECR プライベートリポジトリ + リポジトリポリシーで制限",
 				"**実行時セキュリティ**:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "イメージスキャンとランタイム保護がコンテナ攻撃を二段で防ぐ"
 		},
 		{
 			"title": "コンテナセキュリティ (ECS/EKS)（2/2）",
@@ -747,7 +806,8 @@
 				"**ネットワーク**:",
 				"- ECS: awsvpc モードで ENI + Security Group"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "イメージスキャンとランタイム保護がコンテナ攻撃を二段で防ぐ"
 		},
 		{
 			"title": "AWS Firewall Manager（1/2）",
@@ -758,7 +818,8 @@
 				"**管理できるポリシー**:",
 				"- AWS WAF ルールグループ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Firewall ManagerがOrganizations全体のWAF/SG設定を一元"
 		},
 		{
 			"title": "AWS Firewall Manager（2/2）",
@@ -769,7 +830,8 @@
 				"- Route 53 Resolver DNS Firewall",
 				"**スコープ**: OU単位、タグ単位でポリシー適用先を制御"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Firewall ManagerがOrganizations全体のWAF/SG設定を一元"
 		},
 		{
 			"title": "Route 53 Resolver DNS Firewall（1/2）",
@@ -780,7 +842,8 @@
 				"- AWS マネージドリスト（マルウェア、ボットネット C2）",
 				"- カスタムリスト（許可/ブロックリスト）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "DNS Firewallが悪意あるドメインへの通信を発信元で遮断する"
 		},
 		{
 			"title": "Route 53 Resolver DNS Firewall（2/2）",
@@ -791,10 +854,12 @@
 				"**Network Firewall との違い**: DNS層 vs パケット層",
 				"**ユースケース**: マルウェアのC2通信遮断、データ漏洩防止"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "DNS Firewallが悪意あるドメインへの通信を発信元で遮断する"
 		},
 		{
 			"title": "Domain 3 まとめ: 重要ポイント",
+			"subtitle": "SG(ステートフル/許可のみ)とNACL(ステートレス/許可+拒否)の違いがDomain3の最重要概念",
 			"content": [
 				"![w:750 center](assets/waf-rule-chain.svg)",
 				"**SG vs NACL**: ステートフル vs ステートレス、最重要概念",
@@ -826,7 +891,8 @@
 				"- マネージドポリシー: 再利用可能（AWS管理/カスタマー管理）",
 				"**リソースベースポリシー**:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "最小権限ポリシーが侵害時の爆発半径を最小化する"
 		},
 		{
 			"title": "IAM ポリシーの種類（2/2）",
@@ -837,7 +903,8 @@
 				"- Permission Boundary: IAMエンティティの最大権限",
 				"- SCP: Organizations での最大権限"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "最小権限ポリシーが侵害時の爆発半径を最小化する"
 		},
 		{
 			"title": "IAM ポリシー評価ロジック（1/2）",
@@ -848,7 +915,8 @@
 				"2. **SCP** → Organizations の境界チェック",
 				"3. **Resource-based Policy** (同アカウント) → 許可の場合通過"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "最小権限ポリシーが侵害時の爆発半径を最小化する"
 		},
 		{
 			"title": "IAM ポリシー評価ロジック（2/2）",
@@ -859,7 +927,8 @@
 				"6. **Identity-based Policy** → アクション許可チェック",
 				"7. **Implicit Deny** → デフォルト拒否"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "最小権限ポリシーが侵害時の爆発半径を最小化する"
 		},
 		{
 			"title": "Permission Boundary（1/2）",
@@ -870,7 +939,8 @@
 				"**ユースケース**:",
 				"- 開発者が自由にIAMロールを作成できるが、特定サービス以外は付与不可"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "境界設定が開発者への権限委譲を安全なレンジ内に制限する"
 		},
 		{
 			"title": "Permission Boundary（2/2）",
@@ -881,7 +951,8 @@
 				"- Permission Boundary は許可を与えない（制限するのみ）",
 				"- SCP と Permission Boundary は独立して評価される"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "境界設定が開発者への権限委譲を安全なレンジ内に制限する"
 		},
 		{
 			"title": "SCP (Service Control Policies)（1/2）",
@@ -892,7 +963,8 @@
 				"- 管理アカウントには適用されない",
 				"- 「許可を与える」ではなく「最大権限を制限する」"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SCPがOU単位でAWSサービス利用を強制制限する最強のガードレール"
 		},
 		{
 			"title": "SCP (Service Control Policies)（2/2）",
@@ -903,7 +975,8 @@
 				"- GuardDuty / CloudTrail の無効化防止",
 				"- root アカウントの操作制限"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SCPがOU単位でAWSサービス利用を強制制限する最強のガードレール"
 		},
 		{
 			"title": "SCP: 実践パターン（1/2）",
@@ -914,7 +987,8 @@
 				"{",
 				"  \"Effect\": \"Deny\","
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SCPの実践パターンが組織全体の防御ベースラインを保証する"
 		},
 		{
 			"title": "SCP: 実践パターン（2/2）",
@@ -925,7 +999,8 @@
 				"  \"Resource\": \"*\"",
 				"}"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SCPの実践パターンが組織全体の防御ベースラインを保証する"
 		},
 		{
 			"title": "SCP: 実践パターン（コード例）",
@@ -948,7 +1023,8 @@
 				"- アカウントA のロール → アカウントB の IAM ロールを AssumeRole",
 				"- 信頼ポリシー (Trust Policy) でアカウントAを信頼"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AssumeRoleの信頼ポリシー設計がアカウント間の安全を決める"
 		},
 		{
 			"title": "クロスアカウントアクセス（2/2）",
@@ -959,7 +1035,8 @@
 				"**条件キー**:",
 				"- `aws:SourceAccount`, `aws:SourceArn`: リソースベースポリシーで安全に制限"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AssumeRoleの信頼ポリシー設計がアカウント間の安全を決める"
 		},
 		{
 			"title": "AWS IAM Identity Center (旧 SSO)（1/2）",
@@ -970,7 +1047,8 @@
 				"**権限セット (Permission Set)**: IAM ポリシーの集合",
 				"- アカウント × ユーザー/グループ に割り当て"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "IAM設計の誤りが最多のAWSセキュリティ侵害原因"
 		},
 		{
 			"title": "AWS IAM Identity Center (旧 SSO)（2/2）",
@@ -981,7 +1059,8 @@
 				"- 1つのIDで複数AWSアカウントにアクセス",
 				"- 長期アクセスキー不要（一時的な認証情報）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "IAM設計の誤りが最多のAWSセキュリティ侵害原因"
 		},
 		{
 			"title": "ABAC (属性ベースアクセス制御)（1/2）",
@@ -992,7 +1071,8 @@
 				"**ABAC ポリシー例**:",
 				"```json"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "タグベースABACが動的なリソース増減に対応した認可を実現する"
 		},
 		{
 			"title": "ABAC (属性ベースアクセス制御)（2/2）",
@@ -1004,7 +1084,8 @@
 				"**メリット**: 新しいリソース追加時にポリシー変更不要",
 				"**RBAC との違い**: RBAC = ロール単位、ABAC = タグ単位"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "タグベースABACが動的なリソース増減に対応した認可を実現する"
 		},
 		{
 			"title": "AWS IAM Access Analyzer（1/2）",
@@ -1014,7 +1095,8 @@
 				"- S3 バケット, KMS キー, IAM ロール, Lambda, SQS, Secrets Manager",
 				"**Finding タイプ**:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "IAM設計の誤りが最多のAWSセキュリティ侵害原因"
 		},
 		{
 			"title": "AWS IAM Access Analyzer（2/2）",
@@ -1025,7 +1107,8 @@
 				"**Policy Validation**: IAM ポリシーの構文・セキュリティチェック",
 				"**Policy Generation**: CloudTrail ログから最小権限ポリシーを自動生成"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "IAM設計の誤りが最多のAWSセキュリティ侵害原因"
 		},
 		{
 			"title": "IAM ベストプラクティス",
@@ -1038,7 +1121,8 @@
 				"**Credential Report**: 全ユーザーの認証情報状態を定期確認",
 				"**CloudTrail**: IAM 操作を全て記録し監査"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "IAM設計の誤りが最多のAWSセキュリティ侵害原因"
 		},
 		{
 			"title": "混乱した代理人問題 (Confused Deputy)（1/2）",
@@ -1049,7 +1133,8 @@
 				"**例**: S3 バケットポリシーで CloudTrail からの書き込みを制限",
 				"```json"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "外部IDとconditionキーが混乱した代理人攻撃を防ぐ唯一の手段"
 		},
 		{
 			"title": "混乱した代理人問題 (Confused Deputy)（2/2）",
@@ -1060,10 +1145,12 @@
 				"```",
 				"**External ID**: AssumeRole 時のサードパーティ認証にも活用"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "外部IDとconditionキーが混乱した代理人攻撃を防ぐ唯一の手段"
 		},
 		{
 			"title": "Domain 4 まとめ: 重要ポイント",
+			"subtitle": "Domain4のSCP+Permission Boundaryの組み合わせ問題と評価ロジックが試験最頻出テーマ",
 			"content": [
 				"**評価ロジック**: Explicit Deny → SCP → Resource-based → Boundary → Session → Identity",
 				"**Permission Boundary**: 権限の上限（許可を与えない）",
@@ -1103,7 +1190,8 @@
 				"- AWS マネージドキー: 無料、`aws/s3` など自動作成",
 				"- カスタマーマネージドキー (CMK): ポリシー・ローテーション制御可能"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "顧客管理CMKがデータ主権と監査証跡を両立させる"
 		},
 		{
 			"title": "AWS KMS: 概要（2/2）",
@@ -1114,7 +1202,8 @@
 				"- 非対称: RSA / ECC、デジタル署名・公開鍵暗号",
 				"**FIPS 140-2 Level 3**: CloudHSM（KMS はLevel 2）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "顧客管理CMKがデータ主権と監査証跡を両立させる"
 		},
 		{
 			"title": "KMS キーポリシー（1/2）",
@@ -1124,7 +1213,8 @@
 				"キーポリシー + IAM ポリシーの両方で許可が必要",
 				"**デフォルトキーポリシー**:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "顧客管理CMKがデータ主権と監査証跡を両立させる"
 		},
 		{
 			"title": "KMS キーポリシー（2/2）",
@@ -1135,7 +1225,8 @@
 				"**クロスアカウント**:",
 				"- キーポリシーで他アカウントを許可 + IAM ポリシーで許可"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "顧客管理CMKがデータ主権と監査証跡を両立させる"
 		},
 		{
 			"title": "KMS: エンベロープ暗号化（1/2）",
@@ -1145,7 +1236,8 @@
 				"1. KMS から データキー (DEK) を生成 (`GenerateDataKey`)",
 				"2. DEK でデータをローカル暗号化（高速）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "顧客管理CMKがデータ主権と監査証跡を両立させる"
 		},
 		{
 			"title": "KMS: エンベロープ暗号化（2/2）",
@@ -1155,7 +1247,8 @@
 				"**メリット**: 大量データを KMS に送らずに暗号化",
 				"**AWS SDK**: Encryption SDK がエンベロープ暗号化を自動処理"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "顧客管理CMKがデータ主権と監査証跡を両立させる"
 		},
 		{
 			"title": "KMS: キーローテーションと管理（1/2）",
@@ -1165,7 +1258,8 @@
 				"- AWS マネージドキー: 自動（1年）",
 				"- ローテーション後も古いキーバージョンで復号可能"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "顧客管理CMKがデータ主権と監査証跡を両立させる"
 		},
 		{
 			"title": "KMS: キーローテーションと管理（2/2）",
@@ -1176,7 +1270,8 @@
 				"**キー無効化**: 一時的に使用停止（削除より安全）",
 				"**マルチリージョンキー**: 複数リージョンで同一キーマテリアル使用"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "顧客管理CMKがデータ主権と監査証跡を両立させる"
 		},
 		{
 			"title": "S3 データ保護: 暗号化（1/2）",
@@ -1186,7 +1281,8 @@
 				"- SSE-KMS: KMS CMK 使用、監査ログあり（CloudTrail）",
 				"- SSE-C: 顧客提供キー、AWS はキーを保存しない"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "顧客管理CMKがデータ主権と監査証跡を両立させる"
 		},
 		{
 			"title": "S3 データ保護: 暗号化（2/2）",
@@ -1197,7 +1293,8 @@
 				"**デフォルト暗号化**: バケットレベルで SSE-S3 または SSE-KMS を強制",
 				"**重要**: バケットポリシーで `aws:SecureTransport: false` を拒否しHTTPS強制"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "顧客管理CMKがデータ主権と監査証跡を両立させる"
 		},
 		{
 			"title": "S3 データ保護: アクセス制御（1/2）",
@@ -1208,7 +1305,8 @@
 				"**組織全体**: Organizations + S3 Block Public Access を一括適用",
 				"**S3 Object Lock**:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "S3パブリックブロックとバケットポリシーが漏洩の最終防壁"
 		},
 		{
 			"title": "S3 データ保護: アクセス制御（2/2）",
@@ -1219,7 +1317,8 @@
 				"**バージョニング**: 誤削除・上書き防止、MFA Delete と組み合わせ",
 				"**S3 Inventory**: オブジェクトの暗号化状態・バージョン一覧"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "S3パブリックブロックとバケットポリシーが漏洩の最終防壁"
 		},
 		{
 			"title": "AWS Certificate Manager (ACM)（1/2）",
@@ -1229,7 +1328,8 @@
 				"- ACM 発行: 無料、DNS/メール検証、自動更新",
 				"- インポート: 外部CAの証明書をインポート（自動更新なし）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ACMが証明書のプロビジョニングと自動更新を完全に自動化する"
 		},
 		{
 			"title": "AWS Certificate Manager (ACM)（2/2）",
@@ -1239,7 +1339,8 @@
 				"**リージョン制約**: CloudFront 用は us-east-1 で発行必須",
 				"**Private CA**: ACM Private CA でプライベート証明書の発行"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ACMが証明書のプロビジョニングと自動更新を完全に自動化する"
 		},
 		{
 			"title": "AWS Secrets Manager（1/2）",
@@ -1249,7 +1350,8 @@
 				"- Lambda 関数でローテーション処理",
 				"- RDS, Redshift, DocumentDB は組み込みローテーション対応"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Secrets Managerが認証情報の自動ローテーションとアクセス制御を提供"
 		},
 		{
 			"title": "AWS Secrets Manager（2/2）",
@@ -1260,7 +1362,8 @@
 				"- Secrets Manager: 自動ローテーション、クロスアカウント、高コスト",
 				"- Parameter Store: 無料枠あり、階層的なパス、ローテーション手動"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Secrets Managerが認証情報の自動ローテーションとアクセス制御を提供"
 		},
 		{
 			"title": "Amazon Macie（1/2）",
@@ -1270,7 +1373,8 @@
 				"- PII: 氏名、メール、クレジットカード番号、パスポート",
 				"- 認証情報: AWS アクセスキー、秘密鍵"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "MacieがS3内の個人情報を機械学習で自動分類・アラート"
 		},
 		{
 			"title": "Amazon Macie（2/2）",
@@ -1281,7 +1385,8 @@
 				"**バケット評価**: パブリックアクセス設定・暗号化状態の確認",
 				"**Organizations 対応**: 全アカウントの S3 を一元監視"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "MacieがS3内の個人情報を機械学習で自動分類・アラート"
 		},
 		{
 			"title": "CloudFront セキュリティ（1/2）",
@@ -1291,7 +1396,8 @@
 				"**OAC (Origin Access Control)**: S3 への直接アクセスを遮断",
 				"- OAI (旧) から OAC (新) に移行推奨"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CloudFront+WAFがオリジン保護とDDoS緩和を同時に実現する"
 		},
 		{
 			"title": "CloudFront セキュリティ（2/2）",
@@ -1301,7 +1407,8 @@
 				"**Geo Restriction**: 国単位でアクセス制限",
 				"**Signed URL / Cookies**: コンテンツへのアクセスを認証済みユーザーに限定"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CloudFront+WAFがオリジン保護とDDoS緩和を同時に実現する"
 		},
 		{
 			"title": "CloudHSM（1/2）",
@@ -1312,7 +1419,8 @@
 				"- KMS: FIPS 140-2 Level 2 (一部 Level 3)、マルチテナント、AWS管理",
 				"**ユースケース**:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CloudHSMが専有ハードウェアで規制要件の最高水準を満たす"
 		},
 		{
 			"title": "CloudHSM（2/2）",
@@ -1323,10 +1431,12 @@
 				"**KMS カスタムキーストア**: CloudHSM と KMS を統合",
 				"**注意**: HA のため最低2台のクラスタ構成が必要"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CloudHSMが専有ハードウェアで規制要件の最高水準を満たす"
 		},
 		{
 			"title": "Domain 5 まとめ: 重要ポイント",
+			"subtitle": "KMS(エンベロープ暗号化/自動ローテーション)とS3(Object Lock/SSE種別)がDomain5の核心",
 			"content": [
 				"**KMS**: キーポリシー必須、エンベロープ暗号化、自動ローテーション",
 				"**S3**: SSE-KMS vs SSE-S3、Object Lock WORM、パブリックアクセスブロック",
@@ -1359,7 +1469,8 @@
 				"- Management: 組織管理のみ（ワークロード禁止）",
 				"- Security: GuardDuty委任管理者、Security Hub委任管理者"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "OU設計とSCP/SCPの組み合わせがガバナンスの骨格を形成する"
 		},
 		{
 			"title": "AWS Organizations: セキュリティガバナンス（2/2）",
@@ -1369,7 +1480,8 @@
 				"- Sandbox: 開発実験用（本番から分離）",
 				"**委任管理者**: 各セキュリティサービスを Security アカウントから一元管理"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "OU設計とSCP/SCPの組み合わせがガバナンスの骨格を形成する"
 		},
 		{
 			"title": "AWS Control Tower（1/2）",
@@ -1379,7 +1491,8 @@
 				"**ガードレール (Guardrails)**:",
 				"- 予防的 (Preventive): SCP で違反操作をブロック"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Control Towerがランディングゾーンのベストプラクティスを自動適用する"
 		},
 		{
 			"title": "AWS Control Tower（2/2）",
@@ -1389,7 +1502,8 @@
 				"**Account Factory for Terraform (AFT)**: IaC でアカウント管理",
 				"**ダッシュボード**: 全アカウントのコンプライアンス状態を可視化"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Control Towerがランディングゾーンのベストプラクティスを自動適用する"
 		},
 		{
 			"title": "AWS Audit Manager（1/2）",
@@ -1399,7 +1513,8 @@
 				"- CIS AWS Foundations Benchmark",
 				"- PCI DSS, HIPAA, SOC2, ISO 27001, GDPR"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Audit Managerが継続的な証拠収集でコンプライアンス準備を自動化する"
 		},
 		{
 			"title": "AWS Audit Manager（2/2）",
@@ -1410,7 +1525,8 @@
 				"**レポート**: 監査人向けのエビデンスレポートを自動生成",
 				"**統合**: Security Hub との統合で一元的なコンプライアンス管理"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Audit Managerが継続的な証拠収集でコンプライアンス準備を自動化する"
 		},
 		{
 			"title": "AWS Config: Conformance Pack（1/2）",
@@ -1420,7 +1536,8 @@
 				"- AWS Operational Best Practices for PCI-DSS",
 				"- CIS AWS Foundations Benchmark など"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AWS Configが設定ドリフトを即座に検知し準拠を維持する"
 		},
 		{
 			"title": "AWS Config: Conformance Pack（2/2）",
@@ -1431,7 +1548,8 @@
 				"- 委任管理者アカウントから管理",
 				"**自動修復**: SSM Automation と組み合わせて非準拠リソースを自動修正"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AWS Configが設定ドリフトを即座に検知し準拠を維持する"
 		},
 		{
 			"title": "AWS Well-Architected: セキュリティの柱（1/2）",
@@ -1441,7 +1559,8 @@
 				"2. 追跡可能性を実現する（CloudTrail, Config）",
 				"3. 全レイヤーにセキュリティを適用する（多層防御）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "セキュリティの柱の7設計原則が設計の抜け漏れを系統的に防ぐ"
 		},
 		{
 			"title": "AWS Well-Architected: セキュリティの柱（2/2）",
@@ -1451,7 +1570,8 @@
 				"6. データを遠ざける（最小限のアクセスに制限）",
 				"7. セキュリティイベントに備える（インシデント対応計画）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "セキュリティの柱の7設計原則が設計の抜け漏れを系統的に防ぐ"
 		},
 		{
 			"title": "Infrastructure as Code セキュリティ（1/2）",
@@ -1461,7 +1581,8 @@
 				"- Change Sets: 変更の事前プレビュー・承認フロー",
 				"- Drift Detection: テンプレートとの乖離を検知"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "IaCのセキュリティチェック自動化がデプロイ前の脆弱性を排除する"
 		},
 		{
 			"title": "Infrastructure as Code セキュリティ（2/2）",
@@ -1471,7 +1592,8 @@
 				"**CloudFormation + Systems Manager Parameter Store**: 機密値の安全な参照",
 				"**注意**: テンプレートにシークレットをハードコードしない"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "IaCのセキュリティチェック自動化がデプロイ前の脆弱性を排除する"
 		},
 		{
 			"title": "コスト管理とセキュリティ（1/2）",
@@ -1481,7 +1603,8 @@
 				"**Cost Anomaly Detection**: 機械学習でコスト異常を自動検知",
 				"**セキュリティ関連コスト事例**:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "コストアラームが予期しないリソース作成=侵害の早期指標になる"
 		},
 		{
 			"title": "コスト管理とセキュリティ（2/2）",
@@ -1491,7 +1614,8 @@
 				"**GuardDuty**: CryptoCurrency Finding でマイニング検知",
 				"**対応**: Budgets アラート → SNS → GuardDuty 確認"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "コストアラームが予期しないリソース作成=侵害の早期指標になる"
 		},
 		{
 			"title": "サードパーティ統合とセキュリティ（1/2）",
@@ -1501,7 +1625,8 @@
 				"- Palo Alto Prisma Cloud: クラウドセキュリティ管理",
 				"**マーケットプレイス**:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "外部統合のスコープ最小化と監査がサプライチェーンリスクを制御する"
 		},
 		{
 			"title": "サードパーティ統合とセキュリティ（2/2）",
@@ -1512,10 +1637,12 @@
 				"Security Hub → EventBridge → Kinesis → Splunk",
 				"**注意**: サードパーティへのアクセスは最小権限 + External ID"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "外部統合のスコープ最小化と監査がサプライチェーンリスクを制御する"
 		},
 		{
 			"title": "Domain 6 まとめ: 重要ポイント",
+			"subtitle": "Organizations委任管理者+Control Towerガードレール+Conformance Pack展開がDomain6の重点",
 			"content": [
 				"**Organizations**: 委任管理者でセキュリティサービスを一元化",
 				"**Control Tower**: ガードレール（予防的=SCP、検知的=Config）",
@@ -1553,7 +1680,8 @@
 				"| Parameter Store | 設定・シークレット | 無料枠あり |",
 				"| S3 Object Lock | WORM | Compliance/Governance |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "顧客管理CMKがデータ主権と監査証跡を両立させる"
 		},
 		{
 			"title": "試験対策: ネットワークセキュリティの比較",
@@ -1572,6 +1700,7 @@
 		},
 		{
 			"title": "SCS-C02 合格のための最終チェック（1/2）",
+			"subtitle": "IAMポリシー評価・GuardDuty自動対応・KMSエンベロープ暗号化が合格最優先の3テーマ",
 			"content": [
 				"**絶対に覚える項目**:",
 				"- IAM ポリシー評価ロジック（Explicit Deny 最優先）",
@@ -1582,6 +1711,7 @@
 		},
 		{
 			"title": "SCS-C02 合格のための最終チェック（2/2）",
+			"subtitle": "VPCエンドポイント種別・Object Lock・CloudTrail検証・SCPの4つが追加の必須暗記項目",
 			"content": [
 				"- VPC エンドポイントの種類（Gateway vs Interface）",
 				"- S3 Object Lock の Compliance vs Governance モード",
@@ -1592,6 +1722,7 @@
 		},
 		{
 			"title": "おすすめ学習リソース（1/2）",
+			"subtitle": "AWS公式ドキュメントと試験ガイドがSCS-C02合格への最短ルートを示す",
 			"content": [
 				"**公式ドキュメント**:",
 				"- [AWS Security Best Practices](https://aws.amazon.com/security/)",
@@ -1603,6 +1734,7 @@
 		},
 		{
 			"title": "おすすめ学習リソース（2/2）",
+			"subtitle": "ハンズオン演習と公式模擬試験でSCS-C02の実践力を完成させる",
 			"content": [
 				"**ハンズオン**:",
 				"- AWS Security Workshops (workshops.aws)",

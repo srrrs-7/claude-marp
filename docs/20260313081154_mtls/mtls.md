@@ -250,6 +250,8 @@ IoT特有の課題（UIなし、断続的接続、大量デバイス）に対し
 
 # EnvoyプロキシでmTLSを設定する：実装はDownstreamとUpstreamを分けて考える
 
+> *2箇所の設定漏れが片方向TLSになる最大の落とし穴*
+
 - Envoyのmtls設定は listener（受信）と cluster（送信）の2箇所に記述する
 - transport_socket に DownstreamTlsContext / UpstreamTlsContext を使い分ける
 - require_client_certificate: true で相互認証を強制（省略すると片方向TLSになる）
@@ -345,6 +347,8 @@ Let's Encryptは公開Webサービス向けで内部mTLSには不適切。内部
 ---
 
 # Vault PKI SecretsエンジンでmTLS証明書を自動発行する：運用コストを90%削減する設計
+
+> *TTL短縮と自動更新で証明書失効リスクをゼロにできる*
 
 - Vault PKI Secrets Engineは証明書の発行・失効・TTL管理をAPIで完全自動化する
 - Roleで許可するドメイン・有効期間・鍵サイズを制限し、最小権限の原則を証明書発行に適用する

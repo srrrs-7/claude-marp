@@ -7,6 +7,71 @@ paginate: true
 header: "意識のハードプロブレム"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -22,6 +87,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *ハードプロブレムからLLM意識判定まで—答えのない問いの構造を解剖する*
 
 - 1. 意識とは何か：ハードプロブレム
 - 2. クオリア：主観的体験の不思議
@@ -70,6 +137,8 @@ style: |
 
 # メアリーの部屋（思考実験）（2/2）
 
+> *赤さの体験は物理知識に還元不可—クオリアは情報処理を超える*
+
 - ---
 - **彼女は初めて外に出て赤いリンゴを見た時、何か新しいことを学ぶか？**
 - 
@@ -108,6 +177,8 @@ style: |
 
 # 「人間と区別できなければ知能がある」は正しいか（1/2）
 
+> *中国語の部屋—構文処理は意味理解でも意識でもない*
+
 - Alan Turing（1950）の提案：
 - テキストで会話して人間と区別できなければ「知的」とみなす
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><rect x="30" y="30" width="160" height="220" rx="10" fill="#1b5e20" opacity="0.9"/><text x="110" y="60" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#a5d6a7">審査員</text><circle cx="110" cy="120" r="28" fill="#388e3c"/><text x="110" y="125" text-anchor="middle" font-family="sans-serif" font-size="12" fill="white">Human</text><text x="110" y="200" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#c8e6c9">チャットのみで</text><text x="110" y="218" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#c8e6c9">判定する</text><rect x="320" y="20" width="160" height="110" rx="10" fill="#e65100" opacity="0.85"/><text x="400" y="55" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#ffe0b2">回答者A</text><circle cx="400" cy="90" r="22" fill="#ef6c00"/><text x="400" y="95" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">人間</text><rect x="320" y="150" width="160" height="110" rx="10" fill="#01579b" opacity="0.85"/><text x="400" y="185" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#b3e5fc">回答者B</text><circle cx="400" cy="220" r="22" fill="#0277bd"/><text x="400" y="225" text-anchor="middle" font-family="sans-serif" font-size="11" fill="white">AI</text><line x1="207" y1="130" x2="315" y2="80" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="6,3"/><line x1="207" y1="140" x2="315" y2="205" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="6,3"/><rect x="510" y="50" width="250" height="180" rx="10" fill="#263238" opacity="0.9"/><text x="635" y="85" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#eceff1">チューリングテスト</text><text x="635" y="112" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#b0bec5">どちらが人間か判定</text><text x="635" y="135" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#b0bec5">できなければ…</text><text x="635" y="165" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825">AIは「知的」とみなす</text><text x="635" y="210" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#e91e63">※ 意識の証明ではない</text></svg>
@@ -137,6 +208,8 @@ style: |
 ---
 
 # 2023年：Googleエンジニアの主張と反響（1/2）
+
+> *否定も肯定も証明不可能—LLMの意識判定基準が存在しない*
 
 - 2022年：Google エンジニア Blake Lemoine が
 - 「LaMDAは感情を持つ」と主張しGoogleを解雇

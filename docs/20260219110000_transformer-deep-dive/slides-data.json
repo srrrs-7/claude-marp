@@ -26,6 +26,7 @@
     },
     {
       "title": "このプレゼンテーションについて（2/2）",
+      "subtitle": "数学的基盤からMultimodalまで全技術スタックを網羅する",
       "layout": "default",
       "content": [
         "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"400\" rx=\"12\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" font-family=\"sans-serif\" font-size=\"22\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">Transformer Encoder-Decoder</text><rect x=\"30\" y=\"55\" width=\"320\" height=\"300\" rx=\"10\" fill=\"#0f3460\"/><text x=\"190\" y=\"78\" font-family=\"sans-serif\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">Encoder (×N)</text><text x=\"190\" y=\"98\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">入力: 「I love cats」</text><rect x=\"50\" y=\"110\" width=\"280\" height=\"38\" rx=\"8\" fill=\"#16213e\"/><text x=\"190\" y=\"134\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">Input Embedding + Positional Encoding</text><line x1=\"190\" y1=\"148\" x2=\"190\" y2=\"146\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"190,158 185,146 195,146\" fill=\"#f9a825\"/><rect x=\"50\" y=\"160\" width=\"280\" height=\"38\" rx=\"8\" fill=\"#16213e\"/><text x=\"190\" y=\"184\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"bold\">Multi-Head Self-Attention</text><line x1=\"190\" y1=\"198\" x2=\"190\" y2=\"196\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"190,208 185,196 195,196\" fill=\"#f9a825\"/><rect x=\"50\" y=\"210\" width=\"280\" height=\"38\" rx=\"8\" fill=\"#16213e\"/><text x=\"190\" y=\"234\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">Add & LayerNorm</text><line x1=\"190\" y1=\"248\" x2=\"190\" y2=\"246\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"190,258 185,246 195,246\" fill=\"#f9a825\"/><rect x=\"50\" y=\"260\" width=\"280\" height=\"38\" rx=\"8\" fill=\"#16213e\"/><text x=\"190\" y=\"284\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">Feed-Forward Network</text><line x1=\"190\" y1=\"298\" x2=\"190\" y2=\"296\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"190,308 185,296 195,296\" fill=\"#f9a825\"/><rect x=\"50\" y=\"310\" width=\"280\" height=\"30\" rx=\"8\" fill=\"#16213e\"/><text x=\"190\" y=\"330\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">Add & LayerNorm</text><path d=\"M 340 184 Q 360 184 360 244 Q 360 304 340 304\" fill=\"none\" stroke=\"#66bb6a\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/><text x=\"365\" y=\"245\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"normal\">残差</text><line x1=\"350\" y1=\"340\" x2=\"418\" y2=\"340\" stroke=\"#e91e63\" stroke-width=\"2\"/><polygon points=\"430,340 418,345 418,335\" fill=\"#e91e63\"/><rect x=\"450\" y=\"55\" width=\"320\" height=\"300\" rx=\"10\" fill=\"#0f3460\"/><text x=\"610\" y=\"78\" font-family=\"sans-serif\" font-size=\"15\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">Decoder (×N)</text><text x=\"610\" y=\"98\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">出力: 「猫が大好き」</text><rect x=\"470\" y=\"110\" width=\"280\" height=\"38\" rx=\"8\" fill=\"#16213e\"/><text x=\"610\" y=\"134\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">Output Embedding + Positional Enc.</text><line x1=\"610\" y1=\"148\" x2=\"610\" y2=\"146\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"610,158 605,146 615,146\" fill=\"#f9a825\"/><rect x=\"470\" y=\"160\" width=\"280\" height=\"38\" rx=\"8\" fill=\"#16213e\"/><text x=\"610\" y=\"184\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\">Masked Self-Attention</text><line x1=\"610\" y1=\"198\" x2=\"610\" y2=\"196\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"610,208 605,196 615,196\" fill=\"#f9a825\"/><rect x=\"470\" y=\"210\" width=\"280\" height=\"38\" rx=\"8\" fill=\"#16213e\"/><text x=\"610\" y=\"234\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"bold\">Cross-Attention (Enc-Dec)</text><line x1=\"610\" y1=\"248\" x2=\"610\" y2=\"246\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"610,258 605,246 615,246\" fill=\"#f9a825\"/><rect x=\"470\" y=\"260\" width=\"280\" height=\"38\" rx=\"8\" fill=\"#16213e\"/><text x=\"610\" y=\"284\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">Feed-Forward Network</text><line x1=\"610\" y1=\"298\" x2=\"610\" y2=\"296\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"610,308 605,296 615,296\" fill=\"#f9a825\"/><rect x=\"470\" y=\"310\" width=\"280\" height=\"30\" rx=\"8\" fill=\"#16213e\"/><text x=\"610\" y=\"330\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">Add & LayerNorm → Linear → Softmax</text><line x1=\"610\" y1=\"355\" x2=\"610\" y2=\"363\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"610,375 605,363 615,363\" fill=\"#f9a825\"/><text x=\"610\" y=\"390\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\">Output Token Probabilities</text></svg>",
@@ -38,6 +39,7 @@
     },
     {
       "title": "アジェンダ（1/2）",
+      "subtitle": "RNNの限界からMultimodalまで12の主要テーマを体系化",
       "layout": "default",
       "content": [
         "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"400\" rx=\"12\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" font-family=\"sans-serif\" font-size=\"22\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">Positional Encoding ヒートマップ</text><text x=\"80\" y=\"72\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"start\" font-weight=\"normal\">Position →  0   1   2   3   4   5  ...  29</text><text x=\"30\" y=\"100\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#90a4ae\" text-anchor=\"end\" font-weight=\"normal\">dim 0</text><text x=\"30\" y=\"122\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#90a4ae\" text-anchor=\"end\" font-weight=\"normal\">dim 1</text><text x=\"30\" y=\"144\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#90a4ae\" text-anchor=\"end\" font-weight=\"normal\">dim 2</text><text x=\"30\" y=\"166\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#90a4ae\" text-anchor=\"end\" font-weight=\"normal\">dim 3</text><text x=\"30\" y=\"188\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#90a4ae\" text-anchor=\"end\" font-weight=\"normal\">dim 4</text><text x=\"30\" y=\"210\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#90a4ae\" text-anchor=\"end\" font-weight=\"normal\">dim 5</text><text x=\"30\" y=\"232\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#90a4ae\" text-anchor=\"end\" font-weight=\"normal\">dim 6</text><text x=\"30\" y=\"254\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#90a4ae\" text-anchor=\"end\" font-weight=\"normal\">dim 7</text><rect x=\"80\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(60,80,180)\" rx=\"2\"/><rect x=\"80\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(60,80,180)\" rx=\"2\"/><rect x=\"80\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(60,80,180)\" rx=\"2\"/><rect x=\"80\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(60,80,180)\" rx=\"2\"/><rect x=\"80\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(60,80,180)\" rx=\"2\"/><rect x=\"80\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(60,80,180)\" rx=\"2\"/><rect x=\"80\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(60,80,180)\" rx=\"2\"/><rect x=\"80\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(60,80,180)\" rx=\"2\"/><rect x=\"102\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(110,12,79)\" rx=\"2\"/><rect x=\"102\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(109,14,81)\" rx=\"2\"/><rect x=\"102\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(108,15,83)\" rx=\"2\"/><rect x=\"102\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(106,17,86)\" rx=\"2\"/><rect x=\"102\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(105,19,88)\" rx=\"2\"/><rect x=\"102\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(104,20,91)\" rx=\"2\"/><rect x=\"102\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(103,22,93)\" rx=\"2\"/><rect x=\"102\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(102,23,95)\" rx=\"2\"/><rect x=\"124\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(114,7,70)\" rx=\"2\"/><rect x=\"124\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(116,5,67)\" rx=\"2\"/><rect x=\"124\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(117,3,65)\" rx=\"2\"/><rect x=\"124\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(118,2,63)\" rx=\"2\"/><rect x=\"124\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(119,1,61)\" rx=\"2\"/><rect x=\"124\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(119,0,60)\" rx=\"2\"/><rect x=\"124\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(119,0,60)\" rx=\"2\"/><rect x=\"124\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(119,0,60)\" rx=\"2\"/><rect x=\"146\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(68,68,163)\" rx=\"2\"/><rect x=\"146\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(74,60,150)\" rx=\"2\"/><rect x=\"146\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(80,52,138)\" rx=\"2\"/><rect x=\"146\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(86,45,127)\" rx=\"2\"/><rect x=\"146\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(91,38,117)\" rx=\"2\"/><rect x=\"146\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(95,32,108)\" rx=\"2\"/><rect x=\"146\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(99,27,100)\" rx=\"2\"/><rect x=\"146\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(103,22,93)\" rx=\"2\"/><rect x=\"168\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(14,19,270)\" rx=\"2\"/><rect x=\"168\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(20,27,258)\" rx=\"2\"/><rect x=\"168\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(27,36,245)\" rx=\"2\"/><rect x=\"168\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(33,45,232)\" rx=\"2\"/><rect x=\"168\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(40,54,218)\" rx=\"2\"/><rect x=\"168\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(48,64,203)\" rx=\"2\"/><rect x=\"168\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(55,73,189)\" rx=\"2\"/><rect x=\"168\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(61,77,176)\" rx=\"2\"/><rect x=\"190\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(2,3,295)\" rx=\"2\"/><rect x=\"190\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(0,0,299)\" rx=\"2\"/><rect x=\"190\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(0,0,299)\" rx=\"2\"/><rect x=\"190\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(1,1,297)\" rx=\"2\"/><rect x=\"190\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(4,5,291)\" rx=\"2\"/><rect x=\"190\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(8,11,283)\" rx=\"2\"/><rect x=\"190\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(13,17,273)\" rx=\"2\"/><rect x=\"190\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(19,25,261)\" rx=\"2\"/><rect x=\"212\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(43,57,213)\" rx=\"2\"/><rect x=\"212\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(31,41,237)\" rx=\"2\"/><rect x=\"212\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(21,28,257)\" rx=\"2\"/><rect x=\"212\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(13,17,273)\" rx=\"2\"/><rect x=\"212\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(6,9,286)\" rx=\"2\"/><rect x=\"212\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(2,3,294)\" rx=\"2\"/><rect x=\"212\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(0,0,299)\" rx=\"2\"/><rect x=\"212\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(0,0,299)\" rx=\"2\"/><rect x=\"234\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(99,27,101)\" rx=\"2\"/><rect x=\"234\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(87,43,125)\" rx=\"2\"/><rect x=\"234\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(73,61,152)\" rx=\"2\"/><rect x=\"234\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(60,79,179)\" rx=\"2\"/><rect x=\"234\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(46,62,206)\" rx=\"2\"/><rect x=\"234\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(34,46,230)\" rx=\"2\"/><rect x=\"234\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(24,32,251)\" rx=\"2\"/><rect x=\"234\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(15,20,269)\" rx=\"2\"/><rect x=\"256\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(119,0,61)\" rx=\"2\"/><rect x=\"256\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(119,0,61)\" rx=\"2\"/><rect x=\"256\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(115,6,69)\" rx=\"2\"/><rect x=\"256\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(106,17,86)\" rx=\"2\"/><rect x=\"256\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(96,31,107)\" rx=\"2\"/><rect x=\"256\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(83,48,133)\" rx=\"2\"/><rect x=\"256\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(69,66,160)\" rx=\"2\"/><rect x=\"256\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(56,74,187)\" rx=\"2\"/><rect x=\"278\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(84,47,130)\" rx=\"2\"/><rect x=\"278\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(100,25,98)\" rx=\"2\"/><rect x=\"278\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(112,10,75)\" rx=\"2\"/><rect x=\"278\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(118,2,63)\" rx=\"2\"/><rect x=\"278\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(119,0,60)\" rx=\"2\"/><rect x=\"278\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(116,4,66)\" rx=\"2\"/><rect x=\"278\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(109,14,81)\" rx=\"2\"/><rect x=\"278\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(99,27,101)\" rx=\"2\"/><rect x=\"300\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(27,36,245)\" rx=\"2\"/><rect x=\"300\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(46,62,206)\" rx=\"2\"/><rect x=\"300\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(67,70,165)\" rx=\"2\"/><rect x=\"300\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(85,45,128)\" rx=\"2\"/><rect x=\"300\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(101,24,96)\" rx=\"2\"/><rect x=\"300\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(112,9,74)\" rx=\"2\"/><rect x=\"300\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(118,1,62)\" rx=\"2\"/><rect x=\"300\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(119,0,60)\" rx=\"2\"/><rect x=\"322\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(0,0,299)\" rx=\"2\"/><rect x=\"322\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(4,5,291)\" rx=\"2\"/><rect x=\"322\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(16,21,267)\" rx=\"2\"/><rect x=\"322\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(33,45,232)\" rx=\"2\"/><rect x=\"322\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(53,71,192)\" rx=\"2\"/><rect x=\"322\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(74,61,151)\" rx=\"2\"/><rect x=\"322\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(91,37,116)\" rx=\"2\"/><rect x=\"322\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(106,18,87)\" rx=\"2\"/><rect x=\"344\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(27,37,244)\" rx=\"2\"/><rect x=\"344\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(9,13,280)\" rx=\"2\"/><rect x=\"344\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(0,1,298)\" rx=\"2\"/><rect x=\"344\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(1,1,297)\" rx=\"2\"/><rect x=\"344\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(10,14,278)\" rx=\"2\"/><rect x=\"344\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(26,34,247)\" rx=\"2\"/><rect x=\"344\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(45,60,209)\" rx=\"2\"/><rect x=\"344\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(65,72,168)\" rx=\"2\"/><rect x=\"366\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(85,46,129)\" rx=\"2\"/><rect x=\"366\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(58,77,183)\" rx=\"2\"/><rect x=\"366\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(32,43,234)\" rx=\"2\"/><rect x=\"366\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(13,17,273)\" rx=\"2\"/><rect x=\"366\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(2,2,295)\" rx=\"2\"/><rect x=\"366\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(0,0,298)\" rx=\"2\"/><rect x=\"366\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(7,10,284)\" rx=\"2\"/><rect x=\"366\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(22,29,255)\" rx=\"2\"/><rect x=\"388\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(119,0,61)\" rx=\"2\"/><rect x=\"388\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(108,15,83)\" rx=\"2\"/><rect x=\"388\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(86,44,126)\" rx=\"2\"/><rect x=\"388\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(60,79,179)\" rx=\"2\"/><rect x=\"388\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(34,45,231)\" rx=\"2\"/><rect x=\"388\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(14,18,271)\" rx=\"2\"/><rect x=\"388\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(2,3,295)\" rx=\"2\"/><rect x=\"388\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(0,0,299)\" rx=\"2\"/><rect x=\"410\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(99,27,101)\" rx=\"2\"/><rect x=\"410\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(116,4,66)\" rx=\"2\"/><rect x=\"410\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(119,1,61)\" rx=\"2\"/><rect x=\"410\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(106,17,86)\" rx=\"2\"/><rect x=\"410\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(84,47,130)\" rx=\"2\"/><rect x=\"410\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(57,77,184)\" rx=\"2\"/><rect x=\"410\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(32,43,235)\" rx=\"2\"/><rect x=\"410\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(12,17,274)\" rx=\"2\"/><rect x=\"432\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(42,56,214)\" rx=\"2\"/><rect x=\"432\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(76,58,147)\" rx=\"2\"/><rect x=\"432\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(103,21,92)\" rx=\"2\"/><rect x=\"432\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(118,2,63)\" rx=\"2\"/><rect x=\"432\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(117,3,64)\" rx=\"2\"/><rect x=\"432\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(103,22,93)\" rx=\"2\"/><rect x=\"432\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(79,54,141)\" rx=\"2\"/><rect x=\"432\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(52,69,195)\" rx=\"2\"/><rect x=\"454\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(2,3,295)\" rx=\"2\"/><rect x=\"454\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(21,28,256)\" rx=\"2\"/><rect x=\"454\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(53,71,193)\" rx=\"2\"/><rect x=\"454\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(85,45,128)\" rx=\"2\"/><rect x=\"454\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(110,13,79)\" rx=\"2\"/><rect x=\"454\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(119,0,60)\" rx=\"2\"/><rect x=\"454\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(114,7,71)\" rx=\"2\"/><rect x=\"454\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(96,31,107)\" rx=\"2\"/><rect x=\"476\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(14,19,270)\" rx=\"2\"/><rect x=\"476\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(0,0,299)\" rx=\"2\"/><rect x=\"476\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(8,10,283)\" rx=\"2\"/><rect x=\"476\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(33,45,232)\" rx=\"2\"/><rect x=\"476\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(67,70,165)\" rx=\"2\"/><rect x=\"476\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(97,30,105)\" rx=\"2\"/><rect x=\"476\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(115,5,68)\" rx=\"2\"/><rect x=\"476\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(119,0,61)\" rx=\"2\"/><rect x=\"498\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(68,68,162)\" rx=\"2\"/><rect x=\"498\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(30,40,239)\" rx=\"2\"/><rect x=\"498\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(4,6,290)\" rx=\"2\"/><rect x=\"498\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(1,1,297)\" rx=\"2\"/><rect x=\"498\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(19,25,261)\" rx=\"2\"/><rect x=\"498\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(50,66,199)\" rx=\"2\"/><rect x=\"498\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(83,49,133)\" rx=\"2\"/><rect x=\"498\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(108,15,83)\" rx=\"2\"/><rect x=\"520\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(114,6,70)\" rx=\"2\"/><rect x=\"520\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(85,45,128)\" rx=\"2\"/><rect x=\"520\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(45,61,208)\" rx=\"2\"/><rect x=\"520\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(13,17,273)\" rx=\"2\"/><rect x=\"520\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(0,0,299)\" rx=\"2\"/><rect x=\"520\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(9,12,280)\" rx=\"2\"/><rect x=\"520\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(36,48,227)\" rx=\"2\"/><rect x=\"520\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(69,67,160)\" rx=\"2\"/><rect x=\"542\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(110,13,79)\" rx=\"2\"/><rect x=\"542\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(119,1,61)\" rx=\"2\"/><rect x=\"542\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(98,28,103)\" rx=\"2\"/><rect x=\"542\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(60,79,179)\" rx=\"2\"/><rect x=\"542\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(23,30,253)\" rx=\"2\"/><rect x=\"542\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(2,2,295)\" rx=\"2\"/><rect x=\"542\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(3,5,292)\" rx=\"2\"/><rect x=\"542\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(25,33,249)\" rx=\"2\"/><rect x=\"564\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(59,79,181)\" rx=\"2\"/><rect x=\"564\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(101,24,96)\" rx=\"2\"/><rect x=\"564\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(119,0,60)\" rx=\"2\"/><rect x=\"564\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(106,17,86)\" rx=\"2\"/><rect x=\"564\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(72,63,155)\" rx=\"2\"/><rect x=\"564\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(32,43,234)\" rx=\"2\"/><rect x=\"564\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(5,7,288)\" rx=\"2\"/><rect x=\"564\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(0,1,298)\" rx=\"2\"/><rect x=\"586\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(9,12,281)\" rx=\"2\"/><rect x=\"586\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(48,64,203)\" rx=\"2\"/><rect x=\"586\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(93,35,113)\" rx=\"2\"/><rect x=\"586\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(118,2,63)\" rx=\"2\"/><rect x=\"586\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(112,9,74)\" rx=\"2\"/><rect x=\"586\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(81,51,137)\" rx=\"2\"/><rect x=\"586\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(41,55,217)\" rx=\"2\"/><rect x=\"586\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(10,14,278)\" rx=\"2\"/><rect x=\"608\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(5,7,288)\" rx=\"2\"/><rect x=\"608\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(4,6,290)\" rx=\"2\"/><rect x=\"608\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(39,53,220)\" rx=\"2\"/><rect x=\"608\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(85,45,128)\" rx=\"2\"/><rect x=\"608\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(116,5,67)\" rx=\"2\"/><rect x=\"608\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(115,5,68)\" rx=\"2\"/><rect x=\"608\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(88,42,123)\" rx=\"2\"/><rect x=\"608\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(48,64,202)\" rx=\"2\"/><rect x=\"630\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(52,69,195)\" rx=\"2\"/><rect x=\"630\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(8,11,282)\" rx=\"2\"/><rect x=\"630\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(2,3,294)\" rx=\"2\"/><rect x=\"630\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(33,45,232)\" rx=\"2\"/><rect x=\"630\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(80,53,139)\" rx=\"2\"/><rect x=\"630\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(113,8,72)\" rx=\"2\"/><rect x=\"630\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(117,2,64)\" rx=\"2\"/><rect x=\"630\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(93,35,113)\" rx=\"2\"/><rect x=\"652\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(105,18,88)\" rx=\"2\"/><rect x=\"652\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(56,75,186)\" rx=\"2\"/><rect x=\"652\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(11,15,276)\" rx=\"2\"/><rect x=\"652\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(1,1,297)\" rx=\"2\"/><rect x=\"652\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(29,39,240)\" rx=\"2\"/><rect x=\"652\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(76,58,147)\" rx=\"2\"/><rect x=\"652\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(111,11,76)\" rx=\"2\"/><rect x=\"652\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(118,1,62)\" rx=\"2\"/><rect x=\"674\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(117,3,65)\" rx=\"2\"/><rect x=\"674\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(107,16,85)\" rx=\"2\"/><rect x=\"674\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(59,79,180)\" rx=\"2\"/><rect x=\"674\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(13,17,273)\" rx=\"2\"/><rect x=\"674\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(0,1,298)\" rx=\"2\"/><rect x=\"674\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(27,37,244)\" rx=\"2\"/><rect x=\"674\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(73,61,152)\" rx=\"2\"/><rect x=\"674\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(110,12,78)\" rx=\"2\"/><rect x=\"696\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(76,58,147)\" rx=\"2\"/><rect x=\"696\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(117,3,65)\" rx=\"2\"/><rect x=\"696\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(107,16,84)\" rx=\"2\"/><rect x=\"696\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(60,79,179)\" rx=\"2\"/><rect x=\"696\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(13,18,272)\" rx=\"2\"/><rect x=\"696\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(0,1,298)\" rx=\"2\"/><rect x=\"696\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(27,36,245)\" rx=\"2\"/><rect x=\"696\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(73,62,153)\" rx=\"2\"/><rect x=\"718\" y=\"90\" width=\"18\" height=\"18\" fill=\"rgb(20,26,259)\" rx=\"2\"/><rect x=\"718\" y=\"112\" width=\"18\" height=\"18\" fill=\"rgb(77,56,144)\" rx=\"2\"/><rect x=\"718\" y=\"134\" width=\"18\" height=\"18\" fill=\"rgb(117,3,64)\" rx=\"2\"/><rect x=\"718\" y=\"156\" width=\"18\" height=\"18\" fill=\"rgb(107,17,85)\" rx=\"2\"/><rect x=\"718\" y=\"178\" width=\"18\" height=\"18\" fill=\"rgb(58,78,182)\" rx=\"2\"/><rect x=\"718\" y=\"200\" width=\"18\" height=\"18\" fill=\"rgb(12,16,274)\" rx=\"2\"/><rect x=\"718\" y=\"222\" width=\"18\" height=\"18\" fill=\"rgb(1,1,297)\" rx=\"2\"/><rect x=\"718\" y=\"244\" width=\"18\" height=\"18\" fill=\"rgb(28,38,242)\" rx=\"2\"/><line x1=\"80\" y1=\"275\" x2=\"740\" y2=\"275\" stroke=\"#90a4ae\" stroke-width=\"0.5\"/><rect x=\"80\" y=\"290\" width=\"660\" height=\"40\" rx=\"4\" fill=\"#0f3460\"/><text x=\"400\" y=\"307\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"bold\">PE(pos, 2i)   = sin(pos / 10000^(2i/d_model))</text><text x=\"400\" y=\"325\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"bold\">PE(pos, 2i+1) = cos(pos / 10000^(2i/d_model))</text><text x=\"400\" y=\"365\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">各次元が異なる周波数のsin/cos → 位置を一意に表現</text><rect x=\"80\" y=\"348\" width=\"660\" height=\"20\" rx=\"2\" fill=\"#0f3460\"/><text x=\"230\" y=\"361\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"normal\">低周波 (ゆっくり)</text><text x=\"560\" y=\"361\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"normal\">高周波 (速く)</text><line x1=\"380\" y1=\"348\" x2=\"380\" y2=\"368\" stroke=\"#90a4ae\" stroke-width=\"1\"/></svg>",
@@ -51,6 +53,7 @@
     },
     {
       "title": "アジェンダ（2/2）",
+      "subtitle": "スケーリング則・効率化・Alignment・最新動向まで完全カバー",
       "layout": "default",
       "content": [
         "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"400\" rx=\"12\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"30\" font-family=\"sans-serif\" font-size=\"22\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">Feed-Forward Network (FFN)</text><rect x=\"20\" y=\"70\" width=\"80\" height=\"250\" rx=\"8\" fill=\"#0f3460\"/><text x=\"60\" y=\"180\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"bold\">Input</text><text x=\"60\" y=\"200\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">d=512</text><rect x=\"115\" y=\"65\" width=\"60\" height=\"24\" rx=\"8\" fill=\"#0f3460\"/><rect x=\"115\" y=\"97\" width=\"60\" height=\"24\" rx=\"8\" fill=\"#0f3460\"/><rect x=\"115\" y=\"129\" width=\"60\" height=\"24\" rx=\"8\" fill=\"#0f3460\"/><rect x=\"115\" y=\"161\" width=\"60\" height=\"24\" rx=\"8\" fill=\"#0f3460\"/><rect x=\"115\" y=\"193\" width=\"60\" height=\"24\" rx=\"8\" fill=\"#0f3460\"/><rect x=\"115\" y=\"225\" width=\"60\" height=\"24\" rx=\"8\" fill=\"#0f3460\"/><rect x=\"115\" y=\"257\" width=\"60\" height=\"24\" rx=\"8\" fill=\"#0f3460\"/><rect x=\"115\" y=\"289\" width=\"60\" height=\"24\" rx=\"8\" fill=\"#0f3460\"/><text x=\"145\" y=\"81\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x1</text><text x=\"145\" y=\"113\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x2</text><text x=\"145\" y=\"145\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x3</text><text x=\"145\" y=\"177\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x4</text><text x=\"145\" y=\"209\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x5</text><text x=\"145\" y=\"241\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x6</text><text x=\"145\" y=\"273\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x7</text><text x=\"145\" y=\"305\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x8</text><line x1=\"100\" y1=\"195\" x2=\"103\" y2=\"195\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"115,195 103,200 103,190\" fill=\"#f9a825\"/><line x1=\"175\" y1=\"195\" x2=\"213\" y2=\"195\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"225,195 213,200 213,190\" fill=\"#f9a825\"/><rect x=\"225\" y=\"70\" width=\"100\" height=\"250\" rx=\"8\" fill=\"#16213e\"/><text x=\"275\" y=\"110\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"bold\">W₁·x+b₁</text><text x=\"275\" y=\"135\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">Linear</text><text x=\"275\" y=\"155\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\">512→2048</text><text x=\"275\" y=\"175\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">(×4拡張)</text><line x1=\"325\" y1=\"195\" x2=\"368\" y2=\"195\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"380,195 368,200 368,190\" fill=\"#f9a825\"/><rect x=\"380\" y=\"130\" width=\"90\" height=\"110\" rx=\"8\" fill=\"#0f3460\"/><text x=\"425\" y=\"180\" font-family=\"sans-serif\" font-size=\"16\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\">GELU</text><text x=\"425\" y=\"205\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">活性化</text><text x=\"425\" y=\"225\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">関数</text><line x1=\"470\" y1=\"195\" x2=\"508\" y2=\"195\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"520,195 508,200 508,190\" fill=\"#f9a825\"/><rect x=\"520\" y=\"70\" width=\"100\" height=\"250\" rx=\"8\" fill=\"#16213e\"/><text x=\"570\" y=\"110\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"bold\">W₂·x+b₂</text><text x=\"570\" y=\"135\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">Linear</text><text x=\"570\" y=\"155\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\">2048→512</text><text x=\"570\" y=\"175\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">(次元復元)</text><line x1=\"620\" y1=\"195\" x2=\"658\" y2=\"195\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"670,195 658,200 658,190\" fill=\"#f9a825\"/><rect x=\"670\" y=\"70\" width=\"80\" height=\"250\" rx=\"8\" fill=\"#0f3460\"/><text x=\"710\" y=\"180\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"bold\">Output</text><text x=\"710\" y=\"200\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">d=512</text><rect x=\"50\" y=\"340\" width=\"700\" height=\"45\" rx=\"6\" fill=\"#0f3460\"/><text x=\"400\" y=\"360\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">FFN(x) = max(0, xW₁ + b₁) W₂ + b₂</text><text x=\"400\" y=\"380\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">GELU(x) = x · Φ(x)  ← ReLUより滑らかな活性化関数</text></svg>",
@@ -80,7 +83,8 @@
         "",
         "- 隠れ状態 h_t が「記憶」を担う",
         "- 時刻 t の出力は t-1 の状態に依存（逐次依存）"
-      ]
+      ],
+      "subtitle": "RNN比で訓練速度10倍、長文精度も大幅に向上する"
     },
     {
       "title": "RNN — 逐次処理モデルの仕組み（2/2）",
@@ -91,7 +95,8 @@
         "  - `f_t = σ(W_f [h_{t-1}, x_t] + b_f)` (forget gate)",
         "  - `c_t = f_t × c_{t-1} + i_t × g_t` (cell state)",
         "- **GRU**: LSTMの簡略版（reset/update gate）"
-      ]
+      ],
+      "subtitle": "RNN比で訓練速度10倍、長文精度も大幅に向上する"
     },
     {
       "title": "Seq2Seq + Bahdanau Attention (2015)（1/2）",
@@ -103,7 +108,8 @@
         "**問題**: ボトルネック — 全情報を1つのベクトルに圧縮",
         "",
         "**Bahdanau Attention（2015年）の革新**:"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "Seq2Seq + Bahdanau Attention (2015)（2/2）",
@@ -115,7 +121,8 @@
         "- Attention重み: `α_{ij} = exp(e_{ij}) / Σ exp(e_{ik})`",
         "- Context vector: `c_i = Σ α_{ij} × h_j`",
         "- これが「Attention」の起源 — Transformerに結実"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "RNNの3つの根本的限界（1/2）",
@@ -128,7 +135,8 @@
         "",
         "**② 長距離依存の困難**",
         "- 離れた位置の情報が隠れ状態を「伝搬」する間に希薄化"
-      ]
+      ],
+      "subtitle": "RNN比で訓練速度10倍、長文精度も大幅に向上する"
     },
     {
       "title": "RNNの3つの根本的限界（2/2）",
@@ -141,7 +149,8 @@
         "- Back-Propagation Through Time (BPTT) で:",
         "- `∂L/∂h_1 = ∏_{t=1}^{T} ∂h_t/∂h_{t-1}`",
         "- `|λ| < 1` → 指数的消失 / `|λ| > 1` → 指数的爆発"
-      ]
+      ],
+      "subtitle": "RNN比で訓練速度10倍、長文精度も大幅に向上する"
     },
     {
       "title": "勾配消失の数学的詳細（1/2）（1/2）",
@@ -151,7 +160,8 @@
         "**BPTT における勾配の積**:",
         "```",
         "∂L/∂W = Σ_t ∂L_t/∂W"
-      ]
+      ],
+      "subtitle": "残差接続がなければ深層モデルは勾配消失で学習不能になる"
     },
     {
       "title": "勾配消失の数学的詳細（1/2）（2/2）",
@@ -161,7 +171,8 @@
         "           = ∏_{k=2}^{t} diag(σ'(W_h h_{k-1} + ...)) × W_h",
         "```",
         "**問題**: `W_h` の最大固有値 `|λ_max|`"
-      ]
+      ],
+      "subtitle": "残差接続がなければ深層モデルは勾配消失で学習不能になる"
     },
     {
       "title": "勾配消失の数学的詳細（2/2）（1/2）",
@@ -171,7 +182,8 @@
         "- `|λ_max| < 1`: 勾配 → 0（長期依存が学習できない）",
         "- `|λ_max| > 1`: 勾配 → ∞（学習が発散）",
         ""
-      ]
+      ],
+      "subtitle": "残差接続がなければ深層モデルは勾配消失で学習不能になる"
     },
     {
       "title": "勾配消失の数学的詳細（2/2）（2/2）",
@@ -181,7 +193,8 @@
         "- Cell state `c_t` に加算ベースの更新（乗算でなく）",
         "- `c_t = f_t ⊙ c_{t-1} + i_t ⊙ g_t` → 勾配ハイウェイ",
         "- **それでも** 長い系列では勾配が薄れる"
-      ]
+      ],
+      "subtitle": "残差接続がなければ深層モデルは勾配消失で学習不能になる"
     },
     {
       "title": "\"Attention Is All You Need\" (2017) の衝撃（1/2）（1/2）",
@@ -191,7 +204,8 @@
         "**Vaswani et al., Google Brain / Google Research (2017)**",
         "",
         "**革命的提案**: RNNを完全に排除し、Attentionのみで構成"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "\"Attention Is All You Need\" (2017) の衝撃（1/2）（2/2）",
@@ -201,7 +215,8 @@
         "**解決した問題**:",
         "- 全トークン間の直接接続 → 長距離依存をO(1)で学習",
         "- 完全並列計算 → 学習時間の劇的短縮"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "\"Attention Is All You Need\" (2017) の衝撃（2/2）（1/2）",
@@ -211,7 +226,8 @@
         "- 訓練可能なAttention重み → 柔軟な「参照」パターン",
         "",
         "**インパクト**:"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "\"Attention Is All You Need\" (2017) の衝撃（2/2）（2/2）",
@@ -221,7 +237,8 @@
         "- 2019: T5 / GPT-2 / RoBERTa",
         "- 2020: GPT-3（175B）/ ViT",
         "- 2022〜: ChatGPT / GPT-4 / LLaMA / Claude"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "RNN vs Transformer — 並列処理の本質的違い",
@@ -256,7 +273,8 @@
         "- **Character-level**: 文字単位（系列が長くなりすぎる）",
         "- **BPE (Byte-Pair Encoding)**: GPT系が採用",
         "  - 頻出ペアを繰り返しマージして語彙を構築"
-      ]
+      ],
+      "subtitle": "トークン長3超でコストが二乗的に増加する"
     },
     {
       "title": "Tokenization — テキストを数値列に変換（2/2）",
@@ -269,7 +287,8 @@
         "**語彙サイズ (|V|)**:",
         "- GPT-2/3: 50,257 / GPT-4: ~100K / LLaMA: 32K",
         "- Token ID → 整数インデックスでEmbedding lookupに利用"
-      ]
+      ],
+      "subtitle": "トークン長3超でコストが二乗的に増加する"
     },
     {
       "title": "Input Embedding — トークンをベクトル空間へ（1/2）",
@@ -282,7 +301,8 @@
         "- 典型的な値: `d_model = 512` (原論文) / `768` (BERT-base) / `4096` (LLaMA-7B)",
         "",
         "**スケーリング**:"
-      ]
+      ],
+      "subtitle": "トークン長3超でコストが二乗的に増加する"
     },
     {
       "title": "Input Embedding — トークンをベクトル空間へ（2/2）（1/2）",
@@ -292,7 +312,8 @@
         "- 原論文: `Embedding × √d_model` でスケール",
         "- 理由: Positional EncodingとEmbeddingのスケールを揃える",
         ""
-      ]
+      ],
+      "subtitle": "トークン長3超でコストが二乗的に増加する"
     },
     {
       "title": "Input Embedding — トークンをベクトル空間へ（2/2）（2/2）",
@@ -302,7 +323,8 @@
         "- Input: `[B, n]` (token IDs)",
         "- After Embedding: `[B, n, d_model]`",
         "- After PE addition: `[B, n, d_model]`"
-      ]
+      ],
+      "subtitle": "トークン化の質が下流タスク全体の性能を制約する"
     },
     {
       "title": "Encoderブロックの詳細（1/2）（1/2）",
@@ -312,7 +334,8 @@
         "",
         "```",
         "Input x ∈ ℝ^{n × d_model}"
-      ]
+      ],
+      "subtitle": "エンコーダが文脈を圧縮しデコーダの品質を決める"
     },
     {
       "title": "Encoderブロックの詳細（1/2）（2/2）",
@@ -323,7 +346,8 @@
         "  ↓",
         "attn = MultiHeadAttention(x', x', x')  # self-attention",
         "  ↓"
-      ]
+      ],
+      "subtitle": "エンコーダが文脈を圧縮しデコーダの品質を決める"
     },
     {
       "title": "Encoderブロックの詳細（2/2）（1/2）",
@@ -334,7 +358,8 @@
         "x' = LayerNorm(x)            # Pre-Norm",
         "  ↓",
         "ffn = FFN(x')                # Feed-Forward"
-      ]
+      ],
+      "subtitle": "エンコーダが文脈を圧縮しデコーダの品質を決める"
     },
     {
       "title": "Encoderブロックの詳細（2/2）（2/2）",
@@ -345,7 +370,8 @@
         "```",
         "",
         "原論文(Post-Norm): LayerNormが残差加算の後"
-      ]
+      ],
+      "subtitle": "エンコーダが文脈を圧縮しデコーダの品質を決める"
     },
     {
       "title": "Decoderブロックの詳細（1/2）",
@@ -358,7 +384,8 @@
         "  - `softmax` 後に 0 になり影響ゼロ",
         "",
         "- **Cross-Attention (Encoder-Decoder Attention)**:"
-      ]
+      ],
+      "subtitle": "自己回帰生成の品質は温度とサンプリングが左右する"
     },
     {
       "title": "Decoderブロックの詳細（2/2）",
@@ -371,7 +398,8 @@
         "- **Causal Language Modeling (GPT)**:",
         "  - Decoder-onlyではCross-Attentionを省略",
         "  - Masked Self-Attentionのみで自回帰生成"
-      ]
+      ],
+      "subtitle": "自己回帰生成の品質は温度とサンプリングが左右する"
     },
     {
       "title": "行列次元の完全追跡 (d_model=512, h=8, n=10)（1/2）（1/2）",
@@ -382,7 +410,8 @@
         "```",
         "Input tokens:        [B, n=10]"
       ],
-      "codeLanguage": "text"
+      "codeLanguage": "text",
+      "subtitle": "次元設計の理解が実装バグとOOM障害の大半を防ぐ"
     },
     {
       "title": "行列次元の完全追跡 (d_model=512, h=8, n=10)（1/2）（2/2）",
@@ -394,7 +423,8 @@
         "# Multi-Head Attention (h=8, d_k = d_v = d_model/h = 64)",
         "WQ, WK, WV:          [512, 64] × 8 heads"
       ],
-      "codeLanguage": "text"
+      "codeLanguage": "text",
+      "subtitle": "次元設計の理解が実装バグとOOM障害の大半を防ぐ"
     },
     {
       "title": "行列次元の完全追跡 (d_model=512, h=8, n=10)（2/2）（1/2）",
@@ -406,7 +436,8 @@
         "Attention output:    [B, 10, 64] × 8 heads",
         "After Concat:        [B, 10, 512]"
       ],
-      "codeLanguage": "text"
+      "codeLanguage": "text",
+      "subtitle": "次元設計の理解が実装バグとOOM障害の大半を防ぐ"
     },
     {
       "title": "行列次元の完全追跡 (d_model=512, h=8, n=10)（2/2）（2/2）",
@@ -418,7 +449,8 @@
         "After FFN:           [B, 10, 512]",
         "```"
       ],
-      "codeLanguage": "text"
+      "codeLanguage": "text",
+      "subtitle": "次元設計の理解が実装バグとOOM障害の大半を防ぐ"
     },
     {
       "title": "Chapter 4: Self-Attention 深掘り",
@@ -440,7 +472,8 @@
         "**Transformerでの実現**:",
         "- 各トークンが「何を探しているか」= **Query (Q)**",
         "- 各トークンが「何を持っているか」= **Key (K)**"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "Attentionの直感 — 「どこに注目するか」（2/2）（1/2）",
@@ -450,7 +483,8 @@
         "- 各トークンが「実際の情報」= **Value (V)**",
         "",
         "**例えると**:"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "Attentionの直感 — 「どこに注目するか」（2/2）（2/2）",
@@ -460,7 +494,8 @@
         "- Key = 書籍の背表紙タイトル",
         "- Value = 書籍の実際の内容",
         "- マッチ度（Q·K）が高い本の内容（V）を多く取り込む"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "Q/K/V 行列演算の可視化",
@@ -480,7 +515,8 @@
         "`K = X W^K`  ← `W^K ∈ ℝ^{d_model × d_k}`",
         "`V = X W^V`  ← `W^V ∈ ℝ^{d_model × d_v}`",
         ""
-      ]
+      ],
+      "subtitle": "次元設計の理解が実装バグとOOM障害の大半を防ぐ"
     },
     {
       "title": "Q/K/V 投影 — 線形変換の数式（2/2）（1/2）",
@@ -490,7 +526,8 @@
         "**結果の次元**:",
         "- `Q, K ∈ ℝ^{n × d_k}`",
         "- `V ∈ ℝ^{n × d_v}`"
-      ]
+      ],
+      "subtitle": "次元設計の理解が実装バグとOOM障害の大半を防ぐ"
     },
     {
       "title": "Q/K/V 投影 — 線形変換の数式（2/2）（2/2）",
@@ -500,7 +537,8 @@
         "",
         "**重要**: Q/K/Vは「同じ入力Xから異なる投影」",
         "→ Self-Attentionと呼ばれる所以（自分自身への注意）"
-      ]
+      ],
+      "subtitle": "次元設計の理解が実装バグとOOM障害の大半を防ぐ"
     },
     {
       "title": "Scaled Dot-Product Attention — 完全な数式（1/2）",
@@ -513,7 +551,8 @@
         "",
         "**各ステップの意味**:",
         "1. `QK^T ∈ ℝ^{n × n}`: 全トークン対のスコア（類似度行列）"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "Scaled Dot-Product Attention — 完全な数式（2/2）",
@@ -526,7 +565,8 @@
         "4. `× V`: 価値ベクトルの加重平均",
         "",
         "**出力**: `∈ ℝ^{n × d_v}` — 各位置の「文脈を考慮した表現」"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "√d_k スケーリングの数学的根拠（1/2）（1/2）",
@@ -536,7 +576,8 @@
         "**なぜ √d_k で割るのか？**",
         "",
         "**仮定**: `q, k` の各要素が平均0、分散1の独立な確率変数"
-      ]
+      ],
+      "subtitle": "パラメータ数が対数的に性能を向上させる経験則"
     },
     {
       "title": "√d_k スケーリングの数学的根拠（1/2）（2/2）",
@@ -546,7 +587,8 @@
         "**内積 q·k の分散**:",
         "- `Var(q·k) = Var(Σ_{i=1}^{d_k} q_i k_i) = d_k`",
         "- → 標準偏差 = **√d_k**"
-      ]
+      ],
+      "subtitle": "パラメータ数が対数的に性能を向上させる経験則"
     },
     {
       "title": "√d_k スケーリングの数学的根拠（2/2）（1/2）",
@@ -556,7 +598,8 @@
         "",
         "**問題**: `d_k` が大きいほどdot productの値が大きくなる",
         "→ `softmax` に大きな値が入ると勾配が消失"
-      ]
+      ],
+      "subtitle": "パラメータ数が対数的に性能を向上させる経験則"
     },
     {
       "title": "√d_k スケーリングの数学的根拠（2/2）（2/2）",
@@ -567,7 +610,8 @@
         "→ 勾配がほぼゼロ → 学習が止まる",
         "",
         "**解決**: `/ √d_k` で分散を1に正規化 → 安定した勾配"
-      ]
+      ],
+      "subtitle": "パラメータ数が対数的に性能を向上させる経験則"
     },
     {
       "title": "Softmax温度と注意分布（1/2）（1/2）",
@@ -577,7 +621,8 @@
         "**Softmax温度パラメータ τ の影響**:",
         "",
         "`softmax(QK^T / τ)` — τ = √d_k が標準"
-      ]
+      ],
+      "subtitle": "次元設計の理解が実装バグとOOM障害の大半を防ぐ"
     },
     {
       "title": "Softmax温度と注意分布（1/2）（2/2）",
@@ -587,7 +632,8 @@
         "- **τ → 0** (温度低): 分布がシャープ → 少数のトークンに集中",
         "  - `softmax([10, 9, 8] / 0.1) ≈ [0.997, 0.003, 0.000]`",
         ""
-      ]
+      ],
+      "subtitle": "次元設計の理解が実装バグとOOM障害の大半を防ぐ"
     },
     {
       "title": "Softmax温度と注意分布（2/2）（1/2）",
@@ -597,7 +643,8 @@
         "- **τ → ∞** (温度高): 分布が均一 → 全トークンに等分",
         "  - `softmax([10, 9, 8] / 100) ≈ [0.34, 0.33, 0.33]`",
         ""
-      ]
+      ],
+      "subtitle": "次元設計の理解が実装バグとOOM障害の大半を防ぐ"
     },
     {
       "title": "Softmax温度と注意分布（2/2）（2/2）",
@@ -608,7 +655,8 @@
         "- 高エントロピー: 広い文脈参照（一般的な単語）",
         "- 低エントロピー: 特定の単語に集中（固有名詞・代名詞解決）",
         "- ヘッドによって異なるパターン → Multi-Headの意義"
-      ]
+      ],
+      "subtitle": "次元設計の理解が実装バグとOOM障害の大半を防ぐ"
     },
     {
       "title": "Multi-Head Attention の可視化",
@@ -625,7 +673,8 @@
         "**定義**:",
         "`MultiHead(Q,K,V) = Concat(head_1, ..., head_h) W^O`",
         ""
-      ]
+      ],
+      "subtitle": "複数視点の並列処理が文脈理解の精度を向上させる"
     },
     {
       "title": "Multi-Head Attention — 数式と設計思想（1/2）（2/2）",
@@ -635,7 +684,8 @@
         "",
         "**パラメータ数 (d_model=512, h=8)**:",
         "- 各ヘッド: `W_i^Q, W_i^K, W_i^V ∈ ℝ^{512×64}`"
-      ]
+      ],
+      "subtitle": "複数視点の並列処理が文脈理解の精度を向上させる"
     },
     {
       "title": "Multi-Head Attention — 数式と設計思想（2/2）（1/2）",
@@ -645,7 +695,8 @@
         "- `W^O ∈ ℝ^{512×512}` (Concat後の投影)",
         "- 計算コスト: Single-head と同等（実装上の工夫）",
         ""
-      ]
+      ],
+      "subtitle": "複数視点の並列処理が文脈理解の精度を向上させる"
     },
     {
       "title": "Multi-Head Attention — 数式と設計思想（2/2）（2/2）",
@@ -656,7 +707,8 @@
         "  - Head 1: 構文依存関係 / Head 2: 照応解決",
         "  - Head 3: 近傍文脈 / Head 8: 意味的類似性",
         "- 単一ヘッドでは表現力が限られる"
-      ]
+      ],
+      "subtitle": "複数視点の並列処理が文脈理解の精度を向上させる"
     },
     {
       "title": "Masked Self-Attention — 因果マスク（1/2）（1/2）",
@@ -667,7 +719,8 @@
         "",
         "```python"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "自己注意機構が長距離依存を並列に解決する核心"
     },
     {
       "title": "Masked Self-Attention — 因果マスク（1/2）（2/2）",
@@ -679,7 +732,8 @@
         "    return mask.masked_fill(mask == 1, float('-inf'))",
         ""
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "自己注意機構が長距離依存を並列に解決する核心"
     },
     {
       "title": "Masked Self-Attention — 因果マスク（2/2）（1/2）",
@@ -690,7 +744,8 @@
         "scores = (Q @ K.transpose(-2,-1)) / math.sqrt(d_k)",
         "scores = scores + causal_mask(n)  # 上三角が -inf"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "自己注意機構が長距離依存を並列に解決する核心"
     },
     {
       "title": "Masked Self-Attention — 因果マスク（2/2）（2/2）",
@@ -702,7 +757,8 @@
         "**直感**: トークン `t` は `t'≤t` のトークンのみ参照可能",
         "→ 自回帰生成（1トークンずつ順番に生成）が成立"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "自己注意機構が長距離依存を並列に解決する核心"
     },
     {
       "title": "O(n²) の問題 — コンテキスト長の壁（1/2）（1/2）",
@@ -712,7 +768,8 @@
         "**Self-Attentionの計算量・メモリ量**:",
         "",
         "- **計算量**: `O(n² × d_model)` — QK^T は n×n 行列"
-      ]
+      ],
+      "subtitle": "O(n²)計算量が長文脈処理の最大のボトルネックになる"
     },
     {
       "title": "O(n²) の問題 — コンテキスト長の壁（1/2）（2/2）",
@@ -722,7 +779,8 @@
         "",
         "**具体的な限界**:",
         "- n=1K: Attention行列 = 1M要素 → 問題なし"
-      ]
+      ],
+      "subtitle": "O(n²)計算量が長文脈処理の最大のボトルネックになる"
     },
     {
       "title": "O(n²) の問題 — コンテキスト長の壁（2/2）（1/2）",
@@ -732,7 +790,8 @@
         "- n=8K: 64M要素 → GPU VRAMがボトルネック",
         "- n=128K: 16B要素 → A100 (80GB) でも直接計算不可",
         ""
-      ]
+      ],
+      "subtitle": "O(n²)計算量が長文脈処理の最大のボトルネックになる"
     },
     {
       "title": "O(n²) の問題 — コンテキスト長の壁（2/2）（2/2）",
@@ -743,7 +802,8 @@
         "- **Sliding Window (Mistral)**: 局所窓で O(n×w)",
         "- **Sparse Attention**: 選択的注意でO(n√n)",
         "- **Mamba/SSM**: O(n)の代替アーキテクチャ"
-      ]
+      ],
+      "subtitle": "O(n²)計算量が長文脈処理の最大のボトルネックになる"
     },
     {
       "title": "Chapter 5: Positional Encoding 詳解",
@@ -762,7 +822,8 @@
         "**Self-Attentionは位置不変 (Permutation Invariant)**",
         "",
         "入力系列をシャッフルしても Attention値は変わらない:"
-      ]
+      ],
+      "subtitle": "位置エンコーディングなしに系列順序は学習できない"
     },
     {
       "title": "なぜ Positional Encoding が必要か（1/2）（2/2）",
@@ -772,7 +833,8 @@
         "",
         "**問題**: 「猫が犬を追いかけた」と「犬が猫を追いかけた」が同じ表現になる",
         ""
-      ]
+      ],
+      "subtitle": "位置エンコーディングなしに系列順序は学習できない"
     },
     {
       "title": "なぜ Positional Encoding が必要か（2/2）（1/2）",
@@ -782,7 +844,8 @@
         "**解決策**: 位置情報を埋め込む",
         "- `x_pos = x_embed + PE(pos)`",
         "- `PE(pos) ∈ ℝ^{d_model}` — 位置固有のベクトル"
-      ]
+      ],
+      "subtitle": "位置エンコーディングなしに系列順序は学習できない"
     },
     {
       "title": "なぜ Positional Encoding が必要か（2/2）（2/2）",
@@ -793,7 +856,8 @@
         "- 各位置が一意に表現される",
         "- 相対距離が計算可能",
         "- 学習データにない長さの系列にも汎化"
-      ]
+      ],
+      "subtitle": "位置エンコーディングなしに系列順序は学習できない"
     },
     {
       "title": "Sinusoidal PE — 原論文の定式化（1/2）（1/2）",
@@ -803,7 +867,8 @@
         "**Vaswani et al. (2017) の定義**:",
         "",
         "`PE(pos, 2i) = sin(pos / 10000^{2i/d_model})`"
-      ]
+      ],
+      "subtitle": "位置表現の選択が長文脈での汎化性能を決定的に左右する"
     },
     {
       "title": "Sinusoidal PE — 原論文の定式化（1/2）（2/2）",
@@ -813,7 +878,8 @@
         "",
         "- `pos`: トークンの位置 (0, 1, 2, ...)",
         "- `i`: 次元のインデックス (0 ≤ i < d_model/2)"
-      ]
+      ],
+      "subtitle": "位置表現の選択が長文脈での汎化性能を決定的に左右する"
     },
     {
       "title": "Sinusoidal PE — 原論文の定式化（2/2）（1/2）",
@@ -823,7 +889,8 @@
         "",
         "**設計の意図**:",
         "- 異なる周波数の sin/cos → 各次元で異なるスケールの位置情報"
-      ]
+      ],
+      "subtitle": "位置表現の選択が長文脈での汎化性能を決定的に左右する"
     },
     {
       "title": "Sinusoidal PE — 原論文の定式化（2/2）（2/2）",
@@ -834,7 +901,8 @@
         "",
         "**相対位置の表現**:",
         "`PE(pos+k)` は `PE(pos)` の線形変換 → 相対距離が内積で計算可能"
-      ]
+      ],
+      "subtitle": "位置表現の選択が長文脈での汎化性能を決定的に左右する"
     },
     {
       "title": "Positional Encoding の可視化",
@@ -854,7 +922,8 @@
         "- 欠点: 学習時より長い系列に汎化しにくい",
         "",
         "**RoPE — Rotary Position Embedding (Su et al. 2021)**:"
-      ]
+      ],
+      "subtitle": "位置表現の選択が長文脈での汎化性能を決定的に左右する"
     },
     {
       "title": "Learned PE と RoPE（2/2）",
@@ -867,7 +936,8 @@
         "  - `R_Θ,m` は位置 m に応じた 2D回転行列のブロック対角",
         "- **内積が相対位置のみに依存**: `q_m^T k_n ∝ g(x_m, x_n, m-n)`",
         "- 長い系列への外挿性が良い（YaRN等でさらに改善）"
-      ]
+      ],
+      "subtitle": "位置表現の選択が長文脈での汎化性能を決定的に左右する"
     },
     {
       "title": "ALiBi と相対位置エンコーディング（1/2）",
@@ -884,7 +954,8 @@
         "| Learned PE | あり | 低 | BERT, GPT-2 |",
         "| RoPE | なし | 高 | LLaMA, GPT-NeoX |",
         "| ALiBi | なし | 最高 | BLOOM, MPT |"
-      ]
+      ],
+      "subtitle": "位置エンコーディングなしに系列順序は学習できない"
     },
     {
       "title": "ALiBi と相対位置エンコーディング（2/2）",
@@ -901,7 +972,8 @@
         "| Learned PE | あり | 低 | BERT, GPT-2 |",
         "| RoPE | なし | 高 | LLaMA, GPT-NeoX |",
         "| ALiBi | なし | 最高 | BLOOM, MPT |"
-      ]
+      ],
+      "subtitle": "位置エンコーディングなしに系列順序は学習できない"
     },
     {
       "title": "Chapter 6: FFN・正規化・残差接続",
@@ -920,7 +992,8 @@
         "**FFNの数式** (2層の全結合層):",
         "",
         "`FFN(x) = max(0, xW_1 + b_1) W_2 + b_2`  (原論文: ReLU)"
-      ]
+      ],
+      "subtitle": "FFN層が注意機構では捉えられない特徴変換を担う"
     },
     {
       "title": "Feed-Forward Network — 数式と役割（1/2）（2/2）",
@@ -930,7 +1003,8 @@
         "**現代の変種**:",
         "- GELU版: `FFN(x) = GELU(xW_1 + b_1) W_2 + b_2`",
         "- SwiGLU版: `FFN(x) = (xW_1 ⊙ σ(xW_3)) W_2` (LLaMA採用)"
-      ]
+      ],
+      "subtitle": "FFN層が注意機構では捉えられない特徴変換を担う"
     },
     {
       "title": "Feed-Forward Network — 数式と役割（2/2）（1/2）",
@@ -940,7 +1014,8 @@
         "",
         "**次元**: `d_ff = 4 × d_model` (典型的)",
         "- d_model=512 → d_ff=2048 / d_model=4096 → d_ff=11008 (LLaMA)"
-      ]
+      ],
+      "subtitle": "FFN層が注意機構では捉えられない特徴変換を担う"
     },
     {
       "title": "Feed-Forward Network — 数式と役割（2/2）（2/2）",
@@ -951,7 +1026,8 @@
         "- Self-Attentionが「どの情報を集めるか」",
         "- FFNが「集めた情報をどう処理するか」",
         "- FFNがモデルの「知識」を格納する場所とも言われる"
-      ]
+      ],
+      "subtitle": "FFN層が注意機構では捉えられない特徴変換を担う"
     },
     {
       "title": "GELU / SiLU 活性化関数（1/2）（1/2）",
@@ -961,7 +1037,8 @@
         "**GELU (Gaussian Error Linear Unit)**:",
         "`GELU(x) = x × Φ(x)` — Φ は標準正規分布のCDF",
         "近似: `GELU(x) ≈ 0.5x(1 + tanh[√(2/π)(x + 0.044715x³)])`"
-      ]
+      ],
+      "subtitle": "GeLU等の活性化関数が非線形表現能力を拡張する"
     },
     {
       "title": "GELU / SiLU 活性化関数（1/2）（2/2）",
@@ -971,7 +1048,8 @@
         "- BERT, GPT-2 などが採用",
         "",
         "**SiLU / Swish**:"
-      ]
+      ],
+      "subtitle": "GeLU等の活性化関数が非線形表現能力を拡張する"
     },
     {
       "title": "GELU / SiLU 活性化関数（2/2）（1/2）",
@@ -981,7 +1059,8 @@
         "`SiLU(x) = x × σ(x)` — σ はシグモイド関数",
         "- 自己ゲートつき活性化（gating mechanism）",
         ""
-      ]
+      ],
+      "subtitle": "GeLU等の活性化関数が非線形表現能力を拡張する"
     },
     {
       "title": "GELU / SiLU 活性化関数（2/2）（2/2）",
@@ -991,7 +1070,8 @@
         "`SwiGLU(x, W, V) = SiLU(xW) ⊙ (xV)`",
         "- ゲート付きFFN — PaLM, LLaMA, GPT-4 (推定) が採用",
         "- ReLU/GELUより一貫して高い性能"
-      ]
+      ],
+      "subtitle": "GeLU等の活性化関数が非線形表現能力を拡張する"
     },
     {
       "title": "Layer Normalization — 安定学習の鍵（1/2）（1/2）",
@@ -1001,7 +1081,8 @@
         "**定義**:",
         "`LayerNorm(x) = γ × (x - μ) / (σ + ε) + β`",
         ""
-      ]
+      ],
+      "subtitle": "層ごとに抽象度が上昇し深い意味表現を獲得する"
     },
     {
       "title": "Layer Normalization — 安定学習の鍵（1/2）（2/2）",
@@ -1012,7 +1093,8 @@
         "- `γ, β ∈ ℝ^d` — 学習可能なスケール/シフト",
         "- `ε`: 数値安定のための小定数（典型: 1e-5）",
         ""
-      ]
+      ],
+      "subtitle": "層ごとに抽象度が上昇し深い意味表現を獲得する"
     },
     {
       "title": "Layer Normalization — 安定学習の鍵（2/2）（1/2）",
@@ -1022,7 +1104,8 @@
         "**BatchNorm との違い**:",
         "- BatchNorm: バッチ方向で正規化 → バッチサイズ依存",
         "- LayerNorm: 特徴次元で正規化 → バッチサイズ非依存"
-      ]
+      ],
+      "subtitle": "層ごとに抽象度が上昇し深い意味表現を獲得する"
     },
     {
       "title": "Layer Normalization — 安定学習の鍵（2/2）（2/2）",
@@ -1033,7 +1116,8 @@
         "**RMSNorm (Llama採用)**:",
         "`RMSNorm(x) = x / RMS(x) × γ`",
         "`RMS(x) = √(1/d Σ x_i²)` — μ計算を省略、高速"
-      ]
+      ],
+      "subtitle": "層ごとに抽象度が上昇し深い意味表現を獲得する"
     },
     {
       "title": "Residual Connection と Pre/Post-Norm（1/2）（1/2）",
@@ -1043,7 +1127,8 @@
         "**Residual Connection (He et al. 2016)**:",
         "`output = x + SubLayer(x)`",
         "- 勾配が「飛び越え」て伝播 → 深いネットワークで安定学習"
-      ]
+      ],
+      "subtitle": "Pre-Normが学習安定性でPost-Normを一般的に上回る"
     },
     {
       "title": "Residual Connection と Pre/Post-Norm（1/2）（2/2）",
@@ -1053,7 +1138,8 @@
         "**Post-Norm (原論文)**:",
         "`output = LayerNorm(x + SubLayer(x))`",
         "- 各サブレイヤーの後に正規化"
-      ]
+      ],
+      "subtitle": "Pre-Normが学習安定性でPost-Normを一般的に上回る"
     },
     {
       "title": "Residual Connection と Pre/Post-Norm（2/2）（1/2）",
@@ -1063,7 +1149,8 @@
         "- 深いモデルでは学習が不安定になりやすい",
         "",
         "**Pre-Norm (現代の標準)**:"
-      ]
+      ],
+      "subtitle": "Pre-Normが学習安定性でPost-Normを一般的に上回る"
     },
     {
       "title": "Residual Connection と Pre/Post-Norm（2/2）（2/2）",
@@ -1073,7 +1160,8 @@
         "- サブレイヤーへの入力を正規化",
         "- 安定した勾配流 → 大規模モデルで主流",
         "- GPT-3, LLaMA, PaLM など大規模LLMが採用"
-      ]
+      ],
+      "subtitle": "Pre-Normが学習安定性でPost-Normを一般的に上回る"
     },
     {
       "title": "Dropout と正則化（1/2）（1/2）",
@@ -1083,7 +1171,8 @@
         "**Dropout** (Srivastava et al. 2014):",
         "- 訓練時にニューロンをランダムに無効化（確率 p）",
         "- `Dropout(x)_i = x_i / (1-p)` (活性時のスケール補正)"
-      ]
+      ],
+      "subtitle": "Dropoutの率と適用箇所が過学習防止効果を決定する"
     },
     {
       "title": "Dropout と正則化（1/2）（2/2）",
@@ -1094,7 +1183,8 @@
         "**Transformer でのDropout適用箇所**:",
         "- Attention重み後: `Dropout(softmax(...))`",
         "- 各サブレイヤーの出力後"
-      ]
+      ],
+      "subtitle": "Dropoutの率と適用箇所が過学習防止効果を決定する"
     },
     {
       "title": "Dropout と正則化（2/2）（1/2）",
@@ -1104,7 +1194,8 @@
         "- Embedding後",
         "",
         "**大規模LLMでの傾向**:"
-      ]
+      ],
+      "subtitle": "Dropoutの率と適用箇所が過学習防止効果を決定する"
     },
     {
       "title": "Dropout と正則化（2/2）（2/2）",
@@ -1115,7 +1206,8 @@
         "",
         "**Weight Decay** (L2正則化) は引き続き有効:",
         "`L_reg = L + λ Σ ||W||²_F`"
-      ]
+      ],
+      "subtitle": "Dropoutの率と適用箇所が過学習防止効果を決定する"
     },
     {
       "title": "Chapter 7: Transformerの主要変種",
@@ -1141,7 +1233,8 @@
         "| GPT-2 | 1.5B | WebText (40GB) | 2019 |",
         "| GPT-3 | 175B | 570GB | 2020 |",
         "| GPT-4 | 不明 (推定 ~1T) | 不明 | 2023 |"
-      ]
+      ],
+      "subtitle": "自己回帰生成の品質は温度とサンプリングが左右する"
     },
     {
       "title": "Decoder-only: GPT系アーキテクチャ（2/2）",
@@ -1158,7 +1251,8 @@
         "| GPT-2 | 1.5B | WebText (40GB) | 2019 |",
         "| GPT-3 | 175B | 570GB | 2020 |",
         "| GPT-4 | 不明 (推定 ~1T) | 不明 | 2023 |"
-      ]
+      ],
+      "subtitle": "自己回帰生成の品質は温度とサンプリングが左右する"
     },
     {
       "title": "GPTの学習: 因果言語モデリングとテキスト生成（1/2）（1/2）",
@@ -1169,7 +1263,8 @@
         "```python",
         "# GPT-2 style inference (HuggingFace)"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "自己回帰事前学習が汎用生成能力の源泉である"
     },
     {
       "title": "GPTの学習: 因果言語モデリングとテキスト生成（1/2）（2/2）",
@@ -1181,7 +1276,8 @@
         "inputs = tokenizer('Attention is all you need', return_tensors='pt')",
         "output = model.generate(**inputs, max_new_tokens=50,"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "自己回帰事前学習が汎用生成能力の源泉である"
     },
     {
       "title": "GPTの学習: 因果言語モデリングとテキスト生成（2/2）（1/2）",
@@ -1193,7 +1289,8 @@
         "```",
         ""
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "自己回帰事前学習が汎用生成能力の源泉である"
     },
     {
       "title": "GPTの学習: 因果言語モデリングとテキスト生成（2/2）（2/2）",
@@ -1205,7 +1302,8 @@
         "- Top-k / Top-p (Nucleus) sampling: 確率上位のみからサンプル",
         "- Beam Search: 複数候補を同時追跡"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "自己回帰事前学習が汎用生成能力の源泉である"
     },
     {
       "title": "Encoder-only: BERT / マスク言語モデリング（1/2）",
@@ -1222,7 +1320,8 @@
         "| 用途 | 分類・抽出 | 生成 |",
         "| Attention | Full (Mask不要) | Causal Mask |",
         "| 代表 | RoBERTa, ELECTRA | GPT-4, LLaMA |"
-      ]
+      ],
+      "subtitle": "エンコーダが文脈を圧縮しデコーダの品質を決める"
     },
     {
       "title": "Encoder-only: BERT / マスク言語モデリング（2/2）",
@@ -1240,7 +1339,8 @@
         "| 用途 | 分類・抽出 | 生成 |",
         "| Attention | Full (Mask不要) | Causal Mask |",
         "| 代表 | RoBERTa, ELECTRA | GPT-4, LLaMA |"
-      ]
+      ],
+      "subtitle": "エンコーダが文脈を圧縮しデコーダの品質を決める"
     },
     {
       "title": "Encoder-Decoder: T5 / BART の設計（1/2）",
@@ -1253,7 +1353,8 @@
         "- 要約: `\"summarize: [長文]\"` → `\"[要約]\"`",
         "- 質問応答: `\"question: What is? context: ...\"` → `\"answer\"`",
         ""
-      ]
+      ],
+      "subtitle": "エンコーダが文脈を圧縮しデコーダの品質を決める"
     },
     {
       "title": "Encoder-Decoder: T5 / BART の設計（2/2）（1/2）",
@@ -1263,7 +1364,8 @@
         "- Denoising Autoencoder: 破損テキスト → 元テキスト",
         "- Token masking, deletion, infilling, permutation",
         ""
-      ]
+      ],
+      "subtitle": "エンコーダが文脈を圧縮しデコーダの品質を決める"
     },
     {
       "title": "Encoder-Decoder: T5 / BART の設計（2/2）（2/2）",
@@ -1273,7 +1375,8 @@
         "- 分類・固有表現認識: BERT/RoBERTa (Encoder-only)",
         "- テキスト生成: GPT/LLaMA (Decoder-only)",
         "- 翻訳・要約・QA: T5/BART (Encoder-Decoder)"
-      ]
+      ],
+      "subtitle": "エンコーダが文脈を圧縮しデコーダの品質を決める"
     },
     {
       "title": "Vision Transformer (ViT) — 画像へのTransformer適用（1/2）（1/2）",
@@ -1283,7 +1386,8 @@
         "**ViT (Dosovitskiy et al. 2020, Google Brain)**",
         "",
         "**アイデア**: 画像をパッチ列として扱いTransformerに入力"
-      ]
+      ],
+      "subtitle": "画像をパッチ系列化してTransformerを視覚に適用"
     },
     {
       "title": "Vision Transformer (ViT) — 画像へのTransformer適用（1/2）（2/2）",
@@ -1294,7 +1398,8 @@
         "1. 画像を P×P のパッチに分割 (例: 16×16)",
         "2. 各パッチを線形投影でd_model次元に変換",
         "3. [CLS]トークンをシーケンス先頭に追加"
-      ]
+      ],
+      "subtitle": "画像をパッチ系列化してTransformerを視覚に適用"
     },
     {
       "title": "Vision Transformer (ViT) — 画像へのTransformer適用（2/2）（1/2）",
@@ -1305,7 +1410,8 @@
         "5. 標準的なTransformer Encoderに入力",
         "6. [CLS]トークンの出力で分類",
         ""
-      ]
+      ],
+      "subtitle": "画像をパッチ系列化してTransformerを視覚に適用"
     },
     {
       "title": "Vision Transformer (ViT) — 画像へのTransformer適用（2/2）（2/2）",
@@ -1316,7 +1422,8 @@
         "- ViT-G/14: 190億パラメータ, ImageNet精度90.45%",
         "",
         "**発展**: DeiT, Swin Transformer, DINOv2"
-      ]
+      ],
+      "subtitle": "画像をパッチ系列化してTransformerを視覚に適用"
     },
     {
       "title": "CLIP — 対照学習とマルチモーダル（1/2）（1/2）",
@@ -1326,7 +1433,8 @@
         "**CLIP (Contrastive Language-Image Pre-training, OpenAI 2021)**",
         "",
         "**訓練目標**: (画像, テキスト)ペアの対照学習"
-      ]
+      ],
+      "subtitle": "テキスト・画像の統合表現が新たなタスクを解禁する"
     },
     {
       "title": "CLIP — 対照学習とマルチモーダル（1/2）（2/2）",
@@ -1337,7 +1445,8 @@
         "- **InfoNCE Loss**: `L = -log exp(s_ii/τ) / Σ_j exp(s_ij/τ)`",
         "",
         "**2つのエンコーダ**:"
-      ]
+      ],
+      "subtitle": "テキスト・画像の統合表現が新たなタスクを解禁する"
     },
     {
       "title": "CLIP — 対照学習とマルチモーダル（2/2）（1/2）",
@@ -1348,7 +1457,8 @@
         "- Text Encoder: Transformer",
         "- 両者を共通埋め込み空間に写像",
         ""
-      ]
+      ],
+      "subtitle": "テキスト・画像の統合表現が新たなタスクを解禁する"
     },
     {
       "title": "CLIP — 対照学習とマルチモーダル（2/2）（2/2）",
@@ -1359,7 +1469,8 @@
         "- 学習していないクラスでも分類可能",
         "",
         "**応用**: DALL·E 2, Stable Diffusion, GPT-4V"
-      ]
+      ],
+      "subtitle": "テキスト・画像の統合表現が新たなタスクを解禁する"
     },
     {
       "title": "Mixture of Experts (MoE)（1/2）（1/2）",
@@ -1370,7 +1481,8 @@
         "",
         "**アイデア**: FFN層を複数の「Expert」に置き換え",
         "各トークンは少数のExpertのみ経由する"
-      ]
+      ],
+      "subtitle": "MoEがアクティブパラメータを抑えつつ全体容量を拡大する"
     },
     {
       "title": "Mixture of Experts (MoE)（1/2）（2/2）",
@@ -1381,7 +1493,8 @@
         "`G(x) = softmax(Top-k(xW_g))`",
         "- 各トークンの入力 x → Router → Top-k Expert選択",
         "- 典型: k=2, Expert数=8〜64"
-      ]
+      ],
+      "subtitle": "MoEがアクティブパラメータを抑えつつ全体容量を拡大する"
     },
     {
       "title": "Mixture of Experts (MoE)（2/2）（1/2）",
@@ -1392,7 +1505,8 @@
         "**メリット**:",
         "- 総パラメータ数 ↑ → 表現力 ↑",
         "- 活性化パラメータは同程度 → 計算コスト維持"
-      ]
+      ],
+      "subtitle": "MoEがアクティブパラメータを抑えつつ全体容量を拡大する"
     },
     {
       "title": "Mixture of Experts (MoE)（2/2）（2/2）",
@@ -1404,7 +1518,8 @@
         "- Mixtral 8×7B (Mistral, 2023): 8 experts, 2 active",
         "- GPT-4 (推定): MoE構成と噂",
         "- Gemini 1.5 / DeepSeek-V2"
-      ]
+      ],
+      "subtitle": "MoEがアクティブパラメータを抑えつつ全体容量を拡大する"
     },
     {
       "title": "Transformer変種の系譜マップ",
@@ -1455,7 +1570,8 @@
         "**Kaplan et al., OpenAI (2020)** — Neural Language Scaling Laws",
         "",
         "**Loss は N, D, C の冪乗則に従う**:"
-      ]
+      ],
+      "subtitle": "パラメータ数が対数的に性能を向上させる経験則"
     },
     {
       "title": "Kaplan Scaling Laws (2020) — 冪乗則（1/2）（2/2）",
@@ -1465,7 +1581,8 @@
         "- `L(D) ≈ (D_c / D)^{α_D}`, `α_D ≈ 0.095`",
         "- `L(C) ≈ (C_c / C)^{α_C}`, `α_C ≈ 0.050`",
         ""
-      ]
+      ],
+      "subtitle": "パラメータ数が対数的に性能を向上させる経験則"
     },
     {
       "title": "Kaplan Scaling Laws (2020) — 冪乗則（2/2）（1/2）",
@@ -1475,7 +1592,8 @@
         "**N**: パラメータ数 / **D**: 訓練データ量 (tokens)",
         "**C**: 総計算量 (FLOPs) ≈ 6ND",
         ""
-      ]
+      ],
+      "subtitle": "パラメータ数が対数的に性能を向上させる経験則"
     },
     {
       "title": "Kaplan Scaling Laws (2020) — 冪乗則（2/2）（2/2）",
@@ -1485,7 +1603,8 @@
         "- 計算量を10倍にするとLossは**冪乗的**に改善",
         "- データが固定ならパラメータを増やすより計算増が効果的",
         "→ 「大きなモデルを少ないデータで訓練」という当時の戦略"
-      ]
+      ],
+      "subtitle": "パラメータ数が対数的に性能を向上させる経験則"
     },
     {
       "title": "Chinchilla最適化 (2022) — データとパラメータの黄金比（1/2）（1/2）",
@@ -1495,7 +1614,8 @@
         "**Hoffmann et al., DeepMind (2022)** — Training Compute-Optimal LLMs",
         "",
         "**Kaplan則の修正**:"
-      ]
+      ],
+      "subtitle": "Chinchillaの法則がモデル/データ最適比を実証的に示す"
     },
     {
       "title": "Chinchilla最適化 (2022) — データとパラメータの黄金比（1/2）（2/2）",
@@ -1506,7 +1626,8 @@
         "",
         "**Chinchilla最適則**:",
         "`N_opt ∝ C^{0.49}`, `D_opt ∝ C^{0.51}`"
-      ]
+      ],
+      "subtitle": "Chinchillaの法則がモデル/データ最適比を実証的に示す"
     },
     {
       "title": "Chinchilla最適化 (2022) — データとパラメータの黄金比（2/2）（1/2）",
@@ -1517,7 +1638,8 @@
         "",
         "**実証**: Chinchilla (70B, 1.4T tokens) が",
         "Gopher (280B, 300B tokens) を大幅に上回る"
-      ]
+      ],
+      "subtitle": "Chinchillaの法則がモデル/データ最適比を実証的に示す"
     },
     {
       "title": "Chinchilla最適化 (2022) — データとパラメータの黄金比（2/2）（2/2）",
@@ -1528,7 +1650,8 @@
         "- LLaMA-1 (2023): 7B model × 1T tokens",
         "- LLaMA-3 (2024): 8B model × 15T tokens (Chinchilla超過)",
         "→ 推論コストを下げるため**過学習気味に訓練**するのが現在の標準"
-      ]
+      ],
+      "subtitle": "Chinchillaの法則がモデル/データ最適比を実証的に示す"
     },
     {
       "title": "Emergent Abilities — 量的変化が質的変化を生む（1/2）（1/2）",
@@ -1538,7 +1661,8 @@
         "**Wei et al. (2022)** — Emergent Abilities of Large Language Models",
         "",
         "**定義**: 小さいモデルでは見られず、大きいモデルで突然出現する能力"
-      ]
+      ],
+      "subtitle": "スケール臨界点で質的な能力飛躍が突然発生する現象"
     },
     {
       "title": "Emergent Abilities — 量的変化が質的変化を生む（1/2）（2/2）",
@@ -1549,7 +1673,8 @@
         "**観察された創発例**:",
         "- Few-shot learning (GPT-3, ~13B以上で顕在化)",
         "- Chain-of-Thought Reasoning (PaLM, ~62B以上)"
-      ]
+      ],
+      "subtitle": "スケール臨界点で質的な能力飛躍が突然発生する現象"
     },
     {
       "title": "Emergent Abilities — 量的変化が質的変化を生む（2/2）（1/2）",
@@ -1559,7 +1684,8 @@
         "- 多桁算術 (~100B以上)",
         "- 外国語翻訳（データがほぼない言語でも）",
         ""
-      ]
+      ],
+      "subtitle": "スケール臨界点で質的な能力飛躍が突然発生する現象"
     },
     {
       "title": "Emergent Abilities — 量的変化が質的変化を生む（2/2）（2/2）",
@@ -1570,7 +1696,8 @@
         "- (Schaeffer et al. 2023): 連続指標では創発は見えにくい",
         "",
         "**実践上の示唆**: スケールアップは予測困難な能力向上をもたらす"
-      ]
+      ],
+      "subtitle": "スケール臨界点で質的な能力飛躍が突然発生する現象"
     },
     {
       "title": "パラメータ効率化の重要性（1/2）（1/2）",
@@ -1580,7 +1707,8 @@
         "**なぜパラメータ効率化が必要か**:",
         "",
         "- GPT-3 175B: 学習コスト ~$4.6M (2020年時点)"
-      ]
+      ],
+      "subtitle": "LoRA/QLoRAが微調整コストを1/10以下に削減する"
     },
     {
       "title": "パラメータ効率化の重要性（1/2）（2/2）",
@@ -1591,7 +1719,8 @@
         "",
         "**効率化の2軸**:",
         "1. **学習効率化**: LoRA, QLoRA, Adapter, Prefix Tuning"
-      ]
+      ],
+      "subtitle": "LoRA/QLoRAが微調整コストを1/10以下に削減する"
     },
     {
       "title": "パラメータ効率化の重要性（2/2）（1/2）",
@@ -1601,7 +1730,8 @@
         "   → 全パラメータの0.1-1%のみ更新",
         "2. **推論効率化**: Quantization, Flash Attention, vLLM",
         "   → スループット10x, コスト1/10"
-      ]
+      ],
+      "subtitle": "LoRA/QLoRAが微調整コストを1/10以下に削減する"
     },
     {
       "title": "パラメータ効率化の重要性（2/2）（2/2）",
@@ -1612,7 +1742,8 @@
         "- 7B量子化 (INT4): 一般GPU (RTX 3090, 24GB) で動作",
         "- 70B量子化 (INT4): A100 80GB 1枚で動作",
         "- 700B+: マルチGPU / 分散推論が必要"
-      ]
+      ],
+      "subtitle": "LoRA/QLoRAが微調整コストを1/10以下に削減する"
     },
     {
       "title": "モデル規模の進化タイムライン（1/2）（1/2）",
@@ -1622,7 +1753,8 @@
         "**パラメータ数の指数的増加** (2017〜2025):",
         "",
         "- 2017: Transformer (原論文) — 65M"
-      ]
+      ],
+      "subtitle": "モデル規模の指数成長がAI能力の急速な進化を牽引している"
     },
     {
       "title": "モデル規模の進化タイムライン（1/2）（2/2）",
@@ -1632,7 +1764,8 @@
         "- 2019: GPT-2 — 1.5B / XLNet — 340M",
         "- 2020: GPT-3 — **175B** / T5-11B — 11B",
         "- 2021: Switch-C — 1.6T (MoE) / PaLM — 540B"
-      ]
+      ],
+      "subtitle": "モデル規模の指数成長がAI能力の急速な進化を牽引している"
     },
     {
       "title": "モデル規模の進化タイムライン（2/2）（1/2）",
@@ -1642,7 +1775,8 @@
         "- 2022: Chinchilla — 70B / BLOOM — 176B",
         "- 2023: LLaMA-1 — 65B / GPT-4 — 不明 / LLaMA-2 — 70B",
         "- 2024: LLaMA-3 — 405B / Gemini 1.5 Ultra / DeepSeek-V3 — 671B"
-      ]
+      ],
+      "subtitle": "モデル規模の指数成長がAI能力の急速な進化を牽引している"
     },
     {
       "title": "モデル規模の進化タイムライン（2/2）（2/2）",
@@ -1652,7 +1786,8 @@
         "",
         "**18ヶ月で約10倍** (Moore's Law超え)",
         "**ただし**: Chinchilla以降は「小モデル × 大データ」がトレンド"
-      ]
+      ],
+      "subtitle": "モデル規模の指数成長がAI能力の急速な進化を牽引している"
     },
     {
       "title": "Chapter 9: 効率化技術",
@@ -1680,7 +1815,8 @@
         "",
         "**Flash Attention (Dao et al. 2022) の鍵**: タイル処理 + Online Softmax"
       ],
-      "codeLanguage": "text"
+      "codeLanguage": "text",
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "Flash Attention の数式 — Online Softmax（1/2）（2/2）",
@@ -1692,7 +1828,8 @@
         "# ブロックiの処理:",
         "m_new = max(m_old, rowmax(S_i))   # 最大値更新"
       ],
-      "codeLanguage": "text"
+      "codeLanguage": "text",
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "Flash Attention の数式 — Online Softmax（2/2）（1/2）",
@@ -1704,7 +1841,8 @@
         "```",
         ""
       ],
-      "codeLanguage": "text"
+      "codeLanguage": "text",
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "Flash Attention の数式 — Online Softmax（2/2）（2/2）",
@@ -1716,7 +1854,8 @@
         "- 速度: A100で約3倍高速",
         "- Flash Attention 2 (2023): さらに2倍 / FA3 (2024): Hopper最適化"
       ],
-      "codeLanguage": "text"
+      "codeLanguage": "text",
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "KV Cache — 推論高速化の基本（1/2）（1/2）",
@@ -1728,7 +1867,8 @@
         "**KV Cache**: K, V を計算済みトークン分キャッシュ",
         "```python"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "量子化とKVキャッシュが推論コストを桁違いに削減"
     },
     {
       "title": "KV Cache — 推論高速化の基本（1/2）（2/2）",
@@ -1740,7 +1880,8 @@
         "    outputs = model(input_ids=new_token,",
         "                    past_key_values=past_key_values,"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "量子化とKVキャッシュが推論コストを桁違いに削減"
     },
     {
       "title": "KV Cache — 推論高速化の基本（2/2）（1/2）",
@@ -1752,7 +1893,8 @@
         "    past_key_values = outputs.past_key_values",
         "```"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "量子化とKVキャッシュが推論コストを桁違いに削減"
     },
     {
       "title": "KV Cache — 推論高速化の基本（2/2）（2/2）",
@@ -1764,7 +1906,8 @@
         "- **Grouped Query Attention (GQA)**: KVヘッド数を削減 (LLaMA-3採用)",
         "  - Multi-Head: h KV ヘッド / GQA: h/g KV ヘッド"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "量子化とKVキャッシュが推論コストを桁違いに削減"
     },
     {
       "title": "Quantization — モデルを小さく・速く（1/2）",
@@ -1782,7 +1925,8 @@
         "| BF16/FP16 | 16 bit | 14 GB | 28GB+ |",
         "| INT8 | 8 bit | 7 GB | 14GB+ |",
         "| INT4/NF4 | 4 bit | 3.5 GB | 8GB+ |"
-      ]
+      ],
+      "subtitle": "INT8量子化でメモリ50%削減・速度2倍を精度維持しながら実現"
     },
     {
       "title": "Quantization — モデルを小さく・速く（2/2）",
@@ -1801,7 +1945,8 @@
         "| BF16/FP16 | 16 bit | 14 GB | 28GB+ |",
         "| INT8 | 8 bit | 7 GB | 14GB+ |",
         "| INT4/NF4 | 4 bit | 3.5 GB | 8GB+ |"
-      ]
+      ],
+      "subtitle": "INT8量子化でメモリ50%削減・速度2倍を精度維持しながら実現"
     },
     {
       "title": "GPTQ / AWQ / GGUF — 量子化の実践（1/2）（1/2）",
@@ -1811,7 +1956,8 @@
         "**GPTQ (2022)** — Post-Training Quantization",
         "- Hessian行列を使った最適な量子化ポイント探索",
         "- 重みを層ごとに逐次量子化 (1ショット)"
-      ]
+      ],
+      "subtitle": "自己回帰事前学習が汎用生成能力の源泉である"
     },
     {
       "title": "GPTQ / AWQ / GGUF — 量子化の実践（1/2）（2/2）",
@@ -1822,7 +1968,8 @@
         "**AWQ (2023)** — Activation-aware Weight Quantization",
         "- 重要な重み (活性化値の大きいチャンネル) を保護",
         "- スムージング変換: `W' = W / s`, `X' = X × s`"
-      ]
+      ],
+      "subtitle": "自己回帰事前学習が汎用生成能力の源泉である"
     },
     {
       "title": "GPTQ / AWQ / GGUF — 量子化の実践（2/2）（1/2）",
@@ -1832,7 +1979,8 @@
         "- GPTQより精度が高いケースが多い",
         "",
         "**GGUF / llama.cpp** — CPU推論向け"
-      ]
+      ],
+      "subtitle": "自己回帰事前学習が汎用生成能力の源泉である"
     },
     {
       "title": "GPTQ / AWQ / GGUF — 量子化の実践（2/2）（2/2）",
@@ -1843,7 +1991,8 @@
         "- Ollama / LM Studio が内部で使用",
         "",
         "**実用選択**: 品質優先→AWQ / CPU推論→GGUF / GPU推論→GPTQ"
-      ]
+      ],
+      "subtitle": "自己回帰事前学習が汎用生成能力の源泉である"
     },
     {
       "title": "LoRA アーキテクチャ",
@@ -1860,7 +2009,8 @@
         "**LoRA (Hu et al. 2021)** — Low-Rank Adaptation",
         "",
         "**直感**: 事前訓練モデルの重み変化 ΔW は低ランク行列"
-      ]
+      ],
+      "subtitle": "低ランク分解の数学がLoRAの効率性と精度の根拠を示す"
     },
     {
       "title": "LoRA — 低ランク近似の数学（1/2）（2/2）",
@@ -1871,7 +2021,8 @@
         "**順伝播**:",
         "`h = W₀x + ΔWx = W₀x + BAx`",
         "- `W₀`: 凍結 (gradient不要)"
-      ]
+      ],
+      "subtitle": "低ランク分解の数学がLoRAの効率性と精度の根拠を示す"
     },
     {
       "title": "LoRA — 低ランク近似の数学（2/2）（1/2）",
@@ -1881,7 +2032,8 @@
         "- `B, A`: 学習対象 (ランダム初期化: A~N(0,σ²), B=0)",
         "",
         "**スケーリング**: `ΔW = (α/r) × BA`"
-      ]
+      ],
+      "subtitle": "低ランク分解の数学がLoRAの効率性と精度の根拠を示す"
     },
     {
       "title": "LoRA — 低ランク近似の数学（2/2）（2/2）",
@@ -1892,7 +2044,8 @@
         "**パラメータ削減比** (d=k=4096, r=8):",
         "- Full FT: 4096 × 4096 = 16.7M",
         "- LoRA: (4096+4096) × 8 = 65K → **99.6%削減**"
-      ]
+      ],
+      "subtitle": "低ランク分解の数学がLoRAの効率性と精度の根拠を示す"
     },
     {
       "title": "QLoRA — 4-bit量子化 + LoRA（1/2）（1/2）",
@@ -1904,7 +2057,8 @@
         "**3つの革新**:",
         "1. **NF4 (NormalFloat4) 量子化**:"
       ],
-      "codeLanguage": "text"
+      "codeLanguage": "text",
+      "subtitle": "INT8量子化でメモリ50%削減・速度2倍を精度維持しながら実現"
     },
     {
       "title": "QLoRA — 4-bit量子化 + LoRA（1/2）（2/2）",
@@ -1916,7 +2070,8 @@
         "   - 量子化定数自体をさらに量子化 → 0.37bit/param節約",
         "3. **Paged Optimizers**:"
       ],
-      "codeLanguage": "text"
+      "codeLanguage": "text",
+      "subtitle": "INT8量子化でメモリ50%削減・速度2倍を精度維持しながら実現"
     },
     {
       "title": "QLoRA — 4-bit量子化 + LoRA（2/2）（1/2）",
@@ -1928,7 +2083,8 @@
         "**実用例**:",
         "```bash"
       ],
-      "codeLanguage": "text"
+      "codeLanguage": "text",
+      "subtitle": "INT8量子化でメモリ50%削減・速度2倍を精度維持しながら実現"
     },
     {
       "title": "QLoRA — 4-bit量子化 + LoRA（2/2）（2/2）",
@@ -1941,7 +2097,8 @@
         "  --lora_r 16 --lora_alpha 32",
         "```"
       ],
-      "codeLanguage": "text"
+      "codeLanguage": "text",
+      "subtitle": "INT8量子化でメモリ50%削減・速度2倍を精度維持しながら実現"
     },
     {
       "title": "Speculative Decoding — 投機的デコーディング（1/2）（1/2）",
@@ -1951,7 +2108,8 @@
         "**問題**: LLMの自回帰生成はメモリバウンド (1トークン/フォワードパス)",
         "",
         "**Speculative Decoding (Leviathan et al. 2022)**:"
-      ]
+      ],
+      "subtitle": "投機的デコーディングが推論速度を2-4倍改善する仕組み"
     },
     {
       "title": "Speculative Decoding — 投機的デコーディング（1/2）（2/2）",
@@ -1962,7 +2120,8 @@
         "",
         "**アルゴリズム**:",
         "1. ドラフトモデルで `γ` 個のトークンを高速生成"
-      ]
+      ],
+      "subtitle": "投機的デコーディングが推論速度を2-4倍改善する仕組み"
     },
     {
       "title": "Speculative Decoding — 投機的デコーディング（2/2）（1/2）",
@@ -1973,7 +2132,8 @@
         "3. 各トークンを確率比で受容/拒絶",
         "   - `accept if q(x)/p(x) ≥ U(0,1)` — 分布は同一を保証",
         "4. 受容された分だけ進み繰り返し"
-      ]
+      ],
+      "subtitle": "投機的デコーディングが推論速度を2-4倍改善する仕組み"
     },
     {
       "title": "Speculative Decoding — 投機的デコーディング（2/2）（2/2）",
@@ -1984,7 +2144,8 @@
         "- 出力分布は元モデルと同一 (理論保証)",
         "- 2〜3倍のスループット向上",
         "- Gemini, Claude, GPT-4 で採用 (推定)"
-      ]
+      ],
+      "subtitle": "投機的デコーディングが推論速度を2-4倍改善する仕組み"
     },
     {
       "title": "Continuous Batching と PagedAttention（1/2）（1/2）",
@@ -1994,7 +2155,8 @@
         "**Continuous Batching (Yu et al. 2022)**:",
         "- 従来: リクエストを固定バッチで処理 → 早く終わったリクエストがGPUを無駄使い",
         "- Continuous: 完了したリクエストをすぐ新リクエストで置換"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "Continuous Batching と PagedAttention（1/2）（2/2）",
@@ -2004,7 +2166,8 @@
         "",
         "**PagedAttention (vLLM, Kwon et al. 2023)**:",
         "- KV Cacheをページ (小固定ブロック) に分割"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "Continuous Batching と PagedAttention（2/2）（1/2）",
@@ -2014,7 +2177,8 @@
         "- OSのページングメモリ管理と同じ概念",
         "- 非連続なGPUメモリを効率利用",
         "- メモリ断片化を1%未満に"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "Continuous Batching と PagedAttention（2/2）（2/2）",
@@ -2024,7 +2188,8 @@
         "**vLLM の効果**:",
         "- HuggingFace単純実装比: スループット **3〜24倍**",
         "- 企業向けLLM推論サービングのデファクトスタンダード"
-      ]
+      ],
+      "subtitle": "注意重みの可視化がモデル解釈の唯一の窓口"
     },
     {
       "title": "効率化技術 サマリーマップ",
@@ -2063,7 +2228,8 @@
         "**Stage 1: Pre-training**",
         "- 数兆トークンの生テキストで次トークン予測",
         "- 世界知識・言語パターン・推論能力を獲得"
-      ]
+      ],
+      "subtitle": "少量データでの転移学習が実用コストを劇的に削減"
     },
     {
       "title": "Pre-training → Fine-tuning → RLHF の流れ（1/2）（2/2）",
@@ -2074,7 +2240,8 @@
         "**Stage 2: Supervised Fine-Tuning (SFT)**",
         "- 指示-応答ペアで微調整 (数十万〜数百万サンプル)",
         "- `L_SFT = -Σ_t log P(y_t | x, y_{<t})`"
-      ]
+      ],
+      "subtitle": "少量データでの転移学習が実用コストを劇的に削減"
     },
     {
       "title": "Pre-training → Fine-tuning → RLHF の流れ（2/2）（1/2）",
@@ -2084,7 +2251,8 @@
         "- コスト: $数千〜数万",
         "",
         "**Stage 3: RLHF (任意)**"
-      ]
+      ],
+      "subtitle": "少量データでの転移学習が実用コストを劇的に削減"
     },
     {
       "title": "Pre-training → Fine-tuning → RLHF の流れ（2/2）（2/2）",
@@ -2095,7 +2263,8 @@
         "",
         "**現実的な使い方 (LoRA)**:",
         "- SFTをLoRAで実行 → コスト100x削減 → 実験迅速化"
-      ]
+      ],
+      "subtitle": "少量データでの転移学習が実用コストを劇的に削減"
     },
     {
       "title": "Instruction Tuning — 指示に従うモデルへ（1/2）（1/2）",
@@ -2107,7 +2276,8 @@
         "**データ形式例**:",
         "```"
       ],
-      "codeLanguage": "json"
+      "codeLanguage": "json",
+      "subtitle": "指示チューニングが汎用モデルをタスク特化モデルに変換する"
     },
     {
       "title": "Instruction Tuning — 指示に従うモデルへ（1/2）（2/2）",
@@ -2119,7 +2289,8 @@
         "  \"output\": \"It is sunny today\"",
         "}"
       ],
-      "codeLanguage": "json"
+      "codeLanguage": "json",
+      "subtitle": "指示チューニングが汎用モデルをタスク特化モデルに変換する"
     },
     {
       "title": "Instruction Tuning — 指示に従うモデルへ（2/2）（1/2）",
@@ -2131,7 +2302,8 @@
         "**主要データセット**:",
         "- FLAN (Google, 2021): 62タスク, 1.8K templates"
       ],
-      "codeLanguage": "json"
+      "codeLanguage": "json",
+      "subtitle": "指示チューニングが汎用モデルをタスク特化モデルに変換する"
     },
     {
       "title": "Instruction Tuning — 指示に従うモデルへ（2/2）（2/2）",
@@ -2144,7 +2316,8 @@
         "- LLM自身で指示データを生成 → コスト大幅削減",
         "- 品質は人手データより低いが量で補う"
       ],
-      "codeLanguage": "json"
+      "codeLanguage": "json",
+      "subtitle": "指示チューニングが汎用モデルをタスク特化モデルに変換する"
     },
     {
       "title": "RLHF と DPO の比較",
@@ -2161,7 +2334,8 @@
         "**RLHF (Christiano et al. 2017, OpenAI InstructGPT 2022)**",
         "",
         "**Step 1 - Reward Model訓練**:"
-      ]
+      ],
+      "subtitle": "人間の好みによる強化学習がモデルの整合性を根本的に改善"
     },
     {
       "title": "RLHF — 数式と課題（1/2）（2/2）",
@@ -2171,7 +2345,8 @@
         "= Bradley-Terry model (y_w: 好まれる, y_l: 好まれない)",
         "",
         "**Step 2 - PPO (Proximal Policy Optimization)**:"
-      ]
+      ],
+      "subtitle": "人間の好みによる強化学習がモデルの整合性を根本的に改善"
     },
     {
       "title": "RLHF — 数式と課題（2/2）（1/2）",
@@ -2181,7 +2356,8 @@
         "`L_PPO = E[r_θ(x,y)] - β × KL(π_θ || π_ref)`",
         "- KL項: 元モデルから離れすぎないよう制約",
         "- β: KLペナルティの強さ"
-      ]
+      ],
+      "subtitle": "人間の好みによる強化学習がモデルの整合性を根本的に改善"
     },
     {
       "title": "RLHF — 数式と課題（2/2）（2/2）",
@@ -2192,7 +2368,8 @@
         "- 報酬モデルのオーバーフィッティング (reward hacking)",
         "- PPOの不安定性・ハイパーパラメータ敏感性",
         "- 3段階のパイプラインが複雑"
-      ]
+      ],
+      "subtitle": "人間の好みによる強化学習がモデルの整合性を根本的に改善"
     },
     {
       "title": "DPO — 直接選好最適化の数式（1/2）（1/2）",
@@ -2202,7 +2379,8 @@
         "**DPO (Rafailov et al. 2023)** — Direct Preference Optimization",
         "",
         "**鍵となる洞察**: RLHFの最適解は閉形式で書ける:"
-      ]
+      ],
+      "subtitle": "DPOがRLHFの複雑な報酬モデル学習を不要にする"
     },
     {
       "title": "DPO — 直接選好最適化の数式（1/2）（2/2）",
@@ -2213,7 +2391,8 @@
         "→ 報酬関数を方策で表現:",
         "`r*(x,y) = β log(π*(y|x)/π_ref(y|x)) + β log Z(x)`",
         ""
-      ]
+      ],
+      "subtitle": "DPOがRLHFの複雑な報酬モデル学習を不要にする"
     },
     {
       "title": "DPO — 直接選好最適化の数式（2/2）（1/2）",
@@ -2224,7 +2403,8 @@
         "`L_DPO = -E[log σ(β log(π_θ(y_w|x)/π_ref(y_w|x)) - β log(π_θ(y_l|x)/π_ref(y_l|x)))]`",
         "",
         "**利点**:"
-      ]
+      ],
+      "subtitle": "DPOがRLHFの複雑な報酬モデル学習を不要にする"
     },
     {
       "title": "DPO — 直接選好最適化の数式（2/2）（2/2）",
@@ -2235,7 +2415,8 @@
         "- 速度: PPO比 5〜10倍高速",
         "",
         "**採用**: Zephyr, Llama-3-Instruct, Mistral-Instruct"
-      ]
+      ],
+      "subtitle": "DPOがRLHFの複雑な報酬モデル学習を不要にする"
     },
     {
       "title": "LoRA Fine-tuning 実践コード（1/2）（1/2）",
@@ -2247,7 +2428,8 @@
         "from peft import LoraConfig, get_peft_model",
         ""
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "少量データでの転移学習が実用コストを劇的に削減"
     },
     {
       "title": "LoRA Fine-tuning 実践コード（1/2）（2/2）",
@@ -2259,7 +2441,8 @@
         "model = AutoModelForCausalLM.from_pretrained(",
         "    'meta-llama/Meta-Llama-3-8B', quantization_config=bnb_config)"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "少量データでの転移学習が実用コストを劇的に削減"
     },
     {
       "title": "LoRA Fine-tuning 実践コード（2/2）（1/2）",
@@ -2271,7 +2454,8 @@
         "lora_config = LoraConfig(r=16, lora_alpha=32,",
         "    target_modules=['q_proj','v_proj'],  # 注意層のQ/Vのみ"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "少量データでの転移学習が実用コストを劇的に削減"
     },
     {
       "title": "LoRA Fine-tuning 実践コード（2/2）（2/2）",
@@ -2283,7 +2467,8 @@
         "# trainable params: 3,407,872 || total: 8,033,669,120 (0.042%)",
         "```"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "少量データでの転移学習が実用コストを劇的に削減"
     },
     {
       "title": "データ品質 vs データ量（1/2）",
@@ -2301,7 +2486,8 @@
         "| 指示チューニング | 1,000 | 10K-100K | 多様性が重要 |",
         "| コード生成 | 5,000 | 50K+ | エラーなしが必須 |",
         "| RLHF/DPO | 10,000ペア | 100K+ | 比較の一貫性 |"
-      ]
+      ],
+      "subtitle": "高品質データ1Tトークンが低品質10Tトークンを上回る実証"
     },
     {
       "title": "データ品質 vs データ量（2/2）",
@@ -2320,10 +2506,12 @@
         "| 指示チューニング | 1,000 | 10K-100K | 多様性が重要 |",
         "| コード生成 | 5,000 | 50K+ | エラーなしが必須 |",
         "| RLHF/DPO | 10,000ペア | 100K+ | 比較の一貫性 |"
-      ]
+      ],
+      "subtitle": "高品質データ1Tトークンが低品質10Tトークンを上回る実証"
     },
     {
       "title": "SFT / RLHF / DPO 比較サマリー",
+      "subtitle": "用途に応じてSFT/LoRA/DPO/RLHFを使い分けることが実践最適のFT戦略となっている",
       "layout": "default",
       "content": [
         "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"400\" rx=\"12\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" font-family=\"sans-serif\" font-size=\"22\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">Flash Attention — IO-Aware Algorithm</text><rect x=\"20\" y=\"50\" width=\"340\" height=\"300\" rx=\"8\" fill=\"#0f3460\"/><text x=\"190\" y=\"73\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\">Standard Attention</text><text x=\"190\" y=\"95\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">大きなKV行列をHBMに保存</text><rect x=\"35\" y=\"110\" width=\"310\" height=\"50\" rx=\"8\" fill=\"#16213e\"/><text x=\"190\" y=\"132\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\">HBM (High Bandwidth Memory)</text><text x=\"190\" y=\"152\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">容量大・転送遅 (80GB A100)</text><line x1=\"190\" y1=\"160\" x2=\"190\" y2=\"163\" stroke=\"#e91e63\" stroke-width=\"2\"/><polygon points=\"190,175 185,163 195,163\" fill=\"#e91e63\"/><rect x=\"35\" y=\"175\" width=\"310\" height=\"35\" rx=\"8\" fill=\"#0f3460\"/><text x=\"190\" y=\"197\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"normal\">SRAM (On-chip Cache)</text><line x1=\"190\" y1=\"210\" x2=\"190\" y2=\"213\" stroke=\"#e91e63\" stroke-width=\"2\"/><polygon points=\"190,225 185,213 195,213\" fill=\"#e91e63\"/><rect x=\"35\" y=\"225\" width=\"310\" height=\"35\" rx=\"8\" fill=\"#0f3460\"/><text x=\"190\" y=\"247\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">Compute Units (CUDA Cores)</text><rect x=\"35\" y=\"275\" width=\"310\" height=\"60\" rx=\"8\" fill=\"#16213e\"/><text x=\"190\" y=\"295\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">問題: S=QKᵀ (n×n) → HBMに書込み</text><text x=\"190\" y=\"313\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">→ softmax → HBMから読込み</text><text x=\"190\" y=\"331\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">HBM転送がボトルネック I/O O(n²)</text><rect x=\"430\" y=\"50\" width=\"340\" height=\"300\" rx=\"8\" fill=\"#0f3460\"/><text x=\"600\" y=\"73\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"bold\">Flash Attention</text><text x=\"600\" y=\"95\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">タイル分割でSRAM内完結</text><rect x=\"445\" y=\"110\" width=\"310\" height=\"50\" rx=\"8\" fill=\"#16213e\"/><text x=\"600\" y=\"132\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"bold\">HBM (Q, K, V を分割ロード)</text><text x=\"600\" y=\"152\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">タイルサイズ = SRAMサイズに合わせる</text><line x1=\"600\" y1=\"160\" x2=\"600\" y2=\"163\" stroke=\"#66bb6a\" stroke-width=\"2\"/><polygon points=\"600,175 595,163 605,163\" fill=\"#66bb6a\"/><rect x=\"445\" y=\"175\" width=\"310\" height=\"35\" rx=\"8\" fill=\"#0f3460\"/><text x=\"600\" y=\"197\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"normal\">SRAM: タイル単位で処理完結</text><text x=\"600\" y=\"212\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\">Online Softmax で分割再正規化</text><line x1=\"600\" y1=\"212\" x2=\"600\" y2=\"215\" stroke=\"#66bb6a\" stroke-width=\"2\"/><polygon points=\"600,227 595,215 605,215\" fill=\"#66bb6a\"/><rect x=\"445\" y=\"227\" width=\"310\" height=\"35\" rx=\"8\" fill=\"#0f3460\"/><text x=\"600\" y=\"247\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">Compute Units</text><rect x=\"445\" y=\"275\" width=\"310\" height=\"60\" rx=\"8\" fill=\"#16213e\"/><text x=\"600\" y=\"295\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"normal\">HBM転送: O(n²) → O(n)</text><text x=\"600\" y=\"313\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"normal\">S行列をHBMに書かない!</text><text x=\"600\" y=\"331\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\">速度2-4×  メモリ ▼10×</text><rect x=\"20\" y=\"362\" width=\"760\" height=\"28\" rx=\"4\" fill=\"#16213e\"/><text x=\"400\" y=\"378\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"normal\">同じ数学的結果 + 高速 + 省メモリ → Flash Attention 2/3 で更に改善</text></svg>",
@@ -2362,7 +2550,8 @@
         "**主要ライブラリ**:",
         "- `transformers`: モデルロード・推論・Fine-tuning"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "HuggingFaceエコシステムが試作から本番までを統合する"
     },
     {
       "title": "HuggingFace エコシステム（1/2）（2/2）",
@@ -2375,7 +2564,8 @@
         "- `optimum`: ONNX / TensorRT最適化",
         ""
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "HuggingFaceエコシステムが試作から本番までを統合する"
     },
     {
       "title": "HuggingFace エコシステム（2/2）（1/2）",
@@ -2387,7 +2577,8 @@
         "**基本的なPipeline API**:",
         "```python"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "HuggingFaceエコシステムが試作から本番までを統合する"
     },
     {
       "title": "HuggingFace エコシステム（2/2）（2/2）",
@@ -2400,7 +2591,8 @@
         "result = generator('日本の首都は？', max_new_tokens=100)",
         "```"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "HuggingFaceエコシステムが試作から本番までを統合する"
     },
     {
       "title": "vLLM — 本番推論サービング（1/2）（1/2）",
@@ -2412,7 +2604,8 @@
         "```python",
         "from vllm import LLM, SamplingParams"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "量子化とKVキャッシュが推論コストを桁違いに削減"
     },
     {
       "title": "vLLM — 本番推論サービング（1/2）（2/2）",
@@ -2425,7 +2618,8 @@
         "          gpu_memory_utilization=0.90)",
         ""
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "量子化とKVキャッシュが推論コストを桁違いに削減"
     },
     {
       "title": "vLLM — 本番推論サービング（2/2）（1/2）",
@@ -2438,7 +2632,8 @@
         "",
         "# バッチ推論 (Continuous Batchingが自動適用)"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "量子化とKVキャッシュが推論コストを桁違いに削減"
     },
     {
       "title": "vLLM — 本番推論サービング（2/2）（2/2）",
@@ -2451,7 +2646,8 @@
         "",
         "**OpenAI互換API**: `python -m vllm.entrypoints.openai.api_server`"
       ],
-      "codeLanguage": "python"
+      "codeLanguage": "python",
+      "subtitle": "量子化とKVキャッシュが推論コストを桁違いに削減"
     },
     {
       "title": "GPU / Hardware 選定ガイド（1/2）",
@@ -2469,7 +2665,8 @@
         "| A100 80GB | 80GB | 70B (BF16) / 180B (INT4) | 本番推論 |",
         "| H100 80GB | 80GB (HBM3) | 70B (BF16) 高速 | 訓練・本番 |",
         "| H200 141GB | 141GB | 405B (BF16) 単体 | 大規模推論 |"
-      ]
+      ],
+      "subtitle": "タスク規模に合うGPU選択がコストと速度の均衡を決める"
     },
     {
       "title": "GPU / Hardware 選定ガイド（2/2）",
@@ -2488,7 +2685,8 @@
         "| A100 80GB | 80GB | 70B (BF16) / 180B (INT4) | 本番推論 |",
         "| H100 80GB | 80GB (HBM3) | 70B (BF16) 高速 | 訓練・本番 |",
         "| H200 141GB | 141GB | 405B (BF16) 単体 | 大規模推論 |"
-      ]
+      ],
+      "subtitle": "タスク規模に合うGPU選択がコストと速度の均衡を決める"
     },
     {
       "title": "コスト最適化戦略（1/2）（1/2）",
@@ -2498,7 +2696,8 @@
         "**推論コストの計算式**:",
         "コスト ≈ (GPU時間) × (GPU単価) / (スループット)",
         ""
-      ]
+      ],
+      "subtitle": "スポットインスタンスとモデル並列化がGPUコストを最小化"
     },
     {
       "title": "コスト最適化戦略（1/2）（2/2）",
@@ -2509,7 +2708,8 @@
         "2. **Flash Attention 2**: スループット +50-100%",
         "3. **Continuous Batching**: GPUアイドル削減",
         "4. **Speculative Decoding**: レイテンシ改善"
-      ]
+      ],
+      "subtitle": "スポットインスタンスとモデル並列化がGPUコストを最小化"
     },
     {
       "title": "コスト最適化戦略（2/2）（1/2）",
@@ -2519,7 +2719,8 @@
         "5. **KV Cache Reuse (Prefix Caching)**: 同一プレフィックス再利用",
         "",
         "**API vs セルフホスト損益分岐点**:"
-      ]
+      ],
+      "subtitle": "スポットインスタンスとモデル並列化がGPUコストを最小化"
     },
     {
       "title": "コスト最適化戦略（2/2）（2/2）",
@@ -2530,7 +2731,8 @@
         "→ 月10M tokens以上でセルフホストが有利",
         "",
         "**ハイブリッド戦略**: 複雑タスク→GPT-4o / 単純タスク→7B OSS"
-      ]
+      ],
+      "subtitle": "スポットインスタンスとモデル並列化がGPUコストを最小化"
     },
     {
       "title": "Serving Architecture — 本番設計（1/2）（1/2）",
@@ -2541,7 +2743,8 @@
         "```",
         "Client → Load Balancer",
         "       → Rate Limiter (Upstash Redis)"
-      ]
+      ],
+      "subtitle": "残差接続と正規化の組み合わせが深さの限界を突破する"
     },
     {
       "title": "Serving Architecture — 本番設計（1/2）（2/2）",
@@ -2552,7 +2755,8 @@
         "            GPU Pod 1: LLaMA-3 70B (INT4)",
         "            GPU Pod 2: LLaMA-3 70B (INT4)",
         "       → Response Caching (Semantic Cache)"
-      ]
+      ],
+      "subtitle": "残差接続と正規化の組み合わせが深さの限界を突破する"
     },
     {
       "title": "Serving Architecture — 本番設計（2/2）（1/2）",
@@ -2563,7 +2767,8 @@
         "       → Client",
         "```",
         ""
-      ]
+      ],
+      "subtitle": "残差接続と正規化の組み合わせが深さの限界を突破する"
     },
     {
       "title": "Serving Architecture — 本番設計（2/2）（2/2）",
@@ -2574,7 +2779,8 @@
         "- Prefix Caching でシステムプロンプトを再利用",
         "- Model Routing: タスクに応じてモデル切り替え",
         "- Autoscaling: GPU Pod数を需要に応じてスケール"
-      ]
+      ],
+      "subtitle": "残差接続と正規化の組み合わせが深さの限界を突破する"
     },
     {
       "title": "Chapter 12: 最新研究動向",
@@ -2596,7 +2802,8 @@
         "**技術的アプローチ**:",
         "- **RoPE外挿**: YaRN, LongRoPE (学習なしで8Kモデルを128Kへ)",
         "- **Sliding Window Attention**: ウィンドウ外は参照しない (Mistral)"
-      ]
+      ],
+      "subtitle": "トークン長3超でコストが二乗的に増加する"
     },
     {
       "title": "Long Context — 100K+ トークンへの挑戦（2/2）（1/2）",
@@ -2606,7 +2813,8 @@
         "- **Flash Attention 2/3**: O(n²)を実用的な範囲で",
         "- **Ring Attention**: 超長系列をGPU間で分散 (1Mトークン+)",
         ""
-      ]
+      ],
+      "subtitle": "トークン長3超でコストが二乗的に増加する"
     },
     {
       "title": "Long Context — 100K+ トークンへの挑戦（2/2）（2/2）",
@@ -2616,7 +2824,8 @@
         "- Needle-in-a-Haystack Test: 長い文書中の事実を正確に引ける?",
         "- 中間部の情報は先頭・末尾より想起されにくい傾向",
         "- 実用的には: RAGと組み合わせるのが現実的"
-      ]
+      ],
+      "subtitle": "トークン化の質が下流タスク全体の性能を制約する"
     },
     {
       "title": "Mamba / SSM — O(n)の代替アーキテクチャ（1/2）（1/2）",
@@ -2626,7 +2835,8 @@
         "**State Space Models (SSM)** — Transformerの O(n²) を克服",
         "",
         "**線形状態空間の数式**:"
-      ]
+      ],
+      "subtitle": "残差接続と正規化の組み合わせが深さの限界を突破する"
     },
     {
       "title": "Mamba / SSM — O(n)の代替アーキテクチャ（1/2）（2/2）",
@@ -2637,7 +2847,8 @@
         "",
         "**S4 (2021)**: 長い系列依存を O(n log n) で",
         ""
-      ]
+      ],
+      "subtitle": "残差接続と正規化の組み合わせが深さの限界を突破する"
     },
     {
       "title": "Mamba / SSM — O(n)の代替アーキテクチャ（2/2）（1/2）",
@@ -2648,7 +2859,8 @@
         "- 「選択的」SSM: A, B, C が入力に依存",
         "- `Δ, B, C = Linear(x)` — 入力に応じてゲーティング",
         "- 計算量: **O(n)** — Transformerのスケーリング則も維持"
-      ]
+      ],
+      "subtitle": "残差接続と正規化の組み合わせが深さの限界を突破する"
     },
     {
       "title": "Mamba / SSM — O(n)の代替アーキテクチャ（2/2）（2/2）",
@@ -2659,7 +2871,8 @@
         "**Mamba-2 / Jamba**: MambaとTransformerのハイブリッド",
         "",
         "**現状**: 長系列では競争的だが一般タスクでは差あり"
-      ]
+      ],
+      "subtitle": "残差接続と正規化の組み合わせが深さの限界を突破する"
     },
     {
       "title": "RWKV — RNNとTransformerの融合（1/2）（1/2）",
@@ -2670,7 +2883,8 @@
         "",
         "**特徴**:",
         "- 訓練時: Transformer的に並列計算"
-      ]
+      ],
+      "subtitle": "RNN比で訓練速度10倍、長文精度も大幅に向上する"
     },
     {
       "title": "RWKV — RNNとTransformerの融合（1/2）（2/2）",
@@ -2681,7 +2895,8 @@
         "**Time-mixing層の数式**:",
         "`wkv_t = (Σ_{i≤t} e^{-(t-i)w+k_i} v_i) / (Σ_{i≤t} e^{-(t-i)w+k_i})`",
         "- `w`: 減衰率 (位置依存)"
-      ]
+      ],
+      "subtitle": "RNN比で訓練速度10倍、長文精度も大幅に向上する"
     },
     {
       "title": "RWKV — RNNとTransformerの融合（2/2）（1/2）",
@@ -2692,7 +2907,8 @@
         "",
         "**利点**:",
         "- 推論メモリ: 定数 (系列長によらず)"
-      ]
+      ],
+      "subtitle": "RNN比で訓練速度10倍、長文精度も大幅に向上する"
     },
     {
       "title": "RWKV — RNNとTransformerの融合（2/2）（2/2）",
@@ -2703,7 +2919,8 @@
         "**RWKV-6 (2024)**: 14Bパラメータ / LLaMA相当の性能",
         "",
         "**位置付け**: エッジ推論・超長系列アプリケーションに有望"
-      ]
+      ],
+      "subtitle": "RNN比で訓練速度10倍、長文精度も大幅に向上する"
     },
     {
       "title": "Chain-of-Thought と Reasoning強化（1/2）（1/2）",
@@ -2713,7 +2930,8 @@
         "**Chain-of-Thought (Wei et al. 2022)**:",
         "- 「ステップバイステップで考えてください」",
         "- 数学・推論タスクで性能が劇的向上"
-      ]
+      ],
+      "subtitle": "CoTプロンプトが多段推論の正確率を大幅に引き上げる"
     },
     {
       "title": "Chain-of-Thought と Reasoning強化（1/2）（2/2）",
@@ -2724,7 +2942,8 @@
         "**Self-Consistency (Wang et al. 2022)**:",
         "- 複数の推論パスを生成 → 多数決で最終答",
         "- CoTより安定した性能向上"
-      ]
+      ],
+      "subtitle": "CoTプロンプトが多段推論の正確率を大幅に引き上げる"
     },
     {
       "title": "Chain-of-Thought と Reasoning強化（2/2）（1/2）",
@@ -2734,7 +2953,8 @@
         "",
         "**OpenAI o1 / o3 — Test-Time Compute**:",
         "- 推論時により多くの計算を使う"
-      ]
+      ],
+      "subtitle": "CoTプロンプトが多段推論の正確率を大幅に引き上げる"
     },
     {
       "title": "Chain-of-Thought と Reasoning強化（2/2）（2/2）",
@@ -2745,7 +2965,8 @@
         "",
         "**Scale of Thought**: より長い推論チェーンほど精度向上",
         "→ トークン数 ∝ 推論能力 という新しいスケーリング軸"
-      ]
+      ],
+      "subtitle": "CoTプロンプトが多段推論の正確率を大幅に引き上げる"
     },
     {
       "title": "Multimodal進化 — テキスト越えるLLM（1/2）（1/2）",
@@ -2755,7 +2976,8 @@
         "**GPT-4V / GPT-4o (2023-2024)**:",
         "- 画像→テキスト生成 / 音声リアルタイム対話",
         "- Video理解 (GPT-4o) / DALL·E 3統合"
-      ]
+      ],
+      "subtitle": "テキスト・画像の統合表現が新たなタスクを解禁する"
     },
     {
       "title": "Multimodal進化 — テキスト越えるLLM（1/2）（2/2）",
@@ -2766,7 +2988,8 @@
         "- 1Mトークンコンテキスト + 動画・音声・画像",
         "- 1時間の動画を直接処理",
         ""
-      ]
+      ],
+      "subtitle": "テキスト・画像の統合表現が新たなタスクを解禁する"
     },
     {
       "title": "Multimodal進化 — テキスト越えるLLM（2/2）（1/2）",
@@ -2777,7 +3000,8 @@
         "1. **Early Fusion**: 各モダリティをトークンに変換してConcatし統一LLMへ",
         "   - LLaVA: ViT画像 → LLM",
         "2. **Cross-Modal Attention**: テキストが画像に注意"
-      ]
+      ],
+      "subtitle": "テキスト・画像の統合表現が新たなタスクを解禁する"
     },
     {
       "title": "Multimodal進化 — テキスト越えるLLM（2/2）（2/2）",
@@ -2788,7 +3012,8 @@
         "   - 音声: Whisper Encoder / 動画: Frame Sampling",
         "",
         "**方向性**: テキスト・画像・音声・動画を統一空間で扱う"
-      ]
+      ],
+      "subtitle": "テキスト・画像の統合表現が新たなタスクを解禁する"
     },
     {
       "title": "Hallucination — 幻覚問題と対策（1/2）（1/2）",
@@ -2798,7 +3023,8 @@
         "**Hallucination**: モデルが事実でない情報を自信を持って生成",
         "",
         "**原因の分類**:"
-      ]
+      ],
+      "subtitle": "RAGとファクトチェック機構が幻覚を最も効果的に抑制する"
     },
     {
       "title": "Hallucination — 幻覚問題と対策（1/2）（2/2）",
@@ -2809,7 +3035,8 @@
         "- **注意の誤り**: コンテキストを誤って参照",
         "- **学習バイアス**: 尤もらしいが誤りのパターンを過学習",
         ""
-      ]
+      ],
+      "subtitle": "RAGとファクトチェック機構が幻覚を最も効果的に抑制する"
     },
     {
       "title": "Hallucination — 幻覚問題と対策（2/2）（1/2）",
@@ -2820,7 +3047,8 @@
         "- SelfCheckGPT: 同プロンプトで複数回生成 → 不整合を検出",
         "- Factual ROUGE: 参照文書との一致度",
         ""
-      ]
+      ],
+      "subtitle": "RAGとファクトチェック機構が幻覚を最も効果的に抑制する"
     },
     {
       "title": "Hallucination — 幻覚問題と対策（2/2）（2/2）",
@@ -2831,7 +3059,8 @@
         "- **Citation Generation**: 根拠となる文書を引用させる",
         "- **RLHF with Factuality**: 事実性を報酬に組み込む",
         "- **Uncertainty Estimation**: 不確かなときは「わからない」と言わせる"
-      ]
+      ],
+      "subtitle": "RAGとファクトチェック機構が幻覚を最も効果的に抑制する"
     },
     {
       "title": "Constitutional AI / Safety（1/2）（1/2）",
@@ -2841,7 +3070,8 @@
         "**Constitutional AI (Anthropic, 2022)**:",
         "- 「憲法」(原則リスト) に基づく自己批評 + 改善",
         "- Critique: 「この応答は有害か？」→ LLM自身が評価"
-      ]
+      ],
+      "subtitle": "憲法的AIと安全制約がモデルの有害出力を構造的に防ぐ"
     },
     {
       "title": "Constitutional AI / Safety（1/2）（2/2）",
@@ -2852,7 +3082,8 @@
         "",
         "**安全性確保の層**:",
         "1. **Pre-training**: 有害データのフィルタリング"
-      ]
+      ],
+      "subtitle": "憲法的AIと安全制約がモデルの有害出力を構造的に防ぐ"
     },
     {
       "title": "Constitutional AI / Safety（2/2）（1/2）",
@@ -2863,7 +3094,8 @@
         "3. **RLHF/CAI**: 有害性を報酬で明示的にペナルティ",
         "4. **Runtime Guardrails**: Llama Guard等のクラシファイア",
         ""
-      ]
+      ],
+      "subtitle": "憲法的AIと安全制約がモデルの有害出力を構造的に防ぐ"
     },
     {
       "title": "Constitutional AI / Safety（2/2）（2/2）",
@@ -2874,7 +3106,8 @@
         "- **Prompt Injection**: 外部テキストで指示を上書き",
         "- **Misuse Prevention**: 武器・詐欺等への悪用",
         "- **Alignment Tax**: 安全制約が性能を若干低下させる"
-      ]
+      ],
+      "subtitle": "憲法的AIと安全制約がモデルの有害出力を構造的に防ぐ"
     },
     {
       "title": "Chapter 13: まとめ",
@@ -2886,6 +3119,7 @@
     },
     {
       "title": "Key Takeaways — 15のエッセンス（1/2）（1/2）",
+      "subtitle": "Self-AttentionのO(n²)とFFNの知識格納が全現代LLMの設計思想の核心をなす",
       "layout": "default",
       "content": [
         "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"400\" rx=\"12\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" font-family=\"sans-serif\" font-size=\"22\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">BERT vs GPT — アーキテクチャ比較</text><rect x=\"20\" y=\"50\" width=\"350\" height=\"310\" rx=\"8\" fill=\"#0f3460\"/><text x=\"195\" y=\"75\" font-family=\"sans-serif\" font-size=\"15\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"bold\">BERT (Encoder-only)</text><text x=\"195\" y=\"97\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">双方向 / Masked LM</text><rect x=\"35\" y=\"118\" width=\"50\" height=\"32\" rx=\"8\" fill=\"#16213e\"/><rect x=\"95\" y=\"118\" width=\"50\" height=\"32\" rx=\"8\" fill=\"#16213e\"/><rect x=\"155\" y=\"118\" width=\"50\" height=\"32\" rx=\"8\" fill=\"#16213e\"/><rect x=\"215\" y=\"118\" width=\"50\" height=\"32\" rx=\"8\" fill=\"#16213e\"/><rect x=\"275\" y=\"118\" width=\"50\" height=\"32\" rx=\"8\" fill=\"#16213e\"/><text x=\"60\" y=\"139\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\">[CLS]</text><text x=\"120\" y=\"139\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">猫</text><text x=\"180\" y=\"139\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">[MASK]</text><text x=\"240\" y=\"139\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">好き</text><text x=\"300\" y=\"139\" font-family=\"sans-serif\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\">[SEP]</text><line x1=\"60\" y1=\"150\" x2=\"340\" y2=\"150\" stroke=\"#26c6da\" stroke-width=\"1.5\"/><line x1=\"340\" y1=\"150\" x2=\"60\" y2=\"150\" stroke=\"#26c6da\" stroke-width=\"1.5\"/><line x1=\"85\" y1=\"150\" x2=\"85\" y2=\"165\" stroke=\"#26c6da\" stroke-width=\"1.5\"/><line x1=\"145\" y1=\"150\" x2=\"145\" y2=\"165\" stroke=\"#26c6da\" stroke-width=\"1.5\"/><line x1=\"205\" y1=\"150\" x2=\"205\" y2=\"165\" stroke=\"#26c6da\" stroke-width=\"1.5\"/><line x1=\"265\" y1=\"150\" x2=\"265\" y2=\"165\" stroke=\"#26c6da\" stroke-width=\"1.5\"/><line x1=\"325\" y1=\"150\" x2=\"325\" y2=\"165\" stroke=\"#26c6da\" stroke-width=\"1.5\"/><text x=\"195\" y=\"185\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"normal\">←→ 双方向Self-Attention</text><rect x=\"35\" y=\"200\" width=\"320\" height=\"28\" rx=\"8\" fill=\"#16213e\"/><rect x=\"35\" y=\"235\" width=\"320\" height=\"28\" rx=\"8\" fill=\"#16213e\"/><rect x=\"35\" y=\"270\" width=\"320\" height=\"28\" rx=\"8\" fill=\"#16213e\"/><rect x=\"35\" y=\"305\" width=\"320\" height=\"28\" rx=\"8\" fill=\"#16213e\"/><text x=\"195\" y=\"220\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">Encoder Block ×12 (Base) / ×24 (Large)</text><text x=\"195\" y=\"255\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"normal\">Self-Attn → FFN</text><text x=\"195\" y=\"290\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"normal\">Self-Attn → FFN</text><text x=\"195\" y=\"325\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#26c6da\" text-anchor=\"middle\" font-weight=\"normal\">Self-Attn → FFN</text><rect x=\"35\" y=\"348\" width=\"320\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"195\" y=\"367\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\">MLM / NSP 事前学習 → Fine-tune</text><rect x=\"430\" y=\"50\" width=\"350\" height=\"310\" rx=\"8\" fill=\"#0f3460\"/><text x=\"605\" y=\"75\" font-family=\"sans-serif\" font-size=\"15\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\">GPT (Decoder-only)</text><text x=\"605\" y=\"97\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">単方向(因果) / Causal LM</text><rect x=\"445\" y=\"118\" width=\"50\" height=\"32\" rx=\"8\" fill=\"#16213e\"/><rect x=\"505\" y=\"118\" width=\"50\" height=\"32\" rx=\"8\" fill=\"#16213e\"/><rect x=\"565\" y=\"118\" width=\"50\" height=\"32\" rx=\"8\" fill=\"#16213e\"/><rect x=\"625\" y=\"118\" width=\"50\" height=\"32\" rx=\"8\" fill=\"#16213e\"/><rect x=\"685\" y=\"118\" width=\"50\" height=\"32\" rx=\"8\" fill=\"#16213e\"/><text x=\"470\" y=\"139\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">猫</text><text x=\"530\" y=\"139\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">が</text><text x=\"590\" y=\"139\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">大</text><text x=\"650\" y=\"139\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">好き</text><text x=\"710\" y=\"139\" font-family=\"sans-serif\" font-size=\"13\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">だ</text><line x1=\"470\" y1=\"150\" x2=\"720\" y2=\"150\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><line x1=\"495\" y1=\"150\" x2=\"495\" y2=\"165\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><line x1=\"555\" y1=\"150\" x2=\"555\" y2=\"165\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><line x1=\"615\" y1=\"150\" x2=\"615\" y2=\"165\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><line x1=\"675\" y1=\"150\" x2=\"675\" y2=\"165\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><line x1=\"735\" y1=\"150\" x2=\"735\" y2=\"165\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"605\" y=\"185\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">→ 単方向 (過去のみ参照)</text><rect x=\"445\" y=\"200\" width=\"320\" height=\"28\" rx=\"8\" fill=\"#16213e\"/><rect x=\"445\" y=\"235\" width=\"320\" height=\"28\" rx=\"8\" fill=\"#16213e\"/><rect x=\"445\" y=\"270\" width=\"320\" height=\"28\" rx=\"8\" fill=\"#16213e\"/><rect x=\"445\" y=\"305\" width=\"320\" height=\"28\" rx=\"8\" fill=\"#16213e\"/><text x=\"605\" y=\"220\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">Masked Self-Attn → FFN ×12/24/48</text><text x=\"605\" y=\"255\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">Masked Self-Attn → FFN</text><text x=\"605\" y=\"290\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">Masked Self-Attn → FFN</text><text x=\"605\" y=\"325\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">Masked Self-Attn → FFN</text><rect x=\"445\" y=\"348\" width=\"320\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"605\" y=\"367\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"normal\">Next Token Prediction → テキスト生成</text></svg>",
@@ -2897,6 +3131,7 @@
     },
     {
       "title": "Key Takeaways — 15のエッセンス（1/2）（2/2）",
+      "subtitle": "Chinchilla則のN:D=1:20の黄金比がLLaMA以降の大規模学習の標準指針となった",
       "layout": "default",
       "content": [
         "",
@@ -2920,6 +3155,7 @@
     },
     {
       "title": "Key Takeaways — 15のエッセンス（2/2）（2/2）",
+      "subtitle": "DPOのシンプルさとLIMAのデータ品質優位が実践的なAlignmentの最短路を示した",
       "layout": "default",
       "content": [
         "- DPO は RLHF の実用的代替 — よりシンプルで安定",
@@ -2932,6 +3168,7 @@
     },
     {
       "title": "参考論文・リソース (1/2)（1/2）",
+      "subtitle": "Attention Is All You Need・Flash Attention・LoRAの3論文がLLM実装の必読文献",
       "layout": "default",
       "content": [
         "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 800 400\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"400\" rx=\"12\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" font-family=\"sans-serif\" font-size=\"22\" fill=\"#f9a825\" text-anchor=\"middle\" font-weight=\"bold\">RNN vs Transformer — 並列処理の違い</text><rect x=\"20\" y=\"50\" width=\"360\" height=\"300\" rx=\"8\" fill=\"#0f3460\"/><text x=\"200\" y=\"73\" font-family=\"sans-serif\" font-size=\"15\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\">RNN (逐次処理)</text><text x=\"200\" y=\"95\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">各ステップで前のhiddenに依存 → 並列化不可</text><rect x=\"35\" y=\"120\" width=\"56\" height=\"50\" rx=\"8\" fill=\"#16213e\"/><text x=\"63\" y=\"149\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">h1</text><rect x=\"99\" y=\"120\" width=\"56\" height=\"50\" rx=\"8\" fill=\"#16213e\"/><text x=\"127\" y=\"149\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">h2</text><rect x=\"163\" y=\"120\" width=\"56\" height=\"50\" rx=\"8\" fill=\"#16213e\"/><text x=\"191\" y=\"149\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">h3</text><rect x=\"227\" y=\"120\" width=\"56\" height=\"50\" rx=\"8\" fill=\"#16213e\"/><text x=\"255\" y=\"149\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">h4</text><rect x=\"291\" y=\"120\" width=\"56\" height=\"50\" rx=\"8\" fill=\"#16213e\"/><text x=\"319\" y=\"149\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">h5</text><line x1=\"91\" y1=\"145\" x2=\"87\" y2=\"145\" stroke=\"#e91e63\" stroke-width=\"2\"/><polygon points=\"99,145 87,150 87,140\" fill=\"#e91e63\"/><line x1=\"155\" y1=\"145\" x2=\"151\" y2=\"145\" stroke=\"#e91e63\" stroke-width=\"2\"/><polygon points=\"163,145 151,150 151,140\" fill=\"#e91e63\"/><line x1=\"219\" y1=\"145\" x2=\"215\" y2=\"145\" stroke=\"#e91e63\" stroke-width=\"2\"/><polygon points=\"227,145 215,150 215,140\" fill=\"#e91e63\"/><line x1=\"283\" y1=\"145\" x2=\"279\" y2=\"145\" stroke=\"#e91e63\" stroke-width=\"2\"/><polygon points=\"291,145 279,150 279,140\" fill=\"#e91e63\"/><line x1=\"63\" y1=\"190\" x2=\"63\" y2=\"182\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"63,170 68,182 58,182\" fill=\"#f9a825\"/><rect x=\"38\" y=\"190\" width=\"50\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"63\" y=\"209\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x1</text><line x1=\"127\" y1=\"190\" x2=\"127\" y2=\"182\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"127,170 132,182 122,182\" fill=\"#f9a825\"/><rect x=\"102\" y=\"190\" width=\"50\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"127\" y=\"209\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x2</text><line x1=\"191\" y1=\"190\" x2=\"191\" y2=\"182\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"191,170 196,182 186,182\" fill=\"#f9a825\"/><rect x=\"166\" y=\"190\" width=\"50\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"191\" y=\"209\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x3</text><line x1=\"255\" y1=\"190\" x2=\"255\" y2=\"182\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"255,170 260,182 250,182\" fill=\"#f9a825\"/><rect x=\"230\" y=\"190\" width=\"50\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"255\" y=\"209\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x4</text><line x1=\"319\" y1=\"190\" x2=\"319\" y2=\"182\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"319,170 324,182 314,182\" fill=\"#f9a825\"/><rect x=\"294\" y=\"190\" width=\"50\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"319\" y=\"209\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x5</text><text x=\"200\" y=\"245\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">出力は h₅ が完成してから</text><rect x=\"35\" y=\"255\" width=\"320\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"195\" y=\"274\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">Step1→2→3→4→5 順番に実行 (O(n) steps)</text><rect x=\"35\" y=\"295\" width=\"320\" height=\"40\" rx=\"8\" fill=\"#16213e\"/><text x=\"195\" y=\"312\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"bold\">並列化: 不可</text><text x=\"195\" y=\"332\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">依存関係: h_t = f(h_{t-1}, x_t)</text><rect x=\"420\" y=\"50\" width=\"360\" height=\"300\" rx=\"8\" fill=\"#0f3460\"/><text x=\"600\" y=\"73\" font-family=\"sans-serif\" font-size=\"15\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"bold\">Transformer (並列処理)</text><text x=\"600\" y=\"95\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">全トークンを同時処理 → GPU最大活用</text><rect x=\"435\" y=\"120\" width=\"56\" height=\"50\" rx=\"8\" fill=\"#16213e\"/><text x=\"463\" y=\"149\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"normal\">t1</text><rect x=\"499\" y=\"120\" width=\"56\" height=\"50\" rx=\"8\" fill=\"#16213e\"/><text x=\"527\" y=\"149\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"normal\">t2</text><rect x=\"563\" y=\"120\" width=\"56\" height=\"50\" rx=\"8\" fill=\"#16213e\"/><text x=\"591\" y=\"149\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"normal\">t3</text><rect x=\"627\" y=\"120\" width=\"56\" height=\"50\" rx=\"8\" fill=\"#16213e\"/><text x=\"655\" y=\"149\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"normal\">t4</text><rect x=\"691\" y=\"120\" width=\"56\" height=\"50\" rx=\"8\" fill=\"#16213e\"/><text x=\"719\" y=\"149\" font-family=\"sans-serif\" font-size=\"14\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"normal\">t5</text><line x1=\"463\" y1=\"190\" x2=\"463\" y2=\"182\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"463,170 468,182 458,182\" fill=\"#f9a825\"/><rect x=\"438\" y=\"190\" width=\"50\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"463\" y=\"209\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x1</text><line x1=\"527\" y1=\"190\" x2=\"527\" y2=\"182\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"527,170 532,182 522,182\" fill=\"#f9a825\"/><rect x=\"502\" y=\"190\" width=\"50\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"527\" y=\"209\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x2</text><line x1=\"591\" y1=\"190\" x2=\"591\" y2=\"182\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"591,170 596,182 586,182\" fill=\"#f9a825\"/><rect x=\"566\" y=\"190\" width=\"50\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"591\" y=\"209\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x3</text><line x1=\"655\" y1=\"190\" x2=\"655\" y2=\"182\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"655,170 660,182 650,182\" fill=\"#f9a825\"/><rect x=\"630\" y=\"190\" width=\"50\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"655\" y=\"209\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x4</text><line x1=\"719\" y1=\"190\" x2=\"719\" y2=\"182\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"719,170 724,182 714,182\" fill=\"#f9a825\"/><rect x=\"694\" y=\"190\" width=\"50\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"719\" y=\"209\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#ffffff\" text-anchor=\"middle\" font-weight=\"normal\">x5</text><text x=\"600\" y=\"245\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">全トークン間のAttentionを同時計算</text><rect x=\"435\" y=\"255\" width=\"320\" height=\"28\" rx=\"8\" fill=\"#0f3460\"/><text x=\"595\" y=\"274\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"normal\">全トークン同時実行 (O(1) steps, O(n²) space)</text><rect x=\"435\" y=\"295\" width=\"320\" height=\"40\" rx=\"8\" fill=\"#16213e\"/><text x=\"595\" y=\"312\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"bold\">並列化: 完全並列</text><text x=\"595\" y=\"332\" font-family=\"sans-serif\" font-size=\"11\" fill=\"#90a4ae\" text-anchor=\"middle\" font-weight=\"normal\">依存関係: なし (maskedを除く)</text><rect x=\"20\" y=\"362\" width=\"760\" height=\"28\" rx=\"4\" fill=\"#16213e\"/><text x=\"200\" y=\"380\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-weight=\"normal\">RNN: O(n)ステップ</text><text x=\"600\" y=\"380\" font-family=\"sans-serif\" font-size=\"12\" fill=\"#66bb6a\" text-anchor=\"middle\" font-weight=\"normal\">Transformer: O(1)ステップ (学習時)</text><line x1=\"400\" y1=\"362\" x2=\"400\" y2=\"390\" stroke=\"#90a4ae\" stroke-width=\"1\"/></svg>",
@@ -2955,6 +3192,7 @@
     },
     {
       "title": "参考論文・リソース (1/2)（2/2）（2/2）",
+      "subtitle": "FlashAttention-2とLoRAが現代の効率的LLM学習の2大基盤技術となっている",
       "layout": "default",
       "content": [
         "- [Flash Attention 2 (2023)](https://arxiv.org/abs/2307.08691) — Dao",
@@ -2975,6 +3213,7 @@
     },
     {
       "title": "参考論文・リソース (2/2)（1/2）（2/2）",
+      "subtitle": "創発能力・InstructGPT・DPOの3論文が2022-2023年のAI性能飛躍を説明している",
       "layout": "default",
       "content": [
         "- [Emergent Abilities (2022)](https://arxiv.org/abs/2206.07682) — Wei et al.",
@@ -2996,6 +3235,7 @@
     },
     {
       "title": "参考論文・リソース (2/2)（2/2）（2/2）",
+      "subtitle": "HuggingFace Course・Karpathy・Papers with CodeがLLM実践学習の最速ルートとなっている",
       "layout": "default",
       "content": [
         "",

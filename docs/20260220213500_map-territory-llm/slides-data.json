@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "目次",
+			"subtitle": "6章で地図と領土の認識論を体系的に解説",
 			"layout": "default",
 			"content": [
 				"- 1. 「地図は領土ではない」-- Korzybskiの洞察",
@@ -35,7 +36,8 @@
 				"- **一般意味論(General Semantics)** の創始者",
 				"- 1931年の論文で有名な命題を提示:",
 				""
-			]
+			],
+			"subtitle": "「地図は領土ではない」——LLM理解の最重要哲学的基盤"
 		},
 		{
 			"title": "Alfred Korzybski (1879-1950)（2/2）",
@@ -46,7 +48,8 @@
 				"",
 				"- 我々の言語・概念・モデルは現実そのものではない",
 				"- あらゆる表現は現実の**抽象化**であり、情報の損失を伴う"
-			]
+			],
+			"subtitle": "抽象化は必ず何かを失う——LLMが何を落としているかを知れ"
 		},
 		{
 			"title": "地図 vs 領土",
@@ -61,10 +64,12 @@
 				"- **1. 地図は領土のすべてを含まない**",
 				"  - どんなモデルも現実の一部しか表現できない",
 				"  - 必ず情報の取捨選択がある"
-			]
+			],
+			"subtitle": "省略・順序・予測——3原則がLLMの限界を説明する"
 		},
 		{
 			"title": "抽象化の3つの原則（2/2）",
+			"subtitle": "自己言及と自己成就予言—抽象化の落とし穴2つ",
 			"layout": "default",
 			"content": [
 				"- **2. 地図は地図の地図を生む(自己言及)**",
@@ -93,7 +98,8 @@
 				"- LLMは**テキストの統計的パターン**を学習する",
 				"- 「パリはフランスの首都」を知っているのではなく",
 				"- 「パリ」の後に「フランスの首都」が来る確率が高いことを学習"
-			]
+			],
+			"subtitle": "LLMはテキストの統計的圧縮——世界の写真ではなく絵地図だ"
 		},
 		{
 			"title": "LLMの「知識」の正体（2/2）",
@@ -103,10 +109,12 @@
 				"",
 				"**Stochastic Parrot仮説(Bender et al., 2021)**:",
 				"LLMは意味を理解せず、統計的パターンを再生産する"
-			]
+			],
+			"subtitle": "訓練データの分布外は地図の余白——ここで幻覚が起きる"
 		},
 		{
 			"title": "しかし地図には価値がある（1/2）",
+			"subtitle": "地図が不完全でもナビに使える—LLMも同じ論理",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">地図の3つの価値：不完全さが価値になる</text><rect x=\"40\" y=\"50\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"150\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">①圧縮価値</text><text x=\"150\" y=\"98\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">複雑な現実を</text><text x=\"150\" y=\"114\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">扱いやすく単純化</text><rect x=\"58\" y=\"128\" width=\"184\" height=\"52\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"150\" y=\"149\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">東京の地下鉄マップ：</text><text x=\"150\" y=\"167\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">実縮尺≠でも使える</text><rect x=\"58\" y=\"190\" width=\"184\" height=\"52\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"150\" y=\"211\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">LLM：大量情報を</text><text x=\"150\" y=\"229\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">瞬時に圧縮・要約</text><rect x=\"58\" y=\"255\" width=\"184\" height=\"60\" rx=\"6\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"150\" y=\"278\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">「完璧でなくても</text><text x=\"150\" y=\"298\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">十分に便利」</text><rect x=\"290\" y=\"50\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"400\" y=\"75\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">②出発点価値</text><text x=\"400\" y=\"98\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">探索の起点として</text><text x=\"400\" y=\"114\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「どこから始めるか」を示す</text><rect x=\"308\" y=\"128\" width=\"184\" height=\"52\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"149\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">宝の地図：不正確でも</text><text x=\"400\" y=\"167\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">「この方向に進む」指針</text><rect x=\"308\" y=\"190\" width=\"184\" height=\"52\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"211\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">LLM：論文の概要、</text><text x=\"400\" y=\"229\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">アイデアの出発点</text><rect x=\"308\" y=\"255\" width=\"184\" height=\"60\" rx=\"6\" fill=\"#e91e63\" fill-opacity=\"0.15\"/><text x=\"400\" y=\"278\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">「地図から旅を</text><text x=\"400\" y=\"298\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">始める知恵」</text><rect x=\"540\" y=\"50\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"650\" y=\"75\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">③共有価値</text><text x=\"650\" y=\"98\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">共通理解の基盤として</text><text x=\"650\" y=\"114\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">コミュニケーションを可能に</text><rect x=\"558\" y=\"128\" width=\"184\" height=\"52\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"650\" y=\"149\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">世界地図：国境線が</text><text x=\"650\" y=\"167\" text-anchor=\"middle\" fill=\"#aaaaaa\" font-size=\"11\" font-family=\"sans-serif\">「合意の産物」でも有用</text><rect x=\"558\" y=\"190\" width=\"184\" height=\"52\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"650\" y=\"211\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">LLM：共通語彙・</text><text x=\"650\" y=\"229\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-family=\"sans-serif\">コンセプトの共有</text><rect x=\"558\" y=\"255\" width=\"184\" height=\"60\" rx=\"6\" fill=\"#f9a825\" fill-opacity=\"0.15\"/><text x=\"650\" y=\"278\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">「不完全な地図が</text><text x=\"650\" y=\"298\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">会話を成立させる」</text></svg>",
@@ -125,7 +133,8 @@
 				"- 問題は**地図を領土と混同すること**",
 				"",
 				"「LLMの出力を事実として扱う」= 地図を領土だと信じる"
-			]
+			],
+			"subtitle": "GPSなし時代の航海地図でも人は大陸を発見した——活用が鍵"
 		},
 		{
 			"title": "ハルシネーション",
@@ -141,6 +150,7 @@
 		},
 		{
 			"title": "中世の地図との類似（1/2）",
+			"subtitle": "中世地図の空白に怪物—LLMも未知域をパターンで埋める",
 			"layout": "default",
 			"content": [
 				"- 中世の地図製作者は未知の領域に怪物を描いた",
@@ -158,7 +168,8 @@
 				"  - 問題: LLMは「ここは空白」とは言わない",
 				"",
 				"**地図製作者はドラゴンと書いた。LLMは実在する街を描く。**"
-			]
+			],
+			"subtitle": "中世地図の誤りは使い方次第——LLMも同じ判断基準で使え"
 		},
 		{
 			"title": "RAGと検証",
@@ -167,6 +178,7 @@
 		},
 		{
 			"title": "RAG -- 地図を領土と照合する",
+			"subtitle": "外部DB検索で地図と領土を照合—ハルシネーション30%削減",
 			"layout": "default",
 			"content": [
 				"- **RAG (Retrieval-Augmented Generation)**",
@@ -186,10 +198,12 @@
 				"- **検索結果自体が不正確な場合**",
 				"  - 地図も領土も間違っている",
 				"- **質問が曖昧な場合**"
-			]
+			],
+			"subtitle": "検索精度・コンテキスト長・推論誤りはRAGでも残る3大課題"
 		},
 		{
 			"title": "RAGでも解決しない問題（2/2）",
+			"subtitle": "どの地図を使うか自体が判断困難—RAGでも限界がある",
 			"layout": "default",
 			"content": [
 				"  - どの地図を使うべきか分からない",
@@ -207,6 +221,7 @@
 		},
 		{
 			"title": "AI時代に必要な3つのリテラシー",
+			"subtitle": "メタ認知・検証・不確実性表明—AI時代の必須3スキル",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 360\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"360\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"16\" font-weight=\"bold\" font-family=\"sans-serif\">AI時代に必要な3つのリテラシー</text><!-- Three columns --><rect x=\"40\" y=\"55\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"150\" y=\"80\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">1. 地図を読む力</text><text x=\"150\" y=\"100\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">(LLMの特性理解)</text><rect x=\"58\" y=\"115\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"150\" y=\"133\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">訓練データの範囲を把握</text><rect x=\"58\" y=\"158\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"150\" y=\"176\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">カットオフを意識する</text><rect x=\"58\" y=\"201\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"150\" y=\"219\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">確率的性質を理解する</text><rect x=\"58\" y=\"244\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"150\" y=\"262\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">不確実性の表現に注目</text><rect x=\"58\" y=\"287\" width=\"184\" height=\"34\" rx=\"6\" fill=\"#f9a825\" fill-opacity=\"0.2\"/><text x=\"150\" y=\"308\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">「これは地図だ」と認識</text><rect x=\"290\" y=\"55\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"400\" y=\"80\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">2. 領土を探索する力</text><text x=\"400\" y=\"100\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">(現実検証スキル)</text><rect x=\"308\" y=\"115\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"133\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">一次情報を確認する習慣</text><rect x=\"308\" y=\"158\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"176\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">複数ソースで交差検証</text><rect x=\"308\" y=\"201\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"219\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">RAG・最新情報で補完</text><rect x=\"308\" y=\"244\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"262\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">専門家に確認する判断</text><rect x=\"308\" y=\"287\" width=\"184\" height=\"34\" rx=\"6\" fill=\"#e91e63\" fill-opacity=\"0.2\"/><text x=\"400\" y=\"308\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-family=\"sans-serif\">「現実に立ち返る」意識</text><rect x=\"540\" y=\"55\" width=\"220\" height=\"280\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"650\" y=\"80\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">3. 地図を更新する力</text><text x=\"650\" y=\"100\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">(継続的学習能力)</text><rect x=\"558\" y=\"115\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"650\" y=\"133\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">新情報で認識を修正する</text><rect x=\"558\" y=\"158\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"650\" y=\"176\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">AI能力の変化を追う</text><rect x=\"558\" y=\"201\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"650\" y=\"219\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">誤りを認める謙虚さ</text><rect x=\"558\" y=\"244\" width=\"184\" height=\"36\" rx=\"6\" fill=\"#1a1a2e\"/><text x=\"650\" y=\"262\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">より良いツールを選択する</text><rect x=\"558\" y=\"287\" width=\"184\" height=\"34\" rx=\"6\" fill=\"#f9a825\" fill-opacity=\"0.2\"/><text x=\"650\" y=\"308\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">「地図を書き直す」姿勢</text></svg>",
@@ -220,6 +235,7 @@
 		},
 		{
 			"title": "まとめ",
+			"subtitle": "LLMは有用な地図—領土と混同しないことが使いこなす鍵",
 			"layout": "default",
 			"content": [
 				"- Korzybskiの「地図は領土ではない」はAI時代の必須教養",
@@ -233,6 +249,7 @@
 		},
 		{
 			"title": "参考文献",
+			"subtitle": "Korzybski原著から最新RAG論文まで—実践的参考文献集",
 			"layout": "default",
 			"content": [
 				"- **Philosophy:**",

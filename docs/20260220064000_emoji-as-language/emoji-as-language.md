@@ -90,6 +90,8 @@ style: |
 
 # アジェンダ
 
+> *絵文字は言語条件を満たさないが人類最速普及の記号体系と証明する*
+
 - 1. 絵文字の起源と爆発的普及
 - 2. 言語学から見た絵文字
 - 3. 絵文字のコミュニケーション機能
@@ -107,6 +109,8 @@ style: |
 ---
 
 # 絵文字の誕生（1999年）
+
+> *日本の12x12ピクセルアイコンが26年で3,782個・日100億送信に成長*
 
 - **栗田穣崇** ― NTTドコモのi-mode向けに176個の絵文字を制作
 - 12x12ピクセルの小さなアイコンからスタート
@@ -137,6 +141,8 @@ style: |
 ---
 
 # テキストに「声のトーン」を与える
+
+> *対面の93%は非言語、絵文字はデジタル空間で失われた表情・声を補完する*
 
 - **対面コミュニケーション：** 表情・声のトーン・ジェスチャーが55%以上の情報を伝える
 - **テキストチャット：** これらが全てゼロ → 「怒っているの？」という誤解が頻発
@@ -173,12 +179,22 @@ style: |
 
 ---
 
-# Unicode Consortiumの権力
+# Unicode Consortiumの権力（1/2）
+
+> *Apple・Google・Microsoftが出資する非営利団体が全絵文字の存在を決定*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">Unicode Consortium — 絵文字承認プロセス</text><circle cx="400" cy="140" r="55" fill="#e91e63" opacity="0.9"/><text x="400" y="133" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="sans-serif">Unicode</text><text x="400" y="151" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">Consortium</text><rect x="30" y="50" width="160" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="110" y="72" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">提案者</text><text x="110" y="90" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">誰でも提案可能</text><text x="110" y="104" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">申請書提出</text><line x1="190" y1="77" x2="348" y2="115" stroke="#f9a825" stroke-width="1.5"/><polygon points="348,110 355,120 343,122" fill="#f9a825"/><rect x="610" y="50" width="160" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="690" y="72" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">会員企業</text><text x="690" y="90" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">Apple / Google</text><text x="690" y="104" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">Microsoft / Meta</text><line x1="610" y1="77" x2="452" y2="115" stroke="#f9a825" stroke-width="1.5"/><polygon points="452,110 457,122 445,120" fill="#f9a825"/><rect x="30" y="210" width="160" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1"/><text x="110" y="232" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">政治的判断の例</text><text x="110" y="248" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">銃: リアル→水鉄砲</text><text x="110" y="263" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">(2016年 銃規制の圧力)</text><line x1="190" y1="232" x2="348" y2="175" stroke="#e91e63" stroke-width="1" stroke-dasharray="5,3"/><rect x="610" y="210" width="160" height="60" rx="8" fill="#16213e" stroke="#69f0ae" stroke-width="1"/><text x="690" y="232" text-anchor="middle" fill="#69f0ae" font-size="11" font-weight="bold" font-family="sans-serif">多様性の追加例</text><text x="690" y="248" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">肌色バリエーション</text><text x="690" y="263" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">(2015年 多様性の要求)</text><line x1="610" y1="232" x2="452" y2="175" stroke="#69f0ae" stroke-width="1" stroke-dasharray="5,3"/><text x="400" y="270" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">年間~100個承認 — 「どの絵文字が存在するか」自体が政治的決定</text></svg>
 - **誰が絵文字を「承認」するのか？**
 - Unicode Consortium ― 非営利団体（Apple、Google、Microsoft等が出資）
 - 年間約100個の新規絵文字を審査・承認
+
+
+---
+
+# Unicode Consortiumの権力（2/2）
+
+> *銃を水鉄砲に変えた前例が示すとおり絵文字承認は価値観の選択*
+
 - **政治的判断の例：**
 - 肌の色のバリエーション追加（2015年）← 多様性の要求
 - 銃の絵文字をリアル→水鉄砲に変更（2016年）← 銃規制の圧力

@@ -8,6 +8,7 @@
 		{
 			"title": "目次",
 			"layout": "default",
+			"subtitle": "コード行数バイアスから乗数効果・DORA指標まで6章で検証",
 			"content": [
 				"- 1. 「生産的な一日」の定義",
 				"- 2. コード行数バイアス",
@@ -25,6 +26,7 @@
 		{
 			"title": "あなたは今日、生産的でしたか？",
 			"layout": "default",
+			"subtitle": "コミット数バイアスが見えない価値を消している",
 			"content": [
 				"![w:800 center](assets/svg-perception.svg)",
 				"- 多くの開発者の回答: 「たくさんコードを書いた日 = 良い日」",
@@ -48,6 +50,7 @@
 		{
 			"title": "コード = 生産性という幻想",
 			"layout": "default",
+			"subtitle": "最良のコードは書かれなかったコードである",
 			"content": [
 				"![w:800 center](assets/svg-loc.svg)",
 				"- **Bill Gates**: 「コード行数で進捗を測るのは重量で飛行機の進捗を測るようなもの」",
@@ -61,6 +64,7 @@
 		{
 			"title": "Activity ≠ Progress",
 			"layout": "default",
+			"subtitle": "自己評価「生産的」の72%は集中コーディング日",
 			"content": [
 				"![w:800 center](assets/svg-nc-activity-progress.svg)",
 				"- **GitHub調査 (2024)**: 開発者の自己評価「生産的な日」の特徴",
@@ -79,6 +83,7 @@
 		{
 			"title": "Glue Work — チームを支える接着剤",
 			"layout": "default",
+			"subtitle": "コミットログに残らない仕事がチームを支える",
 			"content": [
 				"![w:800 center](assets/svg-glue.svg)",
 				"- **Tanya Reilly (2019)**: \"Being Glue\" — 組織を機能させる見えない仕事",
@@ -92,6 +97,7 @@
 		{
 			"title": "乗数効果 (Multiplier Effect)",
 			"layout": "default",
+			"subtitle": "チーム全体を速くする方が自分を速くするより大",
 			"content": [
 				"![w:800 center](assets/svg-multiplier.svg)",
 				"- **自分で100行のコードを書く** → 100行分の価値",
@@ -110,6 +116,7 @@
 		{
 			"title": "コードを書かなくなる問題",
 			"layout": "default",
+			"subtitle": "シニアの一言が3ヶ月の手戻りを防ぐ",
 			"content": [
 				"![w:800 center](assets/svg-nc-no-code-day.svg)",
 				"- シニアになるほどコードを書く時間が減る",
@@ -123,6 +130,7 @@
 		{
 			"title": "Staff+ エンジニアの一日",
 			"layout": "default",
+			"subtitle": "コーディング20%—残り80%が組織の乗数効果",
 			"content": [
 				"![w:800 center](assets/svg-nc-staff-plus-day.svg)",
 				"- **Gergely Orosz (2023)**: Staff Engineerの典型的な時間配分",
@@ -142,6 +150,7 @@
 		{
 			"title": "DORA指標が教えること",
 			"layout": "default",
+			"subtitle": "4指標はすべてチーム単位—個人行数は無関係",
 			"content": [
 				"- **DORA (DevOps Research and Assessment)**: チーム生産性の4指標",
 				"- デプロイ頻度: どれだけ頻繁にリリースできるか",
@@ -154,6 +163,7 @@
 		{
 			"title": "SPACE Framework",
 			"layout": "default",
+			"subtitle": "Activityは5次元中の1つに過ぎない",
 			"content": [
 				"![w:800 center](assets/svg-dora.svg)",
 				"- **GitHub/MS/University of Victoria (2021)**: 開発者生産性の5次元",
@@ -168,6 +178,7 @@
 		{
 			"title": "まとめ",
 			"layout": "default",
+			"subtitle": "ノーコードデーを罪悪感なく過ごせるチームが最強",
 			"content": [
 				"- 「コードを書いた = 生産的」は危険なバイアス",
 				"- 見えない仕事 (Glue Work) がチームを支えている",
@@ -180,6 +191,7 @@
 		{
 			"title": "参考文献",
 			"layout": "default",
+			"subtitle": "DORA/SPACE/Being Glue—ノーコード価値を裏付ける4文献",
 			"content": [
 				"- **研究:**",
 				"- Forsgren, N. et al. \"Accelerate\" (2018) - DORA指標",

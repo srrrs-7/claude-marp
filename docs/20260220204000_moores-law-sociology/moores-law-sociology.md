@@ -94,6 +94,8 @@ style: |
 
 # Agenda
 
+> *ムーアの法則終焉で効率性ルネサンス—ハード依存設計は競争力を失う*
+
 - - 1. ムーアの法則：技術的事実から社会規範へ
 - - 2. 指数関数的成長の直感的理解
 - - 3. ムーアの法則が生んだ社会的期待
@@ -114,6 +116,8 @@ style: |
 
 # ムーアの法則：技術予測から自己成就予言へ
 
+> *業界目標として採用された「法則」は社会規範だった*
+
 - - **1965年**: Gordon Moore が「集積回路の素子数は18-24ヶ月で倍増」と予測
 - - 元は Electronics 誌の **短い記事** に過ぎなかった
 - - しかし半導体業界が **目標** として採用 → 自己成就予言に
@@ -133,6 +137,8 @@ style: |
 ---
 
 # 人間は指数関数を直感的に理解できない
+
+> *20回で100万倍—iPhone1台でNASA全計算力を超えた*
 
 - <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">指数関数 vs 線形成長：人間の直感が追いつかない</text><line x1="60" y1="310" x2="750" y2="310" stroke="#445" stroke-width="2"/><line x1="60" y1="50" x2="60" y2="310" stroke="#445" stroke-width="2"/><polygon points="60,44 54,58 66,58" fill="#445"/><polygon points="756,310 742,304 742,316" fill="#445"/><text x="30" y="185" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif" transform="rotate(-90,30,185)">トランジスタ数 / 性能</text><text x="405" y="335" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">年数 →</text><text x="80" y="325" fill="#78909c" font-size="9" font-family="sans-serif">1965</text><text x="200" y="325" fill="#78909c" font-size="9" font-family="sans-serif">1978</text><text x="330" y="325" fill="#78909c" font-size="9" font-family="sans-serif">1990</text><text x="460" y="325" fill="#78909c" font-size="9" font-family="sans-serif">2000</text><text x="590" y="325" fill="#78909c" font-size="9" font-family="sans-serif">2012</text><text x="700" y="325" fill="#78909c" font-size="9" font-family="sans-serif">2024</text><path d="M 80 305 Q 200 300 330 295 Q 460 290 590 285 Q 670 280 730 278" fill="none" stroke="#64b5f6" stroke-width="2"/><text x="620" y="275" fill="#64b5f6" font-size="10" font-family="sans-serif">線形成長（人間の期待）</text><path d="M 80 305 Q 200 298 330 280 Q 400 260 460 220 Q 530 165 590 100 Q 650 55 720 52" fill="none" stroke="#f9a825" stroke-width="3"/><text x="480" y="210" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">指数関数（ムーアの法則）</text><circle cx="80" cy="305" r="5" fill="#f9a825"/><text x="80" y="295" fill="#90a4ae" font-size="8" text-anchor="middle" font-family="sans-serif">Intel 4004</text><text x="80" y="305" fill="#90a4ae" font-size="7" text-anchor="middle" font-family="sans-serif">2,300素子</text><circle cx="200" cy="298" r="5" fill="#f9a825"/><text x="200" y="288" fill="#90a4ae" font-size="8" text-anchor="middle" font-family="sans-serif">8086</text><circle cx="330" cy="280" r="5" fill="#f9a825"/><text x="330" y="270" fill="#90a4ae" font-size="8" text-anchor="middle" font-family="sans-serif">486</text><circle cx="460" cy="220" r="5" fill="#f9a825"/><text x="460" y="210" fill="#90a4ae" font-size="8" text-anchor="middle" font-family="sans-serif">Pentium 4</text><circle cx="590" cy="100" r="5" fill="#f9a825"/><text x="590" y="90" fill="#90a4ae" font-size="8" text-anchor="middle" font-family="sans-serif">Core i7</text><circle cx="720" cy="52" r="5" fill="#f9a825"/><text x="720" y="42" fill="#90a4ae" font-size="8" text-anchor="middle" font-family="sans-serif">M3 Ultra</text><text x="400" y="358" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">20年で100万倍 — iPhone 1台 &gt; 1960年代のNASA全計算力</text></svg>
 - - **チェス盤の米粒**: 1, 2, 4, 8, ... → 64マス目で **1844京粒**
@@ -162,6 +168,8 @@ style: |
 
 # 「計算は無料になる」という社会的信念
 
+> *Wirthの法則: ソフトがハードより速く太る構造的依存*
+
 - <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">ムーアの法則の社会的波及効果</text><circle cx="400" cy="195" r="48" fill="#f57f17" stroke="#f9a825" stroke-width="2"/><text x="400" y="189" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">ムーアの法則</text><text x="400" y="207" text-anchor="middle" fill="#ffe082" font-size="10" font-family="sans-serif">18-24ヶ月で2倍</text><circle cx="400" cy="195" r="85" fill="none" stroke="#556" stroke-width="1" stroke-dasharray="5 3"/><circle cx="400" cy="195" r="130" fill="none" stroke="#445" stroke-width="1" stroke-dasharray="4 4"/><circle cx="400" cy="195" r="175" fill="none" stroke="#334" stroke-width="1" stroke-dasharray="3 5"/><circle cx="150" cy="120" r="44" fill="#1a237e" stroke="#3949ab" stroke-width="2"/><text x="150" y="115" text-anchor="middle" fill="#9fa8da" font-size="10" font-weight="bold" font-family="sans-serif">産業変革</text><text x="150" y="130" text-anchor="middle" fill="#7986cb" font-size="9" font-family="sans-serif">IT産業の台頭</text><circle cx="650" cy="120" r="44" fill="#1b5e20" stroke="#388e3c" stroke-width="2"/><text x="650" y="115" text-anchor="middle" fill="#a5d6a7" font-size="10" font-weight="bold" font-family="sans-serif">消費行動</text><text x="650" y="130" text-anchor="middle" fill="#81c784" font-size="9" font-family="sans-serif">2年更新サイクル</text><circle cx="150" cy="270" r="44" fill="#006064" stroke="#00838f" stroke-width="2"/><text x="150" y="265" text-anchor="middle" fill="#80deea" font-size="10" font-weight="bold" font-family="sans-serif">社会期待</text><text x="150" y="280" text-anchor="middle" fill="#4dd0e1" font-size="9" font-family="sans-serif">計算は無料になる</text><circle cx="650" cy="270" r="44" fill="#bf360c" stroke="#e64a19" stroke-width="2"/><text x="650" y="265" text-anchor="middle" fill="#ffccbc" font-size="10" font-weight="bold" font-family="sans-serif">地政学</text><text x="650" y="280" text-anchor="middle" fill="#ff8a65" font-size="9" font-family="sans-serif">半導体 = 戦略資源</text><circle cx="400" cy="82" r="36" fill="#4a148c" stroke="#7b1fa2" stroke-width="2"/><text x="400" y="78" text-anchor="middle" fill="#ce93d8" font-size="10" font-weight="bold" font-family="sans-serif">ソフトウェア</text><text x="400" y="93" text-anchor="middle" fill="#ba68c8" font-size="9" font-family="sans-serif">Wirth の法則</text><circle cx="400" cy="308" r="36" fill="#c62828" stroke="#ef5350" stroke-width="2"/><text x="400" y="304" text-anchor="middle" fill="#ef9a9a" font-size="10" font-weight="bold" font-family="sans-serif">環境問題</text><text x="400" y="319" text-anchor="middle" fill="#ffcdd2" font-size="9" font-family="sans-serif">電子廃棄物 5000万t</text><line x1="348" y1="158" x2="194" y2="130" stroke="#556" stroke-width="1" stroke-dasharray="3 2"/><line x1="452" y1="158" x2="606" y2="130" stroke="#556" stroke-width="1" stroke-dasharray="3 2"/><line x1="348" y1="232" x2="194" y2="262" stroke="#556" stroke-width="1" stroke-dasharray="3 2"/><line x1="452" y1="232" x2="606" y2="262" stroke="#556" stroke-width="1" stroke-dasharray="3 2"/><line x1="400" y1="147" x2="400" y2="118" stroke="#556" stroke-width="1" stroke-dasharray="3 2"/><line x1="400" y1="243" x2="400" y2="272" stroke="#556" stroke-width="1" stroke-dasharray="3 2"/></svg>
 - - ムーアの法則 → **「待てば性能が上がり価格が下がる」** という期待
 - - ソフトウェア産業の基盤: ハードの非効率をソフトで吸収できる
@@ -181,6 +189,8 @@ style: |
 ---
 
 # 計画的陳腐化：2年サイクルの文化
+
+> *2年更新消費文化が年間5000万トンの電子廃棄物を生む*
 
 - - スマートフォンの **2年更新サイクル** = ムーアの法則の社会的投影
 - - 「新製品は常に前世代より良い」という消費者期待
@@ -202,6 +212,8 @@ style: |
 
 # ソフトウェア開発への影響
 
+> *Slack 1GBはWin95より重い—最適化先送りの帰結*
+
 - - **「最適化は後でいい」症候群**: ハードが速くなるから今は非効率でOK
 - - 抽象化レイヤーの無限積層: OS → VM → Container → Serverless
 - - **フレームワーク肥大化**: React 18のバンドルサイズ > Windows 95
@@ -222,6 +234,8 @@ style: |
 
 # 物理的限界への到達
 
+> *クロック周波数は2004年頭打ち—シングル性能向上は年3-5%*
+
 - - **原子スケール**: トランジスタが原子数十個のサイズに到達
 - - **量子トンネル効果**: 電子がゲートを通り抜けてリーク電流増大
 - - **発熱問題**: クロック周波数は2004年頃から頭打ち（約4GHz）
@@ -233,6 +247,8 @@ style: |
 ---
 
 # ポスト・ムーア時代の社会的影響
+
+> *半導体が石油代替の戦略資源—地政学的競争が激化*
 
 - - **格差拡大**: 最先端チップを製造できるのは TSMC, Samsung のみ
 - - **地政学的競争**: 半導体が石油に代わる戦略的資源に
@@ -261,6 +277,8 @@ style: |
 ---
 
 # 効率性ルネサンス
+
+> *Rust台頭・O(n)回帰—ハード依存しない設計が競争優位に*
 
 - - **Rust の躍進**: メモリ安全性 + ゼロコスト抽象化
 - - **Edge Computing**: データを移動させず処理を近づける

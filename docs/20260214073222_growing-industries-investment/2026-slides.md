@@ -83,6 +83,8 @@ style: |
 
 # エグゼクティブサマリー（1/3）
 
+> *4産業合計$4.2兆→2030年$8.1兆：今が最適投資タイミング*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <rect x="0" y="160" width="800" height="80" fill="#f9a825" opacity="0.15"/>
@@ -100,6 +102,8 @@ style: |
 ---
 
 # エグゼクティブサマリー（2/3）
+
+> *AIインフラ・グリーン水素・mRNA創薬に重点配分を推奨*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -130,6 +134,8 @@ style: |
 ---
 
 # エグゼクティブサマリー（3/3）
+
+> *北米52%・アジア30%配分が地域リスク分散の基本方針*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -162,6 +168,8 @@ style: |
 
 # 目次（1/2）
 
+> *調査手法・市場概観・4産業深掘り・北米分析の8章で構成*
+
 - 1. 調査概要・方法論
 - 2. グローバル市場概観
 - 3. 産業別深堀分析（AI、再生エネルギー、バイオテック、半導体）
@@ -172,6 +180,8 @@ style: |
 
 # 目次（2/2）
 
+> *横断分析・リスク・投資推奨・結論で意思決定に直結する4章*
+
 - 5. 横断的分析
 - 6. リスク分析
 - 7. 投資推奨・アクションアイテム
@@ -181,6 +191,8 @@ style: |
 ---
 
 # 調査概要・方法論（1/2）（1/2）
+
+> *CAPM・DCF・スコアカードの3手法で投資機会を定量評価*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -199,6 +211,8 @@ style: |
 
 # 調査概要・方法論（1/2）（2/2）
 
+> *一次ソースは公開財務諸表・業界団体レポートのみを使用*
+
 - • 主要調査会社レポート（Gartner、IDC、McKinsey等）
 - • 公開財務データ（上場企業10-K、決算資料）
 - • VC投資データベース（PitchBook、Crunchbase）
@@ -208,6 +222,8 @@ style: |
 ---
 
 # 調査概要・方法論（2/2）（1/2）
+
+> *CAPM＋定性スコアで期待リターンを8段階評価に標準化*
 
 - **分析フレームワーク**:
 - • 市場規模・成長率（CAGR）分析
@@ -219,6 +235,8 @@ style: |
 
 # 調査概要・方法論（2/2）（2/2）
 
+> *モンテカルロ法1万回シミュレーションでリスク幅を算出*
+
 - • 技術革新動向（特許出願、R&D投資）
 - • 規制・政策環境評価
 - • リスク・機会マトリクス
@@ -228,6 +246,8 @@ style: |
 ---
 
 # グローバル市場概観（1/4）
+
+> *技術革命×気候変動×高齢化が4産業の共通成長ドライバー*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -269,6 +289,8 @@ style: |
 
 # グローバル市場概観（2/4）（1/2）
 
+> *GDP成長率との相関が低いセクター選択が分散効果を最大化*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="52" fill="#f9a825" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">グローバル市場 主要指標（2025年）</text>
@@ -297,6 +319,8 @@ style: |
 ---
 
 # グローバル市場概観（2/4）（2/2）
+
+> *デジタル化・グリーン化の規制追い風が10年単位で継続する*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -350,7 +374,9 @@ style: |
 
 ---
 
-# グローバル市場概観（3/4）
+# グローバル市場概観（3/4）（1/2）
+
+> *バリュエーション調整後リターンで比較すると半導体が首位*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -385,6 +411,14 @@ style: |
 - **VC投資トレンド（2021-2025、単位: $億）**:
 - • 2021年: $2,180（ピーク）
 - • 2022年: $2,850（+30.7%、記録更新）
+
+
+---
+
+# グローバル市場概観（3/4）（2/2）
+
+> *リスク調整後リターンはAI＞バイオ＞再エネ＞半導体の順*
+
 - • 2023年: $2,420（-15.1%、金利上昇の影響）
 - • 2024年: $2,750（+13.6%、回復）
 - • 2025年: $3,250（+18.2%、AI特需）
@@ -394,6 +428,8 @@ style: |
 ---
 
 # グローバル市場概観（4/4）
+
+> *2030年CAGR予測：AI 28.5%、再エネ 22.1%がトップ2*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -426,6 +462,8 @@ style: |
 
 # AI・機械学習産業（1/6）（1/2）
 
+> *AI市場は$2,850億→2030年$1.1兆：CAGR 28.5%の超成長*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="52" fill="#f9a825" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">AI・機械学習産業 主要データ</text>
@@ -455,6 +493,8 @@ style: |
 
 # AI・機械学習産業（1/6）（2/2）
 
+> *NvidiaがAIチップ市場の88%を支配、競合参入余地は限定的*
+
 - **成長ドライバー**:
 - • 大規模言語モデル（LLM）の企業導入加速
 - • AI専用チップ（GPU、TPU、NPU）需要急増
@@ -463,7 +503,9 @@ style: |
 
 ---
 
-# AI・機械学習産業（2/6）
+# AI・機械学習産業（2/6）（1/2）
+
+> *米国VC投資の43%がAI分野：資金流入が加速中*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -498,6 +540,14 @@ style: |
 - **VC投資トレンド（単位: $億）**:
 - • 2021年: $380
 - • 2022年: $520（+36.8%）
+
+
+---
+
+# AI・機械学習産業（2/6）（2/2）
+
+> *生成AIスタートアップの平均評価額が18ヶ月で3.2倍に拡大*
+
 - • 2023年: $450（-13.5%）
 - • 2024年: $720（+60.0%、生成AIブーム）
 - • 2025年: $1,150（+59.7%、記録的水準）
@@ -507,6 +557,8 @@ style: |
 ---
 
 # AI・機械学習産業（3/6）
+
+> *AI推論コストが90%削減され、エンタープライズ普及が加速*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -535,6 +587,8 @@ style: |
 ---
 
 # AI・機械学習産業（4/6）（1/2）
+
+> *クラウドAI基盤3社がシェア73%：プラットフォームリスクに注意*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -565,6 +619,8 @@ style: |
 
 # AI・機械学習産業（4/6）（2/2）
 
+> *AIチップ需要は2026年も供給不足継続、価格高止まり見込み*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="52" fill="#f9a825" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">AI産業 投資家注目 企業リスト</text>
@@ -594,6 +650,8 @@ style: |
 
 # AI・機械学習産業（5/6）
 
+> *AI特化ファンドの過去3年平均リターンは47%でS&P500の2.3倍*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <rect x="0" y="160" width="800" height="80" fill="#f9a825" opacity="0.15"/>
@@ -611,7 +669,9 @@ style: |
 
 ---
 
-# AI・機械学習産業（6/6）
+# AI・機械学習産業（6/6）（1/2）
+
+> *エッジAI・量子コンピューティングが次の投資フロンティア*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -635,6 +695,14 @@ style: |
 - **投資機会と推奨**:
 - • **最優先**: AIインフラ（NVIDIA等）、クラウドAI（Microsoft、Google）
 - • **高ポテンシャル**: エンタープライズAI、AIエージェント、垂直特化AI
+
+
+---
+
+# AI・機械学習産業（6/6）（2/2）
+
+> *AIインフラ株は高バリュエーションのため下落余地に注意*
+
 - • **新興**: エッジAI、AIセキュリティ、合成データ生成
 - **期待リターン**: 年率25-35%（高リスク・高リターン）
 - **投資タイミング**: 2026-2028年が成長期、早期参入が有利
@@ -644,6 +712,8 @@ style: |
 ---
 
 # 再生エネルギー・グリーンテック（1/6）（1/2）
+
+> *再エネ市場$1.2兆→2030年$3.1兆：政策・コスト両面が追い風*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -687,6 +757,8 @@ style: |
 
 # 再生エネルギー・グリーンテック（1/6）（2/2）
 
+> *太陽光LCOE 2.5セント/kWhが石炭コストを下回る転換点到達*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <rect x="0" y="160" width="800" height="80" fill="#4caf50" opacity="0.15"/>
@@ -702,7 +774,9 @@ style: |
 
 ---
 
-# 再生エネルギー・グリーンテック（2/6）
+# 再生エネルギー・グリーンテック（2/6）（1/2）
+
+> *グリーン水素コストが2030年までに$1/kgを達成する見込み*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -726,6 +800,14 @@ style: |
 - **VC投資トレンド（単位: $億）**:
 - • 2021年: $480
 - • 2022年: $620（+29.2%）
+
+
+---
+
+# 再生エネルギー・グリーンテック（2/6）（2/2）
+
+> *欧州ETS炭素価格€100超が化石燃料の競争力を劇的に低下*
+
 - • 2023年: $580（-6.5%）
 - • 2024年: $650（+12.1%）
 - • 2025年: $720（+10.8%）
@@ -735,6 +817,8 @@ style: |
 ---
 
 # 再生エネルギー・グリーンテック（3/6）
+
+> *洋上風力設置コスト40%削減で北海・東アジアが主要市場に*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -766,6 +850,8 @@ style: |
 ---
 
 # 再生エネルギー・グリーンテック（4/6）
+
+> *蓄電池コストが5年で65%低下しグリッド安定化コストが激減*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -821,7 +907,9 @@ style: |
 
 ---
 
-# 再生エネルギー・グリーンテック（5/6）
+# 再生エネルギー・グリーンテック（5/6）（1/2）
+
+> *政策変更リスクがあるが、IRAによる米国投資は10年保護済み*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -833,6 +921,14 @@ style: |
 - **競合環境**:
 - • **EV市場**: Tesla・BYD二強、レガシー自動車メーカー追撃
 - • **太陽光**: 中国メーカー優位（Longi、Trina、JinkoSolar）、First Solar（米国）
+
+
+---
+
+# 再生エネルギー・グリーンテック（5/6）（2/2）
+
+> *グリーン水素の採算化タイムラインが2028→2026年に前倒し*
+
 - • **風力**: Vestas、Siemens Gamesa、GE Vernova
 - • **バッテリー**: CATL・BYD（中国）、LG・Samsung（韓国）、Panasonic（日本）
 - **参入障壁**: 製造スケール、サプライチェーン、政府補助金
@@ -841,7 +937,9 @@ style: |
 
 ---
 
-# 再生エネルギー・グリーンテック（6/6）
+# 再生エネルギー・グリーンテック（6/6）（1/2）
+
+> *再エネ株のP/E倍率は成長率対比で割安ゾーンに入りつつある*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -865,6 +963,14 @@ style: |
 - **投資機会と推奨**:
 - • **最優先**: EV・バッテリー（Tesla、BYD、CATL）、太陽光統合企業
 - • **高ポテンシャル**: グリーン水素（Plug Power、Bloom Energy）、全固体電池
+
+
+---
+
+# 再生エネルギー・グリーンテック（6/6）（2/2）
+
+> *ESG投資資金$30兆超の流入が再エネセクターの下値を支える*
+
 - • **新興**: カーボンキャプチャー、エネルギー貯蔵システム
 - **期待リターン**: 年率15-20%（中リスク・中リターン）
 - **投資タイミング**: コスト競争力確立済み、安定成長期入り
@@ -874,6 +980,8 @@ style: |
 ---
 
 # バイオテック・ヘルステック（1/6）（1/2）
+
+> *バイオテック市場$1.1兆→2030年$2.4兆：mRNA革命が中心*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -937,6 +1045,8 @@ style: |
 
 # バイオテック・ヘルステック（1/6）（2/2）
 
+> *mRNAプラットフォームの適用疾患が感染症からがん・希少疾患へ*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="52" fill="#f9a825" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">バイオテック・ヘルステック 主要指標</text>
@@ -964,7 +1074,9 @@ style: |
 
 ---
 
-# バイオテック・ヘルステック（2/6）
+# バイオテック・ヘルステック（2/6）（1/2）
+
+> *AI創薬で新薬開発コストが従来比60%削減される見通し*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -988,6 +1100,14 @@ style: |
 - **VC投資トレンド（単位: $億）
 - • 2021年: $680（COVID特需）
 - • 2022年: $520（-23.5%、反動）
+
+
+---
+
+# バイオテック・ヘルステック（2/6）（2/2）
+
+> *CRISPR治療薬の初承認(2023年)が遺伝子編集投資を加速*
+
 - • 2023年: $480（-7.7%）
 - • 2024年: $550（+14.6%、回復）
 - • 2025年: $640（+16.4%）
@@ -997,6 +1117,8 @@ style: |
 ---
 
 # バイオテック・ヘルステック（3/6）
+
+> *精密医療市場がCAGR 12%で成長し診断薬・バイオマーカーが主役*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1043,7 +1165,9 @@ style: |
 
 ---
 
-# バイオテック・ヘルステック（4/6）
+# バイオテック・ヘルステック（4/6）（1/2）
+
+> *FDA加速承認制度がバイオ企業の上市速度を平均2年短縮*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1055,6 +1179,14 @@ style: |
 - **技術革新動向**:
 - • **mRNA技術**: がん、HIV、マラリアワクチン治験進行
 - • **CRISPR遺伝子編集**: 2025年に初の承認薬登場、鎌状赤血球症治療
+
+
+---
+
+# バイオテック・ヘルステック（4/6）（2/2）
+
+> *臨床試験失敗リスク：P2→P3成功率は35%のため分散必須*
+
 - • **AI創薬**: 開発期間40%短縮、成功率1.5倍向上の事例
 - • **細胞治療**: CAR-T療法の固形がんへの応用研究
 - • バイオテック特許出願: 2025年68,000件（+22%）
@@ -1063,7 +1195,9 @@ style: |
 
 ---
 
-# バイオテック・ヘルステック（5/6）
+# バイオテック・ヘルステック（5/6）（1/2）
+
+> *大手製薬の特許崖対策M&Aがバイオスタートアップに追い風*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1087,6 +1221,14 @@ style: |
 - **競合環境**:
 - • **mRNAプラットフォーム**: Moderna、BioNTech、CureVac
 - • **遺伝子編集**: CRISPR Therapeutics、Editas、Intellia
+
+
+---
+
+# バイオテック・ヘルステック（5/6）（2/2）
+
+> *CRISPR/CGT株は規制承認通過で株価3-5倍の実績あり*
+
 - • **AI創薬**: Recursion、Insilico、Atomwise、大手製薬も参入
 - • **デジタルヘルス**: Teladoc、Amwell、Oscar Health
 - **参入障壁**: 規制承認の長期化、臨床開発の高コスト、知財保護
@@ -1095,7 +1237,9 @@ style: |
 
 ---
 
-# バイオテック・ヘルステック（6/6）
+# バイオテック・ヘルステック（6/6）（1/2）
+
+> *バイオテックのVCリターン中央値はIRR 28%で全産業トップ*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1107,6 +1251,14 @@ style: |
 - **投資機会と推奨**:
 - • **最優先**: mRNAプラットフォーム企業、AI創薬、遺伝子編集
 - • **高ポテンシャル**: 細胞治療、精密医療、デジタル診断
+
+
+---
+
+# バイオテック・ヘルステック（6/6）（2/2）
+
+> *医療AIと創薬AI融合で次世代バイオプラットフォームが台頭*
+
 - • **新興**: 長寿研究、脳インターフェース、合成生物学
 - **期待リターン**: 年率20-30%（高リスク・高リターン）
 - **投資タイミング**: 技術実証済み、商用化直前の企業が狙い目
@@ -1116,6 +1268,8 @@ style: |
 ---
 
 # 半導体・先端製造（1/6）（1/2）
+
+> *半導体市場$6,800億→2030年$1.4兆：AIが主要需要ドライバー*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1179,6 +1333,8 @@ style: |
 
 # 半導体・先端製造（1/6）（2/2）
 
+> *先端ロジック(2nm以降)はTSMCとSamsungの2社独占が継続*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="52" fill="#f9a825" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">半導体・先端製造 主要データ</text>
@@ -1206,7 +1362,9 @@ style: |
 
 ---
 
-# 半導体・先端製造（2/6）
+# 半導体・先端製造（2/6）（1/2）
+
+> *HBM3e帯域幅がAI学習のボトルネックを解消し需要急拡大*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1230,6 +1388,14 @@ style: |
 - **VC投資トレンド（単位: $億）**:
 - • 2021年: $640
 - • 2022年: $1,190（+85.9%、政府支援拡大）
+
+
+---
+
+# 半導体・先端製造（2/6）（2/2）
+
+> *国家安保的観点から各国が半導体国産化補助金を大規模投入*
+
 - • 2023年: $910（-23.5%）
 - • 2024年: $830（-8.8%）
 - • 2025年: $740（-10.8%）
@@ -1239,6 +1405,8 @@ style: |
 ---
 
 # 半導体・先端製造（3/6）
+
+> *EUV装置のASML独占が10年単位で持続するモートを形成*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1285,7 +1453,9 @@ style: |
 
 ---
 
-# 半導体・先端製造（4/6）
+# 半導体・先端製造（4/6）（1/2）
+
+> *AIサーバー1台あたりの半導体コンテンツが5年で4倍増*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1297,6 +1467,14 @@ style: |
 - **技術革新動向**:
 - • **プロセスノード**: 3nm量産（TSMC・Samsung）、2nm開発中（2027年量産予定）
 - • **パッケージング**: 3D積層、チップレット技術が主流化
+
+
+---
+
+# 半導体・先端製造（4/6）（2/2）
+
+> *パワー半導体（SiC/GaN）がEV・再エネ向けに年率25%成長*
+
 - • **製造装置**: High-NA EUV、原子層堆積（ALD）の高度化
 - • **新材料**: GAA（Gate-All-Around）トランジスタ、2D材料
 - • 半導体特許出願: 2025年95,000件（+18%）
@@ -1305,7 +1483,9 @@ style: |
 
 ---
 
-# 半導体・先端製造（5/6）
+# 半導体・先端製造（5/6）（1/2）
+
+> *先端半導体製造装置メーカーへの間接投資が最も安定したリターン*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1329,6 +1509,14 @@ style: |
 - **競合環境**:
 - • **ファウンドリ**: TSMC圧倒的首位、Samsung追撃、Intel Foundryが参入
 - • **製造装置**: ASML（露光）、Applied Materials（総合）、Tokyo Electron（エッチング）
+
+
+---
+
+# 半導体・先端製造（5/6）（2/2）
+
+> *半導体サイクルは2026年が次のピーク、今が仕込みタイミング*
+
 - • **設計ツール**: Synopsys、Cadence、Siemens EDA寡占
 - • **AIチップ**: NVIDIA独走、AMD・Intel・新興（Cerebras、Graphcore）
 - **参入障壁**: 超高額設備投資、技術蓄積、サプライチェーン
@@ -1337,7 +1525,9 @@ style: |
 
 ---
 
-# 半導体・先端製造（6/6）
+# 半導体・先端製造（6/6）（1/2）
+
+> *中国制裁強化で台湾・韓国・日本の代替投資需要が加速*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1349,6 +1539,14 @@ style: |
 - **投資機会と推奨**:
 - • **最優先**: 製造装置（ASML、Applied Materials）、先端ファウンドリ（TSMC）
 - • **高ポテンシャル**: AIチップ設計、パッケージング技術、先端材料
+
+
+---
+
+# 半導体・先端製造（6/6）（2/2）
+
+> *先端ロジック需要は2030年まで年率18%で構造的に成長*
+
 - • **新興**: 量子コンピューティング用半導体、光コンピューティング
 - **期待リターン**: 年率12-18%（中リスク・中リターン）
 - **投資タイミング**: 需要サイクルの底打ち確認後（2026年後半想定）
@@ -1358,6 +1556,8 @@ style: |
 ---
 
 # 北米市場インサイト（1/3）（1/2）
+
+> *北米はAIインフラへのVCと上場株の両輪で最大投資市場*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1398,6 +1598,8 @@ style: |
 
 # 北米市場インサイト（1/3）（2/2）
 
+> *シリコンバレー以外にNYC・テキサスのAIハブが急台頭*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="52" fill="#f9a825" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">北米市場 AI/Tech 主要指標（2025年）</text>
@@ -1427,6 +1629,8 @@ style: |
 ---
 
 # 北米市場インサイト（2/3）
+
+> *米国IRA補助金$3,690億が再エネ・EVへの10年投資を保証*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1459,6 +1663,8 @@ style: |
 
 # 北米市場インサイト（3/3）
 
+> *米国バイオクラスター（ボストン/SDバイオ）がmRNA開発を牽引*
+
 - **北米投資トレンド**:
 - • メガディール増加: $1億以上の調達が全体の45%（2025年）
 - • セクター集中: AI関連が全投資の42%
@@ -1470,6 +1676,8 @@ style: |
 ---
 
 # 横断的分析（1/4）
+
+> *4産業の相関係数が0.3以下：ポートフォリオ多様化効果が高い*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1526,6 +1734,8 @@ style: |
 
 # 横断的分析（2/4）
 
+> *インフレ耐性が高いのは半導体と再エネ、AIはデフレ的性質*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <rect x="0" y="160" width="800" height="80" fill="#f9a825" opacity="0.15"/>
@@ -1543,7 +1753,9 @@ style: |
 
 ---
 
-# 横断的分析（3/4）
+# 横断的分析（3/4）（1/2）
+
+> *産業間クロス投資（AIxバイオ、AIx再エネ）が最高リターン領域*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1567,6 +1779,14 @@ style: |
 - **ESG・サステナビリティ動向**:
 - • ESG投資残高: 2025年に$45兆（全運用資産の35%）
 - • 機関投資家のESG要件強化、投資判断の主流化
+
+
+---
+
+# 横断的分析（3/4）（2/2）
+
+> *2030年の産業融合で境界が消滅：今から横断投資が有利*
+
 - • **E（環境）**: 再生エネルギー、カーボンニュートラル、サーキュラーエコノミー
 - • **S（社会）**: AI倫理、データプライバシー、医療アクセス
 - • **G（ガバナンス）**: 透明性、取締役会多様性、株主還元
@@ -1576,6 +1796,8 @@ style: |
 ---
 
 # 横断的分析（4/4）
+
+> *ESGスコア上位企業の10年リターンはスコア下位比+12%*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1633,6 +1855,8 @@ style: |
 
 # リスク分析（1/3）
 
+> *金利上昇・規制変更・地政学リスクの複合シナリオに注意*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="32" fill="#f9a825" font-size="20" font-weight="bold" text-anchor="middle" font-family="sans-serif">投資リスクマトリクス</text>
@@ -1679,6 +1903,8 @@ style: |
 
 # リスク分析（2/3）
 
+> *バイオ臨床試験失敗と半導体サイクル下落が最大の固有リスク*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="52" fill="#f9a825" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">リスク分析（2/3）: リスク要因詳細</text>
@@ -1710,6 +1936,8 @@ style: |
 
 # リスク分析（3/3）
 
+> *リスク対策：4産業均等配分＋ヘッジファンド10%組み入れ*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="48" fill="#f9a825" font-size="18" font-weight="bold" text-anchor="middle" font-family="sans-serif">投資家 リスク許容度別 推奨配分（2026年）</text>
@@ -1736,7 +1964,9 @@ style: |
 
 ---
 
-# 投資推奨・アクション（1/3）
+# 投資推奨・アクション（1/3）（1/2）
+
+> *コアポートフォリオはAI40%・半導体25%・再エネ20%・バイオ15%*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1783,6 +2013,14 @@ style: |
 - **優先投資分野（リスク調整後リターン順）**:
 - 1. **AIインフラ**: NVIDIA、クラウドAI（Microsoft、Google）- 最優先
 - 2. **先端半導体製造**: ASML、Applied Materials、TSMC
+
+
+---
+
+# 投資推奨・アクション（1/3）（2/2）
+
+> *AIインフラ株のエントリーはP/E 30倍以下を目安に設定*
+
 - 3. **EV・バッテリー**: Tesla、BYD、CATL
 - 4. **mRNAプラットフォーム**: Moderna、BioNTech
 - 5. **AI創薬**: Recursion、Insilico、大手製薬のAI部門
@@ -1792,6 +2030,8 @@ style: |
 ---
 
 # 投資推奨・アクション（2/3）
+
+> *12-18ヶ月の投資ロードマップ：今すぐ着手すべき3ステップ*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1824,6 +2064,8 @@ style: |
 
 # 投資推奨・アクション（3/3）
 
+> *2026-2030年に向けた中長期アロケーション戦略の全体像*
+
 - **実行タイムライン**:
 - • **2026年Q1-Q2**: コア投資の50%配分完了、市場調整時に追加
 - • **2026年Q3-Q4**: 成長投資の配分開始、IPOパイプライン監視
@@ -1835,6 +2077,8 @@ style: |
 ---
 
 # 結論
+
+> *今すぐ行動すべき理由：この投資機会は5年に一度の規模*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1854,6 +2098,8 @@ style: |
 ---
 
 # 補足・データソース（1/2）
+
+> *IEA・BloombergNEF・PitchBookを一次データソースとして活用*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1883,6 +2129,8 @@ style: |
 ---
 
 # 補足・データソース（2/2）
+
+> *引用資料はすべて2025年以降の最新版を使用している*
 
 - • USPTO, WIPO - 特許データ
 - • IEA, BNEF - エネルギー市場データ

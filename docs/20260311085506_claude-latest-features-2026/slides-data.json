@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "目次（1/2）",
+			"subtitle": "Claude 4シリーズからClaude Codeまで3パートで2026年最新機能を体系化する",
 			"content": [
 				"**Part 1: Claude 4シリーズ**",
 				"Claude 4シリーズ全体像・モデルラインナップ比較",
@@ -22,6 +23,7 @@
 		},
 		{
 			"title": "目次（2/2）",
+			"subtitle": "Claude CodeのAgent TeamsとAPIエンドポイント強化が2026年の実践活用の核心",
 			"content": [
 				"Claude Codeとは / アーキテクチャ / ツール・MCP連携",
 				"Agent Teamsによる並列実行 / 実践デモ / hooks設定",

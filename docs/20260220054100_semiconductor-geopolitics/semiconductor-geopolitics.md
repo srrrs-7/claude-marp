@@ -7,6 +7,71 @@ paginate: true
 header: "半導体と覇権争い"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -23,6 +88,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *TSMC独占から米中デカップリングまで—シリコンが覇権を決める全構造*
 
 - 1. 半導体サプライチェーンの脆弱性
 - 2. TSMCの「シリコンシールド」戦略
@@ -41,6 +108,8 @@ style: |
 
 # 半導体は現代の「石油」（1/2）
 
+> *市場規模は石油の半分でも、経済・軍事依存度は石油を超えた*
+
 - **2024年世界の半導体市場：** 約6,000億ドル（GDP比約0.7%）
 - しかし半導体が止まると経済全体が止まる：
 - - 自動車1台：数千個の半導体
@@ -52,6 +121,8 @@ style: |
 
 # 半導体は現代の「石油」（2/2）
 
+> *軍事・AI・通信—半導体なき現代国家は機能停止する*
+
 - - 軍用システム：高度な半導体に依存
 - **2021年半導体不足のインパクト：**
 - 自動車産業だけで2,000億ドル以上の生産損失
@@ -61,6 +132,8 @@ style: |
 ---
 
 # 世界の半導体生産の集中度（1/2）
+
+> *最先端チップの92%をTSMC1社が製造する地政学的時限爆弾*
 
 - **最先端半導体（3nm以下）の生産国：**
 - - **台湾：** 92%（TSMC独占）
@@ -87,6 +160,8 @@ style: |
 
 # 台湾の戦略：なくてはならない存在になる（1/2）
 
+> *シリコンシールド—TSMC不可欠化が台湾の安全保障戦略になった*
+
 - 「シリコンシールド」理論（Craig Addison, 2001）：
 - 台湾が世界の半導体生産を支配すれば、
 - 大国は台湾を守ることが自国利益になる
@@ -96,6 +171,8 @@ style: |
 ---
 
 # 台湾の戦略：なくてはならない存在になる（2/2）
+
+> *TSMC占領で全世界GDP40%喪失—台湾侵攻コストは侵略者も払えない*
 
 - もし中国が台湾を占領すれば：
 - - Apple・NVIDIAは1〜2年で半導体を入手できない
@@ -113,6 +190,8 @@ style: |
 ---
 
 # 2022年：半導体戦争の転換点（1/2）
+
+> *CHIPS法527億ドルが「兵器化された」米輸出規制と組み合わさり中国を封鎖*
 
 - **CHIPS and Science Act（2022年8月）：**
 - - 半導体製造への補助金：527億ドル
@@ -141,6 +220,8 @@ style: |
 
 # 日本の半導体戦略（1/2）
 
+> *ラピダス2nm+熊本TSMCで日本は30年の空白を取り戻す賭けに出た*
+
 - **ラピダス（2022年設立）：**
 - Toyota・Sony・NTT等8社と政府が出資
 - 目標：2027年に2nmチップ量産
@@ -151,6 +232,8 @@ style: |
 ---
 
 # 日本の半導体戦略（2/2）
+
+> *9000億円の国家投資が日本に先端製造拠点を取り戻す最後の機会*
 
 - **熊本TSMC工場（2024年稼動）：**
 - 日本初のTSMC工場（12nm世代）
@@ -163,6 +246,8 @@ style: |
 
 # 2030年の半導体地図（1/2）
 
+> *多極化が進めば冗長性確保—供給リスクは分散するが効率は下がる*
+
 - **楽観シナリオ：**
 - 米国・日本・欧州・インドが生産拠点を分散
 - 中国は独自エコシステムを確立（レガシー半導体）
@@ -174,6 +259,8 @@ style: |
 
 # 2030年の半導体地図（2/2）
 
+> *米中デカップリング完成で世界はシリコン・カーテンで分断される*
+
 - **悲観シナリオ：**
 - 台湾有事で半導体サプライチェーン崩壊
 - 代替生産能力の立ち上げに5〜10年
@@ -184,6 +271,8 @@ style: |
 ---
 
 # まとめ：シリコンが決める世界の覇権
+
+> *半導体覇権が政治・経済・軍事のすべてを決める—技術主権が国家主権*
 
 - ✅ **最先端半導体の92%は台湾一社（TSMC）が製造**
 - ✅ **半導体は現代の「石油」— しかし代替不可能な点で石油より危険**

@@ -89,6 +89,8 @@ style: |
 
 # アジェンダ
 
+> *決定論的脳活動が意識的決断の0.5秒前に発火する実験的証拠*
+
 - 1. Libet実験の衝撃
 - 2. 決定論と自由意志の哲学
 - 3. 量子ランダム性は助けになるか
@@ -108,6 +110,8 @@ style: |
 
 # 行動の前に脳が決める（1/2）
 
+> *意識的決意より300〜500ms前に準備電位が出現—脳は先行して動く*
+
 - **Benjamin Libet（1983年）の実験：**
 - 被験者に「好きなときに手首を曲げてください」と指示
 - 脳波（EEG）と「いつ動こうと思ったか」を同時計測
@@ -119,12 +123,20 @@ style: |
 
 ---
 
-# 行動の前に脳が決める（2/2）
+# 行動の前に脳が決める（2/2）（1/2）
 
 - = 脳はあなたが「決めた」と思う前にすでに準備していた
 - ---
 - **解釈の論争：**
 - Libet自身：「拒否権（Veto）は残る」自由意志は完全否定されない
+
+
+---
+
+# 行動の前に脳が決める（2/2）（2/2）
+
+> *Haynes(2008)がfMRIで最大7秒前に行動を予測、Libet批判への反証*
+
 - 批判：準備電位は「動くかもしれない」の確率的ノイズかもしれない
 - ---
 - **後続研究（2008年：Haynes）：**
@@ -134,6 +146,8 @@ style: |
 ---
 
 # 決定論と相容主義（1/2）
+
+> *量子ランダム性は自由意志の救いにならない—ランダムは自由ではない*
 
 - **ハード決定論：**
 - 物理法則が完全に決定しているなら自由意志は幻想
@@ -146,12 +160,22 @@ style: |
 
 ---
 
-# 決定論と相容主義（2/2）
+# 決定論と相容主義（2/2）（1/2）
+
+> *相容主義は決定論と自由意志を「外的強制なしの行動」で両立させる*
 
 - <svg viewBox="0 0 800 270" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="270" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">相容主義：自由意志の再定義スペクトル</text><rect x="40" y="50" width="720" height="30" rx="6" fill="#16213e"/><rect x="40" y="50" width="240" height="30" rx="6" fill="#c62828" opacity="0.8"/><rect x="280" y="50" width="240" height="30" rx="6" fill="#f57f17" opacity="0.8"/><rect x="520" y="50" width="240" height="30" rx="6" fill="#2e7d32" opacity="0.8"/><text x="160" y="70" text-anchor="middle" fill="white" font-size="12" font-weight="bold" font-family="sans-serif">ハード決定論</text><text x="400" y="70" text-anchor="middle" fill="white" font-size="12" font-weight="bold" font-family="sans-serif">相容主義（主流）</text><text x="640" y="70" text-anchor="middle" fill="white" font-size="12" font-weight="bold" font-family="sans-serif">リバタリアン</text><text x="160" y="100" text-anchor="middle" fill="#ef9a9a" font-size="11" font-family="sans-serif">自由意志は幻想</text><text x="400" y="100" text-anchor="middle" fill="#fff9c4" font-size="11" font-family="sans-serif">決定論と両立する自由意志</text><text x="640" y="100" text-anchor="middle" fill="#a5d6a7" font-size="11" font-family="sans-serif">真の自由意志が存在</text><rect x="230" y="120" width="340" height="110" rx="10" fill="#0d47a1" opacity="0.85"/><text x="400" y="145" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">相容主義の核心</text><text x="400" y="168" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">自由意志 = 外的強制なしに</text><text x="400" y="186" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">自分の欲求に従って行動できること</text><text x="400" y="208" text-anchor="middle" fill="#69f0ae" font-size="11" font-family="sans-serif">決定論が正しくても「自由意志の感覚」は保持できる</text><text x="400" y="248" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">代表: Daniel Dennett、Philip Strawson（哲学の主流派）</text><text x="160" y="248" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Spinoza, Laplace</text><text x="640" y="248" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Kane, Penrose</text></svg>
 - コイントスは自由ではない → 量子的ランダムも同様
 - ---
 - **相容主義（Compatibilism）：**
+
+
+---
+
+# 決定論と相容主義（2/2）（2/2）
+
+> *相容主義が主流：外的強制なしに自分の欲求に従えば自由意志は成立する*
+
 - 最も広く受け入れられている哲学的立場
 - 自由意志 = 外的強制なしに自分の欲求に従って行動できること
 - 決定論と両立する「自由意志」の再定義
@@ -162,6 +186,8 @@ style: |
 ---
 
 # 法律・道徳・AIへの含意（1/2）
+
+> *自由意志がないなら刑罰は応報より予防・更生として再設計すべき*
 
 - **刑事責任の基盤：**
 - 自由意志がないなら「罰」は意味をなすか
@@ -175,6 +201,8 @@ style: |
 
 # 法律・道徳・AIへの含意（2/2）
 
+> *AIと人間が同じ決定論的プロセスなら自律性の再定義が急務*
+
 - 前頭葉損傷・精神疾患を責任軽減事由とする判例が増加
 - 「行為者の選択能力」が法的責任の焦点
 - ---
@@ -187,6 +215,8 @@ style: |
 ---
 
 # まとめ：自由意志の実用的意味
+
+> *自由意志の感覚は消えない、責任は応報でなく能力と状況で再構築できる*
 
 - <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e" rx="8"/><text x="400" y="35" text-anchor="middle" font-size="18" fill="#f9a825" font-family="sans-serif" font-weight="bold">自由意志論争：主要な発見と実用的含意</text><rect x="30" y="60" width="220" height="100" rx="10" fill="#2d2d4e" stroke="#e91e63" stroke-width="2"/><text x="140" y="85" text-anchor="middle" font-size="13" fill="#e91e63" font-family="sans-serif" font-weight="bold">Libet実験（1983）</text><text x="140" y="105" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">意識より前に脳が準備</text><text x="140" y="122" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">Haynes(2008): 7秒前に予測</text><text x="140" y="139" text-anchor="middle" font-size="11" fill="#ffaaaa" font-family="sans-serif">→ 意識的決定の「先行性」に疑問</text><rect x="290" y="60" width="220" height="100" rx="10" fill="#2d2d4e" stroke="#29b6f6" stroke-width="2"/><text x="400" y="85" text-anchor="middle" font-size="13" fill="#29b6f6" font-family="sans-serif" font-weight="bold">哲学的立場</text><text x="400" y="105" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">ハード決定論・リバタリアン</text><text x="400" y="122" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">相容主義（主流）</text><text x="400" y="139" text-anchor="middle" font-size="11" fill="#aaddff" font-family="sans-serif">→ 「外的強制なし」で再定義</text><rect x="550" y="60" width="220" height="100" rx="10" fill="#2d2d4e" stroke="#4caf50" stroke-width="2"/><text x="660" y="85" text-anchor="middle" font-size="13" fill="#4caf50" font-family="sans-serif" font-weight="bold">社会・法律・AI</text><text x="660" y="105" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">応報から予防・更生へ</text><text x="660" y="122" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">脳科学が法廷に登場</text><text x="660" y="139" text-anchor="middle" font-size="11" fill="#aaffaa" font-family="sans-serif">→ 自律性の再定義が急務</text><polygon points="250,110 275,100 275,120" fill="#555577"/><polygon points="510,110 535,100 535,120" fill="#555577"/><rect x="200" y="200" width="400" height="70" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="228" text-anchor="middle" font-size="15" fill="#f9a825" font-family="sans-serif" font-weight="bold">実用的な結論</text><text x="400" y="250" text-anchor="middle" font-size="13" fill="#cccccc" font-family="sans-serif">「自由意志の感覚」は消えない—それ自体が人間の本質</text><text x="400" y="268" text-anchor="middle" font-size="13" fill="#cccccc" font-family="sans-serif">責任・道徳は「能力と状況」に基づいて再構築できる</text><rect x="30" y="290" width="740" height="22" rx="4" fill="#0d0d1a"/><text x="400" y="305" text-anchor="middle" font-size="11" fill="#888888" font-family="sans-serif">自由意志と神経科学 — リベットの実験と決定論の問題</text></svg>
 - ✅ **Libet実験：意識的決定より前に脳が準備を始める**

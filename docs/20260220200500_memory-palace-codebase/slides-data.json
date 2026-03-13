@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "目次",
+			"subtitle": "記憶術とコード設計の対応を6章で体系的に解説する",
 			"layout": "default",
 			"content": [
 				"- 1. 記憶の宮殿(Method of Loci)とは",
@@ -38,6 +39,7 @@
 		},
 		{
 			"title": "なぜ空間記憶は強力なのか",
+			"subtitle": "人間の脳は「場所と紐づけた記憶」を最も効率よく保持するように進化した",
 			"layout": "default",
 			"content": [
 				"- **海馬(hippocampus)**: 空間認知と記憶の中枢",
@@ -62,7 +64,8 @@
 				"- 経験豊富な開発者は**コードの場所**を覚えている",
 				"- 「あの機能はsrc/utils/の中にあったはず」",
 				"- 「認証ロジックはmiddleware/auth.tsにある」"
-			]
+			],
+			"subtitle": "経験者は場所でコードを思い出す記憶の宮殿と同型"
 		},
 		{
 			"title": "「コードベースを知っている」とは何か（2/2）",
@@ -72,7 +75,8 @@
 				"",
 				"**良いコードベース = 歩き回りやすい建物**",
 				"**悪いコードベース = 迷路のような建物**"
-			]
+			],
+			"subtitle": "歩き回りやすい建物か迷路かがコードベースの質を決める"
 		},
 		{
 			"title": "ディレクトリ構造は建築設計",
@@ -99,6 +103,7 @@
 		},
 		{
 			"title": "Millerの法則と関数設計",
+			"subtitle": "7±2の制約を守る設計が認知負荷を下げ保守性を高める",
 			"layout": "default",
 			"content": [
 				"- **7+-2の法則**: 短期記憶の容量制限",
@@ -116,6 +121,7 @@
 		},
 		{
 			"title": "原則1: 予測可能な配置",
+			"subtitle": "驚きを最小化した配置がコードベースの習熟を加速する",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 380\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"380\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" font-family=\"sans-serif\">「歩けるコード」3原則 × 記憶の宮殿</text><rect x=\"30\" y=\"45\" width=\"230\" height=\"300\" fill=\"#16213e\" rx=\"10\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"145\" y=\"68\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">原則1: 予測可能な配置</text><rect x=\"50\" y=\"80\" width=\"190\" height=\"40\" fill=\"#1565c0\" rx=\"5\"/><text x=\"145\" y=\"97\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">src/handlers/</text><text x=\"145\" y=\"111\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"9\" font-family=\"sans-serif\">ハンドラーはここ</text><rect x=\"50\" y=\"128\" width=\"190\" height=\"40\" fill=\"#1976d2\" rx=\"5\"/><text x=\"145\" y=\"145\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">src/models/</text><text x=\"145\" y=\"159\" text-anchor=\"middle\" fill=\"#90caf9\" font-size=\"9\" font-family=\"sans-serif\">モデルはここ</text><rect x=\"50\" y=\"176\" width=\"190\" height=\"40\" fill=\"#1b5e20\" rx=\"5\"/><text x=\"145\" y=\"193\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">src/utils/</text><text x=\"145\" y=\"207\" text-anchor=\"middle\" fill=\"#a5d6a7\" font-size=\"9\" font-family=\"sans-serif\">ツールはここ</text><text x=\"145\" y=\"248\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"9\" font-family=\"sans-serif\">宮殿: 玄関には靴</text><text x=\"145\" y=\"264\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"9\" font-family=\"sans-serif\">キッチンには食器</text><text x=\"145\" y=\"285\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">驚きを最小化する</text><text x=\"145\" y=\"303\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"9\" font-family=\"sans-serif\">Principle of Least Surprise</text><rect x=\"285\" y=\"45\" width=\"230\" height=\"300\" fill=\"#16213e\" rx=\"10\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"400\" y=\"68\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">原則2: 明確な境界線</text><rect x=\"305\" y=\"80\" width=\"190\" height=\"125\" fill=\"#4a148c\" rx=\"8\" stroke=\"#7b1fa2\" stroke-width=\"1\"/><text x=\"400\" y=\"102\" text-anchor=\"middle\" fill=\"#ce93d8\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">Domain A</text><text x=\"400\" y=\"120\" text-anchor=\"middle\" fill=\"#b39ddb\" font-size=\"9\" font-family=\"sans-serif\">auth/</text><text x=\"400\" y=\"135\" text-anchor=\"middle\" fill=\"#b39ddb\" font-size=\"9\" font-family=\"sans-serif\">models/user.ts</text><text x=\"400\" y=\"150\" text-anchor=\"middle\" fill=\"#b39ddb\" font-size=\"9\" font-family=\"sans-serif\">services/auth.ts</text><text x=\"400\" y=\"170\" text-anchor=\"middle\" fill=\"#7e57c2\" font-size=\"9\" font-family=\"sans-serif\">「この部屋は安全」</text><rect x=\"305\" y=\"215\" width=\"190\" height=\"100\" fill=\"#006064\" rx=\"8\" stroke=\"#00838f\" stroke-width=\"1\"/><text x=\"400\" y=\"237\" text-anchor=\"middle\" fill=\"#80deea\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">Domain B</text><text x=\"400\" y=\"255\" text-anchor=\"middle\" fill=\"#4dd0e1\" font-size=\"9\" font-family=\"sans-serif\">billing/</text><text x=\"400\" y=\"270\" text-anchor=\"middle\" fill=\"#4dd0e1\" font-size=\"9\" font-family=\"sans-serif\">models/invoice.ts</text><text x=\"400\" y=\"285\" text-anchor=\"middle\" fill=\"#26c6da\" font-size=\"9\" font-family=\"sans-serif\">変更の影響が予測可能</text><text x=\"400\" y=\"318\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">Bounded Context</text><text x=\"400\" y=\"335\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"9\" font-family=\"sans-serif\">宮殿の「部屋の壁」</text><rect x=\"540\" y=\"45\" width=\"230\" height=\"300\" fill=\"#16213e\" rx=\"10\" stroke=\"#4caf50\" stroke-width=\"2\"/><text x=\"655\" y=\"68\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">原則3: ランドマーク</text><rect x=\"558\" y=\"80\" width=\"193\" height=\"45\" fill=\"#bf360c\" rx=\"5\" stroke=\"#e64a19\" stroke-width=\"1\"/><text x=\"654\" y=\"98\" text-anchor=\"middle\" fill=\"#ffccbc\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">README.md</text><text x=\"654\" y=\"113\" text-anchor=\"middle\" fill=\"#ff8a65\" font-size=\"9\" font-family=\"sans-serif\">各ディレクトリの案内板</text><rect x=\"558\" y=\"133\" width=\"193\" height=\"45\" fill=\"#37474f\" rx=\"5\" stroke=\"#546e7a\" stroke-width=\"1\"/><text x=\"654\" y=\"151\" text-anchor=\"middle\" fill=\"#b0bec5\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">index.ts</text><text x=\"654\" y=\"166\" text-anchor=\"middle\" fill=\"#90a4ae\" font-size=\"9\" font-family=\"sans-serif\">公開APIを集約する窓口</text><rect x=\"558\" y=\"186\" width=\"193\" height=\"45\" fill=\"#1a237e\" rx=\"5\" stroke=\"#3949ab\" stroke-width=\"1\"/><text x=\"654\" y=\"204\" text-anchor=\"middle\" fill=\"#9fa8da\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">型定義 (.d.ts)</text><text x=\"654\" y=\"219\" text-anchor=\"middle\" fill=\"#7986cb\" font-size=\"9\" font-family=\"sans-serif\">建物の設計図</text><rect x=\"558\" y=\"239\" width=\"193\" height=\"45\" fill=\"#004d40\" rx=\"5\" stroke=\"#00796b\" stroke-width=\"1\"/><text x=\"654\" y=\"257\" text-anchor=\"middle\" fill=\"#80cbc4\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">命名規則</text><text x=\"654\" y=\"272\" text-anchor=\"middle\" fill=\"#4db6ac\" font-size=\"9\" font-family=\"sans-serif\">一貫性がナビゲーションを助ける</text><text x=\"655\" y=\"318\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">宮殿の「目印オブジェクト」</text><text x=\"655\" y=\"335\" text-anchor=\"middle\" fill=\"#4caf50\" font-size=\"9\" font-family=\"sans-serif\">記憶の宮殿: 象徴的な置き物</text></svg>",
@@ -129,6 +135,7 @@
 		},
 		{
 			"title": "原則2: 明確な境界線",
+			"subtitle": "境界が明確なモジュールが変更影響範囲を予測可能にする",
 			"layout": "default",
 			"content": [
 				"- **Bounded Context**: ドメインごとの明確な区分",
@@ -141,6 +148,7 @@
 		},
 		{
 			"title": "原則3: ランドマークを置く",
+			"subtitle": "README・index・命名規則が宮殿のランドマークになる",
 			"layout": "default",
 			"content": [
 				"- **README.md**: 各ディレクトリの入口に案内板",
@@ -153,6 +161,7 @@
 		},
 		{
 			"title": "まとめ",
+			"subtitle": "空間的に整理されたコードベースが開発者の認知負荷を根本的に下げる",
 			"layout": "default",
 			"content": [
 				"- 人間の空間記憶は2500年前から活用されている",

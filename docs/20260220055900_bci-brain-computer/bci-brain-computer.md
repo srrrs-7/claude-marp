@@ -142,6 +142,8 @@ Neuralinkが1024chで圧倒的なチャンネル数。Synchronは開頭不要と
 
 # Neuralink と競合技術（補足）
 
+> *思考だけでPC操作、1024chで毎秒1Mbps転送を実現*
+
 - **Neuralink（2024年）：**
 - 第1例：四肢麻痺患者が思考だけでコンピュータを操作
 - 1024チャンネル電極（従来の16倍）
@@ -173,6 +175,8 @@ Neuralinkが1024chで圧倒的なチャンネル数。Synchronは開頭不要と
 ---
 
 # 倫理的課題（2/2）
+
+> *認知強化格差と記憶書き換えが「人間とは何か」を問う*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">BCI Enhancement — 格差とアイデンティティの問題</text><rect x="30" y="50" width="340" height="110" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="75" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">認知強化格差</text><text x="50" y="98" fill="#aaa" font-size="11" font-family="sans-serif">現在: 医療目的（治療的）のBMIのみ</text><text x="50" y="116" fill="#aaa" font-size="11" font-family="sans-serif">近未来: 健常者の認知強化BMIが登場</text><text x="50" y="134" fill="#e91e63" font-size="11" font-family="sans-serif">問題: 高額 → 富裕層のみアクセス可能</text><text x="50" y="152" fill="#aaa" font-size="10" font-family="sans-serif">→「ネオ・バイオロジカル格差」の出現</text><rect x="430" y="50" width="340" height="110" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="600" y="75" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">同意とアイデンティティ</text><text x="450" y="98" fill="#aaa" font-size="11" font-family="sans-serif">書き込みBMI: 記憶・感情の外部変更が可能</text><text x="450" y="116" fill="#aaa" font-size="11" font-family="sans-serif">問題: 記憶を書き換えられた場合</text><text x="450" y="134" fill="#f9a825" font-size="11" font-family="sans-serif">→「自分」とは誰か？ 同一性の消失</text><text x="450" y="152" fill="#aaa" font-size="10" font-family="sans-serif">インフォームド・コンセントの再定義が急務</text><rect x="30" y="180" width="740" height="70" rx="10" fill="#0f1a2e" stroke="#4fc3f7" stroke-width="1"/><text x="400" y="205" text-anchor="middle" fill="#4fc3f7" font-size="13" font-weight="bold" font-family="sans-serif">「人間とは何か」を問い直す技術</text><text x="400" y="225" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">Neural Rights Foundation（チリ）が世界初の「神経権」立法を推進</text><text x="400" y="243" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">脳データ・認知操作・精神的プライバシーを基本的人権として保護</text></svg>
 - **格差と強化（Enhancement）：**

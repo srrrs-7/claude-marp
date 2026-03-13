@@ -12,6 +12,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "5テーマで自然・数学・テクノロジーへの応用を一気に把握",
 			"content": [
 				"1. フラクタルとは何か",
 				"2. 自然界のフラクタル",
@@ -34,10 +35,12 @@
 				"**Benoît Mandelbrot（1975年）が命名:** ラテン語 fractus（砕けた）から",
 				"<svg viewBox=\"0 0 800 260\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"260\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" font-size=\"15\" fill=\"#f9a825\" font-family=\"sans-serif\">コッホ曲線の生成（3段階）</text><text x=\"90\" y=\"70\" text-anchor=\"middle\" font-size=\"12\" fill=\"#aaaaaa\" font-family=\"sans-serif\">段階 0</text><line x1=\"20\" y1=\"100\" x2=\"160\" y2=\"100\" stroke=\"#42a5f5\" stroke-width=\"2.5\"/><text x=\"280\" y=\"70\" text-anchor=\"middle\" font-size=\"12\" fill=\"#aaaaaa\" font-family=\"sans-serif\">段階 1</text><polyline points=\"210,100 257,100 280,61 303,100 350,100\" fill=\"none\" stroke=\"#66bb6a\" stroke-width=\"2.2\"/><text x=\"480\" y=\"70\" text-anchor=\"middle\" font-size=\"12\" fill=\"#aaaaaa\" font-family=\"sans-serif\">段階 2</text><polyline points=\"410,100 433,100 445,81 456,100 479,100 491,81 480,62 491,81 503,100 526,100 538,81 550,100\" fill=\"none\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"680\" y=\"70\" text-anchor=\"middle\" font-size=\"12\" fill=\"#aaaaaa\" font-family=\"sans-serif\">段階 3（拡大）</text><polyline points=\"614,100 622,100 626,93 630,100 638,100 642,93 638,86 642,93 646,100 654,100 658,93 654,86 650,79 654,86 658,93 662,100 670,100 674,93 678,100 686,100 690,93 686,86 690,93 694,100 702,100 706,93 710,100 718,100 722,93 718,86 714,79 718,86 722,93 726,100 734,100 738,93 742,100 750,100\" fill=\"none\" stroke=\"#f9a825\" stroke-width=\"1.8\"/><text x=\"20\" y=\"145\" font-size=\"13\" fill=\"#ffffff\" font-family=\"sans-serif\">各ステップで中間 1/3 を三角形に置き換え → 無限反復で無限の長さ</text><g transform=\"translate(20,170)\"><rect x=\"0\" y=\"0\" width=\"760\" height=\"70\" rx=\"8\" fill=\"#16213e\"/><text x=\"20\" y=\"24\" font-size=\"13\" fill=\"#f9a825\" font-family=\"sans-serif\">規則：</text><text x=\"20\" y=\"46\" font-size=\"12\" fill=\"#cccccc\" font-family=\"sans-serif\">1本の線 → 中点を三角形に突き出す → それぞれの線に同じ操作を繰り返す</text><text x=\"20\" y=\"63\" font-size=\"12\" fill=\"#aaaaaa\" font-family=\"sans-serif\">n 段階後の辺の数: 4ⁿ、長さ: (4/3)ⁿ → n→∞ で長さも∞</text></g></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "単純なルールを無限反復するだけで無限の複雑さが生まれる"
 		},
 		{
 			"title": "フラクタルの定義（2/2）",
+			"subtitle": "単純なルールの無限反復が整数次元を超えた複雑性を生む",
 			"content": [
 				"「海岸線の長さはどのくらいか？」という問いから生まれた",
 				"**特徴：**",
@@ -55,6 +58,7 @@
 		},
 		{
 			"title": "自然に溢れるフラクタル構造（1/2）",
+			"subtitle": "植物の枝分かれは同じルールを繰り返すだけで生まれる",
 			"content": [
 				"**植物：**",
 				"ロマネスコ（ブロッコリーの変種）— 完璧な螺旋フラクタル",
@@ -66,6 +70,7 @@
 		},
 		{
 			"title": "自然に溢れるフラクタル構造（2/2）",
+			"subtitle": "肺の気管支23回分岐で畳む表面積100㎡がフラクタルの威力",
 			"content": [
 				"山脈・渓谷 — スケールを変えても同じ凹凸",
 				"**雪の結晶 — 六角形の自己相似性**",
@@ -85,7 +90,8 @@
 				"**ハウスドルフ次元（Fractal Dimension）：** 複雑さを数値化する指標",
 				"<svg viewBox=\"0 0 800 220\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"220\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"26\" text-anchor=\"middle\" font-size=\"15\" fill=\"#f9a825\" font-family=\"sans-serif\">整数次元 vs フラクタル次元</text><rect x=\"30\" y=\"50\" width=\"700\" height=\"50\" rx=\"6\" fill=\"#16213e\"/><text x=\"400\" y=\"70\" text-anchor=\"middle\" font-size=\"13\" fill=\"#cccccc\" font-family=\"sans-serif\">次元の連続体</text><text x=\"55\" y=\"90\" font-size=\"12\" fill=\"#42a5f5\" font-family=\"sans-serif\">0次元</text><text x=\"160\" y=\"90\" font-size=\"12\" fill=\"#66bb6a\" font-family=\"sans-serif\">1次元</text><text x=\"300\" y=\"90\" font-size=\"12\" fill=\"#f9a825\" font-family=\"sans-serif\">1.2〜1.5次元</text><text x=\"500\" y=\"90\" font-size=\"12\" fill=\"#e91e63\" font-family=\"sans-serif\">1.8〜2次元</text><text x=\"660\" y=\"90\" font-size=\"12\" fill=\"#ab47bc\" font-family=\"sans-serif\">2〜3次元</text><line x1=\"50\" y1=\"130\" x2=\"750\" y2=\"130\" stroke=\"#444466\" stroke-width=\"2\"/><circle cx=\"50\" cy=\"130\" r=\"6\" fill=\"#42a5f5\"/><line x1=\"130\" y1=\"124\" x2=\"220\" y2=\"124\" stroke=\"#66bb6a\" stroke-width=\"4\"/><circle cx=\"130\" cy=\"130\" r=\"5\" fill=\"#66bb6a\"/><circle cx=\"220\" cy=\"130\" r=\"5\" fill=\"#66bb6a\"/><polyline points=\"280,140 300,118 320,135 340,112 360,130 380,108 400,128\" fill=\"none\" stroke=\"#f9a825\" stroke-width=\"2.5\"/><rect x=\"460\" y=\"100\" width=\"120\" height=\"60\" rx=\"4\" fill=\"none\" stroke=\"#e91e63\" stroke-width=\"2\"/><polyline points=\"462,158 470,140 485,155 500,130 520,148 540,125 558,142 578,118\" fill=\"none\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"58\" y=\"158\" font-size=\"11\" fill=\"#42a5f5\" font-family=\"sans-serif\">点</text><text x=\"155\" y=\"158\" font-size=\"11\" fill=\"#66bb6a\" font-family=\"sans-serif\">直線</text><text x=\"310\" y=\"158\" font-size=\"11\" fill=\"#f9a825\" font-family=\"sans-serif\">海岸線</text><text x=\"490\" y=\"175\" font-size=\"11\" fill=\"#e91e63\" font-family=\"sans-serif\">マンデルブロット境界</text><text x=\"670\" y=\"158\" font-size=\"11\" fill=\"#ab47bc\" font-family=\"sans-serif\">空間</text><text x=\"400\" y=\"210\" text-anchor=\"middle\" font-size=\"12\" fill=\"#aaaaaa\" font-family=\"sans-serif\">フラクタルは整数次元の「すき間」に存在する</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "海岸線は整数次元に収まらない1.2〜1.3次元の存在"
 		},
 		{
 			"title": "フラクタル次元（2/2）",
@@ -101,6 +107,7 @@
 		},
 		{
 			"title": "マンデルブロット集合（1/2）",
+			"subtitle": "z²+cという2項の式が無限の図形複雑性を生み出す",
 			"content": [
 				"**z → z² + c という単純な式が生む無限の複雑さ：**",
 				"複素平面上で収束する点の集合",
@@ -113,6 +120,7 @@
 		},
 		{
 			"title": "マンデルブロット集合（2/2）",
+			"subtitle": "CGの山・雲・波はフラクタルアルゴリズムで生成されている",
 			"content": [
 				"コンピュータなしでは可視化不可能",
 				"**CGとフラクタル：**",
@@ -124,6 +132,7 @@
 		},
 		{
 			"title": "テクノロジーへの応用（1/2）",
+			"subtitle": "Koch曲線型アンテナで同面積の従来比2〜3倍の受信効率を実現",
 			"content": [
 				"**通信：フラクタルアンテナ**",
 				"Koch曲線型で2〜3倍の受信効率",
@@ -135,6 +144,7 @@
 		},
 		{
 			"title": "テクノロジーへの応用（2/2）",
+			"subtitle": "株価変動のフラクタル構造はリスク管理の古典理論を覆す",
 			"content": [
 				"**医療診断：**",
 				"心電図のフラクタル次元 → 心臓病リスク評価",
@@ -147,6 +157,7 @@
 		},
 		{
 			"title": "まとめ：複雑さの中の秩序",
+			"subtitle": "自然・医療・通信・金融のすべてにフラクタルの法則が宿る",
 			"content": [
 				"✅ **フラクタル = 自己相似性 + スケール不変性**",
 				"✅ **自然は非整数次元で動いている**",

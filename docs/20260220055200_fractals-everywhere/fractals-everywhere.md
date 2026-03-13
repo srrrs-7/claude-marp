@@ -7,6 +7,71 @@ paginate: true
 header: "フラクタル幾何学"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -42,6 +107,8 @@ style: |
 
 # フラクタルの定義（1/2）
 
+> *単純なルールを無限反復するだけで無限の複雑さが生まれる*
+
 - **フラクタル（Fractal）：**
 - どの部分を拡大しても全体と同じ構造が現れる図形 = 「自己相似性（Self-Similarity）」
 - **Benoît Mandelbrot（1975年）が命名:** ラテン語 fractus（砕けた）から
@@ -51,6 +118,8 @@ style: |
 ---
 
 # フラクタルの定義（2/2）
+
+> *単純なルールの無限反復が整数次元を超えた複雑性を生む*
 
 - 「海岸線の長さはどのくらいか？」という問いから生まれた
 - **特徴：**
@@ -70,6 +139,8 @@ style: |
 
 # 自然に溢れるフラクタル構造（1/2）
 
+> *植物の枝分かれは同じルールを繰り返すだけで生まれる*
+
 - **植物：**
 - ロマネスコ（ブロッコリーの変種）— 完璧な螺旋フラクタル
 - シダの葉 — 小さな葉が全体の葉を模倣
@@ -80,6 +151,8 @@ style: |
 ---
 
 # 自然に溢れるフラクタル構造（2/2）
+
+> *肺の気管支23回分岐で畳む表面積100㎡がフラクタルの威力*
 
 - 山脈・渓谷 — スケールを変えても同じ凹凸
 - **雪の結晶 — 六角形の自己相似性**
@@ -92,6 +165,8 @@ style: |
 ---
 
 # フラクタル次元（1/2）
+
+> *海岸線は整数次元に収まらない1.2〜1.3次元の存在*
 
 - **次元の常識を壊す：**
 - 点：0次元、線：1次元、面：2次元、空間：3次元
@@ -117,6 +192,8 @@ style: |
 
 # マンデルブロット集合（1/2）
 
+> *z²+cという2項の式が無限の図形複雑性を生み出す*
+
 - **z → z² + c という単純な式が生む無限の複雑さ：**
 - 複素平面上で収束する点の集合
 - **なぜ革命的か：**
@@ -129,6 +206,8 @@ style: |
 
 # マンデルブロット集合（2/2）
 
+> *CGの山・雲・波はフラクタルアルゴリズムで生成されている*
+
 - コンピュータなしでは可視化不可能
 - **CGとフラクタル：**
 - 映画の山・雲・海の波 → フラクタルアルゴリズム
@@ -139,6 +218,8 @@ style: |
 ---
 
 # テクノロジーへの応用（1/2）
+
+> *Koch曲線型アンテナで同面積の従来比2〜3倍の受信効率を実現*
 
 - **通信：フラクタルアンテナ**
 - Koch曲線型で2〜3倍の受信効率
@@ -151,6 +232,8 @@ style: |
 
 # テクノロジーへの応用（2/2）
 
+> *株価変動のフラクタル構造はリスク管理の古典理論を覆す*
+
 - **医療診断：**
 - 心電図のフラクタル次元 → 心臓病リスク評価
 - がん組織の不規則性をフラクタル次元で定量化
@@ -162,6 +245,8 @@ style: |
 ---
 
 # まとめ：複雑さの中の秩序
+
+> *自然・医療・通信・金融のすべてにフラクタルの法則が宿る*
 
 - ✅ **フラクタル = 自己相似性 + スケール不変性**
 - ✅ **自然は非整数次元で動いている**

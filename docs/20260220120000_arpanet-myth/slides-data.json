@@ -8,6 +8,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "ARPANETの真実を一次資料から解体する全89スライドの構成",
 			"layout": "default",
 			"content": [
 				"**Part 1:** 「核戦争に耐えるため」という通説",
@@ -35,7 +36,8 @@
 				"「分散型ネットワークは核戦争サバイバルのための発明だ」",
 				""
 			],
-			"speakerNotes": "多くのエンジニアがこの話を「常識」として知っています。しかし「誰が」「なぜ」設計したかを具体的に聞かれると、多くの場合は曖昧な答えしか返ってきません。"
+			"speakerNotes": "多くのエンジニアがこの話を「常識」として知っています。しかし「誰が」「なぜ」設計したかを具体的に聞かれると、多くの場合は曖昧な答えしか返ってきません。",
+			"subtitle": "教科書・Wikipedia・TED—神話が広く流通している"
 		},
 		{
 			"title": "あなたもこの話を聞いたことがあるはず（2/2）",
@@ -48,7 +50,8 @@
 				"",
 				"→ これは **半分正しくて、半分大きく誤解されている**"
 			],
-			"speakerNotes": "多くのエンジニアがこの話を「常識」として知っています。しかし「誰が」「なぜ」設計したかを具体的に聞かれると、多くの場合は曖昧な答えしか返ってきません。"
+			"speakerNotes": "多くのエンジニアがこの話を「常識」として知っています。しかし「誰が」「なぜ」設計したかを具体的に聞かれると、多くの場合は曖昧な答えしか返ってきません。",
+			"subtitle": "繰り返し引用が事実確認なく神話を強化してきた"
 		},
 		{
 			"title": "通説の広まり方 — 誰が、いつ、どう伝えたか（1/2）",
@@ -61,10 +64,12 @@
 				"**1980〜90年代: メディアの増幅**",
 				"TIME誌・Newsweekがインターネット特集でこの説を繰り返し引用"
 			],
-			"speakerNotes": "誤情報の伝播メカニズムの典型例。権威ある媒体が繰り返すことで「常識」になっていきます。"
+			"speakerNotes": "誤情報の伝播メカニズムの典型例。権威ある媒体が繰り返すことで「常識」になっていきます。",
+			"subtitle": "スチュアート・ブランドの1985年発言が拡散の起点"
 		},
 		{
 			"title": "通説の広まり方 — 誰が、いつ、どう伝えたか（2/2）",
+			"subtitle": "神話は著名な誤読が繰り返し引用されることで定着した",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">神話の誕生と拡大 — タイムライン</text>\n  <!-- Timeline line -->\n  <line x1=\"60\" y1=\"160\" x2=\"740\" y2=\"160\" stroke=\"#555\" stroke-width=\"2\"/>\n  <!-- 1964: Baran research -->\n  <circle cx=\"100\" cy=\"160\" r=\"10\" fill=\"#4fc3f7\"/>\n  <text x=\"100\" y=\"145\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">1964</text>\n  <text x=\"100\" y=\"178\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">バランの</text>\n  <text x=\"100\" y=\"192\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">RAND論文</text>\n  <text x=\"100\" y=\"208\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\" font-family=\"sans-serif\">（核耐性研究）</text>\n  <!-- 1969: ARPANET -->\n  <circle cx=\"200\" cy=\"160\" r=\"10\" fill=\"#69f0ae\"/>\n  <text x=\"200\" y=\"145\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">1969</text>\n  <text x=\"200\" y=\"178\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">ARPANET</text>\n  <text x=\"200\" y=\"192\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">稼働開始</text>\n  <text x=\"200\" y=\"208\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\" font-family=\"sans-serif\">（リソース共有）</text>\n  <!-- 1972: Email -->\n  <circle cx=\"290\" cy=\"160\" r=\"8\" fill=\"#f9a825\"/>\n  <text x=\"290\" y=\"145\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">1972</text>\n  <text x=\"290\" y=\"178\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"9\" font-family=\"sans-serif\">メール発明</text>\n  <!-- 1980s: Media amplification -->\n  <circle cx=\"400\" cy=\"160\" r=\"12\" fill=\"#e91e63\"/>\n  <text x=\"400\" y=\"140\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">1980〜90s</text>\n  <text x=\"400\" y=\"178\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">メディアが</text>\n  <text x=\"400\" y=\"192\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">「核耐性説」を</text>\n  <text x=\"400\" y=\"206\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\" font-family=\"sans-serif\">繰り返し引用</text>\n  <text x=\"400\" y=\"218\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\" font-family=\"sans-serif\">TIME / Newsweek</text>\n  <!-- 1996: Where Wizards -->\n  <circle cx=\"510\" cy=\"160\" r=\"10\" fill=\"#69f0ae\"/>\n  <text x=\"510\" y=\"145\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">1996</text>\n  <text x=\"510\" y=\"178\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">Where Wizards</text>\n  <text x=\"510\" y=\"192\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"10\" font-family=\"sans-serif\">神話を否定</text>\n  <text x=\"510\" y=\"206\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\" font-family=\"sans-serif\">（学術的認知）</text>\n  <!-- Late 1990s: Wikipedia -->\n  <circle cx=\"610\" cy=\"160\" r=\"12\" fill=\"#e91e63\"/>\n  <text x=\"610\" y=\"140\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">2000s</text>\n  <text x=\"610\" y=\"178\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">Wikipedia</text>\n  <text x=\"610\" y=\"192\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">草創期に「事実」</text>\n  <text x=\"610\" y=\"206\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"10\" font-family=\"sans-serif\">として世界拡散</text>\n  <!-- Today -->\n  <circle cx=\"710\" cy=\"160\" r=\"10\" fill=\"#ff7043\"/>\n  <text x=\"710\" y=\"145\" text-anchor=\"middle\" fill=\"#ff7043\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">現在</text>\n  <text x=\"710\" y=\"178\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"10\" font-family=\"sans-serif\">教科書・授業の</text>\n  <text x=\"710\" y=\"192\" text-anchor=\"middle\" fill=\"#ff7043\" font-size=\"10\" font-family=\"sans-serif\">定番説明文</text>\n  <!-- Key insight -->\n  <rect x=\"80\" y=\"255\" width=\"640\" height=\"60\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n  <text x=\"400\" y=\"278\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">混同のメカニズム</text>\n  <text x=\"400\" y=\"300\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">バランの核耐性研究（1964）+ ARPANETの同時期創設（1969）= 「一緒のもの」と誤認</text>\n</svg>",
@@ -79,6 +84,7 @@
 		},
 		{
 			"title": "神話の「証拠」として引用されるもの（1/2）",
+			"subtitle": "「証拠」の多くは文脈を無視した後付け解釈に過ぎない",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">バランの研究 vs ARPANET — 完全に別物</text>\n  <!-- Baran box -->\n  <rect x=\"40\" y=\"50\" width=\"320\" height=\"230\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <text x=\"200\" y=\"76\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">ポール・バランの研究</text>\n  <text x=\"200\" y=\"96\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">RAND Corporation (1960〜1964)</text>\n  <text x=\"55\" y=\"120\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">目的: 核攻撃後の軍指揮命令系統維持</text>\n  <text x=\"55\" y=\"138\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">対象: 軍の音声電話網</text>\n  <text x=\"55\" y=\"156\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">結果: AT&amp;T等が実現不可能と判断</text>\n  <text x=\"55\" y=\"174\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ 1964年に棚上げ</text>\n  <text x=\"55\" y=\"198\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">バラン自身の発言:</text>\n  <text x=\"55\" y=\"216\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「ARPANETを設計したのは私ではない」</text>\n  <text x=\"55\" y=\"234\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">（生涯この誤解を訂正し続けた）</text>\n  <!-- Not equal sign -->\n  <text x=\"393\" y=\"172\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"36\" font-weight=\"bold\" font-family=\"sans-serif\">≠</text>\n  <!-- ARPANET box -->\n  <rect x=\"440\" y=\"50\" width=\"320\" height=\"230\" rx=\"10\" fill=\"#16213e\" stroke=\"#69f0ae\" stroke-width=\"2\"/>\n  <text x=\"600\" y=\"76\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">ARPANET</text>\n  <text x=\"600\" y=\"96\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">ARPA / BBN (1966〜1969)</text>\n  <text x=\"455\" y=\"120\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">目的: 研究者のリソース共有</text>\n  <text x=\"455\" y=\"138\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">対象: 大学・研究機関のコンピュータ</text>\n  <text x=\"455\" y=\"156\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">実現: BBNが設計・構築</text>\n  <text x=\"455\" y=\"174\" fill=\"#69f0ae\" font-size=\"11\" font-family=\"sans-serif\">→ 1969年稼働</text>\n  <text x=\"455\" y=\"198\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Larry Roberts:</text>\n  <text x=\"455\" y=\"216\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「設計目的はリソース共有だった」</text>\n  <text x=\"455\" y=\"234\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">（IEEE Annals 1988年）</text>\n  <!-- Bottom note -->\n  <rect x=\"40\" y=\"295\" width=\"720\" height=\"35\" rx=\"6\" fill=\"#16213e\" stroke=\"#444\" stroke-width=\"1\"/>\n  <text x=\"400\" y=\"317\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">バランのアイデア（パケット交換）は参照されたが、ARPANETの設計書ではない — 「二重の誤り」</text>\n</svg>",
@@ -92,6 +98,7 @@
 		},
 		{
 			"title": "神話の「証拠」として引用されるもの（2/2）",
+			"subtitle": "引用の連鎖が誤読を権威化し、訂正を困難にした",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">バランの研究 vs ARPANET — 完全に別物</text>\n  <!-- Baran box -->\n  <rect x=\"40\" y=\"50\" width=\"320\" height=\"230\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n  <text x=\"200\" y=\"76\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">ポール・バランの研究</text>\n  <text x=\"200\" y=\"96\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">RAND Corporation (1960〜1964)</text>\n  <text x=\"55\" y=\"120\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">目的: 核攻撃後の軍指揮命令系統維持</text>\n  <text x=\"55\" y=\"138\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">対象: 軍の音声電話網</text>\n  <text x=\"55\" y=\"156\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">結果: AT&amp;T等が実現不可能と判断</text>\n  <text x=\"55\" y=\"174\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">→ 1964年に棚上げ</text>\n  <text x=\"55\" y=\"198\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">バラン自身の発言:</text>\n  <text x=\"55\" y=\"216\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「ARPANETを設計したのは私ではない」</text>\n  <text x=\"55\" y=\"234\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">（生涯この誤解を訂正し続けた）</text>\n  <!-- Not equal sign -->\n  <text x=\"393\" y=\"172\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"36\" font-weight=\"bold\" font-family=\"sans-serif\">≠</text>\n  <!-- ARPANET box -->\n  <rect x=\"440\" y=\"50\" width=\"320\" height=\"230\" rx=\"10\" fill=\"#16213e\" stroke=\"#69f0ae\" stroke-width=\"2\"/>\n  <text x=\"600\" y=\"76\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">ARPANET</text>\n  <text x=\"600\" y=\"96\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">ARPA / BBN (1966〜1969)</text>\n  <text x=\"455\" y=\"120\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">目的: 研究者のリソース共有</text>\n  <text x=\"455\" y=\"138\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">対象: 大学・研究機関のコンピュータ</text>\n  <text x=\"455\" y=\"156\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">実現: BBNが設計・構築</text>\n  <text x=\"455\" y=\"174\" fill=\"#69f0ae\" font-size=\"11\" font-family=\"sans-serif\">→ 1969年稼働</text>\n  <text x=\"455\" y=\"198\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Larry Roberts:</text>\n  <text x=\"455\" y=\"216\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「設計目的はリソース共有だった」</text>\n  <text x=\"455\" y=\"234\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">（IEEE Annals 1988年）</text>\n  <!-- Bottom note -->\n  <rect x=\"40\" y=\"295\" width=\"720\" height=\"35\" rx=\"6\" fill=\"#16213e\" stroke=\"#444\" stroke-width=\"1\"/>\n  <text x=\"400\" y=\"317\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"12\" font-family=\"sans-serif\">バランのアイデア（パケット交換）は参照されたが、ARPANETの設計書ではない — 「二重の誤り」</text>\n</svg>",
@@ -123,10 +130,12 @@
 				"",
 				"**1958年2月: ARPA設立（Advanced Research Projects Agency）**"
 			],
-			"speakerNotes": "ARPAは確かに軍の機関です。ただし実施機関ではなく、研究委託機関。プログラムマネージャーが大学や研究所に予算を配分する仕組みでした。"
+			"speakerNotes": "ARPAは確かに軍の機関です。ただし実施機関ではなく、研究委託機関。プログラムマネージャーが大学や研究所に予算を配分する仕組みでした。",
+			"subtitle": "ARPA設立の目的は技術ギャップ解消—核耐性ではない"
 		},
 		{
 			"title": "スプートニクショックとARPAの設立（1957〜1958年）（2/2）",
+			"subtitle": "ARPAの設立目的は資源共有であり核攻撃耐性は後付けだった",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">Licklider の「銀河間コンピュータネットワーク」構想</text>\n  <!-- Person box -->\n  <rect x=\"40\" y=\"50\" width=\"200\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"140\" y=\"74\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">J.C.R. Licklider</text>\n  <text x=\"140\" y=\"94\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">心理学者・CS者</text>\n  <text x=\"140\" y=\"112\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">MIT → BBN → ARPA</text>\n  <text x=\"140\" y=\"132\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"11\" font-family=\"sans-serif\">「コンピュータの父」の一人</text>\n  <text x=\"140\" y=\"152\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">1915〜1990</text>\n  <!-- Vision box -->\n  <rect x=\"280\" y=\"50\" width=\"480\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"1.5\"/>\n  <text x=\"520\" y=\"74\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">1963年4月メモ「銀河間コンピュータネットワーク」</text>\n  <text x=\"295\" y=\"96\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「全米の研究者がネットワーク経由でコンピュータを共有する」</text>\n  <text x=\"295\" y=\"114\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「高価なコンピュータを複数拠点でシェアして研究を加速」</text>\n  <text x=\"295\" y=\"134\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">IBM 7094 の年間リース料: 約 $1,000,000 (1962年)</text>\n  <text x=\"295\" y=\"154\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">→ タイムシェアリングをネットワーク越しに拡張する発想</text>\n  <text x=\"295\" y=\"175\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">核戦争への言及: ゼロ</text>\n  <!-- Bottom: connection to ARPANET -->\n  <rect x=\"40\" y=\"220\" width=\"720\" height=\"90\" rx=\"8\" fill=\"#16213e\" stroke=\"#69f0ae\" stroke-width=\"1\"/>\n  <text x=\"400\" y=\"244\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">ARPANETへの直接的な思想的継承</text>\n  <text x=\"80\" y=\"266\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Licklider（1960）: 人間とコンピュータの共生を提唱</text>\n  <text x=\"80\" y=\"284\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">↓ Bob Taylor（1966）: 「3台の端末問題」を解く = ARPANETの直接的動機</text>\n  <text x=\"80\" y=\"302\" fill=\"#69f0ae\" font-size=\"11\" font-family=\"sans-serif\">↓ ARPANET（1969）: 研究者間のリソース共有ネットワークとして稼働</text>\n</svg>",
@@ -141,6 +150,7 @@
 		},
 		{
 			"title": "J.C.R. Licklider — \"Man-Computer Symbiosis\"の夢（1/2）",
+			"subtitle": "Lickliderの夢は人機共生、ネットワークは手段に過ぎなかった",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">Licklider の「銀河間コンピュータネットワーク」構想</text>\n  <!-- Person box -->\n  <rect x=\"40\" y=\"50\" width=\"200\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"140\" y=\"74\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">J.C.R. Licklider</text>\n  <text x=\"140\" y=\"94\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">心理学者・CS者</text>\n  <text x=\"140\" y=\"112\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">MIT → BBN → ARPA</text>\n  <text x=\"140\" y=\"132\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"11\" font-family=\"sans-serif\">「コンピュータの父」の一人</text>\n  <text x=\"140\" y=\"152\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">1915〜1990</text>\n  <!-- Vision box -->\n  <rect x=\"280\" y=\"50\" width=\"480\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"1.5\"/>\n  <text x=\"520\" y=\"74\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">1963年4月メモ「銀河間コンピュータネットワーク」</text>\n  <text x=\"295\" y=\"96\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「全米の研究者がネットワーク経由でコンピュータを共有する」</text>\n  <text x=\"295\" y=\"114\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「高価なコンピュータを複数拠点でシェアして研究を加速」</text>\n  <text x=\"295\" y=\"134\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">IBM 7094 の年間リース料: 約 $1,000,000 (1962年)</text>\n  <text x=\"295\" y=\"154\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">→ タイムシェアリングをネットワーク越しに拡張する発想</text>\n  <text x=\"295\" y=\"175\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">核戦争への言及: ゼロ</text>\n  <!-- Bottom: connection to ARPANET -->\n  <rect x=\"40\" y=\"220\" width=\"720\" height=\"90\" rx=\"8\" fill=\"#16213e\" stroke=\"#69f0ae\" stroke-width=\"1\"/>\n  <text x=\"400\" y=\"244\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">ARPANETへの直接的な思想的継承</text>\n  <text x=\"80\" y=\"266\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Licklider（1960）: 人間とコンピュータの共生を提唱</text>\n  <text x=\"80\" y=\"284\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">↓ Bob Taylor（1966）: 「3台の端末問題」を解く = ARPANETの直接的動機</text>\n  <text x=\"80\" y=\"302\" fill=\"#69f0ae\" font-size=\"11\" font-family=\"sans-serif\">↓ ARPANET（1969）: 研究者間のリソース共有ネットワークとして稼働</text>\n</svg>",
@@ -173,10 +183,12 @@
 				"全米の研究者がネットワーク経由でコンピュータを共有する構想",
 				"→ ARPANETの**思想的起源**"
 			],
-			"speakerNotes": "Lickliderは後に「コンピュータの父」の一人と呼ばれます。彼のビジョンは明確にリソース共有と人間の知的活動の拡張でした。核戦争の「か」の字もありません。"
+			"speakerNotes": "Lickliderは後に「コンピュータの父」の一人と呼ばれます。彼のビジョンは明確にリソース共有と人間の知的活動の拡張でした。核戦争の「か」の字もありません。",
+			"subtitle": "銀河間ネットワーク構想がARPANETの思想的起源を作った"
 		},
 		{
 			"title": "IPTO設立と「銀河間コンピュータネットワーク」構想（1/2）",
+			"subtitle": "IPTOの構想は研究者のコラボレーション促進が第一目標だった",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">Licklider の「銀河間コンピュータネットワーク」構想</text>\n  <!-- Person box -->\n  <rect x=\"40\" y=\"50\" width=\"200\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n  <text x=\"140\" y=\"74\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">J.C.R. Licklider</text>\n  <text x=\"140\" y=\"94\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">心理学者・CS者</text>\n  <text x=\"140\" y=\"112\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">MIT → BBN → ARPA</text>\n  <text x=\"140\" y=\"132\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"11\" font-family=\"sans-serif\">「コンピュータの父」の一人</text>\n  <text x=\"140\" y=\"152\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">1915〜1990</text>\n  <!-- Vision box -->\n  <rect x=\"280\" y=\"50\" width=\"480\" height=\"140\" rx=\"8\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"1.5\"/>\n  <text x=\"520\" y=\"74\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">1963年4月メモ「銀河間コンピュータネットワーク」</text>\n  <text x=\"295\" y=\"96\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「全米の研究者がネットワーク経由でコンピュータを共有する」</text>\n  <text x=\"295\" y=\"114\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「高価なコンピュータを複数拠点でシェアして研究を加速」</text>\n  <text x=\"295\" y=\"134\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">IBM 7094 の年間リース料: 約 $1,000,000 (1962年)</text>\n  <text x=\"295\" y=\"154\" fill=\"#f9a825\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">→ タイムシェアリングをネットワーク越しに拡張する発想</text>\n  <text x=\"295\" y=\"175\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">核戦争への言及: ゼロ</text>\n  <!-- Bottom: connection to ARPANET -->\n  <rect x=\"40\" y=\"220\" width=\"720\" height=\"90\" rx=\"8\" fill=\"#16213e\" stroke=\"#69f0ae\" stroke-width=\"1\"/>\n  <text x=\"400\" y=\"244\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">ARPANETへの直接的な思想的継承</text>\n  <text x=\"80\" y=\"266\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">Licklider（1960）: 人間とコンピュータの共生を提唱</text>\n  <text x=\"80\" y=\"284\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">↓ Bob Taylor（1966）: 「3台の端末問題」を解く = ARPANETの直接的動機</text>\n  <text x=\"80\" y=\"302\" fill=\"#69f0ae\" font-size=\"11\" font-family=\"sans-serif\">↓ ARPANET（1969）: 研究者間のリソース共有ネットワークとして稼働</text>\n</svg>",
@@ -209,10 +221,12 @@
 				"",
 				"これが ARPANET の根本的動機"
 			],
-			"speakerNotes": "コンピュータは当時極めて高価でした。現代で言えば「AIスパコンを各大学が個別に持つのは無駄だからネットワークで共有しよう」に近い発想です。"
+			"speakerNotes": "コンピュータは当時極めて高価でした。現代で言えば「AIスパコンを各大学が個別に持つのは無駄だからネットワークで共有しよう」に近い発想です。",
+			"subtitle": "タイムシェアリングの地理的拡張がARPANETの根本動機だった"
 		},
 		{
 			"title": "1966年のBob Taylor — 3台の端末問題（1/2）",
+			"subtitle": "Taylorの動機は端末の非効率解消、核耐性は一切言及なし",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">Bob Taylorの「3台の端末問題」（1966年）</text>\n  <!-- Before: 3 separate terminals -->\n  <rect x=\"40\" y=\"48\" width=\"340\" height=\"250\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"210\" y=\"72\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">問題 — 非効率な現状</text>\n  <!-- Terminal 1 -->\n  <rect x=\"65\" y=\"88\" width=\"90\" height=\"55\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/>\n  <text x=\"110\" y=\"110\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">端末①</text>\n  <text x=\"110\" y=\"126\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\" font-family=\"sans-serif\">TX-2 (MIT)</text>\n  <!-- Terminal 2 -->\n  <rect x=\"175\" y=\"88\" width=\"90\" height=\"55\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/>\n  <text x=\"220\" y=\"110\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">端末②</text>\n  <text x=\"220\" y=\"126\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\" font-family=\"sans-serif\">AN/FSQ-32 (SDC)</text>\n  <!-- Terminal 3 -->\n  <rect x=\"285\" y=\"88\" width=\"75\" height=\"55\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/>\n  <text x=\"323\" y=\"110\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">端末③</text>\n  <text x=\"323\" y=\"126\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\" font-family=\"sans-serif\">IBM 360</text>\n  <text x=\"210\" y=\"170\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">3回ログインし直す必要あり</text>\n  <text x=\"210\" y=\"190\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">コマンド体系がバラバラ</text>\n  <text x=\"210\" y=\"210\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">「非効率極まりない！」</text>\n  <text x=\"210\" y=\"240\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">（Taylor本人の2004年証言）</text>\n  <text x=\"210\" y=\"262\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">核戦争の「か」の字もない</text>\n  <!-- After: ARPANET solution -->\n  <rect x=\"420\" y=\"48\" width=\"340\" height=\"250\" rx=\"10\" fill=\"#16213e\" stroke=\"#69f0ae\" stroke-width=\"1.5\"/>\n  <text x=\"590\" y=\"72\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">解決 — ARPANET</text>\n  <!-- Single terminal -->\n  <rect x=\"535\" y=\"88\" width=\"110\" height=\"55\" rx=\"6\" fill=\"#1a3a1a\" stroke=\"#69f0ae\" stroke-width=\"2\"/>\n  <text x=\"590\" y=\"110\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">1台の端末</text>\n  <text x=\"590\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">すべてに接続</text>\n  <!-- Connection lines -->\n  <line x1=\"590\" y1=\"143\" x2=\"480\" y2=\"175\" stroke=\"#69f0ae\" stroke-width=\"1.5\"/>\n  <line x1=\"590\" y1=\"143\" x2=\"590\" y2=\"175\" stroke=\"#69f0ae\" stroke-width=\"1.5\"/>\n  <line x1=\"590\" y1=\"143\" x2=\"700\" y2=\"175\" stroke=\"#69f0ae\" stroke-width=\"1.5\"/>\n  <!-- Remote computers -->\n  <rect x=\"440\" y=\"175\" width=\"80\" height=\"36\" rx=\"4\" fill=\"#16213e\" stroke=\"#555\" stroke-width=\"1\"/>\n  <text x=\"480\" y=\"196\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">MIT</text>\n  <rect x=\"548\" y=\"175\" width=\"80\" height=\"36\" rx=\"4\" fill=\"#16213e\" stroke=\"#555\" stroke-width=\"1\"/>\n  <text x=\"588\" y=\"196\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">SDC</text>\n  <rect x=\"656\" y=\"175\" width=\"80\" height=\"36\" rx=\"4\" fill=\"#16213e\" stroke=\"#555\" stroke-width=\"1\"/>\n  <text x=\"696\" y=\"196\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">各大学</text>\n  <text x=\"590\" y=\"240\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">統一インターフェースで</text>\n  <text x=\"590\" y=\"258\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">全リソースにアクセス</text>\n  <text x=\"590\" y=\"278\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">これがARPANETの直接の動機</text>\n</svg>",
@@ -227,6 +241,7 @@
 		},
 		{
 			"title": "1966年のBob Taylor — 3台の端末問題（2/2）",
+			"subtitle": "3台の端末問題が統一プロトコルへの直接のきっかけを作った",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">Bob Taylorの「3台の端末問題」（1966年）</text>\n  <!-- Before: 3 separate terminals -->\n  <rect x=\"40\" y=\"48\" width=\"340\" height=\"250\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n  <text x=\"210\" y=\"72\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">問題 — 非効率な現状</text>\n  <!-- Terminal 1 -->\n  <rect x=\"65\" y=\"88\" width=\"90\" height=\"55\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/>\n  <text x=\"110\" y=\"110\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">端末①</text>\n  <text x=\"110\" y=\"126\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\" font-family=\"sans-serif\">TX-2 (MIT)</text>\n  <!-- Terminal 2 -->\n  <rect x=\"175\" y=\"88\" width=\"90\" height=\"55\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/>\n  <text x=\"220\" y=\"110\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">端末②</text>\n  <text x=\"220\" y=\"126\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\" font-family=\"sans-serif\">AN/FSQ-32 (SDC)</text>\n  <!-- Terminal 3 -->\n  <rect x=\"285\" y=\"88\" width=\"75\" height=\"55\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/>\n  <text x=\"323\" y=\"110\" text-anchor=\"middle\" fill=\"#4fc3f7\" font-size=\"10\" font-weight=\"bold\" font-family=\"sans-serif\">端末③</text>\n  <text x=\"323\" y=\"126\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"9\" font-family=\"sans-serif\">IBM 360</text>\n  <text x=\"210\" y=\"170\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"12\" font-family=\"sans-serif\">3回ログインし直す必要あり</text>\n  <text x=\"210\" y=\"190\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">コマンド体系がバラバラ</text>\n  <text x=\"210\" y=\"210\" text-anchor=\"middle\" fill=\"#e91e63\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">「非効率極まりない！」</text>\n  <text x=\"210\" y=\"240\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">（Taylor本人の2004年証言）</text>\n  <text x=\"210\" y=\"262\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"11\" font-family=\"sans-serif\">核戦争の「か」の字もない</text>\n  <!-- After: ARPANET solution -->\n  <rect x=\"420\" y=\"48\" width=\"340\" height=\"250\" rx=\"10\" fill=\"#16213e\" stroke=\"#69f0ae\" stroke-width=\"1.5\"/>\n  <text x=\"590\" y=\"72\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"14\" font-weight=\"bold\" font-family=\"sans-serif\">解決 — ARPANET</text>\n  <!-- Single terminal -->\n  <rect x=\"535\" y=\"88\" width=\"110\" height=\"55\" rx=\"6\" fill=\"#1a3a1a\" stroke=\"#69f0ae\" stroke-width=\"2\"/>\n  <text x=\"590\" y=\"110\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"13\" font-weight=\"bold\" font-family=\"sans-serif\">1台の端末</text>\n  <text x=\"590\" y=\"130\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">すべてに接続</text>\n  <!-- Connection lines -->\n  <line x1=\"590\" y1=\"143\" x2=\"480\" y2=\"175\" stroke=\"#69f0ae\" stroke-width=\"1.5\"/>\n  <line x1=\"590\" y1=\"143\" x2=\"590\" y2=\"175\" stroke=\"#69f0ae\" stroke-width=\"1.5\"/>\n  <line x1=\"590\" y1=\"143\" x2=\"700\" y2=\"175\" stroke=\"#69f0ae\" stroke-width=\"1.5\"/>\n  <!-- Remote computers -->\n  <rect x=\"440\" y=\"175\" width=\"80\" height=\"36\" rx=\"4\" fill=\"#16213e\" stroke=\"#555\" stroke-width=\"1\"/>\n  <text x=\"480\" y=\"196\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">MIT</text>\n  <rect x=\"548\" y=\"175\" width=\"80\" height=\"36\" rx=\"4\" fill=\"#16213e\" stroke=\"#555\" stroke-width=\"1\"/>\n  <text x=\"588\" y=\"196\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">SDC</text>\n  <rect x=\"656\" y=\"175\" width=\"80\" height=\"36\" rx=\"4\" fill=\"#16213e\" stroke=\"#555\" stroke-width=\"1\"/>\n  <text x=\"696\" y=\"196\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">各大学</text>\n  <text x=\"590\" y=\"240\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">統一インターフェースで</text>\n  <text x=\"590\" y=\"258\" text-anchor=\"middle\" fill=\"#69f0ae\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">全リソースにアクセス</text>\n  <text x=\"590\" y=\"278\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">これがARPANETの直接の動機</text>\n</svg>",
@@ -251,7 +266,8 @@
 				"",
 				"**公式記録に「核攻撃耐性」は:**"
 			],
-			"speakerNotes": "Katie Hafner and Matthew Lyonの著書「Where Wizards Stay Up Late」(1996)がこれらの文書を詳細に調査し、核攻撃耐性が主目的でないことを示しました。"
+			"speakerNotes": "Katie Hafner and Matthew Lyonの著書「Where Wizards Stay Up Late」(1996)がこれらの文書を詳細に調査し、核攻撃耐性が主目的でないことを示しました。",
+			"subtitle": "高価なコンピュータを複数機関で共有するための設計"
 		},
 		{
 			"title": "本当の動機: リソース共有とコスト削減（2/2）（1/2）",
@@ -273,7 +289,8 @@
 				"ARPANETは **「研究者の不便を解消するため」** に作られた",
 				"核戦争は設計の主目的ではなかった"
 			],
-			"speakerNotes": "Katie Hafner and Matthew Lyonの著書「Where Wizards Stay Up Late」(1996)がこれらの文書を詳細に調査し、核攻撃耐性が主目的でないことを示しました。"
+			"speakerNotes": "Katie Hafner and Matthew Lyonの著書「Where Wizards Stay Up Late」(1996)がこれらの文書を詳細に調査し、核攻撃耐性が主目的でないことを示しました。",
+			"subtitle": "一次資料は核戦争でなく研究者の不便解消が動機と証明する"
 		},
 		{
 			"title": "Part 3: ポール・バランと混同の源泉",
@@ -303,7 +320,8 @@
 				"「中央集権型通信網が破壊されたら、反撃命令が出せない」",
 				""
 			],
-			"speakerNotes": "バランの研究は確かに存在し、重要でした。しかし彼が設計したのはARPANETではありません。彼の研究はパケット交換の理論的基礎の一つになりましたが、ARPANETの直接の設計書ではありません。"
+			"speakerNotes": "バランの研究は確かに存在し、重要でした。しかし彼が設計したのはARPANETではありません。彼の研究はパケット交換の理論的基礎の一つになりましたが、ARPANETの直接の設計書ではありません。",
+			"subtitle": "バランの研究動機は核攻撃後の軍指揮系統維持—民間転用ではない"
 		},
 		{
 			"title": "ポール・バランが本当に研究したもの（RAND、1960〜64年）（2/2）（1/2）",
@@ -325,7 +343,8 @@
 				"AT&Tなどの電話会社が実現可能性を疑い、採用されず",
 				"バランの研究は **紙の上の提案で終わった**"
 			],
-			"speakerNotes": "バランの研究は確かに存在し、重要でした。しかし彼が設計したのはARPANETではありません。彼の研究はパケット交換の理論的基礎の一つになりましたが、ARPANETの直接の設計書ではありません。"
+			"speakerNotes": "バランの研究は確かに存在し、重要でした。しかし彼が設計したのはARPANETではありません。彼の研究はパケット交換の理論的基礎の一つになりましたが、ARPANETの直接の設計書ではありません。",
+			"subtitle": "AT&Tに否定され棚上げになったバランの提案はARPANETと無関係"
 		},
 		{
 			"title": "分散型ネットワークの3分類（バランの図）",
@@ -353,7 +372,8 @@
 				"**ARPANETとの関係:**",
 				"Larry Roberts（ARPANET技術責任者）はバランの論文を読んでいた"
 			],
-			"speakerNotes": "バランは自分の研究がARPANETの設計書として使われたという誤解を生涯訂正し続けました。"
+			"speakerNotes": "バランは自分の研究がARPANETの設計書として使われたという誤解を生涯訂正し続けました。",
+			"subtitle": "バランの論文は参照されたがARPANETの設計書にはなっていない"
 		},
 		{
 			"title": "バランの研究と軍 — ARPANETとは別物（2/2）（1/2）",
@@ -375,7 +395,8 @@
 				"",
 				"→ 「バランがARPANETを核耐性のため設計した」は **二重の誤り**"
 			],
-			"speakerNotes": "バランは自分の研究がARPANETの設計書として使われたという誤解を生涯訂正し続けました。"
+			"speakerNotes": "バランは自分の研究がARPANETの設計書として使われたという誤解を生涯訂正し続けました。",
+			"subtitle": "バラン自身が否定し続けた「ARPANETの設計者」という誤解"
 		},
 		{
 			"title": "ドナルド・デービス — パケット交換の独立発明（英国NPL）（1/2）（1/2）",
@@ -397,7 +418,8 @@
 				"「packet（パケット）」という用語を命名したのはDavies",
 				""
 			],
-			"speakerNotes": "Daviesのケースは非常に重要です。核戦争とは全く無関係の動機から、同じ技術が生まれました。これはパケット交換が核戦争対策のために生まれたわけではないことを示す独立した証拠です。"
+			"speakerNotes": "Daviesのケースは非常に重要です。核戦争とは全く無関係の動機から、同じ技術が生まれました。これはパケット交換が核戦争対策のために生まれたわけではないことを示す独立した証拠です。",
+			"subtitle": "デービスが独立発明した事実が核戦争必須論を崩す最強の証拠"
 		},
 		{
 			"title": "ドナルド・デービス — パケット交換の独立発明（英国NPL）（2/2）（1/2）",
@@ -412,6 +434,7 @@
 		},
 		{
 			"title": "ドナルド・デービス — パケット交換の独立発明（英国NPL）（2/2）（2/2）",
+			"subtitle": "デービスは独立にパケット交換を発明し、BARSを先取りしていた",
 			"layout": "default",
 			"content": [
 				"",
@@ -429,6 +452,7 @@
 		},
 		{
 			"title": "技術的課題 — 異種コンピュータをどう繋ぐか（1/2）",
+			"subtitle": "異種コンピュータ接続が技術的最難関、IMPで解決した",
 			"layout": "default",
 			"content": [
 				"**1960年代のコンピュータの現実:**",
@@ -443,6 +467,7 @@
 		},
 		{
 			"title": "技術的課題 — 異種コンピュータをどう繋ぐか（2/2）",
+			"subtitle": "プロトコル設計の失敗例が後のTCP/IP成功の礎となった",
 			"layout": "default",
 			"content": [
 				"",
@@ -474,6 +499,7 @@
 		},
 		{
 			"title": "IMP（Interface Message Processor）（1/2）（2/2）",
+			"subtitle": "IMPは汎用ルーターの原型、パケット交換を物理的に実現した",
 			"layout": "default",
 			"content": [
 				"**IMPの役割:**",
@@ -503,7 +529,8 @@
 				"",
 				"→ 核攻撃対策ではなく **相互運用性のための装置**"
 			],
-			"speakerNotes": "IMPはルーターの祖先です。ホストコンピュータは複雑なネットワーク処理を知らなくてよく、IMPに任せるという設計は現代のネットワーク設計の基本原則を先取りしていました。"
+			"speakerNotes": "IMPはルーターの祖先です。ホストコンピュータは複雑なネットワーク処理を知らなくてよく、IMPに任せるという設計は現代のネットワーク設計の基本原則を先取りしていました。",
+			"subtitle": "IMP1台$65,000の相互運用装置—核耐性ではなく接続性のため"
 		},
 		{
 			"title": "1969年10月29日 — 「lo」: 最初の送信と最初のクラッシュ（1/2）（1/2）",
@@ -520,7 +547,8 @@
 			"title": "1969年10月29日 — 「lo」: 最初の送信と最初のクラッシュ（1/2）（2/2）",
 			"layout": "default",
 			"content": ["\"login\"", "", "SRIで受信されたのは:", "\"lo\""],
-			"speakerNotes": "このエピソードは技術史の中でも特に有名で愛されています。壮大な実験の最初がシステムクラッシュというのは、ある意味で最も「エンジニアリングらしい」スタートでした。"
+			"speakerNotes": "このエピソードは技術史の中でも特に有名で愛されています。壮大な実験の最初がシステムクラッシュというのは、ある意味で最も「エンジニアリングらしい」スタートでした。",
+			"subtitle": "「login」→「lo」でクラッシュ—歴史的初送信は失敗で幕を開けた"
 		},
 		{
 			"title": "1969年10月29日 — 「lo」: 最初の送信と最初のクラッシュ（2/2）（1/2）",
@@ -535,6 +563,7 @@
 		},
 		{
 			"title": "1969年10月29日 — 「lo」: 最初の送信と最初のクラッシュ（2/2）（2/2）",
+			"subtitle": "最初の送信「lo」はクラッシュで終わり、失敗が歴史に刻まれた",
 			"layout": "default",
 			"content": [
 				"→ 世界初のインターネット送信は **\"lo\"** で終了",
@@ -571,7 +600,8 @@
 				"設計文書に核攻撃耐性の要件なし",
 				"最初の4ノードに軍事施設なし"
 			],
-			"speakerNotes": "Vint CerfはTCP/IPの共同発明者として最も権威ある証人の一人です。彼が明確に否定しているにもかかわらず、神話は生き続けています。"
+			"speakerNotes": "Vint CerfはTCP/IPの共同発明者として最も権威ある証人の一人です。彼が明確に否定しているにもかかわらず、神話は生き続けています。",
+			"subtitle": "設計文書にも初期4ノードにも核耐性の痕跡は存在しない"
 		},
 		{
 			"title": "核攻撃耐性は「副産物」だったか — 証拠を読む（2/2）（1/2）",
@@ -593,7 +623,8 @@
 				"",
 				"→ 副産物を **「主目的」にすり替えた** のが神話の正体"
 			],
-			"speakerNotes": "Vint CerfはTCP/IPの共同発明者として最も権威ある証人の一人です。彼が明確に否定しているにもかかわらず、神話は生き続けています。"
+			"speakerNotes": "Vint CerfはTCP/IPの共同発明者として最も権威ある証人の一人です。彼が明確に否定しているにもかかわらず、神話は生き続けています。",
+			"subtitle": "Vint Cerfが「副産物をラベルにすり替えた」と神話の正体を看破"
 		},
 		{
 			"title": "Part 5: 一次資料が語る真実",
@@ -605,6 +636,7 @@
 		},
 		{
 			"title": "当時のARPA内部文書が示す優先事項（1/2）",
+			"subtitle": "内部文書は核耐性でなく資源共有と費用削減を明示していた",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 320\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"800\" height=\"320\" fill=\"#1a1a2e\"/>\n  <text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"18\" font-weight=\"bold\" font-family=\"sans-serif\">一次資料が示す証拠</text>\n  <!-- Document list -->\n  <rect x=\"40\" y=\"50\" width=\"720\" height=\"240\" rx=\"8\" fill=\"#16213e\" stroke=\"#444\" stroke-width=\"1\"/>\n  <!-- 1966 proposal -->\n  <rect x=\"60\" y=\"68\" width=\"680\" height=\"42\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#69f0ae\" stroke-width=\"1\"/>\n  <text x=\"76\" y=\"86\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">1966年 Bob Taylor &amp; Larry Roberts 提案書</text>\n  <text x=\"76\" y=\"102\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">「ARPA資金提供を受けた研究者間でコンピュータリソースを共有する」　核攻撃への言及: ゼロ</text>\n  <!-- 1968 RFP -->\n  <rect x=\"60\" y=\"120\" width=\"680\" height=\"42\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#4fc3f7\" stroke-width=\"1\"/>\n  <text x=\"76\" y=\"138\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">1968年 ARPANET RFP（提案依頼書）</text>\n  <text x=\"76\" y=\"154\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">要件: 異種コンピュータの相互接続・信頼性・拡張性　軍事要件: ゼロ</text>\n  <!-- 1969 BBN report -->\n  <rect x=\"60\" y=\"172\" width=\"680\" height=\"42\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#f9a825\" stroke-width=\"1\"/>\n  <text x=\"76\" y=\"190\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">1969年 BBN技術報告書 №1822（IMP仕様書）</text>\n  <text x=\"76\" y=\"206\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">詳細な技術仕様　核攻撃への言及: ゼロ　軍事要件: ゼロ</text>\n  <!-- Cerf testimony -->\n  <rect x=\"60\" y=\"224\" width=\"680\" height=\"42\" rx=\"4\" fill=\"#1a1a2e\" stroke=\"#e91e63\" stroke-width=\"1\"/>\n  <text x=\"76\" y=\"242\" fill=\"#f9a825\" font-size=\"11\" font-weight=\"bold\" font-family=\"sans-serif\">Vint Cerf（TCP/IP共同発明者）証言</text>\n  <text x=\"76\" y=\"258\" fill=\"#e91e63\" font-size=\"11\" font-family=\"sans-serif\">「核耐性はARPANETの設計目標ではなかった。この神話は後から貼り付けられたラベルだ」</text>\n</svg>",
@@ -637,7 +669,8 @@
 				"",
 				"→ 一次資料を読めば、核戦争が主目的でないことは明らか"
 			],
-			"speakerNotes": "これらの文書はオンラインで公開されています。実際に読んでみると「核攻撃」という言葉を見つけることはほぼできません。"
+			"speakerNotes": "これらの文書はオンラインで公開されています。実際に読んでみると「核攻撃」という言葉を見つけることはほぼできません。",
+			"subtitle": "BBN仕様書に軍事要件ゼロ—一次資料を読めば神話は崩壊する"
 		},
 		{
 			"title": "Bob Taylor、Larry Robertsの証言（1/2）",
@@ -651,7 +684,8 @@
 				"",
 				"**Larry Roberts（ARPANETの技術責任者）:**"
 			],
-			"speakerNotes": "Computer History Museaumsのオーラル・ヒストリー・プログラムには、これらの証言の動画が残っています。一次情報として非常に価値があります。"
+			"speakerNotes": "Computer History Museaumsのオーラル・ヒストリー・プログラムには、これらの証言の動画が残っています。一次情報として非常に価値があります。",
+			"subtitle": "設計者自身が核耐性は動機でなかったと証言している"
 		},
 		{
 			"title": "Bob Taylor、Larry Robertsの証言（2/2）",
@@ -665,7 +699,8 @@
 				"**設計者たちの一致した証言:**",
 				"「核戦争対策」を主目的に挙げた設計者は **一人もいない**"
 			],
-			"speakerNotes": "Computer History Museaumsのオーラル・ヒストリー・プログラムには、これらの証言の動画が残っています。一次情報として非常に価値があります。"
+			"speakerNotes": "Computer History Museaumsのオーラル・ヒストリー・プログラムには、これらの証言の動画が残っています。一次情報として非常に価値があります。",
+			"subtitle": "一次資料が「リソース共有」を主目的と明示する"
 		},
 		{
 			"title": "「Where Wizards Stay Up Late」(1996)が明かした事実（1/2）（1/2）",
@@ -687,10 +722,12 @@
 				"ARPA内部文書・BBN報告書・技術仕様書の精査",
 				""
 			],
-			"speakerNotes": "この本は今でもARPANET史の最重要文献の一つです。エンジニアにも読みやすい内容なので、ぜひ読んでみてください。"
+			"speakerNotes": "この本は今でもARPANET史の最重要文献の一つです。エンジニアにも読みやすい内容なので、ぜひ読んでみてください。",
+			"subtitle": "数十人への直接取材と内部文書精査が神話を初めて系統的に否定"
 		},
 		{
 			"title": "「Where Wizards Stay Up Late」(1996)が明かした事実（2/2）（1/2）",
+			"subtitle": "1996年の書籍が初めて一次資料に基づく事実を広く伝えた",
 			"layout": "default",
 			"content": [
 				"**明かされた事実:**",
@@ -709,7 +746,8 @@
 				"1996年以降、この神話への疑義が学術的に認知される",
 				"しかしポップカルチャーでの神話は生き続けた"
 			],
-			"speakerNotes": "この本は今でもARPANET史の最重要文献の一つです。エンジニアにも読みやすい内容なので、ぜひ読んでみてください。"
+			"speakerNotes": "この本は今でもARPANET史の最重要文献の一つです。エンジニアにも読みやすい内容なので、ぜひ読んでみてください。",
+			"subtitle": "学術的否定後もポップカルチャーで神話が生き残り続けた"
 		},
 		{
 			"title": "神話の伝播経路 — ブランドからWikipediaまで",
@@ -745,7 +783,8 @@
 				"ユーザー名とホスト名を区切る文字として @を選択",
 				"「他の使われ方をほぼしない文字だったから」"
 			],
-			"speakerNotes": "Tomlinsonはよく「メールを発明した」と紹介されますが、彼自身は「最初のメールプログラムを書いただけ」と言っています。重要なのは、それがいかに急速に普及したかです。"
+			"speakerNotes": "Tomlinsonはよく「メールを発明した」と紹介されますが、彼自身は「最初のメールプログラムを書いただけ」と言っています。重要なのは、それがいかに急速に普及したかです。",
+			"subtitle": "「@」記号の選択理由—「他の用途がほぼない文字だったから」"
 		},
 		{
 			"title": "メール — 誰も計画していなかったキラーアプリ（1971年）（2/2）（1/2）",
@@ -760,6 +799,7 @@
 		},
 		{
 			"title": "メール — 誰も計画していなかったキラーアプリ（1971年）（2/2）（2/2）",
+			"subtitle": "メールは誰も計画しなかったが最初のキラーアプリになった",
 			"layout": "default",
 			"content": [
 				"ユーザーが自然と使い始め、1972年には最大のトラフィックに成長",
@@ -790,7 +830,8 @@
 				"権威による押し付けではなく、**コミュニティによる協調設計**",
 				""
 			],
-			"speakerNotes": "RFC文化は技術的な標準化の方法論として革命的でした。上から下への命令ではなく、フラットなコミュニティによる合意形成。GitHubのPRはこの精神の現代的継承です。"
+			"speakerNotes": "RFC文化は技術的な標準化の方法論として革命的でした。上から下への命令ではなく、フラットなコミュニティによる合意形成。GitHubのPRはこの精神の現代的継承です。",
+			"subtitle": "「コメント求む」という謙虚な姿勢が開かれた標準化文化を生んだ"
 		},
 		{
 			"title": "RFC文化 — 「お願い」から始まる標準化（2/2）（1/2）",
@@ -805,6 +846,7 @@
 		},
 		{
 			"title": "RFC文化 — 「お願い」から始まる標準化（2/2）（2/2）",
+			"subtitle": "RFCの「お願い」文化が権威なき標準化プロセスを生んだ",
 			"layout": "default",
 			"content": [
 				"失敗したRFCも記録として残る（透明性）",
@@ -835,7 +877,8 @@
 				"論文: \"A Protocol for Packet Network Intercommunication\"",
 				"TCP（後にTCPとIPに分割）の設計原則を発表"
 			],
-			"speakerNotes": "Cerf and Kahnの設計は「ネットワークのネットワーク」を可能にしました。この「どんなネットワークも接続できる」という普遍性が、現代インターネットの爆発的拡大を可能にしました。"
+			"speakerNotes": "Cerf and Kahnの設計は「ネットワークのネットワーク」を可能にしました。この「どんなネットワークも接続できる」という普遍性が、現代インターネットの爆発的拡大を可能にしました。",
+			"subtitle": "Cerf & Kahnの1974年論文がネットワークのネットワーク実現を宣言"
 		},
 		{
 			"title": "TCP/IP — サーフとカーンの革命（1974年）（2/2）（1/2）",
@@ -857,7 +900,8 @@
 				"**1983年1月1日: ARPANETがNCP→TCP/IPに切り替え**",
 				"「インターネット」の誕生日として認識される"
 			],
-			"speakerNotes": "Cerf and Kahnの設計は「ネットワークのネットワーク」を可能にしました。この「どんなネットワークも接続できる」という普遍性が、現代インターネットの爆発的拡大を可能にしました。"
+			"speakerNotes": "Cerf and Kahnの設計は「ネットワークのネットワーク」を可能にしました。この「どんなネットワークも接続できる」という普遍性が、現代インターネットの爆発的拡大を可能にしました。",
+			"subtitle": "1983年1月1日のNCP→TCP/IP切り替えがインターネット誕生日"
 		},
 		{
 			"title": "NSFNETへの移行 — 軍用から学術・商業へ（1/2）（1/2）",
@@ -879,7 +923,8 @@
 				"全米科学財団（NSF）が高速バックボーンネットワーク構築",
 				"大学・研究機関の接続が急拡大"
 			],
-			"speakerNotes": "面白いのは、ARPANETが廃止されたのに誰も気づかなかったことです。それだけNSFNETへの移行がシームレスでした。インターネットはゆっくりと軍から離れていきました。"
+			"speakerNotes": "面白いのは、ARPANETが廃止されたのに誰も気づかなかったことです。それだけNSFNETへの移行がシームレスでした。インターネットはゆっくりと軍から離れていきました。",
+			"subtitle": "NSFNETがバックボーンを構築し研究者接続を数十倍に拡大した"
 		},
 		{
 			"title": "NSFNETへの移行 — 軍用から学術・商業へ（2/2）（1/2）",
@@ -894,6 +939,7 @@
 		},
 		{
 			"title": "NSFNETへの移行 — 軍用から学術・商業へ（2/2）（2/2）",
+			"subtitle": "NSFNETへの移行が軍用ネットワークを公共インフラに変えた",
 			"layout": "default",
 			"content": [
 				"",
@@ -929,7 +975,8 @@
 				"**現代への影響:**",
 				"「インターネットは軍事技術の副産物」という誤解"
 			],
-			"speakerNotes": "「インターネットは軍事技術の副産物だから、軍事研究に投資すべき」という論法は、正確な歴史を知ると成立しません。「研究者が自分の問題を解くために作ったものが世界を変えた」の方が、基礎研究投資の正当化として説得力があります。"
+			"speakerNotes": "「インターネットは軍事技術の副産物だから、軍事研究に投資すべき」という論法は、正確な歴史を知ると成立しません。「研究者が自分の問題を解くために作ったものが世界を変えた」の方が、基礎研究投資の正当化として説得力があります。",
+			"subtitle": "誤った歴史が現在の研究投資方針を歪める危険性"
 		},
 		{
 			"title": "「神話化」が予算・政策に与える影響（2/2）",
@@ -943,7 +990,8 @@
 				"",
 				"→ **基礎研究・実用研究への投資の重要性** はこちらの方が強い主張"
 			],
-			"speakerNotes": "「インターネットは軍事技術の副産物だから、軍事研究に投資すべき」という論法は、正確な歴史を知ると成立しません。「研究者が自分の問題を解くために作ったものが世界を変えた」の方が、基礎研究投資の正当化として説得力があります。"
+			"speakerNotes": "「インターネットは軍事技術の副産物だから、軍事研究に投資すべき」という論法は、正確な歴史を知ると成立しません。「研究者が自分の問題を解くために作ったものが世界を変えた」の方が、基礎研究投資の正当化として説得力があります。",
+			"subtitle": "技術史の誤解が政策立案者の判断を狂わせてきた"
 		},
 		{
 			"title": "まとめ — 通説を疑い、一次資料に当たる",
@@ -961,6 +1009,7 @@
 		},
 		{
 			"title": "参考文献・一次資料（1/2）",
+			"subtitle": "一次資料を自分で読むことが神話解体の唯一の方法だ",
 			"layout": "default",
 			"content": [
 				"**書籍・論文:**",
@@ -974,6 +1023,7 @@
 		},
 		{
 			"title": "参考文献・一次資料（2/2）",
+			"subtitle": "複数の独立した資料を照合して初めて事実が見えてくる",
 			"layout": "default",
 			"content": [
 				"[Bob Taylor Oral History (Computer History Museum, 2008)](https://www.computerhistory.org/collections/catalog/102702015)",

@@ -104,6 +104,8 @@ style: |
 
 # アジェンダ (1/2)
 
+> *第1〜5章でCIA・規格構造・リスク管理・管理策・審査実践を網羅する*
+
 - **第1章** ISMSの基礎概念 — CIAトライアド・規格体系・歴史
 - **第2章** ISO/IEC 27001:2022の構造 — HLS・箇条4〜10・Annex A
 - **第3章** リスクマネジメント — アセスメント・SoA・レジスター
@@ -114,6 +116,8 @@ style: |
 ---
 
 # アジェンダ (2/2)
+
+> *第6〜10章で導入事例・2022改訂・規制連携・AIクラウド時代の展望を解説する*
 
 - **第6章** 実際の導入事例 — IT企業・製造業・金融・医療
 - **第7章** ISO/IEC 27001:2022 改訂ポイント — 新規11管理策・移行
@@ -133,6 +137,8 @@ style: |
 ---
 
 # ISMSとは何か
+
+> *ISMSはリスクベースのPDCAで情報資産を体系管理し第三者認証で信頼を証明する*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -201,6 +207,8 @@ style: |
 
 # なぜISMSが必要か — サイバー脅威の現状
 
+> *インシデント対応コスト平均4〜5億円に対し予防的管理策は圧倒的にコストが低い*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">サイバー脅威の現状 — 主要統計</text>
 <rect x="30" y="55" width="220" height="130" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -245,6 +253,8 @@ style: |
 ---
 
 # ISMSの歴史と変遷
+
+> *2022年版で管理策が114→93に再編、クラウド・AI時代の11新規管理策が追加された*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="30" font-size="17" fill="#f9a825" text-anchor="middle" font-weight="bold">ISMSの歴史と変遷</text>
@@ -376,6 +386,8 @@ style: |
 
 # HLS（高位構造）— ISMSに共通する骨格
 
+> *HLS準拠で他のISOマネジメントシステムと統合運用でき移行とコストを大幅削減できる*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="30" font-size="17" fill="#f9a825" text-anchor="middle" font-weight="bold">HLS（高位構造）— マネジメントシステムの共通骨格</text>
 <rect x="200" y="50" width="400" height="40" rx="6" fill="#e91e63"/>
@@ -415,6 +427,8 @@ style: |
 
 # 箇条4・5 — コンテキストとリーダーシップ
 
+> *スコープ定義とCISO任命が最初の関門で曖昧にすると審査不適合に直結する*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">箇条4・5 — コンテキストとリーダーシップ</text>
 <rect x="30" y="45" width="360" height="150" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -446,6 +460,8 @@ style: |
 ---
 
 # 箇条6 — 計画（リスクアセスメントと目的）
+
+> *SoAの論理的整合性と測定可能なKPIが審査員が最初に確認する二大ポイント*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">箇条6 — 計画: リスクアセスメントプロセス</text>
@@ -495,6 +511,8 @@ style: |
 
 # 箇条7・8 — 支援と運用
 
+> *資源確保・力量評価・教育・コミュニケーション・文書化の5要素が支援の要求事項*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">箇条7・8 — 支援と運用</text>
 <rect x="30" y="45" width="360" height="155" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -532,6 +550,8 @@ style: |
 ---
 
 # 箇条9・10 — パフォーマンス評価と改善
+
+> *内部監査と管理層レビューの2サイクルでPDCAを回しISMSの継続改善を担保する*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">箇条9・10 — パフォーマンス評価と改善</text>
@@ -575,6 +595,8 @@ style: |
 ---
 
 # Annex A — 93の情報セキュリティ管理策（2022年版）
+
+> *組織37・人的8・物理14・技術34の4カテゴリ93管理策が2022年版の新分類体系*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">Annex A — 93の情報セキュリティ管理策（2022年版）</text>
@@ -653,6 +675,8 @@ style: |
 
 # リスクアセスメントのプロセス
 
+> *リスク受容基準と評価方法論の一貫性がリスクアセスメントの審査通過の核心*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">リスクアセスメントのプロセス</text>
@@ -719,6 +743,8 @@ style: |
 
 # 資産の特定と評価
 
+> *一次・二次・支援の3層で情報資産を分類しCIA影響度とオーナーを明確にする*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">資産の特定と評価</text>
 <rect x="30" y="45" width="740" height="35" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
@@ -765,6 +791,8 @@ style: |
 ---
 
 # 脅威・脆弱性の分析
+
+> *意図的・偶発的・環境的の3種類の脅威に対し脆弱性を体系的にマッピングする*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">脅威・脆弱性の分析</text>
@@ -841,6 +869,8 @@ style: |
 
 # 適用宣言書（Statement of Applicability / SoA）
 
+> *SoAは93全管理策の適用・除外理由と実施状況を記載した認証審査の最重要文書*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">適用宣言書（SoA）— Annex A 93管理策の適用判断</text>
 <rect x="30" y="45" width="740" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -909,6 +939,8 @@ style: |
 
 # Annex A 管理策の4カテゴリ（2022年版）
 
+> *4カテゴリへの再編はクラウド・AI・サプライチェーンリスクへの対応を意図している*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">Annex A 管理策の4カテゴリ構造（2022年版）</text>
 <rect x="30" y="50" width="360" height="155" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -935,6 +967,8 @@ style: |
 ---
 
 # 組織的管理策（Annex A 5） — 主要項目
+
+> *方針・役割・資産管理・サプライヤー・インシデント管理が組織的管理策の5本柱*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">組織的管理策（Annex A 5）— 主要項目と新設管理策</text>
@@ -972,6 +1006,8 @@ style: |
 
 # 人的管理策（Annex A 6） — 主要項目
 
+> *採用前スクリーニングから退職後のアクセス管理まで従業員ライフサイクル全体をカバー*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">人的管理策（Annex A 6）— ライフサイクル管理</text>
 <rect x="30" y="50" width="170" height="180" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
@@ -1005,6 +1041,8 @@ style: |
 ---
 
 # 物理的管理策（Annex A 7） — 主要項目
+
+> *多層入退室管理・環境制御・ケーブルセキュリティが物理的管理策の三大要件*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">物理的管理策（Annex A 7）— 多層防御</text>
@@ -1040,6 +1078,8 @@ style: |
 
 # 技術的管理策（Annex A 8） — 全体概観
 
+> *アクセス管理・暗号・脆弱性管理・ログ監視の4技術領域が技術的管理策の主軸*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">技術的管理策（Annex A 8）— 34項目の全体像</text>
 <rect x="30" y="45" width="200" height="140" rx="6" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
@@ -1071,6 +1111,8 @@ style: |
 
 # アクセス管理と認証（Annex A 8.2〜8.6）
 
+> *特権アクセスのJust-in-Time払い出しとMFAによる認証強化が最優先の対策*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">アクセス管理と認証（Annex A 8.2〜8.6）</text>
 <rect x="30" y="45" width="360" height="155" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -1094,6 +1136,8 @@ style: |
 ---
 
 # 暗号化とデータ保護（Annex A 8.24）
+
+> *禁止アルゴリズムの明文化と鍵管理プロセスの文書化が暗号管理策の必須要件*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">暗号化とデータ保護（Annex A 8.24）</text>
@@ -1216,6 +1260,8 @@ style: |
 
 # Stage 1 審査（文書審査）— 重点確認事項
 
+> *SoA・スコープ・リスクアセスメント文書の整合性がStage 1審査の三大確認事項*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">Stage 1 審査（文書審査）— 重点確認事項</text>
 <rect x="30" y="45" width="740" height="30" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
@@ -1252,6 +1298,8 @@ style: |
 
 # Stage 2 審査（現地審査）— 重点確認事項
 
+> *管理策の実施証跡と有効性の実証がStage 2審査で審査員が最重視する要素*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">Stage 2 審査（現地審査）— 重点確認事項</text>
 <rect x="30" y="45" width="740" height="30" rx="5" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
@@ -1286,6 +1334,8 @@ style: |
 
 # よくある不適合① — リスクマネジメント
 
+> *方法論の文書化不足とリスクレジスターの更新停止がリスク管理不適合の二大原因*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#e91e63" text-anchor="middle" font-weight="bold">よくある不適合① — リスクマネジメント</text>
 <rect x="30" y="45" width="740" height="75" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
@@ -1312,6 +1362,8 @@ style: |
 ---
 
 # よくある不適合② — 管理策の実施
+
+> *SoA形骸化と証跡不備は審査でMajor不適合になる最頻出パターン*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#e91e63" text-anchor="middle" font-weight="bold">よくある不適合② — 管理策の実施</text>
@@ -1340,6 +1392,8 @@ style: |
 
 # よくある不適合③ — 教育・文書管理
 
+> *教育記録の欠如と文書バージョン管理の不備が文書・教育系不適合の二大原因*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#e91e63" text-anchor="middle" font-weight="bold">よくある不適合③ — 教育・文書管理</text>
 <rect x="30" y="45" width="740" height="75" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
@@ -1367,6 +1421,8 @@ style: |
 
 # 審査証跡の効果的な収集技術
 
+> *TTTF（Talk・Trace・Test・Verify）の4ステップが効果的な審査証跡収集の基本*
+
 - **TTTF（Talk, Trace, Test, Verify）アプローチ:** インタビュー→文書追跡→実証テスト→相互確認
 - **証跡の三角測量:** 複数の異なる種類の証跡（文書・記録・インタビュー）で同一事実を確認
 - **スクリーンショット vs ログファイル:** 審査員が直接確認できるものを優先、加工のないローデータ
@@ -1379,6 +1435,8 @@ style: |
 
 # リモート審査の実施（IAF MD 4 準拠）
 
+> *リモート審査はIAF MD 4準拠でハイブリッド形式が標準化されセキュアな接続が必須*
+
 - **IAF MD 4:** リモート審査の実施基準（2022年改訂）— ハイブリッド審査が標準化
 - **技術要件:** 高品質ビデオ会議・画面共有・電子文書のリアルタイム共有環境
 - **効果的な用途:** 文書審査（Stage 1）・文書記録の確認・非現地スタッフのインタビュー
@@ -1390,6 +1448,8 @@ style: |
 ---
 
 # サーベイランス審査と更新審査
+
+> *サーベイランスは年1回で重点領域を確認し更新審査は3年毎に全管理策を再審査する*
 
 - **サーベイランス審査:** 第1年・第2年に年1回実施（約1〜2日間）— 継続的適合性を確認
 - **サーベイランスの重点:** 前回審査からの変更点・不適合の是正処置・改善目標の進捗
@@ -1419,6 +1479,8 @@ style: |
 
 # 事例1：IT企業 — 課題と対策の詳細
 
+> *部門間のセキュリティ認識格差とDevOpsとの整合性確保が IT企業ISMSの二大課題*
+
 - **主な課題①:** 開発・運用・管理の部門間でセキュリティ認識に大きな差がある
 - **対策:** 部門横断ISMS推進チーム設置・部門代表者が参加する月次レビュー会議
 - **主な課題②:** クラウドサービス（AWS・Azure・SaaS）をスコープに含める方法が不明
@@ -1430,6 +1492,8 @@ style: |
 ---
 
 # 事例2：製造業（OT/ITセキュリティ統合）
+
+> *IT/OT統合ISMSはIEC 62443との整合と工場ネットワーク分離が製造業の核心課題*
 
 - **背景:** 工場ネットワークへのランサムウェア被害（2023年）を受け、IT・OT統合ISMSを構築
 - **スコープ:** 本社IT環境 + 主力工場の製造システム（OT/SCADA）を同一スコープに
@@ -1443,6 +1507,8 @@ style: |
 
 # 事例3：金融機関（規制対応とISMSの統合）
 
+> *金融庁ガイドライン・FISC基準・PCIDSS三者の要求をISMSで統合管理する設計が必要*
+
 - **背景:** 金融庁のサイバーセキュリティ管理態勢向上要請・FISC安全対策基準への対応
 - **アプローチ:** ISMS・FISC基準・PCI DSS要件を単一の管理策フレームワークに統合
 - **コントロールマッピング:** ISO 27001 Annex A ↔ FISC基準 ↔ PCI DSS v4.0 の対応表作成
@@ -1455,6 +1521,8 @@ style: |
 
 # 事例4：医療機関（個人情報保護とISMS）
 
+> *電子カルテの第三者委託管理と職員の情報リテラシー向上が医療機関の最重要課題*
+
 - **背景:** 電子カルテへの不正アクセス事案発生・厚生労働省ガイドラインへの対応強化
 - **スコープ:** 電子カルテシステム・医療情報システム・院内ネットワーク
 - **ISO/IEC 27701（PIMS）との統合:** ISMSにプライバシー拡張を追加し、個人情報保護法・GDPRへも対応
@@ -1466,6 +1534,8 @@ style: |
 ---
 
 # 失敗事例：ISMS形骸化のパターンと教訓
+
+> *認証取得後の運用停止・形式的対応・トップコミット欠如の三パターンが形骸化の典型*
 
 - **失敗パターン①「認証取得が目的化」:** 認証後に運用が止まり、翌年のサーベイランスでMajor不適合が多発
 - **失敗パターン②「IT部門だけの取組み」:** 他部門が方針を知らず、教育・インシデント報告が機能しない
@@ -1494,6 +1564,8 @@ style: |
 ---
 
 # 2022年改訂の背景と主要変更点
+
+> *クラウド・AI・テレワーク普及と11新規管理策追加が2022年改訂の核心*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1539,6 +1611,8 @@ style: |
 
 # 2013年版から統廃合された主要管理策
 
+> *職務分離・移動端末・暗号化など主要管理策は統廃合されても要求内容は継続している*
+
 - **A.6.1.2 職務の分離（→8.2に統合）:** アクセス制御セクションへ移行・内容は継続
 - **A.11 物理的・環境的セキュリティ（114→7）:** 15項目から14項目へ。内容は整理統合
 - **A.12 運用のセキュリティ（→8）:** 技術的管理策として大幅に統合・再編
@@ -1551,6 +1625,8 @@ style: |
 
 # 2013年版認証からの移行手順
 
+> *2025年10月移行期限に向けてギャップ分析→新管理策対応→SoA更新の3ステップが必須*
+
 - **Step 1** ギャップ分析 — 新規11管理策に対する現在の対応状況を評価（SoAの更新）
 - **Step 2** SoA更新 — 93管理策ベースのSoAを新規作成（旧114管理策からのマッピング）
 - **Step 3** 管理策の実装・改善 — 特に新規11管理策への対応（脅威インテリジェンス・クラウド管理等）
@@ -1562,6 +1638,8 @@ style: |
 ---
 
 # 移行対応チェックリスト（実務用）
+
+> *SoA更新・リスクアセスメント見直し・内部監査実施の文書三点が移行の証跡になる*
 
 - **文書関連:** □ SoA更新（93管理策版）/ □ リスクアセスメント方法論の見直し / □ 情報セキュリティ方針の更新
 - **新規管理策の実装確認:** □ 5.7脅威インテリジェンス（仕組みの有無）/ □ 5.23クラウドセキュリティポリシー
@@ -1591,6 +1669,8 @@ style: |
 
 # SOC 2・PCI DSS・NISC基準との比較
 
+> *SOC 2・PCIDSS・NISTはISMSと目的と適用範囲が異なるが統合実施でコストを削減できる*
+
 - **SOC 2（AICPA）:** サービス組織向け。Trust Service Criteria（セキュリティ等5軸）。TypeⅡは6〜12ヶ月の運用確認
 - **PCI DSS v4.0:** カード会員データを扱う組織向け。12要件・300以上のサブ要件。ISMSとの高い親和性
 - **NISC重要インフラ基準:** 日本の重要インフラ14分野に適用。ISMSを基盤として追加要件を充足
@@ -1602,6 +1682,8 @@ style: |
 ---
 
 # 業界別セキュリティ基準とISMSの整合
+
+> *金融・医療・製造・クラウド各業界の規制基準はISMSをベースに業界固有要件を上乗せする*
 
 - **金融:** FISC安全対策基準・金融庁サイバーセキュリティガイドライン（ISMSが基礎）
 - **医療:** 厚生労働省「医療情報システムの安全管理に関するガイドライン」第6版（ISMS準拠を推奨）
@@ -1622,6 +1704,8 @@ style: |
 ---
 
 # クラウドサービスとISMS
+
+> *共有責任モデルの理解とISMSスコープへのクラウドサービス明示が不可欠*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1656,6 +1740,8 @@ style: |
 ---
 
 # AIリスクとISMS — ISO/IEC 42001との関係
+
+> *ISO 42001のAIMSは同じHLSでISMSと統合実施可能でAIリスク管理を体系化できる*
 
 - **ISO/IEC 42001:2023（AIMS）:** AI管理システム規格 — ISMSと同じHLSで統合実施が可能
 - **AIシステム固有のリスク:** モデルへの敵対的攻撃・データポイズニング・プロンプトインジェクション
@@ -1702,6 +1788,8 @@ style: |
 
 # まとめ — ISMSの価値と将来展望
 
+> *ISMSは書類作りではなく継続的リスク管理プロセスの構築こそが本質的価値*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">まとめ — ISMSの価値と将来展望</text>
@@ -1743,6 +1831,8 @@ style: |
 
 # 審査員・コンサルタントへの提言
 
+> *審査員は形式適合より実質的有効性を問い、コンサルタントは組織文化の変革を支援する*
+
 - **審査員として:** 「形式適合」より「実質的な有効性」を重視した審査アプローチを貫く
 - **コンサルタントとして:** 認証取得だけでなく「持続的に機能するISMS」の構築を支援する
 - **共通の責務:** 被審査組織のリスク文化醸成に貢献 — 形骸化を生まない処方箋を提供
@@ -1754,6 +1844,8 @@ style: |
 ---
 
 # 参考資料・参考文献
+
+> *ISO規格・JNSA・IPA・NISC・学術論文が実務と理論を支える一次情報源*
 
 - **規格・標準:** [ISO/IEC 27001:2022](https://www.iso.org/standard/82875.html) / [ISO/IEC 27002:2022](https://www.iso.org/standard/75652.html) / ISO/IEC 27005:2022
 - **移行関連:** [IAF MD 26:2023 ISO/IEC 27001移行要件](https://iaf.nu/iaf_system/uploads/documents/IAF_MD_26_Transition_Requirements_for_ISO_IEC_27001_2022.pdf)

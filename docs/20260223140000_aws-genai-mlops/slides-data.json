@@ -20,7 +20,8 @@
 				"5. モデル評価 — Clarify・バイアス検出・A/Bテスト",
 				"6. デプロイ戦略 — エンドポイント・Blue/Green・カナリア"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "12章構成でデータ管理からBedrock MLOpsまで網羅"
 		},
 		{
 			"title": "アジェンダ（2/2）",
@@ -32,7 +33,8 @@
 				"11. 試験対策まとめ — 頻出問題パターン・落とし穴",
 				"12. 実践シナリオ — ケーススタディ・アーキテクチャ決定"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "モニタリング・コスト・セキュリティが試験頻出の上位3テーマ"
 		},
 		{
 			"title": "MLOpsとは何か？",
@@ -42,7 +44,8 @@
 				"再現性・自動化・継続的改善を実現する実践手法"
 			],
 			"layout": "default",
-			"speakerNotes": "MLOpsはDevOpsの原則をML開発に適用したもの。3領域が交差する部分が本質。"
+			"speakerNotes": "MLOpsはDevOpsの原則をML開発に適用したもの。3領域が交差する部分が本質。",
+			"subtitle": "ML×Dev×Opsの融合で再現性・自動化・継続改善を実現"
 		},
 		{
 			"title": "なぜMLOpsが必要か",
@@ -52,7 +55,8 @@
 				"MLOpsは実験から継続運用までのギャップを体系的に解消する"
 			],
 			"layout": "default",
-			"speakerNotes": "Hidden Technical Debt in ML Systems (NIPS 2015) — Google論文。本番化できるのは全プロジェクトの5%に過ぎない。"
+			"speakerNotes": "Hidden Technical Debt in ML Systems (NIPS 2015) — Google論文。本番化できるのは全プロジェクトの5%に過ぎない。",
+			"subtitle": "本番化できるのは全MLプロジェクトの5%—ギャップを解消"
 		},
 		{
 			"title": "MLライフサイクル全体像",
@@ -62,7 +66,8 @@
 				"SageMaker Pipelinesが全フェーズのオーケストレーションを担う"
 			],
 			"layout": "default",
-			"speakerNotes": "MLライフサイクルは線形ではなく循環的。フィードバックループにより継続的に改善。"
+			"speakerNotes": "MLライフサイクルは線形ではなく循環的。フィードバックループにより継続的に改善。",
+			"subtitle": "8フェーズが循環—Pipelinesが全フェーズを自動オーケストレーション"
 		},
 		{
 			"title": "DevOps vs MLOps — 7つの違い",
@@ -72,7 +77,8 @@
 				"再現性確保の難しさがMLOps最大の課題"
 			],
 			"layout": "default",
-			"speakerNotes": "試験頻出: DevOpsとの違いを問う問題。コード+データ+環境=完全な再現性"
+			"speakerNotes": "試験頻出: DevOpsとの違いを問う問題。コード+データ+環境=完全な再現性",
+			"subtitle": "コードだけでなくデータとモデルも管理対象になる"
 		},
 		{
 			"title": "MLOps成熟度モデル（レベル0〜3）",
@@ -82,7 +88,8 @@
 				"試験ではLevel 2（CI/CD）以上の実装が問われることが多い"
 			],
 			"layout": "default",
-			"speakerNotes": "Google MLOps成熟度モデル参考。AWS試験ではLevel 2-3が中心的な試験範囲。"
+			"speakerNotes": "Google MLOps成熟度モデル参考。AWS試験ではLevel 2-3が中心的な試験範囲。",
+			"subtitle": "レベル0は手動実験、レベル3はCI/CDが自動再学習を起動"
 		},
 		{
 			"title": "MLOpsの主な課題",
@@ -92,7 +99,8 @@
 				"各課題に対応するAWSサービスを試験で正確に選択できることが重要"
 			],
 			"layout": "default",
-			"speakerNotes": "課題と解決策のマッピングが試験の核心。モデルドリフト→Model Monitor、コスト→Spot Instancesなど。"
+			"speakerNotes": "課題と解決策のマッピングが試験の核心。モデルドリフト→Model Monitor、コスト→Spot Instancesなど。",
+			"subtitle": "再現性・モデルドリフト・チームサイロが三大障壁"
 		},
 		{
 			"title": "AWSのMLOpsサービスマップ全体",
@@ -102,7 +110,8 @@
 				"SageMaker Studio がエンドツーエンドの統合管理ポイント"
 			],
 			"layout": "default",
-			"speakerNotes": "試験頻出のサービスマップ。フェーズ毎の対応サービスを正確に把握することが必須。"
+			"speakerNotes": "試験頻出のサービスマップ。フェーズ毎の対応サービスを正確に把握することが必須。",
+			"subtitle": "SageMaker Pipelinesが全工程のオーケストレーション中核"
 		},
 		{
 			"title": "Amazon SageMaker アーキテクチャ概要",
@@ -112,7 +121,8 @@
 				"Training → Pipelines → Experiments → Model Registry → Inference の流れ"
 			],
 			"layout": "default",
-			"speakerNotes": "SageMakerはMonolithic MLプラットフォーム。各コンポーネントの役割と連携を整理しておく。"
+			"speakerNotes": "SageMakerはMonolithic MLプラットフォーム。各コンポーネントの役割と連携を整理しておく。",
+			"subtitle": "Studio+Pipelines+Registryで学習〜本番を一気通貫管理"
 		},
 		{
 			"title": "ML実験管理の仕組み",
@@ -122,7 +132,8 @@
 				"SageMaker ExperimentsとMLflowで全実験を自動追跡・比較可能"
 			],
 			"layout": "default",
-			"speakerNotes": "実験管理なしでは再現性・改善が不可能。SageMaker ExperimentsはSDK一行で自動記録。"
+			"speakerNotes": "実験管理なしでは再現性・改善が不可能。SageMaker ExperimentsはSDK一行で自動記録。",
+			"subtitle": "Experimentで全パラメータ・メトリクスを自動追跡・比較"
 		},
 		{
 			"title": "MLOpsチームの役割と責任",
@@ -132,7 +143,8 @@
 				"共通責任領域: モデル品質・セキュリティ・コスト・ドキュメント"
 			],
 			"layout": "default",
-			"speakerNotes": "組織構造の理解は試験でシナリオ問題として出題される。責任分担の明確化がMLOps成功の鍵。"
+			"speakerNotes": "組織構造の理解は試験でシナリオ問題として出題される。責任分担の明確化がMLOps成功の鍵。",
+			"subtitle": "データ・MLエンジニア・MLOps・ビジネスの4役割が連携"
 		},
 		{
 			"title": "データ管理・前処理",
@@ -150,7 +162,8 @@
 				"全ソースはAmazon S3データレイクに集約 → Glue Catalogで管理"
 			],
 			"layout": "default",
-			"speakerNotes": "試験ではデータソースとAWSサービスのマッピングを問う問題が頻出。Kinesisはリアルタイム、Glueはバッチ処理。"
+			"speakerNotes": "試験ではデータソースとAWSサービスのマッピングを問う問題が頻出。Kinesisはリアルタイム、Glueはバッチ処理。",
+			"subtitle": "複数ソースの統合品質が最終モデル性能の上限を決める"
 		},
 		{
 			"title": "データパイプライン設計",
@@ -160,7 +173,8 @@
 				"形式変換: CSV/JSON → Parquet(列指向) → RecordIO/TFRecord(学習用)"
 			],
 			"layout": "default",
-			"speakerNotes": "Parquet形式は列指向で圧縮率が高く、Athenaクエリコストも最適化。SageMaker Pipelines でDAG定義。"
+			"speakerNotes": "Parquet形式は列指向で圧縮率が高く、Athenaクエリコストも最適化。SageMaker Pipelines でDAG定義。",
+			"subtitle": "ETL自動化なしでは再現性確保とスケールは両立しない"
 		},
 		{
 			"title": "Amazon S3 データレイク設計",
@@ -170,7 +184,8 @@
 				"Lake FormationでアクセJ制御、Glue Catalogでメタデータ管理"
 			],
 			"layout": "default",
-			"speakerNotes": "試験頻出: Lake Formationは細粒度のアクセス制御（行・列レベル）を提供。S3のみでは不可能な管理。"
+			"speakerNotes": "試験頻出: Lake Formationは細粒度のアクセス制御（行・列レベル）を提供。S3のみでは不可能な管理。",
+			"subtitle": "Raw→Curated→Featuresの3層構造で品質と速度を両立"
 		},
 		{
 			"title": "AWS Glue ETL パイプライン",
@@ -180,7 +195,8 @@
 				"DPU: 4 vCPU + 16GB RAM / 1DPU | G.1X / G.2X ワーカータイプ選択"
 			],
 			"layout": "default",
-			"speakerNotes": "試験でGlueを問う問題: Crawlerはスキーマ自動検出、ETL JobはApache Sparkベース、Studioはビジュアル操作。"
+			"speakerNotes": "試験でGlueを問う問題: Crawlerはスキーマ自動検出、ETL JobはApache Sparkベース、Studioはビジュアル操作。",
+			"subtitle": "サーバーレスETLでデータ変換コストを70%削減できる"
 		},
 		{
 			"title": "データ品質の4つの次元",
@@ -190,7 +206,8 @@
 				"Glue DataQuality ルールで自動チェック → 品質不合格時に自動停止"
 			],
 			"layout": "default",
-			"speakerNotes": "試験では品質チェックツールの選択が問われる。Glue DataQuality(ETL統合)、Deequ(Spark)、Great Expectations(汎用)。"
+			"speakerNotes": "試験では品質チェックツールの選択が問われる。Glue DataQuality(ETL統合)、Deequ(Spark)、Great Expectations(汎用)。",
+			"subtitle": "完全性・正確性・一貫性・鮮度—1つの欠如でモデルが破綻"
 		},
 		{
 			"title": "特徴量エンジニアリング概要",
@@ -200,7 +217,8 @@
 				"Data Wrangler(GUI) / Processing Jobs(コード) / Autopilot(自動)"
 			],
 			"layout": "default",
-			"speakerNotes": "特徴量エンジニアリングはモデル精度向上の最重要ステップ。Data Wranglerは300以上の変換を提供。"
+			"speakerNotes": "特徴量エンジニアリングはモデル精度向上の最重要ステップ。Data Wranglerは300以上の変換を提供。",
+			"subtitle": "特徴量の質がアルゴリズム選択より最終精度に影響する"
 		},
 		{
 			"title": "SageMaker Feature Store アーキテクチャ",
@@ -210,7 +228,8 @@
 				"Feature Group = レコードID + Event Time + 特徴量カラム群"
 			],
 			"layout": "default",
-			"speakerNotes": "試験頻出: Online/Offline Storeの使い分け。リアルタイム推論=Online、バッチ学習=Offline。"
+			"speakerNotes": "試験頻出: Online/Offline Storeの使い分け。リアルタイム推論=Online、バッチ学習=Offline。",
+			"subtitle": "オンライン+オフラインの二層で低レイテンシと学習を両立"
 		},
 		{
 			"title": "Feature Store: オンライン vs オフライン",
@@ -220,7 +239,8 @@
 				"コスト: Online(DynamoDB高) vs Offline(S3低) — 用途で選択"
 			],
 			"layout": "default",
-			"speakerNotes": "試験問題例: 低レイテンシ推論用特徴量→Online Store、バッチ学習用→Offline Store。両方同時有効化可能。"
+			"speakerNotes": "試験問題例: 低レイテンシ推論用特徴量→Online Store、バッチ学習用→Offline Store。両方同時有効化可能。",
+			"subtitle": "推論はオンライン(<10ms)、学習はオフライン(S3)を使い分ける"
 		},
 		{
 			"title": "SageMaker Ground Truth ラベリング",
@@ -230,7 +250,8 @@
 				"対応タイプ: 画像分類・物体検出・セマンティックセグメンテーション・テキスト分類"
 			],
 			"layout": "default",
-			"speakerNotes": "試験では: Mechanical Turk(公開)/ Private Workforce(社内)/ Vendor(専門業者) の使い分けを問われる。"
+			"speakerNotes": "試験では: Mechanical Turk(公開)/ Private Workforce(社内)/ Vendor(専門業者) の使い分けを問われる。",
+			"subtitle": "人間+機械の組み合わせで自動ラベリング70%のコスト削減"
 		},
 		{
 			"title": "データバージョン管理 (DVC)",
@@ -242,7 +263,8 @@
 				"SageMaker Experiments でも実験ごとのデータ参照を記録可能",
 				"MLflow Tracking でデータセットハッシュを記録してバージョン管理"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "データ変更をGit同様に追跡—完全な実験再現性を保証する"
 		},
 		{
 			"title": "データバージョン管理 (DVC)（コード例）",
@@ -259,7 +281,8 @@
 				"AWS A2I: 低信頼度予測に人手レビューを組み込む自動化フロー"
 			],
 			"layout": "default",
-			"speakerNotes": "試験では各拡張手法の用途と制約を問う問題が出る。CutMixとMixupは最先端の画像拡張。逆翻訳はNLPで有効。"
+			"speakerNotes": "試験では各拡張手法の用途と制約を問う問題が出る。CutMixとMixupは最先端の画像拡張。逆翻訳はNLPで有効。",
+			"subtitle": "Augmentationで学習データを5〜10倍に増やし汎化性能を向上"
 		},
 		{
 			"title": "クラス不均衡対策",
@@ -269,7 +292,8 @@
 				"SageMaker Clarify の Class Imbalance (CI) 指標で不均衡を自動検出"
 			],
 			"layout": "default",
-			"speakerNotes": "試験では不均衡データの評価指標選択が頻出。Accuracy→不適切、F1-macro/MCC→適切。XGBoost: scale_pos_weight=負例数/正例数。"
+			"speakerNotes": "試験では不均衡データの評価指標選択が頻出。Accuracy→不適切、F1-macro/MCC→適切。XGBoost: scale_pos_weight=負例数/正例数。",
+			"subtitle": "SMOTE+クラス重み付けでFスコアを平均15pt改善できる"
 		},
 		{
 			"title": "Amazon SageMaker Data Wrangler",
@@ -281,7 +305,8 @@
 				"![w:800 center](assets/slide-26-data-wrangler.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "Data Wranglerは.flowファイルで変換フローを保存・共有できる。SageMaker Studioと統合されており、視覚的なパイプライン構築が可能。試験では「ノーコードでデータ前処理」の文脈で出題される。"
+			"speakerNotes": "Data Wranglerは.flowファイルで変換フローを保存・共有できる。SageMaker Studioと統合されており、視覚的なパイプライン構築が可能。試験では「ノーコードでデータ前処理」の文脈で出題される。",
+			"subtitle": "300以上の変換がノーコードで実行可能—前処理時間を80%削減"
 		},
 		{
 			"title": "データ変換パターン — SageMaker Processing",
@@ -325,7 +350,8 @@
 				"![w:800 center](assets/slide-30-data-validation-importance.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "Garbage In, Garbage Outの原則はML実務の鉄則。自動検証で本番障害を85%削減という数字は業界調査(Gartner等)のベンチマーク。試験では「品質ゲート」の設計パターンが頻出。"
+			"speakerNotes": "Garbage In, Garbage Outの原則はML実務の鉄則。自動検証で本番障害を85%削減という数字は業界調査(Gartner等)のベンチマーク。試験では「品質ゲート」の設計パターンが頻出。",
+			"subtitle": "入力データ品質がモデル品質の上限—早期検証が必須"
 		},
 		{
 			"title": "スキーマ検証の仕組み",
@@ -336,7 +362,8 @@
 				"![w:800 center](assets/slide-31-schema-validation.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "Glue Schema Registryはスキーマの中央管理とバージョニングを提供。Kafkaストリームやシリアル化(Avro/JSON)との統合が強み。Panderaはpandasデータフレームに型アノテーション的に制約を記述できる。"
+			"speakerNotes": "Glue Schema Registryはスキーマの中央管理とバージョニングを提供。Kafkaストリームやシリアル化(Avro/JSON)との統合が強み。Panderaはpandasデータフレームに型アノテーション的に制約を記述できる。",
+			"subtitle": "型・範囲・欠損率の自動チェックで本番事故を事前防止"
 		},
 		{
 			"title": "統計的データプロファイリング",
@@ -347,7 +374,8 @@
 				"![w:800 center](assets/slide-32-statistical-profiling.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "ydata-profilingはpandas-profilingの後継。大規模データではSpark版のpandas-profiling on EMRやData Wranglerが推奨。歪度(skewness)はlog変換の必要性判断、尖度(kurtosis)は外れ値の重大性判断に使う。"
+			"speakerNotes": "ydata-profilingはpandas-profilingの後継。大規模データではSpark版のpandas-profiling on EMRやData Wranglerが推奨。歪度(skewness)はlog変換の必要性判断、尖度(kurtosis)は外れ値の重大性判断に使う。",
+			"subtitle": "分布の異常を自動検出—手動確認では見逃すドリフトを捕捉"
 		},
 		{
 			"title": "データドリフト概念",
@@ -358,7 +386,8 @@
 				"![w:800 center](assets/slide-33-data-drift-concept.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "PSI(Population Stability Index): 0.1未満は安定、0.1〜0.25は軽微な変化、0.25以上は大きな変化として再学習を検討。SageMaker Model MonitorはデフォルトでKS検定を使用。"
+			"speakerNotes": "PSI(Population Stability Index): 0.1未満は安定、0.1〜0.25は軽微な変化、0.25以上は大きな変化として再学習を検討。SageMaker Model MonitorはデフォルトでKS検定を使用。",
+			"subtitle": "本番データの分布変化が精度劣化の最大要因—継続監視が必須"
 		},
 		{
 			"title": "共変量シフト vs コンセプトドリフト",
@@ -369,7 +398,8 @@
 				"![w:800 center](assets/slide-34-covariate-vs-concept.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "試験頻出。共変量シフトは顧客層の変化(P(X)変化)、コンセプトドリフトは市場環境の変化(P(Y|X)変化)として出題される。対策手法(重点サンプリング vs オンライン学習)も覚える。"
+			"speakerNotes": "試験頻出。共変量シフトは顧客層の変化(P(X)変化)、コンセプトドリフトは市場環境の変化(P(Y|X)変化)として出題される。対策手法(重点サンプリング vs オンライン学習)も覚える。",
+			"subtitle": "入力分布変化か関係性変化かで対処法が180度異なる"
 		},
 		{
 			"title": "SageMaker Model Monitor — データ品質チェック",
@@ -381,7 +411,8 @@
 				"![w:800 center](assets/slide-35-model-monitor-data-quality.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "Model Monitorは4種類: Data Quality Monitor / Model Quality Monitor / Bias Drift Monitor / Feature Attribution Drift Monitor。試験では用途の使い分けが問われる。DataCaptureConfigの設定が前提条件。"
+			"speakerNotes": "Model Monitorは4種類: Data Quality Monitor / Model Quality Monitor / Bias Drift Monitor / Feature Attribution Drift Monitor。試験では用途の使い分けが問われる。DataCaptureConfigの設定が前提条件。",
+			"subtitle": "ベースライン自動生成+スケジュール実行でドリフトを即検知"
 		},
 		{
 			"title": "PyDeequ (Deequ) 検証コード",
@@ -409,7 +440,8 @@
 				"SageMaker Pipelines の ClarifyCheckStep との組み合わせも可能"
 			],
 			"layout": "default",
-			"speakerNotes": "Great ExpectationsはMLOpsのデータ品質管理ツールとして事実上の標準。Expectation Suiteをバージョン管理することでデータ品質のCI/CDが実現できる。"
+			"speakerNotes": "Great ExpectationsはMLOpsのデータ品質管理ツールとして事実上の標準。Expectation Suiteをバージョン管理することでデータ品質のCI/CDが実現できる。",
+			"subtitle": "コードとしてデータ品質を定義—CIパイプラインに組み込み可"
 		},
 		{
 			"title": "データ検証パイプライン設計",
@@ -420,7 +452,8 @@
 				"![w:800 center](assets/slide-38-validation-pipeline.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "品質ゲートのthresholdをビジネス要件から逆算して設定することが重要。隔離されたデータは人手レビュー後に再処理するワークフローも設計する。"
+			"speakerNotes": "品質ゲートのthresholdをビジネス要件から逆算して設定することが重要。隔離されたデータは人手レビュー後に再処理するワークフローも設計する。",
+			"subtitle": "検証→警告→停止の3段階ゲートで品質を自動担保"
 		},
 		{
 			"title": "検証ルール設計パターン — QualityCheckStep",
@@ -445,7 +478,8 @@
 				"![w:800 center](assets/slide-40-anomaly-detection.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "試験では各手法の適用場面が問われる。単変量→Z-スコア/IQR、多変量→Isolation Forest、時系列マネージド→Lookout for Metrics、リアルタイムストリーム→RCFというマッピングを覚える。"
+			"speakerNotes": "試験では各手法の適用場面が問われる。単変量→Z-スコア/IQR、多変量→Isolation Forest、時系列マネージド→Lookout for Metrics、リアルタイムストリーム→RCFというマッピングを覚える。",
+			"subtitle": "統計的手法+MLで正常範囲を学習—99%の外れ値を自動フラグ"
 		},
 		{
 			"title": "モデル学習",
@@ -465,7 +499,8 @@
 				"![w:800 center](assets/slide-42-training-pipeline.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "このパイプラインがMLOpsの理想形。各ステップがPipeline Step(ProcessingStep, TrainingStep, QualityCheckStep, ModelStep, ConditionStep)として定義され、DAGで管理される。"
+			"speakerNotes": "このパイプラインがMLOpsの理想形。各ステップがPipeline Step(ProcessingStep, TrainingStep, QualityCheckStep, ModelStep, ConditionStep)として定義され、DAGで管理される。",
+			"subtitle": "データ→前処理→学習→評価の自動化でヒューマンエラーを排除"
 		},
 		{
 			"title": "SageMaker Training Jobs",
@@ -477,7 +512,8 @@
 				"![w:800 center](assets/slide-43-training-jobs.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "FastFileModeはFile ModeとPipe Modeの中間。S3ファイルをローカルへコピーせずランダムアクセス可能。大規模データセットで特に効果的。Spot Trainingで最大90%コスト削減が可能だがチェックポイントが必須。"
+			"speakerNotes": "FastFileModeはFile ModeとPipe Modeの中間。S3ファイルをローカルへコピーせずランダムアクセス可能。大規模データセットで特に効果的。Spot Trainingで最大90%コスト削減が可能だがチェックポイントが必須。",
+			"subtitle": "マネージド学習環境でインフラ管理ゼロ—スポットで最大90%削減"
 		},
 		{
 			"title": "SageMaker 組み込みアルゴリズム一覧",
@@ -489,7 +525,8 @@
 				"![w:800 center](assets/slide-44-built-in-algorithms.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "試験頻出。XGBoostとLinear Learnerは最もよく出る。DeepARは「確率的予測で複数系列を同時学習」が特徴。BlazingTextはWord2Vec+テキスト分類を高速実行。IP InsightsはIPアドレスの異常アクセス検知。"
+			"speakerNotes": "試験頻出。XGBoostとLinear Learnerは最もよく出る。DeepARは「確率的予測で複数系列を同時学習」が特徴。BlazingTextはWord2Vec+テキスト分類を高速実行。IP InsightsはIPアドレスの異常アクセス検知。",
+			"subtitle": "最適化済みコンテナで一般アルゴリズムを手書きゼロで使用"
 		},
 		{
 			"title": "カスタムコンテナ学習",
@@ -501,7 +538,8 @@
 				"![w:800 center](assets/slide-45-custom-container.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "SAGEMAKER_PROGRAM環境変数でエントリーポイントスクリプトを指定。training_env()でハイパーパラメータを読み込む。FROM sagemaker-tensorflow:2.12のようにAWSが提供するベースイメージを使うと規約に準拠しやすい。"
+			"speakerNotes": "SAGEMAKER_PROGRAM環境変数でエントリーポイントスクリプトを指定。training_env()でハイパーパラメータを読み込む。FROM sagemaker-tensorflow:2.12のようにAWSが提供するベースイメージを使うと規約に準拠しやすい。",
+			"subtitle": "任意のフレームワークをDockerで持ち込み—完全な柔軟性を確保"
 		},
 		{
 			"title": "分散学習アーキテクチャ",
@@ -512,7 +550,8 @@
 				"![w:800 center](assets/slide-46-distributed-training.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "試験では「何ノードに拡張しても線形スケールするのはAllReduce」という点が頻出。Horovodは両方のアーキテクチャをサポートする統一APIを提供。EFAネットワークは低レイテンシ・高帯域でAllReduceの通信効率を最大化する。"
+			"speakerNotes": "試験では「何ノードに拡張しても線形スケールするのはAllReduce」という点が頻出。Horovodは両方のアーキテクチャをサポートする統一APIを提供。EFAネットワークは低レイテンシ・高帯域でAllReduceの通信効率を最大化する。",
+			"subtitle": "データ並列+モデル並列の組み合わせで学習を水平スケール"
 		},
 		{
 			"title": "データ並列 vs モデル並列",
@@ -523,7 +562,8 @@
 				"![w:800 center](assets/slide-47-data-vs-model-parallel.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "試験頻出の選択問題。「モデルが1GPUに収まる→データ並列」「モデルが1GPUに収まらない→モデル並列」「巨大データセットで並列化→データ並列」として覚える。Tensor Parallelismはモデル並列の一形態。"
+			"speakerNotes": "試験頻出の選択問題。「モデルが1GPUに収まる→データ並列」「モデルが1GPUに収まらない→モデル並列」「巨大データセットで並列化→データ並列」として覚える。Tensor Parallelismはモデル並列の一形態。",
+			"subtitle": "モデルがGPUメモリに収まる→データ並列が第一選択"
 		},
 		{
 			"title": "SageMaker Distributed Training Library",
@@ -534,7 +574,8 @@
 				"![w:800 center](assets/slide-48-sagemaker-distributed.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "SMDPはHorovodより最大20%高速という実績あり。SMMPのActivation Checkpointingはメモリを半分にできる代わりに計算量が約33%増加するトレードオフ。LLMのfine-tuningではテンソル並列度(tensor_parallel_degree)の設定が重要。"
+			"speakerNotes": "SMDPはHorovodより最大20%高速という実績あり。SMMPのActivation Checkpointingはメモリを半分にできる代わりに計算量が約33%増加するトレードオフ。LLMのfine-tuningではテンソル並列度(tensor_parallel_degree)の設定が重要。",
+			"subtitle": "AllReduceとSMPで通信オーバーヘッドを最小化"
 		},
 		{
 			"title": "ハイパーパラメータチューニング (HPO)",
@@ -546,7 +587,8 @@
 				"![w:800 center](assets/slide-49-hyperparameter-tuning.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "試験頻出。ベイズ最適化は並列度を低め(3〜5)にした方が性能が良い理由→過去の結果を参照して次を決めるため。グリッドサーチは次元数が少なく(3以下)カテゴリカルパラメータのみの場合に有効。"
+			"speakerNotes": "試験頻出。ベイズ最適化は並列度を低め(3〜5)にした方が性能が良い理由→過去の結果を参照して次を決めるため。グリッドサーチは次元数が少なく(3以下)カテゴリカルパラメータのみの場合に有効。",
+			"subtitle": "ベイズ最適化でランダムサーチ比50%少ない試行で最良解"
 		},
 		{
 			"title": "SageMaker Automatic Model Tuning (AMT) ワークフロー",
@@ -558,7 +600,8 @@
 				"![w:800 center](assets/slide-50-automatic-model-tuning.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "AMTのメトリクス定義はRegex式でCloudWatch Logsから抽出。例: 'Validation-accuracy: ([0-9\\.]+)'。目的変数のMaximize/Minimizeを正しく設定することが重要。Warm Startは同じパラメータ範囲でのみ有効。"
+			"speakerNotes": "AMTのメトリクス定義はRegex式でCloudWatch Logsから抽出。例: 'Validation-accuracy: ([0-9\\.]+)'。目的変数のMaximize/Minimizeを正しく設定することが重要。Warm Startは同じパラメータ範囲でのみ有効。",
+			"subtitle": "目的関数を最大化する設定を自動探索—手動の10倍効率"
 		},
 		{
 			"title": "ベイズ最適化 vs グリッドサーチ vs ランダム探索",
@@ -651,7 +694,8 @@
 				"試験ポイント: タスクに応じた指標選択が重要 (例: 金融予測→RMSE / 需要予測→MAPE)"
 			],
 			"layout": "default",
-			"speakerNotes": "回帰指標の選択: MAEは外れ値に頑健、RMSEは外れ値を大きくペナルティ。R²は0〜1で1が完璧(負になることもある)。MAPEはゼロ除算に注意。金融系タスクではRMSEが一般的、需要予測ではMAPEが直感的。SageMakerの組み込みアルゴリズムではRMSEがデフォルト評価指標であることが多い。"
+			"speakerNotes": "回帰指標の選択: MAEは外れ値に頑健、RMSEは外れ値を大きくペナルティ。R²は0〜1で1が完璧(負になることもある)。MAPEはゼロ除算に注意。金融系タスクではRMSEが一般的、需要予測ではMAPEが直感的。SageMakerの組み込みアルゴリズムではRMSEがデフォルト評価指標であることが多い。",
+			"subtitle": "外れ値感度ならRMSE、解釈性ならMAE—目的で使い分ける"
 		},
 		{
 			"title": "生成AI評価指標 — BLEU / ROUGE / BERTScore",
@@ -707,7 +751,8 @@
 				"AWS: SageMaker Model Cards で標準化・PDF出力対応"
 			],
 			"layout": "default",
-			"speakerNotes": "モデルカードはGoogle, Hugging Face, AWSなどが推進する透明性ドキュメント。SageMaker Model Cardsは標準的な項目をAPIで入力しPDF/JSON出力が可能。Clarifyの評価結果を自動連携できる。規制産業(医療/金融)ではモデルカードが必須要件になりつつある。試験では概念理解が中心。"
+			"speakerNotes": "モデルカードはGoogle, Hugging Face, AWSなどが推進する透明性ドキュメント。SageMaker Model Cardsは標準的な項目をAPIで入力しPDF/JSON出力が可能。Clarifyの評価結果を自動連携できる。規制産業(医療/金融)ではモデルカードが必須要件になりつつある。試験では概念理解が中心。",
+			"subtitle": "意図した用途+制限事項の文書化が規制対応の基礎要件"
 		},
 		{
 			"title": "評価パイプライン自動化",
@@ -752,7 +797,8 @@
 				"![w:800 center](assets/slide-76-shadow-deploy.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "シャドウデプロイはカナリアデプロイの前段階として利用することが多い。本番環境でモデルBの品質を数日〜数週間評価してから段階的切り替えを行う。コスト面では2倍のコンピュートが必要だが、リスク低減効果が大きい。"
+			"speakerNotes": "シャドウデプロイはカナリアデプロイの前段階として利用することが多い。本番環境でモデルBの品質を数日〜数週間評価してから段階的切り替えを行う。コスト面では2倍のコンピュートが必要だが、リスク低減効果が大きい。",
+			"subtitle": "本番トラフィックを複製して新モデルをリスクゼロで評価"
 		},
 		{
 			"title": "SageMaker Endpoints アーキテクチャ",
@@ -764,7 +810,8 @@
 				"![w:800 center](assets/slide-77-sagemaker-endpoints.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "Endpoint Configが実際のデプロイ設定を保持。Endpoint自体はEndpoint Configを参照するポインタ。UpdateEndpoint APIでEndpoint Configを差し替えることでダウンタイムなし更新が可能。"
+			"speakerNotes": "Endpoint Configが実際のデプロイ設定を保持。Endpoint自体はEndpoint Configを参照するポインタ。UpdateEndpoint APIでEndpoint Configを差し替えることでダウンタイムなし更新が可能。",
+			"subtitle": "オートスケーリング+マルチAZで99.99%可用性を実現"
 		},
 		{
 			"title": "リアルタイム推論設定（コード例）",
@@ -791,7 +838,8 @@
 				"![w:800 center](assets/slide-79-batch-transform.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "Batch Transformはリアルタイム推論が不要な大規模データ処理に最適。インスタンスを常時稼働させる必要がないため大幅なコスト削減が可能。SplitType=LineでCSV行単位分割、JoinSourceでモデル出力と入力を結合できる。"
+			"speakerNotes": "Batch Transformはリアルタイム推論が不要な大規模データ処理に最適。インスタンスを常時稼働させる必要がないため大幅なコスト削減が可能。SplitType=LineでCSV行単位分割、JoinSourceでモデル出力と入力を結合できる。",
+			"subtitle": "エンドポイント不要でS3→S3の大量データ一括推論が可能"
 		},
 		{
 			"title": "サーバーレス推論",
@@ -803,7 +851,8 @@
 				"![w:800 center](assets/slide-80-serverless-inference.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "Serverless Inferenceは2022年GA。コールドスタートはプロビジョンドコンカレンシーで軽減できるが追加コストが発生。Lambda関数同様のモデルで利用量に応じた課金。GenAIアプリの開発・テスト段階に特に有効。"
+			"speakerNotes": "Serverless Inferenceは2022年GA。コールドスタートはプロビジョンドコンカレンシーで軽減できるが追加コストが発生。Lambda関数同様のモデルで利用量に応じた課金。GenAIアプリの開発・テスト段階に特に有効。",
+			"subtitle": "コールドスタートあり—断続的トラフィックの低コスト推論向け"
 		},
 		{
 			"title": "非同期推論 (Async Inference)",
@@ -815,7 +864,8 @@
 				"![w:800 center](assets/slide-81-async-inference.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "非同期推論は動画処理・大規模文書解析・GenAI長文生成など長時間かかる処理に最適。InvocationsRequest/Response は S3 URI で渡す。Auto Scalingのmin=0設定でアイドル時完全停止も可能。"
+			"speakerNotes": "非同期推論は動画処理・大規模文書解析・GenAI長文生成など長時間かかる処理に最適。InvocationsRequest/Response は S3 URI で渡す。Auto Scalingのmin=0設定でアイドル時完全停止も可能。",
+			"subtitle": "最大1GB入力・15分タイムアウト—大規模バッチ推論に最適"
 		},
 		{
 			"title": "Multi-Model Endpoints",
@@ -827,7 +877,8 @@
 				"![w:800 center](assets/slide-82-multi-model-endpoints.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "MMEはコンテナがMEIプロトコルをサポートする必要がある。TensorFlow/PyTorch/XGBoostなど主要フレームワークは対応済み。数百テナントが各自専用モデルを持つSaaSアーキテクチャに最適。"
+			"speakerNotes": "MMEはコンテナがMEIプロトコルをサポートする必要がある。TensorFlow/PyTorch/XGBoostなど主要フレームワークは対応済み。数百テナントが各自専用モデルを持つSaaSアーキテクチャに最適。",
+			"subtitle": "1エンドポイントで最大数百モデルをホスト—コストを1/N化"
 		},
 		{
 			"title": "SageMaker JumpStart",
@@ -839,7 +890,8 @@
 				"![w:800 center](assets/slide-83-jumpstart.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "JumpStartはSageMaker StudioのUIから直接アクセス可能。モデルは公開S3バケットからアカウントにコピーしてデプロイ。ファインチューニングも同一UIから設定可能。MLソリューションテンプレートは実務に即使える。"
+			"speakerNotes": "JumpStartはSageMaker StudioのUIから直接アクセス可能。モデルは公開S3バケットからアカウントにコピーしてデプロイ。ファインチューニングも同一UIから設定可能。MLソリューションテンプレートは実務に即使える。",
+			"subtitle": "基盤モデルをワンクリックでファインチューニング・デプロイ"
 		},
 		{
 			"title": "Amazon Bedrock デプロイ/アクセスオプション",
@@ -851,7 +903,8 @@
 				"![w:800 center](assets/slide-84-bedrock-deploy.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "プロビジョンドスループットはModel Units (MU) 単位で購入。1MUあたりの最大トークン処理量はモデルにより異なる。バッチ推論は結果が即時不要なユースケース (文書要約・分類など) に最適。"
+			"speakerNotes": "プロビジョンドスループットはModel Units (MU) 単位で購入。1MUあたりの最大トークン処理量はモデルにより異なる。バッチ推論は結果が即時不要なユースケース (文書要約・分類など) に最適。",
+			"subtitle": "サーバーレスFM APIでGPUインフラ管理ゼロを実現"
 		},
 		{
 			"title": "コンテナ化 ベストプラクティス",
@@ -863,7 +916,8 @@
 				"![w:800 center](assets/slide-85-containerization.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "SageMakerカスタムコンテナは /ping (GET, ヘルスチェック) と /invocations (POST, 推論) の2エンドポイントを実装必須。ECR Enhanced Scanningで脆弱性を自動検出。レイヤーキャッシュ最適化でCI/CD速度が大幅改善。"
+			"speakerNotes": "SageMakerカスタムコンテナは /ping (GET, ヘルスチェック) と /invocations (POST, 推論) の2エンドポイントを実装必須。ECR Enhanced Scanningで脆弱性を自動検出。レイヤーキャッシュ最適化でCI/CD速度が大幅改善。",
+			"subtitle": "依存固定+レイヤーキャッシュで再現性とビルド速度を両立"
 		},
 		{
 			"title": "SageMaker Neo + エッジデプロイ",
@@ -875,7 +929,8 @@
 				"![w:800 center](assets/slide-86-neo-edge-deploy.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "NeoはTensorFlow/PyTorch/MXNet/ONNXなど主要フレームワークに対応。ターゲットデバイスをコンパイル時に指定する必要がある。Greengrassを使うと5G/LTE断絶環境でも継続推論可能。医療・製造・自動車分野で活用増加。"
+			"speakerNotes": "NeoはTensorFlow/PyTorch/MXNet/ONNXなど主要フレームワークに対応。ターゲットデバイスをコンパイル時に指定する必要がある。Greengrassを使うと5G/LTE断絶環境でも継続推論可能。医療・製造・自動車分野で活用増加。",
+			"subtitle": "モデルを最大2倍高速化—エッジデバイスへのコンパイル展開"
 		},
 		{
 			"title": "デプロイ自動化パイプライン",
@@ -887,7 +942,8 @@
 				"![w:800 center](assets/slide-87-deploy-automation.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "完全自動化パイプラインではHuman Approval Stepをスキップできるが、本番環境では重要モデルに手動承認ゲートを設けることを推奨。CodePipeline + SageMaker Projectsで標準テンプレートが利用可能。"
+			"speakerNotes": "完全自動化パイプラインではHuman Approval Stepをスキップできるが、本番環境では重要モデルに手動承認ゲートを設けることを推奨。CodePipeline + SageMaker Projectsで標準テンプレートが利用可能。",
+			"subtitle": "承認→テスト→本番の自動化でリリースリスクを最小化"
 		},
 		{
 			"title": "インフラ as Code (CDK) コード例",
@@ -921,7 +977,8 @@
 				"![w:800 center](assets/slide-90-monitoring-overview.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "モデルモニタリングはMLOps成熟度レベル3の核心要素。本番デプロイ後のモデル劣化を早期検知し、再学習ループを自動化することでモデルの長期的な品質を維持する。"
+			"speakerNotes": "モデルモニタリングはMLOps成熟度レベル3の核心要素。本番デプロイ後のモデル劣化を早期検知し、再学習ループを自動化することでモデルの長期的な品質を維持する。",
+			"subtitle": "データ品質・精度・バイアス・説明可能性の4軸で常時監視"
 		},
 		{
 			"title": "SageMaker Model Monitor 4種類",
@@ -933,7 +990,8 @@
 				"![w:800 center](assets/slide-91-model-monitor-types.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "4種類のMonitorはそれぞれ独立してスケジュール設定可能。全Monitor共通でベースライン生成が必要。ベースラインは学習データで生成するのが基本。違反レポートはS3に保存、CloudWatchメトリクスとして発行される。"
+			"speakerNotes": "4種類のMonitorはそれぞれ独立してスケジュール設定可能。全Monitor共通でベースライン生成が必要。ベースラインは学習データで生成するのが基本。違反レポートはS3に保存、CloudWatchメトリクスとして発行される。",
+			"subtitle": "Data/Model Quality+Bias+Explainability—全て有効化が推奨"
 		},
 		{
 			"title": "データ品質モニタリング設定",
@@ -958,7 +1016,8 @@
 				"![w:800 center](assets/slide-93-model-quality-monitoring.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "Model Quality MonitorはGround Truthが必要なため、リアルタイムアプリでは後付けラベルを定期的にS3に書き込む仕組みが必要。ラベル取得の遅延を考慮してスケジュール間隔を設定する。回帰タスクはRMSE/MAE、分類タスクはF1/AUC/Accuracyを主要指標として設定。"
+			"speakerNotes": "Model Quality MonitorはGround Truthが必要なため、リアルタイムアプリでは後付けラベルを定期的にS3に書き込む仕組みが必要。ラベル取得の遅延を考慮してスケジュール間隔を設定する。回帰タスクはRMSE/MAE、分類タスクはF1/AUC/Accuracyを主要指標として設定。",
+			"subtitle": "精度メトリクスのドリフトを検知—閾値超過で自動再学習"
 		},
 		{
 			"title": "バイアスドリフト検知",
@@ -970,7 +1029,8 @@
 				"![w:800 center](assets/slide-94-bias-drift.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "AIの公平性規制 (EU AI Act等) への対応でバイアス監視は必須要件になりつつある。DPPLの他にDI(Disparate Impact)、AD(Accuracy Difference)、CDDL(Conditional Demographic Disparity)なども重要な指標。定期レポートは規制対応の証跡として保存する。"
+			"speakerNotes": "AIの公平性規制 (EU AI Act等) への対応でバイアス監視は必須要件になりつつある。DPPLの他にDI(Disparate Impact)、AD(Accuracy Difference)、CDDL(Conditional Demographic Disparity)なども重要な指標。定期レポートは規制対応の証跡として保存する。",
+			"subtitle": "本番での公平性劣化を継続監視—規制対応の必須コンポーネント"
 		},
 		{
 			"title": "説明可能性モニタリング",
@@ -982,7 +1042,8 @@
 				"![w:800 center](assets/slide-95-explainability-monitoring.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "SHAP (SHapley Additive exPlanations) はゲーム理論ベースの特徴量重要度計算手法。計算コストが高いため、全データではなくサンプリングで実施することが多い。金融・医療など説明責任が求められる分野で特に重要。"
+			"speakerNotes": "SHAP (SHapley Additive exPlanations) はゲーム理論ベースの特徴量重要度計算手法。計算コストが高いため、全データではなくサンプリングで実施することが多い。金融・医療など説明責任が求められる分野で特に重要。",
+			"subtitle": "SHAP値の変化で特徴量重要度のドリフトを検出"
 		},
 		{
 			"title": "Amazon CloudWatch + SageMaker 統合",
@@ -993,7 +1054,8 @@
 				"![w:800 center](assets/slide-96-cloudwatch-sagemaker.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "CloudWatchカスタムメトリクスはModel Monitorの違反数を発行。Endpoint関連メトリクスはaws/sagemakerネームスペース。Dashboardで複数メトリクスを一覧可視化。Contributor Insightsで上位エラーパターンを分析できる。"
+			"speakerNotes": "CloudWatchカスタムメトリクスはModel Monitorの違反数を発行。Endpoint関連メトリクスはaws/sagemakerネームスペース。Dashboardで複数メトリクスを一覧可視化。Contributor Insightsで上位エラーパターンを分析できる。",
+			"subtitle": "カスタムメトリクス+ダッシュボードで全サービスを一元監視"
 		},
 		{
 			"title": "アラート・自動再学習トリガー設計",
@@ -1005,7 +1067,8 @@
 				"![w:800 center](assets/slide-97-auto-retrain-trigger.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "完全自動再学習は精度低下が軽微な場合に適用。大きな精度低下や本番モデルの場合は人間承認ゲートを設けるべき。Step Functionsを使うと複雑な条件分岐と状態管理が容易になる。"
+			"speakerNotes": "完全自動再学習は精度低下が軽微な場合に適用。大きな精度低下や本番モデルの場合は人間承認ゲートを設けるべき。Step Functionsを使うと複雑な条件分岐と状態管理が容易になる。",
+			"subtitle": "閾値ベースのEventBridgeルールで人手を介さず再学習起動"
 		},
 		{
 			"title": "モニタリングダッシュボード設計",
@@ -1016,7 +1079,8 @@
 				"![w:800 center](assets/slide-98-monitoring-dashboard.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "Amazon Managed Grafanaは外部データソース (Prometheus等) も統合できる高度なダッシュボード。QuickSightはビジネスステークホルダー向けBIレポートに適している。SLOを定義してエラーバジェット管理を導入するとより成熟した運用が可能。"
+			"speakerNotes": "Amazon Managed Grafanaは外部データソース (Prometheus等) も統合できる高度なダッシュボード。QuickSightはビジネスステークホルダー向けBIレポートに適している。SLOを定義してエラーバジェット管理を導入するとより成熟した運用が可能。",
+			"subtitle": "精度・レイテンシ・コストを1画面で可視化—意思決定を加速"
 		},
 		{
 			"title": "MLOpsパイプライン",
@@ -1036,7 +1100,8 @@
 				"![w:800 center](assets/slide-100-mlops-pipeline-overview.svg)"
 			],
 			"layout": "default",
-			"speakerNotes": "完全なMLOpsパイプラインはMLOps成熟度レベル3に相当。モデルの品質を継続的に維持しながら、新しいデータやコードの変更を自動的に本番に反映できる状態が目標。SageMaker Projectsが標準テンプレートを提供している。"
+			"speakerNotes": "完全なMLOpsパイプラインはMLOps成熟度レベル3に相当。モデルの品質を継続的に維持しながら、新しいデータやコードの変更を自動的に本番に反映できる状態が目標。SageMaker Projectsが標準テンプレートを提供している。",
+			"subtitle": "CI/CDがモデルも含めて自動テスト→承認→本番デプロイ"
 		},
 		{
 			"title": "SageMaker Pipelines アーキテクチャ",
@@ -1082,7 +1147,8 @@
 				"ParameterString でパイプライン実行時に動的パラメータを渡す",
 				"CDK/CloudFormationと組み合わせてインフラ全体をIaC化"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "インフラをコードで管理—環境差異をゼロにして再現性確保"
 		},
 		{
 			"title": "MLOps IaC パターン — AWS CDK + SageMaker Pipelines（コード例）",
@@ -1134,7 +1200,8 @@
 				"試験ポイント: 最小権限の原則を自動適用、手動ポリシー作成エラーを防止"
 			],
 			"layout": "default",
-			"speakerNotes": "Role Managerは複雑なIAMポリシー作成を自動化するツール。Data ScientistにはS3・SageMaker実験・Notebookの権限、MLOps EngineerにはパイプラインとModelRegistryの権限を自動付与。SageMaker Studio Userには最もスコープの狭い権限を付与する。試験: カスタムIAMポリシーの代替としてRole Managerを使用する問題が出る可能性あり。"
+			"speakerNotes": "Role Managerは複雑なIAMポリシー作成を自動化するツール。Data ScientistにはS3・SageMaker実験・Notebookの権限、MLOps EngineerにはパイプラインとModelRegistryの権限を自動付与。SageMaker Studio Userには最もスコープの狭い権限を付与する。試験: カスタムIAMポリシーの代替としてRole Managerを使用する問題が出る可能性あり。",
+			"subtitle": "最小権限ロールを自動生成—IAM設計工数を90%削減"
 		},
 		{
 			"title": "暗号化・データ保護設定",
@@ -1194,7 +1261,8 @@
 				"複数モデルを1エンドポイントでホスト → Multi-Model Endpoint"
 			],
 			"layout": "default",
-			"speakerNotes": "試験では「最もコスト効率が良い」「サーバーレス」「マネージドサービスを使う」などのキーワードに注意。「本番影響ゼロ」→Shadow、「段階的移行」→Canary、「瞬時切替」→Blue-Green。Feature StoreのオンラインとオフラインはAPIが異なる（GetRecord vs athena/S3）。試験でFine-tuningとRAGの使い分けも問われる（知識更新→RAG、タスク適応→Fine-tuning）。"
+			"speakerNotes": "試験では「最もコスト効率が良い」「サーバーレス」「マネージドサービスを使う」などのキーワードに注意。「本番影響ゼロ」→Shadow、「段階的移行」→Canary、「瞬時切替」→Blue-Green。Feature StoreのオンラインとオフラインはAPIが異なる（GetRecord vs athena/S3）。試験でFine-tuningとRAGの使い分けも問われる（知識更新→RAG、タスク適応→Fine-tuning）。",
+			"subtitle": "ユースケース→最適サービス選択が全問題の60%を占める"
 		},
 		{
 			"title": "MLOps 意思決定フローチャート",

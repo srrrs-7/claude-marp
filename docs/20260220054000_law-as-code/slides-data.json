@@ -32,7 +32,8 @@
 				"  <polygon points=\"588,68 600,73 588,78\" fill=\"#555\"/>",
 				"  <rect x=\"600\" y=\"46\" width=\"140\" height=\"55\" rx=\"8\" fill=\"#16213e\" stroke=\"#7986cb\" stroke-width=\"2\"/>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "法律のコード構造・バグ・バージョン管理—立法をソフトウェアとして読む"
 		},
 		{
 			"title": "アジェンダ（2/2）",
@@ -57,7 +58,8 @@
 				"4. Law as Codeの実践事例",
 				"5. AI立法への展望"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "実践事例からAI立法展望まで—法とコードの融合が変える統治の未来"
 		},
 		{
 			"title": "法律の構造をコードで読む",
@@ -81,7 +83,8 @@
 				"すべての法律条文は**条件（要件）と効果（効果）**で構成される",
 				"= プログラムの条件分岐そのもの"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "民法709条はIF/THEN—法律はプログラムと同じ条件分岐の集合体"
 		},
 		{
 			"title": "法律の条件分岐：コードとの対比",
@@ -97,7 +100,8 @@
 				"**法律の名前空間：** 国法 > 都道府県法 > 市町村条例",
 				"→ モジュールの優先順位と同じ構造"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "国際法・憲法・民法はネームスペース階層—上位が下位をオーバーライド"
 		},
 		{
 			"title": "法律の階層構造（名前空間）",
@@ -199,7 +203,8 @@
 				"  <text x=\"280\" y=\"165\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">一部改正</text>",
 				"  <text x=\"520\" y=\"165\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">大改正</text>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "抜け穴は仕様の意図しない分岐—立法者のエッジケース漏れがバグになる"
 		},
 		{
 			"title": "法律のバグ：抜け穴と矛盾（2/2）（2/2）",
@@ -223,7 +228,8 @@
 				"  <text x=\"720\" y=\"125\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">現在</text>",
 				"</svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "法改正ごとに新バグが混入—パッチの副作用は法律も同じ構造問題"
 		},
 		{
 			"title": "法律のバージョン管理",
@@ -243,7 +249,8 @@
 				"| 廃止 | Deprecation |",
 				"| 憲法 | Interface / Contract |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "法改正は国会を経たPR—差分管理・レビュー・マージがGitと等価"
 		},
 		{
 			"title": "立法プロセスのGitワークフロー図",
@@ -297,7 +304,8 @@
 				"  <text x=\"485\" y=\"83\" text-anchor=\"middle\" fill=\"#7986cb\" font-size=\"12\" font-weight=\"bold\" font-family=\"sans-serif\">ケース入力</text>",
 				"  <text x=\"485\" y=\"100\" text-anchor=\"middle\" fill=\"#ccc\" font-size=\"10\" font-family=\"sans-serif\">事実データ</text>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "エストニア・シンガポールが証明—法律のコード化は行政効率を劇的に改善"
 		},
 		{
 			"title": "実際に法律をコード化している国（2/2）（2/2）",
@@ -326,7 +334,8 @@
 				"  <text x=\"400\" y=\"294\" text-anchor=\"middle\" fill=\"#aaa\" font-size=\"10\" font-family=\"sans-serif\">市民・企業が直接シミュレーション可能な法律インフラ</text>",
 				"</svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Computedフィールドが自動判定—宣言的法律コードが審査官を不要にする"
 		},
 		{
 			"title": "法律と自然言語処理（1/2）",
@@ -351,7 +360,8 @@
 				"**リスク：** 法解釈の「ハルシネーション」= 誤った判例引用",
 				"2023年：弁護士がChatGPTの架空判例を提出して処分"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GPTは法令の矛盾を発見するが「ハルシネーション判決」は許容できない"
 		},
 		{
 			"title": "まとめ：法とコードの未来",

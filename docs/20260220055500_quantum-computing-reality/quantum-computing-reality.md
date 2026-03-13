@@ -7,6 +7,71 @@ paginate: true
 header: "量子コンピューティング"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -44,6 +109,8 @@ style: |
 
 # 量子ビット：重ね合わせと干渉（1/2）
 
+> *300量子ビットで宇宙の原子数を超える状態を同時保持*
+
 - **古典ビット：** 0か1のどちらか
 - **量子ビット（Qubit）：** 0と1が重ね合わさった状態
 - → 測定すると0か1に確率的に決まる
@@ -56,6 +123,8 @@ style: |
 ---
 
 # 量子ビット：重ね合わせと干渉（2/2）
+
+> *正解を得るには干渉で確率を増幅する必要がある*
 
 - ---
 - **しかし：測定すると1つの状態しか得られない**
@@ -78,6 +147,8 @@ style: |
 
 # 量子超越性：実態と批判（1/2）
 
+> *Googleの主張はIBMに「2.5日で解ける」と反論された*
+
 - **Googleの主張（2019年）：**
 - Sycamoreで53量子ビット使用
 - 特定のサンプリング問題を200秒で解いた
@@ -89,12 +160,20 @@ style: |
 
 ---
 
-# 量子超越性：実態と批判（2/2）
+# 量子超越性：実態と批判（2/2）（1/2）
 
 - <svg viewBox="0 0 800 160" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="160" fill="#1a1a2e"/><rect x="40" y="20" width="340" height="120" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="210" y="55" font-family="sans-serif" font-size="16" font-weight="bold" fill="#e91e63" text-anchor="middle">量子超越性</text><text x="210" y="80" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">人工問題で量子が古典より速い</text><text x="210" y="100" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">（実用価値ほぼゼロ）</text><text x="210" y="125" font-family="sans-serif" font-size="12" fill="#777" text-anchor="middle">≠</text><rect x="420" y="20" width="340" height="120" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="590" y="55" font-family="sans-serif" font-size="16" font-weight="bold" fill="#4fc3f7" text-anchor="middle">量子有用性 (Advantage)</text><text x="590" y="80" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">実用的問題で古典より有益</text><text x="590" y="100" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle">← まだ達成されていない</text></svg>
 - ---
 - **重要な注意：**
 - - 解いた問題は「量子回路のサンプリング」という人工問題
+
+
+---
+
+# 量子超越性：実態と批判（2/2）（2/2）
+
+> *量子超越性は人工問題での勝利で実用価値はほぼゼロ*
+
 - - 実用的な価値はほぼゼロ
 - - 「万能量子コンピュータ」ではない
 - ---
@@ -104,6 +183,8 @@ style: |
 ---
 
 # 量子コンピュータが得意・不得意なこと（1/2）
+
+> *得意なのは暗号解読・分子設計・特定最適化だけ*
 
 - <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="220" fill="#1a1a2e"/><text x="400" y="30" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f9a825" text-anchor="middle">速度向上レベル別：量子アルゴリズムの分類</text><rect x="40" y="50" width="220" height="150" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="150" y="80" font-family="sans-serif" font-size="15" font-weight="bold" fill="#e91e63" text-anchor="middle">指数的高速化</text><text x="150" y="102" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">素因数分解 (Shor)</text><text x="150" y="122" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">量子シミュレーション</text><text x="150" y="142" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">組み合わせ最適化(一部)</text><text x="150" y="175" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">RSA暗号解読など革命的</text><rect x="290" y="50" width="220" height="150" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="80" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f9a825" text-anchor="middle">二乗程度の高速化</text><text x="400" y="102" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">DB検索 (Grover)</text><text x="400" y="122" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">機械学習の一部</text><text x="400" y="175" font-family="sans-serif" font-size="11" fill="#f9a825" text-anchor="middle">有用だが革命的ではない</text><rect x="540" y="50" width="220" height="150" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="650" y="80" font-family="sans-serif" font-size="15" font-weight="bold" fill="#4caf50" text-anchor="middle">古典と同等・劣る</text><text x="650" y="102" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">動画再生・Web閲覧</text><text x="650" y="122" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">一般的なデータ処理</text><text x="650" y="142" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">I/O集約型処理</text><text x="650" y="175" font-family="sans-serif" font-size="11" fill="#4caf50" text-anchor="middle">古典PCの方が優秀</text></svg>
 - **得意：（指数的高速化）**
@@ -118,6 +199,8 @@ style: |
 
 # 量子コンピュータが得意・不得意なこと（2/2）
 
+> *通常のデータ処理や動画再生は古典PCの方が速い*
+
 - - データベース検索（Groverのアルゴリズム）
 - - 機械学習の一部
 - ---
@@ -130,6 +213,8 @@ style: |
 ---
 
 # 現在の技術水準と課題（1/2）
+
+> *RSA解読に必要な量子ビット数は現在の1万倍以上*
 
 - <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="30" font-family="sans-serif" font-size="17" font-weight="bold" fill="#f9a825" text-anchor="middle">量子ビット数の進化（実際 vs 必要数）</text><rect x="60" y="60" width="100" height="100" rx="6" fill="#1565c0"/><text x="110" y="105" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">IBM Condor</text><text x="110" y="125" font-family="sans-serif" font-size="20" font-weight="bold" fill="#f9a825" text-anchor="middle">1121</text><text x="110" y="148" font-family="sans-serif" font-size="11" fill="#e91e63" text-anchor="middle">高エラー率</text><rect x="200" y="80" width="100" height="80" rx="6" fill="#0d47a1"/><text x="250" y="118" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">Google Willow</text><text x="250" y="138" font-family="sans-serif" font-size="20" font-weight="bold" fill="#f9a825" text-anchor="middle">105</text><rect x="400" y="55" width="160" height="110" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="480" y="90" font-family="sans-serif" font-size="13" fill="#e91e63" text-anchor="middle">RSA-2048解読に必要</text><text x="480" y="115" font-family="sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">数百万〜</text><text x="480" y="140" font-family="sans-serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">1億 qubit</text><text x="650" y="110" font-family="sans-serif" font-size="14" fill="#777" text-anchor="middle">現在との差:</text><text x="650" y="135" font-family="sans-serif" font-size="14" fill="#e91e63" text-anchor="middle">10,000倍以上</text></svg>
 - **量子ビット数（2024年）：**
@@ -144,6 +229,8 @@ style: |
 
 # 現在の技術水準と課題（2/2）
 
+> *デコヒーレンスで量子状態は0.1ms以内に崩壊する*
+
 - - 量子状態は環境ノイズで0.1ms程度で壊れる
 - - エラー訂正に多くの量子ビットが必要（論理1個に物理1000個）
 - ---
@@ -156,6 +243,8 @@ style: |
 ---
 
 # まとめ：量子コンピュータの現実
+
+> *実用化まで10〜20年、量子PCは万能ではない*
 
 - ✅ **量子コンピュータはすべてを速くするわけではない**
 - ✅ **得意分野：暗号解読・分子シミュレーション・特定の最適化**

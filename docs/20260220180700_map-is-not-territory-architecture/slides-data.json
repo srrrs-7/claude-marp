@@ -34,7 +34,8 @@
 				""
 			],
 			"speakerNotes": "コジブスキーの科学的意味論を分かりやすく説明。地図は道具であり、現実そのものではないという基本概念を確立する。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "表現は対象そのものではなく常に省略・目的・自己参照を持つ"
 		},
 		{
 			"title": "アルフレッド・コジブスキー「地図は現実ではない」（2/2）",
@@ -45,7 +46,8 @@
 				"- **自己参照性**: 地図自身も表現の一部である"
 			],
 			"speakerNotes": "コジブスキーの科学的意味論を分かりやすく説明。地図は道具であり、現実そのものではないという基本概念を確立する。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "省略性・目的性・自己参照性が地図の3性質を規定する"
 		},
 		{
 			"title": "地図の3性質（図解）",
@@ -72,7 +74,8 @@
 				"- アメリカ大陸の存在を完全に無視"
 			],
 			"speakerNotes": "具体的な歴史的事例。間違った地図でも「目的の達成」に使えることを示す。ただし副作用（偶然の発見）もある。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "地球の直径を誤認した地図でも新大陸発見という目的を果たした"
 		},
 		{
 			"title": "コロンブスの地図 — 完全に間違った地図で新大陸を発見（2/2）",
@@ -84,7 +87,8 @@
 				"教訓：地図の「正確さ」と「有用性」は別物"
 			],
 			"speakerNotes": "具体的な歴史的事例。間違った地図でも「目的の達成」に使えることを示す。ただし副作用（偶然の発見）もある。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "地図の正確さではなく航行可能性こそが価値の本質だ"
 		},
 		{
 			"title": "コロンブスの地図 vs 現実",
@@ -105,7 +109,8 @@
 				"- **乗客が次の駅に乗り換えられるか** だけに最適化"
 			],
 			"speakerNotes": "ロンドン地下鉄路線図の例は有名。地理的に不正確でも機能的に完璧な地図の実例。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "トポロジカルな接続関係だけに最適化した路線図が証明する"
 		},
 		{
 			"title": "地図の価値は「正確さ」ではなく「航行可能性」（2/2）",
@@ -117,7 +122,8 @@
 				"- 使用者がそれで「航行できる」"
 			],
 			"speakerNotes": "ロンドン地下鉄路線図の例は有名。地理的に不正確でも機能的に完璧な地図の実例。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "目的に照らして必要な情報を保ち不要な情報を捨てる原則"
 		},
 		{
 			"title": "航行可能性の原則（図解）",
@@ -163,6 +169,7 @@
 		},
 		{
 			"title": "C4モデルの実践：各層の嘘の使い分け（1/2）",
+			"subtitle": "読者と目的に応じた抽象化レベルの選択が嘘を管理可能な道具に変える",
 			"content": [
 				"**L1 Context**: ビジネス価値と外部システムの関係",
 				"- 嘘の種類: 大規模な省略（内部構造を完全に隠す）",
@@ -186,7 +193,8 @@
 				"**L4 Code**: クラス・関数の詳細（自動生成推奨）"
 			],
 			"speakerNotes": "C4の各層を実例で説明。読者層と嘘の種類のマッピングが核心。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "L3はインターフェースのみL4は自動生成で実装詳細を隠す"
 		},
 		{
 			"title": "必要な嘘と有害な嘘",
@@ -218,7 +226,8 @@
 				"- 原因：「死んだドキュメント」による誤った前提"
 			],
 			"speakerNotes": "実際の事故事例。どちらも「死んだドキュメント」か「目的を誤った省略」が原因。嘘の危険性を実感させる。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Knight Capitalは死んだドキュメントで45分4億ドルを失った"
 		},
 		{
 			"title": "悪い嘘：決断を歪めるモデル — 実例（2/2）",
@@ -230,7 +239,8 @@
 				"- 省略の判断は常に目的と読者を考慮すべき"
 			],
 			"speakerNotes": "実際の事故事例。どちらも「死んだドキュメント」か「目的を誤った省略」が原因。嘘の危険性を実感させる。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "MCASの省略が「良い省略」から「悪い省略」に転化した教訓"
 		},
 		{
 			"title": "生きたドキュメント vs 死んだドキュメント",
@@ -269,6 +279,7 @@
 		},
 		{
 			"title": "ADR — アーキテクチャ決定記録で「なぜ」を保存する（1/2）",
+			"subtitle": "Status・Context・Decision・Consequencesの4要素が嘘の文脈を未来の意思決定者に引き継ぐ",
 			"content": [
 				"Architecture Decision Records (ADR) の構造:",
 				"- **Status**: Proposed / Accepted / Deprecated / Superseded",
@@ -289,7 +300,8 @@
 				"- 将来の意思決定者への「嘘の文脈」の引き継ぎ"
 			],
 			"speakerNotes": "ADRは設計の「なぜ」を記録する。図が嘘になった経緯と理由を保存することで、将来の誤判断を防ぐ。",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "「なぜこんな構造か誰も知らない」を防ぐ嘘の文脈の継承"
 		},
 		{
 			"title": "ADRの構造（図解）",
@@ -324,6 +336,7 @@
 		},
 		{
 			"title": "参考文献（1/2）",
+			"subtitle": "コジブスキー一般意味論・地図と現実理論の基礎文献",
 			"content": [
 				"**General Semantics / 地図と現実:**",
 				"- [Science and Sanity — Alfred Korzybski (1933)](https://en.wikipedia.org/wiki/Science_and_Sanity)",
@@ -336,6 +349,7 @@
 		},
 		{
 			"title": "参考文献（2/2）",
+			"subtitle": "C4モデル・Structurizr・Diagrams as Code・ADRの実践文献",
 			"content": [
 				"- [The C4 model for visualising software architecture](https://c4model.com/)",
 				"- [Structurizr DSL Documentation](https://docs.structurizr.com/dsl)",

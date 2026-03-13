@@ -107,6 +107,8 @@ style: |
 
 # なぜ我々は記憶を信じるのか
 
+> *9.11の鮮明な記憶も3年後40%が不正確—鮮明さと正確さは無相関*
+
 - - 「鮮明に覚えている」= 正確とは限らない
 - - **フラッシュバルブ記憶**: 9.11の記憶は詳細だが、3年後の調査で40%が不正確
 - - 記憶の鮮明さと正確さの**相関はほぼゼロ**
@@ -130,6 +132,8 @@ style: |
 
 # 再固定化 (Reconsolidation)
 
+> *思い出すたびに記憶が書き換えられる—PTSDはそれを治療に使う*
+
 - - **2000年代の革命的発見**: 記憶は思い出すたびに「不安定化」する
 - - PTSDの治療に応用: 恐怖記憶を想起中に介入し書き換える
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="260" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">再固定化サイクル — 思い出すたびに上書き保存</text><rect x="290" y="45" width="220" height="55" rx="10" fill="#0f3460" stroke="#f9a825" stroke-width="2"/><text x="400" y="68" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">安定した記憶</text><text x="400" y="87" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">(長期記憶に保存)</text><polygon points="400,108 393,100 407,100" fill="#4fc3f7"/><line x1="400" y1="100" x2="400" y2="115" stroke="#4fc3f7" stroke-width="2"/><rect x="150" y="115" width="500" height="55" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="138" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">想起 → 記憶が不安定化（可塑的状態）</text><text x="400" y="157" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">外部情報・感情・質問で内容が変わりやすい</text><polygon points="560,178 553,170 567,170" fill="#81c784"/><line x1="560" y1="170" x2="560" y2="185" stroke="#81c784" stroke-width="2"/><rect x="450" y="185" width="220" height="50" rx="10" fill="#0f3460" stroke="#81c784" stroke-width="2"/><text x="560" y="207" text-anchor="middle" fill="#81c784" font-size="12" font-weight="bold" font-family="sans-serif">修正されて再保存</text><text x="560" y="225" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">(少し変化した記憶)</text><path d="M 560 235 Q 720 235 720 72 Q 720 45 510 45" fill="none" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,4"/><polygon points="510,45 517,38 517,52" fill="#f9a825"/><text x="700" y="148" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif" transform="rotate(-90,700,148)">繰り返し</text><rect x="50" y="185" width="220" height="50" rx="10" fill="#0f3460" stroke="#ff8a65" stroke-width="1.5"/><text x="160" y="207" text-anchor="middle" fill="#ff8a65" font-size="12" font-weight="bold" font-family="sans-serif">PTSD治療への応用</text><text x="160" y="225" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">可塑化中に介入 → 恐怖を書き換える</text></svg>
@@ -146,6 +150,8 @@ style: |
 ---
 
 # Elizabeth Loftusの研究
+
+> *「smashed」一語で速度推定+9mph、存在しないガラスを「目撃」する*
 
 - - **Loftus & Palmer (1974)**: 「激突(smashed)」群は速度推定が高く、存在しないガラスを「見た」
 - - **ショッピングモール実験**: 25%の被験者が偽の「迷子体験」を「思い出した」
@@ -182,6 +188,8 @@ style: |
 
 # 目撃証言の危うさ
 
+> *DNA鑑定で判明した冤罪375件の75%が誤った目撃証言が原因*
+
 - - DNAで無罪が判明した冤罪事件の **75%** が誤った目撃証言が原因
 - - **Innocence Project**: 375人以上の無実の人がDNA鑑定で釈放
 - <svg viewBox="0 0 800 250" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="250" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">DNA鑑定で無実が証明された冤罪の原因（Innocence Project）</text><rect x="50" y="50" width="260" height="160" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="180" y="73" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">誤った目撃証言</text><text x="180" y="130" text-anchor="middle" fill="#e91e63" font-size="56" font-weight="bold" font-family="sans-serif">75%</text><text x="180" y="158" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">最大の原因</text><text x="180" y="196" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">375+件の冤罪を分析</text><rect x="340" y="50" width="195" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="437" y="72" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">不適切な法科学鑑定</text><text x="437" y="100" text-anchor="middle" fill="white" font-size="36" font-weight="bold" font-family="sans-serif">45%</text><rect x="340" y="140" width="195" height="70" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="1.5"/><text x="437" y="162" text-anchor="middle" fill="#4fc3f7" font-size="11" font-weight="bold" font-family="sans-serif">虚偽自白</text><text x="437" y="192" text-anchor="middle" fill="white" font-size="36" font-weight="bold" font-family="sans-serif">29%</text><rect x="555" y="50" width="195" height="75" rx="8" fill="#16213e" stroke="#81c784" stroke-width="1.5"/><text x="653" y="72" text-anchor="middle" fill="#81c784" font-size="11" font-weight="bold" font-family="sans-serif">密告者の証言</text><text x="653" y="100" text-anchor="middle" fill="white" font-size="36" font-weight="bold" font-family="sans-serif">18%</text><rect x="555" y="140" width="195" height="70" rx="8" fill="#16213e" stroke="#ff8a65" stroke-width="1.5"/><text x="653" y="162" text-anchor="middle" fill="#ff8a65" font-size="11" font-weight="bold" font-family="sans-serif">証拠隠蔽</text><text x="653" y="192" text-anchor="middle" fill="white" font-size="36" font-weight="bold" font-family="sans-serif">34%</text><text x="400" y="235" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">※複数原因が重複する場合あり</text></svg>
@@ -210,6 +218,8 @@ style: |
 ---
 
 # 参考文献
+
+> *記憶研究を根底から変えた偽記憶・再固定化の主要文献*
 
 - - **研究:**
 - - Loftus, E.F. & Palmer, J.C. (1974) "Reconstruction of automobile destruction"

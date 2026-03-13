@@ -122,6 +122,8 @@ style: |
 
 # アジェンダ (1/2)
 
+> *動機→心理→経済→社会規範の順で多層的に分析する構成*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">自己決定理論（SDT）— 内発的動機の3要素</text>
@@ -157,6 +159,8 @@ style: |
 ---
 
 # アジェンダ (2/2)
+
+> *演習とまとめで理論を自分の動機に直接接続できる構成*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -255,6 +259,8 @@ style: |
 
 # OSSが支える現代インフラ（1/2）
 
+> *世界のサーバーの90%がOSSで動き無償貢献が支えている*
+
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">公共財ジレンマ — 経済学的予測 vs OSS の現実</text>
@@ -285,6 +291,8 @@ style: |
 ---
 
 # OSSが支える現代インフラ（2/2）
+
+> *日常的に使うサービスの根幹にOSSが不可欠な部品として存在*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -358,6 +366,8 @@ style: |
 
 # 公共財ジレンマとフリーライダー問題（1/2）
 
+> *無償で使えるOSSは経済学的に公共財であり搾取が起きやすい*
+
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">公共財ジレンマ — 経済学的予測 vs OSS の現実</text>
@@ -388,6 +398,8 @@ style: |
 ---
 
 # 公共財ジレンマとフリーライダー問題（2/2）
+
+> *フリーライダーが増えると貢献者が燃え尽きサービスが崩壊する*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -422,6 +434,8 @@ style: |
 ---
 
 # なぜ経済合理性では説明できないか（1/2）
+
+> *無償労働を経済合理性で説明しようとすると理論が破綻する*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -464,6 +478,8 @@ style: |
 ---
 
 # なぜ経済合理性では説明できないか（2/2）
+
+> *評判・楽しさ・使命感など非金銭的誘因が貢献を駆動する*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -544,6 +560,8 @@ style: |
 
 # 有能感：「俺が作った」という感覚（1/2）
 
+> *自己効力感の達成がOSS貢献の最大の内的報酬となる*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">自己決定理論（SDT）— 内発的動機の3要素</text>
@@ -580,6 +598,8 @@ style: |
 
 # 有能感：「俺が作った」という感覚（2/2）
 
+> *PRマージの瞬間の達成感が次の貢献への最強の動機となる*
+
 - <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">フロー理論 — OSSでフローが起きやすい理由</text>
@@ -613,6 +633,8 @@ style: |
 
 # 自律性：自分でルールを決める喜び（1/2）
 
+> *上司なく自分のペースで貢献できる自律性が内発動機を高める*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">シグナリング理論 — OSSが「評判資本」になる仕組み</text>
@@ -644,6 +666,8 @@ style: |
 
 # 自律性：自分でルールを決める喜び（2/2）
 
+> *何を・いつ・どう実装するかの選択権が貢献継続を支える*
+
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">有能感とコミュニティ — OSSならではの強化</text>
@@ -674,6 +698,8 @@ style: |
 ---
 
 # 関係性：コミュニティとのつながり（1/2）
+
+> *メンターとのやり取りや仲間意識がOSS継続の社会的接着剤*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -709,6 +735,8 @@ style: |
 
 # 関係性：コミュニティとのつながり（2/2）
 
+> *承認・感謝・相互扶助がコミュニティへの帰属欲求を満たす*
+
 - <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">フロー理論 — OSSでフローが起きやすい理由</text>
@@ -740,6 +768,8 @@ style: |
 ---
 
 # フロー体験とOSSコーディング（1/2）
+
+> *難易度とスキルが一致する課題でフロー状態が自然発生する*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -774,6 +804,8 @@ style: |
 ---
 
 # フロー体験とOSSコーディング（2/2）
+
+> *時間を忘れる没頭体験がOSSコーディングの強力な誘因となる*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -847,6 +879,8 @@ style: |
 
 # シグナリング理論（1/2）
 
+> *OSS貢献は採用市場で自分の能力を証明する最強のシグナル*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">自己決定理論（SDT）— 内発的動機の3要素</text>
@@ -882,6 +916,8 @@ style: |
 ---
 
 # シグナリング理論（2/2）
+
+> *コード品質・コミュニケーション・継続性が雇用者に可視化される*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -920,6 +956,8 @@ style: |
 
 # GitHubは履歴書か？（1/2）
 
+> *採用担当の70%がGitHub活動を資格証明より重視すると回答*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">シグナリング理論 — OSSが「評判資本」になる仕組み</text>
@@ -950,6 +988,8 @@ style: |
 ---
 
 # GitHubは履歴書か？（2/2）
+
+> *緑の草が多いほど採用確率が上がるという神話の真偽を問う*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1018,6 +1058,8 @@ style: |
 
 # 贈与経済（Gift Economy）（1/2）
 
+> *贈り物が地位と影響力を生む互酬性の論理がOSSに作用する*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">クラウディングアウト — お金が動機を壊す逆説</text>
@@ -1051,6 +1093,8 @@ style: |
 ---
 
 # 贈与経済（Gift Economy）（2/2）
+
+> *多く貢献するほど発言権と評判が比例して増す贈与の循環*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1095,6 +1139,8 @@ style: |
 
 # ハッカー倫理と情報の自由（1/2）
 
+> *情報は自由であるべきという信条がOSS運動の思想的根拠*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">OSS エコシステムの現実と規模</text>
@@ -1133,6 +1179,8 @@ style: |
 ---
 
 # ハッカー倫理と情報の自由（2/2）
+
+> *知識の独占を拒む倫理観が技術者をGPLへと向かわせる*
 
 - <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1174,6 +1222,8 @@ style: |
 
 # コモンズとしてのOSS（1/2）
 
+> *オストロムの原則が証明する共有資源の持続的管理の可能性*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">自己決定理論（SDT）— 内発的動機の3要素</text>
@@ -1209,6 +1259,8 @@ style: |
 ---
 
 # コモンズとしてのOSS（2/2）
+
+> *ガバナンスルールと境界の明確化がコモンズ崩壊を防ぐ*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1289,6 +1341,8 @@ style: |
 
 # 企業参加と動機の変質（1/2）
 
+> *企業資金流入がボランティア文化を変容させ内発動機を阻害する*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">クラウディングアウト — お金が動機を壊す逆説</text>
@@ -1322,6 +1376,8 @@ style: |
 ---
 
 # 企業参加と動機の変質（2/2）
+
+> *外的報酬の導入がアンダーマイニング効果で自発的貢献を減らす*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1399,6 +1455,8 @@ style: |
 
 # メンテナーバーンアウト（1/2）
 
+> *感謝なき要求の連続がメンテナーを燃え尽きに追い込む現実*
+
 - <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">OSSサステナビリティへのアプローチ比較</text>
@@ -1438,6 +1496,8 @@ style: |
 ---
 
 # メンテナーバーンアウト（2/2）
+
+> *OpenSSL・ Log4jが示すバーンアウトがインフラ危機につながる*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1514,6 +1574,8 @@ style: |
 
 # ワーク①：自分の動機マップを描く（1/2）
 
+> *内発・外発・社会規範を軸に自分の動機構造を可視化する*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">シグナリング理論 — OSSが「評判資本」になる仕組み</text>
@@ -1544,6 +1606,8 @@ style: |
 ---
 
 # ワーク①：自分の動機マップを描く（2/2）
+
+> *動機マップが自分に合ったOSS貢献方法の選択を助ける*
 
 - <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1584,6 +1648,8 @@ style: |
 
 # ワーク②：OSSプロジェクト動機分析（1/2）
 
+> *実在プロジェクトの貢献者動機を3理論で構造的に分析する*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">贈与経済とハッカー倫理</text>
@@ -1617,6 +1683,8 @@ style: |
 ---
 
 # ワーク②：OSSプロジェクト動機分析（2/2）
+
+> *分析結果をチームで比較し動機の多様性を発見する*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1659,7 +1727,7 @@ style: |
 
 ---
 
-# まとめ
+# まとめ（1/2）
 
 - <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1694,6 +1762,14 @@ style: |
 - **3つの主要メッセージ:**
 - **① 経済合理性だけでは説明できない** — OSSは公共財ジレンマを「動機の多様性」で乗り越える
 - **② 動機は多層構造** — 内発（SDT）× 社会的（シグナリング・贈与）× 経済的が重なり合う
+
+
+---
+
+# まとめ（2/2）
+
+> *評判・学習・内発動機の3層が持続的OSSコミットを生む*
+
 - **③ 持続には設計が必要** — クラウディングアウトを避け、コモンズを維持する仕組みが不可欠
 - **エンジニアへの問い直し:**
 - 「あなたのプロジェクトは、貢献者の**どの動機**に応えているか？」
@@ -1703,6 +1779,8 @@ style: |
 ---
 
 # 参考文献（1/2）
+
+> *OSS動機研究の主要論文と心理学的基礎文献の一覧*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
@@ -1737,6 +1815,8 @@ style: |
 ---
 
 # 参考文献（2/2）
+
+> *実践的OSSコントリビューションガイドとコミュニティリソース*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>

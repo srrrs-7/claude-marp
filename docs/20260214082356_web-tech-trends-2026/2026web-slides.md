@@ -103,6 +103,8 @@ style: |
 
 # 本日のアジェンダ
 
+> *5領域を体系的に把握して2026年の技術選定判断に使える*
+
 - **1. フロントエンドフレームワーク** - React 19, Vue 4, Svelte 5の最新動向
 - **2. ランタイム・ビルドツール** - Bun, Deno, Vite 6のパフォーマンス革命
 - **3. WebプラットフォームAPI** - View Transitions, Popoverなどネイティブ機能の充実
@@ -112,6 +114,8 @@ style: |
 ---
 
 # 2026年のWeb開発を取り巻く状況
+
+> *AI統合・エッジ化・標準化の3波が同時に押し寄せている*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">2026年 Web開発の5大変化</text>
@@ -148,6 +152,8 @@ style: |
 
 # このプレゼンテーションの使い方
 
+> *今すぐ実践に使えるチートシートとして全スライドを設計済み*
+
 - **自己ペースで学習**: 各セクション独立、興味ある部分から読める
 - **実践的な情報**: コード例、ベンチマーク、選定基準を豊富に掲載
 - **参考資料完備**: 公式ドキュメント、記事へのリンクで深掘り可能
@@ -157,6 +163,8 @@ style: |
 ---
 
 # フロントエンドフレームワークの潮流
+
+> *React主流は続くが、Signals系フレームワークが急速に台頭*
 
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">フレームワーク人気比較 2026</text>
@@ -193,6 +201,8 @@ style: |
 ---
 
 # React 19: 新機能概要
+
+> *React Compiler導入でメモ化廃止、開発者体験が劇的改善*
 
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">React 19 主要機能マップ</text>
@@ -301,6 +311,8 @@ export function AddToCartButton({ productId }) {
 
 # React 19: React Compiler
 
+> *Compilerが自動最適化：useCallback/useMemoの手動記述が不要に*
+
 - **自動最適化**: コンポーネントとHookを自動でメモ化
 - **useMemo/useCallback削減**: 手動最適化がほぼ不要に
 - **段階的導入**: ファイル・ディレクトリ単位で有効化可能
@@ -322,6 +334,8 @@ const val = expensiveCalc(a, b)
 ---
 
 # Vue 4への道のり
+
+> *Vue 4はVapor Mode採用でVDOM廃止、React Compilerと同方向*
 
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Vue 4 Vapor Mode パフォーマンス比較</text>
@@ -355,6 +369,8 @@ const val = expensiveCalc(a, b)
 ---
 
 # Svelte 5とRunes
+
+> *RunesによるSignals化でSvelte 5のリアクティビティが刷新*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Svelte 5 Runes リアクティビティ</text>
@@ -410,6 +426,8 @@ let doubled = $derived(count * 2)
 
 # Solid.js: Signals-first設計
 
+> *Solid.jsはfine-grained reactivityで最も高速なUIを実現*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Solid.js Signals アーキテクチャ</text>
 <rect x="50" y="70" width="200" height="100" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
@@ -459,6 +477,8 @@ function Counter() {
 
 # Qwik: Resumability革命
 
+> *QuikのResumabilityはSSRのハイドレーション問題を根本解決*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Qwik Resumability vs Hydration</text>
 <rect x="40" y="60" width="320" height="280" rx="10" fill="#16213e" stroke="#555" stroke-width="1.5"/>
@@ -479,6 +499,8 @@ function Counter() {
 ---
 
 # フレームワーク性能比較
+
+> *FW性能差はユースケースで逆転：選定基準はチームスキルが優先*
 
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">JS Framework Benchmark 2026</text>
@@ -585,6 +607,8 @@ function Counter() {
 
 # メタフレームワークの進化
 
+> *Next/Nuxt/SvelteKitがメタFW三強、選択はエコシステム次第*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">メタフレームワーク 2026</text>
 
@@ -619,6 +643,8 @@ function Counter() {
 
 # Islands Architecture
 
+> *Islands ArchitectureでJSバンドルを90%削減できるケースも*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Islands Architecture</text>
 <rect x="60" y="55" width="680" height="300" rx="10" fill="#16213e" stroke="#555" stroke-width="1.5"/>
@@ -647,6 +673,8 @@ function Counter() {
 
 # フロントエンドFW: まとめ
 
+> *2026年のFW選定基準：チームスキル×パフォーマンス要件が全て*
+
 - **React 19**: エコシステム最強、Server Componentsで新時代
 - **Vue 3/4**: 安定性と革新のバランス
 - **Svelte 5**: 学習曲線緩やか、中小規模に最適
@@ -656,6 +684,8 @@ function Counter() {
 ---
 
 # ランタイム戦争の現在地
+
+> *Bunが最速だがNode互換性は完全ではない：移行コストを評価せよ*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">ランタイム戦争 2026</text>
@@ -689,6 +719,8 @@ function Counter() {
 ---
 
 # Bun 2.x: 全方位高速化
+
+> *Bun 2.xでテスト・バンドラ・パッケージ管理が全部入りに*
 
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Bun 2.x パフォーマンス比較</text>
@@ -767,6 +799,8 @@ bun install
 
 # Deno 2.x: Node互換の完成
 
+> *Deno 2.xのNode互換完成でnpmパッケージが全て使えるように*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Deno 2.x: セキュリティモデル</text>
 <rect x="100" y="65" width="600" height="280" rx="12" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
@@ -791,6 +825,8 @@ bun install
 ---
 
 # Node.js 22-24: 安定進化
+
+> *Node.js 22はLTS安定版：エンタープライズには最も安全な選択*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Node.js 進化タイムライン</text>
@@ -833,6 +869,8 @@ bun install
 ---
 
 # ランタイム性能比較
+
+> *起動速度差は最大10倍：サーバーレス・エッジ環境では選択が重要*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">ランタイム性能比較 2026</text>
@@ -880,6 +918,8 @@ bun install
 
 # Vite 6: 次世代ビルドツール
 
+> *Vite 6のRolldown採用でビルド速度が最大5倍速に向上*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Vite 6 ビルドパイプライン</text>
 
@@ -914,6 +954,8 @@ bun install
 
 # Turbopack: Vercelの秘密兵器
 
+> *TurbopackはNext.js専用だが将来は汎用化予定：Vercel戦略の核*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Turbopack 増分コンパイル</text>
 <rect x="60" y="60" width="680" height="130" rx="10" fill="#16213e" stroke="#555" stroke-width="1.5"/>
@@ -932,6 +974,8 @@ bun install
 ---
 
 # ビルドツール速度比較
+
+> *ビルドツール速度差は大規模プロジェクトほど重要になる*
 
 - <svg viewBox="0 0 800 310" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="310" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">ビルドツール速度比較</text>
@@ -963,6 +1007,8 @@ bun install
 ---
 
 # パッケージマネージャー比較
+
+> *pnpmがmonorepo標準化、Bunはシングルリポに最適*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">パッケージマネージャー比較</text>
@@ -1000,6 +1046,8 @@ bun install
 
 # ランタイム・ビルド: まとめ
 
+> *2026年のランタイム選定：新規はBun、移行コストがあるならNode*
+
 - **Node.js**: 安定性・エコシステム重視なら鉄板
 - **Bun**: 開発速度・DX重視の新規プロジェクトで挑戦
 - **Vite**: フレームワーク問わず開発ビルドツールのデファクト
@@ -1008,6 +1056,8 @@ bun install
 ---
 
 # WebプラットフォームAPIの充実
+
+> *Web標準APIの充実でフレームワーク非依存のコードが書けるように*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">2026年 注目 Web Platform API</text>
@@ -1044,6 +1094,8 @@ bun install
 ---
 
 # View Transitions API
+
+> *View Transitions APIでSPAと同等のページ遷移をネイティブに実現*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">View Transitions API フロー</text>
@@ -1101,6 +1153,8 @@ document.startViewTransition(() => {
 
 # Popover API
 
+> *Popover APIがFocusTrap実装の複雑さを標準仕様で解決する*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Popover API: ネイティブ実装</text>
 <rect x="100" y="70" width="600" height="260" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
@@ -1150,6 +1204,8 @@ document.startViewTransition(() => {
 
 # Speculation Rules API
 
+> *Speculation Rules APIでページ遷移速度を最大300ms短縮できる*
+
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Speculation Rules API</text>
 <rect x="60" y="70" width="680" height="80" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
@@ -1177,6 +1233,8 @@ document.startViewTransition(() => {
 ---
 
 # Container Queries
+
+> *Container QueriesはWebデザインのパラダイムを根底から変える*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">Container Queries</text>
@@ -1206,6 +1264,8 @@ document.startViewTransition(() => {
 
 # :has()セレクタの威力
 
+> *:has()で親要素選択が可能に：CSS設計の複雑さが激減する*
+
 - **機能**: 「子要素を持つ親」を選択（親セレクタ）
 - **対応**: 全ブラウザ対応
 - **革新性**: CSSだけで親要素をスタイリング可能
@@ -1228,6 +1288,8 @@ form:has(.error) { border: 2px solid red; }
 
 # WebプラットフォームAPI: まとめ
 
+> *Web Platform APIの習得がJSフレームワーク依存から解放する鍵*
+
 - **View Transitions**: ページ遷移UX向上
 - **Popover**: アクセシビリティ対応が楽に
 - **Container Queries**: 真のコンポーネント指向CSS
@@ -1237,6 +1299,8 @@ form:has(.error) { border: 2px solid red; }
 ---
 
 # AI統合開発の現状
+
+> *2026年のCopilot・Cursor・Claude Codeの比較と使い分けが重要*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">AI統合開発 2026 エコシステム</text>
@@ -1270,6 +1334,8 @@ form:has(.error) { border: 2px solid red; }
 ---
 
 # GitHub Copilot: 進化の軌跡
+
+> *GitHub Copilotは企業利用最多：セキュリティポリシー対応が強み*
 
 - <svg viewBox="0 0 800 310" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="310" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">GitHub Copilot 進化タイムライン</text>
@@ -1311,6 +1377,8 @@ form:has(.error) { border: 2px solid red; }
 
 # Cursor: AI-firstエディタ
 
+> *CursorはAI-first設計でチャット・インライン編集の体験が最高*
+
 - **Composer Mode**: 複数ファイルを一括生成・編集
 - **Agent Mode**: タスクを指示すると自律的に実装
 - **Codebase理解**: プロジェクト全体をインデックス化
@@ -1320,6 +1388,8 @@ form:has(.error) { border: 2px solid red; }
 ---
 
 # Claude Code: CLIエージェント
+
+> *Claude CodeはCLIエージェントとして自律的なコードベース操作が可能*
 
 - **CLI統合**: ターミナルから自然言語で操作
 - **ファイル操作**: 読み取り、編集、作成を自動化
@@ -1442,6 +1512,8 @@ claude "認証ロジックをミドルウェアに分離"
 
 # AI活用の生産性データ
 
+> *AI活用で開発速度40-55%向上、ただしレビュー工数は増加する*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">AI活用 生産性向上データ</text>
 
@@ -1478,6 +1550,8 @@ claude "認証ロジックをミドルウェアに分離"
 
 # AIペアプログラミングのコツ
 
+> *プロンプトに具体的な制約を書けば書くほどAIの精度が倍増*
+
 - **明確な指示**: 曖昧な要求→期待外れ。具体的に型・仕様を指定
 - **段階的生成**: 一度に全部→複雑すぎてミス。小さく作って積み上げ
 - **コンテキスト提供**: 関連ファイル・型定義をAIに見せる
@@ -1487,6 +1561,8 @@ claude "認証ロジックをミドルウェアに分離"
 ---
 
 # AIコード生成のリスク
+
+> *AI生成コードのセキュリティ脆弱性は人間レビューで必ず検出を*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">AIコード生成のリスクと対策</text>
@@ -1529,6 +1605,8 @@ claude "認証ロジックをミドルウェアに分離"
 
 # AI時代のコードレビュー
 
+> *AI時代のコードレビューは設計・ロジック・セキュリティに集中*
+
 - **人間がチェックすべき項目**:
 - - アーキテクチャ設計の妥当性
 - - セキュリティ脆弱性（OWASP Top 10）
@@ -1540,6 +1618,8 @@ claude "認証ロジックをミドルウェアに分離"
 
 # AI統合開発: まとめ
 
+> *AIツール選定の結論：用途×チームスキル×セキュリティで決める*
+
 - **GitHub Copilot**: 最も成熟、大企業に安心
 - **Cursor**: スピード重視、スタートアップ向け
 - **Claude Code**: CLI特化、自動化好きに最適
@@ -1549,6 +1629,8 @@ claude "認証ロジックをミドルウェアに分離"
 ---
 
 # 2026 Web技術トレンド総括
+
+> *5領域の総括：今すぐ投資すべき技術スタックが明確になった*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">2026 Web技術 影響度まとめ</text>
@@ -1578,6 +1660,8 @@ claude "認証ロジックをミドルウェアに分離"
 ---
 
 # あなたの学習ロードマップ
+
+> *個人のスキル優先順位：TypeScript→Signals→Bun→Web API*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e" rx="12"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">学習ロードマップ</text>
@@ -1622,6 +1706,8 @@ claude "認証ロジックをミドルウェアに分離"
 
 # 参考資料・リンク集
 
+> *公式ドキュメント・RFC・ベンチマークが全て一箇所で参照可能*
+
 - **公式ドキュメント**:
 - - [React 19](https://react.dev) / [Vue 3](https://vuejs.org)
 - **ベンチマーク**: [JS Framework Benchmark](https://krausest.github.io/js-framework-benchmark)
@@ -1631,6 +1717,8 @@ claude "認証ロジックをミドルウェアに分離"
 ---
 
 # Thank You & 次のアクション
+
+> *今日から始める3つのアクションで1ヶ月後に成果を出す*
 
 - **今日から始められること**:
 - 1. 現プロジェクトのビルド時間を計測

@@ -7,6 +7,71 @@ paginate: true
 header: "アリのコロニーと分散システム"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -25,6 +90,8 @@ style: |
 
 # アジェンダ
 
+> *5つのテーマがアリから分散設計の本質を体系的に紐解く*
+
 - 1. アリのコロニーの驚くべき事実
 - 2. スティグマジー：間接的コミュニケーション
 - 3. 分散システムとの類似
@@ -42,6 +109,8 @@ style: |
 
 # 女王アリは「命令」しない
 
+> *中央不在でも秩序が生まれる—指揮官なき自律分散の証明*
+
 - **誤解：** 女王アリが全体を指揮している
 - **現実：** 女王は産卵のみ。指示を出す機能を持たない
 - コロニーの全ての活動は**自律的な個体の行動**から生まれる
@@ -53,6 +122,8 @@ style: |
 
 # スティグマジー：フェロモンで「間接通信」
 
+> *環境へのフェロモン書き込みが疎結合通信の完璧なモデル*
+
 - アリは直接会話しない。**環境を介して通信する**
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="260" fill="#1a1a2e"/><rect x="30" y="100" width="60" height="40" rx="8" fill="#e91e63"/><text x="60" y="125" text-anchor="middle" font-size="11" fill="white" font-weight="bold">巣</text><rect x="710" y="100" width="60" height="40" rx="8" fill="#f9a825"/><text x="740" y="125" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="bold">食料</text><path d="M90,120 Q200,50 400,60 Q600,50 710,120" stroke="#ffffff" stroke-width="1" fill="none" stroke-dasharray="4,3" opacity="0.3"/><path d="M90,120 Q250,180 400,170 Q550,160 710,120" stroke="#f9a825" stroke-width="4" fill="none" opacity="0.8"/><path d="M90,120 Q250,200 400,200 Q580,195 710,120" stroke="#f9a825" stroke-width="2" fill="none" opacity="0.4"/><circle cx="200" cy="143" r="5" fill="#f9a825" opacity="0.9"/><circle cx="280" cy="158" r="4" fill="#f9a825" opacity="0.8"/><circle cx="360" cy="165" r="5" fill="#f9a825" opacity="0.9"/><circle cx="450" cy="162" r="4" fill="#f9a825" opacity="0.7"/><circle cx="540" cy="148" r="5" fill="#f9a825" opacity="0.9"/><circle cx="630" cy="133" r="4" fill="#f9a825" opacity="0.8"/><circle cx="240" cy="148" r="12" fill="#e91e63"/><text x="240" y="152" text-anchor="middle" font-size="10" fill="white">🐜</text><circle cx="480" cy="155" r="12" fill="#e91e63"/><text x="480" y="159" text-anchor="middle" font-size="10" fill="white">🐜</text><text x="400" y="30" text-anchor="middle" font-size="12" fill="white">--- 短距離ルート（揮発が遅い） ---</text><text x="400" y="245" text-anchor="middle" font-size="11" fill="#f9a825">フェロモン濃度 = 情報 ｜ 揮発 = TTL ｜ 経路強化 = 正のフィードバック</text></svg>
 - 最短経路が自然に強化される（揮発性により時間でリセット）
@@ -62,6 +133,8 @@ style: |
 ---
 
 # アリの行動ルールは3つだけ
+
+> *3ルールだけが50万匹の集合知を生む—シンプルさが鍵*
 
 - **1. フェロモン濃度に応じてルートを選ぶ**
 - **2. 食料を運ぶ時はフェロモンを残す**
@@ -100,6 +173,8 @@ style: |
 
 # ACOアルゴリズムの仕組み（1/2）
 
+> *正のフィードバックと揮発TTLで最短経路が自然収束する*
+
 - 1992年 Marco Dorigo が提案した組み合わせ最適化手法
 - **巡回セールスマン問題（TSP）** への応用が有名
 - <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><circle cx="100" cy="100" r="18" fill="#f9a825"/><text x="100" y="105" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="bold">A</text><circle cx="260" cy="50" r="18" fill="#e91e63"/><text x="260" y="55" text-anchor="middle" font-size="11" fill="white" font-weight="bold">B</text><circle cx="400" cy="130" r="18" fill="#e91e63"/><text x="400" y="135" text-anchor="middle" font-size="11" fill="white" font-weight="bold">C</text><circle cx="540" cy="60" r="18" fill="#e91e63"/><text x="540" y="65" text-anchor="middle" font-size="11" fill="white" font-weight="bold">D</text><circle cx="680" cy="110" r="18" fill="#4caf50"/><text x="680" y="115" text-anchor="middle" font-size="11" fill="white" font-weight="bold">E</text><line x1="117" y1="93" x2="243" y2="57" stroke="#f9a825" stroke-width="4" opacity="0.9"/><line x1="277" y1="62" x2="383" y2="120" stroke="#f9a825" stroke-width="3" opacity="0.75"/><line x1="417" y1="120" x2="523" y2="70" stroke="#f9a825" stroke-width="2.5" opacity="0.65"/><line x1="557" y1="70" x2="663" y2="103" stroke="#f9a825" stroke-width="4" opacity="0.9"/><line x1="117" y1="107" x2="243" y2="143" stroke="#555" stroke-width="1" stroke-dasharray="4,3"/><line x1="383" y1="118" x2="243" y2="58" stroke="#555" stroke-width="1" stroke-dasharray="4,3"/><text x="400" y="185" text-anchor="middle" font-size="11" fill="#f9a825">太い線 = フェロモン濃度高（最短経路が自然強化）</text></svg>
@@ -122,6 +197,8 @@ style: |
 ---
 
 # 中央集権的設計の問題
+
+> *SPOFはアリが2億5000万年前に解決済—中央集権を疑え*
 
 - **単一障害点（SPOF）：** 中央サーバーが落ちると全滅
 - **スケーラビリティの壁：** 全処理が1点に集中

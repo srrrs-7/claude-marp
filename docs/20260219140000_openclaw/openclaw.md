@@ -117,6 +117,8 @@ style: |
 
 # 目次 (1/2)
 
+> *9章構成でアーキテクチャからセキュリティまで完全網羅*
+
 - **1. OpenClawとは**  — 従来チャットボットとの違い
 - **2. 誕生と沿革**  — Clawdbot → Moltbot → OpenClaw
 - **3. アーキテクチャ** — Gateway / Agent Runtime / ハブ&スポーク
@@ -128,6 +130,8 @@ style: |
 
 # 目次 (2/2)
 
+> *セキュリティ・ユースケース・OpenAI買収まで後半を構成*
+
 - **6. インテグレーション** — WhatsApp / Telegram / Slack / Discord
 - **7. セキュリティ** — CVE-2026-25253 / プロンプトインジェクション / ClawHavoc
 - **8. ユースケース** — 個人生産性 / 開発 / ビジネス自動化
@@ -137,6 +141,8 @@ style: |
 ---
 
 # OpenClawとは何か（1/2）
+
+> *OpenClawがローカルAIアシスタントの新標準として台頭している*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -168,6 +174,8 @@ style: |
 ---
 
 # OpenClawとは何か（2/2）
+
+> *OpenClawがローカルAIアシスタントの新標準として台頭している*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -223,6 +231,8 @@ style: |
 
 # 作者 Peter Steinberger（1/2）
 
+> *PSPDFKit創業者が趣味で開発したエージェントがバイラルに*
+
 - **経歴:**
 - - オーストリア在住のソフトウェア開発者（13年のキャリア）
 - - PSPDFKit（モバイルPDFライブラリ）の創業者
@@ -232,6 +242,8 @@ style: |
 ---
 
 # 作者 Peter Steinberger（2/2）
+
+> *「母でも使えるエージェント」を目指し2/14にOpenAI参画*
 
 - 
 - **思想:**
@@ -278,6 +290,8 @@ style: |
 
 # Moltbookとバイラル拡散の背景（1/2）
 
+> *60日で数百万ユーザー獲得がプロダクト設計の正しさを証明した*
+
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw バイラル拡散の軌跡</text>
@@ -305,6 +319,8 @@ style: |
 ---
 
 # Moltbookとバイラル拡散の背景（2/2）
+
+> *60日で数百万ユーザー獲得がプロダクト設計の正しさを証明した*
 
 - 
 - **数字の推移:**
@@ -357,6 +373,8 @@ style: |
 
 # OpenAI買収・財団移行（2026/2/14-15）（1/2）
 
+> *生成AI統合が開発者の生産性を根本的に変革する*
+
 - **2026年2月14日:** Steinberger、OpenAI参画を発表
 - **2026年2月15日:** Sam Altman、X（旧Twitter）で正式確認
 - 
@@ -366,6 +384,8 @@ style: |
 ---
 
 # OpenAI買収・財団移行（2026/2/14-15）（2/2）
+
+> *生成AI統合が開発者の生産性を根本的に変革する*
 
 - - Steinberger → OpenAIで「次世代パーソナルエージェント」開発をリード
 - - OpenClawプロジェクト → 独立財団へ移行
@@ -502,6 +522,8 @@ style: |
 
 # Gatewayとは（コントロールプレーン）（1/2）
 
+> *中央Gatewayがセキュリティと設定の一元管理を実現する*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Gateway: コントロールプレーン</text>
@@ -542,6 +564,8 @@ style: |
 ---
 
 # Gatewayとは（コントロールプレーン）（2/2）
+
+> *中央Gatewayがセキュリティと設定の一元管理を実現する*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -670,6 +694,8 @@ style: |
 
 # 対応LLM一覧
 
+> *生成AI統合が開発者の生産性を根本的に変革する*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">対応LLM一覧</text>
@@ -711,6 +737,8 @@ style: |
 
 # ローカル実行モデルの意義（1/2）
 
+> *ローカル実行がプライバシーとオフライン対応を同時に解決する*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">ローカル実行 vs クラウドAPI</text>
@@ -741,6 +769,8 @@ style: |
 ---
 
 # ローカル実行モデルの意義（2/2）
+
+> *ローカル実行がプライバシーとオフライン対応を同時に解決する*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -800,6 +830,8 @@ services:
 
 # インターフェース一覧
 
+> *統一インターフェースが異なる端末からの一貫したAI体験を提供*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">OpenClaw インターフェース全体図</text>
@@ -844,6 +876,8 @@ services:
 
 # メモリの基本思想「Markdown as Truth」（1/2）
 
+> *Markdownベースのメモリが可読性と永続性を同時に実現する*
+
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Markdown as Truth 設計思想</text>
@@ -873,6 +907,8 @@ services:
 ---
 
 # メモリの基本思想「Markdown as Truth」（2/2）
+
+> *Markdownベースのメモリが可読性と永続性を同時に実現する*
 
 - **メリット:**
 - - 透明性: 何を覚えているかいつでも確認できる
@@ -906,6 +942,8 @@ services:
 
 # ベクター検索 + FTS5 ハイブリッド（1/2）
 
+> *検索精度がAIアシスタントの回答品質の上限を規定する*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">メモリファイル構造 (Markdown as Truth)</text>
@@ -935,6 +973,8 @@ services:
 ---
 
 # ベクター検索 + FTS5 ハイブリッド（2/2）
+
+> *検索精度がAIアシスタントの回答品質の上限を規定する*
 
 - 
 - **FTS5（全文検索）:**
@@ -996,6 +1036,8 @@ services:
 ---
 
 # Embeddingプロバイダー比較
+
+> *プロバイダー選択がRAGの精度とコストのトレードオフを決める*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -1070,6 +1112,8 @@ services:
 
 # スキルシステムの概念（1/2）
 
+> *スキルの組み合わせが無限のカスタマイズと機能拡張を可能にする*
+
 - **スキルとは:** OpenClawの機能を拡張するプラグインシステム
 - 
 - **特徴:**
@@ -1080,6 +1124,8 @@ services:
 ---
 
 # スキルシステムの概念（2/2）
+
+> *スキルの組み合わせが無限のカスタマイズと機能拡張を可能にする*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -1192,6 +1238,8 @@ tools:
 
 # 主要スキル一覧
 
+> *コアスキルのマスターが生産性向上の最短経路を提供する*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">ClawHub — スキルマーケットプレイス</text>
@@ -1232,6 +1280,8 @@ tools:
 
 # ツール実行サンドボックス（1/2）
 
+> *サンドボックスが悪意あるツール実行からシステムを保護する*
+
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">ツール実行 セキュリティモデル</text>
@@ -1261,6 +1311,8 @@ tools:
 ---
 
 # ツール実行サンドボックス（2/2）
+
+> *サンドボックスが悪意あるツール実行からシステムを保護する*
 
 - **スキルの権限モデル:**
 - - SKILL.md で必要権限を事前宣言
@@ -1322,6 +1374,8 @@ tools:
 
 # /subagents spawn コマンド（v2026.2.17+）（1/2）
 
+> *サブエージェント並列実行が複雑タスクの処理速度を劇的に向上させる*
+
 - **サブエージェントシステム:**
 - - メインエージェントから子エージェントを起動できる新機能
 - - チャットコマンドから決定論的に起動: `/subagents spawn <name>`
@@ -1332,6 +1386,8 @@ tools:
 ---
 
 # /subagents spawn コマンド（v2026.2.17+）（2/2）
+
+> *サブエージェント並列実行が複雑タスクの処理速度を劇的に向上させる*
 
 - - 長時間タスクの並列実行（調査 + 作業 + 監視）
 - - 専門化されたエージェント（コードレビュー専用 / リサーチ専用）
@@ -1382,6 +1438,8 @@ tools:
 
 # Telegram / WhatsApp統合（1/2）
 
+> *メッセージアプリ統合が外出先からのAIアシスタント活用を実現する*
+
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw エージェントモード</text>
@@ -1414,6 +1472,8 @@ tools:
 
 # Telegram / WhatsApp統合（2/2）
 
+> *メッセージアプリ統合が外出先からのAIアシスタント活用を実現する*
+
 - 
 - **WhatsApp（最も人気・設定複雑）:**
 - - WhatsApp Business APIまたはQRコードスキャン方式
@@ -1425,6 +1485,8 @@ tools:
 
 # Slack / Discord統合（1/2）
 
+> *チームコラボツール統合がワークフロー内AIを標準化する*
+
 - **Slack（ビジネス用途）:**
 - - Slack Appを作成、Bot Tokenと Signing Secretを設定
 - - チャンネル・DM両方に応答可能
@@ -1434,6 +1496,8 @@ tools:
 ---
 
 # Slack / Discord統合（2/2）
+
+> *チームコラボツール統合がワークフロー内AIを標準化する*
 
 - 
 - **Discord（開発者コミュニティ向け）:**
@@ -1445,6 +1509,8 @@ tools:
 ---
 
 # macOSアプリ・WebUI・CLI（1/2）
+
+> *マルチUIが用途に応じた最適な操作体験を提供する*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -1480,6 +1546,8 @@ tools:
 ---
 
 # macOSアプリ・WebUI・CLI（2/2）
+
+> *マルチUIが用途に応じた最適な操作体験を提供する*
 
 - - `http://localhost:3000` でアクセス
 - - スキル管理・メモリ閲覧・チャット
@@ -1518,6 +1586,8 @@ agent:
 ---
 
 # なぜAIエージェントはセキュリティリスクが高いのか（1/2）
+
+> *シフトレフトセキュリティが脆弱性の修正コストを最小化*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -1560,6 +1630,8 @@ agent:
 
 # なぜAIエージェントはセキュリティリスクが高いのか（2/2）
 
+> *シフトレフトセキュリティが脆弱性の修正コストを最小化*
+
 - - **スキルの信頼:** サードパーティスキルをほぼ無審査で実行
 - 
 - **OpenClaw特有の問題:**
@@ -1570,6 +1642,8 @@ agent:
 ---
 
 # CVE-2026-25253: 1クリックRCE（CVSS 8.8）（1/2）
+
+> *RCE脆弱性が未パッチ環境でホスト完全制御を許す危険性*
 
 - **脆弱性の概要:**
 - - **種別:** Remote Code Execution（リモートコード実行）
@@ -1582,6 +1656,8 @@ agent:
 ---
 
 # CVE-2026-25253: 1クリックRCE（CVSS 8.8）（2/2）
+
+> *RCE脆弱性が未パッチ環境でホスト完全制御を許す危険性*
 
 - - Control UIが `gatewayUrl` クエリパラメータを**検証せず**に使用
 - - ページロード時に自動接続するため、リンクをクリックするだけで発動
@@ -1645,6 +1721,8 @@ agent:
 
 # CVE-2026-24764: Slackプロンプトインジェクション（1/2）
 
+> *チームコラボツール統合がワークフロー内AIを標準化する*
+
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw セキュリティ多層防御</text>
@@ -1665,6 +1743,8 @@ agent:
 ---
 
 # CVE-2026-24764: Slackプロンプトインジェクション（2/2）
+
+> *チームコラボツール統合がワークフロー内AIを標準化する*
 
 - 1. 攻撃者がSlackチャンネルの説明に悪意ある指示を埋め込む
 - 2. OpenClawがチャンネルメタデータをシステムプロンプトに取り込む
@@ -1728,6 +1808,8 @@ agent:
 
 # ClawHavocサプライチェーン攻撃（1/2）
 
+> *悪意あるスキルパッケージが信頼チェーン全体を汚染する*
+
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">パフォーマンス: レイテンシ比較</text>
@@ -1761,6 +1843,8 @@ agent:
 ---
 
 # ClawHavocサプライチェーン攻撃（2/2）
+
+> *悪意あるスキルパッケージが信頼チェーン全体を汚染する*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -1802,6 +1886,8 @@ agent:
 
 # 政府・機関の警告（1/2）
 
+> *政府機関の公式警告が脅威の深刻さと普及度を示している*
+
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw コスト最適化フロー</text>
@@ -1841,6 +1927,8 @@ agent:
 
 # 政府・機関の警告（2/2）
 
+> *政府機関の公式警告が脅威の深刻さと普及度を示している*
+
 - - サードパーティスキルによるデータ窃取とプロンプトインジェクションを実証
 - - スキルリポジトリの審査体制強化を求める
 - 
@@ -1853,6 +1941,8 @@ agent:
 
 # セキュアな運用ガイドライン（1/2）
 
+> *最小権限とスキル検証がOpenClaw運用の必須セキュリティ対策*
+
 - **必須対応（今すぐ）:**
 - - v2026.1.29以降に**必ずアップデート**（CVE-2026-25253修正済）
 - - Gatewayをローカルネットワーク/VPNの外に晒さない
@@ -1864,6 +1954,8 @@ agent:
 ---
 
 # セキュアな運用ガイドライン（2/2）
+
+> *最小権限とスキル検証がOpenClaw運用の必須セキュリティ対策*
 
 - - `GATEWAY_EXPOSED=false` で外部アクセスを無効化
 - - 定期的に `workspace/` の内容をレビュー
@@ -1922,6 +2014,8 @@ agent:
 
 # 個人生産性（メール・カレンダー・タスク）（1/2）
 
+> *日常タスクの自動化が週10時間以上の生産性向上を実現する*
+
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw まとめ</text>
@@ -1953,6 +2047,8 @@ agent:
 
 # 個人生産性（メール・カレンダー・タスク）（2/2）
 
+> *日常タスクの自動化が週10時間以上の生産性向上を実現する*
+
 - **カレンダー管理:**
 - - 自然言語で予定作成: 「来週月曜の午後2時に会議を入れて」
 - - 会議前リマインダーの自動送信
@@ -1966,6 +2062,8 @@ agent:
 
 # 開発者向けユースケース（1/2）
 
+> *コーディング・デバッグ・レビューの自動化が開発速度を倍増させる*
+
 - **エンジニアが活用している使い方:**
 - 
 - **コード生成・レビュー:**
@@ -1976,7 +2074,9 @@ agent:
 
 ---
 
-# 開発者向けユースケース（2/2）
+# 開発者向けユースケース（2/2）（1/2）
+
+> *コーディング・デバッグ・レビューの自動化が開発速度を倍増させる*
 
 - <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2009,6 +2109,14 @@ agent:
 - **CI/CD連携:**
 - - デプロイ完了/失敗をSlackやTelegramに通知
 - - テスト失敗時の自動解析・報告
+
+
+---
+
+# 開発者向けユースケース（2/2）（2/2）
+
+> *コーディング・デバッグ・レビューの自動化が開発速度を倍増させる*
+
 - 
 - **ドキュメント:**
 - - コード変更から自動でChangelog生成
@@ -2018,6 +2126,8 @@ agent:
 ---
 
 # ビジネス自動化・リサーチ（1/2）
+
+> *反復業務の自動化が人的資源を高付加価値作業に集中させる*
 
 - **ビジネス自動化:**
 - - CRMデータの自動更新・レポート生成
@@ -2029,6 +2139,8 @@ agent:
 ---
 
 # ビジネス自動化・リサーチ（2/2）
+
+> *反復業務の自動化が人的資源を高付加価値作業に集中させる*
 
 - **リサーチ支援:**
 - - Web検索 → 情報収集 → 要約 → メモリ保存を一気通貫
@@ -2042,6 +2154,8 @@ agent:
 
 # 実際の活用事例 Top 10（1/2）
 
+> *実証された活用事例が導入の費用対効果を確実に示している*
+
 - 1. メールの自動要約・分類・返信下書き
 - 2. Webリサーチ → 要約レポート作成
 - 3. GitHub Issue / PR 管理自動化
@@ -2053,6 +2167,8 @@ agent:
 
 # 実際の活用事例 Top 10（2/2）
 
+> *実証された活用事例が導入の費用対効果を確実に示している*
+
 - 6. ファイル整理・ドキュメント検索
 - 7. SNSモニタリング・競合調査
 - 8. 家計・支出トラッキング
@@ -2063,6 +2179,8 @@ agent:
 ---
 
 # v2026.2.17 最新機能まとめ（1/2）
+
+> *最新機能の活用が競合との生産性格差を拡大し続けている*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -2098,7 +2216,9 @@ agent:
 
 ---
 
-# v2026.2.17 最新機能まとめ（2/2）
+# v2026.2.17 最新機能まとめ（2/2）（1/2）
+
+> *最新機能の活用が競合との生産性格差を拡大し続けている*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -2133,6 +2253,14 @@ agent:
 - 
 - **2. `/subagents spawn` コマンド:**
 - - チャットから決定論的にサブエージェントを起動
+
+
+---
+
+# v2026.2.17 最新機能まとめ（2/2）（2/2）
+
+> *最新機能の活用が競合との生産性格差を拡大し続けている*
+
 - - 並列処理・専門化エージェントが実現可能
 - 
 - **3. その他:**
@@ -2142,6 +2270,8 @@ agent:
 ---
 
 # OpenAI傘下での「誰でも使えるエージェント」ビジョン（1/2）
+
+> *生成AI統合が開発者の生産性を根本的に変革する*
 
 - **Steinbergerのミッション（OpenAI参画後）:**
 - 
@@ -2153,7 +2283,9 @@ agent:
 
 ---
 
-# OpenAI傘下での「誰でも使えるエージェント」ビジョン（2/2）
+# OpenAI傘下での「誰でも使えるエージェント」ビジョン（2/2）（1/2）
+
+> *生成AI統合が開発者の生産性を根本的に変革する*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -2174,6 +2306,14 @@ agent:
 - - セキュリティ設定は自己責任
 - - トラブルシューティングにはログ解読が必要
 - 
+
+
+---
+
+# OpenAI傘下での「誰でも使えるエージェント」ビジョン（2/2）（2/2）
+
+> *生成AI統合が開発者の生産性を根本的に変革する*
+
 - **OpenAIとの組み合わせで何が変わるか:**
 - - フロンティアモデルへの直接アクセス
 - - コンシューマー向けUXの実現
@@ -2183,6 +2323,8 @@ agent:
 ---
 
 # オープンソースファウンデーション移行の意義（1/2）
+
+> *OSS活用が開発速度を高めライセンスコスト削減を実現する*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -2218,6 +2360,8 @@ agent:
 ---
 
 # オープンソースファウンデーション移行の意義（2/2）
+
+> *OSS活用が開発速度を高めライセンスコスト削減を実現する*
 
 - - ライセンスはオープンソースのまま維持
 - - コントリビュートは引き続き歓迎
@@ -2295,6 +2439,8 @@ agent:
 
 # まとめ（2/2）
 
+> *60日★140K→買収の爆発力と設計段階からのセキュリティ組み込みが教訓*
+
 - **② オープンソースの爆発力**
 - - 60日で★140K → OpenAI買収という異例の成長
 - 
@@ -2307,6 +2453,8 @@ agent:
 
 # 参考リンク（1/2）
 
+> *GitHub・ドキュメント・ClawHubとCVE情報の公式リソースを整備*
+
 - **公式リソース:**
 - - [OpenClaw GitHub](https://github.com/openclaw/openclaw)
 - - [OpenClaw ドキュメント](https://docs.openclaw.ai)
@@ -2318,6 +2466,8 @@ agent:
 ---
 
 # 参考リンク（2/2）
+
+> *CVE詳細・Giskard分析・アーキテクチャ解説・買収記事の参考情報*
 
 - - [CVE-2026-25253](https://advisories.gitlab.com/pkg/npm/openclaw/CVE-2026-24764/)
 - - [OpenClaw security issues | Giskard](https://www.giskard.ai/knowledge/openclaw-security-vulnerabilities-include-data-leakage-and-prompt-injection-risks)

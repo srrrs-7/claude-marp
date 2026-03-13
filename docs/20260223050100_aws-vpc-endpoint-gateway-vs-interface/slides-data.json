@@ -13,6 +13,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "Gateway/Interface比較・ANS受験・実務設計の3視点で解説",
 			"layout": "default",
 			"content": [
 				"① VPC Endpoint の基礎と必要性",
@@ -74,7 +75,8 @@
 				"リージョン内全バケットに接続可能（クロスリージョンは不可）",
 				"Prefix List: `pl-68a54001` (us-east-1) / `pl-61a54008` (us-west-2) 等"
 			],
-			"speakerNotes": "Gateway EP は S3 と DynamoDB の 2 サービスのみ対応。どちらも大量データアクセスが発生しやすいサービスであり、無料の Gateway EP を優先的に使うことでコスト最適化できます。"
+			"speakerNotes": "Gateway EP は S3 と DynamoDB の 2 サービスのみ対応。どちらも大量データアクセスが発生しやすいサービスであり、無料の Gateway EP を優先的に使うことでコスト最適化できます。",
+			"subtitle": "S3とDynamoDBのみ対応—ルートテーブルで通信を制御"
 		},
 		{
 			"title": "Gateway Endpoint — 対応サービス詳細（2/2）",
@@ -85,7 +87,8 @@
 				"リージョン内全テーブルに接続可能",
 				"Prefix List: `pl-02cd2c6b` (us-east-1) 等、リージョンにより異なる"
 			],
-			"speakerNotes": "Gateway EP は S3 と DynamoDB の 2 サービスのみ対応。どちらも大量データアクセスが発生しやすいサービスであり、無料の Gateway EP を優先的に使うことでコスト最適化できます。"
+			"speakerNotes": "Gateway EP は S3 と DynamoDB の 2 サービスのみ対応。どちらも大量データアクセスが発生しやすいサービスであり、無料の Gateway EP を優先的に使うことでコスト最適化できます。",
+			"subtitle": "料金無料・オンプレ非対応—VPC内完結ユースケース向け"
 		},
 		{
 			"title": "Gateway Endpoint — ルートテーブル設定例",
@@ -151,7 +154,8 @@
 				"**データ & 分析:** S3 (Interface), Kinesis, Glue, Athena, SageMaker",
 				"**その他:** SQS, SNS, STS, CodeBuild, CodePipeline, AppStream 2.0"
 			],
-			"speakerNotes": "現在 100 以上の AWS サービスが Interface Endpoint に対応しています。サービス名は com.amazonaws.<region>.<service-name> の形式です。利用可能なサービスは AWS コンソールまたは API で確認できます。"
+			"speakerNotes": "現在 100 以上の AWS サービスが Interface Endpoint に対応しています。サービス名は com.amazonaws.<region>.<service-name> の形式です。利用可能なサービスは AWS コンソールまたは API で確認できます。",
+			"subtitle": "300以上のAWSサービスに対応—ENIにプライベートIPを割当"
 		},
 		{
 			"title": "Interface Endpoint — セキュリティグループ設計",
@@ -226,7 +230,8 @@
 				"デフォルトは `Allow *` — 意図的に制限する必要がある",
 				"Principal / Action / Resource / Condition を組み合わせて制御"
 			],
-			"speakerNotes": "Endpoint Policy は JSON IAM ポリシーと同じ構文です。デフォルトは全許可なので、機密データを扱うエンドポイントは必ず制限します。Gateway EP と Interface EP でポリシーの適用タイミングが異なります（Gateway: ルーティング時、Interface: 接続時）。"
+			"speakerNotes": "Endpoint Policy は JSON IAM ポリシーと同じ構文です。デフォルトは全許可なので、機密データを扱うエンドポイントは必ず制限します。Gateway EP と Interface EP でポリシーの適用タイミングが異なります（Gateway: ルーティング時、Interface: 接続時）。",
+			"subtitle": "明示的拒否でデータ漏洩を防ぐ—Allow-Listが基本方針"
 		},
 		{
 			"title": "VPC Endpoint Policy — 設計方針（2/2）",
@@ -237,7 +242,8 @@
 				"特定 Action のみ許可: `s3:GetObject` 等の必要な操作のみ",
 				"特定リソースのみ許可: ARN で制限（例: `arn:aws:s3:::my-bucket/*`）"
 			],
-			"speakerNotes": "Endpoint Policy は JSON IAM ポリシーと同じ構文です。デフォルトは全許可なので、機密データを扱うエンドポイントは必ず制限します。Gateway EP と Interface EP でポリシーの適用タイミングが異なります（Gateway: ルーティング時、Interface: 接続時）。"
+			"speakerNotes": "Endpoint Policy は JSON IAM ポリシーと同じ構文です。デフォルトは全許可なので、機密データを扱うエンドポイントは必ず制限します。Gateway EP と Interface EP でポリシーの適用タイミングが異なります（Gateway: ルーティング時、Interface: 接続時）。",
+			"subtitle": "Principal制限+Resource制限の二重ガードで最小権限を実現"
 		},
 		{
 			"title": "S3 Bucket Policy との連携",
@@ -311,7 +317,8 @@
 				"**② Principal を絞る**",
 				"`aws:PrincipalAccount` で自アカウントのみに限定"
 			],
-			"speakerNotes": "Endpoint Policy は IAM ポリシーと同じ構文ですが、Principal を省略できません。デフォルトの全許可ポリシーをそのまま使用するのは危険です。最低限 `aws:PrincipalAccount` で自アカウントに制限しましょう。"
+			"speakerNotes": "Endpoint Policy は IAM ポリシーと同じ構文ですが、Principal を省略できません。デフォルトの全許可ポリシーをそのまま使用するのは危険です。最低限 `aws:PrincipalAccount` で自アカウントに制限しましょう。",
+			"subtitle": "aws:sourceVpce条件でS3バケットへのアクセス経路を限定"
 		},
 		{
 			"title": "VPC Endpoint Policy — ベストプラクティス（2/2）",
@@ -322,7 +329,8 @@
 				"**④ Endpoint Policy + Bucket Policy の二重制御**",
 				"EP Policy で通過制限 + Bucket Policy で `aws:sourceVpce` Deny"
 			],
-			"speakerNotes": "Endpoint Policy は IAM ポリシーと同じ構文ですが、Principal を省略できません。デフォルトの全許可ポリシーをそのまま使用するのは危険です。最低限 `aws:PrincipalAccount` で自アカウントに制限しましょう。"
+			"speakerNotes": "Endpoint Policy は IAM ポリシーと同じ構文ですが、Principal を省略できません。デフォルトの全許可ポリシーをそのまま使用するのは危険です。最低限 `aws:PrincipalAccount` で自アカウントに制限しましょう。",
+			"subtitle": "エンドポイント毎にポリシーを分離してブラスト半径を最小化"
 		},
 		{
 			"title": "`aws:sourceVpc` 条件キーの活用",
@@ -345,7 +353,8 @@
 				"`aws:sourceVpc` — 送信元の VPC ID",
 				"`aws:sourceVpcSourceIp` — VPC 内の送信元 IP（CIDR 指定可）"
 			],
-			"speakerNotes": "aws:PrincipalOrgID を使うと AWS Organizations 全体を対象にしたポリシーが書けます。マルチアカウント環境での EP 共有時に有効です。ANS 試験では条件キーの選択が問われます。"
+			"speakerNotes": "aws:PrincipalOrgID を使うと AWS Organizations 全体を対象にしたポリシーが書けます。マルチアカウント環境での EP 共有時に有効です。ANS 試験では条件キーの選択が問われます。",
+			"subtitle": "aws:sourceVpceとaws:VpcSourceIpで経路と送信元を同時制御"
 		},
 		{
 			"title": "エンドポイント特有の IAM 条件キー一覧（2/2）",
@@ -356,7 +365,8 @@
 				"`aws:PrincipalOrgID` — AWS Organizations の組織 ID",
 				"`aws:PrincipalTag` — プリンシパルに付与されたタグ"
 			],
-			"speakerNotes": "aws:PrincipalOrgID を使うと AWS Organizations 全体を対象にしたポリシーが書けます。マルチアカウント環境での EP 共有時に有効です。ANS 試験では条件キーの選択が問われます。"
+			"speakerNotes": "aws:PrincipalOrgID を使うと AWS Organizations 全体を対象にしたポリシーが書けます。マルチアカウント環境での EP 共有時に有効です。ANS 試験では条件キーの選択が問われます。",
+			"subtitle": "条件キー組み合わせで経路強制—インターネット迂回を防止"
 		},
 		{
 			"title": "セキュリティグループ設計パターン",
@@ -394,7 +404,8 @@
 				"解決: EP 作成時に対象ルートテーブルを指定 / 後から修正",
 				"**問題 2: オンプレからアクセスできない**"
 			],
-			"speakerNotes": "Gateway EP の最もよくある問題はルートテーブルへの関連付け漏れです。VPC には複数のルートテーブルがある場合があるため、全サブネットが対象ルートテーブルを使用しているか確認します。"
+			"speakerNotes": "Gateway EP の最もよくある問題はルートテーブルへの関連付け漏れです。VPC には複数のルートテーブルがある場合があるため、全サブネットが対象ルートテーブルを使用しているか確認します。",
+			"subtitle": "ルートテーブル更新漏れが疎通失敗の第一原因"
 		},
 		{
 			"title": "Gateway Endpoint — よくある問題と解決策（2/2）",
@@ -406,7 +417,8 @@
 				"原因: EP Policy の Condition / Action が想定外に厳しい",
 				"解決: CloudTrail で拒否の詳細を確認し Policy を修正"
 			],
-			"speakerNotes": "Gateway EP の最もよくある問題はルートテーブルへの関連付け漏れです。VPC には複数のルートテーブルがある場合があるため、全サブネットが対象ルートテーブルを使用しているか確認します。"
+			"speakerNotes": "Gateway EP の最もよくある問題はルートテーブルへの関連付け漏れです。VPC には複数のルートテーブルがある場合があるため、全サブネットが対象ルートテーブルを使用しているか確認します。",
+			"subtitle": "クロスリージョン不可—同リージョンのS3/DynamoDBのみ"
 		},
 		{
 			"title": "Interface Endpoint — よくある問題と解決策（1/2）",
@@ -417,7 +429,8 @@
 				"解決: 使用するすべての AZ にサブネットを指定して EP を修正",
 				"**問題 2: DNS 解決がパブリック IP を返す**"
 			],
-			"speakerNotes": "Interface EP のトラブルで最も多いのが DNS 関連です。まず nslookup でプライベート IP が返るかを確認します。VPC Flow Logs を見て REJECT されているか確認することも有効です。"
+			"speakerNotes": "Interface EP のトラブルで最も多いのが DNS 関連です。まず nslookup でプライベート IP が返るかを確認します。VPC Flow Logs を見て REJECT されているか確認することも有効です。",
+			"subtitle": "セキュリティグループ443番開放漏れでTLS接続が失敗"
 		},
 		{
 			"title": "Interface Endpoint — よくある問題と解決策（2/2）",
@@ -429,7 +442,8 @@
 				"原因: EP の SG にインバウンド 443 が許可されていない",
 				"解決: sg-ep のインバウンドに HTTPS 443 を追加（Source: EC2 SG）"
 			],
-			"speakerNotes": "Interface EP のトラブルで最も多いのが DNS 関連です。まず nslookup でプライベート IP が返るかを確認します。VPC Flow Logs を見て REJECT されているか確認することも有効です。"
+			"speakerNotes": "Interface EP のトラブルで最も多いのが DNS 関連です。まず nslookup でプライベート IP が返るかを確認します。VPC Flow Logs を見て REJECT されているか確認することも有効です。",
+			"subtitle": "プライベートDNS有効化でSDKが自動的にエンドポイントを使用"
 		},
 		{
 			"title": "DNS トラブルシューティングフロー",
@@ -466,7 +480,8 @@
 				"**パターン B: オンプレから SSM / Secrets Manager にアクセス**",
 				"→ Interface Endpoint + Direct Connect + R53 Inbound EP"
 			],
-			"speakerNotes": "ANS 試験は「なぜその選択か」の理由が重要です。Gateway EP: 無料・S3/DDB のみ・VPC 内のみ。Interface EP: 有料・多サービス・オンプレ対応。この軸で問題を解くと正解率が上がります。"
+			"speakerNotes": "ANS 試験は「なぜその選択か」の理由が重要です。Gateway EP: 無料・S3/DDB のみ・VPC 内のみ。Interface EP: 有料・多サービス・オンプレ対応。この軸で問題を解くと正解率が上がります。",
+			"subtitle": "コスト最小化ならGateway、オンプレ接続ならInterfaceを選べ"
 		},
 		{
 			"title": "ANS 頻出パターン — 設計問題（2/2）",
@@ -477,7 +492,8 @@
 				"**パターン D: VPC CIDR 重複環境でサービス共有**",
 				"→ PrivateLink（VPC Peering は CIDR 重複不可）"
 			],
-			"speakerNotes": "ANS 試験は「なぜその選択か」の理由が重要です。Gateway EP: 無料・S3/DDB のみ・VPC 内のみ。Interface EP: 有料・多サービス・オンプレ対応。この軸で問題を解くと正解率が上がります。"
+			"speakerNotes": "ANS 試験は「なぜその選択か」の理由が重要です。Gateway EP: 無料・S3/DDB のみ・VPC 内のみ。Interface EP: 有料・多サービス・オンプレ対応。この軸で問題を解くと正解率が上がります。",
+			"subtitle": "Private DNS競合はVPCごと無効化して手動DNS解決で回避"
 		},
 		{
 			"title": "ANS 試験 — 設計判断決定木",
@@ -496,7 +512,8 @@
 				"**Interface Endpoint** — 100+ サービス・有料・ENI+SG・オンプレ/TGW 対応",
 				"**選定基準** — S3/DDB のみ+コスト重視 → Gateway EP、それ以外 → Interface EP"
 			],
-			"speakerNotes": "本スライドで解説した Gateway EP と Interface EP の違いを理解することで、ANS 試験の設計問題の大部分に対応できます。実務では両者を組み合わせ、コストとセキュリティを最適化しましょう。"
+			"speakerNotes": "本スライドで解説した Gateway EP と Interface EP の違いを理解することで、ANS 試験の設計問題の大部分に対応できます。実務では両者を組み合わせ、コストとセキュリティを最適化しましょう。",
+			"subtitle": "Gateway=無料/S3+DynamoDB限定、Interface=有料/全サービス"
 		},
 		{
 			"title": "まとめ & 参考リンク（2/2）",
@@ -507,7 +524,8 @@
 				"[AWS PrivateLink (公式)](https://docs.aws.amazon.com/vpc/latest/privatelink/privatelink-access-aws-services.html)",
 				"[Gateway Endpoint vs Interface Endpoint](https://docs.aws.amazon.com/vpc/latest/privatelink/vpce-gateway.html)"
 			],
-			"speakerNotes": "本スライドで解説した Gateway EP と Interface EP の違いを理解することで、ANS 試験の設計問題の大部分に対応できます。実務では両者を組み合わせ、コストとセキュリティを最適化しましょう。"
+			"speakerNotes": "本スライドで解説した Gateway EP と Interface EP の違いを理解することで、ANS 試験の設計問題の大部分に対応できます。実務では両者を組み合わせ、コストとセキュリティを最適化しましょう。",
+			"subtitle": "セキュリティ要件があればInterface+Policyの二重構成が鉄板"
 		}
 	]
 }

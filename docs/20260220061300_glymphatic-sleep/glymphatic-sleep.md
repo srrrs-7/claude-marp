@@ -7,6 +7,71 @@ paginate: true
 header: "睡眠と脳の洗浄"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -23,6 +88,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *睡眠中の脳内洗浄がアルツハイマー予防の決定的メカニズム*
 
 - 1. グリンパティックシステムの発見
 - 2. 睡眠中の脳内洗浄メカニズム
@@ -41,6 +108,8 @@ style: |
 
 # 2013年の大発見：脳の排水システム（1/2）
 
+> *睡眠中だけ活性化する脳内排水システムが2013年に初めて発見された*
+
 - **Maiken Nedergaard（ロチェスター大学、2013年 Science誌）：**
 - 睡眠中にのみ活性化する脳内排水システムを発見
 - = グリンパティックシステム（Glymphatic System）
@@ -52,6 +121,8 @@ style: |
 
 # 2013年の大発見：脳の排水システム（2/2）
 
+> *脳細胞が60%収縮して排水路が拡張—CSFが老廃物を洗い流す*
+
 - アストロサイト（星状グリア細胞）が作る洗浄経路
 - 覚醒中は脳細胞が膨張し排水路が細くなっている
 - 睡眠中は細胞が60%収縮し、排水路が拡張する
@@ -62,6 +133,8 @@ style: |
 ---
 
 # アルツハイマー病との関係（1/2）
+
+> *グリンパティック洗浄不足がアミロイドβ蓄積→アルツハイマーの主因*
 
 - **アミロイドβとタウタンパク質：**
 - アルツハイマー病の主要な原因物質
@@ -75,6 +148,8 @@ style: |
 
 # アルツハイマー病との関係（2/2）
 
+> *睡眠6時間以下が続くとアルツハイマーリスクが1.5〜2倍に増加*
+
 - **睡眠不足との関係：**
 - 睡眠不足 → アミロイドβが蓄積 → 神経毒性
 - 1週間の睡眠不足（6時間/日）→ 翌夜の回復では不十分
@@ -87,6 +162,8 @@ style: |
 
 # 睡眠負債と脳への影響（1/2）
 
+> *17時間覚醒で飲酒運転相当—睡眠不足は認知を蝕む*
+
 - **Matthew Walker（「Why We Sleep」2017年）：**
 - 17時間連続覚醒 = 血中アルコール濃度0.05%相当のパフォーマンス低下
 - 24時間連続覚醒 = 0.10%相当（法定酔運転基準）
@@ -98,6 +175,8 @@ style: |
 
 # 睡眠負債と脳への影響（2/2）
 
+> *週末の寝だめではグリンパティック損傷を回復できない*
+
 - グリンパティック洗浄の不足は完全には補えない
 - 慢性的負債は認知機能の永続的低下を引き起こす可能性
 - REM睡眠中に日中の記憶が統合・整理される
@@ -108,6 +187,8 @@ style: |
 ---
 
 # まとめ：睡眠は脳のメンテナンス
+
+> *7〜9時間の睡眠が脳の洗浄・記憶定着・認知症予防を同時に実現する*
 
 - ✅ **睡眠中にグリンパティックシステムが脳の老廃物を除去**
 - ✅ **アルツハイマー病の原因物質（アミロイドβ）も睡眠中に洗浄**

@@ -89,6 +89,8 @@ style: |
 
 # アジェンダ
 
+> *30分設定と非同期化で生産性を2倍にする道筋*
+
 - 1. 会議の実態とコスト
 - 2. Parkinsonの法則
 - 3. 最適な会議時間の研究
@@ -105,6 +107,8 @@ style: |
 ---
 
 # 会議は最大のコスト中心（1/2）
+
+> *管理職の45%が会議—年間37兆円のコスト*
 
 - **平均的な管理職の1週間（Bain & Company 2014年）：**
 - 45%の時間を会議に使っている
@@ -124,6 +128,8 @@ style: |
 
 # Parkinsonの法則（1/2）
 
+> *30分設定にするだけで会議は25分で終わる*
+
 - **C. Northcote Parkinson（1955年 The Economist）：**
 - 「仕事は与えられた時間を使い切るように膨張する」
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e" rx="12"/><text x="400" y="30" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">Parkinsonの法則：会議時間の膨張</text><rect x="60" y="60" width="120" height="80" fill="#00897b" rx="8" opacity="0.9"/><text x="120" y="96" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">実質的な</text><text x="120" y="113" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">内容</text><text x="120" y="160" text-anchor="middle" font-size="11" fill="#aaaacc" font-family="sans-serif">25分相当</text><rect x="220" y="60" width="220" height="80" fill="#e91e63" rx="8" opacity="0.9"/><text x="330" y="96" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">Parkinsons膨張</text><text x="330" y="113" text-anchor="middle" font-size="11" fill="#ffccdd" font-family="sans-serif">（雑談・脱線・繰り返し）</text><text x="330" y="160" text-anchor="middle" font-size="11" fill="#aaaacc" font-family="sans-serif">+35分の無駄</text><rect x="60" y="60" width="380" height="80" fill="none" stroke="#f9a825" stroke-width="2" rx="8" stroke-dasharray="6,3"/><text x="250" y="170" text-anchor="middle" font-size="20" fill="#f9a825" font-weight="bold" font-family="sans-serif">1時間会議 = 60分消費</text><polygon points="490,100 530,85 530,115" fill="#f9a825"/><rect x="530" y="60" width="120" height="80" fill="#3f51b5" rx="8" opacity="0.9"/><text x="590" y="96" text-anchor="middle" font-size="13" fill="#ffffff" font-family="sans-serif">同じ内容</text><rect x="530" y="60" width="120" height="80" fill="none" stroke="#f9a825" stroke-width="2" rx="8" stroke-dasharray="6,3"/><text x="590" y="160" text-anchor="middle" font-size="20" fill="#00897b" font-weight="bold" font-family="sans-serif">30分会議 = 25分終了</text><text x="400" y="220" text-anchor="middle" font-size="14" fill="#ccccdd" font-family="sans-serif">設定時間を短くするだけで会議は短くなる</text><text x="400" y="260" text-anchor="middle" font-size="13" fill="#f9a825" font-family="sans-serif">「30分のカレンダー招待」が最も効果的な改善策</text></svg>
@@ -132,6 +138,8 @@ style: |
 ---
 
 # Parkinsonの法則（2/2）
+
+> *制約が膨張を防ぐ—立ち会議で平均34%短縮*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="280" fill="#1a1a2e" rx="12"/><text x="400" y="30" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">会議時間短縮の実践例</text><rect x="40" y="55" width="340" height="120" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="210" y="82" text-anchor="middle" font-size="14" fill="#e91e63" font-weight="bold" font-family="sans-serif">Amazonの「沈黙の6ページ」</text><text x="60" y="108" font-size="12" fill="#ccccdd" font-family="sans-serif">・会議の最初15分は全員が文書を読む</text><text x="60" y="130" font-size="12" fill="#ccccdd" font-family="sans-serif">・プレゼンではなく深い討論を実現</text><text x="60" y="152" font-size="12" fill="#ccccdd" font-family="sans-serif">・思考を整理してから議論する文化</text><rect x="420" y="55" width="340" height="120" rx="10" fill="#16213e" stroke="#00897b" stroke-width="2"/><text x="590" y="82" text-anchor="middle" font-size="14" fill="#00897b" font-weight="bold" font-family="sans-serif">立ち会議（Standing Meeting）</text><text x="440" y="108" font-size="12" fill="#ccccdd" font-family="sans-serif">・Google・Appleが採用</text><text x="440" y="130" font-size="12" fill="#ccccdd" font-family="sans-serif">・平均34%短縮（Washington Univ.）</text><text x="440" y="152" font-size="12" fill="#ccccdd" font-family="sans-serif">・物理的不快感が話を凝縮する</text><rect x="180" y="195" width="440" height="60" rx="8" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="400" y="220" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">共通原則：制約がParkinsonの膨張を防ぐ</text><text x="400" y="244" text-anchor="middle" font-size="12" fill="#ccccdd" font-family="sans-serif">時間・姿勢・形式の制約 → 本質への集中を強制</text></svg>
 - **Amazonの「沈黙の6ページ」：**
@@ -153,6 +161,8 @@ style: |
 ---
 
 # 非同期コミュニケーション（2/2）
+
+> *会議ゼロ1週間で73%の企業が生産性向上を報告*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="280" fill="#1a1a2e" rx="12"/><text x="400" y="30" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">会議を非同期に置き換えるフロー</text><rect x="40" y="55" width="700" height="50" rx="8" fill="#16213e" stroke="#333355" stroke-width="1"/><text x="110" y="85" text-anchor="middle" font-size="13" fill="#ccccdd" font-family="sans-serif">進捗報告</text><polygon points="200,80 220,70 220,90" fill="#f9a825"/><rect x="230" y="65" width="160" height="30" rx="6" fill="#3f51b5"/><text x="310" y="85" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">Slack 自動スタンドアップ</text><text x="110" y="130" text-anchor="middle" font-size="13" fill="#ccccdd" font-family="sans-serif">情報共有</text><polygon points="200,125 220,115 220,135" fill="#f9a825"/><rect x="230" y="115" width="160" height="30" rx="6" fill="#00897b"/><text x="310" y="135" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">Notion / Wiki</text><text x="110" y="180" text-anchor="middle" font-size="13" fill="#ccccdd" font-family="sans-serif">フィードバック</text><polygon points="200,175 220,165 220,185" fill="#f9a825"/><rect x="230" y="165" width="160" height="30" rx="6" fill="#e91e63"/><text x="310" y="185" text-anchor="middle" font-size="12" fill="#ffffff" font-family="sans-serif">Loom 動画メッセージ</text><rect x="440" y="55" width="300" height="160" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="590" y="82" text-anchor="middle" font-size="14" fill="#f9a825" font-weight="bold" font-family="sans-serif">効果の実績</text><text x="460" y="108" font-size="12" fill="#ccccdd" font-family="sans-serif">73%の企業が生産性向上を報告</text><text x="460" y="130" font-size="12" fill="#ccccdd" font-family="sans-serif">「1週間会議ゼロ」トライアル</text><text x="460" y="158" font-size="12" fill="#00897b" font-family="sans-serif">深い作業時間が平均2.4倍に</text><text x="460" y="180" font-size="12" fill="#00897b" font-family="sans-serif">決定の文書化率が大幅向上</text><text x="400" y="245" text-anchor="middle" font-size="13" fill="#888899" font-family="sans-serif">「会議を半分にするだけで、ほとんどの会社の生産性は倍になる」</text></svg>
 - - 進捗報告（→ Slackの自動スタンドアップ）

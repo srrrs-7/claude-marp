@@ -7,6 +7,71 @@ paginate: true
 header: "技術予測の検証"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -23,6 +88,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *情報革命は予測超えし物理移動は停滞した非対称な20世紀を検証*
 
 - 1. 1900年代の「未来予測」
 - 2. 実現したこと・しなかったこと
@@ -41,12 +108,18 @@ style: |
 
 ---
 
-# 20世紀初頭が夢見た西暦2000年（1/2）
+# 20世紀初頭が夢見た西暦2000年（1/2）（1/2）
 
 - **フランスの絵師シリーズ「En l'an 2000」（1900年）：**
 - - 空飛ぶ消防車・空飛ぶ自転車
 - - 水中シティ
 - - 機械で食べ物を脳に直接入力する学習機
+
+
+---
+
+# 20世紀初頭が夢見た西暦2000年（1/2）（2/2）
+
 - ---
 - **1964年 ニューヨーク万博の予測：**
 - - 水陸両用自動車（実現せず）
@@ -55,12 +128,18 @@ style: |
 
 ---
 
-# 20世紀初頭が夢見た西暦2000年（2/2）
+# 20世紀初頭が夢見た西暦2000年（2/2）（1/2）
 
 - - テレビ電話（FaceTimeとして実現）
 - ---
 - **「2001年宇宙の旅」（1968年）の予測：**
 - - 月面基地（実現せず）
+
+
+---
+
+# 20世紀初頭が夢見た西暦2000年（2/2）（2/2）
+
 - - Pan Am 宇宙便（Pan Amは1991年倒産）
 - - HAL 9000（ChatGPTとして類似形で実現）
 - ---

@@ -100,6 +100,8 @@ style: |
 
 # Pythonの哲学：美しさは正しさの近似（1/2）
 
+> *PEP20の19原則が「美しさ＝正しさ」という哲学に収束する*
+
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" font-size="18" font-weight="bold" fill="#f9a825">The Zen of Python（PEP 20）核心原則</text><rect x="40" y="60" width="220" height="80" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="150" y="88" text-anchor="middle" font-size="13" fill="#f9a825">Beautiful is better</text><text x="150" y="108" text-anchor="middle" font-size="13" fill="#f9a825">than ugly</text><text x="150" y="128" text-anchor="middle" font-size="11" fill="#aaa">美しさ優先</text><rect x="290" y="60" width="220" height="80" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="88" text-anchor="middle" font-size="13" fill="#e91e63">Explicit is better</text><text x="400" y="108" text-anchor="middle" font-size="13" fill="#e91e63">than implicit</text><text x="400" y="128" text-anchor="middle" font-size="11" fill="#aaa">明示性優先</text><rect x="540" y="60" width="220" height="80" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="650" y="88" text-anchor="middle" font-size="13" fill="#4fc3f7">Simple is better</text><text x="650" y="108" text-anchor="middle" font-size="13" fill="#4fc3f7">than complex</text><text x="650" y="128" text-anchor="middle" font-size="11" fill="#aaa">単純さ優先</text><rect x="165" y="170" width="220" height="80" rx="10" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="275" y="198" text-anchor="middle" font-size="13" fill="#81c784">Readability</text><text x="275" y="218" text-anchor="middle" font-size="13" fill="#81c784">counts</text><text x="275" y="238" text-anchor="middle" font-size="11" fill="#aaa">可読性こそ正義</text><rect x="415" y="170" width="220" height="80" rx="10" fill="#16213e" stroke="#ce93d8" stroke-width="2"/><text x="525" y="198" text-anchor="middle" font-size="13" fill="#ce93d8">One obvious</text><text x="525" y="218" text-anchor="middle" font-size="13" fill="#ce93d8">way to do it</text><text x="525" y="238" text-anchor="middle" font-size="11" fill="#aaa">唯一の明白な方法</text></svg>
 - **哲学：実用主義・民主主義・プラグマティズム**
 - Tim Peters（1999）の思想：コードは詩だ
@@ -108,6 +110,8 @@ style: |
 ---
 
 # Pythonの哲学：美しさは正しさの近似（2/2）
+
+> *唯一の明白な方法—Python哲学は多様性より一貫性を選ぶ*
 
 - There should be one obvious way to do it.
 - ---
@@ -138,6 +142,8 @@ Readability counts.
 ---
 
 # Haskellの哲学：純粋さだけが正しさを保証する（詳細）
+
+> *副作用ゼロの純粋関数だけが数学的証明を可能にする*
 
 - **哲学：カント的義務論**
 - 「正しい行為には正しい形式がある」
@@ -171,6 +177,8 @@ Readability counts.
 
 # CとRustの哲学的対立（詳細）
 
+> *Cは信頼で自由を与え、Rustは型システムで安全を強制する*
+
 - **Cの哲学（Thompson・Ritchie, 1972）：**
 - プログラマーを信頼する。機械への最大限の制御を与える
 - 「ツールは人を守ろうとすべきでない」
@@ -197,6 +205,8 @@ Readability counts.
 
 # 型は「現実の表現可能な範囲」を決める（詳細）
 
+> *型は書けるコードの集合—静的型は設計段階でバグを排除する*
+
 - **動的型付け（Python/JS）：**
 - 現実は実行時にしかわからない → 経験主義
 - 型は「実行してみれば判明する」
@@ -216,6 +226,8 @@ Readability counts.
 ---
 
 # 言語があなたの思考を制限するか（詳細）
+
+> *新パラダイム習得が思考の枠を広げ、より良い設計を生む*
 
 - <svg viewBox="0 0 800 180" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="180" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">言語パラダイムが拡げる思考の範囲</text><rect x="30" y="50" width="160" height="90" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="110" y="80" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">命令型のみ</text><text x="110" y="100" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">状態・手順で考える</text><text x="110" y="118" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">副作用は自然</text><rect x="220" y="50" width="160" height="90" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="300" y="80" text-anchor="middle" fill="#4fc3f7" font-size="12" font-family="sans-serif" font-weight="bold">+ 関数型</text><text x="300" y="100" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">不変性・変換で考える</text><text x="300" y="118" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">副作用を意識する</text><rect x="410" y="50" width="160" height="90" rx="8" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="490" y="80" text-anchor="middle" fill="#81c784" font-size="12" font-family="sans-serif" font-weight="bold">+ 型理論</text><text x="490" y="100" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">証明で設計する</text><text x="490" y="118" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">バグを型で防ぐ</text><rect x="600" y="50" width="170" height="90" rx="8" fill="#16213e" stroke="#ce93d8" stroke-width="2"/><text x="685" y="80" text-anchor="middle" fill="#ce93d8" font-size="12" font-family="sans-serif" font-weight="bold">+ 論理型</text><text x="685" y="100" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">問題定義と解法分離</text><text x="685" y="118" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">宣言で「何を」だけ言う</text><polygon points="193,95 215,95 207,88 207,102" fill="#f9a825"/><polygon points="383,95 405,95 397,88 397,102" fill="#f9a825"/><polygon points="573,95 595,95 587,88 587,102" fill="#f9a825"/></svg>
 - Sapir-Whorf 仮説のプログラミング版：

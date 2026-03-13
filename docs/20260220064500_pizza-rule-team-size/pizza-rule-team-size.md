@@ -7,6 +7,71 @@ paginate: true
 header: "ピザ2枚ルール"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -22,6 +87,8 @@ style: |
 ---
 
 # 目次
+
+> *ブルックスの法則からConway則の活用まで6章で解説*
 
 - - 1. ピザ2枚ルールの起源
 - - 2. コミュニケーションコストの数学
@@ -40,6 +107,8 @@ style: |
 ---
 
 # Jeff Bezosの経験則
+
+> *ピザ2枚=6〜8人—人数増で意思決定が指数的に遅延*
 
 - - **「ピザ2枚で食べられる人数がチームの上限」**
 - - Jeff Bezos がAmazon創業初期に提唱
@@ -65,6 +134,8 @@ style: |
 
 # ブルックスの法則
 
+> *5人→8人でコミュニケーション経路が180%増加*
+
 - - **「遅れているプロジェクトに人を追加するとさらに遅れる」**
 - - Frederick Brooks (1975) "The Mythical Man-Month"
 - - 新メンバーの学習コスト + コミュニケーションコストの増加
@@ -81,6 +152,8 @@ style: |
 ---
 
 # 社会的脳仮説
+
+> *新皮質サイズから予測—安定関係の上限は150人*
 
 - - **Robin Dunbar (1992)**: 霊長類の脳サイズから社会集団のサイズを予測
 - - 人間の新皮質サイズ → 安定的な関係を維持できるのは約 **150人**
@@ -131,6 +204,8 @@ style: |
 
 # スケーリングの戦略
 
+> *人を増やさずチームを増やす—低結合で速度を維持*
+
 - <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="350" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-family="sans-serif" font-weight="bold">スケーリング戦略: チームを増やす、人を増やさない</text><rect x="40" y="50" width="340" height="140" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="210" y="74" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">アンチパターン (人を追加)</text><rect x="55" y="85" width="120" height="40" fill="#e91e63" opacity="0.2" rx="4" stroke="#e91e63" stroke-width="1"/><text x="115" y="110" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">15人チーム</text><text x="210" y="145" fill="#aaa" font-size="11" font-family="sans-serif">105 通信経路</text><text x="210" y="162" fill="#aaa" font-size="11" font-family="sans-serif">意思決定 遅延</text><text x="210" y="178" fill="#e91e63" font-size="11" font-family="sans-serif" font-weight="bold">生産性 低下</text><rect x="420" y="50" width="340" height="260" fill="#16213e" rx="8" stroke="#4caf50" stroke-width="2"/><text x="590" y="74" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">推奨パターン (チームを追加)</text><rect x="435" y="85" width="95" height="40" fill="#4caf50" opacity="0.2" rx="4" stroke="#4caf50" stroke-width="1"/><text x="482" y="110" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">7人チームA</text><rect x="545" y="85" width="95" height="40" fill="#4caf50" opacity="0.2" rx="4" stroke="#4caf50" stroke-width="1"/><text x="592" y="110" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">7人チームB</text><rect x="655" y="85" width="95" height="40" fill="#4caf50" opacity="0.2" rx="4" stroke="#4caf50" stroke-width="1"/><text x="702" y="110" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">6人チームC</text><text x="590" y="152" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">各21通信経路 × 3チーム</text><text x="590" y="172" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">チーム間: APIで疎結合</text><text x="590" y="195" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">原則:</text><text x="590" y="215" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">明確なオーナーシップ</text><text x="590" y="233" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">低い結合度</text><text x="590" y="251" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">高い凝集度</text><text x="590" y="292" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">生産性を維持したままスケール</text><line x1="380" y1="175" x2="420" y2="175" stroke="#555" stroke-width="2"/><polygon points="415,170 425,175 415,180" fill="#4caf50"/></svg>
 - - **API as team boundary**: チーム間の契約をAPIとして定義
 - - 組織が大きくなってもチームは小さく保つ
@@ -139,6 +214,8 @@ style: |
 ---
 
 # まとめ
+
+> *6〜8人の小チームを増やす設計が速度と品質を両立する*
 
 - - ピザ2枚ルール(6-8人)は科学的にも妥当なチームサイズ
 - - コミュニケーションライン n(n-1)/2 の爆発が根本原因

@@ -90,6 +90,8 @@ style: |
 
 # テセウスの船とは（1/2）
 
+> *全部品が交換されても連続性が同一性を定義するという思考実験*
+
 - 古代ギリシャの思考実験
 - ---
 - アテナイの英雄テセウスの船が港に保存されていた
@@ -99,6 +101,8 @@ style: |
 ---
 
 # テセウスの船とは（2/2）
+
+> *ホッブズ拡張—旧部品を再組立した船はどちらが本物か*
 
 - **最終的に元の板は1枚も残っていない**
 - ---
@@ -118,6 +122,8 @@ style: |
 
 # リファクタリングはテセウスの船か（1/2）
 
+> *機能は同じでコードは別物—段階的置換で同一性はどこで失われるか*
+
 - **ファイルを1つずつ書き直す場合：**
 - → 機能は同じ、コードは別物。これは同じソフトウェアか？
 - 
@@ -130,6 +136,8 @@ style: |
 
 # リファクタリングはテセウスの船か（2/2）
 
+> *Gitコミット履歴が連続性を記録し同一性の証拠になる*
+
 - 
 - **Gitのコミット履歴：**
 - → 初期コミットからの差分が「同一性」を定義する？
@@ -140,6 +148,8 @@ style: |
 ---
 
 # Big Rewrite の歴史的失敗（1/2）
+
+> *Netscape/Copland—4年の停滞と市場喪失がBig Rewriteの代償*
 
 - **Netscape Navigator → Mozilla（1998-2002）**
 - ゼロからの書き直しを決断。競合にシェアを奪われ壊滅的な4年間
@@ -152,6 +162,8 @@ style: |
 ---
 
 # Big Rewrite の歴史的失敗（2/2）
+
+> *知識の損失と競合遅れ—Spolskyが「最大の単一ミス」と断じた理由*
 
 - <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><rect x="30" y="20" width="740" height="60" rx="8" fill="#2a1a1a" stroke="#e91e63" stroke-width="2"/><text x="400" y="46" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-style="italic">「ソフトウェアをゼロから書き直してはいけない。これはプログラマーが</text><text x="400" y="66" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-style="italic">犯しうる最大の単一ミスだ」— Joel Spolsky（2000）</text><rect x="30" y="100" width="220" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="140" y="125" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">Vista (2004-2006)</text><text x="140" y="145" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">大規模遅延・品質問題</text><rect x="290" y="100" width="220" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="125" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">知識の損失</text><text x="400" y="145" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">埋め込まれた知恵が消える</text><rect x="550" y="100" width="220" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="660" y="125" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">競合に遅れ</text><text x="660" y="145" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">市場シェアを失う</text><polygon points="255,130 285,130 275,124 275,136" fill="#e91e63"/><polygon points="515,130 545,130 535,124 535,136" fill="#e91e63"/></svg>
 - **Microsoft Windows Vista（2004-2006）**
@@ -171,6 +183,8 @@ style: |
 ---
 
 # 古いコードには「知識」が埋め込まれている
+
+> *醜いif文に2008年の障害修正が眠る—削除すれば再発する*
 
 - 醜く見えるコードの多くは理由がある：
 - 
@@ -200,6 +214,8 @@ if (userId !== 'legacy_user_42') {
 
 # チェスタトンのフェンス原理（1/2）
 
+> *フェンスの理由がわからなければ撤去してはいけない原理*
+
 - 「なぜここにフェンスがあるのかわからないなら、撤去する権限はない」
 - — G.K. Chesterton（1929）
 - ---
@@ -209,6 +225,8 @@ if (userId !== 'legacy_user_42') {
 ---
 
 # チェスタトンのフェンス原理（2/2）
+
+> *テストがあれば「なぜ」を安全に実験できる—理解してから変更*
 
 - コードの「なぜ」がわからなければ、削除してはいけない
 - 
@@ -229,6 +247,8 @@ if (userId !== 'legacy_user_42') {
 
 # ストラングラーフィグパターン（1/2）
 
+> *旧旧システムを並行稼動させプロキシで徐々に切り替える手法*
+
 - Martin Fowler が提唱した段階的置換の手法
 - 名前の由来：絞め殺しイチジク（宿主を徐々に置換する植物）
 - ---
@@ -241,6 +261,8 @@ if (userId !== 'legacy_user_42') {
 
 # ストラングラーフィグパターン（2/2）
 
+> *旧機能が0%になった時点で廃止—これがテセウスを正しくやる方法*
+
 - 2. 機能ごとにルーティングを切り替える
 - 3. 旧システムの機能が0になったら廃止
 - ---
@@ -252,6 +274,8 @@ if (userId !== 'legacy_user_42') {
 
 # ソフトウェアの同一性を何が決めるか
 
+> *ユーザーが価値を感じれば同一—機能的同一性が最重要の判断基準*
+
 - <svg viewBox="0 0 800 310" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="310" fill="#1a1a2e"/><text x="400" y="30" font-size="14" fill="#f9a825" text-anchor="middle" font-family="sans-serif">ソフトウェア同一性の4つの立場</text><rect x="30" y="50" width="170" height="100" rx="8" fill="#2d2d44" stroke="#f9a825" stroke-width="2"/><text x="115" y="85" font-size="12" fill="#f9a825" text-anchor="middle" font-family="sans-serif">機能的同一性</text><text x="115" y="104" font-size="10" fill="#aaa" text-anchor="middle" font-family="sans-serif">同じ入出力</text><text x="115" y="120" font-size="9" fill="#777" text-anchor="middle" font-family="sans-serif">= ユーザー視点</text><rect x="220" y="50" width="170" height="100" rx="8" fill="#2d2d44" stroke="#4fc3f7" stroke-width="2"/><text x="305" y="85" font-size="12" fill="#4fc3f7" text-anchor="middle" font-family="sans-serif">構造的同一性</text><text x="305" y="104" font-size="10" fill="#aaa" text-anchor="middle" font-family="sans-serif">同じコードベース</text><text x="305" y="120" font-size="9" fill="#777" text-anchor="middle" font-family="sans-serif">= 開発者視点</text><rect x="410" y="50" width="170" height="100" rx="8" fill="#2d2d44" stroke="#a5d6a7" stroke-width="2"/><text x="495" y="85" font-size="12" fill="#a5d6a7" text-anchor="middle" font-family="sans-serif">歴史的同一性</text><text x="495" y="104" font-size="10" fill="#aaa" text-anchor="middle" font-family="sans-serif">同じGitリポジトリ</text><text x="495" y="120" font-size="9" fill="#777" text-anchor="middle" font-family="sans-serif">= 組織視点</text><rect x="600" y="50" width="170" height="100" rx="8" fill="#2d2d44" stroke="#ce93d8" stroke-width="2"/><text x="685" y="85" font-size="12" fill="#ce93d8" text-anchor="middle" font-family="sans-serif">意味的同一性</text><text x="685" y="104" font-size="10" fill="#aaa" text-anchor="middle" font-family="sans-serif">同じ問題を解決</text><text x="685" y="120" font-size="9" fill="#777" text-anchor="middle" font-family="sans-serif">= 設計者視点</text><rect x="180" y="195" width="440" height="70" rx="10" fill="#1e3a1a" stroke="#f9a825" stroke-width="2"/><text x="400" y="225" font-size="13" fill="#f9a825" text-anchor="middle" font-family="sans-serif">ビジネス価値（機能）が最重要</text><text x="400" y="247" font-size="11" fill="#aaa" text-anchor="middle" font-family="sans-serif">ユーザーが価値を感じれば「同一」のソフトウェア</text><line x1="115" y1="150" x2="300" y2="193" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/><line x1="305" y1="150" x2="350" y2="193" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="3,3"/><line x1="495" y1="150" x2="450" y2="193" stroke="#a5d6a7" stroke-width="1" stroke-dasharray="3,3"/><line x1="685" y1="150" x2="500" y2="193" stroke="#ce93d8" stroke-width="1" stroke-dasharray="3,3"/></svg>
 - どれが「正しい」同一性かは立場によって異なる
 - → **ビジネス価値（機能）が最も重要**
@@ -260,6 +284,8 @@ if (userId !== 'legacy_user_42') {
 ---
 
 # まとめ：哲学的リファクタリング論
+
+> *Big Rewriteは歴史的に失敗する—ストラングラーフィグが正解*
 
 - ✅ **Big Rewrite は歴史的に失敗する** — 埋め込まれた知識を失うから
 - ✅ **チェスタトンのフェンス** — 理由がわからないコードを削除するな

@@ -18,7 +18,8 @@
 				"**4. Amazon FSx** — 高性能ファイルシステム群",
 				"**5. AWS Storage Gateway** — ハイブリッドストレージ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "S3・EBS・EFS・FSx・Storage Gatewayのオブジェクト/ブロック/ファイル5章"
 		},
 		{
 			"title": "目次（2/2）",
@@ -29,7 +30,8 @@
 				"**9. コスト最適化** — ライフサイクル管理と料金比較",
 				"**10. まとめ** — サービス選定フローチャート"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "データ移行・バックアップ・設計パターン・コスト最適化・選定フローの5章"
 		},
 		{
 			"title": "Amazon S3",
@@ -48,7 +50,8 @@
 				"- サーバーレスアーキテクチャの中核データストア"
 			],
 			"layout": "default",
-			"speakerNotes": "S3は2006年のリリース以降、AWSで最も利用されるサービスの一つ。耐久性のイレブンナインは設計上の保証値。"
+			"speakerNotes": "S3は2006年のリリース以降、AWSで最も利用されるサービスの一つ。耐久性のイレブンナインは設計上の保証値。",
+			"subtitle": "S3は99.999999999%耐久性・無制限スケール・用途別ストレージの標準"
 		},
 		{
 			"title": "S3 ストレージクラス（1/2）",
@@ -62,7 +65,8 @@
 				"| **S3 One Zone-IA** | 低頻度・単一AZ | 99.5% | 30日 |"
 			],
 			"layout": "default",
-			"speakerNotes": "Intelligent-Tieringはモニタリング料金が発生するが、自動的に最適なクラスに移動してくれる。"
+			"speakerNotes": "Intelligent-Tieringはモニタリング料金が発生するが、自動的に最適なクラスに移動してくれる。",
+			"subtitle": "Intelligent-Tieringで自動クラス移行、コスト最大90%削減が可能"
 		},
 		{
 			"title": "S3 ストレージクラス（2/2）",
@@ -77,7 +81,8 @@
 				"**コスト傾向**: Standard → Glacier Deep Archive で保存コストが最大**95%削減**"
 			],
 			"layout": "default",
-			"speakerNotes": "Deep Archiveは取得に最大12時間かかるが、テープバックアップの代替として非常に安価。"
+			"speakerNotes": "Deep Archiveは取得に最大12時間かかるが、テープバックアップの代替として非常に安価。",
+			"subtitle": "Glacier Instant取り出しmsec、Flexible取り出し分、Deep Archive取り出し時間"
 		},
 		{
 			"title": "S3 バケットポリシーとアクセス制御（1/2）",
@@ -88,7 +93,8 @@
 				"- **バケットポリシー** — バケット単位のリソースベースポリシー"
 			],
 			"layout": "default",
-			"speakerNotes": "2023年4月以降、新規バケットはデフォルトでACLが無効化されている。"
+			"speakerNotes": "2023年4月以降、新規バケットはデフォルトでACLが無効化されている。",
+			"subtitle": "バケットポリシー×IAMの組み合わせで最小権限アクセス制御を実現"
 		},
 		{
 			"title": "S3 バケットポリシーとアクセス制御（2/2）",
@@ -99,7 +105,8 @@
 				"**推奨**: ACLを無効化し、IAMポリシー + バケットポリシーで管理"
 			],
 			"layout": "default",
-			"speakerNotes": "2023年4月以降、新規バケットはデフォルトでACLが無効化されている。"
+			"speakerNotes": "2023年4月以降、新規バケットはデフォルトでACLが無効化されている。",
+			"subtitle": "PublicAccessBlock設定の4フラグを全て有効にして誤公開を防止する"
 		},
 		{
 			"title": "S3 バケットポリシー例",
@@ -125,7 +132,8 @@
 				"- **SSE-KMS** — AWS KMS管理キー（監査証跡・キーローテーション）"
 			],
 			"layout": "default",
-			"speakerNotes": "2023年1月以降、すべての新規オブジェクトにSSE-S3がデフォルトで適用される。"
+			"speakerNotes": "2023年1月以降、すべての新規オブジェクトにSSE-S3がデフォルトで適用される。",
+			"subtitle": "SSE-S3・SSE-KMS・SSE-Cの3方式：キー管理責任の所在で選ぶ"
 		},
 		{
 			"title": "S3 暗号化オプション（2/2）",
@@ -136,7 +144,8 @@
 				"**クライアントサイド暗号化**: アップロード前にクライアント側で暗号化"
 			],
 			"layout": "default",
-			"speakerNotes": "2023年1月以降、すべての新規オブジェクトにSSE-S3がデフォルトで適用される。"
+			"speakerNotes": "2023年1月以降、すべての新規オブジェクトにSSE-S3がデフォルトで適用される。",
+			"subtitle": "SSE-KMSは監査ログと鍵ローテーション自動化で高セキュリティ環境に最適"
 		},
 		{
 			"title": "S3 バージョニングとライフサイクル（1/2）",
@@ -147,7 +156,8 @@
 				"- 削除マーカーによる論理削除",
 				"- MFA Delete で誤削除を防止"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "バージョニング有効でMFADelete設定がランサムウェア対策の基本"
 		},
 		{
 			"title": "S3 バージョニングとライフサイクル（2/2）",
@@ -159,7 +169,8 @@
 				"- 旧バージョンの自動削除",
 				"- 不完全なマルチパートアップロードのクリーンアップ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ライフサイクルルールでIA→Glacier→Expireの自動移行コストを最小化"
 		},
 		{
 			"title": "S3 ライフサイクルポリシー例",
@@ -185,7 +196,8 @@
 				"- コンプライアンス要件（データの地理的冗長性）",
 				""
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CRR/SRRで別リージョン/同リージョンのS3間を非同期レプリケーション"
 		},
 		{
 			"title": "S3 レプリケーション（2/2）",
@@ -197,7 +209,8 @@
 				"",
 				"**前提条件**: 送信元・送信先ともにバージョニング有効化が必須"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "レプリケーション時間制御(RTC)でRPO 15分保証が可能になる"
 		},
 		{
 			"title": "S3 パフォーマンス最適化（1/2）",
@@ -209,7 +222,8 @@
 				""
 			],
 			"layout": "default",
-			"speakerNotes": "プレフィックスの分散設計により、理論上無制限のスループットを達成可能。"
+			"speakerNotes": "プレフィックスの分散設計により、理論上無制限のスループットを達成可能。",
+			"subtitle": "マルチパートアップロードとTransfer Accelerationで大容量高速転送"
 		},
 		{
 			"title": "S3 パフォーマンス最適化（2/2）",
@@ -221,7 +235,8 @@
 				"- **S3 Select / Glacier Select** — サーバーサイドでCSV/JSONをフィルタリング"
 			],
 			"layout": "default",
-			"speakerNotes": "プレフィックスの分散設計により、理論上無制限のスループットを達成可能。"
+			"speakerNotes": "プレフィックスの分散設計により、理論上無制限のスループットを達成可能。",
+			"subtitle": "S3 Expressワンゾーンでレイテンシ10ms以下・コスト50%削減を実現"
 		},
 		{
 			"title": "S3 イベント通知と連携（1/2）",
@@ -232,7 +247,8 @@
 				"- 送信先: **Lambda** / **SQS** / **SNS** / **EventBridge**",
 				""
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "S3イベント通知→SQS/SNS/Lambdaでオブジェクト駆動のワークフローを構築"
 		},
 		{
 			"title": "S3 イベント通知と連携（2/2）",
@@ -243,7 +259,8 @@
 				"- ログファイル配置 → SQS 経由でバッチ処理",
 				"- データ到着 → EventBridge で複数サービスにファンアウト"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Event Bridge統合でより細かいフィルタリングと多様なターゲットに対応"
 		},
 		{
 			"title": "S3 セキュリティベストプラクティス（1/2）",
@@ -254,7 +271,8 @@
 				"- **デフォルト暗号化** を有効化（SSE-S3 or SSE-KMS）",
 				"- **アクセスログ** を有効化（監査証跡）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "S3 Block Public Access・MFA Delete・Object Lockの3層セキュリティ"
 		},
 		{
 			"title": "S3 セキュリティベストプラクティス（2/2）",
@@ -266,7 +284,8 @@
 				"- **VPCエンドポイント** 経由でプライベートアクセス",
 				"- **Macie** でPII/機密データの自動検出"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "WORM（Write Once Read Many）はObjectLockのCompliance Modeで実現"
 		},
 		{
 			"title": "S3 料金体系",
@@ -280,7 +299,8 @@
 				"- **レプリケーション** — CRR/SRRの転送・ストレージ"
 			],
 			"layout": "default",
-			"speakerNotes": "同一リージョン内のEC2からS3へのアクセスは転送料金無料。CloudFront経由も送信コスト削減に有効。"
+			"speakerNotes": "同一リージョン内のEC2からS3へのアクセスは転送料金無料。CloudFront経由も送信コスト削減に有効。",
+			"subtitle": "S3料金=ストレージ+リクエスト+データ転送：トランスファー費が最大変動要因"
 		},
 		{
 			"title": "S3 まとめ",
@@ -293,7 +313,8 @@
 				"- **レプリケーション**でDR・コンプライアンスに対応",
 				"- AWSサービスの**データレイク基盤**として最も採用される"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "S3選定基準：耐久性・スケーラビリティ・コスト効率の三拍子が揃っている"
 		},
 		{
 			"title": "Amazon EBS",
@@ -312,7 +333,8 @@
 				"- 同一AZ内の**複数EC2へのマルチアタッチ**をサポート（io1/io2）"
 			],
 			"layout": "default",
-			"speakerNotes": "EBSはネットワーク越しに接続されるため、インスタンスストアと比べてわずかにレイテンシがある。ただし永続性と柔軟性で優れる。"
+			"speakerNotes": "EBSはネットワーク越しに接続されるため、インスタンスストアと比べてわずかにレイテンシがある。ただし永続性と柔軟性で優れる。",
+			"subtitle": "EBSは単一EC2インスタンスへのブロックストレージ、レイテンシ1ms以下"
 		},
 		{
 			"title": "EBS ボリュームタイプ一覧",
@@ -326,7 +348,8 @@
 				"| **st1** | スループットHDD | 500 | 500 MB/s | ビッグデータ・ログ |",
 				"| **sc1** | コールドHDD | 250 | 250 MB/s | アーカイブ |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "gp3・gp2・io2・st1・sc1の5タイプを性能とコストで正確に使い分ける"
 		},
 		{
 			"title": "gp3 vs gp2 比較（1/2）",
@@ -338,7 +361,8 @@
 				"- gp2と比べて最大**20%コスト削減**"
 			],
 			"layout": "default",
-			"speakerNotes": "既存のgp2ボリュームもオンラインでgp3に変更可能。ダウンタイム不要。"
+			"speakerNotes": "既存のgp2ボリュームもオンラインでgp3に変更可能。ダウンタイム不要。",
+			"subtitle": "gp3は性能とコスト独立設定でgp2より最大20%安く同等性能を実現"
 		},
 		{
 			"title": "gp3 vs gp2 比較（2/2）",
@@ -351,7 +375,8 @@
 				"- 新規作成はgp3への移行を推奨"
 			],
 			"layout": "default",
-			"speakerNotes": "既存のgp2ボリュームもオンラインでgp3に変更可能。ダウンタイム不要。"
+			"speakerNotes": "既存のgp2ボリュームもオンラインでgp3に変更可能。ダウンタイム不要。",
+			"subtitle": "gp2はIOPS連動のバースト設計、3TiB超でgp3に必ず移行すべき"
 		},
 		{
 			"title": "io2 Block Express（1/2）",
@@ -362,7 +387,8 @@
 				"- 最大 **4,000 MB/s** スループット",
 				"- サブミリ秒レイテンシ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "io2 Block Expressは256,000IOPSを実現する最高性能プロビジョンドボリューム"
 		},
 		{
 			"title": "io2 Block Express（2/2）",
@@ -374,7 +400,8 @@
 				"- SAP HANA、Oracle、SQL Serverなどの大規模データベース",
 				"- レイテンシに敏感なトランザクション処理"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "io2とio1の違いは耐久性（99.999% vs 99.8-99.9%）とIOPS/GiB最大値"
 		},
 		{
 			"title": "EBS スナップショット（1/2）",
@@ -385,7 +412,8 @@
 				"- S3に保存（リージョン内で冗長化）",
 				"- 別AZ・別リージョンへのコピーが可能"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "スナップショットはS3に増分保存、コピーでリージョン間移行が可能"
 		},
 		{
 			"title": "EBS スナップショット（2/2）",
@@ -397,7 +425,8 @@
 				"- **EBS Snapshots Archive** で最大75%コスト削減（取得に24-72時間）",
 				"- **ゴミ箱（Recycle Bin）** で誤削除からの復元が可能"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "スナップショットのData Lifecycle Managerで自動バックアップスケジュールを設定"
 		},
 		{
 			"title": "EBS スナップショット運用例",
@@ -423,7 +452,8 @@
 				"- ボリューム・スナップショット・転送中データすべてを暗号化",
 				"- EC2インスタンス側でのパフォーマンス影響は**ほぼゼロ**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "EBS暗号化はKMSキーで透過的に実施：起動中のボリュームは後から有効化不可"
 		},
 		{
 			"title": "EBS 暗号化（2/2）",
@@ -435,7 +465,8 @@
 				"- 非暗号化ボリューム → スナップショット → 暗号化コピー → 新ボリューム作成で移行",
 				"- カスタムKMSキーで監査・ローテーション管理"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "暗号化されたスナップショットのコピーは必ず暗号化されて保存される"
 		},
 		{
 			"title": "EBS マルチアタッチ（1/2）",
@@ -447,7 +478,8 @@
 				"",
 				"**制約事項:**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "マルチアタッチはio1/io2のみ対応：クラスター対応アプリケーション専用"
 		},
 		{
 			"title": "EBS マルチアタッチ（2/2）",
@@ -459,7 +491,8 @@
 				"",
 				"**ユースケース**: クラスタ化されたDB、高可用性アプリケーション"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "マルチアタッチの上限16インスタンスとファイルシステム設計の注意点"
 		},
 		{
 			"title": "EBS パフォーマンスチューニング（1/2）",
@@ -471,7 +504,8 @@
 				"",
 				"**IOPSの考え方:**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "EBSチューニングの鍵：インスタンスとEBSのネットワーク帯域の整合性"
 		},
 		{
 			"title": "EBS パフォーマンスチューニング（2/2）",
@@ -483,7 +517,8 @@
 				"",
 				"**監視**: CloudWatch `VolumeReadOps` / `VolumeWriteOps` メトリクスを活用"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "EBS最適化インスタンスで専用帯域を確保してストレージIOネックを解消"
 		},
 		{
 			"title": "EBS 料金体系（1/2）",
@@ -496,7 +531,8 @@
 				"- **スナップショット** — S3保存量に基づく課金"
 			],
 			"layout": "default",
-			"speakerNotes": "AWS Data Lifecycle Manager (DLM) でスナップショットの作成・保持・削除を自動化できる。"
+			"speakerNotes": "AWS Data Lifecycle Manager (DLM) でスナップショットの作成・保持・削除を自動化できる。",
+			"subtitle": "EBS料金=ボリューム+スナップショット+データ転送：スナップショット削除で大幅節約"
 		},
 		{
 			"title": "EBS 料金体系（2/2）",
@@ -509,7 +545,8 @@
 				"- スナップショットのライフサイクル管理（DLM活用）"
 			],
 			"layout": "default",
-			"speakerNotes": "AWS Data Lifecycle Manager (DLM) でスナップショットの作成・保持・削除を自動化できる。"
+			"speakerNotes": "AWS Data Lifecycle Manager (DLM) でスナップショットの作成・保持・削除を自動化できる。",
+			"subtitle": "gp3に移行してプロビジョンドIOPSを必要最小限に絞ることでコスト削減"
 		},
 		{
 			"title": "EBS まとめ",
@@ -522,7 +559,8 @@
 				"- **暗号化はデフォルト有効化**を推奨",
 				"- **マルチアタッチ**でHA構成をサポート（io1/io2）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "EBS選定基準：低レイテンシブロックストレージが必要な単一AZワークロードに最適"
 		},
 		{
 			"title": "Amazon EFS",
@@ -541,7 +579,8 @@
 				"- NFSv4.0 / NFSv4.1 プロトコルをサポート"
 			],
 			"layout": "default",
-			"speakerNotes": "EFSはEBSと異なり、複数インスタンスから同時アクセスできるため、共有ストレージのユースケースに最適。Windowsの場合はFSx for Windows File Serverを使用する。"
+			"speakerNotes": "EFSはEBSと異なり、複数インスタンスから同時アクセスできるため、共有ストレージのユースケースに最適。Windowsの場合はFSx for Windows File Serverを使用する。",
+			"subtitle": "EFSはマルチAZ・マルチインスタンスの共有NFSマウントを提供する"
 		},
 		{
 			"title": "EFS ストレージクラス",
@@ -557,7 +596,8 @@
 				"**EFS Intelligent-Tiering** でアクセスパターンに応じて自動移行"
 			],
 			"layout": "default",
-			"speakerNotes": "One Zoneクラスは開発環境やバックアップ用途に適している。本番環境ではマルチAZのStandardを推奨。"
+			"speakerNotes": "One Zoneクラスは開発環境やバックアップ用途に適している。本番環境ではマルチAZのStandardを推奨。",
+			"subtitle": "Standard・IA・Archiveの3クラスをライフサイクルポリシーで自動移行"
 		},
 		{
 			"title": "EFS パフォーマンスモード（1/2）",
@@ -569,7 +609,8 @@
 				"- **Bursting** — ファイルシステムサイズに比例（レガシー）"
 			],
 			"layout": "default",
-			"speakerNotes": "Elasticスループットモードは2022年に追加された比較的新しいモード。ほとんどのワークロードでElasticが最適。"
+			"speakerNotes": "Elasticスループットモードは2022年に追加された比較的新しいモード。ほとんどのワークロードでElasticが最適。",
+			"subtitle": "General PurposeとMax I/Oのパフォーマンスモード：Max I/OはHPC向け"
 		},
 		{
 			"title": "EFS パフォーマンスモード（2/2）",
@@ -581,7 +622,8 @@
 				"- **最大I/O（Max I/O）** — スループット重視（数千クライアント同時接続時）"
 			],
 			"layout": "default",
-			"speakerNotes": "Elasticスループットモードは2022年に追加された比較的新しいモード。ほとんどのワークロードでElasticが最適。"
+			"speakerNotes": "Elasticスループットモードは2022年に追加された比較的新しいモード。ほとんどのワークロードでElasticが最適。",
+			"subtitle": "Enhanced Throughputモードでファイルシステム当たり最大60 GiBpsを達成"
 		},
 		{
 			"title": "EFS マウント設定例",
@@ -607,7 +649,8 @@
 				"- **VPC内アクセスのみ**（デフォルト）、VPN/Direct Connect経由でオンプレ接続可",
 				""
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "EFSのポリシーベースアクセス制御でファイルシステムをIAMと統合する"
 		},
 		{
 			"title": "EFS アクセス制御（2/2）",
@@ -619,7 +662,8 @@
 				"- **IAM認証** でマウント権限をポリシーベースで管理",
 				"- **リソースベースポリシー** でクロスアカウントアクセスを制御"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "クライアントマウントのTLS強制でEFS通信を転送中暗号化できる"
 		},
 		{
 			"title": "EFS + Lambda 連携（1/2）",
@@ -631,7 +675,8 @@
 				"- `/mnt/` パスでファイルの読み書きが可能"
 			],
 			"layout": "default",
-			"speakerNotes": "Lambda + EFSの組み合わせは2020年に追加された機能。ML推論でモデルファイルを共有するパターンが増えている。"
+			"speakerNotes": "Lambda + EFSの組み合わせは2020年に追加された機能。ML推論でモデルファイルを共有するパターンが増えている。",
+			"subtitle": "Lambda+EFSで10GB超の大容量ML重みファイルを共有できる"
 		},
 		{
 			"title": "EFS + Lambda 連携（2/2）",
@@ -644,7 +689,8 @@
 				"- `/tmp`（最大10GB）を超える一時ファイル処理"
 			],
 			"layout": "default",
-			"speakerNotes": "Lambda + EFSの組み合わせは2020年に追加された機能。ML推論でモデルファイルを共有するパターンが増えている。"
+			"speakerNotes": "Lambda + EFSの組み合わせは2020年に追加された機能。ML推論でモデルファイルを共有するパターンが増えている。",
+			"subtitle": "EFSマウントにはアクセスポイントを使ってUID/GIDを強制設定する"
 		},
 		{
 			"title": "EFS 暗号化・バックアップ・料金（1/2）",
@@ -656,7 +702,8 @@
 				"**課金要素:**"
 			],
 			"layout": "default",
-			"speakerNotes": "EFS Standard: 約0.30 USD/GB/月、EFS Standard-IA: 約0.016 USD/GB/月と大きな価格差がある。保存時暗号化はFS作成時のみ有効化可能。"
+			"speakerNotes": "EFS Standard: 約0.30 USD/GB/月、EFS Standard-IA: 約0.016 USD/GB/月と大きな価格差がある。保存時暗号化はFS作成時のみ有効化可能。",
+			"subtitle": "EFSはKMS暗号化・AWS Backup統合・GiB単価0.30$/月（Standard）"
 		},
 		{
 			"title": "EFS 暗号化・バックアップ・料金（2/2）",
@@ -669,7 +716,8 @@
 				"- **One Zone** クラスで約47%削減（開発環境向け）"
 			],
 			"layout": "default",
-			"speakerNotes": "EFS Standard: 約0.30 USD/GB/月、EFS Standard-IA: 約0.016 USD/GB/月と大きな価格差がある。保存時暗号化はFS作成時のみ有効化可能。"
+			"speakerNotes": "EFS Standard: 約0.30 USD/GB/月、EFS Standard-IA: 約0.016 USD/GB/月と大きな価格差がある。保存時暗号化はFS作成時のみ有効化可能。",
+			"subtitle": "EFS Intelligent-TieringとDeep Archive移行でコストを最大92%削減"
 		},
 		{
 			"title": "EFS まとめ",
@@ -682,7 +730,8 @@
 				"- **Intelligent-Tiering** でストレージコストを最大92%削減",
 				"- **クロスリージョンレプリケーション** でDR対応"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "EFS選定基準：複数EC2インスタンスから同時RW・NFSプロトコルが要件の場合"
 		},
 		{
 			"title": "Amazon FSx",
@@ -698,7 +747,8 @@
 				"- **FSx for Lustre** — HPC・ML向け超高性能並列FS"
 			],
 			"layout": "default",
-			"speakerNotes": "FSxファミリーはそれぞれ異なるユースケースに特化している。既存のファイルシステムからの移行を簡単にするためにネイティブ互換性を提供。"
+			"speakerNotes": "FSxファミリーはそれぞれ異なるユースケースに特化している。既存のファイルシステムからの移行を簡単にするためにネイティブ互換性を提供。",
+			"subtitle": "FSxファミリーはWindows/Lustre/ONTAP/OpenZFSの4製品で全エンタープライズ需要をカバー"
 		},
 		{
 			"title": "FSx ファミリー概要（2/2）",
@@ -709,7 +759,8 @@
 				"**共通の特徴**: フルマネージド・暗号化・バックアップ・高可用性"
 			],
 			"layout": "default",
-			"speakerNotes": "FSxファミリーはそれぞれ異なるユースケースに特化している。既存のファイルシステムからの移行を簡単にするためにネイティブ互換性を提供。"
+			"speakerNotes": "FSxファミリーはそれぞれ異なるユースケースに特化している。既存のファイルシステムからの移行を簡単にするためにネイティブ互換性を提供。",
+			"subtitle": "FSxの選定はOSとプロトコルで決まる：Windows→FSx WFS、Linux HPC→Lustre"
 		},
 		{
 			"title": "FSx for Windows File Server（1/2）",
@@ -720,7 +771,8 @@
 				"- **SMB 2.0〜3.1.1** プロトコル対応",
 				"- DFS名前空間・DFSレプリケーション対応"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "FSx for Windows File ServerはAD統合・SMBプロトコル・VSS対応で移行コストゼロ"
 		},
 		{
 			"title": "FSx for Windows File Server（2/2）",
@@ -732,7 +784,8 @@
 				"- SSD: 最大 **200,000 IOPS**、HDD: コスト効率重視",
 				"- マルチAZ構成で自動フェイルオーバー（高可用性）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "FSx WFSは最大64TB・1MBpsからエンタープライズ向けまでスケール可能"
 		},
 		{
 			"title": "FSx for Lustre（1/2）",
@@ -744,7 +797,8 @@
 				"- **S3とのシームレス統合** — S3バケットをデータレポジトリとしてリンク"
 			],
 			"layout": "default",
-			"speakerNotes": "LustreはLinux + Clusterの造語。HPCの分野で広く使われているオープンソースファイルシステム。"
+			"speakerNotes": "LustreはLinux + Clusterの造語。HPCの分野で広く使われているオープンソースファイルシステム。",
+			"subtitle": "FSx for LustreはS3と直接統合し超高速HPCデータ処理を実現する"
 		},
 		{
 			"title": "FSx for Lustre（2/2）",
@@ -756,7 +810,8 @@
 				"- **Scratch** — 一時的処理（高スループット・低コスト）、バッチ処理向け"
 			],
 			"layout": "default",
-			"speakerNotes": "LustreはLinux + Clusterの造語。HPCの分野で広く使われているオープンソースファイルシステム。"
+			"speakerNotes": "LustreはLinux + Clusterの造語。HPCの分野で広く使われているオープンソースファイルシステム。",
+			"subtitle": "Lustreの最大480GB/s・1.2億IOPS実績がML・ゲノム解析・CFDに最適"
 		},
 		{
 			"title": "FSx for Lustre + S3 連携（1/2）",
@@ -767,7 +822,8 @@
 				"- S3オブジェクトがFSx上に**メタデータとして自動表示**",
 				"- **初回アクセス時にS3からデータを自動取得**（Lazy Loading）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Lustreのデータリポジトリ連携でS3との双方向同期が自動化できる"
 		},
 		{
 			"title": "FSx for Lustre + S3 連携（2/2）",
@@ -778,7 +834,8 @@
 				"**パターン: S3 → FSx(Lustre) → 高速処理 → S3**",
 				"- ML学習データをS3に保存 → Lustreで高速読み込み → 結果をS3にエクスポート"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Lustreの自動エクスポートでHPCジョブ完了後の結果をS3に自動保存"
 		},
 		{
 			"title": "FSx for NetApp ONTAP（1/2）",
@@ -790,7 +847,8 @@
 				"- **FlexClone** でスペース効率の高いクローン（開発・テスト環境）"
 			],
 			"layout": "default",
-			"speakerNotes": "NetApp ONTAPは企業で広く使われているストレージOS。既存のNetApp環境からの移行が容易。"
+			"speakerNotes": "NetApp ONTAPは企業で広く使われているストレージOS。既存のNetApp環境からの移行が容易。",
+			"subtitle": "FSx for NetApp ONTAPはマルチプロトコル・SnapMirror・FlexCloneが強み"
 		},
 		{
 			"title": "FSx for NetApp ONTAP（2/2）",
@@ -802,7 +860,8 @@
 				"- オンプレNAS/SANからの移行、マルチOS環境の共有ストレージ"
 			],
 			"layout": "default",
-			"speakerNotes": "NetApp ONTAPは企業で広く使われているストレージOS。既存のNetApp環境からの移行が容易。"
+			"speakerNotes": "NetApp ONTAPは企業で広く使われているストレージOS。既存のNetApp環境からの移行が容易。",
+			"subtitle": "ONTAP FabricPoolで自動階層化、S3コールドストレージへ透過的に移行"
 		},
 		{
 			"title": "FSx for OpenZFS（1/2）",
@@ -813,7 +872,8 @@
 				"- NFS（v3, v4, v4.1, v4.2）プロトコル対応",
 				"- **即時スナップショット** — ゼロコストのポイントインタイムコピー"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "FSx for OpenZFSはLinuxアプリケーションのNFSストレージを高性能で提供"
 		},
 		{
 			"title": "FSx for OpenZFS（2/2）",
@@ -824,7 +884,8 @@
 				"",
 				"**ユースケース:** Linux/macOSベースのNAS移行、データベース、CI/CDビルド環境"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "OpenZFSのスナップショット数秒・クローン即時がDevOps環境に最適"
 		},
 		{
 			"title": "FSx ファミリー選定ガイド",
@@ -839,7 +900,8 @@
 				"| オンプレNAS移行（NetApp既存） | **FSx for NetApp ONTAP** |",
 				"| S3データの高速バッチ処理 | **FSx for Lustre** |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "FSxファミリー選定ガイド：既存プロトコルとOSから最短で最適製品を選べる"
 		},
 		{
 			"title": "FSx まとめ",
@@ -852,7 +914,8 @@
 				"- **ZFS互換** → FSx for OpenZFS（スナップショット・高速I/O）",
 				"- すべてフルマネージド・暗号化・自動バックアップ対応"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "FSx選定の結論：移行コスト最小化にはプロトコル・OS・運用要件を先に確認"
 		},
 		{
 			"title": "AWS Storage Gateway",
@@ -871,7 +934,8 @@
 				"- オンプレからクラウドへの段階的移行に最適"
 			],
 			"layout": "default",
-			"speakerNotes": "Storage GatewayはVMware ESXi、Microsoft Hyper-V、KVMで動作。AWSが提供するハードウェアアプライアンスも選択可能。"
+			"speakerNotes": "Storage GatewayはVMware ESXi、Microsoft Hyper-V、KVMで動作。AWSが提供するハードウェアアプライアンスも選択可能。",
+			"subtitle": "Storage GatewayはオンプレとAWSを透過的に橋渡しするハイブリッド基盤"
 		},
 		{
 			"title": "Storage Gateway タイプ一覧",
@@ -884,7 +948,8 @@
 				"| **Volume Gateway** | iSCSI | S3 + EBS | ブロックストレージ |",
 				"| **Tape Gateway** | iSCSI (VTL) | S3 Glacier | テープバックアップ代替 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "File・Volume・Tapeの3タイプが異なるオンプレストレージ統合ユースケースをカバー"
 		},
 		{
 			"title": "S3 File Gateway（1/2）",
@@ -895,7 +960,8 @@
 				"- オンプレアプリからは通常のファイル共有として見える",
 				"- **ローカルキャッシュ**で頻繁アクセスデータを高速提供"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "S3 File GatewayはNFSマウントでオンプレからS3をファイルシステムとして扱える"
 		},
 		{
 			"title": "S3 File Gateway（2/2）",
@@ -907,7 +973,8 @@
 				"- データレイクへのデータ取り込みパイプライン",
 				"- バックアップデータのS3保存（ライフサイクルでGlacierに自動移行）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "File Gatewayのローカルキャッシュが頻繁アクセスデータのレイテンシを隠蔽"
 		},
 		{
 			"title": "Volume Gateway（1/2）",
@@ -920,7 +987,8 @@
 				"- 最大 **1 PB**（32ボリューム × 32 TiB）"
 			],
 			"layout": "default",
-			"speakerNotes": "Cached Volumesはクラウドファースト、Stored Volumesはオンプレファーストのアプローチ。移行計画に応じて選択する。"
+			"speakerNotes": "Cached Volumesはクラウドファースト、Stored Volumesはオンプレファーストのアプローチ。移行計画に応じて選択する。",
+			"subtitle": "Volume GatewayはiSCSI経由でオンプレからEBSスナップショットをS3に保存"
 		},
 		{
 			"title": "Volume Gateway（2/2）",
@@ -934,7 +1002,8 @@
 				"**EBSスナップショットとして復元可能** → クラウドへのDR対応"
 			],
 			"layout": "default",
-			"speakerNotes": "Cached Volumesはクラウドファースト、Stored Volumesはオンプレファーストのアプローチ。移行計画に応じて選択する。"
+			"speakerNotes": "Cached Volumesはクラウドファースト、Stored Volumesはオンプレファーストのアプローチ。移行計画に応じて選択する。",
+			"subtitle": "Cached型は主データをS3、頻用データをキャッシュ；Stored型は逆の設計"
 		},
 		{
 			"title": "Tape Gateway（1/2）",
@@ -945,7 +1014,8 @@
 				"- バックアップソフト（Veeam・Veritas・Commvault等）とネイティブ連携",
 				"- 仮想テープ → S3に保存 → アーカイブ時にGlacier/Deep Archiveへ自動移行"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Tape Gatewayは物理テープインフラをVTL経由でS3/Glacierに移行できる"
 		},
 		{
 			"title": "Tape Gateway（2/2）",
@@ -957,7 +1027,8 @@
 				"- 物理テープの管理・保管・輸送コストを排除",
 				"- テープあたり最大 **5 TiB**、ライブラリあたり最大 **1,500** テープ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Tape Gatewayでテープバックアップソフトウェアの変更なしにクラウド移行が完了"
 		},
 		{
 			"title": "Storage Gateway デプロイと運用（1/2）",
@@ -968,7 +1039,8 @@
 				"- **ハードウェアアプライアンス** — AWS提供1Uサーバー（仮想化環境不要時）",
 				"- **EC2ゲートウェイ** — クラウド内ワークロード・DRテスト向け"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Storage GatewayはVMware/HyperVまたはAWS Hardware Applianceで稼働する"
 		},
 		{
 			"title": "Storage Gateway デプロイと運用（2/2）",
@@ -980,7 +1052,8 @@
 				"- ローカルキャッシュで**低レイテンシ**を確保",
 				"- オンプレからクラウドへの**段階的移行**に最適"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Gateway監視はCloudWatch Metrics必須：キャッシュヒット率が最重要指標"
 		},
 		{
 			"title": "AWS Snow Family（1/2）",
@@ -991,7 +1064,8 @@
 				"- **Snowball Edge Storage Optimized** — 80TB、S3互換エンドポイント搭載"
 			],
 			"layout": "default",
-			"speakerNotes": "ネットワーク転送に1週間以上かかる場合はSnow Familyが費用対効果で優位。Snowmobileは10PB以上の移行で推奨。"
+			"speakerNotes": "ネットワーク転送に1週間以上かかる場合はSnow Familyが費用対効果で優位。Snowmobileは10PB以上の移行で推奨。",
+			"subtitle": "Snowball EdgeはPB級データ移行に最適、ネットワーク転送の数週間を数日に短縮"
 		},
 		{
 			"title": "AWS Snow Family（2/2）",
@@ -1002,7 +1076,8 @@
 				"**共通**: 暗号化（256bit）・耐衝撃・耐改ざん設計、AWS OpsHubで管理"
 			],
 			"layout": "default",
-			"speakerNotes": "ネットワーク転送に1週間以上かかる場合はSnow Familyが費用対効果で優位。Snowmobileは10PB以上の移行で推奨。"
+			"speakerNotes": "ネットワーク転送に1週間以上かかる場合はSnow Familyが費用対効果で優位。Snowmobileは10PB以上の移行で推奨。",
+			"subtitle": "Snowconeは小容量・Snowball Edgeは中容量・Snowmobileは数PB超の移行に対応"
 		},
 		{
 			"title": "AWS DataSync & Transfer Family（1/2）",
@@ -1014,7 +1089,8 @@
 				"- 帯域制限・スケジュール実行・増分転送・データ検証"
 			],
 			"layout": "default",
-			"speakerNotes": "DataSyncはネットワーク経由の定期同期に最適。Transfer Familyは外部パートナーとのB2Bファイル交換に使われることが多い。"
+			"speakerNotes": "DataSyncはネットワーク経由の定期同期に最適。Transfer Familyは外部パートナーとのB2Bファイル交換に使われることが多い。",
+			"subtitle": "DataSyncはマネージド転送サービスでS3/EFS/FSxへの高速オンライン移行を実現"
 		},
 		{
 			"title": "AWS DataSync & Transfer Family（2/2）",
@@ -1027,7 +1103,8 @@
 				"- IDプロバイダ統合（AD・LDAP・カスタム認証）"
 			],
 			"layout": "default",
-			"speakerNotes": "DataSyncはネットワーク経由の定期同期に最適。Transfer Familyは外部パートナーとのB2Bファイル交換に使われることが多い。"
+			"speakerNotes": "DataSyncはネットワーク経由の定期同期に最適。Transfer Familyは外部パートナーとのB2Bファイル交換に使われることが多い。",
+			"subtitle": "Transfer FamilyはFTP/SFTP/FTTSエンドポイントをS3/EFSと統合する"
 		},
 		{
 			"title": "AWS Backup と災害復旧（1/2）",
@@ -1039,7 +1116,8 @@
 				"- **クロスリージョン・クロスアカウント**コピーでDR対応"
 			],
 			"layout": "default",
-			"speakerNotes": "AWS BackupはOrganizations統合でマルチアカウント環境でも一元管理が可能。Backup Vault Lockはランサムウェア対策としても有効。"
+			"speakerNotes": "AWS BackupはOrganizations統合でマルチアカウント環境でも一元管理が可能。Backup Vault Lockはランサムウェア対策としても有効。",
+			"subtitle": "AWS BackupはS3・EBS・RDS・DynamoDB・EFS・FSxを統一ポリシーで保護"
 		},
 		{
 			"title": "AWS Backup と災害復旧（2/2）",
@@ -1052,7 +1130,8 @@
 				"- **RTO**（目標復旧時間）: ダウンタイムの許容範囲"
 			],
 			"layout": "default",
-			"speakerNotes": "AWS BackupはOrganizations統合でマルチアカウント環境でも一元管理が可能。Backup Vault Lockはランサムウェア対策としても有効。"
+			"speakerNotes": "AWS BackupはOrganizations統合でマルチアカウント環境でも一元管理が可能。Backup Vault Lockはランサムウェア対策としても有効。",
+			"subtitle": "RPO・RTOの要件からバックアッププラン設計とクロスリージョンコピーを決める"
 		},
 		{
 			"title": "ストレージサービス選定フロー",
@@ -1069,7 +1148,8 @@
 				"| 大容量オフライン移行 | **Snow Family** |"
 			],
 			"layout": "default",
-			"speakerNotes": "試験ではユースケースに応じた最適なサービス選択が頻出。特にS3とEBSとEFSの使い分けは必須知識。"
+			"speakerNotes": "試験ではユースケースに応じた最適なサービス選択が頻出。特にS3とEBSとEFSの使い分けは必須知識。",
+			"subtitle": "ストレージ選定フロー：ブロック→EBS、共有NFS→EFS、オブジェクト→S3、高性能→FSx"
 		},
 		{
 			"title": "まとめ — AWS ストレージサービス（1/2）",
@@ -1084,6 +1164,7 @@
 		},
 		{
 			"title": "まとめ — AWS ストレージサービス（2/2）",
+			"subtitle": "FSx・Storage Gateway・Snow Family・AWS Backupで完全なストレージライフサイクルを管理",
 			"content": [
 				"- **FSx**: 4つの専用ファイルシステム（Windows/Lustre/ONTAP/OpenZFS）",
 				"- **Storage Gateway**: ハイブリッド接続（File/Volume/Tape）",

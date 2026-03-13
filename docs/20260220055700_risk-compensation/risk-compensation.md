@@ -7,6 +7,71 @@ paginate: true
 header: "リスク補償理論"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -41,6 +106,8 @@ style: |
 
 # リスクホメオスタシス理論
 
+> *安全が高まると行動が変わりリスクは目標値へ回帰する*
+
 - Gerald Wilde（1982）— 人は「許容リスクレベル」を内部的に持つ
 - 安全が高まると → より大きなリスクを取るように行動を変える
 - 実際の事故率はほぼ一定に保たれる傾向がある
@@ -64,6 +131,8 @@ style: |
 
 # ヘルメット着用と事故率の関係
 
+> *ヘルメット非着用の方が車が広く避けるという逆説*
+
 - サイクリストのヘルメット着用 → 路肩を走る距離が短くなる現象
 - Ian Walker（2006）— ヘルメット非着用時の方が車は広く避けて通る
 - <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e" rx="12"/><text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">ヘルメット着用と車の追い越し距離（模式図）</text><line x1="80" y1="260" x2="740" y2="260" stroke="#555" stroke-width="2"/><line x1="80" y1="260" x2="80" y2="70" stroke="#555" stroke-width="2"/><text x="400" y="286" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">走行状況</text><text x="55" y="266" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">0</text><text x="55" y="186" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">50</text><text x="55" y="106" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">100</text><text x="30" y="180" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif" transform="rotate(-90,30,180)">追い越し距離(cm)</text><line x1="80" y1="186" x2="740" y2="186" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/><line x1="80" y1="106" x2="740" y2="106" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/><rect x="160" y="136" width="140" height="124" fill="#e91e63" opacity="0.85" rx="4"/><text x="230" y="128" text-anchor="middle" fill="#f48fb1" font-size="12" font-family="sans-serif">ヘルメット着用</text><text x="230" y="256" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">約75cm</text><rect x="500" y="106" width="140" height="154" fill="#42a5f5" opacity="0.85" rx="4"/><text x="570" y="98" text-anchor="middle" fill="#90caf9" font-size="12" font-family="sans-serif">ヘルメット非着用</text><text x="570" y="256" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">約82cm</text><line x1="230" y1="136" x2="570" y2="106" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,4"/><polygon points="570,106 558,106 563,115" fill="#f9a825"/><text x="400" y="296" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">ヘルメット非着用の方が車は広く避ける — 逆説的な安全効果</text></svg>
@@ -79,6 +148,8 @@ style: |
 ---
 
 # テクノロジーへの応用
+
+> *2FA・自動運転・預金保険でも同じ油断メカニズムが働く*
 
 - **自動運転（Level 2）：** オートパイロットへの過信 → 注意散漫が増加
 - **サイバーセキュリティ：** 強力なFW導入 → 内部セキュリティ意識が低下
@@ -96,6 +167,8 @@ style: |
 ---
 
 # まとめ：安全設計の逆説
+
+> *安全を意識させ続ける設計こそが最も効果的な安全策*
 
 - リスク補償：人は安全が高まると、リスク行動を増やして均衡を保つ
 - シートベルト・ABS・自動運転で確認された普遍的な現象

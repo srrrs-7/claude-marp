@@ -93,6 +93,8 @@ style: |
 
 # アジェンダ
 
+> *7章で開発コストと保守コストのトレードオフを解剖*
+
 - - 1. バイブコーディングとは何か
 - - 2. AI開発生産性の飛躍
 - - 3. 開発ワークフローの変化
@@ -123,6 +125,8 @@ style: |
 
 # バイブコーディングの本質
 
+> *意図を伝えてAIが実装—エンジニアは設計者に変わる*
+
 - - **完全な自然言語駆動** — コードを書かず「こういうの作って」で開発
 - - **コードを読まない** — 生成結果を理解せずに受け入れる
 - - **エラーもAIに丸投げ** — エラーメッセージをコピペして修正依頼
@@ -151,6 +155,8 @@ style: |
 ---
 
 # 数字で見る生産性向上
+
+> *Copilot導入で開発速度+55%、タスク完了率+26%*
 
 - - **GitHub Copilot研究（2022）** — タスク完了速度が55%向上
 - - **McKinsey報告（2023）** — コード生成タスクで最大2倍の生産性
@@ -183,6 +189,8 @@ style: |
 
 # 速度と品質のパラドックス
 
+> *速く作れるが速く壊れる—保守コストが3年で逆転*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">速度と品質のパラドックス：バイブコーディングのトレードオフ</text><line x1="80" y1="300" x2="720" y2="300" stroke="#ffffff" stroke-width="2"/><line x1="80" y1="50" x2="80" y2="300" stroke="#ffffff" stroke-width="2"/><text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">開発速度</text><text x="20" y="180" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" transform="rotate(-90,20,180)">コード品質</text><text x="72" y="304" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">低</text><text x="72" y="180" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">中</text><text x="72" y="56" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">高</text><text x="400" y="316" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">低</text><text x="560" y="316" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">中</text><text x="720" y="316" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">高</text><!-- Frontier curve: traditional dev --><!-- Points --><circle cx="200" cy="80" r="12" fill="#aaaaaa"/><text x="220" y="78" fill="#aaaaaa" font-size="11" font-family="sans-serif">従来開発</text><text x="220" y="93" fill="#aaaaaa" font-size="10" font-family="sans-serif">高品質・低速</text><circle cx="400" cy="150" r="12" fill="#f9a825"/><text x="420" y="148" fill="#f9a825" font-size="11" font-family="sans-serif">AI支援開発</text><text x="420" y="163" fill="#f9a825" font-size="10" font-family="sans-serif">中品質・中速</text><circle cx="640" cy="240" r="12" fill="#e91e63"/><text x="588" y="228" fill="#e91e63" font-size="11" font-family="sans-serif">バイブ</text><text x="588" y="243" fill="#e91e63" font-size="11" font-family="sans-serif">コーディング</text><text x="588" y="258" fill="#e91e63" font-size="10" font-family="sans-serif">低品質・高速</text><!-- Pareto curve --><path d="M 180 78 C 250 90, 350 120, 420 155 C 500 195, 580 230, 650 245" stroke="#ffffff" stroke-width="1.5" fill="none" stroke-dasharray="4,4"/><text x="500" y="190" fill="#aaaaaa" font-size="10" font-family="sans-serif">品質-速度のフロンティア</text><!-- Annotation --><rect x="40" y="320" width="720" height="28" rx="6" fill="#16213e"/><text x="400" y="338" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">バイブコーディングは「速い」が「品質の債務」が蓄積する — 後で必ず支払いが来る</text></svg>
 - - **従来型**: 設計→実装→テスト→レビュー（品質担保あり）
 - - **AI支援**: 人間が設計・レビュー、AIが実装（バランス型）
@@ -214,6 +222,8 @@ style: |
 
 # 隠れたコストの正体
 
+> *技術的負債は可視コストの5倍—予防投資が唯一の対策*
+
 - - **初期開発コスト**: バイブコーディングで90%削減も可能
 - - **保守コスト**: AI自動化率75%超で指数関数的に増加
 - - **総コスト最適点**: AI自動化率40-60%（人間レビュー併用）
@@ -241,6 +251,8 @@ style: |
 ---
 
 # 負債が顕在化するタイミング
+
+> *リリース6ヶ月後に保守コストが開発費を超える*
 
 - - **1週間後** — 「あの機能を少し変更して」→ 全体が壊れる
 - - **1ヶ月後** — セキュリティスキャンで脆弱性が大量検出
@@ -276,6 +288,8 @@ style: |
 ---
 
 # 結論：バイブコーディングとの付き合い方
+
+> *PoC・CLIは推奨、金融/医療コアは禁止—境界を引け*
 
 - - **使うべき場面**: プロトタイプ、ハッカソン、個人プロジェクト、LP制作
 - - **慎重に使う場面**: MVP開発、社内ツール（レビュー必須）

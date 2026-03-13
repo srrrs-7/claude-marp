@@ -16,6 +16,7 @@
 		},
 		{
 			"title": "コード生成の現在地",
+			"subtitle": "2021年Copilotから2026年エージェント型AIまで5年でコード生成が実用レベルに達した",
 			"layout": "default",
 			"content": [
 				"- 2021: GitHub Copilot プレビュー — コード補完の革命",
@@ -28,6 +29,7 @@
 		},
 		{
 			"title": "限界費用ゼロへの収束",
+			"subtitle": "コード1行の追加生成コストが数セントまで崩壊、オープンソースとは質的に異なる革命",
 			"layout": "default",
 			"content": [
 				"- リフキン「限界費用ゼロ社会」(2014)の予言が現実に",
@@ -40,6 +42,7 @@
 		},
 		{
 			"title": "既存の価値観の崩壊",
+			"subtitle": "言語習熟・アルゴリズム知識がコモディティ化、StackOverflow訪問数が2023年以降急減",
 			"layout": "default",
 			"content": [
 				"- 「コードが書ける」= 希少スキル → **コモディティ化**",
@@ -68,6 +71,7 @@
 		},
 		{
 			"title": "アーキテクチャ判断の不可代替性",
+			"subtitle": "モノリス vs MSAは文脈依存の判断、組織制約とビジネス成長速度をAIは代替できない",
 			"layout": "default",
 			"content": [
 				"- AIが生成できないもの: **トレードオフ判断**",
@@ -80,6 +84,7 @@
 		},
 		{
 			"title": "倫理・安全・法的判断",
+			"subtitle": "AI生成コードの著作権・脆弱性・バイアス、責任は常に人間に帰属する",
 			"layout": "default",
 			"content": [
 				"- 生成コードのセキュリティ脆弱性の検出と修正",
@@ -93,6 +98,7 @@
 		},
 		{
 			"title": "信頼の希少性",
+			"subtitle": "コードが無限に生成できる時代、人間が審査した認証済みコードの希少価値が急上昇",
 			"layout": "default",
 			"content": [
 				"- コード量が無限 → 「このコードは信頼できるか」が核心に",
@@ -121,6 +127,7 @@
 		},
 		{
 			"title": "「10倍エンジニア」の再定義（1/2）",
+			"subtitle": "コード生産速度より不要な10機能を見抜く判断力が10倍エンジニアの新定義",
 			"layout": "default",
 			"content": [
 				"- 旧定義: コードを10倍速く書ける人",
@@ -152,6 +159,7 @@
 		},
 		{
 			"title": "ポスト希少性の逆説",
+			"subtitle": "コードが無限に生成できるほど削除の判断とYAGNI原則が最高の価値を持つ",
 			"layout": "default",
 			"content": [
 				"- 無限のコードが生成できるほど「**削除する判断**」が重要になる",
@@ -175,6 +183,7 @@
 		},
 		{
 			"title": "参考文献（1/2）",
+			"subtitle": "リフキンとGitHub研究がポスト希少性ソフトウェア論の経済的・実証的根拠を提供する",
 			"layout": "default",
 			"content": [
 				"- **Books & Papers:**",
@@ -185,6 +194,7 @@
 		},
 		{
 			"title": "参考文献（2/2）",
+			"subtitle": "KarpathyのSoftware 2.0とSuttonのBitter Lessonがスケール優位の理論的背景を示す",
 			"layout": "default",
 			"content": [
 				"  - [\"The Death of the Junior Developer\" (Various, 2024)](https://www.businessinsider.com/junior-developer-jobs-ai-coding-tools-2024)",

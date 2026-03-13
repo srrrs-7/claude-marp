@@ -7,6 +7,71 @@ paginate: true
 header: "シュレーディンガーの本番環境"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section {
     font-size: 1.05em;
   }
@@ -45,6 +110,8 @@ style: |
 
 # 重ね合わせ〜デプロイ前の「どちらでもある」状態
 
+> *ブルーグリーンは重ね合わせを維持したまま切り替える*
+
 - **量子**: 観測前は |0⟩+|1⟩ の重ね合わせ状態
 - **本番**: デプロイ前は「動く」+「壊れる」が同時に存在
 - **ブルーグリーンデプロイ** = 重ね合わせを維持したまま切り替える
@@ -62,6 +129,8 @@ style: |
 
 # ハイゼンバグ〜観測するとバグが消える
 
+> *console.logを追加するとバグが消える測定問題の正体*
+
 - **量子**: 観測行為が状態を変える（コペンハーゲン解釈）
 - `console.log` を追加したらバグが消えた
 - ログレベルを変えたら再現しなくなった
@@ -72,6 +141,8 @@ style: |
 ---
 
 # 観測問題の解決策〜Observabilityという「測定装置」
+
+> *Metrics・Traces・Logsの三本柱が波動関数を完全観測する*
 
 - **Prometheus**: 量子的測定器 — 状態を定期的にサンプリング
 - **Distributed Tracing**: 波動関数の経路記録 — リクエストの軌跡を追う
@@ -90,6 +161,8 @@ style: |
 
 # 不確定性原理〜パフォーマンスとコストのトレードオフ
 
+> *レイテンシとスループットは同時に最小化できない*
+
 - **ハイゼンベルク**: 位置と運動量を同時に正確に測定できない
 - **システム**: レイテンシとスループットを同時に最小化できない
 - コストとパフォーマンスは相反する — 「全部最適」は存在しない
@@ -99,6 +172,8 @@ style: |
 ---
 
 # 量子もつれ〜マイクロサービスの隠れた依存
+
+> *カスケード障害はもつれた粒子の相関崩壊と同型だ*
 
 - **量子もつれ**: 離れた粒子が瞬時に相関する
 - **マイクロサービス**: A障害 → B障害 → C障害… カスケード障害
@@ -110,6 +185,8 @@ style: |
 ---
 
 # デコヒーレンス〜時間とともに劣化するシステム
+
+> *技術的負債は量子デコヒーレンスのように静かに進行する*
 
 - **量子デコヒーレンス**: 量子状態は環境との相互作用で古典的状態に崩壊する
 - **システム**: 時間とともに設計意図から乖離し、複雑化・脆弱化する
@@ -127,6 +204,8 @@ style: |
 
 # Chaos Monkey〜意図的な観測実験
 
+> *Chaos Monkeyは意図的に箱を開ける量子実験装置だ*
+
 - シュレーディンガーは箱を開けるのを恐れた — DevOpsは積極的に開ける
 - **Netflix Chaos Monkey**: ランダムな障害注入で耐障害性を検証
 - **Game Day**: 計画的な障害実験でチームの対応力を鍛える
@@ -138,6 +217,8 @@ style: |
 
 # 実践的なObservability設計
 
+> *SLOとError Budgetが許容される不確定性の範囲を定義する*
+
 - **Three Pillars**: Metrics / Traces / Logs — 三方向からの観測
 - **SLO（Service Level Objective）** = 許容される「不確定性の範囲」
 - **Error Budget** = 量子的不確定性への余裕 — 使い切ったら凍結
@@ -147,12 +228,20 @@ style: |
 
 ---
 
-# まとめ〜量子力学から学ぶDevOpsの心得
+# まとめ〜量子力学から学ぶDevOpsの心得（1/2）
+
+> *Observabilityへの投資が「正常」を確定させる唯一の手段*
 
 - 「正常」は観測によって初めて確定する — 継続的な監視が前提
 - 測定コストゼロを目指す設計を — 副作用のないObservability
 - 不確定性は排除できない → 受け入れて設計せよ（Chaos Engineering）
 - ハイゼンバグを「観測する」ためのObservability投資を惜しむな
+
+
+---
+
+# まとめ〜量子力学から学ぶDevOpsの心得（2/2）
+
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" font-size="16" font-weight="bold" fill="#f9a825" font-family="sans-serif">量子力学 × DevOps — 対応まとめ</text><rect x="30" y="50" width="340" height="210" rx="10" fill="#0f3460" stroke="#4caf50" stroke-width="1"/><text x="200" y="76" text-anchor="middle" font-size="13" font-weight="bold" fill="#4caf50" font-family="sans-serif">量子力学の概念</text><text x="200" y="102" text-anchor="middle" font-size="12" fill="#e0e0e0" font-family="sans-serif">重ね合わせ状態</text><text x="200" y="126" text-anchor="middle" font-size="12" fill="#e0e0e0" font-family="sans-serif">観測問題 / 測定崩壊</text><text x="200" y="150" text-anchor="middle" font-size="12" fill="#e0e0e0" font-family="sans-serif">不確定性原理</text><text x="200" y="174" text-anchor="middle" font-size="12" fill="#e0e0e0" font-family="sans-serif">量子もつれ</text><text x="200" y="198" text-anchor="middle" font-size="12" fill="#e0e0e0" font-family="sans-serif">デコヒーレンス</text><text x="200" y="222" text-anchor="middle" font-size="12" fill="#e0e0e0" font-family="sans-serif">シュレーディンガーの猫</text><rect x="430" y="50" width="340" height="210" rx="10" fill="#0f3460" stroke="#e91e63" stroke-width="1"/><text x="600" y="76" text-anchor="middle" font-size="13" font-weight="bold" fill="#e91e63" font-family="sans-serif">DevOpsの実践</text><text x="600" y="102" text-anchor="middle" font-size="12" fill="#e0e0e0" font-family="sans-serif">ブルーグリーン / カナリア</text><text x="600" y="126" text-anchor="middle" font-size="12" fill="#e0e0e0" font-family="sans-serif">Observability / ハイゼンバグ</text><text x="600" y="150" text-anchor="middle" font-size="12" fill="#e0e0e0" font-family="sans-serif">レイテンシ vs コスト</text><text x="600" y="174" text-anchor="middle" font-size="12" fill="#e0e0e0" font-family="sans-serif">カスケード障害 / Circuit Breaker</text><text x="600" y="198" text-anchor="middle" font-size="12" fill="#e0e0e0" font-family="sans-serif">技術的負債 / リファクタリング</text><text x="600" y="222" text-anchor="middle" font-size="12" fill="#e0e0e0" font-family="sans-serif">Chaos Engineering</text><line x1="370" y1="102" x2="430" y2="102" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/><line x1="370" y1="126" x2="430" y2="126" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/><line x1="370" y1="150" x2="430" y2="150" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/><line x1="370" y1="174" x2="430" y2="174" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/><line x1="370" y1="198" x2="430" y2="198" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/><line x1="370" y1="222" x2="430" y2="222" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/></svg>
 - **参考文献**:
 - [Accelerate (Forsgren et al.)](https://itrevolution.com/accelerate-book/)

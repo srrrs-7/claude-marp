@@ -114,6 +114,8 @@ style: |
 
 # Wood Wide Web：地下に広がる森のインターネット
 
+> *4億年前から地下で機能する世界最古の分散ネットワーク*
+
 ![w:800 center](assets/wood-wide-web.svg)
 - - 菌根菌（Mycorrhizal Fungi）が木の根を地下で接続
 - - 1本の木は平均 **数十〜数百の他の木** と接続
@@ -133,6 +135,8 @@ style: |
 ---
 
 # Mother Tree：ネットワークのハブノード
+
+> *最多接続の母樹が除去されると連結性が劇的に低下する*
 
 ![w:800 center](assets/mother-tree-hub.svg)
 - - **Mother Tree**（母樹）= 最も多くの接続を持つハブ
@@ -155,6 +159,8 @@ style: |
 
 # P2Pネットワークの設計原則
 
+> *中央なしでも自律・スケール・耐障害性を同時に実現*
+
 ![w:800 center](assets/p2p-principles.svg)
 - - **非中央集権**: 単一の管理サーバーが存在しない
 - - **対等なノード**: 各参加者がクライアント兼サーバー
@@ -169,6 +175,8 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 ---
 
 # 代表的なP2Pプロトコル
+
+> *GossipからRaftまで自然界と同型のプロトコルが存在する*
 
 ![w:800 center](assets/protocols-comparison.svg)
 - - **Gossip Protocol**: 噂話のように情報を伝播（Cassandra, Redis Cluster）
@@ -200,6 +208,8 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 
 # 化学シグナルの仕組み
 
+> *化学シグナルがO(log N)ラウンドで全体に伝播する原理*
+
 ![w:800 center](assets/chem-signal.svg)
 - - 虫害を受けた木が **ジャスモン酸** を菌糸経由で送信
 - - 受信した木は事前に **防御酵素** を生成開始
@@ -223,6 +233,8 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 ---
 
 # 森の Load Balancer：栄養素の再分配
+
+> *余剰ノードから不足ノードへ自動転送する自然のLB*
 
 ![w:800 center](assets/resource-redistribution.svg)
 - - 日当たりの良い木 → 余剰炭素を菌糸ネットワークへ供給
@@ -279,6 +291,8 @@ async function redistributeLoad(nodes: PeerNode[]) {
 
 # 自己修復メカニズム：菌糸 vs P2P
 
+> *冗長経路と迂回形成で部分障害でもサービスを継続する*
+
 ![w:800 center](assets/self-healing.svg)
 - - **菌糸**: 損傷を検知 → 新しい菌糸が迂回経路を形成
 - - **P2P**: ノード離脱を検知 → DHT/Gossipで経路再構築
@@ -309,6 +323,8 @@ async function redistributeLoad(nodes: PeerNode[]) {
 ---
 
 # 菌糸ネットワークから学ぶ設計指針
+
+> *ハイブリッド構造とインセンティブ設計が頑健性の鍵*
 
 ![w:800 center](assets/design-principles-map.svg)
 - - **Hub-and-Spoke は自然界でも有効**: Mother Treeが証明

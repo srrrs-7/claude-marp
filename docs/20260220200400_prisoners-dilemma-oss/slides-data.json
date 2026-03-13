@@ -20,7 +20,8 @@
 				"- 5. 公共財ゲームとコモンズの悲劇",
 				"- 6. 解決策: インセンティブ設計",
 				"- 7. 持続可能なOSSの未来"
-			]
+			],
+			"subtitle": "囚人のジレンマ→フリーライダー→繰り返しゲーム→インセンティブ設計の7章構成"
 		},
 		{
 			"title": "囚人のジレンマとは",
@@ -34,6 +35,7 @@
 		},
 		{
 			"title": "ゲーム理論の基本構造",
+			"subtitle": "個人の合理性が集団として非合理な結果を生む構造",
 			"layout": "default",
 			"content": [
 				"![w:800 center](assets/game-theory-basic.svg)",
@@ -57,6 +59,7 @@
 		},
 		{
 			"title": "フリーライダー問題",
+			"subtitle": "OSSメンテナ46%が無報酬という現実がNash均衡の証拠",
 			"layout": "default",
 			"content": [
 				"![w:800 center](assets/free-rider-problem.svg)",
@@ -81,6 +84,7 @@
 		},
 		{
 			"title": "Axelrodの発見",
+			"subtitle": "しっぺ返し戦略が繰り返しゲームで協力を引き出すと証明した",
 			"layout": "default",
 			"content": [
 				"![w:800 center](assets/axelrod-tournament.svg)",
@@ -110,6 +114,7 @@
 		},
 		{
 			"title": "OSS特有の構造",
+			"subtitle": "デジタル財のコスト構造がOSSをコモンズに近づける",
 			"layout": "default",
 			"content": [
 				"![w:800 center](assets/oss-structure.svg)",
@@ -133,6 +138,7 @@
 		},
 		{
 			"title": "成功事例と新しいモデル",
+			"subtitle": "SponsorsやOSPOがフリーライドのコストを上げる仕組みだ",
 			"layout": "default",
 			"content": [
 				"![w:800 center](assets/incentive-design.svg)",
@@ -158,7 +164,8 @@
 				"  - 一回限りのゲームでは裏切りが合理的",
 				"  - 長期的関係では協力が進化的に安定",
 				"- **2. 制度設計が均衡を変える**"
-			]
+			],
+			"subtitle": "繰り返しと制度設計と透明性が3つの教訓を構成する"
 		},
 		{
 			"title": "ゲーム理論が示す3つの教訓（2/2）",
@@ -169,10 +176,12 @@
 				"- **3. 透明性が信頼を構築する**",
 				"  - 誰が貢献しているかを公開する",
 				"  - 依存関係の可視化(SBOM等)"
-			]
+			],
+			"subtitle": "制度設計で貢献コスト可視化し透明性がOSSの協力均衡を安定させる"
 		},
 		{
 			"title": "まとめ",
+			"subtitle": "善意に頼るだけでは持続可能性を担保できない現実",
 			"layout": "default",
 			"content": [
 				"- 囚人のジレンマはOSSの構造的問題を正確に記述する",

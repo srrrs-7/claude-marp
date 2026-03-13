@@ -120,6 +120,8 @@ style: |
 
 # 認証侵害の現状と統計（2024）
 
+> *MFA導入だけでアカウント侵害の99.9%をブロックできると実証されている*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">認証侵害の現状と統計（2024）</text>
 <rect x="30" y="50" width="220" height="120" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2.5"/>
@@ -219,6 +221,8 @@ style: |
 ---
 
 # MFAの定義と原則
+
+> *MFAはパスワード漏洩後の最後の防衛線として機能する最重要セキュリティ対策*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -342,6 +346,8 @@ style: |
 
 # SMS / 電話 OTP
 
+> *SMS OTPは傍受・SIMスワップに脆弱でありTOTP/FIDO2への移行を強く推奨*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">SMS / 電話 OTP</text>
 <rect x="30" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -372,6 +378,8 @@ style: |
 ---
 
 # TOTP（Time-based OTP） — RFC 6238
+
+> *TOTPは時刻同期ベースのHMAC計算で30秒毎に使い捨てコードを生成する*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">TOTP（Time-based OTP） — RFC 6238</text>
@@ -405,6 +413,8 @@ style: |
 
 # PUSH通知認証
 
+> *攻撃手法の正確な理解と適切な対策の組み合わせがセキュリティを根本から強化する*
+
 - **仕組み**: 認証リクエストをスマートフォンアプリにプッシュ送信し、ユーザーが承認/拒否
 - **実装例**: Microsoft Authenticator, Duo Security, Okta Verify, PingID
 - **進化型**: 番号照合（Number Matching）でPush Bombing攻撃を防御
@@ -416,6 +426,8 @@ style: |
 ---
 
 # FIDO2 / WebAuthn — フィッシング耐性MFA
+
+> *FIDO2はオリジン検証でフィッシングを原理的に防ぐ唯一のMFA方式*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">FIDO2 / WebAuthn — フィッシング耐性MFA</text>
@@ -455,6 +467,8 @@ style: |
 
 # バイオメトリクス認証
 
+> *すべての要件を満たすことが本番環境での安全な運用を保証する唯一の方法*
+
 - **種別**: 指紋・顔・虹彩・声紋・静脈パターン（各方式で精度が異なる）
 - **FAR/FRR**: 誤受入率（FAR）と誤拒否率（FRR）はトレードオフ — 用途によりチューニング
 - **FIDO2統合**: 生体認証はデバイスローカルで処理 → バイオデータがサーバーに送信されない
@@ -466,6 +480,8 @@ style: |
 ---
 
 # リスクベース認証（Adaptive MFA）
+
+> *MFA導入がアカウント乗っ取りに対する最も費用対効果の高い単一対策*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">リスクベース認証（Adaptive MFA）</text>
@@ -566,6 +582,8 @@ style: |
 
 # ユースケース別 推奨MFA方式
 
+> *FIDO2はオリジン検証でフィッシングを原理的に防ぐ唯一のMFA方式*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ユースケース別 推奨MFA方式</text>
 <rect x="10" y="45" width="780" height="40" rx="6" fill="#f9a825" opacity="0.2"/>
@@ -619,6 +637,8 @@ style: |
 
 # ISO27001:2022 — アクセス制御の要求
 
+> *ISMS認証は情報セキュリティ管理の体系的実施を第三者が保証する仕組み*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">ISO 27001:2022 — アクセス制御とMFAの要求</text>
 <rect x="30" y="50" width="360" height="125" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -644,6 +664,8 @@ style: |
 ---
 
 # 附属書A — MFA関連コントロール一覧
+
+> *MFAはパスワード漏洩後の最後の防衛線として機能する最重要セキュリティ対策*
 
 - **5.15 アクセス制御**: ビジネス・セキュリティ要件に基づくアクセス制御ポリシー策定
 - **5.16 識別情報管理**: 一意ID + 認証情報の割当・管理手順の確立
@@ -733,6 +755,8 @@ style: |
 
 # 関連法規制 / フレームワークとの対応
 
+> *すべての要件を満たすことが本番環境での安全な運用を保証する唯一の方法*
+
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">関連法規制・フレームワークとMFAの対応</text>
 <text x="100" y="60" font-size="12" fill="#f9a825" text-anchor="middle">法令/規制</text>
@@ -801,6 +825,8 @@ style: |
 
 # MFA導入のリスク評価プロセス（ISMS手順）
 
+> *MFAはパスワード漏洩後の最後の防衛線として機能する最重要セキュリティ対策*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">MFA導入のリスク評価プロセス（ISMS手順）</text>
@@ -846,7 +872,7 @@ style: |
 
 ---
 
-# ISMSコンプライアンス チェックリスト（MFA）
+# ISMSコンプライアンス チェックリスト（MFA）（1/2）
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">ISMSコンプライアンス チェックリスト（MFA）</text>
@@ -887,6 +913,14 @@ style: |
 - **ポリシー**: MFA利用ポリシーが文書化・経営承認済みか
 - **スコープ定義**: 対象システム（特権・リモート・クラウド・外部委託先）を明確に定義しているか
 - **技術選定**: NIST AAL / ISO27001要件に合致したMFA方式を選定・記録しているか
+
+
+---
+
+# ISMSコンプライアンス チェックリスト（MFA）（2/2）
+
+> *MFA導入がアカウント乗っ取りに対する最も費用対効果の高い単一対策*
+
 - **例外管理**: MFA免除申請プロセス・緊急アクセス手順が文書化・承認済みか
 - **教育・訓練**: 全対象ユーザーへのMFA操作教育を実施し記録しているか
 - **監査証跡**: MFA認証ログの記録・保管期間・アラート設定が適切か
@@ -896,6 +930,8 @@ style: |
 ---
 
 # 監査証跡・ログ要件（ISMS観点）
+
+> *SMS OTPは導入容易だが通信傍受リスクがあり高リスク環境には不適切*
 
 - <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">監査証跡・ログ要件（ISMS観点）</text>
@@ -992,6 +1028,8 @@ style: |
 
 # SIMスワッピング攻撃
 
+> *攻撃手法の正確な理解と適切な対策の組み合わせがセキュリティを根本から強化する*
+
 - **概要**: 攻撃者がキャリアを騙して被害者の電話番号を攻撃者のSIMに移管する攻撃
 - **手口**: ①個人情報収集（SNS/ダークウェブ）→ ②キャリアへのなりすまし手続き → ③SMS OTP傍受
 - **被害例**: 2019年 Jack Dorsey（Twitter CEO）乗っ取り / 暗号資産盗難多数
@@ -1003,6 +1041,8 @@ style: |
 ---
 
 # MFA Push疲労攻撃（Push Bombing）
+
+> *番号照合なしのPush通知認証はPush Bombing攻撃に対して無防備になる*
 
 - **手口**: 攻撃者は正しいID/PWを入手済み → 大量のプッシュ通知を深夜等に連続送信
 - **狙い**: ユーザーが誤操作・疲れ・諦めで承認 または 止まらないと思い込んで承認
@@ -1016,6 +1056,8 @@ style: |
 
 # SS7プロトコル脆弱性
 
+> *攻撃手法の正確な理解と適切な対策の組み合わせがセキュリティを根本から強化する*
+
 - **SS7**: 1975年設計の電話網シグナリングプロトコル — 認証機構が設計に存在しない
 - **攻撃**: 電話網への不正アクセスにより通話・SMSをリアルタイムで傍受・転送が可能
 - **必要条件**: 電話キャリアネットワークへのアクセス（国家機関・高度な犯罪者集団等）
@@ -1027,6 +1069,8 @@ style: |
 ---
 
 # 実例ケーススタディ（2022-2024）
+
+> *攻撃手法の正確な理解と適切な対策の組み合わせがセキュリティを根本から強化する*
 
 - **Uber（2022年）**: PUSH疲労 + SEで社員が承認 → 内部システム完全アクセス。犯人は18歳
 - **Cisco（2022年）**: 個人Googleアカウント経由でMFAリカバリーコード奪取 → VPN侵害
@@ -1174,6 +1218,8 @@ style: |
 
 # IdP / IAM システムとの統合パターン
 
+> *IAMの設計品質がAWSリソース全体のセキュリティ体制を直接左右する*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">IdP / IAM システムとの統合パターン</text>
 <rect x="300" y="50" width="200" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
@@ -1213,6 +1259,8 @@ style: |
 
 # ユーザー受容性 & UX設計
 
+> *正しい設計判断の積み重ねが長期的なシステムの可用性とセキュリティを保証する*
+
 - **摩擦と安全性のバランス**: 過度なMFA要求はシャドーITや回避行動を招く
 - **段階的導入**: 特権アカウント → 全社員 → 外部委託先 の順序で展開（混乱を最小化）
 - **セルフサービス登録**: ポータルで社員が自分でデバイス登録できる設計（ヘルプデスク負荷軽減）
@@ -1224,6 +1272,8 @@ style: |
 ---
 
 # 例外処理・アカウントリカバリー設計
+
+> *正確な実装手順と設定の組み合わせが運用品質とセキュリティを根本的に決定する*
 
 - **リカバリーコード**: MFA登録時に発行 → 印刷/暗号化保管を指示（デジタルのみはNG）
 - **緊急アクセス手順**: 全MFAデバイス紛失時の本人確認フロー（対面確認/管理者承認/ID証明）
@@ -1237,6 +1287,8 @@ style: |
 
 # 導入時のよくある落とし穴
 
+> *攻撃手法の正確な理解と適切な対策の組み合わせがセキュリティを根本から強化する*
+
 - **サービスアカウントの見落とし**: 人間アカウントのみMFA対応 → 機械アカウントが抜け穴になる
 - **リカバリープロセスの脆弱性**: MFA自体は堅牢でもリセット手順がSEに弱い（MGM事例）
 - **例外の常態化**: 業務理由でのMFA免除が増加 → スコープが空洞化して形骸化
@@ -1248,6 +1300,8 @@ style: |
 ---
 
 # MFAセキュリティ成熟度モデル
+
+> *FIDO2はオリジン検証でフィッシングを原理的に防ぐ唯一のMFA方式*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1291,6 +1345,8 @@ style: |
 
 # キーテイクアウェイ
 
+> *攻撃手法の正確な理解と適切な対策の組み合わせがセキュリティを根本から強化する*
+
 - **MFAは必須**: 認証侵害の80%以上はパスワード単体の弱さが原因 — MFAで99.9%防御可能
 - **MFAにも弱点あり**: AiTM・Push Bombing・SIMスワッピングへの対策が不可欠
 - **FIDO2/Passkeysが最強**: フィッシング耐性・NIST AAL3達成 — 高リスク環境に推奨
@@ -1303,6 +1359,8 @@ style: |
 
 # 参考文献・推奨リソース（1/2）
 
+> *この内容の正確な理解が実装品質とセキュリティ体制を根本から強化する*
+
 - **標準・規格:**
 - [NIST SP 800-63B Digital Identity Guidelines](https://pages.nist.gov/800-63-3/sp800-63b.html)
 - [ISO/IEC 27001:2022 Information Security Management](https://www.iso.org/standard/27001)
@@ -1312,6 +1370,8 @@ style: |
 ---
 
 # 参考文献・推奨リソース（2/2）
+
+> *この内容の正確な理解が実装品質とセキュリティ体制を根本から強化する*
 
 - [Verizon DBIR 2024](https://www.verizon.com/business/resources/reports/dbir/)
 - [FIDO Alliance — MFA Overview](https://fidoalliance.org/overview/)

@@ -101,6 +101,8 @@ style: |
 
 # AIの「学習」とは何か
 
+> *汎化こそが学習の本質—記憶ではなく未知データへの適応が目標*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">AIの「学習」とは何か</text>
@@ -140,6 +142,8 @@ style: |
 
 # 本資料の構成 (1/2)
 
+> *最適化・NN基礎・深層学習・事前学習・スケーリング則を6章で構成*
+
 - **1.** 機械学習の3パラダイム
 - **2.** 最適化と損失関数
 - **3.** ニューラルネットワーク基礎
@@ -151,6 +155,8 @@ style: |
 ---
 
 # 本資料の構成 (2/2)
+
+> *ファインチューニング・データエンジニアリング・分散学習・評価を後半6章で*
 
 - **7.** ファインチューニングとアライメント
 - **8.** 学習データとデータエンジニアリング
@@ -229,6 +235,8 @@ style: |
 
 # 教師あり学習の定式化
 
+> *汎化誤差の最小化が目標—経験的リスクと期待リスクのギャップを埋める*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">教師あり学習の定式化</text>
@@ -262,6 +270,8 @@ style: |
 
 # 教師なし・自己教師あり学習
 
+> *教師なし学習は密度構造の発見、自己教師あり学習は自動プレテキストで代替*
+
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">学習パラダイム比較</text>
@@ -293,6 +303,8 @@ style: |
 ---
 
 # 強化学習の基礎
+
+> *MDP×ベルマン方程式でQ*を求めRLHFや自律エージェントの基盤を形成*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -327,6 +339,8 @@ style: |
 
 # 汎化誤差と過学習
 
+> *過学習は訓練データの記憶—k-foldとテスト一回限り使用が汎化の鉄則*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">汎化誤差と過学習</text>
@@ -360,6 +374,8 @@ style: |
 ---
 
 # バイアス・バリアンス・トレードオフ
+
+> *二重降下とBenign Overfittingで深層モデルのバイアス低・バリアンス高を克服*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="300" fill="#1a1a2e"/>
@@ -399,6 +415,8 @@ style: |
 ---
 
 # 正則化手法
+
+> *L2/L1/Dropout/Early Stopping/Mixup—6種の正則化で過学習を多層防御*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -462,6 +480,8 @@ style: |
 ---
 
 # 損失関数の種類
+
+> *MSE/CE/KL/Huber/Focal/InfoNCE—タスクと分布の性質で損失関数を選択*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -585,6 +605,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 学習率スケジューリング
 
+> *Warmup→Cosine Decayの組み合わせがTransformerの学習安定化に不可欠*
+
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">学習率スケジューリング</text>
@@ -617,6 +639,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # 損失地形と局所最適解
+
+> *SAMでフラット最小を明示的に探索—シャープ最小より汎化性能が高い*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="300" fill="#1a1a2e"/>
@@ -653,6 +677,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # 勾配クリッピングと学習安定化
+
+> *勾配クリッピング+BF16+LayerNormの三点セットがLLM学習安定化の標準*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -794,6 +820,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 活性化関数の進化
 
+> *ReLUからGELU/SiLUへ—活性化関数の選択でBERT系とLLaMA系が分岐*
+
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">活性化関数の進化</text>
@@ -891,6 +919,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # バッチ正規化 (Batch Normalization)
 
+> *BatchNorm→LayerNorm→RMSNormの進化がTransformerの学習効率を決定*
+
 - **内部共変量シフト**: 学習中に各層の入力分布が変化する問題
 - **BN 操作**: x̂ = (x−μ_B)/σ_B, y = γx̂+β (学習可能パラメータ γ, β)
 - 効果: 学習安定化 / 高学習率使用可 / 正則化効果
@@ -902,6 +932,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # ドロップアウトと正則化
+
+> *LLMではDropoutよりWeight Decayが主流—過学習の種類で手法を選択*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -936,6 +968,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # 残差接続 (ResNet)
+
+> *残差接続で勾配の直接経路を確保—152層の超深層化を可能にした鍵*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -977,6 +1011,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # 初期化戦略
+
+> *He初期化がReLUの標準—ゼロ初期化の対称性破壊問題を回避する*
 
 - ゼロ初期化の問題: 対称性が破れず全ニューロンが同一更新
 - **Xavier 初期化**: Var(w) = 2/(n_in + n_out) — tanh / sigmoid 向け
@@ -1023,6 +1059,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # CNN: 畳み込みの仕組み
 
+> *局所受容野×重み共有×特徴マップ積み上げがCNNの3原則*
+
 - **局所受容野**: 各フィルタは空間的に局所なパターンを検出
 - **重み共有**: 同じフィルタを全位置に適用 → パラメータ削減
 - 演算: (I * K)(i,j) = Σ_{m,n} I(i+m, j+n)·K(m,n)
@@ -1035,6 +1073,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # CNNの進化
 
+> *AlexNet2012→ConvNeXt2022の10年—Transformer設計をCNNに逆輸入*
+
 - **AlexNet (2012)**: ReLU + Dropout + GPU — 深層学習の火付け役
 - **VGGNet (2014)**: 3×3 Conv の積み重ね — シンプルかつ深い
 - **GoogLeNet / Inception (2014)**: Inception Module — 多スケール特徴
@@ -1046,6 +1086,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # RNN / LSTM の仕組み
+
+> *LSTMの3ゲート+Cell stateが長期依存問題を解決、GRUは2ゲートで軽量化*
 
 - **RNN**: h_t = tanh(W_h h_{t-1} + W_x x_t + b)
 - **長期依存問題**: 長いシーケンスで勾配が消失または爆発
@@ -1156,6 +1198,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # Multi-Head Self-Attention の詳細
 
+> *Multi-Head Attentionで構文/意味/照応を並列捕捉、FlashAttentionで4-10倍高速化*
+
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Multi-Head Attention 構造</text>
@@ -1198,6 +1242,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # 位置エンコーディング
+
+> *RoPEが相対位置をLLaMA標準に—ALiBiで学習長超えの外挿も可能*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="280" fill="#1a1a2e"/>
@@ -1242,6 +1288,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # Vision Transformer (ViT)
+
+> *ViTは大規模事前学習でResNetを凌駕、MAEで自己教師あり学習も実現*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -1297,6 +1345,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 自己教師あり学習の概念
 
+> *ラベルなし大規模データを活用—事前学習品質が下流タスクの上限を決定*
+
 - **定義**: データ自身から自動的に監督シグナルを生成する学習枠組み
 - プレテキストタスク: 回転予測 / ジグソーパズル / 色付け / マスク予測
 - 大規模ラベルなしデータの活用 — 人手アノテーション不要
@@ -1308,6 +1358,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # マスク言語モデリング (BERT)
+
+> *BERTのMLM15%マスクで双方向文脈を学習、RoBERTaでNSP廃止し大幅改善*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -1344,6 +1396,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 自己回帰型事前学習 (GPT 系)
 
+> *GPT-1→GPT-3の進化で次トークン予測からIn-context Learningを発見*
+
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">自己回帰型事前学習: 次トークン予測</text>
@@ -1379,6 +1433,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 対照学習 (Contrastive Learning)
 
+> *InfoNCE+SimCLRで類似表現を近づけ、CLIPで画像-テキスト4億ペアから共同表現*
+
 - 目標: 類似ペアの表現を近づけ、非類似ペアを遠ざける
 - **InfoNCE Loss**: L = −log[exp(sim(zᵢ,zⱼ)/τ) / Σ_k exp(sim(zᵢ,z_k)/τ)]
 - **SimCLR**: 同画像の2種 Augmentation を正例、バッチ内他を負例
@@ -1391,6 +1447,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # MAE / SimMIM
 
+> *MAEは75%マスク復元で冗長な画像から高品質な視覚表現を獲得*
+
 - **MAE** (He 2021): 画像の 75% のパッチをランダムマスク → ピクセル復元
 - 非対称 Encoder-Decoder: 可視パッチのみ Encoder へ入力 → 高速
 - MAE の洞察: 画像は高度に冗長 → 難しい補完タスクが表現品質向上
@@ -1402,6 +1460,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # Instruction Tuning の登場
+
+> *InstructGPT=SFT+RLHFで有害出力を削減、指示品質が汎化能力を決定*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -1454,6 +1514,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # 思考連鎖 (CoT) 事前学習
+
+> *CoT→STaR→o1/R1と推論能力が進化、PRMでステップ単位の品質評価を実現*
 
 - <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="240" fill="#1a1a2e"/>
@@ -1543,6 +1605,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # Chinchilla スケーリング則 (2022)
 
+> *Chinchilla則でN=D∝C^0.5—データとモデルを等比率で増やすべき*
+
 - **Hoffmann et al. (2022)**: Kaplan 則への反論 — 最適 N/D 配分の再考
 - Chinchilla (70B / 1.4T tokens) が GPT-3 (175B / 300B) を凌駕
 - 最適配分: N ∝ C^{0.5}, D ∝ C^{0.5} — モデルとデータを等比率で
@@ -1555,6 +1619,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 創発能力 (Emergent Abilities)
 
+> *スケール閾値で突然能力が出現するEmergence、ICLとCoTが代表的事例*
+
 - **Wei et al. (2022)**: 特定スケール閾値を超えると突然能力が出現
 - 算数 / 多段階推論 / BIG-bench: 小規模では偶然以下 → 大規模で急伸
 - **段階的 vs 突然**: 評価指標の選択がグラフの形状に影響 (Schaeffer 2023)
@@ -1566,6 +1632,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # データ・計算・モデルの最適配分
+
+> *Compute-optimalはN∝D、推論効率重視なら小モデル+多データが優位*
 
 - 固定計算予算: C ≈ 6ND FLOPs (N: パラメータ数, D: トークン数)
 - Compute-optimal: N* ∝ C^{0.5}, D* ∝ C^{0.5}
@@ -1586,6 +1654,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # Supervised Fine-Tuning (SFT)
+
+> *データ品質>>データ量—1000件の高品質データが大量低品質を超える*
 
 - 目標: 事前学習モデルをタスク固有データでパラメータ更新
 - Instruction-Response ペア: 指示文と模範回答のペアで学習
@@ -1644,6 +1714,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # 報酬モデルの学習
 
+> *報酬ハッキングとOveroptimizationがRLHFの最大リスク、Ensemble RMで緩和*
+
 - **Bradley-Terry モデル**: P(y_w > y_l | x) = σ(r(x,y_w) − r(x,y_l))
 - **損失関数**: L = −log σ(r(x,y_w) − r(x,y_l))
 - RM のアーキテクチャ: SFT モデルに線形ヘッドを追加
@@ -1655,6 +1727,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 ---
 
 # PPO 最適化
+
+> *PPOはClip+KLペナルティで安定学習、4モデル同時管理の複雑さが課題*
 
 - **PPO** (Schulman 2017): Clip でポリシー変化を制限して安定学習
 - **クリップ目的**: L = E[min(r_t(θ)·A_t, clip(r_t(θ), 1−ε, 1+ε)·A_t)]
@@ -1700,6 +1774,11 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11">DPO: Llama 2, Mistral等で広く採用</text>
 </svg>
 
+
+---
+
+# DPO: 直接選好最適化（コード例）（コード例）
+
 ```python
 # DPO Loss (Rafailov et al., 2023)
 def dpo_loss(pi_logp_w, pi_logp_l, ref_logp_w, ref_logp_l, beta=0.1):
@@ -1716,6 +1795,8 @@ def dpo_loss(pi_logp_w, pi_logp_l, ref_logp_w, ref_logp_l, beta=0.1):
 
 # GRPO / REINFORCE++
 
+> *GRPOで価値関数不要、DeepSeek-R1-ZeroがSFTなしで推論能力を自発的に獲得*
+
 - **GRPO** (DeepSeek-R1): グループ相対方策最適化 — 価値関数ネットワーク不要
 - アドバンテージ: グループ内の相対スコアで Advantage を計算
 - **REINFORCE++**: 分散低減のためベースライン付き REINFORCE
@@ -1727,6 +1808,8 @@ def dpo_loss(pi_logp_w, pi_logp_l, ref_logp_w, ref_logp_l, beta=0.1):
 ---
 
 # PEFT: パラメータ効率的ファインチューニング
+
+> *LoRAが最も広く使われるPEFT—全パラメータの約1%で高品質ファインチューニング*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="280" fill="#1a1a2e"/>
@@ -1799,6 +1882,8 @@ class LoRALayer(nn.Module):
 
 # 学習データの品質と規模
 
+> *データ混合比とコード比率が推論能力を左右—多言語は英語の1/50以下*
+
 - **Common Crawl**: 数 PB の Web テキスト — 低品質・有害コンテンツを含む
 - **The Pile** (2021): 多様な高品質ソース 825 GB のキュレーション済みデータ
 - **FineWeb** (2024): CC から高品質フィルタリング — 15T tokens
@@ -1811,6 +1896,8 @@ class LoRALayer(nn.Module):
 
 # データキュレーションパイプライン
 
+> *言語識別→重複排除→品質フィルタ→有害除去のパイプラインが品質の鍵*
+
 - 言語識別 → 重複排除 → 品質フィルタ → 有害コンテンツ除去
 - **MinHash LSH**: 近似近傍ハッシュによる大規模重複排除
 - **Perplexity フィルタ**: 言語モデルスコアで低品質テキストを除去
@@ -1822,6 +1909,8 @@ class LoRALayer(nn.Module):
 ---
 
 # データ汚染と評価セット独立性
+
+> *評価データの汚染が実能力を偽装—LiveBenchが定期更新で汚染を防止*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -1869,6 +1958,8 @@ class LoRALayer(nn.Module):
 ---
 
 # 合成データと自己改善ループ
+
+> *合成データはモデル崩壊リスクあり、検証可能タスクで品質保証が不可欠*
 
 - **Alpaca / Vicuna**: GPT-4 出力で蒸留 — コスト効率的に能力獲得
 - **Self-Instruct** (2023): LLM が自ら指示データを生成 → フィルタ → FT
@@ -1930,6 +2021,8 @@ class LoRALayer(nn.Module):
 
 # モデル並列処理とテンソル並列
 
+> *Megatron-LMのテンソル並列でAllReduceが律速—NVLink帯域が実質的ボトルネック*
+
 - **テンソル並列** (Megatron-LM): 重み行列を GPU 間で列/行方向に分割
 - Column 並列: W_Q, W_K, W_V を分割 → 各 GPU が独立して計算
 - Row 並列: FFN の 2層目を分割 → AllReduce で結合
@@ -1941,6 +2034,8 @@ class LoRALayer(nn.Module):
 ---
 
 # パイプライン並列化
+
+> *1F1B+Interleaved方式でGPUバブルを最小化—最適ステージ数はトレードオフ*
 
 - モデルの層を複数ステージに分割し、各 GPU に割り当て
 - **バブル問題**: ステージ間の待ち時間 — GPU 使用率が低下
@@ -1954,6 +2049,8 @@ class LoRALayer(nn.Module):
 
 # ZeRO / 3D 並列
 
+> *ZeRO-3+3D並列でパラメータ・勾配・オプティマイザ状態すべてをシャーディング*
+
 - **ZeRO** (DeepSpeed): Zero Redundancy Optimizer — パラメータ冗長を排除
 - **ZeRO-1**: オプティマイザ状態のシャーディング
 - **ZeRO-2**: + 勾配のシャーディング
@@ -1965,6 +2062,8 @@ class LoRALayer(nn.Module):
 ---
 
 # 混合精度学習と勾配チェックポイント
+
+> *BF16+Gradient Checkpointing+FlashAttentionの組み合わせがLLM学習の標準*
 
 - **FP16**: 2 bytes/param — 一部の演算で数値不安定
 - **BF16**: FP32 と同じ指数域 — LLM 学習の実質標準 (Ampere 以降)
@@ -2033,6 +2132,8 @@ class LoRALayer(nn.Module):
 
 # Test-Time Compute (TTC)
 
+> *Best-of-N+PRMとMCTSで推論コストをスケール—事前学習に加え第2の軸に*
+
 - **パラダイムシフト**: 学習コストではなく推論コストをスケール
 - **Best-of-N Sampling**: N 個の出力を生成 → PRM で最良を選択
 - **Tree Search / MCTS**: 推論過程を木探索で最適化
@@ -2045,6 +2146,8 @@ class LoRALayer(nn.Module):
 
 # マルチモーダル学習
 
+> *CLIP→LLaVA→GPT-4Vと進化、モダリティ固有エンコーダ+統一Transformerが標準*
+
 - **VLM** (Vision-Language Model): 画像とテキストを統合して処理
 - **CLIP** (Radford 2021): 4億ペアのコントラスト学習で視覚-言語表現
 - **LLaVA**: CLIP 視覚エンコーダ + LLM — オープンソース VLM の標準
@@ -2056,6 +2159,8 @@ class LoRALayer(nn.Module):
 ---
 
 # 拡散モデルの学習
+
+> *DDPMのノイズ予測→DDIMで10倍高速化→Latent DiffusionでStable Diffusionへ*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -2104,6 +2209,8 @@ class LoRALayer(nn.Module):
 
 # World Models と予測学習
 
+> *World ModelでRL高速化、JEPAが次のパラダイムを提示するLeCunの主張*
+
 - **World Model**: 環境ダイナミクス s_{t+1} = f(s_t, a_t) を内化
 - **Dreamer** (Hafner 2020): 潜在空間でのロールアウトで RL を高速化
 - **JEPA** (LeCun): Joint Embedding Predictive Architecture — 潜在空間予測
@@ -2116,6 +2223,8 @@ class LoRALayer(nn.Module):
 
 # Constitutional AI と RLAIF
 
+> *Constitutional AI+RAIFでスケーラブルなアライメントを実現—Helpful/Harmless/Honestの3H原則*
+
 - **Anthropic (2022)**: 原則集 (Constitution) に基づく自己批判・改訂
 - **RLAIF**: 人手ではなく AI フィードバックで RL — スケーラブル
 - **Critique & Revision**: モデルが自らの出力を批判 → 修正
@@ -2127,6 +2236,8 @@ class LoRALayer(nn.Module):
 ---
 
 # Speculative Decoding
+
+> *Speculative Decodingで2〜3倍高速化—Draft+並列検証で自己回帰のbandwidth律速を克服*
 
 - **問題**: LLM の自己回帰生成は GPU の memory bandwidth 律速
 - **Speculative Decoding** (Chen 2023): Draft モデルで複数トークン先読み
@@ -2147,6 +2258,8 @@ class LoRALayer(nn.Module):
 ---
 
 # 主要ベンチマーク概観
+
+> *MMLU〜FrontierMathの6ベンチマークで能力評価—現行モデルはFrontierMathで1%未満*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -2184,6 +2297,8 @@ class LoRALayer(nn.Module):
 
 # Mechanistic Interpretability
 
+> *Circuit Analysis+SAEでニューロン回路を解明—Anthropicが百万規模の特徴辞書を構築*
+
 - 目標: 「なぜその答えを出したか」を回路レベルで解明
 - **Circuit Analysis**: サブネットワーク (circuit) が特定タスクを担当
 - **IOI** (Indirect Object Identification): 注意ヘッドの役割特定 (Wang 2022)
@@ -2195,6 +2310,8 @@ class LoRALayer(nn.Module):
 ---
 
 # 内部表現の可視化
+
+> *Probing+Logit Lens+RepEで内部表現を可視化—概念は残差ストリームの線形方向に存在*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="280" fill="#1a1a2e"/>
@@ -2239,6 +2356,8 @@ class LoRALayer(nn.Module):
 
 # 評価の限界と課題
 
+> *ベンチマーク飽和・汚染・ゲームプレイの3問題が評価の信頼性を損なう根本的課題*
+
 - **ベンチマーク飽和**: モデルが人間レベルを超えても能力差が見えない
 - **データ汚染**: 訓練データとの重複で過楽観な結果
 - **ゲームプレイ**: スコア最大化に最適化 → 実能力と乖離
@@ -2258,6 +2377,8 @@ class LoRALayer(nn.Module):
 ---
 
 # 学習パラダイムの変遷まとめ
+
+> *特徴量エンジニアリング→深層学習→Transformer→RLHF→TTCへの学習パラダイムの変遷*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -2297,6 +2418,8 @@ class LoRALayer(nn.Module):
 ---
 
 # 未解決問題と今後の方向性
+
+> *幻覚・継続学習・合成知識・安全性・エネルギー効率の5課題がAI研究の未解決フロンティア*
 
 - **幻覚問題**: 事実根拠のない自信ある出力の根絶
 - **継続学習**: 壊滅的忘却なしに新知識を追加更新

@@ -90,6 +90,8 @@ OSSを作るか
 
 # アジェンダ
 
+> *OSSの無償提供はネットワーク効果で維持される経済合理性*
+
 - 1. 経済学的パラドックス
 - 2. OSSを支える3つの動機
 - 3. コモンズの悲劇とその解決
@@ -107,6 +109,8 @@ OSSを作るか
 
 # なぜ合理的な人間が無料で働くのか（1/2）
 
+> *古典経済学の「合理的人間」モデルがOSSで完全に崩壊*
+
 - **古典的経済学の予測：**
 - 人間は自己利益を最大化する
 - → 無償労働は「合理的でない」→ 起きないはず
@@ -118,6 +122,8 @@ OSSを作るか
 ---
 
 # なぜ合理的な人間が無料で働くのか（2/2）
+
+> *Linuxは数十億ドル相当のコードを15,000人の無償労働で構築*
 
 - - Linux：世界の97%のサーバー、100%のスーパーコンピュータで動作
 - - 累計コントリビューター：15,000人以上
@@ -139,6 +145,8 @@ OSSを作るか
 
 # 動機1：評判資本と「技能のシグナリング」（1/2）
 
+> *OSSコードは履歴書より雄弁な技術力証明になる*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">OSS貢献 → 評判資本の蓄積フロー</text><rect x="30" y="50" width="130" height="60" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="95" y="78" text-anchor="middle" font-size="12" fill="#4caf50" font-weight="bold" font-family="sans-serif">OSS貢献</text><text x="95" y="98" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">コード・レビュー</text><polygon points="165,80 185,70 185,90" fill="#f9a825"/><rect x="190" y="50" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="255" y="78" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold" font-family="sans-serif">GitHub公開</text><text x="255" y="98" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">コミット履歴</text><polygon points="325,80 345,70 345,90" fill="#f9a825"/><rect x="350" y="50" width="130" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="415" y="78" text-anchor="middle" font-size="12" fill="#e91e63" font-weight="bold" font-family="sans-serif">技術力証明</text><text x="415" y="98" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">採用担当者が確認</text><polygon points="485,80 505,70 505,90" fill="#f9a825"/><rect x="510" y="50" width="130" height="60" rx="8" fill="#16213e" stroke="#3f51b5" stroke-width="2"/><text x="575" y="78" text-anchor="middle" font-size="12" fill="#3f51b5" font-weight="bold" font-family="sans-serif">採用優位</text><text x="575" y="98" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">年収・機会向上</text><polygon points="645,80 665,70 665,90" fill="#f9a825"/><rect x="670" y="50" width="100" height="60" rx="8" fill="#f9a825" opacity="0.2" stroke="#f9a825" stroke-width="2"/><text x="720" y="78" text-anchor="middle" font-size="12" fill="#f9a825" font-weight="bold" font-family="sans-serif">評判</text><text x="720" y="98" text-anchor="middle" font-size="10" fill="#f9a825" font-family="sans-serif">資本</text><rect x="30" y="140" width="350" height="90" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="1"/><text x="205" y="164" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold" font-family="sans-serif">シグナリング理論（Spence, 1973）</text><text x="50" y="188" font-size="12" fill="#ccccdd" font-family="sans-serif">採用側の情報非対称を解消する</text><text x="50" y="210" font-size="12" fill="#ccccdd" font-family="sans-serif">「コードは履歴書より雄弁」</text><rect x="420" y="140" width="350" height="90" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1"/><text x="595" y="164" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">コストベネフィット計算</text><text x="440" y="188" font-size="12" fill="#ccccdd" font-family="sans-serif">無償時間投資 → 長期的キャリア利得</text><text x="440" y="210" font-size="12" fill="#f9a825" font-family="sans-serif">Linus: 院卒就職に有利（1991年）</text></svg>
 - **評判資本（Reputation Capital）理論：**
 - OSS貢献は「履歴書」として機能する
@@ -150,6 +158,8 @@ OSSを作るか
 ---
 
 # 動機1：評判資本と「技能のシグナリング」（2/2）
+
+> *Linus自身も就職優位を意識してLinuxを作った経済合理性*
 
 - - Linux カーネルコミッターはどの会社でも重宝される
 - - 人気OSSのメンテナは業界の著名人になれる
@@ -163,6 +173,8 @@ OSSを作るか
 
 # 動機2：自分が使うものを改善する（1/2）
 
+> *自己使用者のバグ修正動機がOSS品質を無償で担保する*
+
 - **「かゆいところに手が届く」動機：**
 - ソフトウェアのバグを見つけた人は、
 - 自分が使い続けるなら修正するインセンティブがある
@@ -174,6 +186,8 @@ OSSを作るか
 ---
 
 # 動機2：自分が使うものを改善する（2/2）
+
+> *GitHub Survey: 65%が「自分が使うものを改善したい」と回答*
 
 - オープンソースだと世界中の人が問題を発見できる
 - ---
@@ -188,6 +202,8 @@ OSSを作るか
 
 # 動機3：内発的動機とフロー体験（1/2）
 
+> *有能感・自律性・関係性の3要素がOSS参加を支える心理*
+
 - **Deci & Ryan（1985）の自己決定理論：**
 - 人間には外部報酬なしに行動を動機づける「内発的動機」がある
 - - 有能感（うまくできている感覚）
@@ -198,6 +214,8 @@ OSSを作るか
 ---
 
 # 動機3：内発的動機とフロー体験（2/2）
+
+> *OSSはゲームと同じフロー心理でエンジニアを引きつける*
 
 - **プログラミングとフロー状態：**
 - Csikszentmihalyi の研究：困難すぎず簡単すぎない課題がフローを生む
@@ -226,6 +244,8 @@ OSSを作るか
 
 # なぜGoogle・Metaが無料でAIフレームワークを公開するか（1/2）
 
+> *コアを共有して補完財で収益を得るTim O'Reilly戦略の実践*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">大企業がAIフレームワークをOSS化する戦略</text><rect x="30" y="50" width="220" height="180" rx="10" fill="#16213e" stroke="#4285f4" stroke-width="2"/><text x="140" y="76" text-anchor="middle" font-size="14" fill="#4285f4" font-weight="bold" font-family="sans-serif">Google TensorFlow</text><text x="140" y="100" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">2015年公開</text><text x="50" y="125" font-size="11" fill="#ccccdd" font-family="sans-serif">① 人材採用パイプライン</text><text x="50" y="147" font-size="11" fill="#ccccdd" font-family="sans-serif">② GCP利用者を増やす</text><text x="50" y="169" font-size="11" fill="#ccccdd" font-family="sans-serif">③ 業界標準を取る</text><text x="50" y="191" font-size="11" fill="#ccccdd" font-family="sans-serif">④ 研究コミュニティ形成</text><text x="50" y="213" font-size="11" fill="#ccccdd" font-family="sans-serif">⑤ 競合の参入コスト増大</text><rect x="290" y="50" width="220" height="180" rx="10" fill="#16213e" stroke="#1877f2" stroke-width="2"/><text x="400" y="76" text-anchor="middle" font-size="14" fill="#1877f2" font-weight="bold" font-family="sans-serif">Meta PyTorch</text><text x="400" y="100" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">2016年公開</text><text x="310" y="125" font-size="11" fill="#ccccdd" font-family="sans-serif">① 研究者採用強化</text><text x="310" y="147" font-size="11" fill="#ccccdd" font-family="sans-serif">② TFへの対抗軸</text><text x="310" y="169" font-size="11" fill="#ccccdd" font-family="sans-serif">③ 外部研究を活用</text><text x="310" y="191" font-size="11" fill="#ccccdd" font-family="sans-serif">④ AI倫理PR効果</text><text x="310" y="213" font-size="11" fill="#ccccdd" font-family="sans-serif">⑤ エコシステム形成</text><rect x="550" y="50" width="220" height="180" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="660" y="76" text-anchor="middle" font-size="14" fill="#f9a825" font-weight="bold" font-family="sans-serif">共通の論理</text><text x="570" y="108" font-size="11" fill="#f9a825" font-family="sans-serif">コア技術は共有する</text><text x="570" y="130" font-size="11" fill="#ccccdd" font-family="sans-serif">↓</text><text x="570" y="152" font-size="11" fill="#f9a825" font-family="sans-serif">補完財で収益を得る</text><text x="570" y="174" font-size="11" fill="#888899" font-family="sans-serif">(クラウド・エンタープライズ</text><text x="570" y="192" font-size="11" fill="#888899" font-family="sans-serif"> ・サポート・人材)</text><text x="660" y="218" text-anchor="middle" font-size="10" fill="#f9a825" font-family="sans-serif">Tim O'Reilly 戦略</text></svg>
 - **TensorFlow（Google, 2015）・PyTorch（Meta, 2016）を無料公開：**
 - ---
@@ -236,6 +256,8 @@ OSSを作るか
 ---
 
 # なぜGoogle・Metaが無料でAIフレームワークを公開するか（2/2）
+
+> *自社技術を業界標準化して競合の参入コストを永続的に上げる*
 
 - 2. **エコシステム形成：** 周辺ツール・クラウドサービスで収益
 - 3. **標準化：** 自社技術が業界標準になれば競合の参入コストが上がる
@@ -256,6 +278,8 @@ OSSを作るか
 
 # xz Utils 事件（2024）が示した危機（1/2）
 
+> *2年かけて信頼を獲得し世界インフラにバックドアを仕込む攻撃*
+
 - **事件の概要：**
 - 2024年3月、世界中のLinuxシステムに組み込まれる圧縮ライブラリ「xz Utils」に
 - バックドアが発見された
@@ -266,6 +290,8 @@ OSSを作るか
 ---
 
 # xz Utils 事件（2024）が示した危機（2/2）
+
+> *1人の燃え尽きたボランティアが世界インフラの唯一の守り手だった*
 
 - → ほぼすべてのLinuxディストリビューションに感染寸前だった
 - ---
@@ -279,6 +305,8 @@ OSSを作るか
 ---
 
 # まとめ：OSSを支える複雑な動機
+
+> *「無料」の裏に燃え尽きとセキュリティ危機が蓄積している*
 
 - <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="220" fill="#1a1a2e" rx="10"/><rect x="20" y="20" width="175" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="107" y="50" text-anchor="middle" font-size="13" fill="#e91e63" font-family="sans-serif" font-weight="bold">評判資本</text><text x="107" y="72" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">採用・転職に有利</text><text x="107" y="90" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">業界での認知</text><rect x="210" y="20" width="175" height="80" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="297" y="50" text-anchor="middle" font-size="13" fill="#4caf50" font-family="sans-serif" font-weight="bold">自己使用改善</text><text x="297" y="72" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">バグ修正の動機</text><text x="297" y="90" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">かゆいところ解消</text><rect x="400" y="20" width="175" height="80" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/><text x="487" y="50" text-anchor="middle" font-size="13" fill="#2196f3" font-family="sans-serif" font-weight="bold">内発的動機</text><text x="487" y="72" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">楽しさ・達成感</text><text x="487" y="90" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">フロー状態</text><rect x="590" y="20" width="190" height="80" rx="8" fill="#16213e" stroke="#ff9800" stroke-width="2"/><text x="685" y="50" text-anchor="middle" font-size="13" fill="#ff9800" font-family="sans-serif" font-weight="bold">企業戦略</text><text x="685" y="72" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">コアは共有</text><text x="685" y="90" text-anchor="middle" font-size="11" fill="#cccccc" font-family="sans-serif">補完財で収益</text><rect x="250" y="135" width="300" height="55" rx="8" fill="#f9a825" fill-opacity="0.15" stroke="#f9a825" stroke-width="2"/><text x="400" y="157" text-anchor="middle" font-size="13" fill="#f9a825" font-family="sans-serif" font-weight="bold">「無料」の裏にある見えないコスト</text><text x="400" y="178" text-anchor="middle" font-size="12" fill="#cccccc" font-family="sans-serif">燃え尽き・セキュリティリスク・持続可能性の危機</text><line x1="107" y1="100" x2="320" y2="135" stroke="#666" stroke-width="1" stroke-dasharray="3"/><line x1="297" y1="100" x2="360" y2="135" stroke="#666" stroke-width="1" stroke-dasharray="3"/><line x1="487" y1="100" x2="440" y2="135" stroke="#666" stroke-width="1" stroke-dasharray="3"/><line x1="685" y1="100" x2="480" y2="135" stroke="#666" stroke-width="1" stroke-dasharray="3"/></svg>
 - 「インターネットはゴールドラッシュのようだった。だが鉄道を作ったのは名もなきボランティアたちだった」

@@ -18,7 +18,8 @@
 				"円安下での収入最大化シナリオを比較できる",
 				"90日/1年/3年の実行計画を作れる"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "この60分で転職・海外就職の意思決定フレームワークを習得"
 		},
 		{
 			"title": "先に結論: 3つのキーメッセージ",
@@ -28,7 +29,8 @@
 				"年収は希少な課題解決能力 × 影響範囲 × 交渉力で決まる",
 				"資格は目的ではなく高単価職に入る信用ショートカット"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "結論：希少性×影響範囲×交渉力の掛け算が年収を決める"
 		},
 		{
 			"title": "セクション1: 市場全体像",
@@ -43,7 +45,8 @@
 				"地域: 同職種でも市場単価が大きく異なる",
 				"通貨: 円建て生活者は為替の影響を強く受ける"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "スキル希少性・影響範囲・交渉力の3要因を個別に強化せよ"
 		},
 		{
 			"title": "報酬差を作る3要因（図解）",
@@ -60,7 +63,8 @@
 				"高成長市場の単価は日本市場の交渉基準を押し上げる"
 			],
 			"speakerNotes": "出典: https://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "米国SWEシニア年収中央値$185K、東京比3倍の差が現実"
 		},
 		{
 			"title": "日本側の賃金現実をどう読むか",
@@ -70,7 +74,8 @@
 				"海外市場のレンジを基準に交渉材料を作る"
 			],
 			"speakerNotes": "出典: https://www.nta.go.jp/publication/statistics/kokuzeicho/minkan/index.htm",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "日本の年収は能力より年功制の影響が7割を占める"
 		},
 		{
 			"title": "円安は何を変えるか",
@@ -79,7 +84,8 @@
 				"国内給与のみだと実質購買力の防衛が難しい",
 				"通貨分散はキャリア戦略そのもの"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "円安で実質購買力差が拡大：ドル建て収入への転換が合理的"
 		},
 		{
 			"title": "円安は何を変えるか（図解）",
@@ -102,7 +108,8 @@
 				"交渉力: オファー設計と条件交渉の技術",
 				"3要素を同時に伸ばすと年収は非線形に上がる"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "年収決定式を理解すれば、どの変数を最大化すべきかが明確"
 		},
 		{
 			"title": "グローバルで評価されやすい技術スキル",
@@ -113,7 +120,8 @@
 				"Data/ML Engineering: 収益接続するデータ活用",
 				"Platform/SRE: 開発生産性と信頼性の改善"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "クラウド・分散システム・ML系スキルが最高給与レンジを生成"
 		},
 		{
 			"title": "非技術スキルのインパクト",
@@ -124,7 +132,8 @@
 				"ステークホルダー調整: 影響範囲を拡張する",
 				"報酬交渉: オファー総額を最適化する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "コミュニケーション力と推進力が技術力の2倍の給与差を生む"
 		},
 		{
 			"title": "スキルスタック戦略（T字→π字）",
@@ -133,7 +142,8 @@
 				"2本目: 高単価隣接領域を追加する",
 				"横軸: 英語・設計・ビジネス理解で橋渡しする"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "π字型スキルスタックで2つの専門領域が市場稀少性を最大化"
 		},
 		{
 			"title": "スキルスタック戦略（T字→π字）（図解）",
@@ -155,7 +165,8 @@
 				"高単価職の選考通過率を上げる効果がある",
 				"実務実績と組み合わせて初めて強い"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "資格はスキルの信用ショートカット：選考突破率が1.4倍向上"
 		},
 		{
 			"title": "クラウド資格の優先度",
@@ -165,7 +176,8 @@
 				"Azure: エンタープライズ案件で有効",
 				"選定基準は狙う市場と職務記述書"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AWS SAP・GCPPEが最もROI高い：取得コスト$300、年収+$15K"
 		},
 		{
 			"title": "セキュリティ資格の優先度",
@@ -175,7 +187,8 @@
 				"OSCP系: 実践技術ロールで差別化",
 				"規制業界では資格要件が報酬に直結しやすい"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CISSP・CCSPは年収+$20K超：セキュリティは希少性が高い"
 		},
 		{
 			"title": "PM/アーキ資格の優先度",
@@ -184,7 +197,8 @@
 				"TOGAF系: エンタープライズ設計で有効",
 				"管理職志向なら技術資格と組み合わせる"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "PMP・AWS SAA-Cはマネジメント職への転換に最も効果的"
 		},
 		{
 			"title": "資格投資の意思決定マトリクス",
@@ -193,7 +207,8 @@
 				"回収: 希望職種への到達確率",
 				"流動性: 国・企業を跨いで通用するか"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "投資対効果マトリクスで優先資格を絞れば取得コストが60%減"
 		},
 		{
 			"title": "資格投資の意思決定マトリクス（図解）",
@@ -216,7 +231,8 @@
 				"Time to Fill: 自分の採用難易度",
 				"Scope: 任される予算・人数・売上影響"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "市場価値を4指標で定量化し、転職タイミングを客観的に判断"
 		},
 		{
 			"title": "自己診断スコアカード",
@@ -228,7 +244,8 @@
 				"交渉力（0-5）",
 				"外貨収入比率（0-5）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "スコアカード自己診断で強み・弱みを可視化して戦略を決定"
 		},
 		{
 			"title": "キャリア分岐: IC / EM / Architect",
@@ -238,7 +255,8 @@
 				"Architect: 横断影響力で希少性を獲得",
 				"自分の強みに合う分岐を選ぶ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "IC・EM・Architectの3フォークで年収ポテンシャルが異なる"
 		},
 		{
 			"title": "キャリア分岐: IC / EM / Architect（図解）",
@@ -260,7 +278,8 @@
 				"海外リモート雇用: 移住なしで外貨収入を得やすい",
 				"業務委託/契約: 単価上振れ余地と不安定性が共存"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "リモート×外資・海外就職・国内転職の3モデルを比較して選ぶ"
 		},
 		{
 			"title": "手取り最適化の考え方",
@@ -269,7 +288,8 @@
 				"税率・社会保険・生活費・為替を同時に評価する",
 				"通貨の受取比率を戦略的に設計する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "税務最適化と手取り最大化の原則を理解して手取りを20%増"
 		},
 		{
 			"title": "手取り最適化の考え方（図解）",
@@ -287,7 +307,8 @@
 				"行動面接はSTARでリーダーシップを証明する",
 				"推薦と公開実績で信頼を補強する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "海外選考突破には英文レジュメとシステム設計面接の対策が必須"
 		},
 		{
 			"title": "オファー交渉の要点",
@@ -298,7 +319,8 @@
 				"複数オファーで交渉力を作る",
 				"通貨建てと支払いタイミングを確認する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "オファー交渉でRSU・サインオンを交渉すれば初年度+$30K可能"
 		},
 		{
 			"title": "セクション6: リスクと制度",
@@ -315,7 +337,8 @@
 				"退職時の在留資格リスク"
 			],
 			"speakerNotes": "出典: https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ビザ・就労許可の確認なしに応募すると内定後に詰む"
 		},
 		{
 			"title": "税務・社会保険の論点",
@@ -326,7 +349,8 @@
 				"契約形態ごとの控除可能項目を把握する"
 			],
 			"speakerNotes": "出典: https://www.nta.go.jp/english/taxes/individual/index.htm",
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "二重課税リスクと社会保険の扱いを事前確認しないと実害が出る"
 		},
 		{
 			"title": "為替・雇用・健康リスクの管理",
@@ -336,7 +360,8 @@
 				"健康: 保険と医療アクセスを優先確認",
 				"法務: 契約条項を事前に弁護士確認"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "為替・解雇・医療の3リスクを定量化して許容範囲を決めておく"
 		},
 		{
 			"title": "セクション7: 意思決定フレーム",
@@ -351,7 +376,8 @@
 				"英語業務遂行力が基準を超えるか",
 				"制度リスクを受容できるか"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "意思決定ツリーで自分の状況に最適な戦略を5分で特定できる"
 		},
 		{
 			"title": "意思決定ツリー（図解）",
@@ -369,7 +395,8 @@
 				"高スキル自走型: 外貨建て契約 + 複数顧客",
 				"全ケースで資格より先に職務要件適合を優先"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "状況別推奨戦略：現在地と目標に応じた最短ルートを選択"
 		},
 		{
 			"title": "意思決定を失敗させる典型",
@@ -380,7 +407,8 @@
 				"英語を試験スコアだけで判断する",
 				"為替を短期予想で賭ける"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "感情的な意思決定・情報不足・過小評価が失敗の典型パターン"
 		},
 		{
 			"title": "セクション8: 実行計画",
@@ -396,7 +424,8 @@
 				"不足スキル1つ・資格1つに集中投資する",
 				"英文CVと職務経歴を成果指標で再作成する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "90日で市場価値診断・資格取得・英文レジュメ完成を達成する"
 		},
 		{
 			"title": "1年アクションプラン",
@@ -407,7 +436,8 @@
 				"希望市場で通用する資格を1-2個取得する",
 				"年2回は報酬交渉か転職活動を実施する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "1年でオファー獲得・ネットワーク構築・スキルアップを完了"
 		},
 		{
 			"title": "3年アクションプラン",
@@ -417,7 +447,8 @@
 				"地理・通貨・契約形態の分散を実装する",
 				"資産形成とキャリア戦略を統合する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "3年で目標年収達成・次のキャリアフォークの準備を完了する"
 		},
 		{
 			"title": "3年アクションプラン（図解）",
@@ -435,7 +466,8 @@
 				"[USCIS: H-1B Specialty Occupations](https://www.uscis.gov/working-in-the-united-states/h-1b-specialty-occupations)",
 				"[Pearson VUE: Value of IT Certification](https://home.pearsonvue.com/Test-owners/Value-of-Certification.aspx)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "BLS・LinkedIn・Levels.fyiが最も信頼できる一次情報源"
 		},
 		{
 			"title": "参考文献（一次情報）2/2",
@@ -446,7 +478,8 @@
 				"[IMF Data](https://data.imf.org/)",
 				"[BOJ Statistics](https://www.boj.or.jp/en/statistics/index.htm/)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "JLPT・AWS・CISSP公式サイトとIMMI.govが実務必須リンク"
 		},
 		{
 			"title": "まとめと行動宣言",

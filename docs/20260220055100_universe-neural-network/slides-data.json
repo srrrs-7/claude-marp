@@ -7,6 +7,7 @@
 		},
 		{
 			"title": "目次",
+			"subtitle": "6つの視点から宇宙とニューラルネットワークの構造的類似性を体系的に検証する",
 			"layout": "default",
 			"content": [
 				"- 1. 宇宙の大規模構造とニューラルネットワーク",
@@ -30,6 +31,7 @@
 		{
 			"title": "構造的類似性の発見",
 			"layout": "default",
+			"subtitle": "2020年の定量比較でパワースペクトルが統計的に区別不可能と判明し宇宙とNNの類似を実証",
 			"content": [
 				"![w:800 center](assets/structural-similarity.svg)",
 				"- **2020年 Bologna大学の研究** (Vazza & Feletti)",
@@ -53,6 +55,7 @@
 		{
 			"title": "なぜ同じ数値なのか",
 			"layout": "default",
+			"subtitle": "スケール差27桁を超えて宇宙と脳が同じネットワーク統計を持つのは自然の普遍則の証拠",
 			"content": [
 				"![w:800 center](assets/scale-comparison-new.svg)",
 				"- **ノード数**: 宇宙の銀河 ~10^11 ≈ 脳のニューロン ~10^11",
@@ -76,6 +79,7 @@
 		{
 			"title": "仮説の核心",
 			"layout": "default",
+			"subtitle": "物理法則を学習済み重みと解釈することで量子力学と一般相対論を統一的に導出できる",
 			"content": [
 				"- **Vitali Vanchurin (2020)**: \"The world as a neural network\"",
 				"- 量子力学も一般相対論もNNの近似として導出可能と主張",
@@ -87,6 +91,7 @@
 		{
 			"title": "ビッグバンは「学習の開始」",
 			"layout": "default",
+			"subtitle": "138億年の宇宙進化をランダム初期化から現在の物理法則への収束として解釈できる",
 			"content": [
 				"![w:800 center](assets/bigbang-learning.svg)",
 				"- **初期状態**: ランダム重み（高エネルギー・高エントロピー）",
@@ -110,6 +115,7 @@
 		{
 			"title": "物理学がAIに与えた概念",
 			"layout": "default",
+			"subtitle": "統計力学・スピングラス・繰り込み群が深層学習の理論的基盤として直接流用されてきた",
 			"content": [
 				"![w:800 center](assets/physics-to-ai.svg)",
 				"- **Boltzmann Machine** (1985): 統計力学のボルツマン分布を学習に応用",
@@ -122,6 +128,7 @@
 		{
 			"title": "AIが物理学を変革する",
 			"layout": "default",
+			"subtitle": "AlphaFoldからLIGO信号検出まで物理の未解決難題をNNが次々と突破している",
 			"content": [
 				"![w:800 center](assets/ai-physics-map.svg)",
 				"- **AlphaFold**: タンパク質の3D構造を予測（50年来の難題を解決）",
@@ -139,6 +146,7 @@
 		{
 			"title": "情報は物理の根本か？",
 			"layout": "default",
+			"subtitle": "Wheelerの「It from Bit」からホログラフィー原理まで情報が物理実在の基盤である証拠が揃う",
 			"content": [
 				"![w:800 center](assets/info-physics-pyramid.svg)",
 				"- **「It from Bit」** (John Wheeler, 1990): 情報が物理実在の基盤",
@@ -151,6 +159,7 @@
 		{
 			"title": "エントロピーと学習の統一",
 			"layout": "default",
+			"subtitle": "ボルツマン・シャノン・交差エントロピーが同一数学構造であり物理と学習が統一される",
 			"content": [
 				"![w:800 center](assets/entropy-unification.svg)",
 				"- **ボルツマンエントロピー**: S = k_B ln W（物理の乱雑さ）",
@@ -169,6 +178,7 @@
 		{
 			"title": "検証可能性と批判",
 			"layout": "default",
+			"subtitle": "反証可能性の問題は残るが物理定数のNN導出という具体的検証経路が提示されている",
 			"content": [
 				"![w:800 center](assets/verification-roadmap.svg)",
 				"- **批判1**: 反証不可能ではないか？（ポパーの基準）",
@@ -182,6 +192,7 @@
 		{
 			"title": "もし本当なら何が変わるか",
 			"layout": "default",
+			"subtitle": "力の統一・AIアーキテクチャ・意識・物理定数の微調整問題すべてに革命的な回答が生まれる",
 			"content": [
 				"![w:800 center](assets/implications.svg)",
 				"- **物理学**: 全ての力の統一が「ネットワーク構造」から自然に導出",
@@ -195,6 +206,7 @@
 		{
 			"title": "まとめ",
 			"layout": "default",
+			"subtitle": "宇宙とNNの統計的同一性は情報理論を共通言語として物理と学習の境界を消しつつある",
 			"content": [
 				"- 宇宙と脳のネットワーク構造は**統計的に区別不可能**",
 				"- Vitelli仮説: 物理法則は学習された重みパラメータ",
@@ -206,6 +218,7 @@
 		},
 		{
 			"title": "参考文献",
+			"subtitle": "Vazza・Feletti・Vanchurins論文が本講演の主要根拠、Wheeler・Fristonが理論的背景",
 			"layout": "default",
 			"content": [
 				"- **研究論文:**",

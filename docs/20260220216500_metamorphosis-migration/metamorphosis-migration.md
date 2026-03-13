@@ -94,6 +94,8 @@ style: |
 
 # 目次
 
+> *完全変態の6段階とStrangler Figを対応させる*
+
 - - 1. 完全変態とは何か
 - - 2. 4段階の変身プロセス
 - - 3. ソフトウェアマイグレーションとの対応
@@ -136,7 +138,9 @@ style: |
 
 ---
 
-# 昆虫の完全変態 (Holometabolism)
+# 昆虫の完全変態 (Holometabolism)（1/2）
+
+> *卵→幼虫→蛹→成虫の4段階が完全変態の本質*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -177,6 +181,14 @@ style: |
 - - **完全変態**: 卵 → 幼虫 → 蛹 → 成虫の4段階
 - - 昆虫の約80%が完全変態を行う(チョウ、カブトムシ、ハチ等)
 - - 対義語: **不完全変態** = 蛹の段階がない(バッタ、カマキリ等)
+
+
+---
+
+# 昆虫の完全変態 (Holometabolism)（2/2）
+
+> *蛹の中の溶解・再構成こそ移行の核心モデル*
+
 - - 約3.5億年前に進化した戦略
 - 
 - なぜ完全変態は成功したのか？
@@ -229,6 +241,8 @@ style: |
 ---
 
 # 蛹の中の驚異 -- Imaginal Disc
+
+> *幼虫時代に埋め込まれた設計図が成虫を作り上げる*
 
 - - 蛹の中で幼虫の体は**酵素によってほぼ完全に分解**される
 - - しかし**imaginal disc**(成虫原基)は生き残る
@@ -354,12 +368,22 @@ style: |
 
 ---
 
-# 幼虫 = モノリスの成長期
+# 幼虫 = モノリスの成長期（1/2）
+
+> *モノリスは成長するが変化への適応力を失っていく*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">幼虫フェーズ：モノリスの成長と限界</text><rect x="30" y="65" width="360" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="96" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モノリス成長の軌跡</text><line x1="60" y1="320" x2="360" y2="320" stroke="#aaaaaa" stroke-width="1"/><line x1="60" y1="110" x2="60" y2="320" stroke="#aaaaaa" stroke-width="1"/><text x="210" y="340" text-anchor="middle" fill="#aaaaaa" font-size="10">時間（年）</text><text x="45" y="200" fill="#aaaaaa" font-size="9" transform="rotate(-90,45,200)">複雑度</text><polyline points="60,310 100,295 140,275 180,248 220,215 260,178 300,140 340,120" fill="none" stroke="#f9a825" stroke-width="2"/><text x="350" y="118" fill="#f9a825" font-size="9">複雑度↑</text><text x="90" y="308" fill="#4db6ac" font-size="9">Year 1</text><text x="170" y="246" fill="#f9a825" font-size="9">Year 3</text><text x="250" y="176" fill="#e91e63" font-size="9">Year 5+</text><rect x="60" y="115" width="8" height="205" fill="#f9a825" opacity="0.3"/><text x="95" y="220" fill="#aaaaaa" font-size="9">開発者: 5人</text><rect x="180" y="115" width="12" height="205" fill="#f9a825" opacity="0.5"/><text x="215" y="200" fill="#aaaaaa" font-size="9">15人</text><rect x="290" y="115" width="18" height="205" fill="#e91e63" opacity="0.6"/><text x="325" y="180" fill="#aaaaaa" font-size="9">40人</text><rect x="430" y="65" width="340" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="96" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">蛹化のサイン</text><text x="450" y="128" fill="#ffffff" font-size="11">• デプロイに8時間以上かかる</text><text x="450" y="150" fill="#ffffff" font-size="11">• バグ修正が新バグを生む</text><text x="450" y="172" fill="#ffffff" font-size="11">• 新機能追加が3ヶ月以上</text><text x="450" y="194" fill="#ffffff" font-size="11">• チームが「触りたくない」コード</text><text x="450" y="216" fill="#ffffff" font-size="11">• 本番環境が怖い</text><rect x="450" y="242" width="280" height="80" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="590" y="268" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">判断時期</text><text x="465" y="292" fill="#ffffff" font-size="10">幼虫が「もう限界」と感じたとき</text><text x="465" y="312" fill="#ffffff" font-size="10">が蛹化の最適タイミング</text><text x="400" y="378" text-anchor="middle" fill="#aaaaaa" font-size="11">完全変態は強さから生まれるのではなく、成長の必然として起きる</text></svg>
 - - 幼虫は**ひたすら食べて大きくなる**
 - - モノリスも**ひたすら機能を追加して大きくなる**
 - - 幼虫の脱皮(5回) = メジャーリリース
+
+
+---
+
+# 幼虫 = モノリスの成長期（2/2）
+
+> *結合度が高まるほど変更コストが指数的に増大する*
+
 -   - 外殻を脱ぎ捨てるが内部構造は同じ
 -   - リファクタリングせずにバージョンアップ
 - - **幼虫の限界**: ある大きさを超えると脱皮では対応できない
@@ -368,7 +392,9 @@ style: |
 
 ---
 
-# 蛹 = 移行期間
+# 蛹 = 移行期間（1/2）
+
+> *旧システムと新システムが並行稼働する危険な過渡期*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -400,6 +426,14 @@ style: |
 - - 蛹の外見は静か。しかし中身は激変している
 - - **ソフトウェア移行も同じ:**
 -   - ユーザーから見た挙動は変わらない(外殻 = API)
+
+
+---
+
+# 蛹 = 移行期間（2/2）
+
+> *移行期は機能も責任も曖昧—ガバナンス設計が命綱*
+
 -   - 内部は完全に作り直されている
 -   - 古い組織が溶けて新しい組織に再構築される
 - - **重要**: 蛹の中でも生物は**生きている**
@@ -492,6 +526,8 @@ style: |
 
 # Martin Fowlerの提案 (2004)（1/2）
 
+> *Strangler Figは段階的移行で旧を絞め殺す戦略*
+
 - - **Strangler Fig Pattern**: Martin Fowlerが命名
 - - 熱帯のイチジクは宿主の木に巻きついて成長
 - - やがて宿主を「絞め殺して」自立する
@@ -501,6 +537,8 @@ style: |
 ---
 
 # Martin Fowlerの提案 (2004)（2/2）
+
+> *一括移行は失敗する—小さな勝利を積み重ねよ*
 
 -   - 新システムを旧システムの周りに構築
 -   - 機能を1つずつ新システムに移行
@@ -513,6 +551,8 @@ style: |
 
 # Strangler Fig = 蛹の中のImaginal Disc（1/2）
 
+> *新機能を新基盤で開発し旧を徐々に置き換える*
+
 - - **Imaginal disc**: 幼虫の中に潜む「未来の設計図」
 -   - 幼虫の体(旧システム)の栄養を使って成長
 -   - 幼虫が溶けても生き残る
@@ -523,6 +563,8 @@ style: |
 
 # Strangler Fig = 蛹の中のImaginal Disc（2/2）
 
+> *Facade層が新旧両方に透過的にルーティングする*
+
 -   - モノリスのデータとインフラを使って構築
 -   - モノリスが除去されても動き続ける
 - 
@@ -531,7 +573,9 @@ style: |
 
 ---
 
-# 成虫 = マイクロサービスの飛翔
+# 成虫 = マイクロサービスの飛翔（1/2）
+
+> *独立デプロイ・スケールが完全移行の証明*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -574,6 +618,14 @@ style: |
 - - **成虫の特徴**: 飛行能力、生殖能力、分散
 - - **マイクロサービスの特徴**:
 -   - **飛行** = 独立デプロイ(どこにでも配置可能)
+
+
+---
+
+# 成虫 = マイクロサービスの飛翔（2/2）
+
+> *サービスメッシュが分散した翅を調整する神経系*
+
 -   - **生殖** = 新サービスを容易に生み出せる
 -   - **分散** = 複数の環境で同時に動作
 - - 幼虫にはできなかったことが成虫にはできる
@@ -589,6 +641,8 @@ style: |
 ---
 
 # 変態から学ぶ移行の5原則
+
+> *段階性・可逆性・並行稼働・観察・最小破壊が鍵*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -630,6 +684,8 @@ style: |
 
 # 不完全変態 vs 完全変態（1/2）
 
+> *漸進的変化か断絶的再構成かが移行戦略の分岐点*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">移行戦略の比較：漸進 vs 変態</text>
@@ -667,6 +723,8 @@ style: |
 ---
 
 # 不完全変態 vs 完全変態（2/2）
+
+> *ビジネス継続性が要求される場合は完全変態を選べ*
 
 - - **完全変態(チョウ型)** = アーキテクチャの全面刷新
 -   - 一度「溶けて」から再構築する
@@ -712,6 +770,8 @@ style: |
 
 # まとめ
 
+> *蛹の溶解を恐れるな—構造的移行だけが真の飛翔をもたらす*
+
 - - 昆虫の完全変態は3.5億年の進化が証明した移行戦略
 - - モノリス → マイクロサービスは完全変態そのもの
 - - Strangler Fig Pattern = 蛹の中のimaginal disc
@@ -724,6 +784,8 @@ style: |
 ---
 
 # 参考文献
+
+> *生物学・Fowler・Newmanの3文献が変態移行論の土台*
 
 - - **Biology:**
 - - [Holometabolism - Wikipedia](https://en.wikipedia.org/wiki/Holometabolism)

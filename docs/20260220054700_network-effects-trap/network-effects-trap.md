@@ -77,7 +77,7 @@ style: |
 ---
 
 <!-- _class: lead -->
-# ネットワーク効果の「罠」
+# ネットワーク効果の「罠」（1/2）
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 -   <rect width="800" height="280" fill="#1a1a2e"/>
@@ -100,6 +100,13 @@ style: |
 -   <circle cx="490" cy="100" r="16" fill="#0d2137" stroke="#f9a825" stroke-width="2.5"/>
 -   <circle cx="430" cy="135" r="14" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
 -   <circle cx="555" cy="135" r="14" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
+
+
+---
+
+<!-- _class: lead -->
+# ネットワーク効果の「罠」（2/2）
+
 -   <circle cx="410" cy="185" r="13" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
 -   <circle cx="470" cy="190" r="13" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
 -   <circle cx="530" cy="190" r="13" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
@@ -144,6 +151,8 @@ style: |
 
 # メトカーフの法則：ネットワークの価値（1/2）
 
+> *ネットワーク価値はユーザー数の二乗で成長する指数関数*
+
 - Robert Metcalfe（イーサネット発明者）の法則：
 - **ネットワークの価値はユーザー数の二乗に比例する**
 - V = n²（nはノード数）
@@ -167,6 +176,8 @@ style: |
 
 # なぜSNSは複数共存できないか（1/2）
 
+> *ティッピングポイントを超えると一人勝ちが固定化する*
+
 - **仮想的な競争：**
 - SNS-A（友人100人）vs SNS-B（友人1人）
 - → ユーザーは合理的にSNS-Aを選ぶ
@@ -175,7 +186,9 @@ style: |
 
 ---
 
-# なぜSNSは複数共存できないか（2/2）
+# なぜSNSは複数共存できないか（2/2）（1/2）
+
+> *ティッピングポイント後は後発が参入不可能な壁が生まれる*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 -   <rect width="800" height="280" fill="#1a1a2e"/>
@@ -195,6 +208,14 @@ style: |
 -   <text x="700" y="80" fill="#e91e63" font-size="11" font-family="sans-serif">参入障壁</text>
 -   <!-- tipping point -->
 -   <line x1="420" y1="45" x2="420" y2="220" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/>
+
+
+---
+
+# なぜSNSは複数共存できないか（2/2）（2/2）
+
+> *ティッピングポイント超過後は後発の参入が構造的に不可能になる*
+
 -   <text x="420" y="42" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ティッピングポイント</text>
 -   <!-- left zone -->
 -   <text x="240" y="75" text-anchor="middle" fill="#4fc3f7" font-size="12" font-family="sans-serif">競争可能ゾーン</text>
@@ -233,6 +254,8 @@ style: |
 
 # 転換コストが競争を殺す（2/2）
 
+> *LINEをやめるとグループから孤立する社会コストが最強の鎖*
+
 - **3. エコシステムの依存**
 - iPhoneからAndroidに移ると：AirPods・Apple Watch・iCloudを捨てる必要
 - **4. 社会的コスト**
@@ -243,6 +266,8 @@ style: |
 ---
 
 # 独占はどうやって崩れるか（1/2）
+
+> *MySpaceは「リアル人間関係」という新価値提案で逆転された*
 
 - **事例：MySpace → Facebook（2005-2008）**
 - MySpaceは2006年時点で世界最大のSNS
@@ -260,7 +285,9 @@ style: |
 
 ---
 
-# まとめ：ネットワーク効果の二面性
+# まとめ：ネットワーク効果の二面性（1/2）
+
+> *最強の参入障壁とiつかの破壊条件のどちらを利用するかが戦略*
 
 - <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 -   <rect width="800" height="220" fill="#1a1a2e"/>
@@ -274,6 +301,14 @@ style: |
 -   <text x="50" y="158" fill="#ccc" font-size="11" font-family="sans-serif">✓ 価値はn²で成長する</text>
 -   <text x="50" y="180" fill="#4fc3f7" font-size="11" font-family="sans-serif">→ プラットフォームの王道戦略</text>
 -   <rect x="420" y="40" width="350" height="155" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+
+
+---
+
+# まとめ：ネットワーク効果の二面性（2/2）
+
+> *先行者優位は絶対ではなく隣接市場・技術断絶・規制の3条件で崩壊する*
+
 -   <text x="595" y="66" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">罠（破壊の可能性）</text>
 -   <text x="440" y="92" fill="#ccc" font-size="11" font-family="sans-serif">⚠ 隣接市場からの破壊（MySpace→FB）</text>
 -   <text x="440" y="114" fill="#ccc" font-size="11" font-family="sans-serif">⚠ 技術の断絶（ガラケー→スマホ）</text>

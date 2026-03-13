@@ -11,6 +11,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "相変化の物理法則から次の沸点予測まで6章で俯瞰する",
 			"content": [
 				"1. 物理学の相変化（相転移）とは",
 				"2. S字カーブと臨界点",
@@ -34,7 +35,8 @@
 				"温度の変化は連続的だが、状態の変化は不連続（突然起きる）",
 				"「臨界点」を超えると系全体が一気に変化する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "固体→液体→気体と同じ不連続跳躍が技術普及に起きる"
 		},
 		{
 			"title": "水の相変化に学ぶ（2/2）",
@@ -44,7 +46,8 @@
 				"ゆっくり、ゆっくり...そして**突然、爆発的に**",
 				"→ ヘミングウェイ：「破産は二つの段階で起きる。徐々に、そして突然」"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "S字曲線の変曲点は相転移点——そこで市場が一気に動く"
 		},
 		{
 			"title": "相変化と臨界現象",
@@ -74,7 +77,8 @@
 				"**飽和（蒸気の安定）：** 市場の大部分に浸透、成長率が鈍化",
 				"→ **臨界点を超えるまでは「ゆっくり」、超えた後は「一瞬」**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "メトカーフ則がティッピングポイントを生み急成長を引き起こす"
 		},
 		{
 			"title": "技術普及のキャズム理論",
@@ -96,7 +100,8 @@
 				"iPhone（2007）→ タッチスクリーンが「当たり前」に相変化",
 				"Zoom（2020）→ パンデミックが臨界点のトリガーに"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "スマホは超えた、VRはまだ——何が分岐を決めるのか"
 		},
 		{
 			"title": "キャズムを超えた技術、超えなかった技術（2/2）",
@@ -106,7 +111,8 @@
 				"Google Glass（2013）→ 社会的受容の臨界点に達しなかった",
 				"3Dテレビ（2010）→ コンテンツ不足で相変化条件を満たせず"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "超えた技術の共通点はキラーユースケースの存在だ"
 		},
 		{
 			"title": "相変化の条件",
@@ -121,7 +127,8 @@
 				"例：スマートフォンが3万円以下になった瞬間、途上国で爆発的普及",
 				"**2. ネットワーク密度** ― 接続先が十分に増える"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "臨界質量・インフラ・ユースケース・価格——4条件が揃う時が転換点"
 		},
 		{
 			"title": "技術の相変化を引き起こす4つの条件（2/2）",
@@ -131,7 +138,8 @@
 				"例：4G回線の普及がモバイル動画（TikTok等）の相変化条件",
 				"**4. 社会的受容** ― 文化的・心理的な抵抗が臨界点以下になる"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "4条件のどれが欠けているかを診断すれば見通しが立つ"
 		},
 		{
 			"title": "外部ショックが相変化を加速する（1/2）",
@@ -142,7 +150,8 @@
 				"EC比率：3年分の成長を3ヶ月で達成",
 				"遠隔医療：規制緩和+需要爆発で一気に普及"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "COVID-19がリモートワークを5年分前倒しした歴史的証拠"
 		},
 		{
 			"title": "外部ショックが相変化を加速する（2/2）",
@@ -152,7 +161,8 @@
 				"温度（技術の成熟度）が同じでも、圧力（外部環境）が変わると沸点が下がる",
 				"→ **「準備ができていた技術」が外部ショックで一気に相変化した**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "外部ショックは相転移の触媒——潜在エネルギーを一瞬で解放する"
 		},
 		{
 			"title": "失敗した相変化",
@@ -168,7 +178,8 @@
 				"しかし普及率は数% ― 相変化は起きていない",
 				"**不足している条件：**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "キラーユースケース不在とデバイス価格が臨界質量を阻んでいる"
 		},
 		{
 			"title": "なぜVRはまだ相変化しないのか（2/2）",
@@ -178,7 +189,8 @@
 				"社会的受容：ゴーグルを着けて生活する文化がない",
 				"→ **3つの条件が同時に揃わない限り、相変化は起きない**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "2条件が揃えばVRも一夜で市場が変わる——今はその直前だ"
 		},
 		{
 			"title": "次の相変化を予測する",
@@ -195,7 +207,8 @@
 				"**2. AI エージェント** ― LLMの性能向上+API統合で臨界点が近い",
 				"**3. 量子コンピューティング** ― 商用応用がエラー訂正で実用段階に"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GenAI・自動運転・空間コンピューティングが次の相転移候補だ"
 		},
 		{
 			"title": "2025-2030年に相変化が予測される技術（2/2）",
@@ -205,7 +218,8 @@
 				"**予測のコツ：** 「技術の成熟度」ではなく「残りの条件は何か」を見る",
 				"→ 全条件が揃った瞬間が相変化のタイミング"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "転換点を先読みした企業が市場を取る——今が賭け時だ"
 		},
 		{
 			"title": "まとめ",
@@ -220,6 +234,7 @@
 		},
 		{
 			"title": "参考文献",
+			"subtitle": "相変化理論の4古典——Moore・Gladwell・Rogers・学術論文が基盤",
 			"content": [
 				"<svg viewBox=\"0 0 800 340\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"800\" height=\"340\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"17\" font-family=\"sans-serif\" font-weight=\"bold\">まとめ：技術普及の相変化モデル</text><rect x=\"40\" y=\"50\" width=\"340\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"60\" y=\"80\" fill=\"#f9a825\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">物理学の相変化と同じ構造</text><text x=\"60\" y=\"105\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 温度(技術成熟度)の連続変化</text><text x=\"60\" y=\"125\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 臨界点で状態が不連続に変化</text><text x=\"60\" y=\"145\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 圧力(外部環境)が沸点を変える</text><text x=\"60\" y=\"165\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">→ パンデミックが相変化を加速</text><rect x=\"420\" y=\"50\" width=\"340\" height=\"130\" rx=\"8\" fill=\"#16213e\" stroke=\"#4fc3f7\" stroke-width=\"2\"/><text x=\"440\" y=\"80\" fill=\"#4fc3f7\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">キャズムは不安定領域</text><text x=\"440\" y=\"105\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 相変化の成否が決まる分岐点</text><text x=\"440\" y=\"125\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 越えるか戻るかの2つの運命</text><text x=\"440\" y=\"145\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">• 4条件が揃わないと越えられない</text><text x=\"440\" y=\"165\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">→ Google Glass vs iPhone</text><rect x=\"40\" y=\"210\" width=\"340\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#81c784\" stroke-width=\"2\"/><text x=\"60\" y=\"238\" fill=\"#81c784\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">4つの条件</text><text x=\"60\" y=\"260\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">価格 + ネットワーク + インフラ + 社会的受容</text><text x=\"60\" y=\"282\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">→ 全条件が揃った瞬間が相変化タイミング</text><rect x=\"420\" y=\"210\" width=\"340\" height=\"100\" rx=\"8\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"440\" y=\"238\" fill=\"#e91e63\" font-size=\"13\" font-family=\"sans-serif\" font-weight=\"bold\">次の「沸点」を探す問い</text><text x=\"440\" y=\"260\" fill=\"#ffffff\" font-size=\"11\" font-family=\"sans-serif\">残りの条件は何か？をチェックする</text><text x=\"440\" y=\"282\" fill=\"#aaaaaa\" font-size=\"10\" font-family=\"sans-serif\">→ 技術成熟度より「揃っていない条件」を見よ</text></svg>",
 				"- **書籍:**",

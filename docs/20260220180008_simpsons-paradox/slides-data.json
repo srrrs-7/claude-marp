@@ -62,6 +62,7 @@
 		},
 		{
 			"title": "実際の失敗事例",
+			"subtitle": "新規ユーザーへの効果を見落とした集計値の罠でロイヤル顧客に最適化してしまった",
 			"layout": "default",
 			"content": [
 				"**ECサイトのボタン色A/Bテスト**",
@@ -138,6 +139,7 @@
 		},
 		{
 			"title": "参考文献（1/2）",
+			"subtitle": "1951年のオリジナル論文からバークレー訴訟まで—逆転現象の証拠文献",
 			"layout": "default",
 			"content": [
 				"- **Original Papers:**",
@@ -148,6 +150,7 @@
 		},
 		{
 			"title": "参考文献（2/2）",
+			"subtitle": "因果推論・ベイズ・A/Bテストの実務書3冊が意思決定精度を上げる",
 			"layout": "default",
 			"content": [
 				"- Pearl, J. *The Book of Why* (2018)",

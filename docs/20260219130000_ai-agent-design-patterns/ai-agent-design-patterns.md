@@ -124,6 +124,8 @@ style: |
 
 # アジェンダ (1/2)
 
+> *ReAct・CoT・Tool Use・Memoryから信頼性パターンまで8テーマを体系化している*
+
 - 1. **AI エージェントとは** — 定義・LLMとの違い・なぜパターンが必要か
 - 2. **Core Patterns** — ReAct / Chain-of-Thought / Tool Use / Memory
 - 3. **Orchestration Patterns** — Single / Multi-Agent / Parallel / Swarm
@@ -184,6 +186,8 @@ style: |
 ---
 
 # AI エージェントの定義
+
+> *自律的な目標追求と環境認知がエージェントの本質的定義*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="280" fill="#1a1a2e"/>
@@ -247,6 +251,8 @@ style: |
 ---
 
 # なぜ設計パターンが必要か
+
+> *アドホックな実装が本番で一貫性なく失敗する根本原因を解決*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -352,6 +358,8 @@ style: |
 ---
 
 # ReAct パターン概要
+
+> *Reason→Act→Observeループが自律問題解決の核心*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="280" fill="#1a1a2e"/>
@@ -465,6 +473,8 @@ for step in range(MAX_STEPS):
 
 # Chain-of-Thought (CoT)
 
+> *思考連鎖の明示化が複雑推論の正答率を大幅改善する*
+
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Chain-of-Thought (CoT) vs 直接回答</text>
@@ -496,6 +506,8 @@ for step in range(MAX_STEPS):
 ---
 
 # Tool Use パターン
+
+> *ツール呼び出し精度がエージェント全体の信頼性を左右*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -533,6 +545,8 @@ for step in range(MAX_STEPS):
 ---
 
 # ツール設計のベストプラクティス
+
+> *ツール呼び出し精度がエージェント全体の信頼性を左右*
 
 - **名前**: 動詞+名詞で意図が明確に（例: `search_documents`, `execute_code`）
 - **説明文**: LLMが「いつ・なぜ使うか」判断できるよう詳細に記述する
@@ -608,6 +622,8 @@ tools = [
 
 # 短期メモリ: コンテキストウィンドウ管理
 
+> *作業記憶の管理がトークン消費とタスク精度を左右する*
+
 - 問題: 長い会話でコンテキスト上限（200K tokens）に到達してしまう
 - **Sliding Window**: 古いメッセージを一定数に制限して削除
 - **Summarization**: 古い会話を定期的に要約して圧縮する
@@ -619,6 +635,8 @@ tools = [
 
 # 長期メモリ: ベクターストア活用
 
+> *長期メモリがセッション横断の文脈継続性を保証する*
+
 - ベクター検索で意味的に近い過去記録を動的に取得できる
 - **RAG**: 外部知識ベースを Embedding でベクター化して保存
 - **実装**: pgvector / Pinecone / OpenSearch Serverless
@@ -629,6 +647,8 @@ tools = [
 ---
 
 # エージェントのステート管理
+
+> *状態の一貫性保証が長時間エージェントの信頼性を担保する*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -671,6 +691,8 @@ tools = [
 ---
 
 # Core Patterns まとめ
+
+> *ReAct+CoT+Tool Use+Memoryの4パターンが実用エージェント構築の必須基礎セット*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="280" fill="#1a1a2e"/>
@@ -763,6 +785,8 @@ tools = [
 
 # Single Agent パターン
 
+> *単一エージェントが複雑性を抑え小規模タスクに最も効果的*
+
 - 1つのLLMが全タスクを処理するシンプルな構成
 - **メリット**: シンプル・デバッグ容易・コンテキスト共有が自然
 - **デメリット**: 複雑タスクで精度低下・長いコンテキストでコスト増加
@@ -773,6 +797,8 @@ tools = [
 ---
 
 # Multi-Agent システム
+
+> *役割分離と通信プロトコルがマルチ構成の安定性を決める*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="300" fill="#1a1a2e"/>
@@ -968,6 +994,8 @@ results = asyncio.run(parallel_research([
 
 # Swarm パターン
 
+> *スウォームが独立した専門エージェントの協調で性能を最大化する*
+
 - <svg viewBox="0 0 800 270" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="270" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Swarm パターン: 自律協調</text>
@@ -1006,6 +1034,8 @@ results = asyncio.run(parallel_research([
 
 # エージェント間通信パターン
 
+> *通信プロトコルの標準化がエージェント間の信頼と効率を決める*
+
 - **直接呼び出し**: 同期的・シンプル・密結合（PoC向け）
 - **メッセージキュー**: 非同期・疎結合・スケーラブル（SQS / Kafka）
 - **共有ステート**: DB / ファイル経由で状態を共有（シンプルだが競合注意）
@@ -1015,6 +1045,8 @@ results = asyncio.run(parallel_research([
 ---
 
 # パターン選択ガイド
+
+> *タスクの複雑性と信頼性要件がパターン選択の二大基準*
 
 - <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="300" fill="#1a1a2e"/>
@@ -1081,6 +1113,8 @@ results = asyncio.run(parallel_research([
 
 # なぜ Reliability が重要か
 
+> *本番エージェントの失敗コストは開発コストを大幅に上回る*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Reliability リスク マトリクス</text>
@@ -1140,6 +1174,8 @@ results = asyncio.run(parallel_research([
 ---
 
 # Human-in-the-Loop (HiTL)
+
+> *人間の介入ポイント設計が高リスク決定の安全性を保証する*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -1213,6 +1249,8 @@ def execute_with_hitl(tool_name: str, tool_input: dict) -> dict:
 
 # 検証ループパターン
 
+> *自己検証ループが出力品質を継続的に改善し幻覚を減らす*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">検証ループパターン</text>
@@ -1257,6 +1295,8 @@ def execute_with_hitl(tool_name: str, tool_input: dict) -> dict:
 
 # エラー回復パターン
 
+> *回復戦略の設計なしに本番エージェントは運用できない*
+
 - **Retry with Backoff**: エラー時に指数バックオフで待機してリトライ
 - **Fallback**: 代替ツール / モデルへの切り替え（Opus → Sonnet など）
 - **Graceful Degradation**: 一部失敗でも部分的な結果を返す
@@ -1267,6 +1307,8 @@ def execute_with_hitl(tool_name: str, tool_input: dict) -> dict:
 ---
 
 # Guardrails パターン
+
+> *入出力ガードレールがエージェントの暴走を確実に防ぐ*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="280" fill="#1a1a2e"/>
@@ -1348,6 +1390,8 @@ response = client.messages.create(
 
 # 観測可能性 (Observability)
 
+> *分散トレーシングなしに本番エージェントの障害は診断できない*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Observability: 3つの柱</text>
@@ -1392,6 +1436,8 @@ response = client.messages.create(
 ---
 
 # Reliability Patterns まとめ
+
+> *HiTL+検証ループ+エラー回復+Guardrails+Observabilityの5パターンが信頼性の完全形*
 
 - **HiTL**: 高リスク操作には必ず人間の承認チェックポイントを設ける
 - **検証ループ**: 出力品質を自動チェック → Self-critique が最もコスト効率が良い
@@ -1478,6 +1524,8 @@ response = client.messages.create(
 
 # コード生成エージェント: 設計ポイント
 
+> *サンドボックス実行と検証ループがコード生成の安全性を担保する*
+
 - **要件理解フェーズ**: 自然言語 → 仕様へ変換する前に曖昧さを排除
 - **テスト駆動生成**: テストケースを先に生成し、それをパスするコードを生成
 - **デバッグループ**: テスト失敗 → LLMがエラーを解析 → コード修正（最大3回）
@@ -1488,6 +1536,8 @@ response = client.messages.create(
 ---
 
 # リサーチエージェントの設計
+
+> *マルチソース検証がリサーチエージェントの事実精度を高める*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -1604,6 +1654,8 @@ report = writer_agent.run(
 
 # Advanced RAG パターン
 
+> *検索品質の改善が生成精度を決める最重要変数*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Advanced RAG パイプライン</text>
@@ -1650,6 +1702,8 @@ report = writer_agent.run(
 
 # アーキテクチャ事例: パターン適用まとめ
 
+> *エージェントアーキテクチャが自律性と安全性の均衡を決める*
+
 - **コード生成**: ReAct + 検証ループ + HiTL + モデル使い分け
 - **リサーチ**: Orchestrator-Subagents + Parallel + Long-term Memory
 - **RAG**: Tool Use + Memory（ベクターDB）+ Self-critique + Citation
@@ -1690,6 +1744,8 @@ report = writer_agent.run(
 
 # システムプロンプト設計
 
+> *システムプロンプトの設計がエージェントの行動境界を定める*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">システムプロンプト 構造</text>
@@ -1716,6 +1772,8 @@ report = writer_agent.run(
 ---
 
 # コンテキスト管理戦略
+
+> *トークン予算の管理が長期タスクでの情報損失を防ぐ鍵*
 
 - **Token Budget 管理**: 残りトークン数を監視してアクションを制限する
 - **重要情報の優先配置**: システムプロンプトに核心情報を配置する
@@ -1759,6 +1817,8 @@ print(response.usage)
 
 # エージェントの評価・テスト戦略
 
+> *定量評価基盤なしにエージェントの改善は再現できない*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">エージェント評価の4層ピラミッド</text>
@@ -1785,6 +1845,8 @@ print(response.usage)
 ---
 
 # エージェントセキュリティ
+
+> *プロンプトインジェクション対策がエージェントセキュリティの最優先課題*
 
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
@@ -1825,6 +1887,8 @@ print(response.usage)
 
 # コスト管理と最適化
 
+> *LLM呼び出し最小化がエージェントのコスト効率を決める*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">コスト最適化 戦略</text>
@@ -1860,6 +1924,8 @@ print(response.usage)
 ---
 
 # ベストプラクティス まとめ
+
+> *シンプルから始め・観測可能性優先・失敗前提設計・評価自動化・セキュリティの5原則が実践の核心*
 
 - **シンプルに始める**: Over-engineering を避け、必要に応じて複雑化する
 - **観測可能性を最初から**: ログ・トレース・メトリクスを設計段階で組み込む
@@ -1899,6 +1965,8 @@ print(response.usage)
 ---
 
 # Key Takeaways
+
+> *ReAct+Tool Use+Memoryを基盤にパターンはユーザー価値から逆算して選択することが最重要*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
   <rect width="800" height="280" fill="#1a1a2e"/>
@@ -1945,6 +2013,8 @@ print(response.usage)
 
 # 参考リソース (1/2)
 
+> *ReAct・CoT・Building Effective AgentsがAIエージェント開発の3大必読文献*
+
 - **Research Papers:**
 - [ReAct: Synergizing Reasoning and Acting in LLMs (2022)](https://arxiv.org/abs/2210.03629)
 - [Chain-of-Thought Prompting Elicits Reasoning (2022)](https://arxiv.org/abs/2201.11903)
@@ -1956,6 +2026,8 @@ print(response.usage)
 ---
 
 # 参考リソース (2/2)
+
+> *LangGraph/CrewAI/LangSmith/Langfuseが実践エージェント開発の標準フレームワーク群*
 
 - **Frameworks & Libraries:**
 - [LangGraph — LangChain](https://github.com/langchain-ai/langgraph)

@@ -143,6 +143,8 @@ style: |
 
 # アジェンダ — 7部構成
 
+> *7つのセクションで宇宙大規模構造と神経網の構造的類似性を解明する*
+
 - **Part 1:** 宇宙の大規模構造 — コズミックウェブとは何か
 - **Part 2:** ニューラルネットワーク — 生物的・人工的
 - **Part 3:** 衝撃の視覚的類似 — 並べてみると...
@@ -163,6 +165,8 @@ style: |
 ---
 
 # 宇宙の「泡構造」— 138億年の重力の結晶（1/2）
+
+> *重力が138億年かけて作り出した泡構造はコズミックウェブの骨格をなす*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -216,6 +220,8 @@ style: |
 ---
 
 # 宇宙の「泡構造」— 138億年の重力の結晶（2/2）
+
+> *フィラメントとボイドが宇宙規模のネットワークを形成*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -276,6 +282,8 @@ style: |
 ---
 
 # 暗黒物質と重力 — 見えない骨格（1/2）
+
+> *宇宙質量の27%を占める暗黒物質が大規模構造の見えない骨格を形成する*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
@@ -360,6 +368,8 @@ style: |
 ---
 
 # 暗黒物質と重力 — 見えない骨格（2/2）
+
+> *暗黒物質ハローの分布がフィラメント構造の形成を決定的に支配する*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
@@ -446,6 +456,8 @@ style: |
 
 # シミュレーションが明かす構造（1/2）
 
+> *N体シミュレーションが宇宙大規模構造の形成プロセスを定量的に再現する*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コズミックウェブのシミュレーションと観測の一致</text>
@@ -505,6 +517,8 @@ style: |
 ---
 
 # シミュレーションが明かす構造（2/2）
+
+> *IllustrisTNGシミュレーションが観測データと99%以上一致する精度を達成*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
@@ -575,6 +589,8 @@ style: |
 
 # 生物学的神経網 — 860億個のニューロン（1/2）
 
+> *860億個のニューロンが100兆シナプスで結合し脳の情報処理を実現する*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">生物学的神経網 — 860億個のネットワーク</text>
@@ -622,6 +638,8 @@ style: |
 ---
 
 # 生物学的神経網 — 860億個のニューロン（2/2）
+
+> *ニューロン間の接続パターンがスモールワールド特性を示す根拠と意味*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
@@ -671,6 +689,8 @@ style: |
 ---
 
 # 人工ニューラルネットワークの構造（1/2）
+
+> *人工ニューラルネットワークの層構造が生物脳の階層処理を模倣している*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
@@ -745,6 +765,8 @@ style: |
 ---
 
 # 人工ニューラルネットワークの構造（2/2）
+
+> *深層学習の多層構造が抽象度の異なる特徴を段階的に抽出する仕組み*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
@@ -933,6 +955,8 @@ style: |
 
 # スケールの比較
 
+> *宇宙と脳はスケールが1027倍違うが統計指標が一致する*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">138億光年の宇宙 vs 860億個のニューロン</text>
@@ -1001,6 +1025,8 @@ style: |
 
 # 接続パターンの類似（1/2）
 
+> *宇宙フィラメントと神経繊維束が同じべき乗則の接続分布に従う証拠*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">138億光年の宇宙 vs 860億個のニューロン</text>
@@ -1064,6 +1090,8 @@ style: |
 
 # 接続パターンの類似（2/2）
 
+> *スケールフリーな接続パターンが両システムに情報伝達の効率性をもたらす*
+
 - **2. フィラメント状の接続**
 - - 物質・信号がフィラメント（線状経路）を伝わる
 - - 交点（ノード）で情報・物質が集積・処理される
@@ -1125,6 +1153,8 @@ style: |
 
 # Franco & Vazza (2020) — 初の定量比較（1/2）
 
+> *Franco & Vazza 2020年論文が初めて宇宙網と脳のネットワーク指標を定量比較*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Franco &amp; Vazza (2020) — 定量的一致の証拠</text>
@@ -1176,6 +1206,8 @@ style: |
 ---
 
 # Franco & Vazza (2020) — 初の定量比較（2/2）
+
+> *クラスタリング係数・経路長・次数分布の3指標が統計的に有意に一致する*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -1229,6 +1261,8 @@ style: |
 
 # クラスタリング係数の一致（1/2）
 
+> *局所的クラスタリング係数の一致がランダムネットワークとの本質的差異を示す*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Franco &amp; Vazza (2020) — 定量的一致の証拠</text>
@@ -1280,6 +1314,8 @@ style: |
 ---
 
 # クラスタリング係数の一致（2/2）
+
+> *クラスタリング係数0.5前後での一致が偶然でない構造的類似性を示唆する*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -1333,6 +1369,8 @@ style: |
 
 # フラクタル次元と密度分布（1/2）
 
+> *フラクタル次元2.4〜2.5への収束が両システムの空間充填効率の類似を示す*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Franco &amp; Vazza (2020) — 定量的一致の証拠</text>
@@ -1384,6 +1422,8 @@ style: |
 ---
 
 # フラクタル次元と密度分布（2/2）
+
+> *密度分布のべき乗則指数の一致が同じ統計力学的原理の支配を示唆する*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -1437,6 +1477,8 @@ style: |
 
 # エントロピーとスペクトル解析（1/2）
 
+> *シャノンエントロピーとスペクトル解析が両構造の情報容量の等価性を示す*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Franco &amp; Vazza (2020) — 定量的一致の証拠</text>
@@ -1488,6 +1530,8 @@ style: |
 ---
 
 # エントロピーとスペクトル解析（2/2）
+
+> *パワースペクトルの傾きの一致が同じ空間周波数特性を持つ証拠となる*
 
 - - 構造のフーリエ変換によるスペクトル形状
 - - コズミックウェブと神経網のスペクトルが類似したプロファイルを持つ
@@ -1579,6 +1623,8 @@ style: |
 
 # スケールフリーネットワーク（べき乗則）（1/2）
 
+> *ハブノードが全接続の80%を担うべき乗則がコズミックウェブにも成立する*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">スケールフリーネットワーク — べき乗則の意味</text>
@@ -1653,6 +1699,8 @@ style: |
 
 # スケールフリーネットワーク（べき乗則）（2/2）
 
+> *スケールフリー性がロバスト性とランダム障害への耐性を両システムに付与する*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">収斂する物理 — なぜ同じ形になるのか</text>
@@ -1698,6 +1746,8 @@ style: |
 
 # 自己組織化と創発（1/2）
 
+> *局所的相互作用のみから大域的秩序が自発的に出現する創発のメカニズム*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">収斂する物理 — なぜ同じ形になるのか</text>
@@ -1742,7 +1792,7 @@ style: |
 
 ---
 
-# 自己組織化と創発（2/2）
+# 自己組織化と創発（2/2）（1/2）
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
@@ -1781,6 +1831,14 @@ style: |
 - - 結果: コズミックウェブ
 - 
 - 神経網の場合:
+
+
+---
+
+# 自己組織化と創発（2/2）（2/2）
+
+> *局所的な重力・電気化学が大域的パターンを自律生成する*
+
 - - ルール: ヘッブ則（一緒に発火するニューロンは繋がりを強化）
 - - 結果: 効率的なネットワーク構造
 - 
@@ -1848,6 +1906,8 @@ style: |
 
 # 情報処理モデルとしての宇宙（1/2）
 
+> *宇宙を情報処理システムとして捉えるデジタル物理学の理論的根拠と限界*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">哲学的含意 — シミュレーション仮説との交差</text>
@@ -1899,6 +1959,8 @@ style: |
 ---
 
 # 情報処理モデルとしての宇宙（2/2）
+
+> *ランダウアーの原理が宇宙における情報処理の物理的コスト上限を与える*
 
 - 
 - もし宇宙が情報処理システムなら:
@@ -1972,6 +2034,8 @@ style: |
 
 # フラクタル宇宙論（1/2）
 
+> *宇宙全体がフラクタル構造を持つとするフラクタル宇宙論の証拠と反論*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">「宇宙は巨大な脳か？」— 思考実験</text>
@@ -2028,6 +2092,8 @@ style: |
 ---
 
 # フラクタル宇宙論（2/2）
+
+> *SDSS銀河カタログのフラクタル解析結果と均一性への収束スケールの問題*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
@@ -2087,6 +2153,8 @@ style: |
 
 # 「宇宙は巨大な脳か？」（1/2）
 
+> *宇宙が仮想現実なら神経網との類似は設計者の制約を反映している可能性*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">「宇宙は巨大な脳か？」— 思考実験</text>
@@ -2144,6 +2212,8 @@ style: |
 
 # 「宇宙は巨大な脳か？」（2/2）
 
+> *シミュレーション仮説を支持・反証する物理学的証拠の現状評価*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">哲学的含意 — シミュレーション仮説との交差</text>
@@ -2195,6 +2265,8 @@ style: |
 ---
 
 # シミュレーション仮説との交差（1/2）
+
+> *シミュレーション仮説とホログラフィック原理が宇宙-脳類似を別角度で説明する*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
@@ -2248,6 +2320,8 @@ style: |
 
 # シミュレーション仮説との交差（2/2）
 
+> *プランクスケールの情報密度上限がシミュレーション検出の理論的根拠となる*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">エンジニアへの実践的示唆</text>
@@ -2300,6 +2374,8 @@ style: |
 
 # エンジニアとして何を考えるか（1/2）
 
+> *宇宙-脳類似がグラフアルゴリズム・分散システム設計に与える工学的示唆*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">エンジニアへの実践的示唆</text>
@@ -2351,6 +2427,8 @@ style: |
 ---
 
 # エンジニアとして何を考えるか（2/2）
+
+> *スケールフリー設計とロバスト性の知見を実際のシステムアーキテクチャに応用する*
 
 - **2. グラフニューラルネット（GNN）**
 - - コズミックウェブの解析にGNNを適用（実際の研究が進行中）
@@ -2437,6 +2515,8 @@ style: |
 
 # 今後の研究と応用可能性（1/2）
 
+> *次世代宇宙サーベイと神経科学データの統合解析が類似性の解明を加速する*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">未解決の問い — 誰も答えを持っていない</text>
@@ -2473,6 +2553,8 @@ style: |
 ---
 
 # 今後の研究と応用可能性（2/2）
+
+> *機械学習による宇宙構造と神経網の共同モデリングが新理論を生む可能性*
 
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
@@ -2511,6 +2593,8 @@ style: |
 
 # 未解決の問い（1/2）
 
+> *類似性の根本原因が解明されれば統一理論につながる*
+
 - まだ誰も答えを持っていない問い:
 - 
 - - 類似は**形式的（見かけ上）**か、**機能的（本質的）**か？
@@ -2520,6 +2604,8 @@ style: |
 ---
 
 # 未解決の問い（2/2）
+
+> *類似性の深さ・情報処理の普遍性・意識の起源という3つの核心問題が残る*
 
 - - スケールフリー性は「最適な構造」への収斂を示すのか？何が「最適」を定義するのか？
 - - 宇宙の他の構造（タンパク質・インターネット・川のデルタ）との類似はどこまで深いか？
@@ -2532,6 +2618,8 @@ style: |
 
 # 参考文献・一次資料（1/2）
 
+> *Franco & Vazza論文を含む一次資料と宇宙論・神経科学の主要参考文献*
+
 - **主要論文:**
 - - [Franco & Vazza et al. (2020) Frontiers in Physics](https://www.frontiersin.org/articles/10.3389/fphy.2020.525731/full)
 - - [Springel et al. (2005) Millennium Simulation — Nature](https://www.nature.com/articles/nature03597)
@@ -2543,6 +2631,8 @@ style: |
 ---
 
 # 参考文献・一次資料（2/2）
+
+> *スケールフリーネットワーク理論と複雑系科学の基礎文献リスト*
 
 - - [Network Science — Albert-László Barabási (無料公開)](http://networksciencebook.com/)
 - - [The Cosmic Web — J. Richard Gott (Princeton UP, 2016)](https://press.princeton.edu/books/hardcover/9780691157269/the-cosmic-web)

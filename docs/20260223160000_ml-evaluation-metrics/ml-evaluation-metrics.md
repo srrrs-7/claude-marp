@@ -7,6 +7,71 @@ paginate: true
 header: "ML評価指標 完全ガイド"
 footer: "© 2026 ML評価指標リファレンス"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code {
     font-size: 0.58em;
     line-height: 1.4;
@@ -214,6 +279,8 @@ print(f"TN={cm[0,0]}, FP={cm[0,1]}, FN={cm[1,0]}, TP={cm[1,1]}")
 ---
 
 # よくある落とし穴
+
+> *不均衡データでAccuracyだけ見ると99%でも役立たずになる*
 
 - Accuracy のみで評価（不均衡データで 99% でも使えないモデルの可能性）
 - テストセットで閾値を最適化 → 過学習（バリデーションセットで行うこと）
@@ -431,6 +498,8 @@ print(f"Huber: {huber.mean():.4f}")
 
 # 回帰の落とし穴
 
+> *スケール依存のRMSEでモデル比較すると誤った選択をする*
+
 - MAPE の罠: ゼロ近傍の値で発散 → SMAPE または sMAPE を使う
 - R² < 0 は起こりうる: ベースライン予測より悪いモデルで R² が負になる
 - RMSE ≠ MAE の差に注意: 差が大きいほど外れ値の影響大
@@ -636,6 +705,8 @@ print(f"BERTScore F1: {F[0]:.3f}")
 ---
 
 # NLP評価の落とし穴
+
+> *BLEUは高くても人間評価が低い—多面的評価が必須*
 
 - BLEU の罠: 高BLEU≠高品質（繰り返し・短文・直訳でスコア操作可能）
 - ROUGE の罠: Recall重視なので長文生成がスコアを稼ぎやすい
@@ -850,6 +921,8 @@ print(f"NDCG@5: {ndcg_score(y_true, y_score, k=5):.3f}")
 ---
 
 # ランキングの落とし穴
+
+> *NDCGのkを固定しないとユースケースと乖離した評価になる*
 
 - MAP の落とし穴: 全関連アイテムが既知でないと計算できない
 - NDCG の注意: 関連度スコアの定義が変わると比較不能になる
@@ -1081,6 +1154,8 @@ print(f"Best k by Silhouette: {best_sil_k}")
 
 # クラスタリングの落とし穴
 
+> *内部指標が高くても実際の意味的クラスタと一致しない*
+
 - Inertia の罠: k が増えると必ず下がる → エルボーが曖昧なデータに注意
 - Silhouette の限界: 非球形クラスタ（三日月形等）では過小評価されやすい
 - DBI/CH の仮定: 凸形状・均一サイズのクラスタを前提にしている
@@ -1147,6 +1222,8 @@ print(f"Best k by Silhouette: {best_sil_k}")
 
 # 最適化指標 vs 評価指標の違い
 
+> *学習ロスとビジネス指標の乖離が本番失敗の最大原因*
+
 - 最適化指標（Training Loss）: モデルが学習中に最小化/最大化する目的関数
 - 評価指標（Metrics）: ビジネス要件や人間の判断を反映した品質測定
 - 例: BCE Loss で学習 → AUC-ROC / F1 で評価（直接最適化不可）
@@ -1191,6 +1268,8 @@ print(f"Best k by Silhouette: {best_sil_k}")
 ---
 
 # 参考文献・学習リソース
+
+> *Scikit-learn公式+Stanford CS229が理論と実装の最短ルート*
 
 - scikit-learn: sklearn.metrics — 分類・回帰・クラスタリング指標の標準実装
 - sacrebleu / rouge-score / bert-score — NLP評価の定番ライブラリ

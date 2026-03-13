@@ -7,6 +7,71 @@ paginate: true
 header: "非言語コミュニケーション"
 footer: "© 2026"
 style: |
+  /* ── Overflow prevention ──────────────────────────────── */
+    section { overflow: hidden; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.7;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Images (all, not only SVG) ───────────────────────── */
+    section img:not([src$=".svg"]) {
+      max-height: 65vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+    section svg {
+      max-height: 70vh;
+      max-width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+    section img[src$=".svg"] {
+      max-height: 70vh;
+      max-width: 100%;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+    }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
   section pre code { font-size: 0.58em; line-height: 1.4; }
   
 ---
@@ -24,6 +89,8 @@ style: |
 ---
 
 # アジェンダ
+
+> *沈黙は文化・交渉・デジタルで異なる強力なシグナル*
 
 - 1. 「93%は非言語」の真実
 - 2. 沈黙の文化的意味
@@ -44,6 +111,8 @@ style: |
 
 # メラビアンの法則という誤解（1/2）
 
+> *「7%は言葉」は感情語実験の誤用—言語は高密度媒体*
+
 - **Albert Mehrabian（1967年）の実験：**
 - 「7%：言葉」「38%：声のトーン」「55%：ボディランゲージ」
 - ---
@@ -56,6 +125,8 @@ style: |
 ---
 
 # メラビアンの法則という誤解（2/2）
+
+> *非言語は感情・態度・関係性の補足に限られる*
 
 - **実験の実際の条件：**
 - 感情的な言葉（好意・嫌悪）を単語1つで伝える特殊実験
@@ -70,6 +141,8 @@ style: |
 
 # 沈黙の文化的意味（1/2）
 
+> *日本の「間」は尊重—米国では問題発生のシグナル*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="360" fill="#1a1a2e" rx="12"/><text x="400" y="38" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">文化別「沈黙への耐性」比較</text><rect x="40" y="55" width="340" height="270" fill="#0d2a1a" rx="10"/><text x="210" y="82" font-family="sans-serif" font-size="16" fill="#66bb6a" text-anchor="middle" font-weight="bold">沈黙が「快適」な文化</text><text x="60" y="112" font-family="sans-serif" font-size="22" fill="#f9a825">🇯🇵</text><text x="95" y="112" font-family="sans-serif" font-size="14" fill="#ccc">日本 — 「間（ま）」の美学</text><text x="60" y="140" font-family="sans-serif" font-size="22" fill="#f9a825">🇫🇮</text><text x="95" y="140" font-family="sans-serif" font-size="14" fill="#ccc">フィンランド — 沈黙は金</text><text x="60" y="168" font-family="sans-serif" font-size="22" fill="#f9a825">🇰🇷</text><text x="95" y="168" font-family="sans-serif" font-size="14" fill="#ccc">韓国 — 以心伝心</text><text x="60" y="196" font-family="sans-serif" font-size="22" fill="#f9a825">🇨🇳</text><text x="95" y="196" font-family="sans-serif" font-size="14" fill="#ccc">中国 — 言外の意</text><rect x="60" y="215" width="280" height="88" fill="#66bb6a22" rx="8"/><text x="80" y="238" font-family="sans-serif" font-size="13" fill="#aed581">沈黙の解釈:</text><text x="80" y="258" font-family="sans-serif" font-size="12" fill="#ccc">・答えを考えている証拠</text><text x="80" y="276" font-family="sans-serif" font-size="12" fill="#ccc">・相手への敬意</text><text x="80" y="294" font-family="sans-serif" font-size="12" fill="#ccc">・深い共感・同意</text><rect x="420" y="55" width="340" height="270" fill="#2a0d10" rx="10"/><text x="590" y="82" font-family="sans-serif" font-size="16" fill="#ef5350" text-anchor="middle" font-weight="bold">沈黙が「不快」な文化</text><text x="440" y="112" font-family="sans-serif" font-size="22" fill="#f9a825">🇺🇸</text><text x="475" y="112" font-family="sans-serif" font-size="14" fill="#ccc">米国 — 沈黙 = 問題発生</text><text x="440" y="140" font-family="sans-serif" font-size="22" fill="#f9a825">🇮🇹</text><text x="475" y="140" font-family="sans-serif" font-size="14" fill="#ccc">イタリア — 会話は重なる</text><text x="440" y="168" font-family="sans-serif" font-size="22" fill="#f9a825">🇧🇷</text><text x="475" y="168" font-family="sans-serif" font-size="14" fill="#ccc">ブラジル — 空白は埋めるもの</text><text x="440" y="196" font-family="sans-serif" font-size="22" fill="#f9a825">🇫🇷</text><text x="475" y="196" font-family="sans-serif" font-size="14" fill="#ccc">フランス — 議論が礼儀</text><rect x="440" y="215" width="280" height="88" fill="#ef535022" rx="8"/><text x="460" y="238" font-family="sans-serif" font-size="13" fill="#ef9a9a">沈黙の解釈:</text><text x="460" y="258" font-family="sans-serif" font-size="12" fill="#ccc">・何かまずいことを言った</text><text x="460" y="276" font-family="sans-serif" font-size="12" fill="#ccc">・不同意・敵意のシグナル</text><text x="460" y="294" font-family="sans-serif" font-size="12" fill="#ccc">・会話の失敗</text></svg>
 - **日本語の「間（ま）」：**
 - 沈黙は「考え中」「共感」「尊重」を意味する
@@ -78,12 +151,22 @@ style: |
 
 ---
 
-# 沈黙の文化的意味（2/2）
+# 沈黙の文化的意味（2/2）（1/2）
+
+> *空白を埋める衝動が交渉で先に譲歩させる罠になる*
 
 - ---
 - **米国・南欧：沈黙は不快**
 - 会話が止まると「何かまずいことを言ったか」と解釈
 - 空白を埋めようとする衝動 = 「恐怖の沈黙」
+
+
+---
+
+# 沈黙の文化的意味（2/2）（2/2）
+
+> *沈黙への耐性が交渉の勝敗を分ける決定的な要因*
+
 - ---
 - **ビジネス交渉への影響：**
 - 米国交渉者が沈黙に耐えられず先に譲歩する事例
@@ -101,6 +184,8 @@ style: |
 
 # デジタル時代の非言語（1/2）
 
+> *既読スルーが新たな社会規範として機能し始めた*
+
 - **既読スルー：**
 - 「読んだが返信しない」= 日本では強烈なメッセージ
 - 既読が見える設計（LINE、WhatsApp）が新たな社会規範を作った
@@ -114,6 +199,8 @@ style: |
 
 # デジタル時代の非言語（2/2）
 
+> *返信速度・絵文字がデジタル非言語体系を形成する*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e" rx="12"/><text x="400" y="36" font-family="sans-serif" font-size="19" fill="#f9a825" text-anchor="middle" font-weight="bold">デジタル非言語システム — 返信速度の社会的意味</text><rect x="30" y="58" width="740" height="54" fill="#0d1b4b" rx="8"/><text x="80" y="80" font-family="sans-serif" font-size="13" fill="#4fc3f7" font-weight="bold">返信速度</text><text x="220" y="80" font-family="sans-serif" font-size="13" fill="#4fc3f7" font-weight="bold">相手の解釈（一般的）</text><text x="480" y="80" font-family="sans-serif" font-size="13" fill="#4fc3f7" font-weight="bold">関係への影響</text><text x="80" y="100" font-family="sans-serif" font-size="12" fill="#aaa">速度帯</text><text x="220" y="100" font-family="sans-serif" font-size="12" fill="#aaa">シグナル</text><text x="480" y="100" font-family="sans-serif" font-size="12" fill="#aaa">評価</text><rect x="30" y="118" width="740" height="40" fill="#e91e6322" rx="4"/><text x="80" y="143" font-family="sans-serif" font-size="13" fill="#ef9a9a">1分以内</text><text x="220" y="143" font-family="sans-serif" font-size="13" fill="#ccc">暇・依存・重い</text><text x="480" y="143" font-family="sans-serif" font-size="13" fill="#ef5350">過度な期待値を設定</text><rect x="30" y="162" width="740" height="40" fill="#f9a82522" rx="4"/><text x="80" y="187" font-family="sans-serif" font-size="13" fill="#fff176">10〜60分</text><text x="220" y="187" font-family="sans-serif" font-size="13" fill="#ccc">普通・バランス良い</text><text x="480" y="187" font-family="sans-serif" font-size="13" fill="#66bb6a">健全な関係性</text><rect x="30" y="206" width="740" height="40" fill="#4fc3f722" rx="4"/><text x="80" y="231" font-family="sans-serif" font-size="13" fill="#81d4fa">数時間</text><text x="220" y="231" font-family="sans-serif" font-size="13" fill="#ccc">忙しい・適度な距離感</text><text x="480" y="231" font-family="sans-serif" font-size="13" fill="#fff176">許容範囲（文脈依存）</text><rect x="30" y="250" width="740" height="40" fill="#1a1a2e" rx="4" style="stroke:#555;stroke-width:1"/><text x="80" y="275" font-family="sans-serif" font-size="13" fill="#9e9e9e">翌日以降</text><text x="220" y="275" font-family="sans-serif" font-size="13" fill="#ccc">距離を置きたい</text><text x="480" y="275" font-family="sans-serif" font-size="13" fill="#ef5350">関係悪化のシグナル</text><text x="30" y="320" font-family="sans-serif" font-size="12" fill="#888">※ 絵文字の有無・メッセージ長も同様に「非言語チャンネル」として機能する</text></svg>
 - 翌日以降 → 距離を置きたいシグナル
 - 絵文字の有無 → 感情的温度のシグナル
@@ -123,6 +210,8 @@ style: |
 ---
 
 # まとめ：沈黙という雄弁
+
+> *沈黙を意図的に使う者が文化・交渉・デジタルで優位に立つ*
 
 - <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e" rx="12"/><text x="400" y="36" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">本日の4つの洞察</text><rect x="30" y="52" width="350" height="90" fill="#0d1b4b" rx="8"/><text x="50" y="76" font-family="sans-serif" font-size="14" fill="#f9a825" font-weight="bold">1. 統計の誤用に注意</text><text x="50" y="98" font-family="sans-serif" font-size="12" fill="#ccc">「93%非言語」は感情的文脈限定の実験。</text><text x="50" y="118" font-family="sans-serif" font-size="12" fill="#ccc">一般化は誤り — 言語は高密度情報媒体。</text><rect x="420" y="52" width="350" height="90" fill="#0d1b4b" rx="8"/><text x="440" y="76" font-family="sans-serif" font-size="14" fill="#e91e63" font-weight="bold">2. 沈黙の意味は文化で逆転</text><text x="440" y="98" font-family="sans-serif" font-size="12" fill="#ccc">日本・フィンランド = 快適・尊重</text><text x="440" y="118" font-family="sans-serif" font-size="12" fill="#ccc">米国・南欧 = 不快・問題のシグナル</text><rect x="30" y="158" width="350" height="90" fill="#0d1b4b" rx="8"/><text x="50" y="182" font-family="sans-serif" font-size="14" fill="#4fc3f7" font-weight="bold">3. 沈黙は交渉戦術になる</text><text x="50" y="204" font-family="sans-serif" font-size="12" fill="#ccc">提案後の沈黙は相手に先に</text><text x="50" y="224" font-family="sans-serif" font-size="12" fill="#ccc">話させる強力な戦術。</text><rect x="420" y="158" width="350" height="90" fill="#0d1b4b" rx="8"/><text x="440" y="182" font-family="sans-serif" font-size="14" fill="#66bb6a" font-weight="bold">4. デジタルも非言語体系</text><text x="440" y="204" font-family="sans-serif" font-size="12" fill="#ccc">返信速度・既読・絵文字が</text><text x="440" y="224" font-family="sans-serif" font-size="12" fill="#ccc">新しい非言語システムを形成。</text></svg>
 - ✅ **「93%は非言語」は誤用 — 感情的文脈に限定された実験結果**

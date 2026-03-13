@@ -18,7 +18,8 @@
 				"アテナイの英雄テセウスの船が港に保存されていた",
 				"板が腐るたびに新しい板に交換し続けた"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "全部品が交換されても連続性が同一性を定義するという思考実験"
 		},
 		{
 			"title": "テセウスの船とは（2/2）",
@@ -30,7 +31,8 @@
 				"ホッブズの拡張：交換した古い板を集めて元通り組み立てたら、どちらが「本物」か",
 				"<svg viewBox=\"0 0 800 200\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"200\" fill=\"#1a1a2e\"/><rect x=\"30\" y=\"30\" width=\"160\" height=\"60\" rx=\"6\" fill=\"#3a3a5c\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"110\" y=\"58\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">船 (t=0)</text><text x=\"110\" y=\"76\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">板: 全てオリジナル</text><rect x=\"220\" y=\"30\" width=\"160\" height=\"60\" rx=\"6\" fill=\"#3a3a5c\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"300\" y=\"58\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">船 (t=50%)</text><text x=\"300\" y=\"76\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">板: 半分交換</text><rect x=\"410\" y=\"30\" width=\"160\" height=\"60\" rx=\"6\" fill=\"#3a3a5c\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"490\" y=\"58\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\">船 (t=100%)</text><text x=\"490\" y=\"76\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">板: 全て新品</text><rect x=\"600\" y=\"30\" width=\"160\" height=\"60\" rx=\"6\" fill=\"#2d2d44\" stroke=\"#aaa\" stroke-width=\"1\" stroke-dasharray=\"4,3\"/><text x=\"680\" y=\"58\" font-size=\"12\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">旧板を再組立</text><text x=\"680\" y=\"76\" font-size=\"10\" fill=\"#777\" text-anchor=\"middle\" font-family=\"sans-serif\">どちらが本物?</text><line x1=\"190\" y1=\"60\" x2=\"218\" y2=\"60\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><polygon points=\"218,56 228,60 218,64\" fill=\"#f9a825\"/><line x1=\"380\" y1=\"60\" x2=\"408\" y2=\"60\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><polygon points=\"408,56 418,60 408,64\" fill=\"#f9a825\"/><line x1=\"570\" y1=\"60\" x2=\"598\" y2=\"60\" stroke=\"#aaa\" stroke-width=\"1.5\" stroke-dasharray=\"4,3\"/><polygon points=\"598,56 608,60 598,64\" fill=\"#aaa\"/><text x=\"400\" y=\"140\" font-size=\"13\" fill=\"white\" text-anchor=\"middle\" font-family=\"sans-serif\">連続性 vs. 素材 — どちらが「同一性」を定義する？</text><line x1=\"200\" y1=\"155\" x2=\"200\" y2=\"165\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"200\" y=\"180\" font-size=\"11\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">連続性説</text><line x1=\"490\" y1=\"155\" x2=\"490\" y2=\"165\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"490\" y=\"180\" font-size=\"11\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\">素材説</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ホッブズ拡張—旧部品を再組立した船はどちらが本物か"
 		},
 		{
 			"title": "ソフトウェアと同一性",
@@ -47,7 +49,8 @@
 				"→ ある時点で元のコードが0になる。同一性はどこで失われる？",
 				"<svg viewBox=\"0 0 800 210\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"210\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"25\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">コンポーネント段階的置換</text><rect x=\"30\" y=\"40\" width=\"100\" height=\"36\" rx=\"4\" fill=\"#3a3a5c\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"80\" y=\"62\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">Auth (旧)</text><rect x=\"140\" y=\"40\" width=\"100\" height=\"36\" rx=\"4\" fill=\"#3a3a5c\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"190\" y=\"62\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">DB (旧)</text><rect x=\"250\" y=\"40\" width=\"100\" height=\"36\" rx=\"4\" fill=\"#3a3a5c\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"300\" y=\"62\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">UI (旧)</text><rect x=\"360\" y=\"40\" width=\"100\" height=\"36\" rx=\"4\" fill=\"#3a3a5c\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"410\" y=\"62\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">API (旧)</text><text x=\"520\" y=\"62\" font-size=\"20\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">…</text><text x=\"30\" y=\"106\" font-size=\"10\" fill=\"#aaa\" font-family=\"sans-serif\">Step 2</text><rect x=\"30\" y=\"115\" width=\"100\" height=\"36\" rx=\"4\" fill=\"#1e3a5f\" stroke=\"#4fc3f7\" stroke-width=\"1.5\"/><text x=\"80\" y=\"137\" font-size=\"10\" fill=\"#4fc3f7\" text-anchor=\"middle\" font-family=\"sans-serif\">Auth (新)</text><rect x=\"140\" y=\"115\" width=\"100\" height=\"36\" rx=\"4\" fill=\"#3a3a5c\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"190\" y=\"137\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">DB (旧)</text><rect x=\"250\" y=\"115\" width=\"100\" height=\"36\" rx=\"4\" fill=\"#3a3a5c\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"300\" y=\"137\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">UI (旧)</text><rect x=\"360\" y=\"115\" width=\"100\" height=\"36\" rx=\"4\" fill=\"#3a3a5c\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><text x=\"410\" y=\"137\" font-size=\"10\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">API (旧)</text><text x=\"30\" y=\"181\" font-size=\"10\" fill=\"#aaa\" font-family=\"sans-serif\">Step N</text><rect x=\"30\" y=\"188\" width=\"100\" height=\"14\" rx=\"3\" fill=\"#1e3a5f\" stroke=\"#4fc3f7\" stroke-width=\"1\"/><rect x=\"140\" y=\"188\" width=\"100\" height=\"14\" rx=\"3\" fill=\"#1e3a5f\" stroke=\"#4fc3f7\" stroke-width=\"1\"/><rect x=\"250\" y=\"188\" width=\"100\" height=\"14\" rx=\"3\" fill=\"#1e3a5f\" stroke=\"#4fc3f7\" stroke-width=\"1\"/><rect x=\"360\" y=\"188\" width=\"100\" height=\"14\" rx=\"3\" fill=\"#1e3a5f\" stroke=\"#4fc3f7\" stroke-width=\"1\"/><text x=\"490\" y=\"197\" font-size=\"10\" fill=\"#4fc3f7\" font-family=\"sans-serif\">全て新品 → 同じソフト?</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "機能は同じでコードは別物—段階的置換で同一性はどこで失われるか"
 		},
 		{
 			"title": "リファクタリングはテセウスの船か（2/2）",
@@ -58,7 +61,8 @@
 				"---",
 				"プログラマーが毎日直面する哲学的問題"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Gitコミット履歴が連続性を記録し同一性の証拠になる"
 		},
 		{
 			"title": "Big Rewrite の歴史的失敗（1/2）",
@@ -70,7 +74,8 @@
 				"Mac OS の全面書き直しが失敗。Jobs の NeXT 買収で打開",
 				"<svg viewBox=\"0 0 800 180\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"180\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"22\" font-size=\"12\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">Big Rewrite タイムライン</text><line x1=\"40\" y1=\"90\" x2=\"760\" y2=\"90\" stroke=\"#444\" stroke-width=\"2\"/><polygon points=\"756,85 768,90 756,95\" fill=\"#444\"/><rect x=\"60\" y=\"55\" width=\"140\" height=\"35\" rx=\"4\" fill=\"#4a1a2a\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"130\" y=\"72\" font-size=\"10\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\">Copland (Apple)</text><text x=\"130\" y=\"84\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">1994–1996 失敗</text><line x1=\"130\" y1=\"90\" x2=\"130\" y2=\"110\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"130\" y=\"122\" font-size=\"9\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\">2年で中止</text><rect x=\"270\" y=\"45\" width=\"200\" height=\"45\" rx=\"4\" fill=\"#4a1a2a\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"370\" y=\"65\" font-size=\"10\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\">Netscape → Mozilla</text><text x=\"370\" y=\"79\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">1998–2002 シェア消滅</text><line x1=\"370\" y1=\"90\" x2=\"370\" y2=\"110\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"370\" y=\"122\" font-size=\"9\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\">4年の停滞</text><rect x=\"540\" y=\"55\" width=\"180\" height=\"35\" rx=\"4\" fill=\"#4a1a2a\" stroke=\"#e91e63\" stroke-width=\"1.5\"/><text x=\"630\" y=\"72\" font-size=\"10\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\">Windows Vista</text><text x=\"630\" y=\"84\" font-size=\"9\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">2004–2006 品質問題</text><line x1=\"630\" y1=\"90\" x2=\"630\" y2=\"110\" stroke=\"#e91e63\" stroke-width=\"1\"/><text x=\"630\" y=\"122\" font-size=\"9\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\">大規模遅延</text><text x=\"80\" y=\"150\" font-size=\"9\" fill=\"#888\" font-family=\"sans-serif\">1994</text><text x=\"310\" y=\"150\" font-size=\"9\" fill=\"#888\" font-family=\"sans-serif\">1998</text><text x=\"550\" y=\"150\" font-size=\"9\" fill=\"#888\" font-family=\"sans-serif\">2004</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Netscape/Copland—4年の停滞と市場喪失がBig Rewriteの代償"
 		},
 		{
 			"title": "Big Rewrite の歴史的失敗（2/2）",
@@ -81,7 +86,8 @@
 				"---",
 				"Joel Spolsky（2000）：「**ソフトウェアをゼロから書き直してはいけない**。これはプログラマーが犯しうる最大の単一ミスだ」"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "知識の損失と競合遅れ—Spolskyが「最大の単一ミス」と断じた理由"
 		},
 		{
 			"title": "なぜ元のコードに価値があるか",
@@ -98,7 +104,8 @@
 				"```javascript\n// なぜこんな条件が？\nif (userId !== 'legacy_user_42') {\n  validateEmail(email);\n}\n```",
 				"→ 2008年のバグ修正の痕跡。削除したら再発する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "醜いif文に2008年の障害修正が眠る—削除すれば再発する"
 		},
 		{
 			"title": "古いコードには「知識」が埋め込まれている（コード例）",
@@ -115,7 +122,8 @@
 				"---",
 				"ソフトウェアへの適用："
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "フェンスの理由がわからなければ撤去してはいけない原理"
 		},
 		{
 			"title": "チェスタトンのフェンス原理（2/2）",
@@ -126,7 +134,8 @@
 				"",
 				"テストがあれば「なぜ」を安全に実験できる"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "テストがあれば「なぜ」を安全に実験できる—理解してから変更"
 		},
 		{
 			"title": "段階的置換のパターン",
@@ -145,7 +154,8 @@
 				"1. 新システムを並行稼動させる",
 				"<svg viewBox=\"0 0 800 180\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"180\" fill=\"#1a1a2e\"/><rect x=\"50\" y=\"30\" width=\"200\" height=\"120\" rx=\"8\" fill=\"#3a3a5c\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"150\" y=\"80\" font-size=\"13\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">旧システム</text><text x=\"150\" y=\"100\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">Legacy</text><rect x=\"560\" y=\"30\" width=\"200\" height=\"120\" rx=\"8\" fill=\"#1e3a2a\" stroke=\"#4fc3f7\" stroke-width=\"2\"/><text x=\"660\" y=\"80\" font-size=\"13\" fill=\"#4fc3f7\" text-anchor=\"middle\" font-family=\"sans-serif\">新システム</text><text x=\"660\" y=\"100\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">New</text><rect x=\"300\" y=\"60\" width=\"160\" height=\"60\" rx=\"6\" fill=\"#2d2d44\" stroke=\"#e91e63\" stroke-width=\"2\"/><text x=\"380\" y=\"88\" font-size=\"12\" fill=\"#e91e63\" text-anchor=\"middle\" font-family=\"sans-serif\">プロキシ</text><text x=\"380\" y=\"106\" font-size=\"10\" fill=\"#aaa\" text-anchor=\"middle\" font-family=\"sans-serif\">ルーティング制御</text><line x1=\"300\" y1=\"90\" x2=\"252\" y2=\"90\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><polygon points=\"252,85 240,90 252,95\" fill=\"#f9a825\"/><line x1=\"462\" y1=\"90\" x2=\"558\" y2=\"90\" stroke=\"#4fc3f7\" stroke-width=\"1.5\" stroke-dasharray=\"5,3\"/><polygon points=\"558,85 570,90 558,95\" fill=\"#4fc3f7\"/><text x=\"500\" y=\"75\" font-size=\"9\" fill=\"#4fc3f7\" text-anchor=\"middle\" font-family=\"sans-serif\">機能移行中</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "旧旧システムを並行稼動させプロキシで徐々に切り替える手法"
 		},
 		{
 			"title": "ストラングラーフィグパターン（2/2）",
@@ -156,7 +166,8 @@
 				"これは**テセウスの船を適切にやる方法**",
 				"元のアイデンティティ（機能）を保ちながら、部品を置換する"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "旧機能が0%になった時点で廃止—これがテセウスを正しくやる方法"
 		},
 		{
 			"title": "ソフトウェアの同一性を何が決めるか",
@@ -165,7 +176,8 @@
 				"どれが「正しい」同一性かは立場によって異なる",
 				"→ **ビジネス価値（機能）が最も重要**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ユーザーが価値を感じれば同一—機能的同一性が最重要の判断基準"
 		},
 		{
 			"title": "まとめ：哲学的リファクタリング論",
@@ -178,7 +190,8 @@
 				"「動いているコードには、文書化されていない理由がある」",
 				"<svg viewBox=\"0 0 800 120\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"120\" fill=\"#1a1a2e\"/><rect x=\"30\" y=\"20\" width=\"160\" height=\"80\" rx=\"6\" fill=\"#1e3a2a\" stroke=\"#a5d6a7\" stroke-width=\"1.5\"/><text x=\"110\" y=\"55\" font-size=\"11\" fill=\"#a5d6a7\" text-anchor=\"middle\" font-family=\"sans-serif\">チェスタトンの</text><text x=\"110\" y=\"70\" font-size=\"11\" fill=\"#a5d6a7\" text-anchor=\"middle\" font-family=\"sans-serif\">フェンス</text><text x=\"110\" y=\"88\" font-size=\"9\" fill=\"#777\" text-anchor=\"middle\" font-family=\"sans-serif\">理解してから変更</text><line x1=\"192\" y1=\"60\" x2=\"228\" y2=\"60\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><polygon points=\"228,55 240,60 228,65\" fill=\"#f9a825\"/><rect x=\"242\" y=\"20\" width=\"160\" height=\"80\" rx=\"6\" fill=\"#1e2a3a\" stroke=\"#4fc3f7\" stroke-width=\"1.5\"/><text x=\"322\" y=\"55\" font-size=\"11\" fill=\"#4fc3f7\" text-anchor=\"middle\" font-family=\"sans-serif\">ストラングラー</text><text x=\"322\" y=\"70\" font-size=\"11\" fill=\"#4fc3f7\" text-anchor=\"middle\" font-family=\"sans-serif\">フィグ</text><text x=\"322\" y=\"88\" font-size=\"9\" fill=\"#777\" text-anchor=\"middle\" font-family=\"sans-serif\">段階的に置換</text><line x1=\"404\" y1=\"60\" x2=\"440\" y2=\"60\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><polygon points=\"440,55 452,60 440,65\" fill=\"#f9a825\"/><rect x=\"454\" y=\"20\" width=\"160\" height=\"80\" rx=\"6\" fill=\"#2a1a3a\" stroke=\"#ce93d8\" stroke-width=\"1.5\"/><text x=\"534\" y=\"55\" font-size=\"11\" fill=\"#ce93d8\" text-anchor=\"middle\" font-family=\"sans-serif\">機能的同一性</text><text x=\"534\" y=\"70\" font-size=\"11\" fill=\"#ce93d8\" text-anchor=\"middle\" font-family=\"sans-serif\">を保つ</text><text x=\"534\" y=\"88\" font-size=\"9\" fill=\"#777\" text-anchor=\"middle\" font-family=\"sans-serif\">ユーザー価値優先</text><line x1=\"616\" y1=\"60\" x2=\"652\" y2=\"60\" stroke=\"#f9a825\" stroke-width=\"1.5\"/><polygon points=\"652,55 664,60 652,65\" fill=\"#f9a825\"/><rect x=\"666\" y=\"20\" width=\"112\" height=\"80\" rx=\"6\" fill=\"#3a2a1a\" stroke=\"#f9a825\" stroke-width=\"2\"/><text x=\"722\" y=\"55\" font-size=\"11\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">安全な</text><text x=\"722\" y=\"70\" font-size=\"11\" fill=\"#f9a825\" text-anchor=\"middle\" font-family=\"sans-serif\">リファクタ</text><text x=\"722\" y=\"88\" font-size=\"9\" fill=\"#777\" text-anchor=\"middle\" font-family=\"sans-serif\">哲学的に正しい</text></svg>"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Big Rewriteは歴史的に失敗する—ストラングラーフィグが正解"
 		}
 	]
 }
