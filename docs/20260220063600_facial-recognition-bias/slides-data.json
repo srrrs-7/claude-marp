@@ -122,7 +122,8 @@
 				"- [EU AI Act Official Text](https://artificialintelligenceact.eu/)",
 				"- [NIST Face Recognition Vendor Test](https://www.nist.gov/programs-projects/face-recognition-vendor-test-frvt)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Gender Shades・EU AI Actなど顔認識バイアス研究の基本文献"
 		}
 	]
 }

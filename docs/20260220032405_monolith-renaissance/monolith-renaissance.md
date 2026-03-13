@@ -164,6 +164,8 @@ style: |
 
 # なぜ全員が採用したのか
 
+> *Netflix・Amazon・Uberの成功がバイアスで一般化され組織規模を問わず業界全体が追従した*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">マイクロサービス採用の連鎖反応</text>
@@ -504,6 +506,8 @@ Stack Overflowのインフラブログはこの分野の名記事が多い。Nic
 
 # 「モノリス」という言葉の誤解
 
+> *デプロイ形態と設計品質は独立した概念、Big Ball of Mudはモノリス固有の問題ではない*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">「モノリス」の正確な定義</text>
@@ -550,6 +554,8 @@ Stack Overflowのインフラブログはこの分野の名記事が多い。Nic
 ---
 
 # Bounded Context とモジュール境界
+
+> *DDDのBounded Contextをモジュールに対応させPublic APIのみ公開することで将来の分割を可能にする*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -759,6 +765,8 @@ if err != nil {
 
 # 開発者体験 (DX) の差
 
+> *ローカル起動・デバッグ・テスト・オンボーディングすべてでモノリスが圧倒的に有利*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">開発者体験 (DX) の差</text>
@@ -840,6 +848,8 @@ if err != nil {
 ---
 
 # モノリスを選ぶべき条件
+
+> *PMF未達・50人以下・均一トラフィックならModular Monolithで始めるのが最善の選択*
 
 - **チームサイズ**: 〜50人以下（Two-Pizza Team 1〜5チーム）
 - **プロダクト成熟度**: PMF未達成、ドメインモデルが頻繁に変わる
@@ -963,6 +973,8 @@ src/
 
 # 監視・可観測性のシンプル化
 
+> *Prometheus+Grafana+Sentry3ツールで完結しJaeger+ELK+SREチーム不要が最大の優位*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">可観測性: モノリス vs マイクロサービス</text>
@@ -995,6 +1007,8 @@ src/
 ---
 
 # まとめ: 銀の弾丸はない
+
+> *組織の現実に基づきModular Monolithで始め明確な分割理由が生じたときに移行せよ*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>

@@ -23,7 +23,8 @@
 				"| 5 | 脆弱性管理・コンプライアンス | 57–64 | ★★ |",
 				"| 6 | インシデントレスポンス | 65–71 | ★★ |",
 				"| 7 | 試験直前まとめ | 72–80 | ★★★ |"
-			]
+			],
+			"subtitle": "Domains 1〜7の出題割合を確認して学習優先度を最初に決める"
 		},
 		{
 			"title": "Security Specialty 試験概要・出題分布",
@@ -39,7 +40,8 @@
 				"| データ保護 | 18% | KMS / Secrets Manager / Macie |",
 				"| 脆弱性管理 | 14% | Inspector v2 / Patch Manager |",
 				"| **試験形式** | **65問** | **合格スコア: 750/1000** |"
-			]
+			],
+			"subtitle": "SCS-C02は7ドメイン・65問・170分、IAMとネットワークセキュリティが最重要領域"
 		},
 		{
 			"title": "Section 1: IAM深掘り",
@@ -62,7 +64,8 @@
 				"| IAM Policy | 許可・拒否の定義 | インラインvsマネージド |",
 				"| Service Principal | AWSサービス | EC2がS3にアクセス等 |",
 				"| **ベストプラクティス** | ルートユーザー使用禁止 | MFA必須・最小権限の原則 |"
-			]
+			],
+			"subtitle": "IAMのエンティティ(User/Role/Group)とPolicyの4種を基礎として最初に整理"
 		},
 		{
 			"title": "IAMポリシー種類と評価ロジック",
@@ -78,7 +81,8 @@
 				"| Session Policy | 一時セッション | AssumeRole時に追加制限 |",
 				"| ACL (Access Control List) | S3/VPC等 | クロスアカウントのみ |",
 				"| **評価順序** | 明示的Deny優先 | Denyなし→全Allow交差→デフォルトDeny |"
-			]
+			],
+			"subtitle": "Identity/Resource/SCP/Permission Boundaryの4種ポリシーが評価順序を決める"
 		},
 		{
 			"title": "ポリシー評価フロー詳細（1/2）",
@@ -160,7 +164,8 @@
 				"| 管理アカウント適用 | × | ○ |",
 				"| リソースベースポリシー制限 | × | × |",
 				"| 組み合わせ | 両方設定で二重ガードレール | — |"
-			]
+			],
+			"subtitle": "SCP(組織全体の境界)とPermission Boundary(個別の上限)は適用スコープが異なる"
 		},
 		{
 			"title": "IAM Identity Center (SSO)（1/2）",
@@ -267,7 +272,8 @@
 				"| サービス | EC2インスタンスプロファイル（キー不要） |",
 				"| 監査 | CloudTrailでAPIコールを全記録 |",
 				"| 緊急時 | Break-Glass Role + 強固な通知設定 |"
-			]
+			],
+			"subtitle": "ルートアカウント不使用・MFA強制・最小権限・アクセスキー不使用の4原則"
 		},
 		{
 			"title": "IAM試験ポイントまとめ10選",
@@ -286,7 +292,8 @@
 				"| 8 | 一時認証情報はSTSが発行（最大12時間） | AssumeRole |",
 				"| 9 | Resource-basedポリシーは同一アカウントならIDポリシー不要 | 同一アカウント |",
 				"| 10 | NotActionは列挙外すべてにマッチ（Denyと組み合わせ注意） | NotAction |"
-			]
+			],
+			"subtitle": "IAM試験ポイント10選でPermission Boundary・SCP・ABAC・Access Analyzerを確認"
 		},
 		{
 			"title": "Section 2: データ保護・暗号化",
@@ -333,7 +340,8 @@
 				"| --- | --- |",
 				"| Encrypt/Decrypt | 署名/検証・公開鍵暗号 |",
 				"| AWSサービス統合の標準 | 外部システムとの連携 |"
-			]
+			],
+			"subtitle": "KMSのCMK種類と暗号化モードの違いが試験のデータ保護問題で最頻出"
 		},
 		{
 			"title": "CMK管理（対称/非対称/HMAC）",
@@ -443,7 +451,8 @@
 				"| バージョン管理 | ○（CURRENT/PENDING/PREV） | ○（バージョン番号） |",
 				"| CloudFormation統合 | ○ | ○（`{{resolve:ssm:}}`） |",
 				"| 選択基準 | ローテーション必須 or 多機能 | シンプルな設定管理・コスト重視 |"
-			]
+			],
+			"subtitle": "Secrets Manager(自動ローテーション・高コスト)とParameter Store(手動・低コスト)を用途で選択"
 		},
 		{
 			"title": "S3暗号化（SSE-S3/SSE-KMS/SSE-C/CSE）",
@@ -461,7 +470,8 @@
 				"**試験ポイント:**",
 				"- デフォルト暗号化: バケット設定でSSE-S3またはSSE-KMSを強制",
 				"- `aws:SecureTransport` Conditionでhttps必須化"
-			]
+			],
+			"subtitle": "SSE-S3(AWS管理)/SSE-KMS(監査可能)/SSE-C(顧客キー)/CSE(クライアント暗号化)の4択"
 		},
 		{
 			"title": "ACM（Certificate Manager）（1/2）",
@@ -503,7 +513,8 @@
 				"| コスト | $0.03/10,000 API calls | $1.60/時間〜 |",
 				"| 用途 | 汎用暗号化 | 規制準拠・独自キー管理 |",
 				"**ユースケース**: Oracle TDE・SSL/TLSオフロード・コード署名"
-			]
+			],
+			"subtitle": "CloudHSMはFIPS 140-2 Level 3準拠の専用HSM、KMSより高い規制対応が可能"
 		},
 		{
 			"title": "Amazon Macie v2（1/2）",
@@ -548,7 +559,8 @@
 				"| 8 | ACM証明書はEC2に直接インストール不可 | エクスポート不可 |",
 				"| 9 | CloudHSM: FIPS 140-2 Level 3・お客様が完全管理 | HSM |",
 				"| 10 | MacieはS3のPII検出・Security Hub送信 | PII |"
-			]
+			],
+			"subtitle": "データ保護試験ポイント10選でKMS・Secrets Manager・S3暗号化・ACMを確認"
 		},
 		{
 			"title": "Section 3: ネットワークセキュリティ",
@@ -571,7 +583,8 @@
 				"| デフォルト | 全インバウンドDeny / 全アウトバウンドAllow | 全Allow（デフォルトNACL） |",
 				"| 変更反映 | 即時 | 即時 |",
 				"**使い分け**: SGで精密制御 / NACLで特定IPの即時ブロック（Denyが必要な場合）"
-			]
+			],
+			"subtitle": "SGはステートフル(戻りトラフィック自動許可)、NACLはステートレス(両方向設定必須)"
 		},
 		{
 			"title": "VPC Flow Logs（1/2）",
@@ -652,7 +665,8 @@
 				"| WAF統合 | なし | 自動WAFルール作成 |",
 				"| 検知・通知 | なし | CloudWatch + 詳細テレメトリ |",
 				"**推奨場面**: 金融・メディア・EC サイト等 SLA 重要サービス"
-			]
+			],
+			"subtitle": "Shield Standard(無料・自動)とShield Advanced(月$3000・DRT対応)を用途で選択"
 		},
 		{
 			"title": "CloudFront + WAF統合パターン（1/2）",
@@ -810,7 +824,8 @@
 				"| 8 | PrivateLinkはCIDRオーバーラップ問題なし | NLBベース |",
 				"| 9 | DNS FirewallはVPC内DNSクエリをフィルタ | C2遮断 |",
 				"| 10 | TGWルートテーブルでVPC間セグメンテーション | 通信分離 |"
-			]
+			],
+			"subtitle": "ネットワークセキュリティ試験ポイントでSG/NACL・WAF・Network Firewall・PrivateLinkを確認"
 		},
 		{
 			"title": "Section 4: 脅威検知・監視",
@@ -855,7 +870,8 @@
 				"| Exfiltration:S3/MaliciousIPCaller | 高 | 悪意IPからS3アクセス |",
 				"**Finding抑制**: ホワイトリストによるFalse Positiveの除外",
 				"**自動修復**: EventBridge → Lambda → 修復アクション"
-			]
+			],
+			"subtitle": "GuardDuty Findingsの重要度High/Medium/Lowと対応アクションをマッピング"
 		},
 		{
 			"title": "Security Hub概要（1/2）",
@@ -1000,7 +1016,8 @@
 				"**プラン別:**",
 				"- Basic/Developer: 赤カテゴリのコアチェックのみ",
 				"- Business/Enterprise: 全200+チェック + API + Jira/Slack連携"
-			]
+			],
+			"subtitle": "Trusted Advisorのセキュリティチェック14項目で未設定のMFA・公開SG等を検出"
 		},
 		{
 			"title": "AWS Audit Manager",
@@ -1018,7 +1035,8 @@
 				"| --- | --- |",
 				"| 監査証拠収集・整理（過去分析） | セキュリティFinding集約（現状） |",
 				"| 監査人向けレポート | セキュリティチーム向けダッシュボード |"
-			]
+			],
+			"subtitle": "Audit Managerは規制フレームワークの証拠を自動収集してコンプライアンスを効率化"
 		},
 		{
 			"title": "脅威検知試験ポイントまとめ10選",
@@ -1037,7 +1055,8 @@
 				"| 8 | Trusted Advisor Business以上でセキュリティ全チェック | プラン差 |",
 				"| 9 | Audit ManagerはPCI DSS等の証拠収集を自動化 | 監査証拠 |",
 				"| 10 | Security Hub Organizations統合で全アカウント集約 | 一元管理 |"
-			]
+			],
+			"subtitle": "脅威検知試験ポイント10選でGuardDuty・Security Hub・Detective・CloudTrailを確認"
 		},
 		{
 			"title": "Section 5: 脆弱性管理・コンプライアンス",
@@ -1061,7 +1080,8 @@
 				"| スコアリング | CVSS | CVSS + Reachability Context |",
 				"**Reachability Context**: ネットワーク到達可能性・悪用可能性でCVSSに重み付け",
 				"**試験ポイント**: Inspector v2はCISベンチマーク評価機能なし（v1のみ）"
-			]
+			],
+			"subtitle": "Inspector v2はEC2/Lambda/ECRの脆弱性をCVSSスコアで優先度付けして継続スキャン"
 		},
 		{
 			"title": "SSM Patch Manager",
@@ -1115,7 +1135,8 @@
 				"| HIPAA BAA | 医療情報保護の業務提携契約 |",
 				"**Agreements機能**: HIPAA BAAをオンラインで締結・組織レベル管理可能",
 				"**試験ポイント**: コンプライアンス証明書の取得 = AWS Artifact"
-			]
+			],
+			"subtitle": "AWS Artifactで規制当局向けコンプライアンスレポートをオンデマンド取得可能"
 		},
 		{
 			"title": "Well-Architected Security Pillar",
@@ -1131,7 +1152,8 @@
 				"| 人手によるデータアクセス排除 | 自動化・匿名化・環境分離 |",
 				"| インシデントへの備え | IR計画・GameDay・実行基盤 |",
 				"**Well-Architected Tool**: コンソールからセキュリティワークロードを自己評価"
-			]
+			],
+			"subtitle": "Security Pillarの7設計原則が試験の設計問題で判断軸として機能する"
 		},
 		{
 			"title": "共有責任モデル詳細",
@@ -1150,7 +1172,8 @@
 				"**サービス種別の違い:**",
 				"- EC2（IaaS）: OS以上はお客様責任",
 				"- RDS（PaaS）: OS/DBパッチはAWS責任・データはお客様"
-			]
+			],
+			"subtitle": "共有責任モデルはIaaS/PaaS/SaaSでAWSとユーザーの境界が移動する"
 		},
 		{
 			"title": "コンプライアンス試験ポイントまとめ",
@@ -1166,7 +1189,8 @@
 				"| 6 | HIPAA BAA はAWS Artifact Agreementsで締結 | BAA |",
 				"| 7 | Well-ArchitectedのSecurityは7つの設計原則 | 設計原則 |",
 				"| 8 | Audit ManagerはPCI DSS等の証拠を自動収集 | 証拠自動化 |"
-			]
+			],
+			"subtitle": "コンプライアンス試験ポイントでOrganizations・Config・Audit Manager・Artifactを確認"
 		},
 		{
 			"title": "Section 6: インシデントレスポンス",
@@ -1189,7 +1213,8 @@
 				"**試験ポイント:**",
 				"- EC2フォレンジック: SSM Session Managerで操作（キーペア不要）",
 				"- IAMキー侵害: 即時無効化→CloudTrailで影響確認→全パスワードリセット"
-			]
+			],
+			"subtitle": "AWSのIRフレームワーク6フェーズで準備→検出→分析→封じ込め→根絶→復旧を実施"
 		},
 		{
 			"title": "自動修復（Lambda / SSM Automation）",
@@ -1243,7 +1268,8 @@
 				"**AWS Backup Vault Lock（WORM）:**",
 				"- バックアップの削除・変更を防止",
 				"- クロスアカウントバックアップ: Log Archiveアカウントへコピーで改ざん防止"
-			]
+			],
+			"subtitle": "RTO/RPO要件に基づいてBackup・Pilot Light・Warm Standby・Multi-Siteを選択"
 		},
 		{
 			"title": "Post-Incident Analysis",
@@ -1270,7 +1296,8 @@
 				"**インシデントレスポンスの重要ポイント:**",
 				"- **封じ込め最優先**: SGを隔離SG（全通信拒否）に変更して即時隔離",
 				"- **証拠保全**: EBSスナップショットをフォレンジック前に取得"
-			]
+			],
+			"subtitle": "IRフレームワークの6フェーズと試験頻出ポイントを前半で確認する"
 		},
 		{
 			"title": "IR試験ポイントまとめ（2/2）",
@@ -1309,7 +1336,8 @@
 				"| CloudHSM | $1.60/時 | HSMクラスターコスト |",
 				"| GuardDuty | 無料30日 | 初回有効化トライアル |",
 				"| Inspector v2 | 継続スキャン | エージェントレス自動評価 |"
-			]
+			],
+			"subtitle": "試験に出る制限値(GuardDuty 30日Trial・Shield $3000/月等)を一覧で暗記"
 		},
 		{
 			"title": "サービス選択フローチャート",
@@ -1330,7 +1358,8 @@
 				"| コンプライアンス証明書の取得 | AWS Artifact |",
 				"| DNSクエリでマルウェア通信をブロック | DNS Firewall |",
 				"| DDoS L7保護 + コスト補填 | Shield Advanced |"
-			]
+			],
+			"subtitle": "サービス選択問題は要件キーワードとサービスのマッピング表で即答できる"
 		},
 		{
 			"title": "キーワード索引 A–K",
@@ -1354,7 +1383,8 @@
 				"| GuardDuty | ML脅威検知（検知のみ・ブロックなし） |",
 				"| Inspector v2 | 継続的脆弱性スキャン（CISベンチマークなし） |",
 				"| KMS CMK | お客様管理の暗号化マスターキー |"
-			]
+			],
+			"subtitle": "A〜KのキーワードでAWSセキュリティサービスを横断的に索引引きする"
 		},
 		{
 			"title": "キーワード索引 L–Z",
@@ -1379,7 +1409,8 @@
 				"| Trusted Advisor | ベストプラクティスチェック（Business以上で全件） |",
 				"| WAF | L7ウェブアプリFW（ALB/CF/APIGW） |",
 				"| Zone of Trust | Access Analyzerの信頼ゾーン境界 |"
-			]
+			],
+			"subtitle": "L〜ZのキーワードでSNI/TLS/VPC等の技術用語とAWSサービスを紐付ける"
 		},
 		{
 			"title": "よくある引っかけ問題",
@@ -1397,7 +1428,8 @@
 				"| 「GuardDutyは自動でトラフィックをブロック」 | × 検知のみ（WAF/SG等で別途対応） |",
 				"| 「Gateway EndpointにSGを設定できる」 | × Interface Endpointのみ |",
 				"| 「Detectiveはリアルタイム検知サービス」 | × 調査専用ツール |"
-			]
+			],
+			"subtitle": "引っかけ問題の9割は「似たサービスの使い分け」と「評価順序の誤解」が根本"
 		},
 		{
 			"title": "試験ポイント総まとめ①",
@@ -1416,7 +1448,8 @@
 				"| 8 | S3 | SSE-KMSはCloudTrailに復号ログが残る |",
 				"| 9 | Network | SGはステートフル・NACLはステートレス |",
 				"| 10 | WAF | CloudFront用WAFはus-east-1で管理 |"
-			]
+			],
+			"subtitle": "全ドメインの試験ポイントを統合した1枚目まとめで本番直前に要点を確認"
 		},
 		{
 			"title": "試験ポイント総まとめ②",
@@ -1434,7 +1467,8 @@
 				"| 18 | Inspector | CVSSスコア+Reachability Contextで優先度付け |",
 				"| 19 | Artifact | SOC/ISO/PCI DSSレポートを無料取得 |",
 				"| 20 | IR | EC2侵害: SG隔離→EBSスナップショット→フォレンジック |"
-			]
+			],
+			"subtitle": "全ドメインの試験ポイント2枚目で残りの重要概念を最終確認する"
 		},
 		{
 			"title": "直前チェックリスト・クロージング（1/2）",

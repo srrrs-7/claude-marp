@@ -206,6 +206,8 @@ style: |
 
 # 進行中の主要訴訟
 
+> *2024〜2026年判決でAI著作権法の方向性が決まる4大訴訟*
+
 - <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="260" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">進行中の主要AI著作権訴訟</text><rect x="30" y="45" width="340" height="65" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="69" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">Getty Images v. Stability AI</text><text x="200" y="89" text-anchor="middle" fill="#cccccc" font-size="10">1,200万枚の写真で無断学習 — 英・米で提訴</text><rect x="430" y="45" width="340" height="65" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="69" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">NYT v. OpenAI / Microsoft</text><text x="600" y="89" text-anchor="middle" fill="#cccccc" font-size="10">NYT記事のほぼ原文再現が証拠として提出</text><rect x="30" y="125" width="340" height="65" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="149" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">Andersen v. Stability AI</text><text x="200" y="169" text-anchor="middle" fill="#cccccc" font-size="10">アーティスト集団訴訟 — スタイル模倣の問題</text><rect x="430" y="125" width="340" height="65" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="600" y="149" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">Doe v. GitHub Copilot</text><text x="600" y="169" text-anchor="middle" fill="#cccccc" font-size="10">OSSコードの学習と再出力 — ライセンス帰属問題</text><rect x="100" y="210" width="600" height="38" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1"/><text x="400" y="228" text-anchor="middle" fill="#4caf50" font-size="11" font-weight="bold">2024-2026年判決予定 → AI著作権法の方向性を決定</text><text x="400" y="243" text-anchor="middle" fill="#aaaaaa" font-size="9">テック産業全体の命運を握る訴訟群</text></svg>
 - **Getty Images v. Stability AI** ― 1,200万枚の写真で無断学習
 - **NYT v. OpenAI/Microsoft** ― NYT記事の大量コピー（ほぼ原文再現）
@@ -267,6 +269,8 @@ style: |
 ---
 
 # 参考文献
+
+> *AI著作権の法的判断と規制動向を追うための一次資料集*
 
 - - **法的資料:**
 - - [US Copyright Office: AI and Copyright](https://www.copyright.gov/ai/)

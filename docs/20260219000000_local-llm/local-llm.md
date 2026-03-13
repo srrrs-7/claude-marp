@@ -100,6 +100,8 @@ style: |
 
 # 本日のアジェンダ（1/2）
 
+> *概念・選択基準・量子化まで体系習得しローカルLLMを即実務で使えるようにする*
+
 - 1. ローカルLLMとは？（概念・定義・エコシステム）
 - 2. なぜローカルLLMか？（メリット・コスト・セキュリティ）
 - 3. 主要モデルカタログ（Llama / Mistral / Phi / Gemma / DeepSeek）
@@ -109,6 +111,8 @@ style: |
 ---
 
 # 本日のアジェンダ（2/2）
+
+> *Ollamaセットアップからアプリ統合・RAGまで本番活用の全工程をカバーする*
 
 - 5. 実行ツール（Ollama / LM Studio / vLLM）
 - 6. ハードウェア要件（CPU / GPU / Apple Silicon）
@@ -1398,6 +1402,8 @@ VRAM 重要</text>
 
 # インストールからモデル起動まで
 
+> *ollama pullとollama runの2コマンドでモデル起動、5分で推論環境完成*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">インストールから起動まで (Mac/Linux)</text>
   <rect x="30" y="70" width="340" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -1443,6 +1449,8 @@ ollama run llama3.2 "Pythonでフィボナッチ数列を書いて"
 ---
 
 # OpenAI互換APIの利用
+
+> *Ollama互換APIでOpenAIクライアントをURLのみ変更してローカルLLMに切替*
 
 - <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">OpenAI 互換 API の利用</text>
@@ -1500,6 +1508,8 @@ for await (const chunk of response) {
 ---
 
 # Modelfile：カスタムモデルの作成
+
+> *ModelfileでSystem Promptとパラメータをカプセル化、カスタムモデルを共有*
 
 - <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="420" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Modelfile — カスタムモデルの作成</text>
@@ -1711,6 +1721,8 @@ Top-K</text>
 ---
 
 # 完全ローカルRAGの実装
+
+> *LangChain + Chroma + Ollamaで完全ローカルRAGを外部接続なしで構築*
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">完全ローカル RAG 実装スタック</text>
@@ -2071,6 +2083,8 @@ qa = RetrievalQA.from_chain_type(
 
 # ベンチマーク：モデル・ツール別性能比較（1/2）
 
+> *モデル・ツール・量子化レベルの組み合わせで性能とコストの最適点を見つける*
+
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">モデル・ツール別 性能ベンチマーク (RTX 4090)</text>
   <text x="160" y="65" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">モデル</text>
@@ -2338,6 +2352,8 @@ NPU デバイス普及</text>
 
 # 参考資料 (1/2)
 
+> *OllamaからHuggingFaceまで—モデル入手とベンチマーク確認の公式ソース集*
+
 - **モデル・ダウンロード:**
 - [Ollama Library](https://ollama.com/library) — モデル一覧と使い方
 - [HuggingFace GGUF Hub](https://huggingface.co/TheBloke) — GGUFモデル集積所
@@ -2350,6 +2366,8 @@ NPU デバイス普及</text>
 ---
 
 # 参考資料 (2/2)
+
+> *LangChain・vLLM・llama.cppとコミュニティで実装を加速する必須リソース*
 
 - **フレームワーク・ツール:**
 - [LangChain Ollama Integration](https://python.langchain.com/docs/integrations/chat/ollama/)

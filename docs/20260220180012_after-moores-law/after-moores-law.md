@@ -279,6 +279,8 @@ style: |
 
 # 参考文献（1/2）
 
+> *ムーアの法則・デナード則・量子/ニューロ技術の基礎文献*
+
 - **基礎理論:**
 - - [Moore, G. (1965) "Cramming more components onto integrated circuits"](https://en.wikipedia.org/wiki/Moore%27s_law)
 - - [Dennard Scaling and its breakdown](https://en.wikipedia.org/wiki/Dennard_scaling)
@@ -289,6 +291,8 @@ style: |
 ---
 
 # 参考文献（2/2）
+
+> *Google Willow・Loihi 2・Hardware Lottery の技術動向文献*
 
 - - [Google Willow Quantum Chip (2024)](https://blog.google/technology/research/google-willow-quantum-chip/)
 - - [Intel Loihi 2 Neuromorphic Processor](https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html)

@@ -6594,6 +6594,9 @@ aws eks create-pod-identity-association \
   section blockquote p { margin: 0; }
 ;" data-marpit-pagination-total="154" data-size="16:9">
 <h1 id="pod-identity-vs-irsa-%E6%AF%94%E8%BC%83">Pod Identity vs IRSA 比較</h1>
+<blockquote>
+<p><em>Pod Identity(OIDC不要・シンプル)とIRSA(既存資産継続)の使い分けで迷わない</em></p>
+</blockquote>
 <p>| 項目 | IRSA | Pod Identity |<br />
 | OIDC設定 | 必要（per cluster） | <strong>不要</strong> |<br />
 | eksctl依存 | 高い | <strong>低い</strong> |<br />
@@ -7675,6 +7678,9 @@ aws eks describe-cluster \
   section blockquote p { margin: 0; }
 ;" data-marpit-pagination-total="154" data-size="16:9">
 <h1 id="rbac-%E8%A9%A6%E9%A8%93%E9%A0%BB%E5%87%BA%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88-10%E9%81%B812">RBAC 試験頻出ポイント 10選（1/2）</h1>
+<blockquote>
+<p><em>RBAC頻出前半5選でClusterRole/Role/Binding/ClusterAdmin権限の違いを習得</em></p>
+</blockquote>
 <ul>
 <li><svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e" /><br />
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Pod Security Standards レベル</text><br />
@@ -8897,6 +8903,9 @@ aws eks describe-cluster \
   section blockquote p { margin: 0; }
 ;" data-marpit-pagination-total="154" data-size="16:9">
 <h1 id="ecr-%E5%9F%BA%E6%9C%AC%E3%82%B9%E3%82%AD%E3%83%A3%E3%83%B3-vs-%E6%8B%A1%E5%BC%B5%E3%82%B9%E3%82%AD%E3%83%A3%E3%83%B3">ECR 基本スキャン vs 拡張スキャン</h1>
+<blockquote>
+<p><em>ECR拡張スキャン(Inspector v2統合)で基本スキャンより詳細なCVSS評価が可能</em></p>
+</blockquote>
 <p>| 項目 | 基本スキャン | 拡張スキャン（Inspector V2） |<br />
 | タイミング | Pushのみ | <strong>継続的</strong>（CVE更新でも再スキャン） |<br />
 | スコープ | OSパッケージのみ | OS + <strong>言語パッケージ</strong>（pip, npm等） |<br />
@@ -13791,6 +13800,9 @@ fargateProfiles:
   section blockquote p { margin: 0; }
 ;" data-marpit-pagination-total="154" data-size="16:9">
 <h1 id="ecs-fargate-vs-eks-fargate-%E6%AF%94%E8%BC%83">ECS Fargate vs EKS Fargate 比較</h1>
+<blockquote>
+<p><em>ECS Fargate(シンプル管理)とEKS Fargate(K8s機能フル活用)の選択はオーケストレーション要件</em></p>
+</blockquote>
 <p>| 項目 | ECS Fargate | EKS Fargate |<br />
 | オーケストレーター | ECS | Kubernetes |<br />
 | 設定単位 | Task Definition | Pod Spec |<br />
@@ -15324,6 +15336,9 @@ fargateProfiles:
   section blockquote p { margin: 0; }
 ;" data-marpit-pagination-total="154" data-size="16:9">
 <h1 id="sgp-vs-network-policy--%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91">SGP vs Network Policy — 使い分け</h1>
+<blockquote>
+<p><em>SGP(L4ステートフル・AWS統合)とNetwork Policy(K8sネイティブ)を組み合わせる</em></p>
+</blockquote>
 <p>| 比較項目 | Network Policy | SGP |<br />
 | 制御レイヤー | K8s L4 | VPC L4 |<br />
 | 主な用途 | Pod/NS間通信 | AWSリソースへの接続 |<br />

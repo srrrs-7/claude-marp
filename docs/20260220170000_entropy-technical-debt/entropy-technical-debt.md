@@ -260,6 +260,8 @@ style: |
 
 # アジェンダ（2/2）
 
+> *Part5組織パターン比較・Part6まとめ・演習の3部構成*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>

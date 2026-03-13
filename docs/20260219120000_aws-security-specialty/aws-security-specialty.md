@@ -1958,6 +1958,8 @@ LIMIT 10;
 
 # おすすめ学習リソース（1/2）
 
+> *AWS公式ドキュメントと試験ガイドがSCS-C02合格への最短ルートを示す*
+
 - **公式ドキュメント**:
 - - [AWS Security Best Practices](https://aws.amazon.com/security/)
 - - [AWS Well-Architected Security Pillar](https://docs.aws.amazon.com/wellarchitected/latest/security-pillar/)
@@ -1968,6 +1970,8 @@ LIMIT 10;
 ---
 
 # おすすめ学習リソース（2/2）
+
+> *ハンズオン演習と公式模擬試験でSCS-C02の実践力を完成させる*
 
 - **ハンズオン**:
 - - AWS Security Workshops (workshops.aws)

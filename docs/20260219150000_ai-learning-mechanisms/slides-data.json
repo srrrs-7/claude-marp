@@ -66,7 +66,8 @@
 				"3つのパラダイムは相互補完的に組み合わせて使われる",
 				"![w:850 center](assets/learning-paradigms.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "教師あり・なし・強化学習の3分類が全AIの基礎"
 		},
 		{
 			"title": "教師あり学習の定式化",
@@ -183,7 +184,8 @@
 				"ミニバッチ SGD: B サンプルごとに更新 — 計算と品質のバランス",
 				"![w:800 center](assets/gradient-descent.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "損失の勾配方向へパラメータを繰り返し更新する"
 		},
 		{
 			"title": "SGD → Adam → AdamW の進化",
@@ -192,7 +194,8 @@
 				"SGD + Momentum: 鞍点を乗り越える慣性を付与",
 				"AdaGrad: 疎な勾配に適応的学習率 (累積二乗和で除算)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "適応的学習率+重み減衰でAdamWが現在の標準"
 		},
 		{
 			"title": "SGD → Adam → AdamW の進化（コード例）",
@@ -260,7 +263,8 @@
 				"**普遍近似定理**: 十分な幅の1隠れ層 NN は任意の連続関数を近似",
 				"![w:820 center](assets/neural-network-mlp.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "非線形活性化の追加で線形分離不能問題を解決"
 		},
 		{
 			"title": "活性化関数の進化",
@@ -285,7 +289,8 @@
 				"PyTorch / JAX の autograd が実装の核心",
 				"![w:820 center](assets/backprop-graph.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "連鎖律で全層の勾配を効率計算し学習を可能に"
 		},
 		{
 			"title": "バッチ正規化 (Batch Normalization)",
@@ -397,7 +402,8 @@
 				"Q / K / V: 同じ入力から線形変換で生成 (Self-Attention)",
 				"![w:840 center](assets/attention-mechanism.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "重要箇所への動的な重み付けで長距離依存を解決"
 		},
 		{
 			"title": "Transformer アーキテクチャ",
@@ -408,7 +414,8 @@
 				"FFN: 2層MLP、幅は Attention の4倍が標準",
 				"![w:640 center](assets/transformer-arch.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Self-Attentionのみで再帰不要・並列計算を実現"
 		},
 		{
 			"title": "Multi-Head Self-Attention の詳細",
@@ -566,7 +573,8 @@
 				"L(C) ∝ C^{−0.050}: 計算量 FLOPs に対する冪乗的損失減少",
 				"![w:800 center](assets/scaling-laws.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "パラメータ・データ・計算が冪乗則で性能を決定する"
 		},
 		{
 			"title": "Chinchilla スケーリング則 (2022)",
@@ -634,7 +642,8 @@
 				"人間評価コスト: 数万件の比較ラベルが必要",
 				"![w:860 center](assets/rlhf-pipeline.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "人間の好み学習で安全で役立つ応答を最適化"
 		},
 		{
 			"title": "報酬モデルの学習",
@@ -797,7 +806,8 @@
 				"モデル並列: 単一モデルが 1GPU を超える場合に必要",
 				"![w:880 center](assets/distributed-training.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "データ・モデル・パイプライン並列の組み合わせが必須"
 		},
 		{
 			"title": "モデル並列処理とテンソル並列",
@@ -865,7 +875,8 @@
 				"Expert のロードバランス: routing collapse を防ぐ auxiliary loss",
 				"![w:760 center](assets/moe-architecture.svg)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "トークンごとに少数専門家を選択し推論コストを削減"
 		},
 		{
 			"title": "Test-Time Compute (TTC)",

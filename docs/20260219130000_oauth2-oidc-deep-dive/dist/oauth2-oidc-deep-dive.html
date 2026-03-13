@@ -315,6 +315,9 @@ section table {
 ;" data-marpit-pagination-total="43" data-size="16:9">
 <header>OAuth2 / OIDC 実装詳細ガイド</header>
 <h1 id="%E3%82%A2%E3%82%B8%E3%82%A7%E3%83%B3%E3%83%80">アジェンダ</h1>
+<blockquote>
+<p><em>OAuth2コアからFAPI 2.0まで7章・実装からAWS統合まで体系的に解説</em></p>
+</blockquote>
 <ul>
 <li><strong>① OAuth2 コアフロー</strong> — 全フロー・全パラメータ・トークン戦略</li>
 <li><strong>② OIDC 詳解</strong> — Discovery・ID Token・セッション管理・ログアウト</li>
@@ -1180,7 +1183,7 @@ section table {
 <header>OAuth2 / OIDC 実装詳細ガイド</header>
 <h1 id="%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E3%82%AF%E3%83%AC%E3%83%87%E3%83%B3%E3%82%B7%E3%83%A3%E3%83%AB%E3%83%95%E3%83%AD%E3%83%BC-rfc-6749-%C2%A744--m2m-%E8%AA%8D%E8%A8%BC">クライアントクレデンシャルフロー (RFC 6749 §4.4) — M2M 認証</h1>
 <blockquote>
-<p><em>ベストプラクティスの体系的適用が設計リスクを大幅に低減し運用コストを削減する</em></p>
+<p><em>M2M通信にはクライアントクレデンシャルフロー一択でprivate_key_jwtが推奨</em></p>
 </blockquote>
 <ul>
 <li>
@@ -1710,7 +1713,7 @@ section table {
 <header>OAuth2 / OIDC 実装詳細ガイド</header>
 <h1 id="%E3%83%88%E3%83%BC%E3%82%AF%E3%83%B3%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88--grant_type-%E5%88%A5%E3%83%91%E3%83%A9%E3%83%A1%E3%83%BC%E3%82%BF%E8%A9%B3%E8%A7%A3">トークンエンドポイント — grant_type 別パラメータ詳解</h1>
 <blockquote>
-<p><em>PrivateLinkはトラフィックをAWSバックボーンに閉じてデータ漏洩リスクを根絶する</em></p>
+<p><em>grant_typeで動作が変わるトークンエンドポイントの仕様を完全に把握する</em></p>
 </blockquote>
 <ul>
 <li><svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e" /><br />
@@ -3644,6 +3647,9 @@ section table {
 ;" data-marpit-pagination-total="43" data-size="16:9">
 <header>OAuth2 / OIDC 実装詳細ガイド</header>
 <h1 id="discovery-%E3%83%89%E3%82%AD%E3%83%A5%E3%83%A1%E3%83%B3%E3%83%88--well-knownopenid-configuration%E3%82%B3%E3%83%BC%E3%83%89%E4%BE%8B">Discovery ドキュメント — /.well-known/openid-configuration（コード例）</h1>
+<blockquote>
+<p><em>Discovery documentでOIDCクライアントの設定自動化とURLハードコードを排除する</em></p>
+</blockquote>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-json"><span class="hljs-punctuation">{</span>
   <span class="hljs-attr">&quot;issuer&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://auth.example.com&quot;</span><span class="hljs-punctuation">,</span>
   <span class="hljs-attr">&quot;authorization_endpoint&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;.../authorize&quot;</span><span class="hljs-punctuation">,</span>
@@ -4196,7 +4202,7 @@ section table {
 <header>OAuth2 / OIDC 実装詳細ガイド</header>
 <h1 id="userinfo-%E3%82%A8%E3%83%B3%E3%83%89%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88--%E3%82%B9%E3%82%B3%E3%83%BC%E3%83%97%E3%81%A8%E3%82%AF%E3%83%AC%E3%83%BC%E3%83%A0%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0">UserInfo エンドポイント — スコープとクレームマッピング</h1>
 <blockquote>
-<p><em>PrivateLinkはトラフィックをAWSバックボーンに閉じてデータ漏洩リスクを根絶する</em></p>
+<p><em>OIDCクレームはユーザー属性の標準化された表現でSSOを実現する鍵</em></p>
 </blockquote>
 <ul>
 <li><strong>認証</strong>: Bearer <code>access_token</code>（scope に <code>openid</code> が必要）</li>
@@ -4515,7 +4521,7 @@ section table {
 <header>OAuth2 / OIDC 実装詳細ガイド</header>
 <h1 id="oidc-%E3%82%BB%E3%83%83%E3%82%B7%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86--check_session_iframe">OIDC セッション管理 — check_session_iframe</h1>
 <blockquote>
-<p><em>OIDCはOAuth2上にアイデンティティ層を追加しフェデレーション認証を標準化する</em></p>
+<p><em>OAuth2とOIDCの責務分離が認証基盤の堅牢性と相互運用性を決定する</em></p>
 </blockquote>
 <ul>
 <li><svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e" /><br />
@@ -4694,7 +4700,7 @@ section table {
 <header>OAuth2 / OIDC 実装詳細ガイド</header>
 <h1 id="front-channel-logout--iframe-%E3%83%96%E3%83%AD%E3%83%BC%E3%83%89%E3%82%AD%E3%83%A3%E3%82%B9%E3%83%88">Front-Channel Logout — iframe ブロードキャスト</h1>
 <blockquote>
-<p><em>この内容の正確な理解が実装品質とセキュリティ体制を根本から強化する</em></p>
+<p><em>OAuth2とOIDCの責務分離が認証基盤の堅牢性と相互運用性を決定する</em></p>
 </blockquote>
 <ul>
 <li><strong>動作</strong>: OP が全 RP の <code>frontchannel_logout_uri</code> を iframe で呼び出しセッション削除</li>
@@ -5186,7 +5192,7 @@ section table {
 <header>OAuth2 / OIDC 実装詳細ガイド</header>
 <h1 id="rp-initiated-logout--%E3%82%A8%E3%83%B3%E3%83%89%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E4%B8%BB%E5%B0%8E%E3%83%AD%E3%82%B0%E3%82%A2%E3%82%A6%E3%83%88">RP-Initiated Logout — エンドユーザー主導ログアウト</h1>
 <blockquote>
-<p><em>すべての要件を満たすことが本番環境での安全な運用を保証する唯一の方法</em></p>
+<p><em>OAuth2とOIDCの責務分離が認証基盤の堅牢性と相互運用性を決定する</em></p>
 </blockquote>
 <ul>
 <li><strong>動作</strong>: RP が OP の <code>end_session_endpoint</code> にリダイレクトしてログアウト要求</li>
@@ -5503,7 +5509,7 @@ section table {
 <header>OAuth2 / OIDC 実装詳細ガイド</header>
 <h1 id="%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%A0%E3%82%AF%E3%83%AC%E3%83%BC%E3%83%A0%E8%A8%AD%E8%A8%88--%E3%83%8D%E3%83%BC%E3%83%A0%E3%82%B9%E3%83%9A%E3%83%BC%E3%82%B9%E3%81%A8%E5%A4%96%E9%83%A8-idp-%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0">カスタムクレーム設計 — ネームスペースと外部 IdP マッピング</h1>
 <blockquote>
-<p><em>すべての要件を満たすことが本番環境での安全な運用を保証する唯一の方法</em></p>
+<p><em>OIDCクレームはユーザー属性の標準化された表現でSSOを実現する鍵</em></p>
 </blockquote>
 <ul>
 <li><strong>ネームスペース必須</strong>: <code>https://</code> URI プレフィックスで標準クレームとの衝突防止</li>
@@ -6351,7 +6357,7 @@ section table {
 <header>OAuth2 / OIDC 実装詳細ガイド</header>
 <h1 id="rar--rich-authorization-requests-rfc-9396--%E7%B2%BE%E7%B7%BB%E3%81%AA%E8%AA%8D%E5%8F%AF%E8%A6%81%E6%B1%82">RAR — Rich Authorization Requests (RFC 9396) — 精緻な認可要求</h1>
 <blockquote>
-<p><em>AIによる医療診断と創薬加速が数百万人規模の命を救う可能性を持つ</em></p>
+<p><em>OAuth2とOIDCの責務分離が認証基盤の堅牢性と相互運用性を決定する</em></p>
 </blockquote>
 <ul>
 <li><strong>目的</strong>: <code>scope</code> 文字列では表現不可能な複雑な認可詳細を構造化 JSON で送信</li>
@@ -6988,7 +6994,7 @@ section table {
 <header>OAuth2 / OIDC 実装詳細ガイド</header>
 <h1 id="oauth2--mtls-%E3%82%AF%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%83%88%E8%AA%8D%E8%A8%BC-rfc-8705--%E8%A8%BC%E6%98%8E%E6%9B%B8%E3%83%90%E3%82%A4%E3%83%B3%E3%83%89%E3%83%88%E3%83%BC%E3%82%AF%E3%83%B3">OAuth2 + mTLS クライアント認証 (RFC 8705) — 証明書バインドトークン</h1>
 <blockquote>
-<p><em>OAuth2の認可フロー選択がセキュリティとユーザー体験の両立を決める</em></p>
+<p><em>OIDCクレームはユーザー属性の標準化された表現でSSOを実現する鍵</em></p>
 </blockquote>
 <ul>
 <li><svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e" /><br />

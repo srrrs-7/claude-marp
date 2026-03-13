@@ -295,6 +295,8 @@ if (!cached) { /* DB query + cache set */ }
 
 # 参考文献（1/2）
 
+> *TalebのAntifragileとDeMarcoのSlackが余裕設計の理論的根拠を提供する*
+
 - **書籍:**
 - - [Nassim Nicholas Taleb "Antifragile" (2012)](https://en.wikipedia.org/wiki/Antifragile_(book))
 - - [Tom DeMarco "Slack" (2001)](https://www.oreilly.com/library/view/slack/0767907698/)
@@ -305,6 +307,8 @@ if (!cached) { /* DB query + cache set */ }
 ---
 
 # 参考文献（2/2）
+
+> *Fowlerのマイクロサービス論とGoodhartの法則がソフトウェア最適化の罠を体系化する*
 
 - - [Martin Fowler "Microservices"](https://martinfowler.com/articles/microservices.html)
 - - [Fallacies of Distributed Computing](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing)

@@ -454,7 +454,8 @@
 				"モデルは `ollama pull` で自動ダウンロード（GGUF形式）",
 				"起動後は `http://localhost:11434` でAPIサーバーが待機"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ollama pullとollama runの2コマンドでモデル起動、5分で推論環境完成"
 		},
 		{
 			"title": "インストールからモデル起動まで（コード例）",
@@ -471,7 +472,8 @@
 				"既存のOpenAI SDKコードをほぼそのまま流用可能",
 				"環境変数を切り替えるだけでローカル/クラウドを切替"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Ollama互換APIでOpenAIクライアントをURLのみ変更してローカルLLMに切替"
 		},
 		{
 			"title": "OpenAI互換APIの利用（コード例）",
@@ -488,7 +490,8 @@
 				"チームで共有・バージョン管理可能",
 				"`ollama create` でカスタムモデルとして登録"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ModelfileでSystem Promptとパラメータをカプセル化、カスタムモデルを共有"
 		},
 		{
 			"title": "Modelfile：カスタムモデルの作成（コード例）",
@@ -544,7 +547,8 @@
 				"ベクトルDBも埋め込みモデルもローカルで完結",
 				"機密ドキュメントをクラウドに送らずAI検索を実現"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "LangChain + Chroma + Ollamaで完全ローカルRAGを外部接続なしで構築"
 		},
 		{
 			"title": "完全ローカルRAGの実装（コード例）",
@@ -659,7 +663,8 @@
 				"**速度指標（tokens/sec）目安**:",
 				"RTX 4090 + llama3.2:3b-q4 → 約150-200 tok/s",
 				"RTX 4090 + llama3.1:8b-q4 → 約80-120 tok/s"
-			]
+			],
+			"subtitle": "モデル・ツール・量子化レベルの組み合わせで性能とコストの最適点を見つける"
 		},
 		{
 			"title": "ベンチマーク：モデル・ツール別性能比較（2/2）",

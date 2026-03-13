@@ -194,6 +194,8 @@ style: |
 
 # 参考文献
 
+> *CB Insights〜Mom Testの4文献が失敗率データの根拠*
+
 - - **研究:**
 - - CB Insights "Top Reasons Startups Fail" (2021)
 - - Startup Genome Report (2012)

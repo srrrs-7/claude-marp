@@ -2121,6 +2121,8 @@ AWSの責任あるAI関連サービスをFairness / Explainability / Privacy / S
 
 # SageMaker Clarify vs Bedrock Guardrails 比較
 
+> *Clarify(学習前後バイアス+SHAP)とGuardrails(実行時フィルタ)は役割が明確に分離*
+
 | 観点 | SageMaker Clarify | Bedrock Guardrails |
 |------|-------------------|-------------------|
 | **主な目的** | バイアス検出・説明可能性 | コンテンツ安全性・フィルタリング |

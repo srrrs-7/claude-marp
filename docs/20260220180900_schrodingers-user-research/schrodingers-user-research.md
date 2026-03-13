@@ -411,6 +411,8 @@ style: |
 
 # 参考文献（1/2）
 
+> *量子力学・観測問題・ホーソン効果の原典文献を体系的に整理*
+
 - **量子力学・観測問題:**
 - - [Schrödinger's Cat - Wikipedia](https://en.wikipedia.org/wiki/Schr%C3%B6dinger%27s_cat)
 - - [Copenhagen Interpretation - Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/entries/qm-copenhagen/)
@@ -422,6 +424,8 @@ style: |
 ---
 
 # 参考文献（2/2）
+
+> *言動ギャップからリサーチ手法まで実践に直結する7文献を厳選*
 
 - - [Hawthorne Effect - Wikipedia](https://en.wikipedia.org/wiki/Hawthorne_effect)
 - - [Social Desirability Bias in Research](https://www.simplypsychology.org/social-desirability-bias.html)

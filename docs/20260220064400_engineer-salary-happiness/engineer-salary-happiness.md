@@ -277,6 +277,8 @@ style: |
 
 # 参考文献
 
+> *Kahneman・Killingsworth・Easterlin—飽和点研究の4大典拠*
+
 - - **研究:**
 - - Kahneman, D. & Deaton, A. (2010) "High income improves evaluation"
 - - Killingsworth, M. (2021) "Experienced well-being rises with income"

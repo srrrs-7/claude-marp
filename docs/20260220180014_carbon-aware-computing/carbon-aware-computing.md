@@ -311,6 +311,8 @@ Porto大学の'Energy Efficiency across Programming Languages'研究では、C/R
 
 # 参考文献（1/2）
 
+> *Green Software Foundation・SCI標準・Carbon Aware SDK の基礎文献*
+
 - **Foundations & Standards:**
 - - [Green Software Foundation](https://greensoftware.foundation/)
 - - [SCI Specification (ISO Standard)](https://sci.greensoftware.foundation/)
@@ -320,6 +322,8 @@ Porto大学の'Energy Efficiency across Programming Languages'研究では、C/R
 ---
 
 # 参考文献（2/2）
+
+> *Google Carbon計算・プログラム言語別消費電力・ElectricityMaps の実践文献*
 
 - 
 - **Research & Tools:**

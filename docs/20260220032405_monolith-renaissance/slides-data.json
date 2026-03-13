@@ -116,7 +116,8 @@
 				"**結果**: スケーラビリティも維持しながら運用コストを劇的削減",
 				"Amazonが自らAWSの「マイクロサービス賛歌」に反証した衝撃"
 			],
-			"speakerNotes": "2023年5月に公開されたブログが業界に衝撃を与えた。Hacker Newsで数千のコメントが付いた。"
+			"speakerNotes": "2023年5月に公開されたブログが業界に衝撃を与えた。Hacker Newsで数千のコメントが付いた。",
+			"subtitle": "AmazonがStep Functionsを廃してコスト90%削減した転換点"
 		},
 		{
 			"title": "Segment の撤退（2020年）",
@@ -380,6 +381,7 @@
 		},
 		{
 			"title": "監視・可観測性のシンプル化",
+			"subtitle": "Prometheus+Grafana+Sentry3ツールで完結しJaeger+ELK+SREチーム不要が最大の優位",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"35\" fill=\"#ffffff\" font-size=\"15\" text-anchor=\"middle\" font-family=\"sans-serif\">可観測性: モノリス vs マイクロサービス</text>\n<rect x=\"30\" y=\"60\" width=\"340\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"200\" y=\"88\" fill=\"#4caf50\" font-size=\"13\" text-anchor=\"middle\" font-family=\"sans-serif\">モノリスの可観測性</text>\n<text x=\"200\" y=\"120\" fill=\"#ffffff\" font-size=\"12\" text-anchor=\"middle\" font-family=\"sans-serif\">ログ: 1ストリームで全追跡可能</text>\n<text x=\"200\" y=\"148\" fill=\"#ffffff\" font-size=\"12\" text-anchor=\"middle\" font-family=\"sans-serif\">メトリクス: 1ダッシュボード</text>\n<text x=\"200\" y=\"176\" fill=\"#ffffff\" font-size=\"12\" text-anchor=\"middle\" font-family=\"sans-serif\">プロファイリング: pprof/py-spy</text>\n<text x=\"200\" y=\"204\" fill=\"#ffffff\" font-size=\"12\" text-anchor=\"middle\" font-family=\"sans-serif\">エラー: 1プロジェクトで追跡</text>\n<text x=\"200\" y=\"260\" fill=\"#4caf50\" font-size=\"20\" text-anchor=\"middle\" font-family=\"sans-serif\">シンプル</text>\n<text x=\"200\" y=\"290\" fill=\"#aaaaaa\" font-size=\"11\" text-anchor=\"middle\" font-family=\"sans-serif\">Prometheus + Grafana + Sentry</text>\n<text x=\"200\" y=\"310\" fill=\"#aaaaaa\" font-size=\"11\" text-anchor=\"middle\" font-family=\"sans-serif\">3ツールで完結</text>\n<rect x=\"430\" y=\"60\" width=\"340\" height=\"290\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"2\"/>\n<text x=\"600\" y=\"88\" fill=\"#e91e63\" font-size=\"13\" text-anchor=\"middle\" font-family=\"sans-serif\">マイクロサービスの可観測性</text>\n<text x=\"600\" y=\"120\" fill=\"#ffffff\" font-size=\"12\" text-anchor=\"middle\" font-family=\"sans-serif\">ログ: ELK Stack (集約必須)</text>\n<text x=\"600\" y=\"148\" fill=\"#ffffff\" font-size=\"12\" text-anchor=\"middle\" font-family=\"sans-serif\">トレース: Jaeger/Zipkin</text>\n<text x=\"600\" y=\"176\" fill=\"#ffffff\" font-size=\"12\" text-anchor=\"middle\" font-family=\"sans-serif\">メトリクス: N個のダッシュボード</text>\n<text x=\"600\" y=\"204\" fill=\"#ffffff\" font-size=\"12\" text-anchor=\"middle\" font-family=\"sans-serif\">サービスメッシュ管理</text>\n<text x=\"600\" y=\"260\" fill=\"#e91e63\" font-size=\"20\" text-anchor=\"middle\" font-family=\"sans-serif\">複雑</text>\n<text x=\"600\" y=\"290\" fill=\"#aaaaaa\" font-size=\"11\" text-anchor=\"middle\" font-family=\"sans-serif\">専任のSREチームが必要</text>\n<text x=\"600\" y=\"310\" fill=\"#aaaaaa\" font-size=\"11\" text-anchor=\"middle\" font-family=\"sans-serif\">習熟に6〜12ヶ月</text>\n</svg>",
@@ -392,6 +394,7 @@
 		},
 		{
 			"title": "まとめ: 銀の弾丸はない",
+			"subtitle": "組織の現実に基づきModular Monolithで始め明確な分割理由が生じたときに移行せよ",
 			"layout": "default",
 			"content": [
 				"<svg viewBox=\"0 0 800 400\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n<rect width=\"800\" height=\"400\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"35\" fill=\"#ffffff\" font-size=\"15\" text-anchor=\"middle\" font-family=\"sans-serif\">意思決定の3原則</text>\n<rect x=\"40\" y=\"60\" width=\"720\" height=\"80\" rx=\"10\" fill=\"#16213e\" stroke=\"#4caf50\" stroke-width=\"2\"/>\n<text x=\"400\" y=\"90\" fill=\"#4caf50\" font-size=\"14\" text-anchor=\"middle\" font-family=\"sans-serif\">原則1: チームサイズ・ドメイン成熟度・運用ノウハウで判断</text>\n<text x=\"400\" y=\"118\" fill=\"#aaaaaa\" font-size=\"12\" text-anchor=\"middle\" font-family=\"sans-serif\">技術トレンドではなく、組織の現実に基づいて選択する</text>\n<rect x=\"40\" y=\"160\" width=\"720\" height=\"80\" rx=\"10\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"400\" y=\"190\" fill=\"#f9a825\" font-size=\"14\" text-anchor=\"middle\" font-family=\"sans-serif\">原則2: Modular Monolith で始め、必要が生じたら分割</text>\n<text x=\"400\" y=\"218\" fill=\"#aaaaaa\" font-size=\"12\" text-anchor=\"middle\" font-family=\"sans-serif\">Amazon・Segment・Shopifyの事例: 複雑さへの回帰コストは高い</text>\n<rect x=\"40\" y=\"260\" width=\"720\" height=\"80\" rx=\"10\" fill=\"#16213e\" stroke=\"#e91e63\" stroke-width=\"1.5\"/>\n<text x=\"400\" y=\"290\" fill=\"#e91e63\" font-size=\"14\" text-anchor=\"middle\" font-family=\"sans-serif\">原則3: アーキテクチャは手段、目的はビジネス価値の継続配信</text>\n<text x=\"400\" y=\"318\" fill=\"#aaaaaa\" font-size=\"12\" text-anchor=\"middle\" font-family=\"sans-serif\">「正しいアーキテクチャ」は文脈によって変わる — 銀の弾丸はない</text>\n</svg>",
@@ -413,7 +416,8 @@
 				"[DHH: The Majestic Monolith (2016)](https://m.signalvnoise.com/the-majestic-monolith/)",
 				"[Shopify: Deconstructing the Monolith](https://shopify.engineering/deconstructing-monolith-designing-software-maximizes-developer-productivity)",
 				"[Stack Overflow Architecture](https://nickcraver.com/blog/2016/02/17/stack-overflow-the-architecture-2016-edition/)"
-			]
+			],
+			"subtitle": "Prime Video告白・Segmentなどモノリス回帰の実践事例まとめ"
 		},
 		{
 			"title": "参考文献・リソース (2/2)",
@@ -426,7 +430,8 @@
 				"**ツール:**",
 				"[Packwerk (Shopify) — Ruby モジュール境界強制](https://github.com/Shopify/packwerk)",
 				"[ArchUnit — Java/Kotlin アーキテクチャlint](https://www.archunit.org/)"
-			]
+			],
+			"subtitle": "Fowler・Newman・DHHなどアーキテクチャ決定の必読文献一覧"
 		}
 	]
 }

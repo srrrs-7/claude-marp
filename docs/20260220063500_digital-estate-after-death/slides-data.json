@@ -134,7 +134,8 @@
 				"- [Google Inactive Account Manager](https://myaccount.google.com/inactive)",
 				"- [Apple Digital Legacy](https://support.apple.com/digital-legacy)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Oxford・Stanfordのデジタル遺産研究と実用ガイドの一覧"
 		}
 	]
 }

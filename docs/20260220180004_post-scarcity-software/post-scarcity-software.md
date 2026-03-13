@@ -278,6 +278,8 @@ style: |
 
 # 参考文献（1/2）
 
+> *リフキンとGitHub研究がポスト希少性ソフトウェア論の経済的・実証的根拠を提供する*
+
 - - **Books & Papers:**
 -   - [Rifkin "The Zero Marginal Cost Society" (2014)](https://www.thezeromarginalcostsociety.com/)
 -   - [GitHub "Research: Quantifying Copilot's Impact" (2022)](https://github.blog/2022-09-07-research-quantifying-github-copilots-impact-on-developer-productivity-and-happiness/)
@@ -287,6 +289,8 @@ style: |
 ---
 
 # 参考文献（2/2）
+
+> *KarpathyのSoftware 2.0とSuttonのBitter Lessonがスケール優位の理論的背景を示す*
 
 -   - ["The Death of the Junior Developer" (Various, 2024)](https://www.businessinsider.com/junior-developer-jobs-ai-coding-tools-2024)
 -   - [Stack Overflow Developer Survey 2025](https://survey.stackoverflow.co/2025/)

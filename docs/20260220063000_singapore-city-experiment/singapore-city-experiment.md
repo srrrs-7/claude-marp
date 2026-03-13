@@ -89,6 +89,8 @@ style: |
 
 # アジェンダ
 
+> *6セクションでシンガポール国家設計モデルの全体構造を解説する*
+
 ![w:800 center](assets/svg-sg-agenda.svg)
 - 1. シンガポールの奇跡
 - 2. リー・クアンユーの設計思想
@@ -291,6 +293,8 @@ style: |
 ---
 
 # 参考文献
+
+> *シンガポール設計思想の出典と政策データを確認できる資料集*
 
 - - **書籍:**
 - - [From Third World to First - Lee Kuan Yew](https://www.amazon.com/dp/0060197765)

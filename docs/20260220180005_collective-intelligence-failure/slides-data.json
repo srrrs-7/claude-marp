@@ -167,6 +167,7 @@
 		},
 		{
 			"title": "参考文献（1/2）",
+			"subtitle": "Surowiecki・Salganik・Shumailovの3研究が集合知の条件を実証する基盤",
 			"layout": "default",
 			"content": [
 				"**Research & Data:**",
@@ -177,6 +178,7 @@
 		},
 		{
 			"title": "参考文献（2/2）",
+			"subtitle": "GaltonとPariserがそれぞれ集合知の原点とフィルターバブルを定義した",
 			"layout": "default",
 			"content": [
 				"- [Francis Galton 'Vox Populi' (Nature, 1907)](https://doi.org/10.1038/075450a0)",

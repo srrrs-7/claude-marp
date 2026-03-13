@@ -303,6 +303,8 @@ style: |
 
 # 原則2：吹き出し = 情報の階層化（2/2）
 
+> *吹き出し3種類をUIコンポーネントに直接マッピングできる*
+
 - ---
 - **UIでの応用：**
 - ツールチップ → 補足情報（吹き出し的）
@@ -345,6 +347,8 @@ style: |
 ---
 
 # 参考文献
+
+> *McCloud・Krug・Laws of UXで理論的根拠を完備*
 
 - - **書籍:**
 - - [Understanding Comics - Scott McCloud](https://www.amazon.com/dp/006097625X)

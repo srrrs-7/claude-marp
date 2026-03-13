@@ -227,6 +227,8 @@ style: |
 
 # 参考文献（1/2）
 
+> *1951年のオリジナル論文からバークレー訴訟まで—逆転現象の証拠文献*
+
 - - **Original Papers:**
 - - Simpson, E.H. (1951). The Interpretation of Interaction in Contingency Tables
 - - Bickel et al. (1975). Sex Bias in Graduate Admissions: Data from Berkeley
@@ -236,6 +238,8 @@ style: |
 ---
 
 # 参考文献（2/2）
+
+> *因果推論・ベイズ・A/Bテストの実務書3冊が意思決定精度を上げる*
 
 - - Pearl, J. *The Book of Why* (2018)
 - - Gelman et al. *Bayesian Data Analysis* 3rd Ed. (2013)

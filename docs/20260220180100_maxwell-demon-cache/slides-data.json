@@ -92,6 +92,7 @@
 		},
 		{
 			"title": "悪魔のジレンマ：情報を覚えることにコストがかかる（1/2）（1/2）",
+			"subtitle": "シラードが1929年に証明した忘却コストがキャッシュ無効化の物理的根拠",
 			"content": [
 				"**シラードの解決（1929年）**",
 				"",
@@ -195,6 +196,7 @@
 		},
 		{
 			"title": "情報は物理量だ：ランダウアー原理（2/2）（2/2）",
+			"subtitle": "1ビット消去に必ず物理コストが発生する——キャッシュ無効化困難の理論的根拠",
 			"content": [
 				"  <rect x='370' y='205' width='300' height='100' rx='8' fill='#1a1a3a' stroke='#7986cb' stroke-width='1.5'/>",
 				"  <text x='520' y='228' text-anchor='middle' fill='#7986cb' font-size='13' font-family='sans-serif' font-weight='bold'>情報理論との融合</text>",
@@ -765,6 +767,7 @@
 		},
 		{
 			"title": "CDNとエッジキャッシュ：地理的分散の挑戦（2/2）（2/2）",
+			"subtitle": "Cache PurgeとSurrogate-Keyが悪魔の伝播問題を地理的スケールで制御する",
 			"content": [
 				"  <!-- ユーザー（ミニ） -->",
 				"  <circle cx='30' cy='60' r='12' fill='#555' stroke='#aaa' stroke-width='1'/>",

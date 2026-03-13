@@ -326,6 +326,8 @@ Googleのサイトリライアビリティエンジニアリング（SRE）やNe
 
 # 参考文献（1/2）
 
+> *不完全性定理とソフトウェア検証の接点を深掘りできる学術文献*
+
 - **数学・論理学:**
 - - [Gödel's Incompleteness Theorems (Stanford Encyclopedia)](https://plato.stanford.edu/entries/goedel-incompleteness/)
 - - [On Formally Undecidable Propositions (Gödel, 1931)](https://monoskop.org/images/9/93/Godel_Kurt_1992_On_Formally_Undecidable_Propositions.pdf)
@@ -340,6 +342,8 @@ Googleのサイトリライアビリティエンジニアリング（SRE）やNe
 ---
 
 # 参考文献（2/2）
+
+> *テスト戦略とリライアビリティ設計の実践的参考文献を網羅する*
 
 - - [Halting Problem - Wikipedia](https://en.wikipedia.org/wiki/Halting_problem)
 - - [Rice's Theorem and Software Verification](https://en.wikipedia.org/wiki/Rice%27s_theorem)

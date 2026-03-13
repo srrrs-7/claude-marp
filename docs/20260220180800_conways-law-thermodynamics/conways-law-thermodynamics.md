@@ -311,6 +311,8 @@ Team Topologies は逆コンウェイ戦略の具体的な実装パターン。4
 
 # 参考文献（1/2）
 
+> *Conway1968・MIT二重性研究・Nagappanソフトウェア品質研究の論文3本*
+
 - **研究・論文:**
 - - [Conway, M. (1968) — How Do Committees Invent?](http://www.melconway.com/Home/Committees_Paper.html)
 - - [MacCormack et al. (2012) — Exploring the Duality between Product and Organizational Architectures](https://hbswk.hbs.edu/item/exploring-the-duality-between-product-and-organizational-architectures)
@@ -323,6 +325,8 @@ Team Topologies は逆コンウェイ戦略の具体的な実装パターン。4
 ---
 
 # 参考文献（2/2）
+
+> *Team Topologies・Accelerate・Building Microservicesの実践書3冊*
 
 - 
 - **書籍・実践ガイド:**

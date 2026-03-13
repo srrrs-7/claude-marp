@@ -22,7 +22,8 @@
 				"| D4 | 責任ある AI | 18% | スライド 49–58 |",
 				"| D5 | セキュリティ・コンプライアンス | 20% | スライド 59–68 |",
 				"問題数: 65問（採点対象）＋ 非採点問題 | 時間: 170分 | 合格: 700/1000"
-			]
+			],
+			"subtitle": "5ドメインの出題割合と重点テーマを一枚で把握して学習優先度を決める"
 		},
 		{
 			"title": "試験のポイント早見",
@@ -59,7 +60,8 @@
 				"| **ML** | データからパターンを学習するシステム | AI の部分集合 | 特徴量 / モデル |",
 				"| **DL** | 多層ニューラルネットで特徴自動抽出 | ML の部分集合 | CNN / RNN / Transformer |",
 				"| **GenAI** | 新しいコンテンツ（テキスト・画像等）を生成 | DL の応用 | FM / LLM / Diffusion |"
-			]
+			],
+			"subtitle": "AI/ML/DL/GenAIの定義の違いは試験で毎回問われる基礎知識"
 		},
 		{
 			"title": "ML タスク種別比較表",
@@ -73,7 +75,8 @@
 				"| クラスタリング | グループ | k-means、DBSCAN | SageMaker |",
 				"| 強化学習 | 行動方策 | Q-learning、PPO | SageMaker RL |",
 				"| 推薦 | ランキング | 協調フィルタリング | Personalize |"
-			]
+			],
+			"subtitle": "分類・回帰・クラスタリング・強化学習の適用シーンを表で即座に答えられる"
 		},
 		{
 			"title": "教師あり vs 教師なし vs 強化学習",
@@ -86,7 +89,8 @@
 				"| 目的 | 予測・分類 | パターン発見 | 累積報酬の最大化 |",
 				"| 代表例 | スパム検出 | 顧客クラスタリング | ゲーム AI |",
 				"| 評価指標 | Accuracy / F1 | Silhouette 係数 | 報酬関数 |"
-			]
+			],
+			"subtitle": "3学習パターンはアルゴリズム適用だけでなく「なぜその手法か」まで説明できる"
 		},
 		{
 			"title": "トレーニング・評価指標用語集",
@@ -101,7 +105,8 @@
 				"| F1 Score | P/R バランス | Precision と Recall の調和平均 |",
 				"| AUC-ROC | 閾値非依存 | 1.0 = 完璧、0.5 = ランダム |",
 				"| RMSE | 回帰問題 | 予測誤差の二乗平均平方根（小さいほど良い）|"
-			]
+			],
+			"subtitle": "精度・再現率・AUC・RMSEは評価指標を「どのユースケースで使うか」セットで暗記"
 		},
 		{
 			"title": "バイアス・バリアンス・過学習用語集",
@@ -114,7 +119,8 @@
 				"| 未学習 | モデルが単純すぎ | 訓練・テスト双方低精度 | モデル複雑化 / 特徴量追加 |",
 				"| 高バイアス | 予測が系統的にズレ | 未学習と同義 | 特徴量追加 / モデル変更 |",
 				"| 高バリアンス | データの揺れに過敏 | 過学習と同義 | 正則化 / データ増量 |"
-			]
+			],
+			"subtitle": "バイアス・バリアンスのトレードオフと過学習防止手法3選は必須の頻出トピック"
 		},
 		{
 			"title": "AWS AI サービス層別一覧表",
@@ -128,7 +134,8 @@
 				"| ML Frameworks | 研究者・専門家 | EC2 + PyTorch/TF / Trainium / Inferentia | 最大コントロール |",
 				"Bedrock は AI Services と ML Services の中間的位置付け",
 				"SageMaker は ML ライフサイクル全体（データ準備〜デプロイ）をカバー"
-			]
+			],
+			"subtitle": "AIサービス3層(AI Services/SageMaker/EC2)で何を自作するかの設計判断が鍵"
 		},
 		{
 			"title": "Rekognition / Comprehend / Textract 比較",
@@ -140,7 +147,8 @@
 				"| Rekognition | 画像・動画 | 物体検出 / 顔認証 / テキスト検出 / Face Liveness | JSON（label / bounding box）|",
 				"| Comprehend | テキスト | 感情分析 / エンティティ / 言語検出 / PII | JSON（sentiment / entity）|",
 				"| Textract | 文書・フォーム | OCR / テーブル抽出 / フォーム解析 | JSON（text / table / form）|"
-			]
+			],
+			"subtitle": "Rekognition(画像)/Comprehend(テキスト)/Textract(文書)の用途境界線を明確に"
 		},
 		{
 			"title": "Transcribe / Translate / Polly 比較",
@@ -152,7 +160,8 @@
 				"| Transcribe | 音声 → テキスト | 文字起こし / 話者識別 / PII 削除 | リアルタイム / バッチ両対応 |",
 				"| Translate | テキスト → テキスト | 75以上の言語間翻訳 | カスタム用語集対応 |",
 				"| Polly | テキスト → 音声 | SSML 対応 / 複数ボイス | Neural TTS で高品質 |"
-			]
+			],
+			"subtitle": "Transcribe(音声→テキスト)/Translate(翻訳)/Polly(テキスト→音声)は変換方向で覚える"
 		},
 		{
 			"title": "Forecast / Personalize / Kendra 比較",
@@ -164,7 +173,8 @@
 				"| Forecast | 時系列予測（需要予測等）| 履歴データ + 関連変数 | AutoML 内蔵 |",
 				"| Personalize | 推薦エンジン | ユーザー行動ログ | リアルタイム推薦 API |",
 				"| Kendra | エンタープライズ検索 | 非構造化文書（PDF 等）| 自然言語クエリ対応 |"
-			]
+			],
+			"subtitle": "Forecast(時系列)/Personalize(推薦)/Kendra(検索)は出力の種類で使い分ける"
 		},
 		{
 			"title": "Domain 1 — キーワード総まとめ（1/2）",
@@ -174,7 +184,8 @@
 				"**AI/ML 基礎**: AI（知能模倣） / ML（データ学習） / DL（深層NN） / GenAI（コンテンツ生成）",
 				"**タスク**: 分類 / 回帰 / クラスタリング / 強化学習 / 推薦",
 				"**指標**: Accuracy / Precision / Recall / F1 / AUC-ROC / RMSE"
-			]
+			],
+			"subtitle": "Domain 1の全キーワードを前半でまとめて一括確認する"
 		},
 		{
 			"title": "Domain 1 — キーワード総まとめ（2/2）",
@@ -210,7 +221,8 @@
 				"| **Attention** | 入力中の重要トークンに重みを付ける機構 |",
 				"| **Embedding** | テキストを意味を保った数値ベクトルに変換した表現 |",
 				"| **Diffusion Model** | ノイズ除去で画像を生成するモデル（Stable Diffusion 等）|"
-			]
+			],
+			"subtitle": "Foundation/Architecture用語10選はFM選定とアーキテクチャ設計問題の基盤知識"
 		},
 		{
 			"title": "生成 AI 用語集 B — 推論・サンプリング",
@@ -225,7 +237,8 @@
 				"| **Top-p** | 累積確率 p 内のトークンから選択（Nucleus Sampling）|",
 				"| **Top-k** | 確率上位 k トークンから選択 |",
 				"| **Inference** | 学習済みモデルで予測・生成を行う処理 |"
-			]
+			],
+			"subtitle": "Temperature/Top-P/Top-K/Stop Sequenceは推論パラメータ調整の試験頻出4択"
 		},
 		{
 			"title": "生成 AI 用語集 C — 品質・安全性",
@@ -239,7 +252,8 @@
 				"| **Alignment** | 人間の意図・価値観に合わせる学習プロセス |",
 				"| **RLHF** | Reinforcement Learning from Human Feedback（人間フィードバックによる強化学習）|",
 				"| **Constitutional AI** | Anthropic の安全 AI 学習手法（Bedrock Claude 基盤）|"
-			]
+			],
+			"subtitle": "ハルシネーション・グラウンディング・安全性フィルターはGuardrails問題の核心"
 		},
 		{
 			"title": "FM 選定基準比較表",
@@ -253,7 +267,8 @@
 				"| 画像生成 | 拡散モデル | Stable Diffusion / Titan Image |",
 				"| セマンティック検索 | Embedding FM | 次元数・コスト比較 |",
 				"| マルチモーダル | Vision FM | Claude 3 / Titan Multimodal |"
-			]
+			],
+			"subtitle": "コスト・精度・レイテンシ・コンテキスト長の4軸でFMを選定する判断表"
 		},
 		{
 			"title": "Bedrock 提供 FM 一覧表（主要モデル）",
@@ -268,7 +283,8 @@
 				"| Meta | Llama 3.1 405B | オープンソース・カスタマイズ可 | 128K tokens |",
 				"| Mistral AI | Mistral Large | 多言語・高速推論 | 32K tokens |",
 				"| Cohere | Command R+ | RAG 特化・多言語 | 128K tokens |"
-			]
+			],
+			"subtitle": "Bedrock提供FMは価格・コンテキスト長・マルチモーダルの3点で即答できる"
 		},
 		{
 			"title": "Claude / Titan / Llama / Mistral 比較",
@@ -281,7 +297,8 @@
 				"| 強み | 推論・安全性・Vision | AWS サービス統合 | オープン・無料 | 高速・多言語 |",
 				"| Fine-tuning | Bedrock 内で制限的 | ○ | ○ | △ |",
 				"| コスト目安 | 中〜高 | 低〜中 | 低 | 低〜中 |"
-			]
+			],
+			"subtitle": "Claude/Titan/Llama/Mistralのユースケース最適化は選択問題の頻出テーマ"
 		},
 		{
 			"title": "画像生成 FM — Stability AI / Amazon Titan Image",
@@ -295,7 +312,8 @@
 				"| Titan Multimodal Embeddings | Amazon | 画像+テキスト統合ベクトル | マルチモーダル検索 |",
 				"呼び出し API: `bedrock:InvokeModel` / 出力: PNG / JPEG",
 				"最大解像度: 2048 × 2048 px"
-			]
+			],
+			"subtitle": "Stability AI(高品質生成)とAmazon Titan Image(コスト効率)の使い分けを覚える"
 		},
 		{
 			"title": "推論パラメータ一覧",
@@ -310,7 +328,8 @@
 				"| max_tokens | 1〜上限 | 短い出力 | 長い出力 |",
 				"temperature=0: 同一入力 → 同一出力（決定論的）",
 				"temperature と top_p は通常どちらか一方のみ調整する"
-			]
+			],
+			"subtitle": "9つの推論パラメータとその効果を表で管理し設問ごとに最適値を判断する"
 		},
 		{
 			"title": "プロンプト手法比較表",
@@ -324,7 +343,8 @@
 				"| Chain-of-Thought | 0/N | 思考過程を記述させる | 推論・数学・複雑分析 |",
 				"| Role Prompting | 0 | ペルソナ設定 | 専門的・特定スタイルの回答 |",
 				"| XML Tags（Claude）| 0 | 構造化入力 | 長いプロンプト・多入力 |"
-			]
+			],
+			"subtitle": "Zero-shot/Few-shot/CoT/ReActの4手法は問題シナリオで正しく選択できる"
 		},
 		{
 			"title": "Domain 2 — キーワード総まとめ（1/2）",
@@ -334,7 +354,8 @@
 				"**FM / LLM**: Foundation Model（汎用大規模モデル）/ Large Language Model",
 				"**Token / Context Window**: 処理単位 / 一度に扱える最大トークン数",
 				"**Temperature / Top-p / Top-k**: 出力の多様性・創造性を制御"
-			]
+			],
+			"subtitle": "Domain 2の全キーワードを前半でまとめて一括確認する"
 		},
 		{
 			"title": "Domain 2 — キーワード総まとめ（2/2）",
@@ -370,7 +391,8 @@
 				"| Guardrails | コンテンツフィルタリング | 安全性・コンプライアンス |",
 				"| Model Evaluation | FM 品質の自動/人間評価 | モデル選定・比較 |",
 				"| Prompt Management | プロンプトのバージョン管理 | テンプレート / A/B テスト |"
-			]
+			],
+			"subtitle": "Bedrock全機能一覧で「どの機能が何をするか」を体系的に押さえる"
 		},
 		{
 			"title": "RAG 用語集",
@@ -385,7 +407,8 @@
 				"| **Vector DB** | ベクトルを高速に類似検索できるデータベース |",
 				"| **Retrieval** | クエリに最も近いチャンクを検索する処理 |",
 				"| **Augmentation** | 検索結果をプロンプトに付加してFMに渡す処理 |"
-			]
+			],
+			"subtitle": "RAGの9用語(Chunk/Embedding/Vector DB等)は設計問題の必須ボキャブラリー"
 		},
 		{
 			"title": "RAG アーキテクチャ比較表",
@@ -400,7 +423,8 @@
 				"| GraphRAG | グラフ DB で関係性を考慮 | 構築コスト高 |",
 				"Bedrock Knowledge Bases は Advanced RAG（Reranking 対応）を提供",
 				"デフォルトはコサイン類似度で上位 k チャンクを取得"
-			]
+			],
+			"subtitle": "Naive/Advanced/Modular RAGのアーキテクチャ差は本番精度に直結する選択基準"
 		},
 		{
 			"title": "RAG vs Fine-tuning 選択表",
@@ -414,7 +438,8 @@
 				"| コスト | 低（インデックスのみ）| 学習コスト＋ストレージ |",
 				"| 向く用途 | Q&A / 文書検索 | スタイル変換 / 専門語彙 |",
 				"| 更新性 | リアルタイム更新可 | 更新には再学習が必要 |"
-			]
+			],
+			"subtitle": "RAGは新鮮データ、Fine-tuningはタスク特化が判断の第一原則"
 		},
 		{
 			"title": "Knowledge Bases for Bedrock 仕様表",
@@ -429,7 +454,8 @@
 				"| 埋め込みモデル | Titan Embeddings V2 / Cohere Embed v3 |",
 				"| 同期方法 | 手動同期 / 自動スケジュール同期 |",
 				"| データソース数 | 最大 5 個 / KB |"
-			]
+			],
+			"subtitle": "Knowledge Basesの対応データソース・ベクトルDB・チャンク設定数値を暗記"
 		},
 		{
 			"title": "ベクトル DB 比較表",
@@ -443,7 +469,8 @@
 				"| Pinecone | SaaS | 高速・専用 VDB | ○ |",
 				"| Weaviate | OSS/Cloud | セマンティック検索特化 | ○ |",
 				"| MongoDB Atlas | ドキュメント DB | Vector Search 内蔵 | ○ |"
-			]
+			],
+			"subtitle": "OpenSearch/Aurora pgvector/Pinecone/MemoryDBの比較はベクトルDB選択問題の核心"
 		},
 		{
 			"title": "埋め込みモデル比較表",
@@ -456,7 +483,8 @@
 				"| Cohere Embed v3 | Cohere | 1024 | 512 tokens | 多言語・圧縮効率高 |",
 				"**類似度指標**: コサイン類似度（方向）/ ユークリッド距離（空間）/ 内積（速度）",
 				"**次元数の選択**: 高次元 → 高精度 / 低次元 → 高速・低コスト"
-			]
+			],
+			"subtitle": "Titan Embeddings/Cohere Embeddings の次元数と用途を比較"
 		},
 		{
 			"title": "チャンク戦略比較表",
@@ -470,7 +498,8 @@
 				"| Hierarchical | 親子構造（要約+詳細）| 構造化文書 | 2 層でコンテキスト保持 |",
 				"| None（分割なし）| 文書丸ごと | 短い文書 | 超シンプル |",
 				"**Overlap**: チャンク間に重複を持たせてコンテキスト切れを防ぐ"
-			]
+			],
+			"subtitle": "固定長/セマンティック/階層型チャンクの選択がRAG精度を大きく左右する"
 		},
 		{
 			"title": "Bedrock Agents — 用語集",
@@ -485,7 +514,8 @@
 				"| **API Schema** | OpenAPI 形式で定義する Action の仕様書 |",
 				"| **ReAct** | Reasoning + Acting — 推論と行動を繰り返すフレーム |",
 				"| **Orchestration** | Agent が FM を使って計画・行動を決定するプロセス |"
-			]
+			],
+			"subtitle": "Action Group/Knowledge Base/Memory/OIDC連携がAgents設計の4要素"
 		},
 		{
 			"title": "Bedrock Agents — 設定項目一覧",
@@ -500,7 +530,8 @@
 				"| Action Group | 呼び出せる API セット（Lambda 連携）| △ |",
 				"| Memory | 会話履歴の保持設定 | △ |",
 				"| Guardrails | コンテンツフィルタの紐付け | △ |"
-			]
+			],
+			"subtitle": "Agentsの設定項目一覧で最大ステップ数・タイムアウト・ガードレール連携を把握"
 		},
 		{
 			"title": "Inline Agent vs 定義済み Agent 比較",
@@ -513,7 +544,8 @@
 				"| 永続性 | 一時的（セッションのみ）| 永続・バージョン管理あり |",
 				"| 向くシーン | プロトタイプ / テスト | 本番ワークフロー |",
 				"| 管理方法 | コード管理 | AWS リソース管理 |"
-			]
+			],
+			"subtitle": "Inline Agentは動的生成、定義済みAgentは本番固定利用で使い分ける"
 		},
 		{
 			"title": "Fine-tuning 手法比較表",
@@ -526,7 +558,8 @@
 				"| Fine-tuning（Supervised）| 全/一部パラメータ | 中〜高 | タスク特化・スタイル学習 |",
 				"| LoRA | アダプタ層のみ | 低 | 効率的な特化・小コスト |",
 				"| Distillation | 小モデルへの知識転移 | 中 | モデル軽量化・高速推論 |"
-			]
+			],
+			"subtitle": "LoRA/QLoRA/Full Fine-tuningのコスト・精度・計算要件を比較して選択"
 		},
 		{
 			"title": "Fine-tuning データ要件一覧表",
@@ -541,7 +574,8 @@
 				"| データ保存先 | S3（Bedrock から直接参照）|",
 				"| ハイパーパラメータ | epochs（1〜10）/ batch_size / learning_rate |",
 				"| 出力 | カスタムモデル ARN（KB / Agents から利用可能）|"
-			]
+			],
+			"subtitle": "Fine-tuning最低データ数(テキスト=数百、マルチモーダル=数千)を数値で暗記"
 		},
 		{
 			"title": "カスタマイズ手法 4 択比較表",
@@ -554,7 +588,8 @@
 				"| RAG | ○（リアルタイム）| 低〜中 | 中 | 最新情報・大量文書 Q&A |",
 				"| Fine-tuning | △（静的）| 高 | 高 | スタイル / 専門語彙特化 |",
 				"| Pre-training | ○ | 最高 | 最高 | 完全新規ドメイン FM 構築 |"
-			]
+			],
+			"subtitle": "Fine-tuning/RAG/Continued Pre-training/In-Context Learningの4択判断表を使いこなす"
 		},
 		{
 			"title": "Bedrock Model Evaluation 仕様",
@@ -568,7 +603,8 @@
 				"| LLM-as-Judge | 別 FM が評価（カスタム基準）| カスタム評価基準 |",
 				"**評価タスク**: Text Summarization / Q&A / Text Classification / Open-ended generation",
 				"**用途**: FM 選定・Fine-tuning 前後の品質比較"
-			]
+			],
+			"subtitle": "Model EvaluationはHuman/LLM-as-judge/自動指標の3パターンを適材適所で選択"
 		},
 		{
 			"title": "Prompt Management & Prompt Flow",
@@ -583,7 +619,8 @@
 				"| Prompt Flow | プロンプトを繋ぐ視覚的ワークフロー構築 |",
 				"**Prompt Flow ノード**: Input / LLM / Knowledge Base / Lambda / Condition / Output",
 				"**用途**: 複雑なマルチステップ推論の設計・テスト"
-			]
+			],
+			"subtitle": "Prompt Managementでバージョン管理、Prompt FlowでノードベースAIパイプラインを設計"
 		},
 		{
 			"title": "Bedrock Studio / Bedrock Marketplace",
@@ -597,7 +634,8 @@
 				"**Studio 機能**: FM 呼び出し / KB・Guardrails 設定 / Agent デバッグ / チーム共有",
 				"**Marketplace**: AI21 Labs / Cohere 等の商用 FM + プライベートモデル公開",
 				"本番デプロイには SDK / API を使用（Studio は開発・評価用）"
-			]
+			],
+			"subtitle": "Bedrock Studio(プロトタイプ向けUI)とBedrock Marketplace(サードパーティFM)の使い分け"
 		},
 		{
 			"title": "SageMaker JumpStart vs Bedrock 選択表",
@@ -612,7 +650,8 @@
 				"| コスト形態 | per token | インスタンス時間 |",
 				"| 自前モデル持込 | ✕ | ○ |",
 				"**JumpStart**: Hugging Face / 主要 FM をワンクリックデプロイ + GUI Fine-tuning"
-			]
+			],
+			"subtitle": "SageMaker JumpStart(MLカスタム)とBedrock(アプリ開発者向け)を使い分ける"
 		},
 		{
 			"title": "Domain 3 — キーワード総まとめ A（RAG / KB / Agents）（1/2）",
@@ -622,7 +661,8 @@
 				"**RAG**: Retrieval-Augmented Generation — 検索拡張生成",
 				"**Chunking**: 文書の分割（Fixed / Semantic / Hierarchical）",
 				"**Embedding**: テキスト → ベクトル変換（Titan / Cohere）"
-			]
+			],
+			"subtitle": "RAG/KB/Agentsのキーワードを総まとめして試験直前に確認"
 		},
 		{
 			"title": "Domain 3 — キーワード総まとめ A（RAG / KB / Agents）（2/2）",
@@ -643,7 +683,8 @@
 				"**Fine-tuning**: モデルをタスク特化で再学習（JSONL 形式）",
 				"**Continued Pre-training**: ドメイン語彙・知識の追加学習",
 				"**LoRA**: 低コストなアダプタ学習（少数パラメータ更新）"
-			]
+			],
+			"subtitle": "FT/Eval/FlowのキーワードをBセクションで総まとめして確認"
 		},
 		{
 			"title": "Domain 3 — キーワード総まとめ B（FT / Eval / Flow）（2/2）",
@@ -679,7 +720,8 @@
 				"| **堅牢性** | 攻撃・誤用・異常入力への耐性 | Guardrails / モニタリング |",
 				"| **透明性** | AI の存在・限界を開示 | ドキュメント化 / ラベリング |",
 				"| **統治** | AI 利用の管理・監査 | CloudTrail / AWS Config |"
-			]
+			],
+			"subtitle": "公平性・説明可能性・プライバシー・堅牢性・ガバナンス・透明性・安全性の7原則対応表"
 		},
 		{
 			"title": "Bedrock Guardrails — フィルタ種別一覧",
@@ -693,7 +735,8 @@
 				"| Word Filter | 特定語句のブロック | カスタム禁止ワードリスト |",
 				"| PII Redaction | 個人情報の検出・マスキング | Email / Phone / SSN / 名前 |",
 				"| Grounding Check | 幻覚検出・根拠確認 | RAG 回答の事実整合性検証 |"
-			]
+			],
+			"subtitle": "コンテンツ/トピック/PII/ワード/グラウンディングの5フィルター種別と設定優先度"
 		},
 		{
 			"title": "Guardrails — 設定項目と適用タイミング",
@@ -709,7 +752,8 @@
 				"**適用タイミング**: Input（ユーザー入力検証）/ Output（FM 出力検証）",
 				"**Agent 連携**: Agents にも Guardrails を紐付け可能（別設定が必要）",
 				"**注意**: Bedrock 使用だけでは自動有効化されない — 明示的に作成・紐付けが必要"
-			]
+			],
+			"subtitle": "Guardrails設定は入力前・生成中・出力後の3タイミングで適用ロジックが異なる"
 		},
 		{
 			"title": "バイアス検出・軽減手法表",
@@ -722,7 +766,8 @@
 				"| モデルバイアス | 予測の系統的な不公平 | Clarify で検出 → 再学習 |",
 				"| 確証バイアス | 既存信念に沿う情報を優先選択 | 多様なデータ収集 |",
 				"| アンカーバイアス | 初期情報への過度な依存 | プロンプト設計で文脈を中立化 |"
-			]
+			],
+			"subtitle": "SMOTE/Adversarial Debiasing/後処理調整の3手法で段階的にバイアスを除去"
 		},
 		{
 			"title": "Hallucination 軽減手法比較表",
@@ -736,7 +781,8 @@
 				"| Temperature 低下 | 決定論的出力で安定性向上 | 中 | なし |",
 				"| Chain-of-Thought | 段階的推論で論理的一貫性 | 中 | なし |",
 				"| Human Review（A2I）| 人間が最終確認 | 高 | 高 |"
-			]
+			],
+			"subtitle": "RAG/低Temperature/Grounding/事実確認の4手法でハルシネーション発生率を削減"
 		},
 		{
 			"title": "PII 処理手法一覧",
@@ -751,7 +797,8 @@
 				"| 暗号化 | 暗号化して保存 | KMS |",
 				"**Bedrock の原則**: 顧客データを FM の学習に使用しない（デフォルト）",
 				"**Transcribe PII Redaction**: 音声文字起こし時に PII をリアルタイム除去"
-			]
+			],
+			"subtitle": "Macie(S3)/Comprehend(テキスト)/Guardrails(生成時)の3層でPIIを多層処理"
 		},
 		{
 			"title": "AI アウトプット検証手法",
@@ -766,7 +813,8 @@
 				"| Lambda 後処理 | カスタムバリデーションロジック |",
 				"**A2I**: Amazon Augmented AI — 予測信頼度が閾値以下で人間レビューへ",
 				"**活用パターン**: Guardrails（一次フィルタ）→ A2I（低信頼度の人間確認）"
-			]
+			],
+			"subtitle": "ルールベース・スコアベース・LLM-as-judgeの3検証手法で出力品質を保証"
 		},
 		{
 			"title": "SageMaker Clarify — 指標一覧",
@@ -780,7 +828,8 @@
 				"| 説明可能性 | SHAP 値 | 各特徴量の予測への寄与度 |",
 				"| ドリフト | Data drift | 本番データと学習データの分布乖離 |",
 				"| モニタリング | Model quality | 精度・F1 の継続監視 |"
-			]
+			],
+			"subtitle": "Clarify指標一覧でCI/DPL(学習前)とDPPL/DI(学習後)の使い分けを整理"
 		},
 		{
 			"title": "Domain 4 — キーワード総まとめ（1/2）",
@@ -790,7 +839,8 @@
 				"**Responsible AI 6 原則**: 公平性 / 説明可能性 / プライバシー / 堅牢性 / 透明性 / 統治",
 				"**Guardrails 5 フィルタ**: Content / Denied Topics / Word / PII / Grounding Check",
 				"**Hallucination 対策**: RAG / Grounding Check / Temperature 低下 / CoT"
-			]
+			],
+			"subtitle": "Domain 4の全キーワードを一括まとめして最終確認する"
 		},
 		{
 			"title": "Domain 4 — キーワード総まとめ（2/2）",
@@ -826,7 +876,8 @@
 				"| **AWS** | 顧客データを FM 学習に使用しない（Bedrock デフォルト）|",
 				"| **顧客** | IAM ポリシー / アクセス制御 / データ暗号化設定 |",
 				"| **顧客** | Guardrails 設定 / プロンプト設計 / Fine-tuning データ品質 |"
-			]
+			],
+			"subtitle": "AIワークロード版共有責任モデルでAWS管理層とユーザー管理層の境界を明確化"
 		},
 		{
 			"title": "IAM ポリシー設計原則表",
@@ -840,7 +891,8 @@
 				"| 条件キー | 条件付きアクセス制御 | aws:SourceIp / bedrock:Region |",
 				"| リソースベース | リソース単位の細かい制御 | S3 バケットポリシー |",
 				"**Explicit Deny 優先**: Deny と Allow が競合する場合は Deny が優先される"
-			]
+			],
+			"subtitle": "最小権限・職務分離・MFA強制の3設計原則がIAMポリシー問題の判断軸"
 		},
 		{
 			"title": "Bedrock IAM アクション一覧",
@@ -855,7 +907,8 @@
 				"| `bedrock:RetrieveAndGenerate` | RAG クエリ実行 |",
 				"| `bedrock:CreateGuardrail` | Guardrails の作成 |",
 				"| `bedrock:InvokeAgent` | エージェントの呼び出し |"
-			]
+			],
+			"subtitle": "bedrock:InvokeModel等のアクションARNを一覧で把握して最小権限を設計"
 		},
 		{
 			"title": "VPC エンドポイント設定一覧",
@@ -870,7 +923,8 @@
 				"| SageMaker Runtime | Interface | 推論エンドポイントのプライベート化 |",
 				"**注意**: VPC エンドポイント ≠ 暗号化（ネットワーク分離 ≠ データ暗号化）",
 				"**PrivateLink**: インターネットを経由しないAWS バックボーン通信"
-			]
+			],
+			"subtitle": "VPCエンドポイント設定でBedrockトラフィックをAWSネットワーク内に閉じ込める"
 		},
 		{
 			"title": "データ暗号化オプション表",
@@ -885,7 +939,8 @@
 				"| SageMaker モデル・ノートブック | KMS 統合 | KMS |",
 				"**KMS CMK**: Customer Managed Key でキー管理・ローテーションを顧客が制御",
 				"**AWS Managed Key**: AWS が自動管理するデフォルトキー（無料）"
-			]
+			],
+			"subtitle": "SSE-S3/SSE-KMS/CSEの暗号化オプション比較は試験の定番セキュリティ問題"
 		},
 		{
 			"title": "CloudTrail / CloudWatch 監査設定",
@@ -900,7 +955,8 @@
 				"| AWS Config | リソース設定変更の履歴管理 | Bedrock Guardrails 変更検出 |",
 				"**Bedrock ログ設定**: Bedrock コンソール → Model Invocation Logging で有効化",
 				"**CloudTrail 注意**: デフォルトでは 90 日のみ保持 → S3 に保存で長期保管"
-			]
+			],
+			"subtitle": "CloudTrailでAPIコール監査、CloudWatchでリアルタイムモニタリングを設定"
 		},
 		{
 			"title": "コンプライアンスフレームワーク対応表",
@@ -915,7 +971,8 @@
 				"| GDPR | ○（EU リージョン選択）| 対応可 |",
 				"| FedRAMP | 一部リージョン / 一部サービス | 進行中 |",
 				"**AWS Artifact**: コンプライアンスレポートをオンデマンドで取得できるサービス"
-			]
+			],
+			"subtitle": "HIPAA/PCI DSS/SOC2/FedRAMPのAWS対応状況はコンプライアンス問題の頻出"
 		},
 		{
 			"title": "プロンプトインジェクション対策一覧",
@@ -930,7 +987,8 @@
 				"| 出力検証 | 生成結果のパターン検証 | Lambda 後処理 |",
 				"**Prompt Attack フィルタ**: Guardrails の Prompt Attack Detection が自動検出・ブロック",
 				"**原則**: ユーザー入力をシステムプロンプトの一部として扱わない"
-			]
+			],
+			"subtitle": "プロンプトインジェクション対策はGuardrails＋入力検証の組み合わせが正解"
 		},
 		{
 			"title": "Domain 5 — キーワード総まとめ（1/2）",
@@ -940,7 +998,8 @@
 				"**Shared Responsibility**: AWS（インフラ）vs 顧客（設定・データ管理）",
 				"**Least Privilege**: 最小権限の原則 — IAM Role + 一時クレデンシャル",
 				"**Explicit Deny**: Deny が Allow より優先（IAM の基本）"
-			]
+			],
+			"subtitle": "Domain 5の全キーワードを一括まとめして最終確認する"
 		},
 		{
 			"title": "Domain 5 — キーワード総まとめ（2/2）",
@@ -975,7 +1034,8 @@
 				"| コード生成・補完 | Bedrock（Claude / Llama）| コード特化能力 |",
 				"| データ分類・エンティティ抽出 | Comprehend / Bedrock | 専用 API か FM か選択 |",
 				"| テキスト翻訳 | Amazon Translate | 専用サービスが安価・高速 |"
-			]
+			],
+			"subtitle": "テキスト生成のサービス選択はユースケースの規模・カスタム要件・コストで決まる"
 		},
 		{
 			"title": "画像生成・分析 — ユースケース別選択表",
@@ -989,7 +1049,8 @@
 				"| 物体検出・ラベリング | Rekognition | 専用 CV API |",
 				"| OCR / 文書解析 | Textract | フォーム・テーブル抽出特化 |",
 				"| 顔認証 / 顔ライブネス | Rekognition | Face Liveness で本人確認 |"
-			]
+			],
+			"subtitle": "画像生成はStability AI(クリエイティブ)かTitan Image(エンタープライズ)で選択"
 		},
 		{
 			"title": "音声・映像 — ユースケース別選択表",
@@ -1003,7 +1064,8 @@
 				"| 音声中の PII 除去 | Transcribe（PII Redaction）| 音声レベルでリアルタイム除去 |",
 				"| テキスト→音声 | Polly | Neural TTS / SSML 対応 |",
 				"| 動画コンテンツ解析 | Rekognition Video | 時系列ラベル / 顔追跡 |"
-			]
+			],
+			"subtitle": "音声はTranscribe/Polly、映像はRekognitionVideoが試験での正しい組み合わせ"
 		},
 		{
 			"title": "検索・推薦 — ユースケース別選択表",
@@ -1017,7 +1079,8 @@
 				"| 商品・コンテンツ推薦 | Personalize | ユーザー行動ログベース ML |",
 				"| FAQ 自動回答（エンドツーエンド）| Bedrock Agents + KB | ReAct + RAG |",
 				"**Kendra vs KB**: Kendra はエンタープライズ検索特化、KB は Bedrock RAG 統合"
-			]
+			],
+			"subtitle": "検索はKendra(エンタープライズ文書)かOpenSearch(テクニカル全文検索)で判断"
 		},
 		{
 			"title": "コスト最適化 — 推論方式比較表",
@@ -1031,7 +1094,8 @@
 				"| 大量バッチ処理（非同期）| Batch Inference | オフピーク割引（最大 50% OFF）|",
 				"| 実験・開発 | On-demand | 無駄なく起動・停止 |",
 				"**Provisioned Throughput**: 固定費 → 高スループット時のみお得（閾値計算必須）"
-			]
+			],
+			"subtitle": "オンデマンド/Provisioned Throughput/Batchの3推論方式は要件別コスト試算で選択"
 		},
 		{
 			"title": "レイテンシ要件別 FM 設定表",
@@ -1046,7 +1110,8 @@
 				"**Streaming**: `InvokeModelWithResponseStream` でトークン逐次返却",
 				"**体感速度改善**: ストリーミングで TTFT（最初のトークン到達時間）を短縮",
 				"**温度・パラメータ**: 速度には影響しない（モデルサイズと TPM が主要因）"
-			]
+			],
+			"subtitle": "レイテンシ要件に応じてModelサイズ・Provisioned Throughput・Cachingを設定"
 		},
 		{
 			"title": "コンテキスト長別 FM 選択表",
@@ -1061,7 +1126,8 @@
 				"| 超長文書（法律・財務）| 200K+ tokens | Claude 3 Opus / Sonnet |",
 				"**注意**: コンテキスト長が長いほどコスト・レイテンシが増加",
 				"**日本語換算**: 1 トークン ≈ 1〜1.5 文字（英語の約 2〜3 倍のトークン数）"
-			]
+			],
+			"subtitle": "コンテキスト長はClaude 200K・Titan 32K・Llama 128Kを数値で瞬時に答える"
 		},
 		{
 			"title": "マルチモーダル対応 FM 一覧",
@@ -1075,7 +1141,8 @@
 				"| Titan Image Generator | テキスト入力 | ○（編集）| ○ | ✕ |",
 				"| Titan Multimodal Embeddings | ○ | ○ | ✕（埋め込み出力）| ✕ |",
 				"| Stable Diffusion（SD XL）| テキスト入力 | ○（編集）| ○ | ✕ |"
-			]
+			],
+			"subtitle": "マルチモーダル対応FMはClaude 3/Titan Multimodal/Llama Vision系に限定される"
 		},
 		{
 			"title": "オンプレ vs AWS クラウド AI 比較表",
@@ -1089,7 +1156,8 @@
 				"| 管理負荷 | 高 | 低（マネージド）|",
 				"| データ主権 | 高 | 設定次第（VPC / Outposts）|",
 				"| 最新 FM 利用 | 難（自前調達）| 容易（Bedrock Marketplace）|"
-			]
+			],
+			"subtitle": "オンプレAIはデータ主権・初期投資・運用負荷の3点でAWSクラウドと比較"
 		},
 		{
 			"title": "Bedrock vs SageMaker vs EC2 判断表",
@@ -1103,7 +1171,8 @@
 				"| カスタムアーキテクチャ | ✕ | ○ | ○ |",
 				"| 管理工数 | 最低 | 中 | 最高 |",
 				"| コスト可視性 | 高（per token）| 中（インスタンス時間）| 低（複雑）|"
-			]
+			],
+			"subtitle": "Bedrock(API優先)・SageMaker(カスタム学習)・EC2(最大制御)の3択判断"
 		},
 		{
 			"title": "数値・制限値クイックリファレンス",
@@ -1127,7 +1196,8 @@
 				"| Titan Text Premier | 32K tokens | 3072 tokens | AWSネイティブ |",
 				"| Llama 3.1 405B | 128K tokens | 8192 tokens | オープンソース |",
 				"| Mistral Large | 32K tokens | 8192 tokens | 多言語 |"
-			]
+			],
+			"subtitle": "FMコンテキスト長の数値(8K/32K/128K/200K)は試験で直接問われる暗記必須事項"
 		},
 		{
 			"title": "Bedrock クォータ・制限値表",
@@ -1142,7 +1212,8 @@
 				"| Agents 同時セッション | アカウントあたり最大 1000 セッション |",
 				"| モデル呼び出し TPM | モデル・リージョン別（コンソールで確認）|",
 				"**Provisioned Throughput でクォータ上限を回避可能**"
-			]
+			],
+			"subtitle": "Bedrockクォータ(同時リクエスト数・トークン/分)は上限緩和申請が必要なケースを把握"
 		},
 		{
 			"title": "Fine-tuning データ要件数値表",
@@ -1157,7 +1228,8 @@
 				"| 最大ファイルサイズ | 1 GB |",
 				"| epochs 範囲 | 1〜10 |",
 				"| batch_size 範囲 | 1〜256 |"
-			]
+			],
+			"subtitle": "Fine-tuningは最低数百〜数千件の高品質データが必要、数値を問題で使い回す"
 		},
 		{
 			"title": "埋め込みベクトル次元数一覧",
@@ -1172,7 +1244,8 @@
 				"**高次元**: 精度高 / 保存コスト大 / 検索速度低下",
 				"**低次元**: 速く安価 / 微妙な意味差で精度低下",
 				"**Titan V2**: 低次元を選ぶほどコスト削減・検索高速化可能"
-			]
+			],
+			"subtitle": "埋め込みベクトルの次元数(1024/1536等)はベクトルDB設計問題で索引サイズに直結"
 		},
 		{
 			"title": "SageMaker インスタンスタイプ比較",
@@ -1186,7 +1259,8 @@
 				"| ml.g5.xlarge | 1× A10G | 24 GB | 推論・軽量 FT |",
 				"| ml.g5.48xlarge | 8× A10G | 192 GB | 中〜大規模推論 |",
 				"| ml.inf2.xlarge | Inferentia2 | — | 低コスト高効率推論 |"
-			]
+			],
+			"subtitle": "p3(学習)/g4dn(推論)/Inferentia(低コスト推論)のインスタンス選択は試験の定番問題"
 		},
 		{
 			"title": "S3 / KMS / CloudTrail 制限値表",
@@ -1200,7 +1274,8 @@
 				"| KMS | CMK 数 | 最大 100,000 / アカウント |",
 				"| CloudTrail | イベント履歴（コンソール表示）| 90 日 |",
 				"| CloudTrail | S3 保存ログ | 無制限（ライフサイクルで管理）|"
-			]
+			],
+			"subtitle": "S3/KMS/CloudTrailの制限値は上限に引っかかるシナリオ問題でよく出題される"
 		},
 		{
 			"title": "よく出るひっかけパターン",
@@ -1224,7 +1299,8 @@
 				"| 学習データが 10 例しかない | Fine-tuning | RAG | FT には不十分（最低 50〜100 例）|",
 				"| Hallucination を主に軽減したい | Fine-tuning | RAG + Grounding | RAG の方が直接的効果大 |",
 				"**鉄則**: 最新情報・大量文書 → RAG / スタイル・語彙 → Fine-tuning"
-			]
+			],
+			"subtitle": "RAGはデータ鮮度、Fine-tuningはタスク特化：この原則を守れば誤選択問題は消える"
 		},
 		{
 			"title": "Bedrock vs SageMaker — 誤選択パターン",
@@ -1238,7 +1314,8 @@
 				"| 自前モデルをデプロイしてホストしたい | Bedrock | SageMaker |",
 				"| Llama 3 を手軽に試したい | SageMaker（管理過多）| Bedrock または JumpStart |",
 				"**Bedrock**: API でマネージド FM を使うだけ / **SageMaker**: ML フルコントロール"
-			]
+			],
+			"subtitle": "Bedrock(マネージドAPI)とSageMaker(学習/推論カスタム)の誤選択は1行の要件差で判断"
 		},
 		{
 			"title": "セキュリティ設定の落とし穴",
@@ -1309,7 +1386,8 @@
 				"[ ] AI / ML / DL / GenAI の違いを 1 文で説明できる",
 				"[ ] 教師あり・教師なし・強化学習のユースケースを選べる",
 				"[ ] Accuracy / Precision / Recall / F1 の違いを理解している"
-			]
+			],
+			"subtitle": "Domain 1セルフチェックQ1でML種類と評価指標の理解を自己採点"
 		},
 		{
 			"title": "Domain 1 — セルフチェック（2/2）",
@@ -1330,7 +1408,8 @@
 				"[ ] Token / Context Window / Temperature の意味を説明できる",
 				"[ ] Zero-shot / Few-shot / CoT を使い分けられる",
 				"[ ] RAG の仕組みとコンポーネント（Chunking / Embedding / Retrieval）を説明できる"
-			]
+			],
+			"subtitle": "Domain 2-3セルフチェックでFM/RAG/Agentsの理解度をQ形式で確認"
 		},
 		{
 			"title": "Domain 2–3 — セルフチェック（2/2）",
@@ -1351,7 +1430,8 @@
 				"[ ] 責任ある AI の 6 原則を言える",
 				"[ ] Bedrock Guardrails の 5 フィルタ種別を知っている",
 				"[ ] Hallucination の軽減手法（RAG / Grounding / CoT）を選べる"
-			]
+			],
+			"subtitle": "Domain 4-5セルフチェックで責任あるAI・セキュリティ問題の解答精度を測定"
 		},
 		{
 			"title": "Domain 4–5 — セルフチェック（2/2）",

@@ -414,6 +414,8 @@ style: |
 
 # 参考文献（1/2）
 
+> *Jazz and Agile・InfoQ即興記事・Kind of Blue・Agile Manifestoの4文献*
+
 - **音楽とアジャイルの関係：**
 - - [Jazz and Agile — Michael Sahota (2010)](https://www.methodsandtools.com/archive/jazzagile.php)
 - - [Improvisation in Software Development](https://www.infoq.com/articles/improvisation-software/)
@@ -426,6 +428,8 @@ style: |
 ---
 
 # 参考文献（2/2）
+
+> *Kind of Blue・Ellington・Agile Manifesto・Scrum Guideの4文献*
 
 - - [Kind of Blue - Miles Davis (1959)](https://en.wikipedia.org/wiki/Kind_of_Blue)
 - - [Duke Ellington Orchestra Leadership Style](https://www.jazzhistory.net/ellington)

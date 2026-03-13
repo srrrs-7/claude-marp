@@ -1480,6 +1480,8 @@ paths:
 
 # 参考リソース（1/2）
 
+> *公式ドキュメントとハンズオンで試験合格を確実にする*
+
 - **公式ドキュメント:**
 - [Amazon Bedrock ドキュメント](https://docs.aws.amazon.com/bedrock/)
 - [Amazon Bedrock Knowledge Bases](https://docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html)
@@ -1490,6 +1492,8 @@ paths:
 ---
 
 # 参考リソース（2/2）
+
+> *Skill BuilderとGitHubサンプルで実践力を高める*
 
 - [AWS 認定 Generative AI Developer](https://aws.amazon.com/jp/certification/certified-generative-ai-developer/)
 - [AWS Skill Builder — GenAI コース](https://skillbuilder.aws/)

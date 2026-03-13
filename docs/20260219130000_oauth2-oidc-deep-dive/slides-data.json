@@ -10,6 +10,7 @@
 		},
 		{
 			"title": "アジェンダ",
+			"subtitle": "OAuth2コアからFAPI 2.0まで7章・実装からAWS統合まで体系的に解説",
 			"content": [
 				"**① OAuth2 コアフロー** — 全フロー・全パラメータ・トークン戦略",
 				"**② OIDC 詳解** — Discovery・ID Token・セッション管理・ログアウト",

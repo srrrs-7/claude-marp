@@ -234,6 +234,8 @@ try {
 
 # カーゴカルト検出チェックリスト（1/2）
 
+> *5つの危険信号のうち2つ以上該当で即座に技術選定を見直すべき*
+
 - <svg viewBox='0 0 800 200' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>危険信号スコアカード（前半）</text><rect x='40' y='50' width='720' height='38' rx='6' fill='#5a1a1a'/><text x='70' y='74' fill='#ff8888' font-size='13'>1.</text><text x='90' y='74' fill='#fff' font-size='13'>技術選定の理由を</text><text x='280' y='74' fill='#f9a825' font-size='13' font-weight='bold'>3行以内で</text><text x='370' y='74' fill='#fff' font-size='13'>説明できない</text><rect x='40' y='96' width='720' height='38' rx='6' fill='#5a1a1a' opacity='0.8'/><text x='70' y='120' fill='#ff8888' font-size='13'>2.</text><text x='90' y='120' fill='#fff' font-size='13'>「X社がやっているから」が主な根拠</text><rect x='40' y='142' width='720' height='38' rx='6' fill='#5a1a1a' opacity='0.6'/><text x='70' y='166' fill='#ff8888' font-size='13'>3.</text><text x='90' y='166' fill='#fff' font-size='13'>導入前にプロトタイプで検証していない</text></svg>
 - あなたのチームは大丈夫？ 5つの危険信号
 - 
@@ -245,6 +247,8 @@ try {
 ---
 
 # カーゴカルト検出チェックリスト（2/2）
+
+> *4つ以上該当は技術的負債が既に深刻な段階を示している*
 
 - <svg viewBox='0 0 800 160' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='160' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>危険信号スコアカード（後半）</text><rect x='40' y='45' width='720' height='38' rx='6' fill='#5a1a1a'/><text x='70' y='69' fill='#ff8888' font-size='13'>4.</text><text x='90' y='69' fill='#fff' font-size='13'>チーム全員が仕組みを理解していない</text><rect x='40' y='91' width='720' height='38' rx='6' fill='#5a1a1a' opacity='0.8'/><text x='70' y='115' fill='#ff8888' font-size='13'>5.</text><text x='90' y='115' fill='#fff' font-size='13'>「前のプロジェクトでもこうだった」が口癖</text></svg>
 - - [ ] チーム全員が仕組みを理解していない

@@ -158,6 +158,8 @@ style: |
 
 # DevOps vs DevSecOps
 
+> *DevSecOpsはDevOpsのCI/CDパイプラインにセキュリティ自動化を内包した設計思想*
+
 - <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">DevOps vs DevSecOps</text><rect x="60" y="50" width="300" height="110" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="210" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">DevOps</text><text x="210" y="90" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">開発+運用の協働</text><text x="210" y="110" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">セキュリティ: 後付け</text><rect x="440" y="50" width="300" height="110" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="590" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">DevSecOps</text><text x="590" y="90" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">開発+セキュリティ+運用</text><text x="590" y="110" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">セキュリティ: 設計から統合</text><line x1="360" y1="105" x2="440" y2="105" stroke="#f9a825" stroke-width="2"/><polygon points="435,99 450,105 435,111" fill="#f9a825"/></svg>
 | 観点 | DevOps | DevSecOps |
 |------|--------|-----------|
@@ -307,6 +309,8 @@ style: |
 
 # Semgrep実践 — カスタムルール
 
+> *Semgrepカスタムルールでサービス固有の禁止パターンをCI/CDゲートに追加できる*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IaC セキュリティチェックフロー</text>
 <rect x="20" y="162" width="120" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="80" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Terraform/CF</text>
 <line x1="140" y1="185" x2="158" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="153,179 168,185 153,191" fill="#f9a825"/>
@@ -352,6 +356,8 @@ rules:
 ---
 
 # CodeQL — GitHub Actions連携
+
+> *CodeQLクエリをGitHub ActionsのCIに組み込みPR段階で脆弱性を自動検出*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Compliance as Code ワークフロー</text>
 <rect x="20" y="75" width="155" height="48" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="97.5" y="104" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">規制要件</text>
@@ -409,6 +415,8 @@ jobs:
 
 # SCA（Software Composition Analysis）とは
 
+> *SCAはOSSライブラリのCVEをCI/CDで自動検出、93%の商用アプリに脆弱OSSが混入*
+
 - <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">SCA スキャンフロー</text><rect x="40" y="50" width="140" height="110" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ソースコード</text><line x1="180" y1="105" x2="210" y2="105" stroke="#f9a825" stroke-width="2"/><polygon points="205,99 220,105 205,111" fill="#f9a825"/><rect x="220" y="50" width="160" height="110" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="300" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">依存性解析</text><line x1="380" y1="105" x2="410" y2="105" stroke="#f9a825" stroke-width="2"/><polygon points="405,99 420,105 405,111" fill="#f9a825"/><rect x="420" y="50" width="160" height="110" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="500" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">CVE照合</text><line x1="580" y1="105" x2="610" y2="105" stroke="#66bb6a" stroke-width="2"/><polygon points="605,99 620,105 605,111" fill="#66bb6a"/><rect x="620" y="50" width="140" height="110" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="690" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">レポート</text></svg>
 - **SCA**: 使用している OSS の脆弱性・ライセンスを自動スキャン
 | ツール | 特徴 | 価格 |
@@ -422,6 +430,8 @@ jobs:
 ---
 
 # OSSライセンスリスク
+
+> *OSSライセンス違反は法的リスクに直結、GPL汚染を本番前にSCAで検出する*
 
 - <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">SAST vs DAST</text><rect x="60" y="50" width="300" height="110" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="210" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">SAST (静的)</text><text x="210" y="85" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コード解析</text><text x="210" y="105" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">実行前・早期検出</text><text x="210" y="123" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">False Positive多め</text><rect x="440" y="50" width="300" height="110" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="590" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">DAST (動的)</text><text x="590" y="85" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">実行時テスト</text><text x="590" y="105" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">本番前・実際の脆弱性検出</text><text x="590" y="123" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">実行環境必要</text><text x="400" y="185" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">両方の組み合わせで高いカバレッジを実現</text></svg>
 | ライセンス | 商用利用 | コピーレフト | リスク |
@@ -521,6 +531,8 @@ updates:
 
 # シークレットスキャンツール比較
 
+> *GitLeaks・TruffleHog・AWS Macieのツールで検出パターンと精度を比較選択*
+
 - <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">セキュリティ KPI</text><rect x="30" y="50" width="170" height="110" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="115" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">脆弱性MTTR</text><text x="115" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">平均修復時間</text><rect x="220" y="50" width="170" height="110" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="305" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Critical件数</text><text x="305" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">未対処Critical CVE</text><rect x="410" y="50" width="170" height="110" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="495" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">カバレッジ</text><text x="495" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">コードスキャン率</text><rect x="600" y="50" width="170" height="110" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="685" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">偽陽性率</text><text x="685" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">False Positive %</text></svg>
 | ツール | 実行タイミング | 精度 | カスタムパターン |
 |--------|--------------|------|----------------|
@@ -562,6 +574,8 @@ repos:
 
 # HashiCorp Vault — CI/CD連携
 
+> *Vault AgentとCI/CDの統合でシークレットを環境変数に動的注入、ソースに書かない*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シフトレフト セキュリティ</text><line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="2"/><polygon points="735,194 750,200 735,206" fill="#444"/><rect x="60" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">設計</text><rect x="183" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="233" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コーディング</text><rect x="306" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="356" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド</text><rect x="429" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#555" stroke-width="1.5"/><text x="479" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト</text><rect x="552" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="602" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番</text><text x="110" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">脅威モデリング</text><text x="233" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SAST/シークレット</text><text x="356" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SCA/SBOM</text><text x="479" y="228" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">DAST</text><text x="602" y="228" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">CSPM</text><rect x="60" y="255" width="360" height="28" rx="4" fill="#1565c0" opacity="0.7"/><text x="240" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シフトレフト領域 — 修正コスト: 低</text><rect x="440" y="255" width="212" height="28" rx="4" fill="#e91e63" opacity="0.6"/><text x="546" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">遅延発見 — コスト: 高</text><text x="400" y="355" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">早期発見により修正コストを最大1/100に削減</text></svg>
 - JWT認証で環境変数にシークレットを注入
 - ハードコード不要・有効期限付き動的シークレット
@@ -597,6 +611,8 @@ repos:
 
 # DASTとは — SAST vs DAST
 
+> *DASTは実行中アプリにHTTPリクエストを送って実際に悪用可能な脆弱性を検出*
+
 | 観点 | SAST | DAST |
 |------|------|------|
 | テスト対象 | ソースコード | 実行中アプリ |
@@ -609,6 +625,8 @@ repos:
 ---
 
 # OWASP ZAP自動化
+
+> *OWASP ZAP自動化でCI/CD毎にAPIへの自動ペネトレーションテストを実施できる*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CI/CD セキュリティパイプライン</text><rect x="20" y="162" width="85" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="62.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コード</text>
 <line x1="105" y1="185" x2="123" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="118,179 133,185 118,191" fill="#f9a825"/>
@@ -689,6 +707,8 @@ repos:
 ---
 
 # セキュリティKPI・メトリクス
+
+> *MTTR・MTTD・脆弱性密度のKPIで四半期ごとのセキュリティ改善を定量測定*
 
 | KPI | 目標値 | 計測ツール |
 |-----|--------|-----------|
@@ -989,6 +1009,8 @@ jobs:
 
 # サプライチェーンセキュリティ成熟度
 
+> *成熟度レベル1〜5でサプライチェーンセキュリティの現在地と次のアクションを特定*
+
 | レベル | 状態 | 実施内容 |
 |--------|------|---------|
 | L0 | 対策なし | 依存性管理なし |
@@ -1081,6 +1103,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 ---
 
 # 4つの脅威モデリング手法
+
+> *STRIDE・PASTA・LINDDUN・OCTAVEの4手法はリスクの種類と目的で選択する*
 
 | 手法 | 特徴 | 向いている場面 |
 |------|------|--------------|
@@ -1337,6 +1361,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 ---
 
 # DREADスコアリング
+
+> *DREADスコアで脅威を0〜10点で定量評価し修正優先度を客観的に決定できる*
 
 | 要素 | 意味 | スコア（1-3）|
 |------|------|------------|
@@ -1973,6 +1999,8 @@ spec:
 
 # サービスメッシュ — Istio mTLS
 
+> *Istio mTLSでサービス間通信を暗号化・認証、ゼロトラストネットワークを実現*
+
 - **Istio mTLS**: サービス間通信をすべて相互TLSで暗号化
 | モード | 説明 | 推奨 |
 |--------|------|------|
@@ -2178,6 +2206,8 @@ aws iam generate-service-last-accessed-details \
 ---
 
 # よくある失敗パターンと対策
+
+> *最多の失敗パターンはセキュリティをCI/CDの最後に追加する後付け設計*
 
 | 失敗パターン | 原因 | 対策 |
 |------------|------|------|

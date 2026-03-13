@@ -23,7 +23,8 @@
 				"| ⑥ | RAG設計パターン・Advanced RAG | ★★★★ | ~20% |",
 				"| ⑦ | セキュリティ・コスト最適化 | ★★★ | ~15% |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "全セクションのロードマップで自分の習熟度に合った学習順序を決める"
 		},
 		{
 			"title": "試験出題マップ（Domain 3: FM活用 30%）",
@@ -40,7 +41,8 @@
 				"| セキュリティ | IAM, VPC Endpoint, Guardrails統合 | ★★ |",
 				"| コスト最適化 | 次元削減, Serverless, キャッシュ戦略 | ★★★ |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Domain 3はFM活用30%の最重要ドメイン、RAGとKBが最大の得点源"
 		},
 		{
 			"title": "Section 1: RAG基礎",
@@ -61,10 +63,12 @@
 				"| コンテキスト長上限 | 必要な情報だけ抽出してプロンプトに注入 |",
 				"**RAGの3ステップ:** ① Indexing（インデックス作成） → ② Retrieval（検索） → ③ Generation（生成）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "RAGはLLMの知識カットオフとハルシネーションを外部検索で根本解決する"
 		},
 		{
 			"title": "RAGアーキテクチャ全体像",
+			"subtitle": "RAGはIndexing・Retrieval・Generationの3フェーズで構成される完全パイプライン",
 			"content": [
 				"<svg viewBox=\"0 0 800 220\" xmlns=\"http://www.w3.org/2000/svg\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\">\n<rect width=\"800\" height=\"220\" fill=\"#1a1a2e\"/>\n<text x=\"400\" y=\"22\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"13\" font-weight=\"bold\">クエリ処理パイプライン</text>\n<rect x=\"20\" y=\"45\" width=\"110\" height=\"40\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"75\" y=\"58\" text-anchor=\"middle\" dominant-baseline=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-weight=\"bold\">Raw Query</text>\n<text x=\"75\" y=\"77\" text-anchor=\"middle\" dominant-baseline=\"middle\" fill=\"#f9a825\" font-size=\"11\">自然言語</text>\n<line x1=\"130\" y1=\"65\" x2=\"155\" y2=\"65\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"165,65 153,70 153,60\" fill=\"#f9a825\"/>\n<rect x=\"165\" y=\"45\" width=\"120\" height=\"40\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"225\" y=\"58\" text-anchor=\"middle\" dominant-baseline=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-weight=\"bold\">前処理</text>\n<text x=\"225\" y=\"77\" text-anchor=\"middle\" dominant-baseline=\"middle\" fill=\"#f9a825\" font-size=\"11\">正規化/言語検出</text>\n<line x1=\"285\" y1=\"65\" x2=\"310\" y2=\"65\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"320,65 308,70 308,60\" fill=\"#f9a825\"/>\n<rect x=\"320\" y=\"45\" width=\"120\" height=\"40\" rx=\"6\" fill=\"#e91e63\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"380\" y=\"58\" text-anchor=\"middle\" dominant-baseline=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-weight=\"bold\">Query Embed</text>\n<text x=\"380\" y=\"77\" text-anchor=\"middle\" dominant-baseline=\"middle\" fill=\"#f9a825\" font-size=\"11\">ベクトル化</text>\n<line x1=\"440\" y1=\"65\" x2=\"465\" y2=\"65\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"475,65 463,70 463,60\" fill=\"#f9a825\"/>\n<rect x=\"475\" y=\"45\" width=\"120\" height=\"40\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"535\" y=\"58\" text-anchor=\"middle\" dominant-baseline=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-weight=\"bold\">ANN Search</text>\n<text x=\"535\" y=\"77\" text-anchor=\"middle\" dominant-baseline=\"middle\" fill=\"#f9a825\" font-size=\"11\">Top-K取得</text>\n<line x1=\"595\" y1=\"65\" x2=\"620\" y2=\"65\" stroke=\"#f9a825\" stroke-width=\"2\"/><polygon points=\"630,65 618,70 618,60\" fill=\"#f9a825\"/>\n<rect x=\"630\" y=\"45\" width=\"150\" height=\"40\" rx=\"6\" fill=\"#16213e\" stroke=\"#f9a825\" stroke-width=\"1.5\"/>\n<text x=\"705\" y=\"58\" text-anchor=\"middle\" dominant-baseline=\"middle\" fill=\"#ffffff\" font-size=\"13\" font-weight=\"bold\">Rerank</text>\n<text x=\"705\" y=\"77\" text-anchor=\"middle\" dominant-baseline=\"middle\" fill=\"#f9a825\" font-size=\"11\">精度向上</text>\n<text x=\"400\" y=\"125\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">クエリ拡張テクニック</text>\n<text x=\"200\" y=\"148\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">HyDE: 仮説文書生成→埋め込み</text>\n<text x=\"400\" y=\"148\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">Multi-Query: 複数バリエーション</text>\n<text x=\"600\" y=\"148\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">Step-Back: 抽象化→具体化</text>\n<text x=\"400\" y=\"175\" text-anchor=\"middle\" fill=\"#ffffff\" font-size=\"11\">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>\n<text x=\"400\" y=\"200\" text-anchor=\"middle\" fill=\"#f9a825\" font-size=\"10\">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>\n</svg>",
 				"**インジェスト（Indexing）パイプライン:**",
@@ -97,7 +101,8 @@
 				"| 適用場面 | 最新情報・社内文書 | スタイル・タスク特化 | 数例のタスク示教 |",
 				"**試験頻出:** 「最新データが必要→RAG」「文体・スタイル変更→FT」「数例でタスク指定→ICL」"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "新鮮データはRAG・タスク特化はFine-tuning・少数例はIn-Contextが選択の基本則"
 		},
 		{
 			"title": "エンベディング（Embedding）基礎",
@@ -134,7 +139,8 @@
 				"**オーバーラップの役割:** 境界付近の文脈を両チャンクに含め、分断を防ぐ",
 				"**Hierarchical chunking:** 検索は子チャンクで実行→回答は親チャンクのコンテキストで生成"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "チャンクサイズと重複率の組み合わせが検索品質の最大の決定要因"
 		},
 		{
 			"title": "検索戦略（Semantic / Keyword / Hybrid）",
@@ -209,7 +215,8 @@
 				"| クエリ④ | プロンプト構築 | コンテキスト挿入・プロンプトテンプレート |",
 				"| クエリ⑤ | LLM生成（Generate） | 温度・最大トークン・Guardrails |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "全工程チェックリストで本番投入前の品質ゲートを確認する"
 		},
 		{
 			"title": "Section 2: Amazon Bedrock Knowledge Base",
@@ -234,7 +241,8 @@
 				"Agents との統合でマルチステップ推論・アクション実行も可能",
 				"Guardrails統合でコンテンツフィルタリングをRAGに適用"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Bedrock KBはS3自動同期+OSS Serverlessで最速RAGを数クリックで構築"
 		},
 		{
 			"title": "KB対応データソース一覧",
@@ -271,7 +279,8 @@
 				"| Redis Enterprise Cloud | サードパーティ | インメモリ+ベクトル | キャッシュ兼用 |",
 				"| MongoDB Atlas | サードパーティ | ドキュメント+ベクトル | 既存MongoDB活用 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "OpenSearch/Aurora pgvector/Pinecone/Kendra/MongoDBの5DBが試験頻出候補"
 		},
 		{
 			"title": "KB対応エンベディングモデル",
@@ -309,7 +318,8 @@
 				"| guardrailId | Guardrails設定 | コンテンツフィルタリング |",
 				"| sessionId | セッション識別子 | マルチターン会話の継続 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "チャンクサイズ・オーバーラップ・ベクトルDB・エンベディングモデルが主要設定"
 		},
 		{
 			"title": "KBのチャンキング設定詳細",
@@ -327,7 +337,8 @@
 				"親チャンク（例: 1,500 tok）に子チャンク（例: 300 tok）が紐づく",
 				"検索は子チャンクで実行 → LLM生成時は親チャンクのコンテキストで回答"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "デフォルト300トークン固定・セマンティック分割・階層型の3設定を用途で選択"
 		},
 		{
 			"title": "KBのメタデータフィルタリング",
@@ -346,7 +357,8 @@
 				"| andAll / orAll | 複数条件の AND / OR 組み合わせ |",
 				"**S3メタデータの設定:** doc.pdf → doc.pdf.metadata.json を同S3パスに配置"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "メタデータフィルターで検索スコープを事前絞り込み、精度と速度を両立"
 		},
 		{
 			"title": "KBのデータ同期・インジェスト",
@@ -367,7 +379,8 @@
 				"**増分同期:** 変更ファイルのみ再処理（全件より高速）",
 				"**削除同期:** ソースから削除されたドキュメントはKBからも削除"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "S3イベント自動同期とオンデマンド同期の2方式でインジェスト頻度を設計"
 		},
 		{
 			"title": "Retrieve API — 検索のみ（LLM生成なし）",
@@ -417,7 +430,8 @@
 				"レスポンス: output.text（生成回答）+ citations（引用元リスト）",
 				"citations: retrievedReferences（ソースチャンク+URI+メタデータ）が含まれる"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "RetrieveAndGenerate APIは単一呼び出しでRAG全工程を完結、最短実装経路"
 		},
 		{
 			"title": "RetrieveAndGenerate API — 検索+LLM生成（コード例）",
@@ -451,7 +465,8 @@
 				"「カスタム生成・複数KB統合・後処理が必要」→ Retrieve API",
 				"「RAGをすぐ使いたい・シンプル実装」→ RetrieveAndGenerate API"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Retrieve(検索のみ)とRetrieveAndGenerate(生成まで)は要件のカスタム度で使い分ける"
 		},
 		{
 			"title": "KBとBedrock Agentsの統合（1/2）",
@@ -466,7 +481,8 @@
 				"| Action Group + KB | AgentがKB検索結果を元にツール呼び出し実行 |",
 				"| Inline KB | Agent実行時に動的にKBを指定（Inline Agent） |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "KBとAgentsを統合するとRAG検索→複数ツール実行→回答生成を自律化できる"
 		},
 		{
 			"title": "KBとBedrock Agentsの統合（2/2）",
@@ -496,7 +512,8 @@
 				"| SEMANTIC（デフォルト） | ベクトル類似度のみ | 意味検索・一般質問 |",
 				"| HYBRID | Semantic + BM25 統合 | 固有名詞・コード・型番混在 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "BM25キーワードとkNNセマンティックのハイブリッド検索で単独比+15〜30%精度向上"
 		},
 		{
 			"title": "KBのハイブリッド検索（2/2）",
@@ -675,7 +692,8 @@
 				"**OpenSearch Serverless 連携時:**",
 				"コレクション数上限: 50 / アカウント（デフォルト）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "KBのクォータ数値(最大ベクトル数・チャンクサイズ上限)は試験で直接出題される"
 		},
 		{
 			"title": "KBのトラブルシューティング",
@@ -692,7 +710,8 @@
 				"| メタデータフィルタが効かない | .metadata.json未配置 | 同S3パスに配置確認 |",
 				"| 多言語検索精度低い | 英語モデル使用 | Cohere Multilingualに変更 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "同期失敗・検索精度低下・レイテンシ高騰の3大トラブルと原因・対処を把握"
 		},
 		{
 			"title": "Bedrock KB 試験ポイントまとめ（1/2）",
@@ -744,7 +763,8 @@
 				"| ハイブリッド検索 | BM25 + kNN スコア統合 |",
 				"| OpenSearch Dashboards | 可視化・監視UI |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "OpenSearch Serviceはベクトル検索・全文検索・ハイブリッドを1サービスで提供"
 		},
 		{
 			"title": "OpenSearch Serverless とは",
@@ -765,7 +785,8 @@
 				"| VectorSearch | ベクトル検索専用（低コスト） |",
 				"**Bedrock KB統合:** コレクションタイプ = VectorSearch を使用"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "OSS ServerlessはサーバーレスでベクトルDB容量を自動スケールする"
 		},
 		{
 			"title": "OpenSearch Service vs OpenSearch Serverless 比較",
@@ -783,7 +804,8 @@
 				"| VPC統合 | 対応 | 対応（VPCエンドポイント） |",
 				"**試験ポイント:** Bedrock KBのベクトルDBとして使えるのは OpenSearch **Serverless** のみ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "管理型OSS(固定料金・高機能)とServerless(使用量課金・マネージド)の選択軸は規模"
 		},
 		{
 			"title": "OpenSearch Serverless — コレクション設定",
@@ -822,7 +844,8 @@
 				"| m | グラフの接続数（大きい→精度↑・メモリ↑） |",
 				"| ef_search | 検索時の探索幅（大きい→精度↑・遅い） |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "HNSWとIVF-PQの2アルゴリズムが高速近似最近傍検索の主要候補"
 		},
 		{
 			"title": "OpenSearch ベクトルエンジン比較（Faiss / nmslib / Lucene）",
@@ -856,7 +879,8 @@
 				"| ef_construction | インデックス精度（デフォルト512） |",
 				"| m | 隣接ノード数（デフォルト16） |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "dimとm・ef_construction・ef_searchのHNSWパラメータが検索精度の設定値"
 		},
 		{
 			"title": "OpenSearch インデックス設計（コード例）",
@@ -927,7 +951,8 @@
 				"| aoss:DescribeCollectionItems | コレクション情報参照 |",
 				"**Bedrock KB IAMロール:** aoss:APIAccessAll を付与（または個別アクション）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Network/Encryption/Data Access Policyの3ポリシーでServerlessのセキュリティを設計"
 		},
 		{
 			"title": "Bedrock KBとOpenSearch Serverlessの統合",
@@ -966,7 +991,8 @@
 				"Search OCU（クエリ処理）とIndex OCU（インデックス処理）が独立スケール",
 				"最小 0.5 OCU から自動スケールアップ（上限をCapacity Limitsで設定可）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "OCU数とef_search値のチューニングでServerlessのレイテンシを50ms以下に最適化"
 		},
 		{
 			"title": "OpenSearch Serverless モニタリング",
@@ -984,7 +1010,8 @@
 				"SearchLatency P99 + SearchRate + OCUUtilization を1ダッシュボードに集約",
 				"**アクセスログ:** データアクセスポリシーでCloudWatch Logsに転送可能"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CloudWatch OSS ServerlessメトリクスでOCU消費率とスロットリングを継続監視"
 		},
 		{
 			"title": "OpenSearch Serverless IAM設定（1/2）",
@@ -1104,7 +1131,8 @@
 				"| ④ インデックス作成 | CREATE INDEX ON t USING ivfflat(emb); |",
 				"| ⑤ 類似検索 | SELECT * FROM t ORDER BY emb <=> query_vec LIMIT 5; |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Aurora PostgreSQLへのpgvector有効化は拡張機能インストール1コマンドで完了"
 		},
 		{
 			"title": "pgvector — Aurora PostgreSQL 有効化（コード例）",
@@ -1216,7 +1244,8 @@
 				"**Aurora I/O-Optimized推奨:**",
 				"ベクトル検索はI/O集中型。Aurora I/O-Optimizedストレージでコスト削減可"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "parallel_workers・work_mem・shared_buffersのチューニングで検索速度を改善"
 		},
 		{
 			"title": "pgvector 制限・クォータ",
@@ -1237,7 +1266,8 @@
 				"| Aurora PG 15.2+ | 0.5.0（HNSW対応） |",
 				"**Bedrock KB 対応:** Aurora PostgreSQL のみ（RDS PostgreSQLは非対応）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "pgvectorの最大次元数(16000)・インデックス制限・並行性制限が試験頻出数値"
 		},
 		{
 			"title": "Bedrock KBとAurora pgvectorの統合",
@@ -1281,7 +1311,8 @@
 				"| OpenSearch Serverless（最小） | ~$175〜（0.5OCU×2×30日） |",
 				"**小規模なら pgvector の方が安い場合が多い**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "RDS暗号化・IAM認証・SSL接続・Parameter Storeのセキュリティ4点セットを設定"
 		},
 		{
 			"title": "pgvector 試験ポイントまとめ（1/2）",
@@ -1372,7 +1403,8 @@
 				"| 最適ユースケース | 高精度セマンティック検索 | 既存MongoDB活用 |",
 				"**試験ポイント:** Bedrock KBはサードパーティDB（Pinecone/Weaviate/MongoDB Atlas等）にも対応"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Weaviate(マルチモーダル)とMongoDB Atlas(既存Mongo活用)は用途特化型ベクトルDB"
 		},
 		{
 			"title": "Amazon Neptune Analytics — GraphRAG（1/2）",
@@ -1388,7 +1420,8 @@
 				"| Bedrock KB対応 | 対応 |",
 				"| クエリ言語 | openCypher / Gremlin |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GraphRAGはエンティティ間の関係性を活用してマルチホップ推論を実現"
 		},
 		{
 			"title": "Amazon Neptune Analytics — GraphRAG（2/2）",
@@ -1422,7 +1455,8 @@
 				"| MongoDB Atlas | サードパーティ | ✅ | ✅ | ❌ | ✅ |",
 				"| Weaviate | サードパーティ | ✅ | ❌ | ❌ | ✅ |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "機能・スケーラビリティ・マネージド度の3軸でベクトルDBを比較する"
 		},
 		{
 			"title": "全ベクトルDB比較マトリクス②（コスト・スケール・レイテンシ）",
@@ -1487,7 +1521,8 @@
 				"| チャットボット（低レイテンシ） | MemoryDB for Redis | マイクロ秒 |",
 				"| 多言語グローバルコンテンツ | OpenSearch Serverless | Analyzerで多言語対応 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "チャット履歴はMemoryDB、文書検索はOpenSearch、RDB統合はpgvectorが推奨"
 		},
 		{
 			"title": "AWS管理 vs サードパーティ ベクトルDB比較",
@@ -1506,7 +1541,8 @@
 				"「セキュリティ・コンプライアンス重視 → AWSネイティブ」",
 				"「ベクトル検索のみシンプルに → Pinecone等サードパーティ」"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AWSマネージドDBはサポート・統合・セキュリティが利点、サードパーティは機能特化"
 		},
 		{
 			"title": "Section 6: RAG設計パターン・ベストプラクティス",
@@ -1526,7 +1562,8 @@
 				"| ② Query | クエリエンベディング → ベクトル検索 → Top-k取得 |",
 				"| ③ Generate | Top-kチャンク + クエリ → プロンプト → LLM → 回答 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Naive RAGはシンプルで始めやすいが精度60〜70%が限界の基本パターン"
 		},
 		{
 			"title": "基本RAGパターン（Naive RAG）（2/2）",
@@ -1559,7 +1596,8 @@
 				"| Contextual compression | コンテキスト肥大化 | 回答に必要な部分だけ抽出 |",
 				"**Bedrock KB実装:** Reranking + HYBRID + Hierarchical chunkingの組み合わせが最も効果的"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Advanced RAGはQuery変換・Reranking・HyDEで精度を70〜85%に引き上げる"
 		},
 		{
 			"title": "Corrective RAG（CRAG）",
@@ -1655,7 +1693,8 @@
 				"① テナント別KB（完全分離・コスト高）",
 				"② 単一KB + メタデータフィルタ（テナントIDでpre-filter、コスト効率良）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "RAGセキュリティはプロンプトインジェクション・認可制御・PIIの3軸で設計"
 		},
 		{
 			"title": "プロンプトインジェクション対策（RAG）",
@@ -1694,7 +1733,8 @@
 				"同一クエリ → ElastiCache / DynamoDBにキャッシュ（エンベディング・検索結果）",
 				"Bedrock Prompt Caching でシステムプロンプトキャッシュ（最大90%削減）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "チャンク最適化・キャッシュ・Provisionedスループットの3戦略でRAGコストを削減"
 		},
 		{
 			"title": "RAG評価フレームワーク（RAGAS詳細）",
@@ -1789,7 +1829,8 @@
 				"| OpenSearch Serverless 最小 | 0.5 OCU |",
 				"| pgvector 最大次元 | 16,000 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "チャンクサイズ・オーバーラップ率・埋め込み次元数等の数値を丸ごと暗記"
 		},
 		{
 			"title": "主要キーワード索引 A–K",
@@ -1810,7 +1851,8 @@
 				"| Hybrid Search | ベクトル検索 + BM25 キーワード検索の統合 |",
 				"| IVFFlat | ベクトルインデックス。クラスタリングで大規模に対応 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "A〜Kのキーワードは試験問題文から正解サービスを逆引きする索引として活用"
 		},
 		{
 			"title": "主要キーワード索引 L–Z",
@@ -1832,7 +1874,8 @@
 				"| Semantic chunking | 意味の区切りでチャンク分割する手法 |",
 				"| Vector DB | ベクトルを格納・検索するデータベース |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "L〜Zのキーワード索引で知らない用語が出た瞬間に参照して解答精度を上げる"
 		},
 		{
 			"title": "ベクトルDB選択フロー（試験対策）（1/2）",
@@ -1856,7 +1899,8 @@
 				"YES → MemoryDB for Redis",
 				"**Q5: ベクトル専用でシンプルに？**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ベクトルDB選択フローの前半3ステップで候補を半数以下に絞り込む"
 		},
 		{
 			"title": "ベクトルDB選択フロー（試験対策）（2/2）（2/2）",
@@ -1992,7 +2036,8 @@
 				"| ベクトルDB | VectorSearch型 + OCU上限設定 |",
 				"| 無駄な検索 | scoreThreshold + numberOfResults削減 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "RAGセキュリティはインジェクション防御・認可・PII、コスト削減はキャッシュ・チャンク最適化"
 		},
 		{
 			"title": "直前チェックリスト（全セクション）（1/2）（1/2）",
@@ -2002,7 +2047,8 @@
 				"[ ] RAG vs FT vs ICL の使い分けを説明できる",
 				"[ ] エンベディングモデル4種の次元数と特徴を覚えた"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "全セクション直前チェックリストで合格スコアに達しているか最終確認する"
 		},
 		{
 			"title": "直前チェックリスト（全セクション）（1/2）（2/2）",
@@ -2024,7 +2070,8 @@
 				"[ ] 3種セキュリティポリシーの違いを説明できる",
 				"[ ] Faiss/nmslib/Luceneの適切な使い分けを説明できる"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "全セクション直前チェックリスト2回目で弱点を再特定して集中強化する"
 		},
 		{
 			"title": "直前チェックリスト（全セクション）（2/2）（2/2）",
@@ -2055,7 +2102,8 @@
 				"| セキュリティ | Guardrails, IAM, VPC | IAM+データポリシー両方必要 |",
 				"| コスト | 低次元・キャッシュ・k削減 | OCU=リクエスト課金ではない |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "全セクションの主要サービス・数値・設計判断を1ページで総復習する"
 		},
 		{
 			"title": "クロージング・参考資料（1/2）",

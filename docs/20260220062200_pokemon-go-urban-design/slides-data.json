@@ -205,7 +205,8 @@
 				"- [Niantic Labs Official Blog](https://nianticlabs.com/blog)",
 				"- [Sensor Tower - Pokemon GO Revenue Data](https://sensortower.com/)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Lancet・Stanford・Niantic公式など主要データソース一覧"
 		}
 	]
 }

@@ -96,7 +96,7 @@ style: |
 
 # アジェンダ（2/2）
 
-> *評価フレームワーク・プロダクション設計・まとめを後半6セクションで構成*
+> *評価・本番設計・選択指針を後半6セクションで網羅する*
 
 - **Section 6:** 評価フレームワーク（12スライド）
 - **Section 7:** プロダクション設計パターン（14スライド）
@@ -1592,7 +1592,7 @@ print(result.sentiment, result.score)
 
 # RAGアーキテクチャ（Naive RAG）（1/2）
 
-> *Indexing→Retrieval→Augmentation→Generationの4ステップがNaive RAGの基本*
+> *Indexing→Retrieval→Generationの3フローがNaive RAGの全体像*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -1927,7 +1927,7 @@ print(result.sentiment, result.score)
 
 # Embeddingモデル比較（1/2）
 
-> *OpenAI text-embedding-3-largeはMTEB 64.6でコスパ良好—日本語はmultilingual検討*
+> *タスク・コスト・言語要件でEmbeddingモデルを正しく使い分ける*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2786,7 +2786,7 @@ print(response)
 
 # RAG評価指標（RAGAS）（1/2）
 
-> *Faithfulness・Answer Relevancy・Context Precision・Recallの4指標でRAGを定量評価*
+> *4指標がRAGの検索精度と生成品質のボトルネックを特定する*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -2844,7 +2844,7 @@ print(response)
 
 # RAG評価指標（RAGAS）（2/2）
 
-> *Faithfulness×Answer Relevancy×Context Precision×Recallの4軸バランスが健全なRAGの証明*
+> *4指標バランスが健全なRAGの証—LLM-as-Judgeで自動評価を回す*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -4171,7 +4171,7 @@ trainer.train()
 
 # プロダクション展開（2/2）（2/2）
 
-> *AWS SageMaker JumpStart/Bedrock Custom ModelがマネージドFine-tuningの最速経路*
+> *SageMaker JumpStart/Bedrock CustomがマネージドFine-tuningの最速経路*
 
 - AWS SageMaker JumpStart / Bedrock Custom Model
 - Google Vertex AI Fine-tuning
@@ -4242,7 +4242,7 @@ trainer.train()
 
 # Fine-tuningコスト計算（2/2）
 
-> *Modal/RunPod A100時間$2〜4、AWS Bedrock Titan $0.008/1Kトークンでコスト比較*
+> *Modal/RunPod A100で自社推論コストをGPT-4oの50分の1に削減*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -6301,7 +6301,7 @@ for chunk in agent.stream(
 
 # LLMアプリ評価の全体像（2/2）
 
-> *Correctness+Faithfulness+Relevance+Fluency+Harmlessnessの5軸でLLM品質を総合評価*
+> *5軸評価とオフライン/オンラインの二段構えでLLM品質を管理する*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -7707,7 +7707,7 @@ print(result)
 
 # セマンティックキャッシング（2/2）
 
-> *GPTCache+RedisとLangChain CacheBackedEmbeddingsでセマンティックキャッシュを実装*
+> *閾値・TTL・Redisの設定がセマンティックキャッシュ効果を左右する*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>

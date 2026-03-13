@@ -274,6 +274,7 @@
 		},
 		{
 			"title": "参考文献（1/2）",
+			"subtitle": "量子力学・観測問題・ホーソン効果の原典文献を体系的に整理",
 			"layout": "default",
 			"content": [
 				"**量子力学・観測問題:**",
@@ -286,6 +287,7 @@
 		},
 		{
 			"title": "参考文献（2/2）",
+			"subtitle": "言動ギャップからリサーチ手法まで実践に直結する7文献を厳選",
 			"layout": "default",
 			"content": [
 				"- [Hawthorne Effect - Wikipedia](https://en.wikipedia.org/wiki/Hawthorne_effect)",

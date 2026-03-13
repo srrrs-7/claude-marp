@@ -233,6 +233,8 @@ style: |
 
 # 試験形式・詳細（1/2）
 
+> *試験は65問・170分、選択式と複数選択の混在構成で合格スコアは720/1000*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
 <text x="400" y="35" font-family="sans-serif" font-size="22" fill="#f9a825" text-anchor="middle" font-weight="bold">試験形式 詳細</text>
@@ -1549,6 +1551,8 @@ style: |
 
 # 推奨学習リソース（1/2）
 
+> *Bedrock/SageMakerドキュメントとSkill Builderコースが試験対策の基礎リソース*
+
 - **AWS 公式ドキュメント:**
 - [Amazon Bedrock ユーザーガイド](https://docs.aws.amazon.com/bedrock/latest/userguide/)
 - [Amazon SageMaker ドキュメント](https://docs.aws.amazon.com/sagemaker/latest/dg/)
@@ -1558,6 +1562,8 @@ style: |
 ---
 
 # 推奨学習リソース（2/2）
+
+> *BedrockワークショップとAWS re:PostコミュニティでハンズオンとQ&A知識を補強*
 
 - [AWS Certified AI Practitioner 学習パス](https://aws.amazon.com/training/learn-about/ai-practitioner/)
 - [Generative AI with Amazon Bedrock コース](https://explore.skillbuilder.aws/)

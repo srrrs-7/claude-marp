@@ -318,6 +318,8 @@ style: |
 
 # 参考文献（1/2）
 
+> *書籍・データ統計で黄金時代の事実を裏付ける*
+
 - - **書籍・論文:**
 - - [Game Over: Press Start to Continue - David Sheff](https://www.amazon.com/dp/0966961706)
 - - [Console Wars - Blake J. Harris](https://www.amazon.com/dp/0062276700)
@@ -327,6 +329,8 @@ style: |
 ---
 
 # 参考文献（2/2）
+
+> *VGChartzと一次資料でハードウェア販売推移を検証*
 
 - - [Video Game History Foundation](https://gamehistory.org/)
 - - [VGChartz - Hardware Sales](https://www.vgchartz.com/)

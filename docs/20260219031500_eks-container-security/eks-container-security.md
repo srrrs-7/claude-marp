@@ -1203,6 +1203,8 @@ aws eks create-pod-identity-association \
 
 # Pod Identity vs IRSA 比較
 
+> *Pod Identity(OIDC不要・シンプル)とIRSA(既存資産継続)の使い分けで迷わない*
+
 | 項目 | IRSA | Pod Identity |
 | OIDC設定 | 必要（per cluster） | **不要** |
 | eksctl依存 | 高い | **低い** |
@@ -1393,6 +1395,8 @@ aws eks describe-cluster \
 ---
 
 # RBAC 試験頻出ポイント 10選（1/2）
+
+> *RBAC頻出前半5選でClusterRole/Role/Binding/ClusterAdmin権限の違いを習得*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Pod Security Standards レベル</text>
@@ -1599,6 +1603,8 @@ aws eks describe-cluster \
 ---
 
 # ECR 基本スキャン vs 拡張スキャン
+
+> *ECR拡張スキャン(Inspector v2統合)で基本スキャンより詳細なCVSS評価が可能*
 
 | 項目 | 基本スキャン | 拡張スキャン（Inspector V2） |
 | タイミング | Pushのみ | **継続的**（CVE更新でも再スキャン） |
@@ -2446,6 +2452,8 @@ spec:
 
 # ECS Fargate vs EKS Fargate 比較
 
+> *ECS Fargate(シンプル管理)とEKS Fargate(K8s機能フル活用)の選択はオーケストレーション要件*
+
 | 項目 | ECS Fargate | EKS Fargate |
 | オーケストレーター | ECS | Kubernetes |
 | 設定単位 | Task Definition | Pod Spec |
@@ -2711,6 +2719,8 @@ spec:
 ---
 
 # SGP vs Network Policy — 使い分け
+
+> *SGP(L4ステートフル・AWS統合)とNetwork Policy(K8sネイティブ)を組み合わせる*
 
 | 比較項目 | Network Policy | SGP |
 | 制御レイヤー | K8s L4 | VPC L4 |

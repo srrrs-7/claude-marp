@@ -87,6 +87,8 @@ style: |
 
 # 目次
 
+> *6つの視点から宇宙とニューラルネットワークの構造的類似性を体系的に検証する*
+
 - - 1. 宇宙の大規模構造とニューラルネットワーク
 - - 2. スケールの驚くべき一致
 - - 3. Vitelli仮説：宇宙は学習する
@@ -321,6 +323,8 @@ style: |
 ---
 
 # 参考文献
+
+> *Vazza・Feletti・Vanchurins論文が本講演の主要根拠、Wheeler・Fristonが理論的背景*
 
 - - **研究論文:**
 - - Vanchurin, V. (2020) "The world as a neural network"

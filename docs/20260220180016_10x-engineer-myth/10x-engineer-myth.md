@@ -280,6 +280,8 @@ style: |
 
 # 参考文献
 
+> *Sackman1968・Project Aristotle・Copilot研究・神話解体記事の7文献*
+
 - - **Research:**
 -   - [Sackman et al. "Exploratory experimental studies comparing online and offline programming performance" (1968)](https://dl.acm.org/doi/10.1145/362851.362858)
 -   - [Google "Project Aristotle" (re:Work, 2015)](https://rework.withgoogle.com/guides/understanding-team-effectiveness/)

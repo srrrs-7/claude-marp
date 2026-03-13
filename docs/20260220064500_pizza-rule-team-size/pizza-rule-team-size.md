@@ -229,6 +229,8 @@ style: |
 
 # 参考文献
 
+> *ブルックスの法則〜Team Topologies—チームサイズ研究の4大典拠*
+
 - - **書籍:**
 - - Brooks, F. "The Mythical Man-Month" (1975)
 - - Hackman, J.R. "Leading Teams" (2002)

@@ -294,6 +294,8 @@ style: |
 
 # 参考文献
 
+> *Sackman(1968)〜Accelerate(2018)ら4文献が本デッキの典拠*
+
 - - **研究:**
 - - Sackman, H. et al. (1968) "Exploratory experimental studies"
 - - Forsgren, N. et al. "Accelerate" (2018) - DORA指標

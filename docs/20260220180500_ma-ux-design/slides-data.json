@@ -220,6 +220,7 @@
 		},
 		{
 			"title": "Appleと「間」— 余白を使うブランドの共通点（2/2）",
+			"subtitle": "Siriの0.5秒とラムスの「Less but better」は世阿弥と同じ「削る美学」",
 			"layout": "default",
 			"content": [
 				"**Siri**: 応答前の0.5秒の間が「考えている」感を生む",
@@ -232,6 +233,7 @@
 		},
 		{
 			"title": "Material Designの「間」— Googleのスペーシングシステム（1/2）",
+			"subtitle": "8pxグリッドで全余白を数値化し「間」の乱れをシステムレベルで防ぐ",
 			"layout": "default",
 			"content": [
 				"Material Designは「間」を数値化したデザインシステム",
@@ -306,6 +308,7 @@
 		},
 		{
 			"title": "参考文献（1/2）",
+			"subtitle": "能楽哲学・UXデザイン・デザイン哲学の3分野が「間」の実践根拠を支える",
 			"layout": "default",
 			"content": [
 				"**能楽・間の哲学**",
@@ -319,6 +322,7 @@
 		},
 		{
 			"title": "参考文献（2/2）",
+			"subtitle": "GoogleのMotion指針・NNGの余白研究・ラムスの哲学が「間」の実装根拠になる",
 			"layout": "default",
 			"content": [
 				"- [Material Design Motion Guidelines — Google](https://m3.material.io/styles/motion/overview)",

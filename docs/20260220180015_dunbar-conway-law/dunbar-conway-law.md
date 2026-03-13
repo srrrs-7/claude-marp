@@ -243,6 +243,8 @@ style: |
 
 # 参考文献（1/2）
 
+> *Dunbar・Conway・Team Topologies・Man-Monthの基礎4文献*
+
 - - **Foundational Research:**
 - - Dunbar, R. (1992). Neocortex size as a constraint on group size in primates
 - - Conway, M. (1968). How Do Committees Invent?
@@ -252,6 +254,8 @@ style: |
 ---
 
 # 参考文献（2/2）
+
+> *Spotify・Amazon・Team Topologies・Accelerate の実践事例5文献*
 
 - - Skelton & Pais, *Team Topologies* (2019)
 - - Brooks, *The Mythical Man-Month* (1975)

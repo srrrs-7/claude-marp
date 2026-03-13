@@ -42,7 +42,8 @@
 				"2017: Next.js登場 — SSR × Reactの実用化",
 				"2020: Jamstack最盛期 — 静的生成(SSG/ISR)が主流へ"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "2014年Reactから2025年RSC・Islandsまで、フロントエンドは4世代進化した"
 		},
 		{
 			"title": "フロントエンドの10年変遷（2/2）",

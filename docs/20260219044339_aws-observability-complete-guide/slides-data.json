@@ -110,7 +110,8 @@
 				"**PutMetricData API**: 直接メトリクス送信（シンプルだが高コスト）",
 				"**EMF（Embedded Metric Format）**: CloudWatch Logsに埋め込み → 自動でメトリクス生成（推奨）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "PutMetricDataは即時・高コスト、EMFはLogs経由で自動生成・コストゼロが使い分けの鍵"
 		},
 		{
 			"title": "カスタムメトリクス — PutMetricData vs EMF（コード例）",
@@ -370,7 +371,8 @@
 				"**X-Ray Groups**: フィルタ式でトレースをグループ化 → 個別にSamplingRule設定可",
 				"**用途**: サービス別・エラー種別・高優先リクエスト別の分析",
 				"**X-Ray Insights**: エラー急増・レイテンシ異常を自動検知 → SNS通知"
-			]
+			],
+			"subtitle": "X-Ray GroupはTrace属性でフィルタリングしたサブセット、Insightsで異常を自動検知"
 		},
 		{
 			"title": "X-Ray Groups と Insights（2/2）",
@@ -577,7 +579,8 @@
 				"**対応ライブラリ**: Spring Boot / Quarkus / gRPC / JDBC / Kafka / Redis / MongoDB etc.",
 				"JVM起動オプションに `-javaagent` を追加するだけで動作"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Java Auto-instrumentationはコード変更ゼロでTraceを自動生成する最速導入方法"
 		},
 		{
 			"title": "Java Auto-instrumentation（コード例）",
@@ -672,7 +675,8 @@
 				"| X-Ray SDK既存コード | **既存継続** | 再実装コスト不要 |",
 				"| Prometheus既存環境 | **ADOT（Prom互換）** | スクレイプ設定をそのまま活用 |",
 				"**結論**: 新規は迷わずADOT+OTel SDK。X-RayとPrometheusどちらにも送れる柔軟性"
-			]
+			],
+			"subtitle": "マルチクラウドまたはポータビリティ重視ならOTel、AWS特化ならX-Ray SDKで効率最大化"
 		},
 		{
 			"title": "Ch.5 Amazon Managed Prometheus + Grafana",
@@ -870,7 +874,8 @@
 				"| コスト（小規模）| $9/editor/月 | EC2/Fargate費用 |",
 				"| コスト（大規模）| ユーザー数比例 | 固定インフラ費 |",
 				"**推奨**: 小〜中規模はAMG。大規模（50+ユーザー）はセルフホストが経済的な場合も"
-			]
+			],
+			"subtitle": "AMGはIAM認証・自動パッチ・HA提供でセルフホストGrafanaの運用負荷をゼロに"
 		},
 		{
 			"title": "Ch.6 実践パターン — ユースケース別構成",
@@ -1016,7 +1021,8 @@
 				"**SQS重要メトリクス**:",
 				"  - `ApproximateAgeOfOldestMessage`: 最古メッセージ滞留時間（処理遅延の指標）",
 				"  - `ApproximateNumberOfMessagesNotVisible`: 処理中メッセージ数"
-			]
+			],
+			"subtitle": "SQS可視性タイムアウトとDeadLetterQueueがメッセージ消費監視の2重要設定"
 		},
 		{
 			"title": "SQS / SNS / EventBridge 監視（2/2）",
@@ -1260,7 +1266,8 @@
 				"| AMP | 5GiB/日 ingested | $135 |",
 				"| AMG | 3 editors | $27 |",
 				"| **合計** | | **約$304/月** |"
-			]
+			],
+			"subtitle": "中規模Webアプリで月額$500〜$2000がCloudWatch基本構成の目安コスト"
 		},
 		{
 			"title": "コストアラーム設定",

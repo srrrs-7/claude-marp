@@ -145,7 +145,8 @@
 				"| LAG 対応 | ○ | × |",
 				"| リードタイム | 2〜4 週間 | パートナー次第 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "帯域・コスト・プロビジョニング速度の3軸でDedicatedとHostedを選ぶ"
 		},
 		{
 			"title": "LAG (Link Aggregation Group)",
@@ -213,7 +214,8 @@
 				"- **BGP ASN**: お客様側の AS 番号（パブリック or プライベート ASN）",
 				"  - AWS 側: Private/Transit VIF = **64512**、Public VIF = **7224**"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "VLANタグとBGPセッションがVIF論理分離の2つのキー技術"
 		},
 		{
 			"title": "VLAN タグと BGP セッション（2/2）",
@@ -239,7 +241,8 @@
 				"| Jumbo Frame | 9001 MTU 可 | 1500 MTU 固定 | 8500 MTU 可 |",
 				"| アドレスファミリ | IPv4 / IPv6 | IPv4 / IPv6 | IPv4 / IPv6 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "VLAN ID・BGP ASN・プレフィックス・認証キーの4項目が必須パラメータ"
 		},
 		{
 			"title": "VIF と接続先の対応関係",
@@ -262,7 +265,8 @@
 				"| Jumbo Frame | 9001 MTU | 1500 MTU | 8500 MTU |",
 				"| DX Gateway | 任意 | 不要 | 必須 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "3種VIFは接続先・BGP ASN・許可プレフィックスの組み合わせで選択"
 		},
 		{
 			"title": "Private VIF 詳細",
@@ -330,7 +334,8 @@
 				"- オンプレ〜VPC 間の直接的なL3接続",
 				""
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Private VIF + VGWパターンはシンプルなVPC単体接続に最適な構成"
 		},
 		{
 			"title": "Private VIF + VGW 構成パターン（2/2）",
@@ -450,7 +455,8 @@
 				"  - 全リージョンのプレフィックスが広報される（数千プレフィックス）",
 				"  - BGP コミュニティでリージョン単位のフィルタリング可能"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Public VIF BGPはパブリックIPプレフィックスのみ広告、RFC1918は不可"
 		},
 		{
 			"title": "Public VIF の BGP ルーティング（2/2）",
@@ -471,7 +477,8 @@
 				"  - VPC エンドポイントと異なり、VPC を経由しない直接アクセス",
 				"- **AWS API アクセス**: マネジメントコンソール、CLI、SDK の通信を専用線化"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SaaS接続・S3直結・パブリックサービス連携の3シーンがユースケース"
 		},
 		{
 			"title": "Public VIF のユースケース（2/2）",
@@ -514,7 +521,8 @@
 				"- **ハブ＆スポーク** トポロジで VPC 間通信を実現",
 				"- **ルートテーブル** による柔軟な経路制御（セグメンテーション可能）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "TGWはスポーク型でVPC・VPN・DXを一括接続、ハブ役として機能"
 		},
 		{
 			"title": "Transit Gateway (TGW) の基礎（2/2）",
@@ -579,7 +587,8 @@
 				"- DX + TGW + ピアリングで **マルチリージョン・フルメッシュ** 接続が可能",
 				"- 構成例: オンプレ → DX → TGW(東京) ↔ TGW(大阪) → VPC(大阪)"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "TGWピアリングとDX Gatewayを組み合わせ、クロスリージョン接続を実現"
 		},
 		{
 			"title": "TGW ピアリングとの組合せ（2/2）",
@@ -613,7 +622,8 @@
 				"| VPC 間通信 | × (VGW はトランジット不可) | ○ (TGW 経由) |",
 				"| コスト | DX ポート料 + 転送料 | + TGW アタッチ/処理料 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "スケール・コスト・BGP設定の複雑さでPrivate VIFとTransit VIFを選択"
 		},
 		{
 			"title": "VIF 選定フローチャート",
@@ -687,7 +697,8 @@
 				"- VGW 関連付け時: AWS → オンプレ方向のプレフィックスをフィルタ",
 				"  - デフォルト: VPC CIDR がそのまま広報"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "許可プレフィックスの設定ミスがBGPセッション断の最多原因"
 		},
 		{
 			"title": "許可プレフィックスとルーティング（2/2）",
@@ -737,7 +748,8 @@
 				"| クロスアカウント | × | ○ | ○ |",
 				"| 推奨規模 | 小規模 PoC | 中規模マルチVPC | 大規模エンタープライズ |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Single VGW/Transit Gateway/DX GW構成の選択基準は接続VPC数で判断"
 		},
 		{
 			"title": "冗長化・高可用性設計",
@@ -761,7 +773,8 @@
 				"| Development | 1ロケーション × 2接続 | — |",
 				"| 非冗長 | 1ロケーション × 1接続 | — |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "AWS推奨の最大冗長化モデルは2ロケーション×2ポートの4接続構成"
 		},
 		{
 			"title": "Maximum Resiliency（最大回復性）",
@@ -789,7 +802,8 @@
 				"- SLA の保証なし — ロケーション障害時は全断",
 				"- **VPN バックアップ** との併用を推奨:"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "テスト環境はVPN Backup + 1DXで本番の1/3コストで開発品質を確保"
 		},
 		{
 			"title": "開発・テスト環境の冗長化（2/2）",
@@ -844,7 +858,8 @@
 				"1. **準備**: DX 接続の申請・物理回線の手配（2〜4週間）",
 				"2. **並行運用**: VPN を維持しつつ DX を追加接続"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "VPN→DX移行は並行運用期間を設け、BGP切り替えでゼロダウンタイム"
 		},
 		{
 			"title": "移行戦略: VPN → DX（2/2）",

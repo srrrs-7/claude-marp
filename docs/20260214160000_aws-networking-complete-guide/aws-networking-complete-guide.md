@@ -85,6 +85,8 @@ style: |
 
 # アジェンダ (1/2)
 
+> *VPC・サブネット・セキュリティ・接続オプション・Direct Connect・BGPの6章*
+
 - 1. **VPC基礎** — CIDR設計・主要コンポーネント
 - 2. **サブネット設計** — Public/Private・ルートテーブル・IGW/NAT
 - 3. **VPCセキュリティ** — セキュリティグループ・NACL
@@ -96,6 +98,8 @@ style: |
 ---
 
 # アジェンダ (2/2)
+
+> *VPN・Client VPN・Transit Gateway・ハイブリッド設計・試験対策の5章*
 
 - 7. **Site-to-Site VPN** — IPsec・CGW/VGW・Accelerated VPN
 - 8. **Client VPN** — リモートアクセス・認証方式

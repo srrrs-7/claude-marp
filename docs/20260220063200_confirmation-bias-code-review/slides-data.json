@@ -160,6 +160,7 @@
 		},
 		{
 			"title": "レビュアーのマインドセット（2/2）",
+			"subtitle": "著者名を知らなければ同じレビューができるか自問することがバイアスの特効薬",
 			"content": [
 				"---",
 				"**確認すべき質問：**",
@@ -210,6 +211,7 @@
 		},
 		{
 			"title": "参考文献",
+			"subtitle": "MSリサーチとGoogleのベストプラクティスに基づく厳選参考文献",
 			"content": [
 				"- **学術研究:**",
 				"- [Modern Code Review (ACM Computing Surveys)](https://dl.acm.org/)",

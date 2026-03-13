@@ -265,6 +265,8 @@ style: |
 
 # 参考文献（1/2）
 
+> *Merton・Barabasi・Metcalfeのマタイ効果理論3文献*
+
 - - **理論:**
 -   - Robert K. Merton, "The Matthew Effect in Science" (1968)
 -   - Albert-Laszlo Barabasi, "Scale-Free Networks" (1999)
@@ -274,6 +276,8 @@ style: |
 ---
 
 # 参考文献（2/2）
+
+> *EU DMA・Working in Public・DOJ訴訟の規制と事例文献*
 
 - - **事例・政策:**
 -   - [EU Digital Markets Act](https://digital-markets-act.ec.europa.eu/)

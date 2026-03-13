@@ -65,7 +65,8 @@
 				"| テスト方式 | ペネトレーションテスト（年次）| 自動スキャン（毎コミット）|",
 				"| 脆弱性対応 | リリース後パッチ | CI/CDゲートでブロック |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "DevSecOpsはDevOpsのCI/CDパイプラインにセキュリティ自動化を内包した設計思想"
 		},
 		{
 			"title": "DevSecOps成熟度モデル",
@@ -146,7 +147,8 @@
 				"公式レジストリに2,000+のルールが公開済み",
 				"CI/CD: `semgrep --config=auto --error`"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Semgrepカスタムルールでサービス固有の禁止パターンをCI/CDゲートに追加できる"
 		},
 		{
 			"title": "Semgrep実践 — カスタムルール（コード例）",
@@ -162,7 +164,8 @@
 				"**CodeQL**: GitHubネイティブ統合、PRにインラインコメント",
 				"クエリ言語でカスタム脆弱性検出ルールを定義可能"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "CodeQLクエリをGitHub ActionsのCIに組み込みPR段階で脆弱性を自動検出"
 		},
 		{
 			"title": "CodeQL — GitHub Actions連携（コード例）",
@@ -188,7 +191,8 @@
 				"| OWASP Dep-Check | エンタープライズ対応 | 無料 |",
 				"| Renovate | 柔軟な自動更新設定 | OSS |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SCAはOSSライブラリのCVEをCI/CDで自動検出、93%の商用アプリに脆弱OSSが混入"
 		},
 		{
 			"title": "OSSライセンスリスク",
@@ -202,7 +206,8 @@
 				"| AGPL | ✓（条件付き）| 最強 | 高 |",
 				"**対策**: SCA + ライセンス承認ポリシーを定義"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "OSSライセンス違反は法的リスクに直結、GPL汚染を本番前にSCAで検出する"
 		},
 		{
 			"title": "Dependabot設定例",
@@ -248,7 +253,8 @@
 				"| detect-secrets | pre-commit | 中 | ✓ |",
 				"**推奨**: TruffleHog v3（エントロピー検出） + GitHub Secret Scanning"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "GitLeaks・TruffleHog・AWS Macieのツールで検出パターンと精度を比較選択"
 		},
 		{
 			"title": "pre-commitフック設定",
@@ -272,7 +278,8 @@
 				"JWT認証で環境変数にシークレットを注入",
 				"ハードコード不要・有効期限付き動的シークレット"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Vault AgentとCI/CDの統合でシークレットを環境変数に動的注入、ソースに書かない"
 		},
 		{
 			"title": "HashiCorp Vault — CI/CD連携（コード例）",
@@ -297,7 +304,8 @@
 				"| False Positive | 高め | 低め |",
 				"**主なツール**: OWASP ZAP, Burp Suite, Nuclei, nikto"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "DASTは実行中アプリにHTTPリクエストを送って実際に悪用可能な脆弱性を検出"
 		},
 		{
 			"title": "OWASP ZAP自動化",
@@ -306,7 +314,8 @@
 				"Baselineスキャン: パッシブのみ（安全）",
 				"Full Scan: アクティブ攻撃シミュレーション（ステージングのみ）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "OWASP ZAP自動化でCI/CD毎にAPIへの自動ペネトレーションテストを実施できる"
 		},
 		{
 			"title": "OWASP ZAP自動化（コード例）",
@@ -344,7 +353,8 @@
 				"| クリティカル未修正数 | 0件 | SecurityHub |",
 				"| SLAコンプライアンス | > 95% | ダッシュボード |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "MTTR・MTTD・脆弱性密度のKPIで四半期ごとのセキュリティ改善を定量測定"
 		},
 		{
 			"title": "Chapter 3: SBOM・サプライチェーンセキュリティ",
@@ -492,7 +502,8 @@
 				"| L3 | 署名・証明 | Cosign署名・SLSA 2 |",
 				"| L4 | 完全追跡性 | SLSA 3+ ・再現可能ビルド |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "成熟度レベル1〜5でサプライチェーンセキュリティの現在地と次のアクションを特定"
 		},
 		{
 			"title": "DependencyTrack導入",
@@ -538,7 +549,8 @@
 				"| **TRIKE** | リスク許容ベース | 金融・重要インフラ |",
 				"**スタートアップ推奨**: STRIDEがシンプルで学習コスト低"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "STRIDE・PASTA・LINDDUN・OCTAVEの4手法はリスクの種類と目的で選択する"
 		},
 		{
 			"title": "なぜ設計フェーズか — 修正コスト比較",
@@ -678,7 +690,8 @@
 				"| **A**ffected users | 影響ユーザー数 | 少数→全員 |",
 				"| **D**iscoverability | 発見されやすさ | 困難→公開情報 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "DREADスコアで脅威を0〜10点で定量評価し修正優先度を客観的に決定できる"
 		},
 		{
 			"title": "Microsoft Threat Modeling Tool",
@@ -990,7 +1003,8 @@
 				"| STRICT | mTLSのみ | ✅ 本番 |",
 				"**証明書管理**: Istio CAが自動でSVID証明書をローテーション"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Istio mTLSでサービス間通信を暗号化・認証、ゼロトラストネットワークを実現"
 		},
 		{
 			"title": "Chapter 6: ゼロトラスト・ID管理",
@@ -1137,7 +1151,8 @@
 				"| セキュリティサイロ | 組織分断 | セキュリティチャンピオン制度 |",
 				"| SBOMを生成するだけ | 活用フロー未設計 | DependencyTrack連携 |"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "最多の失敗パターンはセキュリティをCI/CDの最後に追加する後付け設計"
 		},
 		{
 			"title": "セキュリティチャンピオン制度",

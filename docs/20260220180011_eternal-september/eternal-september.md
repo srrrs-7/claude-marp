@@ -260,6 +260,8 @@ style: |
 
 # 参考文献（1/2）
 
+> *コミュニティ崩壊の理論的背景を支える3つの学術的基盤*
+
 - - **歴史・理論:**
 -   - Dave Fischer, "September that never ended" (1993)
 -   - Robin Dunbar, "Neocortex size as a constraint on group size" (1992)
@@ -269,6 +271,8 @@ style: |
 ---
 
 # 参考文献（2/2）
+
+> *コミュニティ運営の成功事例と段階的権限設計の実践的資料集*
 
 - - **事例研究:**
 -   - [Hacker News Guidelines](https://news.ycombinator.com/newsguidelines.html)

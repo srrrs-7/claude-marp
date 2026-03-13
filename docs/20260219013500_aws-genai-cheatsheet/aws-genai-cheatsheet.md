@@ -94,6 +94,8 @@ style: |
 
 # 試験構成ロードマップ
 
+> *5ドメインの出題割合と重点テーマを一枚で把握して学習優先度を決める*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
@@ -202,6 +204,8 @@ style: |
 
 # AI / ML / DL / GenAI 用語定義表
 
+> *AI/ML/DL/GenAIの定義の違いは試験で毎回問われる基礎知識*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
@@ -235,6 +239,8 @@ style: |
 ---
 
 # ML タスク種別比較表
+
+> *分類・回帰・クラスタリング・強化学習の適用シーンを表で即座に答えられる*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -273,6 +279,8 @@ style: |
 ---
 
 # 教師あり vs 教師なし vs 強化学習
+
+> *3学習パターンはアルゴリズム適用だけでなく「なぜその手法か」まで説明できる*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -316,6 +324,8 @@ style: |
 ---
 
 # トレーニング・評価指標用語集
+
+> *精度・再現率・AUC・RMSEは評価指標を「どのユースケースで使うか」セットで暗記*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -363,6 +373,8 @@ style: |
 
 # バイアス・バリアンス・過学習用語集
 
+> *バイアス・バリアンスのトレードオフと過学習防止手法3選は必須の頻出トピック*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
@@ -393,6 +405,8 @@ style: |
 ---
 
 # AWS AI サービス層別一覧表
+
+> *AIサービス3層(AI Services/SageMaker/EC2)で何を自作するかの設計判断が鍵*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -434,6 +448,8 @@ style: |
 
 # Rekognition / Comprehend / Textract 比較
 
+> *Rekognition(画像)/Comprehend(テキスト)/Textract(文書)の用途境界線を明確に*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
@@ -466,6 +482,8 @@ style: |
 ---
 
 # Transcribe / Translate / Polly 比較
+
+> *Transcribe(音声→テキスト)/Translate(翻訳)/Polly(テキスト→音声)は変換方向で覚える*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -506,6 +524,8 @@ style: |
 ---
 
 # Forecast / Personalize / Kendra 比較
+
+> *Forecast(時系列)/Personalize(推薦)/Kendra(検索)は出力の種類で使い分ける*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -613,6 +633,8 @@ style: |
 
 # 生成 AI 用語集 A — Foundation & Architecture
 
+> *Foundation/Architecture用語10選はFM選定とアーキテクチャ設計問題の基盤知識*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
@@ -651,6 +673,8 @@ style: |
 ---
 
 # 生成 AI 用語集 B — 推論・サンプリング
+
+> *Temperature/Top-P/Top-K/Stop Sequenceは推論パラメータ調整の試験頻出4択*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -697,6 +721,8 @@ style: |
 
 # 生成 AI 用語集 C — 品質・安全性
 
+> *ハルシネーション・グラウンディング・安全性フィルターはGuardrails問題の核心*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
@@ -742,6 +768,8 @@ style: |
 
 # FM 選定基準比較表
 
+> *コスト・精度・レイテンシ・コンテキスト長の4軸でFMを選定する判断表*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
@@ -773,6 +801,8 @@ style: |
 ---
 
 # Bedrock 提供 FM 一覧表（主要モデル）
+
+> *Bedrock提供FMは価格・コンテキスト長・マルチモーダルの3点で即答できる*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -815,6 +845,8 @@ style: |
 
 # Claude / Titan / Llama / Mistral 比較
 
+> *Claude/Titan/Llama/Mistralのユースケース最適化は選択問題の頻出テーマ*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
@@ -848,6 +880,8 @@ style: |
 ---
 
 # 画像生成 FM — Stability AI / Amazon Titan Image
+
+> *Stability AI(高品質生成)とAmazon Titan Image(コスト効率)の使い分けを覚える*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -891,6 +925,8 @@ style: |
 
 # 推論パラメータ一覧
 
+> *9つの推論パラメータとその効果を表で管理し設問ごとに最適値を判断する*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
@@ -926,6 +962,8 @@ style: |
 ---
 
 # プロンプト手法比較表
+
+> *Zero-shot/Few-shot/CoT/ReActの4手法は問題シナリオで正しく選択できる*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -1025,6 +1063,8 @@ style: |
 
 # Amazon Bedrock 機能一覧表
 
+> *Bedrock全機能一覧で「どの機能が何をするか」を体系的に押さえる*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
@@ -1069,6 +1109,8 @@ style: |
 ---
 
 # RAG 用語集
+
+> *RAGの9用語(Chunk/Embedding/Vector DB等)は設計問題の必須ボキャブラリー*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -1116,6 +1158,8 @@ style: |
 
 # RAG アーキテクチャ比較表
 
+> *Naive/Advanced/Modular RAGのアーキテクチャ差は本番精度に直結する選択基準*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
@@ -1148,6 +1192,8 @@ style: |
 ---
 
 # RAG vs Fine-tuning 選択表
+
+> *RAGは新鮮データ、Fine-tuningはタスク特化が判断の第一原則*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -1189,6 +1235,8 @@ style: |
 
 # Knowledge Bases for Bedrock 仕様表
 
+> *Knowledge Basesの対応データソース・ベクトルDB・チャンク設定数値を暗記*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
@@ -1224,6 +1272,8 @@ style: |
 ---
 
 # ベクトル DB 比較表
+
+> *OpenSearch/Aurora pgvector/Pinecone/MemoryDBの比較はベクトルDB選択問題の核心*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -1267,6 +1317,8 @@ style: |
 
 # 埋め込みモデル比較表
 
+> *Titan Embeddings/Cohere Embeddings の次元数と用途を比較*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
@@ -1300,6 +1352,8 @@ style: |
 ---
 
 # チャンク戦略比較表
+
+> *固定長/セマンティック/階層型チャンクの選択がRAG精度を大きく左右する*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -1338,6 +1392,8 @@ style: |
 ---
 
 # Bedrock Agents — 用語集
+
+> *Action Group/Knowledge Base/Memory/OIDC連携がAgents設計の4要素*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -1383,6 +1439,8 @@ style: |
 ---
 
 # Bedrock Agents — 設定項目一覧
+
+> *Agentsの設定項目一覧で最大ステップ数・タイムアウト・ガードレール連携を把握*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -1430,6 +1488,8 @@ style: |
 
 # Inline Agent vs 定義済み Agent 比較
 
+> *Inline Agentは動的生成、定義済みAgentは本番固定利用で使い分ける*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
@@ -1460,6 +1520,8 @@ style: |
 ---
 
 # Fine-tuning 手法比較表
+
+> *LoRA/QLoRA/Full Fine-tuningのコスト・精度・計算要件を比較して選択*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -1500,6 +1562,8 @@ style: |
 
 # Fine-tuning データ要件一覧表
 
+> *Fine-tuning最低データ数(テキスト=数百、マルチモーダル=数千)を数値で暗記*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
@@ -1535,6 +1599,8 @@ style: |
 ---
 
 # カスタマイズ手法 4 択比較表
+
+> *Fine-tuning/RAG/Continued Pre-training/In-Context Learningの4択判断表を使いこなす*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -1577,6 +1643,8 @@ style: |
 
 # Bedrock Model Evaluation 仕様
 
+> *Model EvaluationはHuman/LLM-as-judge/自動指標の3パターンを適材適所で選択*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
@@ -1611,6 +1679,8 @@ style: |
 ---
 
 # Prompt Management & Prompt Flow
+
+> *Prompt Managementでバージョン管理、Prompt FlowでノードベースAIパイプラインを設計*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -1651,6 +1721,8 @@ style: |
 
 # Bedrock Studio / Bedrock Marketplace
 
+> *Bedrock Studio(プロトタイプ向けUI)とBedrock Marketplace(サードパーティFM)の使い分け*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデルコスト比較 (per 1K tokens, 概算)</text>
@@ -1672,6 +1744,8 @@ style: |
 ---
 
 # SageMaker JumpStart vs Bedrock 選択表
+
+> *SageMaker JumpStart(MLカスタム)とBedrock(アプリ開発者向け)を使い分ける*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -1835,6 +1909,8 @@ style: |
 
 # 責任ある AI — 6 原則 AWS サービス対応表
 
+> *公平性・説明可能性・プライバシー・堅牢性・ガバナンス・透明性・安全性の7原則対応表*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
@@ -1881,6 +1957,8 @@ style: |
 
 # Bedrock Guardrails — フィルタ種別一覧
 
+> *コンテンツ/トピック/PII/ワード/グラウンディングの5フィルター種別と設定優先度*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
@@ -1912,6 +1990,8 @@ style: |
 ---
 
 # Guardrails — 設定項目と適用タイミング
+
+> *Guardrails設定は入力前・生成中・出力後の3タイミングで適用ロジックが異なる*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -1955,6 +2035,8 @@ style: |
 
 # バイアス検出・軽減手法表
 
+> *SMOTE/Adversarial Debiasing/後処理調整の3手法で段階的にバイアスを除去*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
@@ -1988,6 +2070,8 @@ style: |
 ---
 
 # Hallucination 軽減手法比較表
+
+> *RAG/低Temperature/Grounding/事実確認の4手法でハルシネーション発生率を削減*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2031,6 +2115,8 @@ style: |
 
 # PII 処理手法一覧
 
+> *Macie(S3)/Comprehend(テキスト)/Guardrails(生成時)の3層でPIIを多層処理*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
@@ -2066,6 +2152,8 @@ style: |
 ---
 
 # AI アウトプット検証手法
+
+> *ルールベース・スコアベース・LLM-as-judgeの3検証手法で出力品質を保証*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2105,6 +2193,8 @@ style: |
 ---
 
 # SageMaker Clarify — 指標一覧
+
+> *Clarify指標一覧でCI/DPL(学習前)とDPPL/DI(学習後)の使い分けを整理*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2190,6 +2280,8 @@ style: |
 
 # 共有責任モデル — AI ワークロード版
 
+> *AIワークロード版共有責任モデルでAWS管理層とユーザー管理層の境界を明確化*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
@@ -2236,6 +2328,8 @@ style: |
 
 # IAM ポリシー設計原則表
 
+> *最小権限・職務分離・MFA強制の3設計原則がIAMポリシー問題の判断軸*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
@@ -2267,6 +2361,8 @@ style: |
 ---
 
 # Bedrock IAM アクション一覧
+
+> *bedrock:InvokeModel等のアクションARNを一覧で把握して最小権限を設計*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2309,6 +2405,8 @@ style: |
 
 # VPC エンドポイント設定一覧
 
+> *VPCエンドポイント設定でBedrockトラフィックをAWSネットワーク内に閉じ込める*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
@@ -2344,6 +2442,8 @@ style: |
 ---
 
 # データ暗号化オプション表
+
+> *SSE-S3/SSE-KMS/CSEの暗号化オプション比較は試験の定番セキュリティ問題*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2388,6 +2488,8 @@ style: |
 
 # CloudTrail / CloudWatch 監査設定
 
+> *CloudTrailでAPIコール監査、CloudWatchでリアルタイムモニタリングを設定*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
@@ -2423,6 +2525,8 @@ style: |
 ---
 
 # コンプライアンスフレームワーク対応表
+
+> *HIPAA/PCI DSS/SOC2/FedRAMPのAWS対応状況はコンプライアンス問題の頻出*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2462,6 +2566,8 @@ style: |
 ---
 
 # プロンプトインジェクション対策一覧
+
+> *プロンプトインジェクション対策はGuardrails＋入力検証の組み合わせが正解*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2601,6 +2707,8 @@ style: |
 
 # テキスト生成 — ユースケース別サービス選択表
 
+> *テキスト生成のサービス選択はユースケースの規模・カスタム要件・コストで決まる*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
@@ -2646,6 +2754,8 @@ style: |
 
 # 画像生成・分析 — ユースケース別選択表
 
+> *画像生成はStability AI(クリエイティブ)かTitan Image(エンタープライズ)で選択*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
@@ -2677,6 +2787,8 @@ style: |
 ---
 
 # 音声・映像 — ユースケース別選択表
+
+> *音声はTranscribe/Polly、映像はRekognitionVideoが試験での正しい組み合わせ*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2718,6 +2830,8 @@ style: |
 
 # 検索・推薦 — ユースケース別選択表
 
+> *検索はKendra(エンタープライズ文書)かOpenSearch(テクニカル全文検索)で判断*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
@@ -2752,6 +2866,8 @@ style: |
 ---
 
 # コスト最適化 — 推論方式比較表
+
+> *オンデマンド/Provisioned Throughput/Batchの3推論方式は要件別コスト試算で選択*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2795,6 +2911,8 @@ style: |
 
 # レイテンシ要件別 FM 設定表
 
+> *レイテンシ要件に応じてModelサイズ・Provisioned Throughput・Cachingを設定*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
@@ -2830,6 +2948,8 @@ style: |
 ---
 
 # コンテキスト長別 FM 選択表
+
+> *コンテキスト長はClaude 200K・Titan 32K・Llama 128Kを数値で瞬時に答える*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2869,6 +2989,8 @@ style: |
 ---
 
 # マルチモーダル対応 FM 一覧
+
+> *マルチモーダル対応FMはClaude 3/Titan Multimodal/Llama Vision系に限定される*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2913,6 +3035,8 @@ style: |
 ---
 
 # オンプレ vs AWS クラウド AI 比較表
+
+> *オンプレAIはデータ主権・初期投資・運用負荷の3点でAWSクラウドと比較*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -2959,6 +3083,8 @@ style: |
 
 # Bedrock vs SageMaker vs EC2 判断表
 
+> *Bedrock(API優先)・SageMaker(カスタム学習)・EC2(最大制御)の3択判断*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
@@ -3001,6 +3127,8 @@ style: |
 
 # FM コンテキスト長一覧表
 
+> *FMコンテキスト長の数値(8K/32K/128K/200K)は試験で直接問われる暗記必須事項*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
@@ -3042,6 +3170,8 @@ style: |
 
 # Bedrock クォータ・制限値表
 
+> *Bedrockクォータ(同時リクエスト数・トークン/分)は上限緩和申請が必要なケースを把握*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
@@ -3077,6 +3207,8 @@ style: |
 ---
 
 # Fine-tuning データ要件数値表
+
+> *Fine-tuningは最低数百〜数千件の高品質データが必要、数値を問題で使い回す*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -3121,6 +3253,8 @@ style: |
 
 # 埋め込みベクトル次元数一覧
 
+> *埋め込みベクトルの次元数(1024/1536等)はベクトルDB設計問題で索引サイズに直結*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
@@ -3156,6 +3290,8 @@ style: |
 ---
 
 # SageMaker インスタンスタイプ比較
+
+> *p3(学習)/g4dn(推論)/Inferentia(低コスト推論)のインスタンス選択は試験の定番問題*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -3194,6 +3330,8 @@ style: |
 ---
 
 # S3 / KMS / CloudTrail 制限値表
+
+> *S3/KMS/CloudTrailの制限値は上限に引っかかるシナリオ問題でよく出題される*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -3250,6 +3388,8 @@ style: |
 
 # RAG vs Fine-tuning — 誤選択パターン
 
+> *RAGはデータ鮮度、Fine-tuningはタスク特化：この原則を守れば誤選択問題は消える*
+
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
@@ -3294,6 +3434,8 @@ style: |
 ---
 
 # Bedrock vs SageMaker — 誤選択パターン
+
+> *Bedrock(マネージドAPI)とSageMaker(学習/推論カスタム)の誤選択は1行の要件差で判断*
 
 - <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="220" fill="#1a1a2e"/>
@@ -3507,6 +3649,8 @@ style: |
 
 # Domain 1 — セルフチェック（1/2）
 
+> *Domain 1セルフチェックQ1でML種類と評価指標の理解を自己採点*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding モデル — ベクトル化フロー</text>
@@ -3565,6 +3709,8 @@ style: |
 
 # Domain 2–3 — セルフチェック（1/2）
 
+> *Domain 2-3セルフチェックでFM/RAG/Agentsの理解度をQ形式で確認*
+
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">推論パラメータ ビジュアルガイド</text>
@@ -3612,6 +3758,8 @@ style: |
 ---
 
 # Domain 4–5 — セルフチェック（1/2）
+
+> *Domain 4-5セルフチェックで責任あるAI・セキュリティ問題の解答精度を測定*
 
 - <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
 <rect width="800" height="400" fill="#1a1a2e"/>

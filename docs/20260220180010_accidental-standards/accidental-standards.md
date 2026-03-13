@@ -96,6 +96,8 @@ style: |
 
 # ポート80番はなぜ80か
 
+> *1991年の恣意的な番号選択が毎秒数十億リクエストを処理する世界標準になった*
+
 - - Tim Berners-Lee が1991年にほぼ恣意的に選択
 - - 当時の空きポートの中から「覚えやすい」番号を採用
 - - IANA（番号割り当て機関）への登録は先着順
@@ -160,6 +162,8 @@ style: |
 
 # UTF-8 — ナプキンに描かれた天才設計
 
+> *1992年にレストランで20分設計した可変長方式がWeb全体98%の文字コード標準になった*
+
 - <svg viewBox='0 0 800 200' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>UTF-8 可変長エンコーディング</text><rect x='40' y='50' width='340' height='50' rx='8' fill='#2d5016'/><text x='60' y='72' fill='#4ecdc4' font-size='12' font-weight='bold'>ASCII文字 (U+0000〜U+007F)</text><text x='60' y='91' fill='#fff' font-size='11' font-family='monospace'>0xxxxxxx  →  1バイト (128文字)</text><rect x='40' y='110' width='340' height='50' rx='8' fill='#1b4332'/><text x='60' y='130' fill='#a9d6e5' font-size='12' font-weight='bold'>日本語・漢字 (U+0800〜U+FFFF)</text><text x='60' y='149' fill='#fff' font-size='11' font-family='monospace'>1110xxxx 10xxxxxx 10xxxxxx  →  3バイト</text><rect x='420' y='50' width='340' height='110' rx='8' fill='#16213e' stroke='#e91e63' stroke-width='2'/><text x='590' y='75' text-anchor='middle' fill='#e91e63' font-size='13' font-weight='bold'>天才的な設計の核心</text><text x='590' y='100' text-anchor='middle' fill='#aaa' font-size='10'>1バイト目で長さがわかる</text><text x='590' y='118' text-anchor='middle' fill='#aaa' font-size='10'>ASCIIと完全互換</text><text x='590' y='136' text-anchor='middle' fill='#aaa' font-size='10'>同期復帰が容易</text><text x='590' y='154' text-anchor='middle' fill='#f9a825' font-size='10'>1992年、ナプキンに20分で設計</text><text x='400' y='185' text-anchor='middle' fill='#4ecdc4' font-size='11'>Web全体の98%が採用 — 文字コード戦争を終わらせた</text></svg>
 - - 1992年: Ken Thompson と Rob Pike がレストランで設計
 - - 要件: ASCIIとの完全な後方互換性を保つUnicode符号化
@@ -219,6 +223,8 @@ style: |
 ---
 
 # 現在進行形の偶然
+
+> *JSON・REST・WebSocketはすべて意図せず標準化された。OpenAI API形式も同じ道を歩む*
 
 - <svg viewBox='0 0 800 180' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='180' fill='#1a1a2e' rx='12'/><text x='400' y='25' text-anchor='middle' fill='#f9a825' font-size='13' font-weight='bold'>偶然生まれた標準のタイムライン</text><line x1='60' y1='75' x2='760' y2='75' stroke='#444' stroke-width='2'/><circle cx='120' cy='75' r='8' fill='#e91e63'/><text x='120' y='55' text-anchor='middle' fill='#e91e63' font-size='11' font-weight='bold'>2000</text><text x='120' y='100' text-anchor='middle' fill='#fff' font-size='10'>REST</text><text x='120' y='115' text-anchor='middle' fill='#aaa' font-size='9'>博士論文が</text><text x='120' y='128' text-anchor='middle' fill='#aaa' font-size='9'>標準に</text><circle cx='280' cy='75' r='8' fill='#f9a825'/><text x='280' y='55' text-anchor='middle' fill='#f9a825' font-size='11' font-weight='bold'>2001</text><text x='280' y='100' text-anchor='middle' fill='#fff' font-size='10'>JSON</text><text x='280' y='115' text-anchor='middle' fill='#aaa' font-size='9'>既存構文を</text><text x='280' y='128' text-anchor='middle' fill='#aaa' font-size='9'>「発見」</text><circle cx='480' cy='75' r='8' fill='#4ecdc4'/><text x='480' y='55' text-anchor='middle' fill='#4ecdc4' font-size='11' font-weight='bold'>2011</text><text x='480' y='100' text-anchor='middle' fill='#fff' font-size='10'>WebSocket</text><text x='480' y='115' text-anchor='middle' fill='#aaa' font-size='9'>HTTP限界を</text><text x='480' y='128' text-anchor='middle' fill='#aaa' font-size='9'>後付け回避</text><circle cx='660' cy='75' r='10' fill='#a78bfa'/><text x='660' y='55' text-anchor='middle' fill='#a78bfa' font-size='11' font-weight='bold'>2022〜</text><text x='660' y='100' text-anchor='middle' fill='#fff' font-size='10'>LLM API</text><text x='660' y='115' text-anchor='middle' fill='#aaa' font-size='9'>OpenAI形式が</text><text x='660' y='128' text-anchor='middle' fill='#aaa' font-size='9'>デファクトに</text><text x='400' y='165' text-anchor='middle' fill='#888' font-size='10'>すべて「意図しない標準化」— 設計より普及速度が勝った</text></svg>
 - - **JSON** (2001): Douglas CrockfordがJavaScriptの既存構文を「発見」

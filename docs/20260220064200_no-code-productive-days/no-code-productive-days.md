@@ -290,6 +290,8 @@ style: |
 
 # 参考文献
 
+> *DORA/SPACE/Being Glue—ノーコード価値を裏付ける4文献*
+
 - - **研究:**
 - - Forsgren, N. et al. "Accelerate" (2018) - DORA指標
 - - Forsgren, N. et al. "The SPACE of Developer Productivity" (2021)

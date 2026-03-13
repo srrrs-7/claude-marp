@@ -94,6 +94,8 @@ style: |
 
 # Agenda
 
+> *6章構成で菌糸×P2Pの設計哲学を体系的に学ぶ*
+
 - - 1. 菌糸ネットワーク（Wood Wide Web）とは
 - - 2. P2P分散システムの基礎
 - - 3. 情報伝達：化学シグナル vs Gossip Protocol

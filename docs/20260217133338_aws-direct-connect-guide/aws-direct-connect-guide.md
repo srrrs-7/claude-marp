@@ -394,6 +394,8 @@ style: |
 
 # Dedicated vs Hosted 比較表
 
+> *帯域・コスト・プロビジョニング速度の3軸でDedicatedとHostedを選ぶ*
+
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Dedicated vs Hosted 比較</text>
   <rect x="30" y="65" width="340" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -624,6 +626,8 @@ Connect</text>
 
 # VLAN タグと BGP セッション（1/2）
 
+> *VLANタグとBGPセッションがVIF論理分離の2つのキー技術*
+
 - <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VLAN タグと BGP セッション</text>
   <rect x="30" y="75" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -669,6 +673,8 @@ VLAN 分離</text>
 ---
 
 # VIF 作成時のパラメータ
+
+> *VLAN ID・BGP ASN・プレフィックス・認証キーの4項目が必須パラメータ*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF 作成時の主要パラメータ</text>
@@ -745,6 +751,8 @@ VLAN 分離</text>
 ---
 
 # VIF 種別 完全比較表
+
+> *3種VIFは接続先・BGP ASN・許可プレフィックスの組み合わせで選択*
 
 - <svg viewBox="0 0 800 310" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="310" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF 種別 完全比較</text>
@@ -963,6 +971,8 @@ VLAN 分離</text>
 ---
 
 # Private VIF + VGW 構成パターン（1/2）
+
+> *Private VIF + VGWパターンはシンプルなVPC単体接続に最適な構成*
 
 - **単一 VPC 接続（最もシンプルな構成）**
 - - DX → Private VIF → VGW → VPC
@@ -1253,6 +1263,8 @@ CloudFront ...</text>
 
 # Public VIF の BGP ルーティング（1/2）
 
+> *Public VIF BGPはパブリックIPプレフィックスのみ広告、RFC1918は不可*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF BGP 経路制御</text>
   <rect x="30" y="75" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1295,6 +1307,8 @@ CloudFront ...</text>
 ---
 
 # Public VIF のユースケース（1/2）
+
+> *SaaS接続・S3直結・パブリックサービス連携の3シーンがユースケース*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF ユースケース</text>
@@ -1420,6 +1434,8 @@ CloudFront ...</text>
 ---
 
 # Transit Gateway (TGW) の基礎（1/2）
+
+> *TGWはスポーク型でVPC・VPN・DXを一括接続、ハブ役として機能*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">Transit Gateway — ハブ & スポーク</text>
@@ -1634,6 +1650,8 @@ CloudFront ...</text>
 
 # TGW ピアリングとの組合せ（1/2）
 
+> *TGWピアリングとDX Gatewayを組み合わせ、クロスリージョン接続を実現*
+
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">TGW ピアリングとの組合せ</text>
   <rect x="30" y="80" width="150" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1712,6 +1730,8 @@ Peering</text>
 ---
 
 # Private VIF vs Transit VIF 詳細比較
+
+> *スケール・コスト・BGP設定の複雑さでPrivate VIFとTransit VIFを選択*
 
 - <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Private VIF vs Transit VIF 詳細比較</text>
@@ -1967,6 +1987,8 @@ Peering</text>
 
 # 許可プレフィックスとルーティング（1/2）
 
+> *許可プレフィックスの設定ミスがBGPセッション断の最多原因*
+
 - <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">許可プレフィックスとルーティング制御</text>
   <rect x="30" y="75" width="200" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2081,6 +2103,8 @@ Peering</text>
 
 # DX Gateway 構成パターン比較
 
+> *Single VGW/Transit Gateway/DX GW構成の選択基準は接続VPC数で判断*
+
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway 構成パターン比較</text>
   <rect x="30" y="70" width="220" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
@@ -2156,6 +2180,8 @@ Peering</text>
 ---
 
 # AWS 推奨の冗長化モデル
+
+> *AWS推奨の最大冗長化モデルは2ロケーション×2ポートの4接続構成*
 
 - <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">AWS 推奨 冗長化モデル比較</text>
@@ -2289,6 +2315,8 @@ Peering</text>
 ---
 
 # 開発・テスト環境の冗長化（1/2）
+
+> *テスト環境はVPN Backup + 1DXで本番の1/3コストで開発品質を確保*
 
 - <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">開発・テスト環境の冗長化</text>
@@ -2437,6 +2465,8 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 ---
 
 # 移行戦略: VPN → DX（1/2）
+
+> *VPN→DX移行は並行運用期間を設け、BGP切り替えでゼロダウンタイム*
 
 - <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VPN → DX 移行ステップ</text>

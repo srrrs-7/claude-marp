@@ -448,7 +448,8 @@
 				"| 試験TIP | IRSA = OIDCベース | Pod Identity = 新方式 |",
 				"→ 新規は Pod Identity、既存は IRSA で問題なし（移行は任意）"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "Pod Identity(OIDC不要・シンプル)とIRSA(既存資産継続)の使い分けで迷わない"
 		},
 		{
 			"title": "OIDC IdP 設定と確認",
@@ -529,7 +530,8 @@
 				"② `exec` verb はPodへのシェル接続権限 → 最小化必須",
 				"③ aws-authのmapRoles groupsが K8s RBACのGroupに対応"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "RBAC頻出前半5選でClusterRole/Role/Binding/ClusterAdmin権限の違いを習得"
 		},
 		{
 			"title": "RBAC 試験頻出ポイント 10選（2/2）",
@@ -618,7 +620,8 @@
 				"| 推奨 | 小規模・開発環境 | **本番環境** |",
 				"→ 試験TIP: 「Pythonライブラリの脆弱性を継続監視」→ 拡張スキャン"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ECR拡張スキャン(Inspector v2統合)で基本スキャンより詳細なCVSS評価が可能"
 		},
 		{
 			"title": "ECR 拡張スキャン（Inspector V2）設定",
@@ -941,7 +944,8 @@
 				"| ログ | awslogs / FireLens | FireLens / Fluent Bit |",
 				"→ 試験TIP: 「KubernetesをマネージドでサーバーレスにしたEKSで実行」→ EKS Fargate"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "ECS Fargate(シンプル管理)とEKS Fargate(K8s機能フル活用)の選択はオーケストレーション要件"
 		},
 		{
 			"title": "Fargate セキュリティチェックリスト",
@@ -1048,7 +1052,8 @@
 				"| Fargate対応 | ✅ | ❌（不要、デフォルトENI分離） |",
 				"→ 試験TIP: 「Pod→RDS間のSG制御」→ SGP、「NS間通信制御」→ Network Policy"
 			],
-			"layout": "default"
+			"layout": "default",
+			"subtitle": "SGP(L4ステートフル・AWS統合)とNetwork Policy(K8sネイティブ)を組み合わせる"
 		},
 		{
 			"title": "EKS プライベートエンドポイント設定",

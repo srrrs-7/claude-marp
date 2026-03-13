@@ -93,6 +93,8 @@ style: |
 
 # アジェンダ
 
+> *OAuth2コアからFAPI 2.0まで7章・実装からAWS統合まで体系的に解説*
+
 - **① OAuth2 コアフロー** — 全フロー・全パラメータ・トークン戦略
 - **② OIDC 詳解** — Discovery・ID Token・セッション管理・ログアウト
 - **③ セキュリティ拡張仕様** — DPoP・PAR・RAR・JARM・FAPI 2.0
@@ -233,7 +235,7 @@ authParams.code_challenge_method = 'S256';
 
 # クライアントクレデンシャルフロー (RFC 6749 §4.4) — M2M 認証
 
-> *ベストプラクティスの体系的適用が設計リスクを大幅に低減し運用コストを削減する*
+> *M2M通信にはクライアントクレデンシャルフロー一択でprivate_key_jwtが推奨*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
@@ -326,7 +328,7 @@ grant_type=client_credentials&scope=payments:write
 
 # トークンエンドポイント — grant_type 別パラメータ詳解
 
-> *PrivateLinkはトラフィックをAWSバックボーンに閉じてデータ漏洩リスクを根絶する*
+> *grant_typeで動作が変わるトークンエンドポイントの仕様を完全に把握する*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">トークンエンドポイント — grant_type 別パラメータ</text>
@@ -665,6 +667,8 @@ token=def50200...&token_type_hint=refresh_token
 
 # Discovery ドキュメント — /.well-known/openid-configuration（コード例）
 
+> *Discovery documentでOIDCクライアントの設定自動化とURLハードコードを排除する*
+
 ```json
 {
   "issuer": "https://auth.example.com",
@@ -782,7 +786,7 @@ token=def50200...&token_type_hint=refresh_token
 
 # UserInfo エンドポイント — スコープとクレームマッピング
 
-> *PrivateLinkはトラフィックをAWSバックボーンに閉じてデータ漏洩リスクを根絶する*
+> *OIDCクレームはユーザー属性の標準化された表現でSSOを実現する鍵*
 
 - **認証**: Bearer `access_token`（scope に `openid` が必要）
 - **スコープ → クレーム**: `profile` → name/picture/locale、`email` → email/email_verified
@@ -813,7 +817,7 @@ Authorization: Bearer eyJhbGc...
 
 # OIDC セッション管理 — check_session_iframe
 
-> *OIDCはOAuth2上にアイデンティティ層を追加しフェデレーション認証を標準化する*
+> *OAuth2とOIDCの責務分離が認証基盤の堅牢性と相互運用性を決定する*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OIDC セッション管理 — check_session_iframe</text>
@@ -846,7 +850,7 @@ Authorization: Bearer eyJhbGc...
 
 # Front-Channel Logout — iframe ブロードキャスト
 
-> *この内容の正確な理解が実装品質とセキュリティ体制を根本から強化する*
+> *OAuth2とOIDCの責務分離が認証基盤の堅牢性と相互運用性を決定する*
 
 - **動作**: OP が全 RP の `frontchannel_logout_uri` を iframe で呼び出しセッション削除
 - **`iss` / `sid`**: ログアウト URI に付加。複数セッション時の正確な特定に使用
@@ -903,7 +907,7 @@ https://rp.example.com/logout
 
 # RP-Initiated Logout — エンドユーザー主導ログアウト
 
-> *すべての要件を満たすことが本番環境での安全な運用を保証する唯一の方法*
+> *OAuth2とOIDCの責務分離が認証基盤の堅牢性と相互運用性を決定する*
 
 - **動作**: RP が OP の `end_session_endpoint` にリダイレクトしてログアウト要求
 - **`id_token_hint`**: OP がユーザーを確認するために推奨（必須ではない）
@@ -932,7 +936,7 @@ https://<domain>.auth.ap-northeast-1.amazoncognito.com/logout
 
 # カスタムクレーム設計 — ネームスペースと外部 IdP マッピング
 
-> *すべての要件を満たすことが本番環境での安全な運用を保証する唯一の方法*
+> *OIDCクレームはユーザー属性の標準化された表現でSSOを実現する鍵*
 
 - **ネームスペース必須**: `https://` URI プレフィックスで標準クレームとの衝突防止
 - **Cognito**: `Pre Token Generation` Lambda Trigger でクレームを追加・変換
@@ -1055,7 +1059,7 @@ exports.handler = async (event) => {
 
 # RAR — Rich Authorization Requests (RFC 9396) — 精緻な認可要求
 
-> *AIによる医療診断と創薬加速が数百万人規模の命を救う可能性を持つ*
+> *OAuth2とOIDCの責務分離が認証基盤の堅牢性と相互運用性を決定する*
 
 - **目的**: `scope` 文字列では表現不可能な複雑な認可詳細を構造化 JSON で送信
 - **`authorization_details`**: 型 (`type`) + 対象リソース + アクション + 金額等を指定
@@ -1116,7 +1120,7 @@ GET /callback?response=eyJhbGciOiJSUzI1NiJ9...
 
 # OAuth2 + mTLS クライアント認証 (RFC 8705) — 証明書バインドトークン
 
-> *OAuth2の認可フロー選択がセキュリティとユーザー体験の両立を決める*
+> *OIDCクレームはユーザー属性の標準化された表現でSSOを実現する鍵*
 
 - <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OAuth2 + mTLS クライアント認証 (RFC 8705)</text>
