@@ -9,8 +9,7 @@
  */
 
 import { Glob } from "bun";
-
-const MAX_BULLETS = 7;
+import { MAX_BULLET_CHARS } from "./lib/constants.js";
 
 interface Slide {
 	title?: string;
@@ -43,7 +42,7 @@ function splitBullets(slides: Slide[]): {
 			(c) => c.startsWith("|") || c.startsWith("!["),
 		);
 
-		if (bullets.length > MAX_BULLETS) {
+		if (bullets.length > MAX_BULLET_CHARS) {
 			splitCount++;
 			const mid = Math.floor(bullets.length / 2);
 
@@ -91,6 +90,29 @@ async function processFile(filePath: string): Promise<number> {
 			console.log(
 				`✅ ${dirName}: split ${splitCount} slides (${original} → ${slides.length})`,
 			);
+
+			// Update slides.count in config to reflect new slide count
+			const configPath = filePath.replace(
+				"slides-data.json",
+				"slides.config.yaml",
+			);
+			if (await Bun.file(configPath).exists()) {
+				try {
+					const { parse: parseYaml, stringify: stringifyYaml } = await import(
+						"yaml"
+					);
+					const configText = await Bun.file(configPath).text();
+					const config = parseYaml(configText) as Record<string, unknown>;
+					if (config.slides && typeof config.slides === "object") {
+						(config.slides as Record<string, unknown>).count = slides.length;
+					} else {
+						config.slides = { count: slides.length };
+					}
+					await Bun.write(configPath, stringifyYaml(config));
+				} catch {
+					// Config update is best-effort — don't fail the split
+				}
+			}
 		}
 
 		return splitCount;

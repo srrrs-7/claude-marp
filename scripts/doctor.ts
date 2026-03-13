@@ -76,12 +76,12 @@ async function checkToolchain() {
 		warn("biome not available — run: bun install");
 	}
 
-	// python3 (deprecated — split scripts are now TypeScript)
-	const py = await run("python3 --version");
-	if (py.code === 0) {
-		ok(`${py.out} (python3 available)`);
+	// split-slides.ts (TypeScript replacement for Python split scripts)
+	const { existsSync } = await import("node:fs");
+	if (existsSync("scripts/split-slides.ts")) {
+		ok("split-slides.ts available (--mode bullets | --mode code)");
 	} else {
-		ok("python3 not found — not needed (split scripts are TypeScript now)");
+		warn("scripts/split-slides.ts not found — split commands will fail");
 	}
 }
 

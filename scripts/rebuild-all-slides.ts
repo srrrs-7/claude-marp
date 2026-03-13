@@ -13,14 +13,14 @@
  *   - Render step runs in parallel (RENDER_PARALLEL concurrent jobs).
  *     Each deck writes to its own output dir → no conflicts.
  *   - Export is always sequential (Marp CLI internal cache constraint).
- *   - Incremental: MD5 hash of config+data cached in .cache/rebuild/
+ *   - Incremental: mtime/size cache stored in .cache/rebuild/build-cache.json
  */
 
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { resolve } from "node:path";
+import { existsSync } from "node:fs";
 import { Glob } from "bun";
 import { c } from "./lib/colors.js";
 import { RENDER_PARALLEL } from "./lib/constants.js";
+import { isFresh, readCache, updateEntry, writeCache } from "./lib/cache.js";
 import { run } from "./lib/spawn.js";
 
 // ---------------------------------------------------------------------------
@@ -40,22 +40,6 @@ function parseArgs(): { mode: Mode; force: boolean } {
 }
 
 // ---------------------------------------------------------------------------
-// Hash
-// ---------------------------------------------------------------------------
-
-async function hashDeck(dir: string): Promise<string> {
-	const configPath = `${dir}/slides.config.yaml`;
-	const dataPath = `${dir}/slides-data.json`;
-	const proc = Bun.spawn(["md5sum", configPath, dataPath], {
-		stdout: "pipe",
-		stderr: "pipe",
-	});
-	const out = await new Response(proc.stdout).text();
-	await proc.exited;
-	return out.replace(/\s+/g, "");
-}
-
-// ---------------------------------------------------------------------------
 // Counters
 // ---------------------------------------------------------------------------
 
@@ -72,8 +56,8 @@ interface Counters {
 // ---------------------------------------------------------------------------
 
 const { mode, force } = parseArgs();
-const cacheDir = ".cache/rebuild";
-mkdirSync(cacheDir, { recursive: true });
+const CACHE_FILE = ".cache/rebuild/build-cache.json";
+const cache = readCache(CACHE_FILE);
 
 console.log(c.blue("=== Rebuild All Slides ==="));
 console.log(
@@ -112,18 +96,15 @@ for (const dir of allDirs) {
 		continue;
 	}
 
-	const currentHash = await hashDeck(dir.replace(/\/$/, ""));
-	const cacheKey = dirName.replace(/\//g, "_");
-	const cacheFile = `${cacheDir}/${cacheKey}.hash`;
-
-	if (!force && existsSync(cacheFile)) {
-		const cached = readFileSync(cacheFile, "utf-8").trim();
-		if (cached === currentHash) {
-			console.log(`  ${c.yellow(`⊘ Cached: ${dirName}`)}`);
-			counters.cached++;
-			counters.success++;
-			continue;
-		}
+	if (
+		!force &&
+		(await isFresh(configFile, cache)) &&
+		(await isFresh(dataFile, cache))
+	) {
+		console.log(`  ${c.yellow(`⊘ Cached: ${dirName}`)}`);
+		counters.cached++;
+		counters.success++;
+		continue;
 	}
 
 	if (mode === "all" || mode === "render") dirsToRender.push(dir);
@@ -189,14 +170,12 @@ if (dirsToRender.length > 0) {
 		}
 	}
 
-	// Save render-only hashes
+	// Save render-only cache entries
 	if (mode === "render") {
 		for (const dir of dirsToRender) {
 			if (!renderFailed.has(dir)) {
-				const dirName = dir.replace(/\/$/, "").split("/").pop() ?? dir;
-				const cacheKey = dirName.replace(/\//g, "_");
-				const hash = await hashDeck(dir.replace(/\/$/, ""));
-				writeFileSync(`${cacheDir}/${cacheKey}.hash`, hash);
+				await updateEntry(`${dir}slides.config.yaml`, cache);
+				await updateEntry(`${dir}slides-data.json`, cache);
 				counters.success++;
 			}
 		}
@@ -249,10 +228,10 @@ if (filteredExport.length > 0) {
 		if (result.code === 0) {
 			console.log(`  ${c.green("✓ Done")}`);
 
-			// Save cache hash
-			const cacheKey = dirName.replace(/\//g, "_");
-			const hash = await hashDeck(dir.replace(/\/$/, ""));
-			writeFileSync(`${cacheDir}/${cacheKey}.hash`, hash);
+			// Update cache entries
+			await updateEntry(configFile, cache);
+			const dataFile = `${dir}slides-data.json`;
+			await updateEntry(dataFile, cache);
 			counters.success++;
 		} else {
 			console.log(`  ${c.red(`✗ Export failed: ${dirName}`)}`);
@@ -271,6 +250,9 @@ if (filteredExport.length > 0) {
 		console.log();
 	}
 }
+
+// Persist updated cache to disk
+await writeCache(CACHE_FILE, cache);
 
 // ---------------------------------------------------------------------------
 // Summary

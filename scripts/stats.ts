@@ -52,7 +52,7 @@ const exportFormat = (() => {
 
 if (decks.length === 0) {
 	console.log("No presentations found in docs/");
-	process.exit(0);
+	process.exit(EXIT.SUCCESS);
 }
 
 // Aggregates

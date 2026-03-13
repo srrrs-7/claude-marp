@@ -12,6 +12,7 @@
  */
 
 import { Glob } from "bun";
+// MAX_BULLET_CHARS is available from "./lib/constants.js" for future use in overflow checks.
 
 interface Slide {
 	title?: string;
@@ -81,6 +82,30 @@ async function processFile(filePath: string): Promise<boolean> {
 		await Bun.write(filePath, JSON.stringify(data, null, 2));
 		console.log(`  ✅ Split ${splitCount} slides`);
 		console.log(`  📊 ${originalCount} → ${slides.length} slides\n`);
+
+		// Update slides.count in config to reflect new slide count
+		const configPath = filePath.replace(
+			"slides-data.json",
+			"slides.config.yaml",
+		);
+		if (await Bun.file(configPath).exists()) {
+			try {
+				const { parse: parseYaml, stringify: stringifyYaml } = await import(
+					"yaml"
+				);
+				const configText = await Bun.file(configPath).text();
+				const config = parseYaml(configText) as Record<string, unknown>;
+				if (config.slides && typeof config.slides === "object") {
+					(config.slides as Record<string, unknown>).count = slides.length;
+				} else {
+					config.slides = { count: slides.length };
+				}
+				await Bun.write(configPath, stringifyYaml(config));
+			} catch {
+				// Config update is best-effort — don't fail the split
+			}
+		}
+
 		return true;
 	} catch (err) {
 		console.error(

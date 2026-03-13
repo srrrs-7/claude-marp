@@ -1,8 +1,17 @@
 /**
- * Thin Presentation model.
+ * Thin Presentation model — type-safe, validated deck loader.
  *
  * Encapsulates a deck's config + slides as a single unit, providing
  * load/save operations with atomic writes to prevent data loss.
+ *
+ * Use this model in scripts that need to read AND write slides-data.json
+ * with full Zod validation. For read-only analytics, use
+ * scripts/lib/presentation-loader.ts instead (faster, no validation).
+ *
+ * Example:
+ *   const pres = await loadPresentation("docs/20260101_my-deck");
+ *   pres.slides = pres.slides.filter(s => s.layout !== "section");
+ *   await savePresentation(pres);
  */
 
 import { rename } from "node:fs/promises";

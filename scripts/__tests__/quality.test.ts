@@ -11,6 +11,7 @@ import {
 	estimateMins,
 	hasSvg,
 	isAssertive,
+	validateSlideQuality,
 } from "../lib/quality.js";
 
 describe("isAssertive", () => {
@@ -146,5 +147,195 @@ describe("estimateMins language parameter", () => {
 		const chars = READING_SPEED_EN; // exactly 1 minute at EN speed
 		const slide = { title: "a".repeat(chars), content: [] };
 		expect(estimateMins([slide], "en")).toBe(1);
+	});
+});
+
+describe("validateSlideQuality", () => {
+	test("returns empty array for ideal slide", () => {
+		const slides = [
+			{
+				title: "このアーキテクチャが99.9%可用性を保証する理由",
+				layout: "default" as const,
+				content: ["![diagram](assets/d.svg)"],
+				subtitle: "key insight here",
+				speakerNotes: "explain why this matters",
+			},
+		];
+		const warnings = validateSlideQuality(slides);
+		// Should have no label_title, long_bullet, or missing_subtitle
+		expect(warnings.filter((w) => w.type === "label_title")).toHaveLength(0);
+		expect(warnings.filter((w) => w.type === "long_bullet")).toHaveLength(0);
+		expect(warnings.filter((w) => w.type === "missing_subtitle")).toHaveLength(
+			0,
+		);
+	});
+
+	test("flags label titles on content slides", () => {
+		const slides = [
+			{
+				title: "まとめ",
+				layout: "default" as const,
+				content: ["item"],
+				speakerNotes: "notes",
+			},
+		];
+		const warnings = validateSlideQuality(slides);
+		expect(warnings.some((w) => w.type === "label_title")).toBe(true);
+	});
+
+	test("does not flag label titles on section slides", () => {
+		const slides = [
+			{
+				title: "まとめ",
+				layout: "section" as const,
+				content: [],
+			},
+		];
+		const warnings = validateSlideQuality(slides);
+		expect(warnings.some((w) => w.type === "label_title")).toBe(false);
+	});
+
+	test("flags bullets exceeding MAX_BULLET_CHARS", () => {
+		const longBullet = "a".repeat(80);
+		const slides = [
+			{
+				title: "有効なアサーティブなタイトルです",
+				layout: "default" as const,
+				content: [longBullet],
+				speakerNotes: "notes",
+			},
+		];
+		const warnings = validateSlideQuality(slides);
+		expect(warnings.some((w) => w.type === "long_bullet")).toBe(true);
+	});
+
+	test("does not flag table rows as long bullets", () => {
+		const slides = [
+			{
+				title: "比較表でコスト削減効果を示す",
+				layout: "default" as const,
+				content: [
+					"| Header 1 | Header 2 | Header 3 | Header 4 | Header 5 |",
+					"| --- | --- | --- | --- | --- |",
+					"| a".repeat(20) + " |",
+				],
+				speakerNotes: "notes",
+			},
+		];
+		const warnings = validateSlideQuality(slides);
+		expect(warnings.some((w) => w.type === "long_bullet")).toBe(false);
+	});
+
+	test("flags missing subtitle on dense text slides (4+ bullets)", () => {
+		const slides = [
+			{
+				title: "このシステムが高速である4つの理由",
+				layout: "default" as const,
+				content: ["item 1", "item 2", "item 3", "item 4"],
+				speakerNotes: "notes",
+				// no subtitle
+			},
+		];
+		const warnings = validateSlideQuality(slides);
+		expect(warnings.some((w) => w.type === "missing_subtitle")).toBe(true);
+	});
+
+	test("does not flag missing subtitle when SVG present", () => {
+		const slides = [
+			{
+				title: "このアーキテクチャが安全な理由",
+				layout: "default" as const,
+				content: ["item 1", "item 2", "item 3", "item 4", "![d](assets/d.svg)"],
+				speakerNotes: "notes",
+			},
+		];
+		const warnings = validateSlideQuality(slides);
+		expect(warnings.some((w) => w.type === "missing_subtitle")).toBe(false);
+	});
+
+	test("flags consecutive text-only slides (3+)", () => {
+		const slides = Array.from({ length: 4 }, (_, i) => ({
+			title: `スライド${i + 1}で重要な主張を述べる`,
+			layout: "default" as const,
+			content: ["text only"],
+			speakerNotes: "notes",
+		}));
+		const warnings = validateSlideQuality(slides);
+		expect(warnings.some((w) => w.type === "consecutive_text")).toBe(true);
+	});
+
+	test("resets consecutive text counter after SVG slide", () => {
+		const slides = [
+			{
+				title: "主張1を述べる",
+				layout: "default" as const,
+				content: ["text"],
+				speakerNotes: "n",
+			},
+			{
+				title: "主張2を述べる",
+				layout: "default" as const,
+				content: ["text"],
+				speakerNotes: "n",
+			},
+			{
+				title: "図解で主張を示す",
+				layout: "default" as const,
+				content: ["![d](assets/d.svg)"],
+				speakerNotes: "n",
+			},
+			{
+				title: "主張3を述べる",
+				layout: "default" as const,
+				content: ["text"],
+				speakerNotes: "n",
+			},
+			{
+				title: "主張4を述べる",
+				layout: "default" as const,
+				content: ["text"],
+				speakerNotes: "n",
+			},
+		];
+		const warnings = validateSlideQuality(slides);
+		expect(warnings.some((w) => w.type === "consecutive_text")).toBe(false);
+	});
+
+	test("flags missing speaker notes on content slides", () => {
+		const slides = [
+			{
+				title: "このデータが重要な理由",
+				layout: "default" as const,
+				content: ["some content"],
+				// no speakerNotes
+			},
+		];
+		const warnings = validateSlideQuality(slides);
+		expect(warnings.some((w) => w.type === "missing_notes")).toBe(true);
+	});
+
+	test("flags weak narrative for deck with <60% assertive titles", () => {
+		const slides = Array.from({ length: 10 }, (_, i) => ({
+			title: i < 7 ? "まとめ" : "この結果が重要な理由を説明する",
+			layout: "default" as const,
+			content: ["content"],
+			speakerNotes: "notes",
+		}));
+		const warnings = validateSlideQuality(slides);
+		expect(warnings.some((w) => w.type === "weak_narrative")).toBe(true);
+	});
+
+	test("slideIndex in warnings is 1-based", () => {
+		const slides = [
+			{
+				title: "まとめ",
+				layout: "default" as const,
+				content: ["x"],
+				speakerNotes: "n",
+			},
+		];
+		const warnings = validateSlideQuality(slides);
+		const w = warnings.find((w) => w.type === "label_title");
+		expect(w?.slideIndex).toBe(1);
 	});
 });

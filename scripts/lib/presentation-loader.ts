@@ -68,7 +68,10 @@ export async function collectPresentations(): Promise<PresentationData[]> {
 			if (parsed && typeof parsed === "object") {
 				config = parsed as Record<string, unknown>;
 			}
-		} catch {
+		} catch (err) {
+			console.warn(
+				`⚠️  YAML parse error in ${configPath}: ${err instanceof Error ? err.message : String(err)}`,
+			);
 			// Malformed config — use empty object (safe defaults)
 		}
 
@@ -77,22 +80,44 @@ export async function collectPresentations(): Promise<PresentationData[]> {
 				? config.topic
 				: dirName.replace(/^\d{14}_/, "").replace(/-/g, " ");
 
+		if (!topic || topic.trim() === "") {
+			console.warn(`⚠️  ${configPath}: topic is empty — using directory name`);
+			// topic is already set to dirName-derived value from the ternary above
+		}
+
 		const language: "ja" | "en" = config.language === "en" ? "en" : "ja";
 
 		// Load slides-data.json
 		let slides: SlideRecord[] = [];
 		const dataPath = `${dir}/slides-data.json`;
 		try {
-			const data = (await Bun.file(dataPath).json()) as {
-				slides?: SlideRecord[];
-			};
-			slides = data.slides ?? [];
+			const raw = (await Bun.file(dataPath).json()) as unknown;
+			const data = raw as { slides?: unknown };
+			if (!Array.isArray(data.slides)) {
+				console.warn(
+					`⚠️  ${dataPath}: "slides" field is missing or not an array — skipping`,
+				);
+				continue;
+			}
+			slides = data.slides as SlideRecord[];
 		} catch (err) {
 			if (err instanceof SyntaxError) {
 				console.warn(`⚠️  JSON parse error in ${dataPath}: ${err.message}`);
 			}
 			// Missing file — skip silently
 			continue;
+		}
+
+		const configSlides = config.slides as Record<string, unknown> | undefined;
+		if (
+			configSlides &&
+			typeof configSlides.count === "number" &&
+			configSlides.count !== slides.length &&
+			Math.abs(configSlides.count - slides.length) > 5
+		) {
+			console.warn(
+				`⚠️  ${dataPath}: config.slides.count=${configSlides.count} but actual=${slides.length} slides`,
+			);
 		}
 
 		const metrics = computeDeckMetrics(slides, language);

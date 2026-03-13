@@ -1,6 +1,7 @@
 import type { SlidesConfig } from "../config/schema.js";
-// SVG utilities are implemented in svg.ts — re-exported here for backwards compat
-// (fix-svg-overflow.ts imports normalizeSvg from this module).
+// SVG utilities live in src/utils/svg.ts (canonical source).
+// Re-exported here for backwards compatibility — fix-svg-overflow.ts and external callers
+// import from this module. New code should import from "../utils/svg.js" directly.
 export { SVG_CONTAINMENT_STYLE, normalizeSvg } from "../utils/svg.js";
 import { normalizeSvg } from "../utils/svg.js";
 import type { GenerationResult, SlideContent } from "./slide-schema.js";

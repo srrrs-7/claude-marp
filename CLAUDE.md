@@ -240,9 +240,9 @@ bun run validate                        # Validate all slides-data.json (Zod sch
 bun run validate:quality                # Quality check: assertive titles, subtitle coverage, SVG ratio
 bun run lint                            # Shorthand: validate + validate:quality
 bun run fix                             # Auto-fix common schema issues (bullets→content, layout values, codeLanguage)
-bun run fix:all                         # Chain: fix → split → split-bullet-overflow → fix-svg → fix-svg-url-refs → generate:index
-bun run split                           # Split code+bullets co-located on same slide (all)
-python3 scripts/split-bullet-overflow.py --all  # Split slides with 8+ bullet points into 2 slides
+bun run fix:all                         # Chain: fix → split (code) → split:bullets → fix-svg → fix-svg-url-refs → generate:index
+bun run split                           # Split code+bullets co-located on same slide (all) — scripts/split-slides.ts --mode code
+bun run split:bullets                   # Split slides with 8+ bullet points into 2 slides — scripts/split-slides.ts --mode bullets
 bun run fix-svg                         # Fix SVG overflow issues in markdown files
 bun run doctor                          # Project health check (toolchain, exports, SVG violations)
 bun run single <deckDir> [render|export|all]  # Render+export one deck; accepts partial name match
@@ -309,7 +309,12 @@ docs/20260214073222_example/
 | `src/generate/markdown.ts` | `buildFrontMatter()` + `renderSlide()` → Marp markdown string |
 | `src/export/marp.ts` | Spawn `bunx @marp-team/marp-cli`; `fixAssetPaths()` rewrites `src="assets/"` → `src="../assets/"` in `dist/*.html` |
 | `src/utils/files.ts` | `slugify()` (max 60 chars), `ensureDir()` |
-| `scripts/lib/quality.ts` | Shared quality helpers: `LABEL_TITLE_RE`, `SlideRecord`, `isAssertive()`, `hasSvg()`, `estimateMins()`, `computeDeckMetrics()` — imported by stats, validate, generate-index |
+| `src/utils/svg.ts` | `SVG_CONTAINMENT_STYLE`, `normalizeSvg()` — canonical SVG normalization (re-exported from `markdown.ts`) |
+| `scripts/lib/quality.ts` | Shared quality helpers: `LABEL_TITLE_RE`, `SlideRecord`, `isAssertive()`, `hasSvg()`, `estimateMins()`, `computeDeckMetrics()`, `validateSlideQuality()` — imported by stats, validate, generate-index |
+| `scripts/lib/constants.ts` | Shared quality thresholds: `GRADE_A_MIN`, `READING_SPEED_JA/EN`, `SVG_TARGET_RATIO`, `RENDER_PARALLEL`, etc. |
+| `scripts/lib/presentation-loader.ts` | `collectPresentations()` — shared Glob+YAML+JSON loader for stats, validate, generate-index |
+| `scripts/split-slides.ts` | TypeScript split tool — `--mode bullets` (8+ items) and `--mode code` (code+bullets separation) |
+| `scripts/rebuild-all-slides.ts` | TypeScript rebuild — parallel render + sequential export with MD5 cache |
 
 **Two-layer Zod schema design:**
 - Config schema: every field except `topic` has `.default()`. Nested objects use `.default({})`.
@@ -413,7 +418,7 @@ tmux-based parallel execution: Claude Code (impl) + Codex (review) workers in sp
 | Files render to wrong directory | `output.dir` is relative path | Use full path: `"docs/<timestamp>_<slug>"` |
 | SVG shadows/arrows missing in HTML | `url(#id)` refs break in Marp's foreignObject context | `bun scripts/fix-svg-url-refs.ts` → re-export |
 | SVG images not showing in `dist/` | Marp CLI doesn't inline external `<img src="assets/">` | `fixAssetPaths()` auto-rewrites to `../assets/`; verify `assets/` dir exists |
-| Slide content overflowing (bullets) | 8+ bullet points on one slide | `python3 scripts/split-bullet-overflow.py --all` → re-render |
+| Slide content overflowing (bullets) | 8+ bullet points on one slide | `bun run split:bullets` → re-render |
 | Slide content overflowing (code) | Code block > 12 lines or code+bullets combined | `bun run split` → re-render |
 | 32K token API error | Large content output inline instead of via Write tool | Use Write tool for all large output; set `CLAUDE_CODE_MAX_OUTPUT_TOKENS` |
 | Render fails for one deck but not others | Need to iterate on a single deck without full rebuild | `bun run single <partial-name>` — partial name matching, render+export one deck |

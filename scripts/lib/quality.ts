@@ -7,6 +7,7 @@ import {
 	GRADE_A_MIN,
 	GRADE_B_MIN,
 	GRADE_C_MIN,
+	MAX_BULLET_CHARS,
 	READING_SPEED_EN,
 	READING_SPEED_JA,
 } from "./constants.js";
@@ -124,8 +125,8 @@ export function computeDeckMetrics(
 	};
 }
 
-/** Max recommended chars per bullet (Japanese ~50, English ~80). */
-export const MAX_BULLET_CHARS = 60;
+// MAX_BULLET_CHARS is imported from ./constants.js and re-exported for consumers.
+export { MAX_BULLET_CHARS };
 
 export interface QualityWarning {
 	slideIndex: number;

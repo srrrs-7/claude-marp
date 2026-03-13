@@ -15,5 +15,17 @@
 	},
 	"files": {
 		"ignore": ["node_modules", "dist", "docs/dist", "bun.lock"]
-	}
+	},
+	"overrides": [
+		{
+			"include": ["scripts/**"],
+			"linter": {
+				"rules": {
+					"suspicious": {
+						"noConsoleLog": "off"
+					}
+				}
+			}
+		}
+	]
 }

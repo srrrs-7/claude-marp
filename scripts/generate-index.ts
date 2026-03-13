@@ -190,6 +190,14 @@ function escapeHtml(s: string): string {
 		.replace(/"/g, "&quot;");
 }
 
+function safeHref(href: string): string {
+	const trimmed = href.trim().toLowerCase();
+	if (trimmed.startsWith("javascript:") || trimmed.startsWith("data:")) {
+		return "#";
+	}
+	return escapeHtml(href);
+}
+
 function renderCard(p: PresentationInfo, categoryLabel: string): string {
 	const catId = classify(p.topic, p.dirName);
 	// Timestamp embedded in dirName (14 digits at start) — used for sort
@@ -217,7 +225,7 @@ function renderCard(p: PresentationInfo, categoryLabel: string): string {
         </span>
       </div>
       <div class="card-actions">
-        <a class="btn" href="${escapeHtml(p.htmlPath)}">
+        <a class="btn" href="${safeHref(p.htmlPath)}">
           ${ICON_PLAY}
           View Slides
         </a>
