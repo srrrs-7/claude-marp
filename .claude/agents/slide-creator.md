@@ -176,11 +176,8 @@ marp:
     （カスタムCSSがあれば。`section pre code` の縮小は markdown.ts の BASE_CSS が
      常時 0.58em で自動注入するので書かなくてよい — ここに書くと上書きされる）
 
-content:
-  codeBlocks: （true/false）
-  codeLanguage: "（指定言語）"
-  bulletPointsMax: 5
-  speakerNotes: true
+# content: ブロックはスキーマ上は受理されるが、どのコードからも読まれない（src/ に config.content の参照なし）。
+# 箇条書き上限やコード行数は下の「コンテンツ品質ルール」に従うこと。設定値では強制されない。
 
 output:
   dir: "docs/<timestamp>_<slug>"   # 相対パスは cwd 基準で解決されるため必ずフルパス
@@ -249,7 +246,7 @@ Cleanup:
 ### 4-3. コンテンツ品質ルール
 
 - 1スライド1メッセージ。情報を詰め込みすぎない
-- 箇条書きは `bulletPointsMax` 以下（デフォルト5）
+- 箇条書きは1スライド **最大6〜7項目**。8項目以上は2枚に分割（`bun run split:bullets`）。config の `bulletPointsMax` は読まれないので当てにしない
 - **コードブロック行数制約**:
   - **推奨: 8行以内**、絶対上限: 12行
   - コード7-10行の場合 → 箇条書き最大2項目
