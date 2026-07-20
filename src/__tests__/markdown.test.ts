@@ -1,7 +1,7 @@
 import { describe, expect, test } from "bun:test";
-import { renderMarpMarkdown } from "../generate/markdown.js";
 import type { SlidesConfig } from "../config/schema.js";
 import { slidesConfigSchema } from "../config/schema.js";
+import { renderMarpMarkdown } from "../generate/markdown.js";
 
 function makeConfig(
 	overrides: Partial<SlidesConfig["marp"]> = {},

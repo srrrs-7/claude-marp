@@ -1,6 +1,7 @@
 ---
 name: team-leader
 description: AIエージェントチームのリーダー。タスク分解・割当・進捗管理・レビュー結果判定を行う
+model: inherit
 ---
 
 # Team Leader Agent

@@ -1,7 +1,7 @@
 ---
 name: review-slides
 description: 生成されたMarpスライドをレビューして改善提案
-user_invocable: true
+user-invocable: true
 ---
 
 # Review Slides
@@ -42,7 +42,7 @@ user_invocable: true
 ---
 
 ### コンテンツ密度（はみ出し）
-- **箇条書き**: 1スライドmax **6〜7項目**。8項目以上 → 分割（`python3 scripts/split-bullet-overflow.py`）
+- **箇条書き**: 1スライドmax **6〜7項目**。8項目以上 → 分割（`bun run split:bullets`）
 - **1行あたり文字数**: 日本語60文字以内。長すぎる箇条書きは認知負荷を上げる
 - **コードブロック**: 8行推奨、**12行絶対最大**。超過 → `bun run split`
 - **コード+箇条書き混在**: コード7〜10行なら箇条書き最大2項目、11〜12行なら最大1項目
@@ -51,7 +51,7 @@ user_invocable: true
 - `marp: true` が存在するか
 - `class: invert` が設定されているか（gaiaテーマ）— config.yamlの `marp.class: "invert"` で自動適用
 - `size: 16:9` が設定されているか
-- `section pre code { font-size: 0.6em; }` がstyleに含まれているか
+- コードブロックのフォント縮小は `BASE_CSS` が自動注入するため確認不要。逆に `marp.style` で `section pre code` を再定義していたら、自動設定を上書きしているので指摘する
 
 ### 構成と論理
 - **構成**: intro → body → conclusion の論理的な流れ
@@ -88,7 +88,7 @@ user_invocable: true
 4. 承認されたら以下の順で修正を実行:
    - 品質チェック → `bun run validate -- --quality`
    - 一括修正（推奨）→ `bun run fix:all`（fix + split + bullet-split + fix-svg + generate:index を連鎖）
-   - 個別修正: `bun run fix` / `bun run split` / `python3 scripts/split-bullet-overflow.py --all` / `bun scripts/fix-svg-url-refs.ts`
+   - 個別修正: `bun run fix` / `bun run split` / `bun run split:bullets` / `bun scripts/fix-svg-url-refs.ts`
    - ヘルスチェック → `bun run doctor`
    - 再レンダリング → `bun run rebuild:render`
    - エクスポート → `bun run rebuild:export`

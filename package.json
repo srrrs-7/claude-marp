@@ -18,12 +18,11 @@
 		"check": "biome check .",
 		"format": "biome format --write .",
 		"spellcheck": "cspell lint --no-progress --show-suggestions .",
-		"test": "bun test scripts/test-slides.test.ts src/__tests__/*.test.ts scripts/__tests__/*.test.ts",
+		"test": "bun test",
 		"generate:index": "bun run scripts/generate-index.ts",
 		"fix:all": "bun run fix && bun run split && bun run split:bullets && bun run fix-svg && bun scripts/fix-svg-url-refs.ts && bun run generate:index",
 		"doctor": "bun run scripts/doctor.ts",
 		"dev": "bun run scripts/dev-watch.ts",
-		"add-subtitles": "bun run scripts/add-subtitles.ts",
 		"stats": "bun run scripts/stats.ts",
 		"stats:csv": "bun run scripts/stats.ts --export csv",
 		"lint": "bun run validate && bun run validate:quality",
@@ -31,7 +30,6 @@
 		"team:status": "bash scripts/agent-team-status.sh"
 	},
 	"dependencies": {
-		"@anthropic-ai/sdk": "^0.78.0",
 		"@marp-team/marp-cli": "^4.1.2",
 		"yaml": "^2.7.0",
 		"zod": "^3.24.2"

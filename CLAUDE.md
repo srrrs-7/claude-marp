@@ -22,9 +22,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 > SVG-heavy decks (≥50% of slides have SVG) — use **15-slide** chunks, not 20, to avoid SVG token bloat.
 
 ```
-Chunk 1 (slides 1-20)  → Write to slides-data-part1.json
-Chunk 2 (slides 21-40) → Write to slides-data-part2.json
-Chunk 3 (slides 41-60) → Write to slides-data-part3.json
+Chunk 1 (slides 1-15)  → Write to slides-data-part1.json
+Chunk 2 (slides 16-30) → Write to slides-data-part2.json
+Chunk 3 (slides 31-45) → Write to slides-data-part3.json
 Merge: { "slides": [...part1.slides, ...part2.slides, ...part3.slides] } → Write to slides-data.json
 Delete: slides-data-part*.json
 Verify: bun -e "const d=JSON.parse(require('fs').readFileSync('slides-data.json','utf-8')); console.log('Slides:', d.slides.length)"
@@ -85,6 +85,8 @@ S（状況）→ C（複雑化）→ Q（問い）→ A（答え = BLUF）
 
 Ask one question at a time. Do not proceed without explicit approval ("OK", "続けて", "next").
 
+**Scope — this policy does NOT apply when:** the request matches the Shorthand table below; the user names an explicit slash command or skill; or the answer is already determined by this file, the code, or an earlier decision in the conversation. In those cases act immediately. Ask only when the answer would actually change what you do.
+
 **Layer 1 — Required for all tasks (ask only unknown items):**
 
 | Item | Example question |
@@ -122,6 +124,7 @@ Ask one question at a time. Do not proceed without explicit approval ("OK", "続
 // One slide object — exact field names
 {
   title: z.string(),              // Required
+  subtitle: z.string().optional(),// BLUF one-liner → rendered as `> *subtitle*`
   content: z.array(z.string()),   // Required — field name is "content", NOT "bullets"
   code: z.string().optional(),
   codeLanguage: z.string().optional(),
@@ -250,6 +253,7 @@ bun run dev [docs/<dir>]                # Watch mode: auto-render on file change
 bun run stats                           # Quality statistics: SVG %, assertive title %, grade A/B/C/D distribution
 bun run stats -- --verbose              # Per-deck breakdown sorted by grade
 bun run stats -- --worst                # Show only C/D grade decks (improvement targets)
+bun run stats:csv                       # Export per-deck metrics to CSV
 bun run rebuild                         # Re-render + re-export all presentations (incremental; parallel render)
 bun run rebuild -- --force              # Force full rebuild (ignore cache)
 bun run rebuild:render                  # Re-render only (parallel)
@@ -259,7 +263,7 @@ bun run check                           # Biome lint + format check
 bun run format                          # Auto-format with Biome
 bun run test                            # Regression tests (bun:test)
 bun run spellcheck                      # cspell spell check across all files
-bun run generate:index                  # Regenerate docs/index.html (grade badges, sort, search, reading time)
+bun run generate:index                  # Regenerate docs/index.html (bookshelf UI) + mirror pdf/ → docs/pdf/
 bun scripts/fix-svg-url-refs.ts        # Fix url(#id) violations across all SVGs/markdown
 ```
 
@@ -274,6 +278,19 @@ bun run slides export -c docs/<dir>/slides.config.yaml -f html --in docs/<dir>/<
 bun run team <session-id> <workspace> [impl-count] [review-count]
 bun run team:status <session-id> [--watch]
 ```
+
+### Testing
+
+```bash
+bun run test                            # = `bun test` — all 8 test files (4061 tests)
+bun test scripts/test-unit.test.ts      # Single file (normalizeSvg, renderMarpMarkdown, quality helpers)
+bun test scripts/test-e2e.test.ts       # Single file (full render→export round-trip)
+bun test -t "normalizeSvg"              # Single test by name pattern
+```
+
+`bun run check` = Biome (code lint/format). `bun run lint` = *slide quality* gate (`validate` + `validate:quality`). Different things despite the names.
+
+`make setup-hooks` installs `scripts/hooks/pre-push` into `.git/hooks/`.
 
 ---
 
@@ -308,6 +325,8 @@ docs/20260214073222_example/
 | `src/generate/pipeline.ts` | JSON read → validate → `renderMarpMarkdown()` → write `.md` |
 | `src/generate/markdown.ts` | `buildFrontMatter()` + `renderSlide()` → Marp markdown string |
 | `src/export/marp.ts` | Spawn `bunx @marp-team/marp-cli`; `fixAssetPaths()` rewrites `src="assets/"` → `src="../assets/"` in `dist/*.html` |
+| `src/model/presentation.ts` | `loadPresentation()` / `savePresentation()` — Zod-validated read **and** atomic write (tmp + rename). Use this in any script that mutates `slides-data.json` |
+| `src/constants.ts` | `CONFIG_FILENAME`, `DATA_FILENAME`, `VALID_LAYOUTS` |
 | `src/utils/files.ts` | `slugify()` (max 60 chars), `ensureDir()` |
 | `src/utils/svg.ts` | `SVG_CONTAINMENT_STYLE`, `normalizeSvg()` — canonical SVG normalization (re-exported from `markdown.ts`) |
 | `scripts/lib/quality.ts` | Shared quality helpers: `LABEL_TITLE_RE`, `SlideRecord`, `isAssertive()`, `hasSvg()`, `estimateMins()`, `computeDeckMetrics()`, `validateSlideQuality()` — imported by stats, validate, generate-index |
@@ -324,6 +343,31 @@ docs/20260214073222_example/
 
 **Critical rendering rule:** Front-matter + first slide joined with `\n\n` only. Slide separator `\n\n---\n\n` used between slides only, never after front-matter.
 
+**Two loaders, pick deliberately:**
+- `src/model/presentation.ts` — validated load + **atomic** save. Required for read-modify-write scripts (`split-slides`, `auto-fix`).
+- `scripts/lib/presentation-loader.ts` — `collectPresentations()`, fast Glob scan, **no validation, read-only**. For analytics (`stats`, `validate`, `generate-index`) over all 220+ decks.
+
+**Quality grade formula** (`scripts/lib/quality.ts` → `computeDeckMetrics()`), surfaced by `bun run stats` and as badges in `docs/index.html`:
+```
+score = svgRatio×40 + assertiveRatio×40 + subtitleRatio×20
+A ≥ 70   B ≥ 50   C ≥ 30   D < 30
+```
+`svgRatio` is over **all** slides; `assertiveRatio` and `subtitleRatio` are over `layout: "default"` slides only — adding `section`/`center` slides dilutes the SVG score but not the title score. Empty deck → `D`. `LABEL_TITLE_RE` is the single source of truth for what counts as a non-assertive "label" title.
+
+**Do not add a root `marp.config.mjs`.** `src/export/marp.ts` spawns Marp CLI with `--no-config --allow-local-files`, so any root Marp config is ignored (one existed and was deleted for this reason). Theme/header/footer/style must go under `marp:` in each deck's `slides.config.yaml`. Export has a hard 120s timeout per deck (SIGTERM on expiry).
+
+**`output.dir` is resolved to an absolute path by the Zod schema** (`.transform()` in `src/config/schema.ts`), so relative values silently resolve against `process.cwd()` — always write the full `docs/<timestamp>_<slug>` path.
+
+**Deployment:** `.github/workflows/deploy-pages.yml` publishes `docs/` to GitHub Pages on any push to `main` touching `docs/**`. CI runs `bun run generate:index` first — the whole `docs/` tree is the published site, so committed decks go live automatically.
+
+**Standalone PDFs:** drop them in the repo-root `pdf/` directory. `generate:index` mirrors them into `docs/pdf/` (only `docs/` is published) and lists them on a dedicated "PDF Library" shelf in `docs/index.html`. `docs/pdf/` must be committed for the links to work on Pages. PDFs have no quality grade, so grade filters exclude them by design.
+
+**`docs/index.html` is generated from `scripts/index-template/`** — `shelf.css` and `shelf.js` are read at build time and inlined, so the published page stays a single self-contained file. Edit those two files, not the generated HTML. Deck/PDF metadata is embedded as JSON and the three views (bookshelf / card / list) are rendered client-side.
+
+**Parallel instruction files:** `AGENTS.md` (Codex/OpenAI-format repo guidelines) and `.codex/` (installed via `bash .codex/install-skills.sh`) cover the same ground as this file for other tools.
+
+> ⚠️ **`.codex/` is NOT currently a mirror of `.claude/`, despite what `AGENTS.md` says.** It is a pre-BLUF snapshot: 8 of 10 agents, 5 of 8 skills and 2 of 6 rules are missing entirely, and every file present in both trees has diverged (`.codex/rules/slide-design.md` lacks the whole Google/Amazon quality section; `.codex/agents/slide-creator.md` predates Phase 0, SCQA and chunking). **Treat `.claude/` as the single source of truth** and re-mirror deliberately rather than assuming parity.
+
 ---
 
 ## Slide Content Constraints
@@ -337,20 +381,118 @@ docs/20260214073222_example/
 
 ---
 
-## Parallel Task Execution
+## Multi-Agent Development — Parent → Subagents → Integration（必須）
 
-**CRITICAL — Worker agents do NOT inherit the parent session's permission grants.**
-Text in the agent prompt ("you have full permissions") does nothing. Permissions are granted only via the Task tool's `mode` parameter.
+**デフォルトの実行形態。** 独立して並列化できる単位が **2つ以上** あるタスクは、親エージェントが自分で作業せず、**単位ごとに 1 サブエージェント**を起動する。親は分解・起動・統合のみを担当する。
 
-| Task tool parameter | Required value | Effect |
+```
+            ┌──────────────── parent agent ────────────────┐
+            │ 1. 分解   タスク → 独立した N 個の作業単位     │
+            │ 2. 起動   N 個の subagent を同時起動          │
+            │ 3. 待機   全 subagent の返り値を受け取る       │
+            │ 4. 統合   マージ → 検証 → 逐次レンダリング     │
+            │ 5. 報告   ユーザーへの報告は親のみが行う       │
+            └───────────────────────────────────────────────┘
+              ↓ prompt        ↓ prompt        ↓ prompt
+        ┌───────────┐   ┌───────────┐   ┌───────────┐
+        │ subagent1 │   │ subagent2 │   │ subagentN │   ← 相互通信しない
+        │ part1.json│   │ part2.json│   │ partN.json│   ← ファイルは排他
+        └───────────┘   └───────────┘   └───────────┘
+              ↑ 構造化された返り値（結果本文ではなくサマリ）
+```
+
+### 親エージェントの責務
+
+| フェーズ | やること | やってはいけないこと |
+|---------|---------|-------------------|
+| 分解 | 重複しない作業単位に切る。各単位に専用の出力ファイルを割り当てる | 単位が曖昧なまま起動する |
+| 起動 | **1 メッセージ内で全 subagent を同時に** `Agent` 呼び出し | 1つずつ起動して待つ（逐次化） |
+| 待機 | 全件の返り値が揃うまで統合を始めない | 部分結果で先に進む |
+| 統合 | マージ → `bun run validate` → `bun run lint` → render → export（**逐次**） | subagent に統合させる |
+| 報告 | 全体を1つの成果として報告 | subagent の生ログをそのまま貼る |
+
+**親は実作業をしない。** 自分でスライドを1本書きながら subagent も走らせる、は禁止。分解できなかった残りがあるなら、それも subagent に渡す。
+
+### サブエージェントの契約
+
+各 subagent のプロンプトに必ず含める:
+
+1. **担当範囲** — スライド番号レンジ / 対象デッキ / 対象ファイルを明示
+2. **専用出力パス** — `slides-data-part{N}.json` など、他と絶対に重ならないパス
+3. **参照すべきルール** — `CLAUDE.md` の該当セクション（SVG制約・Assertive Title・スキーマ）
+4. **返り値の形式** — 下記を厳守させる
+5. `"You have full permissions to use Bash, Write, Read, Edit, and Glob tools."`
+
+**返り値は「成果物そのもの」ではなく「統合に必要なメタ情報」**（32Kトークン上限対策 — 本体は必ず Write でファイルへ）:
+
+```
+書き込んだファイル: docs/<dir>/slides-data-part2.json
+担当レンジ: slides 21-40（実際に生成した枚数: 20）
+SVG使用スライド: 12/20
+主張タイトル: 14/20
+未解決の問題: なし / <あれば1行で>
+```
+
+### 使い分け
+
+| 状況 | 形態 |
+|------|------|
+| 30枚以上のデッキ生成 | 15枚ずつ分割 → subagent 並列（SVG比率が低ければ20枚まで可） |
+| 複数デッキの一括作成（"全N個"） | デッキ1つ = subagent 1つ |
+| 横断調査（どのデッキが grade C か 等） | 観点ごとに subagent を分けて並列探索 |
+| 独立した複数ファイルの修正 | ファイル群ごとに subagent |
+| 1ファイルの小さな修正・確認だけ | **subagent を使わず親が直接やる** |
+| render / export | **常に親が逐次実行**（Marp CLI キャッシュ競合） |
+
+### モデル振り分け — 複雑度に応じてコストを下げる
+
+**サブエージェントの `model:` を省略すると既定は `inherit`（＝親と同じ最上位モデル）。** 機械的な作業まで最上位で回るのが従来の浪費要因だった。複雑度の階層で明示的に割り当てる。
+
+| 階層 | 作業の性質 | model | effort | 該当エージェント |
+|------|-----------|-------|--------|----------------|
+| **L3 設計・統合** | 分解、判断、対話、マージ可否の決定 | `inherit` | 既定 | `slide-creator`, `team-leader` |
+| **L2 生成** | スライド本文・作図（品質が直接成果物になる） | `opus` | 既定 | `slide-chunk-writer`, `svg-diagram-author` |
+| **L2 実装・調査** | コード実装、レビュー、出典調査、CSS調整 | `sonnet` | `medium`/`low` | `impl-worker`, `review-worker`, `slide-researcher`, `marp-customizer` |
+| **L1 機械** | 決定論的コマンド実行、集計、整形 | `haiku` | `low` | `deck-fixer`, `deck-quality-auditor` |
+
+**判断基準:** 「出力が正解かどうかを `bun run validate` / `stats` で機械判定できるか？」— できる作業は L1。できない（人が読んで良し悪しを決める）作業は L2 以上。
+
+**効くレバーと効かないレバー:**
+- ✅ `model:` — 最大の削減要因。L1をhaikuに落とすだけで機械作業のコストが桁で下がる
+- ✅ `effort: low` — 推論トークンを直接削る。決定論的な作業に高い推論は要らない
+- ✅ 返り値をメタ情報に限定する（本文を返させない）
+- ✅ エージェント定義ファイル自体を短く保つ（毎回読まれる）
+- ⚠️ `tools:` の絞り込み — **トークン削減効果は未確認**。権限の最小化として設定する価値はあるが、コスト根拠にはしない
+
+**`model` に指定できる値:** `haiku` / `sonnet` / `opus` / `fable` / `inherit` / フルモデルID。省略時は `inherit`。
+
+### エージェント一覧
+
+| エージェント | 役割 | 呼び出し元 |
+|------------|------|-----------|
+| `slide-creator` | 対話型デッキ作成の**親**。分解と統合のみ | ユーザー / `/create-slides` |
+| `slide-chunk-writer` | 担当レンジのJSONチャンクだけ生成 | 親が並列起動 |
+| `svg-diagram-author` | Marp互換SVG図版の作図 | 親が並列起動 |
+| `slide-researcher` | 出典付きの事実・数値の調査 | 親（本文生成の前段） |
+| `deck-fixer` | `fix`/`split`/`validate` を機械実行 | 親（マージ後） |
+| `deck-quality-auditor` | `stats` を集計し改善対象を優先順位付け | 親（改善フェーズの入口） |
+| `team-leader` / `impl-worker` / `review-worker` | Agent Teams（コード実装＋レビュー） | `/agent-teams` |
+| `marp-customizer` | テーマ・CSS調整 | 親（デザイン調整時） |
+
+### 実行パラメータ
+
+> **⚠️ `mode: "bypassPermissions"` はもう指定しない。** Agent ツールの `mode` は現在 **Deprecated / 無視される** パラメータで、サブエージェントは**親セッションの権限モードを自動的に継承**する。かつて「これを付けないとワーカーが停止する」と書かれていたが、現在は誤り。恒久的に権限を変えたい場合のみ、エージェント定義ファイルの `permissionMode:` で上書きする（全呼び出しに効くため既定では設定していない）。
+>
+> プロンプト本文に「You have full permissions to use Bash, Write, …」と書くことにも権限付与の効果はない。ツール制限は定義ファイルの `tools:` で決まる。
+
+| Agent ツールのパラメータ | 値 | 効果 |
 |--------------------|---------------|--------|
-| `mode` | `"bypassPermissions"` | Grants Bash/Write/Read/Edit/Glob without prompts |
-| `run_in_background` | `true` | Enables parallel execution |
+| `subagent_type` | `"slide-chunk-writer"` / `"general-purpose"` など | 用途に合ったエージェントを選ぶ（「エージェント一覧」参照） |
+| `run_in_background` | `true`（既定） | 並列実行。`false` で結果を待って同期実行 |
+| `name` | `worker-1`, `worker-2`, … | 親から `SendMessage` で追撃指示を出せるようにする |
+| `model` | 省略推奨 | 定義ファイルの `model:` が効く。ここで上書きすると振り分け設計が崩れる |
 
-**Failure symptom:** worker stalls or falls back to sequential = `mode: "bypassPermissions"` was not set.
-
-Also include in each agent prompt (belt-and-suspenders):
-> "You have full permissions to use Bash, Write, Read, Edit, and Glob tools."
+**Failure symptom:** ワーカーが並列にならない場合、原因はほぼ「1つずつ起動して待っている」こと。全 subagent を**1メッセージ内で**起動する。
 
 **File isolation:** Assign non-overlapping output files (`slides-data-part1.json`, `part2.json`, …) to each worker. Overlapping slide ranges → Marp CLI cache conflict → silent corruption.
 
@@ -422,8 +564,11 @@ tmux-based parallel execution: Claude Code (impl) + Codex (review) workers in sp
 | Slide content overflowing (code) | Code block > 12 lines or code+bullets combined | `bun run split` → re-render |
 | 32K token API error | Large content output inline instead of via Write tool | Use Write tool for all large output; set `CLAUDE_CODE_MAX_OUTPUT_TOKENS` |
 | Render fails for one deck but not others | Need to iterate on a single deck without full rebuild | `bun run single <partial-name>` — partial name matching, render+export one deck |
-| Parallel worker stalls / falls back to sequential | `mode: "bypassPermissions"` not set in Task tool call | Add `mode: "bypassPermissions"` to every Task tool call that spawns a slide worker |
+| Parallel worker stalls / falls back to sequential | subagent を1つずつ起動して待っている（`mode: "bypassPermissions"` は Deprecated で無関係） | 全 subagent を1メッセージ内で `Agent` 呼び出しする |
 | Worker completes but output file missing | Overlapping file paths between workers (cache conflict) | Assign strictly non-overlapping `slides-data-part{N}.json` paths |
+| Subagent の返り値が巨大で応答が切れる | 成果物本体を返り値に入れた | 本体は Write でファイルへ。返り値はパス+枚数+品質メタのみ |
+| 並列にしたのに速くならない | subagent を1つずつ起動して待っている | 全 subagent を **1メッセージ内で同時に** `Agent` 呼び出しする |
+| 触ってないデッキの `slides-data.json` が勝手に diff に出る | 一部デッキがスペースインデントでコミット済み。どこを Write/Edit しても PostToolUse の `bun run format` が repo 全体を tab に直す | 意図しない差分は `git checkout -- docs` で戻す。恒久対応は一度 `bun run format` の結果をコミットする |
 
 ---
 
@@ -436,5 +581,6 @@ tmux-based parallel execution: Claude Code (impl) + Codex (review) workers in sp
   - `schemas.md` — Schema change checklist (triggers on `*schema.ts`)
   - `validation.md` — Pre-flight validation (triggers on `slides-data.json`, `slides.config.yaml`)
   - `agent-teams.md` — Batch workflow templates (triggers on `docs/**/*`)
-- **`agents/`** — `slide-creator`, `marp-customizer`, `team-leader`, `impl-worker`, `review-worker`
-- **`skills/`** — `/create-slides`, `/generate`, `/review-slides`, `/ship`, `/agent-teams`, `/validate`
+- **`agents/`** — `slide-creator`, `slide-chunk-writer`, `svg-diagram-author`, `slide-researcher`, `deck-fixer`, `deck-quality-auditor`, `marp-customizer`, `team-leader`, `impl-worker`, `review-worker`（モデル振り分けは「エージェント一覧」参照）
+- **`skills/`** — `/create-slides`, `/batch-decks`, `/improve-deck`, `/generate`, `/review-slides`, `/validate`, `/ship`, `/agent-teams`
+  - frontmatter のフィールド名は **`user-invocable`（ハイフン）**。`user_invocable` は無効フィールドとして無視される

@@ -1,5 +1,7 @@
 #!/usr/bin/env bun
 /**
+ * bun run validate [--quality] — Zod-validate every deck's slides-data.json.
+ *
  * Exit codes:
  *   0 — all valid, no issues
  *   1 — schema errors (invalid slides-data.json)
@@ -8,22 +10,25 @@
 
 import { Glob } from "bun";
 import { z } from "zod";
+import { DATA_FILENAME } from "../src/constants.js";
 import { generationResultSchema } from "../src/generate/slide-schema.js";
 import { EXIT } from "./lib/exit-codes.js";
 import {
-	type QualityWarning,
 	type SlideRecord,
 	estimateMins,
 	validateSlideQuality,
 } from "./lib/quality.js";
 
-interface ValidationError {
-	file: string;
-	errors: string[];
-}
+/** How many cross-deck duplicate titles to print before truncating. */
+const MAX_CROSS_DECK_REPORTED = 20;
 
-/** Return duplicate titles within a single deck */
-function findDuplicateTitles(slides: Array<{ title?: string }>): string[] {
+/** Outcome of reading + schema-validating one slides-data.json. */
+type DeckResult =
+	| { file: string; ok: true; slides: SlideRecord[] }
+	| { file: string; ok: false; errors: string[] };
+
+/** Return titles that appear more than once within a single deck. */
+function findDuplicateTitles(slides: SlideRecord[]): string[] {
 	const seen = new Map<string, number>();
 	for (const slide of slides) {
 		const t = (slide.title ?? "").trim();
@@ -32,26 +37,56 @@ function findDuplicateTitles(slides: Array<{ title?: string }>): string[] {
 	return [...seen.entries()].filter(([, n]) => n > 1).map(([t]) => t);
 }
 
+/** Read and schema-validate a single deck. Never throws. */
+async function readDeck(file: string): Promise<DeckResult> {
+	try {
+		const data = await Bun.file(file).json();
+		const parsed = generationResultSchema.parse(data);
+		return { file, ok: true, slides: parsed.slides };
+	} catch (error) {
+		const errors =
+			error instanceof z.ZodError
+				? error.issues.map((i) => `${i.path.join(".")}: ${i.message}`)
+				: [error instanceof Error ? error.message : String(error)];
+		return { file, ok: false, errors };
+	}
+}
+
+/**
+ * Titles shared by two or more *different* decks. Copy-pasted decks are a
+ * common failure mode, so this catches drift the per-deck check can't see.
+ */
+function findCrossDeckDuplicates(
+	decks: DeckResult[],
+): Array<[title: string, deckNames: string[]]> {
+	const titleToDecks = new Map<string, Set<string>>();
+	for (const deck of decks) {
+		if (!deck.ok) continue;
+		const deckName = deck.file.split("/")[1] ?? deck.file;
+		for (const slide of deck.slides) {
+			const t = (slide.title ?? "").trim();
+			if (!t) continue;
+			const bucket = titleToDecks.get(t);
+			if (bucket) bucket.add(deckName);
+			else titleToDecks.set(t, new Set([deckName]));
+		}
+	}
+	return [...titleToDecks.entries()]
+		.filter(([, deckNames]) => deckNames.size > 1)
+		.map(([title, deckNames]) => [title, [...deckNames]]);
+}
+
 // ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
-async function validateAllSlides() {
-	const glob = new Glob("docs/**/slides-data.json");
-	const files = Array.from(glob.scanSync());
+async function validateAllSlides(): Promise<never> {
+	const files = Array.from(new Glob(`docs/**/${DATA_FILENAME}`).scanSync());
 
 	if (files.length === 0) {
-		console.log("ℹ️  No slides-data.json files found in docs/");
-		return;
+		console.log(`ℹ️  No ${DATA_FILENAME} files found in docs/`);
+		process.exit(EXIT.SUCCESS);
 	}
-
-	let validCount = 0;
-	let invalidCount = 0;
-	let totalSlideCount = 0;
-	let totalReadingMins = 0;
-	let dupeWarnings = 0;
-	let qualityWarningCount = 0;
-	const errors: ValidationError[] = [];
 
 	// --quality flag shows per-slide quality warnings
 	const showQuality = process.argv.includes("--quality");
@@ -60,99 +95,82 @@ async function validateAllSlides() {
 		`🔍 Validating slides data files${showQuality ? " (quality mode)" : ""}...\n`,
 	);
 
-	for (const file of files) {
-		try {
-			const data = await Bun.file(file).json();
-			generationResultSchema.parse(data);
+	// Read every deck exactly once — both the per-deck report and the
+	// cross-deck title scan below run off this single pass.
+	const decks = await Promise.all(files.map(readDeck));
 
-			const slides = data.slides ?? [];
-			const dupes = findDuplicateTitles(slides);
-			const mins = estimateMins(slides as SlideRecord[]);
-			const quality = showQuality
-				? validateSlideQuality(slides as SlideRecord[])
-				: [];
+	let validCount = 0;
+	let totalSlideCount = 0;
+	let totalReadingMins = 0;
+	let dupeWarnings = 0;
+	let qualityWarningCount = 0;
+	const invalid: Array<{ file: string; errors: string[] }> = [];
 
-			totalSlideCount += slides.length;
-			totalReadingMins += mins;
-			qualityWarningCount += quality.length;
+	for (const deck of decks) {
+		if (!deck.ok) {
+			console.log(`❌ ${deck.file}`);
+			for (const err of deck.errors) console.log(`   - ${err}`);
+			invalid.push({ file: deck.file, errors: deck.errors });
+			continue;
+		}
 
-			const hasIssues = dupes.length > 0 || quality.length > 0;
+		const { file, slides } = deck;
+		const dupes = findDuplicateTitles(slides);
+		const mins = estimateMins(slides);
+		const quality = showQuality ? validateSlideQuality(slides) : [];
 
-			if (hasIssues) {
-				console.log(`⚠️  ${file} (${slides.length} slides, ~${mins} min)`);
-				for (const t of dupes) console.log(`   - Duplicate title: "${t}"`);
-				for (const w of quality)
-					console.log(`   [${w.type}] slide ${w.slideIndex}: ${w.message}`);
-				if (dupes.length > 0) dupeWarnings++;
-			} else {
-				console.log(`✅ ${file} (${slides.length} slides, ~${mins} min)`);
+		totalSlideCount += slides.length;
+		totalReadingMins += mins;
+		qualityWarningCount += quality.length;
+		validCount++;
+
+		if (dupes.length > 0 || quality.length > 0) {
+			console.log(`⚠️  ${file} (${slides.length} slides, ~${mins} min)`);
+			for (const t of dupes) console.log(`   - Duplicate title: "${t}"`);
+			for (const w of quality) {
+				console.log(`   [${w.type}] slide ${w.slideIndex}: ${w.message}`);
 			}
-			validCount++;
-		} catch (error) {
-			console.log(`❌ ${file}`);
-			const fileErrors: string[] = [];
-
-			if (error instanceof z.ZodError) {
-				for (const issue of error.issues) {
-					const errorMsg = `${issue.path.join(".")}: ${issue.message}`;
-					console.log(`   - ${errorMsg}`);
-					fileErrors.push(errorMsg);
-				}
-			} else {
-				const errorMsg = error instanceof Error ? error.message : String(error);
-				console.log(`   - ${errorMsg}`);
-				fileErrors.push(errorMsg);
-			}
-
-			errors.push({ file, errors: fileErrors });
-			invalidCount++;
+			if (dupes.length > 0) dupeWarnings++;
+		} else {
+			console.log(`✅ ${file} (${slides.length} slides, ~${mins} min)`);
 		}
 	}
 
-	// ── Cross-deck duplicate title detection ──────────────────────────────────
-	const titleToDeck = new Map<string, string[]>();
-	for (const file of files) {
-		try {
-			const data = await Bun.file(file).json();
-			const slides = data.slides ?? [];
-			for (const slide of slides) {
-				const t = ((slide.title as string) ?? "").trim();
-				if (!t) continue;
-				const decks = titleToDeck.get(t) ?? [];
-				decks.push(file);
-				titleToDeck.set(t, decks);
-			}
-		} catch {
-			// already reported as invalid above
-		}
-	}
-	const crossDeckDupes = [...titleToDeck.entries()].filter(([, decks]) => {
-		// Only flag if same title appears in 2+ DIFFERENT decks
-		const uniqueDecks = new Set(
-			decks.map((f) => f.split("/").slice(0, 2).join("/")),
-		);
-		return uniqueDecks.size > 1;
-	});
+	const crossDeckDupes = findCrossDeckDuplicates(decks);
 	if (crossDeckDupes.length > 0) {
 		console.log(`\n🔁 Cross-deck duplicate titles (${crossDeckDupes.length}):`);
-		for (const [title, decks] of crossDeckDupes.slice(0, 20)) {
-			const uniqueDecks = [...new Set(decks.map((f) => f.split("/")[1]))];
-			console.log(`   "${title}" — in: ${uniqueDecks.join(", ")}`);
+		for (const [title, deckNames] of crossDeckDupes.slice(
+			0,
+			MAX_CROSS_DECK_REPORTED,
+		)) {
+			console.log(`   "${title}" — in: ${deckNames.join(", ")}`);
 		}
-		if (crossDeckDupes.length > 20) {
-			console.log(`   ... and ${crossDeckDupes.length - 20} more`);
+		if (crossDeckDupes.length > MAX_CROSS_DECK_REPORTED) {
+			console.log(
+				`   ... and ${crossDeckDupes.length - MAX_CROSS_DECK_REPORTED} more`,
+			);
 		}
 	}
 
 	const totalHours = Math.floor(totalReadingMins / 60);
-	const remainMins = totalReadingMins % 60;
 	const timeStr =
-		totalHours > 0 ? `${totalHours}h ${remainMins}m` : `${totalReadingMins}m`;
+		totalHours > 0
+			? `${totalHours}h ${totalReadingMins % 60}m`
+			: `${totalReadingMins}m`;
 
+	const summaryParts = [
+		`${validCount} valid`,
+		`${invalid.length} invalid`,
+		...(dupeWarnings > 0 ? [`${dupeWarnings} with duplicate titles`] : []),
+		...(qualityWarningCount > 0
+			? [`${qualityWarningCount} quality warnings`]
+			: []),
+		...(crossDeckDupes.length > 0
+			? [`${crossDeckDupes.length} cross-deck duplicate titles`]
+			: []),
+	];
 	console.log(
-		`\n📊 Summary: ${validCount} valid, ${invalidCount} invalid${dupeWarnings > 0 ? `, ${dupeWarnings} with duplicate titles` : ""}${
-			qualityWarningCount > 0 ? `, ${qualityWarningCount} quality warnings` : ""
-		}${crossDeckDupes.length > 0 ? `, ${crossDeckDupes.length} cross-deck duplicate titles` : ""} | ${totalSlideCount} slides | ~${timeStr} total reading time`,
+		`\n📊 Summary: ${summaryParts.join(", ")} | ${totalSlideCount} slides | ~${timeStr} total reading time`,
 	);
 
 	if (showQuality && qualityWarningCount > 0) {
@@ -165,30 +183,24 @@ async function validateAllSlides() {
 		);
 	}
 
-	if (invalidCount > 0) {
+	if (invalid.length > 0) {
 		console.log("\n❌ Validation failed. Fix the following errors:\n");
-		for (const { file, errors: fileErrors } of errors) {
+		for (const { file, errors } of invalid) {
 			console.log(`${file}:`);
-			for (const err of fileErrors) {
-				console.log(`  - ${err}`);
-			}
+			for (const err of errors) console.log(`  - ${err}`);
 			console.log();
 		}
 		console.log("💡 Common fixes:");
 		console.log('  - Change "bullets" field to "content"');
 		console.log('  - Use valid layout values: "default", "center", "section"');
 		console.log("  - Ensure all required fields are present");
-	} else {
-		console.log("\n✨ All slides data files are valid!");
+		process.exit(EXIT.ERROR);
 	}
 
-	if (invalidCount > 0) {
-		process.exit(EXIT.ERROR);
-	} else if (showQuality && qualityWarningCount > 0) {
-		process.exit(EXIT.WARNINGS);
-	} else {
-		process.exit(EXIT.SUCCESS);
-	}
+	console.log("\n✨ All slides data files are valid!");
+	process.exit(
+		showQuality && qualityWarningCount > 0 ? EXIT.WARNINGS : EXIT.SUCCESS,
+	);
 }
 
-validateAllSlides();
+await validateAllSlides();

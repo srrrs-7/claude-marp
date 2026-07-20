@@ -1,7 +1,7 @@
 ---
 name: create-slides
 description: 対話型でスライドを一から作成（ヒアリング → 構成 → タスク分割 → 並列生成 → デザイン → エクスポート）
-user_invocable: true
+user-invocable: true
 ---
 
 # Create Slides
@@ -21,7 +21,7 @@ user_invocable: true
    ```bash
    bun run fix                                         # bullets→content, layout修正, codeLanguage補完
    bun run split                                       # コード+箇条書き分離
-   python3 scripts/split-bullet-overflow.py --all     # 8+項目スライド分割
+   bun run split:bullets     # 8+項目スライド分割
    bun scripts/fix-svg-url-refs.ts                    # url(#id)違反修正
    ```
 7a. **品質ゲート** — 修正後に品質チェックを実行:
@@ -30,7 +30,7 @@ user_invocable: true
    ```
    🔴 高優先度の警告があれば、データJSON を修正してから render に進む。
 8. **レンダリング** — `bun run slides render -c <config> --in <path>/slides-data.json`
-9. **class:invert適用** — gaiaテーマの場合: `sed -i '/^theme: gaia$/a class: invert' <path>/<name>.md`
+9. **class:invert** — 手動編集は不要。`slides.config.yaml` の `marp.class: "invert"` を設定すれば、render 時にフロントマターへ自動出力される
 10. **レビューループ** — フィードバック → 修正 → 再レンダリング（OKまで繰り返し）
 11. **デザイン調整** — テーマ・CSS・ディレクティブの微調整
 12. **エクスポート** — `bun run slides export -c <config> -f html --in <path>/<name>.md`
@@ -99,15 +99,16 @@ SVG合計: 24枚 (53%) ✅ 基準クリア
 
 ### 起動ルール
 
-- **【最重要】** Task tool 呼び出し時に必ず `mode: "bypassPermissions"` を指定する。プロンプトテキストで「full permissions」と書いても権限は付与されない。この設定がないとワーカーが Bash/Write でブロックされ、順次実行へのフォールバックが発生する
-- Task tool の `run_in_background: true` を使い、全タスクを**1回のメッセージで同時起動**する
+- **【最重要】** 全タスクを **1回のメッセージで同時に** `Agent` 呼び出しする。1つずつ起動して待つと逐次実行になる
+- `mode: "bypassPermissions"` は指定しない — 現在 Deprecated で無視され、サブエージェントは親セッションの権限モードを継承する。プロンプトに「full permissions」と書いても権限は付与されない（ツール範囲は定義ファイルの `tools:` で決まる）
+- `run_in_background: true`（既定）で並列実行する
 - 10タスク以上の場合はウェーブ実行（1ウェーブ = 最大7タスク）、全ウェーブの完了を待ってから次へ
 - 各エージェントは互いに独立したファイルに書き込む（スライド範囲の重複禁止 — 競合するとMarp CLIキャッシュが壊れる）
 - **SVGヘビーデッキ（SVG比率≥50%）は1タスクあたり最大15枚**に制限する（SVGによるトークン膨張対策）
 
 ### エージェントへの指示テンプレート
 
-> Task tool パラメータ: `mode: "bypassPermissions"`, `run_in_background: true` を必ず設定すること
+> `Agent` ツールのパラメータ: `subagent_type: "slide-chunk-writer"`, `run_in_background: true`
 
 ```
 あなたはスライド生成エージェントです。以下のタスクを実行してください。

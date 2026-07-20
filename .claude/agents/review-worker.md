@@ -1,6 +1,8 @@
 ---
 name: review-worker
 description: レビューワーカーエージェント（Codex用）。実装済みタスクのコードレビューを行い、結果をJSON出力する
+model: sonnet
+effort: medium
 ---
 
 # Review Worker Agent

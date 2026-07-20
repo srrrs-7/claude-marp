@@ -30,9 +30,12 @@ When working under `docs/<timestamp>_<title>/`, always pass config explicitly:
 - Use responsibility-based filenames (`loader.ts`, `pipeline.ts`, `slide-schema.ts`).
 
 ## Testing Guidelines
-- No full test suite yet; use quality gate:
-`bun run typecheck && bun run check && bun run spellcheck`.
-- If adding tests, use `bun:test` with `*.test.ts` naming.
+- `bun run test` (= `bun test`) runs the full suite: 4061 tests across 8 files
+  in `src/__tests__/`, `scripts/__tests__/`, and `scripts/test-*.test.ts`.
+- Single file: `bun test scripts/test-unit.test.ts`. Single test: `bun test -t "<name>"`.
+- Full gate before shipping:
+`bun run test && bun run typecheck && bun run check && bun run lint`.
+- New tests use `bun:test` with `*.test.ts` naming.
 
 ## Slide & Content Rules
 - Recommended workflow: use `create-slides` skill for new decks.
@@ -42,7 +45,7 @@ When working under `docs/<timestamp>_<title>/`, always pass config explicitly:
 - If references exceed 5-6 links, split across multiple reference slides.
 
 ## Codex Integration (.codex)
-- Skill source is versioned in `.codex/skills/` and mirrored from `.claude/skills/`.
+- Skill source is versioned in `.codex/skills/`. ⚠️ It is **not** currently in sync with `.claude/skills/` — the `.codex/` tree is a pre-BLUF snapshot missing 8 of 10 agents, 5 of 8 skills and 2 of 6 rules, and the shared files have diverged. `.claude/` is the source of truth; re-mirror explicitly before relying on `.codex/`.
 - Install skills with `bash .codex/install-skills.sh` (targets `$CODEX_HOME/skills` or `~/.codex/skills`).
 - Invoke skills by naming them in chat (for example, `create-slides`, `generate`, `review-slides`).
 - Use `.codex/rules/` as the authoritative writing/editing rules when working on matching paths.

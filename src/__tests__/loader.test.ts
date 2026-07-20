@@ -1,6 +1,6 @@
 import { describe, expect, test } from "bun:test";
-import { writeFileSync, mkdirSync, rmSync } from "node:fs";
-import { resolve, dirname } from "node:path";
+import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 import { loadConfig } from "../config/loader.js";
 
 const TMP = resolve(import.meta.dir, "../../.tmp-test");

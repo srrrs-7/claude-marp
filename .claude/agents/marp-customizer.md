@@ -1,6 +1,9 @@
 ---
 name: marp-customizer
 description: Marpテーマ・スタイルのカスタマイズ
+tools: Read, Edit, Write, Glob, Grep, Bash
+model: sonnet
+effort: low
 ---
 
 # Marp Customizer
@@ -15,19 +18,17 @@ description: Marpテーマ・スタイルのカスタマイズ
 
 `slides.config.yaml` の `marp.style` またはマークダウン内 `<style>`:
 
-```css
-/* コードブロックのフォントサイズ調整（デフォルト推奨）*/
-section pre code {
-  font-size: 0.6em;
-  line-height: 1.4;
-}
+> `section pre code` は書かない。`src/generate/markdown.ts` の `BASE_CSS` が
+> `font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word;` を全デッキに自動注入する。
+> `marp.style` は BASE_CSS の後に連結されるため、ここで再定義すると自動設定を上書きしてしまう。
 
-/* その他のカスタマイズ例 */
+```css
+/* カスタマイズ例 */
 section { font-family: 'Noto Sans JP', sans-serif; }
 section.split { display: grid; grid-template-columns: 1fr 1fr; gap: 1em; }
 ```
 
-**コードブロック overflow 防止:** `font-size: 0.6em` がデフォルト推奨。これにより12行までのコードがスライド枠内に収まる
+**コードブロック overflow 防止:** 自動注入の `0.58em` で12行までが枠内に収まる。それでも溢れる場合はCSSではなく `bun run split` でスライドを分割する
 
 ## スライド単位ディレクティブ
 

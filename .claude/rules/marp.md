@@ -11,7 +11,7 @@ paths:
 - フロントマター先頭: `marp: true`（VSCode拡張がプレビュー検知）
 - スライド区切り: `\n\n---\n\n`
 - レイアウト: `<!-- _class: lead -->` で中央配置
-- スピーカーノート: `<!-- notes -->` HTMLコメント
+- スピーカーノート: HTMLコメント（`<!-- … -->`）。`notes` というキーワードは不要 — Marpはコメント全体をノートとして扱う
 - 図解: インラインSVGを直接埋め込み（`<svg viewBox="..." style="max-height:70vh;...">...</svg>`）。Mermaidは使用しない
 - テーマ: `gaia` / `default` / `uncover`
 - **未記載スライドは作らない**: ページ番号用の空白スライドや内容のないスライドは作成しない。すべてのスライドに実質的なコンテンツを配置すること
@@ -20,18 +20,15 @@ paths:
 
 **コードブロックがスライド枠からはみ出さないよう、以下を必ず実施:**
 
-### デフォルト設定（すべてのプレゼンで適用）
+### デフォルト設定（手動作業は不要）
 
-`slides.config.yaml` の `style` セクションに以下を含める:
+`src/generate/markdown.ts` の `BASE_CSS` が **全デッキに無条件で自動注入**する:
 
-```yaml
-style: |
-  /* コードブロックのフォントサイズを縮小してはみ出しを防ぐ */
-  section pre code {
-    font-size: 0.6em;
-    line-height: 1.4;
-  }
+```css
+section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
 ```
+
+`slides.config.yaml` の `marp.style` は BASE_CSS の**後**に連結されるため、ここで `section pre code` を再定義すると自動設定を上書きしてしまう。フォントサイズを触る必要は通常ない。
 
 ### コード量の制約
 

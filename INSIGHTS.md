@@ -343,6 +343,7 @@ SessionEnd hook [If this was a long conversation (20+ messages), remind the user
 
 ---
 
+<<<<<<< HEAD
 ## 2026-07-20 14:47:54 — branch: `refactor/cleanup-and-consolidate`
 
 Your shareable insights report is ready:
@@ -350,4 +351,32 @@ file:///home/vscode/.claude/usage-data/report-2026-07-20-144849.html
 
 Want to dig into any section or try one of the suggestions?
 SessionEnd hook [If this was a long conversation (20+ messages), remind the user to run /compact to reduce context size. Keep it brief and friendly.] failed: Prompt stop hooks are not yet supported outside REPL
+=======
+## 2026-07-20 14:33:08 — branch: `refactor/cleanup-and-consolidate`
+
+Your shareable insights report is ready:
+file:///home/vscode/.claude/usage-data/report-2026-07-20-143406.html
+
+Want to dig into any section or try one of the suggestions?
+
+
+---
+
+## 2026-07-20 14:34:59 — branch: `refactor/cleanup-and-consolidate`
+
+Your shareable insights report is ready:
+file:///home/vscode/.claude/usage-data/report-2026-07-20-143548.html
+
+Want to dig into any section or try one of the suggestions?
+>>>>>>> 7ce0ae9676ff564a64676bf0c29a4f159c6fc6b0
+
+
+---
+
+## 2026-07-20 14:48:43 — branch: `main`
+
+Your shareable insights report is ready:
+file:///home/vscode/.claude/usage-data/report-2026-07-20-144929.html
+
+Want to dig into any section or try one of the suggestions?
 
