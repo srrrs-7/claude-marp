@@ -288,6 +288,10 @@ bun test scripts/test-e2e.test.ts       # Single file (full render→export roun
 bun test -t "normalizeSvg"              # Single test by name pattern
 ```
 
+Tests live in **two** places — `bun test <path>` needs the right one:
+- `src/__tests__/` — unit tests for `src/` modules (`loader`, `markdown`, `slugify`, `svg`)
+- `scripts/test-*.test.ts` + `scripts/__tests__/quality.test.ts` — script-level unit, e2e, and quality-helper tests
+
 `bun run check` = Biome (code lint/format). `bun run lint` = *slide quality* gate (`validate` + `validate:quality`). Different things despite the names.
 
 `make setup-hooks` installs `scripts/hooks/pre-push` into `.git/hooks/`.
@@ -332,8 +336,12 @@ docs/20260214073222_example/
 | `scripts/lib/quality.ts` | Shared quality helpers: `LABEL_TITLE_RE`, `SlideRecord`, `isAssertive()`, `hasSvg()`, `estimateMins()`, `computeDeckMetrics()`, `validateSlideQuality()` — imported by stats, validate, generate-index |
 | `scripts/lib/constants.ts` | Shared quality thresholds: `GRADE_A_MIN`, `READING_SPEED_JA/EN`, `SVG_TARGET_RATIO`, `RENDER_PARALLEL`, etc. |
 | `scripts/lib/presentation-loader.ts` | `collectPresentations()` — shared Glob+YAML+JSON loader for stats, validate, generate-index |
+| `scripts/lib/cache.ts` | `readCache()` / `isFresh()` / `updateEntry()` / `writeCache()` — mtime+size freshness, used by `rebuild` |
+| `scripts/lib/exit-codes.ts` | `EXIT` — shared process exit codes so CI can distinguish failure classes |
+| `scripts/lib/colors.ts` | ANSI helpers for script output |
+| `scripts/config/categories.ts` | Deck → shelf mapping. **The 12 shelves in `docs/index.html` come from here** — a new topic area needs a rule added, or it lands in "Other" |
 | `scripts/split-slides.ts` | TypeScript split tool — `--mode bullets` (8+ items) and `--mode code` (code+bullets separation) |
-| `scripts/rebuild-all-slides.ts` | TypeScript rebuild — parallel render + sequential export with MD5 cache |
+| `scripts/rebuild-all-slides.ts` | TypeScript rebuild — parallel render + sequential export. Incremental via **mtime+size** cache (no hashing) in `.cache/rebuild/build-cache.json`; `--force` ignores it |
 
 **Two-layer Zod schema design:**
 - Config schema: every field except `topic` has `.default()`. Nested objects use `.default({})`.
@@ -512,6 +520,9 @@ SVG使用スライド: 12/20
 | Write/Edit `.svg` | Check for `url(#id)` violations |
 | Write/Edit `docs/**/*.md` | Check for unconverted `` ```mermaid `` blocks |
 
+Most of these are dispatched from `settings.json` into scripts — edit the **script**, not the JSON:
+`.claude/hooks/post-write.sh` (validate / mermaid / asset-path checks), `.claude/hooks/post-bash.sh`, `.claude/hooks/check-svg-url-refs.ts`.
+
 **Environment variables set in `.claude/settings.json`:**
 - `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` — enables Agent Teams feature
 
@@ -584,3 +595,4 @@ tmux-based parallel execution: Claude Code (impl) + Codex (review) workers in sp
 - **`agents/`** — `slide-creator`, `slide-chunk-writer`, `svg-diagram-author`, `slide-researcher`, `deck-fixer`, `deck-quality-auditor`, `marp-customizer`, `team-leader`, `impl-worker`, `review-worker`（モデル振り分けは「エージェント一覧」参照）
 - **`skills/`** — `/create-slides`, `/batch-decks`, `/improve-deck`, `/generate`, `/review-slides`, `/validate`, `/ship`, `/agent-teams`
   - frontmatter のフィールド名は **`user-invocable`（ハイフン）**。`user_invocable` は無効フィールドとして無視される
+- **`hooks/`** — PostToolUse フックの実体（`post-write.sh`, `post-bash.sh`, `check-svg-url-refs.ts`）。`settings.json` はここへのディスパッチのみ
