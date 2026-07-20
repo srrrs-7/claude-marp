@@ -7,41 +7,76 @@ paginate: true
 header: "ネットワーク効果と独占"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,35 +111,37 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ネットワーク効果の「罠」（1/2）
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
--   <rect width="800" height="280" fill="#1a1a2e"/>
--   <!-- Network nodes - winner takes all visualization -->
--   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">ネットワーク効果：強くなるほど競争できなくなる逆説</text>
--   <!-- Small network (left) -->
--   <circle cx="110" cy="120" r="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
--   <circle cx="70" cy="160" r="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
--   <circle cx="150" cy="160" r="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
--   <circle cx="110" cy="200" r="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
--   <line x1="110" y1="132" x2="80" y2="150" stroke="#e91e63" stroke-width="1.5"/>
--   <line x1="110" y1="132" x2="140" y2="150" stroke="#e91e63" stroke-width="1.5"/>
--   <line x1="80" y1="172" x2="110" y2="188" stroke="#e91e63" stroke-width="1.5"/>
--   <line x1="140" y1="172" x2="110" y2="188" stroke="#e91e63" stroke-width="1.5"/>
--   <text x="110" y="228" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">競合 (4ノード)</text>
--   <text x="110" y="244" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">価値 ∝ 16</text>
--   <!-- VS -->
--   <text x="270" y="165" text-anchor="middle" fill="#888" font-size="28" font-weight="bold" font-family="sans-serif">vs</text>
--   <!-- Large network (right) - dominant -->
--   <circle cx="490" cy="100" r="16" fill="#0d2137" stroke="#f9a825" stroke-width="2.5"/>
--   <circle cx="430" cy="135" r="14" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
--   <circle cx="555" cy="135" r="14" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="280" fill="#1a1a2e"/>
+  <!-- Network nodes - winner takes all visualization -->
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">ネットワーク効果：強くなるほど競争できなくなる逆説</text>
+  <!-- Small network (left) -->
+  <circle cx="110" cy="120" r="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <circle cx="70" cy="160" r="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <circle cx="150" cy="160" r="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <circle cx="110" cy="200" r="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <line x1="110" y1="132" x2="80" y2="150" stroke="#e91e63" stroke-width="1.5"/>
+  <line x1="110" y1="132" x2="140" y2="150" stroke="#e91e63" stroke-width="1.5"/>
+  <line x1="80" y1="172" x2="110" y2="188" stroke="#e91e63" stroke-width="1.5"/>
+  <line x1="140" y1="172" x2="110" y2="188" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="110" y="228" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">競合 (4ノード)</text>
+  <text x="110" y="244" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">価値 ∝ 16</text>
+  <!-- VS -->
+  <text x="270" y="165" text-anchor="middle" fill="#888" font-size="28" font-weight="bold" font-family="sans-serif">vs</text>
+  <!-- Large network (right) - dominant -->
+  <circle cx="490" cy="100" r="16" fill="#0d2137" stroke="#f9a825" stroke-width="2.5"/>
+  <circle cx="430" cy="135" r="14" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
+  <circle cx="555" cy="135" r="14" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead fit-58 -->
 # ネットワーク効果の「罠」（2/2）
 
 -   <circle cx="410" cy="185" r="13" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
@@ -136,21 +173,22 @@ style: |
 
 > *独占の形成・維持・崩壊の3段階でネットワーク効果の罠を解剖する*
 
-- 1. ネットワーク効果の定義とメトカーフの法則
-- 2. プラットフォームの勝者総取り構造
-- 3. ロックインのメカニズム
-- 4. 歴史的な独占の崩壊事例
-- 5. 次の破壊的競合の条件
+1. ネットワーク効果の定義とメトカーフの法則
+2. プラットフォームの勝者総取り構造
+3. ロックインのメカニズム
+4. 歴史的な独占の崩壊事例
+5. 次の破壊的競合の条件
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ネットワーク効果の基本
 
 
 ---
 
+<!-- _class: invert fit-88 -->
 # メトカーフの法則：ネットワークの価値（1/2）
 
 > *ネットワーク価値はユーザー数の二乗で成長する指数関数*
@@ -158,19 +196,24 @@ style: |
 - Robert Metcalfe（イーサネット発明者）の法則：
 - **ネットワークの価値はユーザー数の二乗に比例する**
 - V = n²（nはノード数）
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">FAX機の台数と接続数の増加</text><line x1="60" y1="260" x2="740" y2="260" stroke="#888" stroke-width="1.5"/><line x1="60" y1="260" x2="60" y2="30" stroke="#888" stroke-width="1.5"/><text x="400" y="285" text-anchor="middle" fill="#aaa" font-size="12">ユーザー数 n</text><text x="30" y="150" text-anchor="middle" fill="#aaa" font-size="12" transform="rotate(-90,30,150)">接続数 n(n-1)/2</text><polyline points="60,260 167,258 274,248 381,222 488,176 595,106 702,20" fill="none" stroke="#f9a825" stroke-width="3"/><circle cx="60" cy="260" r="5" fill="#e91e63"/><circle cx="167" cy="258" r="5" fill="#e91e63"/><circle cx="274" cy="248" r="5" fill="#e91e63"/><circle cx="381" cy="222" r="5" fill="#e91e63"/><circle cx="488" cy="176" r="5" fill="#e91e63"/><circle cx="595" cy="106" r="5" fill="#e91e63"/><circle cx="702" cy="20" r="5" fill="#e91e63"/><text x="60" y="277" text-anchor="middle" fill="#aaa" font-size="10">1</text><text x="167" y="277" text-anchor="middle" fill="#aaa" font-size="10">2</text><text x="274" y="277" text-anchor="middle" fill="#aaa" font-size="10">3</text><text x="381" y="277" text-anchor="middle" fill="#aaa" font-size="10">5</text><text x="488" y="277" text-anchor="middle" fill="#aaa" font-size="10">7</text><text x="595" y="277" text-anchor="middle" fill="#aaa" font-size="10">10</text><text x="702" y="277" text-anchor="middle" fill="#aaa" font-size="10">15</text><text x="42" y="263" text-anchor="end" fill="#aaa" font-size="10">0</text><text x="42" y="218" text-anchor="end" fill="#aaa" font-size="10">45</text><text x="42" y="109" text-anchor="end" fill="#aaa" font-size="10">45k</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">FAX機の台数と接続数の増加</text><line x1="60" y1="260" x2="740" y2="260" stroke="#888" stroke-width="1.5"/><line x1="60" y1="260" x2="60" y2="30" stroke="#888" stroke-width="1.5"/><text x="400" y="285" text-anchor="middle" fill="#aaa" font-size="12">ユーザー数 n</text><text x="30" y="150" text-anchor="middle" fill="#aaa" font-size="12" transform="rotate(-90,30,150)">接続数 n(n-1)/2</text><polyline points="60,260 167,258 274,248 381,222 488,176 595,106 702,20" fill="none" stroke="#f9a825" stroke-width="3"/><circle cx="60" cy="260" r="5" fill="#e91e63"/><circle cx="167" cy="258" r="5" fill="#e91e63"/><circle cx="274" cy="248" r="5" fill="#e91e63"/><circle cx="381" cy="222" r="5" fill="#e91e63"/><circle cx="488" cy="176" r="5" fill="#e91e63"/><circle cx="595" cy="106" r="5" fill="#e91e63"/><circle cx="702" cy="20" r="5" fill="#e91e63"/><text x="60" y="277" text-anchor="middle" fill="#aaa" font-size="10">1</text><text x="167" y="277" text-anchor="middle" fill="#aaa" font-size="10">2</text><text x="274" y="277" text-anchor="middle" fill="#aaa" font-size="10">3</text><text x="381" y="277" text-anchor="middle" fill="#aaa" font-size="10">5</text><text x="488" y="277" text-anchor="middle" fill="#aaa" font-size="10">7</text><text x="595" y="277" text-anchor="middle" fill="#aaa" font-size="10">10</text><text x="702" y="277" text-anchor="middle" fill="#aaa" font-size="10">15</text><text x="42" y="263" text-anchor="end" fill="#aaa" font-size="10">0</text><text x="42" y="218" text-anchor="end" fill="#aaa" font-size="10">45</text><text x="42" y="109" text-anchor="end" fill="#aaa" font-size="10">45k</text></svg>
+</div>
 
 
 ---
 
 # メトカーフの法則：ネットワークの価値（2/2）
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">ネットワーク価値の指数関数的成長</text><line x1="60" y1="310" x2="740" y2="310" stroke="#555" stroke-width="1.5"/><line x1="60" y1="310" x2="60" y2="50" stroke="#555" stroke-width="1.5"/><text x="400" y="340" text-anchor="middle" fill="#aaa" font-size="13">ユーザー数</text><text x="22" y="180" text-anchor="middle" fill="#aaa" font-size="13" transform="rotate(-90,22,180)">価値</text><polyline points="60,310 172,308 284,296 396,268 508,220 620,148 732,48" fill="none" stroke="#f9a825" stroke-width="3.5"/><line x1="60" y1="310" x2="732" y2="228" stroke="#4fc3f7" stroke-width="2" stroke-dasharray="6,4"/><text x="740" y="228" fill="#4fc3f7" font-size="12">線形</text><text x="740" y="50" fill="#f9a825" font-size="12">n²</text><text x="396" y="255" fill="white" font-size="12" text-anchor="middle">→ ユーザーが増えるほど</text><text x="396" y="272" fill="#e91e63" font-size="13" font-weight="bold" text-anchor="middle">指数関数的に価値が上がる</text><rect x="510" y="130" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="620" y="153" text-anchor="middle" fill="white" font-size="12">最初に大きくなった者が</text><text x="620" y="172" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">圧倒的優位を持つ</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">ネットワーク価値の指数関数的成長</text><line x1="60" y1="310" x2="740" y2="310" stroke="#555" stroke-width="1.5"/><line x1="60" y1="310" x2="60" y2="50" stroke="#555" stroke-width="1.5"/><text x="400" y="340" text-anchor="middle" fill="#aaa" font-size="13">ユーザー数</text><text x="22" y="180" text-anchor="middle" fill="#aaa" font-size="13" transform="rotate(-90,22,180)">価値</text><polyline points="60,310 172,308 284,296 396,268 508,220 620,148 732,48" fill="none" stroke="#f9a825" stroke-width="3.5"/><line x1="60" y1="310" x2="732" y2="228" stroke="#4fc3f7" stroke-width="2" stroke-dasharray="6,4"/><text x="740" y="228" fill="#4fc3f7" font-size="12">線形</text><text x="740" y="50" fill="#f9a825" font-size="12">n²</text><text x="396" y="255" fill="white" font-size="12" text-anchor="middle">→ ユーザーが増えるほど</text><text x="396" y="272" fill="#e91e63" font-size="13" font-weight="bold" text-anchor="middle">指数関数的に価値が上がる</text><rect x="510" y="130" width="220" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="620" y="153" text-anchor="middle" fill="white" font-size="12">最初に大きくなった者が</text><text x="620" y="172" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">圧倒的優位を持つ</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 勝者総取りの構造
 
 
@@ -183,7 +226,10 @@ style: |
 - **仮想的な競争：**
 - SNS-A（友人100人）vs SNS-B（友人1人）
 - → ユーザーは合理的にSNS-Aを選ぶ
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="260" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">ティッピングポイント：市場の転換点</text><line x1="60" y1="210" x2="740" y2="210" stroke="#555" stroke-width="1.5"/><line x1="60" y1="210" x2="60" y2="40" stroke="#555" stroke-width="1.5"/><text x="400" y="235" text-anchor="middle" fill="#aaa" font-size="12">時間</text><text x="22" y="125" text-anchor="middle" fill="#aaa" font-size="12" transform="rotate(-90,22,125)">市場シェア</text><polyline points="60,200 160,195 240,185 320,165 380,140 420,105 460,70 500,52 580,45 660,43 740,42" fill="none" stroke="#f9a825" stroke-width="3"/><line x1="400" y1="40" x2="400" y2="210" stroke="#e91e63" stroke-width="2" stroke-dasharray="5,4"/><text x="400" y="38" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">ティッピングポイント</text><text x="240" y="175" fill="#aaa" font-size="12" text-anchor="middle">競争期間</text><text x="580" y="60" fill="#4fc3f7" font-size="12" text-anchor="middle">独占安定期</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="260" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">ティッピングポイント：市場の転換点</text><line x1="60" y1="210" x2="740" y2="210" stroke="#555" stroke-width="1.5"/><line x1="60" y1="210" x2="60" y2="40" stroke="#555" stroke-width="1.5"/><text x="400" y="235" text-anchor="middle" fill="#aaa" font-size="12">時間</text><text x="22" y="125" text-anchor="middle" fill="#aaa" font-size="12" transform="rotate(-90,22,125)">市場シェア</text><polyline points="60,200 160,195 240,185 320,165 380,140 420,105 460,70 500,52 580,45 660,43 740,42" fill="none" stroke="#f9a825" stroke-width="3"/><line x1="400" y1="40" x2="400" y2="210" stroke="#e91e63" stroke-width="2" stroke-dasharray="5,4"/><text x="400" y="38" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">ティッピングポイント</text><text x="240" y="175" fill="#aaa" font-size="12" text-anchor="middle">競争期間</text><text x="580" y="60" fill="#4fc3f7" font-size="12" text-anchor="middle">独占安定期</text></svg>
+</div>
 
 
 ---
@@ -192,28 +238,31 @@ style: |
 
 > *ティッピングポイント後は後発が参入不可能な壁が生まれる*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
--   <rect width="800" height="280" fill="#1a1a2e"/>
--   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">ネットワーク規模と参入障壁の関係</text>
--   <!-- axes -->
--   <line x1="60" y1="220" x2="740" y2="220" stroke="#555" stroke-width="1.5"/>
--   <line x1="60" y1="220" x2="60" y2="45" stroke="#555" stroke-width="1.5"/>
--   <text x="400" y="248" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">ネットワーク規模（ユーザー数）</text>
--   <text x="22" y="135" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif" transform="rotate(-90,22,135)">参入障壁の高さ</text>
--   <!-- barrier curve (rises quickly) -->
--   <polyline points="60,215 150,210 240,195 330,170 420,130 510,80 600,50 690,40" fill="none" stroke="#e91e63" stroke-width="3"/>
--   <!-- network value curve -->
--   <polyline points="60,218 150,215 240,205 330,185 420,150 510,100 600,58 690,30" fill="none" stroke="#f9a825" stroke-width="3" stroke-dasharray="8,4"/>
--   <!-- labels -->
--   <text x="700" y="45" fill="#f9a825" font-size="11" font-family="sans-serif">ネットワーク価値</text>
--   <text x="700" y="58" fill="#f9a825" font-size="10" font-family="sans-serif">(n²)</text>
--   <text x="700" y="80" fill="#e91e63" font-size="11" font-family="sans-serif">参入障壁</text>
--   <!-- tipping point -->
--   <line x1="420" y1="45" x2="420" y2="220" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/>
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="280" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">ネットワーク規模と参入障壁の関係</text>
+  <!-- axes -->
+  <line x1="60" y1="220" x2="740" y2="220" stroke="#555" stroke-width="1.5"/>
+  <line x1="60" y1="220" x2="60" y2="45" stroke="#555" stroke-width="1.5"/>
+  <text x="400" y="248" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">ネットワーク規模（ユーザー数）</text>
+  <text x="22" y="135" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif" transform="rotate(-90,22,135)">参入障壁の高さ</text>
+  <!-- barrier curve (rises quickly) -->
+  <polyline points="60,215 150,210 240,195 330,170 420,130 510,80 600,50 690,40" fill="none" stroke="#e91e63" stroke-width="3"/>
+  <!-- network value curve -->
+  <polyline points="60,218 150,215 240,205 330,185 420,150 510,100 600,58 690,30" fill="none" stroke="#f9a825" stroke-width="3" stroke-dasharray="8,4"/>
+  <!-- labels -->
+  <text x="700" y="45" fill="#f9a825" font-size="11" font-family="sans-serif">ネットワーク価値</text>
+  <text x="700" y="58" fill="#f9a825" font-size="10" font-family="sans-serif">(n²)</text>
+  <text x="700" y="80" fill="#e91e63" font-size="11" font-family="sans-serif">参入障壁</text>
+  <!-- tipping point -->
+  <line x1="420" y1="45" x2="420" y2="220" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-58 -->
 # なぜSNSは複数共存できないか（2/2）（2/2）
 
 > *ティッピングポイント超過後は後発の参入が構造的に不可能になる*
@@ -232,15 +281,15 @@ style: |
 - </svg>
 - → 後発は参入できない壁が生まれる
 - **現実のデータ（2024）：**
-- - ソーシャルグラフ：Facebook/Instagram（Metaが支配）
-- - 動画：YouTube（シェア90%以上）
-- - 検索：Google（90%以上）
-- - スマホOS：Android/iOS（99.9%）
+- ソーシャルグラフ：Facebook/Instagram（Metaが支配）
+- 動画：YouTube（シェア90%以上）
+- 検索：Google（90%以上）
+- スマホOS：Android/iOS（99.9%）
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ロックインのメカニズム
 
 
@@ -249,11 +298,15 @@ style: |
 # 転換コストが競争を殺す（1/2）
 
 - **転換コストの4つの種類**
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e"/><rect x="40" y="40" width="160" height="100" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="120" y="78" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">データ持出し</text><text x="120" y="98" text-anchor="middle" fill="white" font-size="11">写真・連絡先</text><text x="120" y="116" text-anchor="middle" fill="#aaa" font-size="10">移行に数時間〜数日</text><rect x="240" y="40" width="160" height="100" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="320" y="78" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">学習コスト</text><text x="320" y="98" text-anchor="middle" fill="white" font-size="11">UI・操作習熟</text><text x="320" y="116" text-anchor="middle" fill="#aaa" font-size="10">再学習に数週間</text><rect x="440" y="40" width="160" height="100" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="520" y="78" text-anchor="middle" fill="#4fc3f7" font-size="14" font-weight="bold">エコシステム</text><text x="520" y="98" text-anchor="middle" fill="white" font-size="11">周辺デバイス依存</text><text x="520" y="116" text-anchor="middle" fill="#aaa" font-size="10">買い替えコスト大</text><rect x="640" y="40" width="120" height="100" rx="10" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="700" y="78" text-anchor="middle" fill="#81c784" font-size="14" font-weight="bold">社会的</text><text x="700" y="98" text-anchor="middle" fill="white" font-size="11">グループ孤立</text><text x="700" y="116" text-anchor="middle" fill="#aaa" font-size="10">LINE離脱のリスク</text><rect x="260" y="185" width="280" height="90" rx="12" fill="#0d0d1a" stroke="#f9a825" stroke-width="2"/><text x="400" y="220" text-anchor="middle" fill="white" font-size="14">合計転換コスト =</text><text x="400" y="245" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">競合への移行障壁</text><line x1="120" y1="140" x2="300" y2="185" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/><line x1="320" y1="140" x2="360" y2="185" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/><line x1="520" y1="140" x2="450" y2="185" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/><line x1="700" y1="140" x2="510" y2="185" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="320" fill="#1a1a2e"/><rect x="40" y="40" width="160" height="100" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="120" y="78" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">データ持出し</text><text x="120" y="98" text-anchor="middle" fill="white" font-size="11">写真・連絡先</text><text x="120" y="116" text-anchor="middle" fill="#aaa" font-size="10">移行に数時間〜数日</text><rect x="240" y="40" width="160" height="100" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="320" y="78" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">学習コスト</text><text x="320" y="98" text-anchor="middle" fill="white" font-size="11">UI・操作習熟</text><text x="320" y="116" text-anchor="middle" fill="#aaa" font-size="10">再学習に数週間</text><rect x="440" y="40" width="160" height="100" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="520" y="78" text-anchor="middle" fill="#4fc3f7" font-size="14" font-weight="bold">エコシステム</text><text x="520" y="98" text-anchor="middle" fill="white" font-size="11">周辺デバイス依存</text><text x="520" y="116" text-anchor="middle" fill="#aaa" font-size="10">買い替えコスト大</text><rect x="640" y="40" width="120" height="100" rx="10" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="700" y="78" text-anchor="middle" fill="#81c784" font-size="14" font-weight="bold">社会的</text><text x="700" y="98" text-anchor="middle" fill="white" font-size="11">グループ孤立</text><text x="700" y="116" text-anchor="middle" fill="#aaa" font-size="10">LINE離脱のリスク</text><rect x="260" y="185" width="280" height="90" rx="12" fill="#0d0d1a" stroke="#f9a825" stroke-width="2"/><text x="400" y="220" text-anchor="middle" fill="white" font-size="14">合計転換コスト =</text><text x="400" y="245" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">競合への移行障壁</text><line x1="120" y1="140" x2="300" y2="185" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/><line x1="320" y1="140" x2="360" y2="185" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/><line x1="520" y1="140" x2="450" y2="185" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/><line x1="700" y1="140" x2="510" y2="185" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 転換コストが競争を殺す（2/2）
 
 > *LINEをやめるとグループから孤立する社会コストが最強の鎖*
@@ -267,6 +320,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-94 -->
 # 独占はどうやって崩れるか（1/2）
 
 > *MySpaceは「リアル人間関係」という新価値提案で逆転された*
@@ -274,7 +328,10 @@ style: |
 - **事例：MySpace → Facebook（2005-2008）**
 - MySpaceは2006年時点で世界最大のSNS
 - Facebookは「リアルな人間関係」という全く異なる価値提案で逆転
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="240" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">MySpace vs Facebook：市場シェア推移（概念図）</text><line x1="60" y1="195" x2="740" y2="195" stroke="#555" stroke-width="1.5"/><line x1="60" y1="195" x2="60" y2="40" stroke="#555" stroke-width="1.5"/><text x="130" y="215" text-anchor="middle" fill="#aaa" font-size="10">2004</text><text x="250" y="215" text-anchor="middle" fill="#aaa" font-size="10">2005</text><text x="370" y="215" text-anchor="middle" fill="#aaa" font-size="10">2006</text><text x="490" y="215" text-anchor="middle" fill="#aaa" font-size="10">2007</text><text x="610" y="215" text-anchor="middle" fill="#aaa" font-size="10">2008</text><text x="730" y="215" text-anchor="middle" fill="#aaa" font-size="10">2009</text><polyline points="60,185 130,150 250,90 370,68 490,100 610,150 730,185" fill="none" stroke="#e91e63" stroke-width="2.5"/><text x="250" y="84" fill="#e91e63" font-size="11">MySpace</text><polyline points="60,193 130,190 250,182 370,145 490,95 610,55 730,45" fill="none" stroke="#4fc3f7" stroke-width="2.5"/><text x="610" y="50" fill="#4fc3f7" font-size="11">Facebook</text><line x1="430" y1="40" x2="430" y2="195" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,4"/><text x="430" y="37" text-anchor="middle" fill="#f9a825" font-size="11">逆転</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="240" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">MySpace vs Facebook：市場シェア推移（概念図）</text><line x1="60" y1="195" x2="740" y2="195" stroke="#555" stroke-width="1.5"/><line x1="60" y1="195" x2="60" y2="40" stroke="#555" stroke-width="1.5"/><text x="130" y="215" text-anchor="middle" fill="#aaa" font-size="10">2004</text><text x="250" y="215" text-anchor="middle" fill="#aaa" font-size="10">2005</text><text x="370" y="215" text-anchor="middle" fill="#aaa" font-size="10">2006</text><text x="490" y="215" text-anchor="middle" fill="#aaa" font-size="10">2007</text><text x="610" y="215" text-anchor="middle" fill="#aaa" font-size="10">2008</text><text x="730" y="215" text-anchor="middle" fill="#aaa" font-size="10">2009</text><polyline points="60,185 130,150 250,90 370,68 490,100 610,150 730,185" fill="none" stroke="#e91e63" stroke-width="2.5"/><text x="250" y="84" fill="#e91e63" font-size="11">MySpace</text><polyline points="60,193 130,190 250,182 370,145 490,95 610,55 730,45" fill="none" stroke="#4fc3f7" stroke-width="2.5"/><text x="610" y="50" fill="#4fc3f7" font-size="11">Facebook</text><line x1="430" y1="40" x2="430" y2="195" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,4"/><text x="430" y="37" text-anchor="middle" fill="#f9a825" font-size="11">逆転</text></svg>
+</div>
 
 
 ---
@@ -282,7 +339,10 @@ style: |
 # 独占はどうやって崩れるか（2/2）
 
 - → プラットフォームの独占は**隣接市場からの破壊で崩れる**
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">独占崩壊の3条件</text><rect x="50" y="55" width="200" height="90" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="150" y="90" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">技術の断絶</text><text x="150" y="112" text-anchor="middle" fill="white" font-size="11">ゲームチェンジャー</text><text x="150" y="130" text-anchor="middle" fill="#aaa" font-size="10">ガラケー→スマホ</text><rect x="300" y="55" width="200" height="90" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="90" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">行動様式の変化</text><text x="400" y="112" text-anchor="middle" fill="white" font-size="11">ユーザーニーズの変容</text><text x="400" y="130" text-anchor="middle" fill="#aaa" font-size="10">リアル関係→SNS重視</text><rect x="550" y="55" width="200" height="90" rx="12" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="650" y="90" text-anchor="middle" fill="#4fc3f7" font-size="14" font-weight="bold">規制の強制</text><text x="650" y="112" text-anchor="middle" fill="white" font-size="11">オープン化の義務化</text><text x="650" y="130" text-anchor="middle" fill="#aaa" font-size="10">欧州DMA等</text><line x1="150" y1="145" x2="360" y2="195" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/><line x1="400" y1="145" x2="400" y2="195" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/><line x1="650" y1="145" x2="440" y2="195" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/><rect x="270" y="195" width="260" height="60" rx="10" fill="#0d0d1a" stroke="#f9a825" stroke-width="2"/><text x="400" y="222" text-anchor="middle" fill="white" font-size="13">独占の崩壊</text><text x="400" y="244" text-anchor="middle" fill="#f9a825" font-size="12">（いずれか1条件で十分）</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="280" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">独占崩壊の3条件</text><rect x="50" y="55" width="200" height="90" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="150" y="90" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">技術の断絶</text><text x="150" y="112" text-anchor="middle" fill="white" font-size="11">ゲームチェンジャー</text><text x="150" y="130" text-anchor="middle" fill="#aaa" font-size="10">ガラケー→スマホ</text><rect x="300" y="55" width="200" height="90" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="90" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">行動様式の変化</text><text x="400" y="112" text-anchor="middle" fill="white" font-size="11">ユーザーニーズの変容</text><text x="400" y="130" text-anchor="middle" fill="#aaa" font-size="10">リアル関係→SNS重視</text><rect x="550" y="55" width="200" height="90" rx="12" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="650" y="90" text-anchor="middle" fill="#4fc3f7" font-size="14" font-weight="bold">規制の強制</text><text x="650" y="112" text-anchor="middle" fill="white" font-size="11">オープン化の義務化</text><text x="650" y="130" text-anchor="middle" fill="#aaa" font-size="10">欧州DMA等</text><line x1="150" y1="145" x2="360" y2="195" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/><line x1="400" y1="145" x2="400" y2="195" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/><line x1="650" y1="145" x2="440" y2="195" stroke="#888" stroke-width="1.5" stroke-dasharray="5,4"/><rect x="270" y="195" width="260" height="60" rx="10" fill="#0d0d1a" stroke="#f9a825" stroke-width="2"/><text x="400" y="222" text-anchor="middle" fill="white" font-size="13">独占の崩壊</text><text x="400" y="244" text-anchor="middle" fill="#f9a825" font-size="12">（いずれか1条件で十分）</text></svg>
+</div>
 
 
 ---
@@ -291,22 +351,25 @@ style: |
 
 > *最強の参入障壁とiつかの破壊条件のどちらを利用するかが戦略*
 
-- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
--   <rect width="800" height="220" fill="#1a1a2e"/>
--   <text x="400" y="24" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">ネットワーク効果の二面性：強みと罠</text>
--   <!-- two columns -->
--   <rect x="30" y="40" width="350" height="155" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/>
--   <text x="205" y="66" text-anchor="middle" fill="#4fc3f7" font-size="13" font-weight="bold" font-family="sans-serif">強み（先行者優位）</text>
--   <text x="50" y="92" fill="#ccc" font-size="11" font-family="sans-serif">✓ 最強の参入障壁</text>
--   <text x="50" y="114" fill="#ccc" font-size="11" font-family="sans-serif">✓ 競合が10倍の努力をしても追いつけない</text>
--   <text x="50" y="136" fill="#ccc" font-size="11" font-family="sans-serif">✓ 転換コストを意図的に設計できる</text>
--   <text x="50" y="158" fill="#ccc" font-size="11" font-family="sans-serif">✓ 価値はn²で成長する</text>
--   <text x="50" y="180" fill="#4fc3f7" font-size="11" font-family="sans-serif">→ プラットフォームの王道戦略</text>
--   <rect x="420" y="40" width="350" height="155" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+<div class="fig">
+<svg viewBox="0 0 800 220" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="220" fill="#1a1a2e"/>
+  <text x="400" y="24" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">ネットワーク効果の二面性：強みと罠</text>
+  <!-- two columns -->
+  <rect x="30" y="40" width="350" height="155" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/>
+  <text x="205" y="66" text-anchor="middle" fill="#4fc3f7" font-size="13" font-weight="bold" font-family="sans-serif">強み（先行者優位）</text>
+  <text x="50" y="92" fill="#ccc" font-size="11" font-family="sans-serif">✓ 最強の参入障壁</text>
+  <text x="50" y="114" fill="#ccc" font-size="11" font-family="sans-serif">✓ 競合が10倍の努力をしても追いつけない</text>
+  <text x="50" y="136" fill="#ccc" font-size="11" font-family="sans-serif">✓ 転換コストを意図的に設計できる</text>
+  <text x="50" y="158" fill="#ccc" font-size="11" font-family="sans-serif">✓ 価値はn²で成長する</text>
+  <text x="50" y="180" fill="#4fc3f7" font-size="11" font-family="sans-serif">→ プラットフォームの王道戦略</text>
+  <rect x="420" y="40" width="350" height="155" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-58 -->
 # まとめ：ネットワーク効果の二面性（2/2）
 
 > *先行者優位は絶対ではなく隣接市場・技術断絶・規制の3条件で崩壊する*
@@ -322,6 +385,5 @@ style: |
 - ✅ **転換コストはプラットフォームが意図的に設計する競争阻害手段**
 - ✅ **独占は「隣接市場」または「技術の断絶」で崩れる**
 - ✅ **スタートアップの戦略：ネットワーク効果が弱い市場から始める**
-- 
 - 「勝者総取りの市場では、2位は存在しないも同然だ」
 

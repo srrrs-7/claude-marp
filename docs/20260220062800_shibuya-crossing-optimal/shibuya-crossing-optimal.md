@@ -7,41 +7,76 @@ paginate: true
 header: "渋谷スクランブル交差点の最適化"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 渋谷スクランブル交差点の最適化
 3,000人が45秒で渡れる理由
 
@@ -87,31 +122,72 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # アジェンダ
 
 > *6つの視点で3,000人が45秒で渡れる設計の全体像を把握する*
 
-- 1. 渋谷スクランブル交差点とは
-- 2. スクランブル方式の仕組み
-- 3. 群衆力学：なぜぶつからないのか
-- 4. 信号制御の最適化
-- 5. 自己組織化する歩行者
-- 6. 分散システム設計への示唆
+1. 渋谷スクランブル交差点とは
+2. スクランブル方式の仕組み
+3. 群衆力学：なぜぶつからないのか
+4. 信号制御の最適化
+5. 自己組織化する歩行者
+6. 分散システム設計への示唆
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 渋谷スクランブル交差点とは
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 数字で見る渋谷スクランブル
 
 > *1日50万人・45秒サイクルが実測データで証明された最適設計*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7muIvosLfjgrnjgq/jg6njg7Pjg5bjg6vkuqTlt67ngrnvvJrpqZrnlbDjga7mlbDlrZc8L3RleHQ+CiAgPCEtLSA0IHN0YXQgYm94ZXMgLS0+CiAgPCEtLSBCb3ggMTogMzAwMCBwZW9wbGUgLS0+CiAgPHJlY3QgeD0iMzAiIHk9IjU1IiB3aWR0aD0iMTc1IiBoZWlnaHQ9IjEyMCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjExNyIgeT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjMyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjMsMDAwPC90ZXh0PgogIDx0ZXh0IHg9IjExNyIgeT0iMTI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+MeWbnuOBrumdkuS/oeWPt+OBpzwvdGV4dD4KICA8dGV4dCB4PSIxMTciIHk9IjE0MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuaoquaWreOBmeOCi+S6uuaVsDwvdGV4dD4KICA8dGV4dCB4PSIxMTciIHk9IjE2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPue0hDQ156eSPC90ZXh0PgogIDwhLS0gQm94IDI6IDUwMGsgcGVyIGRheSAtLT4KICA8cmVjdCB4PSIyMTUiIHk9IjU1IiB3aWR0aD0iMTc1IiBoZWlnaHQ9IjEyMCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjMwMiIgeT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjI4IiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjUw5LiH5Lq6PC90ZXh0PgogIDx0ZXh0IHg9IjMwMiIgeT0iMTI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+MeaXpeOBrue3j+aoquaWreiAheaVsDwvdGV4dD4KICA8dGV4dCB4PSIzMDIiIHk9IjE0MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPu+8iOS8keaXpeOBr+OBleOCieOBq+WkmuOBhO+8iTwvdGV4dD4KICA8IS0tIEJveCAzOiAzMDAwIHNxbSAtLT4KICA8cmVjdCB4PSI0MDAiIHk9IjU1IiB3aWR0aD0iMTc1IiBoZWlnaHQ9IjEyMCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQ4NyIgeT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjI4IiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjMsMDAw446hPC90ZXh0PgogIDx0ZXh0IHg9IjQ4NyIgeT0iMTI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5Lqk5beu54K544Gu6Z2i56mNPC90ZXh0PgogIDx0ZXh0IHg9IjQ4NyIgeT0iMTQzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+77yI44OG44OL44K544Kz44O844OI57SEMTTpnaLliIbvvIk8L3RleHQ+CiAgPCEtLSBCb3ggNDogNTAgeWVhcnMgLS0+CiAgPHJlY3QgeD0iNTg1IiB5PSI1NSIgd2lkdGg9IjE3NSIgaGVpZ2h0PSIxMjAiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI2NzIiIHk9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4xOTY55bm0PC90ZXh0PgogIDx0ZXh0IHg9IjY3MiIgeT0iMTI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44K544Kv44Op44Oz44OW44Or5bCO5YWlPC90ZXh0PgogIDx0ZXh0IHg9IjY3MiIgeT0iMTQzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+NTXlubTku6XkuIrnqLzlg43kuK08L3RleHQ+CiAgPCEtLSBEaXJlY3Rpb25zIGRpYWdyYW0gYmVsb3cgLS0+CiAgPHRleHQgeD0iNDAwIiB5PSIyMTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+NeaWueWQkeWQjOaZguaoquaWrSA9IOOCueOCr+ODqeODs+ODluODq+aWueW8jzwvdGV4dD4KICA8IS0tIENyb3NzIGludGVyc2VjdGlvbiAtLT4KICA8bGluZSB4MT0iNDAwIiB5MT0iMjQwIiB4Mj0iNDAwIiB5Mj0iMzgwIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMyIvPgogIDxsaW5lIHgxPSIyODAiIHkxPSIzMTAiIHgyPSI1MjAiIHkyPSIzMTAiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPCEtLSBEaWFnb25hbCBkaXJlY3Rpb25zIC0tPgogIDxsaW5lIHgxPSIzMTAiIHkxPSIyNDAiIHgyPSI0OTAiIHkyPSIzODAiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI2LDMiLz4KICA8bGluZSB4MT0iNDkwIiB5MT0iMjQwIiB4Mj0iMzEwIiB5Mj0iMzgwIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNiwzIi8+CiAgPCEtLSBQZWRlc3RyaWFuIGRvdHMgLS0+CiAgPGNpcmNsZSBjeD0iNDAwIiBjeT0iMjUwIiByPSI4IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjgiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSIzNzAiIHI9IjgiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuOCIvPjxjaXJjbGUgY3g9IjI5MCIgY3k9IjMxMCIgcj0iOCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC44Ii8+PGNpcmNsZSBjeD0iNTEwIiBjeT0iMzEwIiByPSI4IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjgiLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSIyNDgiIHI9IjgiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuOCIvPjxjaXJjbGUgY3g9IjQ4MCIgY3k9IjM3MiIgcj0iOCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC44Ii8+CiAgPHRleHQgeD0iNDAwIiB5PSIzOTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lhajmlrnlkJHlkIzmmYLpnZIgPSDlr77op5Lnt5rmqKrmlq3jgoLlj6/og708L3RleHQ+Cjwvc3ZnPg==)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">渋谷スクランブル交差点：驚異の数字</text>
+  <!-- 4 stat boxes -->
+  <!-- Box 1: 3000 people -->
+  <rect x="30" y="55" width="175" height="120" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="117" y="100" text-anchor="middle" fill="#f9a825" font-size="32" font-weight="bold" font-family="sans-serif">3,000</text>
+  <text x="117" y="125" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1回の青信号で</text>
+  <text x="117" y="143" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">横断する人数</text>
+  <text x="117" y="165" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">約45秒</text>
+  <!-- Box 2: 500k per day -->
+  <rect x="215" y="55" width="175" height="120" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="302" y="100" text-anchor="middle" fill="#f9a825" font-size="28" font-weight="bold" font-family="sans-serif">50万人</text>
+  <text x="302" y="125" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1日の総横断者数</text>
+  <text x="302" y="143" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">（休日はさらに多い）</text>
+  <!-- Box 3: 3000 sqm -->
+  <rect x="400" y="55" width="175" height="120" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="487" y="100" text-anchor="middle" fill="#e91e63" font-size="28" font-weight="bold" font-family="sans-serif">3,000㎡</text>
+  <text x="487" y="125" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">交差点の面積</text>
+  <text x="487" y="143" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">（テニスコート約14面分）</text>
+  <!-- Box 4: 50 years -->
+  <rect x="585" y="55" width="175" height="120" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="672" y="100" text-anchor="middle" fill="#e91e63" font-size="28" font-weight="bold" font-family="sans-serif">1969年</text>
+  <text x="672" y="125" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">スクランブル導入</text>
+  <text x="672" y="143" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">55年以上稼働中</text>
+  <!-- Directions diagram below -->
+  <text x="400" y="215" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">5方向同時横断 = スクランブル方式</text>
+  <!-- Cross intersection -->
+  <line x1="400" y1="240" x2="400" y2="380" stroke="#f9a825" stroke-width="3"/>
+  <line x1="280" y1="310" x2="520" y2="310" stroke="#f9a825" stroke-width="3"/>
+  <!-- Diagonal directions -->
+  <line x1="310" y1="240" x2="490" y2="380" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,3"/>
+  <line x1="490" y1="240" x2="310" y2="380" stroke="#e91e63" stroke-width="2" stroke-dasharray="6,3"/>
+  <!-- Pedestrian dots -->
+  <circle cx="400" cy="250" r="8" fill="#f9a825" opacity="0.8"/><circle cx="400" cy="370" r="8" fill="#f9a825" opacity="0.8"/><circle cx="290" cy="310" r="8" fill="#f9a825" opacity="0.8"/><circle cx="510" cy="310" r="8" fill="#f9a825" opacity="0.8"/><circle cx="320" cy="248" r="8" fill="#f9a825" opacity="0.8"/><circle cx="480" cy="372" r="8" fill="#f9a825" opacity="0.8"/>
+  <text x="400" y="398" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">全方向同時青 = 対角線横断も可能</text>
+</svg>
+</div>
+
 - **1回の青信号（約45秒）で最大3,000人が横断**
 - 1日の横断者数：**約50万人**（休日は更に多い）
 - 交差点の面積：約**3,000平方メートル**
@@ -122,7 +198,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # スクランブル方式の仕組み
 
 
@@ -135,11 +211,41 @@ style: |
 
 ---
 
+<!-- _class: invert fit-70 -->
 # スクランブル方式の発明と導入
 
 > *Barnes方式が全方向同時青で歩行者スループットを最大化した*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgrnjgq/jg6njg7Pjg5bjg6vkuqTlt67ngrnjga7oqpXnlJ/jgajoqK3oqIjmgJ3mg7M8L3RleHQ+CiAgPCEtLSBUaW1lbGluZSAtLT4KICA8bGluZSB4MT0iNjAiIHkxPSIyMDAiIHgyPSI3NDAiIHkyPSIyMDAiIHN0cm9rZT0iIzE2MjEzZSIgc3Ryb2tlLXdpZHRoPSI1Ii8+CiAgPCEtLSAxOTUxIERlbnZlciAtLT4KICA8Y2lyY2xlIGN4PSIxMzAiIGN5PSIyMDAiIHI9IjE0IiBmaWxsPSIjZjlhODI1Ii8+CiAgPGxpbmUgeDE9IjEzMCIgeTE9IjE4NiIgeDI9IjEzMCIgeTI9IjEyMCIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8cmVjdCB4PSI2MCIgeT0iNzUiIHdpZHRoPSIxNDAiIGhlaWdodD0iNDUiIHJ4PSI2IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iMTMwIiB5PSI5NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4xOTUxIOODh+ODs+ODkOODvDwvdGV4dD4KICA8dGV4dCB4PSIxMzAiIHk9IjExMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODkOODvOODs+OCuuOBjOWIneioree9rjwvdGV4dD4KICA8IS0tIDE5NjkgU2hpYnV5YSAtLT4KICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMDAiIHI9IjE4IiBmaWxsPSIjZTkxZTYzIi8+CiAgPGxpbmUgeDE9IjQwMCIgeTE9IjIxOCIgeDI9IjQwMCIgeTI9IjI4MCIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8cmVjdCB4PSIzMTAiIHk9IjI4MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSI2MCIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzMDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+MTk2OSDmuIvosLflsI7lhaU8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzMjMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgIzmranou4rliIbpm6LlvI/jgI3jgajjgZfjgablsI7lhaU8L3RleHQ+CiAgPCEtLSAyMDEwcyBBSSB1cGdyYWRlIC0tPgogIDxjaXJjbGUgY3g9IjYyMCIgY3k9IjIwMCIgcj0iMTQiIGZpbGw9IiNmOWE4MjUiLz4KICA8bGluZSB4MT0iNjIwIiB5MT0iMTg2IiB4Mj0iNjIwIiB5Mj0iMTIwIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxyZWN0IHg9IjU0MCIgeT0iNzUiIHdpZHRoPSIxNjAiIGhlaWdodD0iNDUiIHJ4PSI2IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNjIwIiB5PSI5NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4yMDEwcyBBSeWItuW+oTwvdGV4dD4KICA8dGV4dCB4PSI2MjAiIHk9IjExMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPk5FQyDnvqTooYbop6PmnpDjgrfjgrnjg4bjg6A8L3RleHQ+CiAgPCEtLSBDb3JlIGRlc2lnbiBwcmluY2lwbGUgYm94IC0tPgogIDxyZWN0IHg9IjEwMCIgeT0iMzU1IiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjM4IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjM3OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oqK3oqIjljp/nkIbvvJrmranooYzogIXjg5Xjgqfjg7zjgrrjgajou4rkuKHjg5Xjgqfjg7zjgrrjgpLlrozlhajliIbpm6Ig4oaSIOihneeqgeODquOCueOCr+OCkuOCvOODreOBqzwvdGV4dD4KPC9zdmc+)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">スクランブル交差点の誕生と設計思想</text>
+  <!-- Timeline -->
+  <line x1="60" y1="200" x2="740" y2="200" stroke="#16213e" stroke-width="5"/>
+  <!-- 1951 Denver -->
+  <circle cx="130" cy="200" r="14" fill="#f9a825"/>
+  <line x1="130" y1="186" x2="130" y2="120" stroke="#f9a825" stroke-width="2"/>
+  <rect x="60" y="75" width="140" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="130" y="96" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">1951 デンバー</text>
+  <text x="130" y="113" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">バーンズが初設置</text>
+  <!-- 1969 Shibuya -->
+  <circle cx="400" cy="200" r="18" fill="#e91e63"/>
+  <line x1="400" y1="218" x2="400" y2="280" stroke="#e91e63" stroke-width="2"/>
+  <rect x="310" y="280" width="180" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="305" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">1969 渋谷導入</text>
+  <text x="400" y="323" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">「歩車分離式」として導入</text>
+  <!-- 2010s AI upgrade -->
+  <circle cx="620" cy="200" r="14" fill="#f9a825"/>
+  <line x1="620" y1="186" x2="620" y2="120" stroke="#f9a825" stroke-width="2"/>
+  <rect x="540" y="75" width="160" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="620" y="96" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">2010s AI制御</text>
+  <text x="620" y="113" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">NEC 群衆解析システム</text>
+  <!-- Core design principle box -->
+  <rect x="100" y="355" width="600" height="38" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="378" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">設計原理：歩行者フェーズと車両フェーズを完全分離 → 衝突リスクをゼロに</text>
+</svg>
+</div>
+
 - **1951年：** ヘンリー・バーンズがデンバーで初のスクランブル交差点を設置
 - **1969年：** 渋谷に導入（当時は「歩車分離式」と呼ばれた）
 - **原理：** 歩行者フェーズと車両フェーズを完全分離
@@ -150,17 +256,77 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 群衆力学：なぜぶつからないのか
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # レーン形成（Lane Formation）
 
 > *歩行者が自律的にレーンを形成して衝突を回避する—中央制御なし*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg6zjg7zjg7PlvaLmiJDvvIhMYW5lIEZvcm1hdGlvbu+8ie+8muiHquW3see1hOe5lOWMluOBruWPr+imluWMljwvdGV4dD4KICA8IS0tIExlZnQgc2lkZTogY2hhb3RpYyBzdGFydCAtLT4KICA8dGV4dCB4PSIyMDAiIHk9IjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEzIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L+h5Y+36Z2SIOebtOW+jO+8iOa3t+ayjO+8iTwvdGV4dD4KICA8cmVjdCB4PSI0MCIgeT0iNzAiIHdpZHRoPSIzMjAiIGhlaWdodD0iMjYwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjNTU1NTU1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDwhLS0gUmFuZG9tIHBlZGVzdHJpYW5zIGdvaW5nIGluIGJvdGggZGlyZWN0aW9ucyAtLT4KICA8Y2lyY2xlIGN4PSI2MCIgY3k9IjEwMCIgcj0iMTAiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuNyIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI3MCwxMDAgNjQsOTUgNjQsMTA1IiBmaWxsPSIjZjlhODI1Ii8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iMTAwIiByPSIxMCIgZmlsbD0iI2U5MWU2MyIgb3BhY2l0eT0iMC43Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjExMCwxMDAgMTE2LDk1IDExNiwxMDUiIGZpbGw9IiNlOTFlNjMiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIxMDAiIHI9IjEwIiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iMTkwLDEwMCAxODQsOTUgMTg0LDEwNSIgZmlsbD0iI2Y5YTgyNSIvPjxjaXJjbGUgY3g9IjI0MCIgY3k9IjEwMCIgcj0iMTAiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuNyIvPgogICAgPHBvbHlnb24gcG9pbnRzPSIyMzAsMTAwIDIzNiw5NSAyMzYsMTA1IiBmaWxsPSIjZTkxZTYzIi8+PGNpcmNsZSBjeD0iMzAwIiBjeT0iMTAwIiByPSIxMCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjMxMCwxMDAgMzA0LDk1IDMwNCwxMDUiIGZpbGw9IiNmOWE4MjUiLz48Y2lyY2xlIGN4PSI2MCIgY3k9IjE1NSIgcj0iMTAiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuNyIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI1MCwxNTUgNTYsMTUwIDU2LDE2MCIgZmlsbD0iI2U5MWU2MyIvPjxjaXJjbGUgY3g9IjEyMCIgY3k9IjE1NSIgcj0iMTAiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuNyIvPgogICAgPHBvbHlnb24gcG9pbnRzPSIxMzAsMTU1IDEyNCwxNTAgMTI0LDE2MCIgZmlsbD0iI2Y5YTgyNSIvPjxjaXJjbGUgY3g9IjE4MCIgY3k9IjE1NSIgcj0iMTAiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuNyIvPgogICAgPHBvbHlnb24gcG9pbnRzPSIxNzAsMTU1IDE3NiwxNTAgMTc2LDE2MCIgZmlsbD0iI2U5MWU2MyIvPjxjaXJjbGUgY3g9IjI0MCIgY3k9IjE1NSIgcj0iMTAiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuNyIvPgogICAgPHBvbHlnb24gcG9pbnRzPSIyNTAsMTU1IDI0NCwxNTAgMjQ0LDE2MCIgZmlsbD0iI2Y5YTgyNSIvPjxjaXJjbGUgY3g9IjMwMCIgY3k9IjE1NSIgcj0iMTAiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuNyIvPgogICAgPHBvbHlnb24gcG9pbnRzPSIyOTAsMTU1IDI5NiwxNTAgMjk2LDE2MCIgZmlsbD0iI2U5MWU2MyIvPjxjaXJjbGUgY3g9IjYwIiBjeT0iMjEwIiByPSIxMCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjcwLDIxMCA2NCwyMDUgNjQsMjE1IiBmaWxsPSIjZjlhODI1Ii8+PGNpcmNsZSBjeD0iMTIwIiBjeT0iMjEwIiByPSIxMCIgZmlsbD0iI2U5MWU2MyIgb3BhY2l0eT0iMC43Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjExMCwyMTAgMTE2LDIwNSAxMTYsMjE1IiBmaWxsPSIjZTkxZTYzIi8+PGNpcmNsZSBjeD0iMTgwIiBjeT0iMjEwIiByPSIxMCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjE5MCwyMTAgMTg0LDIwNSAxODQsMjE1IiBmaWxsPSIjZjlhODI1Ii8+PGNpcmNsZSBjeD0iMjQwIiBjeT0iMjEwIiByPSIxMCIgZmlsbD0iI2U5MWU2MyIgb3BhY2l0eT0iMC43Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjIzMCwyMTAgMjM2LDIwNSAyMzYsMjE1IiBmaWxsPSIjZTkxZTYzIi8+PGNpcmNsZSBjeD0iMzAwIiBjeT0iMjEwIiByPSIxMCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjMxMCwyMTAgMzA0LDIwNSAzMDQsMjE1IiBmaWxsPSIjZjlhODI1Ii8+PGNpcmNsZSBjeD0iNjAiIGN5PSIyNjUiIHI9IjEwIiBmaWxsPSIjZTkxZTYzIiBvcGFjaXR5PSIwLjciLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNTAsMjY1IDU2LDI2MCA1NiwyNzAiIGZpbGw9IiNlOTFlNjMiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIyNjUiIHI9IjEwIiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iMTMwLDI2NSAxMjQsMjYwIDEyNCwyNzAiIGZpbGw9IiNmOWE4MjUiLz48Y2lyY2xlIGN4PSIxODAiIGN5PSIyNjUiIHI9IjEwIiBmaWxsPSIjZTkxZTYzIiBvcGFjaXR5PSIwLjciLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iMTcwLDI2NSAxNzYsMjYwIDE3NiwyNzAiIGZpbGw9IiNlOTFlNjMiLz48Y2lyY2xlIGN4PSIyNDAiIGN5PSIyNjUiIHI9IjEwIiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iMjUwLDI2NSAyNDQsMjYwIDI0NCwyNzAiIGZpbGw9IiNmOWE4MjUiLz48Y2lyY2xlIGN4PSIzMDAiIGN5PSIyNjUiIHI9IjEwIiBmaWxsPSIjZTkxZTYzIiBvcGFjaXR5PSIwLjciLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iMjkwLDI2NSAyOTYsMjYwIDI5NiwyNzAiIGZpbGw9IiNlOTFlNjMiLz4KCiAgPCEtLSBSaWdodCBzaWRlOiBvcmdhbml6ZWQgbGFuZXMgLS0+CiAgPHRleHQgeD0iNjAwIiB5PSI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuaVsOenkuW+jO+8iOiHquW3see1hOe5lOWMlu+8iTwvdGV4dD4KICA8cmVjdCB4PSI0NDAiIHk9IjcwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjI2MCIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8IS0tIExhbmUgMTogZ29pbmcgcmlnaHQgKHRvcCBoYWxmKSAtLT4KICA8cmVjdCB4PSI0NDAiIHk9IjcwIiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjEzMCIgcng9IjgiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuMDciLz4KICA8dGV4dCB4PSI2MDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKGkiDlj7PlkJHjgY3jg6zjg7zjg7M8L3RleHQ+CiAgPGNpcmNsZSBjeD0iNDYwIiBjeT0iMTQ1IiByPSIxMCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC44NSIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI0NzIsMTQ1IDQ2NSwxNDAgNDY1LDE1MCIgZmlsbD0iI2Y5YTgyNSIvPjxjaXJjbGUgY3g9IjUxMCIgY3k9IjE0NSIgcj0iMTAiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuODUiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNTIyLDE0NSA1MTUsMTQwIDUxNSwxNTAiIGZpbGw9IiNmOWE4MjUiLz48Y2lyY2xlIGN4PSI1NjAiIGN5PSIxNDUiIHI9IjEwIiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjg1Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjU3MiwxNDUgNTY1LDE0MCA1NjUsMTUwIiBmaWxsPSIjZjlhODI1Ii8+PGNpcmNsZSBjeD0iNjEwIiBjeT0iMTQ1IiByPSIxMCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC44NSIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI2MjIsMTQ1IDYxNSwxNDAgNjE1LDE1MCIgZmlsbD0iI2Y5YTgyNSIvPjxjaXJjbGUgY3g9IjY2MCIgY3k9IjE0NSIgcj0iMTAiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuODUiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNjcyLDE0NSA2NjUsMTQwIDY2NSwxNTAiIGZpbGw9IiNmOWE4MjUiLz48Y2lyY2xlIGN4PSI3MTAiIGN5PSIxNDUiIHI9IjEwIiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjg1Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjcyMiwxNDUgNzE1LDE0MCA3MTUsMTUwIiBmaWxsPSIjZjlhODI1Ii8+CiAgPCEtLSBMYW5lIDI6IGdvaW5nIGxlZnQgKGJvdHRvbSBoYWxmKSAtLT4KICA8cmVjdCB4PSI0NDAiIHk9IjIwMCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIxMzAiIHJ4PSI4IiBmaWxsPSIjZTkxZTYzIiBvcGFjaXR5PSIwLjA3Ii8+CiAgPHRleHQgeD0iNjAwIiB5PSIyNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ihpAg5bem5ZCR44GN44Os44O844OzPC90ZXh0PgogIDxjaXJjbGUgY3g9IjcxMCIgY3k9IjI3NSIgcj0iMTAiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuODUiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNjk4LDI3NSA3MDUsMjcwIDcwNSwyODAiIGZpbGw9IiNlOTFlNjMiLz48Y2lyY2xlIGN4PSI2NjAiIGN5PSIyNzUiIHI9IjEwIiBmaWxsPSIjZTkxZTYzIiBvcGFjaXR5PSIwLjg1Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjY0OCwyNzUgNjU1LDI3MCA2NTUsMjgwIiBmaWxsPSIjZTkxZTYzIi8+PGNpcmNsZSBjeD0iNjEwIiBjeT0iMjc1IiByPSIxMCIgZmlsbD0iI2U5MWU2MyIgb3BhY2l0eT0iMC44NSIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI1OTgsMjc1IDYwNSwyNzAgNjA1LDI4MCIgZmlsbD0iI2U5MWU2MyIvPjxjaXJjbGUgY3g9IjU2MCIgY3k9IjI3NSIgcj0iMTAiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuODUiLz4KICAgIDxwb2x5Z29uIHBvaW50cz0iNTQ4LDI3NSA1NTUsMjcwIDU1NSwyODAiIGZpbGw9IiNlOTFlNjMiLz48Y2lyY2xlIGN4PSI1MTAiIGN5PSIyNzUiIHI9IjEwIiBmaWxsPSIjZTkxZTYzIiBvcGFjaXR5PSIwLjg1Ii8+CiAgICA8cG9seWdvbiBwb2ludHM9IjQ5OCwyNzUgNTA1LDI3MCA1MDUsMjgwIiBmaWxsPSIjZTkxZTYzIi8+PGNpcmNsZSBjeD0iNDYwIiBjeT0iMjc1IiByPSIxMCIgZmlsbD0iI2U5MWU2MyIgb3BhY2l0eT0iMC44NSIvPgogICAgPHBvbHlnb24gcG9pbnRzPSI0NDgsMjc1IDQ1NSwyNzAgNDU1LDI4MCIgZmlsbD0iI2U5MWU2MyIvPgogIDwhLS0gQXJyb3cgYmV0d2VlbiBwYW5lbHMgLS0+CiAgPHRleHQgeD0iMzkwIiB5PSIyMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMjAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ihpI8L3RleHQ+CiAgPHRleHQgeD0iMzkwIiB5PSIyMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oh6rnhLbjgas8L3RleHQ+CiAgPHRleHQgeD0iMzkwIiB5PSIyNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7mlbTliJc8L3RleHQ+Cjwvc3ZnPg==)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">レーン形成（Lane Formation）：自己組織化の可視化</text>
+  <!-- Left side: chaotic start -->
+  <text x="200" y="60" text-anchor="middle" fill="#aaaaaa" font-size="13" font-family="sans-serif">信号青 直後（混沌）</text>
+  <rect x="40" y="70" width="320" height="260" rx="8" fill="#16213e" stroke="#555555" stroke-width="1.5"/>
+  <!-- Random pedestrians going in both directions -->
+  <circle cx="60" cy="100" r="10" fill="#f9a825" opacity="0.7"/>
+    <polygon points="70,100 64,95 64,105" fill="#f9a825"/><circle cx="120" cy="100" r="10" fill="#e91e63" opacity="0.7"/>
+    <polygon points="110,100 116,95 116,105" fill="#e91e63"/><circle cx="180" cy="100" r="10" fill="#f9a825" opacity="0.7"/>
+    <polygon points="190,100 184,95 184,105" fill="#f9a825"/><circle cx="240" cy="100" r="10" fill="#e91e63" opacity="0.7"/>
+    <polygon points="230,100 236,95 236,105" fill="#e91e63"/><circle cx="300" cy="100" r="10" fill="#f9a825" opacity="0.7"/>
+    <polygon points="310,100 304,95 304,105" fill="#f9a825"/><circle cx="60" cy="155" r="10" fill="#e91e63" opacity="0.7"/>
+    <polygon points="50,155 56,150 56,160" fill="#e91e63"/><circle cx="120" cy="155" r="10" fill="#f9a825" opacity="0.7"/>
+    <polygon points="130,155 124,150 124,160" fill="#f9a825"/><circle cx="180" cy="155" r="10" fill="#e91e63" opacity="0.7"/>
+    <polygon points="170,155 176,150 176,160" fill="#e91e63"/><circle cx="240" cy="155" r="10" fill="#f9a825" opacity="0.7"/>
+    <polygon points="250,155 244,150 244,160" fill="#f9a825"/><circle cx="300" cy="155" r="10" fill="#e91e63" opacity="0.7"/>
+    <polygon points="290,155 296,150 296,160" fill="#e91e63"/><circle cx="60" cy="210" r="10" fill="#f9a825" opacity="0.7"/>
+    <polygon points="70,210 64,205 64,215" fill="#f9a825"/><circle cx="120" cy="210" r="10" fill="#e91e63" opacity="0.7"/>
+    <polygon points="110,210 116,205 116,215" fill="#e91e63"/><circle cx="180" cy="210" r="10" fill="#f9a825" opacity="0.7"/>
+    <polygon points="190,210 184,205 184,215" fill="#f9a825"/><circle cx="240" cy="210" r="10" fill="#e91e63" opacity="0.7"/>
+    <polygon points="230,210 236,205 236,215" fill="#e91e63"/><circle cx="300" cy="210" r="10" fill="#f9a825" opacity="0.7"/>
+    <polygon points="310,210 304,205 304,215" fill="#f9a825"/><circle cx="60" cy="265" r="10" fill="#e91e63" opacity="0.7"/>
+    <polygon points="50,265 56,260 56,270" fill="#e91e63"/><circle cx="120" cy="265" r="10" fill="#f9a825" opacity="0.7"/>
+    <polygon points="130,265 124,260 124,270" fill="#f9a825"/><circle cx="180" cy="265" r="10" fill="#e91e63" opacity="0.7"/>
+    <polygon points="170,265 176,260 176,270" fill="#e91e63"/><circle cx="240" cy="265" r="10" fill="#f9a825" opacity="0.7"/>
+    <polygon points="250,265 244,260 244,270" fill="#f9a825"/><circle cx="300" cy="265" r="10" fill="#e91e63" opacity="0.7"/>
+    <polygon points="290,265 296,260 296,270" fill="#e91e63"/>
+
+  <!-- Right side: organized lanes -->
+  <text x="600" y="60" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">数秒後（自己組織化）</text>
+  <rect x="440" y="70" width="320" height="260" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <!-- Lane 1: going right (top half) -->
+  <rect x="440" y="70" width="320" height="130" rx="8" fill="#f9a825" opacity="0.07"/>
+  <text x="600" y="115" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">→ 右向きレーン</text>
+  <circle cx="460" cy="145" r="10" fill="#f9a825" opacity="0.85"/>
+    <polygon points="472,145 465,140 465,150" fill="#f9a825"/><circle cx="510" cy="145" r="10" fill="#f9a825" opacity="0.85"/>
+    <polygon points="522,145 515,140 515,150" fill="#f9a825"/><circle cx="560" cy="145" r="10" fill="#f9a825" opacity="0.85"/>
+    <polygon points="572,145 565,140 565,150" fill="#f9a825"/><circle cx="610" cy="145" r="10" fill="#f9a825" opacity="0.85"/>
+    <polygon points="622,145 615,140 615,150" fill="#f9a825"/><circle cx="660" cy="145" r="10" fill="#f9a825" opacity="0.85"/>
+    <polygon points="672,145 665,140 665,150" fill="#f9a825"/><circle cx="710" cy="145" r="10" fill="#f9a825" opacity="0.85"/>
+    <polygon points="722,145 715,140 715,150" fill="#f9a825"/>
+  <!-- Lane 2: going left (bottom half) -->
+  <rect x="440" y="200" width="320" height="130" rx="8" fill="#e91e63" opacity="0.07"/>
+  <text x="600" y="245" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">← 左向きレーン</text>
+  <circle cx="710" cy="275" r="10" fill="#e91e63" opacity="0.85"/>
+    <polygon points="698,275 705,270 705,280" fill="#e91e63"/><circle cx="660" cy="275" r="10" fill="#e91e63" opacity="0.85"/>
+    <polygon points="648,275 655,270 655,280" fill="#e91e63"/><circle cx="610" cy="275" r="10" fill="#e91e63" opacity="0.85"/>
+    <polygon points="598,275 605,270 605,280" fill="#e91e63"/><circle cx="560" cy="275" r="10" fill="#e91e63" opacity="0.85"/>
+    <polygon points="548,275 555,270 555,280" fill="#e91e63"/><circle cx="510" cy="275" r="10" fill="#e91e63" opacity="0.85"/>
+    <polygon points="498,275 505,270 505,280" fill="#e91e63"/><circle cx="460" cy="275" r="10" fill="#e91e63" opacity="0.85"/>
+    <polygon points="448,275 455,270 455,280" fill="#e91e63"/>
+  <!-- Arrow between panels -->
+  <text x="390" y="210" text-anchor="middle" fill="#ffffff" font-size="20" font-family="sans-serif">→</text>
+  <text x="390" y="230" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">自然に</text>
+  <text x="390" y="245" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">整列</text>
+</svg>
+</div>
+
 - **3,000人が同時に歩いても衝突しない理由：**
 - 歩行者は無意識に**同じ方向に向かう人の後ろに並ぶ**
 - 対向する人流が自然に「レーン」を形成する
@@ -172,11 +338,55 @@ style: |
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 歩行者の3つの無意識ルール
 
 > *右よけ・速度調整・流れ追従の3ルールが3,000人の秩序を生む*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4z44Gk44Gu54Sh5oSP6K2Y44Or44O844OrIOKGkiAzLDAwMOS6uuOBruenqeW6jzwvdGV4dD4KICA8IS0tIFJ1bGUgMTogQXZvaWRhbmNlIC0tPgogIDxyZWN0IHg9IjMwIiB5PSI1NSIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIyMDAiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIxNDAiIHk9Ijg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODq+ODvOODqzE6IOWbnumBvzwvdGV4dD4KICA8dGV4dCB4PSIxNDAiIHk9IjEwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWJjeaWuTEuNS0ybeOBq+S6uuOBjOOBhOOBn+OCiTwvdGV4dD4KICA8dGV4dCB4PSIxNDAiIHk9IjEyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuaoquOBq+OBmuOCjOOCizwvdGV4dD4KICA8IS0tIFR3byBwZW9wbGUsIG9uZSBkb2RnaW5nIC0tPgogIDxjaXJjbGUgY3g9IjExMCIgY3k9IjE3NSIgcj0iMTUiIGZpbGw9IiNlOTFlNjMiLz4KICA8Y2lyY2xlIGN4PSIxNzAiIGN5PSIxNTUiIHI9IjE1IiBmaWxsPSIjZjlhODI1Ii8+CiAgPGxpbmUgeDE9IjExMCIgeTE9IjE2MCIgeDI9IjE1NSIgeTI9IjE0NSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1kYXNoYXJyYXk9IjQsMyIvPgogIDx0ZXh0IHg9IjE0MCIgeT0iMjE1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6KGd56qB44KS5LqI5ris44GX44Gm5Zue6YG/PC90ZXh0PgogIDwhLS0gUnVsZSAyOiBGb2xsb3dpbmcgLS0+CiAgPHJlY3QgeD0iMjkwIiB5PSI1NSIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIyMDAiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI0MDAiIHk9Ijg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODq+ODvOODqzI6IOi/veW+kzwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjEwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWQjOOBmOaWueWQkeOBruS6uuOBruW+jOOCjeOCkuatqeOBjzwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjEyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKGkiDjg6zjg7zjg7PlvaLmiJA8L3RleHQ+CiAgPCEtLSBDaGFpbiBvZiBwZW9wbGUgLS0+CiAgPGNpcmNsZSBjeD0iMzIwIiBjeT0iMTcwIiByPSIxMyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC41Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIzMzUsMTcwIDMyOCwxNjMgMzI4LDE3NyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC41Ii8+PGNpcmNsZSBjeD0iMzU1IiBjeT0iMTcwIiByPSIxMyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC42Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIzNzAsMTcwIDM2MywxNjMgMzYzLDE3NyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC42Ii8+PGNpcmNsZSBjeD0iMzkwIiBjeT0iMTcwIiByPSIxMyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSI0MDUsMTcwIDM5OCwxNjMgMzk4LDE3NyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iNDI1IiBjeT0iMTcwIiByPSIxMyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC44Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSI0NDAsMTcwIDQzMywxNjMgNDMzLDE3NyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC44Ii8+PGNpcmNsZSBjeD0iNDYwIiBjeT0iMTcwIiByPSIxMyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC45Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSI0NzUsMTcwIDQ2OCwxNjMgNDY4LDE3NyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC45Ii8+CiAgPHRleHQgeD0iNDAwIiB5PSIyMTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oh6rnhLbjgavliJfjgYzlvaLmiJDjgZXjgozjgos8L3RleHQ+CiAgPCEtLSBSdWxlIDM6IERpcmVjdCBwYXRoIC0tPgogIDxyZWN0IHg9IjU1MCIgeT0iNTUiIHdpZHRoPSIyMjAiIGhlaWdodD0iMjAwIiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNjYwIiB5PSI4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg6vjg7zjg6szOiDnm7TpgLI8L3RleHQ+CiAgPHRleHQgeD0iNjYwIiB5PSIxMDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ln7rmnKznmoTjgavmnIDnn63ntYzot6/jgpI8L3RleHQ+CiAgPHRleHQgeD0iNjYwIiB5PSIxMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7nm67mjIfjgZk8L3RleHQ+CiAgPGNpcmNsZSBjeD0iNTkwIiBjeT0iMTYwIiByPSIxMyIgZmlsbD0iI2U5MWU2MyIvPgogIDxjaXJjbGUgY3g9IjczMCIgY3k9IjE4MCIgcj0iMTMiIGZpbGw9IiNlOTFlNjMiLz4KICA8bGluZSB4MT0iNjAzIiB5MT0iMTYwIiB4Mj0iNzE3IiB5Mj0iMTgwIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjY2MCIgeT0iMjE1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+55uu55qE5Zyw44G444Gu5pyA55+t6LevPC90ZXh0PgogIDwhLS0gRW1lcmdlbmNlIGJveCBhdCBib3R0b20gLS0+CiAgPHJlY3QgeD0iMTAwIiB5PSIyODUiIHdpZHRoPSI2MDAiIGhlaWdodD0iODAiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjMxNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7libXnmbrvvIhFbWVyZ2VuY2XvvIk8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4z44Gk44Gu5Y2Y57SU44Or44O844OrIOKGkiAzLDAwMOS6uuOBjDQ156eS44Gn44G744G86KGd56qB44Gq44GP5rih44KK44GN44KLPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMzU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Ki44Oq44Gu44Kz44Ot44OL44O844Go5ZCM44GY44CM5Y2Y57SU44Or44O844OrIOKGkiDopIfpm5Hnp6nluo/jgI3jg5Hjgr/jg7zjg7M8L3RleHQ+Cjwvc3ZnPg==)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">3つの無意識ルール → 3,000人の秩序</text>
+  <!-- Rule 1: Avoidance -->
+  <rect x="30" y="55" width="220" height="200" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="140" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">ルール1: 回避</text>
+  <text x="140" y="105" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">前方1.5-2mに人がいたら</text>
+  <text x="140" y="120" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">横にずれる</text>
+  <!-- Two people, one dodging -->
+  <circle cx="110" cy="175" r="15" fill="#e91e63"/>
+  <circle cx="170" cy="155" r="15" fill="#f9a825"/>
+  <line x1="110" y1="160" x2="155" y2="145" stroke="#ffffff" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="140" y="215" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">衝突を予測して回避</text>
+  <!-- Rule 2: Following -->
+  <rect x="290" y="55" width="220" height="200" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">ルール2: 追従</text>
+  <text x="400" y="105" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">同じ方向の人の後ろを歩く</text>
+  <text x="400" y="120" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ レーン形成</text>
+  <!-- Chain of people -->
+  <circle cx="320" cy="170" r="13" fill="#f9a825" opacity="0.5"/>
+  <polygon points="335,170 328,163 328,177" fill="#f9a825" opacity="0.5"/><circle cx="355" cy="170" r="13" fill="#f9a825" opacity="0.6"/>
+  <polygon points="370,170 363,163 363,177" fill="#f9a825" opacity="0.6"/><circle cx="390" cy="170" r="13" fill="#f9a825" opacity="0.7"/>
+  <polygon points="405,170 398,163 398,177" fill="#f9a825" opacity="0.7"/><circle cx="425" cy="170" r="13" fill="#f9a825" opacity="0.8"/>
+  <polygon points="440,170 433,163 433,177" fill="#f9a825" opacity="0.8"/><circle cx="460" cy="170" r="13" fill="#f9a825" opacity="0.9"/>
+  <polygon points="475,170 468,163 468,177" fill="#f9a825" opacity="0.9"/>
+  <text x="400" y="215" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">自然に列が形成される</text>
+  <!-- Rule 3: Direct path -->
+  <rect x="550" y="55" width="220" height="200" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="660" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">ルール3: 直進</text>
+  <text x="660" y="105" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">基本的に最短経路を</text>
+  <text x="660" y="120" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">目指す</text>
+  <circle cx="590" cy="160" r="13" fill="#e91e63"/>
+  <circle cx="730" cy="180" r="13" fill="#e91e63"/>
+  <line x1="603" y1="160" x2="717" y2="180" stroke="#f9a825" stroke-width="2"/>
+  <text x="660" y="215" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">目的地への最短路</text>
+  <!-- Emergence box at bottom -->
+  <rect x="100" y="285" width="600" height="80" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="315" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">創発（Emergence）</text>
+  <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">3つの単純ルール → 3,000人が45秒でほぼ衝突なく渡りきる</text>
+  <text x="400" y="358" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">アリのコロニーと同じ「単純ルール → 複雑秩序」パターン</text>
+</svg>
+</div>
+
 - **1. 回避ルール** ― 前方1.5-2mに人がいたら横にずれる
 - **2. 追従ルール** ― 同じ方向の人の後ろを歩く（レーン形成）
 - **3. 目的地直進ルール** ― 基本的に最短経路を目指す
@@ -187,17 +397,61 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 信号制御の最適化
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # 渋谷の信号サイクル設計（1/2）
 
 > *45秒サイクルが理論値と実測が一致した最適化の産物*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7muIvosLfjgrnjgq/jg6njg7Pjg5bjg6vvvJoxNTDnp5LjgrXjgqTjgq/jg6vjga7op6PliZY8L3RleHQ+CiAgPCEtLSBQaWUgY2hhcnQgb2YgY3ljbGUgLS0+CiAgPCEtLSBUb3RhbDogMTUwcy4gUGVkZXN0cmlhbjogNDdzICh+MTEzZGVnKS4gVmVoaWNsZTogMTAzcyAofjI0N2RlZykgLS0+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMjUwLDIxNSkiPgogICAgPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjE0MCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDwhLS0gUGVkZXN0cmlhbiBhcmM6IDQ3LzE1MCA9IDMxLjMlID0gMTEzIGRlZ3JlZXMgLS0+CiAgICA8IS0tIFN0YXJ0IGF0IHRvcCAoMjcwZGVnKSwgcGVkZXN0cmlhbiAxMTNkZWcgY2xvY2t3aXNlID0gZW5kIGF0IDIzZGVnIC0tPgogICAgPCEtLSBTVkcgY29vcmRzOiBzdGFydD0tOTBkZWc6ICgwLC0xNDApLiBFbmQgYXQgLTkwKzExMz0yM2RlZzogKDE0MCpzaW4oMjPCsCks4oiSMTQwKmNvcygyM8KwKSk9KDU0LjcsLTEyOC44KSAtLT4KICAgIDxwYXRoIGQ9Ik0wLC0xNDAgQTE0MCwxNDAgMCAwLDEgNTQuNywtMTI4LjggWiIgZmlsbD0iI2U5MWU2MyIgb3BhY2l0eT0iMC44NSIvPgogICAgPCEtLSA0MHMgcGVkZXN0cmlhbiAod2Fsa2luZykgKyA3cyBmbGFzaGluZyAtLT4KICAgIDxwYXRoIGQ9Ik0wLC0xNDAgQTE0MCwxNDAgMCAwLDEgMzEuNSwtMTM2LjQgWiIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC45Ii8+CiAgICA8IS0tIFZlaGljbGUgYXJjOiByZW1haW5pbmcgMjQ3IGRlZ3JlZXMgLS0+CiAgICA8cGF0aCBkPSJNNTQuNywtMTI4LjggQTE0MCwxNDAgMCAxLDEgMCwtMTQwIFoiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgICA8IS0tIExhYmVscyBpbnNpZGUgLS0+CiAgICA8dGV4dCB4PSIyMCIgeT0iLTg1IiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuatqeihjOiAhTwvdGV4dD4KICAgIDx0ZXh0IHg9IjIwIiB5PSItNjgiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj40N+enkjwvdGV4dD4KICAgIDx0ZXh0IHg9Ii0zMCIgeT0iNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6LuK5LihPC90ZXh0PgogICAgPHRleHQgeD0iLTMwIiB5PSI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjEwM+enkjwvdGV4dD4KICAgIDwhLS0gQ2VudGVyIGxhYmVsIC0tPgogICAgPGNpcmNsZSBjeD0iMCIgY3k9IjAiIHI9IjUwIiBmaWxsPSIjMWExYTJlIi8+CiAgICA8dGV4dCB4PSIwIiB5PSItNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4xNTDnp5I8L3RleHQ+CiAgICA8dGV4dCB4PSIwIiB5PSIxNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjHjgrXjgqTjgq/jg6s8L3RleHQ+CiAgPC9nPgogIDwhLS0gRGV0YWlscyBvbiByaWdodCAtLT4KICA8cmVjdCB4PSI0MzAiIHk9IjYwIiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjMxMCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNTk1IiB5PSI4OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg5Xjgqfjg7zjgrroqbPntLA8L3RleHQ+CiAgPHJlY3QgeD0iNDUwIiB5PSIxMDAiIHdpZHRoPSIyOTAiIGhlaWdodD0iNTUiIHJ4PSI2IiBmaWxsPSIjZTkxZTYzIiBvcGFjaXR5PSIwLjIiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8dGV4dCB4PSI1OTUiIHk9IjEyMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7mranooYzogIXjg5Xjgqfjg7zjgro6IDQ356eSPC90ZXh0PgogIDx0ZXh0IHg9IjU5NSIgeT0iMTQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Z2SNDDnp5IgKyDngrnmu4U356eS77yI5L2Z6KOV5pmC6ZaT77yJPC90ZXh0PgogIDxyZWN0IHg9IjQ1MCIgeT0iMTY1IiB3aWR0aD0iMjkwIiBoZWlnaHQ9IjU1IiByeD0iNiIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC4xNSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjU5NSIgeT0iMTg3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPui7iuS4oeODleOCp+ODvOOCujogMTAz56eSPC90ZXh0PgogIDx0ZXh0IHg9IjU5NSIgeT0iMjA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5ZCE5pa55ZCR44Gu6LuK5Lih44Gr5YiG6YWNPC90ZXh0PgogIDxyZWN0IHg9IjQ1MCIgeT0iMjMyIiB3aWR0aD0iMjkwIiBoZWlnaHQ9IjgwIiByeD0iNiIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjNTU1NTU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI1OTUiIHk9IjI1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oqK3oqIjjga7pjbU8L3RleHQ+CiAgPHRleHQgeD0iNTk1IiB5PSIyNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lr77op5Lnt5og4omIIDQwbSDDtyDmranooYzpgJ/luqYxLjBtL3M8L3RleHQ+CiAgPHRleHQgeD0iNTk1IiB5PSIyOTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj49IDQw56eS77yI5pyA44KC6ZW344GE5qiq5pat5pmC6ZaT77yJPC90ZXh0PgogIDx0ZXh0IHg9IjU5NSIgeT0iMzA5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+54K55ruFN+enkiA9IOa4oeOCiuWni+OCgeOBn+S6uuOBuOOBruS9meijlTwvdGV4dD4KICA8dGV4dCB4PSI1OTUiIHk9IjM0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCteOCpOOCr+ODq+OBrjMxJeOBjOatqeihjOiAheOBq+WJsuW9kzwvdGV4dD4KPC9zdmc+)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">渋谷スクランブル：150秒サイクルの解剖</text>
+  <!-- Pie chart of cycle -->
+  <!-- Total: 150s. Pedestrian: 47s (~113deg). Vehicle: 103s (~247deg) -->
+  <g transform="translate(250,215)">
+    <circle cx="0" cy="0" r="140" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <!-- Pedestrian arc: 47/150 = 31.3% = 113 degrees -->
+    <!-- Start at top (270deg), pedestrian 113deg clockwise = end at 23deg -->
+    <!-- SVG coords: start=-90deg: (0,-140). End at -90+113=23deg: (140*sin(23°),−140*cos(23°))=(54.7,-128.8) -->
+    <path d="M0,-140 A140,140 0 0,1 54.7,-128.8 Z" fill="#e91e63" opacity="0.85"/>
+    <!-- 40s pedestrian (walking) + 7s flashing -->
+    <path d="M0,-140 A140,140 0 0,1 31.5,-136.4 Z" fill="#f9a825" opacity="0.9"/>
+    <!-- Vehicle arc: remaining 247 degrees -->
+    <path d="M54.7,-128.8 A140,140 0 1,1 0,-140 Z" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+    <!-- Labels inside -->
+    <text x="20" y="-85" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">歩行者</text>
+    <text x="20" y="-68" fill="#ffffff" font-size="11" font-family="sans-serif">47秒</text>
+    <text x="-30" y="40" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">車両</text>
+    <text x="-30" y="60" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">103秒</text>
+    <!-- Center label -->
+    <circle cx="0" cy="0" r="50" fill="#1a1a2e"/>
+    <text x="0" y="-5" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">150秒</text>
+    <text x="0" y="14" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">1サイクル</text>
+  </g>
+  <!-- Details on right -->
+  <rect x="430" y="60" width="330" height="310" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="595" y="88" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">フェーズ詳細</text>
+  <rect x="450" y="100" width="290" height="55" rx="6" fill="#e91e63" opacity="0.2" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="595" y="122" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">歩行者フェーズ: 47秒</text>
+  <text x="595" y="140" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">青40秒 + 点滅7秒（余裕時間）</text>
+  <rect x="450" y="165" width="290" height="55" rx="6" fill="#f9a825" opacity="0.15" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="595" y="187" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">車両フェーズ: 103秒</text>
+  <text x="595" y="205" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">各方向の車両に分配</text>
+  <rect x="450" y="232" width="290" height="80" rx="6" fill="#1a1a2e" stroke="#555555" stroke-width="1"/>
+  <text x="595" y="255" text-anchor="middle" fill="#aaaaaa" font-size="11" font-weight="bold" font-family="sans-serif">設計の鍵</text>
+  <text x="595" y="275" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">対角線 ≈ 40m ÷ 歩行速度1.0m/s</text>
+  <text x="595" y="292" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">= 40秒（最も長い横断時間）</text>
+  <text x="595" y="309" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">点滅7秒 = 渡り始めた人への余裕</text>
+  <text x="595" y="340" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">サイクルの31%が歩行者に割当</text>
+</svg>
+</div>
+
 - **総サイクル：約150秒（2.5分）**
 - 歩行者フェーズ：47秒（青40秒 + 点滅7秒）
 - 車両フェーズ：約100秒（各方向に分配）
@@ -218,11 +472,54 @@ style: |
 
 ---
 
+<!-- _class: invert fit-82 -->
 # リアルタイム制御の進化
 
 > *カメラ+AI密度計測でサイクルを動的最適化する次世代制御*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7muIvosLfjgrnjgq/jg6njg7Pjg5bjg6vvvJrjg4/jgqTjg5bjg6rjg4Pjg4nliLblvqHjgqLjg7zjgq3jg4bjgq/jg4Hjg6M8L3RleHQ+CiAgPCEtLSBTZW5zb3JzIGxheWVyIC0tPgogIDx0ZXh0IHg9IjQwMCIgeT0iNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgrvjg7Pjgrfjg7PjgrDlsaQ8L3RleHQ+CiAgPHJlY3QgeD0iNjAiIHk9IjcwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjEzMCIgeT0iOTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgqvjg6Hjg6kgKEFJKTwvdGV4dD4KICA8cmVjdCB4PSIyMzAiIHk9IjcwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjMwMCIgeT0iOTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgrvjg7PjgrXjg7w8L3RleHQ+CiAgPHJlY3QgeD0iNDAwIiB5PSI3MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI1MCIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8dGV4dCB4PSI0ODAiIHk9Ijk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5q2p6KGM6ICF5a+G5bqm6KiI5risPC90ZXh0PgogIDxyZWN0IHg9IjU4MCIgeT0iNzAiIHdpZHRoPSIxNjAiIGhlaWdodD0iNTAiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNjYwIiB5PSI5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCpOODmeODs+ODiOaDheWgsTwvdGV4dD4KICA8IS0tIEFycm93cyBkb3duIC0tPgogIDxsaW5lIHgxPSIxMzAiIHkxPSIxMjAiIHgyPSIyODAiIHkyPSIxNzAiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8bGluZSB4MT0iMzAwIiB5MT0iMTIwIiB4Mj0iMzQwIiB5Mj0iMTcwIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPGxpbmUgeDE9IjQ4MCIgeTE9IjEyMCIgeDI9IjQ0MCIgeTI9IjE3MCIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDxsaW5lIHgxPSI2NjAiIHkxPSIxMjAiIHgyPSI1MjAiIHkyPSIxNzAiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8IS0tIENvbnRyb2wgbGF5ZXIgLS0+CiAgPHRleHQgeD0iNDAwIiB5PSIxNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7liLblvqHlsaQ8L3RleHQ+CiAgPHJlY3QgeD0iMjUwIiB5PSIxNzAiIHdpZHRoPSIzMDAiIGhlaWdodD0iNjAiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIuNSIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMTk2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS/oeWPt+WItuW+oeOCt+OCueODhuODoDwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPk5FQyArIOa4i+iwt+WMuiDlhbHlkIzpgYvnlKg8L3RleHQ+CiAgPCEtLSBBcnJvdyBkb3duIC0tPgogIDxsaW5lIHgxPSI0MDAiIHkxPSIyMzAiIHgyPSI0MDAiIHkyPSIyNjUiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHBvbHlnb24gcG9pbnRzPSI0MDAsMjY1IDM5MiwyNTIgNDA4LDI1MiIgZmlsbD0iI2U5MWU2MyIvPgogIDwhLS0gT3V0cHV0IGxheWVyIC0tPgogIDx0ZXh0IHg9IjQwMCIgeT0iMjU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5Ye65Yqb5bGkPC90ZXh0PgogIDxyZWN0IHg9IjEyMCIgeT0iMjcwIiB3aWR0aD0iMTcwIiBoZWlnaHQ9IjU1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjIwNSIgeT0iMjk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6YCa5bi45pmCPC90ZXh0PgogIDx0ZXh0IHg9IjIwNSIgeT0iMzEzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5Zu65a6a44K144Kk44Kv44OrMTUw56eSPC90ZXh0PgogIDxyZWN0IHg9IjMxNSIgeT0iMjcwIiB3aWR0aD0iMTcwIiBoZWlnaHQ9IjU1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMjk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5re36ZuR5pmCPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMzEzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5q2p6KGM6ICF44OV44Kn44O844K65bu26ZW3PC90ZXh0PgogIDxyZWN0IHg9IjUxMCIgeT0iMjcwIiB3aWR0aD0iMTcwIiBoZWlnaHQ9IjU1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjU5NSIgeT0iMjk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Kk44OZ44Oz44OI5pmCPC90ZXh0PgogIDx0ZXh0IHg9IjU5NSIgeT0iMzEzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+54m55Yil5Yi25b6h44Oi44O844OJPC90ZXh0PgogIDwhLS0gT3V0Y29tZSAtLT4KICA8dGV4dCB4PSI0MDAiIHk9IjM2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjUw5bm05YmN44Gu44Ki44OK44Ot44Kw6Kit6KiIICsg54++5LujQUnliLblvqEgPSDjg4/jgqTjg5bjg6rjg4Pjg4nmnIDpganljJY8L3RleHQ+Cjwvc3ZnPg==)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">渋谷スクランブル：ハイブリッド制御アーキテクチャ</text>
+  <!-- Sensors layer -->
+  <text x="400" y="60" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">センシング層</text>
+  <rect x="60" y="70" width="140" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="130" y="99" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">カメラ (AI)</text>
+  <rect x="230" y="70" width="140" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="300" y="99" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">センサー</text>
+  <rect x="400" y="70" width="160" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="480" y="99" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">歩行者密度計測</text>
+  <rect x="580" y="70" width="160" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="660" y="99" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">イベント情報</text>
+  <!-- Arrows down -->
+  <line x1="130" y1="120" x2="280" y2="170" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="300" y1="120" x2="340" y2="170" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="480" y1="120" x2="440" y2="170" stroke="#f9a825" stroke-width="1.5"/>
+  <line x1="660" y1="120" x2="520" y2="170" stroke="#f9a825" stroke-width="1.5"/>
+  <!-- Control layer -->
+  <text x="400" y="160" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">制御層</text>
+  <rect x="250" y="170" width="300" height="60" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2.5"/>
+  <text x="400" y="196" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">信号制御システム</text>
+  <text x="400" y="218" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">NEC + 渋谷区 共同運用</text>
+  <!-- Arrow down -->
+  <line x1="400" y1="230" x2="400" y2="265" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="400,265 392,252 408,252" fill="#e91e63"/>
+  <!-- Output layer -->
+  <text x="400" y="255" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">出力層</text>
+  <rect x="120" y="270" width="170" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="205" y="295" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">通常時</text>
+  <text x="205" y="313" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">固定サイクル150秒</text>
+  <rect x="315" y="270" width="170" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="295" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">混雑時</text>
+  <text x="400" y="313" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">歩行者フェーズ延長</text>
+  <rect x="510" y="270" width="170" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="595" y="295" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">イベント時</text>
+  <text x="595" y="313" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">特別制御モード</text>
+  <!-- Outcome -->
+  <text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">50年前のアナログ設計 + 現代AI制御 = ハイブリッド最適化</text>
+</svg>
+</div>
+
 - **カメラ+AI** ― 歩行者密度をリアルタイム計測
 - 混雑時は歩行者フェーズを延長する動的制御
 - イベント時（カウントダウン等）は特別制御に切り替え
@@ -232,17 +529,75 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 自己組織化する歩行者
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 渋谷交差点が教える分散システムの原理（1/2）
 
 > *中央集権なしに3,000人が最適解を出す自己組織化の仕組み*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7muIvosLfkuqTlt67ngrkgPSDliIbmlaPjgrfjgrnjg4bjg6DvvJrjgqLjg7zjgq3jg4bjgq/jg4Hjg6Plr77mr5Q8L3RleHQ+CiAgPCEtLSBMZWZ0OiBTaGlidXlhIC0tPgogIDxyZWN0IHg9IjIwIiB5PSI1MCIgd2lkdGg9IjM3MCIgaGVpZ2h0PSIzMjAiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIyMDUiIHk9Ijc4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPua4i+iwt+OCueOCr+ODqeODs+ODluODq+S6pOW3rueCuTwvdGV4dD4KICA8IS0tIFNpZ25hbCBib3ggLS0+CiAgPHJlY3QgeD0iMTU1IiB5PSI5MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0NSIgcng9IjgiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuOCIvPgogIDx0ZXh0IHg9IjIwNSIgeT0iMTE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS/oeWPt+apnzwvdGV4dD4KICA8IS0tIFBlZGVzdHJpYW5zIC0tPgogIDxjaXJjbGUgY3g9Ijk1IiBjeT0iMjAwIiByPSIxNCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIxMTEsMjAwIDEwMywxOTMgMTAzLDIwNyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMjAwIiByPSIxNCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIxNjYsMjAwIDE1OCwxOTMgMTU4LDIwNyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iMjA1IiBjeT0iMjAwIiByPSIxNCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIyMjEsMjAwIDIxMywxOTMgMjEzLDIwNyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iMjYwIiBjeT0iMjAwIiByPSIxNCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIyNzYsMjAwIDI2OCwxOTMgMjY4LDIwNyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iMzE1IiBjeT0iMjAwIiByPSIxNCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIzMzEsMjAwIDMyMywxOTMgMzIzLDIwNyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgPHRleHQgeD0iMjA1IiB5PSIyMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oh6rlvovnmoTjgavntYzot6/jgpLmsbrlrprjgZnjgovmranooYzogIU8L3RleHQ+CiAgPCEtLSBMYW5lcyAtLT4KICA8cmVjdCB4PSI0MCIgeT0iMjU1IiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjQwIiByeD0iNiIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIyMDUiIHk9IjI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuiHquW3see1hOe5lOWMluODrOODvOODs++8iOS4reWkruWItuW+oeOBquOBl++8iTwvdGV4dD4KICA8IS0tIFNpZ25hbCBhcnJvdyAtLT4KICA8bGluZSB4MT0iMjA1IiB5MT0iMTM1IiB4Mj0iMjA1IiB5Mj0iMTgwIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDxwb2x5Z29uIHBvaW50cz0iMjA1LDE4MCAxOTcsMTY1IDIxMywxNjUiIGZpbGw9IiNlOTFlNjMiLz4KICA8dGV4dCB4PSIyMDUiIHk9IjE1NiIgdGV4dC1hbmNob3I9ImVuZCIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+R28vU3RvcDwvdGV4dD4KICA8cmVjdCB4PSI0MCIgeT0iMzA1IiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjU1IiByeD0iNiIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjNTU1NTU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIyMDUiIHk9IjMyNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWItuW+oTogR28vU3RvcCDjga4y5ZG95Luk44Gu44G/PC90ZXh0PgogIDx0ZXh0IHg9IjIwNSIgeT0iMzQzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5q6L44KK5YWo44GmOiDlkITlgIvkurrjga7oh6rlvovliKTmlq08L3RleHQ+CiAgPHRleHQgeD0iMjA1IiB5PSIzNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKGkiDmnIDlsI/liLblvqHjgafmnIDlpKflirnnjoc8L3RleHQ+CgogIDwhLS0gUmlnaHQ6IERpc3RyaWJ1dGVkIHN5c3RlbSAtLT4KICA8cmVjdCB4PSI0MTAiIHk9IjUwIiB3aWR0aD0iMzcwIiBoZWlnaHQ9IjMyMCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjU5NSIgeT0iNzgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Oe44Kk44Kv44Ot44K144O844OT44K544K344K544OG44OgPC90ZXh0PgogIDwhLS0gTEIgYm94IC0tPgogIDxyZWN0IHg9IjU0NSIgeT0iOTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNDUiIHJ4PSI4IiBmaWxsPSIjZTkxZTYzIiBvcGFjaXR5PSIwLjgiLz4KICA8dGV4dCB4PSI1OTUiIHk9IjExOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5MQjwvdGV4dD4KICA8IS0tIFNlcnZpY2VzIC0tPgogIDxyZWN0IHg9IjQ2MyIgeT0iMTgwIiB3aWR0aD0iNDQiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz4KICA8dGV4dCB4PSI0ODUiIHk9IjIwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzFhMWEyZSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+c3ZjPC90ZXh0PjxyZWN0IHg9IjUxOCIgeT0iMTgwIiB3aWR0aD0iNDQiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz4KICA8dGV4dCB4PSI1NDAiIHk9IjIwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzFhMWEyZSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+c3ZjPC90ZXh0PjxyZWN0IHg9IjU3MyIgeT0iMTgwIiB3aWR0aD0iNDQiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz4KICA8dGV4dCB4PSI1OTUiIHk9IjIwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzFhMWEyZSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+c3ZjPC90ZXh0PjxyZWN0IHg9IjYyOCIgeT0iMTgwIiB3aWR0aD0iNDQiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz4KICA8dGV4dCB4PSI2NTAiIHk9IjIwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzFhMWEyZSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+c3ZjPC90ZXh0PjxyZWN0IHg9IjY4MyIgeT0iMTgwIiB3aWR0aD0iNDQiIGhlaWdodD0iMzIiIHJ4PSI2IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz4KICA8dGV4dCB4PSI3MDUiIHk9IjIwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzFhMWEyZSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+c3ZjPC90ZXh0PgogIDx0ZXh0IHg9IjU5NSIgeT0iMjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Ieq5b6L55qE44Gr5Yem55CG44GZ44KL44K144O844OT44K5PC90ZXh0PgogIDwhLS0gU2VydmljZSBtZXNoIC0tPgogIDxyZWN0IHg9IjQzMCIgeT0iMjQ4IiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjQwIiByeD0iNiIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI1OTUiIHk9IjI3MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlNlcnZpY2UgTWVzaO+8iOOCteODvOODk+OCuemWk+ebtOaOpemAmuS/oe+8iTwvdGV4dD4KICA8IS0tIEFycm93IC0tPgogIDxsaW5lIHgxPSI1OTUiIHkxPSIxMzUiIHgyPSI1OTUiIHkyPSIxNzUiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHBvbHlnb24gcG9pbnRzPSI1OTUsMTc1IDU4NywxNjAgNjAzLDE2MCIgZmlsbD0iI2U5MWU2MyIvPgogIDx0ZXh0IHg9IjU5NSIgeT0iMTU1IiB0ZXh0LWFuY2hvcj0iZW5kIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg6vjg7zjg4bjgqPjg7PjgrA8L3RleHQ+CiAgPHJlY3QgeD0iNDMwIiB5PSIzMDAiIHdpZHRoPSIzMzAiIGhlaWdodD0iNTgiIHJ4PSI2IiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiM1NTU1NTUiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjU5NSIgeT0iMzIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5Yi25b6hOiDjg63jg7zjg4njg5Djg6njg7PjgrXjg7zjgYzmjK/jgorliIbjgZE8L3RleHQ+CiAgPHRleHQgeD0iNTk1IiB5PSIzMzgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7mrovjgorlhajjgaY6IOWQhOOCteODvOODk+OCueOBjOiHquW+i+WHpueQhjwvdGV4dD4KICA8dGV4dCB4PSI1OTUiIHk9IjM1MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4oaSIOacgOWwj+WItuW+oeOBp+acgOWkp+OCueOCseODvOODqzwvdGV4dD4KPC9zdmc+)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">渋谷交差点 = 分散システム：アーキテクチャ対比</text>
+  <!-- Left: Shibuya -->
+  <rect x="20" y="50" width="370" height="320" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="205" y="78" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">渋谷スクランブル交差点</text>
+  <!-- Signal box -->
+  <rect x="155" y="90" width="100" height="45" rx="8" fill="#e91e63" opacity="0.8"/>
+  <text x="205" y="118" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">信号機</text>
+  <!-- Pedestrians -->
+  <circle cx="95" cy="200" r="14" fill="#f9a825" opacity="0.7"/>
+  <polygon points="111,200 103,193 103,207" fill="#f9a825" opacity="0.7"/><circle cx="150" cy="200" r="14" fill="#f9a825" opacity="0.7"/>
+  <polygon points="166,200 158,193 158,207" fill="#f9a825" opacity="0.7"/><circle cx="205" cy="200" r="14" fill="#f9a825" opacity="0.7"/>
+  <polygon points="221,200 213,193 213,207" fill="#f9a825" opacity="0.7"/><circle cx="260" cy="200" r="14" fill="#f9a825" opacity="0.7"/>
+  <polygon points="276,200 268,193 268,207" fill="#f9a825" opacity="0.7"/><circle cx="315" cy="200" r="14" fill="#f9a825" opacity="0.7"/>
+  <polygon points="331,200 323,193 323,207" fill="#f9a825" opacity="0.7"/>
+  <text x="205" y="235" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">自律的に経路を決定する歩行者</text>
+  <!-- Lanes -->
+  <rect x="40" y="255" width="330" height="40" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="205" y="280" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">自己組織化レーン（中央制御なし）</text>
+  <!-- Signal arrow -->
+  <line x1="205" y1="135" x2="205" y2="180" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="205,180 197,165 213,165" fill="#e91e63"/>
+  <text x="205" y="156" text-anchor="end" fill="#e91e63" font-size="9" font-family="sans-serif">Go/Stop</text>
+  <rect x="40" y="305" width="330" height="55" rx="6" fill="#1a1a2e" stroke="#555555" stroke-width="1"/>
+  <text x="205" y="325" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">制御: Go/Stop の2命令のみ</text>
+  <text x="205" y="343" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">残り全て: 各個人の自律判断</text>
+  <text x="205" y="355" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">→ 最小制御で最大効率</text>
+
+  <!-- Right: Distributed system -->
+  <rect x="410" y="50" width="370" height="320" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="595" y="78" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">マイクロサービスシステム</text>
+  <!-- LB box -->
+  <rect x="545" y="90" width="100" height="45" rx="8" fill="#e91e63" opacity="0.8"/>
+  <text x="595" y="118" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">LB</text>
+  <!-- Services -->
+  <rect x="463" y="180" width="44" height="32" rx="6" fill="#f9a825" opacity="0.7"/>
+  <text x="485" y="200" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">svc</text><rect x="518" y="180" width="44" height="32" rx="6" fill="#f9a825" opacity="0.7"/>
+  <text x="540" y="200" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">svc</text><rect x="573" y="180" width="44" height="32" rx="6" fill="#f9a825" opacity="0.7"/>
+  <text x="595" y="200" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">svc</text><rect x="628" y="180" width="44" height="32" rx="6" fill="#f9a825" opacity="0.7"/>
+  <text x="650" y="200" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">svc</text><rect x="683" y="180" width="44" height="32" rx="6" fill="#f9a825" opacity="0.7"/>
+  <text x="705" y="200" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="sans-serif">svc</text>
+  <text x="595" y="230" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">自律的に処理するサービス</text>
+  <!-- Service mesh -->
+  <rect x="430" y="248" width="330" height="40" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="595" y="273" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">Service Mesh（サービス間直接通信）</text>
+  <!-- Arrow -->
+  <line x1="595" y1="135" x2="595" y2="175" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="595,175 587,160 603,160" fill="#e91e63"/>
+  <text x="595" y="155" text-anchor="end" fill="#e91e63" font-size="9" font-family="sans-serif">ルーティング</text>
+  <rect x="430" y="300" width="330" height="58" rx="6" fill="#1a1a2e" stroke="#555555" stroke-width="1"/>
+  <text x="595" y="320" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">制御: ロードバランサーが振り分け</text>
+  <text x="595" y="338" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">残り全て: 各サービスが自律処理</text>
+  <text x="595" y="353" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">→ 最小制御で最大スケール</text>
+</svg>
+</div>
+
 - **中央制御はほぼない** ― 信号が「Go/Stop」を出すだけ
 - 3,000人の経路計画は**各個人が自律的に行う**
 - それでも全体として効率的なフローが実現する
@@ -251,11 +606,45 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 渋谷交差点が教える分散システムの原理（2/2）
 
 > *局所ルール遵守が創発的なグローバル秩序を生む—ブロックチェーンと同原理*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lr77lv5zooajvvJrmuIvosLfjgrnjgq/jg6njg7Pjg5bjg6sg4oaUIOWIhuaVo+OCt+OCueODhuODoDwvdGV4dD4KICA8IS0tIFRhYmxlIC0tPgogIDxyZWN0IHg9IjIwIiB5PSI0OCIgd2lkdGg9IjMzNSIgaGVpZ2h0PSI0MCIgcng9IjQiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iMTg3IiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7muIvosLfjgrnjgq/jg6njg7Pjg5bjg6s8L3RleHQ+CiAgPHJlY3QgeD0iMzY1IiB5PSI0OCIgd2lkdGg9IjQxNSIgaGVpZ2h0PSI0MCIgcng9IjQiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNTcyIiB5PSI3MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7liIbmlaPjgrfjgrnjg4bjg6A8L3RleHQ+CiAgPHJlY3QgeD0iMjAiIHk9Ijk4IiB3aWR0aD0iMzM1IiBoZWlnaHQ9IjQ2IiByeD0iMiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjE4NyIgeT0iMTI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L+h5Y+35qmfIChHby9TdG9wIOOBruOBvyk8L3RleHQ+CiAgICA8cmVjdCB4PSIzNjUiIHk9Ijk4IiB3aWR0aD0iNDE1IiBoZWlnaHQ9IjQ2IiByeD0iMiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjU3MiIgeT0iMTI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Ot44O844OJ44OQ44Op44Oz44K144O877yI5aSn44G+44GL44Gq5Yi25b6h77yJPC90ZXh0PgogICAgPHRleHQgeD0iMzUyIiB5PSIxMjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM1NTU1NTUiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ihpI8L3RleHQ+PHJlY3QgeD0iMjAiIHk9IjE1MCIgd2lkdGg9IjMzNSIgaGVpZ2h0PSI0NiIgcng9IjIiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSIxODciIHk9IjE3NyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuatqeihjOiAhSAo6Ieq5b6L55qE57WM6Lev6YG45oqeKTwvdGV4dD4KICAgIDxyZWN0IHg9IjM2NSIgeT0iMTUwIiB3aWR0aD0iNDE1IiBoZWlnaHQ9IjQ2IiByeD0iMiIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjU3MiIgeT0iMTc3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Oe44Kk44Kv44Ot44K144O844OT44K577yI6Ieq5b6L55qE44Gr5YuV5L2c77yJPC90ZXh0PgogICAgPHRleHQgeD0iMzUyIiB5PSIxNzciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM1NTU1NTUiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ihpI8L3RleHQ+PHJlY3QgeD0iMjAiIHk9IjIwMiIgd2lkdGg9IjMzNSIgaGVpZ2h0PSI0NiIgcng9IjIiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSIxODciIHk9IjIyOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODrOODvOODs+W9ouaIkO+8iOiHquW3see1hOe5lOWMlu+8iTwvdGV4dD4KICAgIDxyZWN0IHg9IjM2NSIgeT0iMjAyIiB3aWR0aD0iNDE1IiBoZWlnaHQ9IjQ2IiByeD0iMiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjU3MiIgeT0iMjI5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Ieq5bex57WE57mU5YyW44Kv44Op44K544K/44Oq44Oz44KwPC90ZXh0PgogICAgPHRleHQgeD0iMzUyIiB5PSIyMjkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiM1NTU1NTUiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ihpI8L3RleHQ+PHJlY3QgeD0iMjAiIHk9IjI1NCIgd2lkdGg9IjMzNSIgaGVpZ2h0PSI0NiIgcng9IjIiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSIxODciIHk9IjI4MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPueCuea7hTfnp5LvvIjjg5Djg4Pjg5XjgqHvvIk8L3RleHQ+CiAgICA8cmVjdCB4PSIzNjUiIHk9IjI1NCIgd2lkdGg9IjQxNSIgaGVpZ2h0PSI0NiIgcng9IjIiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI1NzIiIHk9IjI4MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCteODvOOCreODg+ODiOODluODrOODvOOCq+ODvCArIFRpbWVvdXQ8L3RleHQ+CiAgICA8dGV4dCB4PSIzNTIiIHk9IjI4MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzU1NTU1NSIgZm9udC1zaXplPSIxNiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKGkjwvdGV4dD48cmVjdCB4PSIyMCIgeT0iMzA2IiB3aWR0aD0iMzM1IiBoZWlnaHQ9IjQ2IiByeD0iMiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjE4NyIgeT0iMzMzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6LWk5L+h5Y+344KS5a6I44KL5paH5YyWPC90ZXh0PgogICAgPHJlY3QgeD0iMzY1IiB5PSIzMDYiIHdpZHRoPSI0MTUiIGhlaWdodD0iNDYiIHJ4PSIyIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iNTcyIiB5PSIzMzMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5BUEnjgrPjg7Pjg4jjg6njgq/jg4jvvIjlhbHmnInjg5fjg63jg4jjgrPjg6vvvIk8L3RleHQ+CiAgICA8dGV4dCB4PSIzNTIiIHk9IjMzMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzU1NTU1NSIgZm9udC1zaXplPSIxNiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKGkjwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjM3OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOAjOWFqOOBpuOCkuWItuW+oeOBl+OCiOOBhuOBqOOBl+OBquOBhOOAjT0g5pyA44KC5Yq5546H55qE44Gq6Kit6KiIPC90ZXh0Pgo8L3N2Zz4=)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">対応表：渋谷スクランブル ↔ 分散システム</text>
+  <!-- Table -->
+  <rect x="20" y="48" width="335" height="40" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="187" y="72" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">渋谷スクランブル</text>
+  <rect x="365" y="48" width="415" height="40" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="572" y="72" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">分散システム</text>
+  <rect x="20" y="98" width="335" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="187" y="125" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">信号機 (Go/Stop のみ)</text>
+    <rect x="365" y="98" width="415" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="572" y="125" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">ロードバランサー（大まかな制御）</text>
+    <text x="352" y="125" text-anchor="middle" fill="#555555" font-size="16" font-family="sans-serif">→</text><rect x="20" y="150" width="335" height="46" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="187" y="177" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">歩行者 (自律的経路選択)</text>
+    <rect x="365" y="150" width="415" height="46" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="572" y="177" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">マイクロサービス（自律的に動作）</text>
+    <text x="352" y="177" text-anchor="middle" fill="#555555" font-size="16" font-family="sans-serif">→</text><rect x="20" y="202" width="335" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="187" y="229" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">レーン形成（自己組織化）</text>
+    <rect x="365" y="202" width="415" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="572" y="229" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">自己組織化クラスタリング</text>
+    <text x="352" y="229" text-anchor="middle" fill="#555555" font-size="16" font-family="sans-serif">→</text><rect x="20" y="254" width="335" height="46" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="187" y="281" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">点滅7秒（バッファ）</text>
+    <rect x="365" y="254" width="415" height="46" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="572" y="281" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">サーキットブレーカー + Timeout</text>
+    <text x="352" y="281" text-anchor="middle" fill="#555555" font-size="16" font-family="sans-serif">→</text><rect x="20" y="306" width="335" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="187" y="333" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">赤信号を守る文化</text>
+    <rect x="365" y="306" width="415" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="572" y="333" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">APIコントラクト（共有プロトコル）</text>
+    <text x="352" y="333" text-anchor="middle" fill="#555555" font-size="16" font-family="sans-serif">→</text>
+  <text x="400" y="378" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">「全てを制御しようとしない」= 最も効率的な設計</text>
+</svg>
+</div>
+
 - 分散システムとの類似：
 - 信号 = ロードバランサー（大まかな制御のみ）
 - 歩行者 = マイクロサービス（自律的に動作）
@@ -264,11 +653,37 @@ style: |
 
 ---
 
+<!-- _class: invert fit-58 -->
 # なぜ渋谷では機能するのか（文化的要因）
 
 > *高ルール遵守文化+非言語読解力+縦型信号が渋谷を可能にした*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7muIvosLfkuqTlt67ngrnjgYvjgonlrabjgbbliIbmlaPjgrfjgrnjg4bjg6DoqK3oqIjljp/liYc8L3RleHQ+CiAgPCEtLSA1IHByaW5jaXBsZXMgYXMgaG9yaXpvbnRhbCBiYXJzIC0tPgogIDxyZWN0IHg9IjQwIiB5PSI2MCIgd2lkdGg9IjcyMCIgaGVpZ2h0PSI1MCIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDx0ZXh0IHg9IjYwIiB5PSI4MiIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4xLiDlrozlhajliIbpm6Ljga/lronlhag8L3RleHQ+CiAgICA8dGV4dCB4PSI2MCIgeT0iMTAwIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5q2p6LuK5YiG6ZuiID0g6KGd56qB44K844Ot44Gu6Kit6KiIPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIxMjIiIHdpZHRoPSI3MjAiIGhlaWdodD0iNTAiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8dGV4dCB4PSI2MCIgeT0iMTQ0IiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjIuIOacgOWwj+mZkOOBruS4reWkruWItuW+oTwvdGV4dD4KICAgIDx0ZXh0IHg9IjYwIiB5PSIxNjIiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7kv6Hlj7fjga8gR28vU3RvcCDjgaDjgZHmjIfnpLo8L3RleHQ+PHJlY3QgeD0iNDAiIHk9IjE4NCIgd2lkdGg9IjcyMCIgaGVpZ2h0PSI1MCIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICAgIDx0ZXh0IHg9IjYwIiB5PSIyMDYiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+My4g6Ieq5bex57WE57mU5YyW44KS5L+h6aC8PC90ZXh0PgogICAgPHRleHQgeD0iNjAiIHk9IjIyNCIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWAi+S9k+OBruWNmOe0lOODq+ODvOODqyDihpIg5YWo5L2T56ep5bqPPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIyNDYiIHdpZHRoPSI3MjAiIGhlaWdodD0iNTAiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8dGV4dCB4PSI2MCIgeT0iMjY4IiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjQuIOODkOODg+ODleOCoeOCkuioreioiOOBq+e1hOOBv+i+vOOCgDwvdGV4dD4KICAgIDx0ZXh0IHg9IjYwIiB5PSIyODYiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ngrnmu4U356eSID0g5a6J5YWo5L2Z6KOVPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIzMDgiIHdpZHRoPSI3MjAiIGhlaWdodD0iNTAiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgICA8dGV4dCB4PSI2MCIgeT0iMzMwIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjUuIOaWh+WMluOBjOWJjeaPkDwvdGV4dD4KICAgIDx0ZXh0IHg9IjYwIiB5PSIzNDgiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lhbHmnInopo/nr4TjgarjgZfjgavnp6nluo/jga/nlJ/jgb7jgozjgarjgYQ8L3RleHQ+CiAgPCEtLSBTeXN0ZW0gcGFyYWxsZWwgbGFiZWxzIC0tPgogIDx0ZXh0IHg9IjcwMCIgeT0iODgiIHRleHQtYW5jaG9yPSJlbmQiIGZpbGw9IiM1NTU1NTUiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPmNmLiDjg57jgqTjgq/jg63jgrXjg7zjg5PjgrnliIbpm6I8L3RleHQ+CiAgPHRleHQgeD0iNzAwIiB5PSIxNTAiIHRleHQtYW5jaG9yPSJlbmQiIGZpbGw9IiM1NTU1NTUiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPmNmLiDjg63jg7zjg4njg5Djg6njg7PjgrXjg7w8L3RleHQ+CiAgPHRleHQgeD0iNzAwIiB5PSIyMTIiIHRleHQtYW5jaG9yPSJlbmQiIGZpbGw9IiM1NTU1NTUiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPmNmLiDliIbmlaPlkIjmhI/jgqLjg6vjgrTjg6rjgrrjg6A8L3RleHQ+CiAgPHRleHQgeD0iNzAwIiB5PSIyNzQiIHRleHQtYW5jaG9yPSJlbmQiIGZpbGw9IiM1NTU1NTUiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPmNmLiDjgrXjg7zjgq3jg4Pjg4jjg5bjg6zjg7zjgqvjg7w8L3RleHQ+CiAgPHRleHQgeD0iNzAwIiB5PSIzMzYiIHRleHQtYW5jaG9yPSJlbmQiIGZpbGw9IiM1NTU1NTUiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPmNmLiBBUEnjgrPjg7Pjg4jjg6njgq/jg4g8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgIzlhajjgabjgpLliLblvqHjgZfjgojjgYbjgajjgZfjgarjgYTjgI3jgZPjgajjgYzmnIDjgoLlirnnjofnmoTjgaroqK3oqIjjgavjgarjgos8L3RleHQ+Cjwvc3ZnPg==)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">渋谷交差点から学ぶ分散システム設計原則</text>
+  <!-- 5 principles as horizontal bars -->
+  <rect x="40" y="60" width="720" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+    <text x="60" y="82" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">1. 完全分離は安全</text>
+    <text x="60" y="100" fill="#aaaaaa" font-size="11" font-family="sans-serif">歩車分離 = 衝突ゼロの設計</text><rect x="40" y="122" width="720" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+    <text x="60" y="144" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">2. 最小限の中央制御</text>
+    <text x="60" y="162" fill="#aaaaaa" font-size="11" font-family="sans-serif">信号は Go/Stop だけ指示</text><rect x="40" y="184" width="720" height="50" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+    <text x="60" y="206" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">3. 自己組織化を信頼</text>
+    <text x="60" y="224" fill="#aaaaaa" font-size="11" font-family="sans-serif">個体の単純ルール → 全体秩序</text><rect x="40" y="246" width="720" height="50" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+    <text x="60" y="268" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">4. バッファを設計に組み込む</text>
+    <text x="60" y="286" fill="#aaaaaa" font-size="11" font-family="sans-serif">点滅7秒 = 安全余裕</text><rect x="40" y="308" width="720" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+    <text x="60" y="330" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">5. 文化が前提</text>
+    <text x="60" y="348" fill="#aaaaaa" font-size="11" font-family="sans-serif">共有規範なしに秩序は生まれない</text>
+  <!-- System parallel labels -->
+  <text x="700" y="88" text-anchor="end" fill="#555555" font-size="9" font-family="sans-serif">cf. マイクロサービス分離</text>
+  <text x="700" y="150" text-anchor="end" fill="#555555" font-size="9" font-family="sans-serif">cf. ロードバランサー</text>
+  <text x="700" y="212" text-anchor="end" fill="#555555" font-size="9" font-family="sans-serif">cf. 分散合意アルゴリズム</text>
+  <text x="700" y="274" text-anchor="end" fill="#555555" font-size="9" font-family="sans-serif">cf. サーキットブレーカー</text>
+  <text x="700" y="336" text-anchor="end" fill="#555555" font-size="9" font-family="sans-serif">cf. APIコントラクト</text>
+  <text x="400" y="385" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">「全てを制御しようとしない」ことが最も効率的な設計になる</text>
+</svg>
+</div>
+
 - **1. 規範遵守** ― 赤信号で渡らない文化
 - **2. 他者への配慮** ― 「ぶつかったらすみません」の精神
 - **3. 歩行速度の均一性** ― 極端に遅い/速い人が少ない
@@ -280,14 +695,44 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 分散システム設計への示唆
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7muIvosLfjgrnjgq/jg6njg7Pjg5bjg6vjgYzoqLzmmI7jgZfjgZ8z5bGk6Kit6KiIPC90ZXh0PgogIDwhLS0gVGhyZWUgY29uY2VudHJpYyBjaXJjbGVzIC8gbGF5ZXJzIC0tPgogIDxjaXJjbGUgY3g9IjQwMCIgY3k9IjIxMCIgcj0iMTYwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxjaXJjbGUgY3g9IjQwMCIgY3k9IjIxMCIgcj0iMTEwIiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxjaXJjbGUgY3g9IjQwMCIgY3k9IjIxMCIgcj0iNjAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPCEtLSBJbm5lcjogU2lnbmFsIChtaW5pbWFsIGNvbnRyb2wpIC0tPgogIDx0ZXh0IHg9IjQwMCIgeT0iMjA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS/oeWPt+WItuW+oTwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjIyMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuacgOWwj+WItuW+oTwvdGV4dD4KICA8IS0tIE1pZGRsZTogU2VsZi1vcmdhbml6YXRpb24gLS0+CiAgPHRleHQgeD0iNDAwIiB5PSIxMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Ieq5bex57WE57mU5YyWPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMTQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Os44O844Oz5b2i5oiQPC90ZXh0PgogIDwhLS0gT3V0ZXI6IEN1bHR1cmUgLS0+CiAgPHRleHQgeD0iNDAwIiB5PSI3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7mlofljJbjg7vjg5fjg63jg4jjgrPjg6s8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSI5MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWFseacieimj+evhDwvdGV4dD4KICA8IS0tIEFubm90YXRpb25zIG9uIHNpZGVzIC0tPgogIDx0ZXh0IHg9IjE0MCIgeT0iMjEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4oaQIOeSsOWig+ioreioiDwvdGV4dD4KICA8dGV4dCB4PSI2NjAiIHk9IjIxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODpuODvOOCtuODvOihjOWLlSDihpI8L3RleHQ+CiAgPCEtLSBTeXN0ZW0gZGVzaWduIHBhcmFsbGVsIC0tPgogIDxyZWN0IHg9IjMwIiB5PSIzMjAiIHdpZHRoPSIzNDAiIGhlaWdodD0iNTUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iMjAwIiB5PSIzNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7muIvosLfkuqTlt67ngrk8L3RleHQ+CiAgPHRleHQgeD0iMjAwIiB5PSIzNjIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7kv6Hlj7cgKyDmranooYzogIUgKyDmlofljJY8L3RleHQ+CiAgPHJlY3QgeD0iNDMwIiB5PSIzMjAiIHdpZHRoPSIzNDAiIGhlaWdodD0iNTUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNjAwIiB5PSIzNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7liIbmlaPjgrfjgrnjg4bjg6A8L3RleHQ+CiAgPHRleHQgeD0iNjAwIiB5PSIzNjIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5MQiArIOODnuOCpOOCr+ODreOCteODvOODk+OCuSArIEFQSeWlkee0hDwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjMwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKJhTwvdGV4dD4KPC9zdmc+)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">渋谷スクランブルが証明した3層設計</text>
+  <!-- Three concentric circles / layers -->
+  <circle cx="400" cy="210" r="160" fill="#16213e" stroke="#333355" stroke-width="1"/>
+  <circle cx="400" cy="210" r="110" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+  <circle cx="400" cy="210" r="60" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <!-- Inner: Signal (minimal control) -->
+  <text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">信号制御</text>
+  <text x="400" y="222" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">最小制御</text>
+  <!-- Middle: Self-organization -->
+  <text x="400" y="130" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">自己組織化</text>
+  <text x="400" y="148" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">レーン形成</text>
+  <!-- Outer: Culture -->
+  <text x="400" y="75" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">文化・プロトコル</text>
+  <text x="400" y="92" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">共有規範</text>
+  <!-- Annotations on sides -->
+  <text x="140" y="210" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">← 環境設計</text>
+  <text x="660" y="210" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">ユーザー行動 →</text>
+  <!-- System design parallel -->
+  <rect x="30" y="320" width="340" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="200" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">渋谷交差点</text>
+  <text x="200" y="362" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">信号 + 歩行者 + 文化</text>
+  <rect x="430" y="320" width="340" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="600" y="345" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">分散システム</text>
+  <text x="600" y="362" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">LB + マイクロサービス + API契約</text>
+  <text x="400" y="305" text-anchor="middle" fill="#ffffff" font-size="16" font-family="sans-serif">≅</text>
+</svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 渋谷交差点から学ぶ設計原則
 
 > *局所ルール+バッファ設計+フィードバックの3原則が分散設計の教科書*
@@ -301,10 +746,33 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead fit-82 -->
 # まとめ
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgb7jgajjgoHvvJrmuIvosLfjgrnjgq/jg6njg7Pjg5bjg6vjgYzoqLzmmI7jgZfjgZ/mma7pgY3ljp/nkIY8L3RleHQ+CiAgPCEtLSBUaHJlZSByaW5ncyAtLT4KICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMTUiIHI9IjE2NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMTUiIHI9IjExMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8Y2lyY2xlIGN4PSI0MDAiIGN5PSIyMTUiIHI9IjU1IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMi41Ii8+CiAgPCEtLSBDb3JlIC0tPgogIDx0ZXh0IHg9IjQwMCIgeT0iMjEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuacgOWwj+WItuW+oTwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L+h5Y+3PC90ZXh0PgogIDwhLS0gTWlkZGxlIHJpbmcgbGFiZWwgLS0+CiAgPHRleHQgeD0iNDAwIiB5PSIxMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Ieq5bex57WE57mU5YyWPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMTQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5q2p6KGM6ICF44Gu44Os44O844Oz5b2i5oiQPC90ZXh0PgogIDwhLS0gT3V0ZXIgcmluZyBsYWJlbHMgLS0+CiAgPHRleHQgeD0iNDAwIiB5PSI2OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7mlofljJbjg7vjg5fjg63jg4jjgrPjg6s8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSI4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6LWk5L+h5Y+344KS5a6I44KL5YWx5pyJ6KaP56+EPC90ZXh0PgogIDwhLS0gT3V0Y29tZSBhbm5vdGF0aW9uIC0tPgogIDxyZWN0IHg9IjgwIiB5PSIzMjAiIHdpZHRoPSI2NDAiIGhlaWdodD0iNjUiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjM0NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4zLDAwMOS6uiDDlyA0NeenkiA9IOS6i+aVheOBquOBlzwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjM2NyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuioreioiCArIOiHquW3see1hOe5lOWMliArIOaWh+WMluOBjOWNlOWDjeOBmeOCi+WIhuaVo+OCt+OCueODhuODoOOBruWCkeS9nDwvdGV4dD4KPC9zdmc+)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">まとめ：渋谷スクランブルが証明した普遍原理</text>
+  <!-- Three rings -->
+  <circle cx="400" cy="215" r="165" fill="none" stroke="#333355" stroke-width="1"/>
+  <circle cx="400" cy="215" r="110" fill="none" stroke="#333355" stroke-width="1"/>
+  <circle cx="400" cy="215" r="55" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
+  <!-- Core -->
+  <text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">最小制御</text>
+  <text x="400" y="228" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">信号</text>
+  <!-- Middle ring label -->
+  <text x="400" y="130" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">自己組織化</text>
+  <text x="400" y="147" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">歩行者のレーン形成</text>
+  <!-- Outer ring labels -->
+  <text x="400" y="68" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">文化・プロトコル</text>
+  <text x="400" y="85" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">赤信号を守る共有規範</text>
+  <!-- Outcome annotation -->
+  <rect x="80" y="320" width="640" height="65" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="345" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">3,000人 × 45秒 = 事故なし</text>
+  <text x="400" y="367" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">設計 + 自己組織化 + 文化が協働する分散システムの傑作</text>
+</svg>
+</div>
+
 - 渋谷スクランブル交差点は**都市工学の傑作**
 - 3,000人が45秒で渡れるのは偶然ではなく**設計と自己組織化の協働**
 - 最小限の制御 + 個体の自律性 + 文化的プロトコル = 効率的な秩序
@@ -314,14 +782,15 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 参考文献
 
 > *群衆力学・信号制御・自己組織化の学術的根拠を参照できる*
 
-- - **学術研究:**
-- - [Pedestrian Dynamics - D. Helbing](https://www.amazon.com/dp/3540751203)
-- - [Self-Organization of Pedestrian Flow (Nature)](https://www.nature.com/)
-- - **データ:**
-- - [渋谷区 交通量調査](https://www.city.shibuya.tokyo.jp/)
-- - [NEC 群衆行動解析](https://www.nec.com/)
+- **学術研究:**
+- [Pedestrian Dynamics - D. Helbing](https://www.amazon.com/dp/3540751203)
+- [Self-Organization of Pedestrian Flow (Nature)](https://www.nature.com/)
+- **データ:**
+- [渋谷区 交通量調査](https://www.city.shibuya.tokyo.jp/)
+- [NEC 群衆行動解析](https://www.nec.com/)
 

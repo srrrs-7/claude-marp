@@ -7,41 +7,76 @@ paginate: true
 header: "日本ゲーム産業の黄金時代"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 日本ゲーム産業の黄金時代
 なぜ80-90年代の日本が世界を制覇したのか
 
@@ -87,31 +122,34 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # アジェンダ
 
 > *崩壊から制覇、そして衰退までの40年を6段階で解剖する*
 
-- 1. アタリショックと日本の機会
-- 2. 任天堂の革命（1983-1990）
-- 3. 16ビット戦争とクリエイターの台頭
-- 4. PlayStation革命（1994-2000）
-- 5. 黄金時代の成功要因
-- 6. 衰退の始まりと教訓
+1. アタリショックと日本の機会
+2. 任天堂の革命（1983-1990）
+3. 16ビット戦争とクリエイターの台頭
+4. PlayStation革命（1994-2000）
+5. 黄金時代の成功要因
+6. 衰退の始まりと教訓
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # アタリショックと日本の機会
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # 1983年：北米ゲーム市場の崩壊
 
 > *97%縮小の廃墟が日本参入の絶好機を作り出した*
 
 ![w:800 center](assets/atari-shock.svg)
+
 - **アタリショック** ― 市場規模が32億ドルから1億ドルへ**97%縮小**
 - 原因：粗悪なソフトの氾濫（E.T.は砂漠に埋められた）
 - 品質管理の欠如 → 消費者の信頼喪失
@@ -121,17 +159,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 任天堂の革命
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # ファミリーコンピュータ（1983年）
 
 > *競合半額の14,800円と品質で1985年までに1,500万台制覇*
 
 ![w:800 center](assets/famicom-strategy.svg)
+
 - 山内溥社長の決断：**ゲーム専用機**に集中する
 - 価格14,800円 ― 当時の競合の半額以下
 - リコー製カスタムCPU（6502互換）で他社を圧倒
@@ -141,11 +181,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 任天堂の品質管理革命
 
 > *年5本制限+審査制度が今日のApp Storeレビューを先取りした*
 
 ![w:800 center](assets/quality-control.svg)
+
 - **「Seal of Quality」システム** ― アタリの失敗を繰り返さない
 - サードパーティは年間5本までしか発売できない
 - 全ソフトを任天堂が審査・承認する仕組み
@@ -163,17 +205,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 16ビット戦争とクリエイターの台頭
 
 
 ---
 
+<!-- _class: invert fit-64 -->
 # セガ vs 任天堂：最初のコンソール戦争
 
 > *プラットフォーム競争が両社の革新を加速した証明*
 
 ![w:800 center](assets/console-war.svg)
+
 - **メガドライブ（1988）** vs **スーパーファミコン（1990）**
 - セガ：「ジェネシスはニンテンドーのできないことをする」攻撃的マーケ
 - ソニック・ザ・ヘッジホッグ → 北米でNESのシェアを奪う
@@ -184,11 +228,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 天才クリエイターたちの時代
 
 > *個人の天才がIPを創り企業を支えた黄金時代の本質*
 
 ![w:800 center](assets/creator-map.svg)
+
 - **宮本茂（任天堂）** ― マリオ・ゼルダ・ドンキーコング
 - **坂口博信（スクウェア）** ― ファイナルファンタジー
 - **堀井雄二（エニックス）** ― ドラゴンクエスト
@@ -199,17 +245,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # PlayStation革命
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # ソニーの参入（1994年）
 
 > *開発キット価格引き下げでサードパーティを奪い任天堂を崩した*
 
 ![w:800 center](assets/playstation-revolution.svg)
+
 - 任天堂との共同開発決裂 → 久夛良木健の独自プロジェクト
 - **CD-ROM採用** ― カートリッジの10倍以上の容量
 - 開発キットが安い → サードパーティが殺到
@@ -220,11 +268,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # PlayStationが変えたもの
 
 > *1億台突破—ゲームが「文化」として認知される転換点*
 
 ![w:800 center](assets/playstation-changes.svg)
+
 - **FF7（1997）** ― 3DCGムービーで映画的体験を実現
 - メタルギアソリッド ― シネマティックなゲームデザイン
 - グランツーリスモ ― シミュレーションジャンルの確立
@@ -235,7 +285,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 黄金時代の成功要因
 
 
@@ -255,11 +305,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 5つの構造的優位性
 
 > *垂直統合+品質管理+文化的蓄積の5重構造が他国に真似できなかった*
 
 ![w:800 center](assets/five-advantages.svg)
+
 - **1. アタリショック後の空白** ― 競合不在の市場に参入
 - **2. ハード・ソフト垂直統合** ― プラットフォーム+コンテンツの両方を支配
 - **3. 品質管理の徹底** ― 任天堂モデルが業界標準に
@@ -269,17 +321,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 衰退の始まりと教訓
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # 覇権が揺らいだ理由
 
 > *Xbox参入とオンライン遅延がHD時代の職人芸をスケール不能にした*
 
 ![w:800 center](assets/decline-factors.svg)
+
 - **2001年：Xbox参入** ― Microsoftが3兆円の資金力で市場に
 - オンライン対応の遅れ（Xbox LiveがPS2に先行）
 - HD開発の高コスト化 → 日本の中小スタジオが淘汰
@@ -289,11 +343,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 黄金時代からの教訓
 
 > *品質管理・プラットフォーム・クリエイター投資の教訓は今も普遍*
 
 ![w:800 center](assets/golden-age-lessons.svg)
+
 - **品質管理は持続的成長の基盤** ― 短期利益の追求は市場を壊す
 - **プラットフォームの力** ― ハード+ソフトの垂直統合が最強の堀
 - **クリエイターへの投資** ― 天才個人のビジョンがIPを創る
@@ -304,7 +360,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ
 
 - 日本ゲーム産業の黄金時代は**偶然ではなく構造的必然**だった
@@ -320,10 +376,10 @@ style: |
 
 > *書籍・データ統計で黄金時代の事実を裏付ける*
 
-- - **書籍・論文:**
-- - [Game Over: Press Start to Continue - David Sheff](https://www.amazon.com/dp/0966961706)
-- - [Console Wars - Blake J. Harris](https://www.amazon.com/dp/0062276700)
-- - **データ・統計:**
+- **書籍・論文:**
+- [Game Over: Press Start to Continue - David Sheff](https://www.amazon.com/dp/0966961706)
+- [Console Wars - Blake J. Harris](https://www.amazon.com/dp/0062276700)
+- **データ・統計:**
 
 
 ---
@@ -332,8 +388,8 @@ style: |
 
 > *VGChartzと一次資料でハードウェア販売推移を検証*
 
-- - [Video Game History Foundation](https://gamehistory.org/)
-- - [VGChartz - Hardware Sales](https://www.vgchartz.com/)
-- - **記事:**
-- - [The Rise of Nintendo - Ars Technica](https://arstechnica.com/gaming/)
+- [Video Game History Foundation](https://gamehistory.org/)
+- [VGChartz - Hardware Sales](https://www.vgchartz.com/)
+- **記事:**
+- [The Rise of Nintendo - Ars Technica](https://arstechnica.com/gaming/)
 

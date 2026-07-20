@@ -7,41 +7,76 @@ paginate: true
 header: "Mycelium Network × P2P"
 footer: "© 2026 Forest Internet"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,11 +117,10 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 森のインターネット：菌糸ネットワークが先取りしていた分散システム設計
 
 - Wood Wide Web × Gossip Protocol × P2P
-- 
 - 自然界が4億年前に実装していた分散アーキテクチャ
 
 
@@ -96,17 +130,17 @@ style: |
 
 > *6章構成で菌糸×P2Pの設計哲学を体系的に学ぶ*
 
-- - 1. 菌糸ネットワーク（Wood Wide Web）とは
-- - 2. P2P分散システムの基礎
-- - 3. 情報伝達：化学シグナル vs Gossip Protocol
-- - 4. リソース共有：栄養素再分配 vs Load Balancing
-- - 5. 耐障害性：自己修復 vs Replication
-- - 6. 設計パターン対応表と未来への示唆
+- 1. 菌糸ネットワーク（Wood Wide Web）とは
+- 2. P2P分散システムの基礎
+- 3. 情報伝達：化学シグナル vs Gossip Protocol
+- 4. リソース共有：栄養素再分配 vs Load Balancing
+- 5. 耐障害性：自己修復 vs Replication
+- 6. 設計パターン対応表と未来への示唆
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 菌糸ネットワークとは
 
 - Chapter 1: Wood Wide Web
@@ -119,12 +153,13 @@ style: |
 > *4億年前から地下で機能する世界最古の分散ネットワーク*
 
 ![w:800 center](assets/wood-wide-web.svg)
-- - 菌根菌（Mycorrhizal Fungi）が木の根を地下で接続
-- - 1本の木は平均 **数十〜数百の他の木** と接続
-- - ネットワーク全長は **1gの土壌に数km** の菌糸
-- - 約 **4億年前** から存在する地球最古の分散ネットワーク
-- - 1997年 Suzanne Simard博士が「Wood Wide Web」を提唱
-- - 栄養素・水・化学シグナルの双方向転送を実現
+
+- 菌根菌（Mycorrhizal Fungi）が木の根を地下で接続
+- 1本の木は平均 **数十〜数百の他の木** と接続
+- ネットワーク全長は **1gの土壌に数km** の菌糸
+- 約 **4億年前** から存在する地球最古の分散ネットワーク
+- 1997年 Suzanne Simard博士が「Wood Wide Web」を提唱
+- 栄養素・水・化学シグナルの双方向転送を実現
 
 
 ---
@@ -141,17 +176,18 @@ style: |
 > *最多接続の母樹が除去されると連結性が劇的に低下する*
 
 ![w:800 center](assets/mother-tree-hub.svg)
-- - **Mother Tree**（母樹）= 最も多くの接続を持つハブ
-- - 森林内の **最大40種以上** の他の木と菌糸接続
-- - 日陰の若木（Sapling）に炭素を優先的に供給
-- - 死の間際に蓄積リソースを周囲に大量放出
-- - P2Pでの **Super Node** に相当する役割
-- - 除去されるとネットワーク全体の連結性が劇的に低下
+
+- **Mother Tree**（母樹）= 最も多くの接続を持つハブ
+- 森林内の **最大40種以上** の他の木と菌糸接続
+- 日陰の若木（Sapling）に炭素を優先的に供給
+- 死の間際に蓄積リソースを周囲に大量放出
+- P2Pでの **Super Node** に相当する役割
+- 除去されるとネットワーク全体の連結性が劇的に低下
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # P2P分散システムの基礎
 
 - Chapter 2: Peer-to-Peer Architecture
@@ -164,11 +200,12 @@ style: |
 > *中央なしでも自律・スケール・耐障害性を同時に実現*
 
 ![w:800 center](assets/p2p-principles.svg)
-- - **非中央集権**: 単一の管理サーバーが存在しない
-- - **対等なノード**: 各参加者がクライアント兼サーバー
-- - **自律分散**: ノードが独立して意思決定
-- - **スケーラビリティ**: ノード追加で性能が向上
-- - **耐障害性**: 一部の故障がシステム全体に波及しない
+
+- **非中央集権**: 単一の管理サーバーが存在しない
+- **対等なノード**: 各参加者がクライアント兼サーバー
+- **自律分散**: ノードが独立して意思決定
+- **スケーラビリティ**: ノード追加で性能が向上
+- **耐障害性**: 一部の故障がシステム全体に波及しない
 
 <!--
 BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワークと共通の設計哲学を持つ。
@@ -181,11 +218,12 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 > *GossipからRaftまで自然界と同型のプロトコルが存在する*
 
 ![w:800 center](assets/protocols-comparison.svg)
-- - **Gossip Protocol**: 噂話のように情報を伝播（Cassandra, Redis Cluster）
-- - **DHT（分散ハッシュテーブル）**: キーでデータ位置を特定（BitTorrent, IPFS）
-- - **Chord Ring**: ノードをリング状に配置し O(log N) でルーティング
-- - **Raft / Paxos**: 合意形成アルゴリズム（etcd, ZooKeeper）
-- - **CRDTs**: 結果整合性を保証する競合フリーデータ型
+
+- **Gossip Protocol**: 噂話のように情報を伝播（Cassandra, Redis Cluster）
+- **DHT（分散ハッシュテーブル）**: キーでデータ位置を特定（BitTorrent, IPFS）
+- **Chord Ring**: ノードをリング状に配置し O(log N) でルーティング
+- **Raft / Paxos**: 合意形成アルゴリズム（etcd, ZooKeeper）
+- **CRDTs**: 結果整合性を保証する競合フリーデータ型
 
 <!--
 菌糸ネットワークの情報伝播はGossip Protocolに最も近い。
@@ -193,7 +231,7 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 情報伝達メカニズムの比較
 
 - Chapter 3: Signal Propagation
@@ -213,12 +251,13 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 > *化学シグナルがO(log N)ラウンドで全体に伝播する原理*
 
 ![w:800 center](assets/chem-signal.svg)
-- - 虫害を受けた木が **ジャスモン酸** を菌糸経由で送信
-- - 受信した木は事前に **防御酵素** を生成開始
-- - シグナル到達速度: 数時間〜数日（物理的拡散）
-- - Gossipの `O(log N)` ラウンドに対応する伝播段階
-- - 両者とも **Eventual Delivery** を特徴とする
-- - 中央コーディネーターなしで全体に情報が行き渡る
+
+- 虫害を受けた木が **ジャスモン酸** を菌糸経由で送信
+- 受信した木は事前に **防御酵素** を生成開始
+- シグナル到達速度: 数時間〜数日（物理的拡散）
+- Gossipの `O(log N)` ラウンドに対応する伝播段階
+- 両者とも **Eventual Delivery** を特徴とする
+- 中央コーディネーターなしで全体に情報が行き渡る
 
 <!--
 菌糸ネットワークの化学シグナルはGossip Protocolと驚くほど似た伝播パターンを示す。
@@ -226,7 +265,7 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # リソース共有と負荷分散
 
 - Chapter 4: Resource Redistribution
@@ -239,12 +278,13 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 > *余剰ノードから不足ノードへ自動転送する自然のLB*
 
 ![w:800 center](assets/resource-redistribution.svg)
-- - 日当たりの良い木 → 余剰炭素を菌糸ネットワークへ供給
-- - 日陰の若木 ← 菌糸経由で炭素・リンを受領
-- - **ソース-シンクモデル**: 余剰ノードから不足ノードへ自動転送
-- - P2Pの **Work Stealing** パターンに類似
-- - 菌根菌は仲介手数料として炭素の **10〜30%** を取得
-- - Token Economicsの原型：参加者全員がインセンティブを持つ
+
+- 日当たりの良い木 → 余剰炭素を菌糸ネットワークへ供給
+- 日陰の若木 ← 菌糸経由で炭素・リンを受領
+- **ソース-シンクモデル**: 余剰ノードから不足ノードへ自動転送
+- P2Pの **Work Stealing** パターンに類似
+- 菌根菌は仲介手数料として炭素の **10〜30%** を取得
+- Token Economicsの原型：参加者全員がインセンティブを持つ
 
 
 ---
@@ -252,7 +292,8 @@ BitTorrent, Bitcoin, IPFS など実例多数。いずれも菌糸ネットワー
 # リソース再分配のコード比較
 
 ![w:800 center](assets/resource-redistribution-flow.svg)
-- - 菌糸ネットワークの栄養素転送 ≒ P2Pの負荷分散アルゴリズム
+
+- 菌糸ネットワークの栄養素転送 ≒ P2Pの負荷分散アルゴリズム
 
 
 ---
@@ -276,7 +317,7 @@ async function redistributeLoad(nodes: PeerNode[]) {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 耐障害性
 
 - Chapter 5: Fault Tolerance
@@ -296,12 +337,13 @@ async function redistributeLoad(nodes: PeerNode[]) {
 > *冗長経路と迂回形成で部分障害でもサービスを継続する*
 
 ![w:800 center](assets/self-healing.svg)
-- - **菌糸**: 損傷を検知 → 新しい菌糸が迂回経路を形成
-- - **P2P**: ノード離脱を検知 → DHT/Gossipで経路再構築
-- - 両者とも **冗長接続** が前提（Replication Factor）
-- - 菌糸: 平均5〜8の冗長経路 ≒ P2P: Replication Factor 3〜5
-- - **Graceful Degradation**: 部分障害でもサービス継続
-- - Mother Treeの喪失 ≒ Super Node障害 → 再選出が必要
+
+- **菌糸**: 損傷を検知 → 新しい菌糸が迂回経路を形成
+- **P2P**: ノード離脱を検知 → DHT/Gossipで経路再構築
+- 両者とも **冗長接続** が前提（Replication Factor）
+- 菌糸: 平均5〜8の冗長経路 ≒ P2P: Replication Factor 3〜5
+- **Graceful Degradation**: 部分障害でもサービス継続
+- Mother Treeの喪失 ≒ Super Node障害 → 再選出が必要
 
 <!--
 菌糸ネットワークは数百万年の進化で耐障害性を獲得。P2Pは同じ原理を数十年で実装した。
@@ -309,7 +351,7 @@ async function redistributeLoad(nodes: PeerNode[]) {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 設計パターン対応表
 
 - Chapter 6: Design Pattern Mapping
@@ -329,24 +371,23 @@ async function redistributeLoad(nodes: PeerNode[]) {
 > *ハイブリッド構造とインセンティブ設計が頑健性の鍵*
 
 ![w:800 center](assets/design-principles-map.svg)
-- - **Hub-and-Spoke は自然界でも有効**: Mother Treeが証明
-- - **完全分散 vs ハブ型のハイブリッド** が最も頑健
-- - **インセンティブ設計** が持続可能性の鍵（相利共生）
-- - **冗長経路のコスト** は保険として正当化される
-- - **Graceful Degradation** は生存のための必須要件
-- - 数億年の自然淘汰 = 究極のカオスエンジニアリング
+
+- **Hub-and-Spoke は自然界でも有効**: Mother Treeが証明
+- **完全分散 vs ハブ型のハイブリッド** が最も頑健
+- **インセンティブ設計** が持続可能性の鍵（相利共生）
+- **冗長経路のコスト** は保険として正当化される
+- **Graceful Degradation** は生存のための必須要件
+- 数億年の自然淘汰 = 究極のカオスエンジニアリング
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ：森が教えてくれる分散システムの未来
 
 - 菌糸ネットワークは4億年前に分散システムを「発明」した
-- 
 - Gossip Protocol、Load Balancing、Fault Tolerance
 - すべて自然界に先例がある
-- 
 - **最良のアーキテクチャは、自然の設計に学ぶ**
 
 
@@ -356,10 +397,10 @@ async function redistributeLoad(nodes: PeerNode[]) {
 
 > *菌糸ネットワーク研究とP2P設計の一次資料を網羅*
 
-- - **Research & Data:**
-- - [Simard, S. (1997) Net transfer of carbon between ectomycorrhizal tree species in the field. Nature 388](https://www.nature.com/articles/40557)
-- - [Beiler, K.J. et al. (2010) Architecture of the wood-wide web. New Phytologist](https://nph.onlinelibrary.wiley.com/journal/14698137)
-- - **Books:**
-- - [Simard, S. (2021) Finding the Mother Tree. Penguin](https://suzannesimard.com/finding-the-mother-tree-book/)
-- - [Sheldrake, M. (2020) Entangled Life. Random House](https://www.merlinsheldrake.com/entangled-life)
+- **Research & Data:**
+- [Simard, S. (1997) Net transfer of carbon between ectomycorrhizal tree species in the field. Nature 388](https://www.nature.com/articles/40557)
+- [Beiler, K.J. et al. (2010) Architecture of the wood-wide web. New Phytologist](https://nph.onlinelibrary.wiley.com/journal/14698137)
+- **Books:**
+- [Simard, S. (2021) Finding the Mother Tree. Penguin](https://suzannesimard.com/finding-the-mother-tree-book/)
+- [Sheldrake, M. (2020) Entangled Life. Random House](https://www.merlinsheldrake.com/entangled-life)
 

@@ -4,41 +4,76 @@ theme: gaia
 size: 16:9
 paginate: true
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -101,11 +136,13 @@ style: |
 
 ---
 
+<!-- _class: fit-94 -->
 # この60分で得るもの
 
 > *この60分で転職・海外就職の意思決定フレームワークを習得*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="44" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">この60分のゴール</text>
 <!-- Four outcome cards -->
@@ -133,6 +170,8 @@ style: |
 <rect x="650" y="330" width="130" height="44" fill="#16213e" rx="8" stroke="#9ca3af" stroke-width="1"/>
 <text x="715" y="357" text-anchor="middle" fill="#9ca3af" font-size="12">所要時間: 60分</text>
 </svg>
+</div>
+
 - 年収を決める構造を分解して理解する
 - 資格のROIを地域・職種別に判断できる
 - 円安下での収入最大化シナリオを比較できる
@@ -145,7 +184,8 @@ style: |
 
 > *結論：希少性×影響範囲×交渉力の掛け算が年収を決める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="44" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">先に結論: 3つのキーメッセージ</text>
 <!-- Message 1 -->
@@ -169,6 +209,8 @@ style: |
 <!-- Bottom emphasis -->
 <text x="400" y="378" text-anchor="middle" fill="#f9a825" font-size="13">この3つを軸に60分で意思決定できる状態を目指す</text>
 </svg>
+</div>
+
 - 日本人は海外市場で働くことで収入上限を上げやすい
 - 年収は希少な課題解決能力 × 影響範囲 × 交渉力で決まる
 - 資格は目的ではなく高単価職に入る信用ショートカット
@@ -188,7 +230,10 @@ style: |
 
 > *スキル希少性・影響範囲・交渉力の3要因を個別に強化せよ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">報酬差を生む3要因の理解</text><rect x="20" y="62" width="230" height="240" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="135" y="96" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">職種</text><text x="135" y="120" text-anchor="middle" fill="#9ca3af" font-size="12">同じ会社でも</text><rect x="40" y="132" width="190" height="26" fill="#374151" rx="4"/><text x="135" y="149" text-anchor="middle" fill="#4ade80" font-size="12">IC: 専門性プレミアム</text><rect x="40" y="164" width="190" height="26" fill="#374151" rx="4"/><text x="135" y="181" text-anchor="middle" fill="#e91e63" font-size="12">EM: 組織責任プレミアム</text><rect x="40" y="196" width="190" height="26" fill="#374151" rx="4"/><text x="135" y="213" text-anchor="middle" fill="#f9a825" font-size="12">Architect: 希少性プレミアム</text><text x="135" y="255" text-anchor="middle" fill="#9ca3af" font-size="11">職責明確化で単価が変わる</text><rect x="285" y="62" width="230" height="240" fill="#16213e" rx="10" stroke="#e91e63" stroke-width="2"/><text x="400" y="96" text-anchor="middle" fill="#e91e63" font-size="16" font-weight="bold">地域</text><text x="400" y="120" text-anchor="middle" fill="#9ca3af" font-size="12">同職種でも市場差が大きい</text><rect x="305" y="132" width="190" height="26" fill="#374151" rx="4"/><text x="400" y="149" text-anchor="middle" fill="#4ade80" font-size="12">US Bay Area: 最高水準</text><rect x="305" y="164" width="190" height="26" fill="#374151" rx="4"/><text x="400" y="181" text-anchor="middle" fill="#f9a825" font-size="12">EU / 英国: 中-高</text><rect x="305" y="196" width="190" height="26" fill="#374151" rx="4"/><text x="400" y="213" text-anchor="middle" fill="#e91e63" font-size="12">日本: 同職種で最低水準</text><text x="400" y="255" text-anchor="middle" fill="#9ca3af" font-size="11">市場単価を交渉基準に使う</text><rect x="550" y="62" width="230" height="240" fill="#16213e" rx="10" stroke="#4ade80" stroke-width="2"/><text x="665" y="96" text-anchor="middle" fill="#4ade80" font-size="16" font-weight="bold">通貨</text><text x="665" y="120" text-anchor="middle" fill="#9ca3af" font-size="12">円建て生活者の影響</text><rect x="570" y="132" width="190" height="26" fill="#374151" rx="4"/><text x="665" y="149" text-anchor="middle" fill="#4ade80" font-size="12">USD収入 円換算増</text><rect x="570" y="164" width="190" height="26" fill="#374151" rx="4"/><text x="665" y="181" text-anchor="middle" fill="#e91e63" font-size="12">JPY収入 実質低下</text><rect x="570" y="196" width="190" height="26" fill="#374151" rx="4"/><text x="665" y="213" text-anchor="middle" fill="#f9a825" font-size="12">通貨分散 = リスクヘッジ</text><text x="665" y="255" text-anchor="middle" fill="#9ca3af" font-size="11">外貨収入比率を段階的に上げる</text><rect x="20" y="328" width="760" height="48" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="400" y="352" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">3要因を同時に最適化すると年収は非線形に上がる</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">報酬差を生む3要因の理解</text><rect x="20" y="62" width="230" height="240" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="135" y="96" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">職種</text><text x="135" y="120" text-anchor="middle" fill="#9ca3af" font-size="12">同じ会社でも</text><rect x="40" y="132" width="190" height="26" fill="#374151" rx="4"/><text x="135" y="149" text-anchor="middle" fill="#4ade80" font-size="12">IC: 専門性プレミアム</text><rect x="40" y="164" width="190" height="26" fill="#374151" rx="4"/><text x="135" y="181" text-anchor="middle" fill="#e91e63" font-size="12">EM: 組織責任プレミアム</text><rect x="40" y="196" width="190" height="26" fill="#374151" rx="4"/><text x="135" y="213" text-anchor="middle" fill="#f9a825" font-size="12">Architect: 希少性プレミアム</text><text x="135" y="255" text-anchor="middle" fill="#9ca3af" font-size="11">職責明確化で単価が変わる</text><rect x="285" y="62" width="230" height="240" fill="#16213e" rx="10" stroke="#e91e63" stroke-width="2"/><text x="400" y="96" text-anchor="middle" fill="#e91e63" font-size="16" font-weight="bold">地域</text><text x="400" y="120" text-anchor="middle" fill="#9ca3af" font-size="12">同職種でも市場差が大きい</text><rect x="305" y="132" width="190" height="26" fill="#374151" rx="4"/><text x="400" y="149" text-anchor="middle" fill="#4ade80" font-size="12">US Bay Area: 最高水準</text><rect x="305" y="164" width="190" height="26" fill="#374151" rx="4"/><text x="400" y="181" text-anchor="middle" fill="#f9a825" font-size="12">EU / 英国: 中-高</text><rect x="305" y="196" width="190" height="26" fill="#374151" rx="4"/><text x="400" y="213" text-anchor="middle" fill="#e91e63" font-size="12">日本: 同職種で最低水準</text><text x="400" y="255" text-anchor="middle" fill="#9ca3af" font-size="11">市場単価を交渉基準に使う</text><rect x="550" y="62" width="230" height="240" fill="#16213e" rx="10" stroke="#4ade80" stroke-width="2"/><text x="665" y="96" text-anchor="middle" fill="#4ade80" font-size="16" font-weight="bold">通貨</text><text x="665" y="120" text-anchor="middle" fill="#9ca3af" font-size="12">円建て生活者の影響</text><rect x="570" y="132" width="190" height="26" fill="#374151" rx="4"/><text x="665" y="149" text-anchor="middle" fill="#4ade80" font-size="12">USD収入 円換算増</text><rect x="570" y="164" width="190" height="26" fill="#374151" rx="4"/><text x="665" y="181" text-anchor="middle" fill="#e91e63" font-size="12">JPY収入 実質低下</text><rect x="570" y="196" width="190" height="26" fill="#374151" rx="4"/><text x="665" y="213" text-anchor="middle" fill="#f9a825" font-size="12">通貨分散 = リスクヘッジ</text><text x="665" y="255" text-anchor="middle" fill="#9ca3af" font-size="11">外貨収入比率を段階的に上げる</text><rect x="20" y="328" width="760" height="48" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="400" y="352" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">3要因を同時に最適化すると年収は非線形に上がる</text></svg>
+</div>
+
 - 職種: IC/EM/Architectで報酬レンジが異なる
 - 地域: 同職種でも市場単価が大きく異なる
 - 通貨: 円建て生活者は為替の影響を強く受ける
@@ -198,7 +243,8 @@ style: |
 
 # 報酬差を作る3要因（図解）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Three input boxes -->
 <rect x="30" y="80" width="180" height="100" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/>
@@ -232,6 +278,7 @@ style: |
 <!-- Note -->
 <text x="400" y="38" text-anchor="middle" fill="#9ca3af" font-size="13">3要因の掛け算で報酬は非線形に変わる</text>
 </svg>
+</div>
 
 
 ---
@@ -277,7 +324,8 @@ style: |
 
 # 円安は何を変えるか（図解）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Title -->
 <text x="400" y="38" text-anchor="middle" fill="#e91e63" font-size="16" font-weight="bold">円安進行が引き起こす2つの流れ</text>
@@ -314,6 +362,7 @@ style: |
 <text x="400" y="328" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">外貨収入の獲得 = 円安リスクのヘッジ</text>
 <text x="400" y="350" text-anchor="middle" fill="#9ca3af" font-size="12">通貨分散はキャリア戦略そのもの</text>
 </svg>
+</div>
 
 
 ---
@@ -326,11 +375,13 @@ style: |
 
 ---
 
+<!-- _class: fit-76 -->
 # 年収決定式: 希少性 × 影響範囲 × 交渉力
 
 > *年収決定式を理解すれば、どの変数を最大化すべきかが明確*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="17" font-weight="bold">年収決定式</text>
 <!-- Formula display -->
@@ -363,6 +414,8 @@ style: |
 <rect x="540" y="268" width="50" height="100" fill="#f9a825" rx="4" stroke="#ffffff" stroke-width="2"/>
 <text x="565" y="384" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">3要素全部</text>
 </svg>
+</div>
+
 - 希少性: 代替されにくい専門性
 - 影響範囲: チーム/事業PLに与える効果
 - 交渉力: オファー設計と条件交渉の技術
@@ -371,11 +424,15 @@ style: |
 
 ---
 
+<!-- _class: fit-76 -->
 # グローバルで評価されやすい技術スキル
 
 > *クラウド・分散システム・ML系スキルが最高給与レンジを生成*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">グローバルで評価されやすい技術スキル</text><rect x="20" y="62" width="370" height="130" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="90" y="88" fill="#f9a825" font-size="14" font-weight="bold">Cloud Architecture</text><text x="90" y="110" fill="#ffffff" font-size="12">可用性・コスト最適化設計</text><text x="90" y="130" fill="#9ca3af" font-size="11">AWS/GCP/Azure構成設計・マルチリージョン</text><text x="90" y="171" fill="#e91e63" font-size="14" font-weight="bold">Security Engineering</text><text x="90" y="191" fill="#9ca3af" font-size="11">監査・脅威対応・ゼロトラスト設計</text><rect x="410" y="62" width="370" height="130" fill="#16213e" rx="10" stroke="#4ade80" stroke-width="2"/><text x="480" y="88" fill="#4ade80" font-size="14" font-weight="bold">Data / ML Engineering</text><text x="480" y="110" fill="#ffffff" font-size="12">収益に接続するデータ活用</text><text x="480" y="130" fill="#9ca3af" font-size="11">MLOps・LLM活用・特徴量エンジニアリング</text><text x="480" y="171" fill="#f9a825" font-size="14" font-weight="bold">Platform / SRE</text><text x="480" y="191" fill="#9ca3af" font-size="11">開発生産性向上・可用性99.99%設計</text><rect x="100" y="228" width="600" height="60" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="400" y="256" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">共通点: ビジネス課題を解決できると証明できること</text><text x="400" y="278" text-anchor="middle" fill="#9ca3af" font-size="12">技術力 + 影響範囲 + 英語での発信 = グローバル市場での評価</text><rect x="100" y="316" width="148" height="20" fill="#374151" rx="4"/><rect x="100" y="316" width="148" height="20" fill="#f9a825" rx="4"/><rect x="256" y="316" width="176" height="20" fill="#e91e63" rx="4"/><rect x="440" y="316" width="120" height="20" fill="#4ade80" rx="4"/><rect x="568" y="316" width="132" height="20" fill="#f9a825" opacity="0.6" rx="4"/><text x="174" y="354" text-anchor="middle" fill="#9ca3af" font-size="10">Cloud</text><text x="344" y="354" text-anchor="middle" fill="#9ca3af" font-size="10">Security</text><text x="500" y="354" text-anchor="middle" fill="#9ca3af" font-size="10">Data/ML</text><text x="634" y="354" text-anchor="middle" fill="#9ca3af" font-size="10">Platform</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">グローバルで評価されやすい技術スキル</text><rect x="20" y="62" width="370" height="130" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="90" y="88" fill="#f9a825" font-size="14" font-weight="bold">Cloud Architecture</text><text x="90" y="110" fill="#ffffff" font-size="12">可用性・コスト最適化設計</text><text x="90" y="130" fill="#9ca3af" font-size="11">AWS/GCP/Azure構成設計・マルチリージョン</text><text x="90" y="171" fill="#e91e63" font-size="14" font-weight="bold">Security Engineering</text><text x="90" y="191" fill="#9ca3af" font-size="11">監査・脅威対応・ゼロトラスト設計</text><rect x="410" y="62" width="370" height="130" fill="#16213e" rx="10" stroke="#4ade80" stroke-width="2"/><text x="480" y="88" fill="#4ade80" font-size="14" font-weight="bold">Data / ML Engineering</text><text x="480" y="110" fill="#ffffff" font-size="12">収益に接続するデータ活用</text><text x="480" y="130" fill="#9ca3af" font-size="11">MLOps・LLM活用・特徴量エンジニアリング</text><text x="480" y="171" fill="#f9a825" font-size="14" font-weight="bold">Platform / SRE</text><text x="480" y="191" fill="#9ca3af" font-size="11">開発生産性向上・可用性99.99%設計</text><rect x="100" y="228" width="600" height="60" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="400" y="256" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">共通点: ビジネス課題を解決できると証明できること</text><text x="400" y="278" text-anchor="middle" fill="#9ca3af" font-size="12">技術力 + 影響範囲 + 英語での発信 = グローバル市場での評価</text><rect x="100" y="316" width="148" height="20" fill="#374151" rx="4"/><rect x="100" y="316" width="148" height="20" fill="#f9a825" rx="4"/><rect x="256" y="316" width="176" height="20" fill="#e91e63" rx="4"/><rect x="440" y="316" width="120" height="20" fill="#4ade80" rx="4"/><rect x="568" y="316" width="132" height="20" fill="#f9a825" opacity="0.6" rx="4"/><text x="174" y="354" text-anchor="middle" fill="#9ca3af" font-size="10">Cloud</text><text x="344" y="354" text-anchor="middle" fill="#9ca3af" font-size="10">Security</text><text x="500" y="354" text-anchor="middle" fill="#9ca3af" font-size="10">Data/ML</text><text x="634" y="354" text-anchor="middle" fill="#9ca3af" font-size="10">Platform</text></svg>
+</div>
+
 - Cloud Architecture: 可用性・コスト最適化
 - Security Engineering: 監査・脅威対応・設計
 - Data/ML Engineering: 収益接続するデータ活用
@@ -384,11 +441,15 @@ style: |
 
 ---
 
+<!-- _class: fit-94 -->
 # 非技術スキルのインパクト
 
 > *コミュニケーション力と推進力が技術力の2倍の給与差を生む*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">非技術スキルが年収に与えるインパクト</text><rect x="20" y="62" width="760" height="60" fill="#16213e" rx="6" stroke="#f9a825" stroke-width="1.5"/><text x="90" y="82" fill="#ffffff" font-size="14" font-weight="bold">英語実戦力</text><text x="90" y="102" fill="#9ca3af" font-size="11">会議参加ではなく意思決定に影響する発話力</text><rect x="420" y="75" width="320" height="20" fill="#374151" rx="6"/><rect x="420" y="75" width="288" height="20" fill="#f9a825" rx="6"/><text x="750" y="89" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">90%</text><rect x="20" y="135" width="760" height="60" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="1.5"/><text x="90" y="155" fill="#ffffff" font-size="14" font-weight="bold">ドキュメント能力</text><text x="90" y="175" fill="#9ca3af" font-size="11">非同期環境で評価を獲得する技術</text><rect x="420" y="148" width="320" height="20" fill="#374151" rx="6"/><rect x="420" y="148" width="224" height="20" fill="#e91e63" rx="6"/><text x="750" y="162" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">70%</text><rect x="20" y="208" width="760" height="60" fill="#16213e" rx="6" stroke="#4ade80" stroke-width="1.5"/><text x="90" y="228" fill="#ffffff" font-size="14" font-weight="bold">ステークホルダー調整</text><text x="90" y="248" fill="#9ca3af" font-size="11">影響範囲を拡張する交渉・合意形成</text><rect x="420" y="221" width="320" height="20" fill="#374151" rx="6"/><rect x="420" y="221" width="256" height="20" fill="#4ade80" rx="6"/><text x="750" y="235" text-anchor="middle" fill="#4ade80" font-size="11" font-weight="bold">80%</text><rect x="20" y="281" width="760" height="60" fill="#16213e" rx="6" stroke="#f9a825" stroke-width="1.5"/><text x="90" y="301" fill="#ffffff" font-size="14" font-weight="bold">報酬交渉力</text><text x="90" y="321" fill="#9ca3af" font-size="11">オファー総額を最適化する技術</text><rect x="420" y="294" width="320" height="20" fill="#374151" rx="6"/><rect x="420" y="294" width="304" height="20" fill="#f9a825" rx="6"/><text x="750" y="308" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">95%</text><text x="400" y="376" text-anchor="middle" fill="#9ca3af" font-size="12">非技術スキルは技術スキルの価値を最大化する「レバレッジ」</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">非技術スキルが年収に与えるインパクト</text><rect x="20" y="62" width="760" height="60" fill="#16213e" rx="6" stroke="#f9a825" stroke-width="1.5"/><text x="90" y="82" fill="#ffffff" font-size="14" font-weight="bold">英語実戦力</text><text x="90" y="102" fill="#9ca3af" font-size="11">会議参加ではなく意思決定に影響する発話力</text><rect x="420" y="75" width="320" height="20" fill="#374151" rx="6"/><rect x="420" y="75" width="288" height="20" fill="#f9a825" rx="6"/><text x="750" y="89" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">90%</text><rect x="20" y="135" width="760" height="60" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="1.5"/><text x="90" y="155" fill="#ffffff" font-size="14" font-weight="bold">ドキュメント能力</text><text x="90" y="175" fill="#9ca3af" font-size="11">非同期環境で評価を獲得する技術</text><rect x="420" y="148" width="320" height="20" fill="#374151" rx="6"/><rect x="420" y="148" width="224" height="20" fill="#e91e63" rx="6"/><text x="750" y="162" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">70%</text><rect x="20" y="208" width="760" height="60" fill="#16213e" rx="6" stroke="#4ade80" stroke-width="1.5"/><text x="90" y="228" fill="#ffffff" font-size="14" font-weight="bold">ステークホルダー調整</text><text x="90" y="248" fill="#9ca3af" font-size="11">影響範囲を拡張する交渉・合意形成</text><rect x="420" y="221" width="320" height="20" fill="#374151" rx="6"/><rect x="420" y="221" width="256" height="20" fill="#4ade80" rx="6"/><text x="750" y="235" text-anchor="middle" fill="#4ade80" font-size="11" font-weight="bold">80%</text><rect x="20" y="281" width="760" height="60" fill="#16213e" rx="6" stroke="#f9a825" stroke-width="1.5"/><text x="90" y="301" fill="#ffffff" font-size="14" font-weight="bold">報酬交渉力</text><text x="90" y="321" fill="#9ca3af" font-size="11">オファー総額を最適化する技術</text><rect x="420" y="294" width="320" height="20" fill="#374151" rx="6"/><rect x="420" y="294" width="304" height="20" fill="#f9a825" rx="6"/><text x="750" y="308" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">95%</text><text x="400" y="376" text-anchor="middle" fill="#9ca3af" font-size="12">非技術スキルは技術スキルの価値を最大化する「レバレッジ」</text></svg>
+</div>
+
 - 英語: 会議参加ではなく意思決定に影響する発話力
 - ドキュメント: 非同期環境で評価を獲得する
 - ステークホルダー調整: 影響範囲を拡張する
@@ -410,7 +471,8 @@ style: |
 
 # スキルスタック戦略（T字→π字）（図解）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- T-shape left -->
 <text x="200" y="38" text-anchor="middle" fill="#9ca3af" font-size="14" font-weight="bold">T字型</text>
@@ -445,6 +507,7 @@ style: |
 <text x="610" y="342" text-anchor="middle" fill="#4ade80" font-size="14" font-weight="bold">高単価ロール適合</text>
 <text x="610" y="364" text-anchor="middle" fill="#9ca3af" font-size="12">年収上限が非線形に拡大</text>
 </svg>
+</div>
 
 
 ---
@@ -461,7 +524,10 @@ style: |
 
 > *資格はスキルの信用ショートカット：選考突破率が1.4倍向上*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">資格は信用ショートカット</text><rect x="20" y="70" width="360" height="200" fill="#16213e" rx="10" stroke="#9ca3af" stroke-width="2"/><text x="200" y="100" text-anchor="middle" fill="#9ca3af" font-size="14" font-weight="bold">資格なしのパス</text><rect x="40" y="115" width="300" height="34" fill="#374151" rx="6"/><text x="190" y="136" text-anchor="middle" fill="#9ca3af" font-size="12">応募 → 書類落ち（多数）</text><rect x="40" y="157" width="300" height="34" fill="#374151" rx="6"/><text x="190" y="178" text-anchor="middle" fill="#9ca3af" font-size="12">技術力証明に時間がかかる</text><rect x="40" y="199" width="300" height="34" fill="#374151" rx="6"/><text x="190" y="220" text-anchor="middle" fill="#9ca3af" font-size="12">採用担当が判断しにくい</text><text x="200" y="256" text-anchor="middle" fill="#e91e63" font-size="13">通過率: 低め</text><rect x="420" y="70" width="360" height="200" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="600" y="100" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">資格ありのパス</text><rect x="440" y="115" width="300" height="34" fill="#374151" rx="6"/><text x="590" y="136" text-anchor="middle" fill="#4ade80" font-size="12">書類スクリーニング通過率UP</text><rect x="440" y="157" width="300" height="34" fill="#374151" rx="6"/><text x="590" y="178" text-anchor="middle" fill="#4ade80" font-size="12">知識ベースの信頼性を事前証明</text><rect x="440" y="199" width="300" height="34" fill="#374151" rx="6"/><text x="590" y="220" text-anchor="middle" fill="#4ade80" font-size="12">面接で技術の深掘りに集中できる</text><text x="600" y="256" text-anchor="middle" fill="#4ade80" font-size="13">通過率: 高め</text><rect x="100" y="300" width="600" height="72" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="400" y="330" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">資格 = 信用の先払い</text><text x="400" y="354" text-anchor="middle" fill="#ffffff" font-size="12">資格単体で給与は上がらない — 高単価職の選考通過率を上げる効果</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">資格は信用ショートカット</text><rect x="20" y="70" width="360" height="200" fill="#16213e" rx="10" stroke="#9ca3af" stroke-width="2"/><text x="200" y="100" text-anchor="middle" fill="#9ca3af" font-size="14" font-weight="bold">資格なしのパス</text><rect x="40" y="115" width="300" height="34" fill="#374151" rx="6"/><text x="190" y="136" text-anchor="middle" fill="#9ca3af" font-size="12">応募 → 書類落ち（多数）</text><rect x="40" y="157" width="300" height="34" fill="#374151" rx="6"/><text x="190" y="178" text-anchor="middle" fill="#9ca3af" font-size="12">技術力証明に時間がかかる</text><rect x="40" y="199" width="300" height="34" fill="#374151" rx="6"/><text x="190" y="220" text-anchor="middle" fill="#9ca3af" font-size="12">採用担当が判断しにくい</text><text x="200" y="256" text-anchor="middle" fill="#e91e63" font-size="13">通過率: 低め</text><rect x="420" y="70" width="360" height="200" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="600" y="100" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">資格ありのパス</text><rect x="440" y="115" width="300" height="34" fill="#374151" rx="6"/><text x="590" y="136" text-anchor="middle" fill="#4ade80" font-size="12">書類スクリーニング通過率UP</text><rect x="440" y="157" width="300" height="34" fill="#374151" rx="6"/><text x="590" y="178" text-anchor="middle" fill="#4ade80" font-size="12">知識ベースの信頼性を事前証明</text><rect x="440" y="199" width="300" height="34" fill="#374151" rx="6"/><text x="590" y="220" text-anchor="middle" fill="#4ade80" font-size="12">面接で技術の深掘りに集中できる</text><text x="600" y="256" text-anchor="middle" fill="#4ade80" font-size="13">通過率: 高め</text><rect x="100" y="300" width="600" height="72" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="400" y="330" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">資格 = 信用の先払い</text><text x="400" y="354" text-anchor="middle" fill="#ffffff" font-size="12">資格単体で給与は上がらない — 高単価職の選考通過率を上げる効果</text></svg>
+</div>
+
 - 資格単体で給与が上がるわけではない
 - 高単価職の選考通過率を上げる効果がある
 - 実務実績と組み合わせて初めて強い
@@ -517,7 +583,8 @@ style: |
 
 # 資格投資の意思決定マトリクス（図解）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Axes -->
 <line x1="100" y1="340" x2="760" y2="340" stroke="#4b5563" stroke-width="2"/>
@@ -559,6 +626,7 @@ style: |
 <rect x="110" y="300" width="660" height="28" fill="#16213e" rx="6" stroke="#f9a825" stroke-width="1.5"/>
 <text x="440" y="319" text-anchor="middle" fill="#f9a825" font-size="12">選定基準: 狙う市場と職務記述書 — 資格単体ではなく実務実績との組み合わせが重要</text>
 </svg>
+</div>
 
 
 ---
@@ -571,11 +639,15 @@ style: |
 
 ---
 
+<!-- _class: fit-94 -->
 # 市場価値を測る4指標
 
 > *市場価値を4指標で定量化し、転職タイミングを客観的に判断*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">市場価値を測る4指標</text><rect x="20" y="65" width="370" height="130" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="95" y="94" fill="#f9a825" font-size="15" font-weight="bold">Compensation</text><text x="95" y="116" fill="#9ca3af" font-size="12">基本給 + 賞与 + 株式(RSU)</text><text x="95" y="136" fill="#9ca3af" font-size="11">可処分所得で比較すること</text><text x="95" y="174" fill="#e91e63" font-size="15" font-weight="bold">Offer Rate</text><text x="95" y="194" fill="#9ca3af" font-size="11">応募あたりのオファー取得率</text><rect x="410" y="65" width="370" height="130" fill="#16213e" rx="10" stroke="#4ade80" stroke-width="2"/><text x="485" y="94" fill="#4ade80" font-size="15" font-weight="bold">Time to Fill</text><text x="485" y="116" fill="#9ca3af" font-size="12">自分の採用難易度 (希少性)</text><text x="485" y="136" fill="#9ca3af" font-size="11">短いほど市場で希少な存在</text><text x="485" y="174" fill="#f9a825" font-size="15" font-weight="bold">Scope</text><text x="485" y="194" fill="#9ca3af" font-size="11">任される予算・人数・売上影響</text><rect x="20" y="230" width="760" height="68" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="258" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">4指標を定期的に測ることで「感覚の年収観」を排除する</text><text x="400" y="282" text-anchor="middle" fill="#9ca3af" font-size="12">Offer Rate UP = 希少性UP / Time to Fill 短縮 = 代替困難 / Scope UP = 影響範囲拡大</text><rect x="20" y="316" width="370" height="60" fill="#16213e" rx="6" stroke="#9ca3af" stroke-width="1"/><text x="205" y="342" text-anchor="middle" fill="#9ca3af" font-size="12">月1回: 求人要件と自分のGAPを確認</text><text x="205" y="362" text-anchor="middle" fill="#9ca3af" font-size="12">年2回: 実際に応募して感触を測る</text><rect x="410" y="316" width="370" height="60" fill="#16213e" rx="6" stroke="#9ca3af" stroke-width="1"/><text x="595" y="342" text-anchor="middle" fill="#9ca3af" font-size="12">四半期に1回: Scope拡大を上司と確認</text><text x="595" y="362" text-anchor="middle" fill="#9ca3af" font-size="12">年次: Compensation を市場と比較</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">市場価値を測る4指標</text><rect x="20" y="65" width="370" height="130" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="95" y="94" fill="#f9a825" font-size="15" font-weight="bold">Compensation</text><text x="95" y="116" fill="#9ca3af" font-size="12">基本給 + 賞与 + 株式(RSU)</text><text x="95" y="136" fill="#9ca3af" font-size="11">可処分所得で比較すること</text><text x="95" y="174" fill="#e91e63" font-size="15" font-weight="bold">Offer Rate</text><text x="95" y="194" fill="#9ca3af" font-size="11">応募あたりのオファー取得率</text><rect x="410" y="65" width="370" height="130" fill="#16213e" rx="10" stroke="#4ade80" stroke-width="2"/><text x="485" y="94" fill="#4ade80" font-size="15" font-weight="bold">Time to Fill</text><text x="485" y="116" fill="#9ca3af" font-size="12">自分の採用難易度 (希少性)</text><text x="485" y="136" fill="#9ca3af" font-size="11">短いほど市場で希少な存在</text><text x="485" y="174" fill="#f9a825" font-size="15" font-weight="bold">Scope</text><text x="485" y="194" fill="#9ca3af" font-size="11">任される予算・人数・売上影響</text><rect x="20" y="230" width="760" height="68" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="258" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">4指標を定期的に測ることで「感覚の年収観」を排除する</text><text x="400" y="282" text-anchor="middle" fill="#9ca3af" font-size="12">Offer Rate UP = 希少性UP / Time to Fill 短縮 = 代替困難 / Scope UP = 影響範囲拡大</text><rect x="20" y="316" width="370" height="60" fill="#16213e" rx="6" stroke="#9ca3af" stroke-width="1"/><text x="205" y="342" text-anchor="middle" fill="#9ca3af" font-size="12">月1回: 求人要件と自分のGAPを確認</text><text x="205" y="362" text-anchor="middle" fill="#9ca3af" font-size="12">年2回: 実際に応募して感触を測る</text><rect x="410" y="316" width="370" height="60" fill="#16213e" rx="6" stroke="#9ca3af" stroke-width="1"/><text x="595" y="342" text-anchor="middle" fill="#9ca3af" font-size="12">四半期に1回: Scope拡大を上司と確認</text><text x="595" y="362" text-anchor="middle" fill="#9ca3af" font-size="12">年次: Compensation を市場と比較</text></svg>
+</div>
+
 - Compensation: 基本給+賞与+株式
 - Offer Rate: 応募あたりオファー率
 - Time to Fill: 自分の採用難易度
@@ -584,11 +656,15 @@ style: |
 
 ---
 
+<!-- _class: fit-82 -->
 # 自己診断スコアカード
 
 > *スコアカード自己診断で強み・弱みを可視化して戦略を決定*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">自己診断スコアカード (各0-5点)</text><rect x="20" y="55" width="760" height="34" fill="#374151" rx="6"/><text x="200" y="77" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="bold">評価軸</text><text x="500" y="77" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="bold">スコアバー</text><text x="735" y="77" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="bold">スコア</text><rect x="20" y="94" width="760" height="48" fill="#16213e" rx="4"/><text x="80" y="115" fill="#ffffff" font-size="13">技術深度</text><text x="80" y="133" fill="#9ca3af" font-size="11">代替されにくい専門性があるか</text><rect x="380" y="106" width="300" height="24" fill="#374151" rx="6"/><rect x="380" y="106" width="180" height="24" fill="#f9a825" rx="6" opacity="0.8"/><text x="720" y="122" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">3/5</text><rect x="20" y="148" width="760" height="48" fill="#1f2937" rx="4"/><text x="80" y="169" fill="#ffffff" font-size="13">事業インパクト</text><text x="80" y="187" fill="#9ca3af" font-size="11">売上・コスト・PL改善に関われているか</text><rect x="380" y="160" width="300" height="24" fill="#374151" rx="6"/><rect x="380" y="160" width="120" height="24" fill="#e91e63" rx="6" opacity="0.8"/><text x="720" y="176" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">2/5</text><rect x="20" y="202" width="760" height="48" fill="#16213e" rx="4"/><text x="80" y="223" fill="#ffffff" font-size="13">英語実戦力</text><text x="80" y="241" fill="#9ca3af" font-size="11">英語で意思決定に参加できるか</text><rect x="380" y="214" width="300" height="24" fill="#374151" rx="6"/><rect x="380" y="214" width="240" height="24" fill="#4ade80" rx="6" opacity="0.8"/><text x="720" y="230" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="bold">4/5</text><rect x="20" y="256" width="760" height="48" fill="#1f2937" rx="4"/><text x="80" y="277" fill="#ffffff" font-size="13">交渉力</text><text x="80" y="295" fill="#9ca3af" font-size="11">オファー設計と条件交渉の実績</text><rect x="380" y="268" width="300" height="24" fill="#374151" rx="6"/><rect x="380" y="268" width="60" height="24" fill="#f9a825" rx="6" opacity="0.8"/><text x="720" y="284" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">1/5</text><rect x="20" y="310" width="760" height="48" fill="#16213e" rx="4"/><text x="80" y="331" fill="#ffffff" font-size="13">外貨収入比率</text><text x="80" y="349" fill="#9ca3af" font-size="11">収入の何%が外貨建てか</text><rect x="380" y="322" width="300" height="24" fill="#374151" rx="6"/><text x="720" y="338" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="bold">0/5</text><text x="400" y="384" text-anchor="middle" fill="#f9a825" font-size="12">外貨収入とスコア向上が最優先アクション</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">自己診断スコアカード (各0-5点)</text><rect x="20" y="55" width="760" height="34" fill="#374151" rx="6"/><text x="200" y="77" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="bold">評価軸</text><text x="500" y="77" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="bold">スコアバー</text><text x="735" y="77" text-anchor="middle" fill="#e5e7eb" font-size="12" font-weight="bold">スコア</text><rect x="20" y="94" width="760" height="48" fill="#16213e" rx="4"/><text x="80" y="115" fill="#ffffff" font-size="13">技術深度</text><text x="80" y="133" fill="#9ca3af" font-size="11">代替されにくい専門性があるか</text><rect x="380" y="106" width="300" height="24" fill="#374151" rx="6"/><rect x="380" y="106" width="180" height="24" fill="#f9a825" rx="6" opacity="0.8"/><text x="720" y="122" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">3/5</text><rect x="20" y="148" width="760" height="48" fill="#1f2937" rx="4"/><text x="80" y="169" fill="#ffffff" font-size="13">事業インパクト</text><text x="80" y="187" fill="#9ca3af" font-size="11">売上・コスト・PL改善に関われているか</text><rect x="380" y="160" width="300" height="24" fill="#374151" rx="6"/><rect x="380" y="160" width="120" height="24" fill="#e91e63" rx="6" opacity="0.8"/><text x="720" y="176" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">2/5</text><rect x="20" y="202" width="760" height="48" fill="#16213e" rx="4"/><text x="80" y="223" fill="#ffffff" font-size="13">英語実戦力</text><text x="80" y="241" fill="#9ca3af" font-size="11">英語で意思決定に参加できるか</text><rect x="380" y="214" width="300" height="24" fill="#374151" rx="6"/><rect x="380" y="214" width="240" height="24" fill="#4ade80" rx="6" opacity="0.8"/><text x="720" y="230" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="bold">4/5</text><rect x="20" y="256" width="760" height="48" fill="#1f2937" rx="4"/><text x="80" y="277" fill="#ffffff" font-size="13">交渉力</text><text x="80" y="295" fill="#9ca3af" font-size="11">オファー設計と条件交渉の実績</text><rect x="380" y="268" width="300" height="24" fill="#374151" rx="6"/><rect x="380" y="268" width="60" height="24" fill="#f9a825" rx="6" opacity="0.8"/><text x="720" y="284" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">1/5</text><rect x="20" y="310" width="760" height="48" fill="#16213e" rx="4"/><text x="80" y="331" fill="#ffffff" font-size="13">外貨収入比率</text><text x="80" y="349" fill="#9ca3af" font-size="11">収入の何%が外貨建てか</text><rect x="380" y="322" width="300" height="24" fill="#374151" rx="6"/><text x="720" y="338" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="bold">0/5</text><text x="400" y="384" text-anchor="middle" fill="#f9a825" font-size="12">外貨収入とスコア向上が最優先アクション</text></svg>
+</div>
+
 - 技術深度（0-5）
 - 事業インパクト（0-5）
 - 英語実戦力（0-5）
@@ -598,6 +674,7 @@ style: |
 
 ---
 
+<!-- _class: fit-94 -->
 # キャリア分岐: IC / EM / Architect
 
 > *IC・EM・Architectの3フォークで年収ポテンシャルが異なる*
@@ -612,7 +689,8 @@ style: |
 
 # キャリア分岐: IC / EM / Architect（図解）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Start node -->
 <ellipse cx="120" cy="200" rx="80" ry="50" fill="#16213e" stroke="#f9a825" stroke-width="3"/>
@@ -661,6 +739,7 @@ style: |
 <text x="670" y="286" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">横断設計プレミアム</text>
 <text x="670" y="306" text-anchor="middle" fill="#9ca3af" font-size="11">希少性×影響力</text>
 </svg>
+</div>
 
 
 ---
@@ -677,7 +756,8 @@ style: |
 
 > *リモート×外資・海外就職・国内転職の3モデルを比較して選ぶ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">3つの就業モデル比較</text>
 <!-- Model 1: 現地雇用 -->
@@ -723,6 +803,8 @@ style: |
 <rect x="565" y="296" width="195" height="28" fill="#1f2937" rx="4"/>
 <text x="662" y="315" text-anchor="middle" fill="#9ca3af" font-size="11">高スキル自走型向け</text>
 </svg>
+</div>
+
 - 現地雇用: 最も報酬上限が高いが移住コストあり
 - 海外リモート雇用: 移住なしで外貨収入を得やすい
 - 業務委託/契約: 単価上振れ余地と不安定性が共存
@@ -743,7 +825,8 @@ style: |
 
 # 手取り最適化の考え方（図解）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Gross pay box -->
 <rect x="30" y="80" width="180" height="80" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="3"/>
@@ -784,15 +867,20 @@ style: |
 <rect x="30" y="330" width="740" height="44" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="1.5"/>
 <text x="400" y="356" text-anchor="middle" fill="#f9a825" font-size="13">税率・社会保険・生活費・為替を同時に評価する — 年収総額で比較しない</text>
 </svg>
+</div>
 
 
 ---
 
+<!-- _class: fit-94 -->
 # 海外選考突破の実務
 
 > *海外選考突破には英文レジュメとシステム設計面接の対策が必須*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">海外選考突破の実務フロー</text><rect x="20" y="65" width="130" height="220" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="85" y="100" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">書類</text><text x="85" y="118" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">スクリーニング</text><text x="85" y="150" text-anchor="middle" fill="#9ca3af" font-size="11">英文CV</text><text x="85" y="168" text-anchor="middle" fill="#9ca3af" font-size="11">成果指標ベース</text><text x="85" y="228" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="bold">60-70%</text><line x1="152" y1="175" x2="178" y2="175" stroke="#6b7280" stroke-width="2"/><polygon points="175,169 187,175 175,181" fill="#6b7280"/><rect x="190" y="65" width="130" height="220" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="255" y="100" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">設計</text><text x="255" y="118" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">面接</text><text x="255" y="150" text-anchor="middle" fill="#9ca3af" font-size="11">トレードオフ</text><text x="255" y="168" text-anchor="middle" fill="#9ca3af" font-size="11">説明が核心</text><text x="255" y="228" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">30-50%</text><line x1="322" y1="175" x2="348" y2="175" stroke="#6b7280" stroke-width="2"/><polygon points="345,169 357,175 345,181" fill="#6b7280"/><rect x="360" y="65" width="130" height="220" fill="#16213e" rx="8" stroke="#4ade80" stroke-width="2"/><text x="425" y="100" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="bold">行動</text><text x="425" y="118" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="bold">面接</text><text x="425" y="150" text-anchor="middle" fill="#9ca3af" font-size="11">STARで</text><text x="425" y="168" text-anchor="middle" fill="#9ca3af" font-size="11">証明する</text><text x="425" y="228" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="bold">50-70%</text><line x1="492" y1="175" x2="518" y2="175" stroke="#6b7280" stroke-width="2"/><polygon points="515,169 527,175 515,181" fill="#6b7280"/><rect x="530" y="65" width="240" height="220" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="3"/><text x="650" y="100" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">オファー</text><text x="650" y="130" text-anchor="middle" fill="#f9a825" font-size="22">🎉</text><text x="650" y="165" text-anchor="middle" fill="#9ca3af" font-size="12">推薦・公開実績</text><text x="650" y="185" text-anchor="middle" fill="#9ca3af" font-size="12">で信頼を補強</text><text x="650" y="215" text-anchor="middle" fill="#9ca3af" font-size="12">複数オファーで</text><text x="650" y="233" text-anchor="middle" fill="#9ca3af" font-size="12">交渉力を作る</text><rect x="20" y="315" width="760" height="56" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="340" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">突破の鍵: 準備 × 練習 × 推薦</text><text x="400" y="360" text-anchor="middle" fill="#9ca3af" font-size="12">英文CV成果指標ベース / 設計: トレードオフ / 行動: STAR / 信頼: 推薦状</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">海外選考突破の実務フロー</text><rect x="20" y="65" width="130" height="220" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="85" y="100" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">書類</text><text x="85" y="118" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">スクリーニング</text><text x="85" y="150" text-anchor="middle" fill="#9ca3af" font-size="11">英文CV</text><text x="85" y="168" text-anchor="middle" fill="#9ca3af" font-size="11">成果指標ベース</text><text x="85" y="228" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="bold">60-70%</text><line x1="152" y1="175" x2="178" y2="175" stroke="#6b7280" stroke-width="2"/><polygon points="175,169 187,175 175,181" fill="#6b7280"/><rect x="190" y="65" width="130" height="220" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="255" y="100" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">設計</text><text x="255" y="118" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">面接</text><text x="255" y="150" text-anchor="middle" fill="#9ca3af" font-size="11">トレードオフ</text><text x="255" y="168" text-anchor="middle" fill="#9ca3af" font-size="11">説明が核心</text><text x="255" y="228" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">30-50%</text><line x1="322" y1="175" x2="348" y2="175" stroke="#6b7280" stroke-width="2"/><polygon points="345,169 357,175 345,181" fill="#6b7280"/><rect x="360" y="65" width="130" height="220" fill="#16213e" rx="8" stroke="#4ade80" stroke-width="2"/><text x="425" y="100" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="bold">行動</text><text x="425" y="118" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="bold">面接</text><text x="425" y="150" text-anchor="middle" fill="#9ca3af" font-size="11">STARで</text><text x="425" y="168" text-anchor="middle" fill="#9ca3af" font-size="11">証明する</text><text x="425" y="228" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="bold">50-70%</text><line x1="492" y1="175" x2="518" y2="175" stroke="#6b7280" stroke-width="2"/><polygon points="515,169 527,175 515,181" fill="#6b7280"/><rect x="530" y="65" width="240" height="220" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="3"/><text x="650" y="100" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">オファー</text><text x="650" y="130" text-anchor="middle" fill="#f9a825" font-size="22">🎉</text><text x="650" y="165" text-anchor="middle" fill="#9ca3af" font-size="12">推薦・公開実績</text><text x="650" y="185" text-anchor="middle" fill="#9ca3af" font-size="12">で信頼を補強</text><text x="650" y="215" text-anchor="middle" fill="#9ca3af" font-size="12">複数オファーで</text><text x="650" y="233" text-anchor="middle" fill="#9ca3af" font-size="12">交渉力を作る</text><rect x="20" y="315" width="760" height="56" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="340" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">突破の鍵: 準備 × 練習 × 推薦</text><text x="400" y="360" text-anchor="middle" fill="#9ca3af" font-size="12">英文CV成果指標ベース / 設計: トレードオフ / 行動: STAR / 信頼: 推薦状</text></svg>
+</div>
+
 - 英文CVは成果指標ベースで記述する
 - 設計面接はトレードオフ説明を重視する
 - 行動面接はSTARでリーダーシップを証明する
@@ -801,11 +889,15 @@ style: |
 
 ---
 
+<!-- _class: fit-94 -->
 # オファー交渉の要点
 
 > *オファー交渉でRSU・サインオンを交渉すれば初年度+$30K可能*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">オファー交渉の要点</text><text x="400" y="72" text-anchor="middle" fill="#9ca3af" font-size="13">基本給だけを交渉するのは損 - パッケージ全体を最適化する</text><rect x="320" y="90" width="160" height="54" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="400" y="118" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">基本給</text><text x="400" y="135" text-anchor="middle" fill="#9ca3af" font-size="11">ベースとなる年収</text><rect x="30" y="165" width="160" height="54" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="110" y="193" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">サインオンボーナス</text><text x="110" y="210" text-anchor="middle" fill="#9ca3af" font-size="11">一時金で前倒し受取</text><rect x="320" y="165" width="160" height="54" fill="#16213e" rx="8" stroke="#4ade80" stroke-width="2"/><text x="400" y="193" text-anchor="middle" fill="#4ade80" font-size="14" font-weight="bold">RSU</text><text x="400" y="210" text-anchor="middle" fill="#9ca3af" font-size="11">株式・ベスティング設計</text><rect x="610" y="165" width="160" height="54" fill="#16213e" rx="8" stroke="#a78bfa" stroke-width="2"/><text x="690" y="193" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="bold">職位・タイトル</text><text x="690" y="210" text-anchor="middle" fill="#9ca3af" font-size="11">次回交渉の基準点</text><rect x="30" y="240" width="160" height="54" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="110" y="263" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">査定タイミング</text><text x="110" y="280" text-anchor="middle" fill="#9ca3af" font-size="11">早期レビュー交渉</text><rect x="610" y="240" width="160" height="54" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="690" y="263" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">通貨・支払方法</text><text x="690" y="280" text-anchor="middle" fill="#9ca3af" font-size="11">建て・タイミング確認</text><rect x="100" y="320" width="600" height="56" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="400" y="346" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">最強の交渉カード: 複数オファーの同時保有</text><text x="400" y="366" text-anchor="middle" fill="#9ca3af" font-size="12">1社のオファー = 情報 / 2社以上のオファー = 交渉力</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">オファー交渉の要点</text><text x="400" y="72" text-anchor="middle" fill="#9ca3af" font-size="13">基本給だけを交渉するのは損 - パッケージ全体を最適化する</text><rect x="320" y="90" width="160" height="54" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="400" y="118" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">基本給</text><text x="400" y="135" text-anchor="middle" fill="#9ca3af" font-size="11">ベースとなる年収</text><rect x="30" y="165" width="160" height="54" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="110" y="193" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">サインオンボーナス</text><text x="110" y="210" text-anchor="middle" fill="#9ca3af" font-size="11">一時金で前倒し受取</text><rect x="320" y="165" width="160" height="54" fill="#16213e" rx="8" stroke="#4ade80" stroke-width="2"/><text x="400" y="193" text-anchor="middle" fill="#4ade80" font-size="14" font-weight="bold">RSU</text><text x="400" y="210" text-anchor="middle" fill="#9ca3af" font-size="11">株式・ベスティング設計</text><rect x="610" y="165" width="160" height="54" fill="#16213e" rx="8" stroke="#a78bfa" stroke-width="2"/><text x="690" y="193" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="bold">職位・タイトル</text><text x="690" y="210" text-anchor="middle" fill="#9ca3af" font-size="11">次回交渉の基準点</text><rect x="30" y="240" width="160" height="54" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="110" y="263" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">査定タイミング</text><text x="110" y="280" text-anchor="middle" fill="#9ca3af" font-size="11">早期レビュー交渉</text><rect x="610" y="240" width="160" height="54" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="690" y="263" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">通貨・支払方法</text><text x="690" y="280" text-anchor="middle" fill="#9ca3af" font-size="11">建て・タイミング確認</text><rect x="100" y="320" width="600" height="56" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="400" y="346" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">最強の交渉カード: 複数オファーの同時保有</text><text x="400" y="366" text-anchor="middle" fill="#9ca3af" font-size="12">1社のオファー = 情報 / 2社以上のオファー = 交渉力</text></svg>
+</div>
+
 - 交渉対象を基本給だけに限定しない
 - サインオン/RSU/査定時期/職位を同時交渉する
 - 複数オファーで交渉力を作る
@@ -822,11 +914,15 @@ style: |
 
 ---
 
+<!-- _class: fit-94 -->
 # ビザ・労働制度の確認項目
 
 > *ビザ・就労許可の確認なしに応募すると内定後に詰む*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">ビザ・労働制度の確認チェックリスト</text><rect x="30" y="65" width="740" height="54" fill="#16213e" rx="6" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="86" fill="#ffffff" font-size="13" font-weight="bold">就労資格の要件と更新条件</text><text x="110" y="106" fill="#9ca3af" font-size="12">H-1B / E-3 / Skilled Worker Visa - 資格要件・スポンサー条件・更新期間を確認</text><rect x="30" y="126" width="740" height="54" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="1.5"/><text x="110" y="147" fill="#ffffff" font-size="13" font-weight="bold">雇用主変更時の制約</text><text x="110" y="167" fill="#9ca3af" font-size="12">転職時のビザ移転可否・空白期間制限・ポータビリティルール</text><rect x="30" y="187" width="740" height="54" fill="#16213e" rx="6" stroke="#4ade80" stroke-width="1.5"/><text x="110" y="208" fill="#ffffff" font-size="13" font-weight="bold">帯同家族の就労可否</text><text x="110" y="228" fill="#9ca3af" font-size="12">配偶者・子どもの就労ビザ取得可否と制限事項</text><rect x="30" y="248" width="740" height="54" fill="#16213e" rx="6" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="269" fill="#ffffff" font-size="13" font-weight="bold">退職時の在留資格リスク</text><text x="110" y="289" fill="#9ca3af" font-size="12">解雇・自主退職時の猶予期間・帰国義務・次の就労までの空白許容期間</text><rect x="30" y="326" width="740" height="46" fill="#16213e" rx="8" stroke="#9ca3af" stroke-width="1"/><text x="400" y="348" text-anchor="middle" fill="#9ca3af" font-size="12" font-weight="bold">確認先: USCIS.gov / 各国移民局 / 労働弁護士に事前相談</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">ビザ・労働制度の確認チェックリスト</text><rect x="30" y="65" width="740" height="54" fill="#16213e" rx="6" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="86" fill="#ffffff" font-size="13" font-weight="bold">就労資格の要件と更新条件</text><text x="110" y="106" fill="#9ca3af" font-size="12">H-1B / E-3 / Skilled Worker Visa - 資格要件・スポンサー条件・更新期間を確認</text><rect x="30" y="126" width="740" height="54" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="1.5"/><text x="110" y="147" fill="#ffffff" font-size="13" font-weight="bold">雇用主変更時の制約</text><text x="110" y="167" fill="#9ca3af" font-size="12">転職時のビザ移転可否・空白期間制限・ポータビリティルール</text><rect x="30" y="187" width="740" height="54" fill="#16213e" rx="6" stroke="#4ade80" stroke-width="1.5"/><text x="110" y="208" fill="#ffffff" font-size="13" font-weight="bold">帯同家族の就労可否</text><text x="110" y="228" fill="#9ca3af" font-size="12">配偶者・子どもの就労ビザ取得可否と制限事項</text><rect x="30" y="248" width="740" height="54" fill="#16213e" rx="6" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="269" fill="#ffffff" font-size="13" font-weight="bold">退職時の在留資格リスク</text><text x="110" y="289" fill="#9ca3af" font-size="12">解雇・自主退職時の猶予期間・帰国義務・次の就労までの空白許容期間</text><rect x="30" y="326" width="740" height="46" fill="#16213e" rx="8" stroke="#9ca3af" stroke-width="1"/><text x="400" y="348" text-anchor="middle" fill="#9ca3af" font-size="12" font-weight="bold">確認先: USCIS.gov / 各国移民局 / 労働弁護士に事前相談</text></svg>
+</div>
+
 - 就労資格の要件と更新条件
 - 雇用主変更時の制約
 - 帯同家族の就労可否
@@ -887,7 +983,8 @@ style: |
 
 # 意思決定ツリー（図解）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Root node -->
 <rect x="300" y="20" width="200" height="50" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/>
@@ -936,15 +1033,20 @@ style: |
 <rect x="160" y="358" width="180" height="36" fill="#16213e" rx="6" stroke="#9ca3af" stroke-width="1.5"/>
 <text x="250" y="381" text-anchor="middle" fill="#9ca3af" font-size="11">ビザ・税務確認</text>
 </svg>
+</div>
 
 
 ---
 
+<!-- _class: fit-94 -->
 # ケース別推奨戦略
 
 > *状況別推奨戦略：現在地と目標に応じた最短ルートを選択*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">ケース別推奨戦略</text><rect x="20" y="62" width="360" height="120" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="90" y="86" fill="#f9a825" font-size="14" font-weight="bold">独身・高機動 - 現地雇用チャレンジ</text><text x="90" y="108" fill="#ffffff" font-size="12">移住コストを払ってでも最大報酬を狙う</text><text x="90" y="128" fill="#9ca3af" font-size="11">リスク許容度が高い時期に攻める</text><text x="90" y="166" fill="#4ade80" font-size="11">報酬上限: 最高</text><rect x="420" y="62" width="360" height="120" fill="#16213e" rx="10" stroke="#4ade80" stroke-width="2"/><text x="490" y="86" fill="#4ade80" font-size="14" font-weight="bold">家族あり - 海外リモート雇用</text><text x="490" y="108" fill="#ffffff" font-size="12">移住せずに外貨収入を得る</text><text x="490" y="128" fill="#9ca3af" font-size="11">生活環境の安定を維持しながら</text><text x="490" y="166" fill="#4ade80" font-size="11">リスク最小・外貨収入確保</text><rect x="20" y="202" width="360" height="120" fill="#16213e" rx="10" stroke="#e91e63" stroke-width="2"/><text x="90" y="226" fill="#e91e63" font-size="14" font-weight="bold">高スキル自走型 - 外貨建て契約</text><text x="90" y="248" fill="#ffffff" font-size="12">複数顧客でリスク分散</text><text x="90" y="268" fill="#9ca3af" font-size="11">フリーランスで単価上振れを狙う</text><text x="90" y="306" fill="#e91e63" font-size="11">高収入可能・不安定性あり</text><rect x="420" y="202" width="360" height="120" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="600" y="235" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">全ケース共通</text><text x="600" y="260" text-anchor="middle" fill="#ffffff" font-size="13">資格より先に</text><text x="600" y="280" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">職務要件適合を優先</text><text x="600" y="304" text-anchor="middle" fill="#9ca3af" font-size="11">JDの要件を満たすことが先決</text><text x="400" y="360" text-anchor="middle" fill="#9ca3af" font-size="12">ライフステージ・リスク許容度・家族条件で最適ケースを選ぶ</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">ケース別推奨戦略</text><rect x="20" y="62" width="360" height="120" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="90" y="86" fill="#f9a825" font-size="14" font-weight="bold">独身・高機動 - 現地雇用チャレンジ</text><text x="90" y="108" fill="#ffffff" font-size="12">移住コストを払ってでも最大報酬を狙う</text><text x="90" y="128" fill="#9ca3af" font-size="11">リスク許容度が高い時期に攻める</text><text x="90" y="166" fill="#4ade80" font-size="11">報酬上限: 最高</text><rect x="420" y="62" width="360" height="120" fill="#16213e" rx="10" stroke="#4ade80" stroke-width="2"/><text x="490" y="86" fill="#4ade80" font-size="14" font-weight="bold">家族あり - 海外リモート雇用</text><text x="490" y="108" fill="#ffffff" font-size="12">移住せずに外貨収入を得る</text><text x="490" y="128" fill="#9ca3af" font-size="11">生活環境の安定を維持しながら</text><text x="490" y="166" fill="#4ade80" font-size="11">リスク最小・外貨収入確保</text><rect x="20" y="202" width="360" height="120" fill="#16213e" rx="10" stroke="#e91e63" stroke-width="2"/><text x="90" y="226" fill="#e91e63" font-size="14" font-weight="bold">高スキル自走型 - 外貨建て契約</text><text x="90" y="248" fill="#ffffff" font-size="12">複数顧客でリスク分散</text><text x="90" y="268" fill="#9ca3af" font-size="11">フリーランスで単価上振れを狙う</text><text x="90" y="306" fill="#e91e63" font-size="11">高収入可能・不安定性あり</text><rect x="420" y="202" width="360" height="120" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="600" y="235" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">全ケース共通</text><text x="600" y="260" text-anchor="middle" fill="#ffffff" font-size="13">資格より先に</text><text x="600" y="280" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">職務要件適合を優先</text><text x="600" y="304" text-anchor="middle" fill="#9ca3af" font-size="11">JDの要件を満たすことが先決</text><text x="400" y="360" text-anchor="middle" fill="#9ca3af" font-size="12">ライフステージ・リスク許容度・家族条件で最適ケースを選ぶ</text></svg>
+</div>
+
 - 独身・高機動: 現地雇用チャレンジ
 - 家族あり・安定重視: 海外リモート雇用
 - 高スキル自走型: 外貨建て契約 + 複数顧客
@@ -953,11 +1055,15 @@ style: |
 
 ---
 
+<!-- _class: fit-94 -->
 # 意思決定を失敗させる典型
 
 > *感情的な意思決定・情報不足・過小評価が失敗の典型パターン*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#e91e63" font-size="16" font-weight="bold">意思決定を失敗させる典型パターン</text><rect x="20" y="62" width="760" height="60" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="95" y="85" fill="#ffffff" font-size="13" font-weight="bold">年収総額だけで比較して手取りを見ない</text><text x="95" y="107" fill="#9ca3af" font-size="12">可処分所得が重要 - 税率・社会保険・生活費・為替を全部考慮する</text><rect x="20" y="132" width="760" height="60" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="95" y="155" fill="#ffffff" font-size="13" font-weight="bold">資格取得で満足し職務転換しない</text><text x="95" y="177" fill="#9ca3af" font-size="12">資格は通過証 - 取った後に高単価職に応募・転換しないと意味がない</text><rect x="20" y="202" width="760" height="60" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="95" y="225" fill="#ffffff" font-size="13" font-weight="bold">英語を試験スコアだけで判断する</text><text x="95" y="247" fill="#9ca3af" font-size="12">TOEIC 900点 は海外就業可能を意味しない - 実際に意思決定に参加できる実戦英語が必要</text><rect x="20" y="272" width="760" height="60" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="95" y="295" fill="#ffffff" font-size="13" font-weight="bold">為替を短期予想で賭ける</text><text x="95" y="317" fill="#9ca3af" font-size="12">通貨分散は長期戦略 - 短期の円安/円高予想で判断すると失敗する</text><rect x="100" y="352" width="600" height="34" fill="#16213e" rx="6" stroke="#4ade80" stroke-width="2"/><text x="400" y="374" text-anchor="middle" fill="#4ade80" font-size="13">全て「構造で考える」「実行する」「長期視点」で防げる</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="40" text-anchor="middle" fill="#e91e63" font-size="16" font-weight="bold">意思決定を失敗させる典型パターン</text><rect x="20" y="62" width="760" height="60" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="95" y="85" fill="#ffffff" font-size="13" font-weight="bold">年収総額だけで比較して手取りを見ない</text><text x="95" y="107" fill="#9ca3af" font-size="12">可処分所得が重要 - 税率・社会保険・生活費・為替を全部考慮する</text><rect x="20" y="132" width="760" height="60" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="95" y="155" fill="#ffffff" font-size="13" font-weight="bold">資格取得で満足し職務転換しない</text><text x="95" y="177" fill="#9ca3af" font-size="12">資格は通過証 - 取った後に高単価職に応募・転換しないと意味がない</text><rect x="20" y="202" width="760" height="60" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="95" y="225" fill="#ffffff" font-size="13" font-weight="bold">英語を試験スコアだけで判断する</text><text x="95" y="247" fill="#9ca3af" font-size="12">TOEIC 900点 は海外就業可能を意味しない - 実際に意思決定に参加できる実戦英語が必要</text><rect x="20" y="272" width="760" height="60" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="95" y="295" fill="#ffffff" font-size="13" font-weight="bold">為替を短期予想で賭ける</text><text x="95" y="317" fill="#9ca3af" font-size="12">通貨分散は長期戦略 - 短期の円安/円高予想で判断すると失敗する</text><rect x="100" y="352" width="600" height="34" fill="#16213e" rx="6" stroke="#4ade80" stroke-width="2"/><text x="400" y="374" text-anchor="middle" fill="#4ade80" font-size="13">全て「構造で考える」「実行する」「長期視点」で防げる</text></svg>
+</div>
+
 - 年収総額だけで比較して手取りを見ない
 - 資格取得で満足し職務転換しない
 - 英語を試験スコアだけで判断する
@@ -974,11 +1080,13 @@ style: |
 
 ---
 
+<!-- _class: fit-94 -->
 # 90日アクションプラン
 
 > *90日で市場価値診断・資格取得・英文レジュメ完成を達成する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">90日アクションプラン</text>
 <!-- Weeks timeline -->
@@ -1021,6 +1129,8 @@ style: |
 <text x="400" y="336" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">90日のゴール: 最初の応募セットを完成させる</text>
 <text x="400" y="356" text-anchor="middle" fill="#9ca3af" font-size="12">職種特定 → 要件分析 → 資料準備 → 送付 — この1サイクルを完走する</text>
 </svg>
+</div>
+
 - 職種ターゲットを1つに固定する
 - 求人50件を分析して要件差分を抽出
 - 不足スキル1つ・資格1つに集中投資する
@@ -1029,11 +1139,15 @@ style: |
 
 ---
 
+<!-- _class: fit-94 -->
 # 1年アクションプラン
 
 > *1年でオファー獲得・ネットワーク構築・スキルアップを完了*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">1年アクションプラン</text><rect x="20" y="62" width="175" height="250" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="108" y="92" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Q1 (1-3m)</text><text x="40" y="118" fill="#9ca3af" font-size="12">高難度PJに配置</text><text x="40" y="138" fill="#9ca3af" font-size="12">成果実績作りを</text><text x="40" y="158" fill="#9ca3af" font-size="12">最優先にする</text><rect x="210" y="62" width="175" height="250" fill="#16213e" rx="10" stroke="#e91e63" stroke-width="2"/><text x="298" y="92" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">Q2 (4-6m)</text><text x="230" y="118" fill="#9ca3af" font-size="12">英語環境での</text><text x="230" y="138" fill="#9ca3af" font-size="12">実務経験を積む</text><text x="230" y="158" fill="#9ca3af" font-size="12">国際案件に参加</text><rect x="400" y="62" width="175" height="250" fill="#16213e" rx="10" stroke="#4ade80" stroke-width="2"/><text x="488" y="92" text-anchor="middle" fill="#4ade80" font-size="14" font-weight="bold">Q3 (7-9m)</text><text x="420" y="118" fill="#9ca3af" font-size="12">資格を1-2個</text><text x="420" y="138" fill="#9ca3af" font-size="12">取得する</text><text x="420" y="158" fill="#9ca3af" font-size="12">希望市場向けで</text><rect x="590" y="62" width="190" height="250" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="685" y="92" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Q4 (10-12m)</text><text x="610" y="118" fill="#9ca3af" font-size="12">年2回の報酬交渉</text><text x="610" y="138" fill="#9ca3af" font-size="12">または転職活動</text><text x="610" y="158" fill="#9ca3af" font-size="12">実施する</text><rect x="20" y="336" width="760" height="48" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="400" y="358" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">1年後のゴール: 外貨収入の獲得経路を1つ確立する</text><text x="400" y="376" text-anchor="middle" fill="#9ca3af" font-size="12">実績 + 英語 + 資格 + 交渉 - 4つが揃うと転換の確度が上がる</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="400" fill="#1a1a2e" rx="12"/><text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">1年アクションプラン</text><rect x="20" y="62" width="175" height="250" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="108" y="92" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Q1 (1-3m)</text><text x="40" y="118" fill="#9ca3af" font-size="12">高難度PJに配置</text><text x="40" y="138" fill="#9ca3af" font-size="12">成果実績作りを</text><text x="40" y="158" fill="#9ca3af" font-size="12">最優先にする</text><rect x="210" y="62" width="175" height="250" fill="#16213e" rx="10" stroke="#e91e63" stroke-width="2"/><text x="298" y="92" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">Q2 (4-6m)</text><text x="230" y="118" fill="#9ca3af" font-size="12">英語環境での</text><text x="230" y="138" fill="#9ca3af" font-size="12">実務経験を積む</text><text x="230" y="158" fill="#9ca3af" font-size="12">国際案件に参加</text><rect x="400" y="62" width="175" height="250" fill="#16213e" rx="10" stroke="#4ade80" stroke-width="2"/><text x="488" y="92" text-anchor="middle" fill="#4ade80" font-size="14" font-weight="bold">Q3 (7-9m)</text><text x="420" y="118" fill="#9ca3af" font-size="12">資格を1-2個</text><text x="420" y="138" fill="#9ca3af" font-size="12">取得する</text><text x="420" y="158" fill="#9ca3af" font-size="12">希望市場向けで</text><rect x="590" y="62" width="190" height="250" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/><text x="685" y="92" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Q4 (10-12m)</text><text x="610" y="118" fill="#9ca3af" font-size="12">年2回の報酬交渉</text><text x="610" y="138" fill="#9ca3af" font-size="12">または転職活動</text><text x="610" y="158" fill="#9ca3af" font-size="12">実施する</text><rect x="20" y="336" width="760" height="48" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="400" y="358" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">1年後のゴール: 外貨収入の獲得経路を1つ確立する</text><text x="400" y="376" text-anchor="middle" fill="#9ca3af" font-size="12">実績 + 英語 + 資格 + 交渉 - 4つが揃うと転換の確度が上がる</text></svg>
+</div>
+
 - 高難度プロジェクトで成果実績を作る
 - 国際案件または英語環境での実務経験を積む
 - 希望市場で通用する資格を1-2個取得する
@@ -1056,7 +1170,8 @@ style: |
 
 # 3年アクションプラン（図解）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">3年ロードマップ</text>
 <!-- Timeline line -->
@@ -1106,6 +1221,7 @@ style: |
 <rect x="732" y="162" width="30" height="36" fill="#16213e" rx="4" stroke="#f9a825" stroke-width="1.5"/>
 <text x="747" y="184" text-anchor="middle" fill="#f9a825" font-size="10">3y</text>
 </svg>
+</div>
 
 
 ---
@@ -1139,7 +1255,8 @@ style: |
 <!-- _class: lead -->
 # まとめと行動宣言
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="42" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">今日 → 今週 → 今月 → この四半期</text>
 <!-- Timeline flow -->
@@ -1178,6 +1295,8 @@ style: |
 <text x="400" y="288" text-anchor="middle" fill="#ffffff" font-size="14">今日この場で: 職種と市場を1つ決める</text>
 <text x="400" y="316" text-anchor="middle" fill="#9ca3af" font-size="13">情報が揃うのを待たない — 動きながら精度を上げる</text>
 </svg>
+</div>
+
 - 今日決める: 目指す職種と市場を1つに絞る
 - 今週やる: 求人要件分析と不足スキル特定
 - 今月やる: 応募資料更新と初回応募開始

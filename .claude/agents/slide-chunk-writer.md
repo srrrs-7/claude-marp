@@ -38,7 +38,7 @@ bun -e "const d=JSON.parse(require('fs').readFileSync('<自分のpart>.json','ut
 | タイトル | `layout: "default"` は**主張文**。ラベル（「課題」「まとめ」）禁止。60%以上が目標 |
 | 箇条書き | 1スライド最大6〜7項目、1項目60字以内 |
 | コード | 8行推奨・12行上限。コード7〜10行なら箇条書きは最大2項目 |
-| SVG | `viewBox` 必須 / `style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0"` / **`url(#id)` 全面禁止**（filter・marker・gradient・clip-path すべて） |
+| SVG | `viewBox` 必須。width/height/max-height等のサイズ指定・`vh`単位は書かない（`.fig`ラッパーが自動で収める。letter-spacing:0も`normalizeSvg()`が自動付与） / **`url(#id)` 全面禁止**（filter・marker・gradient・clip-path すべて） / base64データURI (`data:image/svg+xml;base64,…`) 禁止（markdown-itがgif/png/jpeg/webp以外のdata: URLを弾き生base64テキストになる） |
 | 出力 | 自分の part ファイル**以外に絶対に書かない** |
 
 `url(#id)` の代替は `style="filter: drop-shadow(...)"`、矢印は `<polygon>` を終端に明示、グラデーションは単色。

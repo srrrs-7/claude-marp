@@ -7,41 +7,76 @@ paginate: true
 header: "Observer Effect × Heisenbug"
 footer: "© 2026 Quantum Debugging"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,11 +117,10 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 観察者効果とHeisenbug：見ると消えるバグの量子力学
 
 - Observer Effect × Heisenbug
-- 
 - デバッガを繋ぐとバグが消える — それは偶然ではない
 
 
@@ -96,20 +130,56 @@ style: |
 
 > *観察行為がバグを消す—非侵襲的観測とObservabilityが唯一の解*
 
-- - 1. 量子力学の観察者効果
-- - 2. バグの量子力学分類
-- - 3. Heisenbugのメカニズム
-- - 4. 観察がシステムを変える具体例
-- - 5. Heisenbugの捕まえ方
-- - 6. 観察者効果を逆手に取るテスト設計
+- 1. 量子力学の観察者効果
+- 2. バグの量子力学分類
+- 3. Heisenbugのメカニズム
+- 4. 観察がシステムを変える具体例
+- 5. Heisenbugの捕まえ方
+- 6. 観察者効果を逆手に取るテスト設計
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 量子力学の観察者効果
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ph4/lrZDlipvlrabvvJroprPlr5/jgYznj77lrp/jgpLlpInjgYjjgos8L3RleHQ+CiAgPCEtLSBMZWZ0OiBub3Qgb2JzZXJ2ZWQgPSB3YXZlIC0tPgogIDxyZWN0IHg9IjIwIiB5PSI1MCIgd2lkdGg9IjM0MCIgaGVpZ2h0PSIzMDAiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIxOTAiIHk9IjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuims+Wvn+OBquOBlyDihpIg5rOi44Go44GX44Gm5a2Y5ZyoPC90ZXh0PgogIDwhLS0gV2F2ZSB2aXN1YWxpemF0aW9uIC0tPgogIDx0ZXh0IHg9IjE5MCIgeT0iMTE1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Zu75a2Q44Gv6KSH5pWw44Gu57WM6Lev44KS5ZCM5pmC44Gr6YCa6YGOPC90ZXh0PgogIDwhLS0gVHdvIHNsaXQgYW5pbWF0aW9uIGFwcHJveGltYXRpb24gLS0+CiAgPHJlY3QgeD0iMTUwIiB5PSIxMzAiIHdpZHRoPSI4IiBoZWlnaHQ9IjU1IiBmaWxsPSIjNTU1NTc3Ii8+CiAgPHJlY3QgeD0iMTUwIiB5PSIxOTUiIHdpZHRoPSI4IiBoZWlnaHQ9IjIwIiBmaWxsPSIjMTYyMTNlIi8+CiAgPHJlY3QgeD0iMTUwIiB5PSIyMTUiIHdpZHRoPSI4IiBoZWlnaHQ9IjU1IiBmaWxsPSIjNTU1NTc3Ii8+CiAgPCEtLSBJbnRlcmZlcmVuY2UgcGF0dGVybiAoYmFycyBzaW11bGF0aW5nKSAtLT4KICA8cmVjdCB4PSIyNzAiIHk9IjEzMCIgd2lkdGg9IjAiIGhlaWdodD0iMjQiIHJ4PSIyIiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz48cmVjdCB4PSIyNzAiIHk9IjE1NyIgd2lkdGg9IjM0IiBoZWlnaHQ9IjI0IiByeD0iMiIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+PHJlY3QgeD0iMjcwIiB5PSIxODQiIHdpZHRoPSIzNCIgaGVpZ2h0PSIyNCIgcng9IjIiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuNyIvPjxyZWN0IHg9IjI3MCIgeT0iMjExIiB3aWR0aD0iMCIgaGVpZ2h0PSIyNCIgcng9IjIiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuNyIvPjxyZWN0IHg9IjI3MCIgeT0iMjM4IiB3aWR0aD0iMzQiIGhlaWdodD0iMjQiIHJ4PSIyIiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz48cmVjdCB4PSIyNzAiIHk9IjI2NSIgd2lkdGg9IjM0IiBoZWlnaHQ9IjI0IiByeD0iMiIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+PHJlY3QgeD0iMjcwIiB5PSIyOTIiIHdpZHRoPSIwIiBoZWlnaHQ9IjI0IiByeD0iMiIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+PHJlY3QgeD0iMjcwIiB5PSIzMTkiIHdpZHRoPSIzNCIgaGVpZ2h0PSIyNCIgcng9IjIiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuNyIvPjxyZWN0IHg9IjI3MCIgeT0iMzQ2IiB3aWR0aD0iMzQiIGhlaWdodD0iMjQiIHJ4PSIyIiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz48cmVjdCB4PSIyNzAiIHk9IjM3MyIgd2lkdGg9IjAiIGhlaWdodD0iMjQiIHJ4PSIyIiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz4KICA8dGV4dCB4PSIxOTAiIHk9IjI5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuW5sua4iee4nuOBjOePvuOCjOOCi++8iOazouOBrueJueaAp++8iTwvdGV4dD4KICA8dGV4dCB4PSIxOTAiIHk9IjMxNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5LqM6YeN44K544Oq44OD44OI5a6f6aiTPC90ZXh0PgogIDx0ZXh0IHg9IjE5MCIgeT0iMzMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oprPlr5/jgarjgZcgPSDph4/lrZDph43jga3lkIjjgo/jgZs8L3RleHQ+CiAgPCEtLSBSaWdodDogb2JzZXJ2ZWQgPSBwYXJ0aWNsZSAtLT4KICA8cmVjdCB4PSI0NDAiIHk9IjUwIiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjMwMCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjYxMCIgeT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Kaz5a+f44GC44KKIOKGkiDnspLlrZDjgajjgZfjgabnorrlrpo8L3RleHQ+CiAgPHRleHQgeD0iNjEwIiB5PSIxMTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jganjgaHjgonjgpLpgJrjgaPjgZ/jgYvoprPmuKzjgZnjgovjgajigKY8L3RleHQ+CiAgPCEtLSBQYXJ0aWNsZSBwYXRocyAobm8gaW50ZXJmZXJlbmNlKSAtLT4KICA8cmVjdCB4PSI1NjUiIHk9IjEzMCIgd2lkdGg9IjgiIGhlaWdodD0iNTUiIGZpbGw9IiM1NTU1NzciLz4KICA8cmVjdCB4PSI1NjUiIHk9IjE5NSIgd2lkdGg9IjgiIGhlaWdodD0iMjAiIGZpbGw9IiMxNjIxM2UiLz4KICA8cmVjdCB4PSI1NjUiIHk9IjIxNSIgd2lkdGg9IjgiIGhlaWdodD0iNTUiIGZpbGw9IiM1NTU1NzciLz4KICA8IS0tIFR3byBiYW5kcyAocGFydGljbGUgcGF0dGVybikgLS0+CiAgPHJlY3QgeD0iNjg1IiB5PSIxNDgiIHdpZHRoPSI1NSIgaGVpZ2h0PSI4MCIgcng9IjQiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuNyIvPgogIDxyZWN0IHg9IjY4NSIgeT0iMjM1IiB3aWR0aD0iNTUiIGhlaWdodD0iODAiIHJ4PSI0IiBmaWxsPSIjZTkxZTYzIiBvcGFjaXR5PSIwLjciLz4KICA8dGV4dCB4PSI2MTAiIHk9IjI5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjLmnKzjga7luK/jgYznj77jgozjgovvvIjnspLlrZDjga7nibnmgKfvvIk8L3RleHQ+CiAgPHRleHQgeD0iNjEwIiB5PSIzMTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuims+a4rOapn+WZqOOCkuioree9ruOBl+OBn+eerOmWk+OBq+WkieWMljwvdGV4dD4KICA8dGV4dCB4PSI2MTAiIHk9IjMzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Kaz5a+fID0g5rOi5YuV6Zai5pWw44Gu5bSp5aOKPC90ZXh0PgogIDwhLS0gQm90dG9tIGluc2lnaHQgLS0+CiAgPHRleHQgeD0iNDAwIiB5PSIzNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7muKzlrprooYzngrrjgZ3jga7jgoLjga7jgYzmuKzlrprlr77osaHjgpLlpInjgYjjgabjgZfjgb7jgYYg4oCUIOOCveODleODiOOCpuOCp+OCouODh+ODkOODg+OCsOOCguWQjOOBmDwvdGV4dD4KPC9zdmc+)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">量子力学：観察が現実を変える</text>
+  <!-- Left: not observed = wave -->
+  <rect x="20" y="50" width="340" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="190" y="80" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">観察なし → 波として存在</text>
+  <!-- Wave visualization -->
+  <text x="190" y="115" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">電子は複数の経路を同時に通過</text>
+  <!-- Two slit animation approximation -->
+  <rect x="150" y="130" width="8" height="55" fill="#555577"/>
+  <rect x="150" y="195" width="8" height="20" fill="#16213e"/>
+  <rect x="150" y="215" width="8" height="55" fill="#555577"/>
+  <!-- Interference pattern (bars simulating) -->
+  <rect x="270" y="130" width="0" height="24" rx="2" fill="#f9a825" opacity="0.7"/><rect x="270" y="157" width="34" height="24" rx="2" fill="#f9a825" opacity="0.7"/><rect x="270" y="184" width="34" height="24" rx="2" fill="#f9a825" opacity="0.7"/><rect x="270" y="211" width="0" height="24" rx="2" fill="#f9a825" opacity="0.7"/><rect x="270" y="238" width="34" height="24" rx="2" fill="#f9a825" opacity="0.7"/><rect x="270" y="265" width="34" height="24" rx="2" fill="#f9a825" opacity="0.7"/><rect x="270" y="292" width="0" height="24" rx="2" fill="#f9a825" opacity="0.7"/><rect x="270" y="319" width="34" height="24" rx="2" fill="#f9a825" opacity="0.7"/><rect x="270" y="346" width="34" height="24" rx="2" fill="#f9a825" opacity="0.7"/><rect x="270" y="373" width="0" height="24" rx="2" fill="#f9a825" opacity="0.7"/>
+  <text x="190" y="295" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">干渉縞が現れる（波の特性）</text>
+  <text x="190" y="315" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">二重スリット実験</text>
+  <text x="190" y="330" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">観察なし = 量子重ね合わせ</text>
+  <!-- Right: observed = particle -->
+  <rect x="440" y="50" width="340" height="300" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="610" y="80" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">観察あり → 粒子として確定</text>
+  <text x="610" y="115" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">どちらを通ったか観測すると…</text>
+  <!-- Particle paths (no interference) -->
+  <rect x="565" y="130" width="8" height="55" fill="#555577"/>
+  <rect x="565" y="195" width="8" height="20" fill="#16213e"/>
+  <rect x="565" y="215" width="8" height="55" fill="#555577"/>
+  <!-- Two bands (particle pattern) -->
+  <rect x="685" y="148" width="55" height="80" rx="4" fill="#e91e63" opacity="0.7"/>
+  <rect x="685" y="235" width="55" height="80" rx="4" fill="#e91e63" opacity="0.7"/>
+  <text x="610" y="295" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">2本の帯が現れる（粒子の特性）</text>
+  <text x="610" y="315" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">観測機器を設置した瞬間に変化</text>
+  <text x="610" y="330" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">観察 = 波動関数の崩壊</text>
+  <!-- Bottom insight -->
+  <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">測定行為そのものが測定対象を変えてしまう — ソフトウェアデバッグも同じ</text>
+</svg>
+</div>
+
 - Chapter 1: The Observer Effect in Physics
 
 
@@ -119,13 +189,66 @@ style: |
 
 > *デバッガ起動で変わるタイミング—観測がバグを消す物理的理由*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oprPlr5/ogIXlirnmnpzvvJrph4/lrZDlipvlraYgdnMg44K944OV44OI44Km44Kn44KiPC90ZXh0PgogIDwhLS0gTGVmdDogUXVhbnR1bSAtLT4KICA8cmVjdCB4PSIyMCIgeT0iNTAiIHdpZHRoPSIzNjAiIGhlaWdodD0iMzEwIiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iMjAwIiB5PSI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ph4/lrZDlipvlraY8L3RleHQ+CiAgPCEtLSBEb3VibGUgc2xpdCAtLT4KICA8dGV4dCB4PSIyMDAiIHk9IjEwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS6jOmHjeOCueODquODg+ODiOWun+mokzwvdGV4dD4KICA8IS0tIFdhdmUgcGF0dGVybiAobm8gb2JzZXJ2YXRpb24pIC0tPgogIDxyZWN0IHg9IjQwIiB5PSIxMTUiIHdpZHRoPSIxNTAiIGhlaWdodD0iMTMwIiByeD0iNiIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjNTU1NTU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIxMTUiIHk9IjEzOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuims+a4rOOBquOBlzwvdGV4dD4KICA8IS0tIGludGVyZmVyZW5jZSBwYXR0ZXJuIC0tPgogIDxyZWN0IHg9IjU1IiB5PSIxNTcuNSIgd2lkdGg9IjEyIiBoZWlnaHQ9IjcyLjUiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuNjUiIHJ4PSIyIi8+PHJlY3QgeD0iNzMiIHk9IjE3Mi41IiB3aWR0aD0iMTIiIGhlaWdodD0iNTcuNSIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC41NSIgcng9IjIiLz48cmVjdCB4PSI5MSIgeT0iMTg3LjUiIHdpZHRoPSIxMiIgaGVpZ2h0PSI0Mi41IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjQ1IiByeD0iMiIvPjxyZWN0IHg9IjEwOSIgeT0iMjAyLjUiIHdpZHRoPSIxMiIgaGVpZ2h0PSIyNy41IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjM1IiByeD0iMiIvPjxyZWN0IHg9IjEyNyIgeT0iMjAyLjUiIHdpZHRoPSIxMiIgaGVpZ2h0PSIyNy41IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjM1IiByeD0iMiIvPjxyZWN0IHg9IjE0NSIgeT0iMTg3LjUiIHdpZHRoPSIxMiIgaGVpZ2h0PSI0Mi41IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjQ1IiByeD0iMiIvPjxyZWN0IHg9IjE2MyIgeT0iMTcyLjUiIHdpZHRoPSIxMiIgaGVpZ2h0PSI1Ny41IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjU1IiByeD0iMiIvPgogIDx0ZXh0IHg9IjExNSIgeT0iMjU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lubLmuInjg5Hjgr/jg7zjg7M8L3RleHQ+CiAgPCEtLSBQYXJ0aWNsZSBwYXR0ZXJuICh3aXRoIG9ic2VydmF0aW9uKSAtLT4KICA8cmVjdCB4PSIyMTAiIHk9IjExNSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMzAiIHJ4PSI2IiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjI4NSIgeT0iMTM4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Kaz5ris44GC44KKPC90ZXh0PgogIDxyZWN0IHg9IjI2NyIgeT0iMTU1IiB3aWR0aD0iMTQiIGhlaWdodD0iNzUiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuNiIgcng9IjIiLz4KICA8cmVjdCB4PSIyOTAiIHk9IjE1NSIgd2lkdGg9IjE0IiBoZWlnaHQ9Ijc1IiBmaWxsPSIjZTkxZTYzIiBvcGFjaXR5PSIwLjYiIHJ4PSIyIi8+CiAgPHRleHQgeD0iMjg1IiB5PSIyNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPueykuWtkOODkeOCv+ODvOODszwvdGV4dD4KICA8IS0tIFVuY2VydGFpbnR5IHByaW5jaXBsZSAtLT4KICA8cmVjdCB4PSI0MCIgeT0iMjY4IiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjcyIiByeD0iNiIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIyMDAiIHk9IjI5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg4/jgqTjgrzjg7Pjg5njg6vjgq/jga7kuI3norrlrprmgKfljp/nkIY8L3RleHQ+CiAgPHRleHQgeD0iMjAwIiB5PSIzMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7OlHggwrcgzpRwIOKJpSDihI8vMjwvdGV4dD4KICA8dGV4dCB4PSIyMDAiIHk9IjMyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS9jee9ruOBqOmBi+WLlemHj+OCkuWQjOaZguOBq+ato+eiuuOBq+a4rOWumuOBp+OBjeOBquOBhDwvdGV4dD4KCiAgPCEtLSBSaWdodDogU29mdHdhcmUgLS0+CiAgPHJlY3QgeD0iNDIwIiB5PSI1MCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIzMTAiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI2MDAiIHk9IjgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCveODleODiOOCpuOCp+OCojwvdGV4dD4KICA8IS0tIFdpdGhvdXQgZGVidWdnZXIgLS0+CiAgPHJlY3QgeD0iNDQwIiB5PSI5NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIxMzAiIHJ4PSI2IiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiM1NTU1NTUiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjUxNSIgeT0iMTE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OH44OQ44OD44Ks44Gq44GXPC90ZXh0PgogIDxyZWN0IHg9IjQ1NSIgeT0iMTMwIiB3aWR0aD0iMTMwIiBoZWlnaHQ9IjM1IiByeD0iNCIgZmlsbD0iI2U5MWU2MyIgb3BhY2l0eT0iMC4zIi8+CiAgPHRleHQgeD0iNTE1IiB5PSIxNTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7nq7blkIjmnaHku7bnmbrnlJ8hPC90ZXh0PgogIDx0ZXh0IHg9IjUxNSIgeT0iMTk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OQ44Kw5YaN54++PC90ZXh0PgogIDx0ZXh0IHg9IjUxNSIgeT0iMjE1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5jb3VudGVyIOKJiCA5NzA8L3RleHQ+CiAgPCEtLSBXaXRoIGRlYnVnZ2VyIC0tPgogIDxyZWN0IHg9IjYxMCIgeT0iOTUiIHdpZHRoPSIxNTAiIGhlaWdodD0iMTMwIiByeD0iNiIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI2ODUiIHk9IjExOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODh+ODkOODg+OCrOOBguOCijwvdGV4dD4KICA8cmVjdCB4PSI2MjUiIHk9IjEzMCIgd2lkdGg9IjEzMCIgaGVpZ2h0PSIzNSIgcng9IjQiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuMiIvPgogIDx0ZXh0IHg9IjY4NSIgeT0iMTUyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OQ44Kw44GM5raI44GI44GfITwvdGV4dD4KICA8dGV4dCB4PSI2ODUiIHk9IjE5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODkOOCsOmdnuWGjeePvjwvdGV4dD4KICA8dGV4dCB4PSI2ODUiIHk9IjIxNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+Y291bnRlciA9IDEwMDA8L3RleHQ+CiAgPCEtLSBTb2Z0d2FyZSB1bmNlcnRhaW50eSAtLT4KICA8cmVjdCB4PSI0NDAiIHk9IjIzOCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIxMDIiIHJ4PSI2IiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjYwMCIgeT0iMjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCveODleODiOOCpuOCp+OCouOBruS4jeeiuuWumuaAp+WOn+eQhjwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjI4MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuims+a4rOODhOODvOODq+OBjOezu+OCkuaTvuS5seOBmeOCizwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjMwMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODh+ODkOODg+OCrCA9IOOCv+OCpOODn+ODs+OCsOWkieabtDwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjMyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnByaW50ZiA9IEkvTyBmbHVzaCA9IOOCt+ODquOCouODqeOCpOOCujwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjMzOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODl+ODreODleOCoeOCpOODqSA9IEdD6aC75bqm5aSJ5YyWPC90ZXh0Pgo8L3N2Zz4=)
-- - 量子力学: 粒子を **観測する行為** が粒子の状態を変える
-- - 電子の位置を測定 → 光子をぶつける → 運動量が変化
-- - **ハイゼンベルクの不確定性原理**: 位置と運動量を同時に正確に測定できない
-- - 二重スリット実験: 観測すると干渉パターンが消失
-- - ソフトウェアでも全く同じ現象が起きる
-- - デバッグツールがシステムの振る舞いを変えてしまう
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">観察者効果：量子力学 vs ソフトウェア</text>
+  <!-- Left: Quantum -->
+  <rect x="20" y="50" width="360" height="310" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="200" y="80" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">量子力学</text>
+  <!-- Double slit -->
+  <text x="200" y="105" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">二重スリット実験</text>
+  <!-- Wave pattern (no observation) -->
+  <rect x="40" y="115" width="150" height="130" rx="6" fill="#1a1a2e" stroke="#555555" stroke-width="1"/>
+  <text x="115" y="138" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">観測なし</text>
+  <!-- interference pattern -->
+  <rect x="55" y="157.5" width="12" height="72.5" fill="#f9a825" opacity="0.65" rx="2"/><rect x="73" y="172.5" width="12" height="57.5" fill="#f9a825" opacity="0.55" rx="2"/><rect x="91" y="187.5" width="12" height="42.5" fill="#f9a825" opacity="0.45" rx="2"/><rect x="109" y="202.5" width="12" height="27.5" fill="#f9a825" opacity="0.35" rx="2"/><rect x="127" y="202.5" width="12" height="27.5" fill="#f9a825" opacity="0.35" rx="2"/><rect x="145" y="187.5" width="12" height="42.5" fill="#f9a825" opacity="0.45" rx="2"/><rect x="163" y="172.5" width="12" height="57.5" fill="#f9a825" opacity="0.55" rx="2"/>
+  <text x="115" y="258" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif">干渉パターン</text>
+  <!-- Particle pattern (with observation) -->
+  <rect x="210" y="115" width="150" height="130" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="285" y="138" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">観測あり</text>
+  <rect x="267" y="155" width="14" height="75" fill="#e91e63" opacity="0.6" rx="2"/>
+  <rect x="290" y="155" width="14" height="75" fill="#e91e63" opacity="0.6" rx="2"/>
+  <text x="285" y="258" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif">粒子パターン</text>
+  <!-- Uncertainty principle -->
+  <rect x="40" y="268" width="320" height="72" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="200" y="290" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">ハイゼンベルクの不確定性原理</text>
+  <text x="200" y="310" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Δx · Δp ≥ ℏ/2</text>
+  <text x="200" y="328" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">位置と運動量を同時に正確に測定できない</text>
+
+  <!-- Right: Software -->
+  <rect x="420" y="50" width="360" height="310" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="600" y="80" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">ソフトウェア</text>
+  <!-- Without debugger -->
+  <rect x="440" y="95" width="150" height="130" rx="6" fill="#1a1a2e" stroke="#555555" stroke-width="1"/>
+  <text x="515" y="118" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">デバッガなし</text>
+  <rect x="455" y="130" width="130" height="35" rx="4" fill="#e91e63" opacity="0.3"/>
+  <text x="515" y="152" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">競合条件発生!</text>
+  <text x="515" y="195" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">バグ再現</text>
+  <text x="515" y="215" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif">counter ≈ 970</text>
+  <!-- With debugger -->
+  <rect x="610" y="95" width="150" height="130" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="685" y="118" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">デバッガあり</text>
+  <rect x="625" y="130" width="130" height="35" rx="4" fill="#f9a825" opacity="0.2"/>
+  <text x="685" y="152" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">バグが消えた!</text>
+  <text x="685" y="195" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">バグ非再現</text>
+  <text x="685" y="215" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif">counter = 1000</text>
+  <!-- Software uncertainty -->
+  <rect x="440" y="238" width="320" height="102" rx="6" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="600" y="260" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">ソフトウェアの不確定性原理</text>
+  <text x="600" y="282" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">観測ツールが系を擾乱する</text>
+  <text x="600" y="302" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">デバッガ = タイミング変更</text>
+  <text x="600" y="320" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">printf = I/O flush = シリアライズ</text>
+  <text x="600" y="338" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">プロファイラ = GC頻度変化</text>
+</svg>
+</div>
+
+- 量子力学: 粒子を **観測する行為** が粒子の状態を変える
+- 電子の位置を測定 → 光子をぶつける → 運動量が変化
+- **ハイゼンベルクの不確定性原理**: 位置と運動量を同時に正確に測定できない
+- 二重スリット実験: 観測すると干渉パターンが消失
+- ソフトウェアでも全く同じ現象が起きる
+- デバッグツールがシステムの振る舞いを変えてしまう
 
 <!--
 量子力学の観察者効果は哲学的議論を呼んだが、ソフトウェアでは非常に具体的・実践的な問題。
@@ -133,10 +256,36 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # バグの量子力学分類
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg5DjgrDjga7ph4/lrZDlipvlrabnmoTliIbpoZ48L3RleHQ+CiAgPCEtLSA0IHR5cGVzIC0tPgogIDxyZWN0IHg9IjIwIiB5PSI1NSIgd2lkdGg9IjM3MCIgaGVpZ2h0PSIxNTAiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDx0ZXh0IHg9IjIwNSIgeT0iODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+SGVpc2VuYnVnPC90ZXh0PgogICAgPHRleHQgeD0iMjA1IiB5PSIxMDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oprPlr5/jgZnjgovjgajmtojjgYjjgos8L3RleHQ+PHRleHQgeD0iMjA1IiB5PSIxMjEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg4fjg5Djg4PjgqzjgafmtojjgYjjgovjg5DjgrA8L3RleHQ+CiAgICA8dGV4dCB4PSIyMDUiIHk9IjE0MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5Y6f5ZugOiDjgr/jgqTjg5/jg7PjgrDjg7vjg6Hjg6Ljg6rphY3nva7jgYzlpInljJY8L3RleHQ+CiAgICA8dGV4dCB4PSIyMDUiIHk9IjE2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L6LOiBSYWNlIGNvbmRpdGlvbjwvdGV4dD48dGV4dCB4PSIyMDUiIHk9IjE4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+IHByaW50ZuW+jOOBq+a2iOOBiOOCi05QRTwvdGV4dD48cmVjdCB4PSI0MTUiIHk9IjU1IiB3aWR0aD0iMzcwIiBoZWlnaHQ9IjE1MCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPHRleHQgeD0iNjAwIiB5PSI4MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5NYW5kZWxidWc8L3RleHQ+CiAgICA8dGV4dCB4PSI2MDAiIHk9IjEwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuikh+mbkeOBmeOBjuOBpuWGjeePvuOBp+OBjeOBquOBhDwvdGV4dD48dGV4dCB4PSI2MDAiIHk9IjEyMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCq+OCquOCueeahOaMr+OCi+iInuOBhDwvdGV4dD4KICAgIDx0ZXh0IHg9IjYwMCIgeT0iMTQzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ljp/lm6A6IOeKtuaFi+epuumWk+OBjOaMh+aVsOeahOOBq+W6g+OBhDwvdGV4dD4KICAgIDx0ZXh0IHg9IjYwMCIgeT0iMTY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7kvos6IOikh+aVsOODnuOCpOOCr+ODreOCteODvOODk+OCueOBrjwvdGV4dD48dGV4dCB4PSI2MDAiIHk9IjE4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+IOW+ruWmmeOBquOCv+OCpOODn+ODs+OCsOS+neWtmDwvdGV4dD48cmVjdCB4PSIyMCIgeT0iMjIwIiB3aWR0aD0iMzcwIiBoZWlnaHQ9IjE1MCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPHRleHQgeD0iMjA1IiB5PSIyNDgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+Qm9ocmJ1ZzwvdGV4dD4KICAgIDx0ZXh0IHg9IjIwNSIgeT0iMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5bi444Gr5YaN54++44GZ44KLPC90ZXh0Pjx0ZXh0IHg9IjIwNSIgeT0iMjg2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5Y+k5YW455qE44Gq44OQ44KwPC90ZXh0PgogICAgPHRleHQgeD0iMjA1IiB5PSIzMDgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWOn+WboDog5rG65a6a6KuW55qE44Gq5p2h5Lu2PC90ZXh0PgogICAgPHRleHQgeD0iMjA1IiB5PSIzMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS+izog5aKD55WM5YCk44Ko44Op44O8PC90ZXh0Pjx0ZXh0IHg9IjIwNSIgeT0iMzQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4gTnVsbOODneOCpOODs+OCv+WPgueFpzwvdGV4dD48cmVjdCB4PSI0MTUiIHk9IjIyMCIgd2lkdGg9IjM3MCIgaGVpZ2h0PSIxNTAiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDx0ZXh0IHg9IjYwMCIgeT0iMjQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlNjaHLDtmRpbmdidWc8L3RleHQ+CiAgICA8dGV4dCB4PSI2MDAiIHk9IjI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuiqreOCk+OBoOeerOmWk+OBq+awl+OBpeOBjzwvdGV4dD48dGV4dCB4PSI2MDAiIHk9IjI4NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuefpeOCieOBquOBhOmWk+OBr+WLleOBjzwvdGV4dD4KICAgIDx0ZXh0IHg9IjYwMCIgeT0iMzA4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ljp/lm6A6IOWLleS9nOOBjOWumue+qeWkluOBoOOBo+OBn+OBjArlgbbnhLbli5XjgYTjgabjgYTjgZ88L3RleHQ+CiAgICA8dGV4dCB4PSI2MDAiIHk9IjMzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L6LOiDoqqTjgaPjgZ/jgqrjg5Xjgrvjg4Pjg4joqIjnrpfjgYw8L3RleHQ+PHRleHQgeD0iNjAwIiB5PSIzNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPiDku5bjga7oqqTjgorjgajmiZPjgaHmtojjgZflkIjjgYY8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5IZWlzZW5idWfjga/ph4/lrZDlipvlrabjga7oprPlr5/ogIXlirnmnpzjga7lroznkqfjgarjgqLjg4rjg63jgrjjg7w8L3RleHQ+Cjwvc3ZnPg==)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">バグの量子力学的分類</text>
+  <!-- 4 types -->
+  <rect x="20" y="55" width="370" height="150" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+    <text x="205" y="83" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">Heisenbug</text>
+    <text x="205" y="105" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">観察すると消える</text><text x="205" y="121" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">デバッガで消えるバグ</text>
+    <text x="205" y="143" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">原因: タイミング・メモリ配置が変化</text>
+    <text x="205" y="165" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif">例: Race condition</text><text x="205" y="180" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif"> printf後に消えるNPE</text><rect x="415" y="55" width="370" height="150" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+    <text x="600" y="83" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">Mandelbug</text>
+    <text x="600" y="105" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">複雑すぎて再現できない</text><text x="600" y="121" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">カオス的振る舞い</text>
+    <text x="600" y="143" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">原因: 状態空間が指数的に広い</text>
+    <text x="600" y="165" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif">例: 複数マイクロサービスの</text><text x="600" y="180" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif"> 微妙なタイミング依存</text><rect x="20" y="220" width="370" height="150" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+    <text x="205" y="248" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">Bohrbug</text>
+    <text x="205" y="270" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">常に再現する</text><text x="205" y="286" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">古典的なバグ</text>
+    <text x="205" y="308" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">原因: 決定論的な条件</text>
+    <text x="205" y="330" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif">例: 境界値エラー</text><text x="205" y="345" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif"> Nullポインタ参照</text><rect x="415" y="220" width="370" height="150" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+    <text x="600" y="248" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">Schrödingbug</text>
+    <text x="600" y="270" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">読んだ瞬間に気づく</text><text x="600" y="286" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">知らない間は動く</text>
+    <text x="600" y="308" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">原因: 動作が定義外だったが
+偶然動いていた</text>
+    <text x="600" y="330" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif">例: 誤ったオフセット計算が</text><text x="600" y="345" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif"> 他の誤りと打ち消し合う</text>
+  <text x="400" y="390" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Heisenbugは量子力学の観察者効果の完璧なアナロジー</text>
+</svg>
+</div>
+
 - Chapter 2: Quantum Bug Taxonomy
 
 
@@ -149,7 +298,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Heisenbugのメカニズム
 
 - Chapter 3: How Heisenbugs Work
@@ -166,8 +315,50 @@ style: |
 
 # 典型的なHeisenbug：Race Condition
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5SYWNlIENvbmRpdGlvbu+8muODh+ODkOODg+OCrOOBjOertuWQiOOCkumaoOOBmeS7lee1hOOBvzwvdGV4dD4KICA8IS0tIFRocmVhZCAxIGFuZCBUaHJlYWQgMiBpbnRlcmxlYXZpbmcgLS0+CiAgPHRleHQgeD0iMjAwIiB5PSI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5UaHJlYWQgMTwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlRocmVhZCAyPC90ZXh0PgogIDxsaW5lIHgxPSI0MDAiIHkxPSI1NSIgeDI9IjQwMCIgeTI9IjM3MCIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWRhc2hhcnJheT0iNiw0Ii8+CiAgPCEtLSBXaXRob3V0IGRlYnVnZ2VyOiBmYXN0IGludGVybGVhdmluZyAtLT4KICA8cmVjdCB4PSIzMCIgeT0iNzAiIHdpZHRoPSIzNDAiIGhlaWdodD0iMjkwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjIwMCIgeT0iOTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg4fjg5Djg4PjgqzjgarjgZfvvIjpq5jpgJ/lrp/ooYzvvIk8L3RleHQ+CiAgPCEtLSBJbnRlcmxlYXZlZCBvcGVyYXRpb25zIC0tPgogIDxyZWN0IHg9IjUwIiB5PSIxMDUiIHdpZHRoPSIxNDAiIGhlaWdodD0iMzAiIHJ4PSI0IiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjEyMCIgeT0iMTI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cmVhZCBjb3VudGVyPTAgW1QxXTwvdGV4dD4KICA8cmVjdCB4PSIxOTAiIHk9IjEyNSIgd2lkdGg9IjE0MCIgaGVpZ2h0PSIzMCIgcng9IjQiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iMjYwIiB5PSIxNDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5yZWFkIGNvdW50ZXI9MCBbVDJdPC90ZXh0PgogIDxyZWN0IHg9IjUwIiB5PSIxNzAiIHdpZHRoPSIxNDAiIGhlaWdodD0iMzAiIHJ4PSI0IiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjEyMCIgeT0iMTg5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+d3JpdGUgY291bnRlcj0xIFtUMV08L3RleHQ+CiAgPHJlY3QgeD0iMTkwIiB5PSIxOTAiIHdpZHRoPSIxNDAiIGhlaWdodD0iMzAiIHJ4PSI0IiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjI2MCIgeT0iMjA5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+d3JpdGUgY291bnRlcj0xIFtUMl08L3RleHQ+CiAgPHJlY3QgeD0iNTAiIHk9IjI1MCIgd2lkdGg9IjI5MCIgaGVpZ2h0PSI0MCIgcng9IjYiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuMyIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjE5NSIgeT0iMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPue1kOaenDogY291bnRlcj0xICjmnJ/lvoXlgKQyKSDinJcg44OQ44KwITwvdGV4dD4KICA8dGV4dCB4PSIxOTUiIHk9IjM0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjEwMDDlm57lrp/ooYwg4oaSIH45NzAgKOODkOOCsOOBguOCiik8L3RleHQ+CiAgPCEtLSBXaXRoIGRlYnVnZ2VyOiBzZXJpYWxpemVkIC0tPgogIDxyZWN0IHg9IjQzMCIgeT0iNzAiIHdpZHRoPSIzNDAiIGhlaWdodD0iMjkwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjYwMCIgeT0iOTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg4fjg5Djg4PjgqzjgYLjgorvvIjjg5bjg6zjg7zjgq/jg53jgqTjg7Pjg4jvvIk8L3RleHQ+CiAgPHJlY3QgeD0iNDUwIiB5PSIxMDUiIHdpZHRoPSIxNDAiIGhlaWdodD0iMzAiIHJ4PSI0IiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjUyMCIgeT0iMTI0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cmVhZCBjb3VudGVyPTAgW1QxXTwvdGV4dD4KICA8IS0tIEJyZWFrcG9pbnQgcGF1c2UgLS0+CiAgPHJlY3QgeD0iNDUwIiB5PSIxNDIiIHdpZHRoPSIyOTAiIGhlaWdodD0iMjIiIHJ4PSIzIiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjI1Ii8+CiAgPHRleHQgeD0iNTk1IiB5PSIxNTciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKPuCBCcmVha3BvaW50IOKAlCBUMuOBr+W+heapn+S4rTwvdGV4dD4KICA8cmVjdCB4PSI0NTAiIHk9IjE3MCIgd2lkdGg9IjE0MCIgaGVpZ2h0PSIzMCIgcng9IjQiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNTIwIiB5PSIxODkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj53cml0ZSBjb3VudGVyPTEgW1QxXTwvdGV4dD4KICA8cmVjdCB4PSI2MDAiIHk9IjIwNSIgd2lkdGg9IjE0MCIgaGVpZ2h0PSIzMCIgcng9IjQiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNjcwIiB5PSIyMjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5yZWFkIGNvdW50ZXI9MSBbVDJdPC90ZXh0PgogIDxyZWN0IHg9IjYwMCIgeT0iMjQwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjMwIiByeD0iNCIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI2NzAiIHk9IjI1OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPndyaXRlIGNvdW50ZXI9MiBbVDJdPC90ZXh0PgogIDxyZWN0IHg9IjQ1MCIgeT0iMjg1IiB3aWR0aD0iMjkwIiBoZWlnaHQ9IjQwIiByeD0iNiIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC4yIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNTk1IiB5PSIzMDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+57WQ5p6cOiBjb3VudGVyPTIgKOacn+W+heWApDIpIOKckyDmraPluLghPC90ZXh0PgogIDx0ZXh0IHg9IjU5NSIgeT0iMzQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OH44OQ44OD44Ks44GM44K344Oq44Ki44Op44Kk44K644KS5by35Yi2IOKGkiDjg5DjgrDmtojlpLE8L3RleHQ+Cjwvc3ZnPg==)
-- - デバッガなしでは競合が発生するが、デバッガありでは消える
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Race Condition：デバッガが競合を隠す仕組み</text>
+  <!-- Thread 1 and Thread 2 interleaving -->
+  <text x="200" y="60" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">Thread 1</text>
+  <text x="600" y="60" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">Thread 2</text>
+  <line x1="400" y1="55" x2="400" y2="370" stroke="#333355" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <!-- Without debugger: fast interleaving -->
+  <rect x="30" y="70" width="340" height="290" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="200" y="92" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">デバッガなし（高速実行）</text>
+  <!-- Interleaved operations -->
+  <rect x="50" y="105" width="140" height="30" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="120" y="124" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">read counter=0 [T1]</text>
+  <rect x="190" y="125" width="140" height="30" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="260" y="144" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">read counter=0 [T2]</text>
+  <rect x="50" y="170" width="140" height="30" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="120" y="189" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">write counter=1 [T1]</text>
+  <rect x="190" y="190" width="140" height="30" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="260" y="209" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">write counter=1 [T2]</text>
+  <rect x="50" y="250" width="290" height="40" rx="6" fill="#e91e63" opacity="0.3" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="195" y="270" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">結果: counter=1 (期待値2) ✗ バグ!</text>
+  <text x="195" y="340" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">1000回実行 → ~970 (バグあり)</text>
+  <!-- With debugger: serialized -->
+  <rect x="430" y="70" width="340" height="290" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="600" y="92" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">デバッガあり（ブレークポイント）</text>
+  <rect x="450" y="105" width="140" height="30" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="520" y="124" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">read counter=0 [T1]</text>
+  <!-- Breakpoint pause -->
+  <rect x="450" y="142" width="290" height="22" rx="3" fill="#f9a825" opacity="0.25"/>
+  <text x="595" y="157" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif">⏸ Breakpoint — T2は待機中</text>
+  <rect x="450" y="170" width="140" height="30" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+  <text x="520" y="189" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">write counter=1 [T1]</text>
+  <rect x="600" y="205" width="140" height="30" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="670" y="224" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">read counter=1 [T2]</text>
+  <rect x="600" y="240" width="140" height="30" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+  <text x="670" y="259" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">write counter=2 [T2]</text>
+  <rect x="450" y="285" width="290" height="40" rx="6" fill="#f9a825" opacity="0.2" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="595" y="305" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">結果: counter=2 (期待値2) ✓ 正常!</text>
+  <text x="595" y="340" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">デバッガがシリアライズを強制 → バグ消失</text>
+</svg>
+</div>
+
+- デバッガなしでは競合が発生するが、デバッガありでは消える
 
 
 ---
@@ -193,7 +384,7 @@ console.log(counter); // Without debugger: ~970 (bug)
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 観察がシステムを変える具体例
 
 - Chapter 4: Real-World Observer Effects
@@ -203,15 +394,112 @@ console.log(counter); // Without debugger: ~970 (bug)
 
 # printfデバッグの罠
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5wcmludGbjg4fjg5Djg4PjgrDjgYzlvJXjgY3otbfjgZPjgZnoprPlr5/ogIXlirnmnpw8L3RleHQ+CiAgPCEtLSBCZWZvcmUgZGVidWc6IGJ1Z2d5IHRpbWVsaW5lIC0tPgogIDx0ZXh0IHg9IjQwMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cHJpbnRm44Gq44GXOiDjg5DjgrDjgYznmbrnlJ88L3RleHQ+CiAgPCEtLSBUaHJlYWQgQSAtLT4KICA8dGV4dCB4PSIzMCIgeT0iODUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5UaHJlYWQgQTwvdGV4dD4KICA8bGluZSB4MT0iMTAwIiB5MT0iODAiIHgyPSI3MDAiIHkyPSI4MCIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8cmVjdCB4PSIxMDAiIHk9IjcyIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgPHRleHQgeD0iMTUwIiB5PSI4NCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzFhMWEyZSIgZm9udC1zaXplPSI4IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cmVhZCB4PTU8L3RleHQ+CiAgPCEtLSBHYXAgd2hlcmUgcmFjZSBoYXBwZW5zIC0tPgogIDxyZWN0IHg9IjMwMCIgeT0iNzIiIHdpZHRoPSI4MCIgaGVpZ2h0PSIxNiIgcng9IjMiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuNyIvPgogIDx0ZXh0IHg9IjM0MCIgeT0iODQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiMxYTFhMmUiIGZvbnQtc2l6ZT0iOCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnggKz0gMSDihpIgNjwvdGV4dD4KICA8cmVjdCB4PSI1MDAiIHk9IjcyIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC43Ii8+CiAgPHRleHQgeD0iNTUwIiB5PSI4NCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzFhMWEyZSIgZm9udC1zaXplPSI4IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+d3JpdGUgeD02PC90ZXh0PgogIDwhLS0gVGhyZWFkIEIgLS0+CiAgPHRleHQgeD0iMzAiIHk9IjExNSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlRocmVhZCBCPC90ZXh0PgogIDxsaW5lIHgxPSIxMDAiIHkxPSIxMTAiIHgyPSI3MDAiIHkyPSIxMTAiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHJlY3QgeD0iMjUwIiB5PSIxMDIiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjZTkxZTYzIiBvcGFjaXR5PSIwLjciLz4KICA8dGV4dCB4PSIzMDAiIHk9IjExNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSI4IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cmVhZCB4PTUg4oaQ5pen5YCkITwvdGV4dD4KICA8cmVjdCB4PSI0NTAiIHk9IjEwMiIgd2lkdGg9IjgwIiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iI2U5MWU2MyIgb3BhY2l0eT0iMC43Ii8+CiAgPHRleHQgeD0iNDkwIiB5PSIxMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iOCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnggKz0gMSDihpIgNjwvdGV4dD4KICA8cmVjdCB4PSI2MjAiIHk9IjEwMiIgd2lkdGg9IjgwIiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iI2U5MWU2MyIgb3BhY2l0eT0iMC43Ii8+CiAgPHRleHQgeD0iNjYwIiB5PSIxMTQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iOCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPndyaXRlIHg9NiEhPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMTQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKGkiB4PTfjgavjgarjgovjga/jgZrjgYwgeD02ICjmm7jjgY3ovrzjgb/llqrlpLEpPC90ZXh0PgogIDwhLS0gRGl2aWRlciAtLT4KICA8bGluZSB4MT0iNTAiIHkxPSIxNjAiIHgyPSI3NTAiIHkyPSIxNjAiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSI1LDMiLz4KICA8IS0tIEFmdGVyIGRlYnVnOiBubyBidWcgKGhlaXNlbmJ1Z2dlZCkgLS0+CiAgPHRleHQgeD0iNDAwIiB5PSIxODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cHJpbnRm6L+95Yqg5b6MOiDjg5DjgrDjgYzmtojjgYjjgos8L3RleHQ+CiAgPHRleHQgeD0iMzAiIHk9IjIxNSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlRocmVhZCBBPC90ZXh0PgogIDxsaW5lIHgxPSIxMDAiIHkxPSIyMTAiIHgyPSI3MDAiIHkyPSIyMTAiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHJlY3QgeD0iMTAwIiB5PSIyMDIiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz4KICA8dGV4dCB4PSIxNTAiIHk9IjIxNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzFhMWEyZSIgZm9udC1zaXplPSI4IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cmVhZCB4PTU8L3RleHQ+CiAgPCEtLSBwcmludGYgYWRkcyBkZWxheSAtLT4KICA8cmVjdCB4PSIyMTAiIHk9IjIwMiIgd2lkdGg9IjEzMCIgaGVpZ2h0PSIxNiIgcng9IjMiIGZpbGw9IiM1NTU1NzciIG9wYWNpdHk9IjAuOSIvPgogIDx0ZXh0IHg9IjI3NSIgeT0iMjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjgiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5wcmludGYgKOmBheW7tisxMM68cyk8L3RleHQ+CiAgPHJlY3QgeD0iMzgwIiB5PSIyMDIiIHdpZHRoPSI4MCIgaGVpZ2h0PSIxNiIgcng9IjMiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuNyIvPgogIDx0ZXh0IHg9IjQyMCIgeT0iMjE0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjMWExYTJlIiBmb250LXNpemU9IjgiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj54ICs9IDEg4oaSIDY8L3RleHQ+CiAgPHJlY3QgeD0iNTYwIiB5PSIyMDIiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTYiIHJ4PSIzIiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjciLz4KICA8dGV4dCB4PSI2MTAiIHk9IjIxNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzFhMWEyZSIgZm9udC1zaXplPSI4IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+d3JpdGUgeD02PC90ZXh0PgogIDx0ZXh0IHg9IjMwIiB5PSIyNDUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5UaHJlYWQgQjwvdGV4dD4KICA8bGluZSB4MT0iMTAwIiB5MT0iMjQwIiB4Mj0iNzAwIiB5Mj0iMjQwIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDwhLS0gVGhyZWFkIEIgbm93IHdhaXRzIC0tPgogIDxyZWN0IHg9IjQ5MCIgeT0iMjMyIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjE2IiByeD0iMyIgZmlsbD0iI2U5MWU2MyIgb3BhY2l0eT0iMC43Ii8+CiAgPHRleHQgeD0iNTQwIiB5PSIyNDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iOCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnJlYWQgeD02IOKGkOato+OBl+OBhCE8L3RleHQ+CiAgPHJlY3QgeD0iNjEwIiB5PSIyMzIiIHdpZHRoPSI4MCIgaGVpZ2h0PSIxNiIgcng9IjMiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuNyIvPgogIDx0ZXh0IHg9IjY1MCIgeT0iMjQ0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjgiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj54Kz0x4oaSIDcgT0s8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIyNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4oaSIHByaW50ZuOBrumBheW7tuOBjHJhY2Ugd2luZG9344KS5raI44GX44GfID0gSGVpc2VuYnVnPC90ZXh0PgogIDwhLS0gU29sdXRpb24gYm94IC0tPgogIDxyZWN0IHg9IjUwIiB5PSIyOTAiIHdpZHRoPSI3MDAiIGhlaWdodD0iNzAiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMzE1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuino+axuuetljog6Z2e5L616KWy55qE44Gq6Kaz5ris5omL5rOV44KS5L2/44GGPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMzM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+ZUJQRiAvIGR0cmFjZSAvIGFzeW5jLXByb2ZpbGVyOiDjg5fjg63jgrvjgrnjgavms6jlhaXjgZvjgZroprPmuKzlj6/og708L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzNTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCv+OCpOODn+ODs+OCsOOCkuWkieOBiOOBmuOBq+ODiOODrOODvOOCueOBp+OBjeOCi+OBn+OCgSBIZWlzZW5idWcg44KS5YaN54++44Gn44GN44KLPC90ZXh0Pgo8L3N2Zz4=)
-- - `console.log` / `printf` を入れるとバグが消える古典的ケース
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">printfデバッグが引き起こす観察者効果</text>
+  <!-- Before debug: buggy timeline -->
+  <text x="400" y="58" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">printfなし: バグが発生</text>
+  <!-- Thread A -->
+  <text x="30" y="85" fill="#f9a825" font-size="10" font-family="sans-serif">Thread A</text>
+  <line x1="100" y1="80" x2="700" y2="80" stroke="#f9a825" stroke-width="2"/>
+  <rect x="100" y="72" width="100" height="16" rx="3" fill="#f9a825" opacity="0.7"/>
+  <text x="150" y="84" text-anchor="middle" fill="#1a1a2e" font-size="8" font-family="sans-serif">read x=5</text>
+  <!-- Gap where race happens -->
+  <rect x="300" y="72" width="80" height="16" rx="3" fill="#f9a825" opacity="0.7"/>
+  <text x="340" y="84" text-anchor="middle" fill="#1a1a2e" font-size="8" font-family="sans-serif">x += 1 → 6</text>
+  <rect x="500" y="72" width="100" height="16" rx="3" fill="#f9a825" opacity="0.7"/>
+  <text x="550" y="84" text-anchor="middle" fill="#1a1a2e" font-size="8" font-family="sans-serif">write x=6</text>
+  <!-- Thread B -->
+  <text x="30" y="115" fill="#e91e63" font-size="10" font-family="sans-serif">Thread B</text>
+  <line x1="100" y1="110" x2="700" y2="110" stroke="#e91e63" stroke-width="2"/>
+  <rect x="250" y="102" width="100" height="16" rx="3" fill="#e91e63" opacity="0.7"/>
+  <text x="300" y="114" text-anchor="middle" fill="#ffffff" font-size="8" font-family="sans-serif">read x=5 ←旧値!</text>
+  <rect x="450" y="102" width="80" height="16" rx="3" fill="#e91e63" opacity="0.7"/>
+  <text x="490" y="114" text-anchor="middle" fill="#ffffff" font-size="8" font-family="sans-serif">x += 1 → 6</text>
+  <rect x="620" y="102" width="80" height="16" rx="3" fill="#e91e63" opacity="0.7"/>
+  <text x="660" y="114" text-anchor="middle" fill="#ffffff" font-size="8" font-family="sans-serif">write x=6!!</text>
+  <text x="400" y="140" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">→ x=7になるはずが x=6 (書き込み喪失)</text>
+  <!-- Divider -->
+  <line x1="50" y1="160" x2="750" y2="160" stroke="#333355" stroke-width="1" stroke-dasharray="5,3"/>
+  <!-- After debug: no bug (heisenbugged) -->
+  <text x="400" y="185" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">printf追加後: バグが消える</text>
+  <text x="30" y="215" fill="#f9a825" font-size="10" font-family="sans-serif">Thread A</text>
+  <line x1="100" y1="210" x2="700" y2="210" stroke="#f9a825" stroke-width="2"/>
+  <rect x="100" y="202" width="100" height="16" rx="3" fill="#f9a825" opacity="0.7"/>
+  <text x="150" y="214" text-anchor="middle" fill="#1a1a2e" font-size="8" font-family="sans-serif">read x=5</text>
+  <!-- printf adds delay -->
+  <rect x="210" y="202" width="130" height="16" rx="3" fill="#555577" opacity="0.9"/>
+  <text x="275" y="214" text-anchor="middle" fill="#ffffff" font-size="8" font-family="sans-serif">printf (遅延+10μs)</text>
+  <rect x="380" y="202" width="80" height="16" rx="3" fill="#f9a825" opacity="0.7"/>
+  <text x="420" y="214" text-anchor="middle" fill="#1a1a2e" font-size="8" font-family="sans-serif">x += 1 → 6</text>
+  <rect x="560" y="202" width="100" height="16" rx="3" fill="#f9a825" opacity="0.7"/>
+  <text x="610" y="214" text-anchor="middle" fill="#1a1a2e" font-size="8" font-family="sans-serif">write x=6</text>
+  <text x="30" y="245" fill="#e91e63" font-size="10" font-family="sans-serif">Thread B</text>
+  <line x1="100" y1="240" x2="700" y2="240" stroke="#e91e63" stroke-width="2"/>
+  <!-- Thread B now waits -->
+  <rect x="490" y="232" width="100" height="16" rx="3" fill="#e91e63" opacity="0.7"/>
+  <text x="540" y="244" text-anchor="middle" fill="#ffffff" font-size="8" font-family="sans-serif">read x=6 ←正しい!</text>
+  <rect x="610" y="232" width="80" height="16" rx="3" fill="#e91e63" opacity="0.7"/>
+  <text x="650" y="244" text-anchor="middle" fill="#ffffff" font-size="8" font-family="sans-serif">x+=1→ 7 OK</text>
+  <text x="400" y="270" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">→ printfの遅延がrace windowを消した = Heisenbug</text>
+  <!-- Solution box -->
+  <rect x="50" y="290" width="700" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">解決策: 非侵襲的な観測手法を使う</text>
+  <text x="400" y="335" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">eBPF / dtrace / async-profiler: プロセスに注入せず観測可能</text>
+  <text x="400" y="352" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">タイミングを変えずにトレースできるため Heisenbug を再現できる</text>
+</svg>
+</div>
+
+- `console.log` / `printf` を入れるとバグが消える古典的ケース
 
 
 ---
 
 # printfデバッグの罠（コード例）
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oprPlr5/jg4Tjg7zjg6vjgYznkrDlooPjgpLlpInjgYjjgovvvJrjg5fjg63jg4Djgq/jgrfjg6fjg7PpmZDlrprjg5DjgrA8L3RleHQ+CiAgPCEtLSBDb21wYXJpc29uIHRhYmxlIC0tPgogIDwhLS0gSGVhZGVyIC0tPgogIDxyZWN0IHg9IjIwIiB5PSI1MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0MCIgcng9IjQiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iIzU1NTU1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iMTIwIiB5PSI3NCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oprPmuKzjg4Tjg7zjg6s8L3RleHQ+CiAgPHJlY3QgeD0iMjI1IiB5PSI1MCIgd2lkdGg9IjI2MCIgaGVpZ2h0PSI0MCIgcng9IjQiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8dGV4dCB4PSIzNTUiIHk9Ijc0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPumWi+eZuuODu+ODh+ODkOODg+OCsOaZgjwvdGV4dD4KICA8cmVjdCB4PSI0OTAiIHk9IjUwIiB3aWR0aD0iMjkwIiBoZWlnaHQ9IjQwIiByeD0iNCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjYzNSIgeT0iNzQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OX44Ot44OA44Kv44K344On44OzPC90ZXh0PgogIDwhLS0gUm93cyAtLT4KICA8cmVjdCB4PSIyMCIgeT0iMTAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjQ2IiByeD0iMiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjEyMCIgeT0iMTI3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Kz44Oz44OR44Kk44OpPC90ZXh0PgogICAgPHJlY3QgeD0iMjI1IiB5PSIxMDAiIHdpZHRoPSIyNjAiIGhlaWdodD0iNDYiIHJ4PSIyIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMzU1IiB5PSIxMjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4tTzAgKOacgOmBqeWMluOBquOBlyk8L3RleHQ+CiAgICA8cmVjdCB4PSI0OTAiIHk9IjEwMCIgd2lkdGg9IjI5MCIgaGVpZ2h0PSI0NiIgcng9IjIiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI2MzUiIHk9IjEyNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPi1PMjog5aSJ5pWw44GM44Os44K444K544K/44GrIOKGkiDjg5DjgrDlh7rnj748L3RleHQ+PHJlY3QgeD0iMjAiIHk9IjE1MiIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0NiIgcng9IjIiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSIxMjAiIHk9IjE3OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODoeODouODqjwvdGV4dD4KICAgIDxyZWN0IHg9IjIyNSIgeT0iMTUyIiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjQ2IiByeD0iMiIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjM1NSIgeT0iMTc5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OH44OQ44OD44Kw44Oi44O844OJ44GnMOWfi+OCgTwvdGV4dD4KICAgIDxyZWN0IHg9IjQ5MCIgeT0iMTUyIiB3aWR0aD0iMjkwIiBoZWlnaHQ9IjQ2IiByeD0iMiIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjYzNSIgeT0iMTc5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+VXNlLUFmdGVyLUZyZWUg44GM6Zqg6JS944GV44KM44Gq44GEPC90ZXh0PjxyZWN0IHg9IjIwIiB5PSIyMDQiIHdpZHRoPSIyMDAiIGhlaWdodD0iNDYiIHJ4PSIyIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTIwIiB5PSIyMzEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5wcmludGYvbG9nPC90ZXh0PgogICAgPHJlY3QgeD0iMjI1IiB5PSIyMDQiIHdpZHRoPSIyNjAiIGhlaWdodD0iNDYiIHJ4PSIyIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMzU1IiB5PSIyMzEiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5JL08gZmx1c2jjgafjgrfjg6rjgqLjg6njgqTjgro8L3RleHQ+CiAgICA8cmVjdCB4PSI0OTAiIHk9IjIwNCIgd2lkdGg9IjI5MCIgaGVpZ2h0PSI0NiIgcng9IjIiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI2MzUiIHk9IjIzMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODkOODg+ODleOCoeODquODs+OCsCDihpIg56u25ZCI5p2h5Lu244GM5Ye654++PC90ZXh0PjxyZWN0IHg9IjIwIiB5PSIyNTYiIHdpZHRoPSIyMDAiIGhlaWdodD0iNDYiIHJ4PSIyIiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTIwIiB5PSIyODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg5fjg63jg5XjgqHjgqTjg6k8L3RleHQ+CiAgICA8cmVjdCB4PSIyMjUiIHk9IjI1NiIgd2lkdGg9IjI2MCIgaGVpZ2h0PSI0NiIgcng9IjIiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSIzNTUiIHk9IjI4MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPkdD44KS6aC755m644GV44Gb44KLPC90ZXh0PgogICAgPHJlY3QgeD0iNDkwIiB5PSIyNTYiIHdpZHRoPSIyOTAiIGhlaWdodD0iNDYiIHJ4PSIyIiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iNjM1IiB5PSIyODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lvLHlj4Lnhafjga7mjJnli5XjgYzlpInljJY8L3RleHQ+PHJlY3QgeD0iMjAiIHk9IjMwOCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0NiIgcng9IjIiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSIxMjAiIHk9IjMzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnRjcGR1bXA8L3RleHQ+CiAgICA8cmVjdCB4PSIyMjUiIHk9IjMwOCIgd2lkdGg9IjI2MCIgaGVpZ2h0PSI0NiIgcng9IjIiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSIzNTUiIHk9IjMzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODkeOCseODg+ODiOWHpueQhuOCkuW+rumBheW7tjwvdGV4dD4KICAgIDxyZWN0IHg9IjQ5MCIgeT0iMzA4IiB3aWR0aD0iMjkwIiBoZWlnaHQ9IjQ2IiByeD0iMiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjYzNSIgeT0iMzM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44K/44Kk44Of44Oz44Kw5L6d5a2Y44OQ44Kw44GM6aGV5Zyo5YyWPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMzc4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5YWo44Gm44CM6Kaz5a+f6YGT5YW344GM57O744KS5pO+5Lmx44GZ44KL44CN44OR44K/44O844OzPC90ZXh0Pgo8L3N2Zz4=)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">観察ツールが環境を変える：プロダクション限定バグ</text>
+  <!-- Comparison table -->
+  <!-- Header -->
+  <rect x="20" y="50" width="200" height="40" rx="4" fill="#16213e" stroke="#555555" stroke-width="1"/>
+  <text x="120" y="74" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="bold" font-family="sans-serif">観測ツール</text>
+  <rect x="225" y="50" width="260" height="40" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="355" y="74" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">開発・デバッグ時</text>
+  <rect x="490" y="50" width="290" height="40" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="635" y="74" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">プロダクション</text>
+  <!-- Rows -->
+  <rect x="20" y="100" width="200" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="120" y="127" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コンパイラ</text>
+    <rect x="225" y="100" width="260" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="355" y="127" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">-O0 (最適化なし)</text>
+    <rect x="490" y="100" width="290" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="635" y="127" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">-O2: 変数がレジスタに → バグ出現</text><rect x="20" y="152" width="200" height="46" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="120" y="179" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">メモリ</text>
+    <rect x="225" y="152" width="260" height="46" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="355" y="179" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">デバッグモードで0埋め</text>
+    <rect x="490" y="152" width="290" height="46" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="635" y="179" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">Use-After-Free が隠蔽されない</text><rect x="20" y="204" width="200" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="120" y="231" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">printf/log</text>
+    <rect x="225" y="204" width="260" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="355" y="231" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">I/O flushでシリアライズ</text>
+    <rect x="490" y="204" width="290" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="635" y="231" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">バッファリング → 競合条件が出現</text><rect x="20" y="256" width="200" height="46" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="120" y="283" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">プロファイラ</text>
+    <rect x="225" y="256" width="260" height="46" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="355" y="283" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">GCを頻発させる</text>
+    <rect x="490" y="256" width="290" height="46" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="635" y="283" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">弱参照の挙動が変化</text><rect x="20" y="308" width="200" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="120" y="335" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">tcpdump</text>
+    <rect x="225" y="308" width="260" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="355" y="335" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">パケット処理を微遅延</text>
+    <rect x="490" y="308" width="290" height="46" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="635" y="335" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">タイミング依存バグが顕在化</text>
+  <text x="400" y="378" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">全て「観察道具が系を擾乱する」パターン</text>
+</svg>
+</div>
 
 
 ---
@@ -236,21 +524,107 @@ function processData(buffer: Buffer) {
 
 > *本番環境の負荷・データ・スケールがHeisenBugを発現させる*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7pnZ7kvrXopbLnmoToprPmuKzvvJrns7vjgpLlpInjgYjjgZrjgavoprPmuKzjgZnjgos8L3RleHQ+CiAgPCEtLSBPYnNlcnZhYmlsaXR5IHB5cmFtaWQgLS0+CiAgPCEtLSBCYXNlOiBtb3N0IGludmFzaXZlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMjUwLDMyMCA1NTAsMzIwIDUyMCwyNjggMjgwLDI2OCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjMwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnByaW50Zi9jb25zb2xlLmxvZyDigJQg6auY5L616KWy77yI44OV44Op44OD44K344Ol44O744K/44Kk44Of44Oz44Kw5aSJ5YyW77yJPC90ZXh0PgogIDwhLS0gTGV2ZWwgMiAtLT4KICA8cG9seWdvbiBwb2ludHM9IjI4MCwyNjggNTIwLDI2OCA0OTAsMjE1IDMxMCwyMTUiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuODUiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjI0OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPkJyZWFrcG9pbnQgRGVidWdnZXIg4oCUIOWun+ihjOOCkuWBnOatojwvdGV4dD4KICA8IS0tIExldmVsIDMgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIzMTAsMjE1IDQ5MCwyMTUgNDYwLDE2MCAzNDAsMTYwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNDAwIiB5PSIxOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5TdHJ1Y3R1cmVkIExvZ2dpbmcg4oCUIOODquODs+OCsOODkOODg+ODleOCoeOBp+S9juOCquODvOODkOODvOODmOODg+ODiTwvdGV4dD4KICA8IS0tIExldmVsIDQgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIzNDAsMTYwIDQ2MCwxNjAgNDMwLDEwOCAzNzAsMTA4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNDAwIiB5PSIxNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5GbGlnaHQgUmVjb3JkZXIg4oCUIOW4uOaZguiomOmMsiAxJeacqua6gDwvdGV4dD4KICA8IS0tIFRvcDogbGVhc3QgaW52YXNpdmUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIzNzAsMTA4IDQzMCwxMDggNDAwLDU1IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iODgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5lQlBGPC90ZXh0PgogIDwhLS0gTGFiZWxzIG9uIHJpZ2h0IC0tPgogIDx0ZXh0IHg9IjY0MCIgeT0iMzEwIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L616KWy5bqmOiDpq5g8L3RleHQ+CiAgPHRleHQgeD0iNjQwIiB5PSI4OCIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS+teilsuW6pjog5qW15bCPPC90ZXh0PgogIDxsaW5lIHgxPSI2MzAiIHkxPSI5NSIgeDI9IjYzMCIgeTI9IjMxNSIgc3Ryb2tlPSIjNTU1NTU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8cG9seWdvbiBwb2ludHM9IjYzMCw5NSA2MjQsMTEwIDYzNiwxMTAiIGZpbGw9IiNmOWE4MjUiLz4KICA8cG9seWdvbiBwb2ludHM9IjYzMCwzMTUgNjI0LDMwMCA2MzYsMzAwIiBmaWxsPSIjYWFhYWFhIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ljp/liYfvvJrns7vjgpLlpInjgYjjgZrjgavoprPmuKzjgZnjgovmiYvms5XjgpLpgbjjgbY8L3RleHQ+Cjwvc3ZnPg==)
-- - **コンパイラ最適化**: `-O2` で変数がレジスタに最適化 → デバッグビルドでは発生しない
-- - **メモリアロケータ**: デバッグモードはメモリを0埋め → Use-After-Free が隠蔽
-- - **GCタイミング**: プロファイラがGCを頻発させ弱参照の挙動が変化
-- - **ネットワーク遅延**: tcpdump がパケット処理を微妙に遅延
-- - **Docker volume**: 開発環境のファイルシステムが本番と異なるinode挙動
-- - 全て「観察道具が系を擾乱する」パターン
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">非侵襲的観測：系を変えずに観測する</text>
+  <!-- Observability pyramid -->
+  <!-- Base: most invasive -->
+  <polygon points="250,320 550,320 520,268 280,268" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="300" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">printf/console.log — 高侵襲（フラッシュ・タイミング変化）</text>
+  <!-- Level 2 -->
+  <polygon points="280,268 520,268 490,215 310,215" fill="#16213e" stroke="#e91e63" stroke-width="1.5" opacity="0.85"/>
+  <text x="400" y="248" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Breakpoint Debugger — 実行を停止</text>
+  <!-- Level 3 -->
+  <polygon points="310,215 490,215 460,160 340,160" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="195" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Structured Logging — リングバッファで低オーバーヘッド</text>
+  <!-- Level 4 -->
+  <polygon points="340,160 460,160 430,108 370,108" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="140" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Flight Recorder — 常時記録 1%未満</text>
+  <!-- Top: least invasive -->
+  <polygon points="370,108 430,108 400,55" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="88" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">eBPF</text>
+  <!-- Labels on right -->
+  <text x="640" y="310" fill="#aaaaaa" font-size="10" font-family="sans-serif">侵襲度: 高</text>
+  <text x="640" y="88" fill="#f9a825" font-size="10" font-family="sans-serif">侵襲度: 極小</text>
+  <line x1="630" y1="95" x2="630" y2="315" stroke="#555555" stroke-width="1"/>
+  <polygon points="630,95 624,110 636,110" fill="#f9a825"/>
+  <polygon points="630,315 624,300 636,300" fill="#aaaaaa"/>
+  <text x="400" y="370" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">原則：系を変えずに観測する手法を選ぶ</text>
+</svg>
+</div>
+
+- **コンパイラ最適化**: `-O2` で変数がレジスタに最適化 → デバッグビルドでは発生しない
+- **メモリアロケータ**: デバッグモードはメモリを0埋め → Use-After-Free が隠蔽
+- **GCタイミング**: プロファイラがGCを頻発させ弱参照の挙動が変化
+- **ネットワーク遅延**: tcpdump がパケット処理を微妙に遅延
+- **Docker volume**: 開発環境のファイルシステムが本番と異なるinode挙動
+- 全て「観察道具が系を擾乱する」パターン
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Heisenbugの捕まえ方
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5IZWlzZW5idWfjgpLmjZXjgb7jgYjjgovvvJrjg4fjg5Djg4PjgrDmiKbnlaXjg5Xjg63jg7zjg4Hjg6Pjg7zjg4g8L3RleHQ+CiAgPCEtLSBTdGFydCAtLT4KICA8cmVjdCB4PSIzMjAiIHk9IjUwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjQwIiByeD0iNiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI0MDAiIHk9Ijc0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODkOOCsOeZuuimizwvdGV4dD4KICA8bGluZSB4MT0iNDAwIiB5MT0iOTAiIHgyPSI0MDAiIHkyPSIxMTUiIHN0cm9rZT0iIzU1NTU3NyIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHBvbHlnb24gcG9pbnRzPSI0MDAsMTE1IDM5NCwxMDUgNDA2LDEwNSIgZmlsbD0iIzU1NTU3NyIvPgogIDwhLS0gRGVjaXNpb246IHJlcHJvZHVjZWQ/IC0tPgogIDxyZWN0IHg9IjI4MCIgeT0iMTE1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjQwIiByeD0iNiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjEzOSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODh+ODkOODg+OCrOOBp+WGjeePvuOBmeOCi+OBi++8nzwvdGV4dD4KICA8IS0tIFllczogQm9ocmJ1ZyAtLT4KICA8bGluZSB4MT0iNTIwIiB5MT0iMTM1IiB4Mj0iNjIwIiB5Mj0iMTM1IiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxwb2x5Z29uIHBvaW50cz0iNjIwLDEzNSA2MTAsMTI5IDYxMCwxNDEiIGZpbGw9IiNmOWE4MjUiLz4KICA8dGV4dCB4PSI1NzAiIHk9IjEyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+WUVTPC90ZXh0PgogIDxyZWN0IHg9IjYyMCIgeT0iMTE1IiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjQwIiByeD0iNiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI2OTUiIHk9IjEzNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPkJvaHJidWc8L3RleHQ+CiAgPHRleHQgeD0iNjk1IiB5PSIxNDkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPumAmuW4uOOBruODh+ODkOODg+OCsOOBp+ino+axujwvdGV4dD4KICA8IS0tIE5vOiBIZWlzZW5idWcgcGF0aCAtLT4KICA8bGluZSB4MT0iNDAwIiB5MT0iMTU1IiB4Mj0iNDAwIiB5Mj0iMTgwIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxwb2x5Z29uIHBvaW50cz0iNDAwLDE4MCAzOTQsMTcwIDQwNiwxNzAiIGZpbGw9IiNlOTFlNjMiLz4KICA8dGV4dCB4PSI0MTgiIHk9IjE3MiIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+Tk88L3RleHQ+CiAgPCEtLSBTdXNwZWN0IGhlaXNlbmJ1ZyAtLT4KICA8cmVjdCB4PSIyODAiIHk9IjE4MCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI0MCIgcng9IjYiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIxOTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+SGVpc2VuYnVnIOeWkeOBhDwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjIxNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OW44Os44O844Kv44Od44Kk44Oz44OI5YmK6ZmkPC90ZXh0PgogIDxsaW5lIHgxPSI0MDAiIHkxPSIyMjAiIHgyPSI0MDAiIHkyPSIyNDUiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHBvbHlnb24gcG9pbnRzPSI0MDAsMjQ1IDM5NCwyMzUgNDA2LDIzNSIgZmlsbD0iI2U5MWU2MyIvPgogIDwhLS0gVGhyZWUgcGFyYWxsZWwgYXBwcm9hY2hlcyAtLT4KICA8IS0tIGVCUEYgLS0+CiAgPGxpbmUgeDE9IjI4MCIgeTE9IjI2NSIgeDI9IjEzMCIgeTI9IjI2NSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8cG9seWdvbiBwb2ludHM9IjEzMCwyNjUgMTQwLDI1OSAxNDAsMjcxIiBmaWxsPSIjZTkxZTYzIi8+CiAgPHJlY3QgeD0iMjAiIHk9IjI0NSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iODAiIHk9IjI2OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5lQlBGPC90ZXh0PgogIDx0ZXh0IHg9IjgwIiB5PSIyODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCq+ODvOODjeODq+ODrOODmeODqzwvdGV4dD4KICA8dGV4dCB4PSI4MCIgeT0iMjk4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjgiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7pnZ7kvrXopbLoprPmuKw8L3RleHQ+CiAgPCEtLSBMb2cgYW5hbHlzaXMgLS0+CiAgPHJlY3QgeD0iMjgwIiB5PSIyNDUiIHdpZHRoPSIyNDAiIGhlaWdodD0iNjAiIHJ4PSI2IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMjY4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuani+mAoOWMluODreOCsOWIhuaekDwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjI4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI4IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44K/44Kk44Of44Oz44Kw44Gq44GX44Gr54q25oWL6KiY6YyyPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMjk4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjgiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5jb3JyZWxhdGlvbklk44Gn6L+96LehPC90ZXh0PgogIDwhLS0gRGlzdHJpYnV0ZWQgdHJhY2luZyAtLT4KICA8bGluZSB4MT0iNTIwIiB5MT0iMjY1IiB4Mj0iNjUwIiB5Mj0iMjY1IiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxwb2x5Z29uIHBvaW50cz0iNjUwLDI2NSA2NDAsMjU5IDY0MCwyNzEiIGZpbGw9IiNlOTFlNjMiLz4KICA8cmVjdCB4PSI2NTAiIHk9IjI0NSIgd2lkdGg9IjEzMCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNzE1IiB5PSIyNjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5YiG5pWj44OI44Os44O844K5PC90ZXh0PgogIDx0ZXh0IHg9IjcxNSIgeT0iMjg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjgiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5KYWVnZXIvVGVtcG88L3RleHQ+CiAgPHRleHQgeD0iNzE1IiB5PSIyOTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWboOaenOmWouS/guOCkuWPr+imluWMljwvdGV4dD4KICA8IS0tIFJvb3QgY2F1c2UgLS0+CiAgPGxpbmUgeDE9IjQwMCIgeTE9IjMwNSIgeDI9IjQwMCIgeTI9IjMzNSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8cG9seWdvbiBwb2ludHM9IjQwMCwzMzUgMzk0LDMyNSA0MDYsMzI1IiBmaWxsPSIjZjlhODI1Ii8+CiAgPHJlY3QgeD0iMjcwIiB5PSIzMzUiIHdpZHRoPSIyNjAiIGhlaWdodD0iNDAiIHJ4PSI2IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMyIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMzU0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuagueacrOWOn+WboOOBrueJueWumjwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjM2OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5ZCM5pyf44OX44Oq44Of44OG44Kj44OW5L+u5q2jIC8g44Ot44OD44Kv6L+95YqgPC90ZXh0Pgo8L3N2Zz4=)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Heisenbugを捕まえる：デバッグ戦略フローチャート</text>
+  <!-- Start -->
+  <rect x="320" y="50" width="160" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="74" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">バグ発見</text>
+  <line x1="400" y1="90" x2="400" y2="115" stroke="#555577" stroke-width="1"/>
+  <polygon points="400,115 394,105 406,105" fill="#555577"/>
+  <!-- Decision: reproduced? -->
+  <rect x="280" y="115" width="240" height="40" rx="6" fill="#16213e" stroke="#ffffff" stroke-width="1"/>
+  <text x="400" y="139" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">デバッガで再現するか？</text>
+  <!-- Yes: Bohrbug -->
+  <line x1="520" y1="135" x2="620" y2="135" stroke="#f9a825" stroke-width="1"/>
+  <polygon points="620,135 610,129 610,141" fill="#f9a825"/>
+  <text x="570" y="128" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif">YES</text>
+  <rect x="620" y="115" width="150" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="695" y="134" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">Bohrbug</text>
+  <text x="695" y="149" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">通常のデバッグで解決</text>
+  <!-- No: Heisenbug path -->
+  <line x1="400" y1="155" x2="400" y2="180" stroke="#e91e63" stroke-width="1"/>
+  <polygon points="400,180 394,170 406,170" fill="#e91e63"/>
+  <text x="418" y="172" fill="#e91e63" font-size="9" font-family="sans-serif">NO</text>
+  <!-- Suspect heisenbug -->
+  <rect x="280" y="180" width="240" height="40" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="199" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">Heisenbug 疑い</text>
+  <text x="400" y="215" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">ブレークポイント削除</text>
+  <line x1="400" y1="220" x2="400" y2="245" stroke="#e91e63" stroke-width="1"/>
+  <polygon points="400,245 394,235 406,235" fill="#e91e63"/>
+  <!-- Three parallel approaches -->
+  <!-- eBPF -->
+  <line x1="280" y1="265" x2="130" y2="265" stroke="#e91e63" stroke-width="1"/>
+  <polygon points="130,265 140,259 140,271" fill="#e91e63"/>
+  <rect x="20" y="245" width="120" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="80" y="268" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">eBPF</text>
+  <text x="80" y="285" text-anchor="middle" fill="#aaaaaa" font-size="8" font-family="sans-serif">カーネルレベル</text>
+  <text x="80" y="298" text-anchor="middle" fill="#aaaaaa" font-size="8" font-family="sans-serif">非侵襲観測</text>
+  <!-- Log analysis -->
+  <rect x="280" y="245" width="240" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="268" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">構造化ログ分析</text>
+  <text x="400" y="285" text-anchor="middle" fill="#aaaaaa" font-size="8" font-family="sans-serif">タイミングなしに状態記録</text>
+  <text x="400" y="298" text-anchor="middle" fill="#aaaaaa" font-size="8" font-family="sans-serif">correlationIdで追跡</text>
+  <!-- Distributed tracing -->
+  <line x1="520" y1="265" x2="650" y2="265" stroke="#e91e63" stroke-width="1"/>
+  <polygon points="650,265 640,259 640,271" fill="#e91e63"/>
+  <rect x="650" y="245" width="130" height="60" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="715" y="268" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">分散トレース</text>
+  <text x="715" y="285" text-anchor="middle" fill="#aaaaaa" font-size="8" font-family="sans-serif">Jaeger/Tempo</text>
+  <text x="715" y="298" text-anchor="middle" fill="#aaaaaa" font-size="8" font-family="sans-serif">因果関係を可視化</text>
+  <!-- Root cause -->
+  <line x1="400" y1="305" x2="400" y2="335" stroke="#f9a825" stroke-width="1"/>
+  <polygon points="400,335 394,325 406,325" fill="#f9a825"/>
+  <rect x="270" y="335" width="260" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="3"/>
+  <text x="400" y="354" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">根本原因の特定</text>
+  <text x="400" y="368" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">同期プリミティブ修正 / ロック追加</text>
+</svg>
+</div>
+
 - Chapter 5: Catching Heisenbugs
 
 
@@ -260,12 +634,12 @@ function processData(buffer: Buffer) {
 
 > *eBPF・分散トレース・構造化ログで観測影響ゼロに近づける*
 
-- - **構造化ログ** (Structured Logging): リングバッファで最小オーバーヘッド
-- - **eBPF**: カーネルレベルで非侵襲的にトレーシング
-- - **Flight Recorder** (JFR): JVMの常時記録、オーバーヘッド1%未満
-- - **Core Dump 事後解析**: クラッシュ後にメモリダンプを分析
-- - **Chaos Engineering**: ランダム障害注入でHeisenbugを炙り出す
-- - 原則: **系を変えずに観測する** 手法を選ぶ
+- **構造化ログ** (Structured Logging): リングバッファで最小オーバーヘッド
+- **eBPF**: カーネルレベルで非侵襲的にトレーシング
+- **Flight Recorder** (JFR): JVMの常時記録、オーバーヘッド1%未満
+- **Core Dump 事後解析**: クラッシュ後にメモリダンプを分析
+- **Chaos Engineering**: ランダム障害注入でHeisenbugを炙り出す
+- 原則: **系を変えずに観測する** 手法を選ぶ
 
 
 ---
@@ -274,13 +648,42 @@ function processData(buffer: Buffer) {
 
 > *Race Conditionの確率的再現—stressツールとシード固定が鍵*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7pnZ7kvrXopbLnmoToprPmuKzvvJrns7vjgpLlpInjgYjjgZrjgavoprPmuKzjgZnjgos8L3RleHQ+CiAgPCEtLSBPYnNlcnZhYmlsaXR5IHB5cmFtaWQgLS0+CiAgPCEtLSBCYXNlOiBtb3N0IGludmFzaXZlIC0tPgogIDxwb2x5Z29uIHBvaW50cz0iMjUwLDMyMCA1NTAsMzIwIDUyMCwyNjggMjgwLDI2OCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjMwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnByaW50Zi9jb25zb2xlLmxvZyDigJQg6auY5L616KWy77yI44OV44Op44OD44K344Ol44O744K/44Kk44Of44Oz44Kw5aSJ5YyW77yJPC90ZXh0PgogIDwhLS0gTGV2ZWwgMiAtLT4KICA8cG9seWdvbiBwb2ludHM9IjI4MCwyNjggNTIwLDI2OCA0OTAsMjE1IDMxMCwyMTUiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxLjUiIG9wYWNpdHk9IjAuODUiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjI0OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPkJyZWFrcG9pbnQgRGVidWdnZXIg4oCUIOWun+ihjOOCkuWBnOatojwvdGV4dD4KICA8IS0tIExldmVsIDMgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIzMTAsMjE1IDQ5MCwyMTUgNDYwLDE2MCAzNDAsMTYwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNDAwIiB5PSIxOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5TdHJ1Y3R1cmVkIExvZ2dpbmcg4oCUIOODquODs+OCsOODkOODg+ODleOCoeOBp+S9juOCquODvOODkOODvOODmOODg+ODiTwvdGV4dD4KICA8IS0tIExldmVsIDQgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIzNDAsMTYwIDQ2MCwxNjAgNDMwLDEwOCAzNzAsMTA4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNDAwIiB5PSIxNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5GbGlnaHQgUmVjb3JkZXIg4oCUIOW4uOaZguiomOmMsiAxJeacqua6gDwvdGV4dD4KICA8IS0tIFRvcDogbGVhc3QgaW52YXNpdmUgLS0+CiAgPHBvbHlnb24gcG9pbnRzPSIzNzAsMTA4IDQzMCwxMDggNDAwLDU1IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iODgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5lQlBGPC90ZXh0PgogIDwhLS0gTGFiZWxzIG9uIHJpZ2h0IC0tPgogIDx0ZXh0IHg9IjY0MCIgeT0iMzEwIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L616KWy5bqmOiDpq5g8L3RleHQ+CiAgPHRleHQgeD0iNjQwIiB5PSI4OCIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS+teilsuW6pjog5qW15bCPPC90ZXh0PgogIDxsaW5lIHgxPSI2MzAiIHkxPSI5NSIgeDI9IjYzMCIgeTI9IjMxNSIgc3Ryb2tlPSIjNTU1NTU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8cG9seWdvbiBwb2ludHM9IjYzMCw5NSA2MjQsMTEwIDYzNiwxMTAiIGZpbGw9IiNmOWE4MjUiLz4KICA8cG9seWdvbiBwb2ludHM9IjYzMCwzMTUgNjI0LDMwMCA2MzYsMzAwIiBmaWxsPSIjYWFhYWFhIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ljp/liYfvvJrns7vjgpLlpInjgYjjgZrjgavoprPmuKzjgZnjgovmiYvms5XjgpLpgbjjgbY8L3RleHQ+Cjwvc3ZnPg==)
-- - 1. **Thread Sanitizer (TSan)**: コンパイル時にRace Conditionを検出
-- - 2. **Address Sanitizer (ASan)**: Use-After-Freeを検出
-- - 3. **Deterministic Replay**: rr (Mozilla) でスレッド実行を完全記録・再生
-- - 4. **Fuzzing**: ランダム入力で非決定的バグを発見
-- - 5. **Property-Based Testing**: 不変条件でHeisenbugの症状を検出
-- - 6. **Canary Release**: 本番環境の一部で長時間観測
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">非侵襲的観測：系を変えずに観測する</text>
+  <!-- Observability pyramid -->
+  <!-- Base: most invasive -->
+  <polygon points="250,320 550,320 520,268 280,268" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="300" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">printf/console.log — 高侵襲（フラッシュ・タイミング変化）</text>
+  <!-- Level 2 -->
+  <polygon points="280,268 520,268 490,215 310,215" fill="#16213e" stroke="#e91e63" stroke-width="1.5" opacity="0.85"/>
+  <text x="400" y="248" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Breakpoint Debugger — 実行を停止</text>
+  <!-- Level 3 -->
+  <polygon points="310,215 490,215 460,160 340,160" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="195" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Structured Logging — リングバッファで低オーバーヘッド</text>
+  <!-- Level 4 -->
+  <polygon points="340,160 460,160 430,108 370,108" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="140" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Flight Recorder — 常時記録 1%未満</text>
+  <!-- Top: least invasive -->
+  <polygon points="370,108 430,108 400,55" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="88" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">eBPF</text>
+  <!-- Labels on right -->
+  <text x="640" y="310" fill="#aaaaaa" font-size="10" font-family="sans-serif">侵襲度: 高</text>
+  <text x="640" y="88" fill="#f9a825" font-size="10" font-family="sans-serif">侵襲度: 極小</text>
+  <line x1="630" y1="95" x2="630" y2="315" stroke="#555555" stroke-width="1"/>
+  <polygon points="630,95 624,110 636,110" fill="#f9a825"/>
+  <polygon points="630,315 624,300 636,300" fill="#aaaaaa"/>
+  <text x="400" y="370" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">原則：系を変えずに観測する手法を選ぶ</text>
+</svg>
+</div>
+
+- 1. **Thread Sanitizer (TSan)**: コンパイル時にRace Conditionを検出
+- 2. **Address Sanitizer (ASan)**: Use-After-Freeを検出
+- 3. **Deterministic Replay**: rr (Mozilla) でスレッド実行を完全記録・再生
+- 4. **Fuzzing**: ランダム入力で非決定的バグを発見
+- 5. **Property-Based Testing**: 不変条件でHeisenbugの症状を検出
+- 6. **Canary Release**: 本番環境の一部で長時間観測
 
 <!--
 rrはMozillaが開発したdeterministic replay debugger。Heisenbugの再現に非常に有効。
@@ -288,10 +691,50 @@ rrはMozillaが開発したdeterministic replay debugger。Heisenbugの再現に
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 観察者効果を逆手に取る
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5PYnNlcnZhYmlsaXR5IGFzIERlc2lnbiBQcmluY2lwbGU8L3RleHQ+CiAgPCEtLSBUaHJlZSBwaWxsYXJzIC0tPgogIDx0ZXh0IHg9IjQwMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oprPlr5/ogIXlirnmnpzjgpLoqK3oqIjjgavntYTjgb/ovrzjgoDvvJpPcGVuVGVsZW1ldHJ544GuM+acrOafsTwvdGV4dD4KICA8IS0tIFBpbGxhciAxOiBMb2dzIC0tPgogIDxyZWN0IHg9IjMwIiB5PSI3NSIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIyMjAiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIxNDAiIHk9IjEwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5Mb2dz77yI44Ot44Kw77yJPC90ZXh0PgogIDx0ZXh0IHg9IjE0MCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44CM5L2V44GM6LW344GN44Gf44GL44CN44Gu6KiY6YyyPC90ZXh0PgogIDxsaW5lIHgxPSI1MCIgeTE9IjE0NSIgeDI9IjIzMCIgeTI9IjE0NSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIxNDAiIHk9IjE2OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlN0cnVjdHVyZWQgTG9nZ2luZzwvdGV4dD4KICA8dGV4dCB4PSIxNDAiIHk9IjE4NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPkVMSyBTdGFjayAvIExva2k8L3RleHQ+CiAgPHRleHQgeD0iMTQwIiB5PSIyMDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5SaW5nIGJ1ZmZlciDihpIg5L2O5L616KWyPC90ZXh0PgogIDx0ZXh0IHg9IjE0MCIgeT0iMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L616KWy5bqmOiDkvY48L3RleHQ+CiAgPCEtLSBQaWxsYXIgMjogTWV0cmljcyAtLT4KICA8cmVjdCB4PSIyOTAiIHk9Ijc1IiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjIyMCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMTA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPk1ldHJpY3PvvIjjg6Hjg4jjg6rjgq/jgrnvvIk8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIxMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgIzjganjgozjgY/jgonjgYTjgI3jga7mlbDlgKTljJY8L3RleHQ+CiAgPGxpbmUgeDE9IjMxMCIgeTE9IjE0NSIgeDI9IjQ5MCIgeTI9IjE0NSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjE2OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlByb21ldGhldXMgLyBHcmFmYW5hPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMTg2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+UHVzaC9QdWxsIOS4oeWvvuW/nDwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjIwNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCouOCsOODquOCsuODvOOCt+ODp+ODsyDihpIg6LaF5L2O5L616KWyPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L616KWy5bqmOiDmpbXkvY48L3RleHQ+CiAgPCEtLSBQaWxsYXIgMzogVHJhY2VzIC0tPgogIDxyZWN0IHg9IjU1MCIgeT0iNzUiIHdpZHRoPSIyMjAiIGhlaWdodD0iMjIwIiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNjYwIiB5PSIxMDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+VHJhY2Vz77yI44OI44Os44O844K577yJPC90ZXh0PgogIDx0ZXh0IHg9IjY2MCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44CM44Gp44GT44KS6YCa44Gj44Gf44GL44CN44Gu6L+96LehPC90ZXh0PgogIDxsaW5lIHgxPSI1NzAiIHkxPSIxNDUiIHgyPSI3NTAiIHkyPSIxNDUiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNjYwIiB5PSIxNjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5KYWVnZXIgLyBaaXBraW48L3RleHQ+CiAgPHRleHQgeD0iNjYwIiB5PSIxODYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5EaXN0cmlidXRlZCBUcmFjaW5nPC90ZXh0PgogIDx0ZXh0IHg9IjY2MCIgeT0iMjA0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Z2e5L616KWy55qE44OV44Ot44O86L+96LehPC90ZXh0PgogIDx0ZXh0IHg9IjY2MCIgeT0iMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L616KWy5bqmOiDkvY7jgJzkuK08L3RleHQ+CiAgPCEtLSBCb3R0b206IHF1YW50dW0gbGVzc29uIC0tPgogIDxyZWN0IHg9IjgwIiB5PSIzMTUiIHdpZHRoPSI2NDAiIGhlaWdodD0iNjUiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjM0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ph4/lrZDlipvlrabjga7mlZnoqJPvvJroprPmuKzjga/kuI3lj6/pgb88L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgarjgonjgbDmnIDlsI/jgrPjgrnjg4jjgafmnIDlpKfmg4XloLHjgpLlvpfjgovoqK3oqIjjgpIg4oCUIE9wZW5UZWxlbWV0cnk8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgIzoprPmuKzjgafjgY3jgarjgYTjgrfjgrnjg4bjg6Djga/liLblvqHjgafjgY3jgarjgYTjgI08L3RleHQ+Cjwvc3ZnPg==)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Observability as Design Principle</text>
+  <!-- Three pillars -->
+  <text x="400" y="58" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">観察者効果を設計に組み込む：OpenTelemetryの3本柱</text>
+  <!-- Pillar 1: Logs -->
+  <rect x="30" y="75" width="220" height="220" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="140" y="105" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">Logs（ログ）</text>
+  <text x="140" y="130" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「何が起きたか」の記録</text>
+  <line x1="50" y1="145" x2="230" y2="145" stroke="#333355" stroke-width="1"/>
+  <text x="140" y="168" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Structured Logging</text>
+  <text x="140" y="186" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">ELK Stack / Loki</text>
+  <text x="140" y="204" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Ring buffer → 低侵襲</text>
+  <text x="140" y="270" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">侵襲度: 低</text>
+  <!-- Pillar 2: Metrics -->
+  <rect x="290" y="75" width="220" height="220" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="105" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">Metrics（メトリクス）</text>
+  <text x="400" y="130" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「どれくらい」の数値化</text>
+  <line x1="310" y1="145" x2="490" y2="145" stroke="#333355" stroke-width="1"/>
+  <text x="400" y="168" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Prometheus / Grafana</text>
+  <text x="400" y="186" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Push/Pull 両対応</text>
+  <text x="400" y="204" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">アグリゲーション → 超低侵襲</text>
+  <text x="400" y="270" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">侵襲度: 極低</text>
+  <!-- Pillar 3: Traces -->
+  <rect x="550" y="75" width="220" height="220" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="660" y="105" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">Traces（トレース）</text>
+  <text x="660" y="130" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「どこを通ったか」の追跡</text>
+  <line x1="570" y1="145" x2="750" y2="145" stroke="#333355" stroke-width="1"/>
+  <text x="660" y="168" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Jaeger / Zipkin</text>
+  <text x="660" y="186" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Distributed Tracing</text>
+  <text x="660" y="204" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">非侵襲的フロー追跡</text>
+  <text x="660" y="270" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">侵襲度: 低〜中</text>
+  <!-- Bottom: quantum lesson -->
+  <rect x="80" y="315" width="640" height="65" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="340" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">量子力学の教訓：観測は不可避</text>
+  <text x="400" y="360" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ならば最小コストで最大情報を得る設計を — OpenTelemetry</text>
+  <text x="400" y="375" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「観測できないシステムは制御できない」</text>
+</svg>
+</div>
+
 - Chapter 6: Leveraging the Observer Effect
 
 
@@ -301,34 +744,97 @@ rrはMozillaが開発したdeterministic replay debugger。Heisenbugの再現に
 
 > *観察可能性を設計に組み込めばHeisenBugは激減する*
 
-- - 観察者効果を **設計段階から組み込む** という逆転の発想
-- - **OpenTelemetry**: 統一的な計装で観測コストを最小化
-- - **Distributed Tracing**: 非侵襲的にリクエストフローを追跡
-- - **Metrics Pipeline**: Prometheus + Grafana で常時監視
-- - 「観測できないシステムは制御できない」
-- - 量子力学の教訓: 観測は不可避、なら最小コストで最大情報を得よ
+- 観察者効果を **設計段階から組み込む** という逆転の発想
+- **OpenTelemetry**: 統一的な計装で観測コストを最小化
+- **Distributed Tracing**: 非侵襲的にリクエストフローを追跡
+- **Metrics Pipeline**: Prometheus + Grafana で常時監視
+- 「観測できないシステムは制御できない」
+- 量子力学の教訓: 観測は不可避、なら最小コストで最大情報を得よ
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ：不確定性と共存する（1/2）
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5PYnNlcnZhYmlsaXR5IGFzIERlc2lnbiBQcmluY2lwbGU8L3RleHQ+CiAgPCEtLSBUaHJlZSBwaWxsYXJzIC0tPgogIDx0ZXh0IHg9IjQwMCIgeT0iNTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oprPlr5/ogIXlirnmnpzjgpLoqK3oqIjjgavntYTjgb/ovrzjgoDvvJpPcGVuVGVsZW1ldHJ544GuM+acrOafsTwvdGV4dD4KICA8IS0tIFBpbGxhciAxOiBMb2dzIC0tPgogIDxyZWN0IHg9IjMwIiB5PSI3NSIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIyMjAiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIxNDAiIHk9IjEwNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5Mb2dz77yI44Ot44Kw77yJPC90ZXh0PgogIDx0ZXh0IHg9IjE0MCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44CM5L2V44GM6LW344GN44Gf44GL44CN44Gu6KiY6YyyPC90ZXh0PgogIDxsaW5lIHgxPSI1MCIgeTE9IjE0NSIgeDI9IjIzMCIgeTI9IjE0NSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIxNDAiIHk9IjE2OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlN0cnVjdHVyZWQgTG9nZ2luZzwvdGV4dD4KICA8dGV4dCB4PSIxNDAiIHk9IjE4NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPkVMSyBTdGFjayAvIExva2k8L3RleHQ+CiAgPHRleHQgeD0iMTQwIiB5PSIyMDQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5SaW5nIGJ1ZmZlciDihpIg5L2O5L616KWyPC90ZXh0PgogIDx0ZXh0IHg9IjE0MCIgeT0iMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L616KWy5bqmOiDkvY48L3RleHQ+CiAgPCEtLSBQaWxsYXIgMjogTWV0cmljcyAtLT4KICA8cmVjdCB4PSIyOTAiIHk9Ijc1IiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjIyMCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMTA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPk1ldHJpY3PvvIjjg6Hjg4jjg6rjgq/jgrnvvIk8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIxMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgIzjganjgozjgY/jgonjgYTjgI3jga7mlbDlgKTljJY8L3RleHQ+CiAgPGxpbmUgeDE9IjMxMCIgeTE9IjE0NSIgeDI9IjQ5MCIgeTI9IjE0NSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjE2OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlByb21ldGhldXMgLyBHcmFmYW5hPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMTg2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+UHVzaC9QdWxsIOS4oeWvvuW/nDwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjIwNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCouOCsOODquOCsuODvOOCt+ODp+ODsyDihpIg6LaF5L2O5L616KWyPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L616KWy5bqmOiDmpbXkvY48L3RleHQ+CiAgPCEtLSBQaWxsYXIgMzogVHJhY2VzIC0tPgogIDxyZWN0IHg9IjU1MCIgeT0iNzUiIHdpZHRoPSIyMjAiIGhlaWdodD0iMjIwIiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNjYwIiB5PSIxMDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+VHJhY2Vz77yI44OI44Os44O844K577yJPC90ZXh0PgogIDx0ZXh0IHg9IjY2MCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44CM44Gp44GT44KS6YCa44Gj44Gf44GL44CN44Gu6L+96LehPC90ZXh0PgogIDxsaW5lIHgxPSI1NzAiIHkxPSIxNDUiIHgyPSI3NTAiIHkyPSIxNDUiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNjYwIiB5PSIxNjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5KYWVnZXIgLyBaaXBraW48L3RleHQ+CiAgPHRleHQgeD0iNjYwIiB5PSIxODYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5EaXN0cmlidXRlZCBUcmFjaW5nPC90ZXh0PgogIDx0ZXh0IHg9IjY2MCIgeT0iMjA0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Z2e5L616KWy55qE44OV44Ot44O86L+96LehPC90ZXh0PgogIDx0ZXh0IHg9IjY2MCIgeT0iMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L616KWy5bqmOiDkvY7jgJzkuK08L3RleHQ+CiAgPCEtLSBCb3R0b206IHF1YW50dW0gbGVzc29uIC0tPgogIDxyZWN0IHg9IjgwIiB5PSIzMTUiIHdpZHRoPSI2NDAiIGhlaWdodD0iNjUiIHJ4PSIxMCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjM0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ph4/lrZDlipvlrabjga7mlZnoqJPvvJroprPmuKzjga/kuI3lj6/pgb88L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgarjgonjgbDmnIDlsI/jgrPjgrnjg4jjgafmnIDlpKfmg4XloLHjgpLlvpfjgovoqK3oqIjjgpIg4oCUIE9wZW5UZWxlbWV0cnk8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgIzoprPmuKzjgafjgY3jgarjgYTjgrfjgrnjg4bjg6Djga/liLblvqHjgafjgY3jgarjgYTjgI08L3RleHQ+Cjwvc3ZnPg==)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Observability as Design Principle</text>
+  <!-- Three pillars -->
+  <text x="400" y="58" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">観察者効果を設計に組み込む：OpenTelemetryの3本柱</text>
+  <!-- Pillar 1: Logs -->
+  <rect x="30" y="75" width="220" height="220" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="140" y="105" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">Logs（ログ）</text>
+  <text x="140" y="130" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「何が起きたか」の記録</text>
+  <line x1="50" y1="145" x2="230" y2="145" stroke="#333355" stroke-width="1"/>
+  <text x="140" y="168" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Structured Logging</text>
+  <text x="140" y="186" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">ELK Stack / Loki</text>
+  <text x="140" y="204" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Ring buffer → 低侵襲</text>
+  <text x="140" y="270" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">侵襲度: 低</text>
+  <!-- Pillar 2: Metrics -->
+  <rect x="290" y="75" width="220" height="220" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="105" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">Metrics（メトリクス）</text>
+  <text x="400" y="130" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「どれくらい」の数値化</text>
+  <line x1="310" y1="145" x2="490" y2="145" stroke="#333355" stroke-width="1"/>
+  <text x="400" y="168" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Prometheus / Grafana</text>
+  <text x="400" y="186" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Push/Pull 両対応</text>
+  <text x="400" y="204" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">アグリゲーション → 超低侵襲</text>
+  <text x="400" y="270" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">侵襲度: 極低</text>
+  <!-- Pillar 3: Traces -->
+  <rect x="550" y="75" width="220" height="220" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="660" y="105" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">Traces（トレース）</text>
+  <text x="660" y="130" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「どこを通ったか」の追跡</text>
+  <line x1="570" y1="145" x2="750" y2="145" stroke="#333355" stroke-width="1"/>
+  <text x="660" y="168" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Jaeger / Zipkin</text>
+  <text x="660" y="186" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Distributed Tracing</text>
+  <text x="660" y="204" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">非侵襲的フロー追跡</text>
+  <text x="660" y="270" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">侵襲度: 低〜中</text>
+  <!-- Bottom: quantum lesson -->
+  <rect x="80" y="315" width="640" height="65" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="340" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">量子力学の教訓：観測は不可避</text>
+  <text x="400" y="360" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ならば最小コストで最大情報を得る設計を — OpenTelemetry</text>
+  <text x="400" y="375" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「観測できないシステムは制御できない」</text>
+</svg>
+</div>
+
 - Heisenbugは「バグが悪い」のではなく
 - 「観察方法が系を変えている」
-- 
 - 非侵襲的な観測手法を選び、
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ：不確定性と共存する（2/2）
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7kuI3norrlrprmgKfjgajlhbHlrZjjgZnjgovvvJpPYnNlcnZhYmlsaXR5IGFzIERlc2lnbiBQcmluY2lwbGU8L3RleHQ+CiAgPCEtLSBDZW50cmFsIHByaW5jaXBsZSAtLT4KICA8cmVjdCB4PSIxMDAiIHk9IjU1IiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjcwIiByeD0iMTIiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPHRleHQgeD0iNDAwIiB5PSI4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxNSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgIzoprPmuKzjgafjgY3jgarjgYTjgoLjga7jga/jg4fjg5Djg4PjgrDjgafjgY3jgarjgYTjgI08L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oqK3oqIjmrrXpmo7jgYvjgolPYnNlcnZhYmlsaXR544KS57WE44G/6L6844KAID0gT2JzZXJ2ZXIgRWZmZWN044KS5bCB44GY6L6844KB44KLPC90ZXh0PgogIDwhLS0gVGhyZWUgcGlsbGFycyAtLT4KICA8cmVjdCB4PSI1MCIgeT0iMTUwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjE3MCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPHRleHQgeD0iMTYwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+TWV0cmljczwvdGV4dD4KICAgIDxsaW5lIHgxPSI3MCIgeTE9IjE5MiIgeDI9IjI1MCIgeTI9IjE5MiIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjE2MCIgeT0iMjEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44K344K544OG44Og44Gu54q25oWL44KSPC90ZXh0Pjx0ZXh0IHg9IjE2MCIgeT0iMjI5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5a6a6YeP55qE44Gr57aZ57aa6Kaz5risPC90ZXh0Pjx0ZXh0IHg9IjE2MCIgeT0iMjQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+UHJvbWV0aGV1cy9HcmFmYW5hPC90ZXh0PjxyZWN0IHg9IjI5MCIgeT0iMTUwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjE3MCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPHRleHQgeD0iNDAwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+TG9nczwvdGV4dD4KICAgIDxsaW5lIHgxPSIzMTAiIHkxPSIxOTIiIHgyPSI0OTAiIHkyPSIxOTIiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI0MDAiIHk9IjIxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuani+mAoOWMluODu+ebuOmWoklE5LuY44GNPC90ZXh0Pjx0ZXh0IHg9IjQwMCIgeT0iMjI5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Z2e5ZCM5pyf44O744OQ44OD44OV44Kh5riI44G/PC90ZXh0Pjx0ZXh0IHg9IjQwMCIgeT0iMjQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Gn44K/44Kk44Of44Oz44Kw6Z2e5rGa5p+TPC90ZXh0PjxyZWN0IHg9IjUzMCIgeT0iMTUwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjE3MCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPHRleHQgeD0iNjQwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+VHJhY2VzPC90ZXh0PgogICAgPGxpbmUgeDE9IjU1MCIgeTE9IjE5MiIgeDI9IjczMCIgeTI9IjE5MiIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjY0MCIgeT0iMjEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5YiG5pWj44K344K544OG44Og44GuPC90ZXh0Pjx0ZXh0IHg9IjY0MCIgeT0iMjI5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5Zug5p6c6Zai5L+C44Oe44OD44OXPC90ZXh0Pjx0ZXh0IHg9IjY0MCIgeT0iMjQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+T3BlblRlbGVtZXRyeeaomea6ljwvdGV4dD4KICA8IS0tIEJvdHRvbSBpbnNpZ2h0IC0tPgogIDxyZWN0IHg9IjUwIiB5PSIzNDUiIHdpZHRoPSI3MDAiIGhlaWdodD0iNDAiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMzYzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPumHj+WtkOWKm+WtpuOBruaVmeiokzog6Kaz5a+f5omL5rOV44KS6YG444G244GT44Go44Gn5LiN56K65a6a5oCn44Go5YWx5a2Y44Gn44GN44KLPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMzgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Z2e5L616KWy55qET2JzZXJ2YWJpbGl0eeOBq+OCiOOCiuOAgUhlaXNlbmJ1Z+OBr+OAjOelnuenmOOAjeOBi+OCieOAjOW3peWtpueahOWVj+mhjOOAjeOBq+OBquOCizwvdGV4dD4KPC9zdmc+)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">不確定性と共存する：Observability as Design Principle</text>
+  <!-- Central principle -->
+  <rect x="100" y="55" width="600" height="70" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="3"/>
+  <text x="400" y="85" text-anchor="middle" fill="#e91e63" font-size="15" font-weight="bold" font-family="sans-serif">「観測できないものはデバッグできない」</text>
+  <text x="400" y="110" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">設計段階からObservabilityを組み込む = Observer Effectを封じ込める</text>
+  <!-- Three pillars -->
+  <rect x="50" y="150" width="220" height="170" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+    <text x="160" y="180" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">Metrics</text>
+    <line x1="70" y1="192" x2="250" y2="192" stroke="#333355" stroke-width="1"/>
+    <text x="160" y="210" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">システムの状態を</text><text x="160" y="229" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">定量的に継続観測</text><text x="160" y="248" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">Prometheus/Grafana</text><rect x="290" y="150" width="220" height="170" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+    <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">Logs</text>
+    <line x1="310" y1="192" x2="490" y2="192" stroke="#333355" stroke-width="1"/>
+    <text x="400" y="210" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">構造化・相関ID付き</text><text x="400" y="229" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">非同期・バッファ済み</text><text x="400" y="248" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">でタイミング非汚染</text><rect x="530" y="150" width="220" height="170" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+    <text x="640" y="180" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">Traces</text>
+    <line x1="550" y1="192" x2="730" y2="192" stroke="#333355" stroke-width="1"/>
+    <text x="640" y="210" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">分散システムの</text><text x="640" y="229" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">因果関係マップ</text><text x="640" y="248" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">OpenTelemetry標準</text>
+  <!-- Bottom insight -->
+  <rect x="50" y="345" width="700" height="40" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="363" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">量子力学の教訓: 観察手法を選ぶことで不確定性と共存できる</text>
+  <text x="400" y="380" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">非侵襲的Observabilityにより、Heisenbugは「神秘」から「工学的問題」になる</text>
+</svg>
+</div>
+
 - 再現可能な環境を構築し、
 - 不確定性を設計に組み込む
-- 
 - **バグもまた、観測されるまでは存在しない**
 

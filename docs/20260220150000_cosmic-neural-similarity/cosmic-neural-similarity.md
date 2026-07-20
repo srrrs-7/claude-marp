@@ -7,41 +7,76 @@ paginate: true
 header: "宇宙とニューラルネットの類似"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -79,10 +114,11 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 宇宙の大規模構造とニューラルネットの類似
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">138億光年の宇宙 vs 860億個のニューロン</text>
   <!-- Left: cosmic web simplified -->
@@ -133,8 +169,9 @@ style: |
   <!-- Center question -->
   <text x="400" y="348" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">27桁のスケール差を超えて、なぜ同じ形なのか？</text>
 </svg>
+</div>
+
 - 偶然か、必然か
-- 
 - 138億光年の宇宙と860億個のニューロン —
 - 27桁の差を超えて、なぜ同じ形をしているのか
 
@@ -156,7 +193,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 1: 宇宙の大規模構造
 
 - コズミックウェブ — 138億年の重力が刻んだ構造
@@ -168,7 +205,8 @@ style: |
 
 > *重力が138億年かけて作り出した泡構造はコズミックウェブの骨格をなす*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コズミックウェブの発見と規模</text>
   <!-- Discovery box -->
@@ -211,10 +249,12 @@ style: |
   <text x="640" y="290" text-anchor="middle" fill="#4fc3f7" font-size="11" font-family="sans-serif">Millennium / Illustris-TNG</text>
   <text x="640" y="308" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">観測と驚くほど一致</text>
 </svg>
+</div>
+
 - 大規模構造（Large-Scale Structure, LSS）の発見:
-- - 1980年代 CfA Redshift Survey: 銀河が「壁」状に分布することを発見
-- - 銀河は一様に分布せず、**フィラメント・シート・ボイド**が複雑に絡み合う
-- - スケール: 数百万〜数十億光年
+- 1980年代 CfA Redshift Survey: 銀河が「壁」状に分布することを発見
+- 銀河は一様に分布せず、**フィラメント・シート・ボイド**が複雑に絡み合う
+- スケール: 数百万〜数十億光年
 
 
 ---
@@ -223,7 +263,8 @@ style: |
 
 > *フィラメントとボイドが宇宙規模のネットワークを形成*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コズミックウェブの発見と規模</text>
   <!-- Discovery box -->
@@ -266,10 +307,11 @@ style: |
   <text x="640" y="290" text-anchor="middle" fill="#4fc3f7" font-size="11" font-family="sans-serif">Millennium / Illustris-TNG</text>
   <text x="640" y="308" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">観測と驚くほど一致</text>
 </svg>
-- 
+</div>
+
 - コズミックウェブ（Cosmic Web）:
-- - 宇宙全体を覆う、クモの巣状の巨大構造
-- - 銀河・銀河団がフィラメントの交点（ノード）に集中する
+- 宇宙全体を覆う、クモの巣状の巨大構造
+- 銀河・銀河団がフィラメントの交点（ノード）に集中する
 
 
 ---
@@ -285,7 +327,8 @@ style: |
 
 > *宇宙質量の27%を占める暗黒物質が大規模構造の見えない骨格を形成する*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">フィラメント形成 — 138億年の重力の働き</text>
   <!-- Step 1: Big Bang density fluctuations -->
@@ -359,10 +402,12 @@ style: |
   <!-- Caption -->
   <text x="400" y="298" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">重力という単純なルールから自己組織化で生まれる複雑な構造</text>
 </svg>
+</div>
+
 - 宇宙の質量組成:
-- - **暗黒エネルギー**: 68% — 宇宙膨張を加速
-- - **暗黒物質**: 27% — コズミックウェブの骨格を作る
-- - **通常物質**: 5% — 私たちが観測できる全て
+- **暗黒エネルギー**: 68% — 宇宙膨張を加速
+- **暗黒物質**: 27% — コズミックウェブの骨格を作る
+- **通常物質**: 5% — 私たちが観測できる全て
 
 
 ---
@@ -371,7 +416,8 @@ style: |
 
 > *暗黒物質ハローの分布がフィラメント構造の形成を決定的に支配する*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">フィラメント形成 — 138億年の重力の働き</text>
   <!-- Step 1: Big Bang density fluctuations -->
@@ -445,11 +491,12 @@ style: |
   <!-- Caption -->
   <text x="400" y="298" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">重力という単純なルールから自己組織化で生まれる複雑な構造</text>
 </svg>
-- 
+</div>
+
 - 暗黒物質がフィラメントを形成する仕組み:
-- - ビッグバン直後の微小な密度ゆらぎ → 重力で増幅
-- - 密な領域が引き合い、フィラメント状に物質が集積
-- - 銀河・銀河団はその交点に誕生する
+- ビッグバン直後の微小な密度ゆらぎ → 重力で増幅
+- 密な領域が引き合い、フィラメント状に物質が集積
+- 銀河・銀河団はその交点に誕生する
 
 
 ---
@@ -458,7 +505,8 @@ style: |
 
 > *N体シミュレーションが宇宙大規模構造の形成プロセスを定量的に再現する*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コズミックウェブのシミュレーションと観測の一致</text>
   <!-- Left: simulation -->
@@ -508,10 +556,12 @@ style: |
   <!-- Match label -->
   <text x="400" y="318" text-anchor="middle" fill="#69f0ae" font-size="14" font-weight="bold" font-family="sans-serif">シミュレーションと観測が驚くほど一致 — 自己組織化の証拠</text>
 </svg>
+</div>
+
 - 主要な宇宙論シミュレーション:
-- - **Millennium Simulation** (2005, Springel et al.): 100億粒子、2Gpc³の宇宙を再現
-- - **Illustris-TNG** (2018): ガス・星・暗黒物質の多流体シミュレーション
-- - **EAGLE** (2015): 銀河形成の詳細を再現
+- **Millennium Simulation** (2005, Springel et al.): 100億粒子、2Gpc³の宇宙を再現
+- **Illustris-TNG** (2018): ガス・星・暗黒物質の多流体シミュレーション
+- **EAGLE** (2015): 銀河形成の詳細を再現
 
 
 ---
@@ -520,7 +570,8 @@ style: |
 
 > *IllustrisTNGシミュレーションが観測データと99%以上一致する精度を達成*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コズミックウェブのシミュレーションと観測の一致</text>
   <!-- Left: simulation -->
@@ -570,16 +621,17 @@ style: |
   <!-- Match label -->
   <text x="400" y="318" text-anchor="middle" fill="#69f0ae" font-size="14" font-weight="bold" font-family="sans-serif">シミュレーションと観測が驚くほど一致 — 自己組織化の証拠</text>
 </svg>
-- 
+</div>
+
 - シミュレーションが示すこと:
-- - 重力だけでコズミックウェブが自然に生まれる
-- - 観測データと驚くほど一致するフィラメント構造
-- - 構造はスケールフリー（べき乗則）に従う
+- 重力だけでコズミックウェブが自然に生まれる
+- 観測データと驚くほど一致するフィラメント構造
+- 構造はスケールフリー（べき乗則）に従う
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 2: ニューラルネットワーク
 
 - 生物学的・人工的 — グラフとしての神経網
@@ -591,7 +643,8 @@ style: |
 
 > *860億個のニューロンが100兆シナプスで結合し脳の情報処理を実現する*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">生物学的神経網 — 860億個のネットワーク</text>
   <!-- Stats section -->
@@ -629,10 +682,12 @@ style: |
   <text x="348" y="315" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">ボイド（空洞）</text>
   <text x="619" y="315" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">接続のない沈黙領域</text>
 </svg>
+</div>
+
 - ヒト脳の規模:
-- - **ニューロン**: 約860億個
-- - **シナプス結合**: 約100〜500兆個
-- - 皮質の厚さ: 2〜4mm、表面積: 約2,500cm²
+- **ニューロン**: 約860億個
+- **シナプス結合**: 約100〜500兆個
+- 皮質の厚さ: 2〜4mm、表面積: 約2,500cm²
 
 
 ---
@@ -641,7 +696,8 @@ style: |
 
 > *ニューロン間の接続パターンがスモールワールド特性を示す根拠と意味*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">生物学的神経網 — 860億個のネットワーク</text>
   <!-- Stats section -->
@@ -679,11 +735,12 @@ style: |
   <text x="348" y="315" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">ボイド（空洞）</text>
   <text x="619" y="315" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">接続のない沈黙領域</text>
 </svg>
-- 
+</div>
+
 - ネットワーク特性:
-- - **スモールワールド性**: 任意の2ニューロン間のパスが短い
-- - **ハブニューロン**: 非常に多くの接続を持つ中枢が存在
-- - **モジュラー構造**: 機能別に密なクラスターを形成
+- **スモールワールド性**: 任意の2ニューロン間のパスが短い
+- **ハブニューロン**: 非常に多くの接続を持つ中枢が存在
+- **モジュラー構造**: 機能別に密なクラスターを形成
 
 
 ---
@@ -692,7 +749,8 @@ style: |
 
 > *人工ニューラルネットワークの層構造が生物脳の階層処理を模倣している*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">スケールフリーネットワーク — べき乗則の意味</text>
   <!-- Left: random network -->
@@ -755,10 +813,11 @@ style: |
   <text x="400" y="295" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">結論: 異なるルールが同じ数学的メカニズム（優先的選択）に収斂 → スケールフリー性</text>
   <text x="400" y="314" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コズミックウェブ・神経網・インターネット・SNSはすべて同じ構造を持つ</text>
 </svg>
+</div>
+
 - ANNのグラフ構造:
-- - ノード（ニューロン）+ エッジ（重み付き接続）
-- - 入力層 → 隠れ層 × N → 出力層
-- 
+- ノード（ニューロン）+ エッジ（重み付き接続）
+- 入力層 → 隠れ層 × N → 出力層
 - 現代の大規模モデル:
 
 
@@ -768,7 +827,8 @@ style: |
 
 > *深層学習の多層構造が抽象度の異なる特徴を段階的に抽出する仕組み*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">スケールフリーネットワーク — べき乗則の意味</text>
   <!-- Left: random network -->
@@ -831,10 +891,11 @@ style: |
   <text x="400" y="295" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">結論: 異なるルールが同じ数学的メカニズム（優先的選択）に収斂 → スケールフリー性</text>
   <text x="400" y="314" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コズミックウェブ・神経網・インターネット・SNSはすべて同じ構造を持つ</text>
 </svg>
-- - GPT-4: 推定1.8兆パラメータ（接続数に相当）
-- - ResNet-152: 6000万パラメータ
-- - GNN（グラフニューラルネット）: 任意グラフ構造を扱える
-- 
+</div>
+
+- GPT-4: 推定1.8兆パラメータ（接続数に相当）
+- ResNet-152: 6000万パラメータ
+- GNN（グラフニューラルネット）: 任意グラフ構造を扱える
 - 注目点: 深層学習の性能はアーキテクチャ（グラフ構造）に依存する
 
 
@@ -842,7 +903,8 @@ style: |
 
 # グラフとしてのネットワーク
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">生物学的神経網 — 860億個のネットワーク</text>
   <!-- Stats section -->
@@ -880,24 +942,27 @@ style: |
   <text x="348" y="315" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">ボイド（空洞）</text>
   <text x="619" y="315" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">接続のない沈黙領域</text>
 </svg>
+</div>
+
 - 両者をグラフ理論で統一的に捉える:
-- 
+
 | 指標 | コズミックウェブ | 神経網 |
 |------|----------------|--------|
 | ノード | 銀河団・銀河 | ニューロン |
 | エッジ | フィラメント | シナプス |
 | ハブ | 超銀河団 | ハブニューロン |
 | ボイド | 空洞領域 | 接続のない空間 |
-- 
+
 - グラフ指標（次数分布・クラスタリング係数・パス長）で定量比較が可能
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 3: 衝撃の視覚的類似
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">スケールの比較 — 27桁の差</text>
   <!-- Scale bar -->
@@ -941,6 +1006,8 @@ style: |
   <text x="620" y="294" text-anchor="middle" fill="#69f0ae" font-size="11" font-family="sans-serif">ノード数も類似</text>
   <text x="620" y="314" text-anchor="middle" fill="#69f0ae" font-size="12" font-weight="bold" font-family="sans-serif">オーダーが一致</text>
 </svg>
+</div>
+
 - 27桁のスケール差を超えて、なぜ同じ形なのか
 
 
@@ -957,7 +1024,8 @@ style: |
 
 > *宇宙と脳はスケールが1027倍違うが統計指標が一致する*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">138億光年の宇宙 vs 860億個のニューロン</text>
   <!-- Left: cosmic web simplified -->
@@ -1008,16 +1076,17 @@ style: |
   <!-- Center question -->
   <text x="400" y="348" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">27桁のスケール差を超えて、なぜ同じ形なのか？</text>
 </svg>
+</div>
+
 - 2つの構造が持つスケール:
-- 
+
 | | コズミックウェブ | ヒト神経網 |
 |---|---|---|
 | スケール | ~10²⁴ m (数十億光年) | ~10⁻¹ m (脳の直径) |
 | ノード数 | ~10¹¹ 銀河 | ~8.6×10¹⁰ ニューロン |
 | エッジ数 | ~10¹³〜¹⁴ フィラメント | ~10¹⁴〜¹⁵ シナプス |
-- 
+
 - スケール比: **25桁〜27桁** の差
-- 
 - それでもクラスタリング係数・次数分布・エントロピーが一致する
 
 
@@ -1027,7 +1096,8 @@ style: |
 
 > *宇宙フィラメントと神経繊維束が同じべき乗則の接続分布に従う証拠*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">138億光年の宇宙 vs 860億個のニューロン</text>
   <!-- Left: cosmic web simplified -->
@@ -1078,12 +1148,12 @@ style: |
   <!-- Center question -->
   <text x="400" y="348" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">27桁のスケール差を超えて、なぜ同じ形なのか？</text>
 </svg>
+</div>
+
 - 視覚的類似の背後にある構造的特徴:
-- 
 - **1. ハブ・スポーク構造**
-- - 少数の超接続ノード（超銀河団 / ハブニューロン）が存在
-- - 大多数のノードは少ない接続を持つ
-- 
+- 少数の超接続ノード（超銀河団 / ハブニューロン）が存在
+- 大多数のノードは少ない接続を持つ
 
 
 ---
@@ -1093,19 +1163,19 @@ style: |
 > *スケールフリーな接続パターンが両システムに情報伝達の効率性をもたらす*
 
 - **2. フィラメント状の接続**
-- - 物質・信号がフィラメント（線状経路）を伝わる
-- - 交点（ノード）で情報・物質が集積・処理される
-- 
+- 物質・信号がフィラメント（線状経路）を伝わる
+- 交点（ノード）で情報・物質が集積・処理される
 - **3. 空隙（ボイド / 沈黙領域）の存在**
-- - 接続がない広大な空間が構造を際立たせる
+- 接続がない広大な空間が構造を際立たせる
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 4: 定量的研究
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Franco &amp; Vazza (2020) — 定量的一致の証拠</text>
   <!-- Research info -->
@@ -1146,6 +1216,8 @@ style: |
   <text x="640" y="306" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Minkowski Functionals</text>
   <text x="640" y="322" text-anchor="middle" fill="#69f0ae" font-size="11" font-family="sans-serif">4指標すべて一致</text>
 </svg>
+</div>
+
 - 数字が示す驚くべき一致
 
 
@@ -1155,7 +1227,8 @@ style: |
 
 > *Franco & Vazza 2020年論文が初めて宇宙網と脳のネットワーク指標を定量比較*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Franco &amp; Vazza (2020) — 定量的一致の証拠</text>
   <!-- Research info -->
@@ -1196,10 +1269,11 @@ style: |
   <text x="640" y="306" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Minkowski Functionals</text>
   <text x="640" y="322" text-anchor="middle" fill="#69f0ae" font-size="11" font-family="sans-serif">4指標すべて一致</text>
 </svg>
+</div>
+
 - **論文**: "The Quantitative Comparison Between the Neuronal Network and the Cosmic Web"
-- - Frontiers in Physics, 2020
-- - Alberto Feletti, Franco Vazza et al. (ボローニャ大学)
-- 
+- Frontiers in Physics, 2020
+- Alberto Feletti, Franco Vazza et al. (ボローニャ大学)
 - 研究手法:
 
 
@@ -1209,7 +1283,8 @@ style: |
 
 > *クラスタリング係数・経路長・次数分布の3指標が統計的に有意に一致する*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Franco &amp; Vazza (2020) — 定量的一致の証拠</text>
   <!-- Research info -->
@@ -1250,10 +1325,11 @@ style: |
   <text x="640" y="306" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Minkowski Functionals</text>
   <text x="640" y="322" text-anchor="middle" fill="#69f0ae" font-size="11" font-family="sans-serif">4指標すべて一致</text>
 </svg>
-- - 小脳皮質切片（4×4×4 μm³）のニューロン電子顕微鏡画像を使用
-- - シミュレーション宇宙論データ（Illustris）と比較
-- - 共通のネットワーク科学指標で定量評価
-- 
+</div>
+
+- 小脳皮質切片（4×4×4 μm³）のニューロン電子顕微鏡画像を使用
+- シミュレーション宇宙論データ（Illustris）と比較
+- 共通のネットワーク科学指標で定量評価
 - 結果: 複数の独立した指標で統計的に有意な一致を確認
 
 
@@ -1263,7 +1339,8 @@ style: |
 
 > *局所的クラスタリング係数の一致がランダムネットワークとの本質的差異を示す*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Franco &amp; Vazza (2020) — 定量的一致の証拠</text>
   <!-- Research info -->
@@ -1304,10 +1381,11 @@ style: |
   <text x="640" y="306" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Minkowski Functionals</text>
   <text x="640" y="322" text-anchor="middle" fill="#69f0ae" font-size="11" font-family="sans-serif">4指標すべて一致</text>
 </svg>
+</div>
+
 - クラスタリング係数（Clustering Coefficient）:
-- - あるノードの隣接ノード同士が繋がっている割合
-- - 「知り合いの知り合いが知り合い」の度合い
-- 
+- あるノードの隣接ノード同士が繋がっている割合
+- 「知り合いの知り合いが知り合い」の度合い
 - 比較結果:
 
 
@@ -1317,7 +1395,8 @@ style: |
 
 > *クラスタリング係数0.5前後での一致が偶然でない構造的類似性を示唆する*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Franco &amp; Vazza (2020) — 定量的一致の証拠</text>
   <!-- Research info -->
@@ -1358,10 +1437,11 @@ style: |
   <text x="640" y="306" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Minkowski Functionals</text>
   <text x="640" y="322" text-anchor="middle" fill="#69f0ae" font-size="11" font-family="sans-serif">4指標すべて一致</text>
 </svg>
-- - **コズミックウェブ**: C ≈ 0.69（Illustrisシミュレーション）
-- - **神経網（小脳）**: C ≈ 0.70
-- - **差異**: わずか 1.4%
-- 
+</div>
+
+- **コズミックウェブ**: C ≈ 0.69（Illustrisシミュレーション）
+- **神経網（小脳）**: C ≈ 0.70
+- **差異**: わずか 1.4%
 - 同様の一致がパス長・次数分布でも確認された
 
 
@@ -1371,7 +1451,8 @@ style: |
 
 > *フラクタル次元2.4〜2.5への収束が両システムの空間充填効率の類似を示す*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Franco &amp; Vazza (2020) — 定量的一致の証拠</text>
   <!-- Research info -->
@@ -1412,11 +1493,12 @@ style: |
   <text x="640" y="306" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Minkowski Functionals</text>
   <text x="640" y="322" text-anchor="middle" fill="#69f0ae" font-size="11" font-family="sans-serif">4指標すべて一致</text>
 </svg>
+</div>
+
 - **フラクタル次元 (D_f):**
-- - 構造の自己相似性を示す指標
-- - コズミックウェブ: D_f ≈ 1.4〜2.5（スケール依存）
-- - 神経軸索ネットワーク: D_f ≈ 1.5〜2.2
-- 
+- 構造の自己相似性を示す指標
+- コズミックウェブ: D_f ≈ 1.4〜2.5（スケール依存）
+- 神経軸索ネットワーク: D_f ≈ 1.5〜2.2
 
 
 ---
@@ -1425,7 +1507,8 @@ style: |
 
 > *密度分布のべき乗則指数の一致が同じ統計力学的原理の支配を示唆する*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Franco &amp; Vazza (2020) — 定量的一致の証拠</text>
   <!-- Research info -->
@@ -1466,10 +1549,11 @@ style: |
   <text x="640" y="306" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Minkowski Functionals</text>
   <text x="640" y="322" text-anchor="middle" fill="#69f0ae" font-size="11" font-family="sans-serif">4指標すべて一致</text>
 </svg>
+</div>
+
 - **べき乗則（Power Law）次数分布:**
-- - P(k) ∝ k^(-γ) の形に従う
-- - γ（宇宙）≈ 2.1、γ（神経）≈ 2.0〜2.3
-- 
+- P(k) ∝ k^(-γ) の形に従う
+- γ（宇宙）≈ 2.1、γ（神経）≈ 2.0〜2.3
 - → どちらもスケールフリーネットワークの特徴を持つ
 
 
@@ -1479,7 +1563,8 @@ style: |
 
 > *シャノンエントロピーとスペクトル解析が両構造の情報容量の等価性を示す*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Franco &amp; Vazza (2020) — 定量的一致の証拠</text>
   <!-- Research info -->
@@ -1520,10 +1605,11 @@ style: |
   <text x="640" y="306" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Minkowski Functionals</text>
   <text x="640" y="322" text-anchor="middle" fill="#69f0ae" font-size="11" font-family="sans-serif">4指標すべて一致</text>
 </svg>
+</div>
+
 - **情報エントロピー（Shannon Entropy）:**
-- - 構造の複雑さ・情報量の指標
-- - 両者が非常に近いエントロピー値を示す
-- 
+- 構造の複雑さ・情報量の指標
+- 両者が非常に近いエントロピー値を示す
 - **パワースペクトル解析:**
 
 
@@ -1533,12 +1619,11 @@ style: |
 
 > *パワースペクトルの傾きの一致が同じ空間周波数特性を持つ証拠となる*
 
-- - 構造のフーリエ変換によるスペクトル形状
-- - コズミックウェブと神経網のスペクトルが類似したプロファイルを持つ
-- 
+- 構造のフーリエ変換によるスペクトル形状
+- コズミックウェブと神経網のスペクトルが類似したプロファイルを持つ
 - **Minkowski Functionals（形態解析）:**
-- - 体積・表面積・曲率・オイラー標数の4指標
-- - 4指標すべてで統計的有意な類似を確認
+- 体積・表面積・曲率・オイラー標数の4指標
+- 4指標すべてで統計的有意な類似を確認
 
 
 ---
@@ -1550,10 +1635,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 5: なぜ似ているのか？
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">スケールフリーネットワーク — べき乗則の意味</text>
   <!-- Left: random network -->
@@ -1616,6 +1702,8 @@ style: |
   <text x="400" y="295" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">結論: 異なるルールが同じ数学的メカニズム（優先的選択）に収斂 → スケールフリー性</text>
   <text x="400" y="314" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コズミックウェブ・神経網・インターネット・SNSはすべて同じ構造を持つ</text>
 </svg>
+</div>
+
 - 偶然か、必然か — 3つの仮説
 
 
@@ -1625,7 +1713,8 @@ style: |
 
 > *ハブノードが全接続の80%を担うべき乗則がコズミックウェブにも成立する*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">スケールフリーネットワーク — べき乗則の意味</text>
   <!-- Left: random network -->
@@ -1688,11 +1777,12 @@ style: |
   <text x="400" y="295" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">結論: 異なるルールが同じ数学的メカニズム（優先的選択）に収斂 → スケールフリー性</text>
   <text x="400" y="314" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コズミックウェブ・神経網・インターネット・SNSはすべて同じ構造を持つ</text>
 </svg>
+</div>
+
 - **Barabási-Albertモデル（優先的選択）:**
-- - 新しいノードは、すでに多くの接続を持つノードに接続しやすい
-- - 「金持ちはさらに金持ちになる（Rich-get-richer）」効果
-- - 結果: べき乗則に従う次数分布 → スケールフリー性
-- 
+- 新しいノードは、すでに多くの接続を持つノードに接続しやすい
+- 「金持ちはさらに金持ちになる（Rich-get-richer）」効果
+- 結果: べき乗則に従う次数分布 → スケールフリー性
 
 
 ---
@@ -1701,7 +1791,8 @@ style: |
 
 > *スケールフリー性がロバスト性とランダム障害への耐性を両システムに付与する*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">収斂する物理 — なぜ同じ形になるのか</text>
   <!-- Left: gravity mechanism -->
@@ -1735,10 +1826,11 @@ style: |
   <rect x="345" y="320" width="110" height="28" rx="6" fill="#f9a825"/>
   <text x="400" y="338" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold" font-family="sans-serif">フィラメント構造</text>
 </svg>
+</div>
+
 - 宇宙への応用:
-- - 密な領域はより多くの物質を重力で引き寄せる
-- - 優先的選択と同じ数学的メカニズムが働く
-- 
+- 密な領域はより多くの物質を重力で引き寄せる
+- 優先的選択と同じ数学的メカニズムが働く
 - → **宇宙と神経網が同じ成長則に従う可能性**
 
 
@@ -1748,7 +1840,8 @@ style: |
 
 > *局所的相互作用のみから大域的秩序が自発的に出現する創発のメカニズム*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">収斂する物理 — なぜ同じ形になるのか</text>
   <!-- Left: gravity mechanism -->
@@ -1782,19 +1875,21 @@ style: |
   <rect x="345" y="320" width="110" height="28" rx="6" fill="#f9a825"/>
   <text x="400" y="338" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold" font-family="sans-serif">フィラメント構造</text>
 </svg>
+</div>
+
 - **自己組織化（Self-Organization）:**
-- - 局所的なルールだけから大域的な秩序が生まれる
-- - 中央集権的な「設計者」は不要
-- 
+- 局所的なルールだけから大域的な秩序が生まれる
+- 中央集権的な「設計者」は不要
 - 宇宙の場合:
-- - ルール: 重力（全ての物質は引き合う）
+- ルール: 重力（全ての物質は引き合う）
 
 
 ---
 
 # 自己組織化と創発（2/2）（1/2）
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">収斂する物理 — なぜ同じ形になるのか</text>
   <!-- Left: gravity mechanism -->
@@ -1828,8 +1923,9 @@ style: |
   <rect x="345" y="320" width="110" height="28" rx="6" fill="#f9a825"/>
   <text x="400" y="338" text-anchor="middle" fill="#1a1a2e" font-size="11" font-weight="bold" font-family="sans-serif">フィラメント構造</text>
 </svg>
-- - 結果: コズミックウェブ
-- 
+</div>
+
+- 結果: コズミックウェブ
 - 神経網の場合:
 
 
@@ -1839,9 +1935,8 @@ style: |
 
 > *局所的な重力・電気化学が大域的パターンを自律生成する*
 
-- - ルール: ヘッブ則（一緒に発火するニューロンは繋がりを強化）
-- - 結果: 効率的なネットワーク構造
-- 
+- ルール: ヘッブ則（一緒に発火するニューロンは繋がりを強化）
+- 結果: 効率的なネットワーク構造
 - → 異なるルール、同じ形 → **収斂進化ならぬ「収斂物理」**
 
 
@@ -1849,7 +1944,8 @@ style: |
 
 # 重力 vs シナプス可塑性 — 収斂の物理
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">哲学的含意 — シミュレーション仮説との交差</text>
   <!-- Bostrom -->
@@ -1890,15 +1986,17 @@ style: |
   <text x="570" y="272" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">情報処理の普遍性は真剣な研究対象</text>
   <text x="570" y="292" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">GNN × 宇宙論が急速に発展中</text>
 </svg>
+</div>
+
 - 驚くべき数学的類比:
-- 
+
 | | 宇宙（重力） | 神経網（シナプス） |
 |---|---|---|
 | 引力則 | F ∝ M₁M₂/r² | ΔW ∝ (活動電位の積) |
 | 強化 | 密度ゆらぎ → 集積 | 共発火 → 結合強化 |
 | 弱体化 | 膨張で希薄化 | 長期抑圧（LTD） |
 | 均衡 | 重力 vs 膨張 | 興奮 vs 抑制 |
-- 
+
 - どちらも: **局所的な引力則** + **空間的競合** → フィラメント構造
 
 
@@ -1908,7 +2006,8 @@ style: |
 
 > *宇宙を情報処理システムとして捉えるデジタル物理学の理論的根拠と限界*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">哲学的含意 — シミュレーション仮説との交差</text>
   <!-- Bostrom -->
@@ -1949,11 +2048,12 @@ style: |
   <text x="570" y="272" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">情報処理の普遍性は真剣な研究対象</text>
   <text x="570" y="292" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">GNN × 宇宙論が急速に発展中</text>
 </svg>
+</div>
+
 - 物理学者・情報理論の視点:
-- 
-- - **John Wheeler（1989）**: "It from Bit" — 宇宙の基礎は情報である
-- - **Max Tegmark**: 宇宙は数学的構造そのもの
-- - **Stephen Wolfram**: セルオートマトンによる宇宙生成モデル
+- **John Wheeler（1989）**: "It from Bit" — 宇宙の基礎は情報である
+- **Max Tegmark**: 宇宙は数学的構造そのもの
+- **Stephen Wolfram**: セルオートマトンによる宇宙生成モデル
 
 
 ---
@@ -1962,11 +2062,10 @@ style: |
 
 > *ランダウアーの原理が宇宙における情報処理の物理的コスト上限を与える*
 
-- 
 - もし宇宙が情報処理システムなら:
-- - 最適な情報伝達構造 = フィラメント状ネットワーク
-- - 神経網も最適情報処理のためにその構造に収斂した
-- - 類似は「同じ最適化問題への解」を示している可能性
+- 最適な情報伝達構造 = フィラメント状ネットワーク
+- 神経網も最適情報処理のためにその構造に収斂した
+- 類似は「同じ最適化問題への解」を示している可能性
 
 
 ---
@@ -1978,10 +2077,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 6: 哲学的・SF的含意
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">「宇宙は巨大な脳か？」— 思考実験</text>
   <!-- Philosophers -->
@@ -2027,6 +2127,8 @@ style: |
   <!-- Bottom -->
   <text x="400" y="285" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">「類似の意味を問い続けることが科学を前進させる」</text>
 </svg>
+</div>
+
 - 類似が示す、より深い問い
 
 
@@ -2036,7 +2138,8 @@ style: |
 
 > *宇宙全体がフラクタル構造を持つとするフラクタル宇宙論の証拠と反論*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">「宇宙は巨大な脳か？」— 思考実験</text>
   <!-- Philosophers -->
@@ -2082,10 +2185,11 @@ style: |
   <!-- Bottom -->
   <text x="400" y="285" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">「類似の意味を問い続けることが科学を前進させる」</text>
 </svg>
+</div>
+
 - **フラクタル（自己相似性）の視点:**
-- - コズミックウェブはあらゆるスケールで似た構造を繰り返す
-- - Benoit Mandelbrotは宇宙の構造にフラクタル性を見出した
-- 
+- コズミックウェブはあらゆるスケールで似た構造を繰り返す
+- Benoit Mandelbrotは宇宙の構造にフラクタル性を見出した
 - 観測的証拠:
 
 
@@ -2095,7 +2199,8 @@ style: |
 
 > *SDSS銀河カタログのフラクタル解析結果と均一性への収束スケールの問題*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">「宇宙は巨大な脳か？」— 思考実験</text>
   <!-- Philosophers -->
@@ -2141,12 +2246,13 @@ style: |
   <!-- Bottom -->
   <text x="400" y="285" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">「類似の意味を問い続けることが科学を前進させる」</text>
 </svg>
-- - ダークマターのフィラメントは銀河団〜超銀河団スケールで自己相似
-- - フラクタル次元 ≈ 2（表面的充填）が複数スケールで確認
-- 
+</div>
+
+- ダークマターのフィラメントは銀河団〜超銀河団スケールで自己相似
+- フラクタル次元 ≈ 2（表面的充填）が複数スケールで確認
 - 批判:
-- - 最大スケール（>100 Mpc）では構造は均質化する
-- - 厳密なフラクタル宇宙論は否定されているが、中間スケールでは有効
+- 最大スケール（>100 Mpc）では構造は均質化する
+- 厳密なフラクタル宇宙論は否定されているが、中間スケールでは有効
 
 
 ---
@@ -2155,7 +2261,8 @@ style: |
 
 > *宇宙が仮想現実なら神経網との類似は設計者の制約を反映している可能性*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">「宇宙は巨大な脳か？」— 思考実験</text>
   <!-- Philosophers -->
@@ -2201,11 +2308,12 @@ style: |
   <!-- Bottom -->
   <text x="400" y="285" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">「類似の意味を問い続けることが科学を前進させる」</text>
 </svg>
+</div>
+
 - 思考実験として（科学的主張ではない）:
-- 
-- - **Janna Levin（物理学者）**: 宇宙の構造は「思考する宇宙」の物理的基盤か？
-- - **Michio Kaku**: 宇宙は「1段階上位の意識」を持ち得るか？
-- - **Gregory Matloff**: Panpsychism（汎心論）と宇宙の自己認識
+- **Janna Levin（物理学者）**: 宇宙の構造は「思考する宇宙」の物理的基盤か？
+- **Michio Kaku**: 宇宙は「1段階上位の意識」を持ち得るか？
+- **Gregory Matloff**: Panpsychism（汎心論）と宇宙の自己認識
 
 
 ---
@@ -2214,7 +2322,8 @@ style: |
 
 > *シミュレーション仮説を支持・反証する物理学的証拠の現状評価*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">哲学的含意 — シミュレーション仮説との交差</text>
   <!-- Bostrom -->
@@ -2255,11 +2364,12 @@ style: |
   <text x="570" y="272" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">情報処理の普遍性は真剣な研究対象</text>
   <text x="570" y="292" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">GNN × 宇宙論が急速に発展中</text>
 </svg>
-- 
+</div>
+
 - 現時点での科学的立場:
-- - 構造的類似 ≠ 機能的類似
-- - 宇宙が「思考する」証拠は存在しない
-- - しかし類似が示す**情報処理の普遍性**は真剣な研究対象
+- 構造的類似 ≠ 機能的類似
+- 宇宙が「思考する」証拠は存在しない
+- しかし類似が示す**情報処理の普遍性**は真剣な研究対象
 
 
 ---
@@ -2268,7 +2378,8 @@ style: |
 
 > *シミュレーション仮説とホログラフィック原理が宇宙-脳類似を別角度で説明する*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">哲学的含意 — シミュレーション仮説との交差</text>
   <!-- Bostrom -->
@@ -2309,11 +2420,12 @@ style: |
   <text x="570" y="272" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">情報処理の普遍性は真剣な研究対象</text>
   <text x="570" y="292" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">GNN × 宇宙論が急速に発展中</text>
 </svg>
+</div>
+
 - Nick Bostromのシミュレーション仮説（2003）:
-- - 宇宙自体が「文明のシミュレーション」である可能性
-- 
+- 宇宙自体が「文明のシミュレーション」である可能性
 - コズミックウェブとニューラルネットの類似が示唆すること:
-- - もし宇宙がニューラルネット状の計算基盤で動いているなら...
+- もし宇宙がニューラルネット状の計算基盤で動いているなら...
 
 
 ---
@@ -2322,7 +2434,8 @@ style: |
 
 > *プランクスケールの情報密度上限がシミュレーション検出の理論的根拠となる*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">エンジニアへの実践的示唆</text>
   <!-- App 1: Architecture design -->
@@ -2362,11 +2475,11 @@ style: |
   <text x="555" y="248" fill="#aaa" font-size="10" font-family="sans-serif">「一つの数学が</text>
   <text x="555" y="266" fill="#aaa" font-size="10" font-family="sans-serif">宇宙を記述する」</text>
 </svg>
-- - その宇宙に住む私たちが作るニューラルネットが宇宙に似るのは自然
-- - （「再帰的」な類似）
-- 
+</div>
+
+- その宇宙に住む私たちが作るニューラルネットが宇宙に似るのは自然
+- （「再帰的」な類似）
 - 注意: これは哲学的思考実験であり、現在の物理学の主流ではない
-- 
 - しかし: **宇宙の計算的側面** への真剣な研究は続いている
 
 
@@ -2376,7 +2489,8 @@ style: |
 
 > *宇宙-脳類似がグラフアルゴリズム・分散システム設計に与える工学的示唆*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">エンジニアへの実践的示唆</text>
   <!-- App 1: Architecture design -->
@@ -2416,12 +2530,12 @@ style: |
   <text x="555" y="248" fill="#aaa" font-size="10" font-family="sans-serif">「一つの数学が</text>
   <text x="555" y="266" fill="#aaa" font-size="10" font-family="sans-serif">宇宙を記述する」</text>
 </svg>
+</div>
+
 - 実践的な示唆:
-- 
 - **1. アーキテクチャ設計への応用**
-- - スケールフリーネットワーク設計 → 障害耐性と効率の両立
-- - 宇宙が「設計」したトポロジーをシステム設計に活かす
-- 
+- スケールフリーネットワーク設計 → 障害耐性と効率の両立
+- 宇宙が「設計」したトポロジーをシステム設計に活かす
 
 
 ---
@@ -2431,20 +2545,20 @@ style: |
 > *スケールフリー設計とロバスト性の知見を実際のシステムアーキテクチャに応用する*
 
 - **2. グラフニューラルネット（GNN）**
-- - コズミックウェブの解析にGNNを適用（実際の研究が進行中）
-- - 大規模構造予測・銀河形成シミュレーションの高速化
-- 
+- コズミックウェブの解析にGNNを適用（実際の研究が進行中）
+- 大規模構造予測・銀河形成シミュレーションの高速化
 - **3. 類似パターンの汎用性**
-- - インターネット・SNS・タンパク質ネットワークも同じパターン
-- - 複雑ネットワーク科学はあらゆるスケールで応用可能
+- インターネット・SNS・タンパク質ネットワークも同じパターン
+- 複雑ネットワーク科学はあらゆるスケールで応用可能
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 7: まとめ
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">未解決の問い — 誰も答えを持っていない</text>
   <!-- Question cards -->
@@ -2470,15 +2584,18 @@ style: |
   <text x="400" y="298" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">この問いを持ち帰ってほしい — 宇宙の法則を理解することは、</text>
   <text x="400" y="316" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">AIや複雑システムの設計にも新たな視点をもたらすかもしれない</text>
 </svg>
+</div>
+
 - 類似の意味を問い続ける
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 5つのキーポイント
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">未解決の問い — 誰も答えを持っていない</text>
   <!-- Question cards -->
@@ -2504,11 +2621,13 @@ style: |
   <text x="400" y="298" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">この問いを持ち帰ってほしい — 宇宙の法則を理解することは、</text>
   <text x="400" y="316" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">AIや複雑システムの設計にも新たな視点をもたらすかもしれない</text>
 </svg>
-- 1. コズミックウェブとニューラルネットは27桁のスケール差を超えて視覚的・定量的に類似する
-- 2. Franco & Vazza (2020) はクラスタリング係数・次数分布等の複数指標で一致を定量化した
-- 3. 類似の原因はスケールフリー性・自己組織化・収斂する物理法則にある
-- 4. 「偶然説」「創発説」「深い法則説」の3仮説が現在も議論中
-- 5. エンジニアには設計への応用・GNNによる宇宙解析・複雑ネットワーク科学への示唆がある
+</div>
+
+1. コズミックウェブとニューラルネットは27桁のスケール差を超えて視覚的・定量的に類似する
+2. Franco & Vazza (2020) はクラスタリング係数・次数分布等の複数指標で一致を定量化した
+3. 類似の原因はスケールフリー性・自己組織化・収斂する物理法則にある
+4. 「偶然説」「創発説」「深い法則説」の3仮説が現在も議論中
+5. エンジニアには設計への応用・GNNによる宇宙解析・複雑ネットワーク科学への示唆がある
 
 
 ---
@@ -2517,7 +2636,8 @@ style: |
 
 > *次世代宇宙サーベイと神経科学データの統合解析が類似性の解明を加速する*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">未解決の問い — 誰も答えを持っていない</text>
   <!-- Question cards -->
@@ -2543,11 +2663,12 @@ style: |
   <text x="400" y="298" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">この問いを持ち帰ってほしい — 宇宙の法則を理解することは、</text>
   <text x="400" y="316" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">AIや複雑システムの設計にも新たな視点をもたらすかもしれない</text>
 </svg>
+</div>
+
 - 進行中の研究方向:
-- 
-- - **AIによる宇宙論**: GNNでコズミックウェブのトポロジーを解析・予測
-- - **宇宙論でのML活用**: Camels simulation suite × 機械学習による宇宙パラメータ推定
-- - **逆方向の応用**: 宇宙シミュレーション技法を大規模ニューラルネット訓練に応用
+- **AIによる宇宙論**: GNNでコズミックウェブのトポロジーを解析・予測
+- **宇宙論でのML活用**: Camels simulation suite × 機械学習による宇宙パラメータ推定
+- **逆方向の応用**: 宇宙シミュレーション技法を大規模ニューラルネット訓練に応用
 
 
 ---
@@ -2556,7 +2677,8 @@ style: |
 
 > *機械学習による宇宙構造と神経網の共同モデリングが新理論を生む可能性*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">未解決の問い — 誰も答えを持っていない</text>
   <!-- Question cards -->
@@ -2582,11 +2704,12 @@ style: |
   <text x="400" y="298" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">この問いを持ち帰ってほしい — 宇宙の法則を理解することは、</text>
   <text x="400" y="316" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">AIや複雑システムの設計にも新たな視点をもたらすかもしれない</text>
 </svg>
-- 
+</div>
+
 - 未解決の応用問題:
-- - コズミックウェブに「最適配線」の数理的証明はあるか？
-- - 神経網の発達則（Hebbian learning）と重力の形式的等価性の証明
-- - 暗黒物質の正体と「シナプス強化物質」に類似したものの探索
+- コズミックウェブに「最適配線」の数理的証明はあるか？
+- 神経網の発達則（Hebbian learning）と重力の形式的等価性の証明
+- 暗黒物質の正体と「シナプス強化物質」に類似したものの探索
 
 
 ---
@@ -2596,9 +2719,8 @@ style: |
 > *類似性の根本原因が解明されれば統一理論につながる*
 
 - まだ誰も答えを持っていない問い:
-- 
-- - 類似は**形式的（見かけ上）**か、**機能的（本質的）**か？
-- - コズミックウェブは情報を「処理」しているのか、それとも単に「蓄積」しているのか？
+- 類似は**形式的（見かけ上）**か、**機能的（本質的）**か？
+- コズミックウェブは情報を「処理」しているのか、それとも単に「蓄積」しているのか？
 
 
 ---
@@ -2607,10 +2729,9 @@ style: |
 
 > *類似性の深さ・情報処理の普遍性・意識の起源という3つの核心問題が残る*
 
-- - スケールフリー性は「最適な構造」への収斂を示すのか？何が「最適」を定義するのか？
-- - 宇宙の他の構造（タンパク質・インターネット・川のデルタ）との類似はどこまで深いか？
-- - 類似が偶然でないとしたら、それは宇宙の法則についての何を意味するのか？
-- 
+- スケールフリー性は「最適な構造」への収斂を示すのか？何が「最適」を定義するのか？
+- 宇宙の他の構造（タンパク質・インターネット・川のデルタ）との類似はどこまで深いか？
+- 類似が偶然でないとしたら、それは宇宙の法則についての何を意味するのか？
 - 「答えより問いが重要な領域がある」— この問いを持ち帰ってほしい
 
 
@@ -2621,10 +2742,9 @@ style: |
 > *Franco & Vazza論文を含む一次資料と宇宙論・神経科学の主要参考文献*
 
 - **主要論文:**
-- - [Franco & Vazza et al. (2020) Frontiers in Physics](https://www.frontiersin.org/articles/10.3389/fphy.2020.525731/full)
-- - [Springel et al. (2005) Millennium Simulation — Nature](https://www.nature.com/articles/nature03597)
-- - [Barabási & Albert (1999) Scale-Free Networks — Science](https://science.sciencemag.org/content/286/5439/509)
-- 
+- [Franco & Vazza et al. (2020) Frontiers in Physics](https://www.frontiersin.org/articles/10.3389/fphy.2020.525731/full)
+- [Springel et al. (2005) Millennium Simulation — Nature](https://www.nature.com/articles/nature03597)
+- [Barabási & Albert (1999) Scale-Free Networks — Science](https://science.sciencemag.org/content/286/5439/509)
 - **書籍・解説:**
 
 
@@ -2634,10 +2754,9 @@ style: |
 
 > *スケールフリーネットワーク理論と複雑系科学の基礎文献リスト*
 
-- - [Network Science — Albert-László Barabási (無料公開)](http://networksciencebook.com/)
-- - [The Cosmic Web — J. Richard Gott (Princeton UP, 2016)](https://press.princeton.edu/books/hardcover/9780691157269/the-cosmic-web)
-- 
+- [Network Science — Albert-László Barabási (無料公開)](http://networksciencebook.com/)
+- [The Cosmic Web — J. Richard Gott (Princeton UP, 2016)](https://press.princeton.edu/books/hardcover/9780691157269/the-cosmic-web)
 - **動画・ビジュアル:**
-- - [Illustris Project — シミュレーション動画](https://www.illustris-project.org/)
-- - [Millennium Simulation — Virgo Consortium](https://wwwmpa.mpa-garching.mpg.de/galform/virgo/millennium/)
+- [Illustris Project — シミュレーション動画](https://www.illustris-project.org/)
+- [Millennium Simulation — Virgo Consortium](https://wwwmpa.mpa-garching.mpg.de/galform/virgo/millennium/)
 

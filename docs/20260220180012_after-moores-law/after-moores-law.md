@@ -7,41 +7,76 @@ paginate: true
 header: "ムーアの法則の死後"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,42 +111,47 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ムーアの法則の死後
 
 - **物理の壁を超えるための5つのアプローチ**
-- 
 - 次の10年の計算基盤はどう変わるのか
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # ムーアの法則50年の軌跡
 
-- - **1965年**: ゴードン・ムーアが予測 —「集積回路のトランジスタ数は2年ごとに倍増する」
-- - **1970〜2010年代**: 驚異的に正確な予測 — 10年で約1000倍のペース
-- - **2020年代**: 増加ペースが明確に鈍化 — 物理的限界に到達
-- 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="260" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">トランジスタ数の推移（対数スケール）</text><line x1="80" y1="230" x2="720" y2="230" stroke="#aaa" stroke-width="2"/><line x1="80" y1="230" x2="80" y2="55" stroke="#aaa" stroke-width="2"/><text x="400" y="255" text-anchor="middle" fill="#aaa" font-size="12">年代</text><text x="45" y="140" text-anchor="middle" fill="#aaa" font-size="11" transform="rotate(-90,45,140)">トランジスタ数 (log)</text><text x="120" y="245" fill="#aaa" font-size="10">1970</text><text x="240" y="245" fill="#aaa" font-size="10">1990</text><text x="370" y="245" fill="#aaa" font-size="10">2000</text><text x="500" y="245" fill="#aaa" font-size="10">2010</text><text x="630" y="245" fill="#aaa" font-size="10">2020</text><text x="80" y="215" fill="#aaa" font-size="9">10^3</text><text x="80" y="175" fill="#aaa" font-size="9">10^6</text><text x="80" y="135" fill="#aaa" font-size="9">10^9</text><text x="80" y="95" fill="#aaa" font-size="9">10^12</text><path d="M 120 210 L 180 195 L 240 175 L 300 155 L 370 130 L 440 110 L 500 90 L 560 78 L 630 72" fill="none" stroke="#4eff4e" stroke-width="3"/><line x1="120" y1="210" x2="700" y2="65" stroke="#533483" stroke-width="2" stroke-dasharray="5,3"/><text x="715" y="65" fill="#533483" font-size="10">予測線</text><text x="715" y="75" fill="#4eff4e" font-size="10">実際</text><circle cx="560" cy="78" r="4" fill="#ffcc00"/><text x="575" y="73" fill="#ffcc00" font-size="10">鈍化開始</text><rect x="550" y="140" width="160" height="45" rx="6" fill="#16213e" stroke="#e94560" stroke-width="1"/><text x="630" y="160" text-anchor="middle" fill="#e94560" font-size="11">2020年代:</text><text x="630" y="175" text-anchor="middle" fill="#e94560" font-size="11">物理的壁に到達</text></svg>
+- **1965年**: ゴードン・ムーアが予測 —「集積回路のトランジスタ数は2年ごとに倍増する」
+- **1970〜2010年代**: 驚異的に正確な予測 — 10年で約1000倍のペース
+- **2020年代**: 増加ペースが明確に鈍化 — 物理的限界に到達
+
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="260" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">トランジスタ数の推移（対数スケール）</text><line x1="80" y1="230" x2="720" y2="230" stroke="#aaa" stroke-width="2"/><line x1="80" y1="230" x2="80" y2="55" stroke="#aaa" stroke-width="2"/><text x="400" y="255" text-anchor="middle" fill="#aaa" font-size="12">年代</text><text x="45" y="140" text-anchor="middle" fill="#aaa" font-size="11" transform="rotate(-90,45,140)">トランジスタ数 (log)</text><text x="120" y="245" fill="#aaa" font-size="10">1970</text><text x="240" y="245" fill="#aaa" font-size="10">1990</text><text x="370" y="245" fill="#aaa" font-size="10">2000</text><text x="500" y="245" fill="#aaa" font-size="10">2010</text><text x="630" y="245" fill="#aaa" font-size="10">2020</text><text x="80" y="215" fill="#aaa" font-size="9">10^3</text><text x="80" y="175" fill="#aaa" font-size="9">10^6</text><text x="80" y="135" fill="#aaa" font-size="9">10^9</text><text x="80" y="95" fill="#aaa" font-size="9">10^12</text><path d="M 120 210 L 180 195 L 240 175 L 300 155 L 370 130 L 440 110 L 500 90 L 560 78 L 630 72" fill="none" stroke="#4eff4e" stroke-width="3"/><line x1="120" y1="210" x2="700" y2="65" stroke="#533483" stroke-width="2" stroke-dasharray="5,3"/><text x="715" y="65" fill="#533483" font-size="10">予測線</text><text x="715" y="75" fill="#4eff4e" font-size="10">実際</text><circle cx="560" cy="78" r="4" fill="#ffcc00"/><text x="575" y="73" fill="#ffcc00" font-size="10">鈍化開始</text><rect x="550" y="140" width="160" height="45" rx="6" fill="#16213e" stroke="#e94560" stroke-width="1"/><text x="630" y="160" text-anchor="middle" fill="#e94560" font-size="11">2020年代:</text><text x="630" y="175" text-anchor="middle" fill="#e94560" font-size="11">物理的壁に到達</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-64 -->
 # なぜ壁に当たったか — 物理的限界
 
 > *量子・熱・光・経済の4つの壁が重なり「小さく速く安く」の三位一体が崩壊した*
 
-- - **量子トンネル効果**: 回路が5nm以下になると電子がゲートを透過してしまう
-- - **発熱密度**: 消費電力が面積に比例して増大 — デナード則の崩壊（2006年頃）
-- - **光の回折限界**: EUVリソグラフィでも微細化に限界がある
-- - **経済的限界**: 最先端ファブの建設費用が$20B超（TSMC 2nm fab）
-- 
-- <svg viewBox="0 0 800 250" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="230" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">スケーリングを阻む4つの壁</text><rect x="50" y="60" width="160" height="80" rx="10" fill="#e94560" opacity="0.8"/><text x="130" y="90" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">量子トンネル</text><text x="130" y="110" text-anchor="middle" fill="#fff" font-size="10">電子がゲートを</text><text x="130" y="125" text-anchor="middle" fill="#fff" font-size="10">すり抜ける</text><rect x="230" y="60" width="160" height="80" rx="10" fill="#533483"/><text x="310" y="90" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">発熱密度</text><text x="310" y="110" text-anchor="middle" fill="#fff" font-size="10">デナード則の</text><text x="310" y="125" text-anchor="middle" fill="#fff" font-size="10">崩壊（2006年）</text><rect x="410" y="60" width="160" height="80" rx="10" fill="#0f3460"/><text x="490" y="90" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">光学的限界</text><text x="490" y="110" text-anchor="middle" fill="#fff" font-size="10">EUVでも</text><text x="490" y="125" text-anchor="middle" fill="#fff" font-size="10">限界に近づく</text><rect x="590" y="60" width="160" height="80" rx="10" fill="#16213e" stroke="#ffcc00" stroke-width="2"/><text x="670" y="90" text-anchor="middle" fill="#ffcc00" font-size="12" font-weight="bold">経済的限界</text><text x="670" y="110" text-anchor="middle" fill="#fff" font-size="10">ファブ建設費</text><text x="670" y="125" text-anchor="middle" fill="#fff" font-size="10">$20B超</text><rect x="150" y="160" width="500" height="55" rx="10" fill="#16213e" stroke="#e94560" stroke-width="2"/><text x="400" y="185" text-anchor="middle" fill="#e94560" font-size="14" font-weight="bold">「小さく・速く・安く」の三位一体が崩壊</text><text x="400" y="205" text-anchor="middle" fill="#aaa" font-size="12">→ 新しいアプローチが必要</text></svg>
+- **量子トンネル効果**: 回路が5nm以下になると電子がゲートを透過してしまう
+- **発熱密度**: 消費電力が面積に比例して増大 — デナード則の崩壊（2006年頃）
+- **光の回折限界**: EUVリソグラフィでも微細化に限界がある
+- **経済的限界**: 最先端ファブの建設費用が$20B超（TSMC 2nm fab）
+
+<div class="fig">
+<svg viewBox="0 0 800 250" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="230" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">スケーリングを阻む4つの壁</text><rect x="50" y="60" width="160" height="80" rx="10" fill="#e94560" opacity="0.8"/><text x="130" y="90" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">量子トンネル</text><text x="130" y="110" text-anchor="middle" fill="#fff" font-size="10">電子がゲートを</text><text x="130" y="125" text-anchor="middle" fill="#fff" font-size="10">すり抜ける</text><rect x="230" y="60" width="160" height="80" rx="10" fill="#533483"/><text x="310" y="90" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">発熱密度</text><text x="310" y="110" text-anchor="middle" fill="#fff" font-size="10">デナード則の</text><text x="310" y="125" text-anchor="middle" fill="#fff" font-size="10">崩壊（2006年）</text><rect x="410" y="60" width="160" height="80" rx="10" fill="#0f3460"/><text x="490" y="90" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">光学的限界</text><text x="490" y="110" text-anchor="middle" fill="#fff" font-size="10">EUVでも</text><text x="490" y="125" text-anchor="middle" fill="#fff" font-size="10">限界に近づく</text><rect x="590" y="60" width="160" height="80" rx="10" fill="#16213e" stroke="#ffcc00" stroke-width="2"/><text x="670" y="90" text-anchor="middle" fill="#ffcc00" font-size="12" font-weight="bold">経済的限界</text><text x="670" y="110" text-anchor="middle" fill="#fff" font-size="10">ファブ建設費</text><text x="670" y="125" text-anchor="middle" fill="#fff" font-size="10">$20B超</text><rect x="150" y="160" width="500" height="55" rx="10" fill="#16213e" stroke="#e94560" stroke-width="2"/><text x="400" y="185" text-anchor="middle" fill="#e94560" font-size="14" font-weight="bold">「小さく・速く・安く」の三位一体が崩壊</text><text x="400" y="205" text-anchor="middle" fill="#aaa" font-size="12">→ 新しいアプローチが必要</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 5つのアプローチ
 
 - ムーアの法則に代わる計算能力向上の戦略
@@ -119,77 +159,93 @@ style: |
 
 ---
 
+<!-- _class: invert fit-70 -->
 # アプローチ1: 特化型チップ (ASIC/TPU/NPU)
 
 > *汎用性を捨て特定ワークロードに特化することで100〜1000倍の電力効率を実現する*
 
-- - **汎用性を捨てて特化** → 特定ワークロードで100〜1000倍の効率
-- - **Google TPU**: AI推論に特化、行列演算を高速処理
-- - **Apple Neural Engine**: スマートフォンでのオンデバイスAI
-- - **Bitcoin ASIC**: SHA-256ハッシュに特化したマイニング専用チップ
-- 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="220" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">汎用 vs 特化型の性能/電力効率</text><rect x="60" y="65" width="200" height="50" rx="8" fill="#0f3460"/><text x="160" y="87" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">CPU (汎用)</text><text x="160" y="103" text-anchor="middle" fill="#aaa" font-size="10">1x 性能/W</text><rect x="60" y="125" width="320" height="50" rx="8" fill="#533483"/><text x="220" y="147" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">GPU (並列)</text><text x="220" y="163" text-anchor="middle" fill="#aaa" font-size="10">10〜50x 性能/W</text><rect x="60" y="185" width="680" height="30" rx="8" fill="#4eff4e" opacity="0.7"/><text x="400" y="205" text-anchor="middle" fill="#1a1a2e" font-size="12" font-weight="bold">ASIC/TPU (特化)  100〜1000x 性能/W</text><text x="755" y="90" text-anchor="end" fill="#aaa" font-size="10">柔軟性: 高</text><text x="755" y="150" text-anchor="end" fill="#aaa" font-size="10">柔軟性: 中</text><text x="755" y="205" text-anchor="end" fill="#aaa" font-size="10">柔軟性: 低</text></svg>
+- **汎用性を捨てて特化** → 特定ワークロードで100〜1000倍の効率
+- **Google TPU**: AI推論に特化、行列演算を高速処理
+- **Apple Neural Engine**: スマートフォンでのオンデバイスAI
+- **Bitcoin ASIC**: SHA-256ハッシュに特化したマイニング専用チップ
+
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="220" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">汎用 vs 特化型の性能/電力効率</text><rect x="60" y="65" width="200" height="50" rx="8" fill="#0f3460"/><text x="160" y="87" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">CPU (汎用)</text><text x="160" y="103" text-anchor="middle" fill="#aaa" font-size="10">1x 性能/W</text><rect x="60" y="125" width="320" height="50" rx="8" fill="#533483"/><text x="220" y="147" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">GPU (並列)</text><text x="220" y="163" text-anchor="middle" fill="#aaa" font-size="10">10〜50x 性能/W</text><rect x="60" y="185" width="680" height="30" rx="8" fill="#4eff4e" opacity="0.7"/><text x="400" y="205" text-anchor="middle" fill="#1a1a2e" font-size="12" font-weight="bold">ASIC/TPU (特化)  100〜1000x 性能/W</text><text x="755" y="90" text-anchor="end" fill="#aaa" font-size="10">柔軟性: 高</text><text x="755" y="150" text-anchor="end" fill="#aaa" font-size="10">柔軟性: 中</text><text x="755" y="205" text-anchor="end" fill="#aaa" font-size="10">柔軟性: 低</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # アプローチ2: 3Dチップスタッキング
 
 > *垂直積層で帯域幅を10倍・レイテンシを1/10にしメモリウォール問題を根本解決する*
 
-- - **水平微細化の限界** → **垂直方向への積層**で帯域幅を革命的に向上
-- - **HBM（High Bandwidth Memory）**: DRAMを垂直積層、AI訓練の必需品
-- - **TSMC SoIC / Intel Foveros**: ロジックチップ同士を3D接続
-- - メモリとプロセッサの距離を極限まで短縮 → レイテンシ削減
-- 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="260" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">2D平面配置 vs 3D積層</text><rect x="60" y="65" width="280" height="180" rx="12" fill="#16213e"/><text x="200" y="90" text-anchor="middle" fill="#aaa" font-size="14" font-weight="bold">従来: 2D 配置</text><rect x="90" y="105" width="220" height="35" rx="5" fill="#0f3460"/><text x="200" y="128" text-anchor="middle" fill="#fff" font-size="12">CPU</text><rect x="90" y="155" width="220" height="35" rx="5" fill="#533483"/><text x="200" y="178" text-anchor="middle" fill="#fff" font-size="12">Memory</text><line x1="200" y1="140" x2="200" y2="155" stroke="#e94560" stroke-width="2"/><text x="200" y="215" text-anchor="middle" fill="#e94560" font-size="11">長いバス配線 → 遅延大</text><rect x="420" y="65" width="330" height="180" rx="12" fill="#16213e" stroke="#4eff4e" stroke-width="2"/><text x="585" y="90" text-anchor="middle" fill="#4eff4e" font-size="14" font-weight="bold">新: 3D 積層</text><rect x="470" y="100" width="190" height="28" rx="5" fill="#533483"/><text x="565" y="119" text-anchor="middle" fill="#fff" font-size="11">HBM Layer 4</text><rect x="470" y="130" width="190" height="28" rx="5" fill="#533483"/><text x="565" y="149" text-anchor="middle" fill="#fff" font-size="11">HBM Layer 3</text><rect x="470" y="160" width="190" height="28" rx="5" fill="#533483"/><text x="565" y="179" text-anchor="middle" fill="#fff" font-size="11">HBM Layer 2</text><rect x="470" y="190" width="190" height="28" rx="5" fill="#0f3460"/><text x="565" y="209" text-anchor="middle" fill="#fff" font-size="11">Logic (CPU/GPU)</text><text x="700" y="155" fill="#4eff4e" font-size="10">TSV接続</text><text x="700" y="170" fill="#4eff4e" font-size="10">超短距離</text><text x="585" y="240" text-anchor="middle" fill="#4eff4e" font-size="11">帯域幅 10x / レイテンシ 1/10</text></svg>
+- **水平微細化の限界** → **垂直方向への積層**で帯域幅を革命的に向上
+- **HBM（High Bandwidth Memory）**: DRAMを垂直積層、AI訓練の必需品
+- **TSMC SoIC / Intel Foveros**: ロジックチップ同士を3D接続
+- メモリとプロセッサの距離を極限まで短縮 → レイテンシ削減
+
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="260" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">2D平面配置 vs 3D積層</text><rect x="60" y="65" width="280" height="180" rx="12" fill="#16213e"/><text x="200" y="90" text-anchor="middle" fill="#aaa" font-size="14" font-weight="bold">従来: 2D 配置</text><rect x="90" y="105" width="220" height="35" rx="5" fill="#0f3460"/><text x="200" y="128" text-anchor="middle" fill="#fff" font-size="12">CPU</text><rect x="90" y="155" width="220" height="35" rx="5" fill="#533483"/><text x="200" y="178" text-anchor="middle" fill="#fff" font-size="12">Memory</text><line x1="200" y1="140" x2="200" y2="155" stroke="#e94560" stroke-width="2"/><text x="200" y="215" text-anchor="middle" fill="#e94560" font-size="11">長いバス配線 → 遅延大</text><rect x="420" y="65" width="330" height="180" rx="12" fill="#16213e" stroke="#4eff4e" stroke-width="2"/><text x="585" y="90" text-anchor="middle" fill="#4eff4e" font-size="14" font-weight="bold">新: 3D 積層</text><rect x="470" y="100" width="190" height="28" rx="5" fill="#533483"/><text x="565" y="119" text-anchor="middle" fill="#fff" font-size="11">HBM Layer 4</text><rect x="470" y="130" width="190" height="28" rx="5" fill="#533483"/><text x="565" y="149" text-anchor="middle" fill="#fff" font-size="11">HBM Layer 3</text><rect x="470" y="160" width="190" height="28" rx="5" fill="#533483"/><text x="565" y="179" text-anchor="middle" fill="#fff" font-size="11">HBM Layer 2</text><rect x="470" y="190" width="190" height="28" rx="5" fill="#0f3460"/><text x="565" y="209" text-anchor="middle" fill="#fff" font-size="11">Logic (CPU/GPU)</text><text x="700" y="155" fill="#4eff4e" font-size="10">TSV接続</text><text x="700" y="170" fill="#4eff4e" font-size="10">超短距離</text><text x="585" y="240" text-anchor="middle" fill="#4eff4e" font-size="11">帯域幅 10x / レイテンシ 1/10</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-64 -->
 # アプローチ3: ニューロモーフィックチップ
 
 > *脳型の事象駆動アーキテクチャでフォンノイマンのメモリ壁を排除し消費電力を1/1000にする*
 
-- - **脳を模倣**: ニューロンとシナプスの動作をハードウェアで再現
-- - **非フォンノイマン**: データと計算を分離しない — メモリ壁問題を根本解決
-- - **事象駆動**: スパイクが発生した時だけ計算 → 超低消費電力
-- - **Intel Loihi 2**: 100万ニューロン相当、従来CPUの1/1000の消費電力
-- 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="220" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">フォンノイマン vs ニューロモーフィック</text><rect x="60" y="60" width="300" height="150" rx="12" fill="#16213e"/><text x="210" y="85" text-anchor="middle" fill="#aaa" font-size="13" font-weight="bold">従来 (フォンノイマン)</text><rect x="90" y="100" width="100" height="40" rx="6" fill="#0f3460"/><text x="140" y="125" text-anchor="middle" fill="#fff" font-size="11">CPU</text><rect x="210" y="100" width="120" height="40" rx="6" fill="#533483"/><text x="270" y="125" text-anchor="middle" fill="#fff" font-size="11">Memory</text><line x1="190" y1="120" x2="210" y2="120" stroke="#e94560" stroke-width="3"/><text x="200" y="112" text-anchor="middle" fill="#e94560" font-size="9">ボトル</text><text x="200" y="135" text-anchor="middle" fill="#e94560" font-size="9">ネック</text><text x="210" y="180" text-anchor="middle" fill="#e94560" font-size="11">常時通電 / 高消費電力</text><rect x="440" y="60" width="310" height="150" rx="12" fill="#16213e" stroke="#4eff4e" stroke-width="2"/><text x="595" y="85" text-anchor="middle" fill="#4eff4e" font-size="13" font-weight="bold">ニューロモーフィック</text><circle cx="490" cy="130" r="12" fill="#4eff4e" opacity="0.6"/><circle cx="530" cy="110" r="12" fill="#4eff4e" opacity="0.6"/><circle cx="570" cy="135" r="12" fill="#4eff4e" opacity="0.6"/><circle cx="610" cy="115" r="12" fill="#4eff4e" opacity="0.6"/><circle cx="650" cy="130" r="12" fill="#4eff4e" opacity="0.6"/><circle cx="690" cy="110" r="12" fill="#4eff4e" opacity="0.6"/><line x1="502" y1="125" x2="518" y2="115" stroke="#4eff4e" stroke-width="1" opacity="0.5"/><line x1="542" y1="115" x2="558" y2="130" stroke="#4eff4e" stroke-width="1" opacity="0.5"/><line x1="582" y1="130" x2="598" y2="120" stroke="#4eff4e" stroke-width="1" opacity="0.5"/><line x1="622" y1="120" x2="638" y2="125" stroke="#4eff4e" stroke-width="1" opacity="0.5"/><line x1="662" y1="125" x2="678" y2="115" stroke="#4eff4e" stroke-width="1" opacity="0.5"/><text x="595" y="180" text-anchor="middle" fill="#4eff4e" font-size="11">スパイク駆動 / 1/1000の消費電力</text></svg>
+- **脳を模倣**: ニューロンとシナプスの動作をハードウェアで再現
+- **非フォンノイマン**: データと計算を分離しない — メモリ壁問題を根本解決
+- **事象駆動**: スパイクが発生した時だけ計算 → 超低消費電力
+- **Intel Loihi 2**: 100万ニューロン相当、従来CPUの1/1000の消費電力
+
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="220" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">フォンノイマン vs ニューロモーフィック</text><rect x="60" y="60" width="300" height="150" rx="12" fill="#16213e"/><text x="210" y="85" text-anchor="middle" fill="#aaa" font-size="13" font-weight="bold">従来 (フォンノイマン)</text><rect x="90" y="100" width="100" height="40" rx="6" fill="#0f3460"/><text x="140" y="125" text-anchor="middle" fill="#fff" font-size="11">CPU</text><rect x="210" y="100" width="120" height="40" rx="6" fill="#533483"/><text x="270" y="125" text-anchor="middle" fill="#fff" font-size="11">Memory</text><line x1="190" y1="120" x2="210" y2="120" stroke="#e94560" stroke-width="3"/><text x="200" y="112" text-anchor="middle" fill="#e94560" font-size="9">ボトル</text><text x="200" y="135" text-anchor="middle" fill="#e94560" font-size="9">ネック</text><text x="210" y="180" text-anchor="middle" fill="#e94560" font-size="11">常時通電 / 高消費電力</text><rect x="440" y="60" width="310" height="150" rx="12" fill="#16213e" stroke="#4eff4e" stroke-width="2"/><text x="595" y="85" text-anchor="middle" fill="#4eff4e" font-size="13" font-weight="bold">ニューロモーフィック</text><circle cx="490" cy="130" r="12" fill="#4eff4e" opacity="0.6"/><circle cx="530" cy="110" r="12" fill="#4eff4e" opacity="0.6"/><circle cx="570" cy="135" r="12" fill="#4eff4e" opacity="0.6"/><circle cx="610" cy="115" r="12" fill="#4eff4e" opacity="0.6"/><circle cx="650" cy="130" r="12" fill="#4eff4e" opacity="0.6"/><circle cx="690" cy="110" r="12" fill="#4eff4e" opacity="0.6"/><line x1="502" y1="125" x2="518" y2="115" stroke="#4eff4e" stroke-width="1" opacity="0.5"/><line x1="542" y1="115" x2="558" y2="130" stroke="#4eff4e" stroke-width="1" opacity="0.5"/><line x1="582" y1="130" x2="598" y2="120" stroke="#4eff4e" stroke-width="1" opacity="0.5"/><line x1="622" y1="120" x2="638" y2="125" stroke="#4eff4e" stroke-width="1" opacity="0.5"/><line x1="662" y1="125" x2="678" y2="115" stroke="#4eff4e" stroke-width="1" opacity="0.5"/><text x="595" y="180" text-anchor="middle" fill="#4eff4e" font-size="11">スパイク駆動 / 1/1000の消費電力</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # アプローチ4: 光コンピューティング
 
 > *光干渉で行列演算をO(1)時間・極低発熱で処理しAI推論を最大1000倍高速化できる*
 
-- <svg viewBox='0 0 800 210' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='210' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>電子 vs 光子コンピューティング</text><rect x='40' y='50' width='320' height='130' rx='10' fill='#16213e' stroke='#e74c3c' stroke-width='2'/><text x='200' y='75' text-anchor='middle' fill='#e74c3c' font-size='13' font-weight='bold'>電子ベース（現行）</text><text x='200' y='98' text-anchor='middle' fill='#aaa' font-size='11'>行列演算: O(n²) 演算が必要</text><text x='200' y='118' text-anchor='middle' fill='#aaa' font-size='11'>発熱: ジュール熱が不可避</text><text x='200' y='138' text-anchor='middle' fill='#aaa' font-size='11'>速度: 光速の約1%</text><text x='200' y='162' text-anchor='middle' fill='#e74c3c' font-size='11'>AIモデル推論に膨大な電力</text><rect x='440' y='50' width='320' height='130' rx='10' fill='#16213e' stroke='#4ecdc4' stroke-width='2'/><text x='600' y='75' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>光子ベース（次世代）</text><text x='600' y='98' text-anchor='middle' fill='#aaa' font-size='11'>行列演算: レンズ通過でO(1)</text><text x='600' y='118' text-anchor='middle' fill='#aaa' font-size='11'>発熱: 極めて低い</text><text x='600' y='138' text-anchor='middle' fill='#aaa' font-size='11'>速度: 光速（真空中）</text><text x='600' y='162' text-anchor='middle' fill='#4ecdc4' font-size='11'>AI推論を100x〜1000x高速化</text><text x='400' y='195' text-anchor='middle' fill='#f9a825' font-size='10'>課題: 非線形演算・精度・電気-光変換コスト — Lightmatter等が先行</text></svg>
-- - **光子で計算**: 電子の代わりに光の干渉・回折パターンを利用
-- - **行列演算が光速**: レンズを通すだけで行列乗算が完了（O(1)時間）
-- - **AI/MLワークロードに最適**: 推論処理の大部分は行列演算
-- - **課題**: 非線形演算、精度、電気-光変換のオーバーヘッド
-- - **Lightmatter, Luminous Computing**: スタートアップが先行
+<div class="fig">
+<svg viewBox='0 0 800 210' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x='0' y='0' width='800' height='210' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>電子 vs 光子コンピューティング</text><rect x='40' y='50' width='320' height='130' rx='10' fill='#16213e' stroke='#e74c3c' stroke-width='2'/><text x='200' y='75' text-anchor='middle' fill='#e74c3c' font-size='13' font-weight='bold'>電子ベース（現行）</text><text x='200' y='98' text-anchor='middle' fill='#aaa' font-size='11'>行列演算: O(n²) 演算が必要</text><text x='200' y='118' text-anchor='middle' fill='#aaa' font-size='11'>発熱: ジュール熱が不可避</text><text x='200' y='138' text-anchor='middle' fill='#aaa' font-size='11'>速度: 光速の約1%</text><text x='200' y='162' text-anchor='middle' fill='#e74c3c' font-size='11'>AIモデル推論に膨大な電力</text><rect x='440' y='50' width='320' height='130' rx='10' fill='#16213e' stroke='#4ecdc4' stroke-width='2'/><text x='600' y='75' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>光子ベース（次世代）</text><text x='600' y='98' text-anchor='middle' fill='#aaa' font-size='11'>行列演算: レンズ通過でO(1)</text><text x='600' y='118' text-anchor='middle' fill='#aaa' font-size='11'>発熱: 極めて低い</text><text x='600' y='138' text-anchor='middle' fill='#aaa' font-size='11'>速度: 光速（真空中）</text><text x='600' y='162' text-anchor='middle' fill='#4ecdc4' font-size='11'>AI推論を100x〜1000x高速化</text><text x='400' y='195' text-anchor='middle' fill='#f9a825' font-size='10'>課題: 非線形演算・精度・電気-光変換コスト — Lightmatter等が先行</text></svg>
+</div>
+
+- **光子で計算**: 電子の代わりに光の干渉・回折パターンを利用
+- **行列演算が光速**: レンズを通すだけで行列乗算が完了（O(1)時間）
+- **AI/MLワークロードに最適**: 推論処理の大部分は行列演算
+- **課題**: 非線形演算、精度、電気-光変換のオーバーヘッド
+- **Lightmatter, Luminous Computing**: スタートアップが先行
 
 
 ---
 
+<!-- _class: invert fit-58 -->
 # アプローチ5: 量子コンピューティングの現実
 
 > *量子は汎用計算の代替ではなく分子シミュレーションや最適化に特化した加速器として活用する*
 
-- - **NISQ時代（Noisy Intermediate-Scale Quantum）**: エラー率がまだ高い
-- - **2024年**: Google Willow で量子誤り訂正の重要なマイルストーン達成
-- - **実用的な優位領域**: 分子シミュレーション、暗号解読、最適化問題の一部
-- - **汎用計算の代替にはならない** — 古典コンピュータとのハイブリッド運用
-- 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="220" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">量子コンピュータの適用領域マップ</text><rect x="60" y="60" width="200" height="70" rx="10" fill="#4eff4e" opacity="0.3"/><text x="160" y="85" text-anchor="middle" fill="#4eff4e" font-size="12" font-weight="bold">量子優位あり</text><text x="160" y="105" text-anchor="middle" fill="#fff" font-size="10">分子シミュレーション</text><text x="160" y="120" text-anchor="middle" fill="#fff" font-size="10">暗号解読・素因数分解</text><rect x="290" y="60" width="200" height="70" rx="10" fill="#ffcc00" opacity="0.3"/><text x="390" y="85" text-anchor="middle" fill="#ffcc00" font-size="12" font-weight="bold">将来有望</text><text x="390" y="105" text-anchor="middle" fill="#fff" font-size="10">組合せ最適化</text><text x="390" y="120" text-anchor="middle" fill="#fff" font-size="10">金融リスク計算</text><rect x="520" y="60" width="230" height="70" rx="10" fill="#e94560" opacity="0.3"/><text x="635" y="85" text-anchor="middle" fill="#e94560" font-size="12" font-weight="bold">古典が優位</text><text x="635" y="105" text-anchor="middle" fill="#fff" font-size="10">汎用計算・DB・Web</text><text x="635" y="120" text-anchor="middle" fill="#fff" font-size="10">ほとんどの日常処理</text><rect x="150" y="150" width="500" height="55" rx="10" fill="#16213e" stroke="#ffcc00" stroke-width="1"/><text x="400" y="175" text-anchor="middle" fill="#ffcc00" font-size="13" font-weight="bold">量子は「万能」ではなく「特化型」加速器</text><text x="400" y="195" text-anchor="middle" fill="#aaa" font-size="11">古典コンピュータとのハイブリッド運用が現実解</text></svg>
+- **NISQ時代（Noisy Intermediate-Scale Quantum）**: エラー率がまだ高い
+- **2024年**: Google Willow で量子誤り訂正の重要なマイルストーン達成
+- **実用的な優位領域**: 分子シミュレーション、暗号解読、最適化問題の一部
+- **汎用計算の代替にはならない** — 古典コンピュータとのハイブリッド運用
+
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="220" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">量子コンピュータの適用領域マップ</text><rect x="60" y="60" width="200" height="70" rx="10" fill="#4eff4e" opacity="0.3"/><text x="160" y="85" text-anchor="middle" fill="#4eff4e" font-size="12" font-weight="bold">量子優位あり</text><text x="160" y="105" text-anchor="middle" fill="#fff" font-size="10">分子シミュレーション</text><text x="160" y="120" text-anchor="middle" fill="#fff" font-size="10">暗号解読・素因数分解</text><rect x="290" y="60" width="200" height="70" rx="10" fill="#ffcc00" opacity="0.3"/><text x="390" y="85" text-anchor="middle" fill="#ffcc00" font-size="12" font-weight="bold">将来有望</text><text x="390" y="105" text-anchor="middle" fill="#fff" font-size="10">組合せ最適化</text><text x="390" y="120" text-anchor="middle" fill="#fff" font-size="10">金融リスク計算</text><rect x="520" y="60" width="230" height="70" rx="10" fill="#e94560" opacity="0.3"/><text x="635" y="85" text-anchor="middle" fill="#e94560" font-size="12" font-weight="bold">古典が優位</text><text x="635" y="105" text-anchor="middle" fill="#fff" font-size="10">汎用計算・DB・Web</text><text x="635" y="120" text-anchor="middle" fill="#fff" font-size="10">ほとんどの日常処理</text><rect x="150" y="150" width="500" height="55" rx="10" fill="#16213e" stroke="#ffcc00" stroke-width="1"/><text x="400" y="175" text-anchor="middle" fill="#ffcc00" font-size="13" font-weight="bold">量子は「万能」ではなく「特化型」加速器</text><text x="400" y="195" text-anchor="middle" fill="#aaa" font-size="11">古典コンピュータとのハイブリッド運用が現実解</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ソフトウェアへの含意
 
 - ハードウェアの変化がソフトウェア開発をどう変えるか
@@ -197,29 +253,36 @@ style: |
 
 ---
 
+<!-- _class: invert fit-64 -->
 # 「ハードウェアロトリー」の終わり
 
 > *待てば速くなる時代が終わりアルゴリズム効率とメモリ設計が直接の競争優位になった*
 
-- - **かつて**: 「待てば速くなる」— ムーアの法則がソフトウェアの非効率を吸収
-- - **現在**: ハードウェアは自動的に速くならない → **ソフトウェアが性能の責任を持つ**
-- - **プロフィッツの法則**: ソフトウェアの肥大化がハードウェアの進歩を打ち消す
-- - **新しい現実**: アルゴリズム最適化、メモリ効率、並列性が競争優位に
-- 
-- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="200" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">性能責任の移行</text><rect x="60" y="60" width="300" height="60" rx="10" fill="#0f3460"/><text x="210" y="85" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">旧: ハードウェアが吸収</text><text x="210" y="105" text-anchor="middle" fill="#aaa" font-size="11">「待てば速くなる」</text><line x1="360" y1="90" x2="420" y2="90" stroke="#e94560" stroke-width="3"/><polygon points="415,84 425,90 415,96" fill="#e94560"/><rect x="425" y="60" width="320" height="60" rx="10" fill="#16213e" stroke="#4eff4e" stroke-width="2"/><text x="585" y="85" text-anchor="middle" fill="#4eff4e" font-size="13" font-weight="bold">新: ソフトウェアが責任</text><text x="585" y="105" text-anchor="middle" fill="#fff" font-size="11">アルゴリズム・メモリ・並列性</text><text x="400" y="160" text-anchor="middle" fill="#ffcc00" font-size="14" font-weight="bold">効率的なコードを書く能力 = 競争優位</text><text x="400" y="185" text-anchor="middle" fill="#aaa" font-size="12">Rust, Zig, C++ の再評価はこの文脈</text></svg>
+- **かつて**: 「待てば速くなる」— ムーアの法則がソフトウェアの非効率を吸収
+- **現在**: ハードウェアは自動的に速くならない → **ソフトウェアが性能の責任を持つ**
+- **プロフィッツの法則**: ソフトウェアの肥大化がハードウェアの進歩を打ち消す
+- **新しい現実**: アルゴリズム最適化、メモリ効率、並列性が競争優位に
+
+<div class="fig">
+<svg viewBox="0 0 800 220" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="200" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">性能責任の移行</text><rect x="60" y="60" width="300" height="60" rx="10" fill="#0f3460"/><text x="210" y="85" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">旧: ハードウェアが吸収</text><text x="210" y="105" text-anchor="middle" fill="#aaa" font-size="11">「待てば速くなる」</text><line x1="360" y1="90" x2="420" y2="90" stroke="#e94560" stroke-width="3"/><polygon points="415,84 425,90 415,96" fill="#e94560"/><rect x="425" y="60" width="320" height="60" rx="10" fill="#16213e" stroke="#4eff4e" stroke-width="2"/><text x="585" y="85" text-anchor="middle" fill="#4eff4e" font-size="13" font-weight="bold">新: ソフトウェアが責任</text><text x="585" y="105" text-anchor="middle" fill="#fff" font-size="11">アルゴリズム・メモリ・並列性</text><text x="400" y="160" text-anchor="middle" fill="#ffcc00" font-size="14" font-weight="bold">効率的なコードを書く能力 = 競争優位</text><text x="400" y="185" text-anchor="middle" fill="#aaa" font-size="12">Rust, Zig, C++ の再評価はこの文脈</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-64 -->
 # アーキテクチャの再設計
 
 > *キャッシュヒット率とデータローカリティの設計がムーア後時代の性能差を決定する*
 
-- <svg viewBox='0 0 800 200' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>メモリ階層とアクセスレイテンシ</text><rect x='60' y='50' width='680' height='28' rx='5' fill='#2ecc71' fill-opacity='0.7'/><text x='400' y='69' text-anchor='middle' fill='#fff' font-size='12' font-weight='bold'>L1キャッシュ: ~1ns (1x) — 高頻度データはここに収める</text><rect x='100' y='86' width='600' height='26' rx='5' fill='#f39c12' fill-opacity='0.7'/><text x='400' y='103' text-anchor='middle' fill='#fff' font-size='11'>L2キャッシュ: ~5ns (5x)</text><rect x='140' y='120' width='520' height='24' rx='5' fill='#e67e22' fill-opacity='0.7'/><text x='400' y='136' text-anchor='middle' fill='#fff' font-size='11'>L3キャッシュ: ~20ns (20x)</text><rect x='200' y='152' width='400' height='22' rx='5' fill='#e74c3c' fill-opacity='0.8'/><text x='400' y='167' text-anchor='middle' fill='#fff' font-size='11'>メインメモリ: ~100ns (100x) ← ここがメモリウォール</text><text x='400' y='190' text-anchor='middle' fill='#aaa' font-size='10'>データローカリティ設計でキャッシュヒット率を上げることが現代の競争優位</text></svg>
-- - **データローカリティ**: キャッシュヒット率がパフォーマンスを支配
-- - **メモリ帯域幅**: 計算能力よりメモリアクセスがボトルネック（メモリウォール）
-- - **並列性の設計**: マルチコア/SIMD/GPGPUを前提としたアルゴリズム設計
-- - **Rust/Zigの台頭**: メモリ安全性 + ゼロコスト抽象 + 手動メモリ管理
+<div class="fig">
+<svg viewBox='0 0 800 200' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x='0' y='0' width='800' height='200' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#f9a825' font-size='14' font-weight='bold'>メモリ階層とアクセスレイテンシ</text><rect x='60' y='50' width='680' height='28' rx='5' fill='#2ecc71' fill-opacity='0.7'/><text x='400' y='69' text-anchor='middle' fill='#fff' font-size='12' font-weight='bold'>L1キャッシュ: ~1ns (1x) — 高頻度データはここに収める</text><rect x='100' y='86' width='600' height='26' rx='5' fill='#f39c12' fill-opacity='0.7'/><text x='400' y='103' text-anchor='middle' fill='#fff' font-size='11'>L2キャッシュ: ~5ns (5x)</text><rect x='140' y='120' width='520' height='24' rx='5' fill='#e67e22' fill-opacity='0.7'/><text x='400' y='136' text-anchor='middle' fill='#fff' font-size='11'>L3キャッシュ: ~20ns (20x)</text><rect x='200' y='152' width='400' height='22' rx='5' fill='#e74c3c' fill-opacity='0.8'/><text x='400' y='167' text-anchor='middle' fill='#fff' font-size='11'>メインメモリ: ~100ns (100x) ← ここがメモリウォール</text><text x='400' y='190' text-anchor='middle' fill='#aaa' font-size='10'>データローカリティ設計でキャッシュヒット率を上げることが現代の競争優位</text></svg>
+</div>
+
+- **データローカリティ**: キャッシュヒット率がパフォーマンスを支配
+- **メモリ帯域幅**: 計算能力よりメモリアクセスがボトルネック（メモリウォール）
+- **並列性の設計**: マルチコア/SIMD/GPGPUを前提としたアルゴリズム設計
+- **Rust/Zigの台頭**: メモリ安全性 + ゼロコスト抽象 + 手動メモリ管理
 
 
 ---
@@ -239,40 +302,41 @@ style: |
 
 ---
 
+<!-- _class: invert fit-64 -->
 # AIモデルの計算効率革命
 
 > *量子化・蒸留・MoEの組み合わせでモデル精度を維持しながら計算コストを1/4〜1/10に削減できる*
 
-- - ハードウェア高速化の鈍化 → **ソフトウェア/アルゴリズム側の効率化**が加速
-- - **量子化**: FP32 → INT8/INT4 で推論速度4〜8倍、品質ほぼ維持
-- - **知識蒸留**: 大モデルの知識を小モデルに転写 → 1/10サイズで90%の性能
-- - **スパースモデル（MoE）**: 全パラメータの一部だけ活性化 → 計算量1/4以下
-- 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="220" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">AI効率化技術の進化</text><line x1="80" y1="190" x2="720" y2="190" stroke="#aaa" stroke-width="2"/><line x1="80" y1="190" x2="80" y2="55" stroke="#aaa" stroke-width="2"/><text x="400" y="215" text-anchor="middle" fill="#aaa" font-size="12">計算コスト (対数)</text><text x="45" y="120" text-anchor="middle" fill="#aaa" font-size="11" transform="rotate(-90,45,120)">性能</text><rect x="120" y="70" width="100" height="110" rx="6" fill="#e94560" opacity="0.7"/><text x="170" y="130" text-anchor="middle" fill="#fff" font-size="10">フル精度</text><text x="170" y="145" text-anchor="middle" fill="#fff" font-size="10">FP32</text><rect x="260" y="80" width="100" height="100" rx="6" fill="#533483" opacity="0.7"/><text x="310" y="130" text-anchor="middle" fill="#fff" font-size="10">量子化</text><text x="310" y="145" text-anchor="middle" fill="#fff" font-size="10">INT8</text><rect x="400" y="85" width="100" height="95" rx="6" fill="#0f3460" opacity="0.7"/><text x="450" y="130" text-anchor="middle" fill="#fff" font-size="10">蒸留</text><text x="450" y="145" text-anchor="middle" fill="#fff" font-size="10">1/10</text><rect x="540" y="90" width="100" height="90" rx="6" fill="#4eff4e" opacity="0.5"/><text x="590" y="130" text-anchor="middle" fill="#fff" font-size="10">MoE</text><text x="590" y="145" text-anchor="middle" fill="#fff" font-size="10">Sparse</text><line x1="170" y1="70" x2="590" y2="90" stroke="#ffcc00" stroke-width="2" stroke-dasharray="5,3"/><text x="380" y="65" text-anchor="middle" fill="#ffcc00" font-size="11">性能はほぼ維持</text><text x="380" y="205" text-anchor="middle" fill="#4eff4e" font-size="12">計算コスト: 1/4 ~ 1/10 に削減 →</text></svg>
+- ハードウェア高速化の鈍化 → **ソフトウェア/アルゴリズム側の効率化**が加速
+- **量子化**: FP32 → INT8/INT4 で推論速度4〜8倍、品質ほぼ維持
+- **知識蒸留**: 大モデルの知識を小モデルに転写 → 1/10サイズで90%の性能
+- **スパースモデル（MoE）**: 全パラメータの一部だけ活性化 → 計算量1/4以下
+
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="220" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">AI効率化技術の進化</text><line x1="80" y1="190" x2="720" y2="190" stroke="#aaa" stroke-width="2"/><line x1="80" y1="190" x2="80" y2="55" stroke="#aaa" stroke-width="2"/><text x="400" y="215" text-anchor="middle" fill="#aaa" font-size="12">計算コスト (対数)</text><text x="45" y="120" text-anchor="middle" fill="#aaa" font-size="11" transform="rotate(-90,45,120)">性能</text><rect x="120" y="70" width="100" height="110" rx="6" fill="#e94560" opacity="0.7"/><text x="170" y="130" text-anchor="middle" fill="#fff" font-size="10">フル精度</text><text x="170" y="145" text-anchor="middle" fill="#fff" font-size="10">FP32</text><rect x="260" y="80" width="100" height="100" rx="6" fill="#533483" opacity="0.7"/><text x="310" y="130" text-anchor="middle" fill="#fff" font-size="10">量子化</text><text x="310" y="145" text-anchor="middle" fill="#fff" font-size="10">INT8</text><rect x="400" y="85" width="100" height="95" rx="6" fill="#0f3460" opacity="0.7"/><text x="450" y="130" text-anchor="middle" fill="#fff" font-size="10">蒸留</text><text x="450" y="145" text-anchor="middle" fill="#fff" font-size="10">1/10</text><rect x="540" y="90" width="100" height="90" rx="6" fill="#4eff4e" opacity="0.5"/><text x="590" y="130" text-anchor="middle" fill="#fff" font-size="10">MoE</text><text x="590" y="145" text-anchor="middle" fill="#fff" font-size="10">Sparse</text><line x1="170" y1="70" x2="590" y2="90" stroke="#ffcc00" stroke-width="2" stroke-dasharray="5,3"/><text x="380" y="65" text-anchor="middle" fill="#ffcc00" font-size="11">性能はほぼ維持</text><text x="380" y="205" text-anchor="middle" fill="#4eff4e" font-size="12">計算コスト: 1/4 ~ 1/10 に削減 →</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ — 多様化する物理基盤（1/2）
 
 - **ムーアの法則は死んだが、計算の進化は終わらない**
-- 
 - 「1つのアーキテクチャですべてを解決」の時代から
 - **多様な物理基盤を使い分ける時代**へ
-- 
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ — 多様化する物理基盤（2/2）
 
-- - 特化型チップ (ASIC/TPU) — ワークロード固有の加速
-- - 3D積層 — 帯域幅とレイテンシの革命
-- - ニューロモーフィック — 超低消費電力の知能
-- - 光コンピューティング — 行列演算の光速処理
-- - 量子コンピューティング — 特定問題の指数的高速化
+- 特化型チップ (ASIC/TPU) — ワークロード固有の加速
+- 3D積層 — 帯域幅とレイテンシの革命
+- ニューロモーフィック — 超低消費電力の知能
+- 光コンピューティング — 行列演算の光速処理
+- 量子コンピューティング — 特定問題の指数的高速化
 
 
 ---
@@ -282,9 +346,8 @@ style: |
 > *ムーアの法則・デナード則・量子/ニューロ技術の基礎文献*
 
 - **基礎理論:**
-- - [Moore, G. (1965) "Cramming more components onto integrated circuits"](https://en.wikipedia.org/wiki/Moore%27s_law)
-- - [Dennard Scaling and its breakdown](https://en.wikipedia.org/wiki/Dennard_scaling)
-- 
+- [Moore, G. (1965) "Cramming more components onto integrated circuits"](https://en.wikipedia.org/wiki/Moore%27s_law)
+- [Dennard Scaling and its breakdown](https://en.wikipedia.org/wiki/Dennard_scaling)
 - **技術動向:**
 
 
@@ -294,9 +357,8 @@ style: |
 
 > *Google Willow・Loihi 2・Hardware Lottery の技術動向文献*
 
-- - [Google Willow Quantum Chip (2024)](https://blog.google/technology/research/google-willow-quantum-chip/)
-- - [Intel Loihi 2 Neuromorphic Processor](https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html)
-- 
+- [Google Willow Quantum Chip (2024)](https://blog.google/technology/research/google-willow-quantum-chip/)
+- [Intel Loihi 2 Neuromorphic Processor](https://www.intel.com/content/www/us/en/research/neuromorphic-computing.html)
 - **ソフトウェア視点:**
-- - [Sara Hooker "The Hardware Lottery" (2020)](https://arxiv.org/abs/2009.06489)
+- [Sara Hooker "The Hardware Lottery" (2020)](https://arxiv.org/abs/2009.06489)
 

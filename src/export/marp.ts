@@ -76,19 +76,19 @@ export async function exportSlides(
 		return outputPath;
 	}
 
+	// --html is required for every format, not just HTML. Slide diagrams are
+	// inline <svg> wrapped in <div class="fig">; without it Marp escapes that
+	// markup and a PDF/PPTX export shows the raw tags instead of the drawing.
 	const args = [
 		"bunx",
 		"@marp-team/marp-cli",
 		"--no-config",
 		"--allow-local-files",
+		"--html",
 		inputPath,
 		"--output",
 		outputPath,
 	];
-
-	if (format === "html") {
-		args.push("--html");
-	}
 
 	const MARP_TIMEOUT_MS = 120_000; // 2 minutes
 

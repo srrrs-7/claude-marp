@@ -7,41 +7,76 @@ paginate: true
 header: "YAGNI原則を人生に適用する"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -86,7 +121,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # YAGNI原則を人生に適用する
 
 - You Ain't Gonna Need It
@@ -125,7 +160,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Chapter 1
 
 - YAGNIとは何か
@@ -138,7 +173,8 @@ style: |
 
 > *YAGNI = 推測による実装を全廃する予測懐疑論の原則*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">YAGNI の核心: 予測への懐疑論</text>
 <rect x="50" y="65" width="320" height="130" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -159,6 +195,8 @@ style: |
 <text x="600" y="323" fill="#ffffff" font-size="12" text-anchor="middle" font-family="sans-serif">保守コスト</text>
 <text x="400" y="355" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">XP (エクストリームプログラミング) の12プラクティスのひとつ</text>
 </svg>
+</div>
+
 - **YAGNI** = You Ain't Gonna Need It
 - 「それ、必要になると思ってるけど、実際には必要にならないよ」
 - ソフトウェア開発の設計原則のひとつ
@@ -168,7 +206,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # You Ain't Gonna Need It
 
 - 未来のために今コストを払うな
@@ -182,7 +220,8 @@ style: |
 
 > *XPの哲学は「変化に備える設計」ではなく「変化に対応する設計」*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">エクストリームプログラミング と YAGNI</text>
 <rect x="40" y="55" width="340" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -207,6 +246,8 @@ style: |
 <text x="590" y="285" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">「推測による機能に</text>
 <text x="590" y="305" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">コストを払うな」</text>
 </svg>
+</div>
+
 - 1990年代後半、Kent Beck が提唱した開発手法
 - 「今必要なことだけを、完璧にやる」
 - XP の12のプラクティスのひとつとして YAGNI が登場
@@ -220,7 +261,8 @@ style: |
 
 > *Fowlerの一言—推測による機能にコストを払うのは合理的でない*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">Martin Fowler の YAGNI 解釈</text>
 <rect x="50" y="60" width="700" height="110" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -240,6 +282,8 @@ style: |
 <text x="585" y="315" fill="#4caf50" font-size="12" text-anchor="middle" font-family="sans-serif">必要性が証明されたとき</text>
 <text x="585" y="340" fill="#4caf50" font-size="11" text-anchor="middle" font-family="sans-serif">だけ払えばいい</text>
 </svg>
+</div>
+
 - > Yagni only applies to capabilities built into the software to support a presumptive feature
 - — Martin Fowler
 - 「推測による機能」にコストを払ってはいけない
@@ -308,7 +352,8 @@ class UserRepository {
 
 > *過剰自信・不確実性回避・快感の3バイアスがYAGNIを難しくする*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">YAGNI を難しくする心理的要因</text>
 <rect x="40" y="60" width="220" height="110" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
@@ -338,6 +383,8 @@ class UserRepository {
 <rect x="100" y="330" width="600" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="360" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">YAGNI は認知バイアスと戦う原則</text>
 </svg>
+</div>
+
 - 人間は「将来を予測できる」と思いがち
 - 不確実性への不安を「準備」で解消しようとする
 - 「後でやるより今やった方が安い」という誤信
@@ -365,7 +412,8 @@ class UserRepository {
 
 > *未来への過投資は必ず損—来た未来にだけコストを払うのが最善*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">未来への過投資という病</text>
 <line x1="60" y1="300" x2="740" y2="300" stroke="#aaaaaa" stroke-width="1.5"/>
@@ -386,6 +434,8 @@ class UserRepository {
 <text x="620" y="123" fill="#4caf50" font-size="11" text-anchor="middle" font-family="sans-serif">必要になったとき対応</text>
 <text x="620" y="143" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">→ コストと価値が一致</text>
 </svg>
+</div>
+
 - YAGNI 違反の正体は「未来への過投資」
 - 未来は常に不確実 → 投資は必ず一部が無駄になる
 - 「来た未来」にしかコストを払えなかった
@@ -395,7 +445,7 @@ class UserRepository {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Chapter 2
 
 - 私のYAGNI違反史
@@ -408,7 +458,8 @@ class UserRepository {
 
 > *積読の読了率20%以下—「面白そう」で買う習慣が生む純損失*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">失敗1: 積読 — YAGNI 違反の典型例</text>
 <rect x="40" y="60" width="330" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
@@ -434,6 +485,8 @@ class UserRepository {
 <text x="595" y="300" fill="#4caf50" font-size="13" text-anchor="middle" font-family="sans-serif">読了率: 90%+ を目指す</text>
 <text x="595" y="330" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">「面白そう」ではなく「今必要か」</text>
 </svg>
+</div>
+
 - 「いつか読もう」と買い続けた技術書・ビジネス書
 - 読んだ本: 全体の 20% 以下
 - 理由: 「今必要かどうか」ではなく「面白そう」で買っていた
@@ -447,7 +500,8 @@ class UserRepository {
 
 > *ガジェット不使用率60%—「今すぐ使う」フィルターで損失を防げる*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">失敗2: 使わないガジェット — スペック過剰投資</text>
 <rect x="40" y="60" width="330" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -471,6 +525,8 @@ class UserRepository {
 <text x="595" y="295" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">全て通過したとき</text>
 <text x="595" y="315" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">初めて購入を検討する</text>
 </svg>
+</div>
+
 - 「いつか使いそう」なガジェットを購入し続けた
 - 使わなかった率: 約 60%
 - 「これがあれば生産性が上がる」という幻想
@@ -497,7 +553,8 @@ class UserRepository {
 
 > *準備過剰で機会を逃す分析麻痺—最低限で動けば失敗コストは小さい*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">失敗4: 準備過剰で動けない — 分析麻痺</text>
 <rect x="40" y="60" width="340" height="280" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -519,6 +576,8 @@ class UserRepository {
 <text x="595" y="273" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">早く失敗するほど</text>
 <text x="595" y="295" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">修正コストが低い</text>
 </svg>
+</div>
+
 - 副業・ブログ・OSS活動... 「完璧な準備」を待ち続けた
 - 「もう少し知識が増えてから」「もう少し時間ができてから」
 - 準備期間中に機会を逃した
@@ -558,7 +617,8 @@ interface TenantConfig {
 
 > *流行3技術を追った3年間が本業スキルの停滞を招いた教訓*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">失敗6: 流行に流されたキャリアの迷走</text>
 <line x1="50" y1="280" x2="750" y2="280" stroke="#aaaaaa" stroke-width="1.5"/>
@@ -575,6 +635,8 @@ interface TenantConfig {
 <text x="400" y="350" fill="#e91e63" font-size="12" text-anchor="middle" font-family="sans-serif">流行3年間の結果: どれも中途半端、本業スキルが止まった</text>
 <text x="400" y="370" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">YAGNI視点: 今の仕事に必要なスキルを深く伸ばす</text>
 </svg>
+</div>
+
 - 「将来 AI が来るから機械学習を勉強しよう」
 - 「ブロックチェーン エンジニアが稼げるらしい」
 - 「メタバース開発者が需要あるかも」
@@ -599,10 +661,11 @@ interface TenantConfig {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 教訓: もっと早く失敗すればよかった
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">教訓: Fail Fast, Fail Cheap</text>
 <rect x="40" y="60" width="330" height="280" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -630,6 +693,8 @@ interface TenantConfig {
 <text x="595" y="265" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">コスト: 小さく分散</text>
 <text x="595" y="288" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">フィードバックまで: 速</text>
 </svg>
+</div>
+
 - すべての失敗に共通すること...
 - 「**やってから判断**すれば、コストが小さかった」
 - YAGNI = 「必要になったら対応する」
@@ -639,7 +704,7 @@ interface TenantConfig {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Chapter 3
 
 - 人生への応用
@@ -659,7 +724,8 @@ interface TenantConfig {
 
 > *80:20則—全服の20%しか着ないクローゼットにYAGNI原則を適用*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">YAGNI ワードローブ戦略 — 80:20の法則</text>
 <rect x="40" y="60" width="330" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
@@ -682,6 +748,8 @@ interface TenantConfig {
 <text x="595" y="305" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">1着買ったら1着捨てる</text>
 <text x="595" y="325" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">6ヶ月着なければ手放す</text>
 </svg>
+</div>
+
 - **YAGNI 違反例**: 「いつか着るかも」な服が溢れる
 - クローゼットの 20% の服を 80% の確率で着る（80:20 則）
 - **YAGNI 実践**: 今の生活スタイルに必要な服だけ持つ
@@ -729,7 +797,8 @@ interface TenantConfig {
 
 > *Not Todoリスト—「しない」を決めることで集中すべき本質が見える*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">Not Todo リスト — YAGNI の時間版</text>
 <rect x="40" y="60" width="330" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
@@ -753,6 +822,8 @@ interface TenantConfig {
 <text x="595" y="293" fill="#f9a825" font-size="13" text-anchor="middle" font-family="sans-serif">「する」ことが明確になる</text>
 <text x="595" y="330" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">YAGNI: 今必要なことだけに集中</text>
 </svg>
+</div>
+
 - **YAGNI 違反例**: Todo リストが無限に増える
 - 「いつかやる」タスクが溢れて優先度が崩壊
 - **YAGNI 実践**: Not Todo リストを作る
@@ -767,7 +838,8 @@ interface TenantConfig {
 
 > *戦略的空白—スケジュールのバッファが創造性と判断力を生み出す*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">「ゆとり」は戦略的空白 — スラックの価値</text>
 <rect x="40" y="60" width="330" height="295" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
@@ -797,6 +869,8 @@ interface TenantConfig {
 <text x="595" y="268" fill="#ffffff" font-size="10" text-anchor="middle" font-family="sans-serif">14:00 緊急対応 ← バッファに吸収</text>
 <text x="595" y="330" fill="#4caf50" font-size="12" text-anchor="middle" font-family="sans-serif">想定外もゆとりが吸収する</text>
 </svg>
+</div>
+
 - スケジュールをびっちり埋めることは YAGNI 違反
 - 「ゆとり」= 未来の予期しない需要に応えるバッファ
 - 急な仕事・チャンス・体調不良に対応できる余白
@@ -891,7 +965,7 @@ interface TenantConfig {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 「考えすぎ」をやめる
 
 - 思考もオーバーエンジニアリングする
@@ -907,7 +981,8 @@ interface TenantConfig {
 
 > *「いつか使う」貯蓄が非YAGNI——今の基準で支出を判断する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">YAGNI 的支出の判断基準</text>
 <rect x="40" y="60" width="330" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
@@ -929,6 +1004,8 @@ interface TenantConfig {
 <text x="595" y="292" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">今を生きるために使うお金の</text>
 <text x="595" y="313" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">価値を認める</text>
 </svg>
+</div>
+
 - **YAGNI 違反例**: 「いつか使う日のため」の過剰貯蓄
 - または: 「将来のため」という名の衝動買い
 - **YAGNI 的支出の判断基準**
@@ -952,7 +1029,8 @@ interface TenantConfig {
 
 > *今必要なものだけ持つことがYAGNIの生活版実践*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">ミニマリズム = YAGNI のライフスタイル版</text>
 <rect x="40" y="65" width="215" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -981,6 +1059,8 @@ interface TenantConfig {
 <text x="652" y="280" fill="#4caf50" font-size="11" text-anchor="middle" font-family="sans-serif">直感的に理解できる</text>
 <text x="652" y="300" fill="#4caf50" font-size="11" text-anchor="middle" font-family="sans-serif">思想</text>
 </svg>
+</div>
+
 - ミニマリズム = 「今必要なものだけ持つ」
 - これは YAGNI そのもの
 - モノを減らすメリット
@@ -1011,7 +1091,8 @@ interface TenantConfig {
 
 > *不要な習慣・役割・依存を削除し続けることが人生の変更耐性を高める*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">人生のリファクタリング — コード設計思想を転用</text>
 <rect x="40" y="60" width="330" height="295" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
@@ -1031,6 +1112,8 @@ interface TenantConfig {
 <text x="595" y="250" fill="#4caf50" font-size="12" text-anchor="middle" font-family="sans-serif">シンプルな人生 = 高速なシステム</text>
 <text x="595" y="275" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">変更コストが低い → 適応しやすい</text>
 </svg>
+</div>
+
 - コードをリファクタリングするように、人生を整理する
 - 「使っていないモジュール（習慣・モノ・関係）」を削除
 - 「複雑になりすぎた関数（役割・義務）」を分解
@@ -1044,7 +1127,8 @@ interface TenantConfig {
 
 > *月次30分・年次半日のレビューで人生を定期的にリファクタリングする*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">定期的なレビュー — 削ぎ落とすサイクル</text>
 <rect x="40" y="60" width="720" height="75" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1063,6 +1147,8 @@ interface TenantConfig {
 <text x="590" y="280" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">今の自分に最適化する</text>
 <text x="590" y="330" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">年初/年末 半日</text>
 </svg>
+</div>
+
 - コードレビューと同じように、人生もレビューする
 - **月次レビュー**: 今月使ったもの・やったことを振り返る
 - **年次レビュー**: 「まだ必要か？」を全てのものに問う
@@ -1072,7 +1158,7 @@ interface TenantConfig {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Chapter 4
 
 - 実践編
@@ -1085,7 +1171,8 @@ interface TenantConfig {
 
 > *毎朝3タスクに絞り今日の問題を今日解くことが最高の未来投資*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">原則1: 「今」にフォーカスする</text>
 <rect x="40" y="60" width="720" height="70" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1106,6 +1193,8 @@ interface TenantConfig {
 <text x="595" y="296" fill="#ffffff" font-size="12" text-anchor="middle" font-family="sans-serif">必要なら追加、不要なら削除</text>
 <text x="595" y="340" fill="#4caf50" font-size="11" text-anchor="middle" font-family="sans-serif">→ 今日の問題を今日解く</text>
 </svg>
+</div>
+
 - **「今」にフォーカスする**
 - 今日必要なことリストを毎朝作る
 - リストにないことは原則やらない
@@ -1152,7 +1241,8 @@ interface TenantConfig {
 
 > *YAGNIは省エネではなく集中—今の役割を完璧に果たすことが本義*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">1ヶ月ルール — 最強の YAGNI フィルター</text>
 <rect x="40" y="60" width="720" height="70" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1173,6 +1263,8 @@ interface TenantConfig {
 <text x="590" y="330" fill="#4caf50" font-size="12" text-anchor="middle" font-family="sans-serif">これだけ実行すればいい</text>
 <text x="590" y="353" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">残った30%は本物の需要</text>
 </svg>
+</div>
+
 - 「今必要なことだけ」 ≠ 「楽をする」
 - 今必要なことを **完璧に** やることが YAGNI
 - XP での YAGNI: 「今のストーリーを完璧に実装する」
@@ -1195,7 +1287,7 @@ interface TenantConfig {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Chapter 5
 
 - まとめ
@@ -1208,7 +1300,8 @@ interface TenantConfig {
 
 > *YAGNIは禅・老子と同根—エンジニアは古来の知恵を既に手にしている*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">YAGNI と東洋哲学 — 普遍的な知恵</text>
 <rect x="40" y="60" width="215" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1232,6 +1325,8 @@ interface TenantConfig {
 <rect x="80" y="368" width="640" height="25" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="385" fill="#f9a825" font-size="11" text-anchor="middle" font-family="sans-serif">エンジニアとして YAGNI を学んだ私たちは、古来の知恵を手に入れていた</text>
 </svg>
+</div>
+
 - **禅**: 「今ここに集中する」
 - 余分なものを排して、今この瞬間に全力を注ぐ
 - **老子 / 無為自然**: 「為さずして為す」
@@ -1253,7 +1348,8 @@ interface TenantConfig {
 
 > *1ヶ月ルール・今日リスト・何か一つ捨てる—今日から始める3ステップ*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">今日から始める3つのこと</text>
 <rect x="40" y="60" width="720" height="95" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1269,6 +1365,8 @@ interface TenantConfig {
 <text x="400" y="345" fill="#ffffff" font-size="12" text-anchor="middle" font-family="sans-serif">使っていないアプリ・モノ・予定を今日削除する</text>
 <text x="400" y="368" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">実装コスト: 5分で1つ手放すだけ</text>
 </svg>
+</div>
+
 - **① 1ヶ月ルールを始める**
 - 欲しいもの・やりたいことをメモして 1ヶ月待つ
 - **② 「今日やること」だけのリストを作る**
@@ -1279,7 +1377,7 @@ interface TenantConfig {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # YAGNI is a Lifestyle
 
 - You Ain't Gonna Need It
@@ -1303,7 +1401,7 @@ interface TenantConfig {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # おわりに
 
 - ご清聴ありがとうございました

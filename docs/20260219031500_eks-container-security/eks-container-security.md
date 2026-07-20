@@ -4,41 +4,76 @@ theme: gaia
 size: 16:9
 paginate: true
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -71,7 +106,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: lead fit-88 -->
 # EKS / コンテナセキュリティ完全ガイド
 
 - AWS認定試験対応 — DevOps Professional / Security Specialty
@@ -82,11 +117,13 @@ style: |
 
 ---
 
+<!-- _class: fit-76 -->
 # アジェンダ (1/2) — 章構成
 
 > *RBAC・イメージ・Fargate・ネットワーク・ランタイム監視を9章120枚で完全網羅*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Kubernetes セキュリティレイヤー</text>
 <rect x="30" y="55" width="740" height="320" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">クラスターレイヤー: RBAC, NetworkPolicy, API認証</text>
@@ -100,6 +137,8 @@ style: |
 <text x="260" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限イメージ</text>
 <rect x="440" y="198" width="200" height="90" rx="6" fill="#12005e" stroke="#ce93d8" stroke-width="1.5"/><text x="540" y="248" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">サイドカーコンテナ</text>
 <text x="540" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Envoy / Falco agent</text></svg>
+</div>
+
 - **Ch.1** はじめに・EKSセキュリティ全体像 (8枚)
 - **Ch.2** EKSアーキテクチャとセキュリティ基盤 (10枚)
 - **Ch.3** RBAC・認証・認可 (22枚)
@@ -109,11 +148,13 @@ style: |
 
 ---
 
+<!-- _class: fit-76 -->
 # アジェンダ (2/2) — 章構成
 
 > *全9章120枚でDevOps Pro + Security Specialty両試験の約36%のEKS問題に対応*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">RBAC 権限階層</text>
 <rect x="295" y="60" width="210" height="48" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ClusterRole</text>
 <rect x="50" y="60" width="180" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="140" y="89" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Role (Namespace)</text>
@@ -133,6 +174,8 @@ style: |
 <line x1="400" y1="208" x2="500" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="493,255 505,265 492,254" fill="#66bb6a"/>
 <line x1="400" y1="208" x2="670" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="663,255 675,265 662,254" fill="#66bb6a"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">最小権限の原則: 必要なリソースと動詞のみ許可</text></svg>
+</div>
+
 - **Ch.6** ネットワークセキュリティ (16枚)
 - **Ch.7** Pod・ワークロードセキュリティ (12枚)
 - **Ch.8** ランタイム監視・監査 (12枚)
@@ -142,11 +185,13 @@ style: |
 
 ---
 
+<!-- _class: fit-58 -->
 # なぜコンテナセキュリティが重要か
 
 > *設定ミスと共有カーネルリスクがEKS侵害の主因—SCS-C02の36%がコンテナ関連*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">NetworkPolicy 分離アーキテクチャ</text>
 <rect x="30" y="60" width="340" height="130" rx="8" fill="#0d1117" stroke="#42a5f5" stroke-width="1.5"/>
 <text x="200" y="82" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">Namespace: frontend</text>
@@ -166,6 +211,8 @@ style: |
 <line x1="200" y1="190" x2="300" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <line x1="600" y1="190" x2="500" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Calico / Cilium で NetworkPolicy を実施</text></svg>
+</div>
+
 - **攻撃面の拡大**: コンテナイメージ・オーケストレーター・ネットワークが新たな攻撃ベクター
 - **速度 vs セキュリティ**: CI/CDの高速化で脆弱なイメージが本番に到達するリスク
 - **共有カーネル**: コンテナはVM と異なりホストカーネルを共有 → エスケープリスク
@@ -175,11 +222,13 @@ style: |
 
 ---
 
+<!-- _class: fit-58 -->
 # 試験ドメインとEKSセキュリティのカバレッジ
 
 > *SCS-C02 54%・DOP-C02 37%がEKS関連—本資料は両試験に横断的に対応する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Pod Security Standards レベル</text>
 <rect x="30" y="70" width="220" height="240" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="140" y="195" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Privileged</text>
 <text x="140" y="120" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">PRIVILEGED</text>
@@ -203,6 +252,8 @@ style: |
 <text x="660" y="201" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">capabilities: drop ALL</text>
 <text x="660" y="225" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif">セキュリティ重視に推奨</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">PSA (Pod Security Admission) でNamespace単位に適用 — Kubernetes 1.25+</text></svg>
+</div>
+
 - **SCS-C02**: Domain3 インフラセキュリティ(20%) ← EKS Network, Fargate, WAF
 - **SCS-C02**: Domain4 IAM(16%) ← RBAC, IRSA, Pod Identity, aws-auth
 - **SCS-C02**: Domain2 ログ・監視(18%) ← GuardDuty EKS, CloudTrail, Falco
@@ -213,11 +264,13 @@ style: |
 
 ---
 
+<!-- _class: fit-58 -->
 # EKS 責任共有モデル
 
 > *コントロールプレーンはAWS管理・RBAC/Pod Security/イメージセキュリティはユーザー責任*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">イメージプルポリシーとレジストリフロー</text>
 <rect x="30" y="155" width="120" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="90" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">開発者</text>
 <line x1="150" y1="180" x2="180" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="175,174 190,180 175,186" fill="#f9a825"/>
@@ -238,6 +291,8 @@ style: |
 <text x="400" y="335" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">IfNotPresent: 開発環境</text>
 <text x="600" y="335" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Never: エアギャップ環境</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">latest タグ禁止 — 常にダイジェスト(SHA256)固定を推奨</text></svg>
+</div>
+
 - **AWSが管理**: EKSコントロールプレーン（etcd, API Server, スケジューラー）
 - **AWSが管理**: Fargateマイクロvm・ノードのOSパッチ（Fargateの場合のみ）
 - **ユーザー責任**: EKS Data Plane（EC2ノードのOS, kubelet, ランタイム）
@@ -255,11 +310,13 @@ style: |
 
 ---
 
+<!-- _class: fit-64 -->
 # 前提知識・本資料の読み方
 
 > *K8s基礎・AWS基礎の前提知識で全章末の試験頻出ポイントを最大活用できる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理フロー (CSI Driver)</text>
 <rect x="30" y="155" width="165" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="112.5" y="187.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">AWS Secrets Manager</text>
 <text x="112" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">自動ローテーション</text>
@@ -277,6 +334,8 @@ style: |
 <text x="400" y="318" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ServiceAccount → IAM Role → Secrets Manager アクセス権限</text>
 <text x="400" y="335" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限IAMポリシー + OIDC プロバイダー連携</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Kubernetes Secrets は etcd 暗号化 (KMS) を必ず有効化</text></svg>
+</div>
+
 - **前提知識**: Kubernetes基礎（Pod, Deployment, Service, Namespace）
 - **前提知識**: AWS基礎（IAM, VPC, S3, EC2, ECS）
 - **本資料の読み方**: 各章末に試験頻出ポイントを集約
@@ -296,11 +355,13 @@ style: |
 
 ---
 
+<!-- _class: fit-58 -->
 # EKS コントロールプレーンとデータプレーン
 
 > *etcdはAES-256自動暗号化済みだが機密情報はKMS Envelope暗号化の追加を推奨*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ランタイムセキュリティ監視フロー</text>
 <rect x="30" y="60" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">EKS Cluster</text>
 <rect x="30" y="138" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="167" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ノード / コンテナ</text>
@@ -320,6 +381,8 @@ style: |
 <text x="400" y="337" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif" font-weight="bold">EKS GuardDuty: コントロールプレーン監査ログ自動分析</text>
 <text x="400" y="355" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">異常APIコール・クレデンシャル漏洩・マルウェアを検出</text>
 <text x="400" y="390" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">検出 → CloudWatch Events → Lambda 自動対応</text></svg>
+</div>
+
 - **コントロールプレーン（AWS管理）**: API Server, etcd, Scheduler, Controller Manager
 - **データプレーン（ユーザー管理）**: EC2ノード or Fargate Pod
 - **通信経路**: kubectl → EKS API Endpoint → Kubernetes API → ノード上のkubelet
@@ -330,11 +393,13 @@ style: |
 
 ---
 
+<!-- _class: fit-64 -->
 # VPC設計とEKS統合
 
 > *EKS VPCは/16でプライベートSubnetにNode/Podを配置しCIDR不足に注意する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">マルチテナンシー 分離アーキテクチャ</text>
 <rect x="30" y="55" width="740" height="280" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">EKS クラスター</text>
@@ -354,6 +419,8 @@ style: |
 <rect x="555" y="180" width="175" height="40" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="642.5" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Service C</text>
 <text x="645" y="250" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">個別 ServiceAccount / IRSA</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">強度な分離が必要な場合: 別クラスター or Fargate (専用カーネル)</text></svg>
+</div>
+
 - **推奨VPC構成**: パブリックSubnet（NAT GW, ALB）+ プライベートSubnet（Node, Pod）
 - **EKS用Subnet タグ**: `kubernetes.io/cluster/<name>=owned` が必須
 - **最低限**: 各AZに1つのSubnet（高可用性のため2-3 AZ推奨）
@@ -364,11 +431,13 @@ style: |
 
 ---
 
+<!-- _class: fit-58 -->
 # EKS APIエンドポイントのアクセス制御
 
 > *プライベートエンドポイント推奨—公開アクセスはCIDR制限しブラストラジウスを最小化*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS VPC セキュリティ設計</text>
 <rect x="30" y="55" width="740" height="300" rx="10" fill="#0d1117" stroke="#42a5f5" stroke-width="2"/>
 <text x="400" y="77" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">VPC</text>
@@ -388,6 +457,8 @@ style: |
 <text x="400" y="272" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">セキュリティグループ設計</text>
 <text x="400" y="293" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">最小限のポート / ノード間通信のみ許可</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">APIエンドポイントを Private に設定し公開露出を排除</text></svg>
+</div>
+
 - **publicAccess + privateAccess（デフォルト）**: 外部からkubectl可能（CIDR制限推奨）
 - **privateAccess のみ（推奨）**: VPC内のみ接続可能 → Bastion / VPN 経由
 - **publicAccessCidrs**: 特定IPのみ許可（例: `["203.0.113.0/24"]`）
@@ -411,11 +482,13 @@ aws eks update-cluster-config \
 
 ---
 
+<!-- _class: fit-58 -->
 # マネージドノードグループ vs Fargate
 
 > *Fargateはサーバーレス・OSパッチ不要・マイクロVM分離でステートレスに最適*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IRSA / EKS Pod Identity フロー</text>
 <rect x="30" y="155" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="100" y="187.5" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Pod</text>
 <text x="100" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ServiceAccount付与</text>
@@ -435,6 +508,8 @@ aws eks update-cluster-config \
 <text x="280" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">全リージョン対応・既存環境向け</text>
 <text x="520" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">設定簡略・Session Tagging対応</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ノードの EC2 インスタンスプロファイルに依存しない設計が重要</text></svg>
+</div>
+
 - **マネージドノードグループ**: EC2インスタンス、DaemonSet対応、GPU対応、OS管理必要
 - **Fargate**: サーバーレス、OSパッチ不要、1Pod=1マイクロVM、DaemonSet不可
 - **Fargateの制約**: privileged不可、hostNetwork不可、hostPID不可
@@ -446,7 +521,8 @@ aws eks update-cluster-config \
 
 # クラスター作成のセキュリティ設定
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Kubernetes セキュリティレイヤー</text>
 <rect x="30" y="55" width="740" height="320" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">クラスターレイヤー: RBAC, NetworkPolicy, API認証</text>
@@ -460,11 +536,14 @@ aws eks update-cluster-config \
 <text x="260" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限イメージ</text>
 <rect x="440" y="198" width="200" height="90" rx="6" fill="#12005e" stroke="#ce93d8" stroke-width="1.5"/><text x="540" y="248" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">サイドカーコンテナ</text>
 <text x="540" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Envoy / Falco agent</text></svg>
+</div>
+
 - eksctlを使った最小権限・セキュアなクラスター作成の例
 
 
 ---
 
+<!-- _class: fit-76 -->
 # クラスター作成のセキュリティ設定（コード例）
 
 ```yaml
@@ -489,11 +568,13 @@ managedNodeGroups:
 
 ---
 
+<!-- _class: fit-64 -->
 # EKS バージョン管理とパッチ戦略
 
 > *EKSサポートは14ヶ月—コントロールプレーン→ノード→Add-onsの順でアップグレード*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">RBAC 権限階層</text>
 <rect x="295" y="60" width="210" height="48" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ClusterRole</text>
 <rect x="50" y="60" width="180" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="140" y="89" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Role (Namespace)</text>
@@ -513,6 +594,8 @@ managedNodeGroups:
 <line x1="400" y1="208" x2="500" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="493,255 505,265 492,254" fill="#66bb6a"/>
 <line x1="400" y1="208" x2="670" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="663,255 675,265 662,254" fill="#66bb6a"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">最小権限の原則: 必要なリソースと動詞のみ許可</text></svg>
+</div>
+
 - **EKSサポートサイクル**: 各バージョンのサポート期間は約14ヶ月
 - **Extended Support**: サポート終了後さらに12ヶ月（有料）
 - **アップグレード手順**: コントロールプレーン → マネージドノードグループ → Add-ons
@@ -522,11 +605,13 @@ managedNodeGroups:
 
 ---
 
+<!-- _class: fit-64 -->
 # CIS EKS Benchmark 入門
 
 > *kube-benchでCIS EKS Benchmarkの自動評価を実施しPASS/WARN/FAILをスコアリング*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">NetworkPolicy 分離アーキテクチャ</text>
 <rect x="30" y="60" width="340" height="130" rx="8" fill="#0d1117" stroke="#42a5f5" stroke-width="1.5"/>
 <text x="200" y="82" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">Namespace: frontend</text>
@@ -546,6 +631,8 @@ managedNodeGroups:
 <line x1="200" y1="190" x2="300" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <line x1="600" y1="190" x2="500" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Calico / Cilium で NetworkPolicy を実施</text></svg>
+</div>
+
 - **CIS EKS Benchmark**: Center for Internet Securityによるセキュリティ基準
 - **カテゴリ**: 設定ファイル・認証・ポリシー・ログ・ネットワークを網羅
 - **自動チェックツール**: `kube-bench`（CIS Benchmarkの自動評価）
@@ -556,11 +643,13 @@ managedNodeGroups:
 
 ---
 
+<!-- _class: fit-58 -->
 # セキュリティグループの設計原則
 
 > *クラスターSGとノードSGを分離し443(API Server)・10250(kubelet)を最小権限で設定*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Pod Security Standards レベル</text>
 <rect x="30" y="70" width="220" height="240" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="140" y="195" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Privileged</text>
 <text x="140" y="120" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">PRIVILEGED</text>
@@ -584,6 +673,8 @@ managedNodeGroups:
 <text x="660" y="201" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">capabilities: drop ALL</text>
 <text x="660" y="225" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif">セキュリティ重視に推奨</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">PSA (Pod Security Admission) でNamespace単位に適用 — Kubernetes 1.25+</text></svg>
+</div>
+
 - **クラスターSG**: コントロールプレーン↔ノード間通信用（EKSが自動作成）
 - **ノードSG**: ノード間Pod通信・ノードポート用
 - **追加ルールの原則**: 最小権限（deny all + 必要なポートのみ許可）
@@ -594,11 +685,13 @@ managedNodeGroups:
 
 ---
 
+<!-- _class: fit-58 -->
 # EKS Add-ons セキュリティ設定
 
 > *VPC CNI/CoreDNS/EBS CSIのAdd-onにIRSAで最小権限を付与して設定ミスを防ぐ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">イメージプルポリシーとレジストリフロー</text>
 <rect x="30" y="155" width="120" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="90" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">開発者</text>
 <line x1="150" y1="180" x2="180" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="175,174 190,180 175,186" fill="#f9a825"/>
@@ -619,6 +712,8 @@ managedNodeGroups:
 <text x="400" y="335" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">IfNotPresent: 開発環境</text>
 <text x="600" y="335" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Never: エアギャップ環境</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">latest タグ禁止 — 常にダイジェスト(SHA256)固定を推奨</text></svg>
+</div>
+
 - **VPC CNI (aws-node)**: PodへのVPC IPアドレス割り当て。IRSA設定が必要
 - **CoreDNS**: クラスター内DNS。外部フォワード先を制限推奨
 - **kube-proxy**: ノード上でのネットワークルール管理
@@ -638,11 +733,13 @@ managedNodeGroups:
 
 ---
 
+<!-- _class: fit-58 -->
 # Kubernetes 認証フロー（EKS版）
 
 > *IAM認証→aws-authマッピング→RBACの3層でEKSへのアクセスを制御する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理フロー (CSI Driver)</text>
 <rect x="30" y="155" width="165" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="112.5" y="187.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">AWS Secrets Manager</text>
 <text x="112" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">自動ローテーション</text>
@@ -660,6 +757,8 @@ managedNodeGroups:
 <text x="400" y="318" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ServiceAccount → IAM Role → Secrets Manager アクセス権限</text>
 <text x="400" y="335" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限IAMポリシー + OIDC プロバイダー連携</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Kubernetes Secrets は etcd 暗号化 (KMS) を必ず有効化</text></svg>
+</div>
+
 - **Step 1**: kubectl実行 → AWS CLI で IAM認証情報を取得
 - **Step 2**: `aws eks get-token` で短期Bearer Token生成（15分有効）
 - **Step 3**: API Serverがトークンを検証（AWS IAM Authenticator）
@@ -670,11 +769,13 @@ managedNodeGroups:
 
 ---
 
+<!-- _class: fit-58 -->
 # aws-auth ConfigMap の仕組み
 
 > *aws-authはIAMロール/ユーザーをK8sグループにマッピングしクラスター管理を統制する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ランタイムセキュリティ監視フロー</text>
 <rect x="30" y="60" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">EKS Cluster</text>
 <rect x="30" y="138" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="167" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ノード / コンテナ</text>
@@ -694,6 +795,8 @@ managedNodeGroups:
 <text x="400" y="337" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif" font-weight="bold">EKS GuardDuty: コントロールプレーン監査ログ自動分析</text>
 <text x="400" y="355" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">異常APIコール・クレデンシャル漏洩・マルウェアを検出</text>
 <text x="400" y="390" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">検出 → CloudWatch Events → Lambda 自動対応</text></svg>
+</div>
+
 - **役割**: IAMプリンシパル（ユーザー/ロール）をK8sユーザー/グループにマッピング
 - **格納場所**: `kube-system` Namespace の ConfigMap
 - **mapRoles**: IAMロール → K8s グループ（ノード・CI/CD等）
@@ -706,7 +809,8 @@ managedNodeGroups:
 
 # aws-auth ConfigMap 設定例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">マルチテナンシー 分離アーキテクチャ</text>
 <rect x="30" y="55" width="740" height="280" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">EKS クラスター</text>
@@ -726,11 +830,14 @@ managedNodeGroups:
 <rect x="555" y="180" width="175" height="40" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="642.5" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Service C</text>
 <text x="645" y="250" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">個別 ServiceAccount / IRSA</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">強度な分離が必要な場合: 別クラスター or Fargate (専用カーネル)</text></svg>
+</div>
+
 - IAMロールをK8s グループにマッピングする設定
 
 
 ---
 
+<!-- _class: fit-76 -->
 # aws-auth ConfigMap 設定例（コード例）
 
 ```yaml
@@ -756,11 +863,13 @@ data:
 
 ---
 
+<!-- _class: fit-58 -->
 # Kubernetes RBAC 概要
 
 > *Role/ClusterRole/RoleBinding/ClusterRoleBindingの4リソースでK8s認可を制御する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS VPC セキュリティ設計</text>
 <rect x="30" y="55" width="740" height="300" rx="10" fill="#0d1117" stroke="#42a5f5" stroke-width="2"/>
 <text x="400" y="77" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">VPC</text>
@@ -780,6 +889,8 @@ data:
 <text x="400" y="272" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">セキュリティグループ設計</text>
 <text x="400" y="293" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">最小限のポート / ノード間通信のみ許可</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">APIエンドポイントを Private に設定し公開露出を排除</text></svg>
+</div>
+
 - **RBAC**: Role-Based Access Control — 役割ベースの認可制御
 - **Role**: 特定Namespace内のリソース操作を定義
 - **ClusterRole**: クラスター全体（全Namespace + クラスターリソース）の操作を定義
@@ -792,7 +903,8 @@ data:
 
 # Role・ClusterRole 設定例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IRSA / EKS Pod Identity フロー</text>
 <rect x="30" y="155" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="100" y="187.5" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Pod</text>
 <text x="100" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ServiceAccount付与</text>
@@ -812,11 +924,14 @@ data:
 <text x="280" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">全リージョン対応・既存環境向け</text>
 <text x="520" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">設定簡略・Session Tagging対応</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ノードの EC2 インスタンスプロファイルに依存しない設計が重要</text></svg>
+</div>
+
 - Podの読み取り専用ロールとClusterRoleの例
 
 
 ---
 
+<!-- _class: fit-64 -->
 # Role・ClusterRole 設定例（コード例）
 
 ```yaml
@@ -847,7 +962,8 @@ rules:
 
 # RoleBinding・ClusterRoleBinding
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Kubernetes セキュリティレイヤー</text>
 <rect x="30" y="55" width="740" height="320" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">クラスターレイヤー: RBAC, NetworkPolicy, API認証</text>
@@ -861,11 +977,14 @@ rules:
 <text x="260" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限イメージ</text>
 <rect x="440" y="198" width="200" height="90" rx="6" fill="#12005e" stroke="#ce93d8" stroke-width="1.5"/><text x="540" y="248" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">サイドカーコンテナ</text>
 <text x="540" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Envoy / Falco agent</text></svg>
+</div>
+
 - ユーザー・グループ・ServiceAccountへのロール紐付け
 
 
 ---
 
+<!-- _class: fit-76 -->
 # RoleBinding・ClusterRoleBinding（コード例）
 
 ```yaml
@@ -891,11 +1010,13 @@ roleRef:
 
 ---
 
+<!-- _class: fit-58 -->
 # RBAC 設計パターン — 最小権限の原則
 
 > *cluster-admin禁止・Secrets最小権限・CI/CDロール分離でEKS最小権限設計を実現*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">RBAC 権限階層</text>
 <rect x="295" y="60" width="210" height="48" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ClusterRole</text>
 <rect x="50" y="60" width="180" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="140" y="89" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Role (Namespace)</text>
@@ -915,6 +1036,8 @@ roleRef:
 <line x1="400" y1="208" x2="500" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="493,255 505,265 492,254" fill="#66bb6a"/>
 <line x1="400" y1="208" x2="670" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="663,255 675,265 662,254" fill="#66bb6a"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">最小権限の原則: 必要なリソースと動詞のみ許可</text></svg>
+</div>
+
 - **開発者ロール**: 自分のNS内 Pod/Deployment読み書き、Secrets読み取り不可
 - **CI/CDロール**: Deployment更新・Imageタグ変更のみ（広いClusterRole は付与しない）
 - **SREロール**: 全NS読み取り + Pod exec + ログ取得（書き込みは制限）
@@ -927,7 +1050,8 @@ roleRef:
 
 # RBAC Audit — 権限の確認と検証
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">NetworkPolicy 分離アーキテクチャ</text>
 <rect x="30" y="60" width="340" height="130" rx="8" fill="#0d1117" stroke="#42a5f5" stroke-width="1.5"/>
 <text x="200" y="82" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">Namespace: frontend</text>
@@ -947,11 +1071,14 @@ roleRef:
 <line x1="200" y1="190" x2="300" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <line x1="600" y1="190" x2="500" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Calico / Cilium で NetworkPolicy を実施</text></svg>
+</div>
+
 - 現在のユーザーが実行できる操作を確認する方法
 
 
 ---
 
+<!-- _class: fit-82 -->
 # RBAC Audit — 権限の確認と検証（コード例）
 
 ```bash
@@ -974,11 +1101,13 @@ kubectl get clusterrolebindings \
 
 ---
 
+<!-- _class: fit-58 -->
 # IRSA（IAM Roles for Service Accounts）の仕組み
 
 > *IRSAはOIDC+STSでPod単位のIAM権限を付与しインスタンスプロファイルの共有を解消*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Pod Security Standards レベル</text>
 <rect x="30" y="70" width="220" height="240" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="140" y="195" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Privileged</text>
 <text x="140" y="120" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">PRIVILEGED</text>
@@ -1002,6 +1131,8 @@ kubectl get clusterrolebindings \
 <text x="660" y="201" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">capabilities: drop ALL</text>
 <text x="660" y="225" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif">セキュリティ重視に推奨</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">PSA (Pod Security Admission) でNamespace単位に適用 — Kubernetes 1.25+</text></svg>
+</div>
+
 - **課題**: PodからAWSリソース（S3, DynamoDB等）にアクセスする安全な方法
 - **従来の問題**: EC2インスタンスプロファイル → ノード上の全Podが同じ権限を持つ
 - **IRSA解決策**: Pod単位にIAMロールを付与（ServiceAccount経由）
@@ -1021,7 +1152,8 @@ kubectl get clusterrolebindings \
 
 # IRSA セットアップ手順
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">イメージプルポリシーとレジストリフロー</text>
 <rect x="30" y="155" width="120" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="90" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">開発者</text>
 <line x1="150" y1="180" x2="180" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="175,174 190,180 175,186" fill="#f9a825"/>
@@ -1042,6 +1174,8 @@ kubectl get clusterrolebindings \
 <text x="400" y="335" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">IfNotPresent: 開発環境</text>
 <text x="600" y="335" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Never: エアギャップ環境</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">latest タグ禁止 — 常にダイジェスト(SHA256)固定を推奨</text></svg>
+</div>
+
 - OIDCプロバイダー設定からServiceAccountアノテーションまでの完全手順
 
 
@@ -1069,7 +1203,8 @@ eksctl create iamserviceaccount \
 
 # IRSA 設定例 — ServiceAccountのアノテーション
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理フロー (CSI Driver)</text>
 <rect x="30" y="155" width="165" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="112.5" y="187.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">AWS Secrets Manager</text>
 <text x="112" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">自動ローテーション</text>
@@ -1087,11 +1222,14 @@ eksctl create iamserviceaccount \
 <text x="400" y="318" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ServiceAccount → IAM Role → Secrets Manager アクセス権限</text>
 <text x="400" y="335" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限IAMポリシー + OIDC プロバイダー連携</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Kubernetes Secrets は etcd 暗号化 (KMS) を必ず有効化</text></svg>
+</div>
+
 - IRSAで自動作成されるServiceAccountとPodでの使い方
 
 
 ---
 
+<!-- _class: fit-70 -->
 # IRSA 設定例 — ServiceAccountのアノテーション（コード例）
 
 ```yaml
@@ -1118,11 +1256,13 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # EKS Pod Identity（新機能）
 
 > *Pod IdentityはOIDC設定不要でIRSAより簡単にPod単位IAM権限を付与できる新機能*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ランタイムセキュリティ監視フロー</text>
 <rect x="30" y="60" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">EKS Cluster</text>
 <rect x="30" y="138" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="167" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ノード / コンテナ</text>
@@ -1142,6 +1282,8 @@ spec:
 <text x="400" y="337" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif" font-weight="bold">EKS GuardDuty: コントロールプレーン監査ログ自動分析</text>
 <text x="400" y="355" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">異常APIコール・クレデンシャル漏洩・マルウェアを検出</text>
 <text x="400" y="390" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">検出 → CloudWatch Events → Lambda 自動対応</text></svg>
+</div>
+
 - **Pod Identity**: IRSA の次世代版（2023年11月GA）
 - **OIDCプロバイダー設定不要**: クラスターごとのOIDC設定が不要でシンプル
 - **eksctl不要**: AWS Console/CLI/CDKから直接設定可能
@@ -1154,7 +1296,8 @@ spec:
 
 # Pod Identity 設定例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">マルチテナンシー 分離アーキテクチャ</text>
 <rect x="30" y="55" width="740" height="280" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">EKS クラスター</text>
@@ -1174,6 +1317,8 @@ spec:
 <rect x="555" y="180" width="175" height="40" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="642.5" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Service C</text>
 <text x="645" y="250" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">個別 ServiceAccount / IRSA</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">強度な分離が必要な場合: 別クラスター or Fargate (専用カーネル)</text></svg>
+</div>
+
 - Pod Identity Associationの作成（OIDCプロバイダー設定不要）
 
 
@@ -1201,6 +1346,7 @@ aws eks create-pod-identity-association \
 
 ---
 
+<!-- _class: fit-76 -->
 # Pod Identity vs IRSA 比較
 
 > *Pod Identity(OIDC不要・シンプル)とIRSA(既存資産継続)の使い分けで迷わない*
@@ -1211,6 +1357,7 @@ aws eks create-pod-identity-association \
 | cross-account | 複雑 | **シンプル** |
 | 既存クラスター対応 | ✅ | ✅ |
 | 試験TIP | IRSA = OIDCベース | Pod Identity = 新方式 |
+
 - → 新規は Pod Identity、既存は IRSA で問題なし（移行は任意）
 
 
@@ -1218,7 +1365,8 @@ aws eks create-pod-identity-association \
 
 # OIDC IdP 設定と確認
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS VPC セキュリティ設計</text>
 <rect x="30" y="55" width="740" height="300" rx="10" fill="#0d1117" stroke="#42a5f5" stroke-width="2"/>
 <text x="400" y="77" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">VPC</text>
@@ -1238,6 +1386,8 @@ aws eks create-pod-identity-association \
 <text x="400" y="272" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">セキュリティグループ設計</text>
 <text x="400" y="293" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">最小限のポート / ノード間通信のみ許可</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">APIエンドポイントを Private に設定し公開露出を排除</text></svg>
+</div>
+
 - OIDCプロバイダーの設定確認とIAMロール信頼ポリシーの構造
 
 
@@ -1264,11 +1414,13 @@ aws eks describe-cluster \
 
 ---
 
+<!-- _class: fit-58 -->
 # AWS SSO と EKS 統合
 
 > *IAM Identity Center+aws-auth+ClusterRoleで複数EKSアカウントへの一元認証を実現*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IRSA / EKS Pod Identity フロー</text>
 <rect x="30" y="155" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="100" y="187.5" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Pod</text>
 <text x="100" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ServiceAccount付与</text>
@@ -1288,6 +1440,8 @@ aws eks describe-cluster \
 <text x="280" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">全リージョン対応・既存環境向け</text>
 <text x="520" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">設定簡略・Session Tagging対応</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ノードの EC2 インスタンスプロファイルに依存しない設計が重要</text></svg>
+</div>
+
 - **AWS SSO (IAM Identity Center)**: 複数AWSアカウントへの統合認証
 - **EKS連携**: SSOのPermission SetからIAMロールを生成 → aws-authに登録
 - **メリット**: 個人IAMユーザー不要・アクセス期限管理・MFA強制
@@ -1298,11 +1452,13 @@ aws eks describe-cluster \
 
 ---
 
+<!-- _class: fit-58 -->
 # Multi-tenancy RBAC パターン
 
 > *Namespace分離・LimitRange・NetworkPolicyを組み合わせてマルチテナントRBACを構築*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Kubernetes セキュリティレイヤー</text>
 <rect x="30" y="55" width="740" height="320" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">クラスターレイヤー: RBAC, NetworkPolicy, API認証</text>
@@ -1316,6 +1472,8 @@ aws eks describe-cluster \
 <text x="260" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限イメージ</text>
 <rect x="440" y="198" width="200" height="90" rx="6" fill="#12005e" stroke="#ce93d8" stroke-width="1.5"/><text x="540" y="248" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">サイドカーコンテナ</text>
 <text x="540" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Envoy / Falco agent</text></svg>
+</div>
+
 - **Namespace分離**: チームごとにNamespaceを作成しRoleBindingでアクセス制御
 - **LimitRange + ResourceQuota**: Namespace単位でリソース上限を設定
 - **NamespaceAdminロール**: 自分のNS内のDeployment/Podを全操作、他NSは不可
@@ -1326,11 +1484,13 @@ aws eks describe-cluster \
 
 ---
 
+<!-- _class: fit-58 -->
 # Cluster Admin 権限の安全な管理
 
 > *cluster-admin権限はBreak Glass管理・CloudTrailアラート・定期棚卸しで安全に統制する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">RBAC 権限階層</text>
 <rect x="295" y="60" width="210" height="48" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ClusterRole</text>
 <rect x="50" y="60" width="180" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="140" y="89" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Role (Namespace)</text>
@@ -1350,6 +1510,8 @@ aws eks describe-cluster \
 <line x1="400" y1="208" x2="500" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="493,255 505,265 492,254" fill="#66bb6a"/>
 <line x1="400" y1="208" x2="670" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="663,255 675,265 662,254" fill="#66bb6a"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">最小権限の原則: 必要なリソースと動詞のみ許可</text></svg>
+</div>
+
 - **cluster-adminリスク**: 全リソースの全操作が可能 → 最高権限
 - **Break Glass手順**: cluster-admin権限を持つ緊急アカウントを別途管理
 - **監査**: CloudTrailでcluster-admin使用ログを監視・アラート設定
@@ -1360,11 +1522,13 @@ aws eks describe-cluster \
 
 ---
 
+<!-- _class: fit-58 -->
 # Service Account と RBAC
 
 > *default SAへのトークン自動マウントを無効化しワークロード専用SAとIRSAで最小権限を*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">NetworkPolicy 分離アーキテクチャ</text>
 <rect x="30" y="60" width="340" height="130" rx="8" fill="#0d1117" stroke="#42a5f5" stroke-width="1.5"/>
 <text x="200" y="82" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">Namespace: frontend</text>
@@ -1384,6 +1548,8 @@ aws eks describe-cluster \
 <line x1="200" y1="190" x2="300" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <line x1="600" y1="190" x2="500" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Calico / Cilium で NetworkPolicy を実施</text></svg>
+</div>
+
 - **ServiceAccount (SA)**: Pod実行時のK8sアイデンティティ（人間ではなくワークロード）
 - **default SA問題**: Namespaceのdefault SAはRoleなしでも存在する
 - **自動マウント無効化**: `automountServiceAccountToken: false` を設定推奨
@@ -1394,11 +1560,13 @@ aws eks describe-cluster \
 
 ---
 
+<!-- _class: fit-82 -->
 # RBAC 試験頻出ポイント 10選（1/2）
 
 > *RBAC頻出前半5選でClusterRole/Role/Binding/ClusterAdmin権限の違いを習得*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Pod Security Standards レベル</text>
 <rect x="30" y="70" width="220" height="240" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="140" y="195" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Privileged</text>
 <text x="140" y="120" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">PRIVILEGED</text>
@@ -1422,6 +1590,8 @@ aws eks describe-cluster \
 <text x="660" y="201" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">capabilities: drop ALL</text>
 <text x="660" y="225" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif">セキュリティ重視に推奨</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">PSA (Pod Security Admission) でNamespace単位に適用 — Kubernetes 1.25+</text></svg>
+</div>
+
 - ① ClusterRole + RoleBinding = 特定Namespace内でClusterRoleを使用
 - ② `exec` verb はPodへのシェル接続権限 → 最小化必須
 - ③ aws-authのmapRoles groupsが K8s RBACのGroupに対応
@@ -1429,6 +1599,7 @@ aws eks describe-cluster \
 
 ---
 
+<!-- _class: fit-94 -->
 # RBAC 試験頻出ポイント 10選（2/2）
 
 > *IRSA=OIDC+STS・Pod Identity=IRSA後継・system:mastersはaws-auth追加厳禁*
@@ -1450,11 +1621,13 @@ aws eks describe-cluster \
 
 ---
 
+<!-- _class: fit-58 -->
 # コンテナイメージの脅威モデル
 
 > *既知CVE・マルウェア埋め込み・Secretの混入・Latestタグが5大イメージ脅威*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">イメージプルポリシーとレジストリフロー</text>
 <rect x="30" y="155" width="120" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="90" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">開発者</text>
 <line x1="150" y1="180" x2="180" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="175,174 190,180 175,186" fill="#f9a825"/>
@@ -1475,6 +1648,8 @@ aws eks describe-cluster \
 <text x="400" y="335" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">IfNotPresent: 開発環境</text>
 <text x="600" y="335" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Never: エアギャップ環境</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">latest タグ禁止 — 常にダイジェスト(SHA256)固定を推奨</text></svg>
+</div>
+
 - **既知脆弱性**: パッチ未適用のOSパッケージ・言語ライブラリの脆弱性（CVE）
 - **マルウェア埋め込み**: 悪意あるベースイメージ・サプライチェーン汚染
 - **秘密情報の混入**: ビルド時にSecretをLAYERに含めてしまうミス
@@ -1485,11 +1660,13 @@ aws eks describe-cluster \
 
 ---
 
+<!-- _class: fit-58 -->
 # イメージレイヤーとセキュリティリスク
 
 > *BuildKitの--secretフラグ・Distrolessイメージ・ダイジェスト固定でレイヤーリスクを排除*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理フロー (CSI Driver)</text>
 <rect x="30" y="155" width="165" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="112.5" y="187.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">AWS Secrets Manager</text>
 <text x="112" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">自動ローテーション</text>
@@ -1507,6 +1684,8 @@ aws eks describe-cluster \
 <text x="400" y="318" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ServiceAccount → IAM Role → Secrets Manager アクセス権限</text>
 <text x="400" y="335" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限IAMポリシー + OIDC プロバイダー連携</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Kubernetes Secrets は etcd 暗号化 (KMS) を必ず有効化</text></svg>
+</div>
+
 - **レイヤー構造**: Dockerfileの各命令がレイヤーを生成（変更不可）
 - **秘密情報漏洩**: RUN文でSecretを使うと履歴レイヤーに残る
 - **対策**: BuildKitの `--secret` フラグでビルド時シークレットを安全に渡す
@@ -1517,11 +1696,13 @@ aws eks describe-cluster \
 
 ---
 
+<!-- _class: fit-58 -->
 # ECR の基本設定
 
 > *ECRはKMSカスタム鍵暗号化・IAMプッシュ/プル権限分離・ECR Publicを組み合わせる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ランタイムセキュリティ監視フロー</text>
 <rect x="30" y="60" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">EKS Cluster</text>
 <rect x="30" y="138" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="167" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ノード / コンテナ</text>
@@ -1541,6 +1722,8 @@ aws eks describe-cluster \
 <text x="400" y="337" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif" font-weight="bold">EKS GuardDuty: コントロールプレーン監査ログ自動分析</text>
 <text x="400" y="355" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">異常APIコール・クレデンシャル漏洩・マルウェアを検出</text>
 <text x="400" y="390" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">検出 → CloudWatch Events → Lambda 自動対応</text></svg>
+</div>
+
 - **プライベートレジストリ**: AWSアカウント単位のフルマネージドコンテナレジストリ
 - **パブリックレジストリ**: ECR Public（Docker Hubの代替）
 - **暗号化**: デフォルトでAES-256暗号化（KMSカスタム鍵も選択可）
@@ -1553,7 +1736,8 @@ aws eks describe-cluster \
 
 # ECR ライフサイクルポリシー
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">マルチテナンシー 分離アーキテクチャ</text>
 <rect x="30" y="55" width="740" height="280" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">EKS クラスター</text>
@@ -1573,11 +1757,14 @@ aws eks describe-cluster \
 <rect x="555" y="180" width="175" height="40" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="642.5" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Service C</text>
 <text x="645" y="250" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">個別 ServiceAccount / IRSA</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">強度な分離が必要な場合: 別クラスター or Fargate (専用カーネル)</text></svg>
+</div>
+
 - 古いイメージを自動削除してリポジトリを管理するポリシー設定
 
 
 ---
 
+<!-- _class: fit-76 -->
 # ECR ライフサイクルポリシー（コード例）
 
 ```json
@@ -1602,6 +1789,7 @@ aws eks describe-cluster \
 
 ---
 
+<!-- _class: fit-76 -->
 # ECR 基本スキャン vs 拡張スキャン
 
 > *ECR拡張スキャン(Inspector v2統合)で基本スキャンより詳細なCVSS評価が可能*
@@ -1612,6 +1800,7 @@ aws eks describe-cluster \
 | 費用 | **無料** | 有料（Inspector V2料金） |
 | 通知 | EventBridge | EventBridge + **Security Hub** |
 | 推奨 | 小規模・開発環境 | **本番環境** |
+
 - → 試験TIP: 「Pythonライブラリの脆弱性を継続監視」→ 拡張スキャン
 
 
@@ -1619,7 +1808,8 @@ aws eks describe-cluster \
 
 # ECR 拡張スキャン（Inspector V2）設定
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS VPC セキュリティ設計</text>
 <rect x="30" y="55" width="740" height="300" rx="10" fill="#0d1117" stroke="#42a5f5" stroke-width="2"/>
 <text x="400" y="77" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">VPC</text>
@@ -1639,11 +1829,14 @@ aws eks describe-cluster \
 <text x="400" y="272" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">セキュリティグループ設計</text>
 <text x="400" y="293" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">最小限のポート / ノード間通信のみ許可</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">APIエンドポイントを Private に設定し公開露出を排除</text></svg>
+</div>
+
 - Inspector V2を有効化してECR継続スキャンを設定する
 
 
 ---
 
+<!-- _class: fit-88 -->
 # ECR 拡張スキャン（Inspector V2）設定（コード例）
 
 ```bash
@@ -1665,11 +1858,13 @@ aws ecr describe-image-scan-findings \
 
 ---
 
+<!-- _class: fit-58 -->
 # スキャン結果の解釈と優先度付け
 
 > *CRITICAL+KEV悪用実績ありを最優先にCVSSスコアと実際の悪用状況で対応を優先付け*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IRSA / EKS Pod Identity フロー</text>
 <rect x="30" y="155" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="100" y="187.5" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Pod</text>
 <text x="100" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ServiceAccount付与</text>
@@ -1689,6 +1884,8 @@ aws ecr describe-image-scan-findings \
 <text x="280" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">全リージョン対応・既存環境向け</text>
 <text x="520" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">設定簡略・Session Tagging対応</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ノードの EC2 インスタンスプロファイルに依存しない設計が重要</text></svg>
+</div>
+
 - **CRITICAL**: 即時対応が必要（CVSS 9.0以上）
 - **HIGH**: 早急に対応（CVSS 7.0-8.9）
 - **MEDIUM/LOW**: 計画的に対応（CVSS 4.0-6.9 / 0.1-3.9）
@@ -1699,11 +1896,13 @@ aws ecr describe-image-scan-findings \
 
 ---
 
+<!-- _class: fit-58 -->
 # イメージ署名（Notation / AWS Signer）
 
 > *NotationとAWS Signerで署名→Kyverno/OPAで検証し未署名イメージのデプロイを拒否*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Kubernetes セキュリティレイヤー</text>
 <rect x="30" y="55" width="740" height="320" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">クラスターレイヤー: RBAC, NetworkPolicy, API認証</text>
@@ -1717,6 +1916,8 @@ aws ecr describe-image-scan-findings \
 <text x="260" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限イメージ</text>
 <rect x="440" y="198" width="200" height="90" rx="6" fill="#12005e" stroke="#ce93d8" stroke-width="1.5"/><text x="540" y="248" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">サイドカーコンテナ</text>
 <text x="540" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Envoy / Falco agent</text></svg>
+</div>
+
 - **目的**: イメージが信頼された発行元のものであることを証明（改ざん検知）
 - **Notation（OCI標準）**: CNCF Notaryプロジェクト。AWS Signerと統合
 - **AWS Signer**: KMS管理の鍵でDockerイメージに署名
@@ -1727,11 +1928,13 @@ aws ecr describe-image-scan-findings \
 
 ---
 
+<!-- _class: fit-58 -->
 # SBOM（Software Bill of Materials）
 
 > *ECR Inspector V2がSBOMを自動生成しCycloneDX/SPDX形式で新CVEの影響を即特定*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">RBAC 権限階層</text>
 <rect x="295" y="60" width="210" height="48" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ClusterRole</text>
 <rect x="50" y="60" width="180" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="140" y="89" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Role (Namespace)</text>
@@ -1751,6 +1954,8 @@ aws ecr describe-image-scan-findings \
 <line x1="400" y1="208" x2="500" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="493,255 505,265 492,254" fill="#66bb6a"/>
 <line x1="400" y1="208" x2="670" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="663,255 675,265 662,254" fill="#66bb6a"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">最小権限の原則: 必要なリソースと動詞のみ許可</text></svg>
+</div>
+
 - **SBOM**: ソフトウェアの材料表 — 使用しているパッケージ・バージョンの一覧
 - **形式**: CycloneDX（推奨）, SPDX（Linux Foundation標準）
 - **ECR**: Inspector V2がSBOMを自動生成・管理
@@ -1761,11 +1966,13 @@ aws ecr describe-image-scan-findings \
 
 ---
 
+<!-- _class: fit-58 -->
 # OPA Gatekeeper 入門
 
 > *OPAはRego言語でK8s Admission WebhookとなりデプロイポリシーをAudit機能で検証*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">NetworkPolicy 分離アーキテクチャ</text>
 <rect x="30" y="60" width="340" height="130" rx="8" fill="#0d1117" stroke="#42a5f5" stroke-width="1.5"/>
 <text x="200" y="82" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">Namespace: frontend</text>
@@ -1785,6 +1992,8 @@ aws ecr describe-image-scan-findings \
 <line x1="200" y1="190" x2="300" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <line x1="600" y1="190" x2="500" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Calico / Cilium で NetworkPolicy を実施</text></svg>
+</div>
+
 - **OPA（Open Policy Agent）**: Rego言語でポリシーを定義するポリシーエンジン
 - **Gatekeeper**: OPAをKubernetes Admission WebhookとしてデプロイするCRD
 - **ConstraintTemplate**: ポリシーのテンプレート（Regoコードを含む）
@@ -1797,7 +2006,8 @@ aws ecr describe-image-scan-findings \
 
 # Kyverno Policy 設定例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Pod Security Standards レベル</text>
 <rect x="30" y="70" width="220" height="240" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="140" y="195" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Privileged</text>
 <text x="140" y="120" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">PRIVILEGED</text>
@@ -1821,11 +2031,14 @@ aws ecr describe-image-scan-findings \
 <text x="660" y="201" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">capabilities: drop ALL</text>
 <text x="660" y="225" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif">セキュリティ重視に推奨</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">PSA (Pod Security Admission) でNamespace単位に適用 — Kubernetes 1.25+</text></svg>
+</div>
+
 - 署名済みイメージのみデプロイを許可するKyvernoポリシー
 
 
 ---
 
+<!-- _class: fit-70 -->
 # Kyverno Policy 設定例（コード例）
 
 ```yaml
@@ -1853,11 +2066,13 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # ベースイメージのセキュリティ戦略
 
 > *Alpine/Distroless/Scratchでシェルとパッケージマネージャーを排除し攻撃面を最小化*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">イメージプルポリシーとレジストリフロー</text>
 <rect x="30" y="155" width="120" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="90" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">開発者</text>
 <line x1="150" y1="180" x2="180" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="175,174 190,180 175,186" fill="#f9a825"/>
@@ -1878,6 +2093,8 @@ spec:
 <text x="400" y="335" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">IfNotPresent: 開発環境</text>
 <text x="600" y="335" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Never: エアギャップ環境</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">latest タグ禁止 — 常にダイジェスト(SHA256)固定を推奨</text></svg>
+</div>
+
 - **Alpine Linux**: 軽量（~5MB）、musl libc使用、最小パッケージ
 - **Distroless（Google）**: シェルなし、パッケージマネージャーなし、言語ランタイムのみ
 - **Scratch**: 完全空イメージ（静的バイナリのみ）
@@ -1890,7 +2107,8 @@ spec:
 
 # マルチステージビルドのベストプラクティス
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理フロー (CSI Driver)</text>
 <rect x="30" y="155" width="165" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="112.5" y="187.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">AWS Secrets Manager</text>
 <text x="112" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">自動ローテーション</text>
@@ -1908,11 +2126,14 @@ spec:
 <text x="400" y="318" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ServiceAccount → IAM Role → Secrets Manager アクセス権限</text>
 <text x="400" y="335" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限IAMポリシー + OIDC プロバイダー連携</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Kubernetes Secrets は etcd 暗号化 (KMS) を必ず有効化</text></svg>
+</div>
+
 - ビルド環境と実行環境を分離して最小イメージを作成する例
 
 
 ---
 
+<!-- _class: fit-82 -->
 # マルチステージビルドのベストプラクティス（コード例）
 
 ```dockerfile
@@ -1944,7 +2165,8 @@ CMD ["/app/server"]
 
 # ECR クロスアカウントアクセス
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ランタイムセキュリティ監視フロー</text>
 <rect x="30" y="60" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">EKS Cluster</text>
 <rect x="30" y="138" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="167" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ノード / コンテナ</text>
@@ -1964,11 +2186,14 @@ CMD ["/app/server"]
 <text x="400" y="337" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif" font-weight="bold">EKS GuardDuty: コントロールプレーン監査ログ自動分析</text>
 <text x="400" y="355" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">異常APIコール・クレデンシャル漏洩・マルウェアを検出</text>
 <text x="400" y="390" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">検出 → CloudWatch Events → Lambda 自動対応</text></svg>
+</div>
+
 - 別AWSアカウントからECRのイメージをプルする設定
 
 
 ---
 
+<!-- _class: fit-76 -->
 # ECR クロスアカウントアクセス（コード例）
 
 ```json
@@ -1994,11 +2219,13 @@ CMD ["/app/server"]
 
 ---
 
+<!-- _class: fit-58 -->
 # イメージセキュリティ 試験頻出ポイント
 
 > *継続CVE検知と言語pkgスキャンはInspector V2・Distrolessはkubectl exec不可が頻出*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">マルチテナンシー 分離アーキテクチャ</text>
 <rect x="30" y="55" width="740" height="280" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">EKS クラスター</text>
@@ -2018,6 +2245,8 @@ CMD ["/app/server"]
 <rect x="555" y="180" width="175" height="40" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="642.5" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Service C</text>
 <text x="645" y="250" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">個別 ServiceAccount / IRSA</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">強度な分離が必要な場合: 別クラスター or Fargate (専用カーネル)</text></svg>
+</div>
+
 - ① 基本スキャン=無料・Pushのみ、拡張スキャン=有料・継続・言語pkg対応
 - ② 「継続的なCVE検知」「言語ライブラリスキャン」→ Inspector V2（拡張スキャン）
 - ③ SBOM = ソフトウェア成分表 → CVE影響範囲の高速特定に使う
@@ -2037,11 +2266,13 @@ CMD ["/app/server"]
 
 ---
 
+<!-- _class: fit-58 -->
 # Fargate アーキテクチャ（マイクロVM分離）
 
 > *FirecrackerマイクロVMが1Pod=1カーネルを保証しコンテナ脱出時もホスト到達不可*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS VPC セキュリティ設計</text>
 <rect x="30" y="55" width="740" height="300" rx="10" fill="#0d1117" stroke="#42a5f5" stroke-width="2"/>
 <text x="400" y="77" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">VPC</text>
@@ -2061,6 +2292,8 @@ CMD ["/app/server"]
 <text x="400" y="272" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">セキュリティグループ設計</text>
 <text x="400" y="293" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">最小限のポート / ノード間通信のみ許可</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">APIエンドポイントを Private に設定し公開露出を排除</text></svg>
+</div>
+
 - **Firecracker**: AWS開発のマイクロVMM（KVMベース）
 - **1 Pod = 1 マイクロVM**: コンテナ脱出してもホストに到達不可
 - **カーネル分離**: 各PodがそれぞれのLinuxカーネルで動作
@@ -2080,7 +2313,8 @@ CMD ["/app/server"]
 
 # Fargate プロファイル設定
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IRSA / EKS Pod Identity フロー</text>
 <rect x="30" y="155" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="100" y="187.5" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Pod</text>
 <text x="100" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ServiceAccount付与</text>
@@ -2100,11 +2334,14 @@ CMD ["/app/server"]
 <text x="280" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">全リージョン対応・既存環境向け</text>
 <text x="520" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">設定簡略・Session Tagging対応</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ノードの EC2 インスタンスプロファイルに依存しない設計が重要</text></svg>
+</div>
+
 - どのPodをFargateで実行するかを定義するFargateプロファイルの設定
 
 
 ---
 
+<!-- _class: fit-70 -->
 # Fargate プロファイル設定（コード例）
 
 ```bash
@@ -2131,11 +2368,13 @@ fargateProfiles:
 
 ---
 
+<!-- _class: fit-58 -->
 # Pod実行ロール（Fargate Pod Execution Role）
 
 > *Pod Execution RoleはECRプル+ログ送信専用—アプリのAWSアクセスはIRSAで別管理*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Kubernetes セキュリティレイヤー</text>
 <rect x="30" y="55" width="740" height="320" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">クラスターレイヤー: RBAC, NetworkPolicy, API認証</text>
@@ -2149,6 +2388,8 @@ fargateProfiles:
 <text x="260" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限イメージ</text>
 <rect x="440" y="198" width="200" height="90" rx="6" fill="#12005e" stroke="#ce93d8" stroke-width="1.5"/><text x="540" y="248" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">サイドカーコンテナ</text>
 <text x="540" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Envoy / Falco agent</text></svg>
+</div>
+
 - **役割**: FargateがPodを起動・実行するために使うIAMロール
 - **最低限必要な権限**: ECRからイメージをプル、CloudWatch Logsにログ送信
 - **ユーザーのアプリ権限**: IRSAまたはPod IdentityでServiceAccountに別途付与
@@ -2176,11 +2417,13 @@ fargateProfiles:
 
 ---
 
+<!-- _class: fit-58 -->
 # Fargate ENI 分離（1 Pod = 1 ENI）
 
 > *Fargate 1Pod=1ENIでVPCレベル分離しSGをPod専用に割り当てネットワークを制御する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">RBAC 権限階層</text>
 <rect x="295" y="60" width="210" height="48" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ClusterRole</text>
 <rect x="50" y="60" width="180" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="140" y="89" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Role (Namespace)</text>
@@ -2200,6 +2443,8 @@ fargateProfiles:
 <line x1="400" y1="208" x2="500" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="493,255 505,265 492,254" fill="#66bb6a"/>
 <line x1="400" y1="208" x2="670" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="663,255 675,265 662,254" fill="#66bb6a"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">最小権限の原則: 必要なリソースと動詞のみ許可</text></svg>
+</div>
+
 - **1 Pod = 1 ENI**: 各FargatePodが専用のElastic Network Interfaceを持つ
 - **VPCレベル分離**: Pod間通信はVPCルーティング → ネットワークSGで直接制御
 - **Security Group**: Pod専用のSGをFargateプロファイルに付与
@@ -2210,11 +2455,13 @@ fargateProfiles:
 
 ---
 
+<!-- _class: fit-58 -->
 # Fargate ネットワーク設計
 
 > *Private Subnet+VPC EndpointでFargateをVPCに閉じ込めNAT GWより低コストで運用*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">NetworkPolicy 分離アーキテクチャ</text>
 <rect x="30" y="60" width="340" height="130" rx="8" fill="#0d1117" stroke="#42a5f5" stroke-width="1.5"/>
 <text x="200" y="82" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">Namespace: frontend</text>
@@ -2234,6 +2481,8 @@ fargateProfiles:
 <line x1="200" y1="190" x2="300" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <line x1="600" y1="190" x2="500" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Calico / Cilium で NetworkPolicy を実施</text></svg>
+</div>
+
 - **Private Subnetで実行**: インターネットへの直接露出を防ぐ
 - **NAT Gateway**: FargatePodからインターネットへのEgress（ECRプル含む）
 - **VPC Endpoints**: ECR, CloudWatch Logs等へのプライベートアクセス（NAT GW不要）
@@ -2245,7 +2494,8 @@ fargateProfiles:
 
 # Seccomp プロファイル（Fargate）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Pod Security Standards レベル</text>
 <rect x="30" y="70" width="220" height="240" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="140" y="195" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Privileged</text>
 <text x="140" y="120" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">PRIVILEGED</text>
@@ -2269,11 +2519,14 @@ fargateProfiles:
 <text x="660" y="201" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">capabilities: drop ALL</text>
 <text x="660" y="225" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif">セキュリティ重視に推奨</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">PSA (Pod Security Admission) でNamespace単位に適用 — Kubernetes 1.25+</text></svg>
+</div>
+
 - FargateのPodにSeccompプロファイルを適用してシステムコールを制限する
 
 
 ---
 
+<!-- _class: fit-76 -->
 # Seccomp プロファイル（Fargate）（コード例）
 
 ```yaml
@@ -2299,11 +2552,13 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # Fargate のリソース制限
 
 > *FargatePodはCPU/メモリの固定組み合わせで課金—requestsベースでGPU非対応に注意*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">イメージプルポリシーとレジストリフロー</text>
 <rect x="30" y="155" width="120" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="90" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">開発者</text>
 <line x1="150" y1="180" x2="180" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="175,174 190,180 175,186" fill="#f9a825"/>
@@ -2324,6 +2579,8 @@ spec:
 <text x="400" y="335" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">IfNotPresent: 開発環境</text>
 <text x="600" y="335" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Never: エアギャップ環境</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">latest タグ禁止 — 常にダイジェスト(SHA256)固定を推奨</text></svg>
+</div>
+
 - **サポートするCPU**: 0.25, 0.5, 1, 2, 4, 8, 16 vCPU
 - **サポートするメモリ**: CPUに対応した固定の組み合わせ
 - **制限の重要性**: リソース上限なし → 他Podへの影響（Fargateは1Pod分離だが費用に影響）
@@ -2334,11 +2591,13 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # Fargate Spot とセキュリティ考慮事項
 
 > *Fargate Spotは最大70%削減—PDBと組み合わせ2分前通知でステートレスに活用する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理フロー (CSI Driver)</text>
 <rect x="30" y="155" width="165" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="112.5" y="187.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">AWS Secrets Manager</text>
 <text x="112" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">自動ローテーション</text>
@@ -2356,6 +2615,8 @@ spec:
 <text x="400" y="318" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ServiceAccount → IAM Role → Secrets Manager アクセス権限</text>
 <text x="400" y="335" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限IAMポリシー + OIDC プロバイダー連携</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Kubernetes Secrets は etcd 暗号化 (KMS) を必ず有効化</text></svg>
+</div>
+
 - **Fargate Spot**: 中断される可能性があるが最大70%コスト削減
 - **中断通知**: ECS Fargate Spotは2分前に通知（EKSも同様）
 - **セキュリティへの影響**: 中断時にデータ保護を考慮（PersistentVolumeの扱い）
@@ -2368,7 +2629,8 @@ spec:
 
 # Fargate ログ設定（FireLens）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ランタイムセキュリティ監視フロー</text>
 <rect x="30" y="60" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">EKS Cluster</text>
 <rect x="30" y="138" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="167" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ノード / コンテナ</text>
@@ -2388,11 +2650,14 @@ spec:
 <text x="400" y="337" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif" font-weight="bold">EKS GuardDuty: コントロールプレーン監査ログ自動分析</text>
 <text x="400" y="355" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">異常APIコール・クレデンシャル漏洩・マルウェアを検出</text>
 <text x="400" y="390" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">検出 → CloudWatch Events → Lambda 自動対応</text></svg>
+</div>
+
 - FireLensサイドカーでFargateのコンテナログをCloudWatch/S3/Firehoseに転送
 
 
 ---
 
+<!-- _class: fit-82 -->
 # Fargate ログ設定（FireLens）（コード例）
 
 ```yaml
@@ -2416,11 +2681,13 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # Fargate 試験頻出ポイント
 
 > *DaemonSet不可はFireLensサイドカーで解決・OSパッチはAWS管理が試験頻出*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">マルチテナンシー 分離アーキテクチャ</text>
 <rect x="30" y="55" width="740" height="280" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">EKS クラスター</text>
@@ -2440,6 +2707,8 @@ spec:
 <rect x="555" y="180" width="175" height="40" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="642.5" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Service C</text>
 <text x="645" y="250" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">個別 ServiceAccount / IRSA</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">強度な分離が必要な場合: 別クラスター or Fargate (専用カーネル)</text></svg>
+</div>
+
 - ① FargateはDaemonSetが使えない → Fluent Bit はサイドカー（FireLens）で対応
 - ② 1 Pod = 1 マイクロVM = 1 ENI → 強力な分離（EC2ノードより分離度が高い）
 - ③ privileged, hostNetwork, hostPID は使用不可
@@ -2450,6 +2719,7 @@ spec:
 
 ---
 
+<!-- _class: fit-76 -->
 # ECS Fargate vs EKS Fargate 比較
 
 > *ECS Fargate(シンプル管理)とEKS Fargate(K8s機能フル活用)の選択はオーケストレーション要件*
@@ -2460,16 +2730,19 @@ spec:
 | IAM権限 | Task Role (IRSA相当) | IRSA / Pod Identity |
 | ネットワーク | awsvpc モード | VPC CNI |
 | ログ | awslogs / FireLens | FireLens / Fluent Bit |
+
 - → 試験TIP: 「KubernetesをマネージドでサーバーレスにしたEKSで実行」→ EKS Fargate
 
 
 ---
 
+<!-- _class: fit-58 -->
 # Fargate セキュリティチェックリスト
 
 > *Namespace最小化・最小権限Pod Execution Role・IRSA・VPC Endpoint・SecurityContextを設定*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS VPC セキュリティ設計</text>
 <rect x="30" y="55" width="740" height="300" rx="10" fill="#0d1117" stroke="#42a5f5" stroke-width="2"/>
 <text x="400" y="77" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">VPC</text>
@@ -2489,6 +2762,8 @@ spec:
 <text x="400" y="272" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">セキュリティグループ設計</text>
 <text x="400" y="293" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">最小限のポート / ノード間通信のみ許可</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">APIエンドポイントを Private に設定し公開露出を排除</text></svg>
+</div>
+
 - ✅ Fargateプロファイルで対象Namespace/Labelを最小化
 - ✅ Pod Execution Roleは最小権限（ECRプル + ログ送信のみ）
 - ✅ アプリのAWSアクセスはIRSA/Pod Identityで実装
@@ -2508,11 +2783,13 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # VPC CNI プラグイン（aws-node）
 
 > *VPC CNI v1.14以降はCalico不要でNetworkPolicy対応—ENI Warm Poolで起動を高速化*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IRSA / EKS Pod Identity フロー</text>
 <rect x="30" y="155" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="100" y="187.5" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Pod</text>
 <text x="100" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ServiceAccount付与</text>
@@ -2532,6 +2809,8 @@ spec:
 <text x="280" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">全リージョン対応・既存環境向け</text>
 <text x="520" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">設定簡略・Session Tagging対応</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ノードの EC2 インスタンスプロファイルに依存しない設計が重要</text></svg>
+</div>
+
 - **VPC CNI**: AWSが提供するEKS用ネットワークプラグイン（デフォルト）
 - **動作**: 各PodにVPCのIPアドレスを割り当て（サブネットIPを消費）
 - **ENI Warm Pool**: ノード上でENIを事前にアタッチ → Pod起動高速化
@@ -2542,11 +2821,13 @@ spec:
 
 ---
 
+<!-- _class: fit-64 -->
 # Network Policy 概要（Calico）
 
 > *NetworkPolicyのデフォルトは全通信許可—Ingress/Egressで明示的に通信を制限する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Kubernetes セキュリティレイヤー</text>
 <rect x="30" y="55" width="740" height="320" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">クラスターレイヤー: RBAC, NetworkPolicy, API認証</text>
@@ -2560,6 +2841,8 @@ spec:
 <text x="260" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限イメージ</text>
 <rect x="440" y="198" width="200" height="90" rx="6" fill="#12005e" stroke="#ce93d8" stroke-width="1.5"/><text x="540" y="248" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">サイドカーコンテナ</text>
 <text x="540" y="248" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Envoy / Falco agent</text></svg>
+</div>
+
 - **NetworkPolicy**: Kubernetes標準のL4トラフィック制御API
 - **デフォルト**: NetworkPolicyなし = 全Pod間通信が許可
 - **Ingress**: 受信トラフィックの制御（どこから来るか）
@@ -2572,7 +2855,8 @@ spec:
 
 # Network Policy 設定例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">RBAC 権限階層</text>
 <rect x="295" y="60" width="210" height="48" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ClusterRole</text>
 <rect x="50" y="60" width="180" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="140" y="89" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Role (Namespace)</text>
@@ -2592,11 +2876,14 @@ spec:
 <line x1="400" y1="208" x2="500" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="493,255 505,265 492,254" fill="#66bb6a"/>
 <line x1="400" y1="208" x2="670" y2="260" stroke="#66bb6a" stroke-width="1.5"/><polygon points="663,255 675,265 662,254" fill="#66bb6a"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">最小権限の原則: 必要なリソースと動詞のみ許可</text></svg>
+</div>
+
 - バックエンドAPIへのアクセスをフロントエンドNamespaceのみに制限する例
 
 
 ---
 
+<!-- _class: fit-58 -->
 # Network Policy 設定例（コード例）
 
 ```yaml
@@ -2627,11 +2914,13 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # Security Groups for Pods（SGP）
 
 > *SGPはTrunk ENIでPodに直接SGを付与しRDS/ElastiCacheへのアクセスをVPCレベルで制御*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">NetworkPolicy 分離アーキテクチャ</text>
 <rect x="30" y="60" width="340" height="130" rx="8" fill="#0d1117" stroke="#42a5f5" stroke-width="1.5"/>
 <text x="200" y="82" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">Namespace: frontend</text>
@@ -2651,6 +2940,8 @@ spec:
 <line x1="200" y1="190" x2="300" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <line x1="600" y1="190" x2="500" y2="230" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Calico / Cilium で NetworkPolicy を実施</text></svg>
+</div>
+
 - **SGP**: KubernetesネイティブのNetworkPolicyではなく、VPCのSGをPodに直接付与
 - **用途**: RDS, ElastiCache等のAWSリソースへのアクセスをSGで制御
 - **動作原理**: Trunk ENI（Branch ENI）を使ってPod単位のSGを実現
@@ -2663,7 +2954,8 @@ spec:
 
 # SGP 設定例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Pod Security Standards レベル</text>
 <rect x="30" y="70" width="220" height="240" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="140" y="195" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Privileged</text>
 <text x="140" y="120" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">PRIVILEGED</text>
@@ -2687,11 +2979,14 @@ spec:
 <text x="660" y="201" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">capabilities: drop ALL</text>
 <text x="660" y="225" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif">セキュリティ重視に推奨</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">PSA (Pod Security Admission) でNamespace単位に適用 — Kubernetes 1.25+</text></svg>
+</div>
+
 - PodにSecurity Groupを付与してRDSへのアクセスを制御する設定
 
 
 ---
 
+<!-- _class: fit-82 -->
 # SGP 設定例（コード例）
 
 ```yaml
@@ -2718,6 +3013,7 @@ spec:
 
 ---
 
+<!-- _class: fit-64 -->
 # SGP vs Network Policy — 使い分け
 
 > *SGP(L4ステートフル・AWS統合)とNetwork Policy(K8sネイティブ)を組み合わせる*
@@ -2728,6 +3024,7 @@ spec:
 | RDS制御 | 間接的（CIDR） | **直接（SGルール）** |
 | DaemonSet必要 | Calico等 | **不要（VPCネイティブ）** |
 | Fargate対応 | ✅ | ❌（不要、デフォルトENI分離） |
+
 - → 試験TIP: 「Pod→RDS間のSG制御」→ SGP、「NS間通信制御」→ Network Policy
 
 
@@ -2735,7 +3032,8 @@ spec:
 
 # EKS プライベートエンドポイント設定
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">イメージプルポリシーとレジストリフロー</text>
 <rect x="30" y="155" width="120" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="90" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">開発者</text>
 <line x1="150" y1="180" x2="180" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="175,174 190,180 175,186" fill="#f9a825"/>
@@ -2756,11 +3054,14 @@ spec:
 <text x="400" y="335" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">IfNotPresent: 開発環境</text>
 <text x="600" y="335" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Never: エアギャップ環境</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">latest タグ禁止 — 常にダイジェスト(SHA256)固定を推奨</text></svg>
+</div>
+
 - EKS APIServerをプライベートのみにして外部からのアクセスを遮断する
 
 
 ---
 
+<!-- _class: fit-82 -->
 # EKS プライベートエンドポイント設定（コード例）
 
 ```bash
@@ -2783,11 +3084,13 @@ nslookup <cluster-id>.gr7.ap-northeast-1.eks.amazonaws.com
 
 ---
 
+<!-- _class: fit-58 -->
 # AWS PrivateLink と EKS
 
 > *VPC Endpoint経由でFargateのECRプル・ログ送信がインターネット不要になりコスト削減*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理フロー (CSI Driver)</text>
 <rect x="30" y="155" width="165" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="112.5" y="187.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">AWS Secrets Manager</text>
 <text x="112" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">自動ローテーション</text>
@@ -2805,6 +3108,8 @@ nslookup <cluster-id>.gr7.ap-northeast-1.eks.amazonaws.com
 <text x="400" y="318" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ServiceAccount → IAM Role → Secrets Manager アクセス権限</text>
 <text x="400" y="335" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">最小権限IAMポリシー + OIDC プロバイダー連携</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Kubernetes Secrets は etcd 暗号化 (KMS) を必ず有効化</text></svg>
+</div>
+
 - **PrivateLink**: VPCエンドポイント経由でAWSサービスにプライベートアクセス
 - **EKS関連の推奨VPC Endpoint**: `ecr.api`, `ecr.dkr`, `s3`, `logs`, `sts`
 - **効果**: Fargateのイメージプル・ログ送信がインターネット不要になる
@@ -2816,7 +3121,8 @@ nslookup <cluster-id>.gr7.ap-northeast-1.eks.amazonaws.com
 
 # ALB Ingress Controller + WAF 設定
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ランタイムセキュリティ監視フロー</text>
 <rect x="30" y="60" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">EKS Cluster</text>
 <rect x="30" y="138" width="200" height="48" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="167" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ノード / コンテナ</text>
@@ -2836,11 +3142,14 @@ nslookup <cluster-id>.gr7.ap-northeast-1.eks.amazonaws.com
 <text x="400" y="337" text-anchor="middle" fill="#66bb6a" font-size="11" font-family="sans-serif" font-weight="bold">EKS GuardDuty: コントロールプレーン監査ログ自動分析</text>
 <text x="400" y="355" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">異常APIコール・クレデンシャル漏洩・マルウェアを検出</text>
 <text x="400" y="390" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">検出 → CloudWatch Events → Lambda 自動対応</text></svg>
+</div>
+
 - EKSのIngressにALBとWAFを統合して外部トラフィックを保護する設定
 
 
 ---
 
+<!-- _class: fit-82 -->
 # ALB Ingress Controller + WAF 設定（コード例）
 
 ```yaml
@@ -2863,11 +3172,13 @@ metadata:
 
 ---
 
+<!-- _class: fit-58 -->
 # NLB 設定とセキュリティ
 
 > *NLBはL4固定IP・送信元IP保持・TLS終端でgRPC/ゲームサーバーに最適なLB*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">マルチテナンシー 分離アーキテクチャ</text>
 <rect x="30" y="55" width="740" height="280" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">EKS クラスター</text>
@@ -2887,6 +3198,8 @@ metadata:
 <rect x="555" y="180" width="175" height="40" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="642.5" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Service C</text>
 <text x="645" y="250" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">個別 ServiceAccount / IRSA</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">強度な分離が必要な場合: 別クラスター or Fargate (専用カーネル)</text></svg>
+</div>
+
 - **NLB（Network Load Balancer）**: L4ロードバランサー、固定IPアドレス対応
 - **使用場面**: TCPサービス、ゲームサーバー、gRPC、固定IPが必要な場合
 - **TLS終端**: NLBでTLSを終端（ACM証明書）または Pod まで通過（TLS Passthrough）
@@ -2896,11 +3209,13 @@ metadata:
 
 ---
 
+<!-- _class: fit-58 -->
 # Service Mesh mTLS（App Mesh / Istio）
 
 > *App Mesh/IstioのmTLSでPod間通信を相互証明書で暗号化し横断的盗聴を防止する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS VPC セキュリティ設計</text>
 <rect x="30" y="55" width="740" height="300" rx="10" fill="#0d1117" stroke="#42a5f5" stroke-width="2"/>
 <text x="400" y="77" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">VPC</text>
@@ -2920,6 +3235,8 @@ metadata:
 <text x="400" y="272" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">セキュリティグループ設計</text>
 <text x="400" y="293" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">最小限のポート / ノード間通信のみ許可</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">APIエンドポイントを Private に設定し公開露出を排除</text></svg>
+</div>
+
 - **mTLS（Mutual TLS）**: Pod間通信を相互に証明書で認証・暗号化
 - **AWS App Mesh**: AWSマネージドなEnvoyベースのサービスメッシュ
 - **Istio**: CNCF標準。より高機能だが複雑
@@ -2930,11 +3247,13 @@ metadata:
 
 ---
 
+<!-- _class: fit-58 -->
 # DNS セキュリティ（CoreDNS設定）
 
 > *CoreDNSの外部フォワーダー制限とdnsPolicy設定でDNS経由データ流出を防止する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IRSA / EKS Pod Identity フロー</text>
 <rect x="30" y="155" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="100" y="187.5" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Pod</text>
 <text x="100" y="228" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ServiceAccount付与</text>
@@ -2954,6 +3273,8 @@ metadata:
 <text x="280" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">全リージョン対応・既存環境向け</text>
 <text x="520" y="333" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">設定簡略・Session Tagging対応</text>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ノードの EC2 インスタンスプロファイルに依存しない設計が重要</text></svg>
+</div>
+
 - **CoreDNS**: EKSのクラスター内DNS解決を担うコンポーネント
 - **外部DNS露出**: CoreDNSのClusterIPはVPC内からのみアクセス可能
 - **DNSポリシー**: `dnsPolicy: None` + `dnsConfig` で特定DNSサーバーを指定
@@ -2964,11 +3285,15 @@ metadata:
 
 ---
 
+<!-- _class: fit-58 -->
 # Egress 制御
 
 > *NetworkPolicy Egress・NAT GW集約・Firewall Manager・CoreDNS制限で侵害後の流出を防ぐ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS セキュリティ強化ロードマップ</text><rect x="30" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">基盤設定</text><text x="110" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">RBAC / NetworkPolicy</text><line x1="190" y1="97" x2="220" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="215,91 230,97 215,103" fill="#f9a825"/><rect x="230" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">イメージ強化</text><text x="310" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">スキャン / ECR署名</text><line x1="390" y1="97" x2="420" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="415,91 430,97 415,103" fill="#f9a825"/><rect x="430" y="70" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="510" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ランタイム監視</text><text x="510" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Falco / GuardDuty</text><line x1="590" y1="97" x2="620" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="615,91 630,97 615,103" fill="#f9a825"/><rect x="630" y="70" width="160" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">継続的準拠</text><text x="710" y="145" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">CSPM / CIS Check</text><rect x="200" y="175" width="400" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">試験対策ポイント</text><text x="400" y="222" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">SCS-C02: 設定の根拠を問う問題が多い</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">AWS EKS Best Practices Guide を参照</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS セキュリティ強化ロードマップ</text><rect x="30" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">基盤設定</text><text x="110" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">RBAC / NetworkPolicy</text><line x1="190" y1="97" x2="220" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="215,91 230,97 215,103" fill="#f9a825"/><rect x="230" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">イメージ強化</text><text x="310" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">スキャン / ECR署名</text><line x1="390" y1="97" x2="420" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="415,91 430,97 415,103" fill="#f9a825"/><rect x="430" y="70" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="510" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ランタイム監視</text><text x="510" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Falco / GuardDuty</text><line x1="590" y1="97" x2="620" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="615,91 630,97 615,103" fill="#f9a825"/><rect x="630" y="70" width="160" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">継続的準拠</text><text x="710" y="145" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">CSPM / CIS Check</text><rect x="200" y="175" width="400" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">試験対策ポイント</text><text x="400" y="222" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">SCS-C02: 設定の根拠を問う問題が多い</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">AWS EKS Best Practices Guide を参照</text></svg>
+</div>
+
 - **Egress制御の重要性**: 侵害されたPodがデータを外部に送信するのを防ぐ
 - **NetworkPolicy Egress**: 特定CIDR/Namespaceへの送信のみ許可
 - **NAT Gateway + セキュリティグループ**: Egress通信をNAT GW経由に集約してフィルタリング
@@ -2986,11 +3311,15 @@ metadata:
 
 ---
 
+<!-- _class: fit-58 -->
 # ネットワークセキュリティ 試験頻出ポイント
 
 > *NetworkPolicy/SGP/ALB+WAF/プライベートエンドポイント/VPC Endpointが試験頻出*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS セキュリティ強化ロードマップ</text><rect x="30" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">基盤設定</text><text x="110" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">RBAC / NetworkPolicy</text><line x1="190" y1="97" x2="220" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="215,91 230,97 215,103" fill="#f9a825"/><rect x="230" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">イメージ強化</text><text x="310" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">スキャン / ECR署名</text><line x1="390" y1="97" x2="420" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="415,91 430,97 415,103" fill="#f9a825"/><rect x="430" y="70" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="510" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ランタイム監視</text><text x="510" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Falco / GuardDuty</text><line x1="590" y1="97" x2="620" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="615,91 630,97 615,103" fill="#f9a825"/><rect x="630" y="70" width="160" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">継続的準拠</text><text x="710" y="145" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">CSPM / CIS Check</text><rect x="200" y="175" width="400" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">試験対策ポイント</text><text x="400" y="222" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">SCS-C02: 設定の根拠を問う問題が多い</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">AWS EKS Best Practices Guide を参照</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS セキュリティ強化ロードマップ</text><rect x="30" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">基盤設定</text><text x="110" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">RBAC / NetworkPolicy</text><line x1="190" y1="97" x2="220" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="215,91 230,97 215,103" fill="#f9a825"/><rect x="230" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">イメージ強化</text><text x="310" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">スキャン / ECR署名</text><line x1="390" y1="97" x2="420" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="415,91 430,97 415,103" fill="#f9a825"/><rect x="430" y="70" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="510" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ランタイム監視</text><text x="510" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Falco / GuardDuty</text><line x1="590" y1="97" x2="620" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="615,91 630,97 615,103" fill="#f9a825"/><rect x="630" y="70" width="160" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">継続的準拠</text><text x="710" y="145" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">CSPM / CIS Check</text><rect x="200" y="175" width="400" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">試験対策ポイント</text><text x="400" y="222" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">SCS-C02: 設定の根拠を問う問題が多い</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">AWS EKS Best Practices Guide を参照</text></svg>
+</div>
+
 - ① NetworkPolicy: Namespace/Pod間のL4制御。Calicoまたは VPC CNI v1.14+が必要
 - ② SGP: PodにVPC SGを直接付与。EC2ノードでRDS/ElastiCache接続制御に最適
 - ③ ALB + WAF: L7フィルタリング、SQLi/XSS防御。IngressのAnnotationで設定
@@ -3010,11 +3339,15 @@ metadata:
 
 ---
 
+<!-- _class: fit-58 -->
 # Pod Security Standards（PSS）
 
 > *PSS Restrictedはroot実行不可+読み取り専用FS推奨—Namespace labelsで適用する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS セキュリティ強化ロードマップ</text><rect x="30" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">基盤設定</text><text x="110" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">RBAC / NetworkPolicy</text><line x1="190" y1="97" x2="220" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="215,91 230,97 215,103" fill="#f9a825"/><rect x="230" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">イメージ強化</text><text x="310" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">スキャン / ECR署名</text><line x1="390" y1="97" x2="420" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="415,91 430,97 415,103" fill="#f9a825"/><rect x="430" y="70" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="510" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ランタイム監視</text><text x="510" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Falco / GuardDuty</text><line x1="590" y1="97" x2="620" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="615,91 630,97 615,103" fill="#f9a825"/><rect x="630" y="70" width="160" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">継続的準拠</text><text x="710" y="145" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">CSPM / CIS Check</text><rect x="200" y="175" width="400" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">試験対策ポイント</text><text x="400" y="222" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">SCS-C02: 設定の根拠を問う問題が多い</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">AWS EKS Best Practices Guide を参照</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS セキュリティ強化ロードマップ</text><rect x="30" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">基盤設定</text><text x="110" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">RBAC / NetworkPolicy</text><line x1="190" y1="97" x2="220" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="215,91 230,97 215,103" fill="#f9a825"/><rect x="230" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">イメージ強化</text><text x="310" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">スキャン / ECR署名</text><line x1="390" y1="97" x2="420" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="415,91 430,97 415,103" fill="#f9a825"/><rect x="430" y="70" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="510" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ランタイム監視</text><text x="510" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Falco / GuardDuty</text><line x1="590" y1="97" x2="620" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="615,91 630,97 615,103" fill="#f9a825"/><rect x="630" y="70" width="160" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="102" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">継続的準拠</text><text x="710" y="145" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">CSPM / CIS Check</text><rect x="200" y="175" width="400" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">試験対策ポイント</text><text x="400" y="222" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">SCS-C02: 設定の根拠を問う問題が多い</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">AWS EKS Best Practices Guide を参照</text></svg>
+</div>
+
 - **PSS**: Kubernetes 1.25以降のPodセキュリティ標準（PodSecurityPolicy廃止の後継）
 - **Privileged**: 制限なし（特権Pod可）
 - **Baseline**: 既知の権限昇格を防ぐ最小制限
@@ -3027,12 +3360,16 @@ metadata:
 
 # Pod Security Admission（PSA）設定
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS セキュリティ成熟度</text><rect x="30" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="107" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">基盤</text><line x1="185" y1="97" x2="215" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="210,91 225,97 210,103" fill="#f9a825"/><rect x="225" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="302" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">イメージ強化</text><line x1="380" y1="97" x2="410" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="405,91 420,97 405,103" fill="#f9a825"/><rect x="420" y="70" width="155" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="497" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ランタイム監視</text><line x1="575" y1="97" x2="605" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="600,91 615,97 600,103" fill="#f9a825"/><rect x="615" y="70" width="155" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="692" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">継続的準拠</text><rect x="250" y="175" width="300" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">試験対策</text><text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">SCS-C02: 設定根拠を問う問題が多い</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">AWS EKS Best Practices Guide を参照</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS セキュリティ成熟度</text><rect x="30" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="107" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">基盤</text><line x1="185" y1="97" x2="215" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="210,91 225,97 210,103" fill="#f9a825"/><rect x="225" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="302" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">イメージ強化</text><line x1="380" y1="97" x2="410" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="405,91 420,97 405,103" fill="#f9a825"/><rect x="420" y="70" width="155" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="497" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ランタイム監視</text><line x1="575" y1="97" x2="605" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="600,91 615,97 600,103" fill="#f9a825"/><rect x="615" y="70" width="155" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="692" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">継続的準拠</text><rect x="250" y="175" width="300" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">試験対策</text><text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">SCS-C02: 設定根拠を問う問題が多い</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">AWS EKS Best Practices Guide を参照</text></svg>
+</div>
+
 - Namespaceのラベルで強制・警告・監査の各モードを設定する
 
 
 ---
 
+<!-- _class: fit-88 -->
 # Pod Security Admission（PSA）設定（コード例）
 
 ```yaml
@@ -3056,12 +3393,16 @@ metadata:
 
 # SecurityContext 設定
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS ノードグループ セキュリティ</text><rect x="30" y="80" width="200" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">マネージドノードグループ</text><text x="130" y="153" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">AMI自動更新 / スケールアウト</text><rect x="295" y="80" width="200" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="395" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">セルフマネージドノード</text><text x="395" y="153" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">カスタム設定 / 詳細制御</text><rect x="560" y="80" width="210" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="665" y="112" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Fargate</text><text x="665" y="153" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">サーバーレス / ノード管理不要</text><rect x="200" y="185" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="217" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">CIS EKS Benchmark</text><text x="400" y="220" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">kube-bench で自動評価 — Level 1/2対応</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">本番: マネージド + Fargate の組み合わせが推奨</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS ノードグループ セキュリティ</text><rect x="30" y="80" width="200" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="130" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">マネージドノードグループ</text><text x="130" y="153" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">AMI自動更新 / スケールアウト</text><rect x="295" y="80" width="200" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="395" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">セルフマネージドノード</text><text x="395" y="153" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">カスタム設定 / 詳細制御</text><rect x="560" y="80" width="210" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="665" y="112" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Fargate</text><text x="665" y="153" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">サーバーレス / ノード管理不要</text><rect x="200" y="185" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="217" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">CIS EKS Benchmark</text><text x="400" y="220" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">kube-bench で自動評価 — Level 1/2対応</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">本番: マネージド + Fargate の組み合わせが推奨</text></svg>
+</div>
+
 - コンテナセキュリティを高める SecurityContext の必須設定例
 
 
 ---
 
+<!-- _class: fit-82 -->
 # SecurityContext 設定（コード例）
 
 ```yaml
@@ -3089,12 +3430,16 @@ spec:
 
 # Linux Capabilities 管理
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS ログ監査アーキテクチャ</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">EKS Audit Log</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><rect x="230" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">CloudWatch Logs</text><line x1="390" y1="107" x2="420" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="415,101 430,107 415,113" fill="#f9a825"/><rect x="430" y="80" width="160" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="510" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">CloudTrail</text><line x1="590" y1="107" x2="620" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="615,101 630,107 615,113" fill="#66bb6a"/><rect x="630" y="80" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="700" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SIEM/S3</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">有効化すべきログ種別</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">api / audit / authenticator / controllerManager / scheduler</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">コントロールプレーンログは必ずS3にアーカイブ</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS ログ監査アーキテクチャ</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">EKS Audit Log</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><rect x="230" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">CloudWatch Logs</text><line x1="390" y1="107" x2="420" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="415,101 430,107 415,113" fill="#f9a825"/><rect x="430" y="80" width="160" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="510" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">CloudTrail</text><line x1="590" y1="107" x2="620" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="615,101 630,107 615,113" fill="#66bb6a"/><rect x="630" y="80" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="700" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SIEM/S3</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">有効化すべきログ種別</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">api / audit / authenticator / controllerManager / scheduler</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">コントロールプレーンログは必ずS3にアーカイブ</text></svg>
+</div>
+
 - デフォルトCapabilityを全削除し、必要なものだけ追加する例
 
 
 ---
 
+<!-- _class: fit-88 -->
 # Linux Capabilities 管理（コード例）
 
 ```yaml
@@ -3116,11 +3461,15 @@ securityContext:
 
 ---
 
+<!-- _class: fit-58 -->
 # Secrets 管理（AWS Secrets Manager 統合）
 
 > *K8s Secretはbase64のみ—Secrets Manager CSI/ESO統合で暗号化・自動ローテーションを実現*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">OPA Gatekeeper ポリシー強制</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">kubectl apply</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><rect x="230" y="80" width="170" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="315" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Admission Controller</text><line x1="400" y1="107" x2="430" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="425,101 440,107 425,113" fill="#f9a825"/><rect x="440" y="80" width="170" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="525" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">OPA Gatekeeper</text><line x1="610" y1="107" x2="640" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="635,101 650,107 635,113" fill="#66bb6a"/><rect x="650" y="80" width="120" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Allow/Deny</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">強制するポリシー例</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">latestタグ禁止 / privileged禁止 / resource limit必須</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ConstraintTemplate + Constraint で宣言的に定義</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">OPA Gatekeeper ポリシー強制</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">kubectl apply</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><rect x="230" y="80" width="170" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="315" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Admission Controller</text><line x1="400" y1="107" x2="430" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="425,101 440,107 425,113" fill="#f9a825"/><rect x="440" y="80" width="170" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="525" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">OPA Gatekeeper</text><line x1="610" y1="107" x2="640" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="635,101 650,107 635,113" fill="#66bb6a"/><rect x="650" y="80" width="120" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Allow/Deny</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">強制するポリシー例</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">latestタグ禁止 / privileged禁止 / resource limit必須</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ConstraintTemplate + Constraint で宣言的に定義</text></svg>
+</div>
+
 - **K8s Secrets の問題点**: Base64エンコードのみ（暗号化ではない）。etcd暗号化が必要
 - **AWS Secrets Manager**: 完全暗号化・自動ローテーション・バージョン管理・監査ログ
 - **統合方法①**: CSI Secrets Store Driver（ファイルとしてPodに注入）
@@ -3133,12 +3482,16 @@ securityContext:
 
 # External Secrets Operator 設定
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS Fargate セキュリティモデル</text><rect x="30" y="80" width="200" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="130" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Fargateタスク A</text><rect x="250" y="80" width="200" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="350" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Fargateタスク B</text><rect x="480" y="80" width="200" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="580" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Fargateタスク C</text><rect x="30" y="155" width="650" height="55" rx="6" fill="#0d1117" stroke="#66bb6a" stroke-width="1.5"/><text x="355" y="178" text-anchor="middle" fill="#66bb6a" font-size="12" font-family="sans-serif">専用マイクロVM (Firecracker) — 専有カーネル</text><text x="355" y="198" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ホストOS共有なし → コンテナエスケープのリスク大幅低減</text><rect x="200" y="240" width="360" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="380" y="272" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Fargate セキュリティ制約</text><text x="380" y="275" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">privileged: false / HostPath: 不可 / daemonSet: 不可</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">試験ポイント: Fargate は DaemonSet を使用できない</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS Fargate セキュリティモデル</text><rect x="30" y="80" width="200" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="130" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Fargateタスク A</text><rect x="250" y="80" width="200" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="350" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Fargateタスク B</text><rect x="480" y="80" width="200" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="580" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Fargateタスク C</text><rect x="30" y="155" width="650" height="55" rx="6" fill="#0d1117" stroke="#66bb6a" stroke-width="1.5"/><text x="355" y="178" text-anchor="middle" fill="#66bb6a" font-size="12" font-family="sans-serif">専用マイクロVM (Firecracker) — 専有カーネル</text><text x="355" y="198" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ホストOS共有なし → コンテナエスケープのリスク大幅低減</text><rect x="200" y="240" width="360" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="380" y="272" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Fargate セキュリティ制約</text><text x="380" y="275" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">privileged: false / HostPath: 不可 / daemonSet: 不可</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">試験ポイント: Fargate は DaemonSet を使用できない</text></svg>
+</div>
+
 - Secrets ManagerのシークレットをK8s Secretとして自動同期する設定
 
 
 ---
 
+<!-- _class: fit-76 -->
 # External Secrets Operator 設定（コード例）
 
 ```yaml
@@ -3166,12 +3519,16 @@ spec:
 
 # CSI Secrets Store Driver 設定
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ECR イメージライフサイクル管理</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">イメージPUSH</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><rect x="230" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ECR自動スキャン</text><line x1="390" y1="107" x2="420" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="415,101 430,107 415,113" fill="#f9a825"/><rect x="420" y="80" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="500" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">脆弱性通知</text><line x1="580" y1="107" x2="610" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="605,101 620,107 605,113" fill="#66bb6a"/><rect x="620" y="80" width="150" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="695" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ライフサイクルルール</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ライフサイクルポリシー</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">古いイメージの自動削除 / untaggedは7日で削除</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ECR拡張スキャン (Inspector v2) でOS+言語パッケージを精査</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ECR イメージライフサイクル管理</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">イメージPUSH</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><rect x="230" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ECR自動スキャン</text><line x1="390" y1="107" x2="420" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="415,101 430,107 415,113" fill="#f9a825"/><rect x="420" y="80" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="500" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">脆弱性通知</text><line x1="580" y1="107" x2="610" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="605,101 620,107 605,113" fill="#66bb6a"/><rect x="620" y="80" width="150" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="695" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ライフサイクルルール</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ライフサイクルポリシー</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">古いイメージの自動削除 / untaggedは7日で削除</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ECR拡張スキャン (Inspector v2) でOS+言語パッケージを精査</text></svg>
+</div>
+
 - Secrets ManagerをCSI経由でPodにファイルとしてマウントする設定
 
 
 ---
 
+<!-- _class: fit-64 -->
 # CSI Secrets Store Driver 設定（コード例）
 
 ```yaml
@@ -3202,12 +3559,16 @@ volumes:
 
 # OPA Gatekeeper ConstraintTemplate 例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS アップグレード戦略</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">EKSバージョン確認</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><rect x="230" y="80" width="155" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="307" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト環境で先行</text><line x1="385" y1="107" x2="415" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="410,101 425,107 410,113" fill="#f9a825"/><rect x="425" y="80" width="155" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="502" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コントロールプレーン</text><line x1="580" y1="107" x2="610" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="605,101 620,107 605,113" fill="#66bb6a"/><rect x="620" y="80" width="150" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="695" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ノードグループ</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">サポートポリシー</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">EKS: 14か月サポート / 標準→延長サポートで追加費用</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">EOLバージョンはCVEパッチが適用されない</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">EKS アップグレード戦略</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">EKSバージョン確認</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><rect x="230" y="80" width="155" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="307" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト環境で先行</text><line x1="385" y1="107" x2="415" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="410,101 425,107 410,113" fill="#f9a825"/><rect x="425" y="80" width="155" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="502" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コントロールプレーン</text><line x1="580" y1="107" x2="610" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="605,101 620,107 605,113" fill="#66bb6a"/><rect x="620" y="80" width="150" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="695" y="112" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ノードグループ</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">サポートポリシー</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">EKS: 14か月サポート / 標準→延長サポートで追加費用</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">EOLバージョンはCVEパッチが適用されない</text></svg>
+</div>
+
 - Latestタグのイメージ使用を禁止するConstraintTemplateとConstraintの例
 
 
 ---
 
+<!-- _class: fit-58 -->
 # OPA Gatekeeper ConstraintTemplate 例（コード例）
 
 ```yaml
@@ -3246,6 +3607,7 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # ResourceQuota / LimitRange（コード例）
 
 ```yaml
@@ -3282,6 +3644,7 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # Pod・ワークロードセキュリティ チェックリスト
 
 > *PSA restricted・runAsNonRoot・read-onlyFS・capabilities drop ALL・Secrets Managerを設定*
@@ -3296,6 +3659,7 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # Pod・ワークロードセキュリティ 試験頻出ポイント
 
 > *PSP廃止→PSS+PSA・K8s SecretはBase64のみ・OPA GatekeeperとKyvernoの併用は非推奨*
@@ -3326,6 +3690,7 @@ spec:
 
 ---
 
+<!-- _class: fit-70 -->
 # EKS Control Plane ログ（CloudWatch）（コード例）
 
 ```bash
@@ -3352,6 +3717,7 @@ aws eks update-cluster-config \
 
 ---
 
+<!-- _class: fit-58 -->
 # GuardDuty EKS Protection 概要
 
 > *GuardDutyはAudit Log MonitoringとRuntime Monitoringの2層でEKSクラスターの脅威を検知*
@@ -3373,6 +3739,7 @@ aws eks update-cluster-config \
 
 ---
 
+<!-- _class: fit-58 -->
 # Amazon Detective（EKS調査）
 
 > *Amazon DetectiveはGuardDuty検知後にVPC/CloudTrail/EKS Audit Logsを相関分析で深掘り*
@@ -3387,6 +3754,7 @@ aws eks update-cluster-config \
 
 ---
 
+<!-- _class: fit-58 -->
 # Falco（ランタイム脅威検知）
 
 > *FalcoはeBPFでkubectl exec・/etc/passwd読み取り・シェル起動をリアルタイム検出する*
@@ -3408,6 +3776,7 @@ aws eks update-cluster-config \
 
 ---
 
+<!-- _class: fit-76 -->
 # Falco ルール設定例（コード例）
 
 ```yaml
@@ -3442,6 +3811,7 @@ aws eks update-cluster-config \
 
 ---
 
+<!-- _class: fit-70 -->
 # kube-bench（CIS Benchmark 自動チェック）（コード例）
 
 ```yaml
@@ -3468,6 +3838,7 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # SIEM 統合（Security Hub 連携）
 
 > *Security HubがGuardDuty/Inspector/Macieを統合しFirehose経由でSIEMへ転送できる*
@@ -3482,6 +3853,7 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # コンテナインシデント対応フロー
 
 > *侵害Podをネットワーク分離→フォレンジック→即時削除→ノード隔離の4ステップで対応*
@@ -3496,6 +3868,7 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # 監視・監査 チェックリスト
 
 > *EKS Audit Log/GuardDuty/CloudTrail/Security Hubを全リージョンで有効化するチェックリスト*
@@ -3510,6 +3883,7 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # ランタイムセキュリティ 試験頻出ポイント
 
 > *GuardDuty EKS Audit=APIコール異常・Runtime=コンテナ内活動・Detective=詳細調査が頻出*
@@ -3540,6 +3914,7 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # DevOps Pro 頻出問題パターン Top 5
 
 > *CI/CDパイプラインのECRスキャン・プライベートエンドポイント・GitOpsセキュリティが頻出*
@@ -3553,6 +3928,7 @@ spec:
 
 ---
 
+<!-- _class: fit-64 -->
 # SCS-C02 頻出問題パターン Top 5
 
 > *IRSA/Pod IdentityでS3・SGPでRDS・GuardDuty RuntimeでコンテナIoC・FargateでPod分離*
@@ -3566,6 +3942,7 @@ spec:
 
 ---
 
+<!-- _class: fit-64 -->
 # よくある落とし穴（ひっかけ問題）
 
 > *K8s SecretはBase64のみ・FargateはDaemonSet不可・IRSAはOIDC必須が定番ひっかけ*
@@ -3579,6 +3956,7 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # RBAC vs IAM — どちらを使うか
 
 > *K8sリソース操作はRBAC・AWSリソースはIAM（IRSA）・kubectl接続はIAM+aws-auth+RBACの組合せ*
@@ -3593,6 +3971,7 @@ spec:
 
 ---
 
+<!-- _class: fit-58 -->
 # セキュリティサービス選択フロー
 
 > *GuardDuty+Detective→Inspector V2→OPA/Kyverno→Secrets Manager→WAF+SGP+NetworkPolicyの選択フロー*
@@ -3607,6 +3986,7 @@ spec:
 
 ---
 
+<!-- _class: fit-82 -->
 # 参考リソース・公式ドキュメント
 
 > *EKS Best Practices Guide・CIS EKS Benchmark・Falco・SCS-C02試験ガイドを学習の基点に*
@@ -3621,7 +4001,7 @@ spec:
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: lead fit-70 -->
 # まとめ — EKS セキュリティ 完全マスター
 
 - ✅ **RBAC + IRSA/Pod Identity** で認証・認可の最小権限を実現

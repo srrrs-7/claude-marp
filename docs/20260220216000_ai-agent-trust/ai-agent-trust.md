@@ -7,41 +7,76 @@ paginate: true
 header: "AIエージェントの信頼問題"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,11 +117,10 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # AIエージェントの信頼問題
 
 - いつSUDO権限を与えるのか
-- 
 - Luhmannの信頼論 × Principle of Least Privilege
 
 
@@ -96,12 +130,12 @@ style: |
 
 > *Luhmann信頼論からPoLP実装まで11章で解説*
 
-- - 1. 信頼とは何か -- Luhmannの社会学
-- - 2. AIエージェントへの信頼の構造
-- - 3. 信頼の委譲チェーン
-- - 4. 権限の5段階モデル
-- - 5. Claude Code に学ぶ権限設計
-- - 6. Principle of Least Privilege
+- 1. 信頼とは何か -- Luhmannの社会学
+- 2. AIエージェントへの信頼の構造
+- 3. 信頼の委譲チェーン
+- 4. 権限の5段階モデル
+- 5. Claude Code に学ぶ権限設計
+- 6. Principle of Least Privilege
 
 
 ---
@@ -110,19 +144,20 @@ style: |
 
 > *崩壊・設計・SUDO問題の4章でまとめる*
 
-- - 7. 信頼構築のロードマップ
-- - 8. 信頼の崩壊と回復
-- - 9. 制度的信頼 vs 人格的信頼
-- - 10. SUDO問題の本質
-- - 11. まとめと提言
+- 7. 信頼構築のロードマップ
+- 8. 信頼の崩壊と回復
+- 9. 制度的信頼 vs 人格的信頼
+- 10. SUDO問題の本質
+- 11. まとめと提言
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Luhmannの信頼論
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">Luhmann 信頼論：社会システムの機能</text>
 <rect x="40" y="80" width="200" height="80" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -152,6 +187,7 @@ style: |
 <line x1="400" y1="160" x2="410" y2="220" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/>
 <line x1="400" y1="160" x2="630" y2="220" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/>
 </svg>
+</div>
 
 
 ---
@@ -160,12 +196,11 @@ style: |
 
 > *信頼は複雑性を縮減する機構—なければ行動不能になる*
 
-- - ドイツの社会学者 (1927-1998)
-- - 著書『信頼 -- 社会的複雑性の縮減メカニズム』(1968)
-- - **信頼の定義**: 複雑性を縮減する社会的メカニズム
-- - 全ての可能性を検証することは不可能
-- - 信頼によって「検証せずに受け入れる」ことが可能になる
-- 
+- ドイツの社会学者 (1927-1998)
+- 著書『信頼 -- 社会的複雑性の縮減メカニズム』(1968)
+- **信頼の定義**: 複雑性を縮減する社会的メカニズム
+- 全ての可能性を検証することは不可能
+- 信頼によって「検証せずに受け入れる」ことが可能になる
 - **AIへの信頼も同じ原理で動く**
 
 
@@ -175,7 +210,8 @@ style: |
 
 > *人格的信頼と制度的信頼は構造が異なる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">信頼の2形態：人格的信頼 vs システム信頼</text>
 <rect x="40" y="65" width="330" height="270" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -200,11 +236,13 @@ style: |
 <text x="595" y="278" text-anchor="middle" fill="#e91e63" font-size="11">「パイロットは誰でも信頼できる」</text>
 <text x="400" y="370" text-anchor="middle" fill="#aaaaaa" font-size="11">AIエージェントはどちらの信頼に頼るべきか？</text>
 </svg>
-- - **人格的信頼 (Personal Trust)**
--   - 特定の個人への信頼
--   - 経験と実績に基づく
--   - 「この人なら大丈夫」
-- - **制度的信頼 (System Trust)**
+</div>
+
+- **人格的信頼 (Personal Trust)**
+  - 特定の個人への信頼
+  - 経験と実績に基づく
+  - 「この人なら大丈夫」
+- **制度的信頼 (System Trust)**
 
 
 ---
@@ -213,19 +251,19 @@ style: |
 
 > *AIには制度的信頼設計が人格的信頼より有効*
 
--   - 仕組み・制度への信頼
--   - ルールと監査に基づく
--   - 「このシステムなら大丈夫」
-- 
+  - 仕組み・制度への信頼
+  - ルールと監査に基づく
+  - 「このシステムなら大丈夫」
 - AIエージェントには**両方**が必要
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # AIへの信頼の構造
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">AIへの信頼の構造：3層モデル</text>
 <ellipse cx="400" cy="220" rx="320" ry="160" fill="#16213e" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="5,3"/>
@@ -246,13 +284,15 @@ style: |
 <text x="680" y="193" text-anchor="middle" fill="#aaaaaa" font-size="11">倫理ガイドライン</text>
 <text x="400" y="385" text-anchor="middle" fill="#aaaaaa" font-size="11">内側の層が安定しないと外側の層だけでは信頼を保てない</text>
 </svg>
+</div>
 
 
 ---
 
 # 信頼の委譲チェーン
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">信頼の委譲チェーンと希薄化リスク</text>
 <rect x="30" y="80" width="120" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -293,6 +333,8 @@ style: |
 <text x="400" y="318" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">問題：委譲の連鎖が長くなるほど責任と権限の根拠が薄れる</text>
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="11">解決策：各レベルで明示的な権限確認 + 監査ログの維持</text>
 </svg>
+</div>
+
 ![w:900 center](assets/trust-delegation-chain.svg)
 
 
@@ -300,7 +342,8 @@ style: |
 
 # マルチエージェント信頼チェーン（図解）
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="360" fill="#1a1a2e"/>
 <text x="400" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">信頼の委譲チェーン（マルチエージェント）</text>
 <rect x="30" y="120" width="130" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -332,6 +375,7 @@ style: |
 <rect x="160" y="295" width="480" height="40" rx="6" fill="#e91e63" opacity="0.2" stroke="#e91e63" stroke-width="1"/>
 <text x="400" y="320" text-anchor="middle" fill="#e91e63" font-size="11">Agent Cは「誰から委譲されたか」を検証できない → 権限昇格攻撃のリスク</text>
 </svg>
+</div>
 
 
 ---
@@ -340,10 +384,13 @@ style: |
 
 > *不確実性を受け入れる意思決定こそ信頼の本質*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">なぜ信頼が必要なのか：3つの理由</text><rect x="30" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="140" y="95" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">理由1: 複雑性</text><text x="50" y="125" fill="#ffffff" font-size="11">AIの判断ロジックを</text><text x="50" y="145" fill="#ffffff" font-size="11">全て検証するのは不可能</text><text x="50" y="165" fill="#ffffff" font-size="11">毎回の出力を人間が</text><text x="50" y="185" fill="#ffffff" font-size="11">確認するコストは∞</text><rect x="50" y="215" width="178" height="80" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="139" y="258" text-anchor="middle" fill="#f9a825" font-size="11">→ 信頼なしには</text><text x="139" y="278" text-anchor="middle" fill="#f9a825" font-size="11">　利用できない</text><rect x="290" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="95" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">理由2: 速度</text><text x="310" y="125" fill="#ffffff" font-size="11">リアルタイム判断が必要</text><text x="310" y="145" fill="#ffffff" font-size="11">人間のレビューを待てない</text><text x="310" y="165" fill="#ffffff" font-size="11">自律的な行動が前提</text><text x="310" y="185" fill="#ffffff" font-size="11">承認待ちがボトルネック</text><rect x="310" y="215" width="178" height="80" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="399" y="258" text-anchor="middle" fill="#e91e63" font-size="11">→ 委任なしには</text><text x="399" y="278" text-anchor="middle" fill="#e91e63" font-size="11">　価値を出せない</text><rect x="550" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="660" y="95" text-anchor="middle" fill="#4db6ac" font-size="13" font-weight="bold">理由3: スケール</text><text x="570" y="125" fill="#ffffff" font-size="11">人間の監督能力に限界</text><text x="570" y="145" fill="#ffffff" font-size="11">並列処理・大量タスク</text><text x="570" y="165" fill="#ffffff" font-size="11">人間1人 vs エージェント∞</text><text x="570" y="185" fill="#ffffff" font-size="11">監視コストが線形増大</text><rect x="570" y="215" width="178" height="80" rx="6" fill="#4db6ac" opacity="0.12" stroke="#4db6ac" stroke-width="1"/><text x="659" y="258" text-anchor="middle" fill="#4db6ac" font-size="11">→ 制度化なしには</text><text x="659" y="278" text-anchor="middle" fill="#4db6ac" font-size="11">　管理できない</text><text x="400" y="365" text-anchor="middle" fill="#aaaaaa" font-size="11">信頼は「甘え」ではなく「必要条件」</text></svg>
-- - AIエージェントの出力を**毎回全て検証する**のは非現実的
-- - 検証コストがAI使用の利益を上回る → 意味がない
-- - しかし**検証なしに全て受け入れる**のは危険
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">なぜ信頼が必要なのか：3つの理由</text><rect x="30" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="140" y="95" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">理由1: 複雑性</text><text x="50" y="125" fill="#ffffff" font-size="11">AIの判断ロジックを</text><text x="50" y="145" fill="#ffffff" font-size="11">全て検証するのは不可能</text><text x="50" y="165" fill="#ffffff" font-size="11">毎回の出力を人間が</text><text x="50" y="185" fill="#ffffff" font-size="11">確認するコストは∞</text><rect x="50" y="215" width="178" height="80" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="139" y="258" text-anchor="middle" fill="#f9a825" font-size="11">→ 信頼なしには</text><text x="139" y="278" text-anchor="middle" fill="#f9a825" font-size="11">　利用できない</text><rect x="290" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="95" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">理由2: 速度</text><text x="310" y="125" fill="#ffffff" font-size="11">リアルタイム判断が必要</text><text x="310" y="145" fill="#ffffff" font-size="11">人間のレビューを待てない</text><text x="310" y="165" fill="#ffffff" font-size="11">自律的な行動が前提</text><text x="310" y="185" fill="#ffffff" font-size="11">承認待ちがボトルネック</text><rect x="310" y="215" width="178" height="80" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="399" y="258" text-anchor="middle" fill="#e91e63" font-size="11">→ 委任なしには</text><text x="399" y="278" text-anchor="middle" fill="#e91e63" font-size="11">　価値を出せない</text><rect x="550" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="660" y="95" text-anchor="middle" fill="#4db6ac" font-size="13" font-weight="bold">理由3: スケール</text><text x="570" y="125" fill="#ffffff" font-size="11">人間の監督能力に限界</text><text x="570" y="145" fill="#ffffff" font-size="11">並列処理・大量タスク</text><text x="570" y="165" fill="#ffffff" font-size="11">人間1人 vs エージェント∞</text><text x="570" y="185" fill="#ffffff" font-size="11">監視コストが線形増大</text><rect x="570" y="215" width="178" height="80" rx="6" fill="#4db6ac" opacity="0.12" stroke="#4db6ac" stroke-width="1"/><text x="659" y="258" text-anchor="middle" fill="#4db6ac" font-size="11">→ 制度化なしには</text><text x="659" y="278" text-anchor="middle" fill="#4db6ac" font-size="11">　管理できない</text><text x="400" y="365" text-anchor="middle" fill="#aaaaaa" font-size="11">信頼は「甘え」ではなく「必要条件」</text></svg>
+</div>
+
+- AIエージェントの出力を**毎回全て検証する**のは非現実的
+- 検証コストがAI使用の利益を上回る → 意味がない
+- しかし**検証なしに全て受け入れる**のは危険
 
 
 ---
@@ -352,8 +399,7 @@ style: |
 
 > *信頼なき自律エージェントはリスク源になる*
 
-- - 信頼 = 「どこまで検証を省略できるか」の閾値
-- 
+- 信頼 = 「どこまで検証を省略できるか」の閾値
 - **Luhmannの洞察:**
 - 「信頼は複雑性を縮減する。しかし信頼にはリスクがある。」
 
@@ -362,7 +408,8 @@ style: |
 
 # 信頼が縮減する複雑性（図解）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">信頼 = 複雑性を縮減するメカニズム</text>
 <ellipse cx="150" cy="210" rx="120" ry="95" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -385,14 +432,16 @@ style: |
 <text x="440" y="290" text-anchor="middle" fill="#e91e63" font-size="10">※ 信頼にはリスクが伴う</text>
 <text x="400" y="340" text-anchor="middle" fill="#aaaaaa" font-size="12">AIの出力を毎回全て検証することは不可能 → 信頼が必要</text>
 </svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 権限設計
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">AIエージェント権限設計フレームワーク</text>
 <rect x="30" y="65" width="220" height="270" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
@@ -427,13 +476,15 @@ style: |
 <text x="645" y="256" text-anchor="middle" fill="#e91e63" font-size="10">二重確認</text>
 <text x="400" y="370" text-anchor="middle" fill="#aaaaaa" font-size="11">Principle of Least Privilege: 必要最小限の権限のみ付与する</text>
 </svg>
+</div>
 
 
 ---
 
 # AIエージェント権限段階図
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">AIエージェント権限段階図</text>
 <rect x="50" y="310" width="700" height="50" rx="8" fill="#4db6ac" opacity="0.8"/>
@@ -453,6 +504,8 @@ style: |
 <text x="790" y="85" text-anchor="end" fill="#e91e63" font-size="10">要承認</text>
 <text x="400" y="385" text-anchor="middle" fill="#aaaaaa" font-size="11">Claude Code は --dangerously-skip-permissions で Level 5 に相当</text>
 </svg>
+</div>
+
 ![w:900 center](assets/permission-levels.svg)
 
 
@@ -462,10 +515,10 @@ style: |
 
 > *段階的権限付与がLeast Privilegeの実装例*
 
-- - **Read**: ファイル読み取り → 自動許可
-- - **Edit/Write**: ファイル編集 → 設定で自動許可可能
-- - **Bash**: シェルコマンド → コマンドごとに許可設定
-- - **外部通信**: git push, API呼び出し → 常に確認
+- **Read**: ファイル読み取り → 自動許可
+- **Edit/Write**: ファイル編集 → 設定で自動許可可能
+- **Bash**: シェルコマンド → コマンドごとに許可設定
+- **外部通信**: git push, API呼び出し → 常に確認
 
 
 ---
@@ -474,11 +527,10 @@ style: |
 
 > *権限昇格は監査ログと承認フローで制御する*
 
-- 
 - **設計思想:**
-- - デフォルトは最小権限
-- - ユーザーが段階的に権限を拡大
-- - `--dangerously-skip-permissions` は明示的なオプトイン
+- デフォルトは最小権限
+- ユーザーが段階的に権限を拡大
+- `--dangerously-skip-permissions` は明示的なオプトイン
 
 
 ---
@@ -487,9 +539,9 @@ style: |
 
 > *タスク完了に必要な最小権限のみを付与する*
 
-- - **最小権限の原則** -- セキュリティの基本原則
-- - 起源: 1975年 Saltzer & Schroeder
-- - 「全てのプログラムと全てのユーザーは、
+- **最小権限の原則** -- セキュリティの基本原則
+- 起源: 1975年 Saltzer & Schroeder
+- 「全てのプログラムと全てのユーザーは、
 -   タスク完了に必要な最小限の権限のみで動作すべき」
 
 
@@ -499,19 +551,19 @@ style: |
 
 > *過剰権限は攻撃面積を広げ事故を拡大する*
 
-- - Unix: root vs 一般ユーザー
-- - AWS IAM: ポリシーベースのアクセス制御
-- - Android/iOS: アプリごとの権限許可
-- 
+- Unix: root vs 一般ユーザー
+- AWS IAM: ポリシーベースのアクセス制御
+- Android/iOS: アプリごとの権限許可
 - **AIエージェントにも同じ原則を適用すべき**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # SUDO問題
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">SUDO問題：権限昇格の危険性</text>
 <rect x="40" y="70" width="320" height="140" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
@@ -539,6 +591,7 @@ style: |
 <text x="590" y="342" text-anchor="middle" fill="#4db6ac" font-size="11" font-weight="bold">対策: Privilege Separation</text>
 <text x="590" y="360" text-anchor="middle" fill="#ffffff" font-size="10">権限が必要な操作は別プロセスで実行</text>
 </svg>
+</div>
 
 
 ---
@@ -547,10 +600,10 @@ style: |
 
 > *実績×監査×可逆性の3条件が揃った時だけ*
 
-- - **SUDO = 全権委任** -- 最も危険な信頼の形
-- - Unixで `sudo` を打つ時、あなたは何を信頼しているか？
--   - そのコマンドが意図通り動くこと
--   - 副作用が許容範囲であること
+- **SUDO = 全権委任** -- 最も危険な信頼の形
+- Unixで `sudo` を打つ時、あなたは何を信頼しているか？
+  - そのコマンドが意図通り動くこと
+  - 副作用が許容範囲であること
 
 
 ---
@@ -559,9 +612,8 @@ style: |
 
 > *権限付与は累積的—一度与えると取り戻せない*
 
--   - 取り消し可能であること(最悪の場合)
-- - AIに `--dangerously-skip-permissions` を与える時も同じ
-- 
+  - 取り消し可能であること(最悪の場合)
+- AIに `--dangerously-skip-permissions` を与える時も同じ
 - **「便利だから全権限を与える」は sudo ALL=(ALL) NOPASSWD: ALL と同じ**
 
 
@@ -571,11 +623,14 @@ style: |
 
 > *一度失った信頼の回復には構築の10倍の時間がかかる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">信頼の崩壊：典型的なパターン</text><rect x="30" y="65" width="340" height="130" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="94" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">パターン1: 能力の失望</text><text x="50" y="120" fill="#ffffff" font-size="11">「できる」と信じたが、実はできなかった</text><text x="50" y="142" fill="#ffffff" font-size="11">例: AIが誤った情報を自信満々に提示</text><text x="50" y="164" fill="#aaaaaa" font-size="10">→ 能力への信頼が崩壊（回復困難）</text><rect x="430" y="65" width="340" height="130" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="94" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">パターン2: 誠実さへの疑念</text><text x="450" y="120" fill="#ffffff" font-size="11">「正直」と信じたが、隠蔽があった</text><text x="450" y="142" fill="#ffffff" font-size="11">例: AIが自分の限界を隠す</text><text x="450" y="164" fill="#aaaaaa" font-size="10">→ 誠実性への信頼が崩壊（最も深刻）</text><rect x="30" y="225" width="340" height="130" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="254" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">パターン3: 整合性の欠如</text><text x="50" y="280" fill="#ffffff" font-size="11">「一貫している」と思ったが、ブレる</text><text x="50" y="300" fill="#ffffff" font-size="11">例: 同じ質問に毎回違う答え</text><text x="50" y="322" fill="#aaaaaa" font-size="10">→ 予測可能性への信頼が崩壊</text><rect x="430" y="225" width="340" height="130" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="600" y="254" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold">共通の教訓</text><text x="450" y="280" fill="#ffffff" font-size="11">信頼は「期待の充足」によって維持</text><text x="450" y="300" fill="#ffffff" font-size="11">一度でも大きく裏切ると回復は困難</text><text x="450" y="322" fill="#aaaaaa" font-size="10">→ 信頼の約束は守れる範囲のみ</text></svg>
-- - **信頼の非対称性**: 構築は遅く、崩壊は一瞬
-- - AIエージェントが本番環境を壊したら？
--   - 技術的損害 + 心理的信頼の崩壊
--   - 「二度と使わない」反応が自然
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">信頼の崩壊：典型的なパターン</text><rect x="30" y="65" width="340" height="130" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="94" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">パターン1: 能力の失望</text><text x="50" y="120" fill="#ffffff" font-size="11">「できる」と信じたが、実はできなかった</text><text x="50" y="142" fill="#ffffff" font-size="11">例: AIが誤った情報を自信満々に提示</text><text x="50" y="164" fill="#aaaaaa" font-size="10">→ 能力への信頼が崩壊（回復困難）</text><rect x="430" y="65" width="340" height="130" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="94" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">パターン2: 誠実さへの疑念</text><text x="450" y="120" fill="#ffffff" font-size="11">「正直」と信じたが、隠蔽があった</text><text x="450" y="142" fill="#ffffff" font-size="11">例: AIが自分の限界を隠す</text><text x="450" y="164" fill="#aaaaaa" font-size="10">→ 誠実性への信頼が崩壊（最も深刻）</text><rect x="30" y="225" width="340" height="130" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="254" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">パターン3: 整合性の欠如</text><text x="50" y="280" fill="#ffffff" font-size="11">「一貫している」と思ったが、ブレる</text><text x="50" y="300" fill="#ffffff" font-size="11">例: 同じ質問に毎回違う答え</text><text x="50" y="322" fill="#aaaaaa" font-size="10">→ 予測可能性への信頼が崩壊</text><rect x="430" y="225" width="340" height="130" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="600" y="254" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold">共通の教訓</text><text x="450" y="280" fill="#ffffff" font-size="11">信頼は「期待の充足」によって維持</text><text x="450" y="300" fill="#ffffff" font-size="11">一度でも大きく裏切ると回復は困難</text><text x="450" y="322" fill="#aaaaaa" font-size="10">→ 信頼の約束は守れる範囲のみ</text></svg>
+</div>
+
+- **信頼の非対称性**: 構築は遅く、崩壊は一瞬
+- AIエージェントが本番環境を壊したら？
+  - 技術的損害 + 心理的信頼の崩壊
+  - 「二度と使わない」反応が自然
 
 
 ---
@@ -584,17 +639,18 @@ style: |
 
 > *透明性と説明責任が信頼回復の唯一の道*
 
-- - **回復の条件 (Luhmann)**:
--   - 原因の透明な説明
--   - 再発防止の制度的保証
--   - 段階的な信頼の再構築
+- **回復の条件 (Luhmann)**:
+  - 原因の透明な説明
+  - 再発防止の制度的保証
+  - 段階的な信頼の再構築
 
 
 ---
 
 # 信頼の非対称性（図解）
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="360" fill="#1a1a2e"/>
 <text x="400" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">信頼の崩壊と回復 — 非対称性</text>
 <line x1="80" y1="300" x2="720" y2="300" stroke="#444" stroke-width="1"/>
@@ -618,14 +674,16 @@ style: |
 <text x="115" y="161" fill="#ffffff" font-size="10">① 原因の透明な説明</text>
 <text x="115" y="173" fill="#ffffff" font-size="10">② 制度的再発防止　③ 段階的再構築</text>
 </svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 信頼構築ロードマップ
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">信頼構築ロードマップ：4フェーズ</text>
 <line x1="80" y1="200" x2="720" y2="200" stroke="#444" stroke-width="2"/>
@@ -657,13 +715,15 @@ style: |
 <text x="606" y="162" fill="#aaaaaa" font-size="10">• 継続的評価</text>
 <text x="400" y="360" text-anchor="middle" fill="#aaaaaa" font-size="11">各フェーズの移行条件：一定期間の無失敗実績 + 人間による評価承認</text>
 </svg>
+</div>
 
 
 ---
 
 # 4フェーズの信頼構築
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">フェーズ移行の判断基準</text>
 <rect x="30" y="65" width="355" height="150" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
@@ -689,6 +749,8 @@ style: |
 <text x="435" y="313" fill="#ffffff" font-size="11">✗ 説明不能な動作</text>
 <text x="435" y="333" fill="#ffffff" font-size="11">✗ ユーザー信頼スコア低下</text>
 </svg>
+</div>
+
 ![w:900 center](assets/trust-roadmap.svg)
 
 
@@ -698,7 +760,8 @@ style: |
 
 > *監査・認証・制限の三層構造が制度信頼を支える*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">制度的信頼の設計：3つの柱</text>
 <rect x="30" y="70" width="220" height="280" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -735,9 +798,11 @@ style: |
 <text x="660" y="278" text-anchor="middle" fill="#4db6ac" font-size="11">などの標準化</text>
 <text x="660" y="296" text-anchor="middle" fill="#4db6ac" font-size="11">ベンチマーク</text>
 </svg>
-- - **監査ログ**: 全てのAI操作を記録する
-- - **サンドボックス**: 本番環境と分離された実行環境
-- - **ロールバック**: いつでも元に戻せる仕組み
+</div>
+
+- **監査ログ**: 全てのAI操作を記録する
+- **サンドボックス**: 本番環境と分離された実行環境
+- **ロールバック**: いつでも元に戻せる仕組み
 
 
 ---
@@ -746,9 +811,8 @@ style: |
 
 > *技術的担保なき信頼宣言はリスクを隠蔽するだけ*
 
-- - **レビュー**: 人間によるサンプルチェック
-- - **設定ファイル**: CLAUDE.md = AIへの制度的契約
-- 
+- **レビュー**: 人間によるサンプルチェック
+- **設定ファイル**: CLAUDE.md = AIへの制度的契約
 - **人格的信頼に頼らない。制度で信頼を担保する。**
 
 
@@ -758,10 +822,13 @@ style: |
 
 > *失敗事例は全て権限過多か監視不足が原因*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">現実のケーススタディ：Claude Code の信頼モデル</text><rect x="30" y="65" width="350" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="205" y="96" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">信頼の設計</text><rect x="50" y="115" width="290" height="50" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="195" y="138" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">明示的な権限モデル</text><text x="195" y="156" text-anchor="middle" fill="#ffffff" font-size="10">--allow-read, --allow-write で明示</text><rect x="50" y="178" width="290" height="50" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="195" y="201" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">インタラクティブ確認</text><text x="195" y="219" text-anchor="middle" fill="#ffffff" font-size="10">重要操作前に必ず承認を求める</text><rect x="50" y="241" width="290" height="50" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="195" y="264" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">透明な行動ログ</text><text x="195" y="282" text-anchor="middle" fill="#ffffff" font-size="10">全操作がユーザーに見える</text><rect x="420" y="65" width="350" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="595" y="96" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">信頼を脅かす要素</text><rect x="440" y="115" width="290" height="50" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="585" y="138" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">--dangerously-skip-permissions</text><text x="585" y="156" text-anchor="middle" fill="#ffffff" font-size="10">全権限付与 → 信頼の根拠が薄れる</text><rect x="440" y="178" width="290" height="50" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="585" y="201" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">Prompt Injection攻撃</text><text x="585" y="219" text-anchor="middle" fill="#ffffff" font-size="10">外部入力による権限昇格試み</text><rect x="440" y="241" width="290" height="50" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="585" y="264" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">エージェントの連鎖</text><text x="585" y="282" text-anchor="middle" fill="#ffffff" font-size="10">委任が深くなると検証が困難に</text><text x="400" y="380" text-anchor="middle" fill="#aaaaaa" font-size="11">Claude Code は信頼の「工学的実装」の好例</text></svg>
-- - **GitHub Copilot**: Lv.2 (Suggest) -- 提案のみ、人間が判断
-- - **Claude Code**: Lv.1-4 -- 段階的権限、設定で制御
-- - **Devin**: Lv.3-4 -- 自律的にコード書き・実行
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">現実のケーススタディ：Claude Code の信頼モデル</text><rect x="30" y="65" width="350" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="205" y="96" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">信頼の設計</text><rect x="50" y="115" width="290" height="50" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="195" y="138" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">明示的な権限モデル</text><text x="195" y="156" text-anchor="middle" fill="#ffffff" font-size="10">--allow-read, --allow-write で明示</text><rect x="50" y="178" width="290" height="50" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="195" y="201" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">インタラクティブ確認</text><text x="195" y="219" text-anchor="middle" fill="#ffffff" font-size="10">重要操作前に必ず承認を求める</text><rect x="50" y="241" width="290" height="50" rx="6" fill="#f9a825" opacity="0.12" stroke="#f9a825" stroke-width="1"/><text x="195" y="264" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">透明な行動ログ</text><text x="195" y="282" text-anchor="middle" fill="#ffffff" font-size="10">全操作がユーザーに見える</text><rect x="420" y="65" width="350" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="595" y="96" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">信頼を脅かす要素</text><rect x="440" y="115" width="290" height="50" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="585" y="138" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">--dangerously-skip-permissions</text><text x="585" y="156" text-anchor="middle" fill="#ffffff" font-size="10">全権限付与 → 信頼の根拠が薄れる</text><rect x="440" y="178" width="290" height="50" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="585" y="201" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">Prompt Injection攻撃</text><text x="585" y="219" text-anchor="middle" fill="#ffffff" font-size="10">外部入力による権限昇格試み</text><rect x="440" y="241" width="290" height="50" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="585" y="264" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">エージェントの連鎖</text><text x="585" y="282" text-anchor="middle" fill="#ffffff" font-size="10">委任が深くなると検証が困難に</text><text x="400" y="380" text-anchor="middle" fill="#aaaaaa" font-size="11">Claude Code は信頼の「工学的実装」の好例</text></svg>
+</div>
+
+- **GitHub Copilot**: Lv.2 (Suggest) -- 提案のみ、人間が判断
+- **Claude Code**: Lv.1-4 -- 段階的権限、設定で制御
+- **Devin**: Lv.3-4 -- 自律的にコード書き・実行
 
 
 ---
@@ -770,18 +837,18 @@ style: |
 
 > *成功事例はPoLP+段階拡大+ロールバック設計が共通*
 
-- - **自動運転 (Tesla FSD)**: Lv.4 -- 監視付き自律運転
-- - **高頻度取引 (HFT)**: Lv.5 -- 完全自律(ただし厳格な制約)
-- 
+- **自動運転 (Tesla FSD)**: Lv.4 -- 監視付き自律運転
+- **高頻度取引 (HFT)**: Lv.5 -- 完全自律(ただし厳格な制約)
 - 信頼レベルはタスクの**可逆性**と**影響範囲**で決まる
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 設計原則
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">設計原則：信頼を工学的に実装する</text>
 <rect x="30" y="60" width="350" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -809,6 +876,7 @@ style: |
 <text x="595" y="318" text-anchor="middle" fill="#ffffff" font-size="10">信頼が下がっても機能継続</text>
 <text x="595" y="336" text-anchor="middle" fill="#aaaaaa" font-size="10">実装: fallback to supervised mode</text>
 </svg>
+</div>
 
 
 ---
@@ -817,13 +885,13 @@ style: |
 
 > *最小権限・監査・可逆性・透明性が核心4原則*
 
-- - **1. デフォルト最小権限**: 必要になるまで権限を与えない
-- - **2. 段階的エスカレーション**: 実績に応じて権限を拡大
-- - **3. 可逆性の確保**: いつでも元に戻せる設計
-- - **4. 透明性**: AIが何をしたか常に把握できる
-- - **5. スコープ限定**: 権限は時間・範囲を限定
-- - **6. 人間のバイパス**: 常に人間が介入できる経路
-- - **7. 継続的較正**: 信頼レベルを定期的に見直す
+- **1. デフォルト最小権限**: 必要になるまで権限を与えない
+- **2. 段階的エスカレーション**: 実績に応じて権限を拡大
+- **3. 可逆性の確保**: いつでも元に戻せる設計
+- **4. 透明性**: AIが何をしたか常に把握できる
+- **5. スコープ限定**: 権限は時間・範囲を限定
+- **6. 人間のバイパス**: 常に人間が介入できる経路
+- **7. 継続的較正**: 信頼レベルを定期的に見直す
 
 
 ---
@@ -832,12 +900,11 @@ style: |
 
 > *SUDO権限は信頼の証明の後—信頼は設計するもの*
 
-- - Luhmannの信頼論はAI時代にこそ重要
-- - 信頼 = 複雑性の縮減 → AIの出力を全て検証しなくて済む
-- - 最小権限の原則はAIエージェントにも適用される
-- - 信頼は段階的に構築し、制度で担保する
-- - 「便利だから全権限」は最も危険なアンチパターン
-- 
+- Luhmannの信頼論はAI時代にこそ重要
+- 信頼 = 複雑性の縮減 → AIの出力を全て検証しなくて済む
+- 最小権限の原則はAIエージェントにも適用される
+- 信頼は段階的に構築し、制度で担保する
+- 「便利だから全権限」は最も危険なアンチパターン
 - **「SUDOは信頼の最終形態。まだその段階ではない。」**
 
 
@@ -847,11 +914,11 @@ style: |
 
 > *Luhmann・Saltzer・Claude・OWASPの4文献が基盤*
 
-- - **Sociology:**
-- - [Trust and Power - Niklas Luhmann (1979)](https://en.wikipedia.org/wiki/Niklas_Luhmann)
-- - **Security:**
-- - [The Protection of Information in Computer Systems - Saltzer & Schroeder (1975)](https://web.mit.edu/Saltzer/www/publications/protection/)
-- - **AI Tools:**
-- - [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
-- - [OWASP Top 10 for LLM Applications (2025)](https://genai.owasp.org/)
+- **Sociology:**
+- [Trust and Power - Niklas Luhmann (1979)](https://en.wikipedia.org/wiki/Niklas_Luhmann)
+- **Security:**
+- [The Protection of Information in Computer Systems - Saltzer & Schroeder (1975)](https://web.mit.edu/Saltzer/www/publications/protection/)
+- **AI Tools:**
+- [Claude Code Documentation](https://docs.anthropic.com/en/docs/claude-code)
+- [OWASP Top 10 for LLM Applications (2025)](https://genai.owasp.org/)
 

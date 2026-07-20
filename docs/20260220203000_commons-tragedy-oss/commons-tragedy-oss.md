@@ -7,41 +7,76 @@ paginate: true
 header: "Commons Tragedy × OSS"
 footer: "© 2026 OSS Economics"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,11 +117,10 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # コモンズの悲劇：OSS持続可能性の経済学
 
 - Tragedy of the Commons × Open Source Sustainability
-- 
 - 全員が使うのに誰も手入れしない共有地は、やがて荒廃する
 
 
@@ -96,17 +130,17 @@ style: |
 
 > *OSSコモンズは自治モデルで維持可能—フリーライダーが崩壊の原因*
 
-- - 1. コモンズの悲劇とは
-- - 2. OSSエコシステムの構造的問題
-- - 3. 事件簿：共有地の崩壊
-- - 4. 解決策：エリノア・オストロムの8原則
-- - 5. 持続可能なOSSモデル
-- - 6. 開発者として何ができるか
+- 1. コモンズの悲劇とは
+- 2. OSSエコシステムの構造的問題
+- 3. 事件簿：共有地の崩壊
+- 4. 解決策：エリノア・オストロムの8原則
+- 5. 持続可能なOSSモデル
+- 6. 開発者として何ができるか
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # コモンズの悲劇とは
 
 - Chapter 1: Tragedy of the Commons
@@ -118,13 +152,16 @@ style: |
 
 > *個人の合理的利用が全体崩壊を招く構造的罠*
 
-- <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">コモンズの悲劇：個人の合理性 → 集団の破滅</text><ellipse cx="400" cy="195" rx="120" ry="80" fill="#1b5e20" stroke="#388e3c" stroke-width="2"/><text x="400" y="185" text-anchor="middle" fill="#a5d6a7" font-size="13" font-weight="bold" font-family="sans-serif">共有牧草地</text><text x="400" y="203" text-anchor="middle" fill="#81c784" font-size="11" font-family="sans-serif">OSS Commons</text><text x="400" y="221" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">npm / PyPI / crates.io</text><circle cx="140" cy="100" r="40" fill="#1a237e" stroke="#3949ab" stroke-width="2"/><text x="140" y="95" text-anchor="middle" fill="#9fa8da" font-size="10" font-weight="bold" font-family="sans-serif">企業A</text><text x="140" y="111" text-anchor="middle" fill="#7986cb" font-size="9" font-family="sans-serif">大量利用</text><polygon points="175,118 215,155 168,145" fill="#3949ab"/><circle cx="660" cy="100" r="40" fill="#1a237e" stroke="#3949ab" stroke-width="2"/><text x="660" y="95" text-anchor="middle" fill="#9fa8da" font-size="10" font-weight="bold" font-family="sans-serif">企業B</text><text x="660" y="111" text-anchor="middle" fill="#7986cb" font-size="9" font-family="sans-serif">大量利用</text><polygon points="625,118 585,155 632,145" fill="#3949ab"/><circle cx="140" cy="295" r="40" fill="#4a148c" stroke="#7b1fa2" stroke-width="2"/><text x="140" y="290" text-anchor="middle" fill="#ce93d8" font-size="10" font-weight="bold" font-family="sans-serif">個人C</text><text x="140" y="306" text-anchor="middle" fill="#ba68c8" font-size="9" font-family="sans-serif">軽度利用</text><polygon points="175,278 215,240 168,250" fill="#7b1fa2"/><circle cx="660" cy="295" r="40" fill="#006064" stroke="#00838f" stroke-width="2"/><text x="660" y="290" text-anchor="middle" fill="#80deea" font-size="10" font-weight="bold" font-family="sans-serif">スタートアップD</text><text x="660" y="306" text-anchor="middle" fill="#4dd0e1" font-size="9" font-family="sans-serif">中度利用</text><polygon points="625,278 585,240 632,250" fill="#00838f"/><circle cx="400" cy="50" r="32" fill="#c62828" stroke="#ef5350" stroke-width="2"/><text x="400" y="44" text-anchor="middle" fill="#ef9a9a" font-size="9" font-weight="bold" font-family="sans-serif">メンテナー</text><text x="400" y="58" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">1〜2名</text><polygon points="388,82 400,115 412,82" fill="#ef5350"/><text x="400" y="340" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">全員が合理的に利用する → 牧草地（OSS）が過剰負荷で荒廃</text><text x="140" y="355" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">コスト分担なし</text><text x="660" y="355" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">コスト分担なし</text></svg>
-- - 共有の牧草地（Commons）に複数の牧畜民がいる
-- - 各人の合理的行動: **自分の羊を1頭増やす** （利益は自分、コストは全員）
-- - 全員が同じ行動 → 牧草地が **過剰利用** で荒廃
-- - **個人の合理性** が **集団の破滅** を招く構造的ジレンマ
-- - OSSは現代の最大の「コモンズ」
-- - npm, PyPI, crates.io は全て共有牧草地
+<div class="fig">
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">コモンズの悲劇：個人の合理性 → 集団の破滅</text><ellipse cx="400" cy="195" rx="120" ry="80" fill="#1b5e20" stroke="#388e3c" stroke-width="2"/><text x="400" y="185" text-anchor="middle" fill="#a5d6a7" font-size="13" font-weight="bold" font-family="sans-serif">共有牧草地</text><text x="400" y="203" text-anchor="middle" fill="#81c784" font-size="11" font-family="sans-serif">OSS Commons</text><text x="400" y="221" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">npm / PyPI / crates.io</text><circle cx="140" cy="100" r="40" fill="#1a237e" stroke="#3949ab" stroke-width="2"/><text x="140" y="95" text-anchor="middle" fill="#9fa8da" font-size="10" font-weight="bold" font-family="sans-serif">企業A</text><text x="140" y="111" text-anchor="middle" fill="#7986cb" font-size="9" font-family="sans-serif">大量利用</text><polygon points="175,118 215,155 168,145" fill="#3949ab"/><circle cx="660" cy="100" r="40" fill="#1a237e" stroke="#3949ab" stroke-width="2"/><text x="660" y="95" text-anchor="middle" fill="#9fa8da" font-size="10" font-weight="bold" font-family="sans-serif">企業B</text><text x="660" y="111" text-anchor="middle" fill="#7986cb" font-size="9" font-family="sans-serif">大量利用</text><polygon points="625,118 585,155 632,145" fill="#3949ab"/><circle cx="140" cy="295" r="40" fill="#4a148c" stroke="#7b1fa2" stroke-width="2"/><text x="140" y="290" text-anchor="middle" fill="#ce93d8" font-size="10" font-weight="bold" font-family="sans-serif">個人C</text><text x="140" y="306" text-anchor="middle" fill="#ba68c8" font-size="9" font-family="sans-serif">軽度利用</text><polygon points="175,278 215,240 168,250" fill="#7b1fa2"/><circle cx="660" cy="295" r="40" fill="#006064" stroke="#00838f" stroke-width="2"/><text x="660" y="290" text-anchor="middle" fill="#80deea" font-size="10" font-weight="bold" font-family="sans-serif">スタートアップD</text><text x="660" y="306" text-anchor="middle" fill="#4dd0e1" font-size="9" font-family="sans-serif">中度利用</text><polygon points="625,278 585,240 632,250" fill="#00838f"/><circle cx="400" cy="50" r="32" fill="#c62828" stroke="#ef5350" stroke-width="2"/><text x="400" y="44" text-anchor="middle" fill="#ef9a9a" font-size="9" font-weight="bold" font-family="sans-serif">メンテナー</text><text x="400" y="58" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">1〜2名</text><polygon points="388,82 400,115 412,82" fill="#ef5350"/><text x="400" y="340" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">全員が合理的に利用する → 牧草地（OSS）が過剰負荷で荒廃</text><text x="140" y="355" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">コスト分担なし</text><text x="660" y="355" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">コスト分担なし</text></svg>
+</div>
+
+- 共有の牧草地（Commons）に複数の牧畜民がいる
+- 各人の合理的行動: **自分の羊を1頭増やす** （利益は自分、コストは全員）
+- 全員が同じ行動 → 牧草地が **過剰利用** で荒廃
+- **個人の合理性** が **集団の破滅** を招く構造的ジレンマ
+- OSSは現代の最大の「コモンズ」
+- npm, PyPI, crates.io は全て共有牧草地
 
 <!--
 ハーディンの1968年のScience論文は環境問題の文脈だったが、OSSにも完全に当てはまる。
@@ -132,7 +169,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # OSSエコシステムの構造的問題
 
 - Chapter 2: Structural Problems
@@ -151,17 +188,17 @@ style: |
 
 > *世界経済の根幹を支えるOSSの60%が無報酬の1〜2人に依存している*
 
-- - Fortune 500企業の **96%** がOSSを使用
-- - OSSの経済的価値: 年間 **$8.8 trillion** 相当
-- - 重要OSSプロジェクトの **60%** がメンテナー1-2人
-- - OSSメンテナーの **46%** が無報酬
-- - core-js（週2.5億DL）のメンテナーは月収 **$400**
-- - log4j（世界中で使用）の脆弱性修正は **ボランティア2名** が対応
+- Fortune 500企業の **96%** がOSSを使用
+- OSSの経済的価値: 年間 **$8.8 trillion** 相当
+- 重要OSSプロジェクトの **60%** がメンテナー1-2人
+- OSSメンテナーの **46%** が無報酬
+- core-js（週2.5億DL）のメンテナーは月収 **$400**
+- log4j（世界中で使用）の脆弱性修正は **ボランティア2名** が対応
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 事件簿：共有地の崩壊
 
 - Chapter 3: When Commons Collapse
@@ -173,12 +210,12 @@ style: |
 
 > *11行のコードへの依存がコモンズの脆弱性を世界規模で露呈した*
 
-- - **11行** のnpmパッケージが突然削除される
-- - React, Babel, 数千のプロジェクトがビルド不能に
-- - 11行のコードに世界中のインフラが依存していた
-- - メンテナーの不満 → パッケージ削除 → カスケード障害
-- - コモンズの悲劇: 皆が依存するが、誰も維持コストを払わない
-- - npm社が前例のない「パッケージ復元」を強制実行
+- **11行** のnpmパッケージが突然削除される
+- React, Babel, 数千のプロジェクトがビルド不能に
+- 11行のコードに世界中のインフラが依存していた
+- メンテナーの不満 → パッケージ削除 → カスケード障害
+- コモンズの悲劇: 皆が依存するが、誰も維持コストを払わない
+- npm社が前例のない「パッケージ復元」を強制実行
 
 
 ---
@@ -187,17 +224,17 @@ style: |
 
 > *数兆ドル規模の産業が無給ボランティア2名の対応に依存していた現実*
 
-- - Apache Log4j に **CVSS 10.0** の致命的脆弱性
-- - Java エコシステムの **35%** が影響を受ける
-- - 修正対応はボランティアメンテナー2名が行った
-- - 数兆ドル規模の産業が、無給のボランティアに依存
-- - xkcd #2347: 「全ての現代インフラはネブラスカの一人が趣味で維持」
-- - これこそコモンズの悲劇の極致
+- Apache Log4j に **CVSS 10.0** の致命的脆弱性
+- Java エコシステムの **35%** が影響を受ける
+- 修正対応はボランティアメンテナー2名が行った
+- 数兆ドル規模の産業が、無給のボランティアに依存
+- xkcd #2347: 「全ての現代インフラはネブラスカの一人が趣味で維持」
+- これこそコモンズの悲劇の極致
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 解決策：オストロムの8原則
 
 - Chapter 4: Ostrom's Principles
@@ -209,12 +246,12 @@ style: |
 
 > *コミュニティ自治という第3の道がOSSを国家にも市場にも依存せず持続させる*
 
-- - **2009年ノーベル経済学賞**: 「コモンズの悲劇は不可避ではない」と実証
-- - 世界中の共有資源管理の成功事例を研究
-- - **8つの設計原則** でコモンズを持続可能にできる
-- - 核心: 利用者コミュニティが **自治的にルールを策定** する
-- - ハーディンの「国家管理 or 私有化」の二択を否定
-- - OSSコミュニティにこそ最も適用可能な理論
+- **2009年ノーベル経済学賞**: 「コモンズの悲劇は不可避ではない」と実証
+- 世界中の共有資源管理の成功事例を研究
+- **8つの設計原則** でコモンズを持続可能にできる
+- 核心: 利用者コミュニティが **自治的にルールを策定** する
+- ハーディンの「国家管理 or 私有化」の二択を否定
+- OSSコミュニティにこそ最も適用可能な理論
 
 <!--
 オストロムは「第3の道」を示した。国家でも市場でもない、コミュニティ自治という解決策。
@@ -226,18 +263,21 @@ style: |
 
 > *RFC+ガバナンス+制裁でコモンズを自治管理できる*
 
-- <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">エリノア・オストロムの8原則 → OSSへの適用</text><rect x="30" y="42" width="365" height="45" fill="#16213e" rx="6" stroke="#f9a825" stroke-width="1"/><text x="50" y="62" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">1. 境界の明確化</text><text x="50" y="78" fill="#90a4ae" font-size="10" font-family="sans-serif">LICENSE + CONTRIBUTING.md → 参加条件を定義</text><rect x="405" y="42" width="365" height="45" fill="#16213e" rx="6" stroke="#4caf50" stroke-width="1"/><text x="425" y="62" fill="#4caf50" font-size="11" font-weight="bold" font-family="sans-serif">2. ルールの適合</text><text x="425" y="78" fill="#90a4ae" font-size="10" font-family="sans-serif">コントリビュータ契約・行動規範</text><rect x="30" y="95" width="365" height="45" fill="#16213e" rx="6" stroke="#2196f3" stroke-width="1"/><text x="50" y="115" fill="#2196f3" font-size="11" font-weight="bold" font-family="sans-serif">3. 集合的選択</text><text x="50" y="131" fill="#90a4ae" font-size="10" font-family="sans-serif">RFC / ADR プロセスで意思決定を民主化</text><rect x="405" y="95" width="365" height="45" fill="#16213e" rx="6" stroke="#9c27b0" stroke-width="1"/><text x="425" y="115" fill="#9c27b0" font-size="11" font-weight="bold" font-family="sans-serif">4. 監視メカニズム</text><text x="425" y="131" fill="#90a4ae" font-size="10" font-family="sans-serif">CI/CD + コードレビュー + セキュリティ監査</text><rect x="30" y="148" width="365" height="45" fill="#16213e" rx="6" stroke="#ff9800" stroke-width="1"/><text x="50" y="168" fill="#ff9800" font-size="11" font-weight="bold" font-family="sans-serif">5. 段階的制裁</text><text x="50" y="184" fill="#90a4ae" font-size="10" font-family="sans-serif">Warn → Restrict → Ban の段階的対応</text><rect x="405" y="148" width="365" height="45" fill="#16213e" rx="6" stroke="#00bcd4" stroke-width="1"/><text x="425" y="168" fill="#00bcd4" font-size="11" font-weight="bold" font-family="sans-serif">6. 紛争解決</text><text x="425" y="184" fill="#90a4ae" font-size="10" font-family="sans-serif">Governance Committee / BDFL 制度</text><rect x="30" y="201" width="365" height="45" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="1"/><text x="50" y="221" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">7. 外部権威の最小認識</text><text x="50" y="237" fill="#90a4ae" font-size="10" font-family="sans-serif">コミュニティ自治が企業・国家介入より優先</text><rect x="405" y="201" width="365" height="45" fill="#16213e" rx="6" stroke="#8bc34a" stroke-width="1"/><text x="425" y="221" fill="#8bc34a" font-size="11" font-weight="bold" font-family="sans-serif">8. 入れ子式組織</text><text x="425" y="237" fill="#90a4ae" font-size="10" font-family="sans-serif">Foundation > Working Group > Project</text><line x1="30" y1="265" x2="770" y2="265" stroke="#334" stroke-width="1"/><text x="400" y="292" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">核心: コモンズは「国家管理」でも「私有化」でもなく</text><text x="400" y="314" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">コミュニティ自治で持続できる（2009年ノーベル経済学賞）</text><text x="400" y="342" text-anchor="middle" fill="#a5d6a7" font-size="10" font-family="sans-serif">Rust Foundation はこの原則を最も忠実に体現したOSSプロジェクト</text></svg>
-- - 1. **境界の明確化**: LICENSE, CONTRIBUTING.md で参加条件を定義
-- - 2. **利用・供給ルール**: コントリビュータ契約、行動規範
-- - 3. **集合的選択**: RFC/ADR プロセスで意思決定を民主化
-- - 4. **監視**: CI/CD, コードレビュー, セキュリティ監査
-- - 5. **段階的制裁**: Warn → Ban → Fork で違反者に対応
-- - 6. **紛争解決**: Governance Committee, BDFL 制度
+<div class="fig">
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">エリノア・オストロムの8原則 → OSSへの適用</text><rect x="30" y="42" width="365" height="45" fill="#16213e" rx="6" stroke="#f9a825" stroke-width="1"/><text x="50" y="62" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">1. 境界の明確化</text><text x="50" y="78" fill="#90a4ae" font-size="10" font-family="sans-serif">LICENSE + CONTRIBUTING.md → 参加条件を定義</text><rect x="405" y="42" width="365" height="45" fill="#16213e" rx="6" stroke="#4caf50" stroke-width="1"/><text x="425" y="62" fill="#4caf50" font-size="11" font-weight="bold" font-family="sans-serif">2. ルールの適合</text><text x="425" y="78" fill="#90a4ae" font-size="10" font-family="sans-serif">コントリビュータ契約・行動規範</text><rect x="30" y="95" width="365" height="45" fill="#16213e" rx="6" stroke="#2196f3" stroke-width="1"/><text x="50" y="115" fill="#2196f3" font-size="11" font-weight="bold" font-family="sans-serif">3. 集合的選択</text><text x="50" y="131" fill="#90a4ae" font-size="10" font-family="sans-serif">RFC / ADR プロセスで意思決定を民主化</text><rect x="405" y="95" width="365" height="45" fill="#16213e" rx="6" stroke="#9c27b0" stroke-width="1"/><text x="425" y="115" fill="#9c27b0" font-size="11" font-weight="bold" font-family="sans-serif">4. 監視メカニズム</text><text x="425" y="131" fill="#90a4ae" font-size="10" font-family="sans-serif">CI/CD + コードレビュー + セキュリティ監査</text><rect x="30" y="148" width="365" height="45" fill="#16213e" rx="6" stroke="#ff9800" stroke-width="1"/><text x="50" y="168" fill="#ff9800" font-size="11" font-weight="bold" font-family="sans-serif">5. 段階的制裁</text><text x="50" y="184" fill="#90a4ae" font-size="10" font-family="sans-serif">Warn → Restrict → Ban の段階的対応</text><rect x="405" y="148" width="365" height="45" fill="#16213e" rx="6" stroke="#00bcd4" stroke-width="1"/><text x="425" y="168" fill="#00bcd4" font-size="11" font-weight="bold" font-family="sans-serif">6. 紛争解決</text><text x="425" y="184" fill="#90a4ae" font-size="10" font-family="sans-serif">Governance Committee / BDFL 制度</text><rect x="30" y="201" width="365" height="45" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="1"/><text x="50" y="221" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">7. 外部権威の最小認識</text><text x="50" y="237" fill="#90a4ae" font-size="10" font-family="sans-serif">コミュニティ自治が企業・国家介入より優先</text><rect x="405" y="201" width="365" height="45" fill="#16213e" rx="6" stroke="#8bc34a" stroke-width="1"/><text x="425" y="221" fill="#8bc34a" font-size="11" font-weight="bold" font-family="sans-serif">8. 入れ子式組織</text><text x="425" y="237" fill="#90a4ae" font-size="10" font-family="sans-serif">Foundation > Working Group > Project</text><line x1="30" y1="265" x2="770" y2="265" stroke="#334" stroke-width="1"/><text x="400" y="292" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">核心: コモンズは「国家管理」でも「私有化」でもなく</text><text x="400" y="314" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">コミュニティ自治で持続できる（2009年ノーベル経済学賞）</text><text x="400" y="342" text-anchor="middle" fill="#a5d6a7" font-size="10" font-family="sans-serif">Rust Foundation はこの原則を最も忠実に体現したOSSプロジェクト</text></svg>
+</div>
+
+- 1. **境界の明確化**: LICENSE, CONTRIBUTING.md で参加条件を定義
+- 2. **利用・供給ルール**: コントリビュータ契約、行動規範
+- 3. **集合的選択**: RFC/ADR プロセスで意思決定を民主化
+- 4. **監視**: CI/CD, コードレビュー, セキュリティ監査
+- 5. **段階的制裁**: Warn → Ban → Fork で違反者に対応
+- 6. **紛争解決**: Governance Committee, BDFL 制度
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 持続可能なOSSモデル
 
 - Chapter 5: Sustainable Models
@@ -249,12 +289,12 @@ style: |
 
 > *資金調達モデルの選択がプロジェクトの自律性と持続性を左右する*
 
-- - **Corporate Sponsorship**: React (Meta), Go (Google), Rust (Mozilla→Foundation)
-- - **Open Core**: GitLab, Elastic, MongoDB — コアOSS + 有料機能
-- - **SaaS Model**: Vercel (Next.js), Hashicorp (Terraform)
-- - **Foundation Model**: Linux Foundation, Apache Foundation
-- - **GitHub Sponsors / Open Collective**: 個人・小規模向け
-- - **Dual License**: AGPL + Commercial (MySQL, Qt)
+- **Corporate Sponsorship**: React (Meta), Go (Google), Rust (Mozilla→Foundation)
+- **Open Core**: GitLab, Elastic, MongoDB — コアOSS + 有料機能
+- **SaaS Model**: Vercel (Next.js), Hashicorp (Terraform)
+- **Foundation Model**: Linux Foundation, Apache Foundation
+- **GitHub Sponsors / Open Collective**: 個人・小規模向け
+- **Dual License**: AGPL + Commercial (MySQL, Qt)
 
 
 ---
@@ -263,17 +303,17 @@ style: |
 
 > *オストロムの8原則を体現したRust Foundationがコモンズ自治の証明になった*
 
-- - Mozilla からスピンオフ → **Rust Foundation** 設立 (2021)
-- - Google, AWS, Microsoft, Huawei が年間 **$1M+** を拠出
-- - 明確なガバナンス: RFC プロセス + チーム制 + ローテーション
-- - コントリビューター数は増加傾向（フリーライダー比率低下）
-- - オストロムの原則を最も忠実に体現したOSSプロジェクト
-- - 「コモンズは自治で持続できる」ことの証明
+- Mozilla からスピンオフ → **Rust Foundation** 設立 (2021)
+- Google, AWS, Microsoft, Huawei が年間 **$1M+** を拠出
+- 明確なガバナンス: RFC プロセス + チーム制 + ローテーション
+- コントリビューター数は増加傾向（フリーライダー比率低下）
+- オストロムの原則を最も忠実に体現したOSSプロジェクト
+- 「コモンズは自治で持続できる」ことの証明
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 開発者として何ができるか
 
 - Chapter 6: What Developers Can Do
@@ -285,25 +325,25 @@ style: |
 
 > *npm installの先にいる人への小さな貢献がコモンズ崩壊を防ぐ唯一の手段*
 
-- <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">OSSメンテナーの燃え尽きモデル</text><line x1="60" y1="300" x2="750" y2="300" stroke="#445" stroke-width="2"/><line x1="60" y1="50" x2="60" y2="300" stroke="#445" stroke-width="2"/><text x="30" y="180" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif" transform="rotate(-90,30,180)">負荷 / 達成感</text><text x="400" y="330" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">時間 →</text><text x="80" y="320" fill="#78909c" font-size="9" font-family="sans-serif">開始</text><text x="250" y="320" fill="#78909c" font-size="9" font-family="sans-serif">成長期</text><text x="440" y="320" fill="#78909c" font-size="9" font-family="sans-serif">人気プロジェクト</text><text x="640" y="320" fill="#78909c" font-size="9" font-family="sans-serif">燃え尽き</text><path d="M 80 240 Q 200 180 350 150 Q 450 135 580 200 Q 650 240 720 290" fill="none" stroke="#4caf50" stroke-width="2"/><text x="200" y="172" fill="#4caf50" font-size="9" font-family="sans-serif">達成感</text><path d="M 80 260 Q 200 250 350 200 Q 450 160 580 110 Q 650 80 720 60" fill="none" stroke="#ef5350" stroke-width="2"/><text x="450" y="148" fill="#ef5350" font-size="9" font-family="sans-serif">バグ報告・PR数</text><path d="M 80 280 Q 200 275 350 260 Q 450 245 580 260 Q 650 270 720 280" fill="none" stroke="#f9a825" stroke-width="2"/><text x="520" y="256" fill="#f9a825" font-size="9" font-family="sans-serif">メンテナー精神的余裕</text><circle cx="580" cy="110" r="8" fill="#ef5350"/><text x="590" y="108" fill="#ef5350" font-size="9" font-family="sans-serif">weekly 2.5億DL</text><text x="590" y="120" fill="#ef9a9a" font-size="8" font-family="sans-serif">月収$400 (core-js)</text><circle cx="720" cy="60" r="8" fill="#b71c1c"/><text x="650" y="55" fill="#ef9a9a" font-size="9" font-family="sans-serif">log4j脆弱性対応</text><text x="650" y="67" fill="#ef9a9a" font-size="8" font-family="sans-serif">ボランティア2名</text><line x1="420" y1="50" x2="420" y2="300" stroke="#334" stroke-width="1" stroke-dasharray="5 3"/><text x="421" y="68" fill="#78909c" font-size="8" font-family="sans-serif">left-pad 事件</text><text x="421" y="80" fill="#78909c" font-size="8" font-family="sans-serif">削除 (2016)</text><text x="400" y="358" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">「使うだけ」が合理的な選択でも、全員がそうすると commons は崩壊する</text></svg>
-- - 1. **依存関係の監査**: `npm fund` で依存OSSの資金状況を確認
-- - 2. **小さな貢献**: バグ報告、ドキュメント改善、テスト追加
-- - 3. **企業としてのスポンサーシップ**: 依存OSSへの資金的支援
-- - 4. **コントリビューションポリシー**: 業務時間の5%をOSS貢献に充てる
-- - 5. **セキュリティ通報**: 脆弱性を見つけたら責任ある開示
-- - 6. **新しいOSSの健全性を評価**: メンテナー数、資金、ガバナンスを確認
+<div class="fig">
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">OSSメンテナーの燃え尽きモデル</text><line x1="60" y1="300" x2="750" y2="300" stroke="#445" stroke-width="2"/><line x1="60" y1="50" x2="60" y2="300" stroke="#445" stroke-width="2"/><text x="30" y="180" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif" transform="rotate(-90,30,180)">負荷 / 達成感</text><text x="400" y="330" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">時間 →</text><text x="80" y="320" fill="#78909c" font-size="9" font-family="sans-serif">開始</text><text x="250" y="320" fill="#78909c" font-size="9" font-family="sans-serif">成長期</text><text x="440" y="320" fill="#78909c" font-size="9" font-family="sans-serif">人気プロジェクト</text><text x="640" y="320" fill="#78909c" font-size="9" font-family="sans-serif">燃え尽き</text><path d="M 80 240 Q 200 180 350 150 Q 450 135 580 200 Q 650 240 720 290" fill="none" stroke="#4caf50" stroke-width="2"/><text x="200" y="172" fill="#4caf50" font-size="9" font-family="sans-serif">達成感</text><path d="M 80 260 Q 200 250 350 200 Q 450 160 580 110 Q 650 80 720 60" fill="none" stroke="#ef5350" stroke-width="2"/><text x="450" y="148" fill="#ef5350" font-size="9" font-family="sans-serif">バグ報告・PR数</text><path d="M 80 280 Q 200 275 350 260 Q 450 245 580 260 Q 650 270 720 280" fill="none" stroke="#f9a825" stroke-width="2"/><text x="520" y="256" fill="#f9a825" font-size="9" font-family="sans-serif">メンテナー精神的余裕</text><circle cx="580" cy="110" r="8" fill="#ef5350"/><text x="590" y="108" fill="#ef5350" font-size="9" font-family="sans-serif">weekly 2.5億DL</text><text x="590" y="120" fill="#ef9a9a" font-size="8" font-family="sans-serif">月収$400 (core-js)</text><circle cx="720" cy="60" r="8" fill="#b71c1c"/><text x="650" y="55" fill="#ef9a9a" font-size="9" font-family="sans-serif">log4j脆弱性対応</text><text x="650" y="67" fill="#ef9a9a" font-size="8" font-family="sans-serif">ボランティア2名</text><line x1="420" y1="50" x2="420" y2="300" stroke="#334" stroke-width="1" stroke-dasharray="5 3"/><text x="421" y="68" fill="#78909c" font-size="8" font-family="sans-serif">left-pad 事件</text><text x="421" y="80" fill="#78909c" font-size="8" font-family="sans-serif">削除 (2016)</text><text x="400" y="358" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">「使うだけ」が合理的な選択でも、全員がそうすると commons は崩壊する</text></svg>
+</div>
+
+- 1. **依存関係の監査**: `npm fund` で依存OSSの資金状況を確認
+- 2. **小さな貢献**: バグ報告、ドキュメント改善、テスト追加
+- 3. **企業としてのスポンサーシップ**: 依存OSSへの資金的支援
+- 4. **コントリビューションポリシー**: 業務時間の5%をOSS貢献に充てる
+- 5. **セキュリティ通報**: 脆弱性を見つけたら責任ある開示
+- 6. **新しいOSSの健全性を評価**: メンテナー数、資金、ガバナンスを確認
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ：コモンズを守るために
 
 - OSSは人類最大の共有知的財産
-- 
 - 「使うだけ」は合理的だが、全員がそうすればコモンズは崩壊する
-- 
 - オストロムが示した通り、コモンズは自治で守れる
-- 
 - **あなたの `npm install` の先にいる人を忘れない**
 

@@ -7,41 +7,76 @@ paginate: true
 header: "OAuth2 / OIDC 実装詳細ガイド"
 footer: "© 2026 Internal"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,7 +117,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # OAuth2 / OIDC 実装詳細ガイド
 
 - プロトコル設計から AWS 実装まで徹底解説
@@ -91,6 +126,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-70 -->
 # アジェンダ
 
 > *OAuth2コアからFAPI 2.0まで7章・実装からAWS統合まで体系的に解説*
@@ -106,10 +142,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Section 1: OAuth2 コアフロー詳解
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">Section 1: OAuth2 コアフロー — 全体マップ</text>
 <rect x="30" y="45" width="740" height="35" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="68" font-size="11" fill="#ffffff" text-anchor="middle">OAuth 2.0 は4つのグラントタイプを持つ認可フレームワーク。ユースケースに応じて選択する</text>
@@ -132,6 +169,8 @@ style: |
 <text x="570" y="307" font-size="11" fill="#ff6f00" text-anchor="middle" font-weight="bold">中〜高</text>
 <rect x="30" y="345" width="740" height="28" rx="5" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
 <text x="400" y="364" font-size="11" fill="#e91e63" text-anchor="middle">Implicit フロー (deprecated) / ROPC (Resource Owner Password) は廃止推奨</text></svg>
+</div>
+
 - 認可コードフロー / PKCE 深掘り
 - Client Credentials / Device Grant
 - トークン管理戦略
@@ -141,7 +180,8 @@ style: |
 
 # 認可コードフロー — 全パラメータ解説
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">認可コードフロー — 全パラメータ解説</text>
 <rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
@@ -186,6 +226,8 @@ style: |
 <polygon points="270,338 282,332 282,344" fill="#2196f3"/>
 <text x="490" y="356" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">⑨ 200 OK (protected resource)</text>
 </svg>
+</div>
+
 ![w:760 center](assets/auth-code-flow-detail.svg)
 
 
@@ -193,7 +235,8 @@ style: |
 
 # PKCE 深掘り — code_verifier / challenge 生成
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">PKCE 深掘り — code_verifier / challenge 生成</text>
 <rect x="20" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <rect x="430" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -211,6 +254,8 @@ style: |
 <text x="445" y="245" fill="#e91e63" font-size="12" font-family="sans-serif">例: E9Melhoa2OwvFrEMTJguCHaoeK1t8...</text>
 <rect x="20" y="370" width="760" height="0" rx="0"/>
 <text x="400" y="365" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">セキュリティ: code_verifier なしではトークン取得不可 → 盗まれたcodeが無効化</text></svg>
+</div>
+
 ![w:580 center](assets/pkce-deep-dive.svg)
 
 
@@ -233,11 +278,13 @@ authParams.code_challenge_method = 'S256';
 
 ---
 
+<!-- _class: invert fit-58 -->
 # クライアントクレデンシャルフロー (RFC 6749 §4.4) — M2M 認証
 
 > *M2M通信にはクライアントクレデンシャルフロー一択でprivate_key_jwtが推奨*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">クライアントクレデンシャルフロー — M2M 認証</text>
 <rect x="60" y="80" width="200" height="70" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -262,6 +309,8 @@ authParams.code_challenge_method = 'S256';
 <text x="430" y="322" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">③ API呼び出し (Bearer token)</text>
 <text x="400" y="375" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ユーザーなし・サービス間通信専用</text>
 </svg>
+</div>
+
 - **用途**: M2M 通信・バックエンドサービス間・CI/CD パイプライン
 - **認証方式**: `client_secret_basic` / `client_secret_post` / **`private_key_jwt`（推奨）**
 - **スコープ設計**: リソース単位 `payments:write` or サービス単位 `payment-service`
@@ -270,6 +319,7 @@ authParams.code_challenge_method = 'S256';
 
 ---
 
+<!-- _class: invert fit-94 -->
 # クライアントクレデンシャルフロー (RFC 6749 §4.4) — M2M 認証（コード例）
 
 ```http
@@ -289,7 +339,8 @@ grant_type=client_credentials&scope=payments:write
 
 # デバイス認可グラント (RFC 8628) — CLI / TV / IoT
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">デバイス認可グラント (RFC 8628) — CLI / TV / IoT</text>
 <rect x="20" y="50" width="140" height="55" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
@@ -321,16 +372,20 @@ grant_type=client_credentials&scope=payments:write
 <text x="245" y="292" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">⑥ access_token 発行 (認証完了後)</text>
 <text x="400" y="360" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ブラウザなし端末でも安全にOAuth2認可が可能</text>
 </svg>
+</div>
+
 ![w:760 center](assets/device-auth-grant.svg)
 
 
 ---
 
+<!-- _class: invert fit-58 -->
 # トークンエンドポイント — grant_type 別パラメータ詳解
 
 > *grant_typeで動作が変わるトークンエンドポイントの仕様を完全に把握する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">トークンエンドポイント — grant_type 別パラメータ</text>
 <text x="110" y="58" font-size="11" fill="#f9a825" text-anchor="middle">grant_type</text>
 <text x="330" y="58" font-size="11" fill="#f9a825" text-anchor="middle">必須パラメータ</text>
@@ -352,6 +407,8 @@ grant_type=client_credentials&scope=payments:write
 <rect x="30" y="346" width="740" height="44" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="366" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">Content-Type: application/x-www-form-urlencoded (必須)</text>
 <text x="400" y="382" font-size="10" fill="#ffffff" text-anchor="middle">Authorization: Basic base64(client_id:client_secret) または リクエストボディに含める</text></svg>
+</div>
+
 - **共通必須**: `grant_type`、クライアント認証（Basic / Body / JWT）
 - **authorization_code**: `code` + `redirect_uri` + `code_verifier`（PKCE 時）
 - **refresh_token**: `refresh_token` + `scope`（元スコープ以下のみ縮小可）
@@ -377,11 +434,13 @@ grant_type=client_credentials&scope=payments:write
 
 ---
 
+<!-- _class: invert fit-58 -->
 # トークンイントロスペクション (RFC 7662) — リソースサーバー統合
 
 > *イントロスペクションはOpaqueトークンの即時有効性検証を可能にする*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">トークンイントロスペクション (RFC 7662) — RS統合</text>
 <rect x="50" y="50" width="180" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
 <text x="140" y="85" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">Resource Server</text>
@@ -401,6 +460,8 @@ grant_type=client_credentials&scope=payments:write
 <rect x="50" y="290" width="700" height="80" rx="8" fill="#16213e" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
 <text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">レスポンス例</text>
 <text x="80" y="345" fill="#ffffff" font-size="12" font-family="monospace">{ "active": true, "scope": "read:data", "sub": "user123", "exp": 1234567890 }</text></svg>
+</div>
+
 - **用途**: Opaque トークン検証・JWT 失効確認・リアルタイム有効性チェック
 - **`active: false`**: 期限切れ・失効済み・未発行いずれも同じレスポンス（情報漏洩防止）
 - **キャッシュ推奨**: `Cache-Control: max-age` で有効期限まで結果をキャッシュ
@@ -425,11 +486,13 @@ token=eyJhbGc...&token_type_hint=access_token
 
 ---
 
+<!-- _class: invert fit-64 -->
 # トークン失効 (RFC 7009) — 即時無効化
 
 > *トークン失効はログアウト・紛失・インシデント時の全セッション強制終了に不可欠*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">トークン失効 (RFC 7009) — 即時無効化</text>
 <rect x="30" y="50" width="350" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <rect x="420" y="50" width="350" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -448,6 +511,8 @@ token=eyJhbGc...&token_type_hint=access_token
 <text x="435" y="230" fill="#ffffff" font-size="12" font-family="sans-serif">③ イントロスペクション時に</text>
 <text x="435" y="256" fill="#ffffff" font-size="12" font-family="sans-serif">  active:false を返す</text>
 <text x="435" y="285" fill="#4caf50" font-size="12" font-family="sans-serif">即時失効 → 再利用不可</text></svg>
+</div>
+
 - **`token_type_hint`**: `access_token` / `refresh_token`（ヒントのみ、逆順も試行される）
 - **失効伝播**: RT 失効 → 紐づく AT も失効推奨。逆は非推奨
 - **成功レスポンス**: `200 OK`（トークン不存在でも 200 返却）
@@ -473,7 +538,8 @@ token=def50200...&token_type_hint=refresh_token
 
 # リフレッシュトークン戦略 — ライフサイクルと設計
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">リフレッシュトークン戦略 — ライフサイクルと設計</text>
 <rect x="20" y="50" width="180" height="120" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -507,14 +573,18 @@ token=def50200...&token_type_hint=refresh_token
 <text x="400" y="353" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Refresh Token は httpOnly Cookie / Secure Storage に保管</text>
 <text x="400" y="378" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Rotation で盗難検知 → 不正使用即時無効化</text>
 </svg>
+</div>
+
 ![w:760 center](assets/token-lifecycle.svg)
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # スコープ設計パターン — 粒度と命名規則
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">スコープ設計パターン — 粒度と命名規則</text>
 <rect x="20" y="50" width="230" height="310" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -543,12 +613,15 @@ token=def50200...&token_type_hint=refresh_token
 <text x="665" y="265" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">マルチAPI対応</text>
 <text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">推奨: 細粒度 + リソース型 / Least Privilege 徹底</text>
 </svg>
+</div>
+
 | パターン | 例 | 利点 | 注意点 |
 | --- | --- | --- | --- |
 | リソース:アクション | `payments:write` | 細粒度・ABAC 親和性 | スコープ数増加 |
 | OIDC 標準 | `openid profile email` | 相互運用性 | カスタマイズ不可 |
 | サービス識別 | `payment-service` | M2M 向けシンプル | 粗粒度 |
 | 階層型 | `api:data:read` | 継承・Casbin 連携可 | 複雑化注意 |
+
 - **推奨**: `<resource>:<action>` + OIDC 標準スコープの組み合わせ
 - **Cognito**: Resource Server で `<identifier>/<scope>` 形式（例: `api.example.com/payments:write`）
 
@@ -557,7 +630,8 @@ token=def50200...&token_type_hint=refresh_token
 
 # OAuth2 フロー選択マトリクス
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OAuth2 フロー選択マトリクス</text>
 <rect x="15" y="48" width="770" height="40" rx="6" fill="#f9a825" opacity="0.2"/>
@@ -595,6 +669,8 @@ token=def50200...&token_type_hint=refresh_token
 <line x1="640" y1="48" x2="640" y2="275" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
 <text x="400" y="320" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Implicit フローは廃止 (RFC 6749 → BCP 212 により非推奨)</text>
 </svg>
+</div>
+
 | クライアントタイプ | 推奨フロー | PKCE | 備考 |
 | --- | --- | --- | --- |
 | SPA (公開クライアント) | Authorization Code | **必須** | Implicit 廃止 (RFC 9700) |
@@ -606,10 +682,11 @@ token=def50200...&token_type_hint=refresh_token
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Section 2: OIDC 詳解
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">Section 2: OIDC 詳解 — OpenID Connect の全体像</text>
 <rect x="30" y="45" width="740" height="35" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="68" font-size="11" fill="#ffffff" text-anchor="middle">OIDC = OAuth 2.0 の上位レイヤー。認証（Authentication）を標準化するプロトコル</text>
@@ -622,6 +699,8 @@ token=def50200...&token_type_hint=refresh_token
 <text x="400" y="320" font-size="12" fill="#4caf50" text-anchor="middle" font-weight="bold">Discovery ドキュメント自動取得</text>
 <text x="400" y="340" font-size="10" fill="#ffffff" text-anchor="middle">GET /.well-known/openid-configuration → issuer, endpoints, supported algorithms, scopes</text>
 <text x="400" y="358" font-size="10" fill="#ffffff" text-anchor="middle">クライアント実装は手動設定不要。JWT署名検証もJWKS URIから自動取得できる</text></svg>
+</div>
+
 - Discovery Document / ID Token クレーム
 - UserInfo / セッション管理 / ログアウト
 - カスタムクレーム設計
@@ -629,11 +708,13 @@ token=def50200...&token_type_hint=refresh_token
 
 ---
 
+<!-- _class: invert fit-58 -->
 # Discovery ドキュメント — /.well-known/openid-configuration
 
 > *Discovery documentでOIDCクライアントの設定自動化とURLハードコードを排除する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Discovery ドキュメント — /.well-known/openid-configuration</text>
 <rect x="20" y="50" width="760" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">自動設定: クライアントはこのURLのみ知ればよい</text>
@@ -657,6 +738,8 @@ token=def50200...&token_type_hint=refresh_token
 <text x="435" y="250" fill="#ffffff" font-size="11" font-family="sans-serif">token_endpoint_auth_methods:</text>
 <text x="435" y="272" fill="#ffffff" font-size="11" font-family="sans-serif">  [client_secret_basic, private_key_jwt]</text>
 <text x="435" y="295" fill="#4caf50" font-size="11" font-family="sans-serif">backchannel_logout_supported: true</text></svg>
+</div>
+
 - **自動設定**: OIDC Client はこのエンドポイントから設定を動的取得（URL ハードコード不要）
 - **必須フィールド**: `issuer`, `authorization_endpoint`, `token_endpoint`, `jwks_uri`
 - **推奨追加**: `introspection_endpoint`, `revocation_endpoint`, `code_challenge_methods_supported`
@@ -665,6 +748,7 @@ token=def50200...&token_type_hint=refresh_token
 
 ---
 
+<!-- _class: invert fit-70 -->
 # Discovery ドキュメント — /.well-known/openid-configuration（コード例）
 
 > *Discovery documentでOIDCクライアントの設定自動化とURLハードコードを排除する*
@@ -685,9 +769,11 @@ token=def50200...&token_type_hint=refresh_token
 
 ---
 
+<!-- _class: invert fit-76 -->
 # ID Token クレーム完全解説
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ID Token クレーム完全解説</text>
 <rect x="10" y="45" width="780" height="40" rx="6" fill="#f9a825" opacity="0.2"/>
 <text x="100" y="70" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">クレーム</text>
@@ -733,6 +819,8 @@ token=def50200...&token_type_hint=refresh_token
 <line x1="350" y1="45" x2="350" y2="300" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
 <line x1="640" y1="45" x2="640" y2="300" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
 <text x="400" y="340" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">必須クレーム: sub / iss / aud / exp / iat</text></svg>
+</div>
+
 | クレーム | 必須 | 説明 |
 | --- | --- | --- |
 | iss / sub / aud | ✅ | Issuer / Subject (ユーザー一意 ID) / Audience (client_id) |
@@ -740,14 +828,17 @@ token=def50200...&token_type_hint=refresh_token
 | nonce | OIDC 必須 | リプレイ攻撃防止。認可 Request 時に生成 → 検証 |
 | at_hash | 推奨 | Access Token ハッシュ（AT との整合性検証） |
 | acr / amr | オプション | 認証コンテキスト / 認証方法（pwd / mfa / fido2） |
+
 - **検証必須**: `iss` 一致 / `aud` に自 client_id / `exp` 未来 / `nonce` 一致
 
 
 ---
 
+<!-- _class: invert fit-58 -->
 # Access Token vs ID Token — 用途の厳密な分離
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Access Token vs ID Token — 用途の厳密な分離</text>
 <rect x="30" y="50" width="340" height="310" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2.5"/>
@@ -771,6 +862,8 @@ token=def50200...&token_type_hint=refresh_token
 <text x="200" y="330" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">scope の中身だけ見る</text>
 <text x="600" y="330" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">sub でユーザー識別</text>
 </svg>
+</div>
+
 | 項目 | Access Token | ID Token |
 | --- | --- | --- |
 | 目的 | API リソースへのアクセス許可 | ユーザー認証の証明 |
@@ -778,12 +871,14 @@ token=def50200...&token_type_hint=refresh_token
 | 主要クレーム | scope / sub / client_id | ユーザー属性 / nonce / at_hash |
 | 有効期間 | 短め（15〜60 分） | AT と同じ |
 | 検証方法 | Introspect or JWT 検証 | JWT 検証（JWKS 公開鍵） |
+
 - ⚠ **ID Token を API 呼び出しに使用禁止**（audience が一致しない）
 - ⚠ **Access Token の中身をクライアントが信頼しない**（RS が検証する）
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # UserInfo エンドポイント — スコープとクレームマッピング
 
 > *OIDCクレームはユーザー属性の標準化された表現でSSOを実現する鍵*
@@ -815,11 +910,13 @@ Authorization: Bearer eyJhbGc...
 
 ---
 
+<!-- _class: invert fit-58 -->
 # OIDC セッション管理 — check_session_iframe
 
 > *OAuth2とOIDCの責務分離が認証基盤の堅牢性と相互運用性を決定する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OIDC セッション管理 — check_session_iframe</text>
 <rect x="30" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <rect x="420" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -839,6 +936,8 @@ Authorization: Bearer eyJhbGc...
 <text x="435" y="230" fill="#ffffff" font-size="12" font-family="sans-serif">• Silent Auth (prompt=none)</text>
 <text x="435" y="260" fill="#ffffff" font-size="12" font-family="sans-serif">  でセッション更新可能</text>
 <text x="435" y="295" fill="#4caf50" font-size="12" font-family="sans-serif">→ Back-Channel推奨</text></svg>
+</div>
+
 - **目的**: RP がバックグラウンドで OP のセッション状態を監視（ポーリング方式）
 - **仕組み**: `check_session_iframe` の URL に postMessage でポーリング送信
 - **session_state**: 認可レスポンスで返却。変化を検知したら再認証 or ログアウト
@@ -848,6 +947,7 @@ Authorization: Bearer eyJhbGc...
 
 ---
 
+<!-- _class: invert fit-70 -->
 # Front-Channel Logout — iframe ブロードキャスト
 
 > *OAuth2とOIDCの責務分離が認証基盤の堅牢性と相互運用性を決定する*
@@ -877,7 +977,8 @@ https://rp.example.com/logout
 
 # OIDC ログアウトフロー比較 — Front-Channel vs Back-Channel
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OIDC ログアウトフロー比較 — Front-Channel vs Back-Channel</text>
 <rect x="20" y="50" width="370" height="310" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -900,11 +1001,14 @@ https://rp.example.com/logout
 <text x="430" y="290" fill="#e91e63" font-size="12" font-family="sans-serif">短所: エンドポイント実装必要</text>
 <text x="400" y="370" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">現代的な実装: Back-Channel Logout を推奨</text>
 </svg>
+</div>
+
 ![w:760 center](assets/oidc-logout-flows.svg)
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # RP-Initiated Logout — エンドユーザー主導ログアウト
 
 > *OAuth2とOIDCの責務分離が認証基盤の堅牢性と相互運用性を決定する*
@@ -934,6 +1038,7 @@ https://<domain>.auth.ap-northeast-1.amazoncognito.com/logout
 
 ---
 
+<!-- _class: invert fit-70 -->
 # カスタムクレーム設計 — ネームスペースと外部 IdP マッピング
 
 > *OIDCクレームはユーザー属性の標準化された表現でSSOを実現する鍵*
@@ -946,6 +1051,7 @@ https://<domain>.auth.ap-northeast-1.amazoncognito.com/logout
 
 ---
 
+<!-- _class: invert fit-88 -->
 # カスタムクレーム設計 — ネームスペースと外部 IdP マッピング（コード例）
 
 ```javascript
@@ -964,10 +1070,11 @@ exports.handler = async (event) => {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Section 3: セキュリティ拡張仕様
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OAuth2 セキュリティ拡張仕様 — 概要</text>
 <rect x="20" y="50" width="230" height="100" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1002,6 +1109,8 @@ exports.handler = async (event) => {
 <text x="665" y="277" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">金融・医療向け</text>
 <text x="400" y="360" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">組み合わせ: PAR + DPoP + JARM = 最高セキュリティレベル</text>
 </svg>
+</div>
+
 - DPoP / PAR / RAR / JARM
 - OAuth2 + mTLS / FAPI 2.0
 
@@ -1010,7 +1119,8 @@ exports.handler = async (event) => {
 
 # DPoP — Demonstrating Proof of Possession (RFC 9449)
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DPoP — Demonstrating Proof of Possession (RFC 9449)</text>
 <rect x="30" y="55" width="740" height="100" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="83" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">問題: Bearer Tokenは盗まれたら誰でも使える</text>
@@ -1028,6 +1138,8 @@ exports.handler = async (event) => {
 <text x="435" y="258" fill="#ffffff" font-size="12" font-family="sans-serif">• 特定クライアントにバインド</text>
 <text x="435" y="284" fill="#ffffff" font-size="12" font-family="sans-serif">• FAPI 2.0で必須</text>
 <text x="435" y="310" fill="#ffffff" font-size="12" font-family="sans-serif">• mTLSより実装が容易</text></svg>
+</div>
+
 ![w:760 center](assets/dpop-flow.svg)
 
 
@@ -1035,7 +1147,8 @@ exports.handler = async (event) => {
 
 # PAR — Pushed Authorization Requests (RFC 9126)
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">PAR — Pushed Authorization Requests (RFC 9126)</text>
 <rect x="30" y="50" width="350" height="150" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
 <rect x="420" y="50" width="350" height="150" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1052,11 +1165,14 @@ exports.handler = async (event) => {
 <text x="50" y="282" fill="#ffffff" font-size="12" font-family="sans-serif">① POST /par (全パラメータ + client認証) → request_uri=urn:ietf:params:oauth:request_uri:xxx</text>
 <text x="50" y="312" fill="#ffffff" font-size="12" font-family="sans-serif">② GET /authorize?request_uri=xxx&client_id=yyy (URLはシンプル)</text>
 <text x="50" y="342" fill="#4caf50" font-size="12" font-family="sans-serif">利点: URLパラメータ漏洩防止 / client認証強化 / FAPI2.0必須</text></svg>
+</div>
+
 ![w:760 center](assets/par-flow.svg)
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # RAR — Rich Authorization Requests (RFC 9396) — 精緻な認可要求
 
 > *OAuth2とOIDCの責務分離が認証基盤の堅牢性と相互運用性を決定する*
@@ -1069,6 +1185,7 @@ exports.handler = async (event) => {
 
 ---
 
+<!-- _class: invert fit-82 -->
 # RAR — Rich Authorization Requests (RFC 9396) — 精緻な認可要求（コード例）
 
 ```json
@@ -1088,6 +1205,7 @@ exports.handler = async (event) => {
 
 ---
 
+<!-- _class: invert fit-70 -->
 # JARM — JWT Secured Authorization Response Mode
 
 > *JWTはステートレス認証の標準だが実装の落とし穴が多く署名検証が最重要*
@@ -1118,11 +1236,13 @@ GET /callback?response=eyJhbGciOiJSUzI1NiJ9...
 
 ---
 
+<!-- _class: invert fit-58 -->
 # OAuth2 + mTLS クライアント認証 (RFC 8705) — 証明書バインドトークン
 
 > *OIDCクレームはユーザー属性の標準化された表現でSSOを実現する鍵*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">OAuth2 + mTLS クライアント認証 (RFC 8705)</text>
 <rect x="30" y="55" width="360" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <rect x="420" y="55" width="350" height="300" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -1141,6 +1261,8 @@ GET /callback?response=eyJhbGciOiJSUzI1NiJ9...
 <text x="435" y="205" fill="#ffffff" font-size="12" font-family="sans-serif">• マイクロサービス間通信</text>
 <text x="435" y="235" fill="#ffffff" font-size="12" font-family="sans-serif">• サービスメッシュと併用</text>
 <text x="435" y="275" fill="#e91e63" font-size="12" font-family="sans-serif">課題: 証明書の管理コスト</text></svg>
+</div>
+
 - **mTLS 認証**: TLS ハンドシェイクでクライアント証明書を送信し client_id と紐づけ
 - **Certificate-Bound AT**: `cnf.x5t#S256` クレームで証明書フィンガープリントをバインド
 - **RS での検証**: TLS クライアント証明書のフィンガープリントと AT の `cnf` を照合
@@ -1165,9 +1287,11 @@ grant_type=client_credentials&client_id=svc-order
 
 ---
 
+<!-- _class: invert fit-70 -->
 # FAPI 2.0 Security Profile — 金融グレード API
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">FAPI 2.0 Security Profile — 金融グレード API</text>
 <rect x="30" y="50" width="740" height="310" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1193,6 +1317,8 @@ grant_type=client_credentials&client_id=svc-order
 <text x="400" y="300" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">適用領域: 金融API / 医療 / 政府 / 高セキュリティサービス</text>
 <text x="400" y="330" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">すべての拡張仕様を組み合わせた最高レベルのセキュリティプロファイル</text>
 </svg>
+</div>
+
 | 要件項目 | FAPI 1.0 Advanced | FAPI 2.0 Security Profile |
 | --- | --- | --- |
 | 認可リクエスト | JAR（推奨） | **PAR 必須** |
@@ -1200,5 +1326,6 @@ grant_type=client_credentials&client_id=svc-order
 | PKCE | 推奨 | **S256 必須** |
 | レスポンスモード | JARM | **JARM 必須** |
 | Token Binding | — | DPoP 推奨 |
+
 - **対象**: 金融 API (PSD2) / 医療 / 政府 API。OpenID Foundation FAPI WG 認定あり
 

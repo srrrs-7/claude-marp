@@ -7,41 +7,76 @@ paginate: true
 header: "AI Agent Trust Problem"
 footer: "© 2026 Autonomous AI Ethics"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,11 +117,10 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # AIエージェントの信頼問題：自律型AIをどう信頼するか
 
 - AI Agent Trust Problem
-- 
 - 自律的に行動するAIに、どこまで権限を委譲すべきか
 
 
@@ -96,17 +130,17 @@ style: |
 
 > *信頼哲学から権限設計・事故事例まで6章で体系化*
 
-- - 1. AIエージェントの台頭
-- - 2. 信頼の哲学：人間は何を信頼しているのか
-- - 3. AIエージェントの権限設計
-- - 4. 「信頼するが検証する」パターン
-- - 5. 事故事例と教訓
-- - 6. 信頼のエンジニアリング
+- 1. AIエージェントの台頭
+- 2. 信頼の哲学：人間は何を信頼しているのか
+- 3. AIエージェントの権限設計
+- 4. 「信頼するが検証する」パターン
+- 5. 事故事例と教訓
+- 6. 信頼のエンジニアリング
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # AIエージェントの台頭
 
 - Chapter 1: Rise of AI Agents
@@ -118,17 +152,17 @@ style: |
 
 > *自律AI普及でClaude Code等が業務実行を担う時代*
 
-- - **Claude Code**: 自律的にコードを読み書き、テストを実行
-- - **Devin**: AIソフトウェアエンジニア（タスクを自律的に完了）
-- - **AutoGPT / CrewAI**: 複数エージェントの協調動作
-- - **MCP (Model Context Protocol)**: エージェントのツール統合標準
-- - 共通点: AIが **自律的に判断し行動** する
-- - 問題: 自律的な行動を **どこまで信頼** できるのか
+- **Claude Code**: 自律的にコードを読み書き、テストを実行
+- **Devin**: AIソフトウェアエンジニア（タスクを自律的に完了）
+- **AutoGPT / CrewAI**: 複数エージェントの協調動作
+- **MCP (Model Context Protocol)**: エージェントのツール統合標準
+- 共通点: AIが **自律的に判断し行動** する
+- 問題: 自律的な行動を **どこまで信頼** できるのか
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 信頼の哲学
 
 - Chapter 2: Philosophy of Trust
@@ -140,13 +174,16 @@ style: |
 
 > *適切な信頼=能力×誠実さ×予測可能性の定量設計*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">信頼スペクトラム：過信 ↔ 不信</text><rect x="60" y="60" width="680" height="50" rx="25" fill="#ccc" opacity="0.85"/><text x="100" y="90" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">過信</text><text x="400" y="90" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">適切な信頼</text><text x="700" y="90" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">不信</text><line x1="400" y1="55" x2="400" y2="175" stroke="#f9a825" stroke-width="2.5" stroke-dasharray="5,3"/><circle cx="400" cy="85" r="18" fill="none" stroke="#ffffff" stroke-width="3"/><text x="250" y="140" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle">Automation Bias</text><text x="250" y="158" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">自動化された判断を</text><text x="250" y="173" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">無批判に受け入れる</text><text x="550" y="140" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle">Under-trust</text><text x="550" y="158" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">AIの価値を活かせず</text><text x="550" y="173" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">競争劣位になる</text><text x="400" y="140" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">Appropriate Trust</text><text x="400" y="158" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">能力範囲と限界を</text><text x="400" y="173" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">正確に理解する</text><rect x="60" y="195" width="200" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="160" y="220" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">過信の危険</text><text x="160" y="242" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">テスラ Autopilot事故</text><text x="160" y="260" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">AI医療誤診の見落とし</text><rect x="300" y="195" width="200" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="220" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">目標状態</text><text x="400" y="242" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">能力 × 誠実さ × 予測可能性</text><text x="400" y="260" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">を定量化して信頼を設計</text><rect x="540" y="195" width="200" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="640" y="220" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">不信の危険</text><text x="640" y="242" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">競争力の喪失</text><text x="640" y="260" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">AIの恩恵を受けられない</text></svg>
-- - **信頼 = 脆弱性の受容**: 相手が裏切る可能性を受け入れること
-- - 人間の信頼は **能力 × 誠実さ × 予測可能性** で構成
-- - AI に「誠実さ」はあるか? → ない。しかし「予測可能性」はある
-- - **適切な信頼** (Appropriate Trust): 過信でも不信でもない適度な信頼
-- - 「AIを信頼する」= 「AIの能力範囲と限界を正確に理解する」
-- - Over-trust (過信) と Under-trust (不信) の両方が危険
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">信頼スペクトラム：過信 ↔ 不信</text><rect x="60" y="60" width="680" height="50" rx="25" fill="#ccc" opacity="0.85"/><text x="100" y="90" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">過信</text><text x="400" y="90" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">適切な信頼</text><text x="700" y="90" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">不信</text><line x1="400" y1="55" x2="400" y2="175" stroke="#f9a825" stroke-width="2.5" stroke-dasharray="5,3"/><circle cx="400" cy="85" r="18" fill="none" stroke="#ffffff" stroke-width="3"/><text x="250" y="140" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle">Automation Bias</text><text x="250" y="158" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">自動化された判断を</text><text x="250" y="173" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">無批判に受け入れる</text><text x="550" y="140" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle">Under-trust</text><text x="550" y="158" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">AIの価値を活かせず</text><text x="550" y="173" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">競争劣位になる</text><text x="400" y="140" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">Appropriate Trust</text><text x="400" y="158" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">能力範囲と限界を</text><text x="400" y="173" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">正確に理解する</text><rect x="60" y="195" width="200" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="160" y="220" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">過信の危険</text><text x="160" y="242" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">テスラ Autopilot事故</text><text x="160" y="260" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">AI医療誤診の見落とし</text><rect x="300" y="195" width="200" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="220" fill="#f9a825" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">目標状態</text><text x="400" y="242" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">能力 × 誠実さ × 予測可能性</text><text x="400" y="260" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">を定量化して信頼を設計</text><rect x="540" y="195" width="200" height="80" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="640" y="220" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">不信の危険</text><text x="640" y="242" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">競争力の喪失</text><text x="640" y="260" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">AIの恩恵を受けられない</text></svg>
+</div>
+
+- **信頼 = 脆弱性の受容**: 相手が裏切る可能性を受け入れること
+- 人間の信頼は **能力 × 誠実さ × 予測可能性** で構成
+- AI に「誠実さ」はあるか? → ない。しかし「予測可能性」はある
+- **適切な信頼** (Appropriate Trust): 過信でも不信でもない適度な信頼
+- 「AIを信頼する」= 「AIの能力範囲と限界を正確に理解する」
+- Over-trust (過信) と Under-trust (不信) の両方が危険
 
 
 ---
@@ -155,18 +192,21 @@ style: |
 
 > *Automation Biasが過信事故の主因—設計で防ぐ*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">人間がAIを過信するバイアスチェーン</text><rect x="30" y="55" width="130" height="90" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="95" y="85" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">Automation</text><text x="95" y="101" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">Bias</text><text x="95" y="122" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">自動化判断を</text><text x="95" y="138" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">無批判に信頼</text><polygon points="162,100 182,92 182,108" fill="#e91e63"/><rect x="185" y="55" width="130" height="90" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="250" y="85" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">流暢さ</text><text x="250" y="101" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">バイアス</text><text x="250" y="122" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">自然な文章</text><text x="250" y="138" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">= 正しい内容</text><polygon points="317,100 337,92 337,108" fill="#e91e63"/><rect x="340" y="55" width="130" height="90" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="405" y="85" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">Anchoring</text><text x="405" y="101" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">Effect</text><text x="405" y="122" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">最初の提案に</text><text x="405" y="138" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">固執する</text><polygon points="472,100 492,92 492,108" fill="#e91e63"/><rect x="495" y="55" width="130" height="90" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="560" y="85" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">Complacency</text><text x="560" y="101" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle">油断</text><text x="560" y="122" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">普段正しいから</text><text x="560" y="138" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">異常時も信頼</text><polygon points="627,100 647,92 647,108" fill="#e91e63"/><rect x="650" y="55" width="120" height="90" rx="10" fill="#e91e63" opacity="0.85"/><text x="710" y="88" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">事故・</text><text x="710" y="106" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">障害発生</text><text x="710" y="130" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">Over-trust</text><line x1="400" y1="155" x2="400" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="395,180 400,195 405,180" fill="#f9a825"/><rect x="200" y="195" width="400" height="80" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="223" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">対策: 適切な信頼設計</text><text x="400" y="246" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">信頼 = 能力 × 誠実さ × 予測可能性 の定量化</text><text x="400" y="265" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">50年の航空自動化の知見を活用する</text></svg>
-- - **Automation Bias**: 自動化された判断を無批判に信頼する傾向
-- - **流暢さバイアス**: 自然な文章 = 正しい内容と錯覚
-- - **Anchoring**: AIの最初の提案に固執する
-- - **Complacency**: AIが普段正しい → 異常時にも信頼してしまう
-- - テスラ Autopilot事故: **Lv2自動運転なのにLv5として信頼**
-- - 航空機の自動操縦: 信頼管理に **50年の知見** がある
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="30" fill="#f9a825" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">人間がAIを過信するバイアスチェーン</text><rect x="30" y="55" width="130" height="90" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="95" y="85" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">Automation</text><text x="95" y="101" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">Bias</text><text x="95" y="122" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">自動化判断を</text><text x="95" y="138" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">無批判に信頼</text><polygon points="162,100 182,92 182,108" fill="#e91e63"/><rect x="185" y="55" width="130" height="90" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="250" y="85" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">流暢さ</text><text x="250" y="101" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">バイアス</text><text x="250" y="122" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">自然な文章</text><text x="250" y="138" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">= 正しい内容</text><polygon points="317,100 337,92 337,108" fill="#e91e63"/><rect x="340" y="55" width="130" height="90" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="405" y="85" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">Anchoring</text><text x="405" y="101" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">Effect</text><text x="405" y="122" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">最初の提案に</text><text x="405" y="138" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">固執する</text><polygon points="472,100 492,92 492,108" fill="#e91e63"/><rect x="495" y="55" width="130" height="90" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="560" y="85" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">Complacency</text><text x="560" y="101" fill="#e91e63" font-size="12" font-family="sans-serif" text-anchor="middle">油断</text><text x="560" y="122" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">普段正しいから</text><text x="560" y="138" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">異常時も信頼</text><polygon points="627,100 647,92 647,108" fill="#e91e63"/><rect x="650" y="55" width="120" height="90" rx="10" fill="#e91e63" opacity="0.85"/><text x="710" y="88" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">事故・</text><text x="710" y="106" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle" font-weight="bold">障害発生</text><text x="710" y="130" fill="#ffffff" font-size="11" font-family="sans-serif" text-anchor="middle">Over-trust</text><line x1="400" y1="155" x2="400" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="395,180 400,195 405,180" fill="#f9a825"/><rect x="200" y="195" width="400" height="80" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="223" fill="#f9a825" font-size="14" font-family="sans-serif" text-anchor="middle" font-weight="bold">対策: 適切な信頼設計</text><text x="400" y="246" fill="#ffffff" font-size="12" font-family="sans-serif" text-anchor="middle">信頼 = 能力 × 誠実さ × 予測可能性 の定量化</text><text x="400" y="265" fill="#aaaaaa" font-size="11" font-family="sans-serif" text-anchor="middle">50年の航空自動化の知見を活用する</text></svg>
+</div>
+
+- **Automation Bias**: 自動化された判断を無批判に信頼する傾向
+- **流暢さバイアス**: 自然な文章 = 正しい内容と錯覚
+- **Anchoring**: AIの最初の提案に固執する
+- **Complacency**: AIが普段正しい → 異常時にも信頼してしまう
+- テスラ Autopilot事故: **Lv2自動運転なのにLv5として信頼**
+- 航空機の自動操縦: 信頼管理に **50年の知見** がある
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # AIエージェントの権限設計
 
 - Chapter 3: Permission Design
@@ -178,12 +218,12 @@ style: |
 
 > *AIにも最小権限—Full Autonomyは限定タスクのみ*
 
-- - **最小権限 (Principle of Least Privilege)**: IAMの基本原則
-- - AIエージェントにも同じ原則を適用すべき
-- - **Read-Only Mode**: 情報取得のみ、変更不可（最低レベル）
-- - **Sandboxed Execution**: 隔離環境で実行（テスト・開発）
-- - **Human-in-the-Loop**: 重要操作には人間の承認が必要
-- - **Full Autonomy**: 完全自律（高度に検証された限定タスクのみ）
+- **最小権限 (Principle of Least Privilege)**: IAMの基本原則
+- AIエージェントにも同じ原則を適用すべき
+- **Read-Only Mode**: 情報取得のみ、変更不可（最低レベル）
+- **Sandboxed Execution**: 隔離環境で実行（テスト・開発）
+- **Human-in-the-Loop**: 重要操作には人間の承認が必要
+- **Full Autonomy**: 完全自律（高度に検証された限定タスクのみ）
 
 
 ---
@@ -197,7 +237,7 @@ style: |
 
 # 信頼レベルのエスカレーション
 
-- - AIエージェントへの信頼は段階的に構築すべき
+- AIエージェントへの信頼は段階的に構築すべき
 
 
 ---
@@ -219,7 +259,7 @@ const trustLevels = {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 「信頼するが検証する」パターン
 
 - Chapter 4: Trust but Verify
@@ -231,12 +271,12 @@ const trustLevels = {
 
 > *実行前レビュー+実行後監査が安全な信頼の構造*
 
-- - ロナルド・レーガンの核軍縮交渉のフレーズ
-- - AIエージェントに最も適した信頼モデル
-- - **Pre-execution Review**: 実行前にAIの計画を人間がレビュー
-- - **Post-execution Audit**: 実行後にAIの行動ログを監査
-- - **Continuous Monitoring**: AIの振る舞いをリアルタイム監視
-- - **Rollback Capability**: AIの行動を巻き戻せる設計
+- ロナルド・レーガンの核軍縮交渉のフレーズ
+- AIエージェントに最も適した信頼モデル
+- **Pre-execution Review**: 実行前にAIの計画を人間がレビュー
+- **Post-execution Audit**: 実行後にAIの行動ログを監査
+- **Continuous Monitoring**: AIの振る舞いをリアルタイム監視
+- **Rollback Capability**: AIの行動を巻き戻せる設計
 
 
 ---
@@ -248,7 +288,7 @@ const trustLevels = {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 事故事例と教訓
 
 - Chapter 5: Incidents and Lessons
@@ -260,18 +300,21 @@ const trustLevels = {
 
 > *過剰権限×監視不足×ロールバック不能が事故の3要因*
 
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="30" fill="#e91e63" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">AIエージェント事故の共通パターン</text><!-- Three circles overlapping (Venn-like) --><circle cx="280" cy="160" r="100" fill="#e91e63" opacity="0.3" stroke="#e91e63" stroke-width="2"/><circle cx="400" cy="140" r="100" fill="#f9a825" opacity="0.25" stroke="#f9a825" stroke-width="2"/><circle cx="520" cy="160" r="100" fill="#e91e63" opacity="0.3" stroke="#e91e63" stroke-width="2"/><text x="195" y="165" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">過剰な</text><text x="195" y="183" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">権限</text><text x="605" y="165" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">ロールバック</text><text x="605" y="183" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">不能</text><text x="400" y="88" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">不十分な</text><text x="400" y="106" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">監視</text><text x="400" y="162" fill="#ffffff" font-size="15" font-family="sans-serif" text-anchor="middle" font-weight="bold">事故</text><text x="400" y="180" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle">発生</text><!-- Incident examples --><rect x="30" y="255" width="160" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="110" y="278" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">ファイル削除事故</text><text x="110" y="296" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">AIが重要ファイルを誤削除</text><rect x="210" y="255" width="160" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="290" y="278" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">無限ループ課金</text><text x="290" y="296" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">API無限ループ → $10K</text><rect x="390" y="255" width="160" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="470" y="278" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">機密情報漏洩</text><text x="470" y="296" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">公開リポジトリへpush</text><rect x="570" y="255" width="160" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="650" y="278" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">本番DB変更</text><text x="650" y="296" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">スキーマを誤「修正」</text></svg>
-- - **ファイル削除事故**: AIがクリーンアップ中に重要ファイルを削除
-- - **無限ループ課金**: AIエージェントがAPI呼び出しを無限ループ → $10K請求
-- - **機密情報漏洩**: AIが内部コードをパブリックリポジトリにpush
-- - **カスケード障害**: AIが「修正」のつもりで本番DBスキーマを変更
-- - 共通原因: **過剰な権限** × **不十分な監視** × **ロールバック不能**
-- - 対策: 権限制限、サンドボックス、承認フロー、監査ログ
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/><text x="400" y="30" fill="#e91e63" font-size="17" font-family="sans-serif" text-anchor="middle" font-weight="bold">AIエージェント事故の共通パターン</text><!-- Three circles overlapping (Venn-like) --><circle cx="280" cy="160" r="100" fill="#e91e63" opacity="0.3" stroke="#e91e63" stroke-width="2"/><circle cx="400" cy="140" r="100" fill="#f9a825" opacity="0.25" stroke="#f9a825" stroke-width="2"/><circle cx="520" cy="160" r="100" fill="#e91e63" opacity="0.3" stroke="#e91e63" stroke-width="2"/><text x="195" y="165" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">過剰な</text><text x="195" y="183" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">権限</text><text x="605" y="165" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">ロールバック</text><text x="605" y="183" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">不能</text><text x="400" y="88" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">不十分な</text><text x="400" y="106" fill="#ffffff" font-size="13" font-family="sans-serif" text-anchor="middle" font-weight="bold">監視</text><text x="400" y="162" fill="#ffffff" font-size="15" font-family="sans-serif" text-anchor="middle" font-weight="bold">事故</text><text x="400" y="180" fill="#e91e63" font-size="13" font-family="sans-serif" text-anchor="middle">発生</text><!-- Incident examples --><rect x="30" y="255" width="160" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="110" y="278" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">ファイル削除事故</text><text x="110" y="296" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">AIが重要ファイルを誤削除</text><rect x="210" y="255" width="160" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="290" y="278" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">無限ループ課金</text><text x="290" y="296" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">API無限ループ → $10K</text><rect x="390" y="255" width="160" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="470" y="278" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">機密情報漏洩</text><text x="470" y="296" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">公開リポジトリへpush</text><rect x="570" y="255" width="160" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="650" y="278" fill="#e91e63" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="bold">本番DB変更</text><text x="650" y="296" fill="#aaaaaa" font-size="10" font-family="sans-serif" text-anchor="middle">スキーマを誤「修正」</text></svg>
+</div>
+
+- **ファイル削除事故**: AIがクリーンアップ中に重要ファイルを削除
+- **無限ループ課金**: AIエージェントがAPI呼び出しを無限ループ → $10K請求
+- **機密情報漏洩**: AIが内部コードをパブリックリポジトリにpush
+- **カスケード障害**: AIが「修正」のつもりで本番DBスキーマを変更
+- 共通原因: **過剰な権限** × **不十分な監視** × **ロールバック不能**
+- 対策: 権限制限、サンドボックス、承認フロー、監査ログ
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 信頼のエンジニアリング
 
 - Chapter 6: Engineering Trust
@@ -283,12 +326,12 @@ const trustLevels = {
 
 > *6原則を実装すれば信頼コストを90%削減できる*
 
-- - 1. **権限の最小化**: AIに必要最小限の権限のみ付与
-- - 2. **段階的信頼**: 実績に基づいて権限を段階的にエスカレート
-- - 3. **可観測性**: 全てのAI行動をログに記録、監査可能に
-- - 4. **ロールバック**: AIの全操作を元に戻せる設計
-- - 5. **Kill Switch**: 緊急時にAIを即座に停止できるメカニズム
-- - 6. **定期レビュー**: AIの権限レベルを定期的に見直す
+- 1. **権限の最小化**: AIに必要最小限の権限のみ付与
+- 2. **段階的信頼**: 実績に基づいて権限を段階的にエスカレート
+- 3. **可観測性**: 全てのAI行動をログに記録、監査可能に
+- 4. **ロールバック**: AIの全操作を元に戻せる設計
+- 5. **Kill Switch**: 緊急時にAIを即座に停止できるメカニズム
+- 6. **定期レビュー**: AIの権限レベルを定期的に見直す
 
 
 ---
@@ -300,14 +343,11 @@ const trustLevels = {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ：信頼は設計するもの
 
 - AIエージェントへの信頼は「感情」ではなく「設計」の問題
-- 
 - 過信は事故を招き、不信は価値を失う
-- 
 - 最小権限 × 段階的信頼 × 検証可能性
-- 
 - **Trust but Verify — 信頼するが、常に検証せよ**
 

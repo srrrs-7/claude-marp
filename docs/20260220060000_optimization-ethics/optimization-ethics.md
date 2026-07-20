@@ -7,41 +7,76 @@ paginate: true
 header: "最適化と倫理"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,14 +111,17 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 最適化の倫理問題
 — アルゴリズムが「最善」を決めるとき
 
 - 何を最適化するかで、誰が得をして誰が損をするか変わる
 - クリック率・利益・公平性は両立しない
 - トロッコ問題が現実のAI設計に現れている
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e" rx="12"/><text x="400" y="44" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">最適化の対象が結果を決める</text><rect x="40" y="70" width="200" height="210" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="140" y="98" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">クリック率最大化</text><text x="140" y="124" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">↑ 怒り・恐怖の拡散</text><text x="140" y="148" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">↑ フィルターバブル</text><text x="140" y="172" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">↓ 社会的分断</text><text x="140" y="196" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">↓ 民主主義への脅威</text><rect x="300" y="70" width="200" height="210" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="400" y="98" text-anchor="middle" fill="#4caf50" font-size="14" font-weight="bold" font-family="sans-serif">利益最大化</text><text x="400" y="124" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">↑ 短期収益</text><text x="400" y="148" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">↑ 株主価値</text><text x="400" y="172" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">↓ 労働者の搾取</text><text x="400" y="196" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">↓ 環境コスト無視</text><rect x="560" y="70" width="200" height="210" rx="10" fill="#16213e" stroke="#2196f3" stroke-width="2"/><text x="660" y="98" text-anchor="middle" fill="#2196f3" font-size="14" font-weight="bold" font-family="sans-serif">社会的幸福最大化</text><text x="660" y="124" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">↑ 多様な視点</text><text x="660" y="148" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">↑ 長期的信頼</text><text x="660" y="172" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">↑ 持続可能性</text><text x="660" y="196" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">? どう定義・測定する？</text><text x="140" y="268" text-anchor="middle" fill="#e91e63" font-size="20" font-family="sans-serif">&#9888;</text><text x="400" y="268" text-anchor="middle" fill="#f9a825" font-size="20" font-family="sans-serif">&#9888;</text><text x="660" y="268" text-anchor="middle" fill="#4caf50" font-size="20" font-family="sans-serif">&#10003;</text><text x="140" y="292" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">現状多用</text><text x="400" y="292" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">現状多用</text><text x="660" y="292" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">理想・難問</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e" rx="12"/><text x="400" y="44" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">最適化の対象が結果を決める</text><rect x="40" y="70" width="200" height="210" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="140" y="98" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">クリック率最大化</text><text x="140" y="124" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">↑ 怒り・恐怖の拡散</text><text x="140" y="148" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">↑ フィルターバブル</text><text x="140" y="172" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">↓ 社会的分断</text><text x="140" y="196" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">↓ 民主主義への脅威</text><rect x="300" y="70" width="200" height="210" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="400" y="98" text-anchor="middle" fill="#4caf50" font-size="14" font-weight="bold" font-family="sans-serif">利益最大化</text><text x="400" y="124" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">↑ 短期収益</text><text x="400" y="148" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">↑ 株主価値</text><text x="400" y="172" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">↓ 労働者の搾取</text><text x="400" y="196" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">↓ 環境コスト無視</text><rect x="560" y="70" width="200" height="210" rx="10" fill="#16213e" stroke="#2196f3" stroke-width="2"/><text x="660" y="98" text-anchor="middle" fill="#2196f3" font-size="14" font-weight="bold" font-family="sans-serif">社会的幸福最大化</text><text x="660" y="124" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">↑ 多様な視点</text><text x="660" y="148" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">↑ 長期的信頼</text><text x="660" y="172" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">↑ 持続可能性</text><text x="660" y="196" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">? どう定義・測定する？</text><text x="140" y="268" text-anchor="middle" fill="#e91e63" font-size="20" font-family="sans-serif">&#9888;</text><text x="400" y="268" text-anchor="middle" fill="#f9a825" font-size="20" font-family="sans-serif">&#9888;</text><text x="660" y="268" text-anchor="middle" fill="#4caf50" font-size="20" font-family="sans-serif">&#10003;</text><text x="140" y="292" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">現状多用</text><text x="400" y="292" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">現状多用</text><text x="660" y="292" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">理想・難問</text></svg>
+</div>
 
 
 ---
@@ -92,21 +130,22 @@ style: |
 
 > *目的関数を誰が書くかで誰が得をし誰が損をするかが決まる*
 
-- 1. 最適化とは何を最適化しているのか
-- 2. 目的関数の選び方が倫理を決める
-- 3. 事例：採用AI・推薦アルゴリズム
-- 4. 公平性の数学的定義と不可能定理
-- 5. 誰が決めるべきか
+1. 最適化とは何を最適化しているのか
+2. 目的関数の選び方が倫理を決める
+3. 事例：採用AI・推薦アルゴリズム
+4. 公平性の数学的定義と不可能定理
+5. 誰が決めるべきか
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 最適化とは何を最適化しているのか
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # 目的関数が世界観を決める（1/2）
 
 > *「最短」「最安」「最低CO₂」は互いに矛盾する別の解*
@@ -115,30 +154,35 @@ style: |
 - 目的関数（何を最大化・最小化するか）を設定 → 数学が解を出す
 - **問題：同じ状況でも目的関数が違えば解が全く変わる**
 - 配車アプリの「最適なルート」= 最短時間？最安値？最低CO₂？
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="280" fill="#1a1a2e" rx="12"/><text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">同じ問題・違う目的関数 → 全く異なる「最適解」</text><rect x="30" y="55" width="740" height="60" rx="8" fill="#16213e" stroke="#ffffff" stroke-width="1"/><text x="400" y="82" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">状況：A地点からB地点に移動する</text><text x="400" y="105" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">（複数のルート候補あり）</text><rect x="30" y="135" width="220" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="140" y="160" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">最短時間を最小化</text><text x="140" y="182" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">高速道路 ¥900</text><text x="140" y="202" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">CO₂: 2.1kg</text><rect x="290" y="135" width="220" height="120" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="400" y="160" text-anchor="middle" fill="#4caf50" font-size="13" font-weight="bold" font-family="sans-serif">料金を最小化</text><text x="400" y="182" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">一般道 ¥0</text><text x="400" y="202" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">時間: +40分</text><rect x="550" y="135" width="220" height="120" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/><text x="660" y="160" text-anchor="middle" fill="#2196f3" font-size="13" font-weight="bold" font-family="sans-serif">CO₂を最小化</text><text x="660" y="182" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">電車 ¥450</text><text x="660" y="202" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">CO₂: 0.3kg</text><line x1="140" y1="115" x2="140" y2="135" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/><line x1="400" y1="115" x2="400" y2="135" stroke="#4caf50" stroke-width="1" stroke-dasharray="4,3"/><line x1="660" y1="115" x2="660" y2="135" stroke="#2196f3" stroke-width="1" stroke-dasharray="4,3"/></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="280" fill="#1a1a2e" rx="12"/><text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">同じ問題・違う目的関数 → 全く異なる「最適解」</text><rect x="30" y="55" width="740" height="60" rx="8" fill="#16213e" stroke="#ffffff" stroke-width="1"/><text x="400" y="82" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">状況：A地点からB地点に移動する</text><text x="400" y="105" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">（複数のルート候補あり）</text><rect x="30" y="135" width="220" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="140" y="160" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">最短時間を最小化</text><text x="140" y="182" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">高速道路 ¥900</text><text x="140" y="202" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">CO₂: 2.1kg</text><rect x="290" y="135" width="220" height="120" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="400" y="160" text-anchor="middle" fill="#4caf50" font-size="13" font-weight="bold" font-family="sans-serif">料金を最小化</text><text x="400" y="182" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">一般道 ¥0</text><text x="400" y="202" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">時間: +40分</text><rect x="550" y="135" width="220" height="120" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/><text x="660" y="160" text-anchor="middle" fill="#2196f3" font-size="13" font-weight="bold" font-family="sans-serif">CO₂を最小化</text><text x="660" y="182" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">電車 ¥450</text><text x="660" y="202" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">CO₂: 0.3kg</text><line x1="140" y1="115" x2="140" y2="135" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/><line x1="400" y1="115" x2="400" y2="135" stroke="#4caf50" stroke-width="1" stroke-dasharray="4,3"/><line x1="660" y1="115" x2="660" y2="135" stroke="#2196f3" stroke-width="1" stroke-dasharray="4,3"/></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 目的関数が世界観を決める（2/2）
 
 > *クリック最大化はフィルターバブルと過激化を生み出す*
 
 - **SNSの推薦アルゴリズム：**
-- - クリック率最大化 → 怒り・恐怖コンテンツが増幅される
-- - 滞在時間最大化 → 依存性が高いコンテンツを優先
-- - 社会的幸福最大化 → どう定義する？
+- クリック率最大化 → 怒り・恐怖コンテンツが増幅される
+- 滞在時間最大化 → 依存性が高いコンテンツを優先
+- 社会的幸福最大化 → どう定義する？
 - 「目的関数を書いた人が世界の形を決めている」— Stuart Russell
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 採用AIと推薦システムの実例
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # Amazonの採用AIと公平性の失敗（1/2）
 
 > *過去の偏った採用データが差別を「最適化」して再生産*
@@ -148,11 +192,15 @@ style: |
 - 理由：過去の採用が男性に偏っていたため
 - = 歴史的差別を「最適化」して再生産
 - **YouTubeの過激化パイプライン（2019年研究）：**
-- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="220" fill="#1a1a2e" rx="12"/><text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">バイアスの再生産サイクル</text><rect x="60" y="55" width="150" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="135" y="82" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">過去の採用データ</text><text x="135" y="102" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">（男性中心）</text><rect x="325" y="55" width="150" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="82" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">AIモデル学習</text><text x="400" y="102" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">（パターン抽出）</text><rect x="590" y="55" width="150" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="665" y="82" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">採用判断</text><text x="665" y="102" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">（女性を低評価）</text><polygon points="218,85 235,78 235,92" fill="#aaaaaa"/><line x1="210" y1="85" x2="236" y2="85" stroke="#aaaaaa" stroke-width="2"/><polygon points="483,85 500,78 500,92" fill="#aaaaaa"/><line x1="475" y1="85" x2="501" y2="85" stroke="#aaaaaa" stroke-width="2"/><path d="M665 115 Q665 170 400 180 Q135 170 135 115" stroke="#e91e63" stroke-width="2" fill="none" stroke-dasharray="6,4"/><polygon points="135,108 128,122 142,122" fill="#e91e63"/><text x="400" y="198" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">偏ったデータがさらに蓄積 → バイアスの強化ループ</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 220" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="220" fill="#1a1a2e" rx="12"/><text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">バイアスの再生産サイクル</text><rect x="60" y="55" width="150" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="135" y="82" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">過去の採用データ</text><text x="135" y="102" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">（男性中心）</text><rect x="325" y="55" width="150" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="82" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">AIモデル学習</text><text x="400" y="102" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">（パターン抽出）</text><rect x="590" y="55" width="150" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="665" y="82" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">採用判断</text><text x="665" y="102" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">（女性を低評価）</text><polygon points="218,85 235,78 235,92" fill="#aaaaaa"/><line x1="210" y1="85" x2="236" y2="85" stroke="#aaaaaa" stroke-width="2"/><polygon points="483,85 500,78 500,92" fill="#aaaaaa"/><line x1="475" y1="85" x2="501" y2="85" stroke="#aaaaaa" stroke-width="2"/><path d="M665 115 Q665 170 400 180 Q135 170 135 115" stroke="#e91e63" stroke-width="2" fill="none" stroke-dasharray="6,4"/><polygon points="135,108 128,122 142,122" fill="#e91e63"/><text x="400" y="198" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">偏ったデータがさらに蓄積 → バイアスの強化ループ</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-88 -->
 # Amazonの採用AIと公平性の失敗（2/2）
 
 > *YouTube過激化もFacebook感情実験も同じ構造の問題*
@@ -166,6 +214,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-82 -->
 # 公平性の不可能定理（1/2）
 
 > *個人・グループ・反事実の3つの公平性は同時に満たせない*
@@ -173,27 +222,35 @@ style: |
 - **Chouldechova & Roth（2018年）：**
 - 複数の「公平性」の定義は数学的に同時に満たせない
 - **3種類の公平性（同時達成不可能）：**
-- 1. **個人的公平性**：似た人には似た結果を
-- 2. **グループ公平性**：グループ間で同じ正解率を
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="240" fill="#1a1a2e" rx="12"/><text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">公平性の不可能三角形：同時に全部は満たせない</text><polygon points="400,55 130,200 670,200" fill="none" stroke="#f9a825" stroke-width="2"/><circle cx="400" cy="55" r="30" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="51" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">個人的</text><text x="400" y="67" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">公平性</text><circle cx="130" cy="200" r="30" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="130" y="196" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">グループ</text><text x="130" y="212" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">公平性</text><circle cx="670" cy="200" r="30" fill="#16213e" stroke="#2196f3" stroke-width="2"/><text x="670" y="196" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">反事実的</text><text x="670" y="212" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">公平性</text><text x="400" y="140" text-anchor="middle" fill="#e91e63" font-size="28" font-weight="bold" font-family="sans-serif">&#10007;</text><text x="400" y="165" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">数学的に同時達成不可能</text><line x1="370" y1="72" x2="165" y2="183" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/><line x1="430" y1="72" x2="635" y2="183" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/><line x1="160" y1="200" x2="640" y2="200" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/></svg>
+1. **個人的公平性**：似た人には似た結果を
+2. **グループ公平性**：グループ間で同じ正解率を
+
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="240" fill="#1a1a2e" rx="12"/><text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">公平性の不可能三角形：同時に全部は満たせない</text><polygon points="400,55 130,200 670,200" fill="none" stroke="#f9a825" stroke-width="2"/><circle cx="400" cy="55" r="30" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="51" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">個人的</text><text x="400" y="67" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">公平性</text><circle cx="130" cy="200" r="30" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="130" y="196" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">グループ</text><text x="130" y="212" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">公平性</text><circle cx="670" cy="200" r="30" fill="#16213e" stroke="#2196f3" stroke-width="2"/><text x="670" y="196" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">反事実的</text><text x="670" y="212" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">公平性</text><text x="400" y="140" text-anchor="middle" fill="#e91e63" font-size="28" font-weight="bold" font-family="sans-serif">&#10007;</text><text x="400" y="165" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">数学的に同時達成不可能</text><line x1="370" y1="72" x2="165" y2="183" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/><line x1="430" y1="72" x2="635" y2="183" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/><line x1="160" y1="200" x2="640" y2="200" stroke="#aaaaaa" stroke-width="1" stroke-dasharray="4,3"/></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # 公平性の不可能定理（2/2）
 
 > *COMPASは全体正解率同じでも誤りパターンが人種で逆転*
 
-- 3. **反事実的公平性**：属性を変えても結果が変わらない
+3. **反事実的公平性**：属性を変えても結果が変わらない
 - **COMPAS（再犯予測AI）の事例：**
 - 黒人被告を白人より2倍高く「再犯リスク高」と評価
 - → グループ正解率は同じでも、誤りの種類が人種で偏っていた
 - 公平性の定義を選ぶこと自体が価値判断
-- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="220" fill="#1a1a2e" rx="12"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">COMPAS：同じ正解率でも誤りの種類が異なる</text><text x="200" y="60" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">白人被告</text><text x="600" y="60" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">黒人被告</text><rect x="60" y="75" width="280" height="50" rx="6" fill="#1b5e20" stroke="#4caf50" stroke-width="1"/><text x="200" y="98" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">誤って「低リスク」</text><text x="200" y="116" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">（実際は再犯した） 47%</text><rect x="60" y="135" width="280" height="50" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1"/><text x="200" y="158" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">誤って「高リスク」</text><text x="200" y="176" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">（実際は再犯しなかった） 22%</text><rect x="460" y="75" width="280" height="50" rx="6" fill="#1b5e20" stroke="#4caf50" stroke-width="1"/><text x="600" y="98" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">誤って「低リスク」</text><text x="600" y="116" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">（実際は再犯した） 28%</text><rect x="460" y="135" width="280" height="50" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1"/><text x="600" y="158" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">誤って「高リスク」</text><text x="600" y="176" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">（実際は再犯しなかった） 44%</text><text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">全体正解率は同じ → しかし誤りのパターンが人種間で逆転</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 220" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="220" fill="#1a1a2e" rx="12"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">COMPAS：同じ正解率でも誤りの種類が異なる</text><text x="200" y="60" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">白人被告</text><text x="600" y="60" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">黒人被告</text><rect x="60" y="75" width="280" height="50" rx="6" fill="#1b5e20" stroke="#4caf50" stroke-width="1"/><text x="200" y="98" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">誤って「低リスク」</text><text x="200" y="116" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">（実際は再犯した） 47%</text><rect x="60" y="135" width="280" height="50" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1"/><text x="200" y="158" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">誤って「高リスク」</text><text x="200" y="176" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">（実際は再犯しなかった） 22%</text><rect x="460" y="75" width="280" height="50" rx="6" fill="#1b5e20" stroke="#4caf50" stroke-width="1"/><text x="600" y="98" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">誤って「低リスク」</text><text x="600" y="116" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">（実際は再犯した） 28%</text><rect x="460" y="135" width="280" height="50" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1"/><text x="600" y="158" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">誤って「高リスク」</text><text x="600" y="176" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">（実際は再犯しなかった） 44%</text><text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">全体正解率は同じ → しかし誤りのパターンが人種間で逆転</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # まとめ：アルゴリズムは中立でない
 
 > *「誰のための最適化か」を問うことがAI倫理の核心*
@@ -203,5 +260,8 @@ style: |
 - 公平性の数学的定義は同時に満たせない（不可能定理）
 - 歴史的バイアスのあるデータで学習すると差別を再生産
 - 「誰のための最適化か」を問うことが、AI倫理の核心
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="240" fill="#1a1a2e" rx="12"/><text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">誰のための最適化か — 問いの構造</text><rect x="330" y="55" width="140" height="50" rx="8" fill="#f9a825"/><text x="400" y="77" text-anchor="middle" fill="#1a1a2e" font-size="13" font-weight="bold" font-family="sans-serif">目的関数の選択</text><text x="400" y="96" text-anchor="middle" fill="#1a1a2e" font-size="11" font-family="sans-serif">（価値判断）</text><line x1="280" y1="105" x2="176" y2="130" stroke="#aaaaaa" stroke-width="1"/><polygon points="176,130 168,120 185,122" fill="#aaaaaa"/><line x1="400" y1="105" x2="400" y2="130" stroke="#aaaaaa" stroke-width="1"/><polygon points="400,130 393,120 407,120" fill="#aaaaaa"/><line x1="520" y1="105" x2="624" y2="130" stroke="#aaaaaa" stroke-width="1"/><polygon points="624,130 616,120 632,122" fill="#aaaaaa"/><rect x="60" y="130" width="160" height="55" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="140" y="153" text-anchor="middle" fill="#4caf50" font-size="12" font-weight="bold" font-family="sans-serif">個人の利益</text><text x="140" y="172" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">短期・直接的</text><rect x="320" y="130" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="153" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">企業の利益</text><text x="400" y="172" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">収益・成長</text><rect x="580" y="130" width="160" height="55" rx="6" fill="#16213e" stroke="#2196f3" stroke-width="2"/><text x="660" y="153" text-anchor="middle" fill="#2196f3" font-size="12" font-weight="bold" font-family="sans-serif">社会全体の利益</text><text x="660" y="172" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">長期・間接的</text><line x1="140" y1="185" x2="265" y2="210" stroke="#e91e63" stroke-width="1" stroke-dasharray="5,3"/><line x1="400" y1="185" x2="400" y2="210" stroke="#e91e63" stroke-width="1" stroke-dasharray="5,3"/><line x1="660" y1="185" x2="535" y2="210" stroke="#e91e63" stroke-width="1" stroke-dasharray="5,3"/><rect x="230" y="210" width="340" height="25" rx="5" fill="#e91e63"/><text x="400" y="228" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">三者は頻繁に衝突する ← これが倫理問題の核心</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="240" fill="#1a1a2e" rx="12"/><text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">誰のための最適化か — 問いの構造</text><rect x="330" y="55" width="140" height="50" rx="8" fill="#f9a825"/><text x="400" y="77" text-anchor="middle" fill="#1a1a2e" font-size="13" font-weight="bold" font-family="sans-serif">目的関数の選択</text><text x="400" y="96" text-anchor="middle" fill="#1a1a2e" font-size="11" font-family="sans-serif">（価値判断）</text><line x1="280" y1="105" x2="176" y2="130" stroke="#aaaaaa" stroke-width="1"/><polygon points="176,130 168,120 185,122" fill="#aaaaaa"/><line x1="400" y1="105" x2="400" y2="130" stroke="#aaaaaa" stroke-width="1"/><polygon points="400,130 393,120 407,120" fill="#aaaaaa"/><line x1="520" y1="105" x2="624" y2="130" stroke="#aaaaaa" stroke-width="1"/><polygon points="624,130 616,120 632,122" fill="#aaaaaa"/><rect x="60" y="130" width="160" height="55" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="140" y="153" text-anchor="middle" fill="#4caf50" font-size="12" font-weight="bold" font-family="sans-serif">個人の利益</text><text x="140" y="172" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">短期・直接的</text><rect x="320" y="130" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="153" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">企業の利益</text><text x="400" y="172" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">収益・成長</text><rect x="580" y="130" width="160" height="55" rx="6" fill="#16213e" stroke="#2196f3" stroke-width="2"/><text x="660" y="153" text-anchor="middle" fill="#2196f3" font-size="12" font-weight="bold" font-family="sans-serif">社会全体の利益</text><text x="660" y="172" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">長期・間接的</text><line x1="140" y1="185" x2="265" y2="210" stroke="#e91e63" stroke-width="1" stroke-dasharray="5,3"/><line x1="400" y1="185" x2="400" y2="210" stroke="#e91e63" stroke-width="1" stroke-dasharray="5,3"/><line x1="660" y1="185" x2="535" y2="210" stroke="#e91e63" stroke-width="1" stroke-dasharray="5,3"/><rect x="230" y="210" width="340" height="25" rx="5" fill="#e91e63"/><text x="400" y="228" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">三者は頻繁に衝突する ← これが倫理問題の核心</text></svg>
+</div>
 

@@ -7,41 +7,76 @@ paginate: true
 header: "海底ケーブルが切れたら"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -79,11 +114,10 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 海底ケーブルが切れたら
 
 - インターネットの物理的脆弱性
-- 
 - 2026年2月
 
 
@@ -104,7 +138,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 1: 海底ケーブルが支えるインターネット
 
 - 物理インフラの実像
@@ -116,7 +150,8 @@ style: |
 
 > *400本・130万kmのケーブルが世界データ通信の99%を担う*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">海底ケーブルの規模感</text>
   <!-- Stat cards -->
@@ -157,10 +192,12 @@ style: |
   <text x="650" y="265" text-anchor="middle" fill="#69f0ae" font-size="18" font-weight="bold" font-family="sans-serif">数百万〜</text>
   <text x="650" y="283" text-anchor="middle" fill="#69f0ae" font-size="18" font-weight="bold" font-family="sans-serif">数千万円</text>
 </svg>
+</div>
+
 - **衛星 vs 海底ケーブルの現実**
-- - 全インターネットトラフィックの **99%以上** が海底ケーブル経由
-- - 衛星の帯域: 合計でも数Tbps — ケーブルは1本で数百Tbps
-- - Starlink全衛星合計でも海底ケーブル1〜2本分の帯域
+- 全インターネットトラフィックの **99%以上** が海底ケーブル経由
+- 衛星の帯域: 合計でも数Tbps — ケーブルは1本で数百Tbps
+- Starlink全衛星合計でも海底ケーブル1〜2本分の帯域
 
 
 ---
@@ -169,7 +206,8 @@ style: |
 
 > *衛星の100倍以上の容量で低遅延を実現するのが海底光ファイバ*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">海底ケーブル帯域容量の進化</text>
   <!-- Axes -->
@@ -214,11 +252,12 @@ style: |
   <text x="680" y="101" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">600+</text>
   <text x="400" y="368" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">AI・クラウド需要で急拡大 → 敷設ラッシュ再燃中</text>
 </svg>
-- 
+</div>
+
 - **規模感**
-- - 世界に **400本以上** の海底ケーブル（総延長: 約130万km）
-- - 地球を **30周以上** する長さ
-- - 1日の取引額 **10兆ドル以上** の金融決済が通過
+- 世界に **400本以上** の海底ケーブル（総延長: 約130万km）
+- 地球を **30周以上** する長さ
+- 1日の取引額 **10兆ドル以上** の金融決済が通過
 
 
 ---
@@ -241,7 +280,8 @@ style: |
 
 > *1858年から160年かけてインターネットの物理基盤が完成した*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">海底ケーブル帯域容量の進化</text>
   <!-- Axes -->
@@ -286,9 +326,11 @@ style: |
   <text x="680" y="101" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">600+</text>
   <text x="400" y="368" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">AI・クラウド需要で急拡大 → 敷設ラッシュ再燃中</text>
 </svg>
+</div>
+
 - **通信ケーブルの進化タイムライン**
-- - **1858年**: 大西洋横断電信ケーブル（英米間） — 数週間→数分に短縮
-- - **1956年**: 初の大西洋電話ケーブル TAT-1（36回線）
+- **1858年**: 大西洋横断電信ケーブル（英米間） — 数週間→数分に短縮
+- **1956年**: 初の大西洋電話ケーブル TAT-1（36回線）
 
 
 ---
@@ -297,15 +339,15 @@ style: |
 
 > *修復は水深別の専用船が必要で完了まで数週間かかる*
 
-- - **1988年**: 初の光ファイバー海底ケーブル TAT-8（40,000回線相当）
-- - **2000年代**: インターネットバブルで大量敷設 → 過剰供給
-- - **2010年代**: Google/Facebook/Amazonが独自ケーブル参入
-- - **2020年代**: AI・クラウドで需要爆発、敷設ラッシュ再燃
+- **1988年**: 初の光ファイバー海底ケーブル TAT-8（40,000回線相当）
+- **2000年代**: インターネットバブルで大量敷設 → 過剰供給
+- **2010年代**: Google/Facebook/Amazonが独自ケーブル参入
+- **2020年代**: AI・クラウドで需要爆発、敷設ラッシュ再燃
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 2: 誰が所有・管理するか
 
 - 所有構造と権力の非対称
@@ -318,9 +360,8 @@ style: |
 > *テレコム連合からGAFAMの単独所有へシフトが加速している*
 
 - **従来型: テレコム企業コンソーシアム**
-- - NTT・KDDI・AT&T・Vodafone 等が費用を分担して共同所有
-- - 例: SEA-ME-WE 5（欧〜中東〜アジア: 20社超の共同出資）
-- 
+- NTT・KDDI・AT&T・Vodafone 等が費用を分担して共同所有
+- 例: SEA-ME-WE 5（欧〜中東〜アジア: 20社超の共同出資）
 - **新興: ハイパースケーラーの独自路線**
 
 
@@ -330,7 +371,8 @@ style: |
 
 > *Googleは独自ケーブル網でCDN遅延とコストを最小化する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -362,11 +404,13 @@ style: |
   <text x="630" y="310" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">ハイパースケーラーが</text>
   <text x="630" y="330" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">急速に比率を拡大</text>
 </svg>
-- - Google: 16本以上（Grace Hopper, Equiano, Curie 等）
-- - Meta: 2Africa（アフリカ周回45,000km）、Echo
-- - Amazon: AEConnect、Hawaiki など
-- - Microsoft: AEC、Marea（MS/Facebook共同）
-- - 背景: 帯域コスト削減 + データの流れをコントロール
+</div>
+
+- Google: 16本以上（Grace Hopper, Equiano, Curie 等）
+- Meta: 2Africa（アフリカ周回45,000km）、Echo
+- Amazon: AEConnect、Hawaiki など
+- Microsoft: AEC、Marea（MS/Facebook共同）
+- 背景: 帯域コスト削減 + データの流れをコントロール
 
 
 ---
@@ -375,7 +419,8 @@ style: |
 
 > *ハイパースケーラーはケーブル所有でクラウド競争優位を確保*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -407,10 +452,12 @@ style: |
   <text x="630" y="310" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">ハイパースケーラーが</text>
   <text x="630" y="330" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">急速に比率を拡大</text>
 </svg>
+</div>
+
 - **なぜ自前で敷くのか**
-- - クラウドサービスの国際トラフィックが急増 → 賃料より所有が安い
-- - 品質・容量・ルートを自社コントロール
-- - 競合他社（AWS vs Azure vs GCP）への依存を排除
+- クラウドサービスの国際トラフィックが急増 → 賃料より所有が安い
+- 品質・容量・ルートを自社コントロール
+- 競合他社（AWS vs Azure vs GCP）への依存を排除
 
 
 ---
@@ -419,7 +466,8 @@ style: |
 
 > *Metaのケーブルは容量世界最大クラスの自社専用インフラ*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -451,11 +499,12 @@ style: |
   <text x="630" y="310" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">ハイパースケーラーが</text>
   <text x="630" y="330" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">急速に比率を拡大</text>
 </svg>
-- 
+</div>
+
 - **数字で見る規模**
-- - Google の海底ケーブル総延長: **約100万km以上**（2024年）
-- - 2024〜2026年の新規投資: 各社 **数千億円規模**
-- - ハイパースケーラー所有比率: 国際帯域の **60%超**（2025年推計）
+- Google の海底ケーブル総延長: **約100万km以上**（2024年）
+- 2024〜2026年の新規投資: 各社 **数千億円規模**
+- ハイパースケーラー所有比率: 国際帯域の **60%超**（2025年推計）
 
 
 ---
@@ -464,7 +513,8 @@ style: |
 
 > *敷設船は世界に数十隻しかなく需要過多で修復が遅延する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -496,10 +546,11 @@ style: |
   <text x="630" y="310" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">ハイパースケーラーが</text>
   <text x="630" y="330" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">急速に比率を拡大</text>
 </svg>
+</div>
+
 - **敷設船（Cable Ship）の現実**
-- - 世界に約 **60〜70隻** のみ（新造に数年・数百億円）
-- - 主要オペレーター: SubCom（米）、Alcatel Submarine Networks（仏）、NEC（日）
-- 
+- 世界に約 **60〜70隻** のみ（新造に数年・数百億円）
+- 主要オペレーター: SubCom（米）、Alcatel Submarine Networks（仏）、NEC（日）
 - **敷設の難しさ**
 
 
@@ -509,7 +560,8 @@ style: |
 
 > *敷設船不足が海底ケーブル冗長化の最大のボトルネック*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">海底ケーブル敷設プロセス</text>
   <!-- Ocean -->
@@ -543,19 +595,21 @@ style: |
   <text x="516" y="152" fill="#ffffff" font-size="11" font-family="sans-serif">④ 中継器設置・接続テスト</text>
   <text x="516" y="170" fill="#e91e63" font-size="11" font-family="sans-serif">修理依頼から着工まで数週間〜数ヶ月待ち</text>
 </svg>
-- - 水深6,000m以上の海底へ精密敷設（誤差数m以内）
-- - 1km敷設に数百万〜数千万円のコスト
-- - 修理時も同じ船が必要 — **需給逼迫が常態化**
-- 
-- - 修理依頼から着工まで **数週間〜数ヶ月** 待ちが普通
+</div>
+
+- 水深6,000m以上の海底へ精密敷設（誤差数m以内）
+- 1km敷設に数百万〜数千万円のコスト
+- 修理時も同じ船が必要 — **需給逼迫が常態化**
+- 修理依頼から着工まで **数週間〜数ヶ月** 待ちが普通
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 3: なぜ切れるのか
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">海底ケーブル敷設プロセス</text>
   <!-- Ocean -->
@@ -589,6 +643,8 @@ style: |
   <text x="516" y="152" fill="#ffffff" font-size="11" font-family="sans-serif">④ 中継器設置・接続テスト</text>
   <text x="516" y="170" fill="#e91e63" font-size="11" font-family="sans-serif">修理依頼から着工まで数週間〜数ヶ月待ち</text>
 </svg>
+</div>
+
 - 脅威の分類と統計
 
 
@@ -605,7 +661,8 @@ style: |
 
 > *地震・海底地滑りで太平洋ケーブルが同時多断線した事例*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">切断原因の内訳（統計）</text>
   <!-- Large arc-like bar representation -->
@@ -638,10 +695,12 @@ style: |
   <text x="496" y="298" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">約 0.1〜0.5 回</text>
   <text x="496" y="318" fill="#aaa" font-size="10" font-family="sans-serif">（全400本 → 年間40〜200件の切断）</text>
 </svg>
+</div>
+
 - **主な自然障害の事例**
-- - **2006年 台湾地震**: 7本のケーブルが同時切断 → 東南アジア全域で通信障害
-- - **2007年 台湾**: 台風・土砂流でさらに複数切断、修復に7週間
-- - **2022年 トンガ**: 海底火山噴火でケーブル切断 → 島国が数週間孤立
+- **2006年 台湾地震**: 7本のケーブルが同時切断 → 東南アジア全域で通信障害
+- **2007年 台湾**: 台風・土砂流でさらに複数切断、修復に7週間
+- **2022年 トンガ**: 海底火山噴火でケーブル切断 → 島国が数週間孤立
 
 
 ---
@@ -650,7 +709,8 @@ style: |
 
 > *台湾地震でアジア全域の通信が数週間停止した前例がある*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">切断原因の内訳（統計）</text>
   <!-- Large arc-like bar representation -->
@@ -683,10 +743,11 @@ style: |
   <text x="496" y="298" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">約 0.1〜0.5 回</text>
   <text x="496" y="318" fill="#aaa" font-size="10" font-family="sans-serif">（全400本 → 年間40〜200件の切断）</text>
 </svg>
-- 
+</div>
+
 - **海底地形と地震リスク**
-- - 大陸棚の縁（水深200〜3000m）が最も危険 — 土砂崩れが発生しやすい
-- - 深海部（水深4000m〜）は比較的安定 — 問題は浅い陸揚げ区間
+- 大陸棚の縁（水深200〜3000m）が最も危険 — 土砂崩れが発生しやすい
+- 深海部（水深4000m〜）は比較的安定 — 問題は浅い陸揚げ区間
 
 
 ---
@@ -695,7 +756,8 @@ style: |
 
 > *漁船のアンカーと底引き網が全障害の70〜80%の原因*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">切断原因の内訳（統計）</text>
   <!-- Large arc-like bar representation -->
@@ -728,10 +790,11 @@ style: |
   <text x="496" y="298" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">約 0.1〜0.5 回</text>
   <text x="496" y="318" fill="#aaa" font-size="10" font-family="sans-serif">（全400本 → 年間40〜200件の切断）</text>
 </svg>
+</div>
+
 - **圧倒的に多い「人的過失」**
-- - トロール漁船の網、錨が水深数百mのケーブルを引っ掛ける
-- - 統計: 全切断事故の **70〜80%** が漁業・船舶関連
-- 
+- トロール漁船の網、錨が水深数百mのケーブルを引っ掛ける
+- 統計: 全切断事故の **70〜80%** が漁業・船舶関連
 - **なぜ防げないのか**
 
 
@@ -741,7 +804,8 @@ style: |
 
 > *遵守が任意のIALA海図と浅海ケーブル無防備が年間数百件を招く*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">切断原因の内訳（統計）</text>
   <!-- Large arc-like bar representation -->
@@ -774,11 +838,12 @@ style: |
   <text x="496" y="298" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">約 0.1〜0.5 回</text>
   <text x="496" y="318" fill="#aaa" font-size="10" font-family="sans-serif">（全400本 → 年間40〜200件の切断）</text>
 </svg>
-- - ケーブル敷設位置はIALA海図に記載されるが、遵守は任意
-- - 浅い大陸棚（水深200m以下）は保護用コーティングのみ
-- - 嵐・視界不良時のアンカー投下は「仕方ない」
-- 
-- - ケーブル1本当たりの年間切断確率: **約0.1〜0.5回**
+</div>
+
+- ケーブル敷設位置はIALA海図に記載されるが、遵守は任意
+- 浅い大陸棚（水深200m以下）は保護用コーティングのみ
+- 嵐・視界不良時のアンカー投下は「仕方ない」
+- ケーブル1本当たりの年間切断確率: **約0.1〜0.5回**
 
 
 ---
@@ -787,7 +852,8 @@ style: |
 
 > *バルト海のケーブル断線はロシアによる故意破壊の疑いあり*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">バルト海ケーブル切断事件（2024年11月）</text>
   <!-- Map area -->
@@ -836,11 +902,12 @@ style: |
   <text x="516" y="298" fill="#ffffff" font-size="11" font-family="sans-serif">証拠があっても対応困難</text>
   <text x="516" y="316" fill="#e91e63" font-size="11" font-family="sans-serif">欧州の安全保障議論に直結</text>
 </svg>
+</div>
+
 - **2024年11月: バルト海で2本のケーブルが切断**
-- - Estlink-2（フィンランド〜エストニア電力ケーブル）
-- - Cinia C-Lion 1（フィンランド〜ドイツ通信ケーブル）
-- - 同日・同一海域で発生 → 「偶然」の確率は極めて低い
-- 
+- Estlink-2（フィンランド〜エストニア電力ケーブル）
+- Cinia C-Lion 1（フィンランド〜ドイツ通信ケーブル）
+- 同日・同一海域で発生 → 「偶然」の確率は極めて低い
 
 
 ---
@@ -849,7 +916,8 @@ style: |
 
 > *「Yi Peng 3」がアンカー引きずり証拠残しNATOの調査要求を拒絶*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">バルト海ケーブル切断事件（2024年11月）</text>
   <!-- Map area -->
@@ -898,17 +966,18 @@ style: |
   <text x="516" y="298" fill="#ffffff" font-size="11" font-family="sans-serif">証拠があっても対応困難</text>
   <text x="516" y="316" fill="#e91e63" font-size="11" font-family="sans-serif">欧州の安全保障議論に直結</text>
 </svg>
+</div>
+
 - **疑惑の中心: 中国船「Yi Peng 3」**
-- - 切断海域を通過した直後にスウェーデン海域で停船・拒否
-- - 数週間にわたりNATO諸国が乗船調査を要求 → 中国側が拒絶
-- - アンカーを引きずった痕跡が海底に残存
-- 
-- - 「グレーゾーン戦争」の典型事例として注目
+- 切断海域を通過した直後にスウェーデン海域で停船・拒否
+- 数週間にわたりNATO諸国が乗船調査を要求 → 中国側が拒絶
+- アンカーを引きずった痕跡が海底に残存
+- 「グレーゾーン戦争」の典型事例として注目
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 4: 地政学的脆弱性
 
 - チョークポイントと国家レベルの脅威
@@ -927,7 +996,8 @@ style: |
 
 > *紅海・台湾海峡・南シナ海はケーブルの地政学的急所*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">紅海チョークポイントの脆弱性</text>
   <!-- Map background - simplified -->
@@ -967,10 +1037,11 @@ style: |
   <text x="66" y="290" fill="#ffffff" font-size="11" font-family="sans-serif">インド: 国際帯域 55% 影響</text>
   <text x="66" y="306" fill="#ffffff" font-size="11" font-family="sans-serif">修復: 最長 5〜6ヶ月</text>
 </svg>
+</div>
+
 - **紅海 / スエズ運河付近**
-- - 欧州〜アジア間のケーブルの **約70%** が通過
-- - 2024年: フーシ派攻撃で複数切断 → アフリカ迂回を余儀なくされる
-- 
+- 欧州〜アジア間のケーブルの **約70%** が通過
+- 2024年: フーシ派攻撃で複数切断 → アフリカ迂回を余儀なくされる
 - **台湾海峡**
 
 
@@ -980,7 +1051,8 @@ style: |
 
 > *単一チョークポイントが切断されると大陸間通信が壊滅する*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">紅海チョークポイントの脆弱性</text>
   <!-- Map background - simplified -->
@@ -1020,12 +1092,13 @@ style: |
   <text x="66" y="290" fill="#ffffff" font-size="11" font-family="sans-serif">インド: 国際帯域 55% 影響</text>
   <text x="66" y="306" fill="#ffffff" font-size="11" font-family="sans-serif">修復: 最長 5〜6ヶ月</text>
 </svg>
-- - 台湾接続ケーブルの大部分が通過 — 台湾有事で即座に孤立
-- - 2023年: 中国船が馬祖諸島のケーブルを2本切断（「事故」扱い）
-- 
+</div>
+
+- 台湾接続ケーブルの大部分が通過 — 台湾有事で即座に孤立
+- 2023年: 中国船が馬祖諸島のケーブルを2本切断（「事故」扱い）
 - **南シナ海**
-- - 中国が実効支配する岩礁付近をアジア主要ケーブルが通過
-- - 中国の「海上民兵」船による監視・妨害が常態化
+- 中国が実効支配する岩礁付近をアジア主要ケーブルが通過
+- 中国の「海上民兵」船による監視・妨害が常態化
 
 
 ---
@@ -1034,7 +1107,8 @@ style: |
 
 > *ロシアの調査船が海底ケーブルルートを事前マッピングしている*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">海底ケーブルをめぐる地政学的アクター</text>
   <!-- Russia box -->
@@ -1077,11 +1151,12 @@ style: |
   <text x="640" y="290" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">平時に情報収集だけでも価値大</text>
   <text x="640" y="308" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">修理費用は相手国持ち</text>
 </svg>
+</div>
+
 - **ヤンタール号（Yantar）**
-- - 表向き「海洋調査船」 — 実態はケーブル切断・盗聴能力を持つ特殊船
-- - NATO海底ケーブルルートを繰り返し「調査」
-- - 深海潜水艇（AS-12「Losharik」）を搭載
-- 
+- 表向き「海洋調査船」 — 実態はケーブル切断・盗聴能力を持つ特殊船
+- NATO海底ケーブルルートを繰り返し「調査」
+- 深海潜水艇（AS-12「Losharik」）を搭載
 - **Belgorod原子力潜水艦**
 
 
@@ -1091,7 +1166,8 @@ style: |
 
 > *平時の調査活動が有事の破壊工作の準備になっている可能性*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">海底ケーブルをめぐる地政学的アクター</text>
   <!-- Russia box -->
@@ -1134,12 +1210,13 @@ style: |
   <text x="640" y="290" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">平時に情報収集だけでも価値大</text>
   <text x="640" y="308" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">修理費用は相手国持ち</text>
 </svg>
-- - 「特殊任務」特化の改造原潜
-- - 「Poseidon」核魚雷に加え、海底インフラ破壊能力が疑われる
-- 
+</div>
+
+- 「特殊任務」特化の改造原潜
+- 「Poseidon」核魚雷に加え、海底インフラ破壊能力が疑われる
 - **NATO の懸念**
-- - 「平時」からの情報収集・切断位置の把握が進んでいる可能性
-- - 即時切断なしでも「抑止としての脅し」に使える
+- 「平時」からの情報収集・切断位置の把握が進んでいる可能性
+- 即時切断なしでも「抑止としての脅し」に使える
 
 
 ---
@@ -1148,7 +1225,8 @@ style: |
 
 > *NSAがケーブル着陸点で傍受した内部文書がSNOWDENで暴露*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">陸揚げ局と盗聴の急所</text>
   <!-- Cable underwater -->
@@ -1188,10 +1266,11 @@ style: |
   <text x="345" y="152" fill="#ffffff" font-size="11" font-family="sans-serif">米国: HMN Technologiesを</text>
   <text x="345" y="168" fill="#ffffff" font-size="11" font-family="sans-serif">米国向けケーブル工事から排除</text>
 </svg>
+</div>
+
 - **スノーデン文書が示した実態（2013年〜）**
-- - NSAの「MUSCULAR」作戦: Google/Yahoo! のデータセンター間ケーブルを盗聴
-- - GCHQの「Tempora」: 英国陸揚げ局でケーブルの生データを大量取得
-- 
+- NSAの「MUSCULAR」作戦: Google/Yahoo! のデータセンター間ケーブルを盗聴
+- GCHQの「Tempora」: 英国陸揚げ局でケーブルの生データを大量取得
 - **陸揚げ局（Landing Station）が盗聴の急所**
 
 
@@ -1201,7 +1280,8 @@ style: |
 
 > *陸揚げ局経由の物理盗聴と中国系企業排除が安全保障の核心*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">陸揚げ局と盗聴の急所</text>
   <!-- Cable underwater -->
@@ -1241,20 +1321,22 @@ style: |
   <text x="345" y="152" fill="#ffffff" font-size="11" font-family="sans-serif">米国: HMN Technologiesを</text>
   <text x="345" y="168" fill="#ffffff" font-size="11" font-family="sans-serif">米国向けケーブル工事から排除</text>
 </svg>
-- - ケーブルが陸に上がる地点（陸揚げ局）は物理アクセスが容易
-- - 多くの陸揚げ局が「友好国」の領土内にある設計
-- 
+</div>
+
+- ケーブルが陸に上がる地点（陸揚げ局）は物理アクセスが容易
+- 多くの陸揚げ局が「友好国」の領土内にある設計
 - **中国リスク**
-- - 中国系企業がケーブル出資 → 盗聴バックドアの懸念
-- - 米国: HMN Technologies（旧Huawei Marine）排除を推進
+- 中国系企業がケーブル出資 → 盗聴バックドアの懸念
+- 米国: HMN Technologies（旧Huawei Marine）排除を推進
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 5: 切断されたら何が起きるか
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">BGP自動再ルーティングの仕組み</text>
   <!-- Node A: Tokyo -->
@@ -1297,6 +1379,8 @@ style: |
   <text x="556" y="316" fill="#ffffff" font-size="11" font-family="sans-serif">輻輳時: パケットロス多発</text>
   <text x="556" y="332" fill="#aaa" font-size="10" font-family="sans-serif">FX・ゲーム・ビデオ会議に影響</text>
 </svg>
+</div>
+
 - 障害伝播のメカニズムと影響範囲
 
 
@@ -1306,7 +1390,8 @@ style: |
 
 > *2024年アフリカ沖断線でSub-Saharan Africa全体が数週間影響*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">BGP自動再ルーティングの仕組み</text>
   <!-- Node A: Tokyo -->
@@ -1349,11 +1434,12 @@ style: |
   <text x="556" y="316" fill="#ffffff" font-size="11" font-family="sans-serif">輻輳時: パケットロス多発</text>
   <text x="556" y="332" fill="#aaa" font-size="10" font-family="sans-serif">FX・ゲーム・ビデオ会議に影響</text>
 </svg>
+</div>
+
 - **2024年2〜3月: 紅海で4本同時切断**
-- - EIG（ヨーロッパ〜インド・ゲートウェイ）
-- - SEA-ME-WE 4 / SEA-ME-WE 5
-- - AAE-1（アジア〜アフリカ〜ヨーロッパ）
-- 
+- EIG（ヨーロッパ〜インド・ゲートウェイ）
+- SEA-ME-WE 4 / SEA-ME-WE 5
+- AAE-1（アジア〜アフリカ〜ヨーロッパ）
 
 
 ---
@@ -1362,7 +1448,8 @@ style: |
 
 > *欧亜帯域25〜30%喪失でインドのIT業務が数日停止した実例*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">クラウドサービスへの影響シナリオ</text>
   <!-- Normal scenario -->
@@ -1407,12 +1494,13 @@ style: |
   <text x="592" y="276" text-anchor="middle" fill="#ff7043" font-size="11" font-family="sans-serif">認証タイムアウト多発</text>
   <text x="592" y="296" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">→ アプリ機能停止</text>
 </svg>
+</div>
+
 - **影響の規模**
-- - 欧州〜アジア間帯域の **約25〜30%** が喪失
-- - インド: 国際帯域の **55%** が影響（数十Tbps消失）
-- - アフリカ東部〜中東: レイテンシが2〜5倍に悪化
-- 
-- - フーシ派攻撃による「副次的損傷」か意図的かは不明
+- 欧州〜アジア間帯域の **約25〜30%** が喪失
+- インド: 国際帯域の **55%** が影響（数十Tbps消失）
+- アフリカ東部〜中東: レイテンシが2〜5倍に悪化
+- フーシ派攻撃による「副次的損傷」か意図的かは不明
 
 
 ---
@@ -1421,7 +1509,8 @@ style: |
 
 > *BGPは障害を自動迂回するが帯域制約で速度低下は避けられない*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">クラウドサービスへの影響シナリオ</text>
   <!-- Normal scenario -->
@@ -1466,12 +1555,13 @@ style: |
   <text x="592" y="276" text-anchor="middle" fill="#ff7043" font-size="11" font-family="sans-serif">認証タイムアウト多発</text>
   <text x="592" y="296" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">→ アプリ機能停止</text>
 </svg>
+</div>
+
 - **切断後のトラフィック再ルーティング**
-- - BGP（Border Gateway Protocol）が自動で迂回経路を選択
-- - 迂回経路: アフリカ南端（喜望峰）回り、衛星、残存ケーブル
-- 
+- BGP（Border Gateway Protocol）が自動で迂回経路を選択
+- 迂回経路: アフリカ南端（喜望峰）回り、衛星、残存ケーブル
 - **問題: 容量の壁**
-- - 迂回経路の容量 < 元の経路の容量 → 輻輳・パケットロス
+- 迂回経路の容量 < 元の経路の容量 → 輻輳・パケットロス
 
 
 ---
@@ -1480,7 +1570,8 @@ style: |
 
 > *障害伝播はBGP収束時間の数分間で世界中に波及する*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">金融システムのケーブル依存</text>
   <!-- SWIFT box -->
@@ -1515,12 +1606,13 @@ style: |
   <text x="610" y="258" text-anchor="middle" fill="#ff7043" font-size="12" font-family="sans-serif">数日間業務停止</text>
   <text x="400" y="298" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">最悪シナリオ: 紅海+台湾海峡同時切断 → グローバルGDP損害 数千億円/日</text>
 </svg>
-- - レイテンシ: 東京〜ロンドン 最短230ms → 迂回で350〜500msに
-- 
+</div>
+
+- レイテンシ: 東京〜ロンドン 最短230ms → 迂回で350〜500msに
 - **実際の症状**
-- - 特定地域向けのクラウドサービスが著しく低速化
-- - リアルタイム系（ビデオ会議・オンラインゲーム・FX取引）が使用不能に
-- - CDNキャッシュが効くコンテンツは比較的正常
+- 特定地域向けのクラウドサービスが著しく低速化
+- リアルタイム系（ビデオ会議・オンラインゲーム・FX取引）が使用不能に
+- CDNキャッシュが効くコンテンツは比較的正常
 
 
 ---
@@ -1529,7 +1621,8 @@ style: |
 
 > *クラウドのマルチリージョン設計でも海底断線は防ぎきれない*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">金融システムのケーブル依存</text>
   <!-- SWIFT box -->
@@ -1564,12 +1657,13 @@ style: |
   <text x="610" y="258" text-anchor="middle" fill="#ff7043" font-size="12" font-family="sans-serif">数日間業務停止</text>
   <text x="400" y="298" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">最悪シナリオ: 紅海+台湾海峡同時切断 → グローバルGDP損害 数千億円/日</text>
 </svg>
+</div>
+
 - **リージョン間の依存関係が露わになる**
-- - マルチリージョン構成でも、同一ケーブルを使う場合は同時障害
-- - 例: ap-northeast-1（東京）〜 eu-west-1（アイルランド）間で高遅延
-- 
+- マルチリージョン構成でも、同一ケーブルを使う場合は同時障害
+- 例: ap-northeast-1（東京）〜 eu-west-1（アイルランド）間で高遅延
 - **実害が出やすいシステム**
-- - グローバルデータベース同期（Aurora Global, Spanner）
+- グローバルデータベース同期（Aurora Global, Spanner）
 
 
 ---
@@ -1578,7 +1672,8 @@ style: |
 
 > *SLA99.9%は海底断線を考慮していない設計上の死角がある*
 
-- <svg viewBox="0 0 800 330" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 330" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="330" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ケーブル切断から修復までのタイムライン</text>
   <!-- Timeline bar -->
@@ -1623,12 +1718,13 @@ style: |
   <text x="600" y="273" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">最長 5〜6ヶ月</text>
   <text x="400" y="300" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">修理コスト: 100万〜300万ドル / 件　修理船日当: 数十万ドル</text>
 </svg>
-- - 国際 CDN の Origin Fetch（キャッシュミス時）
-- - SaaS の認証サーバーが片側リージョンに集中するケース
-- 
+</div>
+
+- 国際 CDN の Origin Fetch（キャッシュミス時）
+- SaaS の認証サーバーが片側リージョンに集中するケース
 - **2022年 META 障害との比較**
-- - BGP設定ミスによる「論理的切断」でも6時間のグローバル障害
-- - 物理切断はより長期・広範囲・復旧が遥かに困難
+- BGP設定ミスによる「論理的切断」でも6時間のグローバル障害
+- 物理切断はより長期・広範囲・復旧が遥かに困難
 
 
 ---
@@ -1637,7 +1733,8 @@ style: |
 
 > *SWIFTはケーブル障害で決済遅延が発生し市場が不安定化*
 
-- <svg viewBox="0 0 800 330" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 330" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="330" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ケーブル切断から修復までのタイムライン</text>
   <!-- Timeline bar -->
@@ -1682,12 +1779,13 @@ style: |
   <text x="600" y="273" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">最長 5〜6ヶ月</text>
   <text x="400" y="300" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">修理コスト: 100万〜300万ドル / 件　修理船日当: 数十万ドル</text>
 </svg>
+</div>
+
 - **金融インフラのケーブル依存**
-- - SWIFT: 銀行間国際送金の99%が海底ケーブル経由
-- - FX市場: マイクロ秒単位の裁定取引 → レイテンシ増大で市場崩壊
-- 
+- SWIFT: 銀行間国際送金の99%が海底ケーブル経由
+- FX市場: マイクロ秒単位の裁定取引 → レイテンシ増大で市場崩壊
 - **2008年 エジプト沖切断事件**
-- - SEA-ME-WE 4 と FLAG が同日切断
+- SEA-ME-WE 4 と FLAG が同日切断
 
 
 ---
@@ -1696,7 +1794,8 @@ style: |
 
 > *主要チョークポイント同時切断でGDPに1日数千億円の損害が出る*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">「冗長構成なのになぜ壊れるのか」</text>
   <!-- Left: multiple cables same route -->
@@ -1734,12 +1833,13 @@ style: |
   <text x="590" y="280" text-anchor="middle" fill="#69f0ae" font-size="12" font-weight="bold" font-family="sans-serif">地理的に分散した冗長性</text>
   <text x="590" y="300" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">同一チョークポイントを通らない</text>
 </svg>
-- - インド: 国際帯域50%消失 → IT企業の業務が数日間停止
-- - 中東・南アジアの決済処理に大規模遅延
-- 
+</div>
+
+- インド: 国際帯域50%消失 → IT企業の業務が数日間停止
+- 中東・南アジアの決済処理に大規模遅延
 - **最悪シナリオ**
-- - 主要チョークポイント（紅海 + 台湾海峡）の同時切断
-- - 試算: グローバルGDPへの1日あたり損害 **数千億円**
+- 主要チョークポイント（紅海 + 台湾海峡）の同時切断
+- 試算: グローバルGDPへの1日あたり損害 **数千億円**
 
 
 ---
@@ -1748,7 +1848,8 @@ style: |
 
 > *修復コストは1件平均100万ドルで修復完了まで平均6週間*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">「冗長構成なのになぜ壊れるのか」</text>
   <!-- Left: multiple cables same route -->
@@ -1786,12 +1887,13 @@ style: |
   <text x="590" y="280" text-anchor="middle" fill="#69f0ae" font-size="12" font-weight="bold" font-family="sans-serif">地理的に分散した冗長性</text>
   <text x="590" y="300" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">同一チョークポイントを通らない</text>
 </svg>
+</div>
+
 - **修復の流れ**
-- - 障害検知 → 切断位置の特定（OTDR測定）→ 修理船手配 → 修復
-- - 深海部: 位置特定に数日、修理船が到着するまで数週間
-- 
+- 障害検知 → 切断位置の特定（OTDR測定）→ 修理船手配 → 修復
+- 深海部: 位置特定に数日、修理船が到着するまで数週間
 - **コスト感**
-- - 修理1件: **100万〜300万ドル**（浅海〜深海によって大きく変動）
+- 修理1件: **100万〜300万ドル**（浅海〜深海によって大きく変動）
 
 
 ---
@@ -1800,17 +1902,16 @@ style: |
 
 > *深海切断の修復は2〜3ヶ月・複数同時なら最長6ヶ月かかる*
 
-- - 修理船の日当: **数十万ドル**
-- 
+- 修理船の日当: **数十万ドル**
 - **実際の修復期間（実績）**
-- - 浅海・近海: 1〜2週間
-- - 深海・遠方: 2〜3ヶ月
-- - 複数同時切断（2024年紅海事例）: 最長5〜6ヶ月
+- 浅海・近海: 1〜2週間
+- 深海・遠方: 2〜3ヶ月
+- 複数同時切断（2024年紅海事例）: 最長5〜6ヶ月
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 6: 冗長性と対策
 
 - 現在の防衛と限界
@@ -1822,7 +1923,8 @@ style: |
 
 > *冗長化設計は陸側に偏りチョークポイントの多重化が不十分*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">海底ケーブルをめぐる地政学的アクター</text>
   <!-- Russia box -->
@@ -1865,11 +1967,12 @@ style: |
   <text x="640" y="290" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">平時に情報収集だけでも価値大</text>
   <text x="640" y="308" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">修理費用は相手国持ち</text>
 </svg>
+</div>
+
 - **「複数ケーブルあるから大丈夫」の落とし穴**
-- - 複数のケーブルが **同じルート** を通る（海峡・チョークポイント）
-- - 同じ陸揚げ局に接続 → 陸揚げ局が破壊されると全滅
-- - 地震断層ゾーン上をケーブルが束になって通過するケース多数
-- 
+- 複数のケーブルが **同じルート** を通る（海峡・チョークポイント）
+- 同じ陸揚げ局に接続 → 陸揚げ局が破壊されると全滅
+- 地震断層ゾーン上をケーブルが束になって通過するケース多数
 
 
 ---
@@ -1878,7 +1981,8 @@ style: |
 
 > *同一海峡に集中するルート設計が「単一障害点」を生む*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">海底ケーブルをめぐる地政学的アクター</text>
   <!-- Russia box -->
@@ -1921,12 +2025,13 @@ style: |
   <text x="640" y="290" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">平時に情報収集だけでも価値大</text>
   <text x="640" y="308" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">修理費用は相手国持ち</text>
 </svg>
+</div>
+
 - **容量の非対称**
-- - 主要ルートと迂回ルートでは **5〜10倍** の容量差
-- - 迂回時は帯域の大幅制限か優先制御が必須
-- 
+- 主要ルートと迂回ルートでは **5〜10倍** の容量差
+- 迂回時は帯域の大幅制限か優先制御が必須
 - **修理船の不足**
-- - 需要急増に対して修理船の増備が追いついていない（建造に5〜7年）
+- 需要急増に対して修理船の増備が追いついていない（建造に5〜7年）
 
 
 ---
@@ -1943,19 +2048,19 @@ style: |
 > *フランス・英国・日本が海底インフラ専任の監視部隊を設立*
 
 - **EU: 海底インフラ保護指令（2023年〜）**
-- - 重要インフラの脆弱性評価を義務化
-- - 加盟国の海底インフラ保護計画の策定要求
-- 
+- 重要インフラの脆弱性評価を義務化
+- 加盟国の海底インフラ保護計画の策定要求
 - **英国**
-- - 海底ケーブルを「重要国家インフラ」に指定
-- - Royal Navy による定期パトロール開始
+- 海底ケーブルを「重要国家インフラ」に指定
+- Royal Navy による定期パトロール開始
 
 
 ---
 
 # 各国の監視・防衛強化の動き（2/2）（1/2）
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ケーブル障害を前提とした設計パターン</text>
   <!-- Pattern 1: Geographic diversity -->
@@ -2001,9 +2106,10 @@ style: |
   <text x="640" y="299" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">クラウドベンダー責任範囲</text>
   <text x="640" y="315" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">自社SLAへの影響検討</text>
 </svg>
-- 
+</div>
+
 - **日本**
-- - 経済安保推進法（2022年）: 海底ケーブルを特定重要インフラに追加
+- 経済安保推進法（2022年）: 海底ケーブルを特定重要インフラに追加
 
 
 ---
@@ -2012,10 +2118,9 @@ style: |
 
 > *経済安保法で海底ケーブルを特定重要インフラに指定し国内強化へ*
 
-- - KDDI/NTT: 国内陸揚げ局の冗長化・強化を推進
-- 
+- KDDI/NTT: 国内陸揚げ局の冗長化・強化を推進
 - **米国**
-- - 中国系企業（HMN Technologies）の米国向けケーブル工事を禁止
+- 中国系企業（HMN Technologies）の米国向けケーブル工事を禁止
 
 
 ---
@@ -2024,7 +2129,8 @@ style: |
 
 > *NATOは海底インフラをCritical Infrastructureとして軍事保護*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ケーブル障害を前提とした設計パターン</text>
   <!-- Pattern 1: Geographic diversity -->
@@ -2070,12 +2176,13 @@ style: |
   <text x="640" y="299" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">クラウドベンダー責任範囲</text>
   <text x="640" y="315" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">自社SLAへの影響検討</text>
 </svg>
+</div>
+
 - **NATO海底インフラ調整セル（2023年設立）**
-- - 加盟国の海底インフラ情報を統合・共有
-- - 異常活動の早期警戒システム構築
-- 
+- 加盟国の海底インフラ情報を統合・共有
+- 異常活動の早期警戒システム構築
 - **海底監視の強化**
-- - 水中ドローン・音響センサーネットワークの展開
+- 水中ドローン・音響センサーネットワークの展開
 
 
 ---
@@ -2084,7 +2191,8 @@ style: |
 
 > *同盟間のケーブル監視データ共有体制が急速に整備されている*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ケーブル断絶時の障害伝播と対策アーキテクチャ</text>
   <!-- Flow diagram -->
@@ -2116,20 +2224,22 @@ style: |
   <text x="400" y="322" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">対策: 事前設計</text>
   <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">地理的分散 + 非同期化 + ローカルキャッシュ強化 + カオスエンジニアリング訓練</text>
 </svg>
-- - DIANA（防衛加速革新のための同盟機関）で技術開発
-- 
+</div>
+
+- DIANA（防衛加速革新のための同盟機関）で技術開発
 - **課題**
-- - 「グレーゾーン攻撃」への法的・外交的対応が未整備
-- - 平時に切断されても「武力攻撃」と認定しにくい
-- - 5条（集団的自衛権）の発動基準が曖昧
+- 「グレーゾーン攻撃」への法的・外交的対応が未整備
+- 平時に切断されても「武力攻撃」と認定しにくい
+- 5条（集団的自衛権）の発動基準が曖昧
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 7: エンジニアへの示唆
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">ケーブル断絶時の障害伝播と対策アーキテクチャ</text>
   <!-- Flow diagram -->
@@ -2161,6 +2271,8 @@ style: |
   <text x="400" y="322" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">対策: 事前設計</text>
   <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">地理的分散 + 非同期化 + ローカルキャッシュ強化 + カオスエンジニアリング訓練</text>
 </svg>
+</div>
+
 - 設計思想の転換点
 
 
@@ -2171,11 +2283,10 @@ style: |
 > *システム設計者は海底断線を想定したDR計画を持つべき*
 
 - **「クラウドは海の底」という認識**
-- - クラウドのグローバルリージョン間通信も物理ケーブルに依存
-- - 「可用性99.99%」の保証は単一リージョン内の話
-- 
+- クラウドのグローバルリージョン間通信も物理ケーブルに依存
+- 「可用性99.99%」の保証は単一リージョン内の話
 - **エンジニアが見落としがちな仮定**
-- - 「国際ネットワークは常に繋がっている」
+- 「国際ネットワークは常に繋がっている」
 
 
 ---
@@ -2184,12 +2295,11 @@ style: |
 
 > *Starlinkは補完手段で代替ではなく遅延・容量に根本的限界*
 
-- - 「マルチリージョン = 障害耐性がある」
-- - 「CDNがあればオリジン障害は関係ない」
-- 
+- 「マルチリージョン = 障害耐性がある」
+- 「CDNがあればオリジン障害は関係ない」
 - **実際の設計に必要な問い**
-- - 国際通信が数時間〜数日間失われたら何が壊れるか？
-- - 特定リージョン間の通信遅延が10倍になっても動くか？
+- 国際通信が数時間〜数日間失われたら何が壊れるか？
+- 特定リージョン間の通信遅延が10倍になっても動くか？
 
 
 ---
@@ -2199,10 +2309,9 @@ style: |
 > *マルチキャリア・マルチパスで海底断線への依存度を下げる*
 
 - **ケーブル障害を前提とした設計パターン**
-- - **地理的分散**: 同一チョークポイントを通らない複数経路
-- - **非同期化**: クリティカルパスから国際通信を外す
-- - **ローカルキャッシュ強化**: 海外オリジンへの依存を減らす
-- 
+- **地理的分散**: 同一チョークポイントを通らない複数経路
+- **非同期化**: クリティカルパスから国際通信を外す
+- **ローカルキャッシュ強化**: 海外オリジンへの依存を減らす
 - **SLA・契約の見直し**
 
 
@@ -2212,26 +2321,24 @@ style: |
 
 > *障害時に自動でトラフィックを迂回させるアーキテクチャが必要*
 
-- - 国際ケーブル障害は「フォースマジュール（不可抗力）」扱いが多い
-- - SLAの免責条項を確認: クラウドベンダーの責任範囲はどこまでか
-- 
+- 国際ケーブル障害は「フォースマジュール（不可抗力）」扱いが多い
+- SLAの免責条項を確認: クラウドベンダーの責任範囲はどこまでか
 - **障害訓練**
-- - 「国際通信をブロック」した状態でのカオスエンジニアリング実施
-- - 地域間レイテンシを意図的に劣化させたテスト
+- 「国際通信をブロック」した状態でのカオスエンジニアリング実施
+- 地域間レイテンシを意図的に劣化させたテスト
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ
 
 - **5つのキーメッセージ**
-- 
-- 1. インターネットは「雲」ではなく「海底の線」で動いている
-- 2. 切断の70〜80%は漁船・アンカー — 地味だが防ぎにくい
-- 3. チョークポイント（紅海・台湾海峡）は構造的脆弱性
-- 4. 衛星は補完にはなるが、ケーブルの代替にはならない
-- 5. 「国際通信断絶」を設計の前提に組み込む時代が来ている
+1. インターネットは「雲」ではなく「海底の線」で動いている
+2. 切断の70〜80%は漁船・アンカー — 地味だが防ぎにくい
+3. チョークポイント（紅海・台湾海峡）は構造的脆弱性
+4. 衛星は補完にはなるが、ケーブルの代替にはならない
+5. 「国際通信断絶」を設計の前提に組み込む時代が来ている
 
 
 ---
@@ -2241,10 +2348,9 @@ style: |
 > *ITU・ICPC・各国政府の規制動向が設計制約に直結する*
 
 - **インフラ・技術解説**
-- - [TeleGeography: Submarine Cable Map](https://www.submarinecablemap.com/)
-- - [ICPC (International Cable Protection Committee)](https://www.iscpc.org/)
-- - [ITU-T G.978: 海底ケーブルシステム標準](https://www.itu.int/)
-- 
+- [TeleGeography: Submarine Cable Map](https://www.submarinecablemap.com/)
+- [ICPC (International Cable Protection Committee)](https://www.iscpc.org/)
+- [ITU-T G.978: 海底ケーブルシステム標準](https://www.itu.int/)
 - **地政学・安全保障**
 
 
@@ -2254,11 +2360,10 @@ style: |
 
 > *信頼性ある設計にはTeleGeographyとNATO文書が必読の一次資料*
 
-- - [Atlantic Council: Invisible and Vital (2021)](https://www.atlanticcouncil.org/)
-- - [CSIS: Undersea Cables: Indispensable, Insecure (2019)](https://www.csis.org/)
-- - [NATO: Critical Undersea Infrastructure Protection](https://www.nato.int/)
-- 
+- [Atlantic Council: Invisible and Vital (2021)](https://www.atlanticcouncil.org/)
+- [CSIS: Undersea Cables: Indispensable, Insecure (2019)](https://www.csis.org/)
+- [NATO: Critical Undersea Infrastructure Protection](https://www.nato.int/)
 - **事件・事例**
-- - [2024年バルト海ケーブル切断報道 — Reuters/BBC]
-- - [2024年紅海ケーブル障害 — TeleGeography Research]
+- [2024年バルト海ケーブル切断報道 — Reuters/BBC]
+- [2024年紅海ケーブル障害 — TeleGeography Research]
 

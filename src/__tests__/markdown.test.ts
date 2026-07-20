@@ -80,6 +80,100 @@ describe("renderMarpMarkdown", () => {
 		expect(result).not.toContain("- ![");
 	});
 
+	test("separates a table from preceding bullets with a blank line", () => {
+		// Without the blank line the rows become a lazy continuation of the last
+		// list item and render as literal text inside <li> instead of a table.
+		const config = makeConfig();
+		const result = renderMarpMarkdown(
+			{
+				slides: [
+					{ title: "T", content: ["intro", "| A | B |", "| --- | --- |"] },
+				],
+			},
+			config,
+		);
+		expect(result).toContain("- intro\n\n| A | B |\n| --- | --- |");
+	});
+
+	test("wraps inline SVG in a .fig block instead of a list item", () => {
+		const config = makeConfig();
+		const result = renderMarpMarkdown(
+			{
+				slides: [
+					{ title: "T", content: ["lead in", '<svg viewBox="0 0 8 4"></svg>'] },
+				],
+			},
+			config,
+		);
+		expect(result).toContain('<div class="fig">');
+		expect(result).toContain("</div>");
+		expect(result).not.toContain("- <svg");
+		expect(result).toContain('- lead in\n\n<div class="fig">');
+	});
+
+	test("keeps a multi-line inline SVG inside one .fig block", () => {
+		const config = makeConfig();
+		const result = renderMarpMarkdown(
+			{
+				slides: [
+					{
+						title: "T",
+						content: [
+							'<svg viewBox="0 0 8 4">',
+							'  <rect width="8" height="4" />',
+							"</svg>",
+							"after",
+						],
+					},
+				],
+			},
+			config,
+		);
+		const fig = result.slice(
+			result.indexOf('<div class="fig">'),
+			result.indexOf("</div>") + 6,
+		);
+		expect(fig).toContain("<rect");
+		expect(fig).toContain("</svg>");
+		expect(result).toContain("- after");
+		expect(result).not.toContain("- <rect");
+	});
+
+	test("does not double-prefix items that already carry a list marker", () => {
+		const config = makeConfig();
+		const result = renderMarpMarkdown(
+			{ slides: [{ title: "T", content: ["- already a bullet", "plain"] }] },
+			config,
+		);
+		expect(result).toContain("- already a bullet");
+		expect(result).not.toContain("- - already");
+		expect(result).toContain("- plain");
+	});
+
+	test("drops blank content items instead of emitting empty bullets", () => {
+		const config = makeConfig();
+		const result = renderMarpMarkdown(
+			{ slides: [{ title: "T", content: ["first", "", "   ", "second"] }] },
+			config,
+		);
+		expect(result).toContain("- first\n- second");
+		expect(result).not.toMatch(/^- *$/m);
+	});
+
+	test("base CSS uses no vh units (vh resolves against the window)", () => {
+		const config = makeConfig();
+		const result = renderMarpMarkdown(
+			{ slides: [{ title: "T", content: [] }] },
+			config,
+		);
+		// Strip CSS comments first — they name vh on purpose, to explain the ban.
+		const css = result
+			.slice(0, result.lastIndexOf("---"))
+			.replace(/\/\*[\s\S]*?\*\//g, "");
+		expect(css).not.toMatch(/[\d.]+vh/);
+		expect(css).toContain("flex-direction: column");
+	});
+
 	test("renders subtitle as blockquote", () => {
 		const config = makeConfig();
 		const result = renderMarpMarkdown(
@@ -134,6 +228,44 @@ describe("renderMarpMarkdown", () => {
 		expect(result).toContain("const x = 1;");
 	});
 
+	test("uses a longer fence when the code contains its own ``` fence", () => {
+		// A short fence closed the block early and everything after it — the rest
+		// of the deck — was swallowed into the code element.
+		const config = makeConfig();
+		const code = "# CLAUDE.md\n\n```bash\nbun test\n```\n";
+		const result = renderMarpMarkdown(
+			{ slides: [{ title: "T", content: [], code, codeLanguage: "markdown" }] },
+			config,
+		);
+		expect(result).toContain("````markdown");
+		expect(result).toContain(code);
+		// The outer fence must be closed by one of equal length.
+		const body = result.slice(result.indexOf("````markdown"));
+		expect(body.trimEnd().endsWith("````")).toBe(true);
+	});
+
+	test("emits a content item with its own fence as a block, not a bullet", () => {
+		// `- ```js` opened a fence inside a list item whose closing fence sat at
+		// column 0, so the block never closed and swallowed the following slides.
+		const config = makeConfig();
+		const snippet = "```javascript\nconst x = 1;\n```";
+		const result = renderMarpMarkdown(
+			{ slides: [{ title: "T", content: ["intro", snippet, "after"] }] },
+			config,
+		);
+		expect(result).not.toContain("- ```");
+		expect(result).toContain(`- intro\n\n${snippet}\n\n- after`);
+	});
+
+	test("keeps the plain fence when the code has no backticks", () => {
+		const config = makeConfig();
+		const result = renderMarpMarkdown(
+			{ slides: [{ title: "T", content: [], code: "const x = 1;" }] },
+			config,
+		);
+		expect(result).toContain("```text\nconst x = 1;\n```");
+	});
+
 	test("injects marp.class into front matter when set", () => {
 		const config = makeConfig({ class: "invert" });
 		const result = renderMarpMarkdown(
@@ -141,6 +273,26 @@ describe("renderMarpMarkdown", () => {
 			config,
 		);
 		expect(result).toContain("class: invert");
+	});
+
+	test("repeats the deck class on slides that need a local _class", () => {
+		// `_class` replaces the deck-level `class`, so a lead slide in an invert
+		// deck rendered light unless "invert" is repeated here.
+		const config = makeConfig({ class: "invert" });
+		const result = renderMarpMarkdown(
+			{ slides: [{ title: "T", content: [], layout: "center" }] },
+			config,
+		);
+		expect(result).toContain("<!-- _class: invert lead -->");
+	});
+
+	test("omits the local _class when the slide adds nothing to it", () => {
+		const config = makeConfig({ class: "invert" });
+		const result = renderMarpMarkdown(
+			{ slides: [{ title: "T", content: ["short"] }] },
+			config,
+		);
+		expect(result).not.toContain("_class:");
 	});
 
 	test("does not inject class field when empty", () => {

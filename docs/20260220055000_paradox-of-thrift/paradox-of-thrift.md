@@ -7,41 +7,76 @@ paginate: true
 header: "節約のパラドックス"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,41 +111,49 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 倹約家より浪費家が
 経済成長に貢献する構造
 
-- <svg viewBox="0 0 800 180" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="180" fill="#1a1a2e"/><rect x="60" y="30" width="180" height="60" rx="10" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="150" y="58" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">個人</text><text x="150" y="78" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">節約する（合理的）</text><rect x="560" y="30" width="180" height="60" rx="10" fill="#3e1e1e" stroke="#e91e63" stroke-width="2"/><text x="650" y="58" text-anchor="middle" fill="#e91e63" font-size="14" font-family="sans-serif" font-weight="bold">社会全体</text><text x="650" y="78" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">不況（非合理的結果）</text><polygon points="245,60 555,60 540,54 540,66" fill="#888888"/><text x="400" y="52" text-anchor="middle" fill="#888888" font-size="11" font-family="sans-serif">全員が同時に節約すると</text><text x="400" y="140" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-style="italic">ケインズの節約のパラドックス — 個人の美徳が集合的に不況を作る</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 180" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="180" fill="#1a1a2e"/><rect x="60" y="30" width="180" height="60" rx="10" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="150" y="58" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">個人</text><text x="150" y="78" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">節約する（合理的）</text><rect x="560" y="30" width="180" height="60" rx="10" fill="#3e1e1e" stroke="#e91e63" stroke-width="2"/><text x="650" y="58" text-anchor="middle" fill="#e91e63" font-size="14" font-family="sans-serif" font-weight="bold">社会全体</text><text x="650" y="78" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">不況（非合理的結果）</text><polygon points="245,60 555,60 540,54 540,66" fill="#888888"/><text x="400" y="52" text-anchor="middle" fill="#888888" font-size="11" font-family="sans-serif">全員が同時に節約すると</text><text x="400" y="140" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-style="italic">ケインズの節約のパラドックス — 個人の美徳が集合的に不況を作る</text></svg>
+</div>
+
 - 個人の美徳が集合的に不況を作る逆説
 - デフレ・流動性の罠への応用
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # アジェンダ
 
 > *個人の合理的節約が集合すると経済収縮を招く逆説の構造と政策的含意を解明*
 
-- 1. 節約のパラドックスとは何か
-- 2. ケインズの経済学的証明
-- 3. 日本の失われた30年との対応
-- 4. 個人の合理性 vs 集団の合理性
-- 5. 経済政策への含意
+1. 節約のパラドックスとは何か
+2. ケインズの経済学的証明
+3. 日本の失われた30年との対応
+4. 個人の合理性 vs 集団の合理性
+5. 経済政策への含意
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 節約のパラドックス
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # 「倹約は美徳」は嘘か（1/2）
 
 > *個人の節約が合計すると経済を縮小させる合成の誤謬*
 
-- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><rect x="30" y="20" width="340" height="140" rx="8" fill="#1e3a1e" stroke="#4caf50" stroke-width="2"/><text x="200" y="46" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">古典経済学の常識</text><text x="200" y="72" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">節約 = 美徳</text><text x="200" y="96" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">個人が豊かになる</text><text x="200" y="116" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">→ 社会も豊かになる</text><text x="200" y="148" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">✓ 個人レベルでは正しい</text><rect x="430" y="20" width="340" height="140" rx="8" fill="#3e1e1e" stroke="#e91e63" stroke-width="2"/><text x="600" y="46" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">Keynesのパラドックス (1936)</text><text x="600" y="72" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">全員が節約しようとすると</text><text x="600" y="96" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">総需要が収縮する</text><text x="600" y="116" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">→ 経済全体が縮小する</text><text x="600" y="148" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">✗ 集団レベルでは誤り</text><text x="400" y="182" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-style="italic">同じ行動が個人と集団で逆の結果をもたらす</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="200" fill="#1a1a2e"/><rect x="30" y="20" width="340" height="140" rx="8" fill="#1e3a1e" stroke="#4caf50" stroke-width="2"/><text x="200" y="46" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">古典経済学の常識</text><text x="200" y="72" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">節約 = 美徳</text><text x="200" y="96" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">個人が豊かになる</text><text x="200" y="116" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">→ 社会も豊かになる</text><text x="200" y="148" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">✓ 個人レベルでは正しい</text><rect x="430" y="20" width="340" height="140" rx="8" fill="#3e1e1e" stroke="#e91e63" stroke-width="2"/><text x="600" y="46" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">Keynesのパラドックス (1936)</text><text x="600" y="72" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">全員が節約しようとすると</text><text x="600" y="96" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">総需要が収縮する</text><text x="600" y="116" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">→ 経済全体が縮小する</text><text x="600" y="148" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">✗ 集団レベルでは誤り</text><text x="400" y="182" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-style="italic">同じ行動が個人と集団で逆の結果をもたらす</text></svg>
+</div>
+
 - **古典的な常識：**
 - 節約することは良いことだ
 - ---
@@ -122,22 +165,28 @@ style: |
 
 # 「倹約は美徳」は嘘か（2/2）
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><rect x="30" y="40" width="180" height="60" rx="8" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="120" y="65" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">個人の節約↑</text><text x="120" y="85" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">合理的な行動</text><rect x="310" y="40" width="180" height="60" rx="8" fill="#2a2a4e" stroke="#e91e63" stroke-width="2"/><text x="400" y="65" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">消費支出↓</text><text x="400" y="85" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">経済全体の需要減</text><rect x="590" y="40" width="180" height="60" rx="8" fill="#2a2a4e" stroke="#e91e63" stroke-width="2"/><text x="680" y="65" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">GDP↓</text><text x="680" y="85" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">不況・失業増加</text><polygon points="215,70 305,70 295,65 295,75" fill="#f9a825"/><polygon points="495,70 585,70 575,65 575,75" fill="#e91e63"/><rect x="30" y="160" width="180" height="60" rx="8" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="120" y="185" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">個人の消費↑</text><text x="120" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「無駄遣い」</text><rect x="310" y="160" width="180" height="60" rx="8" fill="#2a2a4e" stroke="#4caf50" stroke-width="2"/><text x="400" y="185" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif">総需要↑</text><text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">経済全体が活性化</text><rect x="590" y="160" width="180" height="60" rx="8" fill="#2a2a4e" stroke="#4caf50" stroke-width="2"/><text x="680" y="185" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif">GDP↑</text><text x="680" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">雇用・所得増加</text><polygon points="215,190 305,190 295,185 295,195" fill="#4caf50"/><polygon points="495,190 585,190 575,185 575,195" fill="#4caf50"/><text x="400" y="270" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-style="italic">個人の「賢い行動」が集合すると「愚かな結果」をもたらす</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="300" fill="#1a1a2e"/><rect x="30" y="40" width="180" height="60" rx="8" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="120" y="65" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">個人の節約↑</text><text x="120" y="85" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">合理的な行動</text><rect x="310" y="40" width="180" height="60" rx="8" fill="#2a2a4e" stroke="#e91e63" stroke-width="2"/><text x="400" y="65" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">消費支出↓</text><text x="400" y="85" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">経済全体の需要減</text><rect x="590" y="40" width="180" height="60" rx="8" fill="#2a2a4e" stroke="#e91e63" stroke-width="2"/><text x="680" y="65" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">GDP↓</text><text x="680" y="85" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">不況・失業増加</text><polygon points="215,70 305,70 295,65 295,75" fill="#f9a825"/><polygon points="495,70 585,70 575,65 575,75" fill="#e91e63"/><rect x="30" y="160" width="180" height="60" rx="8" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="120" y="185" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">個人の消費↑</text><text x="120" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「無駄遣い」</text><rect x="310" y="160" width="180" height="60" rx="8" fill="#2a2a4e" stroke="#4caf50" stroke-width="2"/><text x="400" y="185" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif">総需要↑</text><text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">経済全体が活性化</text><rect x="590" y="160" width="180" height="60" rx="8" fill="#2a2a4e" stroke="#4caf50" stroke-width="2"/><text x="680" y="185" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif">GDP↑</text><text x="680" y="205" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">雇用・所得増加</text><polygon points="215,190 305,190 295,185 295,195" fill="#4caf50"/><polygon points="495,190 585,190 575,185 575,195" fill="#4caf50"/><text x="400" y="270" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-style="italic">個人の「賢い行動」が集合すると「愚かな結果」をもたらす</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ケインズの証明
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 乗数効果：消費が消費を呼ぶ（1/2）
 
 > *貯蓄率20%の場合1万円の消費は連鎖で5万円のGDP増加を生む乗数効果*
 
-- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">乗数効果：消費が次の消費を生む連鎖</text><rect x="30" y="45" width="130" height="50" rx="8" fill="#f9a825"/><text x="95" y="68" text-anchor="middle" fill="#1a1a2e" font-size="12" font-family="sans-serif" font-weight="bold">Aさん</text><text x="95" y="86" text-anchor="middle" fill="#1a1a2e" font-size="11" font-family="sans-serif">1万円消費</text><rect x="220" y="45" width="130" height="50" rx="8" fill="#4caf50"/><text x="285" y="68" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">Bさん</text><text x="285" y="86" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">8,000円収入</text><rect x="410" y="45" width="130" height="50" rx="8" fill="#4caf50" fill-opacity="0.85"/><text x="475" y="68" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">Cさん</text><text x="475" y="86" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">6,400円収入</text><rect x="600" y="45" width="130" height="50" rx="8" fill="#4caf50" fill-opacity="0.7"/><text x="665" y="68" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">…</text><text x="665" y="86" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">連鎖が続く</text><polygon points="165,70 215,70 205,65 205,75" fill="#f9a825"/><polygon points="355,70 405,70 395,65 395,75" fill="#4caf50"/><polygon points="545,70 595,70 585,65 585,75" fill="#4caf50"/><rect x="200" y="135" width="400" height="40" rx="8" fill="#e91e63"/><text x="400" y="160" text-anchor="middle" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold">合計 GDP増加 = 5万円（乗数=5）</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">乗数効果：消費が次の消費を生む連鎖</text><rect x="30" y="45" width="130" height="50" rx="8" fill="#f9a825"/><text x="95" y="68" text-anchor="middle" fill="#1a1a2e" font-size="12" font-family="sans-serif" font-weight="bold">Aさん</text><text x="95" y="86" text-anchor="middle" fill="#1a1a2e" font-size="11" font-family="sans-serif">1万円消費</text><rect x="220" y="45" width="130" height="50" rx="8" fill="#4caf50"/><text x="285" y="68" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">Bさん</text><text x="285" y="86" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">8,000円収入</text><rect x="410" y="45" width="130" height="50" rx="8" fill="#4caf50" fill-opacity="0.85"/><text x="475" y="68" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">Cさん</text><text x="475" y="86" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">6,400円収入</text><rect x="600" y="45" width="130" height="50" rx="8" fill="#4caf50" fill-opacity="0.7"/><text x="665" y="68" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">…</text><text x="665" y="86" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">連鎖が続く</text><polygon points="165,70 215,70 205,65 205,75" fill="#f9a825"/><polygon points="355,70 405,70 395,65 395,75" fill="#4caf50"/><polygon points="545,70 595,70 585,65 585,75" fill="#4caf50"/><rect x="200" y="135" width="400" height="40" rx="8" fill="#e91e63"/><text x="400" y="160" text-anchor="middle" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold">合計 GDP増加 = 5万円（乗数=5）</text></svg>
+</div>
+
 - **乗数効果（Multiplier Effect）：**
 - 1万円の消費は経済全体でそれ以上のGDPを生む
 - ---
@@ -150,17 +199,20 @@ style: |
 
 # 乗数効果：消費が消費を呼ぶ（2/2）
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">乗数効果：1万円がGDP5万円を生む（貯蓄率20%）</text><rect x="30" y="50" width="120" height="44" rx="6" fill="#f9a825"/><text x="90" y="72" text-anchor="middle" fill="#1a1a2e" font-size="12" font-family="sans-serif" font-weight="bold">1万円消費</text><text x="90" y="87" text-anchor="middle" fill="#1a1a2e" font-size="10" font-family="sans-serif">Aさん → レストラン</text><rect x="30" y="118" width="100" height="36" rx="6" fill="#4caf50"/><text x="80" y="132" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">8,000円消費</text><text x="80" y="147" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Bさん</text><rect x="30" y="178" width="84" height="36" rx="6" fill="#4caf50" fill-opacity="0.85"/><text x="72" y="192" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">6,400円</text><text x="72" y="207" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Cさん</text><rect x="30" y="238" width="70" height="36" rx="6" fill="#4caf50" fill-opacity="0.7"/><text x="65" y="252" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">5,120円</text><text x="65" y="267" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Dさん</text><text x="65" y="310" text-anchor="middle" fill="#888888" font-size="18" font-family="sans-serif">…</text><polygon points="90,100 90,114 86,108 94,108" fill="#f9a825"/><polygon points="80,158 80,173 76,167 84,167" fill="#4caf50"/><polygon points="65,218 65,233 61,227 69,227" fill="#4caf50"/><rect x="260" y="50" width="2" height="280" fill="#444466"/><text x="380" y="55" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">合計GDP増加額</text><rect x="280" y="70" width="460" height="34" rx="4" fill="#f9a825"/><text x="510" y="93" text-anchor="middle" fill="#1a1a2e" font-size="13" font-family="sans-serif" font-weight="bold">¥10,000</text><rect x="280" y="116" width="368" height="28" rx="4" fill="#4caf50"/><text x="464" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">¥8,000</text><rect x="280" y="156" width="294" height="28" rx="4" fill="#4caf50" fill-opacity="0.85"/><text x="427" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">¥6,400</text><rect x="280" y="196" width="235" height="28" rx="4" fill="#4caf50" fill-opacity="0.7"/><text x="397" y="215" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">¥5,120</text><text x="510" y="258" text-anchor="middle" fill="#888888" font-size="16" font-family="sans-serif">…</text><rect x="280" y="280" width="460" height="34" rx="4" fill="#e91e63"/><text x="510" y="303" text-anchor="middle" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold">合計 ¥50,000（乗数=5）</text><text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">乗数 = 1 ÷ 貯蓄率 = 1 ÷ 0.2 = 5</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">乗数効果：1万円がGDP5万円を生む（貯蓄率20%）</text><rect x="30" y="50" width="120" height="44" rx="6" fill="#f9a825"/><text x="90" y="72" text-anchor="middle" fill="#1a1a2e" font-size="12" font-family="sans-serif" font-weight="bold">1万円消費</text><text x="90" y="87" text-anchor="middle" fill="#1a1a2e" font-size="10" font-family="sans-serif">Aさん → レストラン</text><rect x="30" y="118" width="100" height="36" rx="6" fill="#4caf50"/><text x="80" y="132" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">8,000円消費</text><text x="80" y="147" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Bさん</text><rect x="30" y="178" width="84" height="36" rx="6" fill="#4caf50" fill-opacity="0.85"/><text x="72" y="192" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">6,400円</text><text x="72" y="207" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Cさん</text><rect x="30" y="238" width="70" height="36" rx="6" fill="#4caf50" fill-opacity="0.7"/><text x="65" y="252" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">5,120円</text><text x="65" y="267" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Dさん</text><text x="65" y="310" text-anchor="middle" fill="#888888" font-size="18" font-family="sans-serif">…</text><polygon points="90,100 90,114 86,108 94,108" fill="#f9a825"/><polygon points="80,158 80,173 76,167 84,167" fill="#4caf50"/><polygon points="65,218 65,233 61,227 69,227" fill="#4caf50"/><rect x="260" y="50" width="2" height="280" fill="#444466"/><text x="380" y="55" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">合計GDP増加額</text><rect x="280" y="70" width="460" height="34" rx="4" fill="#f9a825"/><text x="510" y="93" text-anchor="middle" fill="#1a1a2e" font-size="13" font-family="sans-serif" font-weight="bold">¥10,000</text><rect x="280" y="116" width="368" height="28" rx="4" fill="#4caf50"/><text x="464" y="135" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">¥8,000</text><rect x="280" y="156" width="294" height="28" rx="4" fill="#4caf50" fill-opacity="0.85"/><text x="427" y="175" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">¥6,400</text><rect x="280" y="196" width="235" height="28" rx="4" fill="#4caf50" fill-opacity="0.7"/><text x="397" y="215" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">¥5,120</text><text x="510" y="258" text-anchor="middle" fill="#888888" font-size="16" font-family="sans-serif">…</text><rect x="280" y="280" width="460" height="34" rx="4" fill="#e91e63"/><text x="510" y="303" text-anchor="middle" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold">合計 ¥50,000（乗数=5）</text><text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">乗数 = 1 ÷ 貯蓄率 = 1 ÷ 0.2 = 5</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 日本との対応
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 日本の失われた30年とパラドックス（1/2）
 
 > *バブル崩壊後の過剰貯蓄がゼロ金利下でも需要を回復させなかった30年間の実証*
@@ -177,16 +229,22 @@ style: |
 
 # 日本の貯蓄率と経済成長の推移
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">日本：貯蓄率↓ でも経済回復せず（逆説の長期実証）</text><line x1="70" y1="310" x2="760" y2="310" stroke="#444466" stroke-width="2"/><line x1="70" y1="50" x2="70" y2="310" stroke="#444466" stroke-width="2"/><text x="55" y="55" text-anchor="end" fill="#888888" font-size="10" font-family="sans-serif">20%</text><text x="55" y="105" text-anchor="end" fill="#888888" font-size="10" font-family="sans-serif">15%</text><text x="55" y="155" text-anchor="end" fill="#888888" font-size="10" font-family="sans-serif">10%</text><text x="55" y="205" text-anchor="end" fill="#888888" font-size="10" font-family="sans-serif">5%</text><text x="55" y="255" text-anchor="end" fill="#888888" font-size="10" font-family="sans-serif">0%</text><text x="55" y="310" text-anchor="end" fill="#888888" font-size="10" font-family="sans-serif">-5%</text><line x1="70" y1="55" x2="760" y2="55" stroke="#333355" stroke-width="1" stroke-dasharray="4,4"/><line x1="70" y1="105" x2="760" y2="105" stroke="#333355" stroke-width="1" stroke-dasharray="4,4"/><line x1="70" y1="155" x2="760" y2="155" stroke="#333355" stroke-width="1" stroke-dasharray="4,4"/><line x1="70" y1="205" x2="333355" y2="205" stroke="#333355" stroke-width="1" stroke-dasharray="4,4"/><line x1="70" y1="205" x2="760" y2="205" stroke="#333355" stroke-width="1" stroke-dasharray="4,4"/><line x1="70" y1="255" x2="760" y2="255" stroke="#333355" stroke-width="1" stroke-dasharray="4,4"/><text x="115" y="325" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">1980</text><text x="230" y="325" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">1990</text><text x="345" y="325" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">2000</text><text x="460" y="325" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">2010</text><text x="575" y="325" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">2020</text><text x="690" y="325" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">2023</text><polyline points="115,80 230,80 345,155 460,205 575,225 690,250" fill="none" stroke="#f9a825" stroke-width="3"/><text x="730" y="252" fill="#f9a825" font-size="11" font-family="sans-serif">貯蓄率</text><polyline points="115,155 230,120 270,310 345,275 400,255 460,270 520,265 575,295 630,330 690,295" fill="none" stroke="#e91e63" stroke-width="3" stroke-dasharray="6,3"/><text x="695" y="298" fill="#e91e63" font-size="11" font-family="sans-serif">GDP成長率</text><line x1="270" y1="50" x2="270" y2="310" stroke="#ffffff" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/><text x="270" y="42" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">バブル崩壊</text><rect x="110" y="340" width="20" height="4" fill="#f9a825"/><text x="135" y="345" fill="#f9a825" font-size="11" font-family="sans-serif">貯蓄率</text><line x1="250" y1="342" x2="270" y2="342" stroke="#e91e63" stroke-width="3" stroke-dasharray="4,2"/><text x="275" y="345" fill="#e91e63" font-size="11" font-family="sans-serif">GDP成長率</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">日本：貯蓄率↓ でも経済回復せず（逆説の長期実証）</text><line x1="70" y1="310" x2="760" y2="310" stroke="#444466" stroke-width="2"/><line x1="70" y1="50" x2="70" y2="310" stroke="#444466" stroke-width="2"/><text x="55" y="55" text-anchor="end" fill="#888888" font-size="10" font-family="sans-serif">20%</text><text x="55" y="105" text-anchor="end" fill="#888888" font-size="10" font-family="sans-serif">15%</text><text x="55" y="155" text-anchor="end" fill="#888888" font-size="10" font-family="sans-serif">10%</text><text x="55" y="205" text-anchor="end" fill="#888888" font-size="10" font-family="sans-serif">5%</text><text x="55" y="255" text-anchor="end" fill="#888888" font-size="10" font-family="sans-serif">0%</text><text x="55" y="310" text-anchor="end" fill="#888888" font-size="10" font-family="sans-serif">-5%</text><line x1="70" y1="55" x2="760" y2="55" stroke="#333355" stroke-width="1" stroke-dasharray="4,4"/><line x1="70" y1="105" x2="760" y2="105" stroke="#333355" stroke-width="1" stroke-dasharray="4,4"/><line x1="70" y1="155" x2="760" y2="155" stroke="#333355" stroke-width="1" stroke-dasharray="4,4"/><line x1="70" y1="205" x2="333355" y2="205" stroke="#333355" stroke-width="1" stroke-dasharray="4,4"/><line x1="70" y1="205" x2="760" y2="205" stroke="#333355" stroke-width="1" stroke-dasharray="4,4"/><line x1="70" y1="255" x2="760" y2="255" stroke="#333355" stroke-width="1" stroke-dasharray="4,4"/><text x="115" y="325" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">1980</text><text x="230" y="325" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">1990</text><text x="345" y="325" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">2000</text><text x="460" y="325" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">2010</text><text x="575" y="325" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">2020</text><text x="690" y="325" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">2023</text><polyline points="115,80 230,80 345,155 460,205 575,225 690,250" fill="none" stroke="#f9a825" stroke-width="3"/><text x="730" y="252" fill="#f9a825" font-size="11" font-family="sans-serif">貯蓄率</text><polyline points="115,155 230,120 270,310 345,275 400,255 460,270 520,265 575,295 630,330 690,295" fill="none" stroke="#e91e63" stroke-width="3" stroke-dasharray="6,3"/><text x="695" y="298" fill="#e91e63" font-size="11" font-family="sans-serif">GDP成長率</text><line x1="270" y1="50" x2="270" y2="310" stroke="#ffffff" stroke-width="1" stroke-dasharray="3,3" opacity="0.5"/><text x="270" y="42" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">バブル崩壊</text><rect x="110" y="340" width="20" height="4" fill="#f9a825"/><text x="135" y="345" fill="#f9a825" font-size="11" font-family="sans-serif">貯蓄率</text><line x1="250" y1="342" x2="270" y2="342" stroke="#e91e63" stroke-width="3" stroke-dasharray="4,2"/><text x="275" y="345" fill="#e91e63" font-size="11" font-family="sans-serif">GDP成長率</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-64 -->
 # 日本の失われた30年とパラドックス（2/2）
 
 > *ゼロ金利でも企業が借りない流動性の罠により財政出動が唯一の需要創出手段になった*
 
-- <svg viewBox="0 0 800 180" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="180" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">バランスシート不況：企業が借金返済を優先する罠</text><rect x="30" y="45" width="180" height="100" rx="8" fill="#2a1a1a" stroke="#e91e63" stroke-width="2"/><text x="120" y="72" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">バブル崩壊</text><text x="120" y="94" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">資産価値暴落</text><text x="120" y="114" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">負債だけ残る</text><rect x="250" y="45" width="180" height="100" rx="8" fill="#2a1a1a" stroke="#e91e63" stroke-width="2"/><text x="340" y="72" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">返済優先</text><text x="340" y="94" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">ゼロ金利でも</text><text x="340" y="114" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">借りない・使わない</text><rect x="470" y="45" width="180" height="100" rx="8" fill="#2a1a1a" stroke="#e91e63" stroke-width="2"/><text x="560" y="72" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">流動性の罠</text><text x="560" y="94" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">金融政策無効化</text><text x="560" y="114" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">需要が回復しない</text><rect x="660" y="45" width="110" height="100" rx="8" fill="#1e3a1e" stroke="#4caf50" stroke-width="2"/><text x="715" y="72" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif" font-weight="bold">財政出動</text><text x="715" y="94" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">政府が</text><text x="715" y="110" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">直接需要</text><text x="715" y="126" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">を作る</text><polygon points="215,95 245,95 237,88 237,102" fill="#e91e63"/><polygon points="435,95 465,95 457,88 457,102" fill="#e91e63"/><polygon points="655,95 655,95 648,88 648,102" fill="#e91e63"/><polygon points="650,95 655,88 655,102" fill="#e91e63"/><line x1="650" y1="95" x2="660" y2="95" stroke="#4caf50" stroke-width="2"/></svg>
+<div class="fig">
+<svg viewBox="0 0 800 180" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="180" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">バランスシート不況：企業が借金返済を優先する罠</text><rect x="30" y="45" width="180" height="100" rx="8" fill="#2a1a1a" stroke="#e91e63" stroke-width="2"/><text x="120" y="72" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">バブル崩壊</text><text x="120" y="94" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">資産価値暴落</text><text x="120" y="114" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">負債だけ残る</text><rect x="250" y="45" width="180" height="100" rx="8" fill="#2a1a1a" stroke="#e91e63" stroke-width="2"/><text x="340" y="72" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">返済優先</text><text x="340" y="94" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">ゼロ金利でも</text><text x="340" y="114" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">借りない・使わない</text><rect x="470" y="45" width="180" height="100" rx="8" fill="#2a1a1a" stroke="#e91e63" stroke-width="2"/><text x="560" y="72" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">流動性の罠</text><text x="560" y="94" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">金融政策無効化</text><text x="560" y="114" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">需要が回復しない</text><rect x="660" y="45" width="110" height="100" rx="8" fill="#1e3a1e" stroke="#4caf50" stroke-width="2"/><text x="715" y="72" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif" font-weight="bold">財政出動</text><text x="715" y="94" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">政府が</text><text x="715" y="110" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">直接需要</text><text x="715" y="126" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">を作る</text><polygon points="215,95 245,95 237,88 237,102" fill="#e91e63"/><polygon points="435,95 465,95 457,88 457,102" fill="#e91e63"/><polygon points="655,95 655,95 648,88 648,102" fill="#e91e63"/><polygon points="650,95 655,88 655,102" fill="#e91e63"/><line x1="650" y1="95" x2="660" y2="95" stroke="#4caf50" stroke-width="2"/></svg>
+</div>
+
 - 2000年代：5-8%
 - 2023年：約3%（低下したのに経済は回復しなかった）
 - ---
@@ -199,11 +257,14 @@ style: |
 
 # 流動性の罠：金融政策の限界
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">流動性の罠：金利ゼロでも投資が増えない</text><rect x="40" y="55" width="160" height="55" rx="8" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="120" y="80" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">中央銀行</text><text x="120" y="98" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">金利をゼロに引下げ</text><rect x="320" y="55" width="160" height="55" rx="8" fill="#2a2a4e" stroke="#888888" stroke-width="2"/><text x="400" y="80" text-anchor="middle" fill="#888888" font-size="13" font-family="sans-serif" font-weight="bold">企業・家計</text><text x="400" y="98" text-anchor="middle" fill="#888888" font-size="11" font-family="sans-serif">借りない・使わない</text><rect x="600" y="55" width="160" height="55" rx="8" fill="#2a2a4e" stroke="#e91e63" stroke-width="2"/><text x="680" y="80" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">需要不足</text><text x="680" y="98" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">GDPは上がらない</text><polygon points="205,82 315,82 305,77 305,87" fill="#888888"/><text x="260" y="74" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">低金利で貸す</text><polygon points="485,82 595,82 585,77 585,87" fill="#e91e63"/><text x="540" y="74" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">借りない</text><rect x="80" y="165" width="620" height="60" rx="8" fill="#1e3a1e" stroke="#4caf50" stroke-width="2"/><text x="390" y="190" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">財政政策（政府支出）が唯一の解</text><text x="390" y="212" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">政府が直接支出することで需要を創出 → 乗数効果で経済全体が回復</text><rect x="80" y="255" width="180" height="50" rx="6" fill="#2a2a4e" stroke="#4caf50" stroke-width="1"/><text x="170" y="276" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">公共投資</text><text x="170" y="293" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">インフラ・社会保障</text><rect x="310" y="255" width="180" height="50" rx="6" fill="#2a2a4e" stroke="#4caf50" stroke-width="1"/><text x="400" y="276" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">給付・減税</text><text x="400" y="293" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">家計の消費を支援</text><rect x="540" y="255" width="180" height="50" rx="6" fill="#2a2a4e" stroke="#4caf50" stroke-width="1"/><text x="630" y="276" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">雇用創出</text><text x="630" y="293" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">所得→消費の好循環</text><polygon points="390,228 390,250 385,244 395,244" fill="#4caf50"/></svg>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">流動性の罠：金利ゼロでも投資が増えない</text><rect x="40" y="55" width="160" height="55" rx="8" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="120" y="80" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">中央銀行</text><text x="120" y="98" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">金利をゼロに引下げ</text><rect x="320" y="55" width="160" height="55" rx="8" fill="#2a2a4e" stroke="#888888" stroke-width="2"/><text x="400" y="80" text-anchor="middle" fill="#888888" font-size="13" font-family="sans-serif" font-weight="bold">企業・家計</text><text x="400" y="98" text-anchor="middle" fill="#888888" font-size="11" font-family="sans-serif">借りない・使わない</text><rect x="600" y="55" width="160" height="55" rx="8" fill="#2a2a4e" stroke="#e91e63" stroke-width="2"/><text x="680" y="80" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">需要不足</text><text x="680" y="98" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">GDPは上がらない</text><polygon points="205,82 315,82 305,77 305,87" fill="#888888"/><text x="260" y="74" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif">低金利で貸す</text><polygon points="485,82 595,82 585,77 585,87" fill="#e91e63"/><text x="540" y="74" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">借りない</text><rect x="80" y="165" width="620" height="60" rx="8" fill="#1e3a1e" stroke="#4caf50" stroke-width="2"/><text x="390" y="190" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">財政政策（政府支出）が唯一の解</text><text x="390" y="212" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">政府が直接支出することで需要を創出 → 乗数効果で経済全体が回復</text><rect x="80" y="255" width="180" height="50" rx="6" fill="#2a2a4e" stroke="#4caf50" stroke-width="1"/><text x="170" y="276" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">公共投資</text><text x="170" y="293" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">インフラ・社会保障</text><rect x="310" y="255" width="180" height="50" rx="6" fill="#2a2a4e" stroke="#4caf50" stroke-width="1"/><text x="400" y="276" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">給付・減税</text><text x="400" y="293" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">家計の消費を支援</text><rect x="540" y="255" width="180" height="50" rx="6" fill="#2a2a4e" stroke="#4caf50" stroke-width="1"/><text x="630" y="276" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">雇用創出</text><text x="630" y="293" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">所得→消費の好循環</text><polygon points="390,228 390,250 385,244 395,244" fill="#4caf50"/></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 個人の合理性 vs 集団の合理性（1/2）
 
 > *個人にとって最適な行動が全員で実行されると集団全体を悪化させる合成の誤謬*
@@ -212,24 +273,27 @@ style: |
 - 個々人にとって正しいことが、全員がやると誤りになる現象
 - ---
 - **他の例：**
-- - スタジアムで前の人が立つ → 自分も立つ → 全員が立っても誰も見やすくならない
+- スタジアムで前の人が立つ → 自分も立つ → 全員が立っても誰も見やすくならない
 
 
 ---
 
 # 合成の誤謬：個人合理性 vs 集団合理性
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">合成の誤謬：各自の最適行動が全体を悪化させる</text><rect x="30" y="48" width="220" height="260" rx="10" fill="#1e1e3e" stroke="#f9a825" stroke-width="2"/><text x="140" y="72" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">個人の視点</text><rect x="50" y="85" width="180" height="44" rx="6" fill="#2a2a4e" stroke="#4caf50" stroke-width="1"/><text x="140" y="103" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">節約する</text><text x="140" y="120" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">将来への備え ✓</text><rect x="50" y="145" width="180" height="44" rx="6" fill="#2a2a4e" stroke="#4caf50" stroke-width="1"/><text x="140" y="163" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">賃金を下げる</text><text x="140" y="180" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">コスト削減で競争力 ✓</text><rect x="50" y="205" width="180" height="44" rx="6" fill="#2a2a4e" stroke="#4caf50" stroke-width="1"/><text x="140" y="223" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">立ち上がる（観戦）</text><text x="140" y="240" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">よく見える ✓</text><rect x="30" y="265" width="220" height="34" rx="6" fill="#1a3a2a" stroke="#4caf50" stroke-width="1"/><text x="140" y="287" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">各自は合理的</text><rect x="550" y="48" width="220" height="260" rx="10" fill="#3e1e1e" stroke="#e91e63" stroke-width="2"/><text x="660" y="72" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">社会全体の結果</text><rect x="570" y="85" width="180" height="44" rx="6" fill="#2a2a4e" stroke="#e91e63" stroke-width="1"/><text x="660" y="103" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">全員が節約</text><text x="660" y="120" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">消費減 → 不況 ✗</text><rect x="570" y="145" width="180" height="44" rx="6" fill="#2a2a4e" stroke="#e91e63" stroke-width="1"/><text x="660" y="163" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">全社が賃下げ</text><text x="660" y="180" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">需要減 → 売上減 ✗</text><rect x="570" y="205" width="180" height="44" rx="6" fill="#2a2a4e" stroke="#e91e63" stroke-width="1"/><text x="660" y="223" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">全員が立ち上がる</text><text x="660" y="240" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">誰も見やすくない ✗</text><rect x="550" y="265" width="220" height="34" rx="6" fill="#3a1a1a" stroke="#e91e63" stroke-width="1"/><text x="660" y="287" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">社会全体は最悪</text><polygon points="255,107 545,107 535,102 535,112" fill="#888888"/><polygon points="255,167 545,167 535,162 535,172" fill="#888888"/><polygon points="255,227 545,227 535,222 535,232" fill="#888888"/><text x="400" y="107" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif" dy="-4">全員が同時に</text><rect x="310" y="290" width="180" height="34" rx="6" fill="#2a1e3e" stroke="#f9a825" stroke-width="2"/><text x="400" y="312" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">合成の誤謬</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">合成の誤謬：各自の最適行動が全体を悪化させる</text><rect x="30" y="48" width="220" height="260" rx="10" fill="#1e1e3e" stroke="#f9a825" stroke-width="2"/><text x="140" y="72" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">個人の視点</text><rect x="50" y="85" width="180" height="44" rx="6" fill="#2a2a4e" stroke="#4caf50" stroke-width="1"/><text x="140" y="103" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">節約する</text><text x="140" y="120" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">将来への備え ✓</text><rect x="50" y="145" width="180" height="44" rx="6" fill="#2a2a4e" stroke="#4caf50" stroke-width="1"/><text x="140" y="163" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">賃金を下げる</text><text x="140" y="180" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">コスト削減で競争力 ✓</text><rect x="50" y="205" width="180" height="44" rx="6" fill="#2a2a4e" stroke="#4caf50" stroke-width="1"/><text x="140" y="223" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">立ち上がる（観戦）</text><text x="140" y="240" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">よく見える ✓</text><rect x="30" y="265" width="220" height="34" rx="6" fill="#1a3a2a" stroke="#4caf50" stroke-width="1"/><text x="140" y="287" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">各自は合理的</text><rect x="550" y="48" width="220" height="260" rx="10" fill="#3e1e1e" stroke="#e91e63" stroke-width="2"/><text x="660" y="72" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">社会全体の結果</text><rect x="570" y="85" width="180" height="44" rx="6" fill="#2a2a4e" stroke="#e91e63" stroke-width="1"/><text x="660" y="103" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">全員が節約</text><text x="660" y="120" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">消費減 → 不況 ✗</text><rect x="570" y="145" width="180" height="44" rx="6" fill="#2a2a4e" stroke="#e91e63" stroke-width="1"/><text x="660" y="163" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">全社が賃下げ</text><text x="660" y="180" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">需要減 → 売上減 ✗</text><rect x="570" y="205" width="180" height="44" rx="6" fill="#2a2a4e" stroke="#e91e63" stroke-width="1"/><text x="660" y="223" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">全員が立ち上がる</text><text x="660" y="240" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">誰も見やすくない ✗</text><rect x="550" y="265" width="220" height="34" rx="6" fill="#3a1a1a" stroke="#e91e63" stroke-width="1"/><text x="660" y="287" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">社会全体は最悪</text><polygon points="255,107 545,107 535,102 535,112" fill="#888888"/><polygon points="255,167 545,167 535,162 535,172" fill="#888888"/><polygon points="255,227 545,227 535,222 535,232" fill="#888888"/><text x="400" y="107" text-anchor="middle" fill="#888888" font-size="10" font-family="sans-serif" dy="-4">全員が同時に</text><rect x="310" y="290" width="180" height="34" rx="6" fill="#2a1e3e" stroke="#f9a825" stroke-width="2"/><text x="400" y="312" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">合成の誤謬</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 個人の合理性 vs 集団の合理性（2/2）
 
 > *経済政策は個人合理性が集団を破壊するループを財政支出によって断ち切る試み*
 
-- - 銀行のリストラ合理化 → 全銀行が同時にやると信用収縮
-- - 企業が賃金を下げる → 全企業がやると消費が減り売上も下がる
+- 銀行のリストラ合理化 → 全銀行が同時にやると信用収縮
+- 企業が賃金を下げる → 全企業がやると消費が減り売上も下がる
 - ---
 - 経済政策（政府の財政支出・金融緩和）は
 - **個人の合理性を集団の合理性に変換する試み**
@@ -239,11 +303,14 @@ style: |
 
 # 財政政策の介入効果
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">財政政策：デフレスパイラルを断ち切る介入</text><rect x="40" y="50" width="340" height="230" rx="10" fill="#3e1e1e" stroke="#e91e63" stroke-width="2"/><text x="210" y="74" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">介入なし：デフレスパイラル</text><text x="210" y="100" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">節約↑</text><polygon points="210,106 210,126 205,120 215,120" fill="#e91e63"/><text x="210" y="142" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">消費↓</text><polygon points="210,148 210,168 205,162 215,162" fill="#e91e63"/><text x="210" y="184" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">企業売上↓ → 雇用削減</text><polygon points="210,190 210,210 205,204 215,204" fill="#e91e63"/><text x="210" y="226" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">家計収入↓ → さらに節約</text><polygon points="140,232 140,250 90,250 90,100 160,100 160,85" fill="none" stroke="#e91e63" stroke-width="2"/><polygon points="155,85 165,85 160,76" fill="#e91e63"/><text x="210" y="262" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">悪循環（不況の罠）</text><rect x="420" y="50" width="340" height="230" rx="10" fill="#1e3e1e" stroke="#4caf50" stroke-width="2"/><text x="590" y="74" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">財政介入あり</text><text x="590" y="100" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">政府支出↑（公共事業・給付）</text><polygon points="590,106 590,126 585,120 595,120" fill="#4caf50"/><text x="590" y="142" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">総需要↑</text><polygon points="590,148 590,168 585,162 595,162" fill="#4caf50"/><text x="590" y="184" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">企業売上↑ → 雇用維持</text><polygon points="590,190 590,210 585,204 595,204" fill="#4caf50"/><text x="590" y="226" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">家計消費↑ → 乗数効果</text><text x="590" y="262" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">好循環（回復の軌道）</text><text x="400" y="310" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">政府支出は「合成の誤謬」を克服し、集団の合理性を実現する唯一の手段</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="340" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">財政政策：デフレスパイラルを断ち切る介入</text><rect x="40" y="50" width="340" height="230" rx="10" fill="#3e1e1e" stroke="#e91e63" stroke-width="2"/><text x="210" y="74" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">介入なし：デフレスパイラル</text><text x="210" y="100" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">節約↑</text><polygon points="210,106 210,126 205,120 215,120" fill="#e91e63"/><text x="210" y="142" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">消費↓</text><polygon points="210,148 210,168 205,162 215,162" fill="#e91e63"/><text x="210" y="184" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">企業売上↓ → 雇用削減</text><polygon points="210,190 210,210 205,204 215,204" fill="#e91e63"/><text x="210" y="226" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">家計収入↓ → さらに節約</text><polygon points="140,232 140,250 90,250 90,100 160,100 160,85" fill="none" stroke="#e91e63" stroke-width="2"/><polygon points="155,85 165,85 160,76" fill="#e91e63"/><text x="210" y="262" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">悪循環（不況の罠）</text><rect x="420" y="50" width="340" height="230" rx="10" fill="#1e3e1e" stroke="#4caf50" stroke-width="2"/><text x="590" y="74" text-anchor="middle" fill="#4caf50" font-size="13" font-family="sans-serif" font-weight="bold">財政介入あり</text><text x="590" y="100" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">政府支出↑（公共事業・給付）</text><polygon points="590,106 590,126 585,120 595,120" fill="#4caf50"/><text x="590" y="142" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">総需要↑</text><polygon points="590,148 590,168 585,162 595,162" fill="#4caf50"/><text x="590" y="184" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">企業売上↑ → 雇用維持</text><polygon points="590,190 590,210 585,204 595,204" fill="#4caf50"/><text x="590" y="226" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">家計消費↑ → 乗数効果</text><text x="590" y="262" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">好循環（回復の軌道）</text><text x="400" y="310" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">政府支出は「合成の誤謬」を克服し、集団の合理性を実現する唯一の手段</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # まとめ：経済学の逆説
 
 > *個人の節約美徳が集合すると不況の罠になる逆説を財政政策でのみ打開できる*
@@ -252,6 +319,5 @@ style: |
 - ✅ **乗数効果：1円の消費は経済全体で数円のGDPを生む**
 - ✅ **日本の失われた30年はパラドックスの長期実験**
 - ✅ **「合成の誤謬」はあらゆる集団行動に潜む** — 企業・政策・コミュニティ
-- 
 - 「個人としては正しく、社会としては愚かな行動がある」— Keynes の最大の遺産
 

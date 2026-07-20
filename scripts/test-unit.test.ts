@@ -101,20 +101,21 @@ describe("normalizeSvg", () => {
 		expect(result).toContain(SVG_CONTAINMENT_STYLE);
 	});
 
-	test("does NOT replace style when it already has max-height and max-width", () => {
-		const existingStyle =
+	test("replaces legacy vh-based sizing with the containment style", () => {
+		const legacyStyle =
 			"max-height:70vh;max-width:100%;display:block;margin:0 auto;";
-		const input = `<svg style="${existingStyle}" viewBox="0 0 800 600">content</svg>`;
+		const input = `<svg style="${legacyStyle}" viewBox="0 0 800 600">content</svg>`;
 		const result = normalizeSvg(input);
-		// Style should be left as-is (containment already present)
-		expect(result).toContain(`style="${existingStyle}"`);
+		// vh resolves against the browser window, not the slide — it must go.
+		expect(result).not.toContain("70vh");
+		expect(result).toContain(SVG_CONTAINMENT_STYLE);
 	});
 
-	test("replaces style when missing max-height", () => {
+	test("preserves non-sizing declarations while enforcing containment", () => {
 		const input = `<svg style="color:red;" viewBox="0 0 800 600">content</svg>`;
 		const result = normalizeSvg(input);
 		expect(result).toContain(SVG_CONTAINMENT_STYLE);
-		expect(result).not.toContain("color:red;");
+		expect(result).toContain("color:red");
 	});
 
 	test("replaces style when missing max-width", () => {

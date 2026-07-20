@@ -7,41 +7,76 @@ paginate: true
 header: "標準化の経済学"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 標準化が変えた世界
 — コンテナ・時刻・単位の革命
 
@@ -89,17 +124,20 @@ style: |
 
 # アジェンダ
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e"/><rect x="40" y="30" width="340" height="60" rx="8" fill="#2d2d4e" stroke="#f9a825" stroke-width="2"/><text x="210" y="68" text-anchor="middle" fill="#f9a825" font-size="20" font-family="sans-serif">1. コンテナ革命</text><rect x="420" y="30" width="340" height="60" rx="8" fill="#2d2d4e" stroke="#e91e63" stroke-width="2"/><text x="590" y="68" text-anchor="middle" fill="#e91e63" font-size="20" font-family="sans-serif">2. 標準時と鉄道の誕生</text><rect x="40" y="130" width="340" height="60" rx="8" fill="#2d2d4e" stroke="#4fc3f7" stroke-width="2"/><text x="210" y="168" text-anchor="middle" fill="#4fc3f7" font-size="20" font-family="sans-serif">3. メートル法という政治</text><rect x="420" y="130" width="340" height="60" rx="8" fill="#2d2d4e" stroke="#a5d6a7" stroke-width="2"/><text x="590" y="168" text-anchor="middle" fill="#a5d6a7" font-size="20" font-family="sans-serif">4. デジタル標準の経済学</text><rect x="200" y="230" width="400" height="60" rx="8" fill="#2d2d4e" stroke="#ce93d8" stroke-width="2"/><text x="400" y="268" text-anchor="middle" fill="#ce93d8" font-size="20" font-family="sans-serif">5. 標準化の光と影</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="340" fill="#1a1a2e"/><rect x="40" y="30" width="340" height="60" rx="8" fill="#2d2d4e" stroke="#f9a825" stroke-width="2"/><text x="210" y="68" text-anchor="middle" fill="#f9a825" font-size="20" font-family="sans-serif">1. コンテナ革命</text><rect x="420" y="30" width="340" height="60" rx="8" fill="#2d2d4e" stroke="#e91e63" stroke-width="2"/><text x="590" y="68" text-anchor="middle" fill="#e91e63" font-size="20" font-family="sans-serif">2. 標準時と鉄道の誕生</text><rect x="40" y="130" width="340" height="60" rx="8" fill="#2d2d4e" stroke="#4fc3f7" stroke-width="2"/><text x="210" y="168" text-anchor="middle" fill="#4fc3f7" font-size="20" font-family="sans-serif">3. メートル法という政治</text><rect x="420" y="130" width="340" height="60" rx="8" fill="#2d2d4e" stroke="#a5d6a7" stroke-width="2"/><text x="590" y="168" text-anchor="middle" fill="#a5d6a7" font-size="20" font-family="sans-serif">4. デジタル標準の経済学</text><rect x="200" y="230" width="400" height="60" rx="8" fill="#2d2d4e" stroke="#ce93d8" stroke-width="2"/><text x="400" y="268" text-anchor="middle" fill="#ce93d8" font-size="20" font-family="sans-serif">5. 標準化の光と影</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # コンテナ革命
 
 
 ---
 
+<!-- _class: invert fit-64 -->
 # 20フィートの箱が世界を変えた（1/2）
 
 > *コンテナ1本が荷役コストを97%削減し世界貿易を10倍にした*
@@ -108,19 +146,28 @@ style: |
 - 荷積み・荷降ろしに船員・港湾労働者が何日もかかる
 - バラ積み貨物の損傷・盗難が多発
 - 輸送コストが製品価格の25〜30%
-- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><rect x="30" y="20" width="340" height="160" rx="8" fill="#2d2d4e" stroke="#e91e63" stroke-width="2"/><text x="200" y="55" text-anchor="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">BEFORE 1956</text><text x="200" y="85" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">バラ積み貨物</text><text x="200" y="108" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">港湾労働者が手作業で積み替え</text><text x="200" y="131" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">数日かかる / 損傷・盗難多発</text><text x="200" y="160" text-anchor="middle" fill="#ffcc02" font-size="14" font-family="sans-serif">コスト: $5.83/トン</text><polygon points="390,100 410,88 410,112" fill="#f9a825"/><rect x="430" y="20" width="340" height="160" rx="8" fill="#2d2d4e" stroke="#a5d6a7" stroke-width="2"/><text x="600" y="55" text-anchor="middle" fill="#a5d6a7" font-size="18" font-weight="bold" font-family="sans-serif">AFTER 1956</text><text x="600" y="85" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">標準化コンテナ</text><text x="600" y="108" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">クレーンで数分で積み替え完了</text><text x="600" y="131" text-anchor="middle" fill="#a5d6a7" font-size="15" font-family="sans-serif">数時間 / 損傷・盗難ゼロ</text><text x="600" y="160" text-anchor="middle" fill="#ffcc02" font-size="14" font-family="sans-serif">コスト: $0.16/トン</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="200" fill="#1a1a2e"/><rect x="30" y="20" width="340" height="160" rx="8" fill="#2d2d4e" stroke="#e91e63" stroke-width="2"/><text x="200" y="55" text-anchor="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">BEFORE 1956</text><text x="200" y="85" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">バラ積み貨物</text><text x="200" y="108" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">港湾労働者が手作業で積み替え</text><text x="200" y="131" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">数日かかる / 損傷・盗難多発</text><text x="200" y="160" text-anchor="middle" fill="#ffcc02" font-size="14" font-family="sans-serif">コスト: $5.83/トン</text><polygon points="390,100 410,88 410,112" fill="#f9a825"/><rect x="430" y="20" width="340" height="160" rx="8" fill="#2d2d4e" stroke="#a5d6a7" stroke-width="2"/><text x="600" y="55" text-anchor="middle" fill="#a5d6a7" font-size="18" font-weight="bold" font-family="sans-serif">AFTER 1956</text><text x="600" y="85" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">標準化コンテナ</text><text x="600" y="108" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">クレーンで数分で積み替え完了</text><text x="600" y="131" text-anchor="middle" fill="#a5d6a7" font-size="15" font-family="sans-serif">数時間 / 損傷・盗難ゼロ</text><text x="600" y="160" text-anchor="middle" fill="#ffcc02" font-size="14" font-family="sans-serif">コスト: $0.16/トン</text></svg>
+</div>
+
 - **Malcolm McLean（1956年）：**
 - 標準化された金属コンテナで世界初の定期輸送
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 20フィートの箱が世界を変えた（2/2）
 
 > *Malcolm McLeanの発明1つが世界のサプライチェーンを再設計した*
 
 - 「トラックの荷台をそのまま船に積む」
-- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="220" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">コンテナ革命の数値インパクト</text><rect x="40" y="50" width="170" height="150" rx="6" fill="#3a1a2e"/><rect x="40" y="50" width="170" height="150" rx="6" fill="none" stroke="#e91e63" stroke-width="2"/><text x="125" y="80" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">荷役コスト</text><text x="125" y="110" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold" font-family="sans-serif">97%</text><text x="125" y="135" text-anchor="middle" fill="#a0a0a0" font-size="12" font-family="sans-serif">削減</text><text x="125" y="160" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">$5.83 → $0.16/t</text><text x="125" y="185" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">（1956年比）</text><rect x="230" y="50" width="170" height="150" rx="6" fill="#1a2e1a"/><rect x="230" y="50" width="170" height="150" rx="6" fill="none" stroke="#a5d6a7" stroke-width="2"/><text x="315" y="80" text-anchor="middle" fill="#a5d6a7" font-size="13" font-family="sans-serif">世界貿易量</text><text x="315" y="110" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold" font-family="sans-serif">10x</text><text x="315" y="135" text-anchor="middle" fill="#a0a0a0" font-size="12" font-family="sans-serif">増加</text><text x="315" y="160" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">1960年比</text><text x="315" y="185" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">主因: コンテナ化</text><rect x="420" y="50" width="170" height="150" rx="6" fill="#1a1a3e"/><rect x="420" y="50" width="170" height="150" rx="6" fill="none" stroke="#4fc3f7" stroke-width="2"/><text x="505" y="80" text-anchor="middle" fill="#4fc3f7" font-size="13" font-family="sans-serif">積み込み速度</text><text x="505" y="110" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold" font-family="sans-serif">30x</text><text x="505" y="135" text-anchor="middle" fill="#a0a0a0" font-size="12" font-family="sans-serif">高速化</text><text x="505" y="160" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">数日 → 数時間</text><text x="505" y="185" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">港湾滞在時間</text><rect x="610" y="50" width="170" height="150" rx="6" fill="#2e1a1a"/><rect x="610" y="50" width="170" height="150" rx="6" fill="none" stroke="#f9a825" stroke-width="2"/><text x="695" y="80" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">標準規格採択</text><text x="695" y="110" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold" font-family="sans-serif">ISO</text><text x="695" y="135" text-anchor="middle" fill="#a0a0a0" font-size="12" font-family="sans-serif">1968年</text><text x="695" y="160" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">20ft / 40ft</text><text x="695" y="185" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">国際統一規格</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 220" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="220" fill="#1a1a2e"/><text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">コンテナ革命の数値インパクト</text><rect x="40" y="50" width="170" height="150" rx="6" fill="#3a1a2e"/><rect x="40" y="50" width="170" height="150" rx="6" fill="none" stroke="#e91e63" stroke-width="2"/><text x="125" y="80" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">荷役コスト</text><text x="125" y="110" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold" font-family="sans-serif">97%</text><text x="125" y="135" text-anchor="middle" fill="#a0a0a0" font-size="12" font-family="sans-serif">削減</text><text x="125" y="160" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">$5.83 → $0.16/t</text><text x="125" y="185" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">（1956年比）</text><rect x="230" y="50" width="170" height="150" rx="6" fill="#1a2e1a"/><rect x="230" y="50" width="170" height="150" rx="6" fill="none" stroke="#a5d6a7" stroke-width="2"/><text x="315" y="80" text-anchor="middle" fill="#a5d6a7" font-size="13" font-family="sans-serif">世界貿易量</text><text x="315" y="110" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold" font-family="sans-serif">10x</text><text x="315" y="135" text-anchor="middle" fill="#a0a0a0" font-size="12" font-family="sans-serif">増加</text><text x="315" y="160" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">1960年比</text><text x="315" y="185" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">主因: コンテナ化</text><rect x="420" y="50" width="170" height="150" rx="6" fill="#1a1a3e"/><rect x="420" y="50" width="170" height="150" rx="6" fill="none" stroke="#4fc3f7" stroke-width="2"/><text x="505" y="80" text-anchor="middle" fill="#4fc3f7" font-size="13" font-family="sans-serif">積み込み速度</text><text x="505" y="110" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold" font-family="sans-serif">30x</text><text x="505" y="135" text-anchor="middle" fill="#a0a0a0" font-size="12" font-family="sans-serif">高速化</text><text x="505" y="160" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">数日 → 数時間</text><text x="505" y="185" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">港湾滞在時間</text><rect x="610" y="50" width="170" height="150" rx="6" fill="#2e1a1a"/><rect x="610" y="50" width="170" height="150" rx="6" fill="none" stroke="#f9a825" stroke-width="2"/><text x="695" y="80" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">標準規格採択</text><text x="695" y="110" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold" font-family="sans-serif">ISO</text><text x="695" y="135" text-anchor="middle" fill="#a0a0a0" font-size="12" font-family="sans-serif">1968年</text><text x="695" y="160" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">20ft / 40ft</text><text x="695" y="185" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">国際統一規格</text></svg>
+</div>
+
 - **革命の数値：**
 - コンテナ前：1トン荷揚げ5.83ドル → コンテナ後：0.16ドル
 - 世界貿易量：1960年比で約10倍（主因はコンテナ化）
@@ -129,11 +176,15 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 標準時と鉄道（1/2）
 
 > *鉄道事故防止の必要性が1884年の世界標準時を生み出した*
 
-- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="220" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">標準時誕生の歴史タイムライン</text><line x1="60" y1="80" x2="740" y2="80" stroke="#4fc3f7" stroke-width="3"/><polygon points="740,80 728,72 728,88" fill="#4fc3f7"/><circle cx="130" cy="80" r="10" fill="#e91e63"/><text x="130" y="110" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">〜1840年</text><text x="130" y="128" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">各都市が独自の</text><text x="130" y="144" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">太陽時を使用</text><circle cx="300" cy="80" r="10" fill="#f9a825"/><text x="300" y="110" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">1840年</text><text x="300" y="128" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">GWR鉄道が</text><text x="300" y="144" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">「ロンドン時刻」採用</text><circle cx="490" cy="80" r="10" fill="#a5d6a7"/><text x="490" y="110" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">1847年</text><text x="490" y="128" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">英国鉄道会社が</text><text x="490" y="144" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">グリニッジ時刻統一</text><circle cx="670" cy="80" r="10" fill="#ce93d8"/><text x="670" y="110" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">1884年</text><text x="670" y="128" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">国際子午線会議</text><text x="670" y="144" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">GMT世界標準採択</text><line x1="130" y1="70" x2="130" y2="45" stroke="#e91e63" stroke-width="1" stroke-dasharray="4"/><line x1="300" y1="70" x2="300" y2="45" stroke="#f9a825" stroke-width="1" stroke-dasharray="4"/><line x1="490" y1="70" x2="490" y2="45" stroke="#a5d6a7" stroke-width="1" stroke-dasharray="4"/><line x1="670" y1="70" x2="670" y2="45" stroke="#ce93d8" stroke-width="1" stroke-dasharray="4"/><text x="400" y="195" text-anchor="middle" fill="#808080" font-size="11" font-family="sans-serif">鉄道の普及が標準時の必要性を生み出した — 技術が社会制度を変えた例</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 220" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="220" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">標準時誕生の歴史タイムライン</text><line x1="60" y1="80" x2="740" y2="80" stroke="#4fc3f7" stroke-width="3"/><polygon points="740,80 728,72 728,88" fill="#4fc3f7"/><circle cx="130" cy="80" r="10" fill="#e91e63"/><text x="130" y="110" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">〜1840年</text><text x="130" y="128" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">各都市が独自の</text><text x="130" y="144" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">太陽時を使用</text><circle cx="300" cy="80" r="10" fill="#f9a825"/><text x="300" y="110" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">1840年</text><text x="300" y="128" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">GWR鉄道が</text><text x="300" y="144" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">「ロンドン時刻」採用</text><circle cx="490" cy="80" r="10" fill="#a5d6a7"/><text x="490" y="110" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">1847年</text><text x="490" y="128" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">英国鉄道会社が</text><text x="490" y="144" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">グリニッジ時刻統一</text><circle cx="670" cy="80" r="10" fill="#ce93d8"/><text x="670" y="110" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">1884年</text><text x="670" y="128" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">国際子午線会議</text><text x="670" y="144" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">GMT世界標準採択</text><line x1="130" y1="70" x2="130" y2="45" stroke="#e91e63" stroke-width="1" stroke-dasharray="4"/><line x1="300" y1="70" x2="300" y2="45" stroke="#f9a825" stroke-width="1" stroke-dasharray="4"/><line x1="490" y1="70" x2="490" y2="45" stroke="#a5d6a7" stroke-width="1" stroke-dasharray="4"/><line x1="670" y1="70" x2="670" y2="45" stroke="#ce93d8" stroke-width="1" stroke-dasharray="4"/><text x="400" y="195" text-anchor="middle" fill="#808080" font-size="11" font-family="sans-serif">鉄道の普及が標準時の必要性を生み出した — 技術が社会制度を変えた例</text></svg>
+</div>
+
 - **鉄道以前：**
 - 各都市が独自の「地方太陽時」を使用
 - ロンドン・バーミンガム間で14分のズレ
@@ -157,6 +208,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # デジタル標準の経済学（1/2）
 
 > *オープン標準TCP/IPがネットワーク効果で世界を飲み込んだ*
@@ -164,7 +216,11 @@ style: |
 - **TCP/IP（1970年代）：**
 - インターネットの通信規格 → 誰でも接続できるオープン標準
 - 独占的な標準ではなくコモンズとして普及
-- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">ネットワーク効果と標準化</text><circle cx="160" cy="110" r="55" fill="none" stroke="#4fc3f7" stroke-width="2"/><text x="160" y="100" text-anchor="middle" fill="#4fc3f7" font-size="13" font-weight="bold" font-family="sans-serif">オープン</text><text x="160" y="118" text-anchor="middle" fill="#4fc3f7" font-size="13" font-family="sans-serif">標準</text><text x="160" y="140" text-anchor="middle" fill="#a5d6a7" font-size="11" font-family="sans-serif">TCP/IP, HTTP</text><polygon points="225,110 240,102 240,118" fill="#f9a825"/><text x="268" y="114" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">参加者増加</text><polygon points="320,110 335,102 335,118" fill="#f9a825"/><circle cx="400" cy="110" r="55" fill="none" stroke="#a5d6a7" stroke-width="2"/><text x="400" y="100" text-anchor="middle" fill="#a5d6a7" font-size="13" font-weight="bold" font-family="sans-serif">ネットワーク</text><text x="400" y="118" text-anchor="middle" fill="#a5d6a7" font-size="13" font-family="sans-serif">価値向上</text><text x="400" y="140" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">Metcalfe's Law</text><polygon points="465,110 480,102 480,118" fill="#f9a825"/><text x="508" y="114" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">さらに参加者増</text><polygon points="560,110 575,102 575,118" fill="#f9a825"/><circle cx="640" cy="110" r="55" fill="none" stroke="#e91e63" stroke-width="2"/><text x="640" y="100" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">標準が</text><text x="640" y="118" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">デファクト化</text><text x="640" y="140" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">市場を支配</text><text x="400" y="185" text-anchor="middle" fill="#808080" font-size="11" font-family="sans-serif">参加者が増えるほど標準の価値が高まる正のフィードバックループ</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">ネットワーク効果と標準化</text><circle cx="160" cy="110" r="55" fill="none" stroke="#4fc3f7" stroke-width="2"/><text x="160" y="100" text-anchor="middle" fill="#4fc3f7" font-size="13" font-weight="bold" font-family="sans-serif">オープン</text><text x="160" y="118" text-anchor="middle" fill="#4fc3f7" font-size="13" font-family="sans-serif">標準</text><text x="160" y="140" text-anchor="middle" fill="#a5d6a7" font-size="11" font-family="sans-serif">TCP/IP, HTTP</text><polygon points="225,110 240,102 240,118" fill="#f9a825"/><text x="268" y="114" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">参加者増加</text><polygon points="320,110 335,102 335,118" fill="#f9a825"/><circle cx="400" cy="110" r="55" fill="none" stroke="#a5d6a7" stroke-width="2"/><text x="400" y="100" text-anchor="middle" fill="#a5d6a7" font-size="13" font-weight="bold" font-family="sans-serif">ネットワーク</text><text x="400" y="118" text-anchor="middle" fill="#a5d6a7" font-size="13" font-family="sans-serif">価値向上</text><text x="400" y="140" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">Metcalfe's Law</text><polygon points="465,110 480,102 480,118" fill="#f9a825"/><text x="508" y="114" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">さらに参加者増</text><polygon points="560,110 575,102 575,118" fill="#f9a825"/><circle cx="640" cy="110" r="55" fill="none" stroke="#e91e63" stroke-width="2"/><text x="640" y="100" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">標準が</text><text x="640" y="118" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">デファクト化</text><text x="640" y="140" text-anchor="middle" fill="#e0e0e0" font-size="11" font-family="sans-serif">市場を支配</text><text x="400" y="185" text-anchor="middle" fill="#808080" font-size="11" font-family="sans-serif">参加者が増えるほど標準の価値が高まる正のフィードバックループ</text></svg>
+</div>
+
 - **HTML/HTTPの開放（Tim Berners-Lee 1991年）：**
 - 特許を取らずに無償公開 → Webの爆発的普及
 - 「もし特許を取っていたらWebは生まれなかった」
@@ -172,14 +228,19 @@ style: |
 
 ---
 
+<!-- _class: invert fit-82 -->
 # デジタル標準の経済学（2/2）
 
 > *標準を制した企業がネットワーク効果で市場を独占する*
 
 - **標準戦争：**
-- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">標準戦争の事例</text><rect x="30" y="45" width="220" height="130" rx="8" fill="#2d2d4e" stroke="#4fc3f7" stroke-width="2"/><text x="140" y="72" text-anchor="middle" fill="#4fc3f7" font-size="14" font-weight="bold" font-family="sans-serif">USB規格戦争</text><text x="140" y="98" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="sans-serif">USB-C vs Lightning</text><text x="140" y="120" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="sans-serif">Apple独自規格を維持</text><text x="140" y="143" text-anchor="middle" fill="#a5d6a7" font-size="12" font-family="sans-serif">EU規制で2024年USB-C統一</text><text x="140" y="163" text-anchor="middle" fill="#808080" font-size="11" font-family="sans-serif">規制が標準化を強制</text><rect x="290" y="45" width="220" height="130" rx="8" fill="#2d2d4e" stroke="#e91e63" stroke-width="2"/><text x="400" y="72" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">光ディスク戦争</text><text x="400" y="98" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="sans-serif">HD-DVD vs Blu-ray</text><text x="400" y="120" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="sans-serif">2008年まで対立</text><text x="400" y="143" text-anchor="middle" fill="#a5d6a7" font-size="12" font-family="sans-serif">Blu-rayが勝利</text><text x="400" y="163" text-anchor="middle" fill="#808080" font-size="11" font-family="sans-serif">Sonyのコンテンツ戦略</text><rect x="550" y="45" width="220" height="130" rx="8" fill="#2d2d4e" stroke="#ce93d8" stroke-width="2"/><text x="660" y="72" text-anchor="middle" fill="#ce93d8" font-size="14" font-weight="bold" font-family="sans-serif">動画フォーマット</text><text x="660" y="98" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="sans-serif">VHS vs Betamax</text><text x="660" y="120" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="sans-serif">高品質よりも普及優先</text><text x="660" y="143" text-anchor="middle" fill="#a5d6a7" font-size="12" font-family="sans-serif">VHSが勝利</text><text x="660" y="163" text-anchor="middle" fill="#808080" font-size="11" font-family="sans-serif">録画時間と配給ネットワーク</text></svg>
-- - USB-C vs Lightning（AppleがついにEU規制で降伏）
-- - DVDフォーラム vs Blu-ray
+
+<div class="fig">
+<svg viewBox="0 0 800 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">標準戦争の事例</text><rect x="30" y="45" width="220" height="130" rx="8" fill="#2d2d4e" stroke="#4fc3f7" stroke-width="2"/><text x="140" y="72" text-anchor="middle" fill="#4fc3f7" font-size="14" font-weight="bold" font-family="sans-serif">USB規格戦争</text><text x="140" y="98" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="sans-serif">USB-C vs Lightning</text><text x="140" y="120" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="sans-serif">Apple独自規格を維持</text><text x="140" y="143" text-anchor="middle" fill="#a5d6a7" font-size="12" font-family="sans-serif">EU規制で2024年USB-C統一</text><text x="140" y="163" text-anchor="middle" fill="#808080" font-size="11" font-family="sans-serif">規制が標準化を強制</text><rect x="290" y="45" width="220" height="130" rx="8" fill="#2d2d4e" stroke="#e91e63" stroke-width="2"/><text x="400" y="72" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">光ディスク戦争</text><text x="400" y="98" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="sans-serif">HD-DVD vs Blu-ray</text><text x="400" y="120" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="sans-serif">2008年まで対立</text><text x="400" y="143" text-anchor="middle" fill="#a5d6a7" font-size="12" font-family="sans-serif">Blu-rayが勝利</text><text x="400" y="163" text-anchor="middle" fill="#808080" font-size="11" font-family="sans-serif">Sonyのコンテンツ戦略</text><rect x="550" y="45" width="220" height="130" rx="8" fill="#2d2d4e" stroke="#ce93d8" stroke-width="2"/><text x="660" y="72" text-anchor="middle" fill="#ce93d8" font-size="14" font-weight="bold" font-family="sans-serif">動画フォーマット</text><text x="660" y="98" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="sans-serif">VHS vs Betamax</text><text x="660" y="120" text-anchor="middle" fill="#e0e0e0" font-size="12" font-family="sans-serif">高品質よりも普及優先</text><text x="660" y="143" text-anchor="middle" fill="#a5d6a7" font-size="12" font-family="sans-serif">VHSが勝利</text><text x="660" y="163" text-anchor="middle" fill="#808080" font-size="11" font-family="sans-serif">録画時間と配給ネットワーク</text></svg>
+</div>
+
+- USB-C vs Lightning（AppleがついにEU規制で降伏）
+- DVDフォーラム vs Blu-ray
 - **ネットワーク効果と標準：**
 - 標準を制した企業がネットワーク効果で市場を独占する
 
@@ -194,6 +255,5 @@ style: |
 - ✅ **標準時は鉄道の要請から生まれた技術的インフラ**
 - ✅ **デジタル標準（TCP/IP、HTTP）は開放性がカギ**
 - ✅ **標準を制した者が市場を制する（ネットワーク効果）**
-- 
 - 「標準化は退屈だが、それが文明を可能にする」
 

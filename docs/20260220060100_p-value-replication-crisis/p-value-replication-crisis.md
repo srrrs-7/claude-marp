@@ -7,41 +7,76 @@ paginate: true
 header: "p値と再現性の危機"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # p値の罠と再現性の危機
 
 - 統計学が科学を騙すとき
@@ -85,36 +120,73 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 目次
 
 > *p値の誤用が招いた再現性の危機と6つの改革アジェンダを解説する*
 
-- - 1. p値とは何か — 正しい定義
-- - 2. p値の誤解と悪用
-- - 3. 再現性の危機
-- - 4. なぜこうなったのか
-- - 5. 改革の動き
-- - 6. エンジニアへの教訓
+- 1. p値とは何か — 正しい定義
+- 2. p値の誤解と悪用
+- 3. 再現性の危機
+- 4. なぜこうなったのか
+- 5. 改革の動き
+- 6. エンジニアへの教訓
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 1. p値とは何か
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # p値の誕生
 
 > *1925年Fisherの「p<0.05基準」が今も科学界を縛っている*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPCEtLSBUaW1lbGluZSBiYXIgLS0+CiAgPHJlY3QgeD0iNjAiIHk9IjE4MCIgd2lkdGg9IjY4MCIgaGVpZ2h0PSI4IiByeD0iNCIgZmlsbD0iIzE2MjEzZSIvPgogIDwhLS0gWWVhciBtYXJrZXJzIC0tPgogIDxsaW5lIHgxPSIxMjAiIHkxPSIxNjUiIHgyPSIxMjAiIHkyPSIyMDUiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iMTIwIiB5PSIxNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4xOTI1PC90ZXh0PgogIDx0ZXh0IHg9IjEyMCIgeT0iMjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+RmlzaGVy5o+Q5ZSxPC90ZXh0PgogIDx0ZXh0IHg9IjEyMCIgeT0iMjUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cCZsdDswLjA144CM55uu5a6J44CNPC90ZXh0PgoKICA8bGluZSB4MT0iMzAwIiB5MT0iMTY1IiB4Mj0iMzAwIiB5Mj0iMjA1IiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjMwMCIgeT0iMTU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEzIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+MTk0MHM8L3RleHQ+CiAgPHRleHQgeD0iMzAwIiB5PSIyMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5OZXltYW4tUGVhcnNvbjwvdGV4dD4KICA8dGV4dCB4PSIzMDAiIHk9IjI1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS7ruiqrOaknOWumuS9k+ezu+WMljwvdGV4dD4KCiAgPGxpbmUgeDE9IjUwMCIgeTE9IjE2NSIgeDI9IjUwMCIgeTI9IjIwNSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI1MDAiIHk9IjE1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjE5NjBzLTgwczwvdGV4dD4KICA8dGV4dCB4PSI1MDAiIHk9IjIzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjAuMDXjgYzjgIzploDnlarjgI3jgas8L3RleHQ+CiAgPHRleHQgeD0iNTAwIiB5PSIyNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7pm5HoqozjgYzmjqHnlKg8L3RleHQ+CgogIDxsaW5lIHgxPSI2OTAiIHkxPSIxNjUiIHgyPSI2OTAiIHkyPSIyMDUiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNjkwIiB5PSIxNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4yMDE2PC90ZXh0PgogIDx0ZXh0IHg9IjY5MCIgeT0iMjM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+QVNB5aOw5piOPC90ZXh0PgogIDx0ZXh0IHg9IjY5MCIgeT0iMjUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44CM5buD5q2i44CN6K2w6KuWPC90ZXh0PgoKICA8IS0tIExhYmVsIC0tPgogIDx0ZXh0IHg9IjQwMCIgeT0iNTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cOWApOOBruattOWPsu+8muS+v+WIqeOBquebruWuieOBjOOAjOenkeWtpuOBrumWgOeVquOAjeOBq+OBquOCi+OBvuOBpzwvdGV4dD4KCiAgPCEtLSBBcnJvdyBzaG93aW5nIGVzY2FsYXRpb24gLS0+CiAgPHBhdGggZD0iTTE0MCAxMjAgUTQwMCA4MCA2NzAgMTIwIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWRhc2hhcnJheT0iNiw0Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSI2NzAsMTIwIDY2MCwxMTAgNjgwLDExMCIgZmlsbD0iI2Y5YTgyNSIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44CM55uu5a6J44CN4oaS44CM57W25a++5Z+65rqW44CN44G444Gu5aSJ6LOqPC90ZXh0Pgo8L3N2Zz4=)
-- - **Ronald Fisher** (1925): 統計的検定の枠組みを提唱
-- - 「p値は仮説を棄却するかの指標」として導入
-- - Fisher自身は **0.05を絶対的閾値にするつもりはなかった**
-- - 「便利な目安」のはずが「科学の門番」に
-- - 100年後、科学界は0.05に支配されている
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <!-- Timeline bar -->
+  <rect x="60" y="180" width="680" height="8" rx="4" fill="#16213e"/>
+  <!-- Year markers -->
+  <line x1="120" y1="165" x2="120" y2="205" stroke="#f9a825" stroke-width="2"/>
+  <text x="120" y="155" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">1925</text>
+  <text x="120" y="235" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Fisher提唱</text>
+  <text x="120" y="250" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">p&lt;0.05「目安」</text>
+
+  <line x1="300" y1="165" x2="300" y2="205" stroke="#e91e63" stroke-width="2"/>
+  <text x="300" y="155" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">1940s</text>
+  <text x="300" y="235" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Neyman-Pearson</text>
+  <text x="300" y="250" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">仮説検定体系化</text>
+
+  <line x1="500" y1="165" x2="500" y2="205" stroke="#f9a825" stroke-width="2"/>
+  <text x="500" y="155" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">1960s-80s</text>
+  <text x="500" y="235" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">0.05が「門番」に</text>
+  <text x="500" y="250" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">雑誌が採用</text>
+
+  <line x1="690" y1="165" x2="690" y2="205" stroke="#e91e63" stroke-width="2"/>
+  <text x="690" y="155" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">2016</text>
+  <text x="690" y="235" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ASA声明</text>
+  <text x="690" y="250" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「廃止」議論</text>
+
+  <!-- Label -->
+  <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="18" font-weight="bold" font-family="sans-serif">p値の歴史：便利な目安が「科学の門番」になるまで</text>
+
+  <!-- Arrow showing escalation -->
+  <path d="M140 120 Q400 80 670 120" stroke="#f9a825" stroke-width="2" fill="none" stroke-dasharray="6,4"/>
+  <polygon points="670,120 660,110 680,110" fill="#f9a825"/>
+  <text x="400" y="100" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">「目安」→「絶対基準」への変質</text>
+</svg>
+</div>
+
+- **Ronald Fisher** (1925): 統計的検定の枠組みを提唱
+- 「p値は仮説を棄却するかの指標」として導入
+- Fisher自身は **0.05を絶対的閾値にするつもりはなかった**
+- 「便利な目安」のはずが「科学の門番」に
+- 100年後、科学界は0.05に支配されている
 
 
 ---
@@ -126,45 +198,161 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 2. p値の悪用
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5w5YCk44Gu5oKq55So77yaNOOBpOOBruS4u+imgeODkeOCv+ODvOODszwvdGV4dD4KICA8IS0tIHAtaGFja2luZyAtLT4KICA8cmVjdCB4PSIyMCIgeT0iNTAiIHdpZHRoPSIzNzAiIGhlaWdodD0iMTQwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIyMDUiIHk9Ijc4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnAtaGFja2luZ++8iHDlgKTmk43kvZzvvIk8L3RleHQ+CiAgPHRleHQgeD0iMjA1IiB5PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5wICZsdDsgMC4wNeOBq+OBquOCi+OBvuOBp+ODh+ODvOOCv+OCkui/veWKoDwvdGV4dD4KICA8dGV4dCB4PSIyMDUiIHk9IjExOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKGkiDlgb3pmb3mgKfnjofjgYzlrp/pmpvjgojjgorlpKfluYXjgavkuIrmmIc8L3RleHQ+CiAgPCEtLSBkaXN0cmlidXRpb24gc2hvd2luZyBtYW5pcHVsYXRlZCB0aHJlc2hvbGQgLS0+CiAgPGxpbmUgeDE9IjUwIiB5MT0iMTcwIiB4Mj0iMzcwIiB5Mj0iMTcwIiBzdHJva2U9IiM1NTU1NzciIHN0cm9rZS13aWR0aD0iMSIvPgogIDxsaW5lIHgxPSIzMDUiIHkxPSIxNDgiIHgyPSIzMDUiIHkyPSIxNzUiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI0LDIiLz4KICA8dGV4dCB4PSIzMTAiIHk9IjE2NyIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cD0wLjA1PC90ZXh0PgogIDxyZWN0IHg9IjU1IiB5PSIxNjIiIHdpZHRoPSIxNCIgaGVpZ2h0PSI4IiBmaWxsPSIjNDQ0NDY2IiBvcGFjaXR5PSIwLjgiLz48cmVjdCB4PSI3MSIgeT0iMTYyIiB3aWR0aD0iMTQiIGhlaWdodD0iOCIgZmlsbD0iIzQ0NDQ2NiIgb3BhY2l0eT0iMC44Ii8+PHJlY3QgeD0iODciIHk9IjE2MSIgd2lkdGg9IjE0IiBoZWlnaHQ9IjkiIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjEwMyIgeT0iMTYwIiB3aWR0aD0iMTQiIGhlaWdodD0iMTAiIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjExOSIgeT0iMTU5IiB3aWR0aD0iMTQiIGhlaWdodD0iMTEiIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjEzNSIgeT0iMTU4IiB3aWR0aD0iMTQiIGhlaWdodD0iMTIiIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjE1MSIgeT0iMTU2IiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjE2NyIgeT0iMTUzIiB3aWR0aD0iMTQiIGhlaWdodD0iMTciIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjE4MyIgeT0iMTUwIiB3aWR0aD0iMTQiIGhlaWdodD0iMjAiIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjE5OSIgeT0iMTQ3IiB3aWR0aD0iMTQiIGhlaWdodD0iMjMiIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjIxNSIgeT0iMTQ0IiB3aWR0aD0iMTQiIGhlaWdodD0iMjYiIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjIzMSIgeT0iMTQzIiB3aWR0aD0iMTQiIGhlaWdodD0iMjciIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjI0NyIgeT0iMTQyIiB3aWR0aD0iMTQiIGhlaWdodD0iMjgiIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjI2MyIgeT0iMTQzIiB3aWR0aD0iMTQiIGhlaWdodD0iMjciIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjI3OSIgeT0iMTQ0IiB3aWR0aD0iMTQiIGhlaWdodD0iMjYiIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjI5NSIgeT0iMTQ3IiB3aWR0aD0iMTQiIGhlaWdodD0iMjMiIGZpbGw9IiM0NDQ0NjYiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjMxMSIgeT0iMTUwIiB3aWR0aD0iMTQiIGhlaWdodD0iMjAiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjMyNyIgeT0iMTUzIiB3aWR0aD0iMTQiIGhlaWdodD0iMTciIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjM0MyIgeT0iMTU2IiB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuOCIvPjxyZWN0IHg9IjM1OSIgeT0iMTU4IiB3aWR0aD0iMTQiIGhlaWdodD0iMTIiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuOCIvPgogIDwhLS0gSEFSS2luZyAtLT4KICA8cmVjdCB4PSI0MTAiIHk9IjUwIiB3aWR0aD0iMzcwIiBoZWlnaHQ9IjE0MCIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNTk1IiB5PSI3OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5IQVJLaW5nPC90ZXh0PgogIDx0ZXh0IHg9IjU5NSIgeT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+SHlwb3RoZXNpemluZyBBZnRlciBSZXN1bHRzIEtub3duPC90ZXh0PgogIDx0ZXh0IHg9IjU5NSIgeT0iMTE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4oaSIOS7ruiqrOOCkuS6i+W+jOOBq+S9nOOCiuS4iuOBkuOCi+WBveOBrueiuuiovDwvdGV4dD4KICA8dGV4dCB4PSI1OTUiIHk9IjE0MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWun+mamzog5o6i57Si55qEIOKGkiDooajlkJHjgY06IOS7ruiqrOaknOiovOeahDwvdGV4dD4KICA8dGV4dCB4PSI1OTUiIHk9IjE2MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5LqL5YmN55m76Yyy77yIcHJlLXJlZ2lzdHJhdGlvbu+8ieOBp+mYsuatouWPr+iDvTwvdGV4dD4KICA8IS0tIFB1YmxpY2F0aW9uIGJpYXMgLS0+CiAgPHJlY3QgeD0iMjAiIHk9IjIxNSIgd2lkdGg9IjM3MCIgaGVpZ2h0PSIxNDAiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjIwNSIgeT0iMjQzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWHuueJiOODkOOCpOOCouOCuTwvdGV4dD4KICA8dGV4dCB4PSIyMDUiIHk9IjI2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuacieaEj+OBque1kOaenOOBoOOBkeOBjOWHuueJiOOBleOCjOOCizwvdGV4dD4KICA8dGV4dCB4PSIyMDUiIHk9IjI4MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKGkiDjg5XjgqHjgqTjg6vlvJXjgY3lh7rjgZfllY/poYw8L3RleHQ+CiAgPHRleHQgeD0iMjA1IiB5PSIzMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lh7rniYjnjoc6IOacieaEjyA5NyUgdnMg6Z2e5pyJ5oSPIDglPC90ZXh0PgogIDwhLS0gTkhTVCBtaXN1bmRlcnN0YW5kaW5nIC0tPgogIDxyZWN0IHg9IjQxMCIgeT0iMjE1IiB3aWR0aD0iMzcwIiBoZWlnaHQ9IjE0MCIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNTk1IiB5PSIyNDMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+TkhTVOiqpOinozwvdGV4dD4KICA8dGV4dCB4PSI1OTUiIHk9IjI2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnDlgKTjga/jgIzluLDnhKHku67oqqzjgYznnJ/jgafjgYLjgovnorrnjofjgI3jgafjga/jgarjgYQ8L3RleHQ+CiAgPHRleHQgeD0iNTk1IiB5PSIyODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lrp/pmps6IOODh+ODvOOCv+OBjOW4sOeEoeS7ruiqrOS4i+OBp+eUn+OBmOOCi+eiuueOhzwvdGV4dD4KICA8dGV4dCB4PSI1OTUiIHk9IjMzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPlAoZGF0YXxI4oKAKSDiiaAgUChI4oKAfGRhdGEpPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMzgyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44GT44KM44KJ44GM57WE44G/5ZCI44KP44GV44Gj44Gm5YaN54++5oCn44Gu5Y2x5qmf44KS55Sf44KAPC90ZXh0Pgo8L3N2Zz4=)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">p値の悪用：4つの主要パターン</text>
+  <!-- p-hacking -->
+  <rect x="20" y="50" width="370" height="140" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="205" y="78" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">p-hacking（p値操作）</text>
+  <text x="205" y="100" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">p &lt; 0.05になるまでデータを追加</text>
+  <text x="205" y="118" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ 偽陽性率が実際より大幅に上昇</text>
+  <!-- distribution showing manipulated threshold -->
+  <line x1="50" y1="170" x2="370" y2="170" stroke="#555577" stroke-width="1"/>
+  <line x1="305" y1="148" x2="305" y2="175" stroke="#e91e63" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="310" y="167" fill="#e91e63" font-size="9" font-family="sans-serif">p=0.05</text>
+  <rect x="55" y="162" width="14" height="8" fill="#444466" opacity="0.8"/><rect x="71" y="162" width="14" height="8" fill="#444466" opacity="0.8"/><rect x="87" y="161" width="14" height="9" fill="#444466" opacity="0.8"/><rect x="103" y="160" width="14" height="10" fill="#444466" opacity="0.8"/><rect x="119" y="159" width="14" height="11" fill="#444466" opacity="0.8"/><rect x="135" y="158" width="14" height="12" fill="#444466" opacity="0.8"/><rect x="151" y="156" width="14" height="14" fill="#444466" opacity="0.8"/><rect x="167" y="153" width="14" height="17" fill="#444466" opacity="0.8"/><rect x="183" y="150" width="14" height="20" fill="#444466" opacity="0.8"/><rect x="199" y="147" width="14" height="23" fill="#444466" opacity="0.8"/><rect x="215" y="144" width="14" height="26" fill="#444466" opacity="0.8"/><rect x="231" y="143" width="14" height="27" fill="#444466" opacity="0.8"/><rect x="247" y="142" width="14" height="28" fill="#444466" opacity="0.8"/><rect x="263" y="143" width="14" height="27" fill="#444466" opacity="0.8"/><rect x="279" y="144" width="14" height="26" fill="#444466" opacity="0.8"/><rect x="295" y="147" width="14" height="23" fill="#444466" opacity="0.8"/><rect x="311" y="150" width="14" height="20" fill="#e91e63" opacity="0.8"/><rect x="327" y="153" width="14" height="17" fill="#e91e63" opacity="0.8"/><rect x="343" y="156" width="14" height="14" fill="#e91e63" opacity="0.8"/><rect x="359" y="158" width="14" height="12" fill="#e91e63" opacity="0.8"/>
+  <!-- HARKing -->
+  <rect x="410" y="50" width="370" height="140" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="595" y="78" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">HARKing</text>
+  <text x="595" y="100" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Hypothesizing After Results Known</text>
+  <text x="595" y="118" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ 仮説を事後に作り上げる偽の確証</text>
+  <text x="595" y="142" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">実際: 探索的 → 表向き: 仮説検証的</text>
+  <text x="595" y="162" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">事前登録（pre-registration）で防止可能</text>
+  <!-- Publication bias -->
+  <rect x="20" y="215" width="370" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="205" y="243" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">出版バイアス</text>
+  <text x="205" y="265" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">有意な結果だけが出版される</text>
+  <text x="205" y="283" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ ファイル引き出し問題</text>
+  <text x="205" y="335" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">出版率: 有意 97% vs 非有意 8%</text>
+  <!-- NHST misunderstanding -->
+  <rect x="410" y="215" width="370" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="595" y="243" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">NHST誤解</text>
+  <text x="595" y="265" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">p値は「帰無仮説が真である確率」ではない</text>
+  <text x="595" y="283" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">実際: データが帰無仮説下で生じる確率</text>
+  <text x="595" y="335" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">P(data|H₀) ≠ P(H₀|data)</text>
+  <text x="400" y="382" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">これらが組み合わさって再現性の危機を生む</text>
+</svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # p-hacking: 統計的「不正」
 
 > *20の変数を試せば偶然1つはp<0.05になる確率が高い*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lpJrph43mr5TovIPllY/poYzvvJoyMOWkieaVsOippuOBm+OBsDHjgaTjga/lgbbnhLYgcCZsdDswLjA1PC90ZXh0PgogIDwhLS0gMjAgYm94ZXMgZm9yIDIwIHZhcmlhYmxlcyAtLT4KICA8cmVjdCB4PSI2MCIgeT0iNzAiIHdpZHRoPSIxMjAiIGhlaWdodD0iNTUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTIwIiB5PSI5MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWkieaVsCAxPC90ZXh0PgogICAgPHRleHQgeD0iMTIwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5wPTAuMTA8L3RleHQ+PHJlY3QgeD0iMjAwIiB5PSI3MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI1NSIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSIyNjAiIHk9IjkyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5aSJ5pWwIDI8L3RleHQ+CiAgICA8dGV4dCB4PSIyNjAiIHk9IjExMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnA9MC4zMzwvdGV4dD48cmVjdCB4PSIzNDAiIHk9IjcwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjU1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjQwMCIgeT0iOTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lpInmlbAgMzwvdGV4dD4KICAgIDx0ZXh0IHg9IjQwMCIgeT0iMTEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0ibm9ybWFsIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cD0wLjQ0PC90ZXh0PjxyZWN0IHg9IjQ4MCIgeT0iNzAiIHdpZHRoPSIxMjAiIGhlaWdodD0iNTUiIHJ4PSI4IiBmaWxsPSIjZTkxZTYzIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPHRleHQgeD0iNTQwIiB5PSI5MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWkieaVsCA0PC90ZXh0PgogICAgPHRleHQgeD0iNTQwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cD0wLjA0MyDinJM8L3RleHQ+PHJlY3QgeD0iNjIwIiB5PSI3MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI1NSIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI2ODAiIHk9IjkyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5aSJ5pWwIDU8L3RleHQ+CiAgICA8dGV4dCB4PSI2ODAiIHk9IjExMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnA9MC4yMjwvdGV4dD48cmVjdCB4PSI2MCIgeT0iMTQ1IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjU1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjEyMCIgeT0iMTY3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5aSJ5pWwIDY8L3RleHQ+CiAgICA8dGV4dCB4PSIxMjAiIHk9IjE4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnA9LTAuMDI8L3RleHQ+PHJlY3QgeD0iMjAwIiB5PSIxNDUiIHdpZHRoPSIxMjAiIGhlaWdodD0iNTUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMjYwIiB5PSIxNjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lpInmlbAgNzwvdGV4dD4KICAgIDx0ZXh0IHg9IjI2MCIgeT0iMTg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0ibm9ybWFsIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cD0tMC4yMTwvdGV4dD48cmVjdCB4PSIzNDAiIHk9IjE0NSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI1NSIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI0MDAiIHk9IjE2NyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWkieaVsCA4PC90ZXh0PgogICAgPHRleHQgeD0iNDAwIiB5PSIxODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5wPS0wLjI0PC90ZXh0PjxyZWN0IHg9IjQ4MCIgeT0iMTQ1IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjU1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjU0MCIgeT0iMTY3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5aSJ5pWwIDk8L3RleHQ+CiAgICA8dGV4dCB4PSI1NDAiIHk9IjE4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnA9LTAuMTI8L3RleHQ+PHJlY3QgeD0iNjIwIiB5PSIxNDUiIHdpZHRoPSIxMjAiIGhlaWdodD0iNTUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iNjgwIiB5PSIxNjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lpInmlbAgMTA8L3RleHQ+CiAgICA8dGV4dCB4PSI2ODAiIHk9IjE4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnA9MC4xMTwvdGV4dD48cmVjdCB4PSI2MCIgeT0iMjIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjU1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjEyMCIgeT0iMjQyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5aSJ5pWwIDExPC90ZXh0PgogICAgPHRleHQgeD0iMTIwIiB5PSIyNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5wPTAuMzM8L3RleHQ+PHJlY3QgeD0iMjAwIiB5PSIyMjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iNTUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMjYwIiB5PSIyNDIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lpInmlbAgMTI8L3RleHQ+CiAgICA8dGV4dCB4PSIyNjAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnA9MC40NTwvdGV4dD48cmVjdCB4PSIzNDAiIHk9IjIyMCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI1NSIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI0MDAiIHk9IjI0MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWkieaVsCAxMzwvdGV4dD4KICAgIDx0ZXh0IHg9IjQwMCIgeT0iMjYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0ibm9ybWFsIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cD0wLjQwPC90ZXh0PjxyZWN0IHg9IjQ4MCIgeT0iMjIwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjU1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjU0MCIgeT0iMjQyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5aSJ5pWwIDE0PC90ZXh0PgogICAgPHRleHQgeD0iNTQwIiB5PSIyNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5wPTAuMjE8L3RleHQ+PHJlY3QgeD0iNjIwIiB5PSIyMjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iNTUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iNjgwIiB5PSIyNDIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lpInmlbAgMTU8L3RleHQ+CiAgICA8dGV4dCB4PSI2ODAiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMiIgZm9udC13ZWlnaHQ9Im5vcm1hbCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnA9LTAuMDM8L3RleHQ+PHJlY3QgeD0iNjAiIHk9IjI5NSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI1NSIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSIxMjAiIHk9IjMxNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWkieaVsCAxNjwvdGV4dD4KICAgIDx0ZXh0IHg9IjEyMCIgeT0iMzM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0ibm9ybWFsIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cD0tMC4yMTwvdGV4dD48cmVjdCB4PSIyMDAiIHk9IjI5NSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI1NSIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSIyNjAiIHk9IjMxNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWkieaVsCAxNzwvdGV4dD4KICAgIDx0ZXh0IHg9IjI2MCIgeT0iMzM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0ibm9ybWFsIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cD0tMC4yNDwvdGV4dD48cmVjdCB4PSIzNDAiIHk9IjI5NSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI1NSIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI0MDAiIHk9IjMxNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWkieaVsCAxODwvdGV4dD4KICAgIDx0ZXh0IHg9IjQwMCIgeT0iMzM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0ibm9ybWFsIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cD0tMC4xMjwvdGV4dD48cmVjdCB4PSI0ODAiIHk9IjI5NSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI1NSIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI1NDAiIHk9IjMxNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWkieaVsCAxOTwvdGV4dD4KICAgIDx0ZXh0IHg9IjU0MCIgeT0iMzM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0ibm9ybWFsIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cD0wLjExPC90ZXh0PjxyZWN0IHg9IjYyMCIgeT0iMjk1IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjU1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjY4MCIgeT0iMzE3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5aSJ5pWwIDIwPC90ZXh0PgogICAgPHRleHQgeD0iNjgwIiB5PSIzMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJub3JtYWwiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5wPTAuMzM8L3RleHQ+CiAgPCEtLSBBbm5vdGF0aW9uIC0tPgogIDx0ZXh0IHg9IjQwMCIgeT0iMzgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEzIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+NSXjga7norrnjocgw5cgMjDlm54gPSDmnJ/lvoXlgKQx5Lu244Gu5YG96Zm95oCn77yI6LWk77yJPC90ZXh0Pgo8L3N2Zz4=)
-- - **データドレッジング**: 20変数を試せば1つは偶然 p<0.05
-- - **途中解析**: p<0.05になった瞬間にデータ収集を停止
-- - **選択的報告**: 有意な結果だけ論文にする
-- - **HARKing**: 結果を見てから仮説を「予測していた」と記述
-- - **サンプルサイズ操作**: 有意になるまで被験者を追加
-- - 意図的でなくても「研究者の自由度」が偽陽性を生む
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="40" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="bold" font-family="sans-serif">多重比較問題：20変数試せば1つは偶然 p&lt;0.05</text>
+  <!-- 20 boxes for 20 variables -->
+  <rect x="60" y="70" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="120" y="92" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 1</text>
+    <text x="120" y="110" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=0.10</text><rect x="200" y="70" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="260" y="92" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 2</text>
+    <text x="260" y="110" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=0.33</text><rect x="340" y="70" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="400" y="92" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 3</text>
+    <text x="400" y="110" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=0.44</text><rect x="480" y="70" width="120" height="55" rx="8" fill="#e91e63" stroke="#e91e63" stroke-width="2"/>
+    <text x="540" y="92" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 4</text>
+    <text x="540" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">p=0.043 ✓</text><rect x="620" y="70" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="680" y="92" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 5</text>
+    <text x="680" y="110" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=0.22</text><rect x="60" y="145" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="120" y="167" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 6</text>
+    <text x="120" y="185" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=-0.02</text><rect x="200" y="145" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="260" y="167" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 7</text>
+    <text x="260" y="185" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=-0.21</text><rect x="340" y="145" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="400" y="167" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 8</text>
+    <text x="400" y="185" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=-0.24</text><rect x="480" y="145" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="540" y="167" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 9</text>
+    <text x="540" y="185" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=-0.12</text><rect x="620" y="145" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="680" y="167" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 10</text>
+    <text x="680" y="185" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=0.11</text><rect x="60" y="220" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="120" y="242" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 11</text>
+    <text x="120" y="260" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=0.33</text><rect x="200" y="220" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="260" y="242" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 12</text>
+    <text x="260" y="260" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=0.45</text><rect x="340" y="220" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="400" y="242" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 13</text>
+    <text x="400" y="260" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=0.40</text><rect x="480" y="220" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="540" y="242" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 14</text>
+    <text x="540" y="260" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=0.21</text><rect x="620" y="220" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="680" y="242" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 15</text>
+    <text x="680" y="260" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=-0.03</text><rect x="60" y="295" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="120" y="317" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 16</text>
+    <text x="120" y="335" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=-0.21</text><rect x="200" y="295" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="260" y="317" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 17</text>
+    <text x="260" y="335" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=-0.24</text><rect x="340" y="295" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="400" y="317" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 18</text>
+    <text x="400" y="335" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=-0.12</text><rect x="480" y="295" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="540" y="317" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 19</text>
+    <text x="540" y="335" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=0.11</text><rect x="620" y="295" width="120" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+    <text x="680" y="317" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">変数 20</text>
+    <text x="680" y="335" text-anchor="middle" fill="#aaaaaa" font-size="12" font-weight="normal" font-family="sans-serif">p=0.33</text>
+  <!-- Annotation -->
+  <text x="400" y="380" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">5%の確率 × 20回 = 期待値1件の偽陽性（赤）</text>
+</svg>
+</div>
+
+- **データドレッジング**: 20変数を試せば1つは偶然 p<0.05
+- **途中解析**: p<0.05になった瞬間にデータ収集を停止
+- **選択的報告**: 有意な結果だけ論文にする
+- **HARKing**: 結果を見てから仮説を「予測していた」と記述
+- **サンプルサイズ操作**: 有意になるまで被験者を追加
+- 意図的でなくても「研究者の自由度」が偽陽性を生む
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 「チョコレートでダイエット」実験
 
 > *意図的なp-hackingで一流紙に掲載された偽科学の実証*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg4Hjg6fjgrPjg6zjg7zjg4jlrp/pqJPvvJoxOOa4rOWumumgheebruOBi+OCieOAjOacieaEj+OAjeOCkueZuuaOmDwvdGV4dD4KICA8IS0tIEZ1bm5lbCBzaGFwZSAtLT4KICA8cG9seWdvbiBwb2ludHM9IjIwMCw3MCA2MDAsNzAgNTIwLDIwMCAyODAsMjAwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMTEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEzIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+MTgg5ris5a6a6aCF55uuPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMTQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5L2T6YeNLCBCTUksIOOCs+ODrOOCueODhuODreODvOODqywg552h55ygLCDmsJfliIYuLi48L3RleHQ+CgogIDwhLS0gTmFycm93IHBhcnQgLS0+CiAgPHJlY3QgeD0iMzYwIiB5PSIyMDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI1MCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPue1seioiOWHpueQhjwvdGV4dD4KCiAgPCEtLSBPdXRwdXQ6IG9uZSBzaWduaWZpY2FudCAtLT4KICA8cmVjdCB4PSIzMjAiIHk9IjI3MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI1MCIgcng9IjgiIGZpbGw9IiNlOTFlNjMiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44CM5L2T6YeN5rib5bCRIHA9MC4wNCHjgI08L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzMTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ihpIg6KuW5paH44O744Oh44OH44Kj44Ki5aCx6YGTPC90ZXh0PgoKICA8IS0tIFJlamVjdGVkIGl0ZW1zIC0tPgogIDx0ZXh0IHg9IjE2MCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNTU1NTU1IiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+MTfpoIXnm646IOmdnuacieaEjzwvdGV4dD4KICA8dGV4dCB4PSIxNjAiIHk9IjMxNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzU1NTU1NSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPu+8iOWgseWRiuOBleOCjOOBmu+8iTwvdGV4dD4KCiAgPCEtLSBBcnJvdyAtLT4KICA8cG9seWdvbiBwb2ludHM9IjI0MCwyOTAgMjAwLDI4MCAyMDAsMzAwIiBmaWxsPSIjNTU1NTU1Ii8+CiAgPGxpbmUgeDE9IjMxNSIgeTE9IjI5MCIgeDI9IjIwNSIgeTI9IjI5MCIgc3Ryb2tlPSIjNTU1NTU1IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1kYXNoYXJyYXk9IjQsMyIvPgoKICA8dGV4dCB4PSI0MDAiIHk9IjM4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWkmumHjeavlOi8g+ijnOato+OBquOBlyA9IOWBtueEtuOCkuOAjOeZuuimi+OAjeOBqOiqpOiqjTwvdGV4dD4KPC9zdmc+)
-- - **2015年**: 科学ジャーナリストが意図的にp-hackingを実演
-- - 15人の被験者で18種類の測定項目を同時測定
-- - 「ダークチョコレートが減量を促進」(p=0.04) を「発見」
-- - 多重比較補正なし → 偶然の一致を「有意」と報告
-- - 複数の主要メディアが真面目に報道
-- - → p<0.05だけで結果を信じる危険性を世界に示した
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="35" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">チョコレート実験：18測定項目から「有意」を発掘</text>
+  <!-- Funnel shape -->
+  <polygon points="200,70 600,70 520,200 280,200" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="110" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">18 測定項目</text>
+  <text x="400" y="140" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">体重, BMI, コレステロール, 睡眠, 気分...</text>
+
+  <!-- Narrow part -->
+  <rect x="360" y="200" width="80" height="50" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">統計処理</text>
+
+  <!-- Output: one significant -->
+  <rect x="320" y="270" width="160" height="50" rx="8" fill="#e91e63" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">「体重減少 p=0.04!」</text>
+  <text x="400" y="312" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">→ 論文・メディア報道</text>
+
+  <!-- Rejected items -->
+  <text x="160" y="300" text-anchor="middle" fill="#555555" font-size="10" font-family="sans-serif">17項目: 非有意</text>
+  <text x="160" y="315" text-anchor="middle" fill="#555555" font-size="10" font-family="sans-serif">（報告されず）</text>
+
+  <!-- Arrow -->
+  <polygon points="240,290 200,280 200,300" fill="#555555"/>
+  <line x1="315" y1="290" x2="205" y2="290" stroke="#555555" stroke-width="1" stroke-dasharray="4,3"/>
+
+  <text x="400" y="380" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">多重比較補正なし = 偶然を「発見」と誤認</text>
+</svg>
+</div>
+
+- **2015年**: 科学ジャーナリストが意図的にp-hackingを実演
+- 15人の被験者で18種類の測定項目を同時測定
+- 「ダークチョコレートが減量を促進」(p=0.04) を「発見」
+- 多重比較補正なし → 偶然の一致を「有意」と報告
+- 複数の主要メディアが真面目に報道
+- → p<0.05だけで結果を信じる危険性を世界に示した
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 3. 再現性の危機
 
 
@@ -177,111 +365,404 @@ style: |
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 衝撃的な数字
 
 > *心理学の再現率36%、がん研究は6分の1しか再現しない*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lho3nj77mgKfjga7ljbHmqZ/vvJrmlbDlrZfjgafopovjgovlrp/mhYs8L3RleHQ+CiAgPCEtLSBCaWcgc3RhdCAxIC0tPgogIDxyZWN0IHg9IjMwIiB5PSI1NSIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIxMzAiIHJ4PSIxMiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjMiLz4KICA8dGV4dCB4PSIxNDAiIHk9IjEwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSI0MiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4zNiU8L3RleHQ+CiAgPHRleHQgeD0iMTQwIiB5PSIxMjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lv4PnkIblrablrp/pqJPjga7lho3nj77njoc8L3RleHQ+CiAgPHRleHQgeD0iMTQwIiB5PSIxNDgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5PU0MgMjAxNSAoMTAw5pysKTwvdGV4dD4KICA8dGV4dCB4PSIxNDAiIHk9IjE2OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5YWD5aCx5ZGK44GuOTclIOKGkiDlho3nj74zNiU8L3RleHQ+CiAgPCEtLSBCaWcgc3RhdCAyIC0tPgogIDxyZWN0IHg9IjI5MCIgeT0iNTUiIHdpZHRoPSIyMjAiIGhlaWdodD0iMTMwIiByeD0iMTIiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iNDIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+NTElPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMTI4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+55mM56CU56m244Gu5YaN54++546HPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMTQ4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+QW1nZW4gMjAxMiAoNTPmnKwpPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMTY4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj42LzUz5pys44Gu44G/5a6M5YWo5YaN54++PC90ZXh0PgogIDwhLS0gQmlnIHN0YXQgMyAtLT4KICA8cmVjdCB4PSI1NTAiIHk9IjU1IiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjEzMCIgcng9IjEyIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMyIvPgogIDx0ZXh0IHg9IjY2MCIgeT0iMTAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjQyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPiQyOEI8L3RleHQ+CiAgPHRleHQgeD0iNjYwIiB5PSIxMjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lubTplpPjga7nhKHpp4TjgarnoJTnqbbosrvnlKg8L3RleHQ+CiAgPHRleHQgeD0iNjYwIiB5PSIxNDgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7nsbPlm73jga7jgb/vvIhGcmVlZG1hbiAyMDE177yJPC90ZXh0PgogIDx0ZXh0IHg9IjY2MCIgeT0iMTY4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lho3nj77kuI3lj6/og73jgarnoJTnqbbjgbjjga7mipXos4c8L3RleHQ+CiAgPCEtLSBGaWVsZCBjb21wYXJpc29uIGJhciBjaGFydCAtLT4KICA8dGV4dCB4PSI0MDAiIHk9IjIxNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7liIbph47liKXlho3nj77njoc8L3RleHQ+CiAgPHJlY3QgeD0iNjAiIHk9IjMxMCIgd2lkdGg9IjkwIiBoZWlnaHQ9IjYwIiByeD0iNCIgZmlsbD0iI2U5MWU2MyIgb3BhY2l0eT0iMC44Ii8+CiAgICA8dGV4dCB4PSIxMDUiIHk9IjM3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6KqN55+l5b+D55CGPC90ZXh0PgogICAgPHRleHQgeD0iMTA1IiB5PSIzMDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+NTAlPC90ZXh0PjxyZWN0IHg9IjIwMCIgeT0iMzQwIiB3aWR0aD0iOTAiIGhlaWdodD0iMzAiIHJ4PSI0IiBmaWxsPSIjZTkxZTYzIiBvcGFjaXR5PSIwLjgiLz4KICAgIDx0ZXh0IHg9IjI0NSIgeT0iMzc1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7npL7kvJrlv4PnkIY8L3RleHQ+CiAgICA8dGV4dCB4PSIyNDUiIHk9IjMzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4yNSU8L3RleHQ+PHJlY3QgeD0iMzQwIiB5PSIyOTciIHdpZHRoPSI5MCIgaGVpZ2h0PSI3MyIgcng9IjQiIGZpbGw9IiNmOWE4MjUiIG9wYWNpdHk9IjAuOCIvPgogICAgPHRleHQgeD0iMzg1IiB5PSIzNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPue1jOa4iOWtpjwvdGV4dD4KICAgIDx0ZXh0IHg9IjM4NSIgeT0iMjkyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjYxJTwvdGV4dD48cmVjdCB4PSI0ODAiIHk9IjMyMiIgd2lkdGg9IjkwIiBoZWlnaHQ9IjQ4IiByeD0iNCIgZmlsbD0iI2U5MWU2MyIgb3BhY2l0eT0iMC44Ii8+CiAgICA8dGV4dCB4PSI1MjUiIHk9IjM3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+56We57WM56eR5a2mPC90ZXh0PgogICAgPHRleHQgeD0iNTI1IiB5PSIzMTciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+NDAlPC90ZXh0PjxyZWN0IHg9IjYyMCIgeT0iMzA0IiB3aWR0aD0iOTAiIGhlaWdodD0iNjYiIHJ4PSI0IiBmaWxsPSIjZjlhODI1IiBvcGFjaXR5PSIwLjgiLz4KICAgIDx0ZXh0IHg9IjY2NSIgeT0iMzc1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ljLvlraboh6jluoo8L3RleHQ+CiAgICA8dGV4dCB4PSI2NjUiIHk9IjI5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj41NSU8L3RleHQ+Cjwvc3ZnPg==)
-- - **心理学**: 100本中39本のみ再現 (Open Science Collaboration, 2015)
-- - **がん研究**: 53本中6本のみ再現 (Amgen, 2012)
-- - **経済学**: 実験経済学の49%のみ再現 (Camerer et al., 2016)
-- - **前臨床医学**: 約50%が再現不可能
-- - 製薬業界の損失: 年間 **280億ドル** (再現不可能な研究への投資)
-- - 科学への信頼危機: 一般市民の科学不信を助長
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">再現性の危機：数字で見る実態</text>
+  <!-- Big stat 1 -->
+  <rect x="30" y="55" width="220" height="130" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="3"/>
+  <text x="140" y="100" text-anchor="middle" fill="#e91e63" font-size="42" font-weight="bold" font-family="sans-serif">36%</text>
+  <text x="140" y="128" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">心理学実験の再現率</text>
+  <text x="140" y="148" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">OSC 2015 (100本)</text>
+  <text x="140" y="168" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">元報告の97% → 再現36%</text>
+  <!-- Big stat 2 -->
+  <rect x="290" y="55" width="220" height="130" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="3"/>
+  <text x="400" y="100" text-anchor="middle" fill="#e91e63" font-size="42" font-weight="bold" font-family="sans-serif">51%</text>
+  <text x="400" y="128" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">癌研究の再現率</text>
+  <text x="400" y="148" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">Amgen 2012 (53本)</text>
+  <text x="400" y="168" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">6/53本のみ完全再現</text>
+  <!-- Big stat 3 -->
+  <rect x="550" y="55" width="220" height="130" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="3"/>
+  <text x="660" y="100" text-anchor="middle" fill="#f9a825" font-size="42" font-weight="bold" font-family="sans-serif">$28B</text>
+  <text x="660" y="128" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">年間の無駄な研究費用</text>
+  <text x="660" y="148" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">米国のみ（Freedman 2015）</text>
+  <text x="660" y="168" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">再現不可能な研究への投資</text>
+  <!-- Field comparison bar chart -->
+  <text x="400" y="215" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">分野別再現率</text>
+  <rect x="60" y="310" width="90" height="60" rx="4" fill="#e91e63" opacity="0.8"/>
+    <text x="105" y="375" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">認知心理</text>
+    <text x="105" y="305" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">50%</text><rect x="200" y="340" width="90" height="30" rx="4" fill="#e91e63" opacity="0.8"/>
+    <text x="245" y="375" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">社会心理</text>
+    <text x="245" y="335" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">25%</text><rect x="340" y="297" width="90" height="73" rx="4" fill="#f9a825" opacity="0.8"/>
+    <text x="385" y="375" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">経済学</text>
+    <text x="385" y="292" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">61%</text><rect x="480" y="322" width="90" height="48" rx="4" fill="#e91e63" opacity="0.8"/>
+    <text x="525" y="375" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">神経科学</text>
+    <text x="525" y="317" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">40%</text><rect x="620" y="304" width="90" height="66" rx="4" fill="#f9a825" opacity="0.8"/>
+    <text x="665" y="375" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">医学臨床</text>
+    <text x="665" y="299" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">55%</text>
+</svg>
+</div>
+
+- **心理学**: 100本中39本のみ再現 (Open Science Collaboration, 2015)
+- **がん研究**: 53本中6本のみ再現 (Amgen, 2012)
+- **経済学**: 実験経済学の49%のみ再現 (Camerer et al., 2016)
+- **前臨床医学**: 約50%が再現不可能
+- 製薬業界の損失: 年間 **280億ドル** (再現不可能な研究への投資)
+- 科学への信頼危機: 一般市民の科学不信を助長
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 4. なぜこうなったのか
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7liIbph47liKXvvJrlho3nj77jgafjgY3jgZ/noJTnqbbjga7libLlkIg8L3RleHQ+CiAgPCEtLSBZIGF4aXMgLS0+CiAgPGxpbmUgeDE9IjEwMCIgeTE9IjYwIiB4Mj0iMTAwIiB5Mj0iMzIwIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogIDxsaW5lIHgxPSIxMDAiIHkxPSIzMjAiIHgyPSI3MjAiIHkyPSIzMjAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPCEtLSAxMDAlIGxpbmUgLS0+CiAgPGxpbmUgeDE9IjEwMCIgeTE9IjYwIiB4Mj0iNzIwIiB5Mj0iNjAiIHN0cm9rZT0iIzU1NTU1NSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSI0LDMiLz4KICA8dGV4dCB4PSI4OCIgeT0iNjQiIHRleHQtYW5jaG9yPSJlbmQiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4xMDAlPC90ZXh0PgogIDwhLS0gNTAlIGxpbmUgLS0+CiAgPGxpbmUgeDE9IjEwMCIgeTE9IjE5MCIgeDI9IjcyMCIgeTI9IjE5MCIgc3Ryb2tlPSIjNTU1NTU1IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1kYXNoYXJyYXk9IjQsMyIvPgogIDx0ZXh0IHg9Ijg4IiB5PSIxOTQiIHRleHQtYW5jaG9yPSJlbmQiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj41MCU8L3RleHQ+CiAgPCEtLSBCYXJzIC0tPgogIDwhLS0gUHN5Y2hvbG9neTogMzklIC0tPgogIDxyZWN0IHg9IjE0MCIgeT0iMjE3IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMyIgZmlsbD0iI2U5MWU2MyIgcng9IjQiLz4KICA8dGV4dCB4PSIxOTAiIHk9IjIxMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4zOSU8L3RleHQ+CiAgPHRleHQgeD0iMTkwIiB5PSIzNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lv4PnkIblraY8L3RleHQ+CiAgPCEtLSBDYW5jZXI6IDExJSAtLT4KICA8cmVjdCB4PSIyODAiIHk9IjI5MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2U5MWU2MyIgcng9IjQiLz4KICA8dGV4dCB4PSIzMzAiIHk9IjI4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4xMSU8L3RleHQ+CiAgPHRleHQgeD0iMzMwIiB5PSIzNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgYzjgpPnoJTnqbY8L3RleHQ+CiAgPCEtLSBFY29ub21pY3M6IDQ5JSAtLT4KICA8cmVjdCB4PSI0MjAiIHk9IjE4OCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMzIiIGZpbGw9IiNmOWE4MjUiIHJ4PSI0Ii8+CiAgPHRleHQgeD0iNDcwIiB5PSIxODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+NDklPC90ZXh0PgogIDx0ZXh0IHg9IjQ3MCIgeT0iMzQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5a6f6aiT57WM5riI5a2mPC90ZXh0PgogIDwhLS0gUHJlY2xpbmljYWw6IDUwJSAtLT4KICA8cmVjdCB4PSI1NjAiIHk9IjE5MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMzAiIGZpbGw9IiNmOWE4MjUiIHJ4PSI0Ii8+CiAgPHRleHQgeD0iNjEwIiB5PSIxODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+fjUwJTwvdGV4dD4KICA8dGV4dCB4PSI2MTAiIHk9IjM0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWJjeiHqOW6iuWMu+WtpjwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjM3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWHuuWFuDogT3BlbiBTY2llbmNlIENvbGxhYm9yYXRpb24gKDIwMTUpLCBBbWdlbiAoMjAxMiksIENhbWVyZXIgZXQgYWwuICgyMDE2KTwvdGV4dD4KPC9zdmc+)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="35" text-anchor="middle" fill="#ffffff" font-size="17" font-weight="bold" font-family="sans-serif">分野別：再現できた研究の割合</text>
+  <!-- Y axis -->
+  <line x1="100" y1="60" x2="100" y2="320" stroke="#ffffff" stroke-width="1"/>
+  <line x1="100" y1="320" x2="720" y2="320" stroke="#ffffff" stroke-width="1"/>
+  <!-- 100% line -->
+  <line x1="100" y1="60" x2="720" y2="60" stroke="#555555" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="88" y="64" text-anchor="end" fill="#aaaaaa" font-size="11" font-family="sans-serif">100%</text>
+  <!-- 50% line -->
+  <line x1="100" y1="190" x2="720" y2="190" stroke="#555555" stroke-width="1" stroke-dasharray="4,3"/>
+  <text x="88" y="194" text-anchor="end" fill="#aaaaaa" font-size="11" font-family="sans-serif">50%</text>
+  <!-- Bars -->
+  <!-- Psychology: 39% -->
+  <rect x="140" y="217" width="100" height="103" fill="#e91e63" rx="4"/>
+  <text x="190" y="212" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">39%</text>
+  <text x="190" y="340" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">心理学</text>
+  <!-- Cancer: 11% -->
+  <rect x="280" y="290" width="100" height="30" fill="#e91e63" rx="4"/>
+  <text x="330" y="285" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">11%</text>
+  <text x="330" y="340" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">がん研究</text>
+  <!-- Economics: 49% -->
+  <rect x="420" y="188" width="100" height="132" fill="#f9a825" rx="4"/>
+  <text x="470" y="183" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">49%</text>
+  <text x="470" y="340" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">実験経済学</text>
+  <!-- Preclinical: 50% -->
+  <rect x="560" y="190" width="100" height="130" fill="#f9a825" rx="4"/>
+  <text x="610" y="185" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">~50%</text>
+  <text x="610" y="340" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">前臨床医学</text>
+  <text x="400" y="375" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">出典: Open Science Collaboration (2015), Amgen (2012), Camerer et al. (2016)</text>
+</svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 構造的な問題
 
 > *出版バイアスと「有意差」圧力が研究者を不正に追い込む*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7mp4vpgKDnmoTjgarllY/poYzvvJrjgarjgZznubDjgorov5TjgZXjgozjgovjgYs8L3RleHQ+CiAgPCEtLSBDeWNsZSBkaWFncmFtIC0tPgogIDwhLS0gQ2VudHJhbCBwcm9ibGVtIC0tPgogIDxlbGxpcHNlIGN4PSI0MDAiIGN5PSIyMDAiIHJ4PSI4MCIgcnk9IjUwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMyIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMTk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEyIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWHuueJiOWcp+WKmzwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjIxMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPiJQdWJsaXNoIG9yIFBlcmlzaCI8L3RleHQ+CiAgPCEtLSA0IHN1cnJvdW5kaW5nIGZhY3RvcnMgLS0+CiAgPCEtLSBJbmNlbnRpdmUgLS0+CiAgPHJlY3QgeD0iMjAiIHk9IjYwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjY1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIxMTAiIHk9Ijg0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuatquOCk+OBoOOCpOODs+OCu+ODs+ODhuOCo+ODljwvdGV4dD4KICA8dGV4dCB4PSIxMTAiIHk9IjEwMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cCZsdDswLjA144Gu44G/44GM5piH6YCy44O76LOH6YeR44GrPC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iMTE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgaTjgarjgYzjgovlrabooZPliLbluqY8L3RleHQ+CiAgPGxpbmUgeDE9IjE5NiIgeTE9IjkzIiB4Mj0iMzIwIiB5Mj0iMTcwIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSI1LDMiLz4KICA8cG9seWdvbiBwb2ludHM9IjMyMCwxNzAgMzA4LDE2MyAzMTIsMTc1IiBmaWxsPSIjZjlhODI1Ii8+CiAgPCEtLSBTbWFsbCBzYW1wbGVzIC0tPgogIDxyZWN0IHg9IjYwMCIgeT0iNjAiIHdpZHRoPSIxODAiIGhlaWdodD0iNjUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjY5MCIgeT0iODQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5bCP44K144Oz44OX44Or56CU56m2PC90ZXh0PgogIDx0ZXh0IHg9IjY5MCIgeT0iMTAyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5OPTIwfjUw56iL5bqm44Gu5a6f6aiT44GMPC90ZXh0PgogIDx0ZXh0IHg9IjY5MCIgeT0iMTE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg4jjg4Pjg5fjgrjjg6Pjg7zjg4rjg6vjgavmjrLovIk8L3RleHQ+CiAgPGxpbmUgeDE9IjYwNCIgeTE9IjkzIiB4Mj0iNDgwIiB5Mj0iMTcwIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSI1LDMiLz4KICA8cG9seWdvbiBwb2ludHM9IjQ4MCwxNzAgNDkyLDE2MyA0ODgsMTc1IiBmaWxsPSIjZjlhODI1Ii8+CiAgPCEtLSBQZWVyIHJldmlldyBmYWlsdXJlIC0tPgogIDxyZWN0IHg9IjIwIiB5PSIyODAiIHdpZHRoPSIxODAiIGhlaWdodD0iNjUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjExMCIgeT0iMzA0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjExIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuafu+iqreOBrumZkOeVjDwvdGV4dD4KICA8dGV4dCB4PSIxMTAiIHk9IjMyMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+57Wx6KiI55qE5aal5b2T5oCn44KI44KKPC90ZXh0PgogIDx0ZXh0IHg9IjExMCIgeT0iMzM2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7mlrDopo/mgKfjgYzoqZXkvqHjgZXjgozjgos8L3RleHQ+CiAgPGxpbmUgeDE9IjE5NiIgeTE9IjMxMyIgeDI9IjMyMCIgeTI9IjIzMyIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWRhc2hhcnJheT0iNSwzIi8+CiAgPHBvbHlnb24gcG9pbnRzPSIzMjAsMjMzIDMwOCwyMzAgMzE2LDI0MiIgZmlsbD0iI2U5MWU2MyIvPgogIDwhLS0gTm8gcmVwbGljYXRpb24gaW5jZW50aXZlIC0tPgogIDxyZWN0IHg9IjYwMCIgeT0iMjgwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjY1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI2OTAiIHk9IjMwNCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ov73oqabjga7pnZ7lpajlirE8L3RleHQ+CiAgPHRleHQgeD0iNjkwIiB5PSIzMjIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOAjOWGjeePvuOAjeirluaWh+OBrzwvdGV4dD4KICA8dGV4dCB4PSI2OTAiIHk9IjMzNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5o6h5oqe44GV44KM44Gr44GP44GEPC90ZXh0PgogIDxsaW5lIHgxPSI2MDQiIHkxPSIzMTMiIHgyPSI0ODAiIHkyPSIyMzMiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjUsMyIvPgogIDxwb2x5Z29uIHBvaW50cz0iNDgwLDIzMyA0OTIsMjMwIDQ4NCwyNDIiIGZpbGw9IiNlOTFlNjMiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjM4MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWAi+S6uuOBruS4jeato+OBp+OBr+OBquOBj+OAgeWItuW6pueahOODu+ani+mAoOeahOOBquWVj+mhjDwvdGV4dD4KPC9zdmc+)
-- - **出版バイアス**: 有意な結果だけが論文として出版される
-- - **Publish or Perish**: 論文数がキャリアを決める圧力
-- - **統計教育の不足**: 多くの研究者がp値を正しく理解していない
-- - **サンプルサイズ不足**: 検出力(power)が低い研究が多すぎる
-- - **事前登録の欠如**: 仮説を後から変更できてしまう
-- - → 「有意な結果を出す」インセンティブが歪みを生む
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">構造的な問題：なぜ繰り返されるか</text>
+  <!-- Cycle diagram -->
+  <!-- Central problem -->
+  <ellipse cx="400" cy="200" rx="80" ry="50" fill="#16213e" stroke="#e91e63" stroke-width="3"/>
+  <text x="400" y="195" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">出版圧力</text>
+  <text x="400" y="213" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">"Publish or Perish"</text>
+  <!-- 4 surrounding factors -->
+  <!-- Incentive -->
+  <rect x="20" y="60" width="180" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="110" y="84" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">歪んだインセンティブ</text>
+  <text x="110" y="102" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">p&lt;0.05のみが昇進・資金に</text>
+  <text x="110" y="116" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">つながる学術制度</text>
+  <line x1="196" y1="93" x2="320" y2="170" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="320,170 308,163 312,175" fill="#f9a825"/>
+  <!-- Small samples -->
+  <rect x="600" y="60" width="180" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="690" y="84" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">小サンプル研究</text>
+  <text x="690" y="102" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">N=20~50程度の実験が</text>
+  <text x="690" y="116" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">トップジャーナルに掲載</text>
+  <line x1="604" y1="93" x2="480" y2="170" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="480,170 492,163 488,175" fill="#f9a825"/>
+  <!-- Peer review failure -->
+  <rect x="20" y="280" width="180" height="65" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="110" y="304" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">査読の限界</text>
+  <text x="110" y="322" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">統計的妥当性より</text>
+  <text x="110" y="336" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">新規性が評価される</text>
+  <line x1="196" y1="313" x2="320" y2="233" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="320,233 308,230 316,242" fill="#e91e63"/>
+  <!-- No replication incentive -->
+  <rect x="600" y="280" width="180" height="65" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="690" y="304" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">追試の非奨励</text>
+  <text x="690" y="322" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">「再現」論文は</text>
+  <text x="690" y="336" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">採択されにくい</text>
+  <line x1="604" y1="313" x2="480" y2="233" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <polygon points="480,233 492,230 484,242" fill="#e91e63"/>
+  <text x="400" y="382" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">個人の不正ではなく、制度的・構造的な問題</text>
+</svg>
+</div>
+
+- **出版バイアス**: 有意な結果だけが論文として出版される
+- **Publish or Perish**: 論文数がキャリアを決める圧力
+- **統計教育の不足**: 多くの研究者がp値を正しく理解していない
+- **サンプルサイズ不足**: 検出力(power)が低い研究が多すぎる
+- **事前登録の欠如**: 仮説を後から変更できてしまう
+- → 「有意な結果を出す」インセンティブが歪みを生む
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # ファイルドロワー問題
 
 > *陰性結果が引き出しに眠り続け科学の文献が偏る*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7mrarjgpPjgaDjgqTjg7Pjgrvjg7Pjg4bjgqPjg5bmp4vpgKDvvJrjgarjgZzlgb3pmb3mgKfjgYznlJ/jgb7jgozjgovjga7jgYs8L3RleHQ+CiAgPCEtLSBOb2RlcyAtLT4KICA8IS0tIFJlc2VhcmNoZXIgLS0+CiAgPHJlY3QgeD0iMzIwIiB5PSI1NSIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI1MCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iNzgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7noJTnqbbogIU8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSI5NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCreODo+ODquOCouOBuOOBruWcp+WKmzwvdGV4dD4KICA8IS0tIHB1Ymxpc2ggb3IgcGVyaXNoIC0tPgogIDxyZWN0IHg9IjEwMCIgeT0iMTc1IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjUwIiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iMTgwIiB5PSIxOTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5QdWJsaXNoIG9yIFBlcmlzaDwvdGV4dD4KICA8dGV4dCB4PSIxODAiIHk9IjIxNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuirluaWh+aVsCA9IOipleS+oTwvdGV4dD4KICA8IS0tIHAtaGFja2luZyAtLT4KICA8cmVjdCB4PSIzMjAiIHk9IjE3NSIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI1MCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMTk4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cC1oYWNraW5nPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5pyJ5oSP44KS5o6i44GZ6KGM5YuVPC90ZXh0PgogIDwhLS0gcHVibGljYXRpb24gYmlhcyAtLT4KICA8cmVjdCB4PSI1NDAiIHk9IjE3NSIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI1MCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjYyMCIgeT0iMTk4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5Ye654mI44OQ44Kk44Ki44K5PC90ZXh0PgogIDx0ZXh0IHg9IjYyMCIgeT0iMjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5pyJ5oSP44Gu44G/5o6h5oqePC90ZXh0PgogIDwhLS0gZmFsc2UgcG9zaXRpdmUgbGl0ZXJhdHVyZSAtLT4KICA8cmVjdCB4PSIzMjAiIHk9IjMwMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI1MCIgcng9IjEwIiBmaWxsPSIjZTkxZTYzIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMzIzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuaWh+eMruOBruatquOBvzwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjM0MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWBvemZveaAp+OBjOiThOepjTwvdGV4dD4KICA8IS0tIEFycm93cyAtLT4KICA8bGluZSB4MT0iMzcwIiB5MT0iMTA1IiB4Mj0iMjIwIiB5Mj0iMTc1IiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIyMjAsMTc1IDIyOCwxNjIgMjM1LDE3NCIgZmlsbD0iI2U5MWU2MyIvPgogIDxsaW5lIHgxPSI0MDAiIHkxPSIxMDUiIHgyPSI0MDAiIHkyPSIxNzUiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8cG9seWdvbiBwb2ludHM9IjQwMCwxNzUgMzkzLDE2MiA0MDcsMTYyIiBmaWxsPSIjZTkxZTYzIi8+CiAgPGxpbmUgeDE9IjQzMCIgeTE9IjEwNSIgeDI9IjU4MCIgeTI9IjE3NSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDxwb2x5Z29uIHBvaW50cz0iNTgwLDE3NSA1NzIsMTYyIDU4NSwxNjYiIGZpbGw9IiNlOTFlNjMiLz4KICA8bGluZSB4MT0iMjQwIiB5MT0iMjI1IiB4Mj0iMzYwIiB5Mj0iMzAwIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHBvbHlnb24gcG9pbnRzPSIzNjAsMzAwIDM0OCwyOTIgMzU1LDI4MCIgZmlsbD0iI2U5MWU2MyIvPgogIDxsaW5lIHgxPSI0MDAiIHkxPSIyMjUiIHgyPSI0MDAiIHkyPSIzMDAiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8cG9seWdvbiBwb2ludHM9IjQwMCwzMDAgMzkzLDI4NyA0MDcsMjg3IiBmaWxsPSIjZTkxZTYzIi8+CiAgPGxpbmUgeDE9IjU2MCIgeTE9IjIyNSIgeDI9IjQ0MCIgeTI9IjMwMCIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDxwb2x5Z29uIHBvaW50cz0iNDQwLDMwMCA0NDUsMjg3IDQ1NywyOTIiIGZpbGw9IiNlOTFlNjMiLz4KPC9zdmc+)
-- - 「有意でない」結果は引き出し(file drawer)にしまわれる
-- - 出版された研究は「成功」のみ = 生存者バイアス
-- - 100チームが同じ実験 → 5チームが偶然 p<0.05 → 5本だけ出版
-- - 読者は「5/5=100%成功」と誤認する
-- - メタアナリシスも出版バイアスの影響を受ける
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="35" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">歪んだインセンティブ構造：なぜ偽陽性が生まれるのか</text>
+  <!-- Nodes -->
+  <!-- Researcher -->
+  <rect x="320" y="55" width="160" height="50" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="78" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">研究者</text>
+  <text x="400" y="96" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">キャリアへの圧力</text>
+  <!-- publish or perish -->
+  <rect x="100" y="175" width="160" height="50" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="180" y="198" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">Publish or Perish</text>
+  <text x="180" y="216" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">論文数 = 評価</text>
+  <!-- p-hacking -->
+  <rect x="320" y="175" width="160" height="50" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="198" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">p-hacking</text>
+  <text x="400" y="216" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">有意を探す行動</text>
+  <!-- publication bias -->
+  <rect x="540" y="175" width="160" height="50" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="620" y="198" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">出版バイアス</text>
+  <text x="620" y="216" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">有意のみ採択</text>
+  <!-- false positive literature -->
+  <rect x="320" y="300" width="160" height="50" rx="10" fill="#e91e63" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="323" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">文献の歪み</text>
+  <text x="400" y="341" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">偽陽性が蓄積</text>
+  <!-- Arrows -->
+  <line x1="370" y1="105" x2="220" y2="175" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="220,175 228,162 235,174" fill="#e91e63"/>
+  <line x1="400" y1="105" x2="400" y2="175" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="400,175 393,162 407,162" fill="#e91e63"/>
+  <line x1="430" y1="105" x2="580" y2="175" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="580,175 572,162 585,166" fill="#e91e63"/>
+  <line x1="240" y1="225" x2="360" y2="300" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="360,300 348,292 355,280" fill="#e91e63"/>
+  <line x1="400" y1="225" x2="400" y2="300" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="400,300 393,287 407,287" fill="#e91e63"/>
+  <line x1="560" y1="225" x2="440" y2="300" stroke="#e91e63" stroke-width="1.5"/>
+  <polygon points="440,300 445,287 457,292" fill="#e91e63"/>
+</svg>
+</div>
+
+- 「有意でない」結果は引き出し(file drawer)にしまわれる
+- 出版された研究は「成功」のみ = 生存者バイアス
+- 100チームが同じ実験 → 5チームが偶然 p<0.05 → 5本だけ出版
+- 読者は「5/5=100%成功」と誤認する
+- メタアナリシスも出版バイアスの影響を受ける
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 5. 改革の動き
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ntbHoqIjmlLnpnanjga7mrbTlj7LnmoTmtYHjgow8L3RleHQ+CiAgPCEtLSBUaW1lbGluZSBsaW5lIC0tPgogIDxsaW5lIHgxPSI2MCIgeTE9IjIwMCIgeDI9Ijc0MCIgeTI9IjIwMCIgc3Ryb2tlPSIjNTU1NTc3IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8IS0tIEFycm93IC0tPgogIDxwb2x5Z29uIHBvaW50cz0iNzQwLDIwMCA3MjgsMTk0IDcyOCwyMDYiIGZpbGw9IiM1NTU1NzciLz4KICA8IS0tIEV2ZW50cyAtLT4KICA8Y2lyY2xlIGN4PSI4MCIgY3k9IjIwMCIgcj0iNiIgZmlsbD0iI2U5MWU2MyIvPgogICAgPGxpbmUgeDE9IjgwIiB5MT0iMTcwIiB4Mj0iODAiIHkyPSIyMDAiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjMsMiIvPgogICAgPHRleHQgeD0iODAiIHk9IjE1MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4yMDExPC90ZXh0PgogICAgPHRleHQgeD0iODAiIHk9IjE2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+U2ltbW9ucyBldCBhbC48L3RleHQ+PHRleHQgeD0iODAiIHk9IjE4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+ZmFsc2UgcG9zaXRpdmXnjoc8L3RleHQ+PGNpcmNsZSBjeD0iMTc1IiBjeT0iMjAwIiByPSI2IiBmaWxsPSIjZTkxZTYzIi8+CiAgICA8bGluZSB4MT0iMTc1IiB5MT0iMjAwIiB4Mj0iMTc1IiB5Mj0iMjU1IiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSIzLDIiLz4KICAgIDx0ZXh0IHg9IjE3NSIgeT0iMjU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjIwMTI8L3RleHQ+CiAgICA8dGV4dCB4PSIxNzUiIHk9IjI3MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+QW1nZW4g56CU56m2PC90ZXh0Pjx0ZXh0IHg9IjE3NSIgeT0iMjg3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lho3nj77kuI3lj6/norroqo08L3RleHQ+PGNpcmNsZSBjeD0iMjcwIiBjeT0iMjAwIiByPSI2IiBmaWxsPSIjZjlhODI1Ii8+CiAgICA8bGluZSB4MT0iMjcwIiB5MT0iMTcwIiB4Mj0iMjcwIiB5Mj0iMjAwIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSIzLDIiLz4KICAgIDx0ZXh0IHg9IjI3MCIgeT0iMTUyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjIwMTM8L3RleHQ+CiAgICA8dGV4dCB4PSIyNzAiIHk9IjE2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+T1ND6Kit56uLPC90ZXh0Pjx0ZXh0IHg9IjI3MCIgeT0iMTgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lho3nj77jg5fjg63jgrjjgqfjgq/jg4g8L3RleHQ+PGNpcmNsZSBjeD0iMzY1IiBjeT0iMjAwIiByPSI2IiBmaWxsPSIjZTkxZTYzIi8+CiAgICA8bGluZSB4MT0iMzY1IiB5MT0iMjAwIiB4Mj0iMzY1IiB5Mj0iMjU1IiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSIzLDIiLz4KICAgIDx0ZXh0IHg9IjM2NSIgeT0iMjU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjIwMTU8L3RleHQ+CiAgICA8dGV4dCB4PSIzNjUiIHk9IjI3MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+T1ND6KuW5paHPC90ZXh0Pjx0ZXh0IHg9IjM2NSIgeT0iMjg3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4zNiXlho3nj77njoc8L3RleHQ+PGNpcmNsZSBjeD0iNDYwIiBjeT0iMjAwIiByPSI2IiBmaWxsPSIjZjlhODI1Ii8+CiAgICA8bGluZSB4MT0iNDYwIiB5MT0iMTcwIiB4Mj0iNDYwIiB5Mj0iMjAwIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSIzLDIiLz4KICAgIDx0ZXh0IHg9IjQ2MCIgeT0iMTUyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjIwMTY8L3RleHQ+CiAgICA8dGV4dCB4PSI0NjAiIHk9IjE2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+QVBB57Wx6KiIPC90ZXh0Pjx0ZXh0IHg9IjQ2MCIgeT0iMTgwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgqzjgqTjg4njg6njgqTjg7PmlLnoqII8L3RleHQ+PGNpcmNsZSBjeD0iNTU1IiBjeT0iMjAwIiByPSI2IiBmaWxsPSIjZjlhODI1Ii8+CiAgICA8bGluZSB4MT0iNTU1IiB5MT0iMjAwIiB4Mj0iNTU1IiB5Mj0iMjU1IiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtZGFzaGFycmF5PSIzLDIiLz4KICAgIDx0ZXh0IHg9IjU1NSIgeT0iMjU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEwIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjIwMTk8L3RleHQ+CiAgICA8dGV4dCB4PSI1NTUiIHk9IjI3MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+QVNB5aOw5piOPC90ZXh0Pjx0ZXh0IHg9IjU1NSIgeT0iMjg3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5wICZsdDsgMC4wNeW7g+atouaOqOWlqDwvdGV4dD48Y2lyY2xlIGN4PSI2NTAiIGN5PSIyMDAiIHI9IjYiIGZpbGw9IiNmOWE4MjUiLz4KICAgIDxsaW5lIHgxPSI2NTAiIHkxPSIxNzAiIHgyPSI2NTAiIHkyPSIyMDAiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjUiIHN0cm9rZS1kYXNoYXJyYXk9IjMsMiIvPgogICAgPHRleHQgeD0iNjUwIiB5PSIxNTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+MjAyMzwvdGV4dD4KICAgIDx0ZXh0IHg9IjY1MCIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7kuovliY3nmbvpjLLjgYw8L3RleHQ+PHRleHQgeD0iNjUwIiB5PSIxODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuaomea6luOBqzwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjM3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWNseapn+iqjeitmCDihpIg44Ks44Kk44OJ44Op44Kk44Oz5pS56KiCIOKGkiDlrp/ot7XlpInpnanjga7ms6LjgYzntprjgY88L3RleHQ+Cjwvc3ZnPg==)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">統計改革の歴史的流れ</text>
+  <!-- Timeline line -->
+  <line x1="60" y1="200" x2="740" y2="200" stroke="#555577" stroke-width="2"/>
+  <!-- Arrow -->
+  <polygon points="740,200 728,194 728,206" fill="#555577"/>
+  <!-- Events -->
+  <circle cx="80" cy="200" r="6" fill="#e91e63"/>
+    <line x1="80" y1="170" x2="80" y2="200" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="80" y="152" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">2011</text>
+    <text x="80" y="166" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">Simmons et al.</text><text x="80" y="180" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">false positive率</text><circle cx="175" cy="200" r="6" fill="#e91e63"/>
+    <line x1="175" y1="200" x2="175" y2="255" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="175" y="255" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">2012</text>
+    <text x="175" y="273" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">Amgen 研究</text><text x="175" y="287" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">再現不可確認</text><circle cx="270" cy="200" r="6" fill="#f9a825"/>
+    <line x1="270" y1="170" x2="270" y2="200" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="270" y="152" text-anchor="middle" fill="#f9a825" font-size="10" font-weight="bold" font-family="sans-serif">2013</text>
+    <text x="270" y="166" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">OSC設立</text><text x="270" y="180" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">再現プロジェクト</text><circle cx="365" cy="200" r="6" fill="#e91e63"/>
+    <line x1="365" y1="200" x2="365" y2="255" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="365" y="255" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">2015</text>
+    <text x="365" y="273" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">OSC論文</text><text x="365" y="287" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">36%再現率</text><circle cx="460" cy="200" r="6" fill="#f9a825"/>
+    <line x1="460" y1="170" x2="460" y2="200" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="460" y="152" text-anchor="middle" fill="#f9a825" font-size="10" font-weight="bold" font-family="sans-serif">2016</text>
+    <text x="460" y="166" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">APA統計</text><text x="460" y="180" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">ガイドライン改訂</text><circle cx="555" cy="200" r="6" fill="#f9a825"/>
+    <line x1="555" y1="200" x2="555" y2="255" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="555" y="255" text-anchor="middle" fill="#f9a825" font-size="10" font-weight="bold" font-family="sans-serif">2019</text>
+    <text x="555" y="273" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">ASA声明</text><text x="555" y="287" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">p &lt; 0.05廃止推奨</text><circle cx="650" cy="200" r="6" fill="#f9a825"/>
+    <line x1="650" y1="170" x2="650" y2="200" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="3,2"/>
+    <text x="650" y="152" text-anchor="middle" fill="#f9a825" font-size="10" font-weight="bold" font-family="sans-serif">2023</text>
+    <text x="650" y="166" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">事前登録が</text><text x="650" y="180" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">標準に</text>
+  <text x="400" y="375" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">危機認識 → ガイドライン改訂 → 実践変革の波が続く</text>
+</svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 統計改革の提案
 
 > *効果量・事前登録・ベイズ統計が代替アプローチとして台頭*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ntbHoqIjmlLnpnanvvJoz44Gk44Gu44Ki44OX44Ot44O844OBPC90ZXh0PgogIDwhLS0gQXBwcm9hY2ggMTogQmF5ZXNpYW4gLS0+CiAgPHJlY3QgeD0iMjAiIHk9IjU1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjMwMCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjE0MCIgeT0iODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OZ44Kk44K657Wx6KiIPC90ZXh0PgogIDxsaW5lIHgxPSI0MCIgeTE9Ijk1IiB4Mj0iMjQwIiB5Mj0iOTUiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iMTQwIiB5PSIxMTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7kuovliY3nn6XorZjjgpLntYTjgb/ovrzjgoA8L3RleHQ+CiAgPHRleHQgeD0iMTQwIiB5PSIxMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5QKEh8ZGF0YSkg44KS55u05o6l566X5Ye6PC90ZXh0PgogIDx0ZXh0IHg9IjE0MCIgeT0iMTY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Oh44Oq44OD44OIOjwvdGV4dD4KICA8dGV4dCB4PSIxNDAiIHk9IjE4MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44O75Luu6Kqs44Gu56K6546H44KS6KGo54++PC90ZXh0PgogIDx0ZXh0IHg9IjE0MCIgeT0iMTk5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg7vpgKPntprnmoTmm7TmlrDjgYzlj6/og708L3RleHQ+CiAgPHRleHQgeD0iMTQwIiB5PSIyMTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODu+iovOaLoOOBruW8t+OBleOCkuWumumHj+WMljwvdGV4dD4KICA8dGV4dCB4PSIxNDAiIHk9IjI0NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODh+ODoeODquODg+ODiDo8L3RleHQ+CiAgPHRleHQgeD0iMTQwIiB5PSIyNjMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODu+S6i+WJjeWIhuW4g+OBruS4u+ims+aApzwvdGV4dD4KICA8dGV4dCB4PSIxNDAiIHk9IjI3OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44O76KiI566X44Kz44K544OI6auYPC90ZXh0PgogIDwhLS0gQXBwcm9hY2ggMjogRWZmZWN0IHNpemVzIC0tPgogIDxyZWN0IHg9IjI4MCIgeT0iNTUiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzAwIiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNDAwIiB5PSI4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lirnmnpzph48gKyBDSTwvdGV4dD4KICA8bGluZSB4MT0iMzAwIiB5MT0iOTUiIHgyPSI1MDAiIHkyPSI5NSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjExNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPkNvaGVuJ3MgZCwgzrfCsiwgcjwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjEzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnDlgKTjgafjgarjgY/lirnmnpzjga7lpKfjgY3jgZXjgpLloLHlkYo8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIxNjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg6Hjg6rjg4Pjg4g6PC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMTgzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg7vlrp/nlKjnmoTph43opoHmgKfjgYzmmI7noro8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIxOTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODu+ODoeOCv+ino+aekOOBjOWuueaYkzwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjIxNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44O754++6KGM5Yi25bqm44Go5LqS5o+bPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5o6o5aWoIENvaGVuJ3MgZCDop6Pph4g6PC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMjYzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lsI86IDAuMiB8IOS4rTogMC41IHwg5aSnOiAwLjg8L3RleHQ+CiAgPCEtLSBBcHByb2FjaCAzOiBQcmUtcmVnaXN0cmF0aW9uIC0tPgogIDxyZWN0IHg9IjU0MCIgeT0iNTUiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzAwIiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNjYwIiB5PSI4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7kuovliY3nmbvpjLI8L3RleHQ+CiAgPGxpbmUgeDE9IjU2MCIgeTE9Ijk1IiB4Mj0iNzYwIiB5Mj0iOTUiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNjYwIiB5PSIxMTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ku67oqqzjg7vmiYvms5XjgpLkuovliY3jgavlhazplos8L3RleHQ+CiAgPHRleHQgeD0iNjYwIiB5PSIxMzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5PU0YuaW8sIEFzUHJlZGljdGVkLm9yZzwvdGV4dD4KICA8dGV4dCB4PSI2NjAiIHk9IjE2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODoeODquODg+ODiDo8L3RleHQ+CiAgPHRleHQgeD0iNjYwIiB5PSIxODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODu0hBUktpbmfpmLLmraI8L3RleHQ+CiAgPHRleHQgeD0iNjYwIiB5PSIxOTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODu3AtaGFja2luZ+a4m+WwkTwvdGV4dD4KICA8dGV4dCB4PSI2NjAiIHk9IjIxNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44O744OV44Kh44Kk44Or5byV44GN5Ye644GX6Kej5raIPC90ZXh0PgogIDx0ZXh0IHg9IjY2MCIgeT0iMjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5o6o5aWoOiBSZWdpc3RlcmVkIFJlcG9ydHM8L3RleHQ+CiAgPHRleHQgeD0iNjYwIiB5PSIyNjMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPue1kOaenOWJjeOBq+aOoeaKnuaxuuWumjwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjM4MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjPjgaTjga7jgqLjg5fjg63jg7zjg4Hjga7ntYTjgb/lkIjjgo/jgZvjgYzmnIDjgoLlirnmnpznmoQ8L3RleHQ+Cjwvc3ZnPg==)
-- - **閾値の引き下げ**: p<0.005 を新基準に (Benjamin et al., 2018)
-- - **事前登録**: 仮説・分析手法を事前に公開登録
-- - **Registered Reports**: 結果の前にピアレビュー
-- - **効果量と信頼区間**: p値だけでなく実質的な意味を報告
-- - **ベイズ統計**: 事前知識を組み込んだ合理的推論
-- - **オープンデータ**: データ・コードの公開で検証可能に
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">統計改革：3つのアプローチ</text>
+  <!-- Approach 1: Bayesian -->
+  <rect x="20" y="55" width="240" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="140" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">ベイズ統計</text>
+  <line x1="40" y1="95" x2="240" y2="95" stroke="#333355" stroke-width="1"/>
+  <text x="140" y="115" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">事前知識を組み込む</text>
+  <text x="140" y="135" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">P(H|data) を直接算出</text>
+  <text x="140" y="165" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">メリット:</text>
+  <text x="140" y="183" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">・仮説の確率を表現</text>
+  <text x="140" y="199" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">・連続的更新が可能</text>
+  <text x="140" y="215" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">・証拠の強さを定量化</text>
+  <text x="140" y="245" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">デメリット:</text>
+  <text x="140" y="263" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">・事前分布の主観性</text>
+  <text x="140" y="279" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">・計算コスト高</text>
+  <!-- Approach 2: Effect sizes -->
+  <rect x="280" y="55" width="240" height="300" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="85" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">効果量 + CI</text>
+  <line x1="300" y1="95" x2="500" y2="95" stroke="#333355" stroke-width="1"/>
+  <text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">Cohen's d, η², r</text>
+  <text x="400" y="135" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">p値でなく効果の大きさを報告</text>
+  <text x="400" y="165" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">メリット:</text>
+  <text x="400" y="183" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">・実用的重要性が明確</text>
+  <text x="400" y="199" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">・メタ解析が容易</text>
+  <text x="400" y="215" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">・現行制度と互換</text>
+  <text x="400" y="245" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">推奨 Cohen's d 解釈:</text>
+  <text x="400" y="263" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">小: 0.2 | 中: 0.5 | 大: 0.8</text>
+  <!-- Approach 3: Pre-registration -->
+  <rect x="540" y="55" width="240" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="660" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">事前登録</text>
+  <line x1="560" y1="95" x2="760" y2="95" stroke="#333355" stroke-width="1"/>
+  <text x="660" y="115" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">仮説・手法を事前に公開</text>
+  <text x="660" y="135" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">OSF.io, AsPredicted.org</text>
+  <text x="660" y="165" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">メリット:</text>
+  <text x="660" y="183" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">・HARKing防止</text>
+  <text x="660" y="199" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">・p-hacking減少</text>
+  <text x="660" y="215" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">・ファイル引き出し解消</text>
+  <text x="660" y="245" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">推奨: Registered Reports</text>
+  <text x="660" y="263" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">結果前に採択決定</text>
+  <text x="400" y="382" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">3つのアプローチの組み合わせが最も効果的</text>
+</svg>
+</div>
+
+- **閾値の引き下げ**: p<0.005 を新基準に (Benjamin et al., 2018)
+- **事前登録**: 仮説・分析手法を事前に公開登録
+- **Registered Reports**: 結果の前にピアレビュー
+- **効果量と信頼区間**: p値だけでなく実質的な意味を報告
+- **ベイズ統計**: 事前知識を組み込んだ合理的推論
+- **オープンデータ**: データ・コードの公開で検証可能に
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # ASAの歴史的声明 (2016)
 
 > *米統計学会が公式にp値単独判断への依存を否定した*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ntbHoqIjmlLnpnanvvJrlpJrlsaTnmoTjgqLjg5fjg63jg7zjg4E8L3RleHQ+CiAgPCEtLSBDZW50ZXI6IFNjaWVuY2UgSW50ZWdyaXR5IC0tPgogIDxjaXJjbGUgY3g9IjQwMCIgY3k9IjIxMCIgcj0iNjUiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyMDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+56eR5a2m44GuPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMjI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS/oemgvOaApzwvdGV4dD4KICA8IS0tIFN1cnJvdW5kaW5nIHJlZm9ybXMgLS0+CiAgPCEtLSBQcmUtcmVnaXN0cmF0aW9uIC0tPgogIDxyZWN0IHg9IjMwIiB5PSI2MCIgd2lkdGg9IjE0MCIgaGVpZ2h0PSI1NSIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8dGV4dCB4PSIxMDAiIHk9Ijg1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5LqL5YmN55m76YyyPC90ZXh0PgogIDx0ZXh0IHg9IjEwMCIgeT0iMTAzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5Luu6Kqs44KS5YWI44Gr5YWs6ZaLPC90ZXh0PgogIDxsaW5lIHgxPSIxNzAiIHkxPSIxMTUiIHgyPSIzNDAiIHkyPSIxNzUiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSI0LDMiLz4KICA8IS0tIE9wZW4gRGF0YSAtLT4KICA8cmVjdCB4PSI2MzAiIHk9IjYwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjU1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjcwMCIgeT0iODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgqrjg7zjg5fjg7Pjg4fjg7zjgr88L3RleHQ+CiAgPHRleHQgeD0iNzAwIiB5PSIxMDMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lho3nj77lj6/og73mgKfnorrkv508L3RleHQ+CiAgPGxpbmUgeDE9IjYzMCIgeTE9IjExNSIgeDI9IjQ2MCIgeTI9IjE3NSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1kYXNoYXJyYXk9IjQsMyIvPgogIDwhLS0gUmVnaXN0ZXJlZCBSZXBvcnRzIC0tPgogIDxyZWN0IHg9IjMwIiB5PSIyODUiIHdpZHRoPSIxNDAiIGhlaWdodD0iNTUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iMTAwIiB5PSIzMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5SZWdpc3RlcmVkPC90ZXh0PgogIDx0ZXh0IHg9IjEwMCIgeT0iMzI4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+UmVwb3J0czwvdGV4dD4KICA8bGluZSB4MT0iMTcwIiB5MT0iMzE1IiB4Mj0iMzQwIiB5Mj0iMjU1IiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMSIgc3Ryb2tlLWRhc2hhcnJheT0iNCwzIi8+CiAgPCEtLSBFZmZlY3QgU2l6ZSAtLT4KICA8cmVjdCB4PSI2MzAiIHk9IjI4NSIgd2lkdGg9IjE0MCIgaGVpZ2h0PSI1NSIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8dGV4dCB4PSI3MDAiIHk9IjMxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWKueaenOmHjyArIENJPC90ZXh0PgogIDx0ZXh0IHg9IjcwMCIgeT0iMzI4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5a6f6LOq55qE5oSP5ZGz44KS5aCx5ZGKPC90ZXh0PgogIDxsaW5lIHgxPSI2MzAiIHkxPSIzMTUiIHgyPSI0NjAiIHkyPSIyNTUiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSI0LDMiLz4KICA8IS0tIEJheWVzaWFuIC0tPgogIDxyZWN0IHg9IjMxMCIgeT0iMzMwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMzU4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OZ44Kk44K657Wx6KiIPC90ZXh0PgogIDxsaW5lIHgxPSI0MDAiIHkxPSIyNzUiIHgyPSI0MDAiIHkyPSIzMzAiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIiBzdHJva2UtZGFzaGFycmF5PSI0LDMiLz4KPC9zdmc+)
-- - **アメリカ統計学会**が175年の歴史で初めてp値に公式声明
-- - 「p値は仮説が真である確率ではない」
-- - 「p値だけで科学的結論を下すべきでない」
-- - 「p<0.05を超えたかだけで有意/非有意と二分してはならない」
-- - 2019年にはさらに踏み込み「統計的有意性を廃止せよ」
-- - → 科学のあり方を根本から問い直す動き
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="35" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">統計改革：多層的アプローチ</text>
+  <!-- Center: Science Integrity -->
+  <circle cx="400" cy="210" r="65" fill="#16213e" stroke="#f9a825" stroke-width="3"/>
+  <text x="400" y="205" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">科学の</text>
+  <text x="400" y="225" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">信頼性</text>
+  <!-- Surrounding reforms -->
+  <!-- Pre-registration -->
+  <rect x="30" y="60" width="140" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="100" y="85" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">事前登録</text>
+  <text x="100" y="103" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">仮説を先に公開</text>
+  <line x1="170" y1="115" x2="340" y2="175" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+  <!-- Open Data -->
+  <rect x="630" y="60" width="140" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="700" y="85" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">オープンデータ</text>
+  <text x="700" y="103" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">再現可能性確保</text>
+  <line x1="630" y1="115" x2="460" y2="175" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+  <!-- Registered Reports -->
+  <rect x="30" y="285" width="140" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="100" y="310" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Registered</text>
+  <text x="100" y="328" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Reports</text>
+  <line x1="170" y1="315" x2="340" y2="255" stroke="#e91e63" stroke-width="1" stroke-dasharray="4,3"/>
+  <!-- Effect Size -->
+  <rect x="630" y="285" width="140" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="700" y="310" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">効果量 + CI</text>
+  <text x="700" y="328" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">実質的意味を報告</text>
+  <line x1="630" y1="315" x2="460" y2="255" stroke="#e91e63" stroke-width="1" stroke-dasharray="4,3"/>
+  <!-- Bayesian -->
+  <rect x="310" y="330" width="180" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="358" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ベイズ統計</text>
+  <line x1="400" y1="275" x2="400" y2="330" stroke="#f9a825" stroke-width="1" stroke-dasharray="4,3"/>
+</svg>
+</div>
+
+- **アメリカ統計学会**が175年の歴史で初めてp値に公式声明
+- 「p値は仮説が真である確率ではない」
+- 「p値だけで科学的結論を下すべきでない」
+- 「p<0.05を超えたかだけで有意/非有意と二分してはならない」
+- 2019年にはさらに踏み込み「統計的有意性を廃止せよ」
+- → 科学のあり方を根本から問い直す動き
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 6. エンジニアへの教訓
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # A/Bテストでの応用（1/2）
 
 > *早期停止・多重比較・サンプルサイズ設計が結果を左右する*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5BL0Ljg4bjgrnjg4jjga5wLWhhY2tpbmfjg6rjgrnjgq/vvJrpgJTkuK3op6PmnpDjga7ljbHpmbo8L3RleHQ+CiAgPCEtLSBYIGF4aXM6IHNhbXBsZSBzaXplIC0tPgogIDxsaW5lIHgxPSI4MCIgeTE9IjMzMCIgeDI9Ijc0MCIgeTI9IjMzMCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8IS0tIFkgYXhpczogcC12YWx1ZSAtLT4KICA8bGluZSB4MT0iODAiIHkxPSI1MCIgeDI9IjgwIiB5Mj0iMzMwIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMzY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44K144Oz44OX44Or44K144Kk44K677yI44OH44O844K/5Y+O6ZuG5Lit77yJPC90ZXh0PgogIDx0ZXh0IHg9IjI1IiB5PSIyMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTIiIHRyYW5zZm9ybT0icm90YXRlKC05MCwyNSwyMDApIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+cOWApDwvdGV4dD4KICA8IS0tIHA9MC4wNSB0aHJlc2hvbGQgbGluZSAtLT4KICA8bGluZSB4MT0iODAiIHkxPSIxNzUiIHgyPSI3NDAiIHkyPSIxNzUiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI4LDQiLz4KICA8dGV4dCB4PSI3NDgiIHk9IjE3OSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPnA9MC4wNTwvdGV4dD4KICA8IS0tIFdhbmRlcmluZyBwLXZhbHVlIHBhdGggLS0+CiAgPHBvbHlsaW5lIHBvaW50cz0iODAsMzAwIDE1MCwyNDAgMjAwLDI2MCAyNjAsMTgwIDMxMCwyMDAgMzcwLDE2MCA0MTAsMTkwIDQ2MCwxNzAgNTEwLDE4NSA1NjAsMTY1IDYwMCwxODAgNjUwLDE1OCA3MDAsMTY4IDc0MCwxNjIiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyLjUiLz4KICA8IS0tIEVhcmx5IGZhbHNlIHBvc2l0aXZlIHpvbmUgYW5ub3RhdGlvbiAtLT4KICA8cmVjdCB4PSIyMzAiIHk9IjE0NSIgd2lkdGg9IjEzMCIgaGVpZ2h0PSI2MCIgcng9IjYiIGZpbGw9IiNlOTFlNjMiIG9wYWNpdHk9IjAuMiIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIyOTUiIHk9IjE3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKaoCDml6nmnJ/jgas8L3RleHQ+CiAgPHRleHQgeD0iMjk1IiB5PSIxODYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5wJmx0OzAuMDUg4oaSIOWBnOatojwvdGV4dD4KICA8dGV4dCB4PSIyOTUiIHk9IjIwMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPj0g5YG96Zm95oCn44Oq44K544Kv5aSnPC90ZXh0PgogIDwhLS0gQ29ycmVjdCB6b25lIC0tPgogIDx0ZXh0IHg9IjY1MCIgeT0iMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4pyTIOS6i+WJjeaxuuWumuOBl+OBnzwvdGV4dD4KICA8dGV4dCB4PSI2NTAiIHk9IjE2MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCteODs+ODl+ODq+OCteOCpOOCuuOBvuOBp+e2mee2mjwvdGV4dD4KPC9zdmc+)
-- - A/Bテストも本質的に統計的検定 → 同じ罠がある
-- - **やりがちなミス**:
--   - 途中でp<0.05になったら「勝者」と判定
--   - 複数のメトリクスを同時測定して有意なものだけ報告
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">A/Bテストのp-hackingリスク：途中解析の危険</text>
+  <!-- X axis: sample size -->
+  <line x1="80" y1="330" x2="740" y2="330" stroke="#ffffff" stroke-width="1"/>
+  <!-- Y axis: p-value -->
+  <line x1="80" y1="50" x2="80" y2="330" stroke="#ffffff" stroke-width="1"/>
+  <text x="400" y="365" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">サンプルサイズ（データ収集中）</text>
+  <text x="25" y="200" text-anchor="middle" fill="#aaaaaa" font-size="12" transform="rotate(-90,25,200)" font-family="sans-serif">p値</text>
+  <!-- p=0.05 threshold line -->
+  <line x1="80" y1="175" x2="740" y2="175" stroke="#e91e63" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="748" y="179" fill="#e91e63" font-size="11" font-family="sans-serif">p=0.05</text>
+  <!-- Wandering p-value path -->
+  <polyline points="80,300 150,240 200,260 260,180 310,200 370,160 410,190 460,170 510,185 560,165 600,180 650,158 700,168 740,162" fill="none" stroke="#f9a825" stroke-width="2.5"/>
+  <!-- Early false positive zone annotation -->
+  <rect x="230" y="145" width="130" height="60" rx="6" fill="#e91e63" opacity="0.2" stroke="#e91e63" stroke-width="1"/>
+  <text x="295" y="170" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">⚠ 早期に</text>
+  <text x="295" y="186" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">p&lt;0.05 → 停止</text>
+  <text x="295" y="202" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">= 偽陽性リスク大</text>
+  <!-- Correct zone -->
+  <text x="650" y="145" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">✓ 事前決定した</text>
+  <text x="650" y="161" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">サンプルサイズまで継続</text>
+</svg>
+</div>
+
+- A/Bテストも本質的に統計的検定 → 同じ罠がある
+- **やりがちなミス**:
+  - 途中でp<0.05になったら「勝者」と判定
+  - 複数のメトリクスを同時測定して有意なものだけ報告
 
 
 ---
@@ -290,38 +771,80 @@ style: |
 
 > *偽陽性を防ぐには検出力80%・α=0.05の事前計算が必須*
 
--   - サンプルサイズを事前に決めない
-- - **ベストプラクティス**:
--   - 事前にサンプルサイズと評価期間を決定
--   - 多重比較補正(Bonferroni等)を適用
--   - 効果量と実務的意味を重視する
+  - サンプルサイズを事前に決めない
+- **ベストプラクティス**:
+  - 事前にサンプルサイズと評価期間を決定
+  - 多重比較補正(Bonferroni等)を適用
+  - 効果量と実務的意味を重視する
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # まとめ
 
 > *p<0.05は「帰無仮説が間違っている証拠」ではない*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5w5YCk5ZWP6aGM77ya5Y6f5Zug44O75b2x6Z+/44O76Kej5rG6562WPC90ZXh0PgogIDwhLS0gQ2VudGVyIC0tPgogIDxlbGxpcHNlIGN4PSI0MDAiIGN5PSIyMDAiIHJ4PSI4NSIgcnk9IjQ1IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMi41Ii8+CiAgPHRleHQgeD0iNDAwIiB5PSIxOTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5YaN54++5oCn44Gu5Y2x5qmfPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMjEzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+UmVwbGljYXRpb24gQ3Jpc2lzPC90ZXh0PgogIDwhLS0gQ2F1c2VzIChsZWZ0KSAtLT4KICA8dGV4dCB4PSI4MCIgeT0iODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5Y6f5ZugPC90ZXh0PgogIDxyZWN0IHg9IjIwIiB5PSIxMDAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzUiIHJ4PSI2IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjgwIiB5PSIxMjIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5wLWhhY2tpbmc8L3RleHQ+CiAgPGxpbmUgeDE9IjE0MCIgeTE9IjExNyIgeDI9IjMxNSIgeTI9IjE4MCIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEuMiIvPgogIDxyZWN0IHg9IjIwIiB5PSIxODAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzUiIHJ4PSI2IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjgwIiB5PSIyMDIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lh7rniYjjg5DjgqTjgqLjgrk8L3RleHQ+CiAgPGxpbmUgeDE9IjE0MCIgeTE9IjE5NyIgeDI9IjMxNSIgeTI9IjIwMCIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEuMiIvPgogIDxyZWN0IHg9IjIwIiB5PSIyNjAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzUiIHJ4PSI2IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjgwIiB5PSIyODIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ntbHoqIjmlZnogrLkuI3otrM8L3RleHQ+CiAgPGxpbmUgeDE9IjE0MCIgeTE9IjI3NyIgeDI9IjMxNSIgeTI9IjIyMCIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEuMiIvPgogIDwhLS0gRWZmZWN0cyAocmlnaHQpIC0tPgogIDx0ZXh0IHg9IjcyMCIgeT0iODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5b2x6Z+/PC90ZXh0PgogIDxyZWN0IHg9IjY2MCIgeT0iMTAwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjM1IiByeD0iNiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSI3MjAiIHk9IjEyMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuenkeWtpuS4jeS/oTwvdGV4dD4KICA8bGluZSB4MT0iNjYwIiB5MT0iMTE3IiB4Mj0iNDg1IiB5Mj0iMTgwIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMS4yIi8+CiAgPHJlY3QgeD0iNjYwIiB5PSIxODAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzUiIHJ4PSI2IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjcyMCIgeT0iMjAyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+Mjgw5YSE44OJ44Or5pCN5aSxL+W5tDwvdGV4dD4KICA8bGluZSB4MT0iNjYwIiB5MT0iMTk3IiB4Mj0iNDg1IiB5Mj0iMjAwIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMS4yIi8+CiAgPCEtLSBTb2x1dGlvbnMgKGJvdHRvbSkgLS0+CiAgPHRleHQgeD0iNDAwIiB5PSIzMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Kej5rG6562WPC90ZXh0PgogIDxyZWN0IHg9IjI0MCIgeT0iMzE1IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjM1IiByeD0iNiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICA8dGV4dCB4PSIyOTAiIHk9IjMzNyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS6i+WJjeeZu+mMsjwvdGV4dD4KICA8bGluZSB4MT0iMzQwIiB5MT0iMzE1IiB4Mj0iMzc1IiB5Mj0iMjQ1IiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS4yIi8+CiAgPHJlY3QgeD0iMzUwIiB5PSIzMTUiIHdpZHRoPSIxMDAiIGhlaWdodD0iMzUiIHJ4PSI2IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMzM3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OZ44Kk44K657Wx6KiIPC90ZXh0PgogIDxsaW5lIHgxPSI0MDAiIHkxPSIzMTUiIHgyPSI0MDAiIHkyPSIyNDUiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjIiLz4KICA8cmVjdCB4PSI0NjAiIHk9IjMxNSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIzNSIgcng9IjYiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNTEwIiB5PSIzMzciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5PcGVuIERhdGE8L3RleHQ+CiAgPGxpbmUgeDE9IjQ2MCIgeTE9IjMxNSIgeDI9IjQyNSIgeTI9IjI0NSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuMiIvPgo8L3N2Zz4=)
-- - p値は「効果がある確率」ではない — よくある致命的誤解
-- - 再現性の危機: 科学論文の半数以上が再現不可能な分野も
-- - 構造的インセンティブの歪みが問題の根本原因
-- - 事前登録・オープンデータ・ベイズ統計が改革の柱
-- - エンジニアのA/Bテストにも同じ教訓が当てはまる
-- - 「統計的に有意」は「正しい」を意味しない
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">p値問題：原因・影響・解決策</text>
+  <!-- Center -->
+  <ellipse cx="400" cy="200" rx="85" ry="45" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
+  <text x="400" y="196" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">再現性の危機</text>
+  <text x="400" y="213" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">Replication Crisis</text>
+  <!-- Causes (left) -->
+  <text x="80" y="85" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">原因</text>
+  <rect x="20" y="100" width="120" height="35" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="80" y="122" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">p-hacking</text>
+  <line x1="140" y1="117" x2="315" y2="180" stroke="#e91e63" stroke-width="1.2"/>
+  <rect x="20" y="180" width="120" height="35" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="80" y="202" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">出版バイアス</text>
+  <line x1="140" y1="197" x2="315" y2="200" stroke="#e91e63" stroke-width="1.2"/>
+  <rect x="20" y="260" width="120" height="35" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="80" y="282" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">統計教育不足</text>
+  <line x1="140" y1="277" x2="315" y2="220" stroke="#e91e63" stroke-width="1.2"/>
+  <!-- Effects (right) -->
+  <text x="720" y="85" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">影響</text>
+  <rect x="660" y="100" width="120" height="35" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="720" y="122" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">科学不信</text>
+  <line x1="660" y1="117" x2="485" y2="180" stroke="#e91e63" stroke-width="1.2"/>
+  <rect x="660" y="180" width="120" height="35" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
+  <text x="720" y="202" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">280億ドル損失/年</text>
+  <line x1="660" y1="197" x2="485" y2="200" stroke="#e91e63" stroke-width="1.2"/>
+  <!-- Solutions (bottom) -->
+  <text x="400" y="300" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">解決策</text>
+  <rect x="240" y="315" width="100" height="35" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="290" y="337" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">事前登録</text>
+  <line x1="340" y1="315" x2="375" y2="245" stroke="#f9a825" stroke-width="1.2"/>
+  <rect x="350" y="315" width="100" height="35" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="400" y="337" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ベイズ統計</text>
+  <line x1="400" y1="315" x2="400" y2="245" stroke="#f9a825" stroke-width="1.2"/>
+  <rect x="460" y="315" width="100" height="35" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="510" y="337" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Open Data</text>
+  <line x1="460" y1="315" x2="425" y2="245" stroke="#f9a825" stroke-width="1.2"/>
+</svg>
+</div>
+
+- p値は「効果がある確率」ではない — よくある致命的誤解
+- 再現性の危機: 科学論文の半数以上が再現不可能な分野も
+- 構造的インセンティブの歪みが問題の根本原因
+- 事前登録・オープンデータ・ベイズ統計が改革の柱
+- エンジニアのA/Bテストにも同じ教訓が当てはまる
+- 「統計的に有意」は「正しい」を意味しない
 
 
 ---
 
+<!-- _class: invert fit-64 -->
 # 参考文献
 
 > *再現性危機を実証した主要論文と改革提言の参考文献一覧*
 
-- - **研究・データ:**
-- - Open Science Collaboration (2015) "Estimating the reproducibility of psychological science"
-- - Ioannidis, J.P.A. (2005) "Why Most Published Research Findings Are False"
-- - **公式声明:**
-- - ASA Statement on Statistical Significance and P-Values (2016)
-- - Amrhein, Greenland, McShane (2019) "Retire statistical significance"
+- **研究・データ:**
+- Open Science Collaboration (2015) "Estimating the reproducibility of psychological science"
+- Ioannidis, J.P.A. (2005) "Why Most Published Research Findings Are False"
+- **公式声明:**
+- ASA Statement on Statistical Significance and P-Values (2016)
+- Amrhein, Greenland, McShane (2019) "Retire statistical significance"
 

@@ -6,41 +6,76 @@ size: 16:9
 paginate: true
 footer: "AWS GenAI Dev Pro チートシート 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,13 +111,13 @@ style: |
   table { font-size: 0.68em; border-collapse: collapse; width: 100%; }
   th { background: #1565C0; color: white; padding: 4px 8px; text-align: left; }
   td { padding: 3px 8px; border-bottom: 1px solid #e0e0e0; }
-  tr:nth-child(even) td { background: #f0f6ff; }
+  tr:nth-child(even) td { background: rgba(255, 255, 255, 0.07); }
   section.lead h1 { font-size: 1.5em; }
   h2 { color: #1565C0; }
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # AWS Certified Generative AI Developer - Professional
 
 - **試験直前チートシート — サービス比較表・用語集エディション**
@@ -96,7 +131,8 @@ style: |
 
 > *5ドメインの出題割合と重点テーマを一枚で把握して学習優先度を決める*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
 <rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -125,6 +161,8 @@ style: |
 <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
 <text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
 </svg>
+</div>
+
 | ドメイン | テーマ | 配点目安 | チートシート |
 |---------|--------|---------|------------|
 | D1 | AI / ML の基礎 | 15% | スライド 4–14 |
@@ -132,6 +170,7 @@ style: |
 | D3 | Foundation Models の活用 | 30% | スライド 26–48 |
 | D4 | 責任ある AI | 18% | スライド 49–58 |
 | D5 | セキュリティ・コンプライアンス | 20% | スライド 59–68 |
+
 - 問題数: 65問（採点対象）＋ 非採点問題 | 時間: 170分 | 合格: 700/1000
 
 
@@ -141,7 +180,8 @@ style: |
 
 > *消去法と「最も適切」基準を使えばBest Practice問題は90%以上正解できる*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">Amazon Bedrock — サービスマップ</text>
 <rect x="300" y="50" width="200" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
@@ -181,6 +221,8 @@ style: |
 <text x="620" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Topic/PII</text>
 <text x="400" y="370" text-anchor="middle" fill="#f9a825" font-size="12">API統一: InvokeModel / InvokeModelWithResponseStream / Converse</text>
 </svg>
+</div>
+
 - **問題形式**: 単一選択 + 複数選択（2〜5択）
 - **重点ドメイン**: D3（30%）→ Bedrock / RAG / Agents が最重要
 - **問われ方**: 「最もコスト効率が良い」「最も安全な」→ Best Practice 視点
@@ -191,7 +233,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Domain 1: AI / ML の基礎
 
 - スライド 5–14 | 配点目安 15%
@@ -206,7 +248,8 @@ style: |
 
 > *AI/ML/DL/GenAIの定義の違いは試験で毎回問われる基礎知識*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
 <rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -228,6 +271,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
 </svg>
+</div>
+
 | 用語 | 定義 | 範囲 | キーワード |
 |------|------|------|-----------|
 | **AI** | 人間の知能を模倣するシステム | 最広義 | ルールベース / 学習 |
@@ -242,7 +287,8 @@ style: |
 
 > *分類・回帰・クラスタリング・強化学習の適用シーンを表で即座に答えられる*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
 <rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -267,6 +313,8 @@ style: |
 <text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
 <text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
 </svg>
+</div>
+
 | タスク | 出力 | 代表アルゴリズム | AWS サービス例 |
 |--------|------|----------------|--------------|
 | 分類 | カテゴリ | SVM、決定木、XGBoost | SageMaker |
@@ -282,7 +330,8 @@ style: |
 
 > *3学習パターンはアルゴリズム適用だけでなく「なぜその手法か」まで説明できる*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -313,6 +362,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
 </svg>
+</div>
+
 | 軸 | 教師あり学習 | 教師なし学習 | 強化学習 |
 |----|------------|------------|---------|
 | 学習データ | ラベル付きデータ | ラベルなしデータ | 環境との対話 |
@@ -327,7 +378,8 @@ style: |
 
 > *精度・再現率・AUC・RMSEは評価指標を「どのユースケースで使うか」セットで暗記*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -359,6 +411,8 @@ style: |
 <text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
 <text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
 </svg>
+</div>
+
 | 指標 | 用途 | 値の意味 |
 |------|------|---------|
 | Accuracy | 分類全般 | 正解率（高いほど良い）|
@@ -375,7 +429,8 @@ style: |
 
 > *バイアス・バリアンスのトレードオフと過学習防止手法3選は必須の頻出トピック*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
 <rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -394,6 +449,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
 </svg>
+</div>
+
 | 用語 | 定義 | 症状 | 対策 |
 |------|------|------|------|
 | 過学習 | 訓練データに過適合 | テスト精度が低下 | Dropout / 正則化 / データ増量 |
@@ -408,7 +465,8 @@ style: |
 
 > *AIサービス3層(AI Services/SageMaker/EC2)で何を自作するかの設計判断が鍵*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
 <rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -435,11 +493,14 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
 </svg>
+</div>
+
 | 層 | 対象者 | 主なサービス | 特徴 |
 |----|--------|------------|------|
 | AI Services | 非 ML エンジニア | Rekognition / Comprehend / Transcribe / Polly / Translate | API 呼び出しのみ |
 | ML Services | ML エンジニア | SageMaker / Bedrock | カスタム学習・推論 |
 | ML Frameworks | 研究者・専門家 | EC2 + PyTorch/TF / Trainium / Inferentia | 最大コントロール |
+
 - Bedrock は AI Services と ML Services の中間的位置付け
 - SageMaker は ML ライフサイクル全体（データ準備〜デプロイ）をカバー
 
@@ -450,7 +511,8 @@ style: |
 
 > *Rekognition(画像)/Comprehend(テキスト)/Textract(文書)の用途境界線を明確に*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -472,6 +534,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
 </svg>
+</div>
+
 | サービス | 対象 | 主な機能 | 出力形式 |
 |---------|------|---------|---------|
 | Rekognition | 画像・動画 | 物体検出 / 顔認証 / テキスト検出 / Face Liveness | JSON（label / bounding box）|
@@ -485,7 +549,8 @@ style: |
 
 > *Transcribe(音声→テキスト)/Translate(翻訳)/Polly(テキスト→音声)は変換方向で覚える*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
 <rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -514,6 +579,8 @@ style: |
 <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
 <text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
 </svg>
+</div>
+
 | サービス | 変換方向 | 主な機能 | 特記事項 |
 |---------|---------|---------|---------|
 | Transcribe | 音声 → テキスト | 文字起こし / 話者識別 / PII 削除 | リアルタイム / バッチ両対応 |
@@ -527,7 +594,8 @@ style: |
 
 > *Forecast(時系列)/Personalize(推薦)/Kendra(検索)は出力の種類で使い分ける*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
 <rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -549,6 +617,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
 </svg>
+</div>
+
 | サービス | 用途 | 入力データ | 特記事項 |
 |---------|------|----------|---------|
 | Forecast | 時系列予測（需要予測等）| 履歴データ + 関連変数 | AutoML 内蔵 |
@@ -562,7 +632,8 @@ style: |
 
 > *Domain 1の全キーワードを前半でまとめて一括確認する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデル選択 デシジョンツリー</text>
 <rect x="300" y="45" width="200" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
@@ -603,6 +674,8 @@ style: |
 <text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12">コスト: Haiku &lt; Sonnet &lt; Opus  |  速度: Haiku &gt; Sonnet &gt; Opus</text>
 <text x="400" y="355" text-anchor="middle" fill="#f9a825" font-size="11">本番: Sonnet推奨 / バッチ低コスト: Haiku / 高精度: Opus</text>
 </svg>
+</div>
+
 - **AI/ML 基礎**: AI（知能模倣） / ML（データ学習） / DL（深層NN） / GenAI（コンテンツ生成）
 - **タスク**: 分類 / 回帰 / クラスタリング / 強化学習 / 推薦
 - **指標**: Accuracy / Precision / Recall / F1 / AUC-ROC / RMSE
@@ -622,7 +695,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Domain 2: 生成 AI の基礎
 
 - スライド 16–25 | 配点目安 17%
@@ -637,7 +710,8 @@ style: |
 
 > *Foundation/Architecture用語10選はFM選定とアーキテクチャ設計問題の基盤知識*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
 <rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -662,6 +736,8 @@ style: |
 <text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
 <text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
 </svg>
+</div>
+
 | 用語 | 定義 |
 |------|------|
 | **Foundation Model (FM)** | 大規模データで事前学習した汎用 AI モデル |
@@ -678,7 +754,8 @@ style: |
 
 > *Temperature/Top-P/Top-K/Stop Sequenceは推論パラメータ調整の試験頻出4択*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -709,6 +786,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
 </svg>
+</div>
+
 | 用語 | 定義 |
 |------|------|
 | **Token** | テキストの最小処理単位（単語 / サブワード）|
@@ -725,7 +804,8 @@ style: |
 
 > *ハルシネーション・グラウンディング・安全性フィルターはGuardrails問題の核心*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -757,6 +837,8 @@ style: |
 <text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
 <text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
 </svg>
+</div>
+
 | 用語 | 定義 |
 |------|------|
 | **Hallucination** | 事実と異なる内容を自信を持って生成する問題 |
@@ -772,7 +854,8 @@ style: |
 
 > *コスト・精度・レイテンシ・コンテキスト長の4軸でFMを選定する判断表*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
 <rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -791,6 +874,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
 </svg>
+</div>
+
 | ユースケース | 推奨 FM 種別 | 考慮点 |
 |------------|------------|--------|
 | 長文要約・複雑推論 | 大コンテキスト LLM | 200K+ トークン対応 |
@@ -806,7 +891,8 @@ style: |
 
 > *Bedrock提供FMは価格・コンテキスト長・マルチモーダルの3点で即答できる*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
 <rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -833,6 +919,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
 </svg>
+</div>
+
 | プロバイダー | モデル名 | 強み | 最大コンテキスト |
 |------------|--------|------|--------------|
 | Anthropic | Claude 3.5 Sonnet | 高精度・多用途・Vision 対応 | 200K tokens |
@@ -849,7 +937,8 @@ style: |
 
 > *Claude/Titan/Llama/Mistralのユースケース最適化は選択問題の頻出テーマ*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -871,6 +960,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
 </svg>
+</div>
+
 | 項目 | Claude 3.5 | Titan Text | Llama 3.1 | Mistral |
 |------|-----------|----------|---------|---------|
 | 提供元 | Anthropic | Amazon | Meta | Mistral AI |
@@ -885,7 +976,8 @@ style: |
 
 > *Stability AI(高品質生成)とAmazon Titan Image(コスト効率)の使い分けを覚える*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
 <rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -914,11 +1006,14 @@ style: |
 <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
 <text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
 </svg>
+</div>
+
 | モデル | 提供元 | 主な機能 | 特記 |
 |--------|--------|---------|------|
 | Stable Diffusion XL | Stability AI | Text-to-Image / Image-to-Image | 高解像度 1024px+ |
 | Titan Image Generator G1 | Amazon | Text-to-Image / 背景削除 | 透かし機能 |
 | Titan Multimodal Embeddings | Amazon | 画像+テキスト統合ベクトル | マルチモーダル検索 |
+
 - 呼び出し API: `bedrock:InvokeModel` / 出力: PNG / JPEG
 - 最大解像度: 2048 × 2048 px
 
@@ -929,7 +1024,8 @@ style: |
 
 > *9つの推論パラメータとその効果を表で管理し設問ごとに最適値を判断する*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
 <rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -951,12 +1047,15 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
 </svg>
+</div>
+
 | パラメータ | 範囲 | 低い値の効果 | 高い値の効果 |
 |-----------|------|------------|------------|
 | temperature | 0–1 | 一貫・決定論的 | 多様・創造的 |
 | top_p | 0–1 | 保守的（高確率のみ）| 多様（広い候補）|
 | top_k | 1–N | 候補を厳しく絞る | 候補を広く取る |
 | max_tokens | 1〜上限 | 短い出力 | 長い出力 |
+
 - temperature=0: 同一入力 → 同一出力（決定論的）
 - temperature と top_p は通常どちらか一方のみ調整する
 
@@ -967,7 +1066,8 @@ style: |
 
 > *Zero-shot/Few-shot/CoT/ReActの4手法は問題シナリオで正しく選択できる*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
 <rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -992,6 +1092,8 @@ style: |
 <text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
 <text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
 </svg>
+</div>
+
 | 手法 | 例数 | 特徴 | 向く用途 |
 |------|------|------|---------| 
 | Zero-shot | 0 | 指示のみ | 汎用タスク・シンプルな変換 |
@@ -1007,7 +1109,8 @@ style: |
 
 > *Domain 2の全キーワードを前半でまとめて一括確認する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">プロンプトエンジニアリング 手法比較</text>
 <rect x="30" y="55" width="170" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1035,6 +1138,8 @@ style: |
 <text x="400" y="290" text-anchor="middle" fill="#ffffff" font-size="12">&lt;instructions&gt;具体的な指示&lt;/instructions&gt;</text>
 <text x="400" y="314" text-anchor="middle" fill="#f9a825" font-size="12">&lt;output_format&gt;JSON / 箇条書き / 表&lt;/output_format&gt;</text>
 </svg>
+</div>
+
 - **FM / LLM**: Foundation Model（汎用大規模モデル）/ Large Language Model
 - **Token / Context Window**: 処理単位 / 一度に扱える最大トークン数
 - **Temperature / Top-p / Top-k**: 出力の多様性・創造性を制御
@@ -1054,7 +1159,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Domain 3: Foundation Models の活用
 
 - スライド 27–48 | 配点目安 30%（最重要ドメイン）
@@ -1069,7 +1174,8 @@ style: |
 
 > *Bedrock全機能一覧で「どの機能が何をするか」を体系的に押さえる*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1100,6 +1206,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
 </svg>
+</div>
+
 | 機能 | 説明 | 主な用途 |
 |------|------|---------|
 | Model Access | FM の有効化・管理・呼び出し | テキスト / 画像生成 |
@@ -1116,7 +1224,8 @@ style: |
 
 > *RAGの9用語(Chunk/Embedding/Vector DB等)は設計問題の必須ボキャブラリー*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1148,6 +1257,8 @@ style: |
 <text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
 <text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
 </svg>
+</div>
+
 | 用語 | 定義 |
 |------|------|
 | **Ingestion** | 文書を分割・埋め込み・ベクトルDB に保存するプロセス |
@@ -1164,7 +1275,8 @@ style: |
 
 > *Naive/Advanced/Modular RAGのアーキテクチャ差は本番精度に直結する選択基準*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
 <rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1183,12 +1295,15 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
 </svg>
+</div>
+
 | 種別 | 特徴 | 課題 |
 |------|------|------|
 | Naive RAG | シンプルなベクトル検索 + 生成 | 精度限界 / コンテキスト切れ |
 | Advanced RAG | 事前/事後処理追加（rerank 等）| 複雑性増加 |
 | Modular RAG | コンポーネント単位の柔軟設計 | 設計コスト高 |
 | GraphRAG | グラフ DB で関係性を考慮 | 構築コスト高 |
+
 - Bedrock Knowledge Bases は Advanced RAG（Reranking 対応）を提供
 - デフォルトはコサイン類似度で上位 k チャンクを取得
 
@@ -1199,7 +1314,8 @@ style: |
 
 > *RAGは新鮮データ、Fine-tuningはタスク特化が判断の第一原則*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
 <rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1226,6 +1342,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
 </svg>
+</div>
+
 | 判断軸 | RAG を選ぶ | Fine-tuning を選ぶ |
 |--------|-----------|------------------|
 | 知識の鮮度 | 最新情報が必要 | 静的なドメイン知識 |
@@ -1241,7 +1359,8 @@ style: |
 
 > *Knowledge Basesの対応データソース・ベクトルDB・チャンク設定数値を暗記*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1263,6 +1382,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
 </svg>
+</div>
+
 | 項目 | 仕様 |
 |------|------|
 | データソース | S3 / Confluence / Salesforce / SharePoint / Web Crawler |
@@ -1279,7 +1400,8 @@ style: |
 
 > *OpenSearch/Aurora pgvector/Pinecone/MemoryDBの比較はベクトルDB選択問題の核心*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
 <rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1308,6 +1430,8 @@ style: |
 <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
 <text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
 </svg>
+</div>
+
 | DB | 種別 | 特徴 | Bedrock KB 対応 |
 |----|------|------|--------------|
 | OpenSearch Serverless | マネージド | AWSネイティブ・サーバーレス | ○（推奨）|
@@ -1323,7 +1447,8 @@ style: |
 
 > *Titan Embeddings/Cohere Embeddings の次元数と用途を比較*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
 <rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1345,10 +1470,13 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
 </svg>
+</div>
+
 | モデル | 提供元 | 次元数 | 最大入力 | 特徴 |
 |--------|--------|--------|---------|------|
 | Titan Embeddings V2 | Amazon | 256/512/1024（可変）| 8192 tokens | 多言語・次元選択可 |
 | Cohere Embed v3 | Cohere | 1024 | 512 tokens | 多言語・圧縮効率高 |
+
 - **類似度指標**: コサイン類似度（方向）/ ユークリッド距離（空間）/ 内積（速度）
 - **次元数の選択**: 高次元 → 高精度 / 低次元 → 高速・低コスト
 
@@ -1359,7 +1487,8 @@ style: |
 
 > *固定長/セマンティック/階層型チャンクの選択がRAG精度を大きく左右する*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
 <rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1384,12 +1513,15 @@ style: |
 <text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
 <text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
 </svg>
+</div>
+
 | 戦略 | 分割基準 | 向く文書種別 | 特記 |
 |------|---------|------------|------|
 | Fixed size | 固定トークン数 | 均質なテキスト | シンプル・高速 |
 | Semantic | 意味的まとまり | 多様な文書 | 精度高・処理重 |
 | Hierarchical | 親子構造（要約+詳細）| 構造化文書 | 2 層でコンテキスト保持 |
 | None（分割なし）| 文書丸ごと | 短い文書 | 超シンプル |
+
 - **Overlap**: チャンク間に重複を持たせてコンテキスト切れを防ぐ
 
 
@@ -1399,7 +1531,8 @@ style: |
 
 > *Action Group/Knowledge Base/Memory/OIDC連携がAgents設計の4要素*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1430,6 +1563,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
 </svg>
+</div>
+
 | 用語 | 定義 |
 |------|------|
 | **Agent** | 目標達成のためにツールを自律的に使用する AI システム |
@@ -1446,7 +1581,8 @@ style: |
 
 > *Agentsの設定項目一覧で最大ステップ数・タイムアウト・ガードレール連携を把握*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1478,6 +1614,8 @@ style: |
 <text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
 <text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
 </svg>
+</div>
+
 | 設定項目 | 説明 | 必須 |
 |---------|------|------|
 | Foundation Model | 推論に使用する FM（Claude 推奨）| ○ |
@@ -1494,7 +1632,8 @@ style: |
 
 > *Inline Agentは動的生成、定義済みAgentは本番固定利用で使い分ける*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
 <rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1513,6 +1652,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
 </svg>
+</div>
+
 | 軸 | Inline Agent | 定義済み Agent |
 |----|-------------|--------------|
 | 設定方法 | コード内で動的設定 | Bedrock コンソール / API |
@@ -1527,7 +1668,8 @@ style: |
 
 > *LoRA/QLoRA/Full Fine-tuningのコスト・精度・計算要件を比較して選択*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
 <rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1554,6 +1696,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
 </svg>
+</div>
+
 | 手法 | 更新スコープ | コスト | 効果 |
 |------|------------|--------|------|
 | Continued Pre-training | 全パラメータ | 高 | ドメイン知識・語彙の注入 |
@@ -1568,7 +1712,8 @@ style: |
 
 > *Fine-tuning最低データ数(テキスト=数百、マルチモーダル=数千)を数値で暗記*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1590,6 +1735,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
 </svg>
+</div>
+
 | 項目 | 要件 |
 |------|------|
 | データ形式 | JSONL（prompt / completion ペア、UTF-8）|
@@ -1606,7 +1753,8 @@ style: |
 
 > *Fine-tuning/RAG/Continued Pre-training/In-Context Learningの4択判断表を使いこなす*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
 <rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1635,6 +1783,8 @@ style: |
 <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
 <text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
 </svg>
+</div>
+
 | 手法 | 知識更新 | コスト | 実装難度 | 選ぶシナリオ |
 |------|---------|--------|---------|-----------|
 | Prompt Engineering | ✕ | 最低 | 低 | 汎用タスクの調整 |
@@ -1649,7 +1799,8 @@ style: |
 
 > *Model EvaluationはHuman/LLM-as-judge/自動指標の3パターンを適材適所で選択*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
 <rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1671,11 +1822,14 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
 </svg>
+</div>
+
 | 評価種別 | 説明 | 主な指標 |
 |---------|------|---------|
 | 自動評価 | 組み込み指標で自動採点 | ROUGE / BERTScore / Accuracy |
 | 人間評価 | レビュアーが品質を手動評価 | 正確性 / 関連性 / 流暢さ |
 | LLM-as-Judge | 別 FM が評価（カスタム基準）| カスタム評価基準 |
+
 - **評価タスク**: Text Summarization / Q&A / Text Classification / Open-ended generation
 - **用途**: FM 選定・Fine-tuning 前後の品質比較
 
@@ -1686,7 +1840,8 @@ style: |
 
 > *Prompt Managementでバージョン管理、Prompt FlowでノードベースAIパイプラインを設計*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
 <rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1711,12 +1866,15 @@ style: |
 <text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
 <text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
 </svg>
+</div>
+
 | 機能 | 説明 |
 |------|------|
 | Prompt Catalog | プロンプトを保存・バージョン管理 |
 | Variables | {{変数名}} でプロンプトをテンプレート化 |
 | A/B Testing | 複数プロンプトのパフォーマンス比較 |
 | Prompt Flow | プロンプトを繋ぐ視覚的ワークフロー構築 |
+
 - **Prompt Flow ノード**: Input / LLM / Knowledge Base / Lambda / Condition / Output
 - **用途**: 複雑なマルチステップ推論の設計・テスト
 
@@ -1727,7 +1885,8 @@ style: |
 
 > *Bedrock Studio(プロトタイプ向けUI)とBedrock Marketplace(サードパーティFM)の使い分け*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデルコスト比較 (per 1K tokens, 概算)</text>
 <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">Input <rect/> / Output <rect/> — On-demand price</text>
@@ -1736,10 +1895,13 @@ style: |
 <text x="195" y="88" text-anchor="end" fill="#ffffff" font-size="12">Claude 3 Haiku</text><rect x="205" y="70" width="40" height="18" fill="#f9a825" rx="3"/><text x="250" y="83" fill="#f9a825" font-size="10">$0.00025/1K</text><rect x="205" y="92" width="60" height="14" fill="#e91e63" rx="3"/><text x="270" y="103" fill="#e91e63" font-size="10">$0.00125/1K</text><text x="195" y="143" text-anchor="end" fill="#ffffff" font-size="12">Claude 3 Sonnet</text><rect x="205" y="125" width="120" height="18" fill="#f9a825" rx="3"/><text x="330" y="138" fill="#f9a825" font-size="10">$0.003/1K</text><rect x="205" y="147" width="160" height="14" fill="#e91e63" rx="3"/><text x="370" y="158" fill="#e91e63" font-size="10">$0.015/1K</text><text x="195" y="198" text-anchor="end" fill="#ffffff" font-size="12">Claude 3 Opus</text><rect x="205" y="180" width="280" height="18" fill="#f9a825" rx="3"/><text x="490" y="193" fill="#f9a825" font-size="10">$0.015/1K</text><rect x="205" y="202" width="380" height="14" fill="#e91e63" rx="3"/><text x="590" y="213" fill="#e91e63" font-size="10">$0.075/1K</text><text x="195" y="253" text-anchor="end" fill="#ffffff" font-size="12">Titan Text Lite</text><rect x="205" y="235" width="48" height="18" fill="#f9a825" rx="3"/><text x="258" y="248" fill="#f9a825" font-size="10">$0.0003/1K</text><rect x="205" y="257" width="52" height="14" fill="#e91e63" rx="3"/><text x="262" y="268" fill="#e91e63" font-size="10">$0.0004/1K</text><text x="195" y="308" text-anchor="end" fill="#ffffff" font-size="12">Llama 3.1 70B</text><rect x="205" y="290" width="110" height="18" fill="#f9a825" rx="3"/><text x="320" y="303" fill="#f9a825" font-size="10">$0.00265/1K</text><rect x="205" y="312" width="130" height="14" fill="#e91e63" rx="3"/><text x="340" y="323" fill="#e91e63" font-size="10">$0.0035/1K</text>
 <text x="400" y="380" text-anchor="middle" fill="#f9a825" font-size="11">Provisioned Throughput / Batch APIで最大50%コスト削減可能</text>
 </svg>
+</div>
+
 | サービス | 概要 | 用途 |
 |---------|------|------|
 | Bedrock Studio | Web UI 開発・プロトタイピング環境 | FM 比較・KB/Agent テスト |
 | Bedrock Marketplace | サードパーティ FM の検索・利用 | 商用 FM の素早い評価 |
+
 - **Studio 機能**: FM 呼び出し / KB・Guardrails 設定 / Agent デバッグ / チーム共有
 - **Marketplace**: AI21 Labs / Cohere 等の商用 FM + プライベートモデル公開
 - 本番デプロイには SDK / API を使用（Studio は開発・評価用）
@@ -1751,7 +1913,8 @@ style: |
 
 > *SageMaker JumpStart(MLカスタム)とBedrock(アプリ開発者向け)を使い分ける*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1782,6 +1945,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
 </svg>
+</div>
+
 | 判断軸 | Bedrock | SageMaker / JumpStart |
 |--------|---------|----------------------|
 | 対象ユーザー | アプリ開発者 | ML エンジニア |
@@ -1789,6 +1954,7 @@ style: |
 | カスタムアーキテクチャ | ✕ | ○ |
 | コスト形態 | per token | インスタンス時間 |
 | 自前モデル持込 | ✕ | ○ |
+
 - **JumpStart**: Hugging Face / 主要 FM をワンクリックデプロイ + GUI Fine-tuning
 
 
@@ -1798,7 +1964,8 @@ style: |
 
 > *RAG/KB/Agentsのキーワードを総まとめして試験直前に確認*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding モデル — ベクトル化フロー</text>
 <rect x="30" y="60" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1835,6 +2002,8 @@ style: |
 <text x="640" y="335" text-anchor="middle" fill="#f9a825" font-size="11">コスト: $0.0001/1K tokens</text>
 <text x="400" y="370" text-anchor="middle" fill="#ffffff" font-size="12">次元数が多い = 意味精度高 / 次元数が少ない = 検索速度・コスト優位</text>
 </svg>
+</div>
+
 - **RAG**: Retrieval-Augmented Generation — 検索拡張生成
 - **Chunking**: 文書の分割（Fixed / Semantic / Hierarchical）
 - **Embedding**: テキスト → ベクトル変換（Titan / Cohere）
@@ -1858,7 +2027,8 @@ style: |
 
 > *FT/Eval/FlowのキーワードをBセクションで総まとめして確認*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">推論パラメータ ビジュアルガイド</text>
 <text x="200" y="60" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Temperature</text>
@@ -1885,6 +2055,8 @@ style: |
 <text x="445" y="257" fill="#ffffff" font-size="12">SQL生成</text><text x="760" y="257" text-anchor="end" fill="#f9a825" font-size="12">temp=0.0, top_p=1.0</text>
 <text x="445" y="295" fill="#ffffff" font-size="12">アイデア出し</text><text x="760" y="295" text-anchor="end" fill="#f9a825" font-size="12">temp=1.0, top_p=0.95</text>
 </svg>
+</div>
+
 - **Fine-tuning**: モデルをタスク特化で再学習（JSONL 形式）
 - **Continued Pre-training**: ドメイン語彙・知識の追加学習
 - **LoRA**: 低コストなアダプタ学習（少数パラメータ更新）
@@ -1904,7 +2076,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Domain 4: 責任ある AI
 
 - スライド 50–58 | 配点目安 18%
@@ -1919,7 +2091,8 @@ style: |
 
 > *公平性・説明可能性・プライバシー・堅牢性・ガバナンス・透明性・安全性の7原則対応表*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1951,6 +2124,8 @@ style: |
 <text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
 <text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
 </svg>
+</div>
+
 | 原則 | 説明 | 主な AWS サービス |
 |------|------|----------------|
 | **公平性** | バイアスのない公平な意思決定 | SageMaker Clarify |
@@ -1967,7 +2142,8 @@ style: |
 
 > *コンテンツ/トピック/PII/ワード/グラウンディングの5フィルター種別と設定優先度*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
 <rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1986,6 +2162,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
 </svg>
+</div>
+
 | フィルタ種別 | 機能 | 設定例 |
 |------------|------|--------|
 | Content Filter | 有害コンテンツの検出・ブロック | Hate / Violence / Sexual / Misconduct |
@@ -2001,7 +2179,8 @@ style: |
 
 > *Guardrails設定は入力前・生成中・出力後の3タイミングで適用ロジックが異なる*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
 <rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2028,12 +2207,15 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
 </svg>
+</div>
+
 | 項目 | 設定値 |
 |------|--------|
 | Content Filter 強度 | None / Low / Medium / High（カテゴリ別）|
 | Prompt Attack Detection | 有効 / 無効 |
 | Denied Topics | カスタムテキスト説明で定義 |
 | PII Action | BLOCK（拒否）/ ANONYMIZE（マスキング）|
+
 - **適用タイミング**: Input（ユーザー入力検証）/ Output（FM 出力検証）
 - **Agent 連携**: Agents にも Guardrails を紐付け可能（別設定が必要）
 - **注意**: Bedrock 使用だけでは自動有効化されない — 明示的に作成・紐付けが必要
@@ -2045,7 +2227,8 @@ style: |
 
 > *SMOTE/Adversarial Debiasing/後処理調整の3手法で段階的にバイアスを除去*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2067,6 +2250,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
 </svg>
+</div>
+
 | 種別 | 定義 | 軽減手法 |
 |------|------|---------|
 | データバイアス | 学習データの偏り（クラス不均衡等）| データ拡張 / リサンプリング |
@@ -2081,7 +2266,8 @@ style: |
 
 > *RAG/低Temperature/Grounding/事実確認の4手法でハルシネーション発生率を削減*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
 <rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2110,6 +2296,8 @@ style: |
 <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
 <text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
 </svg>
+</div>
+
 | 手法 | 仕組み | 効果 | コスト |
 |------|--------|------|--------|
 | RAG | 外部知識を参照して生成 | 高 | 中 |
@@ -2125,7 +2313,8 @@ style: |
 
 > *Macie(S3)/Comprehend(テキスト)/Guardrails(生成時)の3層でPIIを多層処理*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
 <rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2147,12 +2336,15 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
 </svg>
+</div>
+
 | 処理 | 説明 | AWS サービス |
 |------|------|------------|
 | 検出 | PII の識別（名前 / 電話 / SSN 等）| Comprehend / Guardrails |
 | マスキング | [NAME] 等に置換して匿名化 | Guardrails PII Redaction |
 | 削除 | PII を完全除去 | カスタム Lambda 後処理 |
 | 暗号化 | 暗号化して保存 | KMS |
+
 - **Bedrock の原則**: 顧客データを FM の学習に使用しない（デフォルト）
 - **Transcribe PII Redaction**: 音声文字起こし時に PII をリアルタイム除去
 
@@ -2163,7 +2355,8 @@ style: |
 
 > *ルールベース・スコアベース・LLM-as-judgeの3検証手法で出力品質を保証*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
 <rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2188,12 +2381,15 @@ style: |
 <text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
 <text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
 </svg>
+</div>
+
 | 手法 | 説明 |
 |------|------|
 | Bedrock Guardrails | 自動フィルタ（入力 / 出力双方に適用）|
 | Amazon A2I | 人間レビューワークフロー（信頼度低い場合に起動）|
 | Bedrock Model Evaluation | FM の品質ベンチマーク（ROUGE / BERTScore）|
 | Lambda 後処理 | カスタムバリデーションロジック |
+
 - **A2I**: Amazon Augmented AI — 予測信頼度が閾値以下で人間レビューへ
 - **活用パターン**: Guardrails（一次フィルタ）→ A2I（低信頼度の人間確認）
 
@@ -2204,7 +2400,8 @@ style: |
 
 > *Clarify指標一覧でCI/DPL(学習前)とDPPL/DI(学習後)の使い分けを整理*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2235,6 +2432,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
 </svg>
+</div>
+
 | 指標種別 | 指標名 | 説明 |
 |---------|-------|------|
 | バイアス | Class Imbalance (CI) | クラス間のサンプル不均衡 |
@@ -2250,7 +2449,8 @@ style: |
 
 > *Domain 4の全キーワードを一括まとめして最終確認する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Bedrock Agent — ReAct ループ</text>
 <circle cx="400" cy="70" r="35" fill="#e91e63" stroke="#f9a825" stroke-width="2"/><text x="400" y="64" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">入力受信</text><text x="400" y="80" text-anchor="middle" fill="#f9a825" font-size="10"></text><line x1="432.9089653438087" y1="89" x2="479.6743371481684" y2="116" stroke="#f9a825" stroke-width="1.5"/><polygon points="479.6743371481684,116 468.514083110324,115.3301270189222 473.514083110324,106.6698729810778" fill="#f9a825"/><circle cx="512.5833024919771" cy="135" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="512.5833024919771" y="129" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プランニ</text><text x="512.5833024919771" y="145" text-anchor="middle" fill="#f9a825" font-size="10">ング</text><line x1="512.5833024919771" y1="173" x2="512.5833024919771" y2="227" stroke="#f9a825" stroke-width="1.5"/><polygon points="512.5833024919771,227 507.58330249197707,217 517.5833024919771,217" fill="#f9a825"/><circle cx="512.5833024919771" cy="265" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="512.5833024919771" y="259" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">ツール選</text><text x="512.5833024919771" y="275" text-anchor="middle" fill="#f9a825" font-size="10">択</text><line x1="479.6743371481684" y1="284" x2="432.9089653438087" y2="311" stroke="#f9a825" stroke-width="1.5"/><polygon points="432.9089653438087,311 439.06921938165306,301.6698729810778 444.06921938165306,310.3301270189222" fill="#f9a825"/><circle cx="400" cy="330" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="324" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">ツール実</text><text x="400" y="340" text-anchor="middle" fill="#f9a825" font-size="10">行</text><line x1="367.0910346561913" y1="311" x2="320.3256628518317" y2="284.00000000000006" stroke="#f9a825" stroke-width="1.5"/><polygon points="320.3256628518317,284.00000000000006 331.48591688967605,284.66987298107784 326.48591688967605,293.33012701892227" fill="#f9a825"/><circle cx="287.416697508023" cy="265.00000000000006" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="287.416697508023" y="259.00000000000006" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">結果統合</text><text x="287.416697508023" y="275.00000000000006" text-anchor="middle" fill="#f9a825" font-size="10"></text><line x1="287.416697508023" y1="227.00000000000006" x2="287.416697508023" y2="173" stroke="#f9a825" stroke-width="1.5"/><polygon points="287.416697508023,173 292.416697508023,183 282.416697508023,183" fill="#f9a825"/><circle cx="287.416697508023" cy="135" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="287.416697508023" y="129" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">応答生成</text><text x="287.416697508023" y="145" text-anchor="middle" fill="#f9a825" font-size="10"></text><line x1="320.3256628518317" y1="116" x2="367.09103465619137" y2="89" stroke="#f9a825" stroke-width="1.5"/><polygon points="367.09103465619137,89 360.930780618347,98.3301270189222 355.930780618347,89.6698729810778" fill="#f9a825"/>
@@ -2258,6 +2458,8 @@ style: |
 <text x="400" y="215" text-anchor="middle" fill="#ffffff" font-size="11">LLM</text>
 <text x="400" y="370" text-anchor="middle" fill="#ffffff" font-size="11">Action Groups (Lambda) · Knowledge Base · Code Interpreter</text>
 </svg>
+</div>
+
 - **Responsible AI 6 原則**: 公平性 / 説明可能性 / プライバシー / 堅牢性 / 透明性 / 統治
 - **Guardrails 5 フィルタ**: Content / Denied Topics / Word / PII / Grounding Check
 - **Hallucination 対策**: RAG / Grounding Check / Temperature 低下 / CoT
@@ -2277,7 +2479,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Domain 5: セキュリティ・コンプライアンス
 
 - スライド 60–68 | 配点目安 20%
@@ -2292,7 +2494,8 @@ style: |
 
 > *AIワークロード版共有責任モデルでAWS管理層とユーザー管理層の境界を明確化*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2324,6 +2527,8 @@ style: |
 <text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
 <text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
 </svg>
+</div>
+
 | 責任者 | 責任範囲 |
 |--------|---------|
 | **AWS** | 物理インフラ（DC / ネットワーク / ハードウェア）のセキュリティ |
@@ -2340,7 +2545,8 @@ style: |
 
 > *最小権限・職務分離・MFA強制の3設計原則がIAMポリシー問題の判断軸*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
 <rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2359,12 +2565,15 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
 </svg>
+</div>
+
 | 原則 | 説明 | 実装例 |
 |------|------|--------|
 | 最小権限 | 必要最低限のアクセスのみ付与 | Action を必要なものに限定 |
 | ロールベース | ユーザーに長期キーを持たせない | IAM Role + 一時クレデンシャル |
 | 条件キー | 条件付きアクセス制御 | aws:SourceIp / bedrock:Region |
 | リソースベース | リソース単位の細かい制御 | S3 バケットポリシー |
+
 - **Explicit Deny 優先**: Deny と Allow が競合する場合は Deny が優先される
 
 
@@ -2374,7 +2583,8 @@ style: |
 
 > *bedrock:InvokeModel等のアクションARNを一覧で把握して最小権限を設計*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
 <rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2401,6 +2611,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
 </svg>
+</div>
+
 | アクション | 説明 |
 |-----------|------|
 | `bedrock:InvokeModel` | FM の推論実行（同期）|
@@ -2417,7 +2629,8 @@ style: |
 
 > *VPCエンドポイント設定でBedrockトラフィックをAWSネットワーク内に閉じ込める*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2439,12 +2652,15 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
 </svg>
+</div>
+
 | サービス | エンドポイント種別 | 用途 |
 |---------|----------------|------|
 | Amazon Bedrock | Interface（PrivateLink）| プライベートネットワーク経由の推論 |
 | Amazon S3 | Gateway | VPC 内から S3 へのデータ転送 |
 | SageMaker API | Interface | API 呼び出しのプライベート化 |
 | SageMaker Runtime | Interface | 推論エンドポイントのプライベート化 |
+
 - **注意**: VPC エンドポイント ≠ 暗号化（ネットワーク分離 ≠ データ暗号化）
 - **PrivateLink**: インターネットを経由しないAWS バックボーン通信
 
@@ -2455,7 +2671,8 @@ style: |
 
 > *SSE-S3/SSE-KMS/CSEの暗号化オプション比較は試験の定番セキュリティ問題*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
 <rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2484,12 +2701,15 @@ style: |
 <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
 <text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
 </svg>
+</div>
+
 | データ状態 | 手段 | サービス |
 |----------|------|---------|
 | 静止中（S3）| SSE-S3 / SSE-KMS / SSE-C | S3 + KMS |
 | 転送中 | TLS 1.2+（自動 HTTPS）| すべての AWS API 通信 |
 | Bedrock Fine-tuning データ | KMS キーで暗号化 | KMS CMK |
 | SageMaker モデル・ノートブック | KMS 統合 | KMS |
+
 - **KMS CMK**: Customer Managed Key でキー管理・ローテーションを顧客が制御
 - **AWS Managed Key**: AWS が自動管理するデフォルトキー（無料）
 
@@ -2500,7 +2720,8 @@ style: |
 
 > *CloudTrailでAPIコール監査、CloudWatchでリアルタイムモニタリングを設定*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
 <rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2522,12 +2743,15 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
 </svg>
+</div>
+
 | サービス | 用途 | 設定ポイント |
 |---------|------|------------|
 | CloudTrail | API 操作ログの記録 | 全リージョン有効化・S3 保存・整合性検証 |
 | CloudWatch Logs | アプリ・サービスログ監視 | Bedrock モデル呼び出しログを S3/CW に送信 |
 | CloudWatch Metrics | メトリクス監視・アラーム | レイテンシ / エラー率 / スロットリング |
 | AWS Config | リソース設定変更の履歴管理 | Bedrock Guardrails 変更検出 |
+
 - **Bedrock ログ設定**: Bedrock コンソール → Model Invocation Logging で有効化
 - **CloudTrail 注意**: デフォルトでは 90 日のみ保持 → S3 に保存で長期保管
 
@@ -2538,7 +2762,8 @@ style: |
 
 > *HIPAA/PCI DSS/SOC2/FedRAMPのAWS対応状況はコンプライアンス問題の頻出*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
 <rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2563,6 +2788,8 @@ style: |
 <text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
 <text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
 </svg>
+</div>
+
 | フレームワーク | Bedrock 対応状況 | 認証 |
 |------------|--------------|------|
 | SOC 1/2/3 | ○ | 認証済み |
@@ -2570,6 +2797,7 @@ style: |
 | HIPAA | ○（BAA 締結が必要）| 対応可 |
 | GDPR | ○（EU リージョン選択）| 対応可 |
 | FedRAMP | 一部リージョン / 一部サービス | 進行中 |
+
 - **AWS Artifact**: コンプライアンスレポートをオンデマンドで取得できるサービス
 
 
@@ -2579,7 +2807,8 @@ style: |
 
 > *プロンプトインジェクション対策はGuardrails＋入力検証の組み合わせが正解*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2610,12 +2839,15 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
 </svg>
+</div>
+
 | 対策 | 説明 | 実装 |
 |------|------|------|
 | 入力サニタイズ | 危険パターンを除去 / フィルタ | Lambda 前処理 |
 | Guardrails | Prompt Attack Detection で自動検出 | Bedrock Guardrails |
 | システムプロンプト分離 | 指示とユーザー入力を明確に分離 | XML タグ / 固定フォーマット |
 | 出力検証 | 生成結果のパターン検証 | Lambda 後処理 |
+
 - **Prompt Attack フィルタ**: Guardrails の Prompt Attack Detection が自動検出・ブロック
 - **原則**: ユーザー入力をシステムプロンプトの一部として扱わない
 
@@ -2626,7 +2858,8 @@ style: |
 
 > *Domain 5の全キーワードを一括まとめして最終確認する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Knowledge Base — ベクトル検索フロー</text>
 <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">インデックス作成フロー（Ingestion）</text>
@@ -2687,6 +2920,8 @@ style: |
 <text x="650" y="320" text-anchor="middle" fill="#f9a825" font-size="10">PDF/表対応</text>
 <text x="650" y="335" text-anchor="middle" fill="#ffffff" font-size="10">柔軟・複雑</text>
 </svg>
+</div>
+
 - **Shared Responsibility**: AWS（インフラ）vs 顧客（設定・データ管理）
 - **Least Privilege**: 最小権限の原則 — IAM Role + 一時クレデンシャル
 - **Explicit Deny**: Deny が Allow より優先（IAM の基本）
@@ -2706,7 +2941,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 横断比較: ユースケース別サービス選択ガイド
 
 - スライド 70–79 | ユースケース別最適サービスを迷わず選ぶ
@@ -2721,7 +2956,8 @@ style: |
 
 > *テキスト生成のサービス選択はユースケースの規模・カスタム要件・コストで決まる*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2753,6 +2989,8 @@ style: |
 <text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
 <text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
 </svg>
+</div>
+
 | ユースケース | 推奨サービス | 選択理由 |
 |------------|------------|---------|
 | Q&A / チャットボット | Bedrock + Knowledge Bases | RAG で根拠ある回答 |
@@ -2768,7 +3006,8 @@ style: |
 
 > *画像生成はStability AI(クリエイティブ)かTitan Image(エンタープライズ)で選択*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
 <rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2787,6 +3026,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
 </svg>
+</div>
+
 | ユースケース | 推奨サービス | 特記 |
 |------------|------------|------|
 | 画像からテキスト生成（説明）| Bedrock（Claude 3 Vision）| マルチモーダル FM |
@@ -2802,7 +3043,8 @@ style: |
 
 > *音声はTranscribe/Polly、映像はRekognitionVideoが試験での正しい組み合わせ*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
 <rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2829,6 +3071,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
 </svg>
+</div>
+
 | ユースケース | 推奨サービス | 特記 |
 |------------|------------|------|
 | 音声文字起こし | Transcribe | リアルタイム / バッチ両対応 |
@@ -2844,7 +3088,8 @@ style: |
 
 > *検索はKendra(エンタープライズ文書)かOpenSearch(テクニカル全文検索)で判断*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2866,12 +3111,15 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
 </svg>
+</div>
+
 | ユースケース | 推奨サービス | 選択理由 |
 |------------|------------|---------|
 | 社内文書 Q&A | Kendra / Bedrock + KB | 自然言語検索・RAG |
 | セマンティック検索 | OpenSearch + Embedding FM | ベクトル類似検索 |
 | 商品・コンテンツ推薦 | Personalize | ユーザー行動ログベース ML |
 | FAQ 自動回答（エンドツーエンド）| Bedrock Agents + KB | ReAct + RAG |
+
 - **Kendra vs KB**: Kendra はエンタープライズ検索特化、KB は Bedrock RAG 統合
 
 
@@ -2881,7 +3129,8 @@ style: |
 
 > *オンデマンド/Provisioned Throughput/Batchの3推論方式は要件別コスト試算で選択*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
 <rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2910,12 +3159,15 @@ style: |
 <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
 <text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
 </svg>
+</div>
+
 | 要件 | 推奨方式 | 理由 |
 |------|---------|------|
 | 低コスト・低頻度リクエスト | On-demand | 従量課金・事前確保不要 |
 | 高スループット・高頻度 | Provisioned Throughput | 安定したキャパシティ・大量時コスト効率 |
 | 大量バッチ処理（非同期）| Batch Inference | オフピーク割引（最大 50% OFF）|
 | 実験・開発 | On-demand | 無駄なく起動・停止 |
+
 - **Provisioned Throughput**: 固定費 → 高スループット時のみお得（閾値計算必須）
 
 
@@ -2925,7 +3177,8 @@ style: |
 
 > *レイテンシ要件に応じてModelサイズ・Provisioned Throughput・Cachingを設定*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
 <rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2947,11 +3200,14 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
 </svg>
+</div>
+
 | 要件 | 推奨設定 | 理由 |
 |------|---------|------|
 | リアルタイム（< 1秒）| 軽量 FM + Provisioned Throughput | モデル小 + 専用キャパシティ |
 | 準リアルタイム（1–5秒）| 標準 FM + On-demand | コスト効率重視 |
 | バッチ（分〜時間）| 大規模 FM + Batch Inference | コスト最小化 |
+
 - **Streaming**: `InvokeModelWithResponseStream` でトークン逐次返却
 - **体感速度改善**: ストリーミングで TTFT（最初のトークン到達時間）を短縮
 - **温度・パラメータ**: 速度には影響しない（モデルサイズと TPM が主要因）
@@ -2963,7 +3219,8 @@ style: |
 
 > *コンテキスト長はClaude 200K・Titan 32K・Llama 128Kを数値で瞬時に答える*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
 <rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2988,12 +3245,15 @@ style: |
 <text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
 <text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
 </svg>
+</div>
+
 | 要件 | コンテキスト長目安 | 推奨 FM |
 |------|--------------|--------|
 | 短文 Q&A / 分類 | ~4K tokens | Titan Text Lite / Mistral 7B |
 | 中程度文書 / 会話 | ~32K tokens | Mistral Large / Titan Premier |
 | 長文書・長い会話 | ~128K tokens | Llama 3.1 / Cohere Command R+ |
 | 超長文書（法律・財務）| 200K+ tokens | Claude 3 Opus / Sonnet |
+
 - **注意**: コンテキスト長が長いほどコスト・レイテンシが増加
 - **日本語換算**: 1 トークン ≈ 1〜1.5 文字（英語の約 2〜3 倍のトークン数）
 
@@ -3004,7 +3264,8 @@ style: |
 
 > *マルチモーダル対応FMはClaude 3/Titan Multimodal/Llama Vision系に限定される*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3035,6 +3296,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
 </svg>
+</div>
+
 | モデル | テキスト入出力 | 画像入力 | 画像生成 | 音声 |
 |--------|------------|--------|---------|------|
 | Claude 3 Opus / Sonnet / Haiku | ○ | ○（Vision）| ✕ | ✕ |
@@ -3050,7 +3313,8 @@ style: |
 
 > *オンプレAIはデータ主権・初期投資・運用負荷の3点でAWSクラウドと比較*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3082,6 +3346,8 @@ style: |
 <text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
 <text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
 </svg>
+</div>
+
 | 軸 | オンプレ | AWS クラウド |
 |----|---------|------------|
 | 初期コスト | 高（GPU 購入）| 低（従量課金）|
@@ -3097,7 +3363,8 @@ style: |
 
 > *Bedrock(API優先)・SageMaker(カスタム学習)・EC2(最大制御)の3択判断*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
 <rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3116,6 +3383,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
 </svg>
+</div>
+
 | 軸 | Bedrock | SageMaker | EC2 + OSS |
 |----|---------|----------|----------|
 | 対象ユーザー | アプリ開発者 | ML エンジニア | 研究者・専門家 |
@@ -3127,7 +3396,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 数値・制限値クイックリファレンス
 
 - スライド 81–86 | 試験で問われる具体的な数値
@@ -3141,7 +3410,8 @@ style: |
 
 > *FMコンテキスト長の数値(8K/32K/128K/200K)は試験で直接問われる暗記必須事項*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Titan モデルファミリー</text>
 <rect x="20" y="40" width="175" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3168,6 +3438,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Titan Embed Text v2: $0.00002/1K tokens (最低コスト埋め込み)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">AWS製モデル = データ共有なし / 商用利用フリー / Fine-tuning対応</text>
 </svg>
+</div>
+
 | モデル | 最大入力 | 最大出力 | 特記 |
 |--------|---------|---------|------|
 | Claude 3.5 Sonnet | 200K tokens | 8192 tokens | Vision 対応 |
@@ -3184,7 +3456,8 @@ style: |
 
 > *Bedrockクォータ(同時リクエスト数・トークン/分)は上限緩和申請が必要なケースを把握*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モデル評価 — 主要指標と手法</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3206,6 +3479,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Bedrock Model Evaluation: 自動/人間評価をマネージドで実行</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">A/Bテスト → Shadow Testing → カナリアデプロイで本番評価</text>
 </svg>
+</div>
+
 | 項目 | 制限値（目安）|
 |------|------------|
 | KB データソース数 | 最大 5 個 / Knowledge Base |
@@ -3213,6 +3488,7 @@ style: |
 | Guardrails 数 | アカウントあたり最大 100 個 |
 | Agents 同時セッション | アカウントあたり最大 1000 セッション |
 | モデル呼び出し TPM | モデル・リージョン別（コンソールで確認）|
+
 - **Provisioned Throughput でクォータ上限を回避可能**
 
 
@@ -3222,7 +3498,8 @@ style: |
 
 > *Fine-tuningは最低数百〜数千件の高品質データが必要、数値を問題で使い回す*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Amazon Bedrock — API呼び出しフロー</text>
 <rect x="20" y="40" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3251,6 +3528,8 @@ style: |
 <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11">max_tokens · temperature · top_p · stop_sequences で制御</text>
 <text x="400" y="205" text-anchor="middle" fill="#ffffff" font-size="10">リージョン: us-east-1 / us-west-2 / ap-northeast-1 (東京)</text>
 </svg>
+</div>
+
 | 項目 | 数値 |
 |------|------|
 | データ形式 | JSONL（UTF-8 エンコード）|
@@ -3267,7 +3546,8 @@ style: |
 
 > *埋め込みベクトルの次元数(1024/1536等)はベクトルDB設計問題で索引サイズに直結*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Claude モデルファミリー比較</text>
 <rect x="30" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3289,11 +3569,14 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">Vision対応: Haiku / Sonnet / Opus 全モデル</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Bedrock ModelID: anthropic.claude-3-5-sonnet-20241022-v2:0</text>
 </svg>
+</div>
+
 | モデル | 次元数 | 最大入力 | 特記 |
 |--------|--------|---------|------|
 | Titan Embeddings Text V2 | 256 / 512 / 1024（選択）| 8192 tokens | 次元可変 |
 | Titan Multimodal Embeddings V1 | 1024 | 画像 + テキスト | マルチモーダル |
 | Cohere Embed v3 | 1024 | 512 tokens | 多言語・圧縮効率高 |
+
 - **高次元**: 精度高 / 保存コスト大 / 検索速度低下
 - **低次元**: 速く安価 / 微妙な意味差で精度低下
 - **Titan V2**: 低次元を選ぶほどコスト削減・検索高速化可能
@@ -3305,7 +3588,8 @@ style: |
 
 > *p3(学習)/g4dn(推論)/Inferentia(低コスト推論)のインスタンス選択は試験の定番問題*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG パイプライン概要</text>
 <rect x="25" y="40" width="95" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3330,6 +3614,8 @@ style: |
 <text x="400" y="183" text-anchor="middle" fill="#f9a825" font-size="11">S3 → OpenSearch Serverless / Aurora pgvector / Pinecone</text>
 <text x="400" y="208" text-anchor="middle" fill="#ffffff" font-size="10">Titan Embed Text v2 (1536dim) / Cohere Embed v3 (1024dim)</text>
 </svg>
+</div>
+
 | インスタンス | GPU | GPU メモリ | 向く用途 |
 |-----------|-----|----------|---------|
 | ml.p3.2xlarge | 1× V100 | 16 GB | 小〜中規模学習 |
@@ -3345,7 +3631,8 @@ style: |
 
 > *S3/KMS/CloudTrailの制限値は上限に引っかかるシナリオ問題でよく出題される*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Agents — アーキテクチャ</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3376,6 +3663,8 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">max_iterations デフォルト20 | session_id でマルチターン管理</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">Code Interpreter · Guardrails · Memory (セッション/長期) 統合</text>
 </svg>
+</div>
+
 | サービス | 項目 | 制限値 |
 |---------|------|--------|
 | S3 | バケット数（デフォルト）| 100 / アカウント |
@@ -3387,7 +3676,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # よく出るひっかけパターン
 
 - スライド 88–93 | 間違えやすい選択肢のパターン
@@ -3402,7 +3691,8 @@ style: |
 
 > *RAGはデータ鮮度、Fine-tuningはタスク特化：この原則を守れば誤選択問題は消える*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Bedrock Guardrails — フィルタリング構造</text>
 <rect x="20" y="45" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3434,12 +3724,15 @@ style: |
 <text x="650" y="182" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold">Sensitive Info</text>
 <text x="650" y="201" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">regex/entity</text>
 </svg>
+</div>
+
 | 状況 | 誤答 | 正答 | 理由 |
 |------|------|------|------|
 | 最新ニュースへの対応が必要 | Fine-tuning | RAG | FT は静的、RAG はリアルタイム更新 |
 | 専門業界の用語・文体が必要 | RAG | Fine-tuning | 語彙・スタイルは FT が効果的 |
 | 学習データが 10 例しかない | Fine-tuning | RAG | FT には不十分（最低 50〜100 例）|
 | Hallucination を主に軽減したい | Fine-tuning | RAG + Grounding | RAG の方が直接的効果大 |
+
 - **鉄則**: 最新情報・大量文書 → RAG / スタイル・語彙 → Fine-tuning
 
 
@@ -3449,7 +3742,8 @@ style: |
 
 > *Bedrock(マネージドAPI)とSageMaker(学習/推論カスタム)の誤選択は1行の要件差で判断*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">プロンプト手法 — 効果とコスト比較</text>
 <rect x="30" y="40" width="175" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3468,12 +3762,15 @@ style: |
 <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="11">&lt;system&gt; → &lt;context&gt; → &lt;examples&gt; → &lt;instructions&gt; → &lt;format&gt;</text>
 <text x="400" y="202" text-anchor="middle" fill="#ffffff" font-size="10">system promptは会話全体に適用 / userで動的コンテキスト注入</text>
 </svg>
+</div>
+
 | 状況 | 誤答 | 正答 |
 |------|------|------|
 | カスタム NN アーキテクチャを学習したい | Bedrock | SageMaker |
 | API だけで FM を素早く呼び出したい | SageMaker | Bedrock |
 | 自前モデルをデプロイしてホストしたい | Bedrock | SageMaker |
 | Llama 3 を手軽に試したい | SageMaker（管理過多）| Bedrock または JumpStart |
+
 - **Bedrock**: API でマネージド FM を使うだけ / **SageMaker**: ML フルコントロール
 
 
@@ -3483,7 +3780,8 @@ style: |
 
 > *VPCエンドポイント≠暗号化、Bedrockのデフォルト非学習、Explicit Deny優先—6つの誤解を暗記する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">Amazon Bedrock — サービスマップ</text>
 <rect x="300" y="50" width="200" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
@@ -3523,6 +3821,8 @@ style: |
 <text x="620" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Topic/PII</text>
 <text x="400" y="370" text-anchor="middle" fill="#f9a825" font-size="12">API統一: InvokeModel / InvokeModelWithResponseStream / Converse</text>
 </svg>
+</div>
+
 - ❌ VPC エンドポイント = 暗号化 → ✅ ネットワーク分離のみ（暗号化は KMS で別途）
 - ❌ S3 は自動暗号化される → ✅ SSE 設定が必要（SSE-S3 / SSE-KMS を明示設定）
 - ❌ Deny と Allow が競合 → Allow 優先 → ✅ Explicit Deny が必ず優先
@@ -3537,7 +3837,8 @@ style: |
 
 > *Guardrailsは明示的作成・紐付けが必須—Agentsにも適用可能でPIIはANONYMIZEでマスキングされる*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデル選択 デシジョンツリー</text>
 <rect x="300" y="45" width="200" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
@@ -3578,6 +3879,8 @@ style: |
 <text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12">コスト: Haiku &lt; Sonnet &lt; Opus  |  速度: Haiku &gt; Sonnet &gt; Opus</text>
 <text x="400" y="355" text-anchor="middle" fill="#f9a825" font-size="11">本番: Sonnet推奨 / バッチ低コスト: Haiku / 高精度: Opus</text>
 </svg>
+</div>
+
 - ❌ Bedrock を使えば Guardrails が自動有効 → ✅ 明示的に作成・紐付けが必要
 - ❌ Guardrails は Agents には適用できない → ✅ Agents にも適用可（別途設定）
 - ❌ PII Redaction はテキスト全体を削除 → ✅ [NAME] 等にマスキング（ANONYMIZE）
@@ -3591,7 +3894,8 @@ style: |
 
 > *出力トークンは入力の2〜5倍高コスト、日本語は英語比2〜3倍のトークン数—コスト計算問題の必須知識*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">プロンプトエンジニアリング 手法比較</text>
 <rect x="30" y="55" width="170" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3619,6 +3923,8 @@ style: |
 <text x="400" y="290" text-anchor="middle" fill="#ffffff" font-size="12">&lt;instructions&gt;具体的な指示&lt;/instructions&gt;</text>
 <text x="400" y="314" text-anchor="middle" fill="#f9a825" font-size="12">&lt;output_format&gt;JSON / 箇条書き / 表&lt;/output_format&gt;</text>
 </svg>
+</div>
+
 - ❌ 入力と出力のトークン料金は同じ → ✅ 通常、出力の方が高コスト（2〜5倍）
 - ❌ トークン数 = 単語数 → ✅ 日本語は 1 文字 ≈ 2〜3 トークン（英語の 2〜3 倍）
 - ❌ Provisioned Throughput は常に On-demand より高い → ✅ 高スループット時は PT が安い
@@ -3632,7 +3938,8 @@ style: |
 
 > *Provisioned Throughputはスループット保証のみ、Temperature=0は速度に影響しない—5つの誤解を暗記*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデルコスト比較 (per 1K tokens, 概算)</text>
 <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">Input <rect/> / Output <rect/> — On-demand price</text>
@@ -3641,6 +3948,8 @@ style: |
 <text x="195" y="88" text-anchor="end" fill="#ffffff" font-size="12">Claude 3 Haiku</text><rect x="205" y="70" width="40" height="18" fill="#f9a825" rx="3"/><text x="250" y="83" fill="#f9a825" font-size="10">$0.00025/1K</text><rect x="205" y="92" width="60" height="14" fill="#e91e63" rx="3"/><text x="270" y="103" fill="#e91e63" font-size="10">$0.00125/1K</text><text x="195" y="143" text-anchor="end" fill="#ffffff" font-size="12">Claude 3 Sonnet</text><rect x="205" y="125" width="120" height="18" fill="#f9a825" rx="3"/><text x="330" y="138" fill="#f9a825" font-size="10">$0.003/1K</text><rect x="205" y="147" width="160" height="14" fill="#e91e63" rx="3"/><text x="370" y="158" fill="#e91e63" font-size="10">$0.015/1K</text><text x="195" y="198" text-anchor="end" fill="#ffffff" font-size="12">Claude 3 Opus</text><rect x="205" y="180" width="280" height="18" fill="#f9a825" rx="3"/><text x="490" y="193" fill="#f9a825" font-size="10">$0.015/1K</text><rect x="205" y="202" width="380" height="14" fill="#e91e63" rx="3"/><text x="590" y="213" fill="#e91e63" font-size="10">$0.075/1K</text><text x="195" y="253" text-anchor="end" fill="#ffffff" font-size="12">Titan Text Lite</text><rect x="205" y="235" width="48" height="18" fill="#f9a825" rx="3"/><text x="258" y="248" fill="#f9a825" font-size="10">$0.0003/1K</text><rect x="205" y="257" width="52" height="14" fill="#e91e63" rx="3"/><text x="262" y="268" fill="#e91e63" font-size="10">$0.0004/1K</text><text x="195" y="308" text-anchor="end" fill="#ffffff" font-size="12">Llama 3.1 70B</text><rect x="205" y="290" width="110" height="18" fill="#f9a825" rx="3"/><text x="320" y="303" fill="#f9a825" font-size="10">$0.00265/1K</text><rect x="205" y="312" width="130" height="14" fill="#e91e63" rx="3"/><text x="340" y="323" fill="#e91e63" font-size="10">$0.0035/1K</text>
 <text x="400" y="380" text-anchor="middle" fill="#f9a825" font-size="11">Provisioned Throughput / Batch APIで最大50%コスト削減可能</text>
 </svg>
+</div>
+
 - ❌ Provisioned Throughput = 低レイテンシ → ✅ スループット保証のみ（レイテンシ保証ではない）
 - ❌ 大きい FM = 高精度 → 常に使うべき → ✅ タスクによっては小 FM + few-shot が効果的
 - ❌ Temperature=0 で最速 → ✅ Temperature は速度に影響しない
@@ -3650,7 +3959,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 試験直前チェックリスト
 
 - スライド 95–100 | 試験当日のセルフチェック
@@ -3663,7 +3972,8 @@ style: |
 
 > *Domain 1セルフチェックQ1でML種類と評価指標の理解を自己採点*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding モデル — ベクトル化フロー</text>
 <rect x="30" y="60" width="130" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3700,6 +4010,8 @@ style: |
 <text x="640" y="335" text-anchor="middle" fill="#f9a825" font-size="11">コスト: $0.0001/1K tokens</text>
 <text x="400" y="370" text-anchor="middle" fill="#ffffff" font-size="12">次元数が多い = 意味精度高 / 次元数が少ない = 検索速度・コスト優位</text>
 </svg>
+</div>
+
 - [ ] AI / ML / DL / GenAI の違いを 1 文で説明できる
 - [ ] 教師あり・教師なし・強化学習のユースケースを選べる
 - [ ] Accuracy / Precision / Recall / F1 の違いを理解している
@@ -3723,7 +4035,8 @@ style: |
 
 > *Domain 2-3セルフチェックでFM/RAG/Agentsの理解度をQ形式で確認*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">推論パラメータ ビジュアルガイド</text>
 <text x="200" y="60" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">Temperature</text>
@@ -3750,6 +4063,8 @@ style: |
 <text x="445" y="257" fill="#ffffff" font-size="12">SQL生成</text><text x="760" y="257" text-anchor="end" fill="#f9a825" font-size="12">temp=0.0, top_p=1.0</text>
 <text x="445" y="295" fill="#ffffff" font-size="12">アイデア出し</text><text x="760" y="295" text-anchor="end" fill="#f9a825" font-size="12">temp=1.0, top_p=0.95</text>
 </svg>
+</div>
+
 - [ ] Token / Context Window / Temperature の意味を説明できる
 - [ ] Zero-shot / Few-shot / CoT を使い分けられる
 - [ ] RAG の仕組みとコンポーネント（Chunking / Embedding / Retrieval）を説明できる
@@ -3773,7 +4088,8 @@ style: |
 
 > *Domain 4-5セルフチェックで責任あるAI・セキュリティ問題の解答精度を測定*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Bedrock Agent — ReAct ループ</text>
 <circle cx="400" cy="70" r="35" fill="#e91e63" stroke="#f9a825" stroke-width="2"/><text x="400" y="64" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">入力受信</text><text x="400" y="80" text-anchor="middle" fill="#f9a825" font-size="10"></text><line x1="432.9089653438087" y1="89" x2="479.6743371481684" y2="116" stroke="#f9a825" stroke-width="1.5"/><polygon points="479.6743371481684,116 468.514083110324,115.3301270189222 473.514083110324,106.6698729810778" fill="#f9a825"/><circle cx="512.5833024919771" cy="135" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="512.5833024919771" y="129" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">プランニ</text><text x="512.5833024919771" y="145" text-anchor="middle" fill="#f9a825" font-size="10">ング</text><line x1="512.5833024919771" y1="173" x2="512.5833024919771" y2="227" stroke="#f9a825" stroke-width="1.5"/><polygon points="512.5833024919771,227 507.58330249197707,217 517.5833024919771,217" fill="#f9a825"/><circle cx="512.5833024919771" cy="265" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="512.5833024919771" y="259" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">ツール選</text><text x="512.5833024919771" y="275" text-anchor="middle" fill="#f9a825" font-size="10">択</text><line x1="479.6743371481684" y1="284" x2="432.9089653438087" y2="311" stroke="#f9a825" stroke-width="1.5"/><polygon points="432.9089653438087,311 439.06921938165306,301.6698729810778 444.06921938165306,310.3301270189222" fill="#f9a825"/><circle cx="400" cy="330" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="324" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">ツール実</text><text x="400" y="340" text-anchor="middle" fill="#f9a825" font-size="10">行</text><line x1="367.0910346561913" y1="311" x2="320.3256628518317" y2="284.00000000000006" stroke="#f9a825" stroke-width="1.5"/><polygon points="320.3256628518317,284.00000000000006 331.48591688967605,284.66987298107784 326.48591688967605,293.33012701892227" fill="#f9a825"/><circle cx="287.416697508023" cy="265.00000000000006" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="287.416697508023" y="259.00000000000006" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">結果統合</text><text x="287.416697508023" y="275.00000000000006" text-anchor="middle" fill="#f9a825" font-size="10"></text><line x1="287.416697508023" y1="227.00000000000006" x2="287.416697508023" y2="173" stroke="#f9a825" stroke-width="1.5"/><polygon points="287.416697508023,173 292.416697508023,183 282.416697508023,183" fill="#f9a825"/><circle cx="287.416697508023" cy="135" r="35" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="287.416697508023" y="129" text-anchor="middle" fill="#ffffff" font-size="11" font-weight="bold">応答生成</text><text x="287.416697508023" y="145" text-anchor="middle" fill="#f9a825" font-size="10"></text><line x1="320.3256628518317" y1="116" x2="367.09103465619137" y2="89" stroke="#f9a825" stroke-width="1.5"/><polygon points="367.09103465619137,89 360.930780618347,98.3301270189222 355.930780618347,89.6698729810778" fill="#f9a825"/>
@@ -3781,6 +4097,8 @@ style: |
 <text x="400" y="215" text-anchor="middle" fill="#ffffff" font-size="11">LLM</text>
 <text x="400" y="370" text-anchor="middle" fill="#ffffff" font-size="11">Action Groups (Lambda) · Knowledge Base · Code Interpreter</text>
 </svg>
+</div>
+
 - [ ] 責任ある AI の 6 原則を言える
 - [ ] Bedrock Guardrails の 5 フィルタ種別を知っている
 - [ ] Hallucination の軽減手法（RAG / Grounding / CoT）を選べる
@@ -3804,7 +4122,8 @@ style: |
 
 > *2.6分/問の時間配分でフラグ活用・消去法・キーワード抽出の3戦略を試験当日に実行する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Knowledge Base — ベクトル検索フロー</text>
 <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">インデックス作成フロー（Ingestion）</text>
@@ -3865,6 +4184,8 @@ style: |
 <text x="650" y="320" text-anchor="middle" fill="#f9a825" font-size="10">PDF/表対応</text>
 <text x="650" y="335" text-anchor="middle" fill="#ffffff" font-size="10">柔軟・複雑</text>
 </svg>
+</div>
+
 - **時間配分**: 170分 ÷ 65問 ≈ 2.6分/問（見直し時間を確保）
 - **最初は全問ざっと確認**: 難問はフラグを立てて後回し
 - **消去法**: 明らかに誤った選択肢（AWS 責任範囲外・サービス誤用）から除外
@@ -3879,7 +4200,8 @@ style: |
 
 > *AWS Skill Builder公式模擬試験とBlackBeltの組み合わせが最もコスト効率の高い合格学習法*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">Amazon Bedrock — サービスマップ</text>
 <rect x="300" y="50" width="200" height="50" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
@@ -3919,6 +4241,8 @@ style: |
 <text x="620" y="304.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Topic/PII</text>
 <text x="400" y="370" text-anchor="middle" fill="#f9a825" font-size="12">API統一: InvokeModel / InvokeModelWithResponseStream / Converse</text>
 </svg>
+</div>
+
 - **公式ガイド**: AWS Certified Generative AI Developer – Professional 試験ガイド
 - **AWS Skill Builder**: 公式オンラインコース（無料）+ 公式模擬試験（有料）
 - **Bedrock ドキュメント**: Bedrock User Guide / API Reference（英語・公式）
@@ -3929,10 +4253,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ — 合格に向けて
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">モデル選択 デシジョンツリー</text>
 <rect x="300" y="45" width="200" height="45" rx="6" fill="#e91e63" stroke="#f9a825" stroke-width="1.5"/>
@@ -3973,6 +4298,8 @@ style: |
 <text x="400" y="330" text-anchor="middle" fill="#ffffff" font-size="12">コスト: Haiku &lt; Sonnet &lt; Opus  |  速度: Haiku &gt; Sonnet &gt; Opus</text>
 <text x="400" y="355" text-anchor="middle" fill="#f9a825" font-size="11">本番: Sonnet推奨 / バッチ低コスト: Haiku / 高精度: Opus</text>
 </svg>
+</div>
+
 - **5 ドメイン × 100 枚で試験範囲を完全網羅**
 - D3（FM 活用 30%）が最重要 → Bedrock / RAG / Agents を重点対策
 - サービス選択: ユースケース・コスト・スキルレベル・コントロール粒度で判断

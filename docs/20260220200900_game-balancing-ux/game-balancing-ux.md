@@ -7,41 +7,76 @@ paginate: true
 header: "ゲームバランシングとUX設計"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,11 +117,10 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ゲームバランシングとUX設計
 
 - フロー理論から学ぶプロダクト設計
-- 
 - なぜゲームは「やめられない」のか？
 
 
@@ -96,17 +130,17 @@ style: |
 
 > *フロー→バランシング→難易度→報酬→UX応用→倫理の6章で全体像を把握*
 
-- - 1. フロー理論とは何か
-- - 2. ゲームバランシングの技法
-- - 3. 難易度カーブの設計
-- - 4. 報酬スケジュールの心理学
-- - 5. ゲーム → プロダクトUXへの応用
-- - 6. 倫理的な設計の境界線
+- 1. フロー理論とは何か
+- 2. ゲームバランシングの技法
+- 3. 難易度カーブの設計
+- 4. 報酬スケジュールの心理学
+- 5. ゲーム → プロダクトUXへの応用
+- 6. 倫理的な設計の境界線
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # フロー理論
 
 
@@ -124,18 +158,18 @@ style: |
 > *スキルと挑戦の均衡がゲームも製品も継続させる*
 
 ![w:800 center](assets/flow-conditions.svg)
-- - **明確な目標**: 次に何をすべきか分かっている
-- - **即時フィードバック**: 行動の結果がすぐ分かる
-- - **スキルとチャレンジの均衡**: 簡単すぎず難しすぎない
-- - **集中の没入**: 時間の感覚を忘れる
-- - **自己目的的**: 行為自体が報酬になっている
-- 
+
+- **明確な目標**: 次に何をすべきか分かっている
+- **即時フィードバック**: 行動の結果がすぐ分かる
+- **スキルとチャレンジの均衡**: 簡単すぎず難しすぎない
+- **集中の没入**: 時間の感覚を忘れる
+- **自己目的的**: 行為自体が報酬になっている
 - ゲームはフローを**意図的に設計**している唯一のメディア
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ゲームバランシングの技法
 
 
@@ -153,18 +187,18 @@ style: |
 > *マリオ1-1: テキスト0行で全操作を教えた手本*
 
 ![w:800 center](assets/good-difficulty-curve.svg)
-- - **漸進的上昇**: 1つずつ新要素を導入する
-- - **休息点**: 難所の後に「安全地帯」を設ける
-- - **予測可能な成長**: プレイヤーが上達を実感できる
-- - **適度な壁**: 努力すれば越えられる障壁
-- 
+
+- **漸進的上昇**: 1つずつ新要素を導入する
+- **休息点**: 難所の後に「安全地帯」を設ける
+- **予測可能な成長**: プレイヤーが上達を実感できる
+- **適度な壁**: 努力すれば越えられる障壁
 - マリオの1-1: ゲームデザイン史上最高のチュートリアル
 - → テキスト0行で全操作を教える
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 報酬スケジュール
 
 
@@ -182,16 +216,17 @@ style: |
 > *変動比率報酬が最強—倫理的配慮は必須*
 
 ![w:800 center](assets/reward-types.svg)
-- - **B.F. Skinner(1930s)**: オペラント条件づけの発見
-- - 変動比率スケジュールが最も行動を強化する
-- - ゲーム業界は50年間この知見を応用してきた
-- - ドロップ率、ガチャ、ルートボックス
-- - **注意**: 強力すぎる手法には倫理的責任が伴う
+
+- **B.F. Skinner(1930s)**: オペラント条件づけの発見
+- 変動比率スケジュールが最も行動を強化する
+- ゲーム業界は50年間この知見を応用してきた
+- ドロップ率、ガチャ、ルートボックス
+- **注意**: 強力すぎる手法には倫理的責任が伴う
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # プロダクトUXへの応用
 
 
@@ -209,13 +244,14 @@ style: |
 > *体験優先・即時成功体験がAha momentを生む*
 
 ![w:800 center](assets/engagement-loop.svg)
-- - **ゲーム**: 操作を1つずつ教え、すぐに実践させる
-- - **プロダクト**: 機能を1つずつ紹介し、すぐに使わせる
-- - **共通原則**:
--   - 説明は最小限、体験を最大限に
--   - 失敗してもペナルティがない安全な環境
--   - 成功体験を早期に提供する(Aha moment)
--   - 段階的に複雑さを増す(Progressive disclosure)
+
+- **ゲーム**: 操作を1つずつ教え、すぐに実践させる
+- **プロダクト**: 機能を1つずつ紹介し、すぐに使わせる
+- **共通原則**:
+  - 説明は最小限、体験を最大限に
+  - 失敗してもペナルティがない安全な環境
+  - 成功体験を早期に提供する(Aha moment)
+  - 段階的に複雑さを増す(Progressive disclosure)
 
 
 ---
@@ -225,10 +261,11 @@ style: |
 > *行動→報酬→成長→挑戦がユーザーを繋ぎ止める*
 
 ![w:800 center](assets/engagement-loop-core.svg)
-- - **ゲームの核心ループ**: 行動 → 報酬 → 成長 → 新たな挑戦
-- - **プロダクトへの応用**:
--   - 行動: ユーザーがタスクを完了する
--   - 報酬: 達成感、進捗の可視化
+
+- **ゲームの核心ループ**: 行動 → 報酬 → 成長 → 新たな挑戦
+- **プロダクトへの応用**:
+  - 行動: ユーザーがタスクを完了する
+  - 報酬: 達成感、進捗の可視化
 
 
 ---
@@ -236,15 +273,15 @@ style: |
 # エンゲージメントループ（2/2）
 
 ![w:800 center](assets/ethics-boundary-2.svg)
--   - 成長: 新機能のアンロック、ステータス向上
--   - 挑戦: より高度な使い方の提案
-- 
+
+  - 成長: 新機能のアンロック、ステータス向上
+  - 挑戦: より高度な使い方の提案
 - **Duolingo**: ゲーム設計を最も忠実に適用したプロダクト
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 倫理的な設計の境界線
 
 
@@ -255,10 +292,11 @@ style: |
 > *Duolingo型は習慣化支援—ユーザー目標に沿う*
 
 ![w:800 center](assets/ethics-boundary.svg)
-- - **良い設計**: ユーザーの目標達成を助ける
--   - Duolingo: 学習の習慣化
--   - GitHub: 貢献の可視化
--   - Fitbit: 健康行動の動機づけ
+
+- **良い設計**: ユーザーの目標達成を助ける
+  - Duolingo: 学習の習慣化
+  - GitHub: 貢献の可視化
+  - Fitbit: 健康行動の動機づけ
 
 
 ---
@@ -267,10 +305,10 @@ style: |
 
 > *ダークパターン・無限スクロール・ガチャはユーザー搾取型設計の三大悪例*
 
-- - **悪い設計**: 企業の目標のためにユーザーを操作する
--   - ダークパターン: 解約を困難にする
--   - 無限スクロール: 意図しない時間消費
--   - ルートボックス: ギャンブル依存の誘発
+- **悪い設計**: 企業の目標のためにユーザーを操作する
+  - ダークパターン: 解約を困難にする
+  - 無限スクロール: 意図しない時間消費
+  - ルートボックス: ギャンブル依存の誘発
 
 
 ---
@@ -280,19 +318,19 @@ style: |
 > *フロー設計の倫理: 透明性と自律性が境界を引く*
 
 ![w:800 center](assets/designer-question.svg)
-- - **「このデザインはユーザーの利益になるか？」**
-- - フロー状態は素晴らしい体験だが、搾取にも使える
-- - ゲームデザイナーの倫理規定:
--   - 透明性: 確率やコストを明示する
+
+- **「このデザインはユーザーの利益になるか？」**
+- フロー状態は素晴らしい体験だが、搾取にも使える
+- ゲームデザイナーの倫理規定:
+  - 透明性: 確率やコストを明示する
 
 
 ---
 
 # 設計者の問い（2/2）
 
--   - 自律性: ユーザーが制御を持てるようにする
--   - 脆弱性への配慮: 子供や依存傾向のあるユーザーを守る
-- 
+  - 自律性: ユーザーが制御を持てるようにする
+  - 脆弱性への配慮: 子供や依存傾向のあるユーザーを守る
 - **「エンゲージメント」と「依存」は紙一重**
 
 
@@ -302,11 +340,10 @@ style: |
 
 > *フロー設計×報酬設計でプロダクトのエンゲージメントを最大化*
 
-- - フロー理論はゲームもプロダクトも同じ原理で動く
-- - 良い難易度カーブ = 良いオンボーディング
-- - 報酬スケジュールは強力だが倫理的配慮が必要
-- - ゲーム50年の知見をプロダクト設計に活かす時代
-- 
+- フロー理論はゲームもプロダクトも同じ原理で動く
+- 良い難易度カーブ = 良いオンボーディング
+- 報酬スケジュールは強力だが倫理的配慮が必要
+- ゲーム50年の知見をプロダクト設計に活かす時代
 - **「最高のプロダクトは、最高のゲームのように設計されている。」**
 
 
@@ -316,10 +353,10 @@ style: |
 
 > *Csikszentmihalyi・Koster・Eyal・Chouの4冊でゲームUX理論の全体像を習得*
 
-- - **Research:**
-- - [Flow: The Psychology of Optimal Experience - Csikszentmihalyi (1990)](https://en.wikipedia.org/wiki/Flow_(psychology))
-- - [A Theory of Fun for Game Design - Raph Koster (2004)](https://www.theoryoffun.com/)
-- - **Design:**
-- - [Hooked: How to Build Habit-Forming Products - Nir Eyal (2014)](https://www.nirandfar.com/hooked/)
-- - [Actionable Gamification - Yu-kai Chou (2015)](https://yukaichou.com/gamification-book/)
+- **Research:**
+- [Flow: The Psychology of Optimal Experience - Csikszentmihalyi (1990)](https://en.wikipedia.org/wiki/Flow_(psychology))
+- [A Theory of Fun for Game Design - Raph Koster (2004)](https://www.theoryoffun.com/)
+- **Design:**
+- [Hooked: How to Build Habit-Forming Products - Nir Eyal (2014)](https://www.nirandfar.com/hooked/)
+- [Actionable Gamification - Yu-kai Chou (2015)](https://yukaichou.com/gamification-book/)
 

@@ -14,7 +14,7 @@ marp:
     table { font-size: 0.66em; border-collapse: collapse; width: 100%; }
     th { background: #1565C0; color: white; padding: 4px 8px; text-align: left; }
     td { padding: 3px 8px; border-bottom: 1px solid #e0e0e0; }
-    tr:nth-child(even) td { background: #f0f6ff; }
+    tr:nth-child(even) td { background: rgba(255, 255, 255, 0.07); }
     section.lead h1 { font-size: 1.4em; }
     section.lead h2 { font-size: 1.1em; color: #fff; }
     h2 { color: #1565C0; }

@@ -7,41 +7,76 @@ paginate: true
 header: "最適化の罠"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,17 +111,16 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 最適化の罠
 
 - **効率化するほど脆くなるシステムの逆説**
-- 
 - なぜ最も効率的なシステムが最も危険なのか
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 効率化と脆弱性のトレードオフ
 
 - 歴史が証明する「最適化の代償」
@@ -94,48 +128,57 @@ style: |
 
 ---
 
+<!-- _class: invert fit-70 -->
 # ジャストインタイムとCOVID-19
 
 > *在庫バッファをゼロにした究極効率が一つの衝撃で全サプライチェーンを連鎖停止させた*
 
-- - **トヨタ生産方式（JIT）**: 在庫ゼロ、必要な時に必要な量だけ調達
-- - 世界中の製造業がJITを採用 → **究極の効率化**を達成
-- - 2020年: COVID-19 → サプライチェーン寸断 → 半導体不足、マスク不足
-- - **在庫ゼロ = バッファゼロ = 衝撃吸収能力ゼロ**
-- 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="240" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">JITサプライチェーンの崩壊</text><rect x="50" y="65" width="120" height="50" rx="8" fill="#0f3460"/><text x="110" y="95" text-anchor="middle" fill="#fff" font-size="12">原材料</text><line x1="170" y1="90" x2="220" y2="90" stroke="#4eff4e" stroke-width="2"/><polygon points="215,84 225,90 215,96" fill="#4eff4e"/><rect x="225" y="65" width="120" height="50" rx="8" fill="#0f3460"/><text x="285" y="95" text-anchor="middle" fill="#fff" font-size="12">部品製造</text><line x1="345" y1="90" x2="395" y2="90" stroke="#4eff4e" stroke-width="2"/><polygon points="390,84 400,90 390,96" fill="#4eff4e"/><rect x="400" y="65" width="120" height="50" rx="8" fill="#0f3460"/><text x="460" y="95" text-anchor="middle" fill="#fff" font-size="12">組立工場</text><line x1="520" y1="90" x2="570" y2="90" stroke="#4eff4e" stroke-width="2"/><polygon points="565,84 575,90 565,96" fill="#4eff4e"/><rect x="575" y="65" width="120" height="50" rx="8" fill="#0f3460"/><text x="635" y="95" text-anchor="middle" fill="#fff" font-size="12">出荷</text><text x="400" y="140" text-anchor="middle" fill="#ffcc00" font-size="14" font-weight="bold">在庫バッファ = ゼロ (JIT)</text><line x1="200" y1="155" x2="200" y2="185" stroke="#e94560" stroke-width="3"/><text x="200" y="200" text-anchor="middle" fill="#e94560" font-size="30" font-weight="bold">X</text><text x="200" y="225" text-anchor="middle" fill="#e94560" font-size="12">COVID-19 で寸断</text><line x1="250" y1="190" x2="700" y2="190" stroke="#e94560" stroke-width="2" stroke-dasharray="5,3"/><text x="500" y="225" text-anchor="middle" fill="#e94560" font-size="13" font-weight="bold">→ 全工程が連鎖停止</text></svg>
+- **トヨタ生産方式（JIT）**: 在庫ゼロ、必要な時に必要な量だけ調達
+- 世界中の製造業がJITを採用 → **究極の効率化**を達成
+- 2020年: COVID-19 → サプライチェーン寸断 → 半導体不足、マスク不足
+- **在庫ゼロ = バッファゼロ = 衝撃吸収能力ゼロ**
+
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="240" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">JITサプライチェーンの崩壊</text><rect x="50" y="65" width="120" height="50" rx="8" fill="#0f3460"/><text x="110" y="95" text-anchor="middle" fill="#fff" font-size="12">原材料</text><line x1="170" y1="90" x2="220" y2="90" stroke="#4eff4e" stroke-width="2"/><polygon points="215,84 225,90 215,96" fill="#4eff4e"/><rect x="225" y="65" width="120" height="50" rx="8" fill="#0f3460"/><text x="285" y="95" text-anchor="middle" fill="#fff" font-size="12">部品製造</text><line x1="345" y1="90" x2="395" y2="90" stroke="#4eff4e" stroke-width="2"/><polygon points="390,84 400,90 390,96" fill="#4eff4e"/><rect x="400" y="65" width="120" height="50" rx="8" fill="#0f3460"/><text x="460" y="95" text-anchor="middle" fill="#fff" font-size="12">組立工場</text><line x1="520" y1="90" x2="570" y2="90" stroke="#4eff4e" stroke-width="2"/><polygon points="565,84 575,90 565,96" fill="#4eff4e"/><rect x="575" y="65" width="120" height="50" rx="8" fill="#0f3460"/><text x="635" y="95" text-anchor="middle" fill="#fff" font-size="12">出荷</text><text x="400" y="140" text-anchor="middle" fill="#ffcc00" font-size="14" font-weight="bold">在庫バッファ = ゼロ (JIT)</text><line x1="200" y1="155" x2="200" y2="185" stroke="#e94560" stroke-width="3"/><text x="200" y="200" text-anchor="middle" fill="#e94560" font-size="30" font-weight="bold">X</text><text x="200" y="225" text-anchor="middle" fill="#e94560" font-size="12">COVID-19 で寸断</text><line x1="250" y1="190" x2="700" y2="190" stroke="#e94560" stroke-width="2" stroke-dasharray="5,3"/><text x="500" y="225" text-anchor="middle" fill="#e94560" font-size="13" font-weight="bold">→ 全工程が連鎖停止</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 生態系の多様性と効率性
 
 > *単一栽培の完全効率化が疫病一つで全滅するようにモノカルチャー最適化は致命的脆弱性を生む*
 
-- - **単一栽培（モノカルチャー）**: 収量最大化のために1種類だけを植える
-- - 1845年アイルランド: じゃがいも単一栽培 → 疫病で**全作物が壊滅** → 大飢饉
-- - **多様性 = 非効率だが耐障害性が高い**: 一部が倒れても全体は生き残る
-- 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="240" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">多様性 vs 効率性のトレードオフ</text><line x1="80" y1="210" x2="380" y2="210" stroke="#aaa" stroke-width="2"/><line x1="80" y1="210" x2="80" y2="60" stroke="#aaa" stroke-width="2"/><text x="230" y="235" text-anchor="middle" fill="#aaa" font-size="12">効率性 →</text><text x="50" y="135" text-anchor="middle" fill="#aaa" font-size="11" transform="rotate(-90,50,135)">耐障害性</text><path d="M 90 80 Q 180 90, 230 130 Q 280 170, 370 200" fill="none" stroke="#4eff4e" stroke-width="3"/><circle cx="120" cy="85" r="5" fill="#4eff4e"/><text x="115" y="75" fill="#4eff4e" font-size="10">多様</text><circle cx="350" cy="195" r="5" fill="#e94560"/><text x="345" y="185" fill="#e94560" font-size="10">単一</text><rect x="430" y="60" width="160" height="80" rx="10" fill="#0f3460"/><text x="510" y="85" text-anchor="middle" fill="#4eff4e" font-size="13" font-weight="bold">多品種農場</text><text x="510" y="105" text-anchor="middle" fill="#fff" font-size="11">効率60% / 耐性90%</text><text x="510" y="125" text-anchor="middle" fill="#4eff4e" font-size="11">疫病 → 一部のみ影響</text><rect x="430" y="155" width="160" height="80" rx="10" fill="#16213e" stroke="#e94560" stroke-width="2"/><text x="510" y="180" text-anchor="middle" fill="#e94560" font-size="13" font-weight="bold">単一栽培</text><text x="510" y="200" text-anchor="middle" fill="#fff" font-size="11">効率95% / 耐性5%</text><text x="510" y="220" text-anchor="middle" fill="#e94560" font-size="11">疫病 → 全滅</text><text x="700" y="120" text-anchor="middle" fill="#ffcc00" font-size="13" font-weight="bold">効率性と</text><text x="700" y="140" text-anchor="middle" fill="#ffcc00" font-size="13" font-weight="bold">耐障害性は</text><text x="700" y="160" text-anchor="middle" fill="#ffcc00" font-size="13" font-weight="bold">トレードオフ</text></svg>
+- **単一栽培（モノカルチャー）**: 収量最大化のために1種類だけを植える
+- 1845年アイルランド: じゃがいも単一栽培 → 疫病で**全作物が壊滅** → 大飢饉
+- **多様性 = 非効率だが耐障害性が高い**: 一部が倒れても全体は生き残る
+
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="240" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">多様性 vs 効率性のトレードオフ</text><line x1="80" y1="210" x2="380" y2="210" stroke="#aaa" stroke-width="2"/><line x1="80" y1="210" x2="80" y2="60" stroke="#aaa" stroke-width="2"/><text x="230" y="235" text-anchor="middle" fill="#aaa" font-size="12">効率性 →</text><text x="50" y="135" text-anchor="middle" fill="#aaa" font-size="11" transform="rotate(-90,50,135)">耐障害性</text><path d="M 90 80 Q 180 90, 230 130 Q 280 170, 370 200" fill="none" stroke="#4eff4e" stroke-width="3"/><circle cx="120" cy="85" r="5" fill="#4eff4e"/><text x="115" y="75" fill="#4eff4e" font-size="10">多様</text><circle cx="350" cy="195" r="5" fill="#e94560"/><text x="345" y="185" fill="#e94560" font-size="10">単一</text><rect x="430" y="60" width="160" height="80" rx="10" fill="#0f3460"/><text x="510" y="85" text-anchor="middle" fill="#4eff4e" font-size="13" font-weight="bold">多品種農場</text><text x="510" y="105" text-anchor="middle" fill="#fff" font-size="11">効率60% / 耐性90%</text><text x="510" y="125" text-anchor="middle" fill="#4eff4e" font-size="11">疫病 → 一部のみ影響</text><rect x="430" y="155" width="160" height="80" rx="10" fill="#16213e" stroke="#e94560" stroke-width="2"/><text x="510" y="180" text-anchor="middle" fill="#e94560" font-size="13" font-weight="bold">単一栽培</text><text x="510" y="200" text-anchor="middle" fill="#fff" font-size="11">効率95% / 耐性5%</text><text x="510" y="220" text-anchor="middle" fill="#e94560" font-size="11">疫病 → 全滅</text><text x="700" y="120" text-anchor="middle" fill="#ffcc00" font-size="13" font-weight="bold">効率性と</text><text x="700" y="140" text-anchor="middle" fill="#ffcc00" font-size="13" font-weight="bold">耐障害性は</text><text x="700" y="160" text-anchor="middle" fill="#ffcc00" font-size="13" font-weight="bold">トレードオフ</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # インターネットの集中化リスク
 
 > *分散型として設計されたネットワークが少数CDNへの集中で単一障害点を生み出している*
 
-- - インターネット全体が少数のプロバイダーに依存
-- - **2021年6月 Fastly障害**: Reddit, Twitch, The Guardian, Amazon等が同時停止
-- - **2023年 Cloudflare障害**: 数百万サイトが影響
-- - 分散型ネットワークが実は**高度に集中化**されている逆説
-- 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="260" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">集中化されたインターネットの依存関係</text><circle cx="400" cy="110" r="45" fill="#e94560" opacity="0.8"/><text x="400" y="105" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">CDN/Cloud</text><text x="400" y="120" text-anchor="middle" fill="#fff" font-size="10">(単一障害点)</text><rect x="80" y="180" width="100" height="35" rx="6" fill="#0f3460"/><text x="130" y="202" text-anchor="middle" fill="#fff" font-size="11">Reddit</text><rect x="210" y="180" width="100" height="35" rx="6" fill="#0f3460"/><text x="260" y="202" text-anchor="middle" fill="#fff" font-size="11">Twitch</text><rect x="340" y="180" width="100" height="35" rx="6" fill="#0f3460"/><text x="390" y="202" text-anchor="middle" fill="#fff" font-size="11">Amazon</text><rect x="470" y="180" width="100" height="35" rx="6" fill="#0f3460"/><text x="520" y="202" text-anchor="middle" fill="#fff" font-size="11">Guardian</text><rect x="600" y="180" width="100" height="35" rx="6" fill="#0f3460"/><text x="650" y="202" text-anchor="middle" fill="#fff" font-size="11">+数百万</text><line x1="370" y1="145" x2="130" y2="180" stroke="#e94560" stroke-width="1.5"/><line x1="385" y1="150" x2="260" y2="180" stroke="#e94560" stroke-width="1.5"/><line x1="400" y1="155" x2="390" y2="180" stroke="#e94560" stroke-width="1.5"/><line x1="415" y1="150" x2="520" y2="180" stroke="#e94560" stroke-width="1.5"/><line x1="430" y1="145" x2="650" y2="180" stroke="#e94560" stroke-width="1.5"/><text x="400" y="245" text-anchor="middle" fill="#ffcc00" font-size="14" font-weight="bold">1つの障害 → 全サービス同時停止</text></svg>
+- インターネット全体が少数のプロバイダーに依存
+- **2021年6月 Fastly障害**: Reddit, Twitch, The Guardian, Amazon等が同時停止
+- **2023年 Cloudflare障害**: 数百万サイトが影響
+- 分散型ネットワークが実は**高度に集中化**されている逆説
+
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="260" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">集中化されたインターネットの依存関係</text><circle cx="400" cy="110" r="45" fill="#e94560" opacity="0.8"/><text x="400" y="105" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">CDN/Cloud</text><text x="400" y="120" text-anchor="middle" fill="#fff" font-size="10">(単一障害点)</text><rect x="80" y="180" width="100" height="35" rx="6" fill="#0f3460"/><text x="130" y="202" text-anchor="middle" fill="#fff" font-size="11">Reddit</text><rect x="210" y="180" width="100" height="35" rx="6" fill="#0f3460"/><text x="260" y="202" text-anchor="middle" fill="#fff" font-size="11">Twitch</text><rect x="340" y="180" width="100" height="35" rx="6" fill="#0f3460"/><text x="390" y="202" text-anchor="middle" fill="#fff" font-size="11">Amazon</text><rect x="470" y="180" width="100" height="35" rx="6" fill="#0f3460"/><text x="520" y="202" text-anchor="middle" fill="#fff" font-size="11">Guardian</text><rect x="600" y="180" width="100" height="35" rx="6" fill="#0f3460"/><text x="650" y="202" text-anchor="middle" fill="#fff" font-size="11">+数百万</text><line x1="370" y1="145" x2="130" y2="180" stroke="#e94560" stroke-width="1.5"/><line x1="385" y1="150" x2="260" y2="180" stroke="#e94560" stroke-width="1.5"/><line x1="400" y1="155" x2="390" y2="180" stroke="#e94560" stroke-width="1.5"/><line x1="415" y1="150" x2="520" y2="180" stroke="#e94560" stroke-width="1.5"/><line x1="430" y1="145" x2="650" y2="180" stroke="#e94560" stroke-width="1.5"/><text x="400" y="245" text-anchor="middle" fill="#ffcc00" font-size="14" font-weight="bold">1つの障害 → 全サービス同時停止</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ソフトウェアシステムの最適化の罠
 
 - 効率を追求したアーキテクチャが生む意図せぬ脆弱性
@@ -143,32 +186,40 @@ style: |
 
 ---
 
+<!-- _class: invert fit-82 -->
 # マイクロサービスの「最適分割」の罠
 
 > *個別最適化でサービス数n個の通信パスはn(n-1)/2に増大し複雑度が爆発する*
 
-- - 各サービスを**個別に最適化** → サービス間通信の複雑度が爆発
-- - **分散システムの8つの誤り**: ネットワークは信頼できる、遅延はゼロ...
-- - サービス数 n → 通信パス数は最大 **n(n-1)/2** に増加
-- 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="260" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">サービス分割による通信複雑度の増大</text><rect x="60" y="60" width="250" height="190" rx="12" fill="#16213e"/><text x="185" y="85" text-anchor="middle" fill="#4eff4e" font-size="14" font-weight="bold">モノリス (1サービス)</text><rect x="100" y="100" width="170" height="130" rx="8" fill="#0f3460"/><text x="185" y="140" text-anchor="middle" fill="#fff" font-size="13">全機能が1つ</text><text x="185" y="165" text-anchor="middle" fill="#fff" font-size="12">通信パス: 0</text><text x="185" y="190" text-anchor="middle" fill="#4eff4e" font-size="12">障害点: 1</text><rect x="390" y="60" width="370" height="190" rx="12" fill="#16213e"/><text x="575" y="85" text-anchor="middle" fill="#e94560" font-size="14" font-weight="bold">マイクロサービス (6)</text><circle cx="460" cy="130" r="20" fill="#533483"/><text x="460" y="134" text-anchor="middle" fill="#fff" font-size="9">Auth</text><circle cx="540" cy="110" r="20" fill="#533483"/><text x="540" y="114" text-anchor="middle" fill="#fff" font-size="9">User</text><circle cx="620" cy="130" r="20" fill="#533483"/><text x="620" y="134" text-anchor="middle" fill="#fff" font-size="9">Order</text><circle cx="460" cy="200" r="20" fill="#533483"/><text x="460" y="204" text-anchor="middle" fill="#fff" font-size="9">Pay</text><circle cx="540" cy="220" r="20" fill="#533483"/><text x="540" y="224" text-anchor="middle" fill="#fff" font-size="9">Notify</text><circle cx="620" cy="200" r="20" fill="#533483"/><text x="620" y="204" text-anchor="middle" fill="#fff" font-size="9">Stock</text><line x1="475" y1="120" x2="525" y2="115" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="555" y1="120" x2="605" y2="125" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="460" y1="150" x2="460" y2="180" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="620" y1="150" x2="620" y2="180" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="475" y1="195" x2="525" y2="215" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="555" y1="215" x2="605" y2="205" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="480" y1="130" x2="600" y2="130" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="480" y1="200" x2="600" y2="200" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="540" y1="130" x2="540" y2="200" stroke="#e94560" stroke-width="1" opacity="0.6"/><text x="575" y="250" text-anchor="middle" fill="#e94560" font-size="12">通信パス: 15 / 障害点: 6+</text></svg>
+- 各サービスを**個別に最適化** → サービス間通信の複雑度が爆発
+- **分散システムの8つの誤り**: ネットワークは信頼できる、遅延はゼロ...
+- サービス数 n → 通信パス数は最大 **n(n-1)/2** に増加
+
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="260" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">サービス分割による通信複雑度の増大</text><rect x="60" y="60" width="250" height="190" rx="12" fill="#16213e"/><text x="185" y="85" text-anchor="middle" fill="#4eff4e" font-size="14" font-weight="bold">モノリス (1サービス)</text><rect x="100" y="100" width="170" height="130" rx="8" fill="#0f3460"/><text x="185" y="140" text-anchor="middle" fill="#fff" font-size="13">全機能が1つ</text><text x="185" y="165" text-anchor="middle" fill="#fff" font-size="12">通信パス: 0</text><text x="185" y="190" text-anchor="middle" fill="#4eff4e" font-size="12">障害点: 1</text><rect x="390" y="60" width="370" height="190" rx="12" fill="#16213e"/><text x="575" y="85" text-anchor="middle" fill="#e94560" font-size="14" font-weight="bold">マイクロサービス (6)</text><circle cx="460" cy="130" r="20" fill="#533483"/><text x="460" y="134" text-anchor="middle" fill="#fff" font-size="9">Auth</text><circle cx="540" cy="110" r="20" fill="#533483"/><text x="540" y="114" text-anchor="middle" fill="#fff" font-size="9">User</text><circle cx="620" cy="130" r="20" fill="#533483"/><text x="620" y="134" text-anchor="middle" fill="#fff" font-size="9">Order</text><circle cx="460" cy="200" r="20" fill="#533483"/><text x="460" y="204" text-anchor="middle" fill="#fff" font-size="9">Pay</text><circle cx="540" cy="220" r="20" fill="#533483"/><text x="540" y="224" text-anchor="middle" fill="#fff" font-size="9">Notify</text><circle cx="620" cy="200" r="20" fill="#533483"/><text x="620" y="204" text-anchor="middle" fill="#fff" font-size="9">Stock</text><line x1="475" y1="120" x2="525" y2="115" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="555" y1="120" x2="605" y2="125" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="460" y1="150" x2="460" y2="180" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="620" y1="150" x2="620" y2="180" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="475" y1="195" x2="525" y2="215" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="555" y1="215" x2="605" y2="205" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="480" y1="130" x2="600" y2="130" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="480" y1="200" x2="600" y2="200" stroke="#e94560" stroke-width="1" opacity="0.6"/><line x1="540" y1="130" x2="540" y2="200" stroke="#e94560" stroke-width="1" opacity="0.6"/><text x="575" y="250" text-anchor="middle" fill="#e94560" font-size="12">通信パス: 15 / 障害点: 6+</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # データベースのN+1最適化地獄
 
 > *個別最適の連鎖がキャッシュ無効化という新たな複雑性を生み、結果的にシステムが複雑化する*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">最適化の連鎖 — 複雑性の雪だるま</text><rect x="30" y="50" width="150" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="105" y="76" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">N+1問題</text><text x="105" y="94" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">遅いクエリ</text><polygon points="183,77 200,67 200,87" fill="#f9a825"/><rect x="203" y="50" width="150" height="55" rx="8" fill="#16213e" stroke="#f57c00" stroke-width="2"/><text x="278" y="76" text-anchor="middle" font-size="11" fill="#f57c00" font-weight="bold" font-family="sans-serif">Eager Loading</text><text x="278" y="94" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">大量データ取得</text><polygon points="356,77 373,67 373,87" fill="#f9a825"/><rect x="376" y="50" width="150" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="451" y="76" text-anchor="middle" font-size="11" fill="#f9a825" font-weight="bold" font-family="sans-serif">Redisキャッシュ</text><text x="451" y="94" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">整合性の問題</text><polygon points="529,77 546,67 546,87" fill="#f9a825"/><rect x="549" y="50" width="150" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="624" y="76" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">無効化ロジック</text><text x="624" y="94" text-anchor="middle" font-size="10" fill="#e91e63" font-family="sans-serif">複雑度爆発</text><rect x="30" y="130" width="720" height="100" rx="10" fill="#16213e" stroke="#555566" stroke-width="1"/><text x="400" y="155" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">最適化の皮肉</text><text x="60" y="180" font-size="12" fill="#ccccdd" font-family="sans-serif">各ステップで「最適化」したが、全体のシステム複雑度は増大した</text><text x="60" y="202" font-size="12" fill="#ccccdd" font-family="sans-serif">解決策を重ねるたびに、次の問題の種を撒いている</text><text x="60" y="222" font-size="11" fill="#888899" font-family="sans-serif">→ 最初のN+1を許容すべきだったか？ vs キャッシュ戦略を最初から設計すべきだったか？</text></svg>
-- - N+1クエリ問題を解消 → **Eager Loading** に変更
-- - しかしデータ量増大 → **キャッシュ戦略**を導入
-- - キャッシュ不整合 → **キャッシュ無効化ロジック**が複雑化
-- - 最終的に: **最適化のための最適化**が新たな複雑性を生む
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">最適化の連鎖 — 複雑性の雪だるま</text><rect x="30" y="50" width="150" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="105" y="76" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">N+1問題</text><text x="105" y="94" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">遅いクエリ</text><polygon points="183,77 200,67 200,87" fill="#f9a825"/><rect x="203" y="50" width="150" height="55" rx="8" fill="#16213e" stroke="#f57c00" stroke-width="2"/><text x="278" y="76" text-anchor="middle" font-size="11" fill="#f57c00" font-weight="bold" font-family="sans-serif">Eager Loading</text><text x="278" y="94" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">大量データ取得</text><polygon points="356,77 373,67 373,87" fill="#f9a825"/><rect x="376" y="50" width="150" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="451" y="76" text-anchor="middle" font-size="11" fill="#f9a825" font-weight="bold" font-family="sans-serif">Redisキャッシュ</text><text x="451" y="94" text-anchor="middle" font-size="10" fill="#ccccdd" font-family="sans-serif">整合性の問題</text><polygon points="529,77 546,67 546,87" fill="#f9a825"/><rect x="549" y="50" width="150" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="624" y="76" text-anchor="middle" font-size="11" fill="#e91e63" font-weight="bold" font-family="sans-serif">無効化ロジック</text><text x="624" y="94" text-anchor="middle" font-size="10" fill="#e91e63" font-family="sans-serif">複雑度爆発</text><rect x="30" y="130" width="720" height="100" rx="10" fill="#16213e" stroke="#555566" stroke-width="1"/><text x="400" y="155" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">最適化の皮肉</text><text x="60" y="180" font-size="12" fill="#ccccdd" font-family="sans-serif">各ステップで「最適化」したが、全体のシステム複雑度は増大した</text><text x="60" y="202" font-size="12" fill="#ccccdd" font-family="sans-serif">解決策を重ねるたびに、次の問題の種を撒いている</text><text x="60" y="222" font-size="11" fill="#888899" font-family="sans-serif">→ 最初のN+1を許容すべきだったか？ vs キャッシュ戦略を最初から設計すべきだったか？</text></svg>
+</div>
+
+- N+1クエリ問題を解消 → **Eager Loading** に変更
+- しかしデータ量増大 → **キャッシュ戦略**を導入
+- キャッシュ不整合 → **キャッシュ無効化ロジック**が複雑化
+- 最終的に: **最適化のための最適化**が新たな複雑性を生む
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # データベースのN+1最適化地獄（コード例）
 
 ```javascript
@@ -189,35 +240,41 @@ if (!cached) { /* DB query + cache set */ }
 
 ---
 
+<!-- _class: invert fit-82 -->
 # CI/CDパイプラインの並列化の罠
 
 > *並列化で短縮したビルド時間がフレーキーテストを生み、テスト文化そのものを破壊する*
 
-- - パイプラインを**並列化** → ビルド時間を短縮（効率化）
-- - しかし並列テストが**共有状態**に依存 → フレーキーテスト増加
-- - テスト信頼性低下 → 「赤いテストは無視する」文化が蔓延
-- - **効率化がテストの意味そのものを破壊する**逆説
-- 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="220" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">並列化 → フレーキーテスト → 信頼崩壊</text><rect x="60" y="60" width="130" height="40" rx="8" fill="#0f3460"/><text x="125" y="85" text-anchor="middle" fill="#fff" font-size="12">ビルド並列化</text><line x1="190" y1="80" x2="240" y2="80" stroke="#e94560" stroke-width="2"/><polygon points="235,74 245,80 235,86" fill="#e94560"/><rect x="245" y="60" width="130" height="40" rx="8" fill="#533483"/><text x="310" y="85" text-anchor="middle" fill="#fff" font-size="12">共有状態競合</text><line x1="375" y1="80" x2="425" y2="80" stroke="#e94560" stroke-width="2"/><polygon points="420,74 430,80 420,86" fill="#e94560"/><rect x="430" y="60" width="150" height="40" rx="8" fill="#8B4513"/><text x="505" y="85" text-anchor="middle" fill="#fff" font-size="12">フレーキーテスト</text><line x1="580" y1="80" x2="630" y2="80" stroke="#e94560" stroke-width="2"/><polygon points="625,74 635,80 625,86" fill="#e94560"/><rect x="635" y="60" width="120" height="40" rx="8" fill="#e94560"/><text x="695" y="85" text-anchor="middle" fill="#fff" font-size="12">信頼崩壊</text><rect x="150" y="130" width="500" height="55" rx="10" fill="#16213e" stroke="#ffcc00" stroke-width="2"/><text x="400" y="155" text-anchor="middle" fill="#ffcc00" font-size="14" font-weight="bold">「赤いテストは無視する」文化の蔓延</text><text x="400" y="175" text-anchor="middle" fill="#aaa" font-size="12">→ テストの存在意義そのものが失われる</text></svg>
+- パイプラインを**並列化** → ビルド時間を短縮（効率化）
+- しかし並列テストが**共有状態**に依存 → フレーキーテスト増加
+- テスト信頼性低下 → 「赤いテストは無視する」文化が蔓延
+- **効率化がテストの意味そのものを破壊する**逆説
+
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="220" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">並列化 → フレーキーテスト → 信頼崩壊</text><rect x="60" y="60" width="130" height="40" rx="8" fill="#0f3460"/><text x="125" y="85" text-anchor="middle" fill="#fff" font-size="12">ビルド並列化</text><line x1="190" y1="80" x2="240" y2="80" stroke="#e94560" stroke-width="2"/><polygon points="235,74 245,80 235,86" fill="#e94560"/><rect x="245" y="60" width="130" height="40" rx="8" fill="#533483"/><text x="310" y="85" text-anchor="middle" fill="#fff" font-size="12">共有状態競合</text><line x1="375" y1="80" x2="425" y2="80" stroke="#e94560" stroke-width="2"/><polygon points="420,74 430,80 420,86" fill="#e94560"/><rect x="430" y="60" width="150" height="40" rx="8" fill="#8B4513"/><text x="505" y="85" text-anchor="middle" fill="#fff" font-size="12">フレーキーテスト</text><line x1="580" y1="80" x2="630" y2="80" stroke="#e94560" stroke-width="2"/><polygon points="625,74 635,80 625,86" fill="#e94560"/><rect x="635" y="60" width="120" height="40" rx="8" fill="#e94560"/><text x="695" y="85" text-anchor="middle" fill="#fff" font-size="12">信頼崩壊</text><rect x="150" y="130" width="500" height="55" rx="10" fill="#16213e" stroke="#ffcc00" stroke-width="2"/><text x="400" y="155" text-anchor="middle" fill="#ffcc00" font-size="14" font-weight="bold">「赤いテストは無視する」文化の蔓延</text><text x="400" y="175" text-anchor="middle" fill="#aaa" font-size="12">→ テストの存在意義そのものが失われる</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # Goodhartの法則 — 測定値が目標になる瞬間
 
 > *ベロシティやカバレッジを目標にした瞬間、数値は現実を反映しない腐った指標になる*
 
-- - **Goodhartの法則**: 「測定値が目標になった瞬間、良い測定値でなくなる」
-- - ベロシティ最適化 → ストーリーポイントの水増し
-- - カバレッジ最適化 → 意味のないテストが増殖
-- - レスポンスタイム最適化 → 遅いリクエストを切り捨てる
-- 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="220" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">Goodhartの法則 — メトリクスの腐敗</text><rect x="60" y="60" width="200" height="55" rx="8" fill="#0f3460"/><text x="160" y="82" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">測定値</text><text x="160" y="100" text-anchor="middle" fill="#4eff4e" font-size="11">現実を反映</text><line x1="260" y1="88" x2="320" y2="88" stroke="#ffcc00" stroke-width="2"/><polygon points="315,82 325,88 315,94" fill="#ffcc00"/><text x="290" y="78" text-anchor="middle" fill="#ffcc00" font-size="10">目標化</text><rect x="325" y="60" width="200" height="55" rx="8" fill="#533483"/><text x="425" y="82" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">目標</text><text x="425" y="100" text-anchor="middle" fill="#ffcc00" font-size="11">数字を追う行動に変質</text><line x1="525" y1="88" x2="585" y2="88" stroke="#e94560" stroke-width="2"/><polygon points="580,82 590,88 580,94" fill="#e94560"/><rect x="590" y="60" width="160" height="55" rx="8" fill="#e94560"/><text x="670" y="82" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">腐った指標</text><text x="670" y="100" text-anchor="middle" fill="#fff" font-size="11">現実と乖離</text><rect x="100" y="135" width="180" height="40" rx="6" fill="#16213e"/><text x="190" y="160" text-anchor="middle" fill="#aaa" font-size="11">ベロシティ → ポイント水増し</text><rect x="310" y="135" width="180" height="40" rx="6" fill="#16213e"/><text x="400" y="160" text-anchor="middle" fill="#aaa" font-size="11">カバレッジ → 空テスト増殖</text><rect x="520" y="135" width="180" height="40" rx="6" fill="#16213e"/><text x="610" y="160" text-anchor="middle" fill="#aaa" font-size="11">応答時間 → 遅い処理を切捨</text><text x="400" y="210" text-anchor="middle" fill="#ffcc00" font-size="14" font-weight="bold">最適化すべき「何を」が腐敗する</text></svg>
+- **Goodhartの法則**: 「測定値が目標になった瞬間、良い測定値でなくなる」
+- ベロシティ最適化 → ストーリーポイントの水増し
+- カバレッジ最適化 → 意味のないテストが増殖
+- レスポンスタイム最適化 → 遅いリクエストを切り捨てる
+
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="220" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">Goodhartの法則 — メトリクスの腐敗</text><rect x="60" y="60" width="200" height="55" rx="8" fill="#0f3460"/><text x="160" y="82" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">測定値</text><text x="160" y="100" text-anchor="middle" fill="#4eff4e" font-size="11">現実を反映</text><line x1="260" y1="88" x2="320" y2="88" stroke="#ffcc00" stroke-width="2"/><polygon points="315,82 325,88 315,94" fill="#ffcc00"/><text x="290" y="78" text-anchor="middle" fill="#ffcc00" font-size="10">目標化</text><rect x="325" y="60" width="200" height="55" rx="8" fill="#533483"/><text x="425" y="82" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">目標</text><text x="425" y="100" text-anchor="middle" fill="#ffcc00" font-size="11">数字を追う行動に変質</text><line x1="525" y1="88" x2="585" y2="88" stroke="#e94560" stroke-width="2"/><polygon points="580,82 590,88 580,94" fill="#e94560"/><rect x="590" y="60" width="160" height="55" rx="8" fill="#e94560"/><text x="670" y="82" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold">腐った指標</text><text x="670" y="100" text-anchor="middle" fill="#fff" font-size="11">現実と乖離</text><rect x="100" y="135" width="180" height="40" rx="6" fill="#16213e"/><text x="190" y="160" text-anchor="middle" fill="#aaa" font-size="11">ベロシティ → ポイント水増し</text><rect x="310" y="135" width="180" height="40" rx="6" fill="#16213e"/><text x="400" y="160" text-anchor="middle" fill="#aaa" font-size="11">カバレッジ → 空テスト増殖</text><rect x="520" y="135" width="180" height="40" rx="6" fill="#16213e"/><text x="610" y="160" text-anchor="middle" fill="#aaa" font-size="11">応答時間 → 遅い処理を切捨</text><text x="400" y="210" text-anchor="middle" fill="#ffcc00" font-size="14" font-weight="bold">最適化すべき「何を」が腐敗する</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # レジリエンスの設計
 
 - 最適化の罠を回避する設計原則
@@ -225,76 +282,87 @@ if (!cached) { /* DB query + cache set */ }
 
 ---
 
+<!-- _class: invert fit-76 -->
 # Slack（余裕）の経済学
 
 > *稼働率80%が最も生産的でGoogleの20%ルールは非効率に見えてイノベーションを生んだ*
 
-- - **余裕のないシステムは外乱に無力**: 稼働率100%のサーバーは新リクエストを処理できない
-- - Googleの**20%ルール**: 「非効率」がイノベーションを生む（Gmail, AdSense）
-- - **デマルコの法則**: チーム稼働率80%が最も生産的、100%は逆効果
-- 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="240" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">余裕あり vs 余裕なしのシステム応答</text><rect x="60" y="60" width="300" height="170" rx="12" fill="#16213e" stroke="#4eff4e" stroke-width="2"/><text x="210" y="85" text-anchor="middle" fill="#4eff4e" font-size="14" font-weight="bold">余裕あり (稼働率 70%)</text><rect x="90" y="100" width="210" height="25" rx="4" fill="#0f3460"/><rect x="90" y="100" width="147" height="25" rx="4" fill="#4eff4e" opacity="0.7"/><text x="195" y="117" text-anchor="middle" fill="#fff" font-size="10">通常負荷</text><rect x="90" y="140" width="210" height="25" rx="4" fill="#0f3460"/><rect x="90" y="140" width="189" height="25" rx="4" fill="#ffcc00" opacity="0.7"/><text x="195" y="157" text-anchor="middle" fill="#1a1a2e" font-size="10">外乱時 → 吸収可能</text><text x="210" y="200" text-anchor="middle" fill="#4eff4e" font-size="13">応答: 正常に処理</text><rect x="440" y="60" width="300" height="170" rx="12" fill="#16213e" stroke="#e94560" stroke-width="2"/><text x="590" y="85" text-anchor="middle" fill="#e94560" font-size="14" font-weight="bold">余裕なし (稼働率 95%)</text><rect x="470" y="100" width="210" height="25" rx="4" fill="#0f3460"/><rect x="470" y="100" width="200" height="25" rx="4" fill="#e94560" opacity="0.7"/><text x="575" y="117" text-anchor="middle" fill="#fff" font-size="10">通常負荷</text><rect x="470" y="140" width="210" height="25" rx="4" fill="#0f3460"/><rect x="470" y="140" width="240" height="25" rx="4" fill="#e94560" opacity="0.9"/><text x="575" y="157" text-anchor="middle" fill="#fff" font-size="10">外乱時 → 溢れる!</text><text x="590" y="200" text-anchor="middle" fill="#e94560" font-size="13">応答: 障害 / タイムアウト</text></svg>
+- **余裕のないシステムは外乱に無力**: 稼働率100%のサーバーは新リクエストを処理できない
+- Googleの**20%ルール**: 「非効率」がイノベーションを生む（Gmail, AdSense）
+- **デマルコの法則**: チーム稼働率80%が最も生産的、100%は逆効果
+
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="240" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">余裕あり vs 余裕なしのシステム応答</text><rect x="60" y="60" width="300" height="170" rx="12" fill="#16213e" stroke="#4eff4e" stroke-width="2"/><text x="210" y="85" text-anchor="middle" fill="#4eff4e" font-size="14" font-weight="bold">余裕あり (稼働率 70%)</text><rect x="90" y="100" width="210" height="25" rx="4" fill="#0f3460"/><rect x="90" y="100" width="147" height="25" rx="4" fill="#4eff4e" opacity="0.7"/><text x="195" y="117" text-anchor="middle" fill="#fff" font-size="10">通常負荷</text><rect x="90" y="140" width="210" height="25" rx="4" fill="#0f3460"/><rect x="90" y="140" width="189" height="25" rx="4" fill="#ffcc00" opacity="0.7"/><text x="195" y="157" text-anchor="middle" fill="#1a1a2e" font-size="10">外乱時 → 吸収可能</text><text x="210" y="200" text-anchor="middle" fill="#4eff4e" font-size="13">応答: 正常に処理</text><rect x="440" y="60" width="300" height="170" rx="12" fill="#16213e" stroke="#e94560" stroke-width="2"/><text x="590" y="85" text-anchor="middle" fill="#e94560" font-size="14" font-weight="bold">余裕なし (稼働率 95%)</text><rect x="470" y="100" width="210" height="25" rx="4" fill="#0f3460"/><rect x="470" y="100" width="200" height="25" rx="4" fill="#e94560" opacity="0.7"/><text x="575" y="117" text-anchor="middle" fill="#fff" font-size="10">通常負荷</text><rect x="470" y="140" width="210" height="25" rx="4" fill="#0f3460"/><rect x="470" y="140" width="240" height="25" rx="4" fill="#e94560" opacity="0.9"/><text x="575" y="157" text-anchor="middle" fill="#fff" font-size="10">外乱時 → 溢れる!</text><text x="590" y="200" text-anchor="middle" fill="#e94560" font-size="13">応答: 障害 / タイムアウト</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # カオスエンジニアリングという「意図的非効率」
 
 > *Netflix・Amazonが意図的に本番障害を起こすことで突発障害コストを長期的に大幅削減*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">意図的非効率が長期コストを下げる</text><rect x="30" y="50" width="340" height="180" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="76" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">カオスエンジニアリングなし</text><line x1="60" y1="190" x2="340" y2="190" stroke="#555566" stroke-width="1"/><line x1="60" y1="190" x2="60" y2="90" stroke="#555566" stroke-width="1"/><polyline points="60,170 120,165 180,160 200,160 220,158 240,80 260,175 280,170 300,168 340,165" fill="none" stroke="#e91e63" stroke-width="2"/><text x="200" y="215" text-anchor="middle" font-size="11" fill="#e91e63" font-family="sans-serif">突発障害（コスト大・予測不能）</text><rect x="430" y="50" width="340" height="180" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="600" y="76" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold" font-family="sans-serif">カオスエンジニアリングあり</text><line x1="460" y1="190" x2="740" y2="190" stroke="#555566" stroke-width="1"/><line x1="460" y1="190" x2="460" y2="90" stroke="#555566" stroke-width="1"/><polyline points="460,165 490,160 520,140 550,138 580,136 610,134 640,133 670,132 700,132 740,131" fill="none" stroke="#4caf50" stroke-width="2"/><rect x="490" y="120" width="15" height="40" rx="2" fill="#f9a825" opacity="0.6"/><rect x="540" y="115" width="15" height="45" rx="2" fill="#f9a825" opacity="0.6"/><rect x="590" y="125" width="15" height="35" rx="2" fill="#f9a825" opacity="0.6"/><text x="600" y="215" text-anchor="middle" font-size="11" fill="#4caf50" font-family="sans-serif">意図的障害で耐性を構築 → 安定</text></svg>
-- - **本番環境で意図的に障害を起こす** = 一見「非効率」の極み
-- - しかし**障害への耐性**が劇的に向上 → 長期的にはコスト削減
-- - Netflix: Chaos Monkeyで毎日ランダムにサーバー停止
-- - Amazon: GameDay演習で大規模障害をシミュレーション
-- - **「壊す時間」は投資であり浪費ではない**
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">意図的非効率が長期コストを下げる</text><rect x="30" y="50" width="340" height="180" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="76" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">カオスエンジニアリングなし</text><line x1="60" y1="190" x2="340" y2="190" stroke="#555566" stroke-width="1"/><line x1="60" y1="190" x2="60" y2="90" stroke="#555566" stroke-width="1"/><polyline points="60,170 120,165 180,160 200,160 220,158 240,80 260,175 280,170 300,168 340,165" fill="none" stroke="#e91e63" stroke-width="2"/><text x="200" y="215" text-anchor="middle" font-size="11" fill="#e91e63" font-family="sans-serif">突発障害（コスト大・予測不能）</text><rect x="430" y="50" width="340" height="180" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="600" y="76" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold" font-family="sans-serif">カオスエンジニアリングあり</text><line x1="460" y1="190" x2="740" y2="190" stroke="#555566" stroke-width="1"/><line x1="460" y1="190" x2="460" y2="90" stroke="#555566" stroke-width="1"/><polyline points="460,165 490,160 520,140 550,138 580,136 610,134 640,133 670,132 700,132 740,131" fill="none" stroke="#4caf50" stroke-width="2"/><rect x="490" y="120" width="15" height="40" rx="2" fill="#f9a825" opacity="0.6"/><rect x="540" y="115" width="15" height="45" rx="2" fill="#f9a825" opacity="0.6"/><rect x="590" y="125" width="15" height="35" rx="2" fill="#f9a825" opacity="0.6"/><text x="600" y="215" text-anchor="middle" font-size="11" fill="#4caf50" font-family="sans-serif">意図的障害で耐性を構築 → 安定</text></svg>
+</div>
+
+- **本番環境で意図的に障害を起こす** = 一見「非効率」の極み
+- しかし**障害への耐性**が劇的に向上 → 長期的にはコスト削減
+- Netflix: Chaos Monkeyで毎日ランダムにサーバー停止
+- Amazon: GameDay演習で大規模障害をシミュレーション
+- **「壊す時間」は投資であり浪費ではない**
 
 
 ---
 
 # 疎結合と冗長性の経済価値
 
-- - **冗長性はコスト**: サーバー2台運用 = 費用2倍
-- - **障害コスト**: ダウンタイム1時間 = 売上損失 + 信頼失墜 + 復旧工数
-- - **期待値計算**: 冗長投資 << 障害損失 x 発生確率
-- 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="240" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">冗長投資 vs 障害損失の期待値</text><rect x="60" y="60" width="300" height="70" rx="10" fill="#0f3460"/><text x="210" y="85" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">冗長構成のコスト</text><text x="210" y="105" text-anchor="middle" fill="#4eff4e" font-size="14">年間 $50,000</text><rect x="60" y="145" width="300" height="90" rx="10" fill="#16213e" stroke="#e94560" stroke-width="2"/><text x="210" y="170" text-anchor="middle" fill="#e94560" font-size="13" font-weight="bold">障害損失の期待値</text><text x="210" y="195" text-anchor="middle" fill="#fff" font-size="12">$500,000/件 x 年2回確率</text><text x="210" y="215" text-anchor="middle" fill="#e94560" font-size="14">= $1,000,000/年</text><rect x="440" y="100" width="300" height="80" rx="10" fill="#16213e" stroke="#4eff4e" stroke-width="2"/><text x="590" y="125" text-anchor="middle" fill="#4eff4e" font-size="15" font-weight="bold">ROI = 20倍</text><text x="590" y="150" text-anchor="middle" fill="#ffcc00" font-size="13">冗長性は「保険」ではなく「投資」</text><line x1="360" y1="95" x2="440" y2="130" stroke="#4eff4e" stroke-width="2"/><polygon points="435,125 445,133 433,132" fill="#4eff4e"/><line x1="360" y1="190" x2="440" y2="150" stroke="#e94560" stroke-width="2"/><polygon points="435,153 445,147 435,145" fill="#e94560"/></svg>
+- **冗長性はコスト**: サーバー2台運用 = 費用2倍
+- **障害コスト**: ダウンタイム1時間 = 売上損失 + 信頼失墜 + 復旧工数
+- **期待値計算**: 冗長投資 << 障害損失 x 発生確率
+
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="10" width="780" height="240" rx="15" fill="#1a1a2e" style="filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.5))"/><text x="400" y="40" text-anchor="middle" fill="#e94560" font-size="17" font-weight="bold">冗長投資 vs 障害損失の期待値</text><rect x="60" y="60" width="300" height="70" rx="10" fill="#0f3460"/><text x="210" y="85" text-anchor="middle" fill="#fff" font-size="13" font-weight="bold">冗長構成のコスト</text><text x="210" y="105" text-anchor="middle" fill="#4eff4e" font-size="14">年間 $50,000</text><rect x="60" y="145" width="300" height="90" rx="10" fill="#16213e" stroke="#e94560" stroke-width="2"/><text x="210" y="170" text-anchor="middle" fill="#e94560" font-size="13" font-weight="bold">障害損失の期待値</text><text x="210" y="195" text-anchor="middle" fill="#fff" font-size="12">$500,000/件 x 年2回確率</text><text x="210" y="215" text-anchor="middle" fill="#e94560" font-size="14">= $1,000,000/年</text><rect x="440" y="100" width="300" height="80" rx="10" fill="#16213e" stroke="#4eff4e" stroke-width="2"/><text x="590" y="125" text-anchor="middle" fill="#4eff4e" font-size="15" font-weight="bold">ROI = 20倍</text><text x="590" y="150" text-anchor="middle" fill="#ffcc00" font-size="13">冗長性は「保険」ではなく「投資」</text><line x1="360" y1="95" x2="440" y2="130" stroke="#4eff4e" stroke-width="2"/><polygon points="435,125 445,133 433,132" fill="#4eff4e"/><line x1="360" y1="190" x2="440" y2="150" stroke="#e94560" stroke-width="2"/><polygon points="435,153 445,147 435,145" fill="#e94560"/></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-64 -->
 # 「最適化するな、適応させよ」
 
 > *変化する環境では固定最適解よりアンチフラジャイルな適応能力が長期的生存を決める*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">脆弱 vs 強靭 vs アンチフラジャイル</text><rect x="30" y="50" width="220" height="170" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="140" y="76" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">脆弱（Fragile）</text><text x="140" y="100" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">ストレスで壊れる</text><text x="140" y="125" text-anchor="middle" font-size="22" fill="#e91e63" font-family="sans-serif">↓</text><text x="140" y="152" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 在庫ゼロのJIT</text><text x="140" y="172" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 単一CDN依存</text><text x="140" y="200" text-anchor="middle" font-size="11" fill="#e91e63" font-family="sans-serif">最適化 = 脆弱化</text><rect x="290" y="50" width="220" height="170" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="76" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">強靭（Robust）</text><text x="400" y="100" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">ストレスに耐える</text><text x="400" y="125" text-anchor="middle" font-size="22" fill="#f9a825" font-family="sans-serif">→</text><text x="400" y="152" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 冗長サーバー構成</text><text x="400" y="172" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 在庫バッファ保持</text><text x="400" y="200" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">余裕 = 耐障害性</text><rect x="550" y="50" width="220" height="170" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="660" y="76" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold" font-family="sans-serif">アンチフラジャイル</text><text x="660" y="100" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">ストレスで強くなる</text><text x="660" y="125" text-anchor="middle" font-size="22" fill="#4caf50" font-family="sans-serif">↑</text><text x="660" y="152" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: カオスエンジニアリング</text><text x="660" y="172" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 段階的リリース</text><text x="660" y="200" text-anchor="middle" font-size="11" fill="#4caf50" font-family="sans-serif">適応 = 進化</text></svg>
-- - **固定最適解より適応能力**: 環境が変わると最適解も変わる
-- - **アンチフラジャイル（Taleb）**: ストレスで壊れるのではなく**強くなる**システム
-- - 進化生物学: 生き残るのは最も強い種ではなく**最も適応できる種**
-- - ソフトウェアへの応用: Feature Flag、A/Bテスト、段階的リリース
-- - **完璧な設計より、素早く方向転換できる設計が勝つ**
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="28" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">脆弱 vs 強靭 vs アンチフラジャイル</text><rect x="30" y="50" width="220" height="170" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="140" y="76" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">脆弱（Fragile）</text><text x="140" y="100" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">ストレスで壊れる</text><text x="140" y="125" text-anchor="middle" font-size="22" fill="#e91e63" font-family="sans-serif">↓</text><text x="140" y="152" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 在庫ゼロのJIT</text><text x="140" y="172" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 単一CDN依存</text><text x="140" y="200" text-anchor="middle" font-size="11" fill="#e91e63" font-family="sans-serif">最適化 = 脆弱化</text><rect x="290" y="50" width="220" height="170" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="76" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">強靭（Robust）</text><text x="400" y="100" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">ストレスに耐える</text><text x="400" y="125" text-anchor="middle" font-size="22" fill="#f9a825" font-family="sans-serif">→</text><text x="400" y="152" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 冗長サーバー構成</text><text x="400" y="172" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 在庫バッファ保持</text><text x="400" y="200" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">余裕 = 耐障害性</text><rect x="550" y="50" width="220" height="170" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="660" y="76" text-anchor="middle" font-size="13" fill="#4caf50" font-weight="bold" font-family="sans-serif">アンチフラジャイル</text><text x="660" y="100" text-anchor="middle" font-size="11" fill="#ccccdd" font-family="sans-serif">ストレスで強くなる</text><text x="660" y="125" text-anchor="middle" font-size="22" fill="#4caf50" font-family="sans-serif">↑</text><text x="660" y="152" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: カオスエンジニアリング</text><text x="660" y="172" text-anchor="middle" font-size="11" fill="#888899" font-family="sans-serif">例: 段階的リリース</text><text x="660" y="200" text-anchor="middle" font-size="11" fill="#4caf50" font-family="sans-serif">適応 = 進化</text></svg>
+</div>
+
+- **固定最適解より適応能力**: 環境が変わると最適解も変わる
+- **アンチフラジャイル（Taleb）**: ストレスで壊れるのではなく**強くなる**システム
+- 進化生物学: 生き残るのは最も強い種ではなく**最も適応できる種**
+- ソフトウェアへの応用: Feature Flag、A/Bテスト、段階的リリース
+- **完璧な設計より、素早く方向転換できる設計が勝つ**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ — 脆さを認識するエンジニアリング（1/2）
 
 - **最適化されたシステムは美しいが壊れやすい**
-- 
 - 本物のエンジニアリングとは:
-- 
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ — 脆さを認識するエンジニアリング（2/2）
 
-- - 効率化と耐障害性の**トレードオフを認識**する
-- - **意図的な余裕（Slack）**をシステムに組み込む
-- - 冗長性を**コストではなく投資**として正当化する
-- - **適応能力**を最適化の上位目標に置く
+- 効率化と耐障害性の**トレードオフを認識**する
+- **意図的な余裕（Slack）**をシステムに組み込む
+- 冗長性を**コストではなく投資**として正当化する
+- **適応能力**を最適化の上位目標に置く
 
 
 ---
@@ -304,22 +372,21 @@ if (!cached) { /* DB query + cache set */ }
 > *TalebのAntifragileとDeMarcoのSlackが余裕設計の理論的根拠を提供する*
 
 - **書籍:**
-- - [Nassim Nicholas Taleb "Antifragile" (2012)](https://en.wikipedia.org/wiki/Antifragile_(book))
-- - [Tom DeMarco "Slack" (2001)](https://www.oreilly.com/library/view/slack/0767907698/)
-- 
+- [Nassim Nicholas Taleb "Antifragile" (2012)](https://en.wikipedia.org/wiki/Antifragile_(book))
+- [Tom DeMarco "Slack" (2001)](https://www.oreilly.com/library/view/slack/0767907698/)
 - **ソフトウェア工学:**
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # 参考文献（2/2）
 
 > *Fowlerのマイクロサービス論とGoodhartの法則がソフトウェア最適化の罠を体系化する*
 
-- - [Martin Fowler "Microservices"](https://martinfowler.com/articles/microservices.html)
-- - [Fallacies of Distributed Computing](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing)
-- 
+- [Martin Fowler "Microservices"](https://martinfowler.com/articles/microservices.html)
+- [Fallacies of Distributed Computing](https://en.wikipedia.org/wiki/Fallacies_of_distributed_computing)
 - **カオスエンジニアリング:**
-- - [Principles of Chaos Engineering](https://principlesofchaos.org/)
-- - [Goodhart's Law](https://en.wikipedia.org/wiki/Goodhart%27s_law)
+- [Principles of Chaos Engineering](https://principlesofchaos.org/)
+- [Goodhart's Law](https://en.wikipedia.org/wiki/Goodhart%27s_law)
 

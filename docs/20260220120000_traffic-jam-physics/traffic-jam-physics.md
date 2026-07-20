@@ -7,41 +7,76 @@ paginate: true
 header: "渋滞の物理学 × イベントループ"
 footer: "© 2026 Workshop — Traffic Flow & Complex Systems"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,7 +117,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 渋滞はなぜ消えないか
 
 - 流体力学 × イベントループの類似性
@@ -106,12 +141,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 今日の中心的な問い
 
 - 渋滞の **原因が取り除かれた後も**、
 - なぜ渋滞は **その場に留まり続ける** のか？
-- 
 - → 交通流・流体力学・イベントループを貫く **共通構造** を探る
 
 
@@ -121,7 +155,8 @@ style: |
 
 > *渋滞は車が多すぎるせいでなく密度が臨界点を超えた結果だ*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">交通流の3変数と相転移</text>
 <rect x="40" y="55" width="200" height="120" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -147,10 +182,12 @@ style: |
 <line x1="40" y1="340" x2="40" y2="200" stroke="#aaaaaa" stroke-width="1"/>
 <text x="400" y="385" fill="#aaaaaa" font-size="12" text-anchor="middle" font-family="sans-serif">∂k/∂t + ∂q/∂x = 0  (連続方程式)</text>
 </svg>
+</div>
+
 - **交通流の3変数:**
-- - **密度** k（台/km）— 道路上の車両数
-- - **速度** v（km/h）— 平均走行速度
-- - **流量** q（台/h）— 単位時間あたり通過台数（q = k × v）
+- **密度** k（台/km）— 道路上の車両数
+- **速度** v（km/h）— 平均走行速度
+- **流量** q（台/h）— 単位時間あたり通過台数（q = k × v）
 - **基本方程式（連続方程式）:** ∂k/∂t + ∂q/∂x = 0
 - **問題**: 密度が臨界値を超えると流量が急減 → 渋滞フェーズへの相転移
 
@@ -161,7 +198,8 @@ style: |
 
 > *幽霊渋滞の実験は「原因除去後も渋滞は残る」を証明した*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">名古屋大学実験 (2008) — 幽霊渋滞の自発的発生</text>
 <circle cx="400" cy="220" r="140" fill="none" stroke="#16213e" stroke-width="40"/>
@@ -189,17 +227,19 @@ style: |
 <text x="585" y="345" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">原因なしに</text>
 <text x="585" y="368" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">渋滞は自発的に生まれる</text>
 </svg>
+</div>
+
 - **名古屋大学の実験（2008年）**
-- - 22台の車を円形コース（230m）で均等間隔走行させる
-- - 指示: 一定速度（30 km/h）を維持
-- - **結果**: 数分で自発的に渋滞波が形成・循環
-- - 原因: わずかな速度揺らぎが後続車に増幅されて伝播
+- 22台の車を円形コース（230m）で均等間隔走行させる
+- 指示: 一定速度（30 km/h）を維持
+- **結果**: 数分で自発的に渋滞波が形成・循環
+- 原因: わずかな速度揺らぎが後続車に増幅されて伝播
 - → **原因がなくても渋滞は自発的に生まれる**（Sugiyama et al. 2008）
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 幽霊渋滞の発生メカニズム
 
 ![w:900 center](assets/phantom-jam-mechanism.svg)
@@ -212,9 +252,9 @@ style: |
 > *LWR理論は交通流を流体方程式で記述し渋滞の伝播を予測する*
 
 - **Lighthill-Whitham-Richards モデル（1955-56年）**
-- - 連続方程式: ∂k/∂t + ∂q/∂x = 0
-- - 流量-密度関係: q = Q(k)（基本図）
-- - 組み合わせ: ∂k/∂t + Q'(k) ∂k/∂x = 0
+- 連続方程式: ∂k/∂t + ∂q/∂x = 0
+- 流量-密度関係: q = Q(k)（基本図）
+- 組み合わせ: ∂k/∂t + Q'(k) ∂k/∂x = 0
 - **衝撃波速度（Rankine-Hugoniot 条件）:**
 - w = (q₂ − q₁) / (k₂ − k₁)
 - → 渋滞波が後方（上流）に伝播する速さを決定する
@@ -222,7 +262,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 交通流の基本図（Fundamental Diagram）
 
 ![w:900 center](assets/fundamental-diagram.svg)
@@ -230,7 +270,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 流体力学との類似性
 
 
@@ -240,7 +280,8 @@ style: |
 
 > *流体力学の連続方程式が交通流密度の変化を支配している*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">流体力学 ↔ 交通流 の対応</text>
 <rect x="30" y="55" width="350" height="35" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -265,9 +306,11 @@ style: |
 <text x="400" y="345" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">連続方程式: ∂ρ/∂t + ∇·(ρu) = 0</text>
 <text x="400" y="368" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">↕  交通連続方程式: ∂k/∂t + ∂q/∂x = 0</text>
 </svg>
+</div>
+
 - **連続方程式（質量保存）:** ∂ρ/∂t + ∇·(ρu) = 0
-- - ρ: 流体密度 ↔ 交通密度 k
-- - u: 流速ベクトル ↔ 車速 v
+- ρ: 流体密度 ↔ 交通密度 k
+- u: 流速ベクトル ↔ 車速 v
 - **衝撃波（Shock Wave）:**
 
 
@@ -277,7 +320,8 @@ style: |
 
 > *交通流は非圧縮流体と同じ方程式で密度波として伝播する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">衝撃波: 車は前進、渋滞は後退</text>
 <line x1="50" y1="200" x2="750" y2="200" stroke="#aaaaaa" stroke-width="1.5"/>
@@ -306,8 +350,10 @@ style: |
 <text x="400" y="340" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">渋滞波は後方へ約 −15km/h で伝播する</text>
 <text x="400" y="360" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">車は前進しながら渋滞という「状態のパターン」は後退する</text>
 </svg>
-- - 密度の不連続面が音速で伝播
-- - 交通渋滞波 ≅ 音響衝撃波（後方伝播）
+</div>
+
+- 密度の不連続面が音速で伝播
+- 交通渋滞波 ≅ 音響衝撃波（後方伝播）
 - **超音速 vs 亜音速:** Ma > 1 では情報が上流に伝わらない
 - → 高速道路でも同様: 密度が臨界値を超えると下流情報が上流に届かない
 
@@ -318,7 +364,8 @@ style: |
 
 > *密度波は流れと逆方向に伝わり、それが渋滞の「逆走」を生む*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">密度波: 粒子ではなく「状態」が伝播する</text>
 <rect x="40" y="60" width="330" height="150" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -337,10 +384,12 @@ style: |
 <text x="400" y="325" fill="#aaaaaa" font-size="12" text-anchor="middle" font-family="sans-serif">「詰まり」の情報が後方へ伝わる速さ &gt; 車の前進速度</text>
 <text x="400" y="350" fill="#f9a825" font-size="11" text-anchor="middle" font-family="sans-serif">→ 渋滞最後尾が上流へ移動する</text>
 </svg>
+</div>
+
 - **密度波（Density Wave）:**
-- - 粒子の集団運動ではなく「状態の変化」が伝播する現象
-- - 交通: 各車は前進するが「渋滞」というパターンが後方へ動く
-- - 流体: 音波も空気分子が前後に微振動するだけで波が伝播
+- 粒子の集団運動ではなく「状態の変化」が伝播する現象
+- 交通: 各車は前進するが「渋滞」というパターンが後方へ動く
+- 流体: 音波も空気分子が前後に微振動するだけで波が伝播
 
 
 ---
@@ -349,7 +398,8 @@ style: |
 
 > *衝撃波の発生条件は流速の不連続性、臨界密度を超えると起きる*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">情報伝達の方向性 — 下流情報が上流に届かない</text>
 <text x="400" y="80" fill="#aaaaaa" font-size="12" text-anchor="middle" font-family="sans-serif">低密度（自由流）: 情報は上流にも届く</text>
@@ -367,15 +417,17 @@ style: |
 <rect x="100" y="340" width="600" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="367" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">これが「渋滞は消えにくい」物理的理由の一つ</text>
 </svg>
+</div>
+
 - **衝撃波（Shock Wave）:**
-- - 密度不連続面 — 渋滞の「最後尾」がまさにこれ
-- - Rankine-Hugoniot 条件が波速を決定
+- 密度不連続面 — 渋滞の「最後尾」がまさにこれ
+- Rankine-Hugoniot 条件が波速を決定
 - → **車は前に進み、渋滞は後ろに進む** — これが逆走の正体
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 交通流 vs 流体 vs イベントループ：類似構造
 
 ![w:900 center](assets/traffic-vs-fluid.svg)
@@ -383,7 +435,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # イベントループとの類似性
 
 
@@ -393,7 +445,8 @@ style: |
 
 > *イベントループはキューが枯渇しない限り高スループットを維持する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">イベントループ = 交通流のデジタル版</text>
 <rect x="40" y="60" width="180" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -419,9 +472,11 @@ style: |
 <text x="600" y="318" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">処理スループット μ</text>
 <text x="400" y="348" fill="#e91e63" font-size="11" text-anchor="middle" font-family="sans-serif">λ &gt; μ → キュー爆発 ≡ 渋滞 (Little's Law: L = λW)</text>
 </svg>
+</div>
+
 - **Node.js / ブラウザの非同期処理モデル:**
-- - Single-threaded だが I/O を非ブロッキングで捌く
-- - コールバックキュー → Event Loop → コールスタック の循環
+- Single-threaded だが I/O を非ブロッキングで捌く
+- コールバックキュー → Event Loop → コールスタック の循環
 - **パイプライン構造:**
 
 
@@ -431,7 +486,8 @@ style: |
 
 > *コールバックの積み重なりが道路の追突連鎖と同じ構造をもつ*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">キュー爆発のメカニズム (M/M/1 モデル)</text>
 <text x="80" y="75" fill="#aaaaaa" font-size="12" font-family="sans-serif">キュー長 L</text>
@@ -454,9 +510,11 @@ style: |
 <text x="530" y="200" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">10%の余裕でもキューに9件溜まる</text>
 <text x="400" y="290" fill="#f9a825" font-size="11" text-anchor="middle" font-family="sans-serif">L = ρ / (1-ρ) (M/M/1 公式)</text>
 </svg>
-- - Producer（リクエスト発生） → Queue → Consumer（処理）
-- - Queue が詰まる = **渋滞の発生**
-- - 処理速度 < 到着速度 → **キュー爆発**（≒ 臨界密度超過）
+</div>
+
+- Producer（リクエスト発生） → Queue → Consumer（処理）
+- Queue が詰まる = **渋滞の発生**
+- 処理速度 < 到着速度 → **キュー爆発**（≒ 臨界密度超過）
 - → Little's Law: L = λW（L: キュー長, λ: 到着率, W: 滞留時間）
 
 
@@ -466,7 +524,8 @@ style: |
 
 > *キューの詰まりは渋滞と同じく「流入>流出」の瞬間に発生する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">渋滞とキュー: 同じ数学構造</text>
 <rect x="40" y="60" width="330" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -486,9 +545,11 @@ style: |
 <text x="595" y="240" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">タイムアウトがキューをさらに増大</text>
 <text x="595" y="290" fill="#4fc3f7" font-size="14" text-anchor="middle" font-family="sans-serif">詰まりアトラクター</text>
 </svg>
+</div>
+
 - **交通渋滞とキュー理論の対応:**
-- - 到着率 λ > サービス率 μ → キュー無限成長（M/M/1 モデル）
-- - 交通: 流入量 > 容量（capacity）→ 渋滞成長
+- 到着率 λ > サービス率 μ → キュー無限成長（M/M/1 モデル）
+- 交通: 流入量 > 容量（capacity）→ 渋滞成長
 - **「詰まり」の共通メカニズム:**
 
 
@@ -498,15 +559,15 @@ style: |
 
 > *バックプレッシャーの設計が渋滞防止の工学的解と一致する*
 
-- - ① 一時的な流入過多が蓄積を引き起こす
-- - ② 蓄積がさらに遅延を生み（ヘッドウェイ短縮/レイテンシ増加）
-- - ③ 自己強化ループが安定した「詰まり状態」を形成する
+- ① 一時的な流入過多が蓄積を引き起こす
+- ② 蓄積がさらに遅延を生み（ヘッドウェイ短縮/レイテンシ増加）
+- ③ 自己強化ループが安定した「詰まり状態」を形成する
 - → 安定した詰まり = **アトラクター**（引力圏）として機能する
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # バックプレッシャー × ヒステリシス
 
 ![w:900 center](assets/backpressure-hysteresis.svg)
@@ -514,7 +575,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 自己組織化と複雑系
 
 
@@ -524,7 +585,8 @@ style: |
 
 > *SOCは臨界状態を自ら維持するシステムの普遍的な特性だ*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">自己組織化臨界現象 (SOC) — Per Bak の砂山モデル</text>
 <rect x="30" y="60" width="350" height="200" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -548,9 +610,11 @@ style: |
 <text x="400" y="340" fill="#aaaaaa" font-size="12" text-anchor="middle" font-family="sans-serif">1台のブレーキ ↔ 砂粒1個 → 大渋滞を引き起こす可能性</text>
 <text x="400" y="365" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">渋滞の長さ分布 ∝ べき乗則 (スケールフリー)</text>
 </svg>
+</div>
+
 - **Per Bak の砂山モデル（1987年）:**
-- - 砂を一粒ずつ積む → あるとき「雪崩」が起きる
-- - 雪崩の大きさはべき乗則に従う（スケールフリー）
+- 砂を一粒ずつ積む → あるとき「雪崩」が起きる
+- 雪崩の大きさはべき乗則に従う（スケールフリー）
 - **SOC の特徴:**
 
 
@@ -560,7 +624,8 @@ style: |
 
 > *ひとつの小さな撹乱が全体のカスケード崩壊を引き起こす*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">小さなブレーキ → 大渋滞へのカスケード</text>
 <rect x="50" y="65" width="100" height="40" rx="6" fill="#f9a825" opacity="0.9"/>
@@ -587,11 +652,13 @@ style: |
 <text x="400" y="328" fill="#ffffff" font-size="12" text-anchor="middle" font-family="sans-serif">1台のサービス高負荷 → タイムアウト → リトライ増加 → 全体崩壊</text>
 <text x="400" y="353" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">サーキットブレーカー = 渋滞の「オンランプ制御」</text>
 </svg>
-- - 外部パラメータなしに系が自発的に臨界状態へ収束
-- - 小さな擾乱でも大崩壊が起きる（予測不能）
+</div>
+
+- 外部パラメータなしに系が自発的に臨界状態へ収束
+- 小さな擾乱でも大崩壊が起きる（予測不能）
 - **交通との対応:**
-- - ドライバーの小さなブレーキ → 大渋滞のトリガー
-- - べき乗則: 渋滞長さの分布がスケールフリー
+- ドライバーの小さなブレーキ → 大渋滞のトリガー
+- べき乗則: 渋滞長さの分布がスケールフリー
 
 
 ---
@@ -601,9 +668,9 @@ style: |
 > *セルオートマトンは単純なルールから複雑な渋滞パターンを再現する*
 
 - **Nagel-Schreckenberg (NaSch) モデル（1992年）:**
-- - 道路をセル列に離散化、車はセル上を移動
+- 道路をセル列に離散化、車はセル上を移動
 - **4つの更新ルール（各ステップで並列実行）:**
-- - ① 加速: v ← min(v+1, v_max)
+- ① 加速: v ← min(v+1, v_max)
 
 
 ---
@@ -612,15 +679,15 @@ style: |
 
 > *NaSch則の速度±1ルールが現実の追従行動を近似する*
 
-- - ② 前車との距離で減速: v ← min(v, gap)
-- - ③ ランダム化（確率 p）: v ← max(v-1, 0)  ← **渋滞の種**
-- - ④ 移動: x ← x + v
+- ② 前車との距離で減速: v ← min(v, gap)
+- ③ ランダム化（確率 p）: v ← max(v-1, 0)  ← **渋滞の種**
+- ④ 移動: x ← x + v
 - → ③ の確率的ランダム化だけで **自発的渋滞波が再現される**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # NaSch モデル：時空間ダイアグラム
 
 ![w:900 center](assets/nasch-spacetime.svg)
@@ -628,7 +695,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # なぜ渋滞は消えないのか
 
 
@@ -638,7 +705,8 @@ style: |
 
 > *ヒステリシスは「渋滞を消す」のに「生む」より多くの努力を要する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">ヒステリシス: 往路と復路で経路が違う</text>
 <line x1="60" y1="340" x2="740" y2="340" stroke="#aaaaaa" stroke-width="1.5"/>
@@ -658,9 +726,11 @@ style: |
 <text x="600" y="92" fill="#e91e63" font-size="11" text-anchor="middle" font-family="sans-serif">発生より解消に</text>
 <text x="600" y="112" fill="#e91e63" font-size="11" text-anchor="middle" font-family="sans-serif">低い密度が必要</text>
 </svg>
+</div>
+
 - **ヒステリシス（hysteresis）とは:**
-- - 系の状態が「過去の履歴」に依存する性質
-- - 往路と復路で異なる経路をたどる（ループを描く）
+- 系の状態が「過去の履歴」に依存する性質
+- 往路と復路で異なる経路をたどる（ループを描く）
 - **交通流のヒステリシス:**
 
 
@@ -670,8 +740,8 @@ style: |
 
 > *密度を下げても元の自由流に戻るには閾値を大きく割る必要がある*
 
-- - 渋滞発生: 密度 k > k_cr で流量が急落下（急速な相転移）
-- - 渋滞解消: k が k_cr を大幅に下回るまで渋滞継続（回復が遅い）
+- 渋滞発生: 密度 k > k_cr で流量が急落下（急速な相転移）
+- 渋滞解消: k が k_cr を大幅に下回るまで渋滞継続（回復が遅い）
 - **数値例:** k_cr = 40台/km（発生）→ k = 15台/km 以下で解消
 - → 原因（過密）が解消されても **「渋滞」という状態が維持される**
 
@@ -683,9 +753,9 @@ style: |
 > *回復力の非対称性が渋滞対策コストを過小評価させる原因だ*
 
 - **なぜ復元が遅いのか — 3つの非対称性:**
-- - **① 加速の物理的限界**: 車は 0→100 km/h に時間がかかる（制動より遅い）
-- - **② 情報伝達の方向性**: 前方情報は後続に届くが後方情報は届かない
-- - **③ 心理的ブレーキ**: 渋滞末尾への追突恐怖が過剰な制動を誘発
+- **① 加速の物理的限界**: 車は 0→100 km/h に時間がかかる（制動より遅い）
+- **② 情報伝達の方向性**: 前方情報は後続に届くが後方情報は届かない
+- **③ 心理的ブレーキ**: 渋滞末尾への追突恐怖が過剰な制動を誘発
 
 
 ---
@@ -695,15 +765,15 @@ style: |
 > *回復には生成の2〜3倍のエネルギーが必要で予防が最善策だ*
 
 - **イベントループの対応:**
-- - GC pause が発生すると完了まで処理が止まる
-- - キューに溜まったタスクを順次処理するには時間がかかる
-- - タイムアウト・リトライがさらにキューを増大させる
+- GC pause が発生すると完了まで処理が止まる
+- キューに溜まったタスクを順次処理するには時間がかかる
+- タイムアウト・リトライがさらにキューを増大させる
 - → **「詰まり」は解消より発生の方が圧倒的に速い**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 渋滞消滅の条件：臨界密度と脱出
 
 ![w:900 center](assets/critical-density-escape.svg)
@@ -711,7 +781,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # インタラクティブワーク
 
 
@@ -721,7 +791,8 @@ style: |
 
 > *シミュレーションを体験することで理論が直感として定着する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">ワーク①: 渋滞シミュレーション 実施要領</text>
 <circle cx="300" cy="220" r="130" fill="none" stroke="#16213e" stroke-width="35"/>
@@ -744,10 +815,12 @@ style: |
 <text x="630" y="305" fill="#f9a825" font-size="12" text-anchor="middle" font-family="sans-serif">時間: 15分</text>
 <text x="630" y="330" fill="#aaaaaa" font-size="10" text-anchor="middle" font-family="sans-serif">結果を全体共有</text>
 </svg>
+</div>
+
 - **グループワーク（15分）:**
-- - **Step 1**: 20人が円形に並び「前の人と一定距離を保って歩く」
-- - **Step 2**: 1人が少し立ち止まる（2秒）
-- - **Step 3**: 渋滞波がどこへ向かうか観察・記録する
+- **Step 1**: 20人が円形に並び「前の人と一定距離を保って歩く」
+- **Step 2**: 1人が少し立ち止まる（2秒）
+- **Step 3**: 渋滞波がどこへ向かうか観察・記録する
 
 
 ---
@@ -756,10 +829,10 @@ style: |
 
 > *車間距離の差が渋滞発生タイミングに与える影響を実感できる*
 
-- - **Step 4**: 「先頭が動いてから最後尾が動くまで」の遅延を測る
+- **Step 4**: 「先頭が動いてから最後尾が動くまで」の遅延を測る
 - **議論ポイント:**
-- - 渋滞波は人の流れと逆向きに進んだか？
-- - 最後尾に近いほど停止時間が長かったか？
+- 渋滞波は人の流れと逆向きに進んだか？
+- 最後尾に近いほど停止時間が長かったか？
 
 
 ---
@@ -805,7 +878,8 @@ async function consumer() {
 
 > *可変速度制御と流入制御が密度の臨界超えを防ぐ工学的解だ*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">工学的解決策: 交通 ↔ ソフトウェア</text>
 <rect x="30" y="55" width="350" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -833,10 +907,12 @@ async function consumer() {
 <rect x="100" y="355" width="600" height="30" rx="6" fill="#16213e" stroke="#aaaaaa" stroke-width="0.8"/>
 <text x="400" y="374" fill="#aaaaaa" font-size="11" text-anchor="middle" font-family="sans-serif">オンランプ制御 ≅ サーキットブレーカー の類似性</text>
 </svg>
+</div>
+
 - **交通工学の解決策:**
-- - **オンランプ制御（Ramp Metering）**: 流入量を上限以下に制限
-- - **可変速度規制**: 上流の速度を下げて密度波を分散
-- - **Connected Vehicles**: 隊列走行でヘッドウェイ短縮・揺らぎ低減
+- **オンランプ制御（Ramp Metering）**: 流入量を上限以下に制限
+- **可変速度規制**: 上流の速度を下げて密度波を分散
+- **Connected Vehicles**: 隊列走行でヘッドウェイ短縮・揺らぎ低減
 
 
 ---
@@ -845,7 +921,8 @@ async function consumer() {
 
 > *自動運転の協調走行は渋滞の相転移点を根本的に引き上げる*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" fill="#ffffff" font-size="15" text-anchor="middle" font-family="sans-serif">バックプレッシャー設計の原則</text>
 <rect x="40" y="60" width="720" height="80" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -873,10 +950,12 @@ async function consumer() {
 <text x="650" y="303" fill="#ffffff" font-size="11" text-anchor="middle" font-family="sans-serif">监视なしで運用</text>
 <text x="650" y="340" fill="#e91e63" font-size="10" text-anchor="middle" font-family="sans-serif">ヒステリシスの罠</text>
 </svg>
+</div>
+
 - **ソフトウェアエンジニアリングへの応用:**
-- - **バックプレッシャー設計**: Producer に流量制限をかける（rate limiting）
-- - **キュー長の監視**: Little's Law でボトルネックを事前検知
-- - **サーキットブレーカー**: 臨界状態でリクエストを遮断（ramp metering ≅ circuit breaker）
+- **バックプレッシャー設計**: Producer に流量制限をかける（rate limiting）
+- **キュー長の監視**: Little's Law でボトルネックを事前検知
+- **サーキットブレーカー**: 臨界状態でリクエストを遮断（ramp metering ≅ circuit breaker）
 
 
 ---

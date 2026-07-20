@@ -7,41 +7,76 @@ paginate: true
 header: "ISMS完全ガイド | ISO/IEC 27001:2022"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -93,7 +128,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ISMS 完全ガイド
 
 - ISO/IEC 27001:2022 — 審査員・コンサルタントのための詳解
@@ -128,7 +163,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第1章 ISMSの基礎概念
 
 - Information Security Management System
@@ -140,7 +175,8 @@ style: |
 
 > *ISMSはリスクベースのPDCAで情報資産を体系管理し第三者認証で信頼を証明する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">ISMSとは何か</text>
 <rect x="200" y="50" width="400" height="80" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
@@ -160,6 +196,8 @@ style: |
 <text x="400" y="320" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">ISO/IEC 27001 の目的</text>
 <text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">情報の機密性・完全性・可用性を維持し、利害関係者の信頼を獲得する</text>
 </svg>
+</div>
+
 - **ISMS（情報セキュリティマネジメントシステム）** — 組織が情報資産を体系的に管理するための仕組み
 - **基盤規格:** ISO/IEC 27001（現行版: 2022年版）。IAF認定審査機関による第三者認証が可能
 - **目的:** リスクベースアプローチで情報セキュリティリスクを特定・評価・対処し継続的に改善
@@ -174,7 +212,8 @@ style: |
 
 > *機密性・完全性・可用性の3軸がセキュリティ対策の評価基準*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">情報セキュリティの3要素（CIA トライアド）</text>
 <polygon points="400,55 560,310 240,310" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
@@ -199,9 +238,12 @@ style: |
 <text x="400" y="368" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">完全性</text>
 <text x="400" y="388" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">改ざん・欠損なし</text>
 </svg>
+</div>
+
 - **機密性 (Confidentiality):** 権限を持つ者のみが情報にアクセスできる状態を維持
 - **完全性 (Integrity):** 情報が正確・完全であり、不正な改ざんがない状態を保持
 - **可用性 (Availability):** 権限を持つ者が必要なときに情報・システムを利用できる状態を確保
+
 ![w:680 center](assets/cia-triangle.svg)
 
 
@@ -211,7 +253,8 @@ style: |
 
 > *インシデント対応コスト平均4〜5億円に対し予防的管理策は圧倒的にコストが低い*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">サイバー脅威の現状 — 主要統計</text>
 <rect x="30" y="55" width="220" height="130" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
 <text x="140" y="82" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold">ランサムウェア</text>
@@ -236,6 +279,8 @@ style: |
 <text x="400" y="316" font-size="12" fill="#e91e63" text-anchor="middle">ISMS認証 = 組織的・体系的なリスク管理の証明</text>
 <text x="400" y="336" font-size="12" fill="#ffffff" text-anchor="middle">事後対応 → 事前予防へのパラダイムシフト</text>
 <text x="400" y="378" font-size="11" fill="#aaa" text-anchor="middle">出典: IBM Cost of a Data Breach 2023, ENISA Threat Landscape 2023</text></svg>
+</div>
+
 - **サイバー攻撃の深刻化:** ランサムウェアによる業務停止・データ漏えいが急増
 - **サプライチェーンリスク:** 子会社・協力会社経由の侵害（2022〜2024年 国内主要事案）
 - **法規制の強化:** 個人情報保護法改正（2022）・重要インフラのセキュリティ強化要請
@@ -249,6 +294,7 @@ style: |
 # ISMSと関連規格の全体像
 
 - ISO/IEC 27001を中心に、目的別の拡張規格が体系化されている
+
 ![w:860 center](assets/iso-standards-map.svg)
 
 
@@ -258,7 +304,8 @@ style: |
 
 > *2022年版で管理策が114→93に再編、クラウド・AI時代の11新規管理策が追加された*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="30" font-size="17" fill="#f9a825" text-anchor="middle" font-weight="bold">ISMSの歴史と変遷</text>
 <line x1="60" y1="200" x2="740" y2="200" stroke="#f9a825" stroke-width="3"/>
 <polygon points="740,194 756,200 740,206" fill="#f9a825"/>
@@ -291,6 +338,8 @@ style: |
 <text x="400" y="345" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">2022年版の主な変更点</text>
 <text x="400" y="365" font-size="11" fill="#ffffff" text-anchor="middle">管理策: 114項目 → 93項目（統合・整理・新設11項目）/ 4カテゴリ制（組織・人的・物理・技術）</text>
 <text x="400" y="380" font-size="11" fill="#ffffff" text-anchor="middle">新設: 脅威インテリジェンス・クラウドセキュリティ・ICTサプライチェーン・データ漏えい等</text></svg>
+</div>
+
 - **1995年** BS 7799（英国規格）— 情報セキュリティの実践規範として制定
 - **2000年** ISO/IEC 17799:2000 — BS 7799 Part 1 が国際規格化
 - **2005年** ISO/IEC 27001:2005 — 初の国際ISMS認証規格として制定（第三者認証開始）
@@ -301,10 +350,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第2章 ISO/IEC 27001:2022の構造
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="30" font-size="17" fill="#f9a825" text-anchor="middle" font-weight="bold">ISO/IEC 27001:2022 — 全体構造</text>
 <rect x="250" y="50" width="300" height="45" rx="8" fill="#e91e63"/>
 <text x="400" y="70" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold">箇条4〜10（本文）</text>
@@ -330,6 +380,8 @@ style: |
 <text x="400" y="320" font-size="13" fill="#4caf50" text-anchor="middle" font-weight="bold">Annex A — 93の情報セキュリティ管理策（参照規範）</text>
 <text x="400" y="342" font-size="11" fill="#ffffff" text-anchor="middle">組織的(37) ・ 人的(8) ・ 物理的(14) ・ 技術的(34)</text>
 <line x1="400" y1="275" x2="400" y2="295" stroke="#555" stroke-width="1"/></svg>
+</div>
+
 - HLS（高位構造）と Annex A 管理策
 
 
@@ -339,7 +391,8 @@ style: |
 
 > *箇条4〜10のHLS+附属書A管理策で認証要件の全体を定義*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">ISO/IEC 27001:2022 全体構造</text>
 <rect x="20" y="50" width="760" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
@@ -381,8 +434,11 @@ style: |
 <text x="677" y="278" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">34管理策</text>
 <text x="400" y="345" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">合計93管理策 (2022年改訂: 2013年版114→93に再編)</text>
 </svg>
+</div>
+
 - 箇条4〜10はすべてのISOマネジメントシステム規格に共通のHLS（高位構造）
 - Annex Aは箇条6.1.3（リスク対応）と8.3で参照する管理策カタログ
+
 ![w:920 center](assets/iso27001-structure.svg)
 
 
@@ -392,7 +448,8 @@ style: |
 
 > *HLS準拠で他のISOマネジメントシステムと統合運用でき移行とコストを大幅削減できる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="30" font-size="17" fill="#f9a825" text-anchor="middle" font-weight="bold">HLS（高位構造）— マネジメントシステムの共通骨格</text>
 <rect x="200" y="50" width="400" height="40" rx="6" fill="#e91e63"/>
 <text x="400" y="76" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold">HLS (High Level Structure)</text>
@@ -419,6 +476,8 @@ style: |
 <rect x="100" y="320" width="600" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="345" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">PDCAサイクルとの対応</text>
 <text x="400" y="363" font-size="11" fill="#ffffff" text-anchor="middle">Plan(箇条6) → Do(箇条8) → Check(箇条9) → Act(箇条10)</text></svg>
+</div>
+
 - **HLS（High Level Structure）** — ISO 9001・14001・45001など全マネジメントシステム規格の共通構造
 - **利点①:** 複数のマネジメントシステムを統合実施できる（IMS: 統合マネジメントシステム）
 - **利点②:** 審査員・コンサルタントが他規格の知識を流用しやすい
@@ -433,7 +492,8 @@ style: |
 
 > *スコープ定義とCISO任命が最初の関門で曖昧にすると審査不適合に直結する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">箇条4・5 — コンテキストとリーダーシップ</text>
 <rect x="30" y="45" width="360" height="150" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="210" y="68" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">箇条4: 組織のコンテキスト</text>
@@ -453,6 +513,8 @@ style: |
 <text x="672" y="278" font-size="10" fill="#ffffff" text-anchor="middle">合理的な理由を</text><text x="672" y="294" font-size="10" fill="#ffffff" text-anchor="middle">文書化すること</text>
 <rect x="100" y="340" width="600" height="30" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="360" font-size="11" fill="#ffffff" text-anchor="middle">スコープが曖昧 → 審査で不適合 → 再認証リスク。最初に明確化することが最重要</text></svg>
+</div>
+
 - **箇条4.1** 組織及びその状況の理解 — 内部・外部の課題を特定（SWOT・PESTLE等活用）
 - **箇条4.2** 利害関係者のニーズと期待 — 顧客・規制当局・株主・従業員のセキュリティ要求
 - **箇条4.3** ISMSの適用範囲 — 境界と適用範囲を明確に文書化（審査で頻出確認事項）
@@ -467,7 +529,8 @@ style: |
 
 > *SoAの論理的整合性と測定可能なKPIが審査員が最初に確認する二大ポイント*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">箇条6 — 計画: リスクアセスメントプロセス</text>
 <rect x="50" y="60" width="140" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="120" y="82" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">資産特定</text>
@@ -503,6 +566,8 @@ style: |
 <text x="488" y="310" font-size="10" fill="#ffffff" text-anchor="middle">目的達成に必要な</text><text x="488" y="326" font-size="10" fill="#ffffff" text-anchor="middle">予算・人員を確保</text><rect x="584" y="272" width="165" height="75" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1"/>
 <text x="666" y="292" font-size="11" fill="#4caf50" text-anchor="middle" font-weight="bold">モニタリング</text>
 <text x="666" y="310" font-size="10" fill="#ffffff" text-anchor="middle">四半期レビュー・</text><text x="666" y="326" font-size="10" fill="#ffffff" text-anchor="middle">年次評価</text></svg>
+</div>
+
 - **箇条6.1.1** リスク及び機会への取組み — ISMS目的達成を阻害する要因の特定
 - **箇条6.1.2** 情報セキュリティリスクアセスメント — 資産・脅威・脆弱性に基づく体系的評価
 - **箇条6.1.3** 情報セキュリティリスク対応 — Annex Aを参照した対応策の選択・SoA作成
@@ -517,7 +582,8 @@ style: |
 
 > *資源確保・力量評価・教育・コミュニケーション・文書化の5要素が支援の要求事項*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">箇条7・8 — 支援と運用</text>
 <rect x="30" y="45" width="360" height="155" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="210" y="66" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">箇条7: 支援</text>
@@ -543,6 +609,8 @@ style: |
 <text x="399" y="280" font-size="10" fill="#ffffff" text-anchor="middle">手順書・作業指示書・チェックリスト</text><text x="399" y="296" font-size="10" fill="#ffffff" text-anchor="middle">インシデント記録・訓練記録</text><rect x="530" y="243" width="228" height="90" rx="6" fill="#16213e" stroke="#ff6f00" stroke-width="1"/>
 <text x="644" y="263" font-size="11" fill="#ff6f00" text-anchor="middle" font-weight="bold">版管理要件</text>
 <text x="644" y="280" font-size="10" fill="#ffffff" text-anchor="middle">改訂日・改訂者・承認者を記録</text><text x="644" y="296" font-size="10" fill="#ffffff" text-anchor="middle">旧版の廃棄・参照防止策</text></svg>
+</div>
+
 - **箇条7.1** 資源 — ISMS運用に必要な人・物・資金・技術の確保
 - **箇条7.2** 力量 — 情報セキュリティ業務に必要なスキル・資格の特定と教育
 - **箇条7.3** 認識 — 全従業員が方針・自分の役割・インシデント時の対応を理解
@@ -557,7 +625,8 @@ style: |
 
 > *内部監査と管理層レビューの2サイクルでPDCAを回しISMSの継続改善を担保する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">箇条9・10 — パフォーマンス評価と改善</text>
 <rect x="30" y="45" width="355" height="165" rx="8" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
 <text x="207" y="66" font-size="13" fill="#2196f3" text-anchor="middle" font-weight="bold">箇条9: パフォーマンス評価</text>
@@ -588,6 +657,8 @@ style: |
 <text x="680" y="305" font-size="13" fill="#4caf50" text-anchor="middle" font-weight="bold">Act</text>
 <text x="680" y="322" font-size="9" fill="#ffffff" text-anchor="middle">(箇条10)</text>
 <text x="176" y="315" font-size="20" fill="#f9a825" text-anchor="middle">→</text><text x="378" y="315" font-size="20" fill="#f9a825" text-anchor="middle">→</text><text x="536" y="315" font-size="20" fill="#f9a825" text-anchor="middle">→</text></svg>
+</div>
+
 - **箇条9.1** 監視・測定・分析・評価 — KPI設定（インシデント件数・研修完了率・パッチ適用率等）
 - **箇条9.2** 内部監査 — 全スコープを対象に年1回以上実施・独立性の確保が必須
 - **箇条9.3** マネジメントレビュー — トップが参加し、ISMS有効性を評価・改善方針を決定
@@ -602,7 +673,8 @@ style: |
 
 > *組織37・人的8・物理14・技術34の4カテゴリ93管理策が2022年版の新分類体系*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">Annex A — 93の情報セキュリティ管理策（2022年版）</text>
 <rect x="30" y="50" width="360" height="130" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="210" y="74" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold">第5節 組織的管理策</text>
@@ -623,6 +695,8 @@ style: |
 <text x="590" y="282" font-size="10" fill="#ffffff" text-anchor="middle">アクセス管理・暗号化・マルウェア対策</text><text x="590" y="299" font-size="10" fill="#ffffff" text-anchor="middle">ネットワーク・ログ・開発・クラウド</text>
 <rect x="150" y="345" width="500" height="28" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="364" font-size="11" fill="#f9a825" text-anchor="middle">2013年版(114項目)から統合・再編。新設11項目（脅威インテリジェンス等）</text></svg>
+</div>
+
 - **第5節 組織的管理策（Organizational controls）:** 37項目 — 方針・役割・リスク・サプライヤー等
 - **第6節 人的管理策（People controls）:** 8項目 — 採用・教育・テレワーク・退職後等
 - **第7節 物理的管理策（Physical controls）:** 14項目 — 入退室・設備・監視カメラ等
@@ -633,10 +707,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第3章 リスクマネジメント
 
-- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 350" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
 <text x="400" y="35" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">第3章 リスクマネジメント — ISO/IEC 27005:2022</text>
 <rect x="100" y="60" width="600" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="82" font-size="13" fill="#ffffff" text-anchor="middle">ISO/IEC 27005:2022 = ISMSのリスクマネジメント専門ガイドライン</text>
@@ -672,6 +747,8 @@ style: |
 <text x="230" y="293" font-size="10" fill="#ffffff" text-anchor="middle">脅威シナリオを定義し</text><text x="230" y="309" font-size="10" fill="#ffffff" text-anchor="middle">リスクを特定する方法</text><text x="230" y="325" font-size="10" fill="#ffffff" text-anchor="middle">（規模が小さい組織向け）</text><rect x="420" y="255" width="300" height="85" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
 <text x="570" y="275" font-size="12" fill="#4caf50" text-anchor="middle" font-weight="bold">資産ベース アプローチ</text>
 <text x="570" y="293" font-size="10" fill="#ffffff" text-anchor="middle">資産→脅威→脆弱性の</text><text x="570" y="309" font-size="10" fill="#ffffff" text-anchor="middle">チェーンでリスク特定</text><text x="570" y="325" font-size="10" fill="#ffffff" text-anchor="middle">（従来の一般的な方法）</text></svg>
+</div>
+
 - ISO/IEC 27005:2022 に基づく体系的アプローチ
 
 
@@ -681,7 +758,8 @@ style: |
 
 > *リスク受容基準と評価方法論の一貫性がリスクアセスメントの審査通過の核心*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">リスクアセスメントのプロセス</text>
 <rect x="30" y="55" width="155" height="80" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -735,6 +813,8 @@ style: |
 <text x="580" y="320" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">→ SoA (適用宣言書)に記録</text>
 <text x="580" y="345" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">→ リスクレジスターに管理</text>
 </svg>
+</div>
+
 - **Step 1** コンテキスト確立 — スコープ・リスク受容基準・方法論の決定
 - **Step 2** 資産の特定 — 情報資産目録（クラウドサービス・APIも含む）
 - **Step 3** 脅威・脆弱性分析 — 資産ごとのリスクシナリオ作成
@@ -749,7 +829,8 @@ style: |
 
 > *一次・二次・支援の3層で情報資産を分類しCIA影響度とオーナーを明確にする*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">資産の特定と評価</text>
 <rect x="30" y="45" width="740" height="35" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="68" font-size="12" fill="#ffffff" text-anchor="middle">情報資産 = ISMSスコープ内で価値を持つすべての情報・情報システム・関連資産</text>
@@ -784,6 +865,8 @@ style: |
 <text x="567" y="308" font-size="10" fill="#ffffff" text-anchor="middle">必要な時に使える</text><text x="567" y="324" font-size="10" fill="#ffffff" text-anchor="middle">必要性</text><rect x="650" y="255" width="155" height="90" rx="6" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
 <text x="727" y="275" font-size="11" fill="#2196f3" text-anchor="middle" font-weight="bold">評価スケール</text>
 <text x="727" y="308" font-size="10" fill="#ffffff" text-anchor="middle">1〜3 or 1〜5</text><text x="727" y="324" font-size="10" fill="#ffffff" text-anchor="middle">で定量化する</text></svg>
+</div>
+
 - **一次情報資産:** 顧客データ・財務情報・知的財産・設計図・ソースコード
 - **支援情報資産（一次資産を支えるもの）:** サーバ・ネットワーク機器・クラウドサービス・OS・従業員
 - **資産評価の視点:** 機密性・完全性・可用性それぞれの喪失時の影響度（1〜5スケール等）
@@ -798,7 +881,8 @@ style: |
 
 > *意図的・偶発的・環境的の3種類の脅威に対し脆弱性を体系的にマッピングする*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">脅威・脆弱性の分析</text>
 <text x="200" y="58" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold">脅威の分類</text>
 <text x="590" y="58" font-size="13" fill="#2196f3" text-anchor="middle" font-weight="bold">脆弱性の分類</text>
@@ -821,6 +905,8 @@ style: |
 <rect x="100" y="322" width="600" height="48" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="342" font-size="11" fill="#ffffff" text-anchor="middle">情報入手先: NIST NVD・JVN（脆弱性DB）・ENISA・IPA・ISACコミュニティ</text>
 <text x="400" y="360" font-size="11" fill="#ffffff" text-anchor="middle">脅威インテリジェンス（Annex A 5.7 新設）= 外部情報の継続的収集・分析・活用</text></svg>
+</div>
+
 - **脅威の種類:** 意図的（不正アクセス・ランサムウェア・内部不正）/ 偶発的（誤操作・紛失）/ 環境的（自然災害・停電）
 - **脅威情報の入手先:** NISC・IPA・JPCERT/CC・業界ISAC・ISO/IEC 27005 Annex C
 - **脆弱性の例（技術的）:** 未パッチのOS・デフォルトパスワード・暗号化なし通信・設定ミス
@@ -834,6 +920,7 @@ style: |
 # リスク評価マトリクス
 
 - 影響度と発生可能性を5段階で評価し、リスクスコアを算出してリスク受容基準と比較
+
 ![w:600 center](assets/risk-matrix.svg)
 
 
@@ -843,7 +930,8 @@ style: |
 
 > *回避・低減・移転・受容の4択でリスクごとに最適対応を選ぶ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">リスク対応の4つの選択肢</text>
 <rect x="20" y="55" width="370" height="140" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
@@ -867,7 +955,10 @@ style: |
 <text x="595" y="295" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">受け入れる</text>
 <text x="595" y="320" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">例: 低リスク・費用対効果低</text>
 </svg>
+</div>
+
 - リスクアセスメント結果に基づき、各リスクへの対処方法を選択する
+
 ![w:700 center](assets/risk-response.svg)
 
 
@@ -877,7 +968,8 @@ style: |
 
 > *SoAは93全管理策の適用・除外理由と実施状況を記載した認証審査の最重要文書*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">適用宣言書（SoA）— Annex A 93管理策の適用判断</text>
 <rect x="30" y="45" width="740" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="62" font-size="12" fill="#ffffff" text-anchor="middle">SoA = 全93管理策に対し「適用/除外」と理由・実施状況を記録した必須文書</text>
@@ -913,6 +1005,8 @@ style: |
 <text x="400" y="338" font-size="12" fill="#4caf50" text-anchor="middle" font-weight="bold">SoA作成のポイント</text>
 <text x="400" y="356" font-size="11" fill="#ffffff" text-anchor="middle">除外は合理的理由が必要 / リスクアセスメント結果と紐付け / 年次レビュー・更新が必須</text>
 <text x="400" y="372" font-size="11" fill="#ffffff" text-anchor="middle">認証審査で必ず確認される最重要文書 — 形式より実態との一致が重要</text></svg>
+</div>
+
 - **SoAとは:** Annex A全93管理策について、適用の有無・理由・実施状況を記載した文書
 - **必須記載事項:** ① 適用/除外の判断、② 選択根拠（リスク対応・法要件・契約等）、③ 実施状況
 - **除外管理策:** 正当な理由が必要（例：物理的施設なし → 7.x の一部除外が可能）
@@ -932,12 +1026,13 @@ style: |
 | 顧客DBサーバ | 不正ログイン | 弱いパスワード | 5 | 4 | **20** | MFA導入(8.5) | 8 |
 | 業務PC | ランサムウェア | 未パッチOS | 4 | 4 | **16** | パッチ管理(8.8) | 6 |
 | メールシステム | フィッシング | 教育不足 | 4 | 3 | **12** | 教育訓練(6.3) | 6 |
+
 - リスクレジスターは**資産台帳・脅威分析・対応計画・SoAを接続する中核文書**として維持
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第4章 主要管理策の詳細
 
 - Annex A — 93の管理策を4カテゴリで詳解
@@ -949,7 +1044,8 @@ style: |
 
 > *4カテゴリへの再編はクラウド・AI・サプライチェーンリスクへの対応を意図している*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">Annex A 管理策の4カテゴリ構造（2022年版）</text>
 <rect x="30" y="50" width="360" height="155" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="210" y="72" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">第5節 組織的管理策</text>
@@ -964,6 +1060,8 @@ style: |
 <text x="590" y="247" font-size="12" fill="#2196f3" text-anchor="middle" font-weight="bold">第8節 技術的管理策</text>
 <text x="590" y="265" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">34項目</text>
 <text x="430" y="285" font-size="9" fill="#ffffff">8.1〜8.6: エンドポイント・アクセス</text><text x="430" y="301" font-size="9" fill="#ffffff">8.7〜8.13: マルウェア・バックアップ</text><text x="430" y="317" font-size="9" fill="#ffffff">8.14〜8.20: ネットワーク・Web</text><text x="430" y="333" font-size="9" fill="#ffffff">8.21〜8.34: 暗号・開発・脆弱性・クラウド</text></svg>
+</div>
+
 - **第5節 組織的管理策（37項目）:** 5.1〜5.37 — 方針・役割・資産管理・サプライヤー・インシデント・法令
 - **第6節 人的管理策（8項目）:** 6.1〜6.8 — 採用・教育・秘密保持・テレワーク・退職時処理
 - **第7節 物理的管理策（14項目）:** 7.1〜7.14 — 施設セキュリティ・クリアデスク・機器廃棄
@@ -978,7 +1076,8 @@ style: |
 
 > *方針・役割・資産管理・サプライヤー・インシデント管理が組織的管理策の5本柱*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">組織的管理策（Annex A 5）— 主要項目と新設管理策</text>
 <rect x="30" y="45" width="740" height="30" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="65" font-size="11" fill="#ffffff" text-anchor="middle">37項目（5.1〜5.37）— 2022年版で最も管理策数が多いカテゴリ</text>
@@ -1002,6 +1101,8 @@ style: |
 <text x="340" y="328" font-size="10" fill="#ffffff">対応手順・報告体制の整備</text><rect x="30" y="340" width="740" height="22" rx="3" fill="#0d0d1a"/>
 <text x="50" y="356" font-size="10" fill="#f9a825" font-weight="bold">5.34 プライバシーとPII保護</text>
 <text x="340" y="356" font-size="10" fill="#ffffff">個人情報保護法との整合</text></svg>
+</div>
+
 - **5.1** 情報セキュリティのための方針群 — 方針の策定・承認・伝達・レビューサイクル
 - **5.7** 脅威インテリジェンス（新規）— 脅威情報の収集・分析・組織内共有の仕組み
 - **5.15〜5.18** アクセス制御 — ニーズトゥノウ原則・最小特権・アクセスレビュー
@@ -1016,7 +1117,8 @@ style: |
 
 > *採用前スクリーニングから退職後のアクセス管理まで従業員ライフサイクル全体をカバー*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">人的管理策（Annex A 6）— ライフサイクル管理</text>
 <rect x="30" y="50" width="170" height="180" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
 <text x="115" y="72" font-size="12" fill="#4caf50" text-anchor="middle" font-weight="bold">採用前</text>
@@ -1038,6 +1140,8 @@ style: |
 <text x="220" y="313" font-size="10" fill="#ffffff" text-anchor="middle">テレワーク環境のセキュリティ要件</text><text x="220" y="330" font-size="10" fill="#ffffff" text-anchor="middle">（端末管理・VPN・画面覗き見対策）</text><rect x="420" y="275" width="380" height="80" rx="6" fill="#16213e" stroke="#ff6f00" stroke-width="1"/>
 <text x="610" y="295" font-size="11" fill="#ff6f00" text-anchor="middle" font-weight="bold">6.8 情報セキュリティ事象の報告</text>
 <text x="610" y="313" font-size="10" fill="#ffffff" text-anchor="middle">インシデントの迅速な報告体制</text><text x="610" y="330" font-size="10" fill="#ffffff" text-anchor="middle">（報告チャネル・報告義務の周知）</text></svg>
+</div>
+
 - **6.1** 選考（スクリーニング）— 採用前の身元確認・経歴確認（役割に応じた深度）
 - **6.2** 雇用条件 — 守秘義務・セキュリティ義務を雇用契約・就業規則に明記
 - **6.3** 情報セキュリティの認識・教育・訓練 — 全従業員対象の定期教育・役割別訓練
@@ -1052,7 +1156,8 @@ style: |
 
 > *多層入退室管理・環境制御・ケーブルセキュリティが物理的管理策の三大要件*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">物理的管理策（Annex A 7）— 多層防御</text>
 <rect x="280" y="45" width="240" height="35" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
 <text x="400" y="68" font-size="12" fill="#ffffff" text-anchor="middle">外部（建物・敷地境界）</text>
@@ -1074,6 +1179,8 @@ style: |
 <text x="487" y="345" font-size="9" fill="#ffffff" text-anchor="middle">ノートPC・スマホの</text><text x="487" y="361" font-size="9" fill="#ffffff" text-anchor="middle">持ち出し記録・暗号化</text><rect x="585" y="295" width="175" height="80" rx="5" fill="#16213e"/>
 <text x="672" y="313" font-size="9.5" fill="#f9a825" text-anchor="middle" font-weight="bold">7.14 機器の安全な廃棄</text><text x="672" y="327" font-size="9.5" fill="#f9a825" text-anchor="middle" font-weight="bold">・転用</text>
 <text x="672" y="345" font-size="9" fill="#ffffff" text-anchor="middle">データ消去証明</text><text x="672" y="361" font-size="9" fill="#ffffff" text-anchor="middle">物理破壊または上書き</text></svg>
+</div>
+
 - **7.1** 物理的セキュリティ境界 — サーバ室・機密区域への多層的な入退室管理
 - **7.2** 物理的エントリ — ICカード・生体認証・訪問者管理台帳・同行ルール
 - **7.4** 物理的セキュリティ監視（新規）— 監視カメラ・警備システムの導入・録画保管
@@ -1088,7 +1195,8 @@ style: |
 
 > *アクセス管理・暗号・脆弱性管理・ログ監視の4技術領域が技術的管理策の主軸*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">技術的管理策（Annex A 8）— 34項目の全体像</text>
 <rect x="30" y="45" width="200" height="140" rx="6" fill="#16213e" stroke="#2196f3" stroke-width="2"/>
 <text x="130" y="63" font-size="9.5" fill="#2196f3" text-anchor="middle" font-weight="bold">アクセス管理</text><text x="130" y="77" font-size="9.5" fill="#2196f3" text-anchor="middle" font-weight="bold">(8.2〜8.6)</text>
@@ -1107,6 +1215,8 @@ style: |
 <text x="550" y="247" font-size="9" fill="#ffffff" text-anchor="middle">監査ツールの保護</text><text x="550" y="263" font-size="9" fill="#ffffff" text-anchor="middle">システム監査への影響排除</text><rect x="660" y="195" width="200" height="140" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
 <text x="760" y="213" font-size="9.5" fill="#e91e63" text-anchor="middle" font-weight="bold">新設管理策</text>
 <text x="760" y="247" font-size="9" fill="#ffffff" text-anchor="middle">8.9 構成管理</text><text x="760" y="263" font-size="9" fill="#ffffff" text-anchor="middle">8.10 情報の削除</text><text x="760" y="279" font-size="9" fill="#ffffff" text-anchor="middle">8.11 データマスキング</text><text x="760" y="295" font-size="9" fill="#ffffff" text-anchor="middle">8.12 データ漏えい防止</text><text x="760" y="311" font-size="9" fill="#ffffff" text-anchor="middle">8.16 監視活動 など</text></svg>
+</div>
+
 - **アクセス管理（8.2〜8.6）:** 特権アクセス・認証・最小権限・情報アクセス制限
 - **マルウェア対策・変更管理（8.7〜8.9）:** エンドポイント保護・ソフトウェアインストール制限・構成管理
 - **データ管理（8.10〜8.13）:** 情報の削除・データマスキング・DLP・バックアップ
@@ -1121,7 +1231,8 @@ style: |
 
 > *特権アクセスのJust-in-Time払い出しとMFAによる認証強化が最優先の対策*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">アクセス管理と認証（Annex A 8.2〜8.6）</text>
 <rect x="30" y="45" width="360" height="155" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
 <text x="210" y="65" font-size="11" fill="#e91e63" text-anchor="middle" font-weight="bold">8.2 特権アクセス権の管理</text>
@@ -1133,6 +1244,8 @@ style: |
 <text x="590" y="220" font-size="11" fill="#f9a825" text-anchor="middle" font-weight="bold">8.6 容量・能力管理</text>
 <text x="430" y="240" font-size="10" fill="#ffffff">ストレージ・CPU・帯域の監視</text><text x="430" y="262" font-size="10" fill="#ffffff">閾値アラート設定</text><text x="430" y="284" font-size="10" fill="#ffffff">容量計画（6〜12ヶ月先見通し）</text><text x="430" y="306" font-size="10" fill="#ffffff">DDoS対策（WAF・CDN）</text>
 <rect x="30" y="370" width="740" height="0" rx="0" fill="none"/></svg>
+</div>
+
 - **8.2 特権アクセス権の管理:** 管理者アカウントの払い出し基準・定期的なレビュー・Just-in-Time権限
 - **8.3 情報アクセス制限:** ロールベースアクセス制御（RBAC）・ニーズトゥノウ原則の徹底
 - **8.5 セキュアな認証:** 多要素認証（MFA）の実装 — パスワードポリシー（長さ・複雑さ・有効期限）
@@ -1147,7 +1260,8 @@ style: |
 
 > *禁止アルゴリズムの明文化と鍵管理プロセスの文書化が暗号管理策の必須要件*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">暗号化とデータ保護（Annex A 8.24）</text>
 <text x="200" y="58" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold">禁止アルゴリズム</text>
 <text x="590" y="58" font-size="13" fill="#4caf50" text-anchor="middle" font-weight="bold">推奨アルゴリズム</text>
@@ -1180,6 +1294,8 @@ style: |
 <rect x="30" y="320" width="740" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="343" font-size="11" fill="#ffffff" text-anchor="middle">HSM（ハードウェアセキュリティモジュール）: 鍵の安全な保管 / 量子コンピュータ対策（PQC）への移行計画も検討</text>
 <text x="400" y="361" font-size="11" fill="#ffffff" text-anchor="middle">TLS 1.0/1.1は廃止 / 証明書の自動更新（Let's Encrypt・ACM）で管理負担を軽減</text></svg>
+</div>
+
 - **8.24 暗号の使用:** 暗号アルゴリズムポリシー — 禁止アルゴリズム（MD5・SHA-1・DES等）の明文化
 - **推奨アルゴリズム:** 対称 AES-256、非対称 RSA-2048以上/ECDSA-P256以上、ハッシュ SHA-256以上
 - **鍵管理:** 鍵の生成・配布・保管・ローテーション・廃棄サイクルの文書化
@@ -1193,6 +1309,7 @@ style: |
 # サプライヤー管理（Annex A 5.19〜5.22）
 
 - 委託先・クラウドプロバイダへの情報セキュリティ要件の伝達・管理が必須
+
 ![w:870 center](assets/supplier-management.svg)
 
 
@@ -1201,12 +1318,13 @@ style: |
 # インシデント管理プロセス（Annex A 5.24〜5.28）
 
 - 検知から学習まで一貫したプロセスで対応し、継続的改善につなげる
+
 ![w:800 center](assets/incident-management.svg)
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第5章 認証審査の実践ポイント
 
 - Stage 1・Stage 2・サーベイランス・更新審査の実務
@@ -1218,7 +1336,8 @@ style: |
 
 > *Stage1文書審査→Stage2現地審査→認証→サーベイランスの流れ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ISMS認証審査プロセスの全体像</text>
 <rect x="20" y="50" width="165" height="270" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1262,7 +1381,10 @@ style: |
 <polygon points="590,205 578,199 578,211" fill="#2196f3"/>
 <text x="400" y="360" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">認証取得後: サーベイランス(年1回) + 更新審査(3年毎)</text>
 </svg>
+</div>
+
 - ギャップ分析から認証後のサーベイランスまで、3年サイクルで継続的に維持する
+
 ![w:920 center](assets/certification-process.svg)
 
 
@@ -1272,7 +1394,8 @@ style: |
 
 > *SoA・スコープ・リスクアセスメント文書の整合性がStage 1審査の三大確認事項*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">Stage 1 審査（文書審査）— 重点確認事項</text>
 <rect x="30" y="45" width="740" height="30" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="66" font-size="11" fill="#ffffff" text-anchor="middle">目的: ISMSの設計が適切で Stage 2 に進める準備ができているか確認（通常1〜2日）</text>
@@ -1296,6 +1419,8 @@ style: |
 <text x="220" y="322" font-size="9.5" fill="#ffffff">インプット・アウトプット要件を満たしているか</text>
 <rect x="30" y="345" width="740" height="28" rx="5" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
 <text x="400" y="364" font-size="11" fill="#e91e63" text-anchor="middle">Stage 1 で重大な不備 → Stage 2 延期。文書を「整備」してから臨むこと</text></svg>
+</div>
+
 - **目的:** ISMSの設計が適切で Stage 2 審査に進める準備ができているかを確認
 - **スコープ文書:** 組織の境界・除外範囲・根拠が明確に記載されているか
 - **リスクアセスメント記録:** 方法論の一貫性・全スコープ資産のカバレッジ
@@ -1310,7 +1435,8 @@ style: |
 
 > *管理策の実施証跡と有効性の実証がStage 2審査で審査員が最重視する要素*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">Stage 2 審査（現地審査）— 重点確認事項</text>
 <rect x="30" y="45" width="740" height="30" rx="5" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
 <text x="400" y="66" font-size="11" fill="#ffffff" text-anchor="middle">目的: 管理策が文書通りに実施され、有効に機能しているか証拠で確認（通常2〜4日）</text>
@@ -1332,6 +1458,8 @@ style: |
 <text x="507" y="322" font-size="10" fill="#ffffff" text-anchor="middle">改善推奨</text><text x="507" y="338" font-size="10" fill="#ffffff" text-anchor="middle">（義務なし）</text><rect x="620" y="272" width="175" height="85" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="2"/>
 <text x="707" y="292" font-size="11" fill="#4caf50" text-anchor="middle" font-weight="bold">適合所見</text><text x="707" y="306" font-size="11" fill="#4caf50" text-anchor="middle" font-weight="bold">(Conformity)</text>
 <text x="707" y="322" font-size="10" fill="#ffffff" text-anchor="middle">うまくいっている</text><text x="707" y="338" font-size="10" fill="#ffffff" text-anchor="middle">好事例</text></svg>
+</div>
+
 - **目的:** 管理策が文書通りに実施され、有効に機能しているかを証拠で確認
 - **インタビュー技法:** 「どうやっていますか？」→「見せてもらえますか？」→「記録はありますか？」
 - **サンプリング:** 全件審査は不可能。リスクの高い領域を重点的に、かつ無作為にも抽出
@@ -1346,7 +1474,8 @@ style: |
 
 > *方法論の文書化不足とリスクレジスターの更新停止がリスク管理不適合の二大原因*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#e91e63" text-anchor="middle" font-weight="bold">よくある不適合① — リスクマネジメント</text>
 <rect x="30" y="45" width="740" height="75" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
 <text x="50" y="64" font-size="11" fill="#e91e63" font-weight="bold">不適合1: 方法論の文書化不備</text>
@@ -1361,6 +1490,8 @@ style: |
 <text x="50" y="310" font-size="11" fill="#e91e63" font-weight="bold">不適合4: 残留リスクの未承認</text>
 <text x="50" y="328" font-size="9.5" fill="#ccc">リスク対応後の残留リスクをトップマネジメントが承認していない記録がない</text>
 <text x="50" y="346" font-size="9.5" fill="#4caf50" font-weight="bold">→ マネジメントレビュー議事録に残留リスク承認を明記する</text></svg>
+</div>
+
 - **不適合例1:** リスクアセスメントの方法論が文書化されておらず、再現性がない
 - **不適合例2:** スコープ内の一部資産（クラウドサービス・テレワーク端末）がリスク評価から漏れている
 - **不適合例3:** SoAに記載した管理策とリスク対応計画の対応関係が不明確
@@ -1375,7 +1506,8 @@ style: |
 
 > *SoA形骸化と証跡不備は審査でMajor不適合になる最頻出パターン*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#e91e63" text-anchor="middle" font-weight="bold">よくある不適合② — 管理策の実施</text>
 <rect x="30" y="45" width="740" height="75" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
 <text x="50" y="64" font-size="11" fill="#e91e63" font-weight="bold">不適合1: SoAと実態の乖離</text>
@@ -1390,6 +1522,8 @@ style: |
 <text x="50" y="310" font-size="11" fill="#e91e63" font-weight="bold">不適合4: サプライヤー管理の不備</text>
 <text x="50" y="328" font-size="9.5" fill="#ccc">委託先との契約にセキュリティ要件が含まれていない、または年次評価が未実施</text>
 <text x="50" y="346" font-size="9.5" fill="#4caf50" font-weight="bold">→ 契約書テンプレートにISMS要件を追加し、年次評価プロセスを確立</text></svg>
+</div>
+
 - **不適合例1:** SoAに「実施済み」と記載しているが、実際の運用証跡が存在しない（形骸化）
 - **不適合例2:** アクセス権の定期棚卸しが実施されていない、または記録が残っていない
 - **不適合例3:** 退職者のアカウントが認証日時点で有効のまま残存している
@@ -1404,7 +1538,8 @@ style: |
 
 > *教育記録の欠如と文書バージョン管理の不備が文書・教育系不適合の二大原因*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#e91e63" text-anchor="middle" font-weight="bold">よくある不適合③ — 教育・文書管理</text>
 <rect x="30" y="45" width="740" height="75" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1"/>
 <text x="50" y="64" font-size="11" fill="#e91e63" font-weight="bold">不適合1: 教育記録の不備</text>
@@ -1419,6 +1554,8 @@ style: |
 <text x="50" y="310" font-size="11" fill="#e91e63" font-weight="bold">不適合4: 内部監査の形骸化</text>
 <text x="50" y="328" font-size="9.5" fill="#ccc">内部監査が毎年同じ部門しかカバーしておらず、全スコープを網羅していない</text>
 <text x="50" y="346" font-size="9.5" fill="#4caf50" font-weight="bold">→ 3年間で全スコープをカバーする内部監査計画を策定し、力量ある監査員を確保</text></svg>
+</div>
+
 - **不適合例1:** 情報セキュリティ教育を受けていない従業員が多数存在（記録確認で判明）
 - **不適合例2:** 方針・手順書の最終改訂が3年以上前で内容が現状と乖離している
 - **不適合例3:** 同一名称の手順書の旧バージョンが現場で使用されている（版管理の失敗）
@@ -1471,7 +1608,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第6章 実際の導入事例
 
 - IT企業・製造業・金融機関・医療機関の4事例
@@ -1482,6 +1619,7 @@ style: |
 # 事例1：IT企業（300名）— プロジェクトタイムライン
 
 - **背景:** 大手金融機関からの委託開発案件獲得のためISMS認証が入札要件に
+
 ![w:870 center](assets/case-study-timeline.svg)
 
 
@@ -1560,12 +1698,13 @@ style: |
 # 成功要因の分析 — 5つの鍵
 
 - 事例分析から導出した、ISMS持続的成功のための共通要因
+
 ![w:800 center](assets/success-factors.svg)
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第7章 ISO/IEC 27001:2022 改訂ポイント
 
 - 2013年版との差分と移行対応の実務
@@ -1577,7 +1716,8 @@ style: |
 
 > *クラウド・AI・テレワーク普及と11新規管理策追加が2022年改訂の核心*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">2022年改訂の背景と主要変更点</text>
 <rect x="20" y="50" width="370" height="140" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1601,6 +1741,8 @@ style: |
 <text x="430" y="316" fill="#ffffff" font-size="12" font-family="sans-serif">8.11 データマスキング</text>
 <text x="430" y="340" fill="#ffffff" font-size="12" font-family="sans-serif">8.28 セキュアコーディング</text>
 </svg>
+</div>
+
 - **改訂背景:** クラウド化・AI活用・サプライチェーンリスク・テレワーク普及等の環境変化に対応
 - **箇条4〜10:** 軽微な修正のみ（HLS構造は維持）— 箇条6.3「変更の計画策定」が新設
 - **Annex Aの大幅改訂:** 114管理策（14ドメイン）→ **93管理策（4カテゴリ）**
@@ -1614,6 +1756,7 @@ style: |
 # 管理策の大幅再編 — 2013年版と2022年版の比較
 
 - 11の新規管理策が追加され、組織・人・物理・技術の4カテゴリに再編された
+
 ![w:850 center](assets/new-controls-2022.svg)
 
 
@@ -1661,7 +1804,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第8章 関連規制・標準との連携
 
 - GDPR・個人情報保護法・SOC 2・NISC基準との関係
@@ -1672,6 +1815,7 @@ style: |
 # GDPR・個人情報保護法との関係
 
 - ISMSはセキュリティの枠組みを提供し、プライバシー法規制への技術的・組織的対策を支援する
+
 ![w:830 center](assets/gdpr-isms.svg)
 
 
@@ -1705,7 +1849,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第9章 AI・クラウド時代のISMS
 
 - 新技術がもたらすリスクとISMSによる対応
@@ -1717,7 +1861,8 @@ style: |
 
 > *共有責任モデルの理解とISMSスコープへのクラウドサービス明示が不可欠*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">クラウドサービスとISMS</text>
 <rect x="30" y="50" width="340" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1739,6 +1884,8 @@ style: |
 <text x="445" y="252" fill="#ffffff" font-size="12" font-family="sans-serif">8.16 監視・モニタリング</text>
 <text x="445" y="295" fill="#e91e63" font-size="12" font-family="sans-serif">責任分界点の文書化必須</text>
 </svg>
+</div>
+
 - **共有責任モデル:** IaaS/PaaS/SaaS で責任分担が異なる — ISMSスコープ設定に影響
 - **ISO/IEC 27017:** クラウドサービス固有の追加管理策（CSP・クラウドサービス顧客双方向け）
 - **ISO/IEC 27018:** クラウドでの個人情報（PII）処理に特化した実施指針
@@ -1767,7 +1914,8 @@ style: |
 
 > *ZTA実装がISMSのAnnex A技術管理策の多くを自動的に充足*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ゼロトラストアーキテクチャとISMS管理策の対応</text>
 <rect x="20" y="50" width="380" height="310" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1792,7 +1940,10 @@ style: |
 <text x="435" y="309" fill="#ffffff" font-size="11" font-family="sans-serif">侵害時の封じ込め</text>
 <text x="400" y="375" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ゼロトラスト実装 = ISMS管理策の実践的適用</text>
 </svg>
+</div>
+
 - 「すべてを信頼しない」原則をISMSの管理策と組み合わせて実装する
+
 ![w:830 center](assets/zero-trust.svg)
 
 
@@ -1802,7 +1953,8 @@ style: |
 
 > *ISMSは書類作りではなく継続的リスク管理プロセスの構築こそが本質的価値*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">まとめ — ISMSの価値と将来展望</text>
 <rect x="20" y="55" width="230" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
@@ -1831,6 +1983,8 @@ style: |
 <text x="565" y="255" fill="#ffffff" font-size="12" font-family="sans-serif">• 量子暗号対応</text>
 <text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">ISMSは「認証取得」が目的ではなく「継続的改善の仕組み」</text>
 </svg>
+</div>
+
 - **業務価値:** サイバーリスクの可視化・定量化による合理的な投資判断と経営への説明責任
 - **市場価値:** 国内ISMS認証件数は約7,000件（2025年末）— 調達条件・入札要件として定着
 - **法的・規制的価値:** 個人情報保護法・重要インフラ基準等への対応基盤として機能

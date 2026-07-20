@@ -7,41 +7,76 @@ paginate: true
 header: "シンガポールの都市実験"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # シンガポール
 設計された都市国家の実験
 
@@ -87,32 +122,36 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # アジェンダ
 
 > *6セクションでシンガポール国家設計モデルの全体構造を解説する*
 
 ![w:800 center](assets/svg-sg-agenda.svg)
-- 1. シンガポールの奇跡
-- 2. リー・クアンユーの設計思想
-- 3. HDB：住宅で社会を設計する
-- 4. Smart Nation構想
-- 5. 自由と管理のトレードオフ
-- 6. テック業界への示唆
+
+1. シンガポールの奇跡
+2. リー・クアンユーの設計思想
+3. HDB：住宅で社会を設計する
+4. Smart Nation構想
+5. 自由と管理のトレードオフ
+6. テック業界への示唆
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # シンガポールの奇跡
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 1965年 → 2025年の変貌
 
 > *天然資源ゼロから1人あたりGDP6.5万ドル、60年の設計の成果*
 
 ![w:800 center](assets/svg-timeline.svg)
+
 - **1965年：** マレーシアから追放される形で独立
 - 天然資源なし、飲料水すらマレーシアから輸入
 - 「生き残れないかもしれない」とリー・クアンユーが涙した
@@ -123,11 +162,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-82 -->
 # 成功の鍵：「全てを設計する」思想
 
 > *住宅から民族比率まで政府設計、自由放任の対極モデル*
 
 ![w:800 center](assets/svg-sg-success-keys.svg)
+
 - シンガポールは**自然に発展した都市ではない**
 - 住宅配置・民族構成・交通量・教育制度まで政府が設計
 - 「効率性」と「社会安定」を最優先する合理主義
@@ -137,17 +178,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # リー・クアンユーの設計思想
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 実用主義（Pragmatism）の徹底
 
 > *「機能するか」で全決定、大臣年収100万ドルで汚職を根絶*
 
 ![w:800 center](assets/svg-pragmatism.svg)
+
 - **「イデオロギーではなく、何が機能するかで決める」**
 - 英語を公用語に → 外資誘致と国際化のため
 - チューインガム販売禁止 → 公共空間の美化のため
@@ -158,17 +201,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # HDB：住宅で社会を設計する
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # HDB（住宅開発庁）の驚異
 
 > *民族割当で公営住宅80%に誘導、ゲットー化を構造的に阻止*
 
 ![w:800 center](assets/svg-hdb.svg)
+
 - 国民の**80%**が政府建設の公営住宅（HDB）に住む
 - 持ち家率**90%以上** ― 世界最高水準
 - **民族統合政策（EIP）：** 各HDB棟に中国系・マレー系・インド系の比率を設定
@@ -179,7 +224,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Smart Nation構想
 
 
@@ -192,11 +237,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # デジタル政府の実績
 
 > *行政98%オンライン化、GovTechが3,000名超で政府をスタートアップ化*
 
 ![w:800 center](assets/svg-sg-digital-gov.svg)
+
 - **SingPass** ― 国民全員に発行されるデジタルID
 - 行政手続きの98%がオンラインで完結
 - COVID-19対応：**TraceTogether** アプリを2週間で開発・展開
@@ -207,11 +254,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 交通管理 ― 車を「持たせない」設計
 
 > *COE80万円+ERP課金で渋滞を市場メカニズムで解決*
 
 ![w:800 center](assets/svg-transport.svg)
+
 - **COE（Certificate of Entitlement）** ― 車の「所有権」をオークション制に
 - COEの価格：**約6万ドル（800万円）** ← 車の本体価格以上
 - 有効期間10年 → 更新しなければ車は廃車
@@ -222,17 +271,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 自由と管理のトレードオフ
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 批判と課題
 
 > *報道自由度世界126位、繁栄と自由は本当にトレードオフか*
 
 ![w:800 center](assets/svg-freedom.svg)
+
 - **報道の自由度：** 世界126位（2024年、国境なき記者団）
 - 政治的反対意見への厳しい対応（名誉毀損訴訟の多用）
 - 表現の自由の制限（集会には許可が必要）
@@ -243,6 +294,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-64 -->
 # 「ベネボレント・ディクテーターシップ」モデル
 
 > *OSSのBDFLと同型、小組織では最効率だがスケールに疑問*
@@ -258,7 +310,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # テック業界への示唆
 
 ![w:800 center](assets/svg-platform.svg)
@@ -266,6 +318,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # シンガポールモデルとプラットフォーム設計
 
 > *国家設計とプラットフォーム設計は驚くほど相似形*
@@ -280,7 +333,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ
 
 - シンガポールは**「国全体をプロダクトとして設計する」実験**
@@ -292,14 +345,15 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 参考文献
 
 > *シンガポール設計思想の出典と政策データを確認できる資料集*
 
-- - **書籍:**
-- - [From Third World to First - Lee Kuan Yew](https://www.amazon.com/dp/0060197765)
-- - [Lion City - Jeevan Vasagar](https://www.amazon.com/dp/1643138677)
-- - **データ:**
-- - [Smart Nation Singapore](https://www.smartnation.gov.sg/)
-- - [Housing & Development Board](https://www.hdb.gov.sg/)
+- **書籍:**
+- [From Third World to First - Lee Kuan Yew](https://www.amazon.com/dp/0060197765)
+- [Lion City - Jeevan Vasagar](https://www.amazon.com/dp/1643138677)
+- **データ:**
+- [Smart Nation Singapore](https://www.smartnation.gov.sg/)
+- [Housing & Development Board](https://www.hdb.gov.sg/)
 

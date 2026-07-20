@@ -7,41 +7,76 @@ paginate: true
 header: "法とコードの構造的類似"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,11 +111,14 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 法律はコードと
 同じ構造を持つ
 
-- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><rect x="60" y="40" width="200" height="120" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="160" y="90" font-family="sans-serif" font-size="28" font-weight="bold" fill="#f9a825" text-anchor="middle">LAW</text><text x="160" y="116" font-family="sans-serif" font-size="14" fill="#ccc" text-anchor="middle">if (要件) then 効果</text><text x="160" y="140" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">スコープ・バージョン</text><text x="380" y="108" font-family="sans-serif" font-size="32" font-weight="bold" fill="#fff" text-anchor="middle">=</text><rect x="540" y="40" width="200" height="120" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="640" y="90" font-family="monospace" font-size="24" font-weight="bold" fill="#e91e63" text-anchor="middle">CODE</text><text x="640" y="116" font-family="monospace" font-size="14" fill="#7fff7f" text-anchor="middle">if (cond) { action() }</text><text x="640" y="140" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">namespace・semver</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="200" fill="#1a1a2e"/><rect x="60" y="40" width="200" height="120" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="160" y="90" font-family="sans-serif" font-size="28" font-weight="bold" fill="#f9a825" text-anchor="middle">LAW</text><text x="160" y="116" font-family="sans-serif" font-size="14" fill="#ccc" text-anchor="middle">if (要件) then 効果</text><text x="160" y="140" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">スコープ・バージョン</text><text x="380" y="108" font-family="sans-serif" font-size="32" font-weight="bold" fill="#fff" text-anchor="middle">=</text><rect x="540" y="40" width="200" height="120" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="640" y="90" font-family="monospace" font-size="24" font-weight="bold" fill="#e91e63" text-anchor="middle">CODE</text><text x="640" y="116" font-family="monospace" font-size="14" fill="#7fff7f" text-anchor="middle">if (cond) { action() }</text><text x="640" y="140" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">namespace・semver</text></svg>
+</div>
+
 - 法とコードの構造的類似
 - Law as Code運動の現在地
 
@@ -91,29 +129,32 @@ style: |
 
 > *法律のコード構造・バグ・バージョン管理—立法をソフトウェアとして読む*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
--   <rect width="800" height="280" fill="#1a1a2e"/>
--   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">法律のコード化 — 本日のアジェンダ</text>
--   <rect x="60" y="46" width="140" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
--   <text x="130" y="68" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">1. 構造分析</text>
--   <text x="130" y="86" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">法律をコードで読む</text>
--   <line x1="200" y1="73" x2="228" y2="73" stroke="#555" stroke-width="2"/>
--   <polygon points="228,68 240,73 228,78" fill="#555"/>
--   <rect x="240" y="46" width="140" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
--   <text x="310" y="68" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">2. バグ</text>
--   <text x="310" y="86" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">抜け穴と矛盾</text>
--   <line x1="380" y1="73" x2="408" y2="73" stroke="#555" stroke-width="2"/>
--   <polygon points="408,68 420,73 408,78" fill="#555"/>
--   <rect x="420" y="46" width="140" height="55" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
--   <text x="490" y="68" text-anchor="middle" fill="#4db6ac" font-size="11" font-weight="bold" font-family="sans-serif">3. バージョン管理</text>
--   <text x="490" y="86" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">改正と廃止</text>
--   <line x1="560" y1="73" x2="588" y2="73" stroke="#555" stroke-width="2"/>
--   <polygon points="588,68 600,73 588,78" fill="#555"/>
--   <rect x="600" y="46" width="140" height="55" rx="8" fill="#16213e" stroke="#7986cb" stroke-width="2"/>
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="280" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">法律のコード化 — 本日のアジェンダ</text>
+  <rect x="60" y="46" width="140" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="130" y="68" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">1. 構造分析</text>
+  <text x="130" y="86" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">法律をコードで読む</text>
+  <line x1="200" y1="73" x2="228" y2="73" stroke="#555" stroke-width="2"/>
+  <polygon points="228,68 240,73 228,78" fill="#555"/>
+  <rect x="240" y="46" width="140" height="55" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="310" y="68" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold" font-family="sans-serif">2. バグ</text>
+  <text x="310" y="86" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">抜け穴と矛盾</text>
+  <line x1="380" y1="73" x2="408" y2="73" stroke="#555" stroke-width="2"/>
+  <polygon points="408,68 420,73 408,78" fill="#555"/>
+  <rect x="420" y="46" width="140" height="55" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
+  <text x="490" y="68" text-anchor="middle" fill="#4db6ac" font-size="11" font-weight="bold" font-family="sans-serif">3. バージョン管理</text>
+  <text x="490" y="86" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">改正と廃止</text>
+  <line x1="560" y1="73" x2="588" y2="73" stroke="#555" stroke-width="2"/>
+  <polygon points="588,68 600,73 588,78" fill="#555"/>
+  <rect x="600" y="46" width="140" height="55" rx="8" fill="#16213e" stroke="#7986cb" stroke-width="2"/>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-58 -->
 # アジェンダ（2/2）
 
 > *実践事例からAI立法展望まで—法とコードの融合が変える統治の未来*
@@ -132,16 +173,16 @@ style: |
 -   <text x="400" y="232" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">「民主主義社会でコードを書くことは、法律を書くことだ」</text>
 -   <text x="400" y="252" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">— Lawrence Lessig</text>
 - </svg>
-- 1. 法律の構造をコードで読む
-- 2. 法律のバグ：抜け穴と矛盾
-- 3. 法律のバージョン管理：改正と廃止
-- 4. Law as Codeの実践事例
-- 5. AI立法への展望
+1. 法律の構造をコードで読む
+2. 法律のバグ：抜け穴と矛盾
+3. 法律のバージョン管理：改正と廃止
+4. Law as Codeの実践事例
+5. AI立法への展望
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 法律の構造をコードで読む
 
 
@@ -149,11 +190,14 @@ style: |
 
 # 法律はif/then/elseの集合体（1/2）
 
-- <svg viewBox="0 0 800 290" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="290" fill="#1a1a2e"/><text x="400" y="30" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f9a825" text-anchor="middle">道路交通法 → コード変換（簡略化）</text><rect x="30" y="48" width="280" height="220" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="170" y="72" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f9a825" text-anchor="middle">法律の条文</text><text x="170" y="100" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">信号が赤の場合 → 停車する</text><text x="170" y="130" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">信号が青の場合 → 進行可能</text><text x="170" y="160" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">信号が黄の場合 →</text><text x="170" y="178" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">停車または安全に進行</text><text x="170" y="220" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">「場合」＝条件節</text><text x="170" y="240" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">「する/可能」＝帰結節</text><text x="380" y="158" font-family="sans-serif" font-size="22" fill="#888" text-anchor="middle">→</text><rect x="450" y="48" width="320" height="220" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="1.5"/><text x="610" y="72" font-family="monospace" font-size="13" font-weight="bold" fill="#e91e63" text-anchor="middle">Pythonコード</text><text x="470" y="100" font-family="monospace" font-size="12" fill="#7fff7f">if signal == "red":</text><text x="490" y="120" font-family="monospace" font-size="12" fill="#7fff7f">  stop()</text><text x="470" y="145" font-family="monospace" font-size="12" fill="#7fff7f">elif signal == "green":</text><text x="490" y="165" font-family="monospace" font-size="12" fill="#7fff7f">  go()</text><text x="470" y="190" font-family="monospace" font-size="12" fill="#7fff7f">elif signal == "yellow":</text><text x="490" y="210" font-family="monospace" font-size="12" fill="#7fff7f">  stop_or_pass()</text><text x="470" y="250" font-family="monospace" font-size="11" fill="#aaa">elif ＝ else if 分岐</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 290" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="290" fill="#1a1a2e"/><text x="400" y="30" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f9a825" text-anchor="middle">道路交通法 → コード変換（簡略化）</text><rect x="30" y="48" width="280" height="220" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="170" y="72" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f9a825" text-anchor="middle">法律の条文</text><text x="170" y="100" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">信号が赤の場合 → 停車する</text><text x="170" y="130" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">信号が青の場合 → 進行可能</text><text x="170" y="160" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">信号が黄の場合 →</text><text x="170" y="178" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">停車または安全に進行</text><text x="170" y="220" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">「場合」＝条件節</text><text x="170" y="240" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">「する/可能」＝帰結節</text><text x="380" y="158" font-family="sans-serif" font-size="22" fill="#888" text-anchor="middle">→</text><rect x="450" y="48" width="320" height="220" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="1.5"/><text x="610" y="72" font-family="monospace" font-size="13" font-weight="bold" fill="#e91e63" text-anchor="middle">Pythonコード</text><text x="470" y="100" font-family="monospace" font-size="12" fill="#7fff7f">if signal == "red":</text><text x="490" y="120" font-family="monospace" font-size="12" fill="#7fff7f">  stop()</text><text x="470" y="145" font-family="monospace" font-size="12" fill="#7fff7f">elif signal == "green":</text><text x="490" y="165" font-family="monospace" font-size="12" fill="#7fff7f">  go()</text><text x="470" y="190" font-family="monospace" font-size="12" fill="#7fff7f">elif signal == "yellow":</text><text x="490" y="210" font-family="monospace" font-size="12" fill="#7fff7f">  stop_or_pass()</text><text x="470" y="250" font-family="monospace" font-size="11" fill="#aaa">elif ＝ else if 分岐</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 法律はif/then/elseの集合体（2/2）
 
 > *民法709条はIF/THEN—法律はプログラムと同じ条件分岐の集合体*
@@ -170,7 +214,9 @@ style: |
 
 # 法律の条件分岐：コードとの対比
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="200" y="36" font-family="sans-serif" font-size="20" font-weight="bold" fill="#f9a825" text-anchor="middle">法律条文</text><text x="600" y="36" font-family="sans-serif" font-size="20" font-weight="bold" fill="#e91e63" text-anchor="middle">プログラム</text><line x1="400" y1="20" x2="400" y2="360" stroke="#444" stroke-width="1" stroke-dasharray="6,4"/><rect x="40" y="55" width="320" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="200" y="80" font-family="sans-serif" font-size="14" fill="#fff" text-anchor="middle">「故意または過失により」</text><text x="200" y="100" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">→ 要件（条件節）</text><rect x="440" y="55" width="320" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="80" font-family="monospace" font-size="14" fill="#7fff7f" text-anchor="middle">if (negligent || intentional)</text><text x="600" y="100" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">→ 条件式</text><rect x="40" y="140" width="320" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="200" y="165" font-family="sans-serif" font-size="14" fill="#fff" text-anchor="middle">「損害を賠償する責任を負う」</text><text x="200" y="185" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">→ 効果（帰結節）</text><rect x="440" y="140" width="320" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="165" font-family="monospace" font-size="14" fill="#7fff7f" text-anchor="middle">  compensate(victim);</text><text x="600" y="185" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">→ 関数呼び出し</text><rect x="40" y="225" width="320" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="200" y="250" font-family="sans-serif" font-size="14" fill="#fff" text-anchor="middle">「ただし、特別法が適用される場合を」</text><text x="200" y="270" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">→ 例外・特則</text><rect x="440" y="225" width="320" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="250" font-family="monospace" font-size="14" fill="#7fff7f" text-anchor="middle">} else if (specialLaw) {</text><text x="600" y="270" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">→ else-if 分岐</text><rect x="40" y="310" width="320" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="200" y="340" font-family="sans-serif" font-size="14" fill="#fff" text-anchor="middle">立法者の意図（解釈の余地あり）</text><rect x="440" y="310" width="320" height="50" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="340" font-family="monospace" font-size="14" fill="#7fff7f" text-anchor="middle">// TODO: edge cases</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="380" fill="#1a1a2e"/><text x="200" y="36" font-family="sans-serif" font-size="20" font-weight="bold" fill="#f9a825" text-anchor="middle">法律条文</text><text x="600" y="36" font-family="sans-serif" font-size="20" font-weight="bold" fill="#e91e63" text-anchor="middle">プログラム</text><line x1="400" y1="20" x2="400" y2="360" stroke="#444" stroke-width="1" stroke-dasharray="6,4"/><rect x="40" y="55" width="320" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="200" y="80" font-family="sans-serif" font-size="14" fill="#fff" text-anchor="middle">「故意または過失により」</text><text x="200" y="100" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">→ 要件（条件節）</text><rect x="440" y="55" width="320" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="80" font-family="monospace" font-size="14" fill="#7fff7f" text-anchor="middle">if (negligent || intentional)</text><text x="600" y="100" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">→ 条件式</text><rect x="40" y="140" width="320" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="200" y="165" font-family="sans-serif" font-size="14" fill="#fff" text-anchor="middle">「損害を賠償する責任を負う」</text><text x="200" y="185" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">→ 効果（帰結節）</text><rect x="440" y="140" width="320" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="165" font-family="monospace" font-size="14" fill="#7fff7f" text-anchor="middle">  compensate(victim);</text><text x="600" y="185" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">→ 関数呼び出し</text><rect x="40" y="225" width="320" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="200" y="250" font-family="sans-serif" font-size="14" fill="#fff" text-anchor="middle">「ただし、特別法が適用される場合を」</text><text x="200" y="270" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">→ 例外・特則</text><rect x="440" y="225" width="320" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="250" font-family="monospace" font-size="14" fill="#7fff7f" text-anchor="middle">} else if (specialLaw) {</text><text x="600" y="270" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">→ else-if 分岐</text><rect x="40" y="310" width="320" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="200" y="340" font-family="sans-serif" font-size="14" fill="#fff" text-anchor="middle">立法者の意図（解釈の余地あり）</text><rect x="440" y="310" width="320" height="50" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="340" font-family="monospace" font-size="14" fill="#7fff7f" text-anchor="middle">// TODO: edge cases</text></svg>
+</div>
 
 
 ---
@@ -179,7 +225,10 @@ style: |
 
 > *国際法・憲法・民法はネームスペース階層—上位が下位をオーバーライド*
 
-- <svg viewBox="0 0 800 160" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="160" fill="#1a1a2e"/><rect x="20" y="20" width="370" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="205" y="44" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">lex specialis（特別法優先）</text><text x="205" y="68" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">特別法 overrides 一般法</text><text x="205" y="90" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">class SpecialLaw(GeneralLaw):</text><text x="205" y="110" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">  def rule(self): ...</text><text x="205" y="132" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">→ Pythonのクラス継承・メソッドオーバーライド</text><rect x="410" y="20" width="370" height="120" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="1.5"/><text x="595" y="44" font-family="sans-serif" font-size="14" font-weight="bold" fill="#4db6ac" text-anchor="middle">遡及立法の禁止</text><text x="595" y="68" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">過去に遡って適用することは原則禁止</text><text x="595" y="90" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">// MAJOR version bump</text><text x="595" y="110" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">v1.0.0 → v2.0.0 (breaking)</text><text x="595" y="132" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">→ SemVer のメジャーバージョン変更</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 160" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="160" fill="#1a1a2e"/><rect x="20" y="20" width="370" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="205" y="44" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">lex specialis（特別法優先）</text><text x="205" y="68" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">特別法 overrides 一般法</text><text x="205" y="90" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">class SpecialLaw(GeneralLaw):</text><text x="205" y="110" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">  def rule(self): ...</text><text x="205" y="132" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">→ Pythonのクラス継承・メソッドオーバーライド</text><rect x="410" y="20" width="370" height="120" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="1.5"/><text x="595" y="44" font-family="sans-serif" font-size="14" font-weight="bold" fill="#4db6ac" text-anchor="middle">遡及立法の禁止</text><text x="595" y="68" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">過去に遡って適用することは原則禁止</text><text x="595" y="90" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">// MAJOR version bump</text><text x="595" y="110" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">v1.0.0 → v2.0.0 (breaking)</text><text x="595" y="132" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">→ SemVer のメジャーバージョン変更</text></svg>
+</div>
+
 - **法律の名前空間：** 国法 > 都道府県法 > 市町村条例
 - → モジュールの優先順位と同じ構造
 
@@ -188,7 +237,9 @@ style: |
 
 # 法律の階層構造（名前空間）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><rect x="50" y="30" width="700" height="70" rx="10" fill="#0d2137" stroke="#f9a825" stroke-width="2"/><text x="400" y="60" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f9a825" text-anchor="middle">憲法</text><text x="400" y="82" font-family="monospace" font-size="13" fill="#aaa" text-anchor="middle">interface Constitution — 最上位コントラクト</text><rect x="120" y="135" width="560" height="65" rx="10" fill="#0d2137" stroke="#7986cb" stroke-width="2"/><text x="400" y="162" font-family="sans-serif" font-size="17" font-weight="bold" fill="#7986cb" text-anchor="middle">法律（国会制定）</text><text x="400" y="183" font-family="monospace" font-size="13" fill="#aaa" text-anchor="middle">class NationalLaw extends Constitution</text><rect x="190" y="235" width="420" height="60" rx="10" fill="#0d2137" stroke="#4db6ac" stroke-width="2"/><text x="400" y="261" font-family="sans-serif" font-size="16" font-weight="bold" fill="#4db6ac" text-anchor="middle">政令・省令</text><text x="400" y="280" font-family="monospace" font-size="12" fill="#aaa" text-anchor="middle">class Ordinance extends NationalLaw</text><rect x="260" y="328" width="280" height="44" rx="10" fill="#0d2137" stroke="#e91e63" stroke-width="2"/><text x="400" y="350" font-family="sans-serif" font-size="15" font-weight="bold" fill="#e91e63" text-anchor="middle">地方条例</text><text x="400" y="365" font-family="monospace" font-size="11" fill="#aaa" text-anchor="middle">class LocalCode extends Ordinance</text><line x1="400" y1="100" x2="400" y2="135" stroke="#555" stroke-width="2"/><polygon points="400,135 394,122 406,122" fill="#555"/><line x1="400" y1="200" x2="400" y2="235" stroke="#555" stroke-width="2"/><polygon points="400,235 394,222 406,222" fill="#555"/><line x1="400" y1="295" x2="400" y2="328" stroke="#555" stroke-width="2"/><polygon points="400,328 394,315 406,315" fill="#555"/></svg>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="380" fill="#1a1a2e"/><rect x="50" y="30" width="700" height="70" rx="10" fill="#0d2137" stroke="#f9a825" stroke-width="2"/><text x="400" y="60" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f9a825" text-anchor="middle">憲法</text><text x="400" y="82" font-family="monospace" font-size="13" fill="#aaa" text-anchor="middle">interface Constitution — 最上位コントラクト</text><rect x="120" y="135" width="560" height="65" rx="10" fill="#0d2137" stroke="#7986cb" stroke-width="2"/><text x="400" y="162" font-family="sans-serif" font-size="17" font-weight="bold" fill="#7986cb" text-anchor="middle">法律（国会制定）</text><text x="400" y="183" font-family="monospace" font-size="13" fill="#aaa" text-anchor="middle">class NationalLaw extends Constitution</text><rect x="190" y="235" width="420" height="60" rx="10" fill="#0d2137" stroke="#4db6ac" stroke-width="2"/><text x="400" y="261" font-family="sans-serif" font-size="16" font-weight="bold" fill="#4db6ac" text-anchor="middle">政令・省令</text><text x="400" y="280" font-family="monospace" font-size="12" fill="#aaa" text-anchor="middle">class Ordinance extends NationalLaw</text><rect x="260" y="328" width="280" height="44" rx="10" fill="#0d2137" stroke="#e91e63" stroke-width="2"/><text x="400" y="350" font-family="sans-serif" font-size="15" font-weight="bold" fill="#e91e63" text-anchor="middle">地方条例</text><text x="400" y="365" font-family="monospace" font-size="11" fill="#aaa" text-anchor="middle">class LocalCode extends Ordinance</text><line x1="400" y1="100" x2="400" y2="135" stroke="#555" stroke-width="2"/><polygon points="400,135 394,122 406,122" fill="#555"/><line x1="400" y1="200" x2="400" y2="235" stroke="#555" stroke-width="2"/><polygon points="400,235 394,222 406,222" fill="#555"/><line x1="400" y1="295" x2="400" y2="328" stroke="#555" stroke-width="2"/><polygon points="400,328 394,315 406,315" fill="#555"/></svg>
+</div>
 
 
 ---
@@ -204,33 +255,35 @@ class SpecialLaw(GeneralLaw):  # 特別法
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 法律のバグ（1/2）
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
--   <rect width="800" height="300" fill="#1a1a2e"/>
--   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">法律のバグ — ソフトウェアとの対応</text>
--   <!-- 3 bug types in row -->
--   <rect x="30" y="50" width="220" height="100" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
--   <text x="140" y="76" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">未定義動作</text>
--   <text x="140" y="96" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">立法者が想定しない状況</text>
--   <text x="140" y="114" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">法律が沈黙する</text>
--   <text x="140" y="136" text-anchor="middle" fill="#f9a825" font-size="10" font-family="monospace">Undefined Behavior</text>
--   <rect x="290" y="50" width="220" height="100" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
--   <text x="400" y="76" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">矛盾（コンフリクト）</text>
--   <text x="400" y="96" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">2法律が同一ケースに</text>
--   <text x="400" y="114" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">異なる結果を導く</text>
--   <text x="400" y="136" text-anchor="middle" fill="#e91e63" font-size="10" font-family="monospace">Merge Conflict</text>
--   <rect x="550" y="50" width="220" height="100" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
--   <text x="660" y="76" text-anchor="middle" fill="#4db6ac" font-size="13" font-weight="bold" font-family="sans-serif">意図しない抜け穴</text>
--   <text x="660" y="96" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">条件は満たすが</text>
--   <text x="660" y="114" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">目的は達成できない</text>
--   <text x="660" y="136" text-anchor="middle" fill="#4db6ac" font-size="10" font-family="monospace">Logic Error</text>
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">法律のバグ — ソフトウェアとの対応</text>
+  <!-- 3 bug types in row -->
+  <rect x="30" y="50" width="220" height="100" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="140" y="76" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">未定義動作</text>
+  <text x="140" y="96" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">立法者が想定しない状況</text>
+  <text x="140" y="114" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">法律が沈黙する</text>
+  <text x="140" y="136" text-anchor="middle" fill="#f9a825" font-size="10" font-family="monospace">Undefined Behavior</text>
+  <rect x="290" y="50" width="220" height="100" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="76" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">矛盾（コンフリクト）</text>
+  <text x="400" y="96" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">2法律が同一ケースに</text>
+  <text x="400" y="114" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">異なる結果を導く</text>
+  <text x="400" y="136" text-anchor="middle" fill="#e91e63" font-size="10" font-family="monospace">Merge Conflict</text>
+  <rect x="550" y="50" width="220" height="100" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
+  <text x="660" y="76" text-anchor="middle" fill="#4db6ac" font-size="13" font-weight="bold" font-family="sans-serif">意図しない抜け穴</text>
+  <text x="660" y="96" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">条件は満たすが</text>
+  <text x="660" y="114" text-anchor="middle" fill="#ccc" font-size="11" font-family="sans-serif">目的は達成できない</text>
+  <text x="660" y="136" text-anchor="middle" fill="#4db6ac" font-size="10" font-family="monospace">Logic Error</text>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead fit-58 -->
 # 法律のバグ（2/2）
 
 -   <!-- fixes row -->
@@ -258,14 +311,18 @@ class SpecialLaw(GeneralLaw):  # 特別法
 
 # 法律のバグ3類型
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="370" fill="#1a1a2e"/><rect x="30" y="30" width="225" height="300" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="142" y="65" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f9a825" text-anchor="middle">型1</text><text x="142" y="90" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff" text-anchor="middle">未定義動作</text><text x="142" y="112" font-family="monospace" font-size="12" fill="#aaa" text-anchor="middle">Undefined Behavior</text><line x1="60" y1="125" x2="224" y2="125" stroke="#333" stroke-width="1"/><text x="142" y="152" font-family="sans-serif" font-size="13" fill="#ccc" text-anchor="middle">立法者が想定しなかった</text><text x="142" y="172" font-family="sans-serif" font-size="13" fill="#ccc" text-anchor="middle">状況で法が沈黙する</text><text x="142" y="210" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">例: インターネット登場前</text><text x="142" y="228" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">の著作権法</text><text x="142" y="268" font-family="sans-serif" font-size="11" fill="#888" text-anchor="middle">→ 判例で補完（パッチ適用）</text><rect x="287" y="30" width="225" height="300" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="399" y="65" font-family="sans-serif" font-size="16" font-weight="bold" fill="#e91e63" text-anchor="middle">型2</text><text x="399" y="90" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff" text-anchor="middle">矛盾（コンフリクト）</text><text x="399" y="112" font-family="monospace" font-size="12" fill="#aaa" text-anchor="middle">Merge Conflict</text><line x1="315" y1="125" x2="483" y2="125" stroke="#333" stroke-width="1"/><text x="399" y="152" font-family="sans-serif" font-size="13" fill="#ccc" text-anchor="middle">2つの法律が同一ケースに</text><text x="399" y="172" font-family="sans-serif" font-size="13" fill="#ccc" text-anchor="middle">異なる結果を導く</text><text x="399" y="210" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">例: 旧法 vs 新法の</text><text x="399" y="228" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">適用範囲の重複</text><text x="399" y="268" font-family="sans-serif" font-size="11" fill="#888" text-anchor="middle">→ 憲法裁判所が解消（ビルドエラー修正）</text><rect x="544" y="30" width="225" height="300" rx="12" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="656" y="65" font-family="sans-serif" font-size="16" font-weight="bold" fill="#4db6ac" text-anchor="middle">型3</text><text x="656" y="90" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff" text-anchor="middle">意図しない抜け穴</text><text x="656" y="112" font-family="monospace" font-size="12" fill="#aaa" text-anchor="middle">Logic Error</text><line x1="572" y1="125" x2="740" y2="125" stroke="#333" stroke-width="1"/><text x="656" y="152" font-family="sans-serif" font-size="13" fill="#ccc" text-anchor="middle">法の目的は達成できないが</text><text x="656" y="172" font-family="sans-serif" font-size="13" fill="#ccc" text-anchor="middle">条件を形式的に満たす</text><text x="656" y="210" font-family="sans-serif" font-size="12" fill="#4db6ac" text-anchor="middle">例: 節税スキーム・</text><text x="656" y="228" font-family="sans-serif" font-size="12" fill="#4db6ac" text-anchor="middle">形式的な脱法行為</text><text x="656" y="268" font-family="sans-serif" font-size="11" fill="#888" text-anchor="middle">→ 法改正（リファクタリング）</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="370" fill="#1a1a2e"/><rect x="30" y="30" width="225" height="300" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="142" y="65" font-family="sans-serif" font-size="16" font-weight="bold" fill="#f9a825" text-anchor="middle">型1</text><text x="142" y="90" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff" text-anchor="middle">未定義動作</text><text x="142" y="112" font-family="monospace" font-size="12" fill="#aaa" text-anchor="middle">Undefined Behavior</text><line x1="60" y1="125" x2="224" y2="125" stroke="#333" stroke-width="1"/><text x="142" y="152" font-family="sans-serif" font-size="13" fill="#ccc" text-anchor="middle">立法者が想定しなかった</text><text x="142" y="172" font-family="sans-serif" font-size="13" fill="#ccc" text-anchor="middle">状況で法が沈黙する</text><text x="142" y="210" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">例: インターネット登場前</text><text x="142" y="228" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">の著作権法</text><text x="142" y="268" font-family="sans-serif" font-size="11" fill="#888" text-anchor="middle">→ 判例で補完（パッチ適用）</text><rect x="287" y="30" width="225" height="300" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="399" y="65" font-family="sans-serif" font-size="16" font-weight="bold" fill="#e91e63" text-anchor="middle">型2</text><text x="399" y="90" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff" text-anchor="middle">矛盾（コンフリクト）</text><text x="399" y="112" font-family="monospace" font-size="12" fill="#aaa" text-anchor="middle">Merge Conflict</text><line x1="315" y1="125" x2="483" y2="125" stroke="#333" stroke-width="1"/><text x="399" y="152" font-family="sans-serif" font-size="13" fill="#ccc" text-anchor="middle">2つの法律が同一ケースに</text><text x="399" y="172" font-family="sans-serif" font-size="13" fill="#ccc" text-anchor="middle">異なる結果を導く</text><text x="399" y="210" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">例: 旧法 vs 新法の</text><text x="399" y="228" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">適用範囲の重複</text><text x="399" y="268" font-family="sans-serif" font-size="11" fill="#888" text-anchor="middle">→ 憲法裁判所が解消（ビルドエラー修正）</text><rect x="544" y="30" width="225" height="300" rx="12" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="656" y="65" font-family="sans-serif" font-size="16" font-weight="bold" fill="#4db6ac" text-anchor="middle">型3</text><text x="656" y="90" font-family="sans-serif" font-size="15" font-weight="bold" fill="#fff" text-anchor="middle">意図しない抜け穴</text><text x="656" y="112" font-family="monospace" font-size="12" fill="#aaa" text-anchor="middle">Logic Error</text><line x1="572" y1="125" x2="740" y2="125" stroke="#333" stroke-width="1"/><text x="656" y="152" font-family="sans-serif" font-size="13" fill="#ccc" text-anchor="middle">法の目的は達成できないが</text><text x="656" y="172" font-family="sans-serif" font-size="13" fill="#ccc" text-anchor="middle">条件を形式的に満たす</text><text x="656" y="210" font-family="sans-serif" font-size="12" fill="#4db6ac" text-anchor="middle">例: 節税スキーム・</text><text x="656" y="228" font-family="sans-serif" font-size="12" fill="#4db6ac" text-anchor="middle">形式的な脱法行為</text><text x="656" y="268" font-family="sans-serif" font-size="11" fill="#888" text-anchor="middle">→ 法改正（リファクタリング）</text></svg>
+</div>
 
 
 ---
 
 # 法律のバグ：抜け穴と矛盾（1/2）
 
-- <svg viewBox="0 0 800 170" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="170" fill="#1a1a2e"/><rect x="20" y="15" width="360" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="200" y="40" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">型1: 未定義動作</text><text x="200" y="65" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">立法者が想定しなかった状況</text><text x="200" y="85" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">法律が沈黙 → 判例で補完</text><text x="200" y="115" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">例: インターネット登場前の著作権法</text><text x="200" y="143" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">→ パッチ適用（判例追加）</text><rect x="420" y="15" width="360" height="140" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="40" font-family="sans-serif" font-size="14" font-weight="bold" fill="#e91e63" text-anchor="middle">型2: 矛盾（コンフリクト）</text><text x="600" y="65" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">2つの法律が同一ケースで</text><text x="600" y="85" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">異なる結果を導く</text><text x="600" y="115" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">例: 旧法 vs 新法の適用競合</text><text x="600" y="143" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">→ 憲法裁判所がビルドエラー修正</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 170" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="170" fill="#1a1a2e"/><rect x="20" y="15" width="360" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="200" y="40" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">型1: 未定義動作</text><text x="200" y="65" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">立法者が想定しなかった状況</text><text x="200" y="85" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">法律が沈黙 → 判例で補完</text><text x="200" y="115" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">例: インターネット登場前の著作権法</text><text x="200" y="143" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">→ パッチ適用（判例追加）</text><rect x="420" y="15" width="360" height="140" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="40" font-family="sans-serif" font-size="14" font-weight="bold" fill="#e91e63" text-anchor="middle">型2: 矛盾（コンフリクト）</text><text x="600" y="65" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">2つの法律が同一ケースで</text><text x="600" y="85" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">異なる結果を導く</text><text x="600" y="115" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">例: 旧法 vs 新法の適用競合</text><text x="600" y="143" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">→ 憲法裁判所がビルドエラー修正</text></svg>
+</div>
 
 
 ---
@@ -274,28 +331,31 @@ class SpecialLaw(GeneralLaw):  # 特別法
 
 > *抜け穴は仕様の意図しない分岐—立法者のエッジケース漏れがバグになる*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
--   <rect width="800" height="300" fill="#1a1a2e"/>
--   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">法律のバージョン管理 — Gitモデル</text>
--   <!-- main branch (law history) -->
--   <line x1="60" y1="140" x2="740" y2="140" stroke="#f9a825" stroke-width="3"/>
--   <!-- commits on main -->
--   <circle cx="120" cy="140" r="12" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
--   <text x="120" y="144" text-anchor="middle" fill="#f9a825" font-size="9" font-family="monospace">v1</text>
--   <circle cx="280" cy="140" r="12" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
--   <text x="280" y="144" text-anchor="middle" fill="#f9a825" font-size="9" font-family="monospace">v2</text>
--   <circle cx="520" cy="140" r="12" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
--   <text x="520" y="144" text-anchor="middle" fill="#f9a825" font-size="9" font-family="monospace">v3</text>
--   <circle cx="680" cy="140" r="12" fill="#f9a825" stroke="#f9a825" stroke-width="2"/>
--   <text x="680" y="144" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="monospace">HEAD</text>
--   <!-- commit labels -->
--   <text x="120" y="165" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">制定</text>
--   <text x="280" y="165" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">一部改正</text>
--   <text x="520" y="165" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">大改正</text>
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="300" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">法律のバージョン管理 — Gitモデル</text>
+  <!-- main branch (law history) -->
+  <line x1="60" y1="140" x2="740" y2="140" stroke="#f9a825" stroke-width="3"/>
+  <!-- commits on main -->
+  <circle cx="120" cy="140" r="12" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
+  <text x="120" y="144" text-anchor="middle" fill="#f9a825" font-size="9" font-family="monospace">v1</text>
+  <circle cx="280" cy="140" r="12" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
+  <text x="280" y="144" text-anchor="middle" fill="#f9a825" font-size="9" font-family="monospace">v2</text>
+  <circle cx="520" cy="140" r="12" fill="#0d2137" stroke="#f9a825" stroke-width="2"/>
+  <text x="520" y="144" text-anchor="middle" fill="#f9a825" font-size="9" font-family="monospace">v3</text>
+  <circle cx="680" cy="140" r="12" fill="#f9a825" stroke="#f9a825" stroke-width="2"/>
+  <text x="680" y="144" text-anchor="middle" fill="#1a1a2e" font-size="9" font-family="monospace">HEAD</text>
+  <!-- commit labels -->
+  <text x="120" y="165" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">制定</text>
+  <text x="280" y="165" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">一部改正</text>
+  <text x="520" y="165" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">大改正</text>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-58 -->
 # 法律のバグ：抜け穴と矛盾（2/2）（2/2）
 
 > *法改正ごとに新バグが混入—パッチの副作用は法律も同じ構造問題*
@@ -322,12 +382,13 @@ class SpecialLaw(GeneralLaw):  # 特別法
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 法律のバージョン管理
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # 法律改正 = プルリクエスト
 
 > *法改正は国会を経たPR—差分管理・レビュー・マージがGitと等価*
@@ -347,12 +408,14 @@ class SpecialLaw(GeneralLaw):  # 特別法
 
 # 立法プロセスのGitワークフロー図
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="370" fill="#1a1a2e"/><rect x="30" y="155" width="110" height="50" rx="8" fill="#0d2137" stroke="#f9a825" stroke-width="2"/><text x="85" y="176" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle">法案提出</text><text x="85" y="196" font-family="monospace" font-size="11" fill="#aaa" text-anchor="middle">git branch</text><line x1="140" y1="180" x2="175" y2="180" stroke="#555" stroke-width="2"/><polygon points="175,180 164,174 164,186" fill="#555"/><rect x="175" y="155" width="110" height="50" rx="8" fill="#0d2137" stroke="#7986cb" stroke-width="2"/><text x="230" y="176" font-family="sans-serif" font-size="13" fill="#7986cb" text-anchor="middle">委員会審議</text><text x="230" y="196" font-family="monospace" font-size="11" fill="#aaa" text-anchor="middle">code review</text><line x1="285" y1="180" x2="320" y2="180" stroke="#555" stroke-width="2"/><polygon points="320,180 309,174 309,186" fill="#555"/><rect x="320" y="155" width="110" height="50" rx="8" fill="#0d2137" stroke="#4db6ac" stroke-width="2"/><text x="375" y="176" font-family="sans-serif" font-size="13" fill="#4db6ac" text-anchor="middle">修正案</text><text x="375" y="196" font-family="monospace" font-size="11" fill="#aaa" text-anchor="middle">amend commit</text><line x1="430" y1="180" x2="465" y2="180" stroke="#555" stroke-width="2"/><polygon points="465,180 454,174 454,186" fill="#555"/><rect x="465" y="155" width="110" height="50" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="2"/><text x="520" y="176" font-family="sans-serif" font-size="13" fill="#e91e63" text-anchor="middle">本会議採決</text><text x="520" y="196" font-family="monospace" font-size="11" fill="#aaa" text-anchor="middle">merge PR</text><line x1="575" y1="180" x2="610" y2="180" stroke="#555" stroke-width="2"/><polygon points="610,180 599,174 599,186" fill="#555"/><rect x="610" y="155" width="110" height="50" rx="8" fill="#0d2137" stroke="#f9a825" stroke-width="2"/><text x="665" y="176" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle">公布・施行</text><text x="665" y="196" font-family="monospace" font-size="11" fill="#aaa" text-anchor="middle">git deploy</text><rect x="200" y="270" width="140" height="44" rx="8" fill="#1a1a2e" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3"/><text x="270" y="290" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">廃止</text><text x="270" y="307" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">deprecate / delete</text><line x1="270" y1="205" x2="270" y2="270" stroke="#555" stroke-width="1.5" stroke-dasharray="4,3"/><rect x="460" y="270" width="140" height="44" rx="8" fill="#1a1a2e" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3"/><text x="530" y="290" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">違憲判決</text><text x="530" y="307" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">build fail / revert</text><line x1="530" y1="205" x2="530" y2="270" stroke="#555" stroke-width="1.5" stroke-dasharray="4,3"/><rect x="60" y="55" width="680" height="40" rx="6" fill="#0d2137" stroke="#f9a825" stroke-width="1"/><text x="400" y="80" font-family="sans-serif" font-size="14" fill="#f9a825" text-anchor="middle">憲法 = interface / 最上位コントラクト（変更不可）</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="370" fill="#1a1a2e"/><rect x="30" y="155" width="110" height="50" rx="8" fill="#0d2137" stroke="#f9a825" stroke-width="2"/><text x="85" y="176" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle">法案提出</text><text x="85" y="196" font-family="monospace" font-size="11" fill="#aaa" text-anchor="middle">git branch</text><line x1="140" y1="180" x2="175" y2="180" stroke="#555" stroke-width="2"/><polygon points="175,180 164,174 164,186" fill="#555"/><rect x="175" y="155" width="110" height="50" rx="8" fill="#0d2137" stroke="#7986cb" stroke-width="2"/><text x="230" y="176" font-family="sans-serif" font-size="13" fill="#7986cb" text-anchor="middle">委員会審議</text><text x="230" y="196" font-family="monospace" font-size="11" fill="#aaa" text-anchor="middle">code review</text><line x1="285" y1="180" x2="320" y2="180" stroke="#555" stroke-width="2"/><polygon points="320,180 309,174 309,186" fill="#555"/><rect x="320" y="155" width="110" height="50" rx="8" fill="#0d2137" stroke="#4db6ac" stroke-width="2"/><text x="375" y="176" font-family="sans-serif" font-size="13" fill="#4db6ac" text-anchor="middle">修正案</text><text x="375" y="196" font-family="monospace" font-size="11" fill="#aaa" text-anchor="middle">amend commit</text><line x1="430" y1="180" x2="465" y2="180" stroke="#555" stroke-width="2"/><polygon points="465,180 454,174 454,186" fill="#555"/><rect x="465" y="155" width="110" height="50" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="2"/><text x="520" y="176" font-family="sans-serif" font-size="13" fill="#e91e63" text-anchor="middle">本会議採決</text><text x="520" y="196" font-family="monospace" font-size="11" fill="#aaa" text-anchor="middle">merge PR</text><line x1="575" y1="180" x2="610" y2="180" stroke="#555" stroke-width="2"/><polygon points="610,180 599,174 599,186" fill="#555"/><rect x="610" y="155" width="110" height="50" rx="8" fill="#0d2137" stroke="#f9a825" stroke-width="2"/><text x="665" y="176" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle">公布・施行</text><text x="665" y="196" font-family="monospace" font-size="11" fill="#aaa" text-anchor="middle">git deploy</text><rect x="200" y="270" width="140" height="44" rx="8" fill="#1a1a2e" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3"/><text x="270" y="290" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">廃止</text><text x="270" y="307" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">deprecate / delete</text><line x1="270" y1="205" x2="270" y2="270" stroke="#555" stroke-width="1.5" stroke-dasharray="4,3"/><rect x="460" y="270" width="140" height="44" rx="8" fill="#1a1a2e" stroke="#888" stroke-width="1.5" stroke-dasharray="5,3"/><text x="530" y="290" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">違憲判決</text><text x="530" y="307" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">build fail / revert</text><line x1="530" y1="205" x2="530" y2="270" stroke="#555" stroke-width="1.5" stroke-dasharray="4,3"/><rect x="60" y="55" width="680" height="40" rx="6" fill="#0d2137" stroke="#f9a825" stroke-width="1"/><text x="400" y="80" font-family="sans-serif" font-size="14" fill="#f9a825" text-anchor="middle">憲法 = interface / 最上位コントラクト（変更不可）</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Law as Code の実践
 
 
@@ -360,14 +423,18 @@ class SpecialLaw(GeneralLaw):  # 特別法
 
 # 実際に法律をコード化している国（1/2）
 
-- <svg viewBox="0 0 800 170" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="170" fill="#1a1a2e"/><rect x="20" y="15" width="360" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="200" y="40" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f9a825" text-anchor="middle">ニュージーランド 2018〜</text><text x="200" y="65" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">税法を Python で管理・GitHub 公開</text><text x="200" y="90" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">git commit -m "税率改正 2026"</text><text x="200" y="115" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">OpenFisca フレームワーク使用</text><text x="200" y="143" font-family="sans-serif" font-size="11" fill="#888" text-anchor="middle">市民・企業が直接シミュレーション可能</text><rect x="420" y="15" width="360" height="140" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="1.5"/><text x="600" y="40" font-family="sans-serif" font-size="15" font-weight="bold" fill="#4db6ac" text-anchor="middle">エストニア X-Road</text><text x="600" y="65" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">全行政手続きを API として提供</text><text x="600" y="90" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">GET /gov/services/register</text><text x="600" y="115" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">デジタル市民権で国外から利用可能</text><text x="600" y="143" font-family="sans-serif" font-size="11" fill="#888" text-anchor="middle">e-Residency: 世界中から行政サービス</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 170" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="170" fill="#1a1a2e"/><rect x="20" y="15" width="360" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="200" y="40" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f9a825" text-anchor="middle">ニュージーランド 2018〜</text><text x="200" y="65" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">税法を Python で管理・GitHub 公開</text><text x="200" y="90" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">git commit -m "税率改正 2026"</text><text x="200" y="115" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">OpenFisca フレームワーク使用</text><text x="200" y="143" font-family="sans-serif" font-size="11" fill="#888" text-anchor="middle">市民・企業が直接シミュレーション可能</text><rect x="420" y="15" width="360" height="140" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="1.5"/><text x="600" y="40" font-family="sans-serif" font-size="15" font-weight="bold" fill="#4db6ac" text-anchor="middle">エストニア X-Road</text><text x="600" y="65" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">全行政手続きを API として提供</text><text x="600" y="90" font-family="monospace" font-size="12" fill="#7fff7f" text-anchor="middle">GET /gov/services/register</text><text x="600" y="115" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">デジタル市民権で国外から利用可能</text><text x="600" y="143" font-family="sans-serif" font-size="11" fill="#888" text-anchor="middle">e-Residency: 世界中から行政サービス</text></svg>
+</div>
 
 
 ---
 
 # Law as Code 実践国マップ
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="370" fill="#1a1a2e"/><text x="400" y="34" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f9a825" text-anchor="middle">Law as Code 先進国と取り組み</text><rect x="30" y="55" width="230" height="130" rx="10" fill="#0d2137" stroke="#f9a825" stroke-width="2"/><text x="145" y="82" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f9a825" text-anchor="middle">ニュージーランド</text><text x="145" y="104" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">2018年〜 OpenFisca</text><text x="145" y="123" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">税法をPythonで管理</text><text x="145" y="142" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">GitHub公開・市民が参照可能</text><text x="145" y="168" font-family="monospace" font-size="11" fill="#f9a825" text-anchor="middle">成熟度: ★★★★☆</text><rect x="285" y="55" width="230" height="130" rx="10" fill="#0d2137" stroke="#4db6ac" stroke-width="2"/><text x="400" y="82" font-family="sans-serif" font-size="15" font-weight="bold" fill="#4db6ac" text-anchor="middle">エストニア</text><text x="400" y="104" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">X-Road 行政API基盤</text><text x="400" y="123" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">デジタル市民権</text><text x="400" y="142" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">国外から全行政手続き可能</text><text x="400" y="168" font-family="monospace" font-size="11" fill="#4db6ac" text-anchor="middle">成熟度: ★★★★★</text><rect x="540" y="55" width="230" height="130" rx="10" fill="#0d2137" stroke="#7986cb" stroke-width="2"/><text x="655" y="82" font-family="sans-serif" font-size="15" font-weight="bold" fill="#7986cb" text-anchor="middle">EU</text><text x="655" y="104" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">GDPR コンプライアンス</text><text x="655" y="123" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">プライバシーバイデザイン</text><text x="655" y="142" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">APIに法的要件を実装</text><text x="655" y="168" font-family="monospace" font-size="11" fill="#7986cb" text-anchor="middle">成熟度: ★★★☆☆</text><rect x="30" y="210" width="230" height="130" rx="10" fill="#0d2137" stroke="#e91e63" stroke-width="2"/><text x="145" y="237" font-family="sans-serif" font-size="15" font-weight="bold" fill="#e91e63" text-anchor="middle">シンガポール</text><text x="145" y="259" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">PDPA マシンリーダブル</text><text x="145" y="278" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">個人情報保護法の仕様化</text><text x="145" y="297" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">コンプライアンス自動チェック</text><text x="145" y="323" font-family="monospace" font-size="11" fill="#e91e63" text-anchor="middle">成熟度: ★★★☆☆</text><rect x="285" y="210" width="485" height="130" rx="10" fill="#0d2137" stroke="#888" stroke-width="1.5"/><text x="527" y="237" font-family="sans-serif" font-size="15" font-weight="bold" fill="#aaa" text-anchor="middle">日本</text><text x="527" y="259" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">デジタル庁主導の法令XMLデータベース</text><text x="527" y="278" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">e-Gov 法令検索API 提供中</text><text x="527" y="297" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">法令のマシンリーダブル化 検討段階</text><text x="527" y="323" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">成熟度: ★★☆☆☆（整備中）</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="370" fill="#1a1a2e"/><text x="400" y="34" font-family="sans-serif" font-size="18" font-weight="bold" fill="#f9a825" text-anchor="middle">Law as Code 先進国と取り組み</text><rect x="30" y="55" width="230" height="130" rx="10" fill="#0d2137" stroke="#f9a825" stroke-width="2"/><text x="145" y="82" font-family="sans-serif" font-size="15" font-weight="bold" fill="#f9a825" text-anchor="middle">ニュージーランド</text><text x="145" y="104" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">2018年〜 OpenFisca</text><text x="145" y="123" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">税法をPythonで管理</text><text x="145" y="142" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">GitHub公開・市民が参照可能</text><text x="145" y="168" font-family="monospace" font-size="11" fill="#f9a825" text-anchor="middle">成熟度: ★★★★☆</text><rect x="285" y="55" width="230" height="130" rx="10" fill="#0d2137" stroke="#4db6ac" stroke-width="2"/><text x="400" y="82" font-family="sans-serif" font-size="15" font-weight="bold" fill="#4db6ac" text-anchor="middle">エストニア</text><text x="400" y="104" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">X-Road 行政API基盤</text><text x="400" y="123" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">デジタル市民権</text><text x="400" y="142" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">国外から全行政手続き可能</text><text x="400" y="168" font-family="monospace" font-size="11" fill="#4db6ac" text-anchor="middle">成熟度: ★★★★★</text><rect x="540" y="55" width="230" height="130" rx="10" fill="#0d2137" stroke="#7986cb" stroke-width="2"/><text x="655" y="82" font-family="sans-serif" font-size="15" font-weight="bold" fill="#7986cb" text-anchor="middle">EU</text><text x="655" y="104" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">GDPR コンプライアンス</text><text x="655" y="123" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">プライバシーバイデザイン</text><text x="655" y="142" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">APIに法的要件を実装</text><text x="655" y="168" font-family="monospace" font-size="11" fill="#7986cb" text-anchor="middle">成熟度: ★★★☆☆</text><rect x="30" y="210" width="230" height="130" rx="10" fill="#0d2137" stroke="#e91e63" stroke-width="2"/><text x="145" y="237" font-family="sans-serif" font-size="15" font-weight="bold" fill="#e91e63" text-anchor="middle">シンガポール</text><text x="145" y="259" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">PDPA マシンリーダブル</text><text x="145" y="278" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">個人情報保護法の仕様化</text><text x="145" y="297" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">コンプライアンス自動チェック</text><text x="145" y="323" font-family="monospace" font-size="11" fill="#e91e63" text-anchor="middle">成熟度: ★★★☆☆</text><rect x="285" y="210" width="485" height="130" rx="10" fill="#0d2137" stroke="#888" stroke-width="1.5"/><text x="527" y="237" font-family="sans-serif" font-size="15" font-weight="bold" fill="#aaa" text-anchor="middle">日本</text><text x="527" y="259" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">デジタル庁主導の法令XMLデータベース</text><text x="527" y="278" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">e-Gov 法令検索API 提供中</text><text x="527" y="297" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">法令のマシンリーダブル化 検討段階</text><text x="527" y="323" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">成熟度: ★★☆☆☆（整備中）</text></svg>
+</div>
 
 
 ---
@@ -376,32 +443,35 @@ class SpecialLaw(GeneralLaw):  # 特別法
 
 > *エストニア・シンガポールが証明—法律のコード化は行政効率を劇的に改善*
 
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
--   <rect width="800" height="320" fill="#1a1a2e"/>
--   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">Law as Code 実践 — コンプライアンス確認パイプライン</text>
--   <!-- Pipeline steps -->
--   <!-- Step 1: Legislation input -->
--   <rect x="30" y="55" width="150" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
--   <text x="105" y="83" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">法令入力</text>
--   <text x="105" y="100" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">XML/JSON形式</text>
--   <text x="105" y="116" text-anchor="middle" fill="#aaa" font-size="9" font-family="monospace">law.xml → parse()</text>
--   <line x1="180" y1="90" x2="208" y2="90" stroke="#555" stroke-width="2"/>
--   <polygon points="208,85 220,90 208,95" fill="#555"/>
--   <!-- Step 2: Rule engine -->
--   <rect x="220" y="55" width="150" height="70" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
--   <text x="295" y="83" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold" font-family="sans-serif">ルールエンジン</text>
--   <text x="295" y="100" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">条件評価</text>
--   <text x="295" y="116" text-anchor="middle" fill="#aaa" font-size="9" font-family="monospace">if (req) then effect</text>
--   <line x1="370" y1="90" x2="398" y2="90" stroke="#555" stroke-width="2"/>
--   <polygon points="398,85 410,90 398,95" fill="#555"/>
--   <!-- Step 3: Case data -->
--   <rect x="410" y="55" width="150" height="70" rx="8" fill="#16213e" stroke="#7986cb" stroke-width="2"/>
--   <text x="485" y="83" text-anchor="middle" fill="#7986cb" font-size="12" font-weight="bold" font-family="sans-serif">ケース入力</text>
--   <text x="485" y="100" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">事実データ</text>
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="320" fill="#1a1a2e"/>
+  <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">Law as Code 実践 — コンプライアンス確認パイプライン</text>
+  <!-- Pipeline steps -->
+  <!-- Step 1: Legislation input -->
+  <rect x="30" y="55" width="150" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="105" y="83" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">法令入力</text>
+  <text x="105" y="100" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">XML/JSON形式</text>
+  <text x="105" y="116" text-anchor="middle" fill="#aaa" font-size="9" font-family="monospace">law.xml → parse()</text>
+  <line x1="180" y1="90" x2="208" y2="90" stroke="#555" stroke-width="2"/>
+  <polygon points="208,85 220,90 208,95" fill="#555"/>
+  <!-- Step 2: Rule engine -->
+  <rect x="220" y="55" width="150" height="70" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
+  <text x="295" y="83" text-anchor="middle" fill="#4db6ac" font-size="12" font-weight="bold" font-family="sans-serif">ルールエンジン</text>
+  <text x="295" y="100" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">条件評価</text>
+  <text x="295" y="116" text-anchor="middle" fill="#aaa" font-size="9" font-family="monospace">if (req) then effect</text>
+  <line x1="370" y1="90" x2="398" y2="90" stroke="#555" stroke-width="2"/>
+  <polygon points="398,85 410,90 398,95" fill="#555"/>
+  <!-- Step 3: Case data -->
+  <rect x="410" y="55" width="150" height="70" rx="8" fill="#16213e" stroke="#7986cb" stroke-width="2"/>
+  <text x="485" y="83" text-anchor="middle" fill="#7986cb" font-size="12" font-weight="bold" font-family="sans-serif">ケース入力</text>
+  <text x="485" y="100" text-anchor="middle" fill="#ccc" font-size="10" font-family="sans-serif">事実データ</text>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-58 -->
 # 実際に法律をコード化している国（2/2）（2/2）
 
 > *Computedフィールドが自動判定—宣言的法律コードが審査官を不要にする*
@@ -435,14 +505,18 @@ class SpecialLaw(GeneralLaw):  # 特別法
 
 # 法律と自然言語処理（1/2）
 
-- <svg viewBox="0 0 800 180" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="180" fill="#1a1a2e"/><rect x="20" y="15" width="360" height="150" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="200" y="42" font-family="sans-serif" font-size="14" font-weight="bold" fill="#e91e63" text-anchor="middle">自然言語の曖昧さ</text><text x="200" y="68" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">「合理的な注意義務」</text><text x="200" y="90" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">「相当の期間」</text><text x="200" y="115" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">→ 文脈・判例・解釈が必要</text><text x="200" y="142" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">機械には処理困難</text><rect x="420" y="15" width="360" height="150" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="1.5"/><text x="600" y="42" font-family="sans-serif" font-size="14" font-weight="bold" fill="#4db6ac" text-anchor="middle">LLMの現在地</text><text x="600" y="68" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">判例類似検索: 92%精度（GPT-4）</text><text x="600" y="90" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">契約書レビュー: 法律事務所導入済み</text><text x="600" y="115" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">法令矛盾発見: 政府機関で試行中</text><text x="600" y="142" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">ただし: ハルシネーション リスクあり</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 180" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="180" fill="#1a1a2e"/><rect x="20" y="15" width="360" height="150" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="200" y="42" font-family="sans-serif" font-size="14" font-weight="bold" fill="#e91e63" text-anchor="middle">自然言語の曖昧さ</text><text x="200" y="68" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">「合理的な注意義務」</text><text x="200" y="90" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">「相当の期間」</text><text x="200" y="115" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">→ 文脈・判例・解釈が必要</text><text x="200" y="142" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">機械には処理困難</text><rect x="420" y="15" width="360" height="150" rx="8" fill="#16213e" stroke="#4db6ac" stroke-width="1.5"/><text x="600" y="42" font-family="sans-serif" font-size="14" font-weight="bold" fill="#4db6ac" text-anchor="middle">LLMの現在地</text><text x="600" y="68" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">判例類似検索: 92%精度（GPT-4）</text><text x="600" y="90" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">契約書レビュー: 法律事務所導入済み</text><text x="600" y="115" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">法令矛盾発見: 政府機関で試行中</text><text x="600" y="142" font-family="monospace" font-size="11" fill="#888" text-anchor="middle">ただし: ハルシネーション リスクあり</text></svg>
+</div>
 
 
 ---
 
 # LLMによる法律支援：可能性とリスク
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="360" fill="#1a1a2e"/><text x="200" y="36" font-family="sans-serif" font-size="17" font-weight="bold" fill="#4db6ac" text-anchor="middle">可能性</text><text x="600" y="36" font-family="sans-serif" font-size="17" font-weight="bold" fill="#e91e63" text-anchor="middle">リスク</text><line x1="400" y1="18" x2="400" y2="350" stroke="#333" stroke-width="2"/><rect x="25" y="55" width="350" height="55" rx="8" fill="#0d2137" stroke="#4db6ac" stroke-width="1.5"/><text x="200" y="78" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">判例の類似検索</text><text x="200" y="98" font-family="sans-serif" font-size="12" fill="#4db6ac" text-anchor="middle">GPT-4で92%の精度 — 弁護士支援</text><rect x="425" y="55" width="350" height="55" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="78" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">ハルシネーション</text><text x="600" y="98" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">架空判例の生成・引用リスク</text><rect x="25" y="130" width="350" height="55" rx="8" fill="#0d2137" stroke="#4db6ac" stroke-width="1.5"/><text x="200" y="153" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">契約書レビュー</text><text x="200" y="173" font-family="sans-serif" font-size="12" fill="#4db6ac" text-anchor="middle">大手法律事務所が実際に導入済み</text><rect x="425" y="130" width="350" height="55" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="153" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">バイアス・公平性</text><text x="600" y="173" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">過去の判例が持つ偏見を再生産</text><rect x="25" y="205" width="350" height="55" rx="8" fill="#0d2137" stroke="#4db6ac" stroke-width="1.5"/><text x="200" y="228" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">法令の矛盾発見</text><text x="200" y="248" font-family="sans-serif" font-size="12" fill="#4db6ac" text-anchor="middle">政府機関で実験的に試行中</text><rect x="425" y="205" width="350" height="55" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="228" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">責任の所在</text><text x="600" y="248" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">AI判断のエラーは誰が責任を負うか</text><rect x="25" y="280" width="350" height="55" rx="8" fill="#0d2137" stroke="#4db6ac" stroke-width="1.5"/><text x="200" y="303" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">市民の法律アクセス</text><text x="200" y="323" font-family="sans-serif" font-size="12" fill="#4db6ac" text-anchor="middle">法律相談コストの民主化</text><rect x="425" y="280" width="350" height="55" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="303" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">過信リスク</text><text x="600" y="323" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">非専門家がAI回答を鵜呑みにする危険</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="360" fill="#1a1a2e"/><text x="200" y="36" font-family="sans-serif" font-size="17" font-weight="bold" fill="#4db6ac" text-anchor="middle">可能性</text><text x="600" y="36" font-family="sans-serif" font-size="17" font-weight="bold" fill="#e91e63" text-anchor="middle">リスク</text><line x1="400" y1="18" x2="400" y2="350" stroke="#333" stroke-width="2"/><rect x="25" y="55" width="350" height="55" rx="8" fill="#0d2137" stroke="#4db6ac" stroke-width="1.5"/><text x="200" y="78" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">判例の類似検索</text><text x="200" y="98" font-family="sans-serif" font-size="12" fill="#4db6ac" text-anchor="middle">GPT-4で92%の精度 — 弁護士支援</text><rect x="425" y="55" width="350" height="55" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="78" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">ハルシネーション</text><text x="600" y="98" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">架空判例の生成・引用リスク</text><rect x="25" y="130" width="350" height="55" rx="8" fill="#0d2137" stroke="#4db6ac" stroke-width="1.5"/><text x="200" y="153" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">契約書レビュー</text><text x="200" y="173" font-family="sans-serif" font-size="12" fill="#4db6ac" text-anchor="middle">大手法律事務所が実際に導入済み</text><rect x="425" y="130" width="350" height="55" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="153" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">バイアス・公平性</text><text x="600" y="173" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">過去の判例が持つ偏見を再生産</text><rect x="25" y="205" width="350" height="55" rx="8" fill="#0d2137" stroke="#4db6ac" stroke-width="1.5"/><text x="200" y="228" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">法令の矛盾発見</text><text x="200" y="248" font-family="sans-serif" font-size="12" fill="#4db6ac" text-anchor="middle">政府機関で実験的に試行中</text><rect x="425" y="205" width="350" height="55" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="228" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">責任の所在</text><text x="600" y="248" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">AI判断のエラーは誰が責任を負うか</text><rect x="25" y="280" width="350" height="55" rx="8" fill="#0d2137" stroke="#4db6ac" stroke-width="1.5"/><text x="200" y="303" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">市民の法律アクセス</text><text x="200" y="323" font-family="sans-serif" font-size="12" fill="#4db6ac" text-anchor="middle">法律相談コストの民主化</text><rect x="425" y="280" width="350" height="55" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="1.5"/><text x="600" y="303" font-family="sans-serif" font-size="13" fill="#fff" text-anchor="middle">過信リスク</text><text x="600" y="323" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">非専門家がAI回答を鵜呑みにする危険</text></svg>
+</div>
 
 
 ---
@@ -451,8 +525,8 @@ class SpecialLaw(GeneralLaw):  # 特別法
 
 > *GPTは法令の矛盾を発見するが「ハルシネーション判決」は許容できない*
 
-- - 契約書レビュー：大手法律事務所が導入
-- - 法令の矛盾発見：実験的に政府機関で試行
+- 契約書レビュー：大手法律事務所が導入
+- 法令の矛盾発見：実験的に政府機関で試行
 - ---
 - **リスク：** 法解釈の「ハルシネーション」= 誤った判例引用
 - 2023年：弁護士がChatGPTの架空判例を提出して処分
@@ -462,5 +536,7 @@ class SpecialLaw(GeneralLaw):  # 特別法
 
 # まとめ：法とコードの未来
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><rect x="30" y="25" width="340" height="60" rx="8" fill="#0d2137" stroke="#f9a825" stroke-width="2"/><text x="50" y="50" font-family="sans-serif" font-size="13" fill="#f9a825">法律の構造はコードと同型</text><text x="50" y="72" font-family="sans-serif" font-size="12" fill="#ccc">if/then/else・スコープ・バージョン管理</text><rect x="430" y="25" width="340" height="60" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="2"/><text x="450" y="50" font-family="sans-serif" font-size="13" fill="#e91e63">法律のバグは深刻</text><text x="450" y="72" font-family="sans-serif" font-size="12" fill="#ccc">実行時まで発見されず、被害は広範囲</text><rect x="30" y="115" width="340" height="60" rx="8" fill="#0d2137" stroke="#4db6ac" stroke-width="2"/><text x="50" y="140" font-family="sans-serif" font-size="13" fill="#4db6ac">Law as Code は動き始めている</text><text x="50" y="162" font-family="sans-serif" font-size="12" fill="#ccc">NZ・エストニアが先行、日本も整備中</text><rect x="430" y="115" width="340" height="60" rx="8" fill="#0d2137" stroke="#7986cb" stroke-width="2"/><text x="450" y="140" font-family="sans-serif" font-size="13" fill="#7986cb">LLMは有望だが精度リスクあり</text><text x="450" y="162" font-family="sans-serif" font-size="12" fill="#ccc">補助ツールとして慎重に活用</text><rect x="80" y="210" width="640" height="60" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="238" font-family="sans-serif" font-size="14" font-style="italic" fill="#f9a825" text-anchor="middle">「民主主義社会においてコードを書くことは、</text><text x="400" y="260" font-family="sans-serif" font-size="14" font-style="italic" fill="#f9a825" text-anchor="middle">法律を書くことだ」— Lawrence Lessig</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="300" fill="#1a1a2e"/><rect x="30" y="25" width="340" height="60" rx="8" fill="#0d2137" stroke="#f9a825" stroke-width="2"/><text x="50" y="50" font-family="sans-serif" font-size="13" fill="#f9a825">法律の構造はコードと同型</text><text x="50" y="72" font-family="sans-serif" font-size="12" fill="#ccc">if/then/else・スコープ・バージョン管理</text><rect x="430" y="25" width="340" height="60" rx="8" fill="#0d2137" stroke="#e91e63" stroke-width="2"/><text x="450" y="50" font-family="sans-serif" font-size="13" fill="#e91e63">法律のバグは深刻</text><text x="450" y="72" font-family="sans-serif" font-size="12" fill="#ccc">実行時まで発見されず、被害は広範囲</text><rect x="30" y="115" width="340" height="60" rx="8" fill="#0d2137" stroke="#4db6ac" stroke-width="2"/><text x="50" y="140" font-family="sans-serif" font-size="13" fill="#4db6ac">Law as Code は動き始めている</text><text x="50" y="162" font-family="sans-serif" font-size="12" fill="#ccc">NZ・エストニアが先行、日本も整備中</text><rect x="430" y="115" width="340" height="60" rx="8" fill="#0d2137" stroke="#7986cb" stroke-width="2"/><text x="450" y="140" font-family="sans-serif" font-size="13" fill="#7986cb">LLMは有望だが精度リスクあり</text><text x="450" y="162" font-family="sans-serif" font-size="12" fill="#ccc">補助ツールとして慎重に活用</text><rect x="80" y="210" width="640" height="60" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="238" font-family="sans-serif" font-size="14" font-style="italic" fill="#f9a825" text-anchor="middle">「民主主義社会においてコードを書くことは、</text><text x="400" y="260" font-family="sans-serif" font-size="14" font-style="italic" fill="#f9a825" text-anchor="middle">法律を書くことだ」— Lawrence Lessig</text></svg>
+</div>
 

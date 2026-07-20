@@ -7,41 +7,76 @@ paginate: true
 header: "OpenClaw完全解説"
 footer: "© 2026 - エンジニア向け詳細解説"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -91,10 +126,11 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # OpenClaw完全解説
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <!-- Claw icon: stylized bracket/claw shape -->
   <text x="400" y="110" text-anchor="middle" fill="#f9a825" font-size="72" font-weight="bold" font-family="monospace">OpenClaw</text>
@@ -105,11 +141,11 @@ style: |
   <text x="400" y="200" text-anchor="middle" fill="#e91e63" font-size="14">by Peter Steinberger  ·  GitHub ★ 급성장中</text>
   <text x="400" y="235" text-anchor="middle" fill="#ffffff" font-size="12" opacity="0.7">2026年3月 完全解説</text>
 </svg>
+</div>
+
 - 〜オープンソース自律AIエージェント〜
-- 
 - **対象:** エンジニア・開発者
 - **内容:** 誕生の経緯 / アーキテクチャ / メモリ / スキル / セキュリティ / 未来
-- 
 - 🦞 *60日でOpenAIに買収されたオープンソースプロジェクトの全貌*
 
 
@@ -144,7 +180,8 @@ style: |
 
 > *OpenClawがローカルAIアシスタントの新標準として台頭している*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">OpenClawとは何か — 概要</text>
   <!-- Feature cards in grid -->
@@ -165,10 +202,11 @@ style: |
   <text x="590" y="203" text-anchor="middle" fill="#ffffff" font-size="11">ClawHub コミュニティ</text>
   <text x="590" y="221" text-anchor="middle" fill="#ffffff" font-size="10">SKILL.md フォーマット</text>
 </svg>
+</div>
+
 - **定義:** フリー＆オープンソースの自律AIエージェントフレームワーク
 - **作者:** Peter Steinberger（オーストリア、13年選手のエンジニア）
 - **公開:** 2025年11月（Clawdbot名で）→ 2026年1月30日にOpenClaw改名
-- 
 
 
 ---
@@ -177,7 +215,8 @@ style: |
 
 > *OpenClawがローカルAIアシスタントの新標準として台頭している*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw: 特徴一覧</text>
   <rect x="40" y="50" width="335" height="165" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -193,17 +232,20 @@ style: |
   <text x="592" y="139" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">• カスタマイズ自由</text>
   <text x="592" y="170" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ベンダーロックインなし</text>
 </svg>
+</div>
+
 - **コアコンセプト:**
-- - AIエージェントへの *インフラ* を提供（アプリではなく）
-- - LLMは外部モデルを利用（Claude / GPT / DeepSeek）
-- - ローカル実行・設定データもローカル保存
+- AIエージェントへの *インフラ* を提供（アプリではなく）
+- LLMは外部モデルを利用（Claude / GPT / DeepSeek）
+- ローカル実行・設定データもローカル保存
 
 
 ---
 
 # 従来チャットボットとの違い
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <!-- Left: traditional chatbot -->
   <rect x="40" y="40" width="320" height="220" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -224,6 +266,8 @@ style: |
   <!-- VS divider -->
   <text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold" opacity="0.5">VS</text>
 </svg>
+</div>
+
 ![w:850 center](assets/chatbot-vs-agent.svg)
 
 
@@ -234,9 +278,9 @@ style: |
 > *PSPDFKit創業者が趣味で開発したエージェントがバイラルに*
 
 - **経歴:**
-- - オーストリア在住のソフトウェア開発者（13年のキャリア）
-- - PSPDFKit（モバイルPDFライブラリ）の創業者
-- - AIエージェントへの興味から「playground project」として開発開始
+- オーストリア在住のソフトウェア開発者（13年のキャリア）
+- PSPDFKit（モバイルPDFライブラリ）の創業者
+- AIエージェントへの興味から「playground project」として開発開始
 
 
 ---
@@ -245,18 +289,18 @@ style: |
 
 > *「母でも使えるエージェント」を目指し2/14にOpenAI参画*
 
-- 
 - **思想:**
-- - 「AIは新しいアプリではなく、既存アプリに埋め込まれるインフラ」
-- - 2026年2月14日にOpenAI参画を発表
-- - *"Build an agent that even my mum can use"*
+- 「AIは新しいアプリではなく、既存アプリに埋め込まれるインフラ」
+- 2026年2月14日にOpenAI参画を発表
+- *"Build an agent that even my mum can use"*
 
 
 ---
 
 # 名前の変遷タイムライン
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">名前の変遷タイムライン</text>
   <!-- Timeline -->
@@ -283,6 +327,8 @@ style: |
   <text x="640" y="148" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">OpenAI傘下</text>
   <text x="640" y="164" text-anchor="middle" fill="#ffffff" font-size="10">財団移行</text>
 </svg>
+</div>
+
 ![w:850 center](assets/name-timeline.svg)
 
 
@@ -292,7 +338,8 @@ style: |
 
 > *60日で数百万ユーザー獲得がプロダクト設計の正しさを証明した*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw バイラル拡散の軌跡</text>
   <line x1="60" y1="180" x2="740" y2="180" stroke="#444" stroke-width="1.5"/>
@@ -310,10 +357,12 @@ style: |
   <text x="660" y="200" fill="#aaa" font-size="9" font-family="sans-serif">Mar 2026</text>
   <text x="30" y="70" fill="#aaa" font-size="9" font-family="sans-serif" transform="rotate(-90,30,120)">Stars</text>
 </svg>
+</div>
+
 - **Moltbook（Moltbotが動くmacBookの愛称）のバイラル要因:**
-- - オープンソース無償公開 → 誰でもすぐ試せる
-- - 実際に動く動画がSNSで爆発的に拡散
-- - WhatsApp/iMessageからAIを操れる体験の新鮮さ
+- オープンソース無償公開 → 誰でもすぐ試せる
+- 実際に動く動画がSNSで爆発的に拡散
+- WhatsApp/iMessageからAIを操れる体験の新鮮さ
 
 
 ---
@@ -322,18 +371,18 @@ style: |
 
 > *60日で数百万ユーザー獲得がプロダクト設計の正しさを証明した*
 
-- 
 - **数字の推移:**
-- - 2026年1月末: GitHubスター100K超
-- - 2026年2月2日: ★140K、Forks 20K
-- - わずか60日でOpenAI買収対象に
+- 2026年1月末: GitHubスター100K超
+- 2026年2月2日: ★140K、Forks 20K
+- わずか60日でOpenAI買収対象に
 
 
 ---
 
 # GitHubスター急成長
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">GitHubスター成長曲線</text>
   <!-- Axes -->
@@ -366,6 +415,8 @@ style: |
   <text x="702" y="43" fill="#e91e63" font-size="11">OpenAI買収</text>
   <circle cx="660" cy="62" r="5" fill="#e91e63"/>
 </svg>
+</div>
+
 ![w:820 center](assets/github-growth.svg)
 
 
@@ -377,7 +428,6 @@ style: |
 
 - **2026年2月14日:** Steinberger、OpenAI参画を発表
 - **2026年2月15日:** Sam Altman、X（旧Twitter）で正式確認
-- 
 - **条件・構成:**
 
 
@@ -387,10 +437,9 @@ style: |
 
 > *生成AI統合が開発者の生産性を根本的に変革する*
 
-- - Steinberger → OpenAIで「次世代パーソナルエージェント」開発をリード
-- - OpenClawプロジェクト → 独立財団へ移行
-- - OpenAI → 財団の金融スポンサーとして参画
-- 
+- Steinberger → OpenAIで「次世代パーソナルエージェント」開発をリード
+- OpenClawプロジェクト → 独立財団へ移行
+- OpenAI → 財団の金融スポンサーとして参画
 - **意義:** OpenCLIなどよりも1段階上の「パーソナルAI基盤」への進化
 
 
@@ -398,7 +447,8 @@ style: |
 
 # Phase別進化ロードマップ
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Phase別進化ロードマップ</text>
   <!-- Phase boxes -->
@@ -426,6 +476,8 @@ style: |
   <text x="685" y="120" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.7">自律協働</text>
   <text x="685" y="138" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.7">全機能統合</text>
 </svg>
+</div>
+
 ![w:850 center](assets/phase-roadmap.svg)
 
 
@@ -433,7 +485,8 @@ style: |
 
 # 60日間の軌跡まとめ
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">60日間の軌跡</text>
   <!-- Progress arc / stats -->
@@ -452,6 +505,8 @@ style: |
   <text x="600" y="193" text-anchor="middle" fill="#ffffff" font-size="12">OpenAI買収</text>
   <text x="400" y="235" text-anchor="middle" fill="#f9a825" font-size="11">2025/10 〜 2026/03 — 60日間で業界を塗り替えた</text>
 </svg>
+</div>
+
 | 日付 | 出来事 |
 |------|--------|
 | 2025.11 | Clawdbot 公開（WhatsAppリレー） |
@@ -466,7 +521,8 @@ style: |
 
 # 全体アーキテクチャ概要
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">OpenClaw 全体アーキテクチャ</text>
   <!-- Layers -->
@@ -515,6 +571,8 @@ style: |
   <line x1="205" y1="280" x2="310" y2="254" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="4"/>
   <line x1="595" y1="280" x2="490" y2="254" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="4"/>
 </svg>
+</div>
+
 ![w:850 center](assets/architecture-overview.svg)
 
 
@@ -524,7 +582,8 @@ style: |
 
 > *中央Gatewayがセキュリティと設定の一元管理を実現する*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Gateway: コントロールプレーン</text>
   <!-- Gateway in center, connected to both sides -->
@@ -554,10 +613,11 @@ style: |
   <line x1="500" y1="120" x2="640" y2="135" stroke="#f9a825" stroke-width="1.5"/>
   <line x1="500" y1="130" x2="640" y2="190" stroke="#f9a825" stroke-width="1.5"/>
 </svg>
+</div>
+
 - **Gateway の役割:**
-- - 全インターフェースからの入力を受け取る単一エントリポイント
-- - 認証・セッション管理・ルーティング・アクセス制御を担当
-- 
+- 全インターフェースからの入力を受け取る単一エントリポイント
+- 認証・セッション管理・ルーティング・アクセス制御を担当
 - **技術的特徴:**
 
 
@@ -567,7 +627,8 @@ style: |
 
 > *中央Gatewayがセキュリティと設定の一元管理を実現する*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Gateway コントロールプレーン</text>
   <rect x="300" y="45" width="200" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -590,10 +651,11 @@ style: |
   <line x1="400" y1="100" x2="470" y2="150" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
   <line x1="400" y1="100" x2="690" y2="150" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
 </svg>
-- - ローカルで動作（外部依存なし）
-- - WebSocket/HTTP両対応
-- - `gatewayUrl` パラメータでクライアントが接続先を指定
-- 
+</div>
+
+- ローカルで動作（外部依存なし）
+- WebSocket/HTTP両対応
+- `gatewayUrl` パラメータでクライアントが接続先を指定
 - ⚠️ **後述:** この `gatewayUrl` の検証不備がCVE-2026-25253の原因
 
 
@@ -601,7 +663,8 @@ style: |
 
 # Agent Runtimeの処理フロー
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Agent Runtime 処理フロー</text>
   <!-- Steps as boxes with arrows -->
@@ -642,6 +705,8 @@ style: |
   <polygon points="38,130 32,142 44,142" fill="#f9a825" opacity="0.7"/>
   <text x="400" y="222" text-anchor="middle" fill="#f9a825" font-size="10" opacity="0.8">必要に応じて多ターン継続</text>
 </svg>
+</div>
+
 ![w:850 center](assets/agent-runtime-flow.svg)
 
 
@@ -649,7 +714,8 @@ style: |
 
 # ハブ＆スポーク設計
 
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="320" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">ハブ＆スポーク設計</text>
   <!-- Hub -->
@@ -687,6 +753,8 @@ style: |
   <text x="710" y="296" text-anchor="middle" fill="#f9a825" font-size="10">並列タスク</text>
   <line x1="650" y1="282" x2="465" y2="198" stroke="#f9a825" stroke-width="1.5"/>
 </svg>
+</div>
+
 ![w:800 center](assets/hub-spoke.svg)
 
 
@@ -696,7 +764,8 @@ style: |
 
 > *生成AI統合が開発者の生産性を根本的に変革する*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">対応LLM一覧</text>
   <!-- LLM cards -->
@@ -721,15 +790,17 @@ style: |
   <text x="400" y="198" text-anchor="middle" fill="#ffffff" font-size="11">1つのインターフェースで全LLMを切り替え可能</text>
   <text x="400" y="218" text-anchor="middle" fill="#ffffff" font-size="10">将来のLLMにも自動対応</text>
 </svg>
+</div>
+
 - **モデル非依存設計 — 主要対応LLM:**
-- 
+
 | プロバイダー | モデル | 特徴 |
 |-------------|--------|------|
 | Anthropic | Claude Opus 4.6, Sonnet 4.6 | 1Mトークン対応 |
 | OpenAI | GPT-4o, o3 | 幅広いツール対応 |
 | DeepSeek | DeepSeek-V3 | コスト効率 |
 | Google | Gemini 2.0 | マルチモーダル |
-- 
+
 - **設定:** `params.model` でモデルを指定、切り替えはconfig1行
 
 
@@ -739,7 +810,8 @@ style: |
 
 > *ローカル実行がプライバシーとオフライン対応を同時に解決する*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">ローカル実行 vs クラウドAPI</text>
   <rect x="40" y="55" width="330" height="170" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -759,11 +831,12 @@ style: |
   <text x="595" y="188" text-anchor="middle" fill="#f9a825" font-size="11">モデル品質: 最高水準</text>
   <text x="595" y="210" text-anchor="middle" fill="#f9a825" font-size="10">セットアップ: 簡単</text>
 </svg>
+</div>
+
 - **なぜローカル実行か？**
-- 
-- - **プライバシー:** 設定データ・会話履歴がローカルに残る
-- - **コスト制御:** API利用料は自分が直接管理
-- - **カスタマイズ性:** ファイルシステム・ネットワーク・ローカルツールに直接アクセス
+- **プライバシー:** 設定データ・会話履歴がローカルに残る
+- **コスト制御:** API利用料は自分が直接管理
+- **カスタマイズ性:** ファイルシステム・ネットワーク・ローカルツールに直接アクセス
 
 
 ---
@@ -772,7 +845,8 @@ style: |
 
 > *ローカル実行がプライバシーとオフライン対応を同時に解決する*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">ローカル vs クラウド LLM 比較</text>
   <rect x="30" y="55" width="340" height="155" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -790,11 +864,12 @@ style: |
   <text x="600" y="162" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">モデル品質: 最高水準</text>
   <text x="600" y="190" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">汎用・高品質タスクに</text>
 </svg>
-- - **オフライン耐性:** Gateway自体はLAN内で完結
-- 
+</div>
+
+- **オフライン耐性:** Gateway自体はLAN内で完結
 - **トレードオフ:**
-- - セットアップコスト（Docker / API Key管理）
-- - セキュリティ管理は自己責任
+- セットアップコスト（Docker / API Key管理）
+- セキュリティ管理は自己責任
 
 
 ---
@@ -832,7 +907,8 @@ services:
 
 > *統一インターフェースが異なる端末からの一貫したAI体験を提供*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">OpenClaw インターフェース全体図</text>
   <!-- Center: OpenClaw core -->
@@ -859,8 +935,10 @@ services:
   <text x="335" y="245" text-anchor="middle" fill="#ffffff" font-size="10">macOSアプリ</text>
   <line x1="380" y1="225" x2="400" y2="195" stroke="#f9a825" stroke-width="1.5"/>
 </svg>
+</div>
+
 - **対応インターフェース:**
-- 
+
 | インターフェース | 特徴 |
 |----------------|------|
 | WhatsApp | 最も普及、設定やや複雑 |
@@ -878,7 +956,8 @@ services:
 
 > *Markdownベースのメモリが可読性と永続性を同時に実現する*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Markdown as Truth 設計思想</text>
   <rect x="100" y="55" width="600" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -897,11 +976,12 @@ services:
   <line x1="400" y1="125" x2="367" y2="155" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
   <line x1="400" y1="125" x2="582" y2="155" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
 </svg>
+</div>
+
 - **コアコンセプト:**
-- - メモリ = `workspace/` 以下の **プレーンMarkdownファイル**
-- - AIモデルが「記憶」するのは、ディスクに書かれた内容だけ
-- - 人間が直接読み書き・バージョン管理できる
-- 
+- メモリ = `workspace/` 以下の **プレーンMarkdownファイル**
+- AIモデルが「記憶」するのは、ディスクに書かれた内容だけ
+- 人間が直接読み書き・バージョン管理できる
 
 
 ---
@@ -911,10 +991,9 @@ services:
 > *Markdownベースのメモリが可読性と永続性を同時に実現する*
 
 - **メリット:**
-- - 透明性: 何を覚えているかいつでも確認できる
-- - ポータビリティ: gitで管理・バックアップ容易
-- - 編集可能: 不要な記憶を手動削除できる
-- 
+- 透明性: 何を覚えているかいつでも確認できる
+- ポータビリティ: gitで管理・バックアップ容易
+- 編集可能: 不要な記憶を手動削除できる
 - **スキル `claw-roam`:** 複数マシン間でワークスペースを同期
 
 
@@ -922,7 +1001,8 @@ services:
 
 # メモリファイル構造
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">メモリファイル ディレクトリ構造</text>
   <rect x="80" y="50" width="640" height="170" rx="8" fill="#16213e" stroke="#444" stroke-width="1"/>
@@ -935,6 +1015,8 @@ services:
   <text x="130" y="192" fill="#aaa" font-size="11" font-family="monospace">└── conversations/</text>
   <text x="150" y="210" fill="#888" font-size="10" font-family="monospace">    └── YYYY-MM-DD.md    # 日次会話ログ</text>
 </svg>
+</div>
+
 ![w:850 center](assets/memory-structure.svg)
 
 
@@ -944,7 +1026,8 @@ services:
 
 > *検索精度がAIアシスタントの回答品質の上限を規定する*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">メモリファイル構造 (Markdown as Truth)</text>
   <!-- Directory tree visual -->
@@ -962,12 +1045,13 @@ services:
   <text x="380" y="201" fill="#f9a825" font-size="10">タスク状態</text>
   <text x="120" y="221" fill="#f9a825" font-size="10" font-family="monospace">    └── active.md</text>
 </svg>
+</div>
+
 - **2種類の検索エンジンを組み合わせ:**
-- 
 - **ベクター検索（セマンティック）:**
-- - SQLite + ベクター拡張で実現
-- - 意味的類似度でチャンクを取得（〜400トークン単位）
-- - 80トークンのオーバーラップで文脈連続性を確保
+- SQLite + ベクター拡張で実現
+- 意味的類似度でチャンクを取得（〜400トークン単位）
+- 80トークンのオーバーラップで文脈連続性を確保
 
 
 ---
@@ -976,11 +1060,9 @@ services:
 
 > *検索精度がAIアシスタントの回答品質の上限を規定する*
 
-- 
 - **FTS5（全文検索）:**
-- - 完全一致キーワードの高速検索
-- - ファイルパス・行番号付きで返却
-- 
+- 完全一致キーワードの高速検索
+- ファイルパス・行番号付きで返却
 - **ハイブリッド:** 両結果を関連度スコアでマージして返却
 
 
@@ -988,7 +1070,8 @@ services:
 
 # セマンティック検索の仕組み
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">セマンティック検索の仕組み</text>
   <!-- Input -->
@@ -1030,6 +1113,8 @@ services:
   <text x="644" y="102" text-anchor="middle" fill="#ffffff" font-size="12">ハイブリッドランク</text>
   <text x="644" y="120" text-anchor="middle" fill="#f9a825" font-size="10">Top-K 結果返却</text>
 </svg>
+</div>
+
 ![w:850 center](assets/semantic-search.svg)
 
 
@@ -1039,7 +1124,8 @@ services:
 
 > *プロバイダー選択がRAGの精度とコストのトレードオフを決める*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Embedding プロバイダー比較</text>
   <rect x="40" y="50" width="130" height="175" rx="6" fill="#16213e" stroke="#444" stroke-width="1"/>
@@ -1067,13 +1153,15 @@ services:
   <text x="602" y="165" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">無料(ローカル)</text>
   <text x="602" y="195" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">完全ローカル</text>
 </svg>
+</div>
+
 | プロバイダー | 精度 | コスト | オフライン |
 |-------------|------|--------|-----------|
 | OpenAI (text-embedding-3-large) | ★★★★★ | 有料 | ✗ |
 | Voyage AI (voyage-3) | ★★★★★ | 有料 | ✗ |
 | Google Gemini | ★★★★ | 有料 | ✗ |
 | ローカルモデル (GGUF) | ★★★ | 無料 | ✓ |
-- 
+
 - **フォールバック:** ローカル不可時はリモートへ自動切替え
 
 
@@ -1115,10 +1203,9 @@ services:
 > *スキルの組み合わせが無限のカスタマイズと機能拡張を可能にする*
 
 - **スキルとは:** OpenClawの機能を拡張するプラグインシステム
-- 
 - **特徴:**
-- - 各スキルは `SKILL.md` ファイルで定義（フロントマター + 説明）
-- - ランタイム要件（env vars / バイナリ）を宣言的に記述
+- 各スキルは `SKILL.md` ファイルで定義（フロントマター + 説明）
+- ランタイム要件（env vars / バイナリ）を宣言的に記述
 
 
 ---
@@ -1127,7 +1214,8 @@ services:
 
 > *スキルの組み合わせが無限のカスタマイズと機能拡張を可能にする*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">スキルシステムの概念</text>
   <!-- Skill as plugin analogy -->
@@ -1156,19 +1244,21 @@ services:
   <text x="705" y="205" text-anchor="middle" fill="#ffffff" font-size="9">スキル</text>
   <line x1="705" y1="165" x2="480" y2="130" stroke="#f9a825" stroke-width="1.5"/>
 </svg>
-- - チャットから `/skills install <skill-name>` で即インストール
-- 
+</div>
+
+- チャットから `/skills install <skill-name>` で即インストール
 - **スキルの種類:**
-- - **ツール型:** 特定APIを呼び出す（例: Google Calendar, Notion）
-- - **メタ型:** Agentの動作自体を変更（例: claw-progressive-memory）
-- - **ワークフロー型:** 複数ステップの自動化
+- **ツール型:** 特定APIを呼び出す（例: Google Calendar, Notion）
+- **メタ型:** Agentの動作自体を変更（例: claw-progressive-memory）
+- **ワークフロー型:** 複数ステップの自動化
 
 
 ---
 
 # SKILL.mdフロントマター構造
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">MCP: Model Context Protocol アーキテクチャ</text>
   <rect x="300" y="50" width="200" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1191,6 +1281,8 @@ services:
   <line x1="400" y1="105" x2="492" y2="155" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
   <line x1="400" y1="105" x2="677" y2="155" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
 </svg>
+</div>
+
 - **スキル定義ファイルの構造:**
 
 
@@ -1240,7 +1332,8 @@ tools:
 
 > *コアスキルのマスターが生産性向上の最短経路を提供する*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">ClawHub — スキルマーケットプレイス</text>
   <!-- Category grid -->
@@ -1264,6 +1357,8 @@ tools:
   <text x="400" y="168" text-anchor="middle" fill="#f9a825" font-size="28" font-weight="bold">200+ スキル公開中</text>
   <text x="400" y="200" text-anchor="middle" fill="#ffffff" font-size="12">毎週10+ 新スキル追加 · コミュニティ主導</text>
 </svg>
+</div>
+
 | スキル名 | 機能 |
 |---------|------|
 | `claw-progressive-memory` | メモリ管理メタスキル |
@@ -1282,7 +1377,8 @@ tools:
 
 > *サンドボックスが悪意あるツール実行からシステムを保護する*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">ツール実行 セキュリティモデル</text>
   <rect x="50" y="55" width="700" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1301,11 +1397,12 @@ tools:
   <polygon points="209,126 212,135 215,126" fill="#888"/>
   <polygon points="584,126 587,135 590,126" fill="#888"/>
 </svg>
+</div>
+
 - **サンドボックスの仕組み:**
-- - 各ツール呼び出しは分離された実行環境で動作
-- - ファイルシステムアクセスは `workspace/` 内に限定（デフォルト）
-- - ネットワークアクセスは設定で制限可能
-- 
+- 各ツール呼び出しは分離された実行環境で動作
+- ファイルシステムアクセスは `workspace/` 内に限定（デフォルト）
+- ネットワークアクセスは設定で制限可能
 
 
 ---
@@ -1315,10 +1412,9 @@ tools:
 > *サンドボックスが悪意あるツール実行からシステムを保護する*
 
 - **スキルの権限モデル:**
-- - SKILL.md で必要権限を事前宣言
-- - ユーザーがインストール時に明示的に承認
-- - 未宣言の権限は自動ブロック
-- 
+- SKILL.md で必要権限を事前宣言
+- ユーザーがインストール時に明示的に承認
+- 未宣言の権限は自動ブロック
 - ⚠️ **注意:** サードパーティスキルのレビューは不十分（ClawHavoc問題）
 
 
@@ -1326,7 +1422,8 @@ tools:
 
 # スキル開発フロー
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">スキル開発フロー</text>
   <!-- Steps -->
@@ -1367,6 +1464,8 @@ tools:
   <polygon points="48,130 42,142 54,142" fill="#f9a825" opacity="0.6"/>
   <text x="400" y="222" text-anchor="middle" fill="#f9a825" font-size="10" opacity="0.8">反復改善サイクル</text>
 </svg>
+</div>
+
 ![w:850 center](assets/skill-flow.svg)
 
 
@@ -1377,9 +1476,8 @@ tools:
 > *サブエージェント並列実行が複雑タスクの処理速度を劇的に向上させる*
 
 - **サブエージェントシステム:**
-- - メインエージェントから子エージェントを起動できる新機能
-- - チャットコマンドから決定論的に起動: `/subagents spawn <name>`
-- 
+- メインエージェントから子エージェントを起動できる新機能
+- チャットコマンドから決定論的に起動: `/subagents spawn <name>`
 - **ユースケース:**
 
 
@@ -1389,10 +1487,9 @@ tools:
 
 > *サブエージェント並列実行が複雑タスクの処理速度を劇的に向上させる*
 
-- - 長時間タスクの並列実行（調査 + 作業 + 監視）
-- - 専門化されたエージェント（コードレビュー専用 / リサーチ専用）
-- - 失敗時のフォールバックエージェント
-- 
+- 長時間タスクの並列実行（調査 + 作業 + 監視）
+- 専門化されたエージェント（コードレビュー専用 / リサーチ専用）
+- 失敗時のフォールバックエージェント
 - **技術的実装:** `anthropic-beta: context-1m-2025-08-07` ヘッダーで1Mコンテキスト有効化
 
 
@@ -1400,7 +1497,8 @@ tools:
 
 # 対応プラットフォーム全体像
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">/subagents spawn — 並列エージェント</text>
   <!-- Spawn diagram -->
@@ -1431,6 +1529,8 @@ tools:
   <!-- Result merge -->
   <text x="400" y="235" text-anchor="middle" fill="#f9a825" font-size="11">並列実行後、メインエージェントが結果を統合</text>
 </svg>
+</div>
+
 ![w:680 center](assets/platform-hub.svg)
 
 
@@ -1440,7 +1540,8 @@ tools:
 
 > *メッセージアプリ統合が外出先からのAIアシスタント活用を実現する*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw エージェントモード</text>
   <rect x="40" y="55" width="215" height="155" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1462,10 +1563,12 @@ tools:
   <text x="653" y="144" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">バックグラウンド処理</text>
   <text x="653" y="185" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">自動化向け</text>
 </svg>
+</div>
+
 - **Telegram（推奨・セットアップ容易）:**
-- - BotFather で Bot Token取得 → `TELEGRAM_BOT_TOKEN` に設定
-- - グループチャット・プライベートチャット両対応
-- - コマンド `/help` で機能一覧表示
+- BotFather で Bot Token取得 → `TELEGRAM_BOT_TOKEN` に設定
+- グループチャット・プライベートチャット両対応
+- コマンド `/help` で機能一覧表示
 
 
 ---
@@ -1474,11 +1577,10 @@ tools:
 
 > *メッセージアプリ統合が外出先からのAIアシスタント活用を実現する*
 
-- 
 - **WhatsApp（最も人気・設定複雑）:**
-- - WhatsApp Business APIまたはQRコードスキャン方式
-- - 公式API利用の場合はMeta承認が必要
-- - Baileys（非公式ライブラリ）を使う方法もあるが利用規約注意
+- WhatsApp Business APIまたはQRコードスキャン方式
+- 公式API利用の場合はMeta承認が必要
+- Baileys（非公式ライブラリ）を使う方法もあるが利用規約注意
 
 
 ---
@@ -1488,9 +1590,9 @@ tools:
 > *チームコラボツール統合がワークフロー内AIを標準化する*
 
 - **Slack（ビジネス用途）:**
-- - Slack Appを作成、Bot Tokenと Signing Secretを設定
-- - チャンネル・DM両方に応答可能
-- - ⚠️ **CVE-2026-24764:** Slackチャンネルのtopic/descriptionがプロンプトに混入する脆弱性あり
+- Slack Appを作成、Bot Tokenと Signing Secretを設定
+- チャンネル・DM両方に応答可能
+- ⚠️ **CVE-2026-24764:** Slackチャンネルのtopic/descriptionがプロンプトに混入する脆弱性あり
 
 
 ---
@@ -1499,11 +1601,10 @@ tools:
 
 > *チームコラボツール統合がワークフロー内AIを標準化する*
 
-- 
 - **Discord（開発者コミュニティ向け）:**
-- - Discord Developer Portalでアプリ作成
-- - サーバー全体またはDMで利用可能
-- - スラッシュコマンド対応
+- Discord Developer Portalでアプリ作成
+- サーバー全体またはDMで利用可能
+- スラッシュコマンド対応
 
 
 ---
@@ -1512,7 +1613,8 @@ tools:
 
 > *マルチUIが用途に応じた最適な操作体験を提供する*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw マルチエージェント協調</text>
   <rect x="300" y="45" width="200" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1535,11 +1637,12 @@ tools:
   <line x1="400" y1="100" x2="537" y2="150" stroke="#888" stroke-width="1.5"/>
   <line x1="400" y1="100" x2="702" y2="150" stroke="#888" stroke-width="1.5"/>
 </svg>
+</div>
+
 - **macOSネイティブアプリ:**
-- - メニューバー常駐でいつでもアクセス
-- - iMessage / macOS通知連携
-- - Apple Silicon最適化
-- 
+- メニューバー常駐でいつでもアクセス
+- iMessage / macOS通知連携
+- Apple Silicon最適化
 - **Web UI（ブラウザ管理画面）:**
 
 
@@ -1549,12 +1652,11 @@ tools:
 
 > *マルチUIが用途に応じた最適な操作体験を提供する*
 
-- - `http://localhost:3000` でアクセス
-- - スキル管理・メモリ閲覧・チャット
-- 
+- `http://localhost:3000` でアクセス
+- スキル管理・メモリ閲覧・チャット
 - **CLI:**
-- - `openclaw chat "タスク内容"` でスクリプト実行
-- - CI/CDパイプラインへの組み込み可能
+- `openclaw chat "タスク内容"` でスクリプト実行
+- CI/CDパイプラインへの組み込み可能
 
 
 ---
@@ -1589,7 +1691,8 @@ agent:
 
 > *シフトレフトセキュリティが脆弱性の修正コストを最小化*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">プロジェクト管理 統合フロー</text>
   <rect x="30" y="60" width="130" height="55" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -1619,11 +1722,12 @@ agent:
   <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">OpenClaw がすべてのツールの「頭脳」として機能</text>
   <text x="400" y="200" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">タスクを自律的に判断し、適切なツールを選択・実行</text>
 </svg>
+</div>
+
 - **AIエージェント特有のリスク要因:**
-- 
-- - **広い権限:** メール・ファイル・ブラウザ・APIに横断的にアクセス
-- - **外部コンテンツ処理:** ウェブ・メール・ドキュメントの内容をそのまま処理
-- - **自律実行:** ユーザー確認なしにアクションを起こせる
+- **広い権限:** メール・ファイル・ブラウザ・APIに横断的にアクセス
+- **外部コンテンツ処理:** ウェブ・メール・ドキュメントの内容をそのまま処理
+- **自律実行:** ユーザー確認なしにアクションを起こせる
 
 
 ---
@@ -1632,11 +1736,10 @@ agent:
 
 > *シフトレフトセキュリティが脆弱性の修正コストを最小化*
 
-- - **スキルの信頼:** サードパーティスキルをほぼ無審査で実行
-- 
+- **スキルの信頼:** サードパーティスキルをほぼ無審査で実行
 - **OpenClaw特有の問題:**
-- - 42,000件の無防備なインストールが2月初頭に発見
-- - Gatewayがデフォルトで外部からアクセス可能な状態
+- 42,000件の無防備なインストールが2月初頭に発見
+- Gatewayがデフォルトで外部からアクセス可能な状態
 
 
 ---
@@ -1646,10 +1749,9 @@ agent:
 > *RCE脆弱性が未パッチ環境でホスト完全制御を許す危険性*
 
 - **脆弱性の概要:**
-- - **種別:** Remote Code Execution（リモートコード実行）
-- - **CVSS スコア:** 8.8（Critical）
-- - **修正バージョン:** v2026.1.29
-- 
+- **種別:** Remote Code Execution（リモートコード実行）
+- **CVSS スコア:** 8.8（Critical）
+- **修正バージョン:** v2026.1.29
 - **原因:**
 
 
@@ -1659,19 +1761,19 @@ agent:
 
 > *RCE脆弱性が未パッチ環境でホスト完全制御を許す危険性*
 
-- - Control UIが `gatewayUrl` クエリパラメータを**検証せず**に使用
-- - ページロード時に自動接続するため、リンクをクリックするだけで発動
-- 
+- Control UIが `gatewayUrl` クエリパラメータを**検証せず**に使用
+- ページロード時に自動接続するため、リンクをクリックするだけで発動
 - **影響:**
-- - 攻撃者のサーバーにトークンが送信される
-- - 攻撃者がローカルGatewayに接続し、全機能を制御可能
+- 攻撃者のサーバーにトークンが送信される
+- 攻撃者がローカルGatewayに接続し、全機能を制御可能
 
 
 ---
 
 # RCE攻撃フロー図
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">CVE-2026-25253: RCE攻撃フロー</text>
   <!-- Attacker -->
@@ -1714,6 +1816,8 @@ agent:
   <!-- Mitigation -->
   <text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="12">対策: 入力検証強化 + スキル実行権限制限 + サンドボックス強化</text>
 </svg>
+</div>
+
 ![w:850 center](assets/rce-attack-flow.svg)
 
 
@@ -1723,7 +1827,8 @@ agent:
 
 > *チームコラボツール統合がワークフロー内AIを標準化する*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw セキュリティ多層防御</text>
   <rect x="80" y="50" width="640" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1733,10 +1838,11 @@ agent:
   <rect x="80" y="171" width="640" height="45" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
   <text x="400" y="196" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">Layer 3: データ暗号化 — メモリファイルのローカル暗号化</text>
 </svg>
+</div>
+
 - **脆弱性の概要:**
-- - **対象:** Slack統合を有効にしているOpenClaw
-- - **攻撃ベクター:** Slackチャンネルのtopic/description（攻撃者が変更可能）
-- 
+- **対象:** Slack統合を有効にしているOpenClaw
+- **攻撃ベクター:** Slackチャンネルのtopic/description（攻撃者が変更可能）
 - **攻撃シナリオ:**
 
 
@@ -1746,10 +1852,9 @@ agent:
 
 > *チームコラボツール統合がワークフロー内AIを標準化する*
 
-- 1. 攻撃者がSlackチャンネルの説明に悪意ある指示を埋め込む
-- 2. OpenClawがチャンネルメタデータをシステムプロンプトに取り込む
-- 3. 埋め込まれた指示が実行される → RCE
-- 
+1. 攻撃者がSlackチャンネルの説明に悪意ある指示を埋め込む
+2. OpenClawがチャンネルメタデータをシステムプロンプトに取り込む
+3. 埋め込まれた指示が実行される → RCE
 - **根本原因:** 信頼できるコンテキストと外部コンテンツを区別しない設計
 
 
@@ -1757,7 +1862,8 @@ agent:
 
 # 間接プロンプトインジェクションの仕組み
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">間接プロンプトインジェクション</text>
   <!-- User -->
@@ -1801,6 +1907,8 @@ agent:
 
   <text x="400" y="220" text-anchor="middle" fill="#f9a825" font-size="11">対策: コンテンツサニタイズ + 外部入力の信頼レベル区別</text>
 </svg>
+</div>
+
 ![w:850 center](assets/prompt-injection.svg)
 
 
@@ -1810,7 +1918,8 @@ agent:
 
 > *悪意あるスキルパッケージが信頼チェーン全体を汚染する*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">パフォーマンス: レイテンシ比較</text>
   <text x="70" y="60" fill="#aaa" font-size="11" font-family="sans-serif">レスポンスタイム (ms)</text>
@@ -1832,12 +1941,12 @@ agent:
   <text x="95" y="140" fill="#aaa" font-size="8" font-family="sans-serif">600</text>
   <text x="95" y="200" fill="#aaa" font-size="8" font-family="sans-serif">0</text>
 </svg>
+</div>
+
 - **ClawHavoc攻撃キャンペーンの概要（2026年2月発見）:**
-- 
-- - Koi Security研究者がClawHub全スキル（2,857件）を調査
-- - **341件（12%）が悪意あるスキル**と判定
-- - うち335件が単一の組織的キャンペーン（ClawHavoc）
-- 
+- Koi Security研究者がClawHub全スキル（2,857件）を調査
+- **341件（12%）が悪意あるスキル**と判定
+- うち335件が単一の組織的キャンペーン（ClawHavoc）
 
 
 ---
@@ -1846,7 +1955,8 @@ agent:
 
 > *悪意あるスキルパッケージが信頼チェーン全体を汚染する*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">ClawHavoc サプライチェーン攻撃</text>
   <!-- Supply chain attack flow -->
@@ -1874,11 +1984,12 @@ agent:
   <!-- Mitigation -->
   <text x="400" y="195" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">対策: スキル署名検証 + 公式レビュープロセス + 自動更新を無効化</text>
 </svg>
+</div>
+
 - **攻撃手法:**
-- - 正規スキルに見せかけたデータ窃取コードを埋め込み
-- - macOS/Windowsの両プラットフォームをターゲット
-- - インストール後にバックグラウンドで動作
-- 
+- 正規スキルに見せかけたデータ窃取コードを埋め込み
+- macOS/Windowsの両プラットフォームをターゲット
+- インストール後にバックグラウンドで動作
 - **問題:** ClawHubのスキルレビュー体制が不十分（CiscoのAIセキュリティ研究も指摘）
 
 
@@ -1888,7 +1999,8 @@ agent:
 
 > *政府機関の公式警告が脅威の深刻さと普及度を示している*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw コスト最適化フロー</text>
   <rect x="30" y="60" width="155" height="70" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -1916,10 +2028,11 @@ agent:
   <text x="400" y="195" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">平均コスト削減: 70〜90%</text>
   <text x="400" y="212" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">ユーザー体感速度も大幅向上</text>
 </svg>
+</div>
+
 - **ベルギーCCB（サイバーセキュリティセンター）:**
-- - 2026年2月2日、CVE-2026-25253について**緊急アドバイザリ**発行
-- - 「クリティカル」分類、即座のアップデートを勧告
-- 
+- 2026年2月2日、CVE-2026-25253について**緊急アドバイザリ**発行
+- 「クリティカル」分類、即座のアップデートを勧告
 - **Cisco AIセキュリティ研究チーム:**
 
 
@@ -1929,12 +2042,11 @@ agent:
 
 > *政府機関の公式警告が脅威の深刻さと普及度を示している*
 
-- - サードパーティスキルによるデータ窃取とプロンプトインジェクションを実証
-- - スキルリポジトリの審査体制強化を求める
-- 
+- サードパーティスキルによるデータ窃取とプロンプトインジェクションを実証
+- スキルリポジトリの審査体制強化を求める
 - **Zenity研究者:**
-- - 間接プロンプトインジェクションによる永続的バックドア化を実証
-- - ソフトウェアの脆弱性なしに攻撃可能
+- 間接プロンプトインジェクションによる永続的バックドア化を実証
+- ソフトウェアの脆弱性なしに攻撃可能
 
 
 ---
@@ -1944,11 +2056,10 @@ agent:
 > *最小権限とスキル検証がOpenClaw運用の必須セキュリティ対策*
 
 - **必須対応（今すぐ）:**
-- - v2026.1.29以降に**必ずアップデート**（CVE-2026-25253修正済）
-- - Gatewayをローカルネットワーク/VPNの外に晒さない
-- 
+- v2026.1.29以降に**必ずアップデート**（CVE-2026-25253修正済）
+- Gatewayをローカルネットワーク/VPNの外に晒さない
 - **推奨設定:**
-- - スキルは公式・信頼できる発行者のもののみインストール
+- スキルは公式・信頼できる発行者のもののみインストール
 
 
 ---
@@ -1957,19 +2068,19 @@ agent:
 
 > *最小権限とスキル検証がOpenClaw運用の必須セキュリティ対策*
 
-- - `GATEWAY_EXPOSED=false` で外部アクセスを無効化
-- - 定期的に `workspace/` の内容をレビュー
-- 
+- `GATEWAY_EXPOSED=false` で外部アクセスを無効化
+- 定期的に `workspace/` の内容をレビュー
 - **上級者向け:**
-- - Dockerネットワーク分離でツール実行をサンドボックス化
-- - Slack統合利用時はチャンネル権限を厳格に管理
+- Dockerネットワーク分離でツール実行をサンドボックス化
+- Slack統合利用時はチャンネル権限を厳格に管理
 
 
 ---
 
 # ユースケース全体マップ
 
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="320" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">OpenClaw ユースケース全体マップ</text>
   <!-- Center -->
@@ -2007,6 +2118,8 @@ agent:
   <text x="705" y="308" text-anchor="middle" fill="#ffffff" font-size="10">並列タスク実行</text>
   <line x1="630" y1="295" x2="465" y2="200" stroke="#f9a825" stroke-width="1.5"/>
 </svg>
+</div>
+
 ![w:750 center](assets/usecase-map.svg)
 
 
@@ -2016,7 +2129,8 @@ agent:
 
 > *日常タスクの自動化が週10時間以上の生産性向上を実現する*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw まとめ</text>
   <rect x="40" y="55" width="215" height="155" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -2035,12 +2149,12 @@ agent:
   <text x="653" y="126" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">最大90%削減</text>
   <text x="653" y="185" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ROI 最大化</text>
 </svg>
+</div>
+
 - **最もよく使われるユースケース:**
-- 
 - **メール自動化:**
-- - メールの要約・分類・返信下書き自動生成
-- - 「重要なメールが来たらWhatsAppに通知」
-- 
+- メールの要約・分類・返信下書き自動生成
+- 「重要なメールが来たらWhatsAppに通知」
 
 
 ---
@@ -2050,12 +2164,11 @@ agent:
 > *日常タスクの自動化が週10時間以上の生産性向上を実現する*
 
 - **カレンダー管理:**
-- - 自然言語で予定作成: 「来週月曜の午後2時に会議を入れて」
-- - 会議前リマインダーの自動送信
-- 
+- 自然言語で予定作成: 「来週月曜の午後2時に会議を入れて」
+- 会議前リマインダーの自動送信
 - **タスク・情報整理:**
-- - Notion/Todoistとの連携
-- - 読んだ記事の自動要約・メモリへの保存
+- Notion/Todoistとの連携
+- 読んだ記事の自動要約・メモリへの保存
 
 
 ---
@@ -2065,11 +2178,9 @@ agent:
 > *コーディング・デバッグ・レビューの自動化が開発速度を倍増させる*
 
 - **エンジニアが活用している使い方:**
-- 
 - **コード生成・レビュー:**
-- - GitHubのIssueをAgentに渡してPR下書き自動生成
-- - 「このエラーを調べて修正案を出して」
-- 
+- GitHubのIssueをAgentに渡してPR下書き自動生成
+- 「このエラーを調べて修正案を出して」
 
 
 ---
@@ -2078,7 +2189,8 @@ agent:
 
 > *コーディング・デバッグ・レビューの自動化が開発速度を倍増させる*
 
-- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="220" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">インストール フロー</text>
   <rect x="30" y="55" width="155" height="65" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -2106,9 +2218,11 @@ agent:
   <rect x="150" y="155" width="500" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
   <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Docker を使えばワンコマンドで完了: docker compose up</text>
 </svg>
+</div>
+
 - **CI/CD連携:**
-- - デプロイ完了/失敗をSlackやTelegramに通知
-- - テスト失敗時の自動解析・報告
+- デプロイ完了/失敗をSlackやTelegramに通知
+- テスト失敗時の自動解析・報告
 
 
 ---
@@ -2117,10 +2231,9 @@ agent:
 
 > *コーディング・デバッグ・レビューの自動化が開発速度を倍増させる*
 
-- 
 - **ドキュメント:**
-- - コード変更から自動でChangelog生成
-- - API仕様書の自動更新
+- コード変更から自動でChangelog生成
+- API仕様書の自動更新
 
 
 ---
@@ -2130,10 +2243,9 @@ agent:
 > *反復業務の自動化が人的資源を高付加価値作業に集中させる*
 
 - **ビジネス自動化:**
-- - CRMデータの自動更新・レポート生成
-- - 請求書処理・経費精算の半自動化
-- - 顧客問い合わせの分類・エスカレーション
-- 
+- CRMデータの自動更新・レポート生成
+- 請求書処理・経費精算の半自動化
+- 顧客問い合わせの分類・エスカレーション
 
 
 ---
@@ -2143,10 +2255,9 @@ agent:
 > *反復業務の自動化が人的資源を高付加価値作業に集中させる*
 
 - **リサーチ支援:**
-- - Web検索 → 情報収集 → 要約 → メモリ保存を一気通貫
-- - 競合他社・市場動向の定期モニタリング
-- - 学術論文の要約・整理
-- 
+- Web検索 → 情報収集 → 要約 → メモリ保存を一気通貫
+- 競合他社・市場動向の定期モニタリング
+- 学術論文の要約・整理
 - **向いているユーザー:** セットアップを厭わない技術者・エンジニア
 
 
@@ -2156,11 +2267,11 @@ agent:
 
 > *実証された活用事例が導入の費用対効果を確実に示している*
 
-- 1. メールの自動要約・分類・返信下書き
-- 2. Webリサーチ → 要約レポート作成
-- 3. GitHub Issue / PR 管理自動化
-- 4. カレンダー管理（自然言語で予定操作）
-- 5. リマインダー・定期通知の設定
+1. メールの自動要約・分類・返信下書き
+2. Webリサーチ → 要約レポート作成
+3. GitHub Issue / PR 管理自動化
+4. カレンダー管理（自然言語で予定操作）
+5. リマインダー・定期通知の設定
 
 
 ---
@@ -2169,11 +2280,11 @@ agent:
 
 > *実証された活用事例が導入の費用対効果を確実に示している*
 
-- 6. ファイル整理・ドキュメント検索
-- 7. SNSモニタリング・競合調査
-- 8. 家計・支出トラッキング
-- 9. IoTデバイス制御・スマートホーム
-- 10. コード生成・デバッグ支援
+6. ファイル整理・ドキュメント検索
+7. SNSモニタリング・競合調査
+8. 家計・支出トラッキング
+9. IoTデバイス制御・スマートホーム
+10. コード生成・デバッグ支援
 
 
 ---
@@ -2182,7 +2293,8 @@ agent:
 
 > *最新機能の活用が競合との生産性格差を拡大し続けている*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">v2026.2.17 新機能ハイライト</text>
   <!-- Feature badges -->
@@ -2206,12 +2318,13 @@ agent:
   <text x="525" y="192" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">新スキルAPI v2</text>
   <text x="525" y="210" text-anchor="middle" fill="#ffffff" font-size="10">型安全 + バージョニング</text>
 </svg>
+</div>
+
 - **主要アップデート:**
-- 
 - **1. 1Mトークンコンテキスト対応（Anthropic）:**
-- - Claude Opus 4.6 / Sonnet 4.6 で利用可能
-- - `params.context1m: true` のみで有効化
-- - 内部: `anthropic-beta: context-1m-2025-08-07` ヘッダー自動付与
+- Claude Opus 4.6 / Sonnet 4.6 で利用可能
+- `params.context1m: true` のみで有効化
+- 内部: `anthropic-beta: context-1m-2025-08-07` ヘッダー自動付与
 
 
 ---
@@ -2220,7 +2333,8 @@ agent:
 
 > *最新機能の活用が競合との生産性格差を拡大し続けている*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">コントリビューション ワークフロー</text>
   <rect x="50" y="60" width="130" height="55" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -2250,9 +2364,10 @@ agent:
   <text x="400" y="180" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">コントリビューター向けガイド</text>
   <text x="400" y="200" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">docs/CONTRIBUTING.md — テスト通過・型エラーゼロが必須</text>
 </svg>
-- 
+</div>
+
 - **2. `/subagents spawn` コマンド:**
-- - チャットから決定論的にサブエージェントを起動
+- チャットから決定論的にサブエージェントを起動
 
 
 ---
@@ -2261,10 +2376,9 @@ agent:
 
 > *最新機能の活用が競合との生産性格差を拡大し続けている*
 
-- - 並列処理・専門化エージェントが実現可能
-- 
+- 並列処理・専門化エージェントが実現可能
 - **3. その他:**
-- - Gatewayのパフォーマンス改善（レイテンシ25%削減）
+- Gatewayのパフォーマンス改善（レイテンシ25%削減）
 
 
 ---
@@ -2274,11 +2388,9 @@ agent:
 > *生成AI統合が開発者の生産性を根本的に変革する*
 
 - **Steinbergerのミッション（OpenAI参画後）:**
-- 
 - *"Build an agent that even my mum can use"*
-- 
 - **現状の課題（技術者以外には難しい）:**
-- - Docker / API Key 管理が必要
+- Docker / API Key 管理が必要
 
 
 ---
@@ -2287,7 +2399,8 @@ agent:
 
 > *生成AI統合が開発者の生産性を根本的に変革する*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">OpenAI傘下での「誰でもAIエージェント」ビジョン</text>
   <!-- Vision pyramid -->
@@ -2303,9 +2416,10 @@ agent:
   <!-- Arrow from bottom -->
   <text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11">目標: 世界80億人がAIエージェントを持てる世界</text>
 </svg>
-- - セキュリティ設定は自己責任
-- - トラブルシューティングにはログ解読が必要
-- 
+</div>
+
+- セキュリティ設定は自己責任
+- トラブルシューティングにはログ解読が必要
 
 
 ---
@@ -2315,9 +2429,9 @@ agent:
 > *生成AI統合が開発者の生産性を根本的に変革する*
 
 - **OpenAIとの組み合わせで何が変わるか:**
-- - フロンティアモデルへの直接アクセス
-- - コンシューマー向けUXの実現
-- - フォールトトレラントな本番運用インフラ
+- フロンティアモデルへの直接アクセス
+- コンシューマー向けUXの実現
+- フォールトトレラントな本番運用インフラ
 
 
 ---
@@ -2326,7 +2440,8 @@ agent:
 
 > *OSS活用が開発速度を高めライセンスコスト削減を実現する*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">OpenClaw コミュニティ</text>
   <circle cx="400" cy="120" r="45" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -2349,11 +2464,12 @@ agent:
   <text x="640" y="203" text-anchor="middle" fill="#888" font-size="9" font-family="sans-serif">最新情報</text>
   <line x1="608" y1="178" x2="442" y2="140" stroke="#888" stroke-width="1"/>
 </svg>
+</div>
+
 - **移行の構造:**
-- - OpenClawプロジェクト → 独立財団へ
-- - OpenAI → 金融スポンサーとして参画（コントロールなし）
-- - コミュニティガバナンスを維持
-- 
+- OpenClawプロジェクト → 独立財団へ
+- OpenAI → 金融スポンサーとして参画（コントロールなし）
+- コミュニティガバナンスを維持
 - **開発者へのインパクト:**
 
 
@@ -2363,20 +2479,20 @@ agent:
 
 > *OSS活用が開発速度を高めライセンスコスト削減を実現する*
 
-- - ライセンスはオープンソースのまま維持
-- - コントリビュートは引き続き歓迎
-- - ロードマップの透明性が高まる見込み
-- 
+- ライセンスはオープンソースのまま維持
+- コントリビュートは引き続き歓迎
+- ロードマップの透明性が高まる見込み
 - **懸念点:**
-- - OpenAIの影響力が間接的に及ぶ可能性
-- - コミュニティの自律性が保たれるかは要観察
+- OpenAIの影響力が間接的に及ぶ可能性
+- コミュニティの自律性が保たれるかは要観察
 
 
 ---
 
 # OpenClawが示すAIエージェントの未来
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">AIエージェントの進化ロードマップ</text>
   <!-- Timeline phases -->
@@ -2405,6 +2521,8 @@ agent:
 
   <text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="12">OpenClawは「誰でも使えるエージェント」時代の先駆け</text>
 </svg>
+</div>
+
 ![w:850 center](assets/future-vision.svg)
 
 
@@ -2412,7 +2530,8 @@ agent:
 
 # まとめ（1/2）
 
-- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="220" fill="#1a1a2e"/>
   <text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif">OpenClaw — Q&amp;A</text>
   <rect x="60" y="65" width="310" height="130" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2428,11 +2547,11 @@ agent:
   <text x="585" y="155" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">Discord に参加</text>
   <text x="585" y="173" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">PR / Issue 歓迎!</text>
 </svg>
+</div>
+
 - **OpenClawの3つの本質:**
-- 
 - **① AIはインフラである**
-- - 新しいアプリを使うのではなく、既存ツールにAIを埋め込む時代へ
-- 
+- 新しいアプリを使うのではなく、既存ツールにAIを埋め込む時代へ
 
 
 ---
@@ -2442,11 +2561,10 @@ agent:
 > *60日★140K→買収の爆発力と設計段階からのセキュリティ組み込みが教訓*
 
 - **② オープンソースの爆発力**
-- - 60日で★140K → OpenAI買収という異例の成長
-- 
+- 60日で★140K → OpenAI買収という異例の成長
 - **③ セキュリティは後付けできない**
-- - エージェントの広い権限 × 外部コンテンツ処理 = 巨大な攻撃面
-- - 設計段階からセキュリティを組み込む必要性
+- エージェントの広い権限 × 外部コンテンツ処理 = 巨大な攻撃面
+- 設計段階からセキュリティを組み込む必要性
 
 
 ---
@@ -2456,10 +2574,9 @@ agent:
 > *GitHub・ドキュメント・ClawHubとCVE情報の公式リソースを整備*
 
 - **公式リソース:**
-- - [OpenClaw GitHub](https://github.com/openclaw/openclaw)
-- - [OpenClaw ドキュメント](https://docs.openclaw.ai)
-- - [ClawHub スキルディレクトリ](https://github.com/openclaw/clawhub)
-- 
+- [OpenClaw GitHub](https://github.com/openclaw/openclaw)
+- [OpenClaw ドキュメント](https://docs.openclaw.ai)
+- [ClawHub スキルディレクトリ](https://github.com/openclaw/clawhub)
 - **セキュリティ情報:**
 
 
@@ -2469,10 +2586,9 @@ agent:
 
 > *CVE詳細・Giskard分析・アーキテクチャ解説・買収記事の参考情報*
 
-- - [CVE-2026-25253](https://advisories.gitlab.com/pkg/npm/openclaw/CVE-2026-24764/)
-- - [OpenClaw security issues | Giskard](https://www.giskard.ai/knowledge/openclaw-security-vulnerabilities-include-data-leakage-and-prompt-injection-risks)
-- 
+- [CVE-2026-25253](https://advisories.gitlab.com/pkg/npm/openclaw/CVE-2026-24764/)
+- [OpenClaw security issues | Giskard](https://www.giskard.ai/knowledge/openclaw-security-vulnerabilities-include-data-leakage-and-prompt-injection-risks)
 - **解説記事:**
-- - [OpenClaw Architecture | Substack](https://ppaolo.substack.com/p/openclaw-system-architecture-overview)
-- - [OpenAI Acquires OpenClaw | Leanware](https://www.leanware.co/insights/openai-openclaw-acquisition)
+- [OpenClaw Architecture | Substack](https://ppaolo.substack.com/p/openclaw-system-architecture-overview)
+- [OpenAI Acquires OpenClaw | Leanware](https://www.leanware.co/insights/openai-openclaw-acquisition)
 

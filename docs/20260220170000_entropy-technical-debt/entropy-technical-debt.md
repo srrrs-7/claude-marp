@@ -7,41 +7,76 @@ paginate: true
 header: "エントロピーは技術的負債と同じ法則に従う — 熱力学第二法則でコードを語る"
 footer: "© 2026 — Entropy & Technical Debt"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,10 +117,11 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # エントロピーは技術的負債と同じ法則に従う
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">エントロピー蓄積：時間とともに増大する無秩序</text>
   <!-- Axes -->
@@ -110,8 +146,9 @@ style: |
   <text x="370" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">成長期</text>
   <text x="595" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">レガシー化</text>
 </svg>
+</div>
+
 - 熱力学第二法則でコードを語る
-- 
 - 対象：テックリード・アーキテクト
 - 形式：ワークショップ 90分
 
@@ -122,7 +159,8 @@ style: |
 
 > *エントロピー増大則がコード劣化の必然性を説明する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">技術的負債：複利で増大するコスト</text>
   <!-- Axes -->
@@ -146,10 +184,11 @@ style: |
   <text x="70" y="200" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">中</text>
   <text x="70" y="80" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">高</text>
 </svg>
+</div>
+
 - **誰も「腐らせよう」とは思っていない**
-- - 丁寧に書いたはずのコードがなぜ数年で手をつけられなくなるのか
-- - 技術的負債は「悪い開発者」のせいなのか？
-- 
+- 丁寧に書いたはずのコードがなぜ数年で手をつけられなくなるのか
+- 技術的負債は「悪い開発者」のせいなのか？
 - **このワークショップの問い**
 
 
@@ -159,7 +198,8 @@ style: |
 
 > *エントロピー増大則がコード劣化の必然性を説明する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">リファクタリングサイクル</text>
   <!-- Center circle -->
@@ -197,12 +237,13 @@ style: |
   <line x1="190" y1="158" x2="312" y2="107" stroke="#ffffff" stroke-width="2"/>
   <polygon points="312,107 299,112 302,97" fill="#ffffff"/>
 </svg>
-- - コードの劣化は **物理法則** と同じメカニズムで動いているのではないか？
-- - そうだとすれば、どう「抵抗」すればよいか？
-- 
+</div>
+
+- コードの劣化は **物理法則** と同じメカニズムで動いているのではないか？
+- そうだとすれば、どう「抵抗」すればよいか？
 - **ゴール**
-- - エントロピーと技術的負債を統一フレームで理解する
-- - 計測・隔離・エネルギー投入の3戦略を身につける
+- エントロピーと技術的負債を統一フレームで理解する
+- 計測・隔離・エネルギー投入の3戦略を身につける
 
 
 ---
@@ -211,7 +252,8 @@ style: |
 
 > *8章構成でエントロピー理論から実践的負債管理戦略まで体系化する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コード品質劣化タイムライン</text>
   <!-- Timeline axis -->
@@ -250,6 +292,8 @@ style: |
   <text x="400" y="280" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">技術的負債は静かに・確実に蓄積する</text>
   <text x="400" y="305" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">放置すればするほど返済コストは増大する</text>
 </svg>
+</div>
+
 - **Part 1** — 熱力学第二法則とエントロピー（理論基盤）
 - **Part 2** — 技術的負債とエントロピーの対応関係
 - **Part 3** — 技術的負債の計測・定量化
@@ -262,7 +306,8 @@ style: |
 
 > *Part5組織パターン比較・Part6まとめ・演習の3部構成*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>
   <!-- Left box: Order -->
@@ -296,18 +341,20 @@ style: |
   <!-- Bottom note -->
   <text x="400" y="360" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">エネルギー（努力）を投入しなければ、秩序は維持できない</text>
 </svg>
+</div>
+
 - **Part 5** — 組織・プロセス・パターン比較事例
 - **Part 6** — まとめ・Q&A
-- 
 - 演習タイム: Part 4に組み込み（自システムのエントロピーマップ）
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 1: 熱力学第二法則とエントロピー
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コードクリーンアップ：Before / After</text>
   <!-- Before panel -->
@@ -350,6 +397,8 @@ style: |
   <line x1="365" y1="205" x2="435" y2="205" stroke="#f9a825" stroke-width="3"/>
   <polygon points="435,205 419,198 419,212" fill="#f9a825"/>
 </svg>
+</div>
+
 - 物理学の原理からソフトウェアの本質を読み解く
 
 
@@ -359,7 +408,8 @@ style: |
 
 > *孤立系では無秩序は自然に増大し元には戻らない*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">テストカバレッジと技術的負債の相関</text>
   <!-- Axes -->
@@ -403,9 +453,10 @@ style: |
   <rect x="590" y="280" width="120" height="30" rx="5" fill="#4caf50" fill-opacity="0.15"/>
   <text x="650" y="300" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">低負債ゾーン</text>
 </svg>
+</div>
+
 - **第一法則（エネルギー保存）**: エネルギーは生まれも消えもしない
 - **第二法則（エントロピー増大）**: 孤立系のエントロピーは増大し続ける
-- 
 - **直感的な意味**
 
 
@@ -415,7 +466,8 @@ style: |
 
 > *孤立系では無秩序は自然に増大し元には戻らない*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">クリーンアーキテクチャとエントロピーゾーン</text>
   <!-- Concentric circles representing layers -->
@@ -444,10 +496,11 @@ style: |
   <!-- Rule -->
   <text x="400" y="370" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">依存は内側へ。エントロピーは外側に閉じ込める。</text>
 </svg>
-- - 散らかった部屋は放置すれば「勝手に」整理整頓されない
-- - 熱は冷たい方向へ流れる（逆は起きない）
-- - 割れたガラスは自然に元に戻らない
-- 
+</div>
+
+- 散らかった部屋は放置すれば「勝手に」整理整頓されない
+- 熱は冷たい方向へ流れる（逆は起きない）
+- 割れたガラスは自然に元に戻らない
 - **核心**: 「無秩序の方向」へは自然に進む。秩序を作るにはエネルギーが必要
 
 
@@ -457,7 +510,8 @@ style: |
 
 > *取りうる状態数が多いほど無秩序度が高い定義*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">エントロピー蓄積：時間とともに増大する無秩序</text>
   <!-- Axes -->
@@ -482,11 +536,12 @@ style: |
   <text x="370" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">成長期</text>
   <text x="595" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">レガシー化</text>
 </svg>
+</div>
+
 - **ボルツマンの式**: S = k_B × ln(Ω)
-- - S：エントロピー（無秩序の度合い）
-- - k_B：ボルツマン定数（1.38 × 10⁻²³ J/K）
-- - Ω：マクロ状態を実現できるミクロ状態の数
-- 
+- S：エントロピー（無秩序の度合い）
+- k_B：ボルツマン定数（1.38 × 10⁻²³ J/K）
+- Ω：マクロ状態を実現できるミクロ状態の数
 
 
 ---
@@ -495,7 +550,8 @@ style: |
 
 > *取りうる状態数が多いほど無秩序度が高い定義*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">技術的負債：複利で増大するコスト</text>
   <!-- Axes -->
@@ -519,11 +575,12 @@ style: |
   <text x="70" y="200" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">中</text>
   <text x="70" y="80" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">高</text>
 </svg>
+</div>
+
 - **ソフトウェアへのアナロジー**
-- - Ω = 同じ「機能を満たす」コードの書き方のバリエーション数
-- - 正しく動くコードの書き方は無数にある → Ω は指数的に大きい
-- - 「読みやすく・変更しやすいコード」の状態数は少ない → エントロピーが低い
-- 
+- Ω = 同じ「機能を満たす」コードの書き方のバリエーション数
+- 正しく動くコードの書き方は無数にある → Ω は指数的に大きい
+- 「読みやすく・変更しやすいコード」の状態数は少ない → エントロピーが低い
 - **結論**: 何もしなければコードは「より多くの書き方が存在する」方向——すなわち混沌へ向かう
 
 
@@ -533,7 +590,8 @@ style: |
 
 > *能動的介入なくコードベースは必ず複雑化していく*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">リファクタリングサイクル</text>
   <!-- Center circle -->
@@ -571,10 +629,11 @@ style: |
   <line x1="190" y1="158" x2="312" y2="107" stroke="#ffffff" stroke-width="2"/>
   <polygon points="312,107 299,112 302,97" fill="#ffffff"/>
 </svg>
+</div>
+
 - **孤立系（Isolated System）の定義**
-- - 外部とエネルギーも物質もやり取りしない系
-- - 第二法則：孤立系のエントロピーは ΔS ≥ 0 で単調増加
-- 
+- 外部とエネルギーも物質もやり取りしない系
+- 第二法則：孤立系のエントロピーは ΔS ≥ 0 で単調増加
 - **開放系（Open System）ならば**
 
 
@@ -584,7 +643,8 @@ style: |
 
 > *能動的介入なくコードベースは必ず複雑化していく*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コード品質劣化タイムライン</text>
   <!-- Timeline axis -->
@@ -623,12 +683,13 @@ style: |
   <text x="400" y="280" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">技術的負債は静かに・確実に蓄積する</text>
   <text x="400" y="305" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">放置すればするほど返済コストは増大する</text>
 </svg>
-- - 外部からエネルギーを注入することで局所的に秩序を作れる
-- - 生命体・都市・企業はすべて開放系として秩序を維持している
-- 
+</div>
+
+- 外部からエネルギーを注入することで局所的に秩序を作れる
+- 生命体・都市・企業はすべて開放系として秩序を維持している
 - **問い：あなたのコードベースはどちら？**
-- - 誰も触らないコードは孤立系に近づく → エントロピー増大
-- - リファクタリング＝外部エネルギー（開発者の労力）の注入
+- 誰も触らないコードは孤立系に近づく → エントロピー増大
+- リファクタリング＝外部エネルギー（開発者の労力）の注入
 
 
 ---
@@ -637,7 +698,8 @@ style: |
 
 > *情報の不確実性がコード可読性の逆指標になる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>
   <!-- Left box: Order -->
@@ -671,11 +733,12 @@ style: |
   <!-- Bottom note -->
   <text x="400" y="360" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">エネルギー（努力）を投入しなければ、秩序は維持できない</text>
 </svg>
+</div>
+
 - **シャノンのエントロピー（1948年）**
 - H(X) = -Σ p(x) × log₂ p(x)
-- 
-- - 情報の「不確実性」または「乱雑さ」を定量化
-- - 予測可能なメッセージ → H = 0（秩序）
+- 情報の「不確実性」または「乱雑さ」を定量化
+- 予測可能なメッセージ → H = 0（秩序）
 
 
 ---
@@ -684,7 +747,8 @@ style: |
 
 > *情報の不確実性がコード可読性の逆指標になる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コードクリーンアップ：Before / After</text>
   <!-- Before panel -->
@@ -727,12 +791,13 @@ style: |
   <line x1="365" y1="205" x2="435" y2="205" stroke="#f9a825" stroke-width="3"/>
   <polygon points="435,205 419,198 419,212" fill="#f9a825"/>
 </svg>
-- - 完全にランダムなメッセージ → H = log₂ n（最大）
-- 
+</div>
+
+- 完全にランダムなメッセージ → H = log₂ n（最大）
 - **コードへの対応**
-- - 命名の一貫性・パターンの予測可能性 → 情報エントロピーが低い
-- - 命名が不統一・処理が散在 → 読む側が次の行を予測できない → H が高い
-- - レビュアーの認知負荷 = コードの情報エントロピーに比例
+- 命名の一貫性・パターンの予測可能性 → 情報エントロピーが低い
+- 命名が不統一・処理が散在 → 読む側が次の行を予測できない → H が高い
+- レビュアーの認知負荷 = コードの情報エントロピーに比例
 
 
 ---
@@ -741,7 +806,8 @@ style: |
 
 > *チームの知識注入がなければコードは孤立系に近づく*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">テストカバレッジと技術的負債の相関</text>
   <!-- Axes -->
@@ -785,10 +851,11 @@ style: |
   <rect x="590" y="280" width="120" height="30" rx="5" fill="#4caf50" fill-opacity="0.15"/>
   <text x="650" y="300" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">低負債ゾーン</text>
 </svg>
+</div>
+
 - **物理学では孤立系は理想化モデル**
-- - 現実には完全な孤立系は存在しない
-- - ただし「ほぼ孤立」になると法則は強く働く
-- 
+- 現実には完全な孤立系は存在しない
+- ただし「ほぼ孤立」になると法則は強く働く
 - **コードベースの「孤立度」を決める要因**
 
 
@@ -798,7 +865,8 @@ style: |
 
 > *チームの知識注入がなければコードは孤立系に近づく*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">クリーンアーキテクチャとエントロピーゾーン</text>
   <!-- Concentric circles representing layers -->
@@ -827,11 +895,12 @@ style: |
   <!-- Rule -->
   <text x="400" y="370" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">依存は内側へ。エントロピーは外側に閉じ込める。</text>
 </svg>
-- - 開発者の入れ替わり（知識の流出）
-- - テストの欠如（変更コストが高く触れない）
-- - ドキュメントの欠如（意図が失われる）
-- - 依存関係の複雑化（変更の影響が見えない）
-- 
+</div>
+
+- 開発者の入れ替わり（知識の流出）
+- テストの欠如（変更コストが高く触れない）
+- ドキュメントの欠如（意図が失われる）
+- 依存関係の複雑化（変更の影響が見えない）
 - **最も危険なシナリオ**: 「動いているから触るな」というレガシーコード → 完全な孤立系
 
 
@@ -841,7 +910,8 @@ style: |
 
 > *分岐数×変数数がコードの可能状態数を指数的に増やす*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">エントロピー蓄積：時間とともに増大する無秩序</text>
   <!-- Axes -->
@@ -866,11 +936,12 @@ style: |
   <text x="370" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">成長期</text>
   <text x="595" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">レガシー化</text>
 </svg>
+</div>
+
 - **ボルツマン的視点でコードを見る**
-- 
 - 同じ「ユーザーを取得する」処理に何通りの書き方があるか？
-- - 変数名のバリエーション: user / u / usr / userData / userObj / ...（無数）
-- - エラー処理の場所: 呼び出し元 / 関数内 / グローバル / 混在 ...
+- 変数名のバリエーション: user / u / usr / userData / userObj / ...（無数）
+- エラー処理の場所: 呼び出し元 / 関数内 / グローバル / 混在 ...
 
 
 ---
@@ -879,7 +950,8 @@ style: |
 
 > *分岐数×変数数がコードの可能状態数を指数的に増やす*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">技術的負債：複利で増大するコスト</text>
   <!-- Axes -->
@@ -903,11 +975,11 @@ style: |
   <text x="70" y="200" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">中</text>
   <text x="70" y="80" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">高</text>
 </svg>
-- - 副作用の有無: 純粋関数 / DBアクセス内包 / キャッシュ参照 ...
-- - 型の表現: 具体型 / any / unknown / Union型 / アサーション ...
-- 
+</div>
+
+- 副作用の有無: 純粋関数 / DBアクセス内包 / キャッシュ参照 ...
+- 型の表現: 具体型 / any / unknown / Union型 / アサーション ...
 - **Ω は指数爆発する**: 関数が増えるほど「状態の組み合わせ」は加速度的に増大
-- 
 - **コーディング規約・パターン** = Ω を意図的に制限してエントロピーを下げる設計
 
 
@@ -917,13 +989,15 @@ style: |
 
 > *両曲線の形状が定量的に一致する*
 
-- <svg viewBox='0 0 760 380' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'>
--   <defs>
--     <style>.ax{stroke:#aaa;stroke-width:1.5;fill:none}.lb{font-family:sans-serif;font-size:13px;fill:#ddd}.hl{font-family:sans-serif;font-size:11px;fill:#aaa}.tt{font-family:sans-serif;font-size:15px;font-weight:bold;fill:#fff}</style>
--   </defs>
--   <!-- axes -->
--   <line x1='60' y1='320' x2='720' y2='320' class='ax'/>
--   <line x1='60' y1='40' x2='60' y2='320' class='ax'/>
+<div class="fig">
+<svg viewBox='0 0 760 380' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'>
+  <defs>
+    <style>.ax{stroke:#aaa;stroke-width:1.5;fill:none}.lb{font-family:sans-serif;font-size:13px;fill:#ddd}.hl{font-family:sans-serif;font-size:11px;fill:#aaa}.tt{font-family:sans-serif;font-size:15px;font-weight:bold;fill:#fff}</style>
+  </defs>
+  <!-- axes -->
+  <line x1='60' y1='320' x2='720' y2='320' class='ax'/>
+  <line x1='60' y1='40' x2='60' y2='320' class='ax'/>
+</div>
 
 
 ---
@@ -947,7 +1021,8 @@ style: |
 
 > *両曲線の形状が定量的に一致する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">リファクタリングサイクル</text>
   <!-- Center circle -->
@@ -985,6 +1060,8 @@ style: |
   <line x1="190" y1="158" x2="312" y2="107" stroke="#ffffff" stroke-width="2"/>
   <polygon points="312,107 299,112 302,97" fill="#ffffff"/>
 </svg>
+</div>
+
 -   <!-- Legend -->
 -   <rect x='480' y='55' width='225' height='70' rx='6' fill='#1e293b' opacity='0.85'/>
 -   <line x1='495' y1='78' x2='530' y2='78' stroke='#ef4444' stroke-width='2.5'/>
@@ -1015,7 +1092,8 @@ style: |
 
 > *リファクタリングがエントロピーを逆転させる唯一の手段*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コード品質劣化タイムライン</text>
   <!-- Timeline axis -->
@@ -1054,11 +1132,11 @@ style: |
   <text x="400" y="280" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">技術的負債は静かに・確実に蓄積する</text>
   <text x="400" y="305" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">放置すればするほど返済コストは増大する</text>
 </svg>
+</div>
+
 - **熱力学の解法：開放系として「エネルギーを注ぐ」**
-- 
-- - 冷蔵庫は内部の熱を外部に排出することで「局所的な低温」を維持
-- - 生命は食物（エネルギー）を摂取して体内の秩序を維持し、廃熱・廃棄物を外部へ
-- 
+- 冷蔵庫は内部の熱を外部に排出することで「局所的な低温」を維持
+- 生命は食物（エネルギー）を摂取して体内の秩序を維持し、廃熱・廃棄物を外部へ
 
 
 ---
@@ -1067,7 +1145,8 @@ style: |
 
 > *リファクタリングがエントロピーを逆転させる唯一の手段*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>
   <!-- Left box: Order -->
@@ -1101,20 +1180,22 @@ style: |
   <!-- Bottom note -->
   <text x="400" y="360" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">エネルギー（努力）を投入しなければ、秩序は維持できない</text>
 </svg>
+</div>
+
 - **ソフトウェアへの対応**
-- - リファクタリング ＝ 開発者のエネルギー（工数）を注入して秩序を回復
-- - ただし「廃熱」も出る：削除されたコード、廃止されたパターン、旧テスト
-- - エネルギー注入がゼロなら、どんなコードベースも第二法則に従う
-- 
+- リファクタリング ＝ 開発者のエネルギー（工数）を注入して秩序を回復
+- ただし「廃熱」も出る：削除されたコード、廃止されたパターン、旧テスト
+- エネルギー注入がゼロなら、どんなコードベースも第二法則に従う
 - **重要な含意**: リファクタリングは「きれい好きの趣味」ではなく **物理法則への抵抗** である
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 2: 技術的負債とエントロピーの対応関係
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コードクリーンアップ：Before / After</text>
   <!-- Before panel -->
@@ -1157,6 +1238,8 @@ style: |
   <line x1="365" y1="205" x2="435" y2="205" stroke="#f9a825" stroke-width="3"/>
   <polygon points="435,205 419,198 419,212" fill="#f9a825"/>
 </svg>
+</div>
+
 - 物理学の概念とソフトウェア工学の概念を対応させる
 
 
@@ -1166,7 +1249,8 @@ style: |
 
 > *意図的な近道が将来の利子として返済を要求する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">テストカバレッジと技術的負債の相関</text>
   <!-- Axes -->
@@ -1210,11 +1294,12 @@ style: |
   <rect x="590" y="280" width="120" height="30" rx="5" fill="#4caf50" fill-opacity="0.15"/>
   <text x="650" y="300" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">低負債ゾーン</text>
 </svg>
+</div>
+
 - **Ward Cunninghamの原義（1992年）**
 - 「今の不完全な理解で書いたコードは、より深い理解を得たときに返済が必要な『借り』だ」
-- 
 - **Martin Fowlerによる分類**
-- - 意図的×無謀: 「設計なんか後で考えよう」
+- 意図的×無謀: 「設計なんか後で考えよう」
 
 
 ---
@@ -1223,7 +1308,8 @@ style: |
 
 > *意図的な近道が将来の利子として返済を要求する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">クリーンアーキテクチャとエントロピーゾーン</text>
   <!-- Concentric circles representing layers -->
@@ -1252,10 +1338,11 @@ style: |
   <!-- Rule -->
   <text x="400" y="370" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">依存は内側へ。エントロピーは外側に閉じ込める。</text>
 </svg>
-- - 意図的×慎重: 「今は間に合わせで進めよう、後でリファクタする」
-- - 不注意×無謀: 「レイヤー設計って何？」
-- - 不注意×慎重: 「後になってあの設計が問題だったと気づいた」
-- 
+</div>
+
+- 意図的×慎重: 「今は間に合わせで進めよう、後でリファクタする」
+- 不注意×無謀: 「レイヤー設計って何？」
+- 不注意×慎重: 「後になってあの設計が問題だったと気づいた」
 - **共通点**: すべての負債は **蓄積し、利子（変更コスト）を生む**
 
 
@@ -1265,16 +1352,18 @@ style: |
 
 > *物理概念とソフト概念が1対1で対応する*
 
-- <svg viewBox='0 0 760 360' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'>
--   <defs>
--     <style>.hd{font-family:sans-serif;font-size:13px;font-weight:bold;fill:#1e293b}.cl{font-family:sans-serif;font-size:12px;fill:#ddd}.ch{font-family:sans-serif;font-size:13px;font-weight:bold;fill:#fff}</style>
--   </defs>
--   <!-- header row -->
--   <rect x='30' y='20' width='340' height='40' rx='4' fill='#ef4444' opacity='0.85'/>
--   <text x='200' y='46' text-anchor='middle' class='ch'>熱力学・情報理論</text>
--   <rect x='390' y='20' width='340' height='40' rx='4' fill='#3b82f6' opacity='0.85'/>
--   <text x='560' y='46' text-anchor='middle' class='ch'>ソフトウェア工学</text>
--   <!-- rows -->
+<div class="fig">
+<svg viewBox='0 0 760 360' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'>
+  <defs>
+    <style>.hd{font-family:sans-serif;font-size:13px;font-weight:bold;fill:#1e293b}.cl{font-family:sans-serif;font-size:12px;fill:#ddd}.ch{font-family:sans-serif;font-size:13px;font-weight:bold;fill:#fff}</style>
+  </defs>
+  <!-- header row -->
+  <rect x='30' y='20' width='340' height='40' rx='4' fill='#ef4444' opacity='0.85'/>
+  <text x='200' y='46' text-anchor='middle' class='ch'>熱力学・情報理論</text>
+  <rect x='390' y='20' width='340' height='40' rx='4' fill='#3b82f6' opacity='0.85'/>
+  <text x='560' y='46' text-anchor='middle' class='ch'>ソフトウェア工学</text>
+  <!-- rows -->
+</div>
 
 
 ---
@@ -1302,7 +1391,8 @@ style: |
 
 > *物理概念とソフト概念が1対1で対応する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">エントロピー蓄積：時間とともに増大する無秩序</text>
   <!-- Axes -->
@@ -1327,6 +1417,8 @@ style: |
   <text x="370" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">成長期</text>
   <text x="595" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">レガシー化</text>
 </svg>
+</div>
+
 -   <text x='560' y='179' text-anchor='middle' class='cl'>コードの書き方のバリエーション数</text>
 -   <rect x='30' y='200' width='340' height='36' rx='3' fill='#0f172a'/>
 -   <text x='200' y='223' text-anchor='middle' class='cl'>外部エネルギー投入</text>
@@ -1364,7 +1456,8 @@ style: |
 
 > *返済可能な負債と構造的複雑性を分けて管理する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">技術的負債：複利で増大するコスト</text>
   <!-- Axes -->
@@ -1388,10 +1481,11 @@ style: |
   <text x="70" y="200" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">中</text>
   <text x="70" y="80" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">高</text>
 </svg>
+</div>
+
 - **Accidental Complexity（偶発的複雑性）**
 - = 意図せず・不注意で生まれた負債 → **エントロピーの自然増大**
-- - 重複コード、無意味な命名、巨大な関数、コメントアウトの残骸
-- 
+- 重複コード、無意味な命名、巨大な関数、コメントアウトの残骸
 - **Essential Complexity（本質的複雑性）**
 - = 問題領域が本質的に持つ複雑さ → **避けられない物理的エントロピー**
 
@@ -1402,7 +1496,8 @@ style: |
 
 > *返済可能な負債と構造的複雑性を分けて管理する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">リファクタリングサイクル</text>
   <!-- Center circle -->
@@ -1440,12 +1535,13 @@ style: |
   <line x1="190" y1="158" x2="312" y2="107" stroke="#ffffff" stroke-width="2"/>
   <polygon points="312,107 299,112 302,97" fill="#ffffff"/>
 </svg>
-- - 税務計算・医療プロトコル・金融リスク計算は「そもそも複雑」
-- 
+</div>
+
+- 税務計算・医療プロトコル・金融リスク計算は「そもそも複雑」
 - **戦略の分岐点**
-- - Accidental は除去できる（リファクタリングで投資回収）
-- - Essential は管理できる（ドメインモデルで隔離・可視化）
-- - 混同すると「必要な複雑さまで削ろうとする」誤りが起きる
+- Accidental は除去できる（リファクタリングで投資回収）
+- Essential は管理できる（ドメインモデルで隔離・可視化）
+- 混同すると「必要な複雑さまで削ろうとする」誤りが起きる
 
 
 ---
@@ -1454,7 +1550,8 @@ style: |
 
 > *結合の種類が変更コストの増大速度を決める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コード品質劣化タイムライン</text>
   <!-- Timeline axis -->
@@ -1493,11 +1590,12 @@ style: |
   <text x="400" y="280" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">技術的負債は静かに・確実に蓄積する</text>
   <text x="400" y="305" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">放置すればするほど返済コストは増大する</text>
 </svg>
+</div>
+
 - **Connascence（連鎖性）**: 一方を変えると他方も変えなければならない関係
-- 
 - **強さの順（エントロピーの度合い）**
-- - CoN（名前の連鎖）: 最も弱い ← コントロール可能
-- - CoT（型の連鎖）: 型変更で伝播
+- CoN（名前の連鎖）: 最も弱い ← コントロール可能
+- CoT（型の連鎖）: 型変更で伝播
 
 
 ---
@@ -1506,7 +1604,8 @@ style: |
 
 > *結合の種類が変更コストの増大速度を決める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>
   <!-- Left box: Order -->
@@ -1540,11 +1639,12 @@ style: |
   <!-- Bottom note -->
   <text x="400" y="360" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">エネルギー（努力）を投入しなければ、秩序は維持できない</text>
 </svg>
-- - CoV（値の連鎖）: 定数の重複
-- - CoA（アルゴリズムの連鎖）: 同じロジックが散在
-- - CoEx（実行順序の連鎖）: 暗黙的な順序依存
-- - CoI（アイデンティティの連鎖）: 参照共有 ← 最も強い
-- 
+</div>
+
+- CoV（値の連鎖）: 定数の重複
+- CoA（アルゴリズムの連鎖）: 同じロジックが散在
+- CoEx（実行順序の連鎖）: 暗黙的な順序依存
+- CoI（アイデンティティの連鎖）: 参照共有 ← 最も強い
 - **エントロピー則**: 強い Connascence が増えるほど Ω（変更パターン）が爆発し、エントロピーが急増
 
 
@@ -1554,7 +1654,8 @@ style: |
 
 > *具体的コードベースの歴史がエントロピー増大を実証する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コードクリーンアップ：Before / After</text>
   <!-- Before panel -->
@@ -1597,19 +1698,21 @@ style: |
   <line x1="365" y1="205" x2="435" y2="205" stroke="#f9a825" stroke-width="3"/>
   <polygon points="435,205 419,198 419,212" fill="#f9a825"/>
 </svg>
+</div>
+
 - **リリース1週目（秩序）**
-- - 3層アーキテクチャが明確、循環依存なし、命名統一
-- 
+- 3層アーキテクチャが明確、循環依存なし、命名統一
 - **6ヶ月後（エントロピー増大開始）**
-- - 例外処理のため「とりあえず」の直接DB呼び出しが2箇所
-- - 設定値がコードに直書きされ始める
+- 例外処理のため「とりあえず」の直接DB呼び出しが2箇所
+- 設定値がコードに直書きされ始める
 
 
 ---
 
 # コードの状態遷移：秩序→混沌の実例（2/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">テストカバレッジと技術的負債の相関</text>
   <!-- Axes -->
@@ -1653,9 +1756,10 @@ style: |
   <rect x="590" y="280" width="120" height="30" rx="5" fill="#4caf50" fill-opacity="0.15"/>
   <text x="650" y="300" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">低負債ゾーン</text>
 </svg>
-- 
+</div>
+
 - **2年後（エントロピー高進）**
-- - Service層とRepository層の区別が曖昧に
+- Service層とRepository層の区別が曖昧に
 
 
 ---
@@ -1664,9 +1768,8 @@ style: |
 
 > *具体的コードベースの歴史がエントロピー増大を実証する*
 
-- - 「なんとなく動く」理由が誰もわからないロジック
-- - 変更するとどこかが壊れる、でもテストがない
-- 
+- 「なんとなく動く」理由が誰もわからないロジック
+- 変更するとどこかが壊れる、でもテストがない
 - **これは「悪い人が書いた」のではなく、エントロピーが増大した結果**
 
 
@@ -1676,13 +1779,15 @@ style: |
 
 > *蓄積曲線が指数関数的に増加する構造を示す*
 
-- <svg viewBox='0 0 760 360' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'>
--   <defs>
--     <style>.lb{font-family:sans-serif;font-size:12px;fill:#ddd}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}.ax{stroke:#555;stroke-width:1.5;fill:none}</style>
--   </defs>
--   <!-- axes -->
--   <line x1='60' y1='300' x2='700' y2='300' class='ax'/>
--   <line x1='60' y1='50' x2='60' y2='300' class='ax'/>
+<div class="fig">
+<svg viewBox='0 0 760 360' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'>
+  <defs>
+    <style>.lb{font-family:sans-serif;font-size:12px;fill:#ddd}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}.ax{stroke:#555;stroke-width:1.5;fill:none}</style>
+  </defs>
+  <!-- axes -->
+  <line x1='60' y1='300' x2='700' y2='300' class='ax'/>
+  <line x1='60' y1='50' x2='60' y2='300' class='ax'/>
+</div>
 
 
 ---
@@ -1707,7 +1812,8 @@ style: |
 
 > *蓄積曲線が指数関数的に増加する構造を示す*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">クリーンアーキテクチャとエントロピーゾーン</text>
   <!-- Concentric circles representing layers -->
@@ -1736,6 +1842,8 @@ style: |
   <!-- Rule -->
   <text x="400" y="370" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">依存は内側へ。エントロピーは外側に閉じ込める。</text>
 </svg>
+</div>
+
 -   <!-- refactoring labels -->
 -   <text x='205' y='215' class='lb' fill='#22c55e'>↑RF</text>
 -   <text x='325' y='153' class='lb' fill='#22c55e'>↑RF</text>
@@ -1767,7 +1875,8 @@ style: |
 
 > *認知バイアスが現在の問題より将来コストを過小評価させる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">エントロピー蓄積：時間とともに増大する無秩序</text>
   <!-- Axes -->
@@ -1792,11 +1901,12 @@ style: |
   <text x="370" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">成長期</text>
   <text x="595" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">レガシー化</text>
 </svg>
+</div>
+
 - **認知バイアスとエントロピーの見えにくさ**
-- 
-- - **現状維持バイアス**: 今動いているコードは「正常」に見える
-- - **ゆでガエル効果**: 毎日少しずつ悪化するため変化に気づかない
-- - **確証バイアス**: 「自分のコードは綺麗」と思いたい
+- **現状維持バイアス**: 今動いているコードは「正常」に見える
+- **ゆでガエル効果**: 毎日少しずつ悪化するため変化に気づかない
+- **確証バイアス**: 「自分のコードは綺麗」と思いたい
 
 
 ---
@@ -1805,7 +1915,8 @@ style: |
 
 > *認知バイアスが現在の問題より将来コストを過小評価させる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">技術的負債：複利で増大するコスト</text>
   <!-- Axes -->
@@ -1829,19 +1940,21 @@ style: |
   <text x="70" y="200" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">中</text>
   <text x="70" y="80" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">高</text>
 </svg>
-- - **埋没費用**: 長時間かけて書いたコードを「捨てる」のが惜しい
-- 
+</div>
+
+- **埋没費用**: 長時間かけて書いたコードを「捨てる」のが惜しい
 - **計測されないものは管理できない**
-- - エントロピーは目に見えない → Complexity Metricsで可視化が必要
-- - 「なんとなくヤバい」ではなく数値で語る文化が必要
+- エントロピーは目に見えない → Complexity Metricsで可視化が必要
+- 「なんとなくヤバい」ではなく数値で語る文化が必要
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 3: 技術的負債の計測・定量化
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">リファクタリングサイクル</text>
   <!-- Center circle -->
@@ -1879,6 +1992,8 @@ style: |
   <line x1="190" y1="158" x2="312" y2="107" stroke="#ffffff" stroke-width="2"/>
   <polygon points="312,107 299,112 302,97" fill="#ffffff"/>
 </svg>
+</div>
+
 - エントロピーを数値で捕らえ、管理可能にする
 
 
@@ -1888,7 +2003,8 @@ style: |
 
 > *数値化されない負債は優先順位に入らず放置される*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コード品質劣化タイムライン</text>
   <!-- Timeline axis -->
@@ -1927,19 +2043,21 @@ style: |
   <text x="400" y="280" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">技術的負債は静かに・確実に蓄積する</text>
   <text x="400" y="305" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">放置すればするほど返済コストは増大する</text>
 </svg>
+</div>
+
 - **「測れないものは改善できない」— Lord Kelvin**
-- 
 - **計測のゴール**
-- - どこにエントロピーが集中しているかを特定する
-- - リファクタリング投資の優先順位を決める
-- - 改善の効果を定量的に示す（ステークホルダーへの説明責任）
+- どこにエントロピーが集中しているかを特定する
+- リファクタリング投資の優先順位を決める
+- 改善の効果を定量的に示す（ステークホルダーへの説明責任）
 
 
 ---
 
 # 計測なくして管理なし（2/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>
   <!-- Left box: Order -->
@@ -1973,9 +2091,10 @@ style: |
   <!-- Bottom note -->
   <text x="400" y="360" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">エネルギー（努力）を投入しなければ、秩序は維持できない</text>
 </svg>
-- 
+</div>
+
 - **代表的な計測アプローチ**
-- - 構造的複雑度（Cyclomatic Complexity）
+- 構造的複雑度（Cyclomatic Complexity）
 
 
 ---
@@ -1984,10 +2103,10 @@ style: |
 
 > *数値化されない負債は優先順位に入らず放置される*
 
-- - 認知的複雑度（Cognitive Complexity）
-- - 変更頻度 × 複雑度のホットスポット分析
-- - 依存グラフの循環検出
-- - DORA Metrics（変更障害率・リードタイム）
+- 認知的複雑度（Cognitive Complexity）
+- 変更頻度 × 複雑度のホットスポット分析
+- 依存グラフの循環検出
+- DORA Metrics（変更障害率・リードタイム）
 
 
 ---
@@ -1996,7 +2115,8 @@ style: |
 
 > *分岐経路数がテストコストとバグ率の先行指標になる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コードクリーンアップ：Before / After</text>
   <!-- Before panel -->
@@ -2039,12 +2159,12 @@ style: |
   <line x1="365" y1="205" x2="435" y2="205" stroke="#f9a825" stroke-width="3"/>
   <polygon points="435,205 419,198 419,212" fill="#f9a825"/>
 </svg>
+</div>
+
 - **定義（McCabe, 1976年）**
 - CC = E - N + 2P
 - （E=エッジ数, N=ノード数, P=連結成分数）
-- 
 - **簡易計算**: 条件分岐（if / else if / case / while / for / catch）の数 + 1
-- 
 
 
 ---
@@ -2053,7 +2173,8 @@ style: |
 
 > *分岐経路数がテストコストとバグ率の先行指標になる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">テストカバレッジと技術的負債の相関</text>
   <!-- Axes -->
@@ -2097,9 +2218,11 @@ style: |
   <rect x="590" y="280" width="120" height="30" rx="5" fill="#4caf50" fill-opacity="0.15"/>
   <text x="650" y="300" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">低負債ゾーン</text>
 </svg>
+</div>
+
 - **目安**
-- - CC 1-10: 単純・テスト容易
-- - CC 11-20: 複雑さあり・注意
+- CC 1-10: 単純・テスト容易
+- CC 11-20: 複雑さあり・注意
 
 
 ---
@@ -2108,9 +2231,8 @@ style: |
 
 > *分岐経路数がテストコストとバグ率の先行指標になる*
 
-- - CC 21-50: 高複雑・リファクタ推奨
-- - CC 51+: テスト不能レベル・危険
-- 
+- CC 21-50: 高複雑・リファクタ推奨
+- CC 51+: テスト不能レベル・危険
 - **エントロピー解釈**: CC ≈ そのコードが取りうる実行パス数 = ミクロ状態数 Ω の近似
 
 
@@ -2120,7 +2242,8 @@ style: |
 
 > *人間の理解コストを定量化しリファクタ優先度を決める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">クリーンアーキテクチャとエントロピーゾーン</text>
   <!-- Concentric circles representing layers -->
@@ -2149,12 +2272,12 @@ style: |
   <!-- Rule -->
   <text x="400" y="370" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">依存は内側へ。エントロピーは外側に閉じ込める。</text>
 </svg>
+</div>
+
 - **Sonarqube が提唱（2018年、G. Ann Campbell）**
-- 
 - Cyclomatic の限界：ループのネストを考慮しない → 読みにくさを過小評価
-- 
 - **ルール**
-- - ネストが深くなるたびにペナルティ +n（深さに比例）
+- ネストが深くなるたびにペナルティ +n（深さに比例）
 
 
 ---
@@ -2163,7 +2286,8 @@ style: |
 
 > *人間の理解コストを定量化しリファクタ優先度を決める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">エントロピー蓄積：時間とともに増大する無秩序</text>
   <!-- Axes -->
@@ -2188,11 +2312,11 @@ style: |
   <text x="370" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">成長期</text>
   <text x="595" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">レガシー化</text>
 </svg>
-- - break / continue ラベル・再帰も加点
-- - メソッドチェーン・三項演算子は加点なし（読みやすい）
-- 
+</div>
+
+- break / continue ラベル・再帰も加点
+- メソッドチェーン・三項演算子は加点なし（読みやすい）
 - **例**: CC=5でも Cognitive Complexity=18 になりうる（深いネストのため）
-- 
 - **エントロピー解釈**: 人間が「次の行を予測する」ための情報エントロピー H(X) に対応
 
 
@@ -2202,17 +2326,19 @@ style: |
 
 > *複雑度が閾値を超えるとバグ率が指数的に上昇する*
 
-- <svg viewBox='0 0 760 360' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'>
--   <defs>
--     <style>.lb{font-family:sans-serif;font-size:12px;fill:#ddd}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}.ax{stroke:#555;stroke-width:1.5;fill:none}</style>
--   </defs>
--   <!-- axes -->
--   <line x1='70' y1='300' x2='700' y2='300' class='ax'/>
--   <line x1='70' y1='50' x2='70' y2='300' class='ax'/>
--   <text x='385' y='340' text-anchor='middle' class='lb'>Cyclomatic Complexity (CC)</text>
--   <text x='20' y='175' text-anchor='middle' class='lb' transform='rotate(-90,20,175)'>バグ密度（bugs/KLOC）</text>
--   <!-- x-axis labels -->
--   <text x='115' y='318' text-anchor='middle' class='lb'>5</text>
+<div class="fig">
+<svg viewBox='0 0 760 360' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'>
+  <defs>
+    <style>.lb{font-family:sans-serif;font-size:12px;fill:#ddd}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}.ax{stroke:#555;stroke-width:1.5;fill:none}</style>
+  </defs>
+  <!-- axes -->
+  <line x1='70' y1='300' x2='700' y2='300' class='ax'/>
+  <line x1='70' y1='50' x2='70' y2='300' class='ax'/>
+  <text x='385' y='340' text-anchor='middle' class='lb'>Cyclomatic Complexity (CC)</text>
+  <text x='20' y='175' text-anchor='middle' class='lb' transform='rotate(-90,20,175)'>バグ密度（bugs/KLOC）</text>
+  <!-- x-axis labels -->
+  <text x='115' y='318' text-anchor='middle' class='lb'>5</text>
+</div>
 
 
 ---
@@ -2240,7 +2366,8 @@ style: |
 
 > *複雑度が閾値を超えるとバグ率が指数的に上昇する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">技術的負債：複利で増大するコスト</text>
   <!-- Axes -->
@@ -2264,6 +2391,8 @@ style: |
   <text x="70" y="200" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">中</text>
   <text x="70" y="80" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">高</text>
 </svg>
+</div>
+
 -   <circle cx='170' cy='260' r='5' fill='#3b82f6' opacity='0.8'/>
 -   <circle cx='185' cy='255' r='5' fill='#3b82f6' opacity='0.8'/>
 -   <circle cx='200' cy='245' r='5' fill='#3b82f6' opacity='0.8'/>
@@ -2303,7 +2432,8 @@ style: |
 
 > *変更頻度の高い複雑ファイルが負債の最優先返済対象*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">リファクタリングサイクル</text>
   <!-- Center circle -->
@@ -2341,12 +2471,12 @@ style: |
   <line x1="190" y1="158" x2="312" y2="107" stroke="#ffffff" stroke-width="2"/>
   <polygon points="312,107 299,112 302,97" fill="#ffffff"/>
 </svg>
+</div>
+
 - **Adam Thornhillの手法（「Your Code as a Crime Scene」）**
-- 
-- - **X軸**: Cyclomatic Complexity（構造的複雑度）
-- - **Y軸**: git変更頻度（過去N週間のコミット数）
-- - **バブルサイズ**: コード行数
-- 
+- **X軸**: Cyclomatic Complexity（構造的複雑度）
+- **Y軸**: git変更頻度（過去N週間のコミット数）
+- **バブルサイズ**: コード行数
 
 
 ---
@@ -2355,7 +2485,8 @@ style: |
 
 > *変更頻度の高い複雑ファイルが負債の最優先返済対象*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コード品質劣化タイムライン</text>
   <!-- Timeline axis -->
@@ -2394,9 +2525,11 @@ style: |
   <text x="400" y="280" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">技術的負債は静かに・確実に蓄積する</text>
   <text x="400" y="305" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">放置すればするほど返済コストは増大する</text>
 </svg>
+</div>
+
 - **4象限の解釈**
-- - 高複雑 × 高頻度 = **ホットスポット（最優先リファクタ対象）**
-- - 高複雑 × 低頻度 = 「眠れる地雷」（急がないが管理が必要）
+- 高複雑 × 高頻度 = **ホットスポット（最優先リファクタ対象）**
+- 高複雑 × 低頻度 = 「眠れる地雷」（急がないが管理が必要）
 
 
 ---
@@ -2405,9 +2538,8 @@ style: |
 
 > *変更頻度の高い複雑ファイルが負債の最優先返済対象*
 
-- - 低複雑 × 高頻度 = 健全（よく変わるが単純）
-- - 低複雑 × 低頻度 = 安定（放置可）
-- 
+- 低複雑 × 高頻度 = 健全（よく変わるが単純）
+- 低複雑 × 低頻度 = 安定（放置可）
 - **実装**: `git log --format='%H' -- <file> | wc -l` × `lizard <file>`
 
 
@@ -2415,7 +2547,8 @@ style: |
 
 # TypeScript: 複雑度計算の実装例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>
   <!-- Left box: Order -->
@@ -2449,6 +2582,8 @@ style: |
   <!-- Bottom note -->
   <text x="400" y="360" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">エネルギー（努力）を投入しなければ、秩序は維持できない</text>
 </svg>
+</div>
+
 - 複雑度とgit変更頻度からホットスポットスコアを算出する実装例
 
 
@@ -2456,7 +2591,8 @@ style: |
 
 # TypeScript: 複雑度計算の実装例（コード例）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コードクリーンアップ：Before / After</text>
   <!-- Before panel -->
@@ -2499,10 +2635,12 @@ style: |
   <line x1="365" y1="205" x2="435" y2="205" stroke="#f9a825" stroke-width="3"/>
   <polygon points="435,205 419,198 419,212" fill="#f9a825"/>
 </svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # TypeScript: 複雑度計算の実装例（コード例）（コード例）
 
 ```typescript
@@ -2550,7 +2688,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *循環依存がモジュール独立性をゼロにし変更伝播を爆発させる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">テストカバレッジと技術的負債の相関</text>
   <!-- Axes -->
@@ -2594,9 +2733,11 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <rect x="590" y="280" width="120" height="30" rx="5" fill="#4caf50" fill-opacity="0.15"/>
   <text x="650" y="300" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">低負債ゾーン</text>
 </svg>
+</div>
+
 - **循環依存 = 熱力学的な「閉じた系」**
-- - A → B → C → A: 変更が環状に伝播し収束しない
-- - 「どこからでも影響を受ける」= ミクロ状態数 Ω の爆発
+- A → B → C → A: 変更が環状に伝播し収束しない
+- 「どこからでも影響を受ける」= ミクロ状態数 Ω の爆発
 
 
 ---
@@ -2605,9 +2746,10 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *循環依存がモジュール独立性をゼロにし変更伝播を爆発させる*
 
-- 
 - **検出コマンド**
-- ```bash
+
+```bash
+
 - npx madge --circular src/           # 循環依存の一覧
 
 
@@ -2615,7 +2757,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 # 依存グラフと循環依存（エントロピー爆発）（2/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">クリーンアーキテクチャとエントロピーゾーン</text>
   <!-- Concentric circles representing layers -->
@@ -2644,9 +2787,11 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <!-- Rule -->
   <text x="400" y="370" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">依存は内側へ。エントロピーは外側に閉じ込める。</text>
 </svg>
+</div>
+
 - npx dependency-cruiser --validate .dependency-cruiser.js src/
-- ```
-- 
+
+```
 
 
 ---
@@ -2656,9 +2801,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 > *循環依存がモジュール独立性をゼロにし変更伝播を爆発させる*
 
 - **対処法: 依存逆転（DIP）**
-- - 具体的実装ではなくインターフェースに依存させる
-- - 循環を「一方向グラフ」に変換してエントロピーを制限
-- 
+- 具体的実装ではなくインターフェースに依存させる
+- 循環を「一方向グラフ」に変換してエントロピーを制限
 - **目標**: モジュール依存グラフが DAG（有向非巡回グラフ）であること
 
 
@@ -2668,7 +2812,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *デプロイ頻度低下が技術的エントロピーの定量シグナル*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">エントロピー蓄積：時間とともに増大する無秩序</text>
   <!-- Axes -->
@@ -2693,18 +2838,20 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <text x="370" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">成長期</text>
   <text x="595" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">レガシー化</text>
 </svg>
+</div>
+
 - **4つのDORA Metrics（DevOps Research and Assessment）**
-- 
+
 | メトリクス | 低エントロピー組織 | 高エントロピー組織 |
 |-----------|-----------------|-----------------|
 | デプロイ頻度 | 毎日〜週複数回 | 月1回以下 |
 | 変更リードタイム | 1時間〜1日 | 1週間〜1ヶ月 |
 | **変更障害率** | **< 15%** | **> 45%** |
 | 回復時間（MTTR） | < 1時間 | 1週間以上 |
-- 
+
 - **エントロピー解釈**
-- - 変更障害率 ↑ = 変更の副作用が広がる = 依存エントロピーが高い
-- - 回復時間 ↑ = 障害の原因特定が困難 = 構造エントロピーが高い
+- 変更障害率 ↑ = 変更の副作用が広がる = 依存エントロピーが高い
+- 回復時間 ↑ = 障害の原因特定が困難 = 構造エントロピーが高い
 
 
 ---
@@ -2713,17 +2860,19 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *4指標のダッシュボードが返済優先度を可視化する*
 
-- <svg viewBox='0 0 760 360' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'>
--   <defs>
--     <style>.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.kv{font-family:sans-serif;font-size:22px;font-weight:bold;fill:#fff}.kl{font-family:sans-serif;font-size:11px;fill:#aaa}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}</style>
--   </defs>
--   <text x='380' y='22' text-anchor='middle' class='tt'>技術的負債 エントロピーダッシュボード</text>
--   <!-- KPI cards row 1 -->
--   <rect x='20' y='35' width='160' height='65' rx='6' fill='#1e3a5f'/>
--   <text x='100' y='57' text-anchor='middle' class='kl'>平均 Cyclomatic CC</text>
--   <text x='100' y='85' text-anchor='middle' class='kv' fill='#ef4444'>18.4</text>
--   <rect x='200' y='35' width='160' height='65' rx='6' fill='#1e3a5f'/>
--   <text x='280' y='57' text-anchor='middle' class='kl'>ホットスポット数</text>
+<div class="fig">
+<svg viewBox='0 0 760 360' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'>
+  <defs>
+    <style>.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.kv{font-family:sans-serif;font-size:22px;font-weight:bold;fill:#fff}.kl{font-family:sans-serif;font-size:11px;fill:#aaa}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}</style>
+  </defs>
+  <text x='380' y='22' text-anchor='middle' class='tt'>技術的負債 エントロピーダッシュボード</text>
+  <!-- KPI cards row 1 -->
+  <rect x='20' y='35' width='160' height='65' rx='6' fill='#1e3a5f'/>
+  <text x='100' y='57' text-anchor='middle' class='kl'>平均 Cyclomatic CC</text>
+  <text x='100' y='85' text-anchor='middle' class='kv' fill='#ef4444'>18.4</text>
+  <rect x='200' y='35' width='160' height='65' rx='6' fill='#1e3a5f'/>
+  <text x='280' y='57' text-anchor='middle' class='kl'>ホットスポット数</text>
+</div>
 
 
 ---
@@ -2751,7 +2900,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *4指標のダッシュボードが返済優先度を可視化する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">技術的負債：複利で増大するコスト</text>
   <!-- Axes -->
@@ -2775,6 +2925,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <text x="70" y="200" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">中</text>
   <text x="70" y="80" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">高</text>
 </svg>
+</div>
+
 -   <rect x='20' y='162' width='390' height='14' rx='3' fill='#f97316'/>
 -   <text x='525' y='174' class='lb'>OrderProcessor.ts  (score: 650)</text>
 -   <rect x='20' y='184' width='300' height='14' rx='3' fill='#fbbf24'/>
@@ -2810,10 +2962,11 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 4: リファクタリング・負債返済の実践戦略
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">リファクタリングサイクル</text>
   <!-- Center circle -->
@@ -2851,6 +3004,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <line x1="190" y1="158" x2="312" y2="107" stroke="#ffffff" stroke-width="2"/>
   <polygon points="312,107 299,112 302,97" fill="#ffffff"/>
 </svg>
+</div>
+
 - エントロピーに「抵抗」するための具体的な手法
 
 
@@ -2860,7 +3015,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *触ったコードを毎回少しきれいにする累積効果*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コード品質劣化タイムライン</text>
   <!-- Timeline axis -->
@@ -2899,12 +3055,13 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <text x="400" y="280" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">技術的負債は静かに・確実に蓄積する</text>
   <text x="400" y="305" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">放置すればするほど返済コストは増大する</text>
 </svg>
+</div>
+
 - **「キャンプ場を去るときには、来た時よりきれいにせよ」— ロバート・C・マーティン**
-- 
 - **実践: 触ったコードを少しだけ改善する**
-- - バグ修正のついでに命名を改善
-- - 機能追加のついでに関数を分割
-- - 「ついで」の改善を PR レビューで称賛する文化
+- バグ修正のついでに命名を改善
+- 機能追加のついでに関数を分割
+- 「ついで」の改善を PR レビューで称賛する文化
 
 
 ---
@@ -2913,7 +3070,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *触ったコードを毎回少しきれいにする累積効果*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>
   <!-- Left box: Order -->
@@ -2947,12 +3105,12 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <!-- Bottom note -->
   <text x="400" y="360" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">エネルギー（努力）を投入しなければ、秩序は維持できない</text>
 </svg>
-- 
+</div>
+
 - **熱力学的意味**: 毎回少量のエネルギーを注入して、エントロピーの自然増大を相殺する
-- 
 - **計測**: Cognitive Complexity の週次トレンドをグラフ化
-- - 上昇トレンド → ボーイスカウトが機能していない
-- - 横ばい〜下降 → エネルギー投入が自然増大を上回っている
+- 上昇トレンド → ボーイスカウトが機能していない
+- 横ばい〜下降 → エネルギー投入が自然増大を上回っている
 
 
 ---
@@ -2961,7 +3119,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *既存コードを絞め殺しながら新設計に置き換える手法*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コードクリーンアップ：Before / After</text>
   <!-- Before panel -->
@@ -3004,19 +3163,21 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <line x1="365" y1="205" x2="435" y2="205" stroke="#f9a825" stroke-width="3"/>
   <polygon points="435,205 419,198 419,212" fill="#f9a825"/>
 </svg>
+</div>
+
 - **由来**: 絞め殺しイチジクは宿主木を包み込みながら成長し、やがて宿主を置換する
-- 
 - **手順**
-- 1. 新しい機能は新しいコンポーネントに実装する
-- 2. レガシーコードへの呼び出しをファサード（Facade）で包む
-- 3. 段階的にファサードの実装を新コードに差し替えていく
+1. 新しい機能は新しいコンポーネントに実装する
+2. レガシーコードへの呼び出しをファサード（Facade）で包む
+3. 段階的にファサードの実装を新コードに差し替えていく
 
 
 ---
 
 # ストラテジー2: ストラングラーフィグパターン（2/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">テストカバレッジと技術的負債の相関</text>
   <!-- Axes -->
@@ -3060,8 +3221,9 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <rect x="590" y="280" width="120" height="30" rx="5" fill="#4caf50" fill-opacity="0.15"/>
   <text x="650" y="300" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">低負債ゾーン</text>
 </svg>
-- 4. レガシーが完全に包まれたら削除する
-- 
+</div>
+
+4. レガシーが完全に包まれたら削除する
 - **エントロピー的意味**
 
 
@@ -3071,9 +3233,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *既存コードを絞め殺しながら新設計に置き換える手法*
 
-- - 高エントロピーな旧系を **隔離** し、低エントロピーな新系で置換
-- - 全書き直し（Big Bang Rewrite）は失敗率が高い ← 系全体を一度に再構築はコスト過大
-- 
+- 高エントロピーな旧系を **隔離** し、低エントロピーな新系で置換
+- 全書き直し（Big Bang Rewrite）は失敗率が高い ← 系全体を一度に再構築はコスト過大
 - **適用条件**: レガシーAPIが明確に定義されていること
 
 
@@ -3081,7 +3242,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 # ストラテジー3: ADR（Architecture Decision Records）（1/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">クリーンアーキテクチャとエントロピーゾーン</text>
   <!-- Concentric circles representing layers -->
@@ -3110,8 +3272,9 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <!-- Rule -->
   <text x="400" y="370" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">依存は内側へ。エントロピーは外側に閉じ込める。</text>
 </svg>
+</div>
+
 - **ADR とは**: アーキテクチャ上の意思決定を記録するMarkdownドキュメント
-- 
 - **なぜエントロピー対策か？**
 
 
@@ -3121,11 +3284,11 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *意思決定の背景を記録し将来の再発見コストをゼロにする*
 
-- - 「なぜこの設計にしたか」の文脈が失われると、後から変更できなくなる
-- - 文脈の消失 = 知識エントロピーの増大
-- 
+- 「なぜこの設計にしたか」の文脈が失われると、後から変更できなくなる
+- 文脈の消失 = 知識エントロピーの増大
 - **テンプレート**
-- ```markdown
+
+```markdown
 
 
 ---
@@ -3134,7 +3297,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *意思決定の背景を記録し将来の再発見コストをゼロにする*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">エントロピー蓄積：時間とともに増大する無秩序</text>
   <!-- Axes -->
@@ -3159,6 +3323,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <text x="370" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">成長期</text>
   <text x="595" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">レガシー化</text>
 </svg>
+</div>
+
 - # ADR-0012: UserService のキャッシュ戦略
 - Status: Accepted
 - Context: 月次レポートのクエリが N+1 問題を引き起こしていた
@@ -3172,8 +3338,9 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 - Decision: Redis のスライディングウィンドウキャッシュを採用
 - Consequences: キャッシュ整合性の責任をサービス層に持たせる
-- ```
-- 
+
+```
+
 - **保管場所**: `docs/adr/` にコードと同じリポジトリで管理する
 
 
@@ -3183,20 +3350,22 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *ROI順の返済計画が90日以内に体感速度改善をもたらす*
 
-- <svg viewBox='0 0 760 360' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'>
--   <defs>
--     <style>.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.hd{font-family:sans-serif;font-size:12px;font-weight:bold;fill:#fff}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}</style>
--   </defs>
--   <text x='380' y='22' text-anchor='middle' class='tt'>負債返済ロードマップ（4フェーズ）</text>
--   <!-- Phase 1 -->
--   <rect x='20' y='40' width='160' height='290' rx='8' fill='#1e3a5f'/>
--   <rect x='20' y='40' width='160' height='36' rx='8' fill='#3b82f6'/>
--   <text x='100' y='64' text-anchor='middle' class='hd'>Phase 1</text>
--   <text x='100' y='96' text-anchor='middle' class='lb' fill='#93c5fd'>計測・可視化</text>
--   <text x='100' y='116' text-anchor='middle' class='lb'>（Sprint 1-2）</text>
--   <text x='35' y='145' class='lb'>• CC計測ツール導入</text>
--   <text x='35' y='163' class='lb'>• ホットスポット特定</text>
--   <text x='35' y='181' class='lb'>• 循環依存の洗い出し</text>
+<div class="fig">
+<svg viewBox='0 0 760 360' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'>
+  <defs>
+    <style>.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.hd{font-family:sans-serif;font-size:12px;font-weight:bold;fill:#fff}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}</style>
+  </defs>
+  <text x='380' y='22' text-anchor='middle' class='tt'>負債返済ロードマップ（4フェーズ）</text>
+  <!-- Phase 1 -->
+  <rect x='20' y='40' width='160' height='290' rx='8' fill='#1e3a5f'/>
+  <rect x='20' y='40' width='160' height='36' rx='8' fill='#3b82f6'/>
+  <text x='100' y='64' text-anchor='middle' class='hd'>Phase 1</text>
+  <text x='100' y='96' text-anchor='middle' class='lb' fill='#93c5fd'>計測・可視化</text>
+  <text x='100' y='116' text-anchor='middle' class='lb'>（Sprint 1-2）</text>
+  <text x='35' y='145' class='lb'>• CC計測ツール導入</text>
+  <text x='35' y='163' class='lb'>• ホットスポット特定</text>
+  <text x='35' y='181' class='lb'>• 循環依存の洗い出し</text>
+</div>
 
 
 ---
@@ -3227,7 +3396,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *ROI順の返済計画が90日以内に体感速度改善をもたらす*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">技術的負債：複利で増大するコスト</text>
   <!-- Axes -->
@@ -3251,6 +3421,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <text x="70" y="200" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">中</text>
   <text x="70" y="80" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">高</text>
 </svg>
+</div>
+
 -   <!-- Phase 3 -->
 -   <rect x='380' y='40' width='160' height='290' rx='8' fill='#1e3a5f'/>
 -   <rect x='380' y='40' width='160' height='36' rx='8' fill='#f97316'/>
@@ -3293,7 +3465,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 # リファクタリングの「冷却」サイクル（1/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">リファクタリングサイクル</text>
   <!-- Center circle -->
@@ -3331,8 +3504,9 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <line x1="190" y1="158" x2="312" y2="107" stroke="#ffffff" stroke-width="2"/>
   <polygon points="312,107 299,112 302,97" fill="#ffffff"/>
 </svg>
+</div>
+
 - **熱力学アナロジー：冷却には時間とエネルギーが必要**
-- 
 - **Sprint配分のモデル**
 
 
@@ -3342,9 +3516,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *機能追加と整理の交互サイクルが品質を安定させる*
 
-- - 開発 70% / リファクタリング 20% / 探索・学習 10%（Google '20%ルール'）
-- - ただし「リファクタリング専用スプリント」は危険 ← ビジネス価値ゼロに見える
-- 
+- 開発 70% / リファクタリング 20% / 探索・学習 10%（Google '20%ルール'）
+- ただし「リファクタリング専用スプリント」は危険 ← ビジネス価値ゼロに見える
 - **推奨**: 機能開発と一体化（ボーイスカウト＋ホットスポット優先）
 
 
@@ -3352,7 +3525,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 # リファクタリングの「冷却」サイクル（2/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コード品質劣化タイムライン</text>
   <!-- Timeline axis -->
@@ -3391,9 +3565,10 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <text x="400" y="280" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">技術的負債は静かに・確実に蓄積する</text>
   <text x="400" y="305" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">放置すればするほど返済コストは増大する</text>
 </svg>
-- 
+</div>
+
 - **「技術的負債の利子」を計算する**
-- - 変更1件あたりの余計な工数 × 変更頻度 = 月次コスト
+- 変更1件あたりの余計な工数 × 変更頻度 = 月次コスト
 
 
 ---
@@ -3402,8 +3577,7 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 > *機能追加と整理の交互サイクルが品質を安定させる*
 
-- - これがリファクタリング投資の上限額
-- 
+- これがリファクタリング投資の上限額
 - **ステークホルダーへの伝え方**
 - 「CC=30のモジュールは CC=8に比べて変更コストが約4倍かかっています」
 
@@ -3412,7 +3586,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 # TypeScript: 依存性逆転で結合度を下げる
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>
   <!-- Left box: Order -->
@@ -3446,6 +3621,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <!-- Bottom note -->
   <text x="400" y="360" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">エネルギー（努力）を投入しなければ、秩序は維持できない</text>
 </svg>
+</div>
+
 - 依存性逆転（DIP）でモジュール間の循環依存を解消する実装例
 
 
@@ -3453,7 +3630,8 @@ function rankHotspots(files: string[]): HotspotScore[] {
 
 # TypeScript: 依存性逆転で結合度を下げる（コード例）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コードクリーンアップ：Before / After</text>
   <!-- Before panel -->
@@ -3496,6 +3674,7 @@ function rankHotspots(files: string[]): HotspotScore[] {
   <line x1="365" y1="205" x2="435" y2="205" stroke="#f9a825" stroke-width="3"/>
   <polygon points="435,205 419,198 419,212" fill="#f9a825"/>
 </svg>
+</div>
 
 
 ---
@@ -3535,7 +3714,8 @@ class UserService {
 
 > *テストカバレッジが変更による意図しない劣化を防止する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">テストカバレッジと技術的負債の相関</text>
   <!-- Axes -->
@@ -3579,12 +3759,12 @@ class UserService {
   <rect x="590" y="280" width="120" height="30" rx="5" fill="#4caf50" fill-opacity="0.15"/>
   <text x="650" y="300" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">低負債ゾーン</text>
 </svg>
+</div>
+
 - **断熱材の役割**: 内部の秩序を外部環境の乱れから守る
-- 
 - **テストスイートの「断熱効果」**
-- - 変更後にテストが通る → 秩序が維持されたことの証明
-- - テストがない = 変更がエントロピーを増大させてもフィードバックがない
-- 
+- 変更後にテストが通る → 秩序が維持されたことの証明
+- テストがない = 変更がエントロピーを増大させてもフィードバックがない
 
 
 ---
@@ -3593,7 +3773,8 @@ class UserService {
 
 > *テストカバレッジが変更による意図しない劣化を防止する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">クリーンアーキテクチャとエントロピーゾーン</text>
   <!-- Concentric circles representing layers -->
@@ -3622,11 +3803,12 @@ class UserService {
   <!-- Rule -->
   <text x="400" y="370" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">依存は内側へ。エントロピーは外側に閉じ込める。</text>
 </svg>
+</div>
+
 - **テストピラミッドとエントロピー**
-- - ユニットテスト（底辺）: 局所的エントロピーをチェック
-- - インテグレーションテスト（中段）: モジュール間のエントロピー伝播を検知
-- - E2Eテスト（頂点）: システム全体のエントロピー増大を検知（遅い）
-- 
+- ユニットテスト（底辺）: 局所的エントロピーをチェック
+- インテグレーションテスト（中段）: モジュール間のエントロピー伝播を検知
+- E2Eテスト（頂点）: システム全体のエントロピー増大を検知（遅い）
 - **目標**: カバレッジよりも「変更が壊れたことを即座に検知できる」テスト設計
 
 
@@ -3636,7 +3818,8 @@ class UserService {
 
 > *凝集性の高いモジュールが複雑性の伝播を遮断する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">エントロピー蓄積：時間とともに増大する無秩序</text>
   <!-- Axes -->
@@ -3661,9 +3844,11 @@ class UserService {
   <text x="370" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">成長期</text>
   <text x="595" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">レガシー化</text>
 </svg>
+</div>
+
 - **物理学のアナロジー：断熱壁で系を分割する**
-- - 壁があることで、一方の系のエントロピー増大が他方に伝播しない
-- - 宇宙全体のエントロピーは増大しても、箱の中は管理できる
+- 壁があることで、一方の系のエントロピー増大が他方に伝播しない
+- 宇宙全体のエントロピーは増大しても、箱の中は管理できる
 
 
 ---
@@ -3672,18 +3857,18 @@ class UserService {
 
 > *凝集性の高いモジュールが複雑性の伝播を遮断する*
 
-- 
 - **モジュール境界の設計原則**
-- - 公開APIは最小限（Public Surface）← 壁の「穴」を小さくする
-- - 内部実装は隠蔽（詳細は変わりやすい = 高エントロピー源）
-- - 依存方向は単一方向（DAG）
+- 公開APIは最小限（Public Surface）← 壁の「穴」を小さくする
+- 内部実装は隠蔽（詳細は変わりやすい = 高エントロピー源）
+- 依存方向は単一方向（DAG）
 
 
 ---
 
 # モジュール境界でエントロピーを閉じ込める（2/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">技術的負債：複利で増大するコスト</text>
   <!-- Axes -->
@@ -3707,9 +3892,11 @@ class UserService {
   <text x="70" y="200" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">中</text>
   <text x="70" y="80" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">高</text>
 </svg>
-- 
+</div>
+
 - **Barrel Export の罠**
-- ```typescript
+
+```typescript
 
 
 ---
@@ -3722,14 +3909,16 @@ class UserService {
 - export * from './internal';
 - // OK: 意図した公開APIのみ
 - export { UserService } from './user-service';
-- ```
+
+```
 
 
 ---
 
 # TypeScript: モジュール境界チェックの実装
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">リファクタリングサイクル</text>
   <!-- Center circle -->
@@ -3767,6 +3956,8 @@ class UserService {
   <line x1="190" y1="158" x2="312" y2="107" stroke="#ffffff" stroke-width="2"/>
   <polygon points="312,107 299,112 302,97" fill="#ffffff"/>
 </svg>
+</div>
+
 - 依存クルーザーを使ったモジュール境界の自動検証設定例
 
 
@@ -3774,7 +3965,8 @@ class UserService {
 
 # TypeScript: モジュール境界チェックの実装（コード例）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コード品質劣化タイムライン</text>
   <!-- Timeline axis -->
@@ -3813,6 +4005,7 @@ class UserService {
   <text x="400" y="280" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">技術的負債は静かに・確実に蓄積する</text>
   <text x="400" y="305" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">放置すればするほど返済コストは増大する</text>
 </svg>
+</div>
 
 
 ---
@@ -3856,15 +4049,17 @@ module.exports = {
 
 > *サービス境界がエントロピーを局所化し全体を守る*
 
-- <svg viewBox='0 0 760 360' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'>
--   <defs>
--     <style>.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.hd{font-family:sans-serif;font-size:12px;font-weight:bold;fill:#fff}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}</style>
--   </defs>
--   <text x='380' y='22' text-anchor='middle' class='tt'>モジュール境界によるエントロピー隔離</text>
--   <!-- Monolith -->
--   <rect x='20' y='40' width='320' height='300' rx='8' fill='#1e293b' stroke='#ef4444' stroke-width='2'/>
--   <text x='180' y='62' text-anchor='middle' class='hd' fill='#ef4444'>モノリス（高エントロピー）</text>
--   <rect x='40' y='75' width='260' height='50' rx='4' fill='#7f1d1d' opacity='0.9'/>
+<div class="fig">
+<svg viewBox='0 0 760 360' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'>
+  <defs>
+    <style>.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.hd{font-family:sans-serif;font-size:12px;font-weight:bold;fill:#fff}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}</style>
+  </defs>
+  <text x='380' y='22' text-anchor='middle' class='tt'>モジュール境界によるエントロピー隔離</text>
+  <!-- Monolith -->
+  <rect x='20' y='40' width='320' height='300' rx='8' fill='#1e293b' stroke='#ef4444' stroke-width='2'/>
+  <text x='180' y='62' text-anchor='middle' class='hd' fill='#ef4444'>モノリス（高エントロピー）</text>
+  <rect x='40' y='75' width='260' height='50' rx='4' fill='#7f1d1d' opacity='0.9'/>
+</div>
 
 
 ---
@@ -3891,7 +4086,8 @@ module.exports = {
 
 > *サービス境界がエントロピーを局所化し全体を守る*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>
   <!-- Left box: Order -->
@@ -3925,6 +4121,8 @@ module.exports = {
   <!-- Bottom note -->
   <text x="400" y="360" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">エネルギー（努力）を投入しなければ、秩序は維持できない</text>
 </svg>
+</div>
+
 -   <!-- Microservices -->
 -   <rect x='385' y='40' width='350' height='300' rx='8' fill='#0f172a' stroke='#22c55e' stroke-width='2'/>
 -   <text x='560' y='62' text-anchor='middle' class='hd' fill='#22c55e'>マイクロサービス（隔離）</text>
@@ -3959,7 +4157,8 @@ module.exports = {
 
 # ワークショップ演習：あなたのシステムのエントロピーマップ（1/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コードクリーンアップ：Before / After</text>
   <!-- Before panel -->
@@ -4002,8 +4201,9 @@ module.exports = {
   <line x1="365" y1="205" x2="435" y2="205" stroke="#f9a825" stroke-width="3"/>
   <polygon points="435,205 419,198 419,212" fill="#f9a825"/>
 </svg>
+</div>
+
 - **15分間の演習**
-- 
 - **Step 1: 現状スキャン（5分）**
 
 
@@ -4013,9 +4213,8 @@ module.exports = {
 
 > *自システムの複雑度マップを30分で作成できる*
 
-- - 自チームのリポジトリで最もホットスポットだと感じるモジュールを3つ挙げよ
-- - 「変更のたびに怖い」「誰も触りたがらない」ファイルを特定する
-- 
+- 自チームのリポジトリで最もホットスポットだと感じるモジュールを3つ挙げよ
+- 「変更のたびに怖い」「誰も触りたがらない」ファイルを特定する
 - **Step 2: エントロピー分類（5分）**
 
 
@@ -4025,7 +4224,8 @@ module.exports = {
 
 > *自システムの複雑度マップを30分で作成できる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">テストカバレッジと技術的負債の相関</text>
   <!-- Axes -->
@@ -4069,9 +4269,11 @@ module.exports = {
   <rect x="590" y="280" width="120" height="30" rx="5" fill="#4caf50" fill-opacity="0.15"/>
   <text x="650" y="300" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">低負債ゾーン</text>
 </svg>
-- - それぞれのモジュールについて：
--   - Accidental（偶発的）か Essential（本質的）か？
--   - 孤立系化しているか？（テストなし・文書なし・知っている人がいない）
+</div>
+
+- それぞれのモジュールについて：
+  - Accidental（偶発的）か Essential（本質的）か？
+  - 孤立系化しているか？（テストなし・文書なし・知っている人がいない）
 
 
 ---
@@ -4080,18 +4282,18 @@ module.exports = {
 
 > *自システムの複雑度マップを30分で作成できる*
 
-- 
 - **Step 3: ロードマップ設計（5分）**
-- - 最優先ホットスポットに対する3アクションを書き出す
-- - 「今日から始められること」を1つ決める
+- 最優先ホットスポットに対する3アクションを書き出す
+- 「今日から始められること」を1つ決める
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 5: 組織・プロセス・パターン比較事例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">クリーンアーキテクチャとエントロピーゾーン</text>
   <!-- Concentric circles representing layers -->
@@ -4120,6 +4322,8 @@ module.exports = {
   <!-- Rule -->
   <text x="400" y="370" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">依存は内側へ。エントロピーは外側に閉じ込める。</text>
 </svg>
+</div>
+
 - エントロピーは個人ではなく組織とプロセスによって決まる
 
 
@@ -4129,7 +4333,8 @@ module.exports = {
 
 > *チーム境界がシステム境界となり負債の形を決める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">エントロピー蓄積：時間とともに増大する無秩序</text>
   <!-- Axes -->
@@ -4154,19 +4359,21 @@ module.exports = {
   <text x="370" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">成長期</text>
   <text x="595" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">レガシー化</text>
 </svg>
+</div>
+
 - **コンウェイの法則（1968年）**
 - 「システムを設計する組織は、その組織のコミュニケーション構造を写したシステムを作る」
-- 
 - **エントロピー解釈**
-- - 組織のコミュニケーション経路 = コードの依存グラフ
-- - 部門間のサイロ = モジュール間の不明確な境界
+- 組織のコミュニケーション経路 = コードの依存グラフ
+- 部門間のサイロ = モジュール間の不明確な境界
 
 
 ---
 
 # コンウェイの法則：組織構造がエントロピーを決める（2/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">技術的負債：複利で増大するコスト</text>
   <!-- Axes -->
@@ -4190,8 +4397,9 @@ module.exports = {
   <text x="70" y="200" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">中</text>
   <text x="70" y="80" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">高</text>
 </svg>
-- - 情報が流れない組織 = 知識エントロピーが高い組織
-- 
+</div>
+
+- 情報が流れない組織 = 知識エントロピーが高い組織
 - **逆コンウェイ戦略（Inverse Conway Maneuver）**
 
 
@@ -4201,9 +4409,8 @@ module.exports = {
 
 > *チーム境界がシステム境界となり負債の形を決める*
 
-- - 欲しいアーキテクチャに合わせてチームを設計する
-- - マイクロサービス採用 → まずサービス単位でチームを分割する
-- 
+- 欲しいアーキテクチャに合わせてチームを設計する
+- マイクロサービス採用 → まずサービス単位でチームを分割する
 - **実践**: Team Topologies の4チームタイプ（Stream-aligned / Platform / Enabling / Complicated Subsystem）
 
 
@@ -4213,7 +4420,8 @@ module.exports = {
 
 > *メンバー交代ごとに文脈損失がコード品質を下げる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">リファクタリングサイクル</text>
   <!-- Center circle -->
@@ -4251,19 +4459,21 @@ module.exports = {
   <line x1="190" y1="158" x2="312" y2="107" stroke="#ffffff" stroke-width="2"/>
   <polygon points="312,107 299,112 302,97" fill="#ffffff"/>
 </svg>
+</div>
+
 - **知識の「蒸発」とエントロピー**
-- - チームメンバーの退職・異動 → 暗黙知が失われる = 知識エントロピー増大
-- - 新しいメンバーが既存コードの「意図」を把握できない → 複雑な修正が増える
-- 
+- チームメンバーの退職・異動 → 暗黙知が失われる = 知識エントロピー増大
+- 新しいメンバーが既存コードの「意図」を把握できない → 複雑な修正が増える
 - **Bus Factor（バスファクター）**
-- - 「バスに轢かれた場合にプロジェクトが停止する人数」
+- 「バスに轢かれた場合にプロジェクトが停止する人数」
 
 
 ---
 
 # チームのエントロピー：人員入れ替えとコード劣化（2/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コード品質劣化タイムライン</text>
   <!-- Timeline axis -->
@@ -4302,8 +4512,9 @@ module.exports = {
   <text x="400" y="280" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">技術的負債は静かに・確実に蓄積する</text>
   <text x="400" y="305" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">放置すればするほど返済コストは増大する</text>
 </svg>
-- - Bus Factor = 1 → 極めて高い知識エントロピーの警告サイン
-- 
+</div>
+
+- Bus Factor = 1 → 極めて高い知識エントロピーの警告サイン
 - **対策**
 
 
@@ -4313,10 +4524,10 @@ module.exports = {
 
 > *メンバー交代ごとに文脈損失がコード品質を下げる*
 
-- - ADR でアーキテクチャ意図を記録
-- - ペアプログラミング・モブプログラミングで知識を分散
-- - コードレビューで「知識の共有」を必須プロセスに
-- - オンボーディングドキュメントの定期更新
+- ADR でアーキテクチャ意図を記録
+- ペアプログラミング・モブプログラミングで知識を分散
+- コードレビューで「知識の共有」を必須プロセスに
+- オンボーディングドキュメントの定期更新
 
 
 ---
@@ -4325,15 +4536,17 @@ module.exports = {
 
 > *スプリント内の整理時間配分が長期品質を決める*
 
-- <svg viewBox='0 0 760 360' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'>
--   <defs>
--     <style>.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}.ax{stroke:#555;stroke-width:1.5;fill:none}</style>
--   </defs>
--   <text x='380' y='22' text-anchor='middle' class='tt'>スプリントサイクルとエントロピーの増減</text>
--   <!-- axes -->
--   <line x1='60' y1='300' x2='720' y2='300' class='ax'/>
--   <line x1='60' y1='50' x2='60' y2='300' class='ax'/>
--   <text x='390' y='340' text-anchor='middle' class='lb'>スプリント番号</text>
+<div class="fig">
+<svg viewBox='0 0 760 360' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'>
+  <defs>
+    <style>.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}.ax{stroke:#555;stroke-width:1.5;fill:none}</style>
+  </defs>
+  <text x='380' y='22' text-anchor='middle' class='tt'>スプリントサイクルとエントロピーの増減</text>
+  <!-- axes -->
+  <line x1='60' y1='300' x2='720' y2='300' class='ax'/>
+  <line x1='60' y1='50' x2='60' y2='300' class='ax'/>
+  <text x='390' y='340' text-anchor='middle' class='lb'>スプリント番号</text>
+</div>
 
 
 ---
@@ -4359,7 +4572,8 @@ module.exports = {
 
 > *スプリント内の整理時間配分が長期品質を決める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>
   <!-- Left box: Order -->
@@ -4393,6 +4607,8 @@ module.exports = {
   <!-- Bottom note -->
   <text x="400" y="360" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">エネルギー（努力）を投入しなければ、秩序は維持できない</text>
 </svg>
+</div>
+
 -   <text x='270' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S4</text>
 -   <text x='330' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S5</text>
 -   <text x='390' y='285' text-anchor='middle' class='lb' fill='#fbbf24'>S6</text>
@@ -4427,7 +4643,8 @@ module.exports = {
 
 > *コードレビューが外部からのエネルギー注入として機能する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コードクリーンアップ：Before / After</text>
   <!-- Before panel -->
@@ -4470,9 +4687,11 @@ module.exports = {
   <line x1="365" y1="205" x2="435" y2="205" stroke="#f9a825" stroke-width="3"/>
   <polygon points="435,205 419,198 419,212" fill="#f9a825"/>
 </svg>
+</div>
+
 - **コードレビューの熱力学的意味**
-- - 「外部の目」= 外部エネルギー源
-- - レビュアーが指摘 = エントロピー増大の事前防止
+- 「外部の目」= 外部エネルギー源
+- レビュアーが指摘 = エントロピー増大の事前防止
 
 
 ---
@@ -4481,17 +4700,17 @@ module.exports = {
 
 > *コードレビューが外部からのエネルギー注入として機能する*
 
-- 
 - **効果的なレビューの焦点（エントロピー視点）**
-- - 命名の一貫性（情報エントロピーを下げる）
-- - 新たな循環依存の導入を防ぐ（構造エントロピー）
+- 命名の一貫性（情報エントロピーを下げる）
+- 新たな循環依存の導入を防ぐ（構造エントロピー）
 
 
 ---
 
 # レビュープロセスはエントロピーへの抵抗力（2/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">テストカバレッジと技術的負債の相関</text>
   <!-- Axes -->
@@ -4535,9 +4754,10 @@ module.exports = {
   <rect x="590" y="280" width="120" height="30" rx="5" fill="#4caf50" fill-opacity="0.15"/>
   <text x="650" y="300" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">低負債ゾーン</text>
 </svg>
-- - 重複ロジックの指摘（Ω の増大を防ぐ）
-- - 「なぜこの設計か」の説明を求める（知識エントロピー）
-- 
+</div>
+
+- 重複ロジックの指摘（Ω の増大を防ぐ）
+- 「なぜこの設計か」の説明を求める（知識エントロピー）
 
 
 ---
@@ -4547,9 +4767,9 @@ module.exports = {
 > *コードレビューが外部からのエネルギー注入として機能する*
 
 - **アンチパターン**
-- - スタイルだけのレビュー（Formatter に任せるべき）
-- - LGTM 連発（エントロピーを見逃す）
-- - 「後でリファクタするから」承認（負債を正式に増やす）
+- スタイルだけのレビュー（Formatter に任せるべき）
+- LGTM 連発（エントロピーを見逃す）
+- 「後でリファクタするから」承認（負債を正式に増やす）
 
 
 ---
@@ -4558,7 +4778,8 @@ module.exports = {
 
 > *共通基盤の高品質維持が全チームの負債蓄積を抑制する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">クリーンアーキテクチャとエントロピーゾーン</text>
   <!-- Concentric circles representing layers -->
@@ -4587,19 +4808,21 @@ module.exports = {
   <!-- Rule -->
   <text x="400" y="370" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">依存は内側へ。エントロピーは外側に閉じ込める。</text>
 </svg>
+</div>
+
 - **プラットフォームエンジニアリングとは**
-- - 開発チームが自律的にデプロイ・運用できる「舗装道路（Golden Path）」を構築
-- 
+- 開発チームが自律的にデプロイ・運用できる「舗装道路（Golden Path）」を構築
 - **エントロピー制御の仕組み**
-- - テンプレートとスキャフォールディング → 開始状態の Ω を制限
-- - 共通ライブラリ（ロギング・認証・観測性）→ 実装バリアントを減らす
+- テンプレートとスキャフォールディング → 開始状態の Ω を制限
+- 共通ライブラリ（ロギング・認証・観測性）→ 実装バリアントを減らす
 
 
 ---
 
 # プラットフォームエンジニアリング：基盤的エントロピー制御（2/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">エントロピー蓄積：時間とともに増大する無秩序</text>
   <!-- Axes -->
@@ -4624,8 +4847,9 @@ module.exports = {
   <text x="370" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">成長期</text>
   <text x="595" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">レガシー化</text>
 </svg>
-- - CI/CDパイプライン → ゲートでエントロピー増大を自動検出
-- 
+</div>
+
+- CI/CDパイプライン → ゲートでエントロピー増大を自動検出
 - **効果**
 
 
@@ -4635,9 +4859,8 @@ module.exports = {
 
 > *共通基盤の高品質維持が全チームの負債蓄積を抑制する*
 
-- - 各チームが「ゼロから決める」バリアントを最小化 → Ω 抑制
-- - 良い設計が「デフォルト」になる → エントロピー増大率が組織全体で下がる
-- 
+- 各チームが「ゼロから決める」バリアントを最小化 → Ω 抑制
+- 良い設計が「デフォルト」になる → エントロピー増大率が組織全体で下がる
 - **IDP（Internal Developer Platform）**: Backstage / Port / Cortex などのツール活用
 
 
@@ -4647,13 +4870,15 @@ module.exports = {
 
 > *3層のエントロピーが相互に増幅し合う構造を示す*
 
-- <svg viewBox='0 0 760 360' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'>
--   <defs>
--     <style>.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.hd{font-family:sans-serif;font-size:13px;font-weight:bold;fill:#fff}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}</style>
--   </defs>
--   <text x='380' y='22' text-anchor='middle' class='tt'>組織・プロセス・コードの3層エントロピーモデル</text>
--   <!-- Layer 3: Organization -->
--   <rect x='40' y='40' width='680' height='75' rx='8' fill='#1e3a5f' stroke='#3b82f6' stroke-width='1.5'/>
+<div class="fig">
+<svg viewBox='0 0 760 360' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'>
+  <defs>
+    <style>.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.hd{font-family:sans-serif;font-size:13px;font-weight:bold;fill:#fff}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}</style>
+  </defs>
+  <text x='380' y='22' text-anchor='middle' class='tt'>組織・プロセス・コードの3層エントロピーモデル</text>
+  <!-- Layer 3: Organization -->
+  <rect x='40' y='40' width='680' height='75' rx='8' fill='#1e3a5f' stroke='#3b82f6' stroke-width='1.5'/>
+</div>
 
 
 ---
@@ -4677,7 +4902,8 @@ module.exports = {
 
 > *3層のエントロピーが相互に増幅し合う構造を示す*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">技術的負債：複利で増大するコスト</text>
   <!-- Axes -->
@@ -4701,6 +4927,8 @@ module.exports = {
   <text x="70" y="200" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">中</text>
   <text x="70" y="80" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">高</text>
 </svg>
+</div>
+
 -   <text x='380' y='168' text-anchor='middle' class='hd' fill='#fed7aa'>Layer 2: プロセスエントロピー</text>
 -   <text x='380' y='188' text-anchor='middle' class='lb'>スプリント設計・レビュー文化・CI/CD・デプロイ頻度・変更障害率</text>
 -   <text x='380' y='206' text-anchor='middle' class='lb' fill='#fb923c'>制御手段: DORA計測, ボーイスカウト文化, プラットフォームエンジニアリング</text>
@@ -4730,7 +4958,8 @@ module.exports = {
 
 # 事例比較：低エントロピー組織 vs 高エントロピー組織
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">リファクタリングサイクル</text>
   <!-- Center circle -->
@@ -4768,6 +4997,8 @@ module.exports = {
   <line x1="190" y1="158" x2="312" y2="107" stroke="#ffffff" stroke-width="2"/>
   <polygon points="312,107 299,112 302,97" fill="#ffffff"/>
 </svg>
+</div>
+
 | 観点 | 低エントロピー組織 | 高エントロピー組織 |
 |-----|----------------|----------------|
 | デプロイ | 毎日・自動 | 月1回・手動承認 |
@@ -4776,7 +5007,7 @@ module.exports = {
 | 新人参加 | 2週間で独立 | 3ヶ月間影響待ち |
 | 障害対応 | 原因特定 < 1時間 | 数日間迷走 |
 | リファクタ | 機能に組み込み | 「いつかやる」 |
-- 
+
 - **典型的な転落パターン**
 - 「初期は低エントロピー → 急成長期に人員増加 → 秩序が追いつかず高エントロピー化」
 
@@ -4787,7 +5018,8 @@ module.exports = {
 
 > *ドメイン境界がエントロピーを意味的に閉じ込める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コード品質劣化タイムライン</text>
   <!-- Timeline axis -->
@@ -4826,12 +5058,13 @@ module.exports = {
   <text x="400" y="280" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">技術的負債は静かに・確実に蓄積する</text>
   <text x="400" y="305" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">放置すればするほど返済コストは増大する</text>
 </svg>
+</div>
+
 - **ドメイン駆動設計（DDD）のBounded Context**
-- - 同じ言葉が異なるドメインで異なる意味を持つことを明示的に扱う
-- - 例：「注文」は受注管理と配送管理で構造が異なる
-- 
+- 同じ言葉が異なるドメインで異なる意味を持つことを明示的に扱う
+- 例：「注文」は受注管理と配送管理で構造が異なる
 - **エントロピー的意味**
-- - Bounded Context = 「容器」でエントロピーを閉じ込める
+- Bounded Context = 「容器」でエントロピーを閉じ込める
 
 
 ---
@@ -4840,7 +5073,8 @@ module.exports = {
 
 > *ドメイン境界がエントロピーを意味的に閉じ込める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>
   <!-- Left box: Order -->
@@ -4874,20 +5108,22 @@ module.exports = {
   <!-- Bottom note -->
   <text x="400" y="360" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">エネルギー（努力）を投入しなければ、秩序は維持できない</text>
 </svg>
-- - Context Map でドメイン間の依存を管理 → 相互エントロピー伝播を防ぐ
-- - Ubiquitous Language = そのContext内の情報エントロピーを最小化する共通言語
-- 
+</div>
+
+- Context Map でドメイン間の依存を管理 → 相互エントロピー伝播を防ぐ
+- Ubiquitous Language = そのContext内の情報エントロピーを最小化する共通言語
 - **マイクロサービスとの関係**
-- - 「1マイクロサービス = 1Bounded Context」が基本原則
-- - ただし Context の境界が曖昧なまま分割すると逆にエントロピーが増大する
+- 「1マイクロサービス = 1Bounded Context」が基本原則
+- ただし Context の境界が曖昧なまま分割すると逆にエントロピーが増大する
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 6: まとめ・Q&A
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コードクリーンアップ：Before / After</text>
   <!-- Before panel -->
@@ -4930,6 +5166,8 @@ module.exports = {
   <line x1="365" y1="205" x2="435" y2="205" stroke="#f9a825" stroke-width="3"/>
   <polygon points="435,205 419,198 419,212" fill="#f9a825"/>
 </svg>
+</div>
+
 - エントロピーフレームワークで技術的負債を再定義する
 
 
@@ -4939,15 +5177,17 @@ module.exports = {
 
 > *全概念を1図に統合した設計判断の参照フレーム*
 
-- <svg viewBox='0 0 760 360' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'>
--   <defs>
--     <style>.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.hd{font-family:sans-serif;font-size:12px;font-weight:bold;fill:#fff}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}</style>
--   </defs>
--   <text x='380' y='22' text-anchor='middle' class='tt'>エントロピー・技術的負債 統一フレームワーク</text>
--   <!-- Center circle: Second Law -->
--   <circle cx='380' cy='185' r='60' fill='#1e3a5f' stroke='#3b82f6' stroke-width='2'/>
--   <text x='380' y='178' text-anchor='middle' class='hd' fill='#93c5fd'>熱力学</text>
--   <text x='380' y='194' text-anchor='middle' class='hd' fill='#93c5fd'>第二法則</text>
+<div class="fig">
+<svg viewBox='0 0 760 360' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'>
+  <defs>
+    <style>.lb{font-family:sans-serif;font-size:11px;fill:#ddd}.hd{font-family:sans-serif;font-size:12px;font-weight:bold;fill:#fff}.tt{font-family:sans-serif;font-size:14px;font-weight:bold;fill:#fff}</style>
+  </defs>
+  <text x='380' y='22' text-anchor='middle' class='tt'>エントロピー・技術的負債 統一フレームワーク</text>
+  <!-- Center circle: Second Law -->
+  <circle cx='380' cy='185' r='60' fill='#1e3a5f' stroke='#3b82f6' stroke-width='2'/>
+  <text x='380' y='178' text-anchor='middle' class='hd' fill='#93c5fd'>熱力学</text>
+  <text x='380' y='194' text-anchor='middle' class='hd' fill='#93c5fd'>第二法則</text>
+</div>
 
 
 ---
@@ -4974,7 +5214,8 @@ module.exports = {
 
 > *全概念を1図に統合した設計判断の参照フレーム*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">テストカバレッジと技術的負債の相関</text>
   <!-- Axes -->
@@ -5018,6 +5259,8 @@ module.exports = {
   <rect x="590" y="280" width="120" height="30" rx="5" fill="#4caf50" fill-opacity="0.15"/>
   <text x="650" y="300" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">低負債ゾーン</text>
 </svg>
+</div>
+
 -   <text x='667' y='114' text-anchor='middle' class='lb'>モジュール境界・DIP</text>
 -   <!-- Node: Inject Energy -->
 -   <rect x='20' y='265' width='145' height='55' rx='6' fill='#581c87' stroke='#a855f7' stroke-width='1.5'/>
@@ -5053,7 +5296,8 @@ module.exports = {
 
 > *この3原則を守ればエントロピーの増大を制御できる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">クリーンアーキテクチャとエントロピーゾーン</text>
   <!-- Concentric circles representing layers -->
@@ -5082,9 +5326,11 @@ module.exports = {
   <!-- Rule -->
   <text x="400" y="370" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">依存は内側へ。エントロピーは外側に閉じ込める。</text>
 </svg>
+</div>
+
 - **原則1：測れ（Measure）**
-- - 見えないエントロピーは管理できない
-- - Cyclomatic Complexity / Cognitive Complexity / DORA Metrics を継続計測
+- 見えないエントロピーは管理できない
+- Cyclomatic Complexity / Cognitive Complexity / DORA Metrics を継続計測
 
 
 ---
@@ -5093,17 +5339,17 @@ module.exports = {
 
 > *この3原則を守ればエントロピーの増大を制御できる*
 
-- - ホットスポットマップを週次で更新し、チームで共有する
-- 
+- ホットスポットマップを週次で更新し、チームで共有する
 - **原則2：隔離せよ（Isolate）**
-- - 高エントロピーな領域を他の系から切り離す
+- 高エントロピーな領域を他の系から切り離す
 
 
 ---
 
 # 3つの原則：測れ・隔離せよ・注エネルギーし続けよ（2/2）（1/2）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">エントロピー蓄積：時間とともに増大する無秩序</text>
   <!-- Axes -->
@@ -5128,9 +5374,10 @@ module.exports = {
   <text x="370" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">成長期</text>
   <text x="595" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">レガシー化</text>
 </svg>
-- - Bounded Context / モジュール境界 / Strangler Fig Pattern
-- - 循環依存の排除は最優先のアーキテクチャ品質指標
-- 
+</div>
+
+- Bounded Context / モジュール境界 / Strangler Fig Pattern
+- 循環依存の排除は最優先のアーキテクチャ品質指標
 
 
 ---
@@ -5140,9 +5387,9 @@ module.exports = {
 > *この3原則を守ればエントロピーの増大を制御できる*
 
 - **原則3：注エネルギーし続けよ（Inject Energy Continuously）**
-- - リファクタリングは一時イベントではなく継続プロセス
-- - スプリントごとにボーイスカウトコストを予算に組み込む
-- - テスト・レビュー・ADR は「エネルギー貯蔵装置」
+- リファクタリングは一時イベントではなく継続プロセス
+- スプリントごとにボーイスカウトコストを予算に組み込む
+- テスト・レビュー・ADR は「エネルギー貯蔵装置」
 
 
 ---
@@ -5151,7 +5398,8 @@ module.exports = {
 
 > *今週中に複雑度計測を実行し返済対象1ファイルを決める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">技術的負債：複利で増大するコスト</text>
   <!-- Axes -->
@@ -5175,11 +5423,12 @@ module.exports = {
   <text x="70" y="200" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">中</text>
   <text x="70" y="80" text-anchor="end" fill="#888" font-size="11" font-family="sans-serif">高</text>
 </svg>
+</div>
+
 - **今週できること（工数0〜2時間）**
-- - [ ] `npx madge --circular src/` を実行して循環依存の数を把握する
-- - [ ] 最もホットスポットだと感じるファイルのCC値を計測する
-- - [ ] `docs/adr/` ディレクトリを作って最初のADRを書く
-- 
+- [ ] `npx madge --circular src/` を実行して循環依存の数を把握する
+- [ ] 最もホットスポットだと感じるファイルのCC値を計測する
+- [ ] `docs/adr/` ディレクトリを作って最初のADRを書く
 - **来月できること（1〜2スプリント）**
 
 
@@ -5189,7 +5438,8 @@ module.exports = {
 
 > *今週中に複雑度計測を実行し返済対象1ファイルを決める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">リファクタリングサイクル</text>
   <!-- Center circle -->
@@ -5227,9 +5477,11 @@ module.exports = {
   <line x1="190" y1="158" x2="312" y2="107" stroke="#ffffff" stroke-width="2"/>
   <polygon points="312,107 299,112 302,97" fill="#ffffff"/>
 </svg>
-- - [ ] CI/CD に CC 閾値チェックを追加する（PR で CC > 15 を警告）
-- - [ ] ホットスポット上位3ファイルにテストを追加する
-- - [ ] チームで「ボーイスカウトルール」を明示的に合意する
+</div>
+
+- [ ] CI/CD に CC 閾値チェックを追加する（PR で CC > 15 を警告）
+- [ ] ホットスポット上位3ファイルにテストを追加する
+- [ ] チームで「ボーイスカウトルール」を明示的に合意する
 
 
 ---
@@ -5238,10 +5490,9 @@ module.exports = {
 
 > *今週中に複雑度計測を実行し返済対象1ファイルを決める*
 
-- 
 - **3ヶ月以内（組織的取り組み）**
-- - [ ] 週次エントロピーレポートをチームダッシュボードに組み込む
-- - [ ] Team Topologies の観点でチーム構造を見直す
+- [ ] 週次エントロピーレポートをチームダッシュボードに組み込む
+- [ ] Team Topologies の観点でチーム構造を見直す
 
 
 ---
@@ -5250,7 +5501,8 @@ module.exports = {
 
 > *Martin・Feathers・Cunninghamの著作が理論と実践を網羅*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コード品質劣化タイムライン</text>
   <!-- Timeline axis -->
@@ -5289,9 +5541,11 @@ module.exports = {
   <text x="400" y="280" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif">技術的負債は静かに・確実に蓄積する</text>
   <text x="400" y="305" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">放置すればするほど返済コストは増大する</text>
 </svg>
+</div>
+
 - **書籍**
-- - [Clean Code — Robert C. Martin](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)
-- - [Your Code as a Crime Scene — Adam Thornhill](https://pragprog.com/titles/atcrime2/your-code-as-a-crime-scene-second-edition/)
+- [Clean Code — Robert C. Martin](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)
+- [Your Code as a Crime Scene — Adam Thornhill](https://pragprog.com/titles/atcrime2/your-code-as-a-crime-scene-second-edition/)
 
 
 ---
@@ -5300,9 +5554,8 @@ module.exports = {
 
 > *Martin・Feathers・Cunninghamの著作が理論と実践を網羅*
 
-- - [Team Topologies — Skelton & Pais](https://teamtopologies.com/book)
-- - [Accelerate — Nicole Forsgren et al.](https://itrevolution.com/accelerate-book/)
-- 
+- [Team Topologies — Skelton & Pais](https://teamtopologies.com/book)
+- [Accelerate — Nicole Forsgren et al.](https://itrevolution.com/accelerate-book/)
 - **論文・記事**
 
 
@@ -5312,7 +5565,8 @@ module.exports = {
 
 > *Martin・Feathers・Cunninghamの著作が理論と実践を網羅*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">熱力学第二法則とコード：秩序 → 無秩序</text>
   <!-- Left box: Order -->
@@ -5346,9 +5600,11 @@ module.exports = {
   <!-- Bottom note -->
   <text x="400" y="360" text-anchor="middle" fill="#aaa" font-size="14" font-family="sans-serif">エネルギー（努力）を投入しなければ、秩序は維持できない</text>
 </svg>
-- - [Technical Debt — Ward Cunningham (1992)](http://c2.com/doc/oopsla92.html)
-- - [A Taxonomy of Tech Debt — Martin Fowler](https://martinfowler.com/bliki/TechnicalDebtQuadrant.html)
-- - [Connascence — Meilir Page-Jones](https://connascence.io/)
+</div>
+
+- [Technical Debt — Ward Cunningham (1992)](http://c2.com/doc/oopsla92.html)
+- [A Taxonomy of Tech Debt — Martin Fowler](https://martinfowler.com/bliki/TechnicalDebtQuadrant.html)
+- [Connascence — Meilir Page-Jones](https://connascence.io/)
 
 
 ---
@@ -5357,19 +5613,19 @@ module.exports = {
 
 > *Martin・Feathers・Cunninghamの著作が理論と実践を網羅*
 
-- 
 - **ツール**
-- - [Madge（循環依存検出）](https://github.com/pahen/madge)
-- - [dependency-cruiser（依存ルール検証）](https://github.com/sverweij/dependency-cruiser)
-- - [Lizard（CC計測）](https://github.com/terryyin/lizard)
+- [Madge（循環依存検出）](https://github.com/pahen/madge)
+- [dependency-cruiser（依存ルール検証）](https://github.com/sverweij/dependency-cruiser)
+- [Lizard（CC計測）](https://github.com/terryyin/lizard)
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Q&A / ディスカッション
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold" font-family="sans-serif">コードクリーンアップ：Before / After</text>
   <!-- Before panel -->
@@ -5412,10 +5668,10 @@ module.exports = {
   <line x1="365" y1="205" x2="435" y2="205" stroke="#f9a825" stroke-width="3"/>
   <polygon points="435,205 419,198 419,212" fill="#f9a825"/>
 </svg>
+</div>
+
 - **ご質問・ディスカッション**
-- 
 - 「エントロピーは増大する。抵抗は可能だが、ゼロにはできない。
 -  だから私たちはエンジニアであり続ける」
-- 
 - ありがとうございました
 

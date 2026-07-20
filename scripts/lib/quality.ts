@@ -3,6 +3,8 @@
  * and generate-index.ts. Single source of truth for LABEL_TITLE_RE and grade computation.
  */
 
+import { estimateFit } from "../../src/generate/fit.js";
+import type { SlideContent } from "../../src/generate/slide-schema.js";
 import {
 	GRADE_A_MIN,
 	GRADE_B_MIN,
@@ -212,7 +214,31 @@ export function validateSlideQuality(slides: SlideRecord[]): QualityWarning[] {
 			consecutiveTextOnly = 0;
 		}
 
-		// 5. Missing speaker notes on content slides
+		// 5. Images Marp cannot render
+		for (const item of content) {
+			if (item.includes("data:image/svg+xml")) {
+				warnings.push({
+					slideIndex: i + 1,
+					title,
+					type: "unrenderable_image",
+					message: `Base64 SVG data URI — markdown-it rejects data: URLs other than gif/png/jpeg/webp, so this renders as raw base64 text. Run "bun run fix:data-uri" to inline it.`,
+				});
+				break;
+			}
+		}
+
+		// 6. Content that cannot fit even after auto-fit shrinks the type
+		const fit = estimateFit(slide as SlideContent);
+		if (fit.overBudget) {
+			warnings.push({
+				slideIndex: i + 1,
+				title,
+				type: "overflowing_slide",
+				message: `Content needs ~${Math.round((fit.requiredEm / fit.budgetEm) * 100)}% of the slide even at the smallest auto-fit step — split it across two slides instead of relying on shrinking type`,
+			});
+		}
+
+		// 7. Missing speaker notes on content slides
 		if (isContentSlide && !slide.speakerNotes && content.length > 0) {
 			warnings.push({
 				slideIndex: i + 1,
@@ -223,7 +249,7 @@ export function validateSlideQuality(slides: SlideRecord[]): QualityWarning[] {
 		}
 	}
 
-	// 6. Narrative arc check (deck-level)
+	// 8. Narrative arc check (deck-level)
 	const contentSlides = slides.filter(
 		(s) => (s.layout ?? "default") === "default",
 	);

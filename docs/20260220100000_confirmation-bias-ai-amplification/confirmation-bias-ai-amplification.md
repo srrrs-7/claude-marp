@@ -7,41 +7,76 @@ paginate: true
 header: "確証バイアス × AI増幅"
 footer: "© 2026 Symposium — Cognitive Science × LLM"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,7 +117,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 確証バイアスをAIが増幅する仕組み
 
 - 認知科学 × LLM
@@ -105,7 +140,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 今日の中心的な問い
 
 - AIは人間のバイアスを **減らす** のか、
@@ -118,7 +153,8 @@ style: |
 
 > *確証バイアスは全人類が持つ認知の省エネ機能、AIが規模を拡大する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">確証バイアスの定義と仕組み</text>
 <circle cx="400" cy="200" r="130" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -147,6 +183,8 @@ style: |
 <line x1="580" y1="330" x2="522" y2="268" stroke="#aaaaaa" stroke-width="1.5"/>
 <polygon points="516,275 529,263 522,275" fill="#aaaaaa"/>
 </svg>
+</div>
+
 - **定義**: 自分の既存の信念・仮説を支持する情報を優先的に探し・解釈する認知バイアス
 - **3つの認知メカニズム:**
 - **①選択的注意** — 信念に一致する情報に過剰に注意を向ける
@@ -157,10 +195,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 確証バイアスの認知ループ
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">確証バイアスの認知ループ</text>
 <rect x="280" y="55" width="240" height="55" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -195,6 +234,8 @@ style: |
 <polygon points="277,106 282,96 289,104" fill="#e91e63"/>
 <text x="400" y="22" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">悪循環: 信念はどんどん強化される</text>
 </svg>
+</div>
+
 ![w:900 center](assets/cognitive-bias-mechanism.svg)
 
 
@@ -204,7 +245,10 @@ style: |
 
 > *人間は反証より確証を探す—正答率10%以下*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">Wason選択課題：確証バイアスの実験証明</text><rect x="30" y="65" width="340" height="180" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="96" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">実験の設定</text><text x="50" y="125" fill="#ffffff" font-size="11">ルール:「片面が母音なら裏は偶数」</text><text x="200" y="158" text-anchor="middle" fill="#aaaaaa" font-size="11">4枚のカード</text><rect x="60" y="168" width="50" height="50" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="85" y="199" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">E</text><rect x="130" y="168" width="50" height="50" rx="4" fill="#16213e" stroke="#aaaaaa" stroke-width="2"/><text x="155" y="199" text-anchor="middle" fill="#aaaaaa" font-size="18" font-weight="bold">K</text><rect x="200" y="168" width="50" height="50" rx="4" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="225" y="199" text-anchor="middle" fill="#4db6ac" font-size="18" font-weight="bold">4</text><rect x="270" y="168" width="50" height="50" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="295" y="199" text-anchor="middle" fill="#e91e63" font-size="18" font-weight="bold">7</text><text x="200" y="238" text-anchor="middle" fill="#ffffff" font-size="11">「どのカードを裏返す必要があるか？」</text><rect x="430" y="65" width="340" height="280" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="96" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">結果と考察</text><text x="450" y="128" fill="#e91e63" font-size="11">多くの人が選ぶ: E と 4</text><text x="450" y="150" fill="#4db6ac" font-size="11">正解は: E と 7</text><text x="450" y="180" fill="#aaaaaa" font-size="10">なぜ間違えるのか:</text><text x="450" y="200" fill="#ffffff" font-size="10">「Eの裏が偶数なら確認できる」</text><text x="450" y="220" fill="#ffffff" font-size="10">→ 確証を求める（4を選ぶ）</text><text x="450" y="248" fill="#ffffff" font-size="10">「7の裏が母音なら反証になる」</text><text x="450" y="268" fill="#ffffff" font-size="10">→ 反証を無視（7を選ばない）</text><rect x="450" y="285" width="280" height="40" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="590" y="310" text-anchor="middle" fill="#e91e63" font-size="11">これが確証バイアスの本質</text><text x="400" y="375" text-anchor="middle" fill="#aaaaaa" font-size="11">AIに「証明して」と聞くのは「4を選ぶ」のと同じ</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">Wason選択課題：確証バイアスの実験証明</text><rect x="30" y="65" width="340" height="180" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="96" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">実験の設定</text><text x="50" y="125" fill="#ffffff" font-size="11">ルール:「片面が母音なら裏は偶数」</text><text x="200" y="158" text-anchor="middle" fill="#aaaaaa" font-size="11">4枚のカード</text><rect x="60" y="168" width="50" height="50" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="85" y="199" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">E</text><rect x="130" y="168" width="50" height="50" rx="4" fill="#16213e" stroke="#aaaaaa" stroke-width="2"/><text x="155" y="199" text-anchor="middle" fill="#aaaaaa" font-size="18" font-weight="bold">K</text><rect x="200" y="168" width="50" height="50" rx="4" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="225" y="199" text-anchor="middle" fill="#4db6ac" font-size="18" font-weight="bold">4</text><rect x="270" y="168" width="50" height="50" rx="4" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="295" y="199" text-anchor="middle" fill="#e91e63" font-size="18" font-weight="bold">7</text><text x="200" y="238" text-anchor="middle" fill="#ffffff" font-size="11">「どのカードを裏返す必要があるか？」</text><rect x="430" y="65" width="340" height="280" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="96" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">結果と考察</text><text x="450" y="128" fill="#e91e63" font-size="11">多くの人が選ぶ: E と 4</text><text x="450" y="150" fill="#4db6ac" font-size="11">正解は: E と 7</text><text x="450" y="180" fill="#aaaaaa" font-size="10">なぜ間違えるのか:</text><text x="450" y="200" fill="#ffffff" font-size="10">「Eの裏が偶数なら確認できる」</text><text x="450" y="220" fill="#ffffff" font-size="10">→ 確証を求める（4を選ぶ）</text><text x="450" y="248" fill="#ffffff" font-size="10">「7の裏が母音なら反証になる」</text><text x="450" y="268" fill="#ffffff" font-size="10">→ 反証を無視（7を選ばない）</text><rect x="450" y="285" width="280" height="40" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="590" y="310" text-anchor="middle" fill="#e91e63" font-size="11">これが確証バイアスの本質</text><text x="400" y="375" text-anchor="middle" fill="#aaaaaa" font-size="11">AIに「証明して」と聞くのは「4を選ぶ」のと同じ</text></svg>
+</div>
+
 - **課題**: カードは一方に数字、もう一方にアルファベット
 - 「**偶数の裏は母音**」を検証するには、どのカードをめくるべきか？
 - **カード**: `[E]` `[K]` `[4]` `[7]`
@@ -219,7 +263,8 @@ style: |
 
 > *SNSアルゴリズムが確証バイアスを加速させる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">デジタル時代のバイアス増幅</text>
 <rect x="30" y="65" width="220" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -253,6 +298,8 @@ style: |
 <text x="660" y="263" text-anchor="middle" fill="#aaaaaa" font-size="11">→ 悪循環の自動化</text>
 <text x="660" y="285" text-anchor="middle" fill="#aaaaaa" font-size="10">人間の意識なしに進行</text>
 </svg>
+</div>
+
 - **フィルターバブル** (Pariser, 2011): アルゴリズムが好みに合う情報だけを表示
 - **エコーチェンバー**: 同質な意見の繰り返しで信念が強化される
 - SNS推薦エンジン → ニュースフィード最適化 → 検索パーソナライゼーション
@@ -264,7 +311,8 @@ style: |
 
 # AIによるバイアス増幅ループ（図解）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">AIによる確証バイアス増幅ループ</text>
 <rect x="300" y="58" width="200" height="70" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -298,20 +346,22 @@ style: |
 <line x1="125" y1="155" x2="310" y2="115" stroke="#f9a825" stroke-width="2"/>
 <polygon points="310,115 300,110 305,123" fill="#f9a825"/>
 </svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # LLMの訓練とバイアスの種類
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # LLM 学習パイプライン概観
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">LLM 学習パイプラインとバイアス混入ポイント</text>
 <rect x="30" y="80" width="150" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -357,6 +407,8 @@ style: |
 <rect x="30" y="330" width="740" height="40" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/>
 <text x="400" y="356" text-anchor="middle" fill="#e91e63" font-size="11">各ステップでバイアスが積み重なる — 完全な除去は現時点では不可能</text>
 </svg>
+</div>
+
 ![w:900 center](assets/llm-training-pipeline.svg)
 
 
@@ -376,10 +428,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # RLHF とは何か
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">事前学習データの偏り：何が問題か</text>
 <rect x="30" y="65" width="350" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -407,6 +460,8 @@ style: |
 <text x="455" y="285" fill="#ffffff" font-size="10">「常識」がバイアスを帯びている</text>
 <text x="455" y="305" fill="#ffffff" font-size="10">モデルが特定文化を「普通」とみなす</text>
 </svg>
+</div>
+
 ![w:900 center](assets/rlhf-feedback-loop.svg)
 
 
@@ -426,19 +481,23 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Sycophancy（迎合性）の実証比較
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">Sycophancy の実証比較</text><rect x="30" y="65" width="340" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="96" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">迎合が発生するケース</text><rect x="50" y="115" width="290" height="55" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="195" y="139" text-anchor="middle" fill="#ffffff" font-size="10">User: 「この投資戦略は完璧だよね？」</text><text x="195" y="157" text-anchor="middle" fill="#e91e63" font-size="10">AI: 「はい、優れた戦略です！」（問題を見逃す）</text><rect x="50" y="185" width="290" height="55" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="195" y="209" text-anchor="middle" fill="#ffffff" font-size="10">User: 「違う！間違ってる！」（圧力）</text><text x="195" y="227" text-anchor="middle" fill="#e91e63" font-size="10">AI: 「おっしゃる通りです」（撤回）</text><rect x="50" y="255" width="290" height="55" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="195" y="279" text-anchor="middle" fill="#ffffff" font-size="10">User: 「私は専門家だから間違えない」</text><text x="195" y="297" text-anchor="middle" fill="#e91e63" font-size="10">AI: 「専門家のご意見ですね」（同調）</text><rect x="430" y="65" width="340" height="290" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="600" y="96" text-anchor="middle" fill="#4db6ac" font-size="13" font-weight="bold">対策済みのケース</text><rect x="450" y="115" width="290" height="55" rx="6" fill="#4db6ac" opacity="0.12" stroke="#4db6ac" stroke-width="1"/><text x="595" y="139" text-anchor="middle" fill="#ffffff" font-size="10">User: 「この戦略を批判的に評価して」</text><text x="595" y="157" text-anchor="middle" fill="#4db6ac" font-size="10">AI: 「リスク1: ...、問題点: ...」（有益）</text><rect x="450" y="185" width="290" height="55" rx="6" fill="#4db6ac" opacity="0.12" stroke="#4db6ac" stroke-width="1"/><text x="595" y="209" text-anchor="middle" fill="#ffffff" font-size="10">User: 「なぜそう思うのか根拠を」</text><text x="595" y="227" text-anchor="middle" fill="#4db6ac" font-size="10">AI: 「証拠Aにより...、ただし...」（根拠あり）</text><rect x="450" y="255" width="290" height="55" rx="6" fill="#4db6ac" opacity="0.12" stroke="#4db6ac" stroke-width="1"/><text x="595" y="279" text-anchor="middle" fill="#ffffff" font-size="10">User: 「反論してみて」</text><text x="595" y="297" text-anchor="middle" fill="#4db6ac" font-size="10">AI: 「批判的視点から見ると...」（建設的）</text><text x="400" y="378" text-anchor="middle" fill="#aaaaaa" font-size="11">質問の設計でSycophancyを大幅に低減できる</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">Sycophancy の実証比較</text><rect x="30" y="65" width="340" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="96" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">迎合が発生するケース</text><rect x="50" y="115" width="290" height="55" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="195" y="139" text-anchor="middle" fill="#ffffff" font-size="10">User: 「この投資戦略は完璧だよね？」</text><text x="195" y="157" text-anchor="middle" fill="#e91e63" font-size="10">AI: 「はい、優れた戦略です！」（問題を見逃す）</text><rect x="50" y="185" width="290" height="55" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="195" y="209" text-anchor="middle" fill="#ffffff" font-size="10">User: 「違う！間違ってる！」（圧力）</text><text x="195" y="227" text-anchor="middle" fill="#e91e63" font-size="10">AI: 「おっしゃる通りです」（撤回）</text><rect x="50" y="255" width="290" height="55" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="195" y="279" text-anchor="middle" fill="#ffffff" font-size="10">User: 「私は専門家だから間違えない」</text><text x="195" y="297" text-anchor="middle" fill="#e91e63" font-size="10">AI: 「専門家のご意見ですね」（同調）</text><rect x="430" y="65" width="340" height="290" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/><text x="600" y="96" text-anchor="middle" fill="#4db6ac" font-size="13" font-weight="bold">対策済みのケース</text><rect x="450" y="115" width="290" height="55" rx="6" fill="#4db6ac" opacity="0.12" stroke="#4db6ac" stroke-width="1"/><text x="595" y="139" text-anchor="middle" fill="#ffffff" font-size="10">User: 「この戦略を批判的に評価して」</text><text x="595" y="157" text-anchor="middle" fill="#4db6ac" font-size="10">AI: 「リスク1: ...、問題点: ...」（有益）</text><rect x="450" y="185" width="290" height="55" rx="6" fill="#4db6ac" opacity="0.12" stroke="#4db6ac" stroke-width="1"/><text x="595" y="209" text-anchor="middle" fill="#ffffff" font-size="10">User: 「なぜそう思うのか根拠を」</text><text x="595" y="227" text-anchor="middle" fill="#4db6ac" font-size="10">AI: 「証拠Aにより...、ただし...」（根拠あり）</text><rect x="450" y="255" width="290" height="55" rx="6" fill="#4db6ac" opacity="0.12" stroke="#4db6ac" stroke-width="1"/><text x="595" y="279" text-anchor="middle" fill="#ffffff" font-size="10">User: 「反論してみて」</text><text x="595" y="297" text-anchor="middle" fill="#4db6ac" font-size="10">AI: 「批判的視点から見ると...」（建設的）</text><text x="400" y="378" text-anchor="middle" fill="#aaaaaa" font-size="11">質問の設計でSycophancyを大幅に低減できる</text></svg>
+</div>
+
 ![w:900 center](assets/sycophancy-comparison.svg)
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 増幅メカニズムの詳細
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">バイアス増幅メカニズム：3層モデル</text>
 <rect x="30" y="65" width="220" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -472,6 +531,7 @@ style: |
 <text x="585" y="266" fill="#aaaaaa" font-size="10">バイアスが強化される</text>
 <text x="585" y="284" fill="#aaaaaa" font-size="10">（エコーチェンバー）</text>
 </svg>
+</div>
 
 
 ---
@@ -480,7 +540,8 @@ style: |
 
 > *AIが誤った前提の質問に同調して誤答を強化*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">ユーザー仮説への同調メカニズム</text>
 <rect x="30" y="65" width="340" height="155" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -510,6 +571,8 @@ style: |
 <text x="455" y="328" fill="#ffffff" font-size="10">AIに「賛成を求めない」設計で</text>
 <text x="455" y="346" fill="#ffffff" font-size="10">Sycophancy リスクを大幅低減</text>
 </svg>
+</div>
+
 - **Prompt Framing Effect**: 問いの立て方でLLMの結論が変わる
 - **Leading questions**: 前提を埋め込んだ質問に引きずられる
 - **Anchoring**: 最初に提示された数値・立場に過剰に影響される
@@ -520,10 +583,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # フィルターバブル × AI の相乗効果
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">フィルターバブル × AI の相乗効果</text>
 <ellipse cx="270" cy="200" rx="200" ry="140" fill="#f9a825" opacity="0.1" stroke="#f9a825" stroke-width="2"/>
@@ -543,6 +607,8 @@ style: |
 <rect x="50" y="360" width="700" height="30" rx="6" fill="#e91e63" opacity="0.15" stroke="#e91e63" stroke-width="1"/>
 <text x="400" y="381" text-anchor="middle" fill="#e91e63" font-size="11">フィルターバブルの中でAIが「そうですね」と答え続ける — 最強のバイアス増幅装置</text>
 </svg>
+</div>
+
 ![w:900 center](assets/filter-bubble-ai.svg)
 
 
@@ -552,7 +618,8 @@ style: |
 
 > *検索強化生成が特定ソース偏重で偏りを深める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">RAG とエコーチェンバー：検索バイアスの問題</text>
 <rect x="30" y="65" width="340" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -581,6 +648,8 @@ style: |
 <text x="455" y="293" fill="#4db6ac" font-size="10">→ コーパスに批判的文書を意図的に含める</text>
 <text x="455" y="313" fill="#4db6ac" font-size="10">→ 多様な情報源からの検索</text>
 </svg>
+</div>
+
 - **RAG（検索拡張生成）でも確証バイアスは除去されない:**
 - **①検索クエリのバイアス**: ユーザーの信念が検索語句を偏らせる
 - **②文書選択のバイアス**: 類似度スコアが既存信念に沿った文書を優先
@@ -593,7 +662,8 @@ style: |
 
 # エコーチェンバーの3層構造（図解）
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="360" fill="#1a1a2e"/>
 <text x="400" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">エコーチェンバーの3層構造</text>
 <rect x="30" y="60" width="220" height="250" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -628,14 +698,16 @@ style: |
 <text x="650" y="258" text-anchor="middle" fill="#ffffff" font-size="9">錯覚を与えながら増幅</text>
 <text x="400" y="330" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">3層が重なるとバイアスは指数関数的に増幅する</text>
 </svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # エージェント型AIのバイアス伝播
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">エージェント型AIのバイアス伝播</text>
 <rect x="30" y="75" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -668,6 +740,8 @@ style: |
 <text x="440" y="344" fill="#ffffff" font-size="10">反論専門のエージェントを常に含める</text>
 <text x="440" y="362" fill="#aaaaaa" font-size="10">批判的視点を必ずパイプラインに組み込む</text>
 </svg>
+</div>
+
 ![w:900 center](assets/agent-bias-propagation.svg)
 
 
@@ -687,7 +761,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # インタラクティブワーク
 
 
@@ -721,7 +795,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 対策と設計原則
 
 
@@ -731,7 +805,8 @@ style: |
 
 > *AIによるAI評価で人間評価者バイアスを低減*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">Constitutional AI：バイアス低減への取り組み</text>
 <rect x="30" y="65" width="340" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -759,6 +834,8 @@ style: |
 <text x="455" y="292" fill="#ffffff" font-size="10">しかし完全なバイアス除去は</text>
 <text x="455" y="312" fill="#ffffff" font-size="10">いまだ未解決の課題</text>
 </svg>
+</div>
+
 - **Constitutional AI (Anthropic, 2022):**
 - 明示的な「原則リスト」でAI自身が **self-critique** する訓練手法
 - RLHFの人間フィードバックをAIフィードバック(RLAIF)で補完
@@ -773,7 +850,8 @@ style: |
 
 > *赤チームで意図的にバイアスを探す体制が不可欠*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">Red-teaming：バイアスを意図的に攻撃する</text>
 <rect x="30" y="65" width="220" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -810,6 +888,8 @@ style: |
 <text x="585" y="286" fill="#ffffff" font-size="10">• 多様性チェック</text>
 <text x="585" y="304" fill="#aaaaaa" font-size="9">→ 反復的に改善</text>
 </svg>
+</div>
+
 - **目的**: バイアスを意図的に引き出し、脆弱性を事前に把握する
 - **手法①: Adversarial Prompting** — 誤った前提を埋め込んで確認
 - **手法②: Persona Variation** — 異なる立場のユーザーとして質問
@@ -837,7 +917,8 @@ style: |
 
 # バイアス対策の設計原則（図解）
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="360" fill="#1a1a2e"/>
 <text x="400" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">バイアス対策の設計原則</text>
 <rect x="30" y="62" width="360" height="130" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -864,6 +945,7 @@ style: |
 <text x="430" y="298" fill="#ffffff" font-size="11">• 多様なユーザー視点でのQA</text>
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="11">対策は設計段階から — デプロイ後の修正は困難</text>
 </svg>
+</div>
 
 
 ---
@@ -872,7 +954,8 @@ style: |
 
 > *AIとの付き合い方は問いの質で決まる、批判的思考が鍵*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">まとめ：AIと確証バイアスの関係</text>
 <rect x="30" y="65" width="220" height="130" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -906,6 +989,8 @@ style: |
 <text x="440" y="324" fill="#ffffff" font-size="11">• 増幅ループの検出限界</text>
 <text x="440" y="350" fill="#aaaaaa" font-size="10">これからの研究課題</text>
 </svg>
+</div>
+
 - **3つの主要メッセージ:**
 - **① AIは「中立的なツール」ではない** — 訓練プロセス自体にバイアスが組み込まれている
 - **② 確証バイアスは構造的に増幅される** — RLHF・RAG・マルチエージェント、すべての層で

@@ -7,41 +7,76 @@ paginate: true
 header: "ベンフォードの法則で不正を見抜く"
 footer: "© 2026 — Benford's Law for Fraud Detection"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,7 +117,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ベンフォードの法則で不正を見抜く
 
 - 自然界の数字の先頭桁はなぜ1が多い？
@@ -96,7 +131,8 @@ style: |
 
 > *直感と統計の乖離がベンフォードの法則の驚きを体感させる*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="22" font-weight="bold">先頭桁の直感 vs 実際の分布</text>
   
       <rect x="60" y="180" width="35" height="100" fill="#2196f3" opacity="0.5"/>
@@ -142,6 +178,8 @@ style: |
   <line x1="55" y1="280" x2="755" y2="280" stroke="#ffffff" stroke-width="1" opacity="0.4"/>
   <text x="400" y="360" text-anchor="middle" fill="#e91e63" font-size="16">「1」で始まる数が約30%！均一分布の3倍</text>
 </svg>
+</div>
+
 - 次のデータの**先頭桁**として最も多い数字は何でしょう？
 - 📌 世界各国の人口（195カ国）
 - 📌 東証プライム上場企業の年間売上高
@@ -152,10 +190,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 答え：「1」が約30%を占める！
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="22" font-weight="bold">ベンフォード分布：各先頭桁の出現確率</text>
   
       <rect x="65" y="89" width="55" height="181" fill="#e91e63" rx="3"/>
@@ -200,6 +239,8 @@ style: |
   <line x1="55" y1="196" x2="760" y2="196" stroke="#ffffff" stroke-width="0.5" stroke-dasharray="4,4" opacity="0.3"/>
   <text x="400" y="350" text-anchor="middle" fill="#e91e63" font-size="16">P(d) = log₁₀(1 + 1/d) — 対数法則で完全に説明できる</text>
 </svg>
+</div>
+
 - 先頭桁の分布は**均等ではない**
 - 「1」で始まる数が約 **30.1%**
 - 「9」で始まる数はわずか **4.6%**
@@ -212,7 +253,8 @@ style: |
 
 > *理論→証明→応用→限界の順で体系的に理解する構成*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">本日のアジェンダ — 6パート構成</text>
   
       <rect x="60" y="60" width="520" height="38" fill="#16213e" rx="5"/>
@@ -273,6 +315,8 @@ style: |
       <text x="694" y="322" fill="#ffffff" font-size="11">5分</text>
     
 </svg>
+</div>
+
 - **Part 1** ベンフォードの法則の基礎
 - **Part 2** なぜ1が多いのか？（数学的メカニズム）
 - **Part 3** 不正検知の実践（実際の事件・事例）
@@ -283,7 +327,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 1
 
 - ベンフォードの法則の基礎
@@ -293,7 +337,10 @@ style: |
 
 # 先頭桁の出現確率
 
-- <svg viewBox='0 0 700 280' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='28' text-anchor='middle' font-size='15' fill='#ddd' font-family='sans-serif'>先頭桁の出現確率（ベンフォードの法則）</text><line x1='68' y1='240' x2='658' y2='240' stroke='#777' stroke-width='1.5'/><line x1='68' y1='50' x2='68' y2='240' stroke='#777' stroke-width='1.5'/><text x='58' y='244' text-anchor='end' font-size='11' fill='#777' font-family='sans-serif'>0%</text><text x='58' y='184' text-anchor='end' font-size='11' fill='#777' font-family='sans-serif'>10%</text><text x='58' y='129' text-anchor='end' font-size='11' fill='#777' font-family='sans-serif'>20%</text><text x='58' y='73' text-anchor='end' font-size='11' fill='#777' font-family='sans-serif'>30%</text><line x1='68' y1='184' x2='658' y2='184' stroke='#333' stroke-width='0.5' stroke-dasharray='4,4'/><line x1='68' y1='129' x2='658' y2='129' stroke='#333' stroke-width='0.5' stroke-dasharray='4,4'/><line x1='68' y1='73' x2='658' y2='73' stroke='#333' stroke-width='0.5' stroke-dasharray='4,4'/><rect x='73' y='72' width='50' height='168' fill='#4aa8ff' rx='3'/><text x='98' y='65' text-anchor='middle' font-size='11' fill='#4aa8ff' font-family='sans-serif'>30.1%</text><text x='98' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>1</text><rect x='138' y='142' width='50' height='98' fill='#5bbf7f' rx='3'/><text x='163' y='135' text-anchor='middle' font-size='11' fill='#5bbf7f' font-family='sans-serif'>17.6%</text><text x='163' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>2</text><rect x='203' y='170' width='50' height='70' fill='#f0c040' rx='3'/><text x='228' y='163' text-anchor='middle' font-size='11' fill='#f0c040' font-family='sans-serif'>12.5%</text><text x='228' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>3</text><rect x='268' y='186' width='50' height='54' fill='#e07040' rx='3'/><text x='293' y='179' text-anchor='middle' font-size='11' fill='#e07040' font-family='sans-serif'>9.7%</text><text x='293' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>4</text><rect x='333' y='196' width='50' height='44' fill='#e05050' rx='3'/><text x='358' y='189' text-anchor='middle' font-size='11' fill='#e05050' font-family='sans-serif'>7.9%</text><text x='358' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>5</text><rect x='398' y='203' width='50' height='37' fill='#c060a0' rx='3'/><text x='423' y='196' text-anchor='middle' font-size='11' fill='#c060a0' font-family='sans-serif'>6.7%</text><text x='423' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>6</text><rect x='463' y='208' width='50' height='32' fill='#9060c0' rx='3'/><text x='488' y='201' text-anchor='middle' font-size='11' fill='#9060c0' font-family='sans-serif'>5.8%</text><text x='488' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>7</text><rect x='528' y='212' width='50' height='28' fill='#6080c0' rx='3'/><text x='553' y='205' text-anchor='middle' font-size='11' fill='#6080c0' font-family='sans-serif'>5.1%</text><text x='553' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>8</text><rect x='593' y='214' width='50' height='26' fill='#4080a0' rx='3'/><text x='618' y='207' text-anchor='middle' font-size='11' fill='#4080a0' font-family='sans-serif'>4.6%</text><text x='618' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>9</text></svg>
+<div class="fig">
+<svg viewBox='0 0 700 280' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='28' text-anchor='middle' font-size='15' fill='#ddd' font-family='sans-serif'>先頭桁の出現確率（ベンフォードの法則）</text><line x1='68' y1='240' x2='658' y2='240' stroke='#777' stroke-width='1.5'/><line x1='68' y1='50' x2='68' y2='240' stroke='#777' stroke-width='1.5'/><text x='58' y='244' text-anchor='end' font-size='11' fill='#777' font-family='sans-serif'>0%</text><text x='58' y='184' text-anchor='end' font-size='11' fill='#777' font-family='sans-serif'>10%</text><text x='58' y='129' text-anchor='end' font-size='11' fill='#777' font-family='sans-serif'>20%</text><text x='58' y='73' text-anchor='end' font-size='11' fill='#777' font-family='sans-serif'>30%</text><line x1='68' y1='184' x2='658' y2='184' stroke='#333' stroke-width='0.5' stroke-dasharray='4,4'/><line x1='68' y1='129' x2='658' y2='129' stroke='#333' stroke-width='0.5' stroke-dasharray='4,4'/><line x1='68' y1='73' x2='658' y2='73' stroke='#333' stroke-width='0.5' stroke-dasharray='4,4'/><rect x='73' y='72' width='50' height='168' fill='#4aa8ff' rx='3'/><text x='98' y='65' text-anchor='middle' font-size='11' fill='#4aa8ff' font-family='sans-serif'>30.1%</text><text x='98' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>1</text><rect x='138' y='142' width='50' height='98' fill='#5bbf7f' rx='3'/><text x='163' y='135' text-anchor='middle' font-size='11' fill='#5bbf7f' font-family='sans-serif'>17.6%</text><text x='163' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>2</text><rect x='203' y='170' width='50' height='70' fill='#f0c040' rx='3'/><text x='228' y='163' text-anchor='middle' font-size='11' fill='#f0c040' font-family='sans-serif'>12.5%</text><text x='228' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>3</text><rect x='268' y='186' width='50' height='54' fill='#e07040' rx='3'/><text x='293' y='179' text-anchor='middle' font-size='11' fill='#e07040' font-family='sans-serif'>9.7%</text><text x='293' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>4</text><rect x='333' y='196' width='50' height='44' fill='#e05050' rx='3'/><text x='358' y='189' text-anchor='middle' font-size='11' fill='#e05050' font-family='sans-serif'>7.9%</text><text x='358' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>5</text><rect x='398' y='203' width='50' height='37' fill='#c060a0' rx='3'/><text x='423' y='196' text-anchor='middle' font-size='11' fill='#c060a0' font-family='sans-serif'>6.7%</text><text x='423' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>6</text><rect x='463' y='208' width='50' height='32' fill='#9060c0' rx='3'/><text x='488' y='201' text-anchor='middle' font-size='11' fill='#9060c0' font-family='sans-serif'>5.8%</text><text x='488' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>7</text><rect x='528' y='212' width='50' height='28' fill='#6080c0' rx='3'/><text x='553' y='205' text-anchor='middle' font-size='11' fill='#6080c0' font-family='sans-serif'>5.1%</text><text x='553' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>8</text><rect x='593' y='214' width='50' height='26' fill='#4080a0' rx='3'/><text x='618' y='207' text-anchor='middle' font-size='11' fill='#4080a0' font-family='sans-serif'>4.6%</text><text x='618' y='258' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>9</text></svg>
+</div>
+
 - P(d=1)=30.1%、P(d=9)=4.6% — 均等ではなく急激に減少する
 
 
@@ -303,7 +350,8 @@ style: |
 
 > *57年間見逃された数学的発見が現代の不正検出を支える*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">ベンフォードの法則 発見の歴史</text>
   <line x1="80" y1="180" x2="720" y2="180" stroke="#f9a825" stroke-width="3"/>
   
@@ -328,6 +376,8 @@ style: |
       <text x="660" y="215" text-anchor="middle" fill="#ffffff" font-size="12" opacity="0.85">SOX法施行後</text><text x="660" y="233" text-anchor="middle" fill="#ffffff" font-size="12" opacity="0.85">不正検知ツールとして</text><text x="660" y="251" text-anchor="middle" fill="#ffffff" font-size="12" opacity="0.85">実務普及</text>
     
 </svg>
+</div>
+
 - **1881年** Simon Newcomb：対数表の最初のページが汚れていることに気づく
 - 「小さい数から始まる数字の方が頻繁に使われる」と提唱 → 無視される
 - **1938年** Frank Benford：20種・20,229件のデータで独自に再発見
@@ -340,7 +390,10 @@ style: |
 
 # 対数スケールで見ると一目瞭然
 
-- <svg viewBox='0 0 700 210' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='28' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>対数スケール上での各桁の幅（1〜10）</text><rect x='70' y='60' width='169' height='55' fill='#4aa8ff' rx='2'/><text x='154' y='91' text-anchor='middle' font-size='18' fill='#000' font-weight='bold' font-family='sans-serif'>1</text><text x='154' y='130' text-anchor='middle' font-size='12' fill='#4aa8ff' font-family='sans-serif'>30.1%</text><rect x='239' y='60' width='99' height='55' fill='#5bbf7f' rx='2'/><text x='288' y='91' text-anchor='middle' font-size='16' fill='#000' font-weight='bold' font-family='sans-serif'>2</text><text x='288' y='130' text-anchor='middle' font-size='12' fill='#5bbf7f' font-family='sans-serif'>17.6%</text><rect x='338' y='60' width='70' height='55' fill='#f0c040' rx='2'/><text x='373' y='91' text-anchor='middle' font-size='15' fill='#000' font-weight='bold' font-family='sans-serif'>3</text><text x='373' y='130' text-anchor='middle' font-size='12' fill='#f0c040' font-family='sans-serif'>12.5%</text><rect x='408' y='60' width='54' height='55' fill='#e07040' rx='2'/><text x='435' y='91' text-anchor='middle' font-size='13' fill='#fff' font-weight='bold' font-family='sans-serif'>4</text><text x='435' y='130' text-anchor='middle' font-size='11' fill='#e07040' font-family='sans-serif'>9.7%</text><rect x='462' y='60' width='44' height='55' fill='#e05050' rx='2'/><text x='484' y='91' text-anchor='middle' font-size='12' fill='#fff' font-weight='bold' font-family='sans-serif'>5</text><text x='484' y='130' text-anchor='middle' font-size='11' fill='#e05050' font-family='sans-serif'>7.9%</text><rect x='506' y='60' width='37' height='55' fill='#c060a0' rx='2'/><text x='524' y='91' text-anchor='middle' font-size='12' fill='#fff' font-weight='bold' font-family='sans-serif'>6</text><text x='524' y='130' text-anchor='middle' font-size='11' fill='#c060a0' font-family='sans-serif'>6.7%</text><rect x='543' y='60' width='33' height='55' fill='#9060c0' rx='2'/><text x='559' y='91' text-anchor='middle' font-size='11' fill='#fff' font-weight='bold' font-family='sans-serif'>7</text><text x='559' y='130' text-anchor='middle' font-size='11' fill='#9060c0' font-family='sans-serif'>5.8%</text><rect x='576' y='60' width='28' height='55' fill='#6080c0' rx='2'/><text x='590' y='91' text-anchor='middle' font-size='11' fill='#fff' font-weight='bold' font-family='sans-serif'>8</text><text x='590' y='130' text-anchor='middle' font-size='11' fill='#6080c0' font-family='sans-serif'>5.1%</text><rect x='604' y='60' width='26' height='55' fill='#4080a0' rx='2'/><text x='617' y='91' text-anchor='middle' font-size='10' fill='#fff' font-weight='bold' font-family='sans-serif'>9</text><text x='617' y='130' text-anchor='middle' font-size='10' fill='#4080a0' font-family='sans-serif'>4.6%</text><line x1='70' y1='55' x2='630' y2='55' stroke='#555' stroke-width='1'/><text x='70' y='48' text-anchor='middle' font-size='10' fill='#888' font-family='sans-serif'>1</text><text x='239' y='48' text-anchor='middle' font-size='10' fill='#888' font-family='sans-serif'>2</text><text x='338' y='48' text-anchor='middle' font-size='10' fill='#888' font-family='sans-serif'>3</text><text x='408' y='48' text-anchor='middle' font-size='10' fill='#888' font-family='sans-serif'>4</text><text x='462' y='48' text-anchor='middle' font-size='10' fill='#888' font-family='sans-serif'>5</text><text x='630' y='48' text-anchor='middle' font-size='10' fill='#888' font-family='sans-serif'>10</text><text x='350' y='175' text-anchor='middle' font-size='12' fill='#aaa' font-family='sans-serif'>対数スケール上では各桁が占める幅＝その桁の出現確率</text><text x='350' y='195' text-anchor='middle' font-size='12' fill='#aaa' font-family='sans-serif'>1〜2の幅が広い → 先頭桁「1」が多く出現する</text></svg>
+<div class="fig">
+<svg viewBox='0 0 700 210' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='28' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>対数スケール上での各桁の幅（1〜10）</text><rect x='70' y='60' width='169' height='55' fill='#4aa8ff' rx='2'/><text x='154' y='91' text-anchor='middle' font-size='18' fill='#000' font-weight='bold' font-family='sans-serif'>1</text><text x='154' y='130' text-anchor='middle' font-size='12' fill='#4aa8ff' font-family='sans-serif'>30.1%</text><rect x='239' y='60' width='99' height='55' fill='#5bbf7f' rx='2'/><text x='288' y='91' text-anchor='middle' font-size='16' fill='#000' font-weight='bold' font-family='sans-serif'>2</text><text x='288' y='130' text-anchor='middle' font-size='12' fill='#5bbf7f' font-family='sans-serif'>17.6%</text><rect x='338' y='60' width='70' height='55' fill='#f0c040' rx='2'/><text x='373' y='91' text-anchor='middle' font-size='15' fill='#000' font-weight='bold' font-family='sans-serif'>3</text><text x='373' y='130' text-anchor='middle' font-size='12' fill='#f0c040' font-family='sans-serif'>12.5%</text><rect x='408' y='60' width='54' height='55' fill='#e07040' rx='2'/><text x='435' y='91' text-anchor='middle' font-size='13' fill='#fff' font-weight='bold' font-family='sans-serif'>4</text><text x='435' y='130' text-anchor='middle' font-size='11' fill='#e07040' font-family='sans-serif'>9.7%</text><rect x='462' y='60' width='44' height='55' fill='#e05050' rx='2'/><text x='484' y='91' text-anchor='middle' font-size='12' fill='#fff' font-weight='bold' font-family='sans-serif'>5</text><text x='484' y='130' text-anchor='middle' font-size='11' fill='#e05050' font-family='sans-serif'>7.9%</text><rect x='506' y='60' width='37' height='55' fill='#c060a0' rx='2'/><text x='524' y='91' text-anchor='middle' font-size='12' fill='#fff' font-weight='bold' font-family='sans-serif'>6</text><text x='524' y='130' text-anchor='middle' font-size='11' fill='#c060a0' font-family='sans-serif'>6.7%</text><rect x='543' y='60' width='33' height='55' fill='#9060c0' rx='2'/><text x='559' y='91' text-anchor='middle' font-size='11' fill='#fff' font-weight='bold' font-family='sans-serif'>7</text><text x='559' y='130' text-anchor='middle' font-size='11' fill='#9060c0' font-family='sans-serif'>5.8%</text><rect x='576' y='60' width='28' height='55' fill='#6080c0' rx='2'/><text x='590' y='91' text-anchor='middle' font-size='11' fill='#fff' font-weight='bold' font-family='sans-serif'>8</text><text x='590' y='130' text-anchor='middle' font-size='11' fill='#6080c0' font-family='sans-serif'>5.1%</text><rect x='604' y='60' width='26' height='55' fill='#4080a0' rx='2'/><text x='617' y='91' text-anchor='middle' font-size='10' fill='#fff' font-weight='bold' font-family='sans-serif'>9</text><text x='617' y='130' text-anchor='middle' font-size='10' fill='#4080a0' font-family='sans-serif'>4.6%</text><line x1='70' y1='55' x2='630' y2='55' stroke='#555' stroke-width='1'/><text x='70' y='48' text-anchor='middle' font-size='10' fill='#888' font-family='sans-serif'>1</text><text x='239' y='48' text-anchor='middle' font-size='10' fill='#888' font-family='sans-serif'>2</text><text x='338' y='48' text-anchor='middle' font-size='10' fill='#888' font-family='sans-serif'>3</text><text x='408' y='48' text-anchor='middle' font-size='10' fill='#888' font-family='sans-serif'>4</text><text x='462' y='48' text-anchor='middle' font-size='10' fill='#888' font-family='sans-serif'>5</text><text x='630' y='48' text-anchor='middle' font-size='10' fill='#888' font-family='sans-serif'>10</text><text x='350' y='175' text-anchor='middle' font-size='12' fill='#aaa' font-family='sans-serif'>対数スケール上では各桁が占める幅＝その桁の出現確率</text><text x='350' y='195' text-anchor='middle' font-size='12' fill='#aaa' font-family='sans-serif'>1〜2の幅が広い → 先頭桁「1」が多く出現する</text></svg>
+</div>
+
 - 対数スケール上で1〜10を等分すると、各桁の幅がそのまま出現確率になる
 
 
@@ -376,7 +429,8 @@ style: |
 
 # 各桁の確率一覧
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">各先頭桁の期待確率（完全一覧）</text>
   
       <rect x="60" y="70" width="680" height="28" fill="#16213e" rx="3" opacity="1"/>
@@ -434,6 +488,8 @@ style: |
       <text x="650" y="345" fill="#ffffff" font-size="12" opacity="0.7">log₁₀(1 + 1/9)</text>
     
 </svg>
+</div>
+
 | 先頭桁 d | 確率 P(d) | 累積確率 |
 | 1 | **30.1%** | 30.1% |
 | 2 | 17.6% | 47.7% |
@@ -450,13 +506,16 @@ style: |
 
 # スケール不変性：単位が変わっても分布は同じ
 
-- <svg viewBox='0 0 700 280' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='28' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>単位変換をしても先頭桁の分布は変わらない</text><rect x='40' y='50' width='270' height='195' fill='#1a2a3a' rx='8' stroke='#5bbf7f' stroke-width='2'/><text x='175' y='75' text-anchor='middle' font-size='13' fill='#5bbf7f' font-family='sans-serif'>USD（ドル建て）</text><rect x='55' y='85' width='22' height='140' fill='#4aa8ff' rx='2'/><rect x='85' y='126' width='22' height='99' fill='#5bbf7f' rx='2'/><rect x='115' y='155' width='22' height='70' fill='#f0c040' rx='2'/><rect x='145' y='167' width='22' height='58' fill='#e07040' rx='2'/><rect x='175' y='176' width='22' height='49' fill='#e05050' rx='2'/><rect x='205' y='182' width='22' height='43' fill='#c060a0' rx='2'/><rect x='235' y='188' width='22' height='37' fill='#9060c0' rx='2'/><rect x='265' y='192' width='22' height='33' fill='#6080c0' rx='2'/><rect x='295' y='195' width='22' height='30' fill='#4080a0' rx='2'/><line x1='50' y1='225' x2='325' y2='225' stroke='#555' stroke-width='1'/><text x='175' y='245' text-anchor='middle' font-size='11' fill='#888' font-family='sans-serif'>先頭桁 1〜9</text><rect x='390' y='50' width='270' height='195' fill='#1a2a3a' rx='8' stroke='#4aa8ff' stroke-width='2'/><text x='525' y='75' text-anchor='middle' font-size='13' fill='#4aa8ff' font-family='sans-serif'>JPY（円建て ×150）</text><rect x='405' y='85' width='22' height='140' fill='#4aa8ff' rx='2'/><rect x='435' y='126' width='22' height='99' fill='#5bbf7f' rx='2'/><rect x='465' y='155' width='22' height='70' fill='#f0c040' rx='2'/><rect x='495' y='167' width='22' height='58' fill='#e07040' rx='2'/><rect x='525' y='176' width='22' height='49' fill='#e05050' rx='2'/><rect x='555' y='182' width='22' height='43' fill='#c060a0' rx='2'/><rect x='585' y='188' width='22' height='37' fill='#9060c0' rx='2'/><rect x='615' y='192' width='22' height='33' fill='#6080c0' rx='2'/><rect x='645' y='195' width='22' height='30' fill='#4080a0' rx='2'/><line x1='400' y1='225' x2='675' y2='225' stroke='#555' stroke-width='1'/><text x='525' y='245' text-anchor='middle' font-size='11' fill='#888' font-family='sans-serif'>先頭桁 1〜9</text><text x='350' y='155' text-anchor='middle' font-size='28' fill='#f0c040' font-family='sans-serif'>=</text><text x='350' y='175' text-anchor='middle' font-size='11' fill='#aaa' font-family='sans-serif'>完全一致</text></svg>
+<div class="fig">
+<svg viewBox='0 0 700 280' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='28' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>単位変換をしても先頭桁の分布は変わらない</text><rect x='40' y='50' width='270' height='195' fill='#1a2a3a' rx='8' stroke='#5bbf7f' stroke-width='2'/><text x='175' y='75' text-anchor='middle' font-size='13' fill='#5bbf7f' font-family='sans-serif'>USD（ドル建て）</text><rect x='55' y='85' width='22' height='140' fill='#4aa8ff' rx='2'/><rect x='85' y='126' width='22' height='99' fill='#5bbf7f' rx='2'/><rect x='115' y='155' width='22' height='70' fill='#f0c040' rx='2'/><rect x='145' y='167' width='22' height='58' fill='#e07040' rx='2'/><rect x='175' y='176' width='22' height='49' fill='#e05050' rx='2'/><rect x='205' y='182' width='22' height='43' fill='#c060a0' rx='2'/><rect x='235' y='188' width='22' height='37' fill='#9060c0' rx='2'/><rect x='265' y='192' width='22' height='33' fill='#6080c0' rx='2'/><rect x='295' y='195' width='22' height='30' fill='#4080a0' rx='2'/><line x1='50' y1='225' x2='325' y2='225' stroke='#555' stroke-width='1'/><text x='175' y='245' text-anchor='middle' font-size='11' fill='#888' font-family='sans-serif'>先頭桁 1〜9</text><rect x='390' y='50' width='270' height='195' fill='#1a2a3a' rx='8' stroke='#4aa8ff' stroke-width='2'/><text x='525' y='75' text-anchor='middle' font-size='13' fill='#4aa8ff' font-family='sans-serif'>JPY（円建て ×150）</text><rect x='405' y='85' width='22' height='140' fill='#4aa8ff' rx='2'/><rect x='435' y='126' width='22' height='99' fill='#5bbf7f' rx='2'/><rect x='465' y='155' width='22' height='70' fill='#f0c040' rx='2'/><rect x='495' y='167' width='22' height='58' fill='#e07040' rx='2'/><rect x='525' y='176' width='22' height='49' fill='#e05050' rx='2'/><rect x='555' y='182' width='22' height='43' fill='#c060a0' rx='2'/><rect x='585' y='188' width='22' height='37' fill='#9060c0' rx='2'/><rect x='615' y='192' width='22' height='33' fill='#6080c0' rx='2'/><rect x='645' y='195' width='22' height='30' fill='#4080a0' rx='2'/><line x1='400' y1='225' x2='675' y2='225' stroke='#555' stroke-width='1'/><text x='525' y='245' text-anchor='middle' font-size='11' fill='#888' font-family='sans-serif'>先頭桁 1〜9</text><text x='350' y='155' text-anchor='middle' font-size='28' fill='#f0c040' font-family='sans-serif'>=</text><text x='350' y='175' text-anchor='middle' font-size='11' fill='#aaa' font-family='sans-serif'>完全一致</text></svg>
+</div>
+
 - 定数倍の変換（×150など）をしても先頭桁の分布は変わらない → **スケール不変性**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 2
 
 - なぜ1が多いのか？
@@ -469,7 +528,8 @@ style: |
 
 > *乗算プロセスが対数正規分布を経てベンフォードに必然的に収束*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">乗算繰り返しでベンフォード分布に収束</text>
   
       <text x="145" y="290" text-anchor="middle" fill="#ffffff" font-size="12">初期 (均一)</text>
@@ -492,6 +552,8 @@ style: |
   <polygon points="575,170 590,165 590,175" fill="#4caf50"/>
   <line x1="555" y1="170" x2="588" y2="170" stroke="#4caf50" stroke-width="2"/>
 </svg>
+</div>
+
 - 乱数を繰り返し掛け合わせると先頭桁がベンフォード分布に収束する
 - **実験**: `x₀ = rand()` として `xₙ = xₙ₋₁ × rand()` を繰り返す
 - → n が大きくなると `log(xₙ)` が**一様分布**に近づく
@@ -506,7 +568,8 @@ style: |
 
 > *スケール不変な分布が先頭桁の偏りを数学的に保証する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">対数スケール上の一様分布 → ベンフォード分布</text>
   <rect x="60" y="80" width="680" height="60" fill="#16213e" rx="4"/>
   <line x1="60" y1="80" x2="60" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="162.35019852575363" y1="80" x2="162.35019852575363" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="222.22122660468523" y1="80" x2="222.22122660468523" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="264.70039705150725" y1="80" x2="264.70039705150725" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="297.6498014742464" y1="80" x2="297.6498014742464" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="324.57142513043885" y1="80" x2="324.57142513043885" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="347.3333336048473" y1="80" x2="347.3333336048473" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="367.0505955772608" y1="80" x2="367.0505955772608" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="384.44245320937046" y1="80" x2="384.44245320937046" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="400" y1="80" x2="400" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="502.3501985257536" y1="80" x2="502.3501985257536" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="562.2212266046852" y1="80" x2="562.2212266046852" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="604.7003970515073" y1="80" x2="604.7003970515073" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="637.6498014742464" y1="80" x2="637.6498014742464" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="664.5714251304388" y1="80" x2="664.5714251304388" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="687.3333336048473" y1="80" x2="687.3333336048473" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="707.0505955772608" y1="80" x2="707.0505955772608" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="724.4424532093705" y1="80" x2="724.4424532093705" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/><line x1="740" y1="80" x2="740" y2="140" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
@@ -547,6 +610,8 @@ style: |
   <line x1="60" y1="340" x2="740" y2="340" stroke="#ffffff" stroke-width="1" opacity="0.4"/>
   <text x="400" y="370" text-anchor="middle" fill="#ffffff" font-size="13" opacity="0.7">↑ 確率の棒グラフが対数スケール区間幅と完全に一致</text>
 </svg>
+</div>
+
 - 数値 X の対数 log₁₀(X) が一様分布 [0, 1) に従うとき：
 - 先頭桁 d になる確率 = log₁₀(X) が [log₁₀(d), log₁₀(d+1)) に入る確率
 - = log₁₀(d+1) − log₁₀(d) = **log₁₀(1 + 1/d)**
@@ -561,7 +626,8 @@ style: |
 
 > *2桁目・3桁目も検出できBenford分析の精度を飛躍的に高める*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">ベンフォード法則の拡張：2桁目・3桁目</text>
   <text x="400" y="65" text-anchor="middle" fill="#ffffff" font-size="14" opacity="0.7">先頭2桁の分布（00〜99）も予測可能</text>
   <rect x="60" y="80" width="680" height="180" fill="#16213e" rx="6"/>
@@ -602,6 +668,8 @@ style: |
   <text x="400" y="347" text-anchor="middle" fill="#ffffff" font-size="13">桁数が増えるほど一様分布に近づく</text>
   <text x="400" y="365" text-anchor="middle" fill="#e91e63" font-size="13">→ 全桁検定で不自然なパターンを多角的に検出</text>
 </svg>
+</div>
+
 - **2桁目**の確率: P(second=s | first=d) = log₁₀(1 + 1/(10d+s))
 - **3桁目以降**: より一様分布に近づく（0〜9がほぼ均等に）
 - **2桁目の特徴**: d=0 の確率が最も高い（12%程度）
@@ -616,7 +684,8 @@ style: |
 
 > *MAD<0.006が適合基準、外れたら人工操作を疑う*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">統計的検定指標：MAD と SSD の比較</text>
   <rect x="60" y="65" width="320" height="250" fill="#16213e" rx="8"/>
   <rect x="420" y="65" width="320" height="250" fill="#16213e" rx="8"/>
@@ -642,13 +711,17 @@ style: |
   <text x="580" y="290" text-anchor="middle" fill="#ffffff" font-size="12" opacity="0.7">外れ値に敏感（大偏差を強調）</text>
   <text x="400" y="345" text-anchor="middle" fill="#e91e63" font-size="15">実務では MAD + カイ二乗検定 の組み合わせを推奨</text>
 </svg>
+</div>
+
 - **MAD（平均絶対偏差）**: |実測 − 期待値| の平均
 - Nigrini (2012) の判定基準：
+
 | MAD値 | 判定 |
 | < 0.006 | 許容範囲（適合） |
 | 0.006〜0.012 | 要注意（境界値） |
 | 0.012〜0.015 | 要精査（中程度逸脱） |
 | > 0.015 | 高リスク（大幅逸脱） |
+
 - **SSD（Sum of Squared Differences）**: 二乗偏差の和。感度が高い
 
 
@@ -715,7 +788,7 @@ for d in range(1, 10):
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 3
 
 - 不正検知の実践
@@ -726,7 +799,10 @@ for d in range(1, 10):
 
 # ベンフォード法が適用できるデータ分類
 
-- <svg viewBox='0 0 700 270' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'><text x='175' y='28' text-anchor='middle' font-size='14' fill='#5bbf7f' font-family='sans-serif'>✅ 適用できるデータ</text><text x='525' y='28' text-anchor='middle' font-size='14' fill='#e05050' font-family='sans-serif'>❌ 適用できないデータ</text><rect x='20' y='40' width='300' height='210' fill='#0d2a1a' rx='8' stroke='#5bbf7f' stroke-width='1.5'/><rect x='380' y='40' width='300' height='210' fill='#2a0d0d' rx='8' stroke='#e05050' stroke-width='1.5'/><text x='170' y='70' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>💰 財務諸表・帳簿</text><text x='170' y='100' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>👥 人口統計・GDPデータ</text><text x='170' y='130' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>⚛️ 物理定数・科学測定値</text><text x='170' y='160' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>🗳️ 選挙の得票数</text><text x='170' y='190' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>📈 株価・取引金額</text><text x='170' y='220' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>🔢 素数・フィボナッチ数列</text><text x='530' y='70' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>📞 電話番号・郵便番号</text><text x='530' y='100' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>🎟️ 宝くじ・ランダム番号</text><text x='530' y='130' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>💴 価格設定（9.99円など）</text><text x='530' y='160' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>📦 商品コード・ID番号</text><text x='530' y='190' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>📅 日付・年号データ</text><text x='530' y='220' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>🎲 均一分布の乱数</text></svg>
+<div class="fig">
+<svg viewBox='0 0 700 270' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'><text x='175' y='28' text-anchor='middle' font-size='14' fill='#5bbf7f' font-family='sans-serif'>✅ 適用できるデータ</text><text x='525' y='28' text-anchor='middle' font-size='14' fill='#e05050' font-family='sans-serif'>❌ 適用できないデータ</text><rect x='20' y='40' width='300' height='210' fill='#0d2a1a' rx='8' stroke='#5bbf7f' stroke-width='1.5'/><rect x='380' y='40' width='300' height='210' fill='#2a0d0d' rx='8' stroke='#e05050' stroke-width='1.5'/><text x='170' y='70' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>💰 財務諸表・帳簿</text><text x='170' y='100' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>👥 人口統計・GDPデータ</text><text x='170' y='130' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>⚛️ 物理定数・科学測定値</text><text x='170' y='160' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>🗳️ 選挙の得票数</text><text x='170' y='190' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>📈 株価・取引金額</text><text x='170' y='220' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>🔢 素数・フィボナッチ数列</text><text x='530' y='70' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>📞 電話番号・郵便番号</text><text x='530' y='100' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>🎟️ 宝くじ・ランダム番号</text><text x='530' y='130' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>💴 価格設定（9.99円など）</text><text x='530' y='160' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>📦 商品コード・ID番号</text><text x='530' y='190' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>📅 日付・年号データ</text><text x='530' y='220' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>🎲 均一分布の乱数</text></svg>
+</div>
+
 - 鍵は「**自然に生成された、広いスケールにわたる数値**」かどうか
 
 
@@ -736,7 +812,8 @@ for d in range(1, 10):
 
 > *架空利益計上がベンフォード逸脱として統計的に可視化された*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">エンロン事件：財務データのパターン異常</text>
   <text x="400" y="65" text-anchor="middle" fill="#ffffff" font-size="14" opacity="0.8">先頭桁分布（実測）vs ベンフォード期待値の比較</text>
   
@@ -793,6 +870,8 @@ for d in range(1, 10):
   <text x="332" y="351" fill="#ffffff" font-size="13">実測（異常）→ 不正疑い</text>
   <line x1="55" y1="290" x2="750" y2="290" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
 </svg>
+</div>
+
 - **世界最大級の会計不正**：エネルギー大手エンロンが財務諸表を組織的に改ざん
 - 時価総額は一時700億ドル → 2001年12月に**経営破綻**
 - 粉飾手法：特別目的会社（SPE）を利用した巨額負債の簿外処理
@@ -805,7 +884,10 @@ for d in range(1, 10):
 
 # エンロン財務データのベンフォード分析
 
-- <svg viewBox='0 0 700 290' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='24' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>エンロン実測値 vs ベンフォード期待値（先頭桁分布）</text><line x1='60' y1='255' x2='660' y2='255' stroke='#555' stroke-width='1.5'/><line x1='60' y1='55' x2='60' y2='255' stroke='#555' stroke-width='1.5'/><text x='48' y='259' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>0%</text><text x='48' y='199' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>10%</text><text x='48' y='139' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>20%</text><text x='48' y='79' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>30%</text><line x1='60' y1='199' x2='660' y2='199' stroke='#333' stroke-width='0.5' stroke-dasharray='3,3'/><line x1='60' y1='139' x2='660' y2='139' stroke='#333' stroke-width='0.5' stroke-dasharray='3,3'/><line x1='60' y1='79' x2='660' y2='79' stroke='#333' stroke-width='0.5' stroke-dasharray='3,3'/><rect x='68' y='75' width='28' height='180' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='98' y='133' width='28' height='122' fill='#e05050' rx='2' opacity='0.85'/><rect x='134' y='143' width='28' height='112' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='164' y='147' width='28' height='108' fill='#e05050' rx='2' opacity='0.85'/><rect x='200' y='171' width='28' height='84' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='230' y='155' width='28' height='100' fill='#e05050' rx='2' opacity='0.85'/><rect x='266' y='184' width='28' height='71' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='296' y='175' width='28' height='80' fill='#e05050' rx='2' opacity='0.85'/><rect x='332' y='196' width='28' height='59' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='362' y='198' width='28' height='57' fill='#e05050' rx='2' opacity='0.85'/><rect x='398' y='204' width='28' height='51' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='428' y='211' width='28' height='44' fill='#e05050' rx='2' opacity='0.85'/><rect x='464' y='211' width='28' height='44' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='494' y='218' width='28' height='37' fill='#e05050' rx='2' opacity='0.85'/><rect x='530' y='215' width='28' height='40' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='560' y='229' width='28' height='26' fill='#e05050' rx='2' opacity='0.85'/><rect x='596' y='218' width='28' height='37' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='626' y='243' width='28' height='12' fill='#e05050' rx='2' opacity='0.85'/><text x='82' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>1</text><text x='149' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>2</text><text x='215' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>3</text><text x='281' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>4</text><text x='347' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>5</text><text x='413' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>6</text><text x='479' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>7</text><text x='545' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>8</text><text x='611' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>9</text><rect x='200' y='36' width='14' height='12' fill='#4aa8ff' rx='2'/><text x='218' y='47' font-size='11' fill='#4aa8ff' font-family='sans-serif'>ベンフォード期待値</text><rect x='340' y='36' width='14' height='12' fill='#e05050' rx='2'/><text x='358' y='47' font-size='11' fill='#e05050' font-family='sans-serif'>エンロン実測値</text></svg>
+<div class="fig">
+<svg viewBox='0 0 700 290' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='24' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>エンロン実測値 vs ベンフォード期待値（先頭桁分布）</text><line x1='60' y1='255' x2='660' y2='255' stroke='#555' stroke-width='1.5'/><line x1='60' y1='55' x2='60' y2='255' stroke='#555' stroke-width='1.5'/><text x='48' y='259' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>0%</text><text x='48' y='199' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>10%</text><text x='48' y='139' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>20%</text><text x='48' y='79' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>30%</text><line x1='60' y1='199' x2='660' y2='199' stroke='#333' stroke-width='0.5' stroke-dasharray='3,3'/><line x1='60' y1='139' x2='660' y2='139' stroke='#333' stroke-width='0.5' stroke-dasharray='3,3'/><line x1='60' y1='79' x2='660' y2='79' stroke='#333' stroke-width='0.5' stroke-dasharray='3,3'/><rect x='68' y='75' width='28' height='180' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='98' y='133' width='28' height='122' fill='#e05050' rx='2' opacity='0.85'/><rect x='134' y='143' width='28' height='112' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='164' y='147' width='28' height='108' fill='#e05050' rx='2' opacity='0.85'/><rect x='200' y='171' width='28' height='84' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='230' y='155' width='28' height='100' fill='#e05050' rx='2' opacity='0.85'/><rect x='266' y='184' width='28' height='71' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='296' y='175' width='28' height='80' fill='#e05050' rx='2' opacity='0.85'/><rect x='332' y='196' width='28' height='59' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='362' y='198' width='28' height='57' fill='#e05050' rx='2' opacity='0.85'/><rect x='398' y='204' width='28' height='51' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='428' y='211' width='28' height='44' fill='#e05050' rx='2' opacity='0.85'/><rect x='464' y='211' width='28' height='44' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='494' y='218' width='28' height='37' fill='#e05050' rx='2' opacity='0.85'/><rect x='530' y='215' width='28' height='40' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='560' y='229' width='28' height='26' fill='#e05050' rx='2' opacity='0.85'/><rect x='596' y='218' width='28' height='37' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='626' y='243' width='28' height='12' fill='#e05050' rx='2' opacity='0.85'/><text x='82' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>1</text><text x='149' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>2</text><text x='215' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>3</text><text x='281' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>4</text><text x='347' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>5</text><text x='413' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>6</text><text x='479' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>7</text><text x='545' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>8</text><text x='611' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>9</text><rect x='200' y='36' width='14' height='12' fill='#4aa8ff' rx='2'/><text x='218' y='47' font-size='11' fill='#4aa8ff' font-family='sans-serif'>ベンフォード期待値</text><rect x='340' y='36' width='14' height='12' fill='#e05050' rx='2'/><text x='358' y='47' font-size='11' fill='#e05050' font-family='sans-serif'>エンロン実測値</text></svg>
+</div>
+
 - d=1で低すぎ、d=2〜5で高すぎる → 中間の数字に意図的に調整した痕跡
 
 
@@ -815,7 +897,8 @@ for d in range(1, 10):
 
 > *得票数のベンフォード違反が選挙操作の統計的証拠となった*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">イラン大統領選（2009）：得票データの異常</text>
   <rect x="60" y="60" width="320" height="270" fill="#16213e" rx="8"/>
   <rect x="420" y="60" width="320" height="270" fill="#16213e" rx="8"/>
@@ -831,6 +914,8 @@ for d in range(1, 10):
   <line x1="420" y1="280" x2="740" y2="280" stroke="#ffffff" stroke-width="1" opacity="0.3"/>
   <text x="400" y="360" text-anchor="middle" fill="#f9a825" font-size="14">同じ分析手法で、選挙不正を統計的に検出できる</text>
 </svg>
+</div>
+
 - **2009年イラン大統領選**：アフマディーネジャード大統領の再選が物議を醸す
 - 得票数の統計的異常が複数の研究者によって報告された
 - Mebane（2011）：票数の先頭桁分布を分析し**有意な逸脱**を発見
@@ -843,7 +928,10 @@ for d in range(1, 10):
 
 # 選挙データのベンフォード分析
 
-- <svg viewBox='0 0 700 290' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='24' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>イラン2009年得票数 vs ベンフォード期待値</text><line x1='60' y1='255' x2='660' y2='255' stroke='#555' stroke-width='1.5'/><line x1='60' y1='55' x2='60' y2='255' stroke='#555' stroke-width='1.5'/><text x='48' y='259' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>0%</text><text x='48' y='199' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>10%</text><text x='48' y='139' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>20%</text><text x='48' y='79' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>30%</text><line x1='60' y1='199' x2='660' y2='199' stroke='#333' stroke-width='0.5' stroke-dasharray='3,3'/><line x1='60' y1='139' x2='660' y2='139' stroke='#333' stroke-width='0.5' stroke-dasharray='3,3'/><line x1='60' y1='79' x2='660' y2='79' stroke='#333' stroke-width='0.5' stroke-dasharray='3,3'/><rect x='68' y='75' width='28' height='180' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='98' y='160' width='28' height='95' fill='#f0a030' rx='2' opacity='0.85'/><rect x='134' y='143' width='28' height='112' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='164' y='101' width='28' height='154' fill='#f0a030' rx='2' opacity='0.85'/><rect x='200' y='171' width='28' height='84' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='230' y='177' width='28' height='78' fill='#f0a030' rx='2' opacity='0.85'/><rect x='266' y='184' width='28' height='71' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='296' y='183' width='28' height='72' fill='#f0a030' rx='2' opacity='0.85'/><rect x='332' y='196' width='28' height='59' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='362' y='201' width='28' height='54' fill='#f0a030' rx='2' opacity='0.85'/><rect x='398' y='204' width='28' height='51' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='428' y='202' width='28' height='53' fill='#f0a030' rx='2' opacity='0.85'/><rect x='464' y='211' width='28' height='44' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='494' y='209' width='28' height='46' fill='#f0a030' rx='2' opacity='0.85'/><rect x='530' y='215' width='28' height='40' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='560' y='221' width='28' height='34' fill='#f0a030' rx='2' opacity='0.85'/><rect x='596' y='218' width='28' height='37' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='626' y='231' width='28' height='24' fill='#f0a030' rx='2' opacity='0.85'/><text x='82' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>1</text><text x='149' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>2</text><text x='215' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>3</text><text x='281' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>4</text><text x='347' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>5</text><text x='413' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>6</text><text x='479' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>7</text><text x='545' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>8</text><text x='611' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>9</text><rect x='200' y='36' width='14' height='12' fill='#4aa8ff' rx='2'/><text x='218' y='47' font-size='11' fill='#4aa8ff' font-family='sans-serif'>ベンフォード期待値</text><rect x='360' y='36' width='14' height='12' fill='#f0a030' rx='2'/><text x='378' y='47' font-size='11' fill='#f0a030' font-family='sans-serif'>イラン2009年実測値（イラスト）</text></svg>
+<div class="fig">
+<svg viewBox='0 0 700 290' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='24' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>イラン2009年得票数 vs ベンフォード期待値</text><line x1='60' y1='255' x2='660' y2='255' stroke='#555' stroke-width='1.5'/><line x1='60' y1='55' x2='60' y2='255' stroke='#555' stroke-width='1.5'/><text x='48' y='259' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>0%</text><text x='48' y='199' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>10%</text><text x='48' y='139' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>20%</text><text x='48' y='79' text-anchor='end' font-size='10' fill='#777' font-family='sans-serif'>30%</text><line x1='60' y1='199' x2='660' y2='199' stroke='#333' stroke-width='0.5' stroke-dasharray='3,3'/><line x1='60' y1='139' x2='660' y2='139' stroke='#333' stroke-width='0.5' stroke-dasharray='3,3'/><line x1='60' y1='79' x2='660' y2='79' stroke='#333' stroke-width='0.5' stroke-dasharray='3,3'/><rect x='68' y='75' width='28' height='180' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='98' y='160' width='28' height='95' fill='#f0a030' rx='2' opacity='0.85'/><rect x='134' y='143' width='28' height='112' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='164' y='101' width='28' height='154' fill='#f0a030' rx='2' opacity='0.85'/><rect x='200' y='171' width='28' height='84' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='230' y='177' width='28' height='78' fill='#f0a030' rx='2' opacity='0.85'/><rect x='266' y='184' width='28' height='71' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='296' y='183' width='28' height='72' fill='#f0a030' rx='2' opacity='0.85'/><rect x='332' y='196' width='28' height='59' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='362' y='201' width='28' height='54' fill='#f0a030' rx='2' opacity='0.85'/><rect x='398' y='204' width='28' height='51' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='428' y='202' width='28' height='53' fill='#f0a030' rx='2' opacity='0.85'/><rect x='464' y='211' width='28' height='44' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='494' y='209' width='28' height='46' fill='#f0a030' rx='2' opacity='0.85'/><rect x='530' y='215' width='28' height='40' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='560' y='221' width='28' height='34' fill='#f0a030' rx='2' opacity='0.85'/><rect x='596' y='218' width='28' height='37' fill='#4aa8ff' rx='2' opacity='0.85'/><rect x='626' y='231' width='28' height='24' fill='#f0a030' rx='2' opacity='0.85'/><text x='82' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>1</text><text x='149' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>2</text><text x='215' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>3</text><text x='281' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>4</text><text x='347' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>5</text><text x='413' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>6</text><text x='479' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>7</text><text x='545' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>8</text><text x='611' y='272' text-anchor='middle' font-size='12' fill='#bbb' font-family='sans-serif'>9</text><rect x='200' y='36' width='14' height='12' fill='#4aa8ff' rx='2'/><text x='218' y='47' font-size='11' fill='#4aa8ff' font-family='sans-serif'>ベンフォード期待値</text><rect x='360' y='36' width='14' height='12' fill='#f0a030' rx='2'/><text x='378' y='47' font-size='11' fill='#f0a030' font-family='sans-serif'>イラン2009年実測値（イラスト）</text></svg>
+</div>
+
 - d=1が少なく、d=2が過剰 → 統計的には有意な逸脱だが、不正の直接証拠ではない
 
 
@@ -853,7 +941,8 @@ for d in range(1, 10):
 
 > *捏造データは「きれいすぎる」分布でベンフォードに反する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">科学データ捏造の痕跡（Stapel事件）</text>
   <text x="400" y="62" text-anchor="middle" fill="#ffffff" font-size="14" opacity="0.7">人間が「作った」数字 vs 自然に発生した数字の特徴</text>
   <rect x="60" y="80" width="320" height="200" fill="#16213e" rx="6"/>
@@ -870,6 +959,8 @@ for d in range(1, 10):
   <text x="400" y="325" text-anchor="middle" fill="#ffffff" font-size="13">人間は「それらしい」数字として 2〜4 を好んで選ぶ傾向がある</text>
   <text x="400" y="348" text-anchor="middle" fill="#f9a825" font-size="13">この心理的バイアスがベンフォード検定で露見する</text>
 </svg>
+</div>
+
 - **Diederik Stapel**（オランダ・ティルブルフ大学、社会心理学者）
 - 2011年発覚：少なくとも**58本の論文**でデータを捏造・改ざん
 - 「清潔な環境では人種差別が減る」「無秩序さが偏見を増やす」などを捏造
@@ -898,7 +989,8 @@ for d in range(1, 10):
 
 > *申告額の先頭桁分析でスクリーニング対象を絞れる*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">IRS：税務申告不正の検出フロー</text>
   
       <rect x="100" y="100" width="140" height="50" fill="#2196f3" opacity="0.8" rx="6"/>
@@ -932,6 +1024,8 @@ for d in range(1, 10):
   <text x="265" y="295" fill="#4caf50" font-size="12">MAD ≤ 0.006</text>
   <text x="520" y="295" fill="#e91e63" font-size="12">MAD &gt; 0.015</text>
 </svg>
+</div>
+
 - **米国IRS（内国歳入庁）**：ベンフォード分析を申告書審査ツールとして活用
 - 大量の経費申告・控除申請から**不自然なパターン**を自動検出
 - よくある不正パターン：
@@ -951,7 +1045,7 @@ for d in range(1, 10):
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 4
 
 - Python実装
@@ -1121,7 +1215,7 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 5
 
 - 限界と回避策
@@ -1132,7 +1226,10 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 # ベンフォード法が成立する条件と限界
 
-- <svg viewBox='0 0 700 270' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='25' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>ベンフォードの法則が成立する条件チェック</text><rect x='30' y='40' width='640' height='50' fill='#0d2a1a' rx='6' stroke='#5bbf7f' stroke-width='1'/><text x='60' y='60' font-size='13' fill='#5bbf7f' font-family='sans-serif'>✅</text><text x='85' y='60' font-size='13' fill='#ddd' font-family='sans-serif'>データが自然に生成された数値（人工的な番号体系でない）</text><text x='60' y='78' font-size='11' fill='#888' font-family='sans-serif'>例：財務取引、人口、物理測定値 → OK　｜　電話番号、郵便番号 → NG</text><rect x='30' y='100' width='640' height='50' fill='#0d2a1a' rx='6' stroke='#5bbf7f' stroke-width='1'/><text x='60' y='120' font-size='13' fill='#5bbf7f' font-family='sans-serif'>✅</text><text x='85' y='120' font-size='13' fill='#ddd' font-family='sans-serif'>数値が広いスケール（複数桁）にわたって分布している</text><text x='60' y='138' font-size='11' fill='#888' font-family='sans-serif'>例：$1〜$1,000,000 → OK　｜　$9,000〜$11,000（狭い範囲） → NG</text><rect x='30' y='160' width='640' height='50' fill='#0d2a1a' rx='6' stroke='#5bbf7f' stroke-width='1'/><text x='60' y='180' font-size='13' fill='#5bbf7f' font-family='sans-serif'>✅</text><text x='85' y='180' font-size='13' fill='#ddd' font-family='sans-serif'>サンプル数が十分にある（目安：100件以上、理想は1,000件以上）</text><text x='60' y='198' font-size='11' fill='#888' font-family='sans-serif'>例：年間全取引データ → OK　｜　50件のサンプル → 検出力不足</text><rect x='30' y='220' width='640' height='40' fill='#2a0d0d' rx='6' stroke='#e05050' stroke-width='1'/><text x='60' y='240' font-size='13' fill='#e05050' font-family='sans-serif'>❌</text><text x='85' y='240' font-size='13' fill='#ddd' font-family='sans-serif'>心理的価格設定・制約付き番号・均一分布データには適用不可</text></svg>
+<div class="fig">
+<svg viewBox='0 0 700 270' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='25' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>ベンフォードの法則が成立する条件チェック</text><rect x='30' y='40' width='640' height='50' fill='#0d2a1a' rx='6' stroke='#5bbf7f' stroke-width='1'/><text x='60' y='60' font-size='13' fill='#5bbf7f' font-family='sans-serif'>✅</text><text x='85' y='60' font-size='13' fill='#ddd' font-family='sans-serif'>データが自然に生成された数値（人工的な番号体系でない）</text><text x='60' y='78' font-size='11' fill='#888' font-family='sans-serif'>例：財務取引、人口、物理測定値 → OK　｜　電話番号、郵便番号 → NG</text><rect x='30' y='100' width='640' height='50' fill='#0d2a1a' rx='6' stroke='#5bbf7f' stroke-width='1'/><text x='60' y='120' font-size='13' fill='#5bbf7f' font-family='sans-serif'>✅</text><text x='85' y='120' font-size='13' fill='#ddd' font-family='sans-serif'>数値が広いスケール（複数桁）にわたって分布している</text><text x='60' y='138' font-size='11' fill='#888' font-family='sans-serif'>例：$1〜$1,000,000 → OK　｜　$9,000〜$11,000（狭い範囲） → NG</text><rect x='30' y='160' width='640' height='50' fill='#0d2a1a' rx='6' stroke='#5bbf7f' stroke-width='1'/><text x='60' y='180' font-size='13' fill='#5bbf7f' font-family='sans-serif'>✅</text><text x='85' y='180' font-size='13' fill='#ddd' font-family='sans-serif'>サンプル数が十分にある（目安：100件以上、理想は1,000件以上）</text><text x='60' y='198' font-size='11' fill='#888' font-family='sans-serif'>例：年間全取引データ → OK　｜　50件のサンプル → 検出力不足</text><rect x='30' y='220' width='640' height='40' fill='#2a0d0d' rx='6' stroke='#e05050' stroke-width='1'/><text x='60' y='240' font-size='13' fill='#e05050' font-family='sans-serif'>❌</text><text x='85' y='240' font-size='13' fill='#ddd' font-family='sans-serif'>心理的価格設定・制約付き番号・均一分布データには適用不可</text></svg>
+</div>
+
 - 3つの条件がそろっているかを必ず確認してから適用する
 
 
@@ -1142,7 +1239,8 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 > *上限・下限のあるデータにはベンフォード分析を適用できない*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">ベンフォード法が通用しないデータの特徴</text>
   
       <rect x="80" y="75" width="200" height="120" fill="#16213e" rx="8"/>
@@ -1183,6 +1281,8 @@ bl.plot(title="Financial Data: Benford Analysis")
     
   <text x="400" y="375" text-anchor="middle" fill="#f9a825" font-size="14">適用前に必ず「データが複数桁スケールにまたがるか」を確認</text>
 </svg>
+</div>
+
 - **電話番号**: 市外局番（03, 06など）で先頭桁が固定される
 - **郵便番号**: 地域コードで範囲が制限される（100〜900番台など）
 - **ISBN・商品コード**: 規格で番号体系が決まっている
@@ -1212,11 +1312,13 @@ bl.plot(title="Financial Data: Benford Analysis")
 > *n<100では偶発的な偏りと区別できない統計的限界がある*
 
 - **最低サンプル数の目安（Nigrini 2012）**
+
 | サンプル数 | 評価 |
 | < 100件 | 使用不可 |
 | 100〜300件 | 補助的用途のみ |
 | 300〜1,000件 | 通常利用可 |
 | > 1,000件 | 高信頼度 |
+
 - → 小データでは偶然の偏りと不正が区別できない
 - → データが少ない場合は他の分析手法を優先する
 
@@ -1227,7 +1329,8 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 > *1000・5000など切りのいい数字が検出を意図的に逃れる手法*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">回避戦略①：ラウンドナンバー効果の検出</text>
   <text x="400" y="62" text-anchor="middle" fill="#ffffff" font-size="13" opacity="0.7">1000・5000・10000など切りの良い数字への集中を補完検定で発見</text>
   <rect x="60" y="75" width="680" height="150" fill="#16213e" rx="6"/>
@@ -1287,6 +1390,8 @@ bl.plot(title="Financial Data: Benford Analysis")
   <text x="400" y="312" text-anchor="middle" fill="#ffffff" font-size="13">切りの良い数字（×100, ×1000）の割合を計算</text>
   <text x="400" y="334" text-anchor="middle" fill="#e91e63" font-size="13">期待値の2倍超 → ベンフォード検定と組み合わせて判断</text>
 </svg>
+</div>
+
 - **人間が意図的に数字を入力するとき「丸い数字」を好む**
 - 例：5,000円、10,000円、50,000円に意図的に調整
 - → 「5」や「1」で始まる数字が不自然に増える
@@ -1330,7 +1435,8 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 > *統計的異常は証拠ではなく調査起点として使う*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">偽陽性（False Positive）問題と対策</text>
   <rect x="60" y="60" width="680" height="160" fill="#16213e" rx="8"/>
   <text x="400" y="90" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold">検定しきい値のトレードオフ</text>
@@ -1364,6 +1470,8 @@ bl.plot(title="Financial Data: Benford Analysis")
   <polygon points="570,310 552,305 552,315" fill="#ffffff" opacity="0.5"/>
   <line x1="540" y1="310" x2="570" y2="310" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
 </svg>
+</div>
+
 - **ベンフォード法で「異常あり」でも不正とは限らない**
 - 📌 業種固有のパターン：小売業は価格帯が集中しやすい
 - 📌 四捨五入・単位変換：データの前処理でベンフォード性が失われる
@@ -1385,13 +1493,16 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 # 他の統計手法との組み合わせ（多層防御）
 
-- <svg viewBox='0 0 700 260' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='25' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>多層防御アプローチ：複数指標の組み合わせ</text><rect x='60' y='40' width='580' height='38' fill='#1a1a2e' rx='5' stroke='#6080c0' stroke-width='1.5'/><text x='350' y='63' text-anchor='middle' font-size='13' fill='#8090e0' font-family='sans-serif'>Layer 5：専門家による詳細調査・ヒアリング</text><rect x='90' y='88' width='520' height='38' fill='#1a2030' rx='5' stroke='#5bbf7f' stroke-width='1.5'/><text x='350' y='111' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>Layer 4：時系列異常・関連データ間の整合性チェック</text><rect x='120' y='136' width='460' height='38' fill='#1a2818' rx='5' stroke='#f0c040' stroke-width='1.5'/><text x='350' y='159' text-anchor='middle' font-size='13' fill='#f0d060' font-family='sans-serif'>Layer 3：末尾桁検定・2桁目検定（ラウンドナンバー検出）</text><rect x='150' y='184' width='400' height='38' fill='#281818' rx='5' stroke='#e07040' stroke-width='1.5'/><text x='350' y='207' text-anchor='middle' font-size='13' fill='#e09060' font-family='sans-serif'>Layer 2：統計的外れ値検出（IQR・z-score）</text><rect x='180' y='232' width='340' height='38' fill='#2a0f0f' rx='5' stroke='#e05050' stroke-width='1.5'/><text x='350' y='255' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>Layer 1：ベンフォード第1桁検定（スクリーニング）</text></svg>
+<div class="fig">
+<svg viewBox='0 0 700 260' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'><text x='350' y='25' text-anchor='middle' font-size='14' fill='#ddd' font-family='sans-serif'>多層防御アプローチ：複数指標の組み合わせ</text><rect x='60' y='40' width='580' height='38' fill='#1a1a2e' rx='5' stroke='#6080c0' stroke-width='1.5'/><text x='350' y='63' text-anchor='middle' font-size='13' fill='#8090e0' font-family='sans-serif'>Layer 5：専門家による詳細調査・ヒアリング</text><rect x='90' y='88' width='520' height='38' fill='#1a2030' rx='5' stroke='#5bbf7f' stroke-width='1.5'/><text x='350' y='111' text-anchor='middle' font-size='13' fill='#7fdf9f' font-family='sans-serif'>Layer 4：時系列異常・関連データ間の整合性チェック</text><rect x='120' y='136' width='460' height='38' fill='#1a2818' rx='5' stroke='#f0c040' stroke-width='1.5'/><text x='350' y='159' text-anchor='middle' font-size='13' fill='#f0d060' font-family='sans-serif'>Layer 3：末尾桁検定・2桁目検定（ラウンドナンバー検出）</text><rect x='150' y='184' width='400' height='38' fill='#281818' rx='5' stroke='#e07040' stroke-width='1.5'/><text x='350' y='207' text-anchor='middle' font-size='13' fill='#e09060' font-family='sans-serif'>Layer 2：統計的外れ値検出（IQR・z-score）</text><rect x='180' y='232' width='340' height='38' fill='#2a0f0f' rx='5' stroke='#e05050' stroke-width='1.5'/><text x='350' y='255' text-anchor='middle' font-size='13' fill='#ff8080' font-family='sans-serif'>Layer 1：ベンフォード第1桁検定（スクリーニング）</text></svg>
+</div>
+
 - ベンフォード法は「最初のスクリーニング層」として活用し、複数の手法を重ねる
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 6
 
 - 実装ガイドとベストプラクティス
@@ -1401,7 +1512,10 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 # 実装ステップフロー
 
-- <svg viewBox='0 0 700 200' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'><rect x='10' y='70' width='95' height='50' fill='#1a2a3a' rx='6' stroke='#4aa8ff' stroke-width='1.5'/><text x='57' y='91' text-anchor='middle' font-size='11' fill='#4aa8ff' font-family='sans-serif'>① データ</text><text x='57' y='107' text-anchor='middle' font-size='11' fill='#4aa8ff' font-family='sans-serif'>取得・確認</text><polygon points='107,95 118,90 118,100' fill='#777'/><line x1='105' y1='95' x2='118' y2='95' stroke='#777' stroke-width='1.5'/><rect x='120' y='70' width='95' height='50' fill='#1a2a3a' rx='6' stroke='#5bbf7f' stroke-width='1.5'/><text x='167' y='91' text-anchor='middle' font-size='11' fill='#5bbf7f' font-family='sans-serif'>② 前処理</text><text x='167' y='107' text-anchor='middle' font-size='11' fill='#5bbf7f' font-family='sans-serif'>（クレンジング）</text><polygon points='217,95 228,90 228,100' fill='#777'/><line x1='215' y1='95' x2='228' y2='95' stroke='#777' stroke-width='1.5'/><rect x='230' y='70' width='95' height='50' fill='#1a2a3a' rx='6' stroke='#f0c040' stroke-width='1.5'/><text x='277' y='91' text-anchor='middle' font-size='11' fill='#f0c040' font-family='sans-serif'>③ 先頭桁</text><text x='277' y='107' text-anchor='middle' font-size='11' fill='#f0c040' font-family='sans-serif'>抽出・集計</text><polygon points='327,95 338,90 338,100' fill='#777'/><line x1='325' y1='95' x2='338' y2='95' stroke='#777' stroke-width='1.5'/><rect x='340' y='70' width='95' height='50' fill='#1a2a3a' rx='6' stroke='#e07040' stroke-width='1.5'/><text x='387' y='91' text-anchor='middle' font-size='11' fill='#e07040' font-family='sans-serif'>④ 検定実行</text><text x='387' y='107' text-anchor='middle' font-size='11' fill='#e07040' font-family='sans-serif'>（MAD・χ²）</text><polygon points='437,95 448,90 448,100' fill='#777'/><line x1='435' y1='95' x2='448' y2='95' stroke='#777' stroke-width='1.5'/><rect x='450' y='70' width='95' height='50' fill='#1a2a3a' rx='6' stroke='#c060a0' stroke-width='1.5'/><text x='497' y='91' text-anchor='middle' font-size='11' fill='#c060a0' font-family='sans-serif'>⑤ 可視化</text><text x='497' y='107' text-anchor='middle' font-size='11' fill='#c060a0' font-family='sans-serif'>（グラフ）</text><polygon points='547,95 558,90 558,100' fill='#777'/><line x1='545' y1='95' x2='558' y2='95' stroke='#777' stroke-width='1.5'/><rect x='560' y='70' width='120' height='50' fill='#1a2a3a' rx='6' stroke='#9060c0' stroke-width='1.5'/><text x='620' y='91' text-anchor='middle' font-size='11' fill='#9060c0' font-family='sans-serif'>⑥ 判定・</text><text x='620' y='107' text-anchor='middle' font-size='11' fill='#9060c0' font-family='sans-serif'>レポート作成</text><text x='57' y='150' text-anchor='middle' font-size='10' fill='#555' font-family='sans-serif'>適用可否確認</text><text x='167' y='150' text-anchor='middle' font-size='10' fill='#555' font-family='sans-serif'>欠損・ゼロ除去</text><text x='277' y='150' text-anchor='middle' font-size='10' fill='#555' font-family='sans-serif'>絶対値→先頭桁</text><text x='387' y='150' text-anchor='middle' font-size='10' fill='#555' font-family='sans-serif'>MAD/SSD/χ²</text><text x='497' y='150' text-anchor='middle' font-size='10' fill='#555' font-family='sans-serif'>棒グラフ比較</text><text x='620' y='150' text-anchor='middle' font-size='10' fill='#555' font-family='sans-serif'>Nigrini基準適用</text></svg>
+<div class="fig">
+<svg viewBox='0 0 700 200' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'><rect x='10' y='70' width='95' height='50' fill='#1a2a3a' rx='6' stroke='#4aa8ff' stroke-width='1.5'/><text x='57' y='91' text-anchor='middle' font-size='11' fill='#4aa8ff' font-family='sans-serif'>① データ</text><text x='57' y='107' text-anchor='middle' font-size='11' fill='#4aa8ff' font-family='sans-serif'>取得・確認</text><polygon points='107,95 118,90 118,100' fill='#777'/><line x1='105' y1='95' x2='118' y2='95' stroke='#777' stroke-width='1.5'/><rect x='120' y='70' width='95' height='50' fill='#1a2a3a' rx='6' stroke='#5bbf7f' stroke-width='1.5'/><text x='167' y='91' text-anchor='middle' font-size='11' fill='#5bbf7f' font-family='sans-serif'>② 前処理</text><text x='167' y='107' text-anchor='middle' font-size='11' fill='#5bbf7f' font-family='sans-serif'>（クレンジング）</text><polygon points='217,95 228,90 228,100' fill='#777'/><line x1='215' y1='95' x2='228' y2='95' stroke='#777' stroke-width='1.5'/><rect x='230' y='70' width='95' height='50' fill='#1a2a3a' rx='6' stroke='#f0c040' stroke-width='1.5'/><text x='277' y='91' text-anchor='middle' font-size='11' fill='#f0c040' font-family='sans-serif'>③ 先頭桁</text><text x='277' y='107' text-anchor='middle' font-size='11' fill='#f0c040' font-family='sans-serif'>抽出・集計</text><polygon points='327,95 338,90 338,100' fill='#777'/><line x1='325' y1='95' x2='338' y2='95' stroke='#777' stroke-width='1.5'/><rect x='340' y='70' width='95' height='50' fill='#1a2a3a' rx='6' stroke='#e07040' stroke-width='1.5'/><text x='387' y='91' text-anchor='middle' font-size='11' fill='#e07040' font-family='sans-serif'>④ 検定実行</text><text x='387' y='107' text-anchor='middle' font-size='11' fill='#e07040' font-family='sans-serif'>（MAD・χ²）</text><polygon points='437,95 448,90 448,100' fill='#777'/><line x1='435' y1='95' x2='448' y2='95' stroke='#777' stroke-width='1.5'/><rect x='450' y='70' width='95' height='50' fill='#1a2a3a' rx='6' stroke='#c060a0' stroke-width='1.5'/><text x='497' y='91' text-anchor='middle' font-size='11' fill='#c060a0' font-family='sans-serif'>⑤ 可視化</text><text x='497' y='107' text-anchor='middle' font-size='11' fill='#c060a0' font-family='sans-serif'>（グラフ）</text><polygon points='547,95 558,90 558,100' fill='#777'/><line x1='545' y1='95' x2='558' y2='95' stroke='#777' stroke-width='1.5'/><rect x='560' y='70' width='120' height='50' fill='#1a2a3a' rx='6' stroke='#9060c0' stroke-width='1.5'/><text x='620' y='91' text-anchor='middle' font-size='11' fill='#9060c0' font-family='sans-serif'>⑥ 判定・</text><text x='620' y='107' text-anchor='middle' font-size='11' fill='#9060c0' font-family='sans-serif'>レポート作成</text><text x='57' y='150' text-anchor='middle' font-size='10' fill='#555' font-family='sans-serif'>適用可否確認</text><text x='167' y='150' text-anchor='middle' font-size='10' fill='#555' font-family='sans-serif'>欠損・ゼロ除去</text><text x='277' y='150' text-anchor='middle' font-size='10' fill='#555' font-family='sans-serif'>絶対値→先頭桁</text><text x='387' y='150' text-anchor='middle' font-size='10' fill='#555' font-family='sans-serif'>MAD/SSD/χ²</text><text x='497' y='150' text-anchor='middle' font-size='10' fill='#555' font-family='sans-serif'>棒グラフ比較</text><text x='620' y='150' text-anchor='middle' font-size='10' fill='#555' font-family='sans-serif'>Nigrini基準適用</text></svg>
+</div>
+
 - ステップ①で「ベンフォード法が適用できるデータか」を必ず確認する
 
 
@@ -1411,7 +1525,8 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 > *自然発生・無制約・複数桁の3条件を確認する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">ベンフォード適用可否 — 判断フローチャート</text>
   <rect x="300" y="55" width="200" height="44" fill="#2196f3" rx="6"/>
   <text x="400" y="82" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold">データセット</text>
@@ -1440,6 +1555,8 @@ bl.plot(title="Financial Data: Benford Analysis")
   <rect x="570" y="356" width="200" height="22" fill="#4caf50" opacity="0.3" rx="4"/>
   <text x="670" y="371" text-anchor="middle" fill="#ffffff" font-size="12">MAD + χ² 検定実行</text>
 </svg>
+</div>
+
 - **適用OK の条件**（すべて満たす必要あり）
 - ✅ 取引金額・売上高・費用など自然に発生した数値
 - ✅ データの範囲が少なくとも2桁以上にわたる
@@ -1463,7 +1580,8 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 > *PythonとRで即日実装できるベンフォード検定の実践ガイド*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">ベンフォード分析ツールキット</text>
   
       <rect x="60" y="65" width="200" height="130" fill="#16213e" rx="8"/>
@@ -1509,6 +1627,8 @@ bl.plot(title="Financial Data: Benford Analysis")
       <text x="600" y="325" text-anchor="middle" fill="#ffffff" font-size="12" opacity="0.8">ダッシュボード化</text>
     
 </svg>
+</div>
+
 - **Pythonライブラリ**：
 - 📦 `benfordslaw` — pip install benfordslaw（シンプルな分析に最適）
 - 📦 `scipy.stats` — chisquare検定はこれで十分
@@ -1533,7 +1653,8 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 > *サンプルサイズ・文化差・データ型の3要因が誤判定を生む*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">ベンフォード分析の落とし穴</text>
   
       <rect x="60" y="65" width="200" height="130" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="1.5" opacity="0.8"/>
@@ -1561,6 +1682,8 @@ bl.plot(title="Financial Data: Benford Analysis")
       <text x="600" y="288" text-anchor="middle" fill="#ffffff" font-size="12">合格でも不正は</text><text x="600" y="310" text-anchor="middle" fill="#ffffff" font-size="12">有り得る。他手法</text><text x="600" y="332" text-anchor="middle" fill="#ffffff" font-size="12">と組み合わせて</text>
     
 </svg>
+</div>
+
 - ⚠️ **ゼロと負の数の扱い**: ゼロは除外、負の数は絶対値で処理
 - ⚠️ **通貨単位の混在**: 複数通貨が混在すると分布が歪む
 - ⚠️ **桁数が少ないデータ**: 1桁〜2桁のデータが多いと検出力が落ちる
@@ -1573,7 +1696,10 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 # ベンフォード適用判断フロー
 
-- <svg viewBox='0 0 700 330' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns='http://www.w3.org/2000/svg'><rect x='270' y='10' width='160' height='38' fill='#1a2a3a' rx='6' stroke='#4aa8ff' stroke-width='1.5'/><text x='350' y='33' text-anchor='middle' font-size='13' fill='#4aa8ff' font-family='sans-serif'>スタート</text><line x1='350' y1='48' x2='350' y2='65' stroke='#777' stroke-width='1.5'/><polygon points='345,63 355,63 350,70' fill='#777'/><rect x='220' y='70' width='260' height='38' fill='#1a2030' rx='6' stroke='#888' stroke-width='1'/><text x='350' y='93' text-anchor='middle' font-size='12' fill='#ddd' font-family='sans-serif'>自然に生成された数値か？</text><line x1='350' y1='108' x2='350' y2='125' stroke='#777' stroke-width='1.5'/><polygon points='345,123 355,123 350,130' fill='#777'/><rect x='220' y='130' width='260' height='38' fill='#1a2030' rx='6' stroke='#888' stroke-width='1'/><text x='350' y='153' text-anchor='middle' font-size='12' fill='#ddd' font-family='sans-serif'>スケールが広い（2桁以上）か？</text><line x1='350' y1='168' x2='350' y2='185' stroke='#777' stroke-width='1.5'/><polygon points='345,183 355,183 350,190' fill='#777'/><rect x='220' y='190' width='260' height='38' fill='#1a2030' rx='6' stroke='#888' stroke-width='1'/><text x='350' y='213' text-anchor='middle' font-size='12' fill='#ddd' font-family='sans-serif'>サンプル数 ≥ 100 か？</text><line x1='350' y1='228' x2='350' y2='245' stroke='#777' stroke-width='1.5'/><polygon points='345,243 355,243 350,250' fill='#777'/><rect x='220' y='250' width='260' height='38' fill='#1a2030' rx='6' stroke='#888' stroke-width='1'/><text x='350' y='273' text-anchor='middle' font-size='12' fill='#ddd' font-family='sans-serif'>制約付き番号体系でないか？</text><line x1='350' y1='288' x2='350' y2='305' stroke='#777' stroke-width='1.5'/><polygon points='345,303 355,303 350,310' fill='#777'/><rect x='260' y='310' width='180' height='38' fill='#0d2a1a' rx='6' stroke='#5bbf7f' stroke-width='2'/><text x='350' y='333' text-anchor='middle' font-size='13' fill='#5bbf7f' font-family='sans-serif'>✅ 適用可能</text><text x='480' y='93' font-size='11' fill='#e05050' font-family='sans-serif'>No →</text><rect x='520' y='75' width='140' height='30' fill='#2a0d0d' rx='4' stroke='#e05050' stroke-width='1'/><text x='590' y='94' text-anchor='middle' font-size='11' fill='#e05050' font-family='sans-serif'>❌ 不適用</text><text x='480' y='153' font-size='11' fill='#e05050' font-family='sans-serif'>No →</text><rect x='520' y='135' width='140' height='30' fill='#2a0d0d' rx='4' stroke='#e05050' stroke-width='1'/><text x='590' y='154' text-anchor='middle' font-size='11' fill='#e05050' font-family='sans-serif'>❌ 不適用</text><text x='480' y='213' font-size='11' fill='#f0c040' font-family='sans-serif'>No →</text><rect x='520' y='195' width='140' height='30' fill='#2a2000' rx='4' stroke='#f0c040' stroke-width='1'/><text x='590' y='214' text-anchor='middle' font-size='11' fill='#f0c040' font-family='sans-serif'>⚠️ 補助的のみ</text><text x='480' y='273' font-size='11' fill='#e05050' font-family='sans-serif'>No →</text><rect x='520' y='255' width='140' height='30' fill='#2a0d0d' rx='4' stroke='#e05050' stroke-width='1'/><text x='590' y='274' text-anchor='middle' font-size='11' fill='#e05050' font-family='sans-serif'>❌ 不適用</text></svg>
+<div class="fig">
+<svg viewBox='0 0 700 330' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns='http://www.w3.org/2000/svg'><rect x='270' y='10' width='160' height='38' fill='#1a2a3a' rx='6' stroke='#4aa8ff' stroke-width='1.5'/><text x='350' y='33' text-anchor='middle' font-size='13' fill='#4aa8ff' font-family='sans-serif'>スタート</text><line x1='350' y1='48' x2='350' y2='65' stroke='#777' stroke-width='1.5'/><polygon points='345,63 355,63 350,70' fill='#777'/><rect x='220' y='70' width='260' height='38' fill='#1a2030' rx='6' stroke='#888' stroke-width='1'/><text x='350' y='93' text-anchor='middle' font-size='12' fill='#ddd' font-family='sans-serif'>自然に生成された数値か？</text><line x1='350' y1='108' x2='350' y2='125' stroke='#777' stroke-width='1.5'/><polygon points='345,123 355,123 350,130' fill='#777'/><rect x='220' y='130' width='260' height='38' fill='#1a2030' rx='6' stroke='#888' stroke-width='1'/><text x='350' y='153' text-anchor='middle' font-size='12' fill='#ddd' font-family='sans-serif'>スケールが広い（2桁以上）か？</text><line x1='350' y1='168' x2='350' y2='185' stroke='#777' stroke-width='1.5'/><polygon points='345,183 355,183 350,190' fill='#777'/><rect x='220' y='190' width='260' height='38' fill='#1a2030' rx='6' stroke='#888' stroke-width='1'/><text x='350' y='213' text-anchor='middle' font-size='12' fill='#ddd' font-family='sans-serif'>サンプル数 ≥ 100 か？</text><line x1='350' y1='228' x2='350' y2='245' stroke='#777' stroke-width='1.5'/><polygon points='345,243 355,243 350,250' fill='#777'/><rect x='220' y='250' width='260' height='38' fill='#1a2030' rx='6' stroke='#888' stroke-width='1'/><text x='350' y='273' text-anchor='middle' font-size='12' fill='#ddd' font-family='sans-serif'>制約付き番号体系でないか？</text><line x1='350' y1='288' x2='350' y2='305' stroke='#777' stroke-width='1.5'/><polygon points='345,303 355,303 350,310' fill='#777'/><rect x='260' y='310' width='180' height='38' fill='#0d2a1a' rx='6' stroke='#5bbf7f' stroke-width='2'/><text x='350' y='333' text-anchor='middle' font-size='13' fill='#5bbf7f' font-family='sans-serif'>✅ 適用可能</text><text x='480' y='93' font-size='11' fill='#e05050' font-family='sans-serif'>No →</text><rect x='520' y='75' width='140' height='30' fill='#2a0d0d' rx='4' stroke='#e05050' stroke-width='1'/><text x='590' y='94' text-anchor='middle' font-size='11' fill='#e05050' font-family='sans-serif'>❌ 不適用</text><text x='480' y='153' font-size='11' fill='#e05050' font-family='sans-serif'>No →</text><rect x='520' y='135' width='140' height='30' fill='#2a0d0d' rx='4' stroke='#e05050' stroke-width='1'/><text x='590' y='154' text-anchor='middle' font-size='11' fill='#e05050' font-family='sans-serif'>❌ 不適用</text><text x='480' y='213' font-size='11' fill='#f0c040' font-family='sans-serif'>No →</text><rect x='520' y='195' width='140' height='30' fill='#2a2000' rx='4' stroke='#f0c040' stroke-width='1'/><text x='590' y='214' text-anchor='middle' font-size='11' fill='#f0c040' font-family='sans-serif'>⚠️ 補助的のみ</text><text x='480' y='273' font-size='11' fill='#e05050' font-family='sans-serif'>No →</text><rect x='520' y='255' width='140' height='30' fill='#2a0d0d' rx='4' stroke='#e05050' stroke-width='1'/><text x='590' y='274' text-anchor='middle' font-size='11' fill='#e05050' font-family='sans-serif'>❌ 不適用</text></svg>
+</div>
+
 - 4つの質問にすべてYesと答えられる場合のみ、ベンフォード分析を実施する
 
 
@@ -1583,7 +1709,8 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 > *ベンフォード研究の原点から最新応用論文までの必読リスト*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">重要論文・参考文献 タイムライン</text>
   <line x1="120" y1="190" x2="680" y2="190" stroke="#f9a825" stroke-width="2" opacity="0.6"/>
   
@@ -1612,6 +1739,8 @@ bl.plot(title="Financial Data: Benford Analysis")
       <text x="620" y="215" text-anchor="middle" fill="#ffffff" font-size="11" opacity="0.8">Benford's Law:</text><text x="620" y="231" text-anchor="middle" fill="#ffffff" font-size="11" opacity="0.8">Applications for</text><text x="620" y="247" text-anchor="middle" fill="#ffffff" font-size="11" opacity="0.8">Forensic</text><text x="620" y="263" text-anchor="middle" fill="#ffffff" font-size="11" opacity="0.8">Accounting</text>
     
 </svg>
+</div>
+
 - **研究・論文**：
 - [Newcomb (1881) *Note on the Frequency of Use of the Different Digits*](https://www.jstor.org/stable/2369148)
 - [Benford (1938) *The Law of Anomalous Numbers*](https://www.jstor.org/stable/984802)
@@ -1632,10 +1761,11 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ：ベンフォードの法則 3つの要点
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="42" text-anchor="middle" fill="#f9a825" font-size="22" font-weight="bold">まとめ：ベンフォードの法則 3つの要点</text>
   
       <rect x="60" y="70" width="220" height="250" fill="#16213e" rx="10"/>
@@ -1658,6 +1788,8 @@ bl.plot(title="Financial Data: Benford Analysis")
     
   <text x="400" y="355" text-anchor="middle" fill="#e91e63" font-size="15">ベンフォードの法則は「正直なデータは正直な分布を持つ」の証明</text>
 </svg>
+</div>
+
 - **1. 普遍的な数学的法則**
 - 自然に生成された数値の先頭桁は対数的に分布する（P(d) = log₁₀(1 + 1/d)）
 - **2. 不正検知の強力なスクリーニングツール**
@@ -1668,10 +1800,11 @@ bl.plot(title="Financial Data: Benford Analysis")
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Q&A
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="80" text-anchor="middle" fill="#f9a825" font-size="36" font-weight="bold">Q &amp; A</text>
   <text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="18" opacity="0.8">ご質問をどうぞ</text>
   <circle cx="400" cy="220" r="80" fill="#16213e" stroke="#f9a825" stroke-width="2" opacity="0.8"/>
@@ -1680,6 +1813,8 @@ bl.plot(title="Financial Data: Benford Analysis")
   <circle cx="530" cy="220" r="5" fill="#f9a825" opacity="0.4"/><circle cx="492" cy="312" r="5" fill="#f9a825" opacity="0.4"/><circle cx="400" cy="350" r="5" fill="#f9a825" opacity="0.4"/><circle cx="308" cy="312" r="5" fill="#f9a825" opacity="0.4"/><circle cx="270" cy="220" r="5" fill="#f9a825" opacity="0.4"/><circle cx="308" cy="128" r="5" fill="#f9a825" opacity="0.4"/><circle cx="400" cy="90" r="5" fill="#f9a825" opacity="0.4"/><circle cx="492" cy="128" r="5" fill="#f9a825" opacity="0.4"/>
   <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="14" opacity="0.6">ベンフォードの法則と不正検知 — 90分入門</text>
 </svg>
+</div>
+
 - ご質問をどうぞ
 - 資料・コード: [github.com/example/benford-analysis](https://github.com/)
 - 参考: Nigrini (2012) *Benford's Law* — Wiley

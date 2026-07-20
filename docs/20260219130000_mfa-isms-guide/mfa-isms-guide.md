@@ -7,41 +7,76 @@ paginate: true
 header: "MFA完全ガイド — ISMSの観点から"
 footer: "© 2026 Security Workshop"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -88,7 +123,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # MFA完全ガイド — ISMSの観点から
 
 - 多要素認証の仕組みから実装・ISMS要件まで徹底解説
@@ -112,7 +147,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Sec.1 — なぜ今MFAなのか
 
 - 認証侵害の現状と多要素認証の必要性
@@ -124,7 +159,8 @@ style: |
 
 > *MFA導入だけでアカウント侵害の99.9%をブロックできると実証されている*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">認証侵害の現状と統計（2024）</text>
 <rect x="30" y="50" width="220" height="120" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2.5"/>
 <text x="140" y="82" text-anchor="middle" fill="#e91e63" font-size="28" font-weight="bold" font-family="sans-serif">81%</text>
@@ -150,6 +186,8 @@ style: |
 <text x="60" y="320" fill="#e91e63" font-size="13" font-family="sans-serif">3.</text>
 <text x="80" y="320" fill="#ffffff" font-size="12" font-family="sans-serif">ブルートフォース / パスワードスプレー攻撃</text>
 <text x="400" y="355" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">対策: FIDO2/Passkeys でフィッシング耐性を確保</text></svg>
+</div>
+
 - **80%以上** のデータ侵害はパスワード関連（Verizon DBIR 2024）
 - **MFAなし** のアカウントは侵害リスクが 99.9% 高い（Microsoft調査）
 - フィッシング攻撃は前年比 **+60%** 増加（APWG 2024）
@@ -162,7 +200,8 @@ style: |
 
 # 認証の3要素
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">認証の3要素</text>
 <polygon points="400,45 550,320 250,320" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -185,6 +224,8 @@ style: |
 <line x1="570" y1="235" x2="420" y2="235" stroke="#e91e63" stroke-width="1" stroke-dasharray="3,3"/>
 <line x1="590" y1="295" x2="410" y2="295" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/>
 </svg>
+</div>
+
 ![w:900 center](assets/auth-factors.svg)
 
 
@@ -192,7 +233,8 @@ style: |
 
 # パスワード単体が抱えるリスク
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">パスワード単体が抱えるリスク</text>
 <rect x="20" y="50" width="230" height="130" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
 <rect x="285" y="50" width="230" height="130" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -217,6 +259,8 @@ style: |
 <text x="65" y="298" fill="#ffffff" font-size="12" font-family="sans-serif">FIDO2は物理デバイス + 生体認証で最強防御</text>
 <text x="45" y="328" fill="#4caf50" font-size="13" font-family="sans-serif">✓</text>
 <text x="65" y="328" fill="#ffffff" font-size="12" font-family="sans-serif">推測・総当たりは第二要素で無力化</text></svg>
+</div>
+
 ![w:900 center](assets/password-limits.svg)
 
 
@@ -226,7 +270,8 @@ style: |
 
 > *MFAはパスワード漏洩後の最後の防衛線として機能する最重要セキュリティ対策*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">MFAの定義と原則</text>
 <rect x="20" y="50" width="760" height="80" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -250,6 +295,8 @@ style: |
 <text x="400" y="300" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">重要: 同一カテゴリの2要素はMFAではない</text>
 <text x="400" y="325" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">例: パスワード + 秘密の質問 = 両方 Knowledge = MFA NOT OK</text>
 </svg>
+</div>
+
 - **多要素認証（MFA）**: 2種類以上の**異なるカテゴリ**の認証要素を組み合わせる認証方式
 - **2FA（二要素認証）** はMFAの最も一般的な実装形態
 - 同カテゴリの組合せ（パスワード + PIN）は **SFA（単要素認証）** のまま
@@ -262,7 +309,8 @@ style: |
 
 # MFAの発展史
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="16" fill="#f9a825" text-anchor="middle" font-weight="bold">MFAの発展史</text>
 <line x1="60" y1="190" x2="740" y2="190" stroke="#f9a825" stroke-width="2"/>
 <polygon points="736,184 752,190 736,196" fill="#f9a825"/>
@@ -295,12 +343,14 @@ style: |
 <rect x="30" y="310" width="740" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="332" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">フィッシング耐性の進化</text>
 <text x="400" y="352" font-size="11" fill="#ffffff" text-anchor="middle">SMS/TOTP → フィッシングで傍受可能 → FIDO2/Passkeys → フィッシング不可能（秘密鍵はデバイスから出ない）</text></svg>
+</div>
+
 ![w:900 center](assets/mfa-history.svg)
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Sec.2 — MFA技術種別・詳細比較
 
 - 各認証方式の仕組みとセキュリティ特性を理解する
@@ -310,7 +360,8 @@ style: |
 
 # MFA方式の全体分類
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">MFA方式の全体分類</text>
 <rect x="20" y="50" width="230" height="305" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -341,6 +392,8 @@ style: |
 <text x="565" y="265" fill="#4caf50" font-size="12" font-family="sans-serif">フィッシング耐性あり</text>
 <text x="565" y="290" fill="#e91e63" font-size="12" font-family="sans-serif">コスト: 高め</text>
 </svg>
+</div>
+
 ![w:900 center](assets/mfa-methods.svg)
 
 
@@ -350,7 +403,8 @@ style: |
 
 > *SMS OTPは傍受・SIMスワップに脆弱でありTOTP/FIDO2への移行を強く推奨*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">SMS / 電話 OTP</text>
 <rect x="30" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <rect x="420" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -369,6 +423,8 @@ style: |
 <text x="435" y="250" fill="#4caf50" font-size="12" font-family="sans-serif">NIST SP 800-63B:</text>
 <text x="435" y="278" fill="#ffffff" font-size="12" font-family="sans-serif">SMS OTPは「推奨しない」(RESTRICTED)</text>
 <text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">導入しやすいが中リスク環境のみ / 高リスクはTOTP以上へ</text></svg>
+</div>
+
 - **仕組み**: SMSまたは音声通話でワンタイムパスワード（6桁）を送信
 - **長所**: 追加アプリ不要・なじみがある・導入が容易・低コスト
 - **短所**: SIMスワッピング / SS7攻撃に脆弱、電波不要環境で使用不可、AiTMに無防備
@@ -383,7 +439,8 @@ style: |
 
 > *TOTPは時刻同期ベースのHMAC計算で30秒毎に使い捨てコードを生成する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">TOTP（Time-based OTP） — RFC 6238</text>
 <rect x="30" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <rect x="420" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -403,6 +460,8 @@ style: |
 <text x="435" y="238" fill="#e91e63" font-size="12" font-family="sans-serif">リアルタイム攻撃で盗取可能</text>
 <text x="435" y="266" fill="#e91e63" font-size="12" font-family="sans-serif">端末紛失 → リカバリー必要</text>
 <text x="435" y="290" fill="#f9a825" font-size="12" font-family="sans-serif">コスト低 / SMSより上位</text></svg>
+</div>
+
 - **仕組み**: 共有秘密鍵 + 現在時刻（30秒窓）から HMAC-SHA1 で6桁のコードを生成
 - **標準規格**: RFC 6238（TOTP）/ RFC 4226（HOTP）— 完全オープンスタンダード
 - **実装例**: Google Authenticator, Microsoft Authenticator, Authy, 1Password, Bitwarden
@@ -431,7 +490,8 @@ style: |
 
 > *FIDO2はオリジン検証でフィッシングを原理的に防ぐ唯一のMFA方式*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">FIDO2 / WebAuthn — フィッシング耐性MFA</text>
 <rect x="30" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#4caf50" stroke-width="2.5"/>
 <rect x="420" y="50" width="350" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -450,6 +510,8 @@ style: |
 <text x="435" y="196" fill="#ffffff" font-size="12" font-family="sans-serif">• AiTMフィッシングでも無効</text>
 <text x="435" y="240" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">唯一のフィッシング耐性MFA</text>
 <text x="435" y="270" fill="#ffffff" font-size="12" font-family="sans-serif">NIST AAL3 (最高保証レベル)</text></svg>
+</div>
+
 - **仕組み**: 公開鍵暗号方式。デバイス上で鍵ペア生成、サーバーは公開鍵のみ保存
 - **標準**: FIDO Alliance + W3C WebAuthn（Level 3）/ CTAP2.1
 - **デバイス**: YubiKey, Google Titan Key, Windows Hello などのハードウェアセキュリティキー
@@ -485,7 +547,8 @@ style: |
 
 > *MFA導入がアカウント乗っ取りに対する最も費用対効果の高い単一対策*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">リスクベース認証（Adaptive MFA）</text>
 <rect x="50" y="50" width="700" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="72" font-size="12" fill="#ffffff" text-anchor="middle">アクセス時のリスクシグナルをリアルタイム評価 → MFA要否・強度を動的に決定</text>
@@ -514,6 +577,8 @@ style: |
 <rect x="30" y="305" width="740" height="60" rx="6" fill="#16213e" stroke="#4caf50" stroke-width="1"/>
 <text x="400" y="326" font-size="12" fill="#4caf50" text-anchor="middle" font-weight="bold">主要製品: Microsoft Entra ID (Conditional Access) / Okta Adaptive MFA / Duo Security</text>
 <text x="400" y="345" font-size="11" fill="#ffffff" text-anchor="middle">機械学習でベースライン行動を学習 → 逸脱時に自動でMFA要求または接続ブロック</text></svg>
+</div>
+
 - **概念**: ユーザーの行動・環境リスクを動的評価し、要求する認証強度を自動変化
 - **評価シグナル**: IP評判・デバイス登録状態・地理的異常・時間帯・行動バイオメトリクス
 - **実装例**: Azure AD 条件付きアクセス, Okta ThreatInsight, Auth0 Risk Engine
@@ -526,7 +591,8 @@ style: |
 
 # MFA方式 比較マトリクス
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">MFA方式 比較マトリクス</text>
 <rect x="10" y="45" width="780" height="40" rx="6" fill="#f9a825" opacity="0.2"/>
@@ -577,6 +643,8 @@ style: |
 <line x1="600" y1="45" x2="600" y2="290" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
 <text x="400" y="340" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">推奨: FIDO2/Passkeys → フィッシング耐性 × UX の両立</text>
 </svg>
+</div>
+
 ![w:900 center](assets/mfa-comparison.svg)
 
 
@@ -586,7 +654,8 @@ style: |
 
 > *MFA導入がアカウント乗っ取りに対する最も費用対効果の高い単一対策*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ユースケース別 推奨MFA方式</text>
 <rect x="10" y="45" width="780" height="40" rx="6" fill="#f9a825" opacity="0.2"/>
 <text x="160" y="70" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">ユースケース</text>
@@ -619,6 +688,8 @@ style: |
 <line x1="270" y1="45" x2="270" y2="292" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
 <line x1="480" y1="45" x2="480" y2="292" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
 <text x="400" y="340" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">原則: リスク評価に基づき最適な方式を選択</text></svg>
+</div>
+
 - **特権アカウント / 重要システム（AAL3）**: FIDO2セキュリティキー（YubiKey等）
 - **社内業務システム / VPN（AAL2）**: Passkeys または PUSH通知（番号照合必須）
 - **一般従業員 / リモートワーク（AAL2）**: TOTP認証アプリ または Passkeys
@@ -629,7 +700,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Sec.3 — ISMS / ISO 27001 要件マッピング
 
 - 規格要件と多要素認証の具体的な対応関係
@@ -641,7 +712,8 @@ style: |
 
 > *MFAはパスワード漏洩後の最後の防衛線として機能する最重要セキュリティ対策*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">ISO 27001:2022 — アクセス制御とMFAの要求</text>
 <rect x="30" y="50" width="360" height="125" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
 <text x="210" y="70" font-size="11" fill="#e91e63" text-anchor="middle" font-weight="bold">8.2 特権アクセス権の管理</text>
@@ -655,6 +727,8 @@ style: |
 <rect x="100" y="333" width="600" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="351" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">ISO 27001 審査でのMFA確認ポイント</text>
 <text x="400" y="367" font-size="10" fill="#ffffff" text-anchor="middle">①方針文書の存在 ②適用範囲の明確化 ③実施証跡（ログ）④例外管理のプロセス</text></svg>
+</div>
+
 - **ISO/IEC 27001:2022**: 2022年版で大幅改訂 → 114→93コントロール（11の新規追加）
 - **8.2 特権アクセス権限管理**: 管理者・特権アカウントへのMFA強制を**事実上要求**
 - **8.3 情報アクセスの制限**: 最小権限原則 + 強化認証の組合せ要求
@@ -681,7 +755,8 @@ style: |
 
 # ISO27001 × MFA 要件マッピング
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ISO27001 × MFA 要件マッピング</text>
 <rect x="10" y="45" width="780" height="40" rx="6" fill="#f9a825" opacity="0.2"/>
@@ -716,6 +791,8 @@ style: |
 <line x1="560" y1="45" x2="560" y2="290" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
 <text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ISO27001:2022 Annex A — MFA要件はリスクベースで段階的に実装</text>
 </svg>
+</div>
+
 ![w:900 center](assets/iso27001-mapping.svg)
 
 
@@ -723,7 +800,8 @@ style: |
 
 # NIST SP 800-63B — AAL 保証レベル
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">NIST SP 800-63B — AAL 保証レベル</text>
 <rect x="20" y="50" width="230" height="300" rx="10" fill="#16213e" stroke="#ffffff" stroke-width="1.5"/>
 <rect x="285" y="50" width="230" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -750,6 +828,8 @@ style: |
 <text x="565" y="240" fill="#4caf50" font-size="11" font-family="sans-serif">用途: 金融・医療・政府</text>
 <text x="565" y="265" fill="#4caf50" font-size="11" font-family="sans-serif">最高セキュリティ要件</text>
 <text x="400" y="370" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ISMSリスク評価に基づき適切なAALレベルを選択</text></svg>
+</div>
+
 ![w:900 center](assets/nist-aal.svg)
 
 
@@ -759,7 +839,8 @@ style: |
 
 > *MFA導入がアカウント乗っ取りに対する最も費用対効果の高い単一対策*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">関連法規制・フレームワークとMFAの対応</text>
 <text x="100" y="60" font-size="12" fill="#f9a825" text-anchor="middle">法令/規制</text>
 <text x="310" y="60" font-size="12" fill="#f9a825" text-anchor="middle">MFA要件</text>
@@ -784,6 +865,8 @@ style: |
 <text x="100" y="328" font-size="10" fill="#ffffff" text-anchor="middle">金融庁ガイドライン</text>
 <text x="310" y="333" font-size="10" fill="#e91e63" text-anchor="middle" font-weight="bold">必須傾向</text>
 <text x="400" y="333" font-size="9" fill="#ffffff">インターネットバンキング等への不正ログイン対策</text></svg>
+</div>
+
 - **GDPR（EU一般データ保護規則）**: Art.32 — 適切な技術的措置（MFAを含む暗号化・アクセス制御）
 - **個人情報保護法（日本）**: 安全管理措置 — 不正アクセス防止のためのMFA的措置を要求
 - **PCI DSS v4.0**: Req.8.4 — カード会員データ環境へのすべてのアクセスに**MFA必須**
@@ -796,7 +879,8 @@ style: |
 
 # ゼロトラストアーキテクチャとMFA
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ゼロトラストアーキテクチャとMFA</text>
 <rect x="200" y="50" width="400" height="65" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">Never Trust, Always Verify</text>
@@ -820,6 +904,8 @@ style: |
 <text x="400" y="295" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">MFAのゼロトラスト実装</text>
 <text x="50" y="322" fill="#ffffff" font-size="12" font-family="sans-serif">• Conditional Access: リスクレベルに応じてMFA強度を動的に変更</text>
 <text x="50" y="348" fill="#ffffff" font-size="12" font-family="sans-serif">• Continuous Verification: セッション中も定期的に再認証</text></svg>
+</div>
+
 ![w:900 center](assets/zero-trust.svg)
 
 
@@ -829,7 +915,8 @@ style: |
 
 > *SMS OTPは傍受・SIMスワップに脆弱でありTOTP/FIDO2への移行を強く推奨*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">MFA導入のリスク評価プロセス（ISMS手順）</text>
 <rect x="30" y="55" width="160" height="80" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -864,6 +951,8 @@ style: |
 <text x="200" y="305" fill="#ffffff" font-size="12" font-family="sans-serif">社内のみ低感度 → SMS OTP でも可 (段階的強化)</text>
 <text x="400" y="345" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ISMS原則: リスクアセスメント結果に基づく適切な管理策の選択</text>
 </svg>
+</div>
+
 - **Step 1**: 保護対象の特定 — 情報資産・システム一覧（ISMS資産管理台帳から抽出）
 - **Step 2**: 脅威・脆弱性評価 — パスワードリスト攻撃・内部不正のリスクスコアリング
 - **Step 3**: 影響度評価 — 侵害時の業務影響・法的リスク・レピュテーション損害の定量化
@@ -876,7 +965,8 @@ style: |
 
 # ISMSコンプライアンス チェックリスト（MFA）（1/2）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">ISMSコンプライアンス チェックリスト（MFA）</text>
 <text x="90" y="58" font-size="11" fill="#f9a825" text-anchor="middle">カテゴリ</text>
 <text x="350" y="58" font-size="11" fill="#f9a825" text-anchor="middle">チェック項目</text>
@@ -912,6 +1002,8 @@ style: |
 <text x="185" y="344" font-size="9.5" fill="#ffffff">MFAポリシーの年次見直しが実施されているか</text>
 <text x="650" y="344" font-size="9" fill="#aaa" text-anchor="middle">マネジメントレビュー記録</text>
 <rect x="30" y="365" width="740" height="0" fill="none"/></svg>
+</div>
+
 - **ポリシー**: MFA利用ポリシーが文書化・経営承認済みか
 - **スコープ定義**: 対象システム（特権・リモート・クラウド・外部委託先）を明確に定義しているか
 - **技術選定**: NIST AAL / ISO27001要件に合致したMFA方式を選定・記録しているか
@@ -935,7 +1027,8 @@ style: |
 
 > *SMS OTPは導入容易だが通信傍受リスクがあり高リスク環境には不適切*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
 <text x="400" y="28" font-size="15" fill="#f9a825" text-anchor="middle" font-weight="bold">監査証跡・ログ要件（ISMS観点）</text>
 <rect x="30" y="45" width="740" height="35" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="68" font-size="11" fill="#ffffff" text-anchor="middle">ISO 27001 Annex A 8.15 ログの記録 + 8.16 監視活動 が要求する最低限のMFAログ</text>
@@ -962,6 +1055,8 @@ style: |
 <rect x="30" y="328" width="740" height="42" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
 <text x="400" y="348" font-size="12" fill="#f9a825" text-anchor="middle" font-weight="bold">ログの完全性確保</text>
 <text x="400" y="364" font-size="10" fill="#ffffff" text-anchor="middle">ログのハッシュチェーン・WORM（書き換え不可）ストレージ・SIEMへのリアルタイム転送で証拠能力を確保</text></svg>
+</div>
+
 - **ISO27001 8.15 ログ管理**: 認証イベント（成功・失敗）の記録・保護・保管期間設定
 - **記録必須項目**: ユーザーID / タイムスタンプ / 認証方式 / 接続元IP / 成否 / デバイス情報
 - **保管期間**: 最低1年（ISO27001要件）/ PCI DSS: 最低1年（3ヶ月オンライン保持）
@@ -972,7 +1067,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Sec.4 — 攻撃パターン & バイパス事例
 
 - MFAは万能ではない — 攻撃手法を知り、適切な対策を講じる
@@ -982,7 +1077,8 @@ style: |
 
 # MFAを標的とする主要攻撃手法
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">MFAを標的とする主要攻撃手法</text>
 <rect x="20" y="50" width="230" height="140" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -1016,6 +1112,8 @@ style: |
 <text x="665" y="300" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">物理キー拘束</text>
 <text x="665" y="325" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">全攻撃に耐性あり</text>
 </svg>
+</div>
+
 ![w:900 center](assets/attack-overview.svg)
 
 
@@ -1093,7 +1191,8 @@ style: |
 
 # MFA方式別 攻撃耐性マトリクス
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">MFA方式別 攻撃耐性マトリクス</text>
 <rect x="10" y="45" width="780" height="40" rx="6" fill="#f9a825" opacity="0.2"/>
@@ -1145,12 +1244,14 @@ style: |
 <line x1="680" y1="45" x2="680" y2="258" stroke="#ffffff" stroke-width="0.5" opacity="0.4"/>
 <text x="400" y="310" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">FIDO2 / Passkeys のみがすべての攻撃に耐性あり</text>
 </svg>
+</div>
+
 ![w:900 center](assets/attack-resistance.svg)
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Sec.5 — MFA導入・実践ガイドライン
 
 - 計画から運用まで — ISMS管理者のための実践ロードマップ
@@ -1160,7 +1261,8 @@ style: |
 
 # MFA導入ロードマップ（4フェーズ）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">MFA導入ロードマップ（4フェーズ）</text>
 <rect x="20" y="55" width="165" height="300" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1206,6 +1308,8 @@ style: |
 <line x1="571" y1="205" x2="599" y2="205" stroke="#2196f3" stroke-width="2"/>
 <polygon points="599,205 587,199 587,211" fill="#2196f3"/>
 </svg>
+</div>
+
 ![w:900 center](assets/mfa-roadmap.svg)
 
 
@@ -1222,7 +1326,8 @@ style: |
 
 > *MFA導入がアカウント乗っ取りに対する最も費用対効果の高い単一対策*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">IdP / IAM システムとの統合パターン</text>
 <rect x="300" y="50" width="200" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
 <text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">Identity Provider</text>
@@ -1249,6 +1354,8 @@ style: |
 <text x="400" y="310" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">統合時の考慮点</text>
 <text x="50" y="340" fill="#ffffff" font-size="12" font-family="sans-serif">• MFAポリシーのIdP集中管理 / 各SPはIdPにMFA判断を委任</text>
 <text x="50" y="365" fill="#ffffff" font-size="12" font-family="sans-serif">• 監査ログをIdPで一元収集 / SIEM連携</text></svg>
+</div>
+
 - **統合アーキテクチャ**: IdP（Okta/Azure AD/Google Workspace）がMFAの中央管理を担う
 - **SAML 2.0 / OIDC**: アプリ側での個別MFA実装を廃止 → IdP統合で一元管理・ポリシー統一
 - **SCIM**: ユーザーライフサイクル管理（入社・異動・退社）とMFA設定の自動プロビジョニング
@@ -1305,7 +1412,8 @@ style: |
 
 > *MFAはパスワード漏洩後の最後の防衛線として機能する最重要セキュリティ対策*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">MFAセキュリティ成熟度モデル</text>
 <rect x="30" y="50" width="740" height="305" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1327,6 +1435,8 @@ style: |
 <text x="510" y="305" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">FIDO2/Passkeys全社展開 / ゼロトラスト統合 / 継続的改善</text>
 <text x="400" y="375" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ISMS目標: Level 3以上 / 高セキュリティ環境: Level 4</text>
 </svg>
+</div>
+
 - **Level 1（初期）**: 特権アカウントのみMFA（SMS/TOTP）、ポリシー未整備
 - **Level 2（管理）**: 全従業員にMFA展開、ポリシー文書化、一部例外あり
 - **Level 3（定義）**: フィッシング耐性MFA（FIDO2）採用、リスクベース認証、例外管理プロセス確立
@@ -1337,7 +1447,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ
 
 - 重要ポイントの整理とアクションアイテム

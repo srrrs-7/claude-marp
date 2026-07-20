@@ -4,41 +4,76 @@ theme: gaia
 size: 16:9
 paginate: true
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -75,7 +110,6 @@ style: |
 # AWS Direct Connect 完全ガイド
 
 - **VIF・Gateway・冗長化設計の詳細解説**
-- 
 - ネットワークエンジニアのための DX 設計リファレンス
 
 
@@ -85,33 +119,36 @@ style: |
 
 > *概要→物理接続→VIF→Private→Public→Transit→選定→冗長化の8章構成*
 
-- 1. **AWS Direct Connect 概要** — 専用線接続の基本と物理構成
-- 2. **物理接続の基礎** — Dedicated / Hosted / LAG
-- 3. **Virtual Interface (VIF)** — 3種類のVIFと基本パラメータ
-- 4. **Private VIF 詳細** — VGW・DX Gateway・BGPルーティング
-- 5. **Public VIF 詳細** — パブリックサービスへの直接アクセス
+1. **AWS Direct Connect 概要** — 専用線接続の基本と物理構成
+2. **物理接続の基礎** — Dedicated / Hosted / LAG
+3. **Virtual Interface (VIF)** — 3種類のVIFと基本パラメータ
+4. **Private VIF 詳細** — VGW・DX Gateway・BGPルーティング
+5. **Public VIF 詳細** — パブリックサービスへの直接アクセス
 
 
 ---
 
+<!-- _class: fit-82 -->
 # アジェンダ (2/2)
 
 > *Transit VIF・DX Gateway・冗長化・VPNフェイルオーバーまで網羅する後半5章*
 
-- 6. **Transit VIF 詳細** — TGW連携とマルチVPC接続
-- 7. **VIF 選定ガイド** — Private vs Transit の判断基準
-- 8. **DX Gateway 詳細** — クロスアカウント・マルチリージョン
-- 9. **冗長化・高可用性設計** — AWS推奨モデルとVPNフェイルオーバー
-- 10. **まとめ** — ベストプラクティスと参考リンク
+6. **Transit VIF 詳細** — TGW連携とマルチVPC接続
+7. **VIF 選定ガイド** — Private vs Transit の判断基準
+8. **DX Gateway 詳細** — クロスアカウント・マルチリージョン
+9. **冗長化・高可用性設計** — AWS推奨モデルとVPNフェイルオーバー
+10. **まとめ** — ベストプラクティスと参考リンク
 
 
 ---
 
+<!-- _class: fit-70 -->
 # AWS Direct Connect とは
 
 > *専用線で50Mbps〜100Gbpsの安定低レイテンシ接続、100以上のDXロケーションをグローバル展開*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <rect x="30" y="150" width="160" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="110" y="180" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">企業オンプレ</text>
 <text x="110" y="204" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Customer Network</text>
@@ -129,21 +166,25 @@ style: |
   <text x="260" y="285" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="normal" font-family="sans-serif">1G / 10G / 100G 専用回線</text>
   <text x="530" y="285" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">低レイテンシ・安定帯域</text>
 </svg>
-- - オンプレミス環境と AWS を **専用線** で接続するサービス
-- - インターネットを経由せず、**一貫したネットワーク品質** を提供
-- - 帯域: **50 Mbps 〜 100 Gbps** まで柔軟に選択可能
-- - **BGP (Border Gateway Protocol)** によるルーティング
-- - **802.1Q VLAN** で論理的に複数の接続（VIF）を多重化
-- - 東京・大阪を含む **100+ のDXロケーション** をグローバル展開
+</div>
+
+- オンプレミス環境と AWS を **専用線** で接続するサービス
+- インターネットを経由せず、**一貫したネットワーク品質** を提供
+- 帯域: **50 Mbps 〜 100 Gbps** まで柔軟に選択可能
+- **BGP (Border Gateway Protocol)** によるルーティング
+- **802.1Q VLAN** で論理的に複数の接続（VIF）を多重化
+- 東京・大阪を含む **100+ のDXロケーション** をグローバル展開
 
 
 ---
 
+<!-- _class: fit-64 -->
 # DX の主なユースケース
 
 > *大容量移行・ハイブリッド・リアルタイム・規制対応・DRのすべてにDXが適合*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX 主なユースケース</text>
   <rect x="30" y="65" width="220" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="140" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ハイブリッドクラウド</text>
@@ -165,19 +206,22 @@ style: |
 <text x="660" y="244.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Hosted VIF 経由</text>
   <text x="400" y="325" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">DX は可用性 / 帯域 / セキュリティ の三拍子が揃う</text>
 </svg>
-- - **大容量データ転送** — S3/Glacier への TB〜PB 級データ移行
-- - **ハイブリッドクラウド** — オンプレ DC と VPC のシームレス接続
-- - **リアルタイムアプリ** — 低レイテンシが求められる金融・製造系
-- - **規制対応** — インターネット非経由の通信要件（金融・医療）
-- - **災害対策 (DR)** — オンプレ⇔AWS間の安定したレプリケーション
-- - **マルチクラウド接続** — DXロケーションでの他クラウド相互接続
+</div>
+
+- **大容量データ転送** — S3/Glacier への TB〜PB 級データ移行
+- **ハイブリッドクラウド** — オンプレ DC と VPC のシームレス接続
+- **リアルタイムアプリ** — 低レイテンシが求められる金融・製造系
+- **規制対応** — インターネット非経由の通信要件（金融・医療）
+- **災害対策 (DR)** — オンプレ⇔AWS間の安定したレプリケーション
+- **マルチクラウド接続** — DXロケーションでの他クラウド相互接続
 
 
 ---
 
 # DX 接続の全体像
 
-- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 350" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
   <rect x="20" y="60" width="150" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="95" y="85" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Customer</text>
 <text x="95" y="109" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Router</text>
@@ -206,16 +250,20 @@ style: |
 <text x="740" y="171.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="9" font-family="sans-serif">Public VIF</text>
   <text x="400" y="20" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="17" font-weight="bold" font-family="sans-serif">Direct Connect 接続の全体像</text>
 </svg>
+</div>
+
 ![w:1000 center](assets/dx-overview.svg)
 
 
 ---
 
+<!-- _class: fit-58 -->
 # DX ロケーションとパートナー
 
 > *日本はEquinix TY2/NTT堂島、NTT/KDDI/IIJ等がHosted Connection提供*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX ロケーションとパートナー</text>
   <rect x="30" y="70" width="180" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="120" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Dedicated</text>
@@ -231,11 +279,13 @@ style: |
 
   <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="12" font-weight="normal" font-family="sans-serif">ロケーション → aws.amazon.com/directconnect/locations で確認</text>
 </svg>
-- - **日本のDXロケーション**: Equinix TY2 (東京)、NTT 堂島 (大阪) 等
-- - **パートナー接続**: NTT、KDDI、IIJ、SoftBank 等が Hosted Connection を提供
-- - 自社でクロスコネクトを用意する **Dedicated** と、パートナー経由の **Hosted** の2方式
-- - DXロケーションには **AWS のルーター (DX Router)** が設置済み
-- - 物理接続は **シングルモード光ファイバー**（1000BASE-LX / 10GBASE-LR / 100GBASE-LR4）
+</div>
+
+- **日本のDXロケーション**: Equinix TY2 (東京)、NTT 堂島 (大阪) 等
+- **パートナー接続**: NTT、KDDI、IIJ、SoftBank 等が Hosted Connection を提供
+- 自社でクロスコネクトを用意する **Dedicated** と、パートナー経由の **Hosted** の2方式
+- DXロケーションには **AWS のルーター (DX Router)** が設置済み
+- 物理接続は **シングルモード光ファイバー**（1000BASE-LX / 10GBASE-LR / 100GBASE-LR4）
 
 
 ---
@@ -243,7 +293,8 @@ style: |
 <!-- _class: lead -->
 # 物理接続の基礎
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="40" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">物理接続コンポーネント</text>
   <rect x="50" y="100" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="130" y="125" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Customer</text>
@@ -262,16 +313,20 @@ style: |
 <text x="400" y="290" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">802.1Q VLAN タグ</text>
 <text x="400" y="314" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">複数VIFを単一物理回線で多重化</text>
 </svg>
+</div>
+
 - DX の物理レイヤーとコネクション管理
 
 
 ---
 
+<!-- _class: fit-64 -->
 # 物理接続のコンポーネント
 
 > *カスタマールーター→クロスコネクト→DXルーター→AWSバックボーンの4段構成*
 
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">物理接続コンポーネント詳細</text>
   <rect x="30" y="70" width="170" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="115" y="93.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客ルータ</text>
@@ -304,21 +359,25 @@ style: |
 <text x="700" y="236" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">BFD</text>
 <text x="700" y="257" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">高速障害検出</text>
 </svg>
-- - **カスタマールーター** — お客様拠点のBGP対応ルーター
-- - **クロスコネクト** — DXロケーション内の物理ケーブル接続
-- - **DX ルーター** — AWS側のルーター（DXロケーション内に設置）
-- - **ポート** — AWS が割り当てる物理ポート（1G / 10G / 100G）
-- - **LOA-CFA** — Letter of Authorization（クロスコネクト許可書）
-- - 構成: お客様ルーター ↔ クロスコネクト ↔ DXルーター ↔ AWS バックボーン
+</div>
+
+- **カスタマールーター** — お客様拠点のBGP対応ルーター
+- **クロスコネクト** — DXロケーション内の物理ケーブル接続
+- **DX ルーター** — AWS側のルーター（DXロケーション内に設置）
+- **ポート** — AWS が割り当てる物理ポート（1G / 10G / 100G）
+- **LOA-CFA** — Letter of Authorization（クロスコネクト許可書）
+- 構成: お客様ルーター ↔ クロスコネクト ↔ DXルーター ↔ AWS バックボーン
 
 
 ---
 
+<!-- _class: fit-64 -->
 # Dedicated Connection
 
 > *1G/10G/100G専用ポート・最大50 VIF、LOA-CFA発行後2〜4週間でクロスコネクト工事*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="35" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Dedicated Connection</text>
   <rect x="60" y="80" width="200" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="160" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">お客様</text>
@@ -343,21 +402,25 @@ style: |
 <text x="540" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">LOA-CFA 発行が必要</text>
 
 </svg>
-- - AWS から **専用の物理ポート** が割り当てられる接続方式
-- - 帯域: **1 Gbps / 10 Gbps / 100 Gbps**
-- - お客様が DX ロケーションまでの回線とクロスコネクトを手配
-- - **最大50個の VIF** を1つの Dedicated Connection 上に作成可能
-- - AWS コンソールから接続リクエスト → **LOA-CFA 発行** → クロスコネクト工事
-- - リードタイム: 通常 **2〜4週間**（ロケーションにより異なる）
+</div>
+
+- AWS から **専用の物理ポート** が割り当てられる接続方式
+- 帯域: **1 Gbps / 10 Gbps / 100 Gbps**
+- お客様が DX ロケーションまでの回線とクロスコネクトを手配
+- **最大50個の VIF** を1つの Dedicated Connection 上に作成可能
+- AWS コンソールから接続リクエスト → **LOA-CFA 発行** → クロスコネクト工事
+- リードタイム: 通常 **2〜4週間**（ロケーションにより異なる）
 
 
 ---
 
+<!-- _class: fit-64 -->
 # Hosted Connection
 
 > *パートナー経由で50Mbps〜10Gbps提供、VIF は1つのみでDedicatedより短いリードタイム*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="35" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Hosted Connection</text>
   <rect x="50" y="80" width="180" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="140" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">お客様</text>
@@ -382,21 +445,25 @@ style: |
 <text x="540" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">LOA-CFA 不要</text>
 
 </svg>
-- - **AWS Direct Connect パートナー** 経由で提供される接続方式
-- - 帯域: **50 Mbps 〜 10 Gbps**（パートナーにより異なる）
-- - パートナーが物理接続を所有し、お客様に **論理的な接続を提供**
-- - **1つの Hosted Connection に VIF は1つ** のみ（Dedicated との大きな違い）
-- - お客様は DX ロケーションの機器・回線の管理が不要
-- - リードタイム: パートナー次第だが、一般的に **Dedicated より短い**
+</div>
+
+- **AWS Direct Connect パートナー** 経由で提供される接続方式
+- 帯域: **50 Mbps 〜 10 Gbps**（パートナーにより異なる）
+- パートナーが物理接続を所有し、お客様に **論理的な接続を提供**
+- **1つの Hosted Connection に VIF は1つ** のみ（Dedicated との大きな違い）
+- お客様は DX ロケーションの機器・回線の管理が不要
+- リードタイム: パートナー次第だが、一般的に **Dedicated より短い**
 
 
 ---
 
+<!-- _class: fit-88 -->
 # Dedicated vs Hosted 比較表
 
 > *帯域・コスト・プロビジョニング速度の3軸でDedicatedとHostedを選ぶ*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Dedicated vs Hosted 比較</text>
   <rect x="30" y="65" width="340" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="200" y="92.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Dedicated Connection</text>
@@ -430,6 +497,8 @@ style: |
 
   <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Dedicated: 大企業向け / Hosted: 中小・迅速導入向け</text>
 </svg>
+</div>
+
 | 項目 | Dedicated | Hosted |
 |------|-----------|--------|
 | 帯域 | 1 / 10 / 100 Gbps | 50 Mbps〜10 Gbps |
@@ -442,11 +511,13 @@ style: |
 
 ---
 
+<!-- _class: fit-64 -->
 # LAG (Link Aggregation Group)
 
 > *最大4本の同帯域・同ロケーション接続を1論理接続に集約、最小リンク数設定で自動フェイルオーバー*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">LAG (Link Aggregation Group)</text>
   <rect x="50" y="80" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="130" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Customer</text>
@@ -469,19 +540,22 @@ style: |
 <text x="480" y="260" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">障害時 自動フェイルオーバー</text>
 
 </svg>
-- - 複数の Dedicated Connection を **1つの論理接続** として束ねる
-- - **LACP (802.3ad)** ベースのリンクアグリゲーション
-- - 同一帯域・同一DXロケーションの接続のみ束ね可能
-- - 最大 **4本** の接続を1つの LAG に集約
-- - LAG 内の1本が障害 → 残りの接続で **自動フェイルオーバー**
-- - **最小リンク数** を設定可能（閾値を下回ると LAG 全体がダウン）
+</div>
+
+- 複数の Dedicated Connection を **1つの論理接続** として束ねる
+- **LACP (802.3ad)** ベースのリンクアグリゲーション
+- 同一帯域・同一DXロケーションの接続のみ束ね可能
+- 最大 **4本** の接続を1つの LAG に集約
+- LAG 内の1本が障害 → 残りの接続で **自動フェイルオーバー**
+- **最小リンク数** を設定可能（閾値を下回ると LAG 全体がダウン）
 
 
 ---
 
 # 接続確立までのフロー
 
-- <svg viewBox="0 0 800 430" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="430" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 430" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="430" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX 接続確立フロー</text>
   <rect x="50" y="70" width="130" height="55" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
 <text x="115" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">① 申請</text>
@@ -514,6 +588,8 @@ Connect</text>
 
   <text x="400" y="390" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Dedicated: 数日〜数週間 / Hosted: 数分〜数時間</text>
 </svg>
+</div>
+
 ![w:1000 center](assets/connection-flow.svg)
 
 
@@ -522,7 +598,8 @@ Connect</text>
 <!-- _class: lead -->
 # Virtual Interface (VIF)
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="35" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Virtual Interface (VIF) の位置づけ</text>
   <rect x="50" y="90" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="130" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">物理接続</text>
@@ -544,16 +621,20 @@ Connect</text>
 <text x="650" y="184" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">→ AWS Svc</text>
   <text x="480" y="240" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">Transit VIF → TGW (別経路)</text>
 </svg>
+</div>
+
 - 論理インターフェースの種類と設計
 
 
 ---
 
+<!-- _class: fit-64 -->
 # VIF とは何か
 
 > *802.1Q VLANで1物理接続を論理分割、Dedicated最大50 VIF・Hosted は1 VIFのみ*
 
-- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 350" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF (Virtual Interface) とは何か</text>
   <rect x="30" y="75" width="200" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="130" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">物理接続 (1本)</text>
@@ -580,21 +661,25 @@ Connect</text>
 
   <text x="400" y="300" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">1 物理接続で最大 50 VIF (Dedicated) / 1 VIF (Hosted)</text>
 </svg>
-- - DX 物理接続上に作成する **論理的なインターフェース**
-- - **802.1Q VLAN タグ** で1本の物理接続を論理分割
-- - 各 VIF ごとに **BGP セッション** を確立
-- - VIF の種類によって **接続先（VGW / AWS Public / TGW）が異なる**
-- - 1つの Dedicated Connection に **最大50 VIF** を多重化可能
-- - Hosted Connection では **1 VIF のみ**
+</div>
+
+- DX 物理接続上に作成する **論理的なインターフェース**
+- **802.1Q VLAN タグ** で1本の物理接続を論理分割
+- 各 VIF ごとに **BGP セッション** を確立
+- VIF の種類によって **接続先（VGW / AWS Public / TGW）が異なる**
+- 1つの Dedicated Connection に **最大50 VIF** を多重化可能
+- Hosted Connection では **1 VIF のみ**
 
 
 ---
 
+<!-- _class: fit-58 -->
 # VIF の3種類
 
 > *Private VIF→VGW/DX GW、Public VIF→パブリックエンドポイント、Transit VIF→DX GW→TGW*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF の 3 種類</text>
   <rect x="40" y="70" width="220" height="90" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="150" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Private VIF</text>
@@ -614,21 +699,25 @@ Connect</text>
 <text x="390" y="305" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">共通: VLAN ID + BGP ASN + BGP AUTH KEY が必要</text>
 
 </svg>
-- - **Private VIF** — VPC 内のリソースにプライベート IP でアクセス
--   - 接続先: Virtual Private Gateway (VGW) / DX Gateway
-- - **Public VIF** — AWS パブリックサービスに直接アクセス
--   - 接続先: AWS パブリックエンドポイント（S3, DynamoDB 等）
-- - **Transit VIF** — Transit Gateway 経由で複数 VPC に一括アクセス
--   - 接続先: DX Gateway → Transit Gateway
+</div>
+
+- **Private VIF** — VPC 内のリソースにプライベート IP でアクセス
+  - 接続先: Virtual Private Gateway (VGW) / DX Gateway
+- **Public VIF** — AWS パブリックサービスに直接アクセス
+  - 接続先: AWS パブリックエンドポイント（S3, DynamoDB 等）
+- **Transit VIF** — Transit Gateway 経由で複数 VPC に一括アクセス
+  - 接続先: DX Gateway → Transit Gateway
 
 
 ---
 
+<!-- _class: fit-82 -->
 # VLAN タグと BGP セッション（1/2）
 
 > *VLANタグとBGPセッションがVIF論理分離の2つのキー技術*
 
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VLAN タグと BGP セッション</text>
   <rect x="30" y="75" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="120" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客ルータ</text>
@@ -653,30 +742,35 @@ VLAN 分離</text>
 <text x="675" y="169.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Public VIF</text>
   <text x="400" y="270" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="13" font-weight="normal" font-family="sans-serif">各 VIF で独立した BGP セッションを確立</text>
 </svg>
-- - **VLAN ID**: 1〜4094 の範囲で指定（物理接続内で一意）
-- - **BGP ASN**: お客様側の AS 番号（パブリック or プライベート ASN）
--   - AWS 側: Private/Transit VIF = **64512**、Public VIF = **7224**
+</div>
+
+- **VLAN ID**: 1〜4094 の範囲で指定（物理接続内で一意）
+- **BGP ASN**: お客様側の AS 番号（パブリック or プライベート ASN）
+  - AWS 側: Private/Transit VIF = **64512**、Public VIF = **7224**
 
 
 ---
 
+<!-- _class: fit-94 -->
 # VLAN タグと BGP セッション（2/2）
 
 > *BGP MD5認証は強く推奨、ピアリングIPは/30または/31サブネット、Public VIFはパブリックIP必須*
 
-- - **BGP ピアリング IP**: /30 または /31 サブネットで指定
--   - AWS 割り当て or お客様指定（Public VIF はパブリック IP 必須）
-- - **BGP MD5 認証**: オプションだが **強く推奨**
-- - **BGP キープアライブ**: デフォルト 30秒、ホールドタイム 90秒
+- **BGP ピアリング IP**: /30 または /31 サブネットで指定
+  - AWS 割り当て or お客様指定（Public VIF はパブリック IP 必須）
+- **BGP MD5 認証**: オプションだが **強く推奨**
+- **BGP キープアライブ**: デフォルト 30秒、ホールドタイム 90秒
 
 
 ---
 
+<!-- _class: fit-88 -->
 # VIF 作成時のパラメータ
 
 > *VLAN ID・BGP ASN・プレフィックス・認証キーの4項目が必須パラメータ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF 作成時の主要パラメータ</text>
   <rect x="30" y="70" width="340" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="200" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">VLAN ID (100〜4094)</text>
@@ -698,6 +792,8 @@ VLAN 分離</text>
 <text x="600" y="279.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">スループット向上</text>
   <text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">パラメータは変更不可のものが多い → 設計フェーズで確定</text>
 </svg>
+</div>
+
 | パラメータ | Private VIF | Public VIF | Transit VIF |
 |-----------|-------------|------------|-------------|
 | VLAN ID | 必須 | 必須 | 必須 |
@@ -712,7 +808,8 @@ VLAN 分離</text>
 
 # VIF と接続先の対応関係
 
-- <svg viewBox="0 0 800 430" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="430" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 430" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="430" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF と接続先の対応関係</text>
   <rect x="30" y="70" width="200" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="130" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Private VIF</text>
@@ -745,16 +842,20 @@ VLAN 分離</text>
 <text x="535" y="345" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">AWS パブリックサービス エンドポイント</text>
 
 </svg>
+</div>
+
 ![w:1000 center](assets/vif-gateway-mapping.svg)
 
 
 ---
 
+<!-- _class: fit-88 -->
 # VIF 種別 完全比較表
 
 > *3種VIFは接続先・BGP ASN・許可プレフィックスの組み合わせで選択*
 
-- <svg viewBox="0 0 800 310" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="310" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 310" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="310" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF 種別 完全比較</text>
   <text x="175" y="65" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">Private VIF</text>
   <text x="400" y="65" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">Public VIF</text>
@@ -787,6 +888,8 @@ VLAN 分離</text>
 <text x="625" y="240" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">用途: 多拠点 大規模</text>
 
 </svg>
+</div>
+
 | 項目 | Private VIF | Public VIF | Transit VIF |
 |------|------------|------------|-------------|
 | 接続先 | VGW / DX GW | AWS Public | DX GW → TGW |
@@ -802,7 +905,8 @@ VLAN 分離</text>
 <!-- _class: lead -->
 # Private VIF 詳細
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Private VIF アーキテクチャ</text>
   <rect x="30" y="80" width="140" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="100" y="105" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客拠点</text>
@@ -827,16 +931,20 @@ VLAN 分離</text>
 <text x="390" y="290" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">BGP プレフィックス広報 ← オンプレルートをAWSへ / AWSルートをオンプレへ</text>
 
 </svg>
+</div>
+
 - VGW・DX Gateway によるプライベート接続
 
 
 ---
 
+<!-- _class: fit-64 -->
 # Private VIF の概要
 
 > *プライベートIPでVPC内に直接アクセス、Jumbo Frame MTU 9001でスループット向上*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Private VIF 概要</text>
   <rect x="30" y="75" width="170" height="75" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="115" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客 DC</text>
@@ -860,19 +968,22 @@ VLAN 分離</text>
 <text x="400" y="292.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">インターネットを通らない → セキュア / 低レイテンシ / 安定帯域</text>
 
 </svg>
-- - VPC 内のリソース（EC2, RDS, ELB 等）に **プライベート IP** でアクセス
-- - 接続先は **Virtual Private Gateway (VGW)** または **DX Gateway**
-- - BGP で VPC の CIDR を受信し、オンプレのルートを広報
-- - **Jumbo Frame 対応**: MTU 9001 でスループット向上
-- - VPC CIDR 以外のルートは広報されない（VPC内通信に限定）
-- - **VPC エンドポイント** 経由で S3 等にもアクセス可能
+</div>
+
+- VPC 内のリソース（EC2, RDS, ELB 等）に **プライベート IP** でアクセス
+- 接続先は **Virtual Private Gateway (VGW)** または **DX Gateway**
+- BGP で VPC の CIDR を受信し、オンプレのルートを広報
+- **Jumbo Frame 対応**: MTU 9001 でスループット向上
+- VPC CIDR 以外のルートは広報されない（VPC内通信に限定）
+- **VPC エンドポイント** 経由で S3 等にもアクセス可能
 
 
 ---
 
 # Private VIF アーキテクチャ
 
-- <svg viewBox="0 0 800 330" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="330" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 330" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="330" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Private VIF + VGW 構成</text>
   <rect x="30" y="80" width="160" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="110" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Customer DC</text>
@@ -899,16 +1010,20 @@ VLAN 分離</text>
 
   <text x="400" y="280" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">VGW は 1 リージョン内の VPC のみ対応</text>
 </svg>
+</div>
+
 ![w:1000 center](assets/private-vif-arch.svg)
 
 
 ---
 
+<!-- _class: fit-64 -->
 # Virtual Private Gateway (VGW)
 
 > *VPCにアタッチするAWS側仮想ルーター、1VPC:1VGW・リージョン固定・カスタムASN指定可*
 
-- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 390" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Virtual Private Gateway (VGW)</text>
   <rect x="30" y="75" width="170" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="115" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DX Location</text>
@@ -930,21 +1045,25 @@ VLAN 分離</text>
 
   <text x="400" y="340" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">VGW は 1 リージョン / 単一 VPC のみ。複数VPC → DXGW 使用</text>
 </svg>
-- - **VPC にアタッチする仮想ルーター**（AWS マネージド）
-- - Direct Connect の Private VIF と VPN の両方の終端点
-- - **1つの VPC に 1つの VGW** のみアタッチ可能
-- - VGW は **特定の AWS リージョンに属する** リソース
-- - ASN はデフォルト 64512 だが、**カスタム ASN** を指定可能
-- - VPC のルートテーブルに **ルート伝搬 (Route Propagation)** を有効化する必要あり
+</div>
+
+- **VPC にアタッチする仮想ルーター**（AWS マネージド）
+- Direct Connect の Private VIF と VPN の両方の終端点
+- **1つの VPC に 1つの VGW** のみアタッチ可能
+- VGW は **特定の AWS リージョンに属する** リソース
+- ASN はデフォルト 64512 だが、**カスタム ASN** を指定可能
+- VPC のルートテーブルに **ルート伝搬 (Route Propagation)** を有効化する必要あり
 
 
 ---
 
+<!-- _class: fit-58 -->
 # VGW の制約事項
 
 > *1VPC:1VGW・ECMP非対応・トランジットルーティング不可、Private VIF最大30個まで接続*
 
-- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 390" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">VGW の制約事項</text>
   <rect x="30" y="75" width="340" height="75" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
 <text x="200" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">制約 1: 単一 VPC のみ</text>
@@ -960,12 +1079,14 @@ VLAN 分離</text>
 <text x="600" y="254.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">マルチVPC / マルチリージョン対応</text>
   <text x="400" y="340" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">大規模構成では VGW より DX Gateway を推奨</text>
 </svg>
-- - **1 VPC : 1 VGW** — VPC あたり VGW は1つのみ
-- - **リージョン固定** — VGW は作成したリージョンでのみ利用可能
-- - **VIF 数の制限** — 1つの VGW に接続できる Private VIF は最大 **30個**
-- - **ECMP 非対応** — 複数 VIF からの同一プレフィックスは1つだけアクティブ
--   - （Transit VIF + TGW なら ECMP 対応可能）
-- - **トランジットルーティング不可** — VGW 経由で VPC 間通信はできない
+</div>
+
+- **1 VPC : 1 VGW** — VPC あたり VGW は1つのみ
+- **リージョン固定** — VGW は作成したリージョンでのみ利用可能
+- **VIF 数の制限** — 1つの VGW に接続できる Private VIF は最大 **30個**
+- **ECMP 非対応** — 複数 VIF からの同一プレフィックスは1つだけアクティブ
+  - （Transit VIF + TGW なら ECMP 対応可能）
+- **トランジットルーティング不可** — VGW 経由で VPC 間通信はできない
 
 
 ---
@@ -975,28 +1096,29 @@ VLAN 分離</text>
 > *Private VIF + VGWパターンはシンプルなVPC単体接続に最適な構成*
 
 - **単一 VPC 接続（最もシンプルな構成）**
-- - DX → Private VIF → VGW → VPC
-- - オンプレ〜VPC 間の直接的なL3接続
-- 
+- DX → Private VIF → VGW → VPC
+- オンプレ〜VPC 間の直接的なL3接続
 
 
 ---
 
+<!-- _class: fit-82 -->
 # Private VIF + VGW 構成パターン（2/2）
 
 > *VPC CIDRはBGP自動広報、オンプレルートはカスタマーBGPで広報、AS PATHで経路制御*
 
 - **設計ポイント:**
-- - VPC CIDR が BGP で自動広報される（ルート伝搬有効化が必要）
-- - オンプレ側のルートは **カスタマーBGP** で広報
-- - AS PATH による経路制御が可能
+- VPC CIDR が BGP で自動広報される（ルート伝搬有効化が必要）
+- オンプレ側のルートは **カスタマーBGP** で広報
+- AS PATH による経路制御が可能
 
 
 ---
 
 # DX Gateway 経由のマルチリージョン接続
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway — マルチリージョン接続</text>
   <rect x="30" y="80" width="140" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="100" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客DC</text>
@@ -1028,16 +1150,20 @@ VLAN 分離</text>
 
   <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">最大 10 VGW / アカウントをまたいだ接続も可能</text>
 </svg>
+</div>
+
 ![w:1000 center](assets/dx-gw-multiregion.svg)
 
 
 ---
 
+<!-- _class: fit-76 -->
 # Private VIF の BGP ルーティング（1/2）
 
 > *VPC CIDRはBGP自動広報、オンプレ→AWS方向は最大100プレフィックスまで受信可能*
 
-- <svg viewBox="0 0 800 290" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="290" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 290" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="290" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">BGP ルーティング基礎 (Private VIF)</text>
   <rect x="30" y="75" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="120" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客 BGP</text>
@@ -1057,19 +1183,23 @@ VLAN 分離</text>
 
   <text x="400" y="230" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">BGP コミュニティ / MED / AS-PATH で経路制御</text>
 </svg>
-- - **AWS → オンプレ**: VPC CIDR が BGP で広報される
--   - DX Gateway 利用時は **Allowed Prefixes** でフィルタ可能
-- - **オンプレ → AWS**: お客様のルートを BGP で広報
--   - Private VIF で **最大 100 プレフィックス** まで受信可能
+</div>
+
+- **AWS → オンプレ**: VPC CIDR が BGP で広報される
+  - DX Gateway 利用時は **Allowed Prefixes** でフィルタ可能
+- **オンプレ → AWS**: お客様のルートを BGP で広報
+  - Private VIF で **最大 100 プレフィックス** まで受信可能
 
 
 ---
 
+<!-- _class: fit-70 -->
 # Private VIF の BGP ルーティング（2/2）
 
 > *100プレフィックス超過でBGPセッションダウン、DXは同一プレフィックスでVPNより常に優先*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">BGP 経路優先度制御</text>
   <rect x="30" y="75" width="200" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="130" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DX Primary</text>
@@ -1091,11 +1221,13 @@ VLAN 分離</text>
 
   <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">MED が小さい方が優先 → DX が常に優先, VPN はフェイルオーバー</text>
 </svg>
--   - 超過すると BGP セッションが **ダウン**
-- - **経路選択の優先順位** (同一プレフィックスの場合):
--   1. ロンゲストマッチ
--   2. AS PATH が短い方
--   3. DX > VPN（DX が常に優先）
+</div>
+
+  - 超過すると BGP セッションが **ダウン**
+- **経路選択の優先順位** (同一プレフィックスの場合):
+  1. ロンゲストマッチ
+  2. AS PATH が短い方
+  3. DX > VPN（DX が常に優先）
 
 
 ---
@@ -1104,10 +1236,10 @@ VLAN 分離</text>
 
 > *Private VIF MTU 9001・Transit VIF 8500・Public VIF 1500固定の3段階制限*
 
-- - **Private VIF**: MTU **9001** まで対応（Jumbo Frame）
-- - **Transit VIF**: MTU **8500** まで対応
-- - **Public VIF**: MTU **1500** 固定（Jumbo Frame 非対応）
-- - Jumbo Frame 有効化の条件:
+- **Private VIF**: MTU **9001** まで対応（Jumbo Frame）
+- **Transit VIF**: MTU **8500** まで対応
+- **Public VIF**: MTU **1500** 固定（Jumbo Frame 非対応）
+- Jumbo Frame 有効化の条件:
 
 
 ---
@@ -1116,10 +1248,10 @@ VLAN 分離</text>
 
 > *パス上の全ホップでMTU統一が必要、不一致時はPMTUDで自動調整*
 
--   - VGW またはTGW側でも Jumbo Frame 対応が必要
--   - VPC 内の EC2 インスタンスの MTU 設定も合わせる
--   - **パス上の全ホップで MTU が統一** されていること
-- - 不一致時は **Path MTU Discovery (PMTUD)** で自動調整
+  - VGW またはTGW側でも Jumbo Frame 対応が必要
+  - VPC 内の EC2 インスタンスの MTU 設定も合わせる
+  - **パス上の全ホップで MTU が統一** されていること
+- 不一致時は **Path MTU Discovery (PMTUD)** で自動調整
 
 
 ---
@@ -1127,7 +1259,8 @@ VLAN 分離</text>
 <!-- _class: lead -->
 # Public VIF 詳細
 
-- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 350" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF アーキテクチャ</text>
   <rect x="30" y="80" width="150" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="105" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客DC</text>
@@ -1150,16 +1283,20 @@ VLAN 分離</text>
 
   <text x="400" y="300" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">インターネットを通らず AWS サービスへ直接アクセス</text>
 </svg>
+</div>
+
 - AWS パブリックサービスへの専用線アクセス
 
 
 ---
 
+<!-- _class: fit-70 -->
 # Public VIF の概要
 
 > *パブリックIPでS3/DynamoDB等に直接アクセス、VPC/VGW/TGWが不要なのが特徴*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF 概要</text>
   <rect x="30" y="75" width="170" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="115" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客 DC</text>
@@ -1178,19 +1315,22 @@ CloudFront ...</text>
 
   <text x="400" y="280" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">パブリック AS プレフィックス (AWS: 7224) を BGP で受信</text>
 </svg>
-- - **AWS のパブリックサービス** に DX 経由で直接アクセス
-- - インターネットを経由せずに S3、DynamoDB 等に到達
-- - **パブリック IP アドレス** が BGP ピアリングに必要
--   - お客様所有のパブリック IP or AWS 割り当ての /31
-- - VPC を経由しない — **VGW / TGW は不要**
-- - 全リージョンの AWS パブリックサービスにアクセス可能
+</div>
+
+- **AWS のパブリックサービス** に DX 経由で直接アクセス
+- インターネットを経由せずに S3、DynamoDB 等に到達
+- **パブリック IP アドレス** が BGP ピアリングに必要
+  - お客様所有のパブリック IP or AWS 割り当ての /31
+- VPC を経由しない — **VGW / TGW は不要**
+- 全リージョンの AWS パブリックサービスにアクセス可能
 
 
 ---
 
 # Public VIF アーキテクチャ
 
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="320" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF BGP ルーティング</text>
   <rect x="30" y="80" width="160" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="110" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Customer</text>
@@ -1212,16 +1352,20 @@ CloudFront ...</text>
 
   <text x="400" y="270" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="13" font-weight="normal" font-family="sans-serif">MD5 BGP 認証推奨・BFD によるリンク障害検出</text>
 </svg>
+</div>
+
 ![w:1000 center](assets/public-vif-arch.svg)
 
 
 ---
 
+<!-- _class: fit-58 -->
 # アクセス可能なサービス一覧
 
 > *S3/Glacier/DynamoDB/CloudFront等全リージョンのパブリックサービスにアクセス可能*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF でアクセス可能な AWS サービス</text>
   <rect x="30" y="70" width="220" height="60" rx="8" fill="#1b3a1b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="140" y="91" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ストレージ</text>
@@ -1251,21 +1395,25 @@ CloudFront ...</text>
 <text x="660" y="301" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">AI/ML</text>
 <text x="660" y="322" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Bedrock / SageMaker</text>
 </svg>
-- - **ストレージ**: Amazon S3、S3 Glacier、EFS（VPCエンドポイント不要）
-- - **データベース**: DynamoDB（Gateway エンドポイント代替）
-- - **セキュリティ**: AWS STS、CloudHSM、Certificate Manager
-- - **ネットワーク**: CloudFront、Route 53、Global Accelerator
-- - **管理**: CloudWatch、CloudFormation、Systems Manager
-- - **注意**: EC2、RDS 等の VPC 内リソースには **Private VIF が必要**
+</div>
+
+- **ストレージ**: Amazon S3、S3 Glacier、EFS（VPCエンドポイント不要）
+- **データベース**: DynamoDB（Gateway エンドポイント代替）
+- **セキュリティ**: AWS STS、CloudHSM、Certificate Manager
+- **ネットワーク**: CloudFront、Route 53、Global Accelerator
+- **管理**: CloudWatch、CloudFormation、Systems Manager
+- **注意**: EC2、RDS 等の VPC 内リソースには **Private VIF が必要**
 
 
 ---
 
+<!-- _class: fit-70 -->
 # Public VIF の BGP ルーティング（1/2）
 
 > *Public VIF BGPはパブリックIPプレフィックスのみ広告、RFC1918は不可*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF BGP 経路制御</text>
   <rect x="30" y="75" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="120" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客 AS</text>
@@ -1287,30 +1435,35 @@ CloudFront ...</text>
 
   <text x="400" y="290" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">BGP コミュニティ 7224:9300 で地域フィルタリング可能</text>
 </svg>
-- - **AWS → オンプレ**: Amazon が所有する **パブリック IP プレフィックス** を広報
--   - 全リージョンのプレフィックスが広報される（数千プレフィックス）
--   - BGP コミュニティでリージョン単位のフィルタリング可能
+</div>
+
+- **AWS → オンプレ**: Amazon が所有する **パブリック IP プレフィックス** を広報
+  - 全リージョンのプレフィックスが広報される（数千プレフィックス）
+  - BGP コミュニティでリージョン単位のフィルタリング可能
 
 
 ---
 
+<!-- _class: fit-82 -->
 # Public VIF の BGP ルーティング（2/2）
 
 > *Public VIF受信プレフィックス上限1,000（Private VIFの10倍）、RIR登録IPとROA検証が必須*
 
-- - **オンプレ → AWS**: お客様の **パブリック IP プレフィックス** を広報
--   - RIR に登録された IP アドレスが必要
--   - AWS が **ROA (Route Origin Authorization)** で検証
-- - **受信プレフィックス上限**: 1,000（Private VIF の10倍）
+- **オンプレ → AWS**: お客様の **パブリック IP プレフィックス** を広報
+  - RIR に登録された IP アドレスが必要
+  - AWS が **ROA (Route Origin Authorization)** で検証
+- **受信プレフィックス上限**: 1,000（Private VIF の10倍）
 
 
 ---
 
+<!-- _class: fit-82 -->
 # Public VIF のユースケース（1/2）
 
 > *SaaS接続・S3直結・パブリックサービス連携の3シーンがユースケース*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Public VIF ユースケース</text>
   <rect x="30" y="75" width="220" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="140" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">S3 大容量転送</text>
@@ -1332,21 +1485,24 @@ CloudFront ...</text>
 <text x="660" y="262" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">AI API 閉域呼び出し</text>
   <text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">インターネット経由ゼロ → セキュリティポリシー準拠</text>
 </svg>
-- - **S3 大容量転送**: TB〜PB 級のデータ移行を安定した帯域で実行
--   - VPC エンドポイントと異なり、VPC を経由しない直接アクセス
-- - **AWS API アクセス**: マネジメントコンソール、CLI、SDK の通信を専用線化
+</div>
+
+- **S3 大容量転送**: TB〜PB 級のデータ移行を安定した帯域で実行
+  - VPC エンドポイントと異なり、VPC を経由しない直接アクセス
+- **AWS API アクセス**: マネジメントコンソール、CLI、SDK の通信を専用線化
 
 
 ---
 
+<!-- _class: fit-76 -->
 # Public VIF のユースケース（2/2）
 
 > *VPC外からS3直接アクセスにPublic VIFが有効、VPC内からはGateway Endpoint（無料）で十分*
 
-- - **CloudFront オリジン取得**: DX 経由でオリジンサーバーに低レイテンシ接続
-- - **Public VIF vs VPC Gateway Endpoint**:
--   - S3 へのアクセスは **Gateway Endpoint（無料）** で十分なケースが多い
--   - Public VIF は VPC 外から直接 S3 にアクセスしたい場合に有効
+- **CloudFront オリジン取得**: DX 経由でオリジンサーバーに低レイテンシ接続
+- **Public VIF vs VPC Gateway Endpoint**:
+  - S3 へのアクセスは **Gateway Endpoint（無料）** で十分なケースが多い
+  - Public VIF は VPC 外から直接 S3 にアクセスしたい場合に有効
 
 
 ---
@@ -1354,7 +1510,8 @@ CloudFront ...</text>
 <!-- _class: lead -->
 # Transit VIF 詳細
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">Transit VIF アーキテクチャ</text>
   <rect x="30" y="80" width="140" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="100" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客DC</text>
@@ -1385,16 +1542,20 @@ CloudFront ...</text>
 <polygon points="790,290 776.6153846153846,290.9230769230769 781.2307692307692,279.8461538461538" fill="#f9a825"/>
   <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">TGW経由で多数のVPCを一元管理</text>
 </svg>
+</div>
+
 - TGW 連携によるマルチVPCアクセス
 
 
 ---
 
+<!-- _class: fit-64 -->
 # Transit VIF の概要
 
 > *Transit VIF→DX GW→TGWで1本のVIFから複数VPC接続、ECMPで負荷分散対応*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">Transit VIF 概要</text>
   <rect x="30" y="75" width="170" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="115" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客 DC</text>
@@ -1423,21 +1584,25 @@ CloudFront ...</text>
 
   <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Transit VIF = 1 接続で数百 VPC を一元管理</text>
 </svg>
-- - **Transit Gateway (TGW)** 経由で **複数の VPC に一括接続**
-- - DX Gateway との組み合わせが **必須**（直接TGWには接続不可）
-- - 構成: DX → Transit VIF → **DX Gateway** → **TGW** → 複数VPC
-- - Private VIF では VPC ごとに VIF が必要 → Transit VIF は **1本で複数VPC**
-- - **ECMP (Equal-Cost Multi-Path)** による負荷分散をサポート
-- - MTU: 最大 **8500**（Private VIF の 9001 より若干小さい）
+</div>
+
+- **Transit Gateway (TGW)** 経由で **複数の VPC に一括接続**
+- DX Gateway との組み合わせが **必須**（直接TGWには接続不可）
+- 構成: DX → Transit VIF → **DX Gateway** → **TGW** → 複数VPC
+- Private VIF では VPC ごとに VIF が必要 → Transit VIF は **1本で複数VPC**
+- **ECMP (Equal-Cost Multi-Path)** による負荷分散をサポート
+- MTU: 最大 **8500**（Private VIF の 9001 より若干小さい）
 
 
 ---
 
+<!-- _class: fit-82 -->
 # Transit Gateway (TGW) の基礎（1/2）
 
 > *TGWはスポーク型でVPC・VPN・DXを一括接続、ハブ役として機能*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">Transit Gateway — ハブ & スポーク</text>
   <rect x="330" y="150" width="140" height="80" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
 <text x="400" y="180" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Transit GW</text>
@@ -1473,28 +1638,32 @@ CloudFront ...</text>
 <text x="595" y="280" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">VPC-E</text>
 
 </svg>
-- - **リージョナルなネットワークハブ** — VPC、VPN、DX を集約
-- - **ハブ＆スポーク** トポロジで VPC 間通信を実現
-- - **ルートテーブル** による柔軟な経路制御（セグメンテーション可能）
+</div>
+
+- **リージョナルなネットワークハブ** — VPC、VPN、DX を集約
+- **ハブ＆スポーク** トポロジで VPC 間通信を実現
+- **ルートテーブル** による柔軟な経路制御（セグメンテーション可能）
 
 
 ---
 
+<!-- _class: fit-82 -->
 # Transit Gateway (TGW) の基礎（2/2）
 
 > *TGWアタッチメントでVPC/VPN/DX GWを管理、リージョン間ピアリングで最大50 Gbps*
 
-- - **TGW アタッチメント** で接続先を管理:
--   - VPC アタッチメント / VPN アタッチメント / DX Gateway アタッチメント
-- - **TGW ピアリング** でリージョン間接続も可能
-- - **帯域**: アタッチメントあたり最大 **50 Gbps**
+- **TGW アタッチメント** で接続先を管理:
+  - VPC アタッチメント / VPN アタッチメント / DX Gateway アタッチメント
+- **TGW ピアリング** でリージョン間接続も可能
+- **帯域**: アタッチメントあたり最大 **50 Gbps**
 
 
 ---
 
 # Transit VIF アーキテクチャ
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">Transit VIF + DX Gateway + TGW</text>
   <rect x="20" y="90" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="85" y="120" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DC Site A</text>
@@ -1526,16 +1695,20 @@ CloudFront ...</text>
 
   <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">最大 20 VPC アタッチメント / TGW</text>
 </svg>
+</div>
+
 ![w:1000 center](assets/transit-vif-arch.svg)
 
 
 ---
 
+<!-- _class: fit-64 -->
 # DX Gateway + TGW 連携構成
 
 > *DX GWはグローバルリソース、1 DX GWにTGW最大3個・Allowed Prefixesで広報制限*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway + TGW 連携構成</text>
   <rect x="20" y="80" width="140" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="90" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DC 東京</text>
@@ -1567,19 +1740,22 @@ CloudFront ...</text>
 
   <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">DX GW — TGW 間は最大 6 アソシエーション</text>
 </svg>
-- - **DX Gateway**: グローバルリソース（リージョンに依存しない）
-- - **Transit VIF → DX Gateway**: VIF を DX GW にアソシエーション
-- - **DX Gateway → TGW**: DX GW を TGW にアソシエーション
-- - **1つの DX Gateway に TGW は最大 3個** まで関連付け可能
-- - **Allowed Prefixes** で TGW から広報するプレフィックスを制限
-- - DX GW と TGW は **異なる AWS アカウント** でも関連付け可能
+</div>
+
+- **DX Gateway**: グローバルリソース（リージョンに依存しない）
+- **Transit VIF → DX Gateway**: VIF を DX GW にアソシエーション
+- **DX Gateway → TGW**: DX GW を TGW にアソシエーション
+- **1つの DX Gateway に TGW は最大 3個** まで関連付け可能
+- **Allowed Prefixes** で TGW から広報するプレフィックスを制限
+- DX GW と TGW は **異なる AWS アカウント** でも関連付け可能
 
 
 ---
 
 # TGW 経由マルチVPC接続
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">TGW 経由マルチVPC 接続</text>
   <rect x="30" y="80" width="140" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="100" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">顧客 DC</text>
@@ -1611,16 +1787,20 @@ CloudFront ...</text>
 
   <text x="400" y="290" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">TGW ルートテーブルで VPC 間の通信制御</text>
 </svg>
+</div>
+
 ![w:1000 center](assets/tgw-multi-vpc.svg)
 
 
 ---
 
+<!-- _class: fit-64 -->
 # Transit VIF の制約と注意点
 
 > *DX GW必須・1 DX GW最大3 TGW・MTU 8500、同一DX GWにPrivate VIFとTransit VIFは共存不可*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">Transit VIF の制約と注意点</text>
   <rect x="30" y="70" width="340" height="70" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
 <text x="200" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">制約 1: DX Gateway 必須</text>
@@ -1638,21 +1818,25 @@ CloudFront ...</text>
 <text x="390" y="337.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">解決: 大規模時は複数 DX Gateway / TGW を使い分け</text>
 
 </svg>
-- - **DX Gateway 必須** — Transit VIF は DX GW 経由でのみ TGW に接続
-- - **1 DX GW : 最大 3 TGW** — TGW アソシエーション数に上限あり
-- - **受信プレフィックス上限**: 100（Private VIF と同じ）
-- - **MTU 8500** — Private VIF の 9001 より小さい点に注意
-- - **Hosted Connection**: Transit VIF は **1 Gbps 以上** の接続が必要
-- - **同一 DX GW に Private VIF と Transit VIF は共存不可**
+</div>
+
+- **DX Gateway 必須** — Transit VIF は DX GW 経由でのみ TGW に接続
+- **1 DX GW : 最大 3 TGW** — TGW アソシエーション数に上限あり
+- **受信プレフィックス上限**: 100（Private VIF と同じ）
+- **MTU 8500** — Private VIF の 9001 より小さい点に注意
+- **Hosted Connection**: Transit VIF は **1 Gbps 以上** の接続が必要
+- **同一 DX GW に Private VIF と Transit VIF は共存不可**
 
 
 ---
 
+<!-- _class: fit-82 -->
 # TGW ピアリングとの組合せ（1/2）
 
 > *TGWピアリングとDX Gatewayを組み合わせ、クロスリージョン接続を実現*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">TGW ピアリングとの組合せ</text>
   <rect x="30" y="80" width="150" height="65" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="105" y="112.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DC Japan</text>
@@ -1680,9 +1864,11 @@ Peering</text>
 
   <text x="400" y="320" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">リージョン間通信を TGW ピアリングで実現</text>
 </svg>
-- - **TGW ピアリング**: 異なるリージョンの TGW 同士を接続
-- - DX + TGW + ピアリングで **マルチリージョン・フルメッシュ** 接続が可能
-- - 構成例: オンプレ → DX → TGW(東京) ↔ TGW(大阪) → VPC(大阪)
+</div>
+
+- **TGW ピアリング**: 異なるリージョンの TGW 同士を接続
+- DX + TGW + ピアリングで **マルチリージョン・フルメッシュ** 接続が可能
+- 構成例: オンプレ → DX → TGW(東京) ↔ TGW(大阪) → VPC(大阪)
 
 
 ---
@@ -1691,10 +1877,10 @@ Peering</text>
 
 > *ピアリング帯域50 Gbps上限、リージョン間転送料金発生、ルートは静的設定が必要*
 
-- - **注意点**:
--   - ピアリング経由のトラフィックはリージョン間転送料金が発生
--   - ピアリングの帯域は **50 Gbps** が上限
--   - ルートは **静的設定** が必要（BGP自動伝搬なし）
+- **注意点**:
+  - ピアリング経由のトラフィックはリージョン間転送料金が発生
+  - ピアリングの帯域は **50 Gbps** が上限
+  - ルートは **静的設定** が必要（BGP自動伝搬なし）
 
 
 ---
@@ -1702,7 +1888,8 @@ Peering</text>
 <!-- _class: lead -->
 # VIF 選定ガイド
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF 選定ガイド</text>
   <rect x="30" y="70" width="220" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="140" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Private VIF</text>
@@ -1724,16 +1911,20 @@ Peering</text>
 
   <text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">将来拡張を見込む場合は Transit VIF + TGW を推奨</text>
 </svg>
+</div>
+
 - Private VIF vs Transit VIF の判断基準
 
 
 ---
 
+<!-- _class: fit-70 -->
 # Private VIF vs Transit VIF 詳細比較
 
 > *スケール・コスト・BGP設定の複雑さでPrivate VIFとTransit VIFを選択*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">Private VIF vs Transit VIF 詳細比較</text>
   <rect x="30" y="65" width="340" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="200" y="92.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Private VIF</text>
@@ -1767,6 +1958,8 @@ Peering</text>
 
   <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">10 VPC 以下 → Private VIF / 11 VPC 以上 → Transit VIF</text>
 </svg>
+</div>
+
 | 項目 | Private VIF | Transit VIF |
 |------|-----------|-------------|
 | 接続先 | VGW (直接) / DX GW | DX GW → TGW |
@@ -1781,7 +1974,8 @@ Peering</text>
 
 # VIF 選定フローチャート
 
-- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 390" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VIF 選定フローチャート</text>
   <rect x="300" y="60" width="200" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="400" y="87.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">接続先は？</text>
@@ -1817,16 +2011,20 @@ Peering</text>
 <text x="620" y="322.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">Public VIF</text>
 
 </svg>
+</div>
+
 ![w:900 center](assets/vif-selection-flow.svg)
 
 
 ---
 
+<!-- _class: fit-82 -->
 # 構成パターン別コスト比較（1/2）
 
 > *Private VIF×10は追加料金なし、DX GWも無料でDXポートコストのみで運用可能*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">構成パターン別コスト比較 (概算)</text>
   <rect x="30" y="70" width="220" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="140" y="96" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Dedicated 1G</text>
@@ -1848,20 +2046,23 @@ Peering</text>
 <text x="660" y="247" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">$0.02〜/GB</text>
   <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">ポート時間 + データ転送量 + VIF 数で合計コスト計算</text>
 </svg>
+</div>
+
 - **Private VIF 構成 (VPC 10個の場合)**
-- - DX ポート (10G): $2,270/月
-- - Private VIF × 10: 追加料金なし
-- - DX Gateway: 無料
-- 
+- DX ポート (10G): $2,270/月
+- Private VIF × 10: 追加料金なし
+- DX Gateway: 無料
 
 
 ---
 
+<!-- _class: fit-76 -->
 # 構成パターン別コスト比較（2/2）
 
 > *Transit VIF構成はTGWアタッチメント$0.07/時間×11≈$560/月+データ処理$0.02/GB*
 
-- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 390" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">コスト最適化ポイント</text>
   <rect x="30" y="70" width="340" height="75" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="200" y="98.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">必要帯域を見積もる</text>
@@ -1877,11 +2078,13 @@ Peering</text>
 <text x="600" y="249.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ポート数削減</text>
   <text x="400" y="335" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">コスト試算は AWS Pricing Calculator で事前確認</text>
 </svg>
+</div>
+
 - **Transit VIF 構成 (VPC 10個の場合)**
-- - DX ポート (10G): $2,270/月
-- - Transit VIF × 1: 追加料金なし
-- - TGW アタッチメント × 11: $0.07/時間 × 11 ≈ $560/月
-- - TGW データ処理: $0.02/GB
+- DX ポート (10G): $2,270/月
+- Transit VIF × 1: 追加料金なし
+- TGW アタッチメント × 11: $0.07/時間 × 11 ≈ $560/月
+- TGW データ処理: $0.02/GB
 
 
 ---
@@ -1889,7 +2092,8 @@ Peering</text>
 <!-- _class: lead -->
 # DX Gateway 詳細
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway の役割</text>
   <rect x="30" y="90" width="140" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="100" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DX Location A</text>
@@ -1916,16 +2120,20 @@ Peering</text>
 
   <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">1 DX GW に最大 10 VGW / TGW をアタッチ可能</text>
 </svg>
+</div>
+
 - グローバルハブとしての役割と設計
 
 
 ---
 
+<!-- _class: fit-64 -->
 # DX Gateway の役割
 
 > *DX GWはグローバル無料リソース、DX GW無しでは同一リージョンのVGWにしか接続不可*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway の主な役割</text>
   <rect x="30" y="75" width="200" height="75" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
 <text x="130" y="103.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">ロール 1: マルチリージョン</text>
@@ -1941,19 +2149,22 @@ Peering</text>
 
   <text x="400" y="355" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">Private/Transit VIF のみ対応 (Public VIF は不可)</text>
 </svg>
-- - **グローバルリソース** — 特定リージョンに属さない
-- - Private VIF / Transit VIF と VGW / TGW の **仲介役**
-- - DX Gateway 自体に **追加料金は発生しない**
-- - **1つの DX に複数リージョンの VPC を接続** するための中継点
-- - DX GW なしの場合: DX と VGW は同一リージョン内のみ接続可能
-- - DX GW ありの場合: **任意のリージョン** の VGW/TGW に接続可能
+</div>
+
+- **グローバルリソース** — 特定リージョンに属さない
+- Private VIF / Transit VIF と VGW / TGW の **仲介役**
+- DX Gateway 自体に **追加料金は発生しない**
+- **1つの DX に複数リージョンの VPC を接続** するための中継点
+- DX GW なしの場合: DX と VGW は同一リージョン内のみ接続可能
+- DX GW ありの場合: **任意のリージョン** の VGW/TGW に接続可能
 
 
 ---
 
 # DX Gateway アーキテクチャ
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway アーキテクチャ詳細</text>
   <rect x="30" y="80" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="95" y="100" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客 AS</text>
@@ -1980,16 +2191,20 @@ Peering</text>
 
   <text x="300" y="240" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">許可プレフィックスで経路フィルタリング必須</text>
 </svg>
+</div>
+
 ![w:1000 center](assets/dx-gw-arch.svg)
 
 
 ---
 
+<!-- _class: fit-76 -->
 # 許可プレフィックスとルーティング（1/2）
 
 > *許可プレフィックスの設定ミスがBGPセッション断の最多原因*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">許可プレフィックスとルーティング制御</text>
   <rect x="30" y="75" width="200" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="130" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">DX GW 設定</text>
@@ -2011,30 +2226,35 @@ Peering</text>
 <text x="600" y="262.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">ベスト: /24 単位で最小権限設定</text>
 
 </svg>
-- - **Allowed Prefixes (許可プレフィックス)**: DX GW で広報するルートを制限
-- - VGW 関連付け時: AWS → オンプレ方向のプレフィックスをフィルタ
--   - デフォルト: VPC CIDR がそのまま広報
+</div>
+
+- **Allowed Prefixes (許可プレフィックス)**: DX GW で広報するルートを制限
+- VGW 関連付け時: AWS → オンプレ方向のプレフィックスをフィルタ
+  - デフォルト: VPC CIDR がそのまま広報
 
 
 ---
 
+<!-- _class: fit-88 -->
 # 許可プレフィックスとルーティング（2/2）
 
 > *TGW→オンプレはTGWルートテーブルのルートを広報、受け入れはAllowed Prefixesで制限*
 
--   - カスタム: サマリルートや特定サブネットのみ広報
-- - TGW 関連付け時: 双方向でプレフィックスを制御
--   - TGW → オンプレ: TGW ルートテーブルのルートを広報
--   - オンプレ → TGW: Allowed Prefixes で受け入れを制限
+  - カスタム: サマリルートや特定サブネットのみ広報
+- TGW 関連付け時: 双方向でプレフィックスを制御
+  - TGW → オンプレ: TGW ルートテーブルのルートを広報
+  - オンプレ → TGW: Allowed Prefixes で受け入れを制限
 
 
 ---
 
+<!-- _class: fit-70 -->
 # クロスアカウント共有（1/2）
 
 > *Organizations不要でアカウントIDのみで共有、関連付け提案→承認のフローで接続*
 
-- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 350" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="350" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway クロスアカウント共有</text>
   <rect x="30" y="80" width="200" height="70" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="130" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Account A (Network)</text>
@@ -2056,19 +2276,23 @@ Peering</text>
 <text x="680" y="184.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="12" font-family="sans-serif">VGW アタッチ</text>
   <text x="400" y="290" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">Network 専用アカウントで DX GW を集中管理する構成が推奨</text>
 </svg>
-- - DX Gateway は **別の AWS アカウント** の VGW/TGW と関連付け可能
-- - **AWS Organizations 不要** — アカウント ID だけで共有可能
-- - ユースケース: 共有サービスアカウントで DX を管理し、各事業部の VPC に接続
-- - **共有の流れ:**
+</div>
+
+- DX Gateway は **別の AWS アカウント** の VGW/TGW と関連付け可能
+- **AWS Organizations 不要** — アカウント ID だけで共有可能
+- ユースケース: 共有サービスアカウントで DX を管理し、各事業部の VPC に接続
+- **共有の流れ:**
 
 
 ---
 
+<!-- _class: fit-82 -->
 # クロスアカウント共有（2/2）
 
 > *1 DX GWあたりVGW 30個・TGW 3個まで関連付け可能、承認フローで接続確立*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">クロスアカウント共有の手順</text>
   <rect x="50" y="70" width="140" height="55" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="120" y="88.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">① DX GW 作成</text>
@@ -2093,19 +2317,23 @@ Peering</text>
 <text x="400" y="295" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">許可プレフィックスは DX GW 側で一元管理 → セキュリティ統制</text>
 
 </svg>
--   1. DX GW 所有者が関連付け提案を作成
--   2. VGW/TGW 所有者が提案を **承認**
--   3. BGP セッション確立・ルーティング開始
-- - 関連付けの **上限**: 1 DX GW あたり VGW **30個** / TGW **3個**
+</div>
+
+  1. DX GW 所有者が関連付け提案を作成
+  2. VGW/TGW 所有者が提案を **承認**
+  3. BGP セッション確立・ルーティング開始
+- 関連付けの **上限**: 1 DX GW あたり VGW **30個** / TGW **3個**
 
 
 ---
 
+<!-- _class: fit-88 -->
 # DX Gateway 構成パターン比較
 
 > *Single VGW/Transit Gateway/DX GW構成の選択基準は接続VPC数で判断*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX Gateway 構成パターン比較</text>
   <rect x="30" y="70" width="220" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="140" y="101" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">パターン A</text>
@@ -2127,6 +2355,8 @@ Peering</text>
 
   <text x="400" y="345" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">規模と要件に応じてパターンを選択</text>
 </svg>
+</div>
+
 | 構成パターン | VGW 直接 | DX GW + VGW | DX GW + TGW |
 |-------------|---------|-------------|-------------|
 | リージョン制約 | 同一リージョン | マルチリージョン | マルチリージョン |
@@ -2142,7 +2372,8 @@ Peering</text>
 <!-- _class: lead -->
 # 冗長化・高可用性設計
 
-- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 390" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">冗長化設計パターン概要</text>
   <rect x="30" y="80" width="160" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="110" y="115" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">企業DC A</text>
@@ -2174,16 +2405,20 @@ Peering</text>
 
   <text x="400" y="340" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="12" font-weight="normal" font-family="sans-serif">Maximum Resiliency: 4ポート / High: 2ポート / 開発: 1ポート</text>
 </svg>
+</div>
+
 - AWS 推奨モデルと VPN フェイルオーバー
 
 
 ---
 
+<!-- _class: fit-70 -->
 # AWS 推奨の冗長化モデル
 
 > *AWS推奨の最大冗長化モデルは2ロケーション×2ポートの4接続構成*
 
-- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 390" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">AWS 推奨 冗長化モデル比較</text>
   <rect x="30" y="70" width="200" height="80" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="130" y="100" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">Maximum Resiliency</text>
@@ -2211,9 +2446,11 @@ Peering</text>
 <polygon points="280,320 268,326 268,314" fill="#f9a825"/>
   <text x="650" y="195" text-anchor="middle" dominant-baseline="middle" fill="#e91e63" font-size="13" font-weight="normal" font-family="sans-serif">コスト: ↑ Max > High > Dev ↓</text>
 </svg>
-- - AWS は **4段階の回復性モデル** を定義
-- - ビジネス要件（RTO/RPO・コスト）に応じて選択
-- 
+</div>
+
+- AWS は **4段階の回復性モデル** を定義
+- ビジネス要件（RTO/RPO・コスト）に応じて選択
+
 | レベル | 構成 | SLA |
 |-------|------|-----|
 | Maximum Resiliency | 2ロケーション × 2接続 | 99.99% |
@@ -2226,7 +2463,8 @@ Peering</text>
 
 # Maximum Resiliency（最大回復性）
 
-- <svg viewBox="0 0 800 450" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="450" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 450" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="450" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="18" font-weight="bold" font-family="sans-serif">Maximum Resiliency 構成</text>
   <rect x="30" y="80" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="95" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DC Primary</text>
@@ -2266,6 +2504,8 @@ Peering</text>
 
   <text x="400" y="420" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">4 ポート全断に耐える最高レベルの冗長性</text>
 </svg>
+</div>
+
 ![w:1000 center](assets/maximum-resiliency.svg)
 
 <!--
@@ -2276,7 +2516,8 @@ Peering</text>
 
 # High Resiliency（高回復性）
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">High Resiliency 構成</text>
   <rect x="30" y="100" width="130" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="95" y="135" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DC A</text>
@@ -2306,6 +2547,8 @@ Peering</text>
 
   <text x="400" y="330" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">異なるロケーション2接続で単一障害点なし</text>
 </svg>
+</div>
+
 ![w:1000 center](assets/high-resiliency.svg)
 
 <!--
@@ -2318,7 +2561,8 @@ Peering</text>
 
 > *テスト環境はVPN Backup + 1DXで本番の1/3コストで開発品質を確保*
 
-- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 410" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#9c27b0" font-size="18" font-weight="bold" font-family="sans-serif">開発・テスト環境の冗長化</text>
   <rect x="30" y="80" width="200" height="70" rx="8" fill="#2a1a4a" stroke="#f9a825" stroke-width="1.5"/>
 <text x="130" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">Development Resiliency</text>
@@ -2338,9 +2582,11 @@ Peering</text>
 
   <text x="400" y="360" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">SLA が不要な環境では Development モードがコスト最適</text>
 </svg>
-- - **単一 DX ロケーション** に2本の接続（コスト優先）
-- - SLA の保証なし — ロケーション障害時は全断
-- - **VPN バックアップ** との併用を推奨:
+</div>
+
+- **単一 DX ロケーション** に2本の接続（コスト優先）
+- SLA の保証なし — ロケーション障害時は全断
+- **VPN バックアップ** との併用を推奨:
 
 
 ---
@@ -2349,17 +2595,18 @@ Peering</text>
 
 > *DX障害時のVPNバックアップは重要トラフィックのみ、本番は最低High Resiliencyが必要*
 
--   - DX 障害時に VPN で最低限の接続を維持
--   - VPN の帯域は DX より小さいため、重要トラフィックのみ
-- - LAG を使って2本を束ねることも可能
-- - 本番環境では **非推奨** — 最低でも High Resiliency を検討
+  - DX 障害時に VPN で最低限の接続を維持
+  - VPN の帯域は DX より小さいため、重要トラフィックのみ
+- LAG を使って2本を束ねることも可能
+- 本番環境では **非推奨** — 最低でも High Resiliency を検討
 
 
 ---
 
 # VPN フェイルオーバー構成
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">DX + VPN フェイルオーバー構成</text>
   <rect x="30" y="100" width="150" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="105" y="135" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客 DC</text>
@@ -2388,6 +2635,8 @@ Peering</text>
 
   <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">BGP MED / AS-PATH で DX を優先。VPN はコールドスタンバイ</text>
 </svg>
+</div>
+
 ![w:1000 center](assets/vpn-failover.svg)
 
 <!--
@@ -2396,11 +2645,13 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 ---
 
+<!-- _class: fit-82 -->
 # BFD と SiteLink（1/2）
 
 > *BFDでBGPデフォルト90秒の障害検知を300ms以下に短縮、DX接続での有効化を強く推奨*
 
-- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 390" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="390" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">BFD (Bidirectional Forwarding Detection)</text>
   <rect x="80" y="100" width="180" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="170" y="125" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">顧客ルータ</text>
@@ -2418,19 +2669,23 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 <text x="630" y="289" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11" font-family="sans-serif">< 1 秒</text>
   <text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">BFD で高速フェイルオーバーを実現 (デフォルト 300ms)</text>
 </svg>
+</div>
+
 - **BFD (Bidirectional Forwarding Detection)**
-- - BGP のデフォルト障害検知 (90秒) を **300ms 以下** に短縮
-- - DX 接続で **強く推奨** — 高速フェイルオーバーに必須
-- - カスタマールーター側で有効化が必要
+- BGP のデフォルト障害検知 (90秒) を **300ms 以下** に短縮
+- DX 接続で **強く推奨** — 高速フェイルオーバーに必須
+- カスタマールーター側で有効化が必要
 
 
 ---
 
+<!-- _class: fit-82 -->
 # BFD と SiteLink（2/2）
 
 > *SiteLinkでDXロケーション間をAWSバックボーン経由で直接通信、拠点間接続にも活用可能*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">SiteLink — 拠点間 DX 経由通信</text>
   <rect x="30" y="80" width="150" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="105" y="106" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="15" font-weight="bold" font-family="sans-serif">拠点 A</text>
@@ -2455,11 +2710,12 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
   <text x="400" y="240" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">SiteLink: DX 接続間を AWS バックボーンで直結 → 低レイテンシ拠点間通信</text>
 </svg>
-- 
+</div>
+
 - **SiteLink**
-- - DX ロケーション間を **AWS バックボーン経由** で直接通信
-- - オンプレ拠点間通信を AWS ネットワーク上で実現
-- - DX ロケーション間のフェイルオーバーパスとしても利用可能
+- DX ロケーション間を **AWS バックボーン経由** で直接通信
+- オンプレ拠点間通信を AWS ネットワーク上で実現
+- DX ロケーション間のフェイルオーバーパスとしても利用可能
 
 
 ---
@@ -2468,7 +2724,8 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 > *VPN→DX移行は並行運用期間を設け、BGP切り替えでゼロダウンタイム*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="370" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">VPN → DX 移行ステップ</text>
   <rect x="50" y="80" width="140" height="60" rx="8" fill="#2a1a2a" stroke="#f9a825" stroke-width="1.5"/>
 <text x="120" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">① VPN 稼働中</text>
@@ -2493,30 +2750,35 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 <text x="390" y="300" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">DX 開通後 BGP MED で DX 優先 → 安定確認後 VPN を削除</text>
 
 </svg>
+</div>
+
 - **段階的移行の推奨手順:**
-- 1. **準備**: DX 接続の申請・物理回線の手配（2〜4週間）
-- 2. **並行運用**: VPN を維持しつつ DX を追加接続
+1. **準備**: DX 接続の申請・物理回線の手配（2〜4週間）
+2. **並行運用**: VPN を維持しつつ DX を追加接続
 
 
 ---
 
+<!-- _class: fit-76 -->
 # 移行戦略: VPN → DX（2/2）
 
 > *DXとVPNの同一プレフィックスでは自動的にDXが優先、VPNをバックアップとして残すのが推奨*
 
-- 3. **ルーティング切替**: BGP で DX を優先（AS PATH / MED 調整）
-- 4. **検証**: トラフィックが DX 経由であることを CloudWatch で確認
-- 5. **VPN バックアップ化**: VPN を待機系として残す or 撤去
-- - **ポイント**: DX と VPN の同一プレフィックスでは **DX が自動優先**
+3. **ルーティング切替**: BGP で DX を優先（AS PATH / MED 調整）
+4. **検証**: トラフィックが DX 経由であることを CloudWatch で確認
+5. **VPN バックアップ化**: VPN を待機系として残す or 撤去
+- **ポイント**: DX と VPN の同一プレフィックスでは **DX が自動優先**
 
 
 ---
 
+<!-- _class: fit-58 -->
 # 設計時のベストプラクティス
 
 > *本番は最低High Resiliency・BFD有効化・BGP MD5認証・100プレフィックス上限管理が必須*
 
-- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 410" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="410" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">設計時のベストプラクティス</text>
   <rect x="40" y="70" width="340" height="65" rx="8" fill="#1b3a4b" stroke="#f9a825" stroke-width="1.5"/>
 <text x="210" y="102.5" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">冗長化: 最低2接続 / 2ロケーション</text>
@@ -2540,19 +2802,22 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 <text x="400" y="350" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">コスト: データ転送量 / ポート時間 / VIF数を把握してから設計</text>
 
 </svg>
-- - **冗長化**: 本番は最低 High Resiliency（2ロケーション）を確保
-- - **BFD 有効化**: 全 DX 接続で BFD を有効にし高速障害検知
-- - **BGP MD5 認証**: 全 VIF で MD5 認証を設定
-- - **プレフィックス管理**: 広報するルートは最小限に（100プレフィックス上限に注意）
-- - **モニタリング**: CloudWatch で接続状態・BGP状態・トラフィックを監視
-- - **MACsec 暗号化**: 10G/100G Dedicated で利用可能（L2暗号化）
+</div>
+
+- **冗長化**: 本番は最低 High Resiliency（2ロケーション）を確保
+- **BFD 有効化**: 全 DX 接続で BFD を有効にし高速障害検知
+- **BGP MD5 認証**: 全 VIF で MD5 認証を設定
+- **プレフィックス管理**: 広報するルートは最小限に（100プレフィックス上限に注意）
+- **モニタリング**: CloudWatch で接続状態・BGP状態・トラフィックを監視
+- **MACsec 暗号化**: 10G/100G Dedicated で利用可能（L2暗号化）
 
 
 ---
 
 # 全体アーキテクチャ サマリ
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/>
   <text x="400" y="25" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="18" font-weight="bold" font-family="sans-serif">全体アーキテクチャ サマリ</text>
   <rect x="20" y="80" width="130" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="85" y="110" text-anchor="middle" dominant-baseline="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">DC 東京</text>
@@ -2588,6 +2853,8 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 <polygon points="720,185 708,191 708,179" fill="#f9a825"/>
   <text x="400" y="310" text-anchor="middle" dominant-baseline="middle" fill="#4caf50" font-size="13" font-weight="normal" font-family="sans-serif">エンタープライズ DX アーキテクチャの標準構成</text>
 </svg>
+</div>
+
 ![w:1050 center](assets/full-architecture.svg)
 
 
@@ -2597,10 +2864,10 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 > *公式ドキュメント・設計ガイド・料金の3カテゴリで実務参照を完結できる*
 
-- - **公式ドキュメント:**
--   - [AWS Direct Connect ユーザーガイド](https://docs.aws.amazon.com/directconnect/latest/UserGuide/)
--   - [Direct Connect FAQ](https://aws.amazon.com/directconnect/faqs/)
-- - **設計ガイド:**
+- **公式ドキュメント:**
+  - [AWS Direct Connect ユーザーガイド](https://docs.aws.amazon.com/directconnect/latest/UserGuide/)
+  - [Direct Connect FAQ](https://aws.amazon.com/directconnect/faqs/)
+- **設計ガイド:**
 
 
 ---
@@ -2609,8 +2876,8 @@ DXをプライマリ、VPNをバックアップとして構成。BGPのAS PATH p
 
 > *冗長化推奨モデル・ブログ・料金ページで設計検証から実装まで対応*
 
--   - [AWS Direct Connect Resiliency Recommendations](https://aws.amazon.com/directconnect/resiliency-recommendation/)
--   - [Networking & Content Delivery Blog](https://aws.amazon.com/blogs/networking-and-content-delivery/)
-- - **料金:**
--   - [Direct Connect の料金](https://aws.amazon.com/directconnect/pricing/)
+  - [AWS Direct Connect Resiliency Recommendations](https://aws.amazon.com/directconnect/resiliency-recommendation/)
+  - [Networking & Content Delivery Blog](https://aws.amazon.com/blogs/networking-and-content-delivery/)
+- **料金:**
+  - [Direct Connect の料金](https://aws.amazon.com/directconnect/pricing/)
 

@@ -7,41 +7,76 @@ paginate: true
 header: "なぜ人は無料でOSSを作るか"
 footer: "© 2026 Workshop — OSS Motivation & Economics"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,10 +117,11 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # なぜ人は無料でOSSを作るか
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">OSS エコシステムの現実と規模</text>
 <rect x="50" y="45" width="440" height="36" fill="#16213e" rx="8"/>
@@ -114,6 +150,8 @@ style: |
 <text x="625" y="309" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">2,600万人以上</text>
 <text x="400" y="370" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">経済価値は何兆ドルにもなるが、大半は「善意」で維持されている</text>
 </svg>
+</div>
+
 - 経済学では説明できない動機の解剖
 - ワークショップ 2026-02-20
 
@@ -124,7 +162,8 @@ style: |
 
 > *動機→心理→経済→社会規範の順で多層的に分析する構成*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">自己決定理論（SDT）— 内発的動機の3要素</text>
 <rect x="60" y="55" width="200" height="240" fill="#0f3460" rx="8"/>
@@ -150,6 +189,8 @@ style: |
 <text x="640" y="226" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">グローバルな仲間</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">この3要素が揃うと、人は外部報酬なしでも高いパフォーマンスを発揮する</text>
 </svg>
+</div>
+
 - **1.** OSSの現実と規模感
 - **2.** 経済学的パズル — なぜ「合理的」な説明が失敗するか
 - **3.** 内発的動機 — 自己決定理論（SDT）
@@ -162,7 +203,8 @@ style: |
 
 > *演習とまとめで理論を自分の動機に直接接続できる構成*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">シグナリング理論 — OSSが「評判資本」になる仕組み</text>
 <rect x="50" y="55" width="320" height="260" fill="#16213e" rx="8"/>
@@ -183,6 +225,8 @@ style: |
 <text x="590" y="240" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 個人と企業が共に得をする</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「無償労働」ではなく「長期的なキャリア投資」と捉えると合理的になる</text>
 </svg>
+</div>
+
 - **5.** 贈与経済とハッカー倫理
 - **6.** 動機の複合モデルとクラウディングアウト
 - **7.** 持続可能性の危機とサステナビリティ
@@ -191,10 +235,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 今日の中心的な問い
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">贈与経済とハッカー倫理</text>
 <rect x="50" y="50" width="700" height="80" fill="#16213e" rx="8"/>
@@ -218,18 +263,20 @@ style: |
 <text x="506" y="322" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">みんなで使える「共有地」を作ることへの誇り</text>
 <text x="400" y="368" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">ハッカーにとって「シェアしない理由」が存在しない</text>
 </svg>
+</div>
+
 - 「あなたはなぜコードを**無料で**書くのか？」
-- 
 - → 経済学・ゲーム理論・心理学・社会学を横断して
 - この問いに正直に答えてみる
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # OSSの現実と規模感
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">クラウディングアウト — お金が動機を壊す逆説</text>
 <rect x="50" y="55" width="320" height="270" fill="#16213e" rx="8"/>
@@ -253,6 +300,7 @@ style: |
 <text x="590" y="258" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ お金を「隠す」設計が必要</text>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「お金で解決」は OSS コミュニティを壊す可能性がある</text>
 </svg>
+</div>
 
 
 ---
@@ -261,7 +309,8 @@ style: |
 
 > *世界のサーバーの90%がOSSで動き無償貢献が支えている*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">公共財ジレンマ — 経済学的予測 vs OSS の現実</text>
 <rect x="50" y="55" width="320" height="200" fill="#16213e" rx="8"/>
@@ -282,10 +331,12 @@ style: |
 <text x="400" y="318" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">なぜ合理的でない行動が大規模に起きているのか？</text>
 <text x="400" y="345" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 別の動機モデルが必要</text>
 </svg>
+</div>
+
 - **依存関係の深さ:**
-- - 全商用ソフトウェアの **96%** が OSS コンポーネントを含む（Synopsys 2023）
-- - curl — 世界中の機器に 200億件以上インストール。開発者は長年1人
-- - OpenSSL — インターネット暗号化の基盤。Heartbleed 発覚時の常勤開発者: 1人
+- 全商用ソフトウェアの **96%** が OSS コンポーネントを含む（Synopsys 2023）
+- curl — 世界中の機器に 200億件以上インストール。開発者は長年1人
+- OpenSSL — インターネット暗号化の基盤。Heartbleed 発覚時の常勤開発者: 1人
 
 
 ---
@@ -294,7 +345,8 @@ style: |
 
 > *日常的に使うサービスの根幹にOSSが不可欠な部品として存在*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">自己決定理論（SDT）— 内発的動機の3要素</text>
 <rect x="60" y="55" width="200" height="240" fill="#0f3460" rx="8"/>
@@ -320,15 +372,17 @@ style: |
 <text x="640" y="226" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">グローバルな仲間</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">この3要素が揃うと、人は外部報酬なしでも高いパフォーマンスを発揮する</text>
 </svg>
-- - Linux カーネル — 世界の Web サーバーの **70%超**、Android の基盤
+</div>
+
+- Linux カーネル — 世界の Web サーバーの **70%超**、Android の基盤
 - **経済的価値の試算:**
-- - Harvard Business School (2024): OSSの社会的価値は **8.8 兆ドル** 相当
+- Harvard Business School (2024): OSSの社会的価値は **8.8 兆ドル** 相当
 - → これだけの価値を生む「無料労働」の動機とは何か？
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # コントリビューターは誰か
 
 ![w:900 center](assets/oss-contributor-data.svg)
@@ -336,10 +390,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 経済学的パズル
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">シグナリング理論 — OSSが「評判資本」になる仕組み</text>
 <rect x="50" y="55" width="320" height="260" fill="#16213e" rx="8"/>
@@ -360,6 +415,7 @@ style: |
 <text x="590" y="240" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 個人と企業が共に得をする</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「無償労働」ではなく「長期的なキャリア投資」と捉えると合理的になる</text>
 </svg>
+</div>
 
 
 ---
@@ -368,7 +424,8 @@ style: |
 
 > *無償で使えるOSSは経済学的に公共財であり搾取が起きやすい*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">公共財ジレンマ — 経済学的予測 vs OSS の現実</text>
 <rect x="50" y="55" width="320" height="200" fill="#16213e" rx="8"/>
@@ -389,9 +446,11 @@ style: |
 <text x="400" y="318" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">なぜ合理的でない行動が大規模に起きているのか？</text>
 <text x="400" y="345" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 別の動機モデルが必要</text>
 </svg>
+</div>
+
 - **公共財の特性（経済学）:**
-- - **非排除性**: 誰でも使える（ライセンスで制限しない）
-- - **非競合性**: 誰かが使っても減らない
+- **非排除性**: 誰でも使える（ライセンスで制限しない）
+- **非競合性**: 誰かが使っても減らない
 - **古典経済学の予測:**
 
 
@@ -401,7 +460,8 @@ style: |
 
 > *フリーライダーが増えると貢献者が燃え尽きサービスが崩壊する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">贈与経済とハッカー倫理</text>
 <rect x="50" y="50" width="700" height="80" fill="#16213e" rx="8"/>
@@ -425,8 +485,10 @@ style: |
 <text x="506" y="322" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">みんなで使える「共有地」を作ることへの誇り</text>
 <text x="400" y="368" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">ハッカーにとって「シェアしない理由」が存在しない</text>
 </svg>
-- - 合理的個人は「ただ乗り」を選ぶ → 誰も作らない
-- - 公共財は過少供給される（市場失敗）
+</div>
+
+- 合理的個人は「ただ乗り」を選ぶ → 誰も作らない
+- 公共財は過少供給される（市場失敗）
 - **現実**: GitHub に 4 億件以上のリポジトリ、数千万人のコントリビューター
 - → **理論と現実の巨大なギャップ** — なぜ？
 
@@ -437,7 +499,8 @@ style: |
 
 > *無償労働を経済合理性で説明しようとすると理論が破綻する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">健全なOSSエコシステムの構造</text>
 <rect x="290" y="60" width="220" height="60" fill="#0f3460" rx="8"/>
@@ -469,10 +532,12 @@ style: |
 <text x="400" y="327" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">多様な動機の共存</text>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">動機を理解することが健全なコミュニティ設計の出発点</text>
 </svg>
+</div>
+
 - **機会費用の問題:**
-- - シニアエンジニアの時給 ≒ $100〜$300
-- - 週末10時間のOSS活動 = $1,000〜$3,000 の無償提供
-- - 「合理的」なら報酬のある仕事に使うはず
+- シニアエンジニアの時給 ≒ $100〜$300
+- 週末10時間のOSS活動 = $1,000〜$3,000 の無償提供
+- 「合理的」なら報酬のある仕事に使うはず
 
 
 ---
@@ -481,7 +546,8 @@ style: |
 
 > *評判・楽しさ・使命感など非金銭的誘因が貢献を駆動する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">クラウディングアウト — お金が動機を壊す逆説</text>
 <rect x="50" y="55" width="320" height="270" fill="#16213e" rx="8"/>
@@ -505,19 +571,22 @@ style: |
 <text x="590" y="258" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ お金を「隠す」設計が必要</text>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「お金で解決」は OSS コミュニティを壊す可能性がある</text>
 </svg>
+</div>
+
 - **標準モデルが説明できないこと:**
-- - ① 報酬ゼロでも品質を最大化しようとする行動
-- - ② バグ修正の深夜作業・ユーザーサポートへの丁寧な対応
-- - ③ 「スターをもらえると嬉しい」— 非金銭報酬の効果
+- ① 報酬ゼロでも品質を最大化しようとする行動
+- ② バグ修正の深夜作業・ユーザーサポートへの丁寧な対応
+- ③ 「スターをもらえると嬉しい」— 非金銭報酬の効果
 - → 別の動機モデルが必要
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 内発的動機
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">OSS エコシステムの現実と規模</text>
 <rect x="50" y="45" width="440" height="36" fill="#16213e" rx="8"/>
@@ -546,11 +615,12 @@ style: |
 <text x="625" y="309" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">2,600万人以上</text>
 <text x="400" y="370" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">経済価値は何兆ドルにもなるが、大半は「善意」で維持されている</text>
 </svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 自己決定理論（SDT）
 
 ![w:900 center](assets/sdt-diagram.svg)
@@ -562,7 +632,8 @@ style: |
 
 > *自己効力感の達成がOSS貢献の最大の内的報酬となる*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">自己決定理論（SDT）— 内発的動機の3要素</text>
 <rect x="60" y="55" width="200" height="240" fill="#0f3460" rx="8"/>
@@ -588,10 +659,12 @@ style: |
 <text x="640" y="226" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">グローバルな仲間</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">この3要素が揃うと、人は外部報酬なしでも高いパフォーマンスを発揮する</text>
 </svg>
+</div>
+
 - **Competence 欲求 — スキルと成長の実感**
-- - 難しいバグを修正した瞬間の達成感
-- - PR がマージされる = 「自分の技術が認められた」
-- - コードレビューのフィードバックが学習を加速する
+- 難しいバグを修正した瞬間の達成感
+- PR がマージされる = 「自分の技術が認められた」
+- コードレビューのフィードバックが学習を加速する
 
 
 ---
@@ -600,7 +673,8 @@ style: |
 
 > *PRマージの瞬間の達成感が次の貢献への最強の動機となる*
 
-- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 375" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">フロー理論 — OSSでフローが起きやすい理由</text>
 <rect x="0" y="60" width="800" height="2" fill="#333" rx="0"/>
@@ -622,10 +696,12 @@ style: |
 <text x="400" y="330" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">自分のスキルに合ったIssueを自由に選べる → フローに入りやすい</text>
 <text x="400" y="355" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">明確なゴール + 即座なフィードバック (CI/CD) がフローを維持する</text>
 </svg>
+</div>
+
 - **OSSならではの有能感増幅:**
-- - 世界中の人が自分のコードを使う
-- - GitHub の star・fork 数がリアルタイムで見える
-- - 有名プロジェクトへの貢献が「証明書」になる
+- 世界中の人が自分のコードを使う
+- GitHub の star・fork 数がリアルタイムで見える
+- 有名プロジェクトへの貢献が「証明書」になる
 - → **有能感は無限に追求できる** — 次の課題が常に存在する
 
 
@@ -635,7 +711,8 @@ style: |
 
 > *上司なく自分のペースで貢献できる自律性が内発動機を高める*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">シグナリング理論 — OSSが「評判資本」になる仕組み</text>
 <rect x="50" y="55" width="320" height="260" fill="#16213e" rx="8"/>
@@ -656,10 +733,12 @@ style: |
 <text x="590" y="240" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 個人と企業が共に得をする</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「無償労働」ではなく「長期的なキャリア投資」と捉えると合理的になる</text>
 </svg>
+</div>
+
 - **Autonomy 欲求 — 「自分の意思で動く」感覚**
-- - 職場では「仕様は上が決める」→ OSSでは自分が設計者
-- - どの Issue に取り組むか、どの言語で書くか、全て自分次第
-- - "Scratch Your Own Itch" — 自分が欲しいものを作る自由
+- 職場では「仕様は上が決める」→ OSSでは自分が設計者
+- どの Issue に取り組むか、どの言語で書くか、全て自分次第
+- "Scratch Your Own Itch" — 自分が欲しいものを作る自由
 
 
 ---
@@ -668,7 +747,8 @@ style: |
 
 > *何を・いつ・どう実装するかの選択権が貢献継続を支える*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">有能感とコミュニティ — OSSならではの強化</text>
 <rect x="50" y="60" width="330" height="250" fill="#16213e" rx="8"/>
@@ -689,9 +769,11 @@ style: |
 <text x="585" y="245" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ メンター関係で期間2倍</text>
 <text x="400" y="345" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">内発的動機の3要素: 有能感 × 自律性 × 関係性 (Deci & Ryan SDT)</text>
 </svg>
+</div>
+
 - **自律性が高いほど動機が持続する（SDT の実証）:**
-- - 外部制約（締め切り・仕様強制）が増えると自律性が低下
-- - → コントリビューターが離れる主要因の一つ
+- 外部制約（締め切り・仕様強制）が増えると自律性が低下
+- → コントリビューターが離れる主要因の一つ
 - → **「誰かに言われたから」ではなく「やりたいから」**
 
 
@@ -701,7 +783,8 @@ style: |
 
 > *メンターとのやり取りや仲間意識がOSS継続の社会的接着剤*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">贈与経済とハッカー倫理</text>
 <rect x="50" y="50" width="700" height="80" fill="#16213e" rx="8"/>
@@ -725,10 +808,12 @@ style: |
 <text x="506" y="322" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">みんなで使える「共有地」を作ることへの誇り</text>
 <text x="400" y="368" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">ハッカーにとって「シェアしない理由」が存在しない</text>
 </svg>
+</div>
+
 - **Relatedness 欲求 — 帰属と承認の感覚**
-- - Issue / PR のコメントを通じて世界中の開発者とつながる
-- - "Thank you, this saved my project!" — 感謝のメッセージの力
-- - プロジェクトの歴史・文化・ミームを共有するコミュニティ
+- Issue / PR のコメントを通じて世界中の開発者とつながる
+- "Thank you, this saved my project!" — 感謝のメッセージの力
+- プロジェクトの歴史・文化・ミームを共有するコミュニティ
 
 
 ---
@@ -737,7 +822,8 @@ style: |
 
 > *承認・感謝・相互扶助がコミュニティへの帰属欲求を満たす*
 
-- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 375" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">フロー理論 — OSSでフローが起きやすい理由</text>
 <rect x="0" y="60" width="800" height="2" fill="#333" rx="0"/>
@@ -759,9 +845,11 @@ style: |
 <text x="400" y="330" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">自分のスキルに合ったIssueを自由に選べる → フローに入りやすい</text>
 <text x="400" y="355" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">明確なゴール + 即座なフィードバック (CI/CD) がフローを維持する</text>
 </svg>
+</div>
+
 - **Relatedness がコントリビューションを加速:**
-- - 最初の PR がマージされると → 次の貢献確率が 3倍に（研究より）
-- - メンター関係が成立すると貢献期間が平均 2倍長くなる
+- 最初の PR がマージされると → 次の貢献確率が 3倍に（研究より）
+- メンター関係が成立すると貢献期間が平均 2倍長くなる
 - → **OSS は技術の共有であり、社会的体験でもある**
 
 
@@ -771,7 +859,8 @@ style: |
 
 > *難易度とスキルが一致する課題でフロー状態が自然発生する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">クラウディングアウト — お金が動機を壊す逆説</text>
 <rect x="50" y="55" width="320" height="270" fill="#16213e" rx="8"/>
@@ -795,9 +884,11 @@ style: |
 <text x="590" y="258" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ お金を「隠す」設計が必要</text>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「お金で解決」は OSS コミュニティを壊す可能性がある</text>
 </svg>
+</div>
+
 - **Csikszentmihalyi のフロー理論（1990）:**
-- - 課題の難度 ≒ スキルレベル のとき「フロー」が生まれる
-- - 時間を忘れ、完全に没入する状態
+- 課題の難度 ≒ スキルレベル のとき「フロー」が生まれる
+- 時間を忘れ、完全に没入する状態
 - **OSSでフローが起きやすい理由:**
 
 
@@ -807,7 +898,8 @@ style: |
 
 > *時間を忘れる没頭体験がOSSコーディングの強力な誘因となる*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">OSS エコシステムの現実と規模</text>
 <rect x="50" y="45" width="440" height="36" fill="#16213e" rx="8"/>
@@ -836,18 +928,21 @@ style: |
 <text x="625" y="309" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">2,600万人以上</text>
 <text x="400" y="370" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">経済価値は何兆ドルにもなるが、大半は「善意」で維持されている</text>
 </svg>
-- - 自分のスキルに合った Issue を自由に選べる
-- - 明確なゴール（バグ再現 → 修正 → テスト通過）
-- - 即座なフィードバック（CI/CD、コードレビュー）
+</div>
+
+- 自分のスキルに合った Issue を自由に選べる
+- 明確なゴール（バグ再現 → 修正 → テスト通過）
+- 即座なフィードバック（CI/CD、コードレビュー）
 - → **「気づいたら朝になっていた」体験がリテンションを生む**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 社会的・評判的動機
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">シグナリング理論 — GitHubは最強の履歴書</text>
 <rect x="50" y="60" width="200" height="230" fill="#16213e" rx="8"/>
@@ -873,6 +968,7 @@ style: |
 <polygon points="550,185 538,191 538,179" fill="#f9a825"/>
 <text x="400" y="340" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">評判資本 (Reputation Capital) の蓄積 → キャリア・影響力・ビジネスチャンス</text>
 </svg>
+</div>
 
 
 ---
@@ -881,7 +977,8 @@ style: |
 
 > *OSS貢献は採用市場で自分の能力を証明する最強のシグナル*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">自己決定理論（SDT）— 内発的動機の3要素</text>
 <rect x="60" y="55" width="200" height="240" fill="#0f3460" rx="8"/>
@@ -907,10 +1004,12 @@ style: |
 <text x="640" y="226" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">グローバルな仲間</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">この3要素が揃うと、人は外部報酬なしでも高いパフォーマンスを発揮する</text>
 </svg>
+</div>
+
 - **Spence（1973）のシグナリングモデル:**
-- - 情報の非対称性: 採用企業は応募者の実力を直接観察できない
-- - シグナル: **検証可能で、偽造コストが高い情報** を送る行動
-- - 学歴が典型例 — OSSコントリビューションも同様
+- 情報の非対称性: 採用企業は応募者の実力を直接観察できない
+- シグナル: **検証可能で、偽造コストが高い情報** を送る行動
+- 学歴が典型例 — OSSコントリビューションも同様
 
 
 ---
@@ -919,7 +1018,8 @@ style: |
 
 > *コード品質・コミュニケーション・継続性が雇用者に可視化される*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">シグナリング理論 — GitHubは最強の履歴書</text>
 <rect x="50" y="60" width="200" height="230" fill="#16213e" rx="8"/>
@@ -945,10 +1045,12 @@ style: |
 <polygon points="550,185 538,191 538,179" fill="#f9a825"/>
 <text x="400" y="340" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">評判資本 (Reputation Capital) の蓄積 → キャリア・影響力・ビジネスチャンス</text>
 </svg>
+</div>
+
 - **OSSシグナルの特性:**
-- - コードは公開・検証可能（履歴・レビュー・マージ記録）
-- - 模倣が難しい（積み上げに時間がかかる）
-- - 技術力・コードスタイル・コミュニケーション力が全部見える
+- コードは公開・検証可能（履歴・レビュー・マージ記録）
+- 模倣が難しい（積み上げに時間がかかる）
+- 技術力・コードスタイル・コミュニケーション力が全部見える
 - → **「GitHubは最強の履歴書」説の経済学的根拠**
 
 
@@ -958,7 +1060,8 @@ style: |
 
 > *採用担当の70%がGitHub活動を資格証明より重視すると回答*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">シグナリング理論 — OSSが「評判資本」になる仕組み</text>
 <rect x="50" y="55" width="320" height="260" fill="#16213e" rx="8"/>
@@ -979,10 +1082,12 @@ style: |
 <text x="590" y="240" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 個人と企業が共に得をする</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「無償労働」ではなく「長期的なキャリア投資」と捉えると合理的になる</text>
 </svg>
+</div>
+
 - **実証研究の示唆:**
-- - GitHub プロフィールを持つ開発者は採用面接通過率が高い傾向
-- - 有名 OSS プロジェクトのコア committer = 業界での高評価
-- - 採用担当の 60% 以上が GitHub を確認する（Stack Overflow Survey）
+- GitHub プロフィールを持つ開発者は採用面接通過率が高い傾向
+- 有名 OSS プロジェクトのコア committer = 業界での高評価
+- 採用担当の 60% 以上が GitHub を確認する（Stack Overflow Survey）
 
 
 ---
@@ -991,7 +1096,8 @@ style: |
 
 > *緑の草が多いほど採用確率が上がるという神話の真偽を問う*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">贈与経済とハッカー倫理</text>
 <rect x="50" y="50" width="700" height="80" fill="#16213e" rx="8"/>
@@ -1015,19 +1121,22 @@ style: |
 <text x="506" y="322" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">みんなで使える「共有地」を作ることへの誇り</text>
 <text x="400" y="368" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">ハッカーにとって「シェアしない理由」が存在しない</text>
 </svg>
+</div>
+
 - **シグナリング以外の評判価値:**
-- - カンファレンス登壇・技術ブログのリード獲得
-- - スタートアップの CTO 採用で「これ作った人」が有力候補
-- - OSS 活動 → フォロワー増 → 影響力 → ビジネスチャンス
+- カンファレンス登壇・技術ブログのリード獲得
+- スタートアップの CTO 採用で「これ作った人」が有力候補
+- OSS 活動 → フォロワー増 → 影響力 → ビジネスチャンス
 - → **評判資本（Reputation Capital）の蓄積**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 贈与経済とハッカー倫理
 
-- <svg viewBox="0 0 800 390" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 390" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">贈与経済 — 互恵性のネットワーク</text>
 <rect x="300" y="55" width="200" height="55" fill="#0f3460" rx="8"/>
@@ -1052,6 +1161,7 @@ style: |
 <text x="400" y="335" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">「もらったから返す」</text>
 <text x="400" y="378" font-size="11" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">市場原理ではなく、互恵性の原理 — Mauss「贈与論」(1925)</text>
 </svg>
+</div>
 
 
 ---
@@ -1060,7 +1170,8 @@ style: |
 
 > *贈り物が地位と影響力を生む互酬性の論理がOSSに作用する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">クラウディングアウト — お金が動機を壊す逆説</text>
 <rect x="50" y="55" width="320" height="270" fill="#16213e" rx="8"/>
@@ -1084,10 +1195,12 @@ style: |
 <text x="590" y="258" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ お金を「隠す」設計が必要</text>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「お金で解決」は OSS コミュニティを壊す可能性がある</text>
 </svg>
+</div>
+
 - **Marcel Mauss「贈与論」（1925）:**
-- - 贈り物には3つの義務が付随する: 与える・受け取る・返礼する
-- - 市場交換とは異なる社会的絆の形成メカニズム
-- - ポトラッチ: 財を惜しみなく配ることが地位を高める
+- 贈り物には3つの義務が付随する: 与える・受け取る・返礼する
+- 市場交換とは異なる社会的絆の形成メカニズム
+- ポトラッチ: 財を惜しみなく配ることが地位を高める
 
 
 ---
@@ -1096,7 +1209,8 @@ style: |
 
 > *多く貢献するほど発言権と評判が比例して増す贈与の循環*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">健全なOSSエコシステムの構造</text>
 <rect x="290" y="60" width="220" height="60" fill="#0f3460" rx="8"/>
@@ -1128,10 +1242,12 @@ style: |
 <text x="400" y="327" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">多様な動機の共存</text>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">動機を理解することが健全なコミュニティ設計の出発点</text>
 </svg>
+</div>
+
 - **OSSと贈与経済の対応:**
-- - コードを「贈る」ことでコミュニティ内の地位が上がる
-- - 使った側は「恩返し」への心理的プレッシャーを感じる
-- - 互恵性のネットワーク: 全員が「もらった側」であり「与える側」
+- コードを「贈る」ことでコミュニティ内の地位が上がる
+- 使った側は「恩返し」への心理的プレッシャーを感じる
+- 互恵性のネットワーク: 全員が「もらった側」であり「与える側」
 - → **市場原理ではなく、互恵性の原理が動かしている**
 
 
@@ -1141,7 +1257,8 @@ style: |
 
 > *情報は自由であるべきという信条がOSS運動の思想的根拠*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">OSS エコシステムの現実と規模</text>
 <rect x="50" y="45" width="440" height="36" fill="#16213e" rx="8"/>
@@ -1170,10 +1287,12 @@ style: |
 <text x="625" y="309" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">2,600万人以上</text>
 <text x="400" y="370" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">経済価値は何兆ドルにもなるが、大半は「善意」で維持されている</text>
 </svg>
+</div>
+
 - **Steven Levy「ハッカーズ」（1984）のハッカー倫理:**
-- - コンピュータへのアクセスは無制限・完全であるべき
-- - 情報はフリー（自由）であるべき
-- - 権威を信用するな、分散化を促進せよ
+- コンピュータへのアクセスは無制限・完全であるべき
+- 情報はフリー（自由）であるべき
+- 権威を信用するな、分散化を促進せよ
 
 
 ---
@@ -1182,7 +1301,8 @@ style: |
 
 > *知識の独占を拒む倫理観が技術者をGPLへと向かわせる*
 
-- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 375" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">Ostrom のコモンズ設計原則 — OSS への適用</text>
 <rect x="50" y="55" width="350" height="38" fill="#16213e" rx="8"/>
@@ -1211,10 +1331,12 @@ style: |
 <text x="585" y="329" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Issue→PR→リリースの階層管理</text>
 <text x="400" y="360" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ Ostrom原則を満たすOSSは持続可能性が高い (2009年ノーベル経済学賞)</text>
 </svg>
+</div>
+
 - **Eric S. Raymond「伽藍とバザール」（1999）:**
-- - バザールモデル: 多数の参加者による自律的開発
-- - "Given enough eyeballs, all bugs are shallow" (Linus's Law)
-- - コードを公開することへの道徳的・文化的規範
+- バザールモデル: 多数の参加者による自律的開発
+- "Given enough eyeballs, all bugs are shallow" (Linus's Law)
+- コードを公開することへの道徳的・文化的規範
 - → **「情報は共有されるべき」という規範的動機**
 
 
@@ -1224,7 +1346,8 @@ style: |
 
 > *オストロムの原則が証明する共有資源の持続的管理の可能性*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">自己決定理論（SDT）— 内発的動機の3要素</text>
 <rect x="60" y="55" width="200" height="240" fill="#0f3460" rx="8"/>
@@ -1250,9 +1373,11 @@ style: |
 <text x="640" y="226" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">グローバルな仲間</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">この3要素が揃うと、人は外部報酬なしでも高いパフォーマンスを発揮する</text>
 </svg>
+</div>
+
 - **Elinor Ostrom（2009年ノーベル経済学賞）:**
-- - 「コモンズの悲劇」（Hardin 1968）への反論
-- - 自律的コミュニティは過剰利用なく共有資源を管理できる
+- 「コモンズの悲劇」（Hardin 1968）への反論
+- 自律的コミュニティは過剰利用なく共有資源を管理できる
 - **OSS コミュニティの自律ガバナンス:**
 
 
@@ -1262,7 +1387,8 @@ style: |
 
 > *ガバナンスルールと境界の明確化がコモンズ崩壊を防ぐ*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">シグナリング理論 — OSSが「評判資本」になる仕組み</text>
 <rect x="50" y="55" width="320" height="260" fill="#16213e" rx="8"/>
@@ -1283,19 +1409,22 @@ style: |
 <text x="590" y="240" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 個人と企業が共に得をする</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「無償労働」ではなく「長期的なキャリア投資」と捉えると合理的になる</text>
 </svg>
-- - 明確な境界: who is contributor / who is maintainer
-- - ローカルルール: CONTRIBUTING.md, Code of Conduct
-- - コンフリクト解決: コアチームによる決定、フォーク権利
-- - 段階的サンクション: 警告→一時停止→追放
+</div>
+
+- 明確な境界: who is contributor / who is maintainer
+- ローカルルール: CONTRIBUTING.md, Code of Conduct
+- コンフリクト解決: コアチームによる決定、フォーク権利
+- 段階的サンクション: 警告→一時停止→追放
 - → **Ostrom 原則に従う OSS は持続可能性が高い**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 動機の複合モデル
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">贈与経済とハッカー倫理</text>
 <rect x="50" y="50" width="700" height="80" fill="#16213e" rx="8"/>
@@ -1319,11 +1448,12 @@ style: |
 <text x="506" y="322" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">みんなで使える「共有地」を作ることへの誇り</text>
 <text x="400" y="368" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">ハッカーにとって「シェアしない理由」が存在しない</text>
 </svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 動機の多層モデル
 
 ![w:900 center](assets/motivation-layers.svg)
@@ -1331,7 +1461,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # クラウディングアウト：報酬の逆説
 
 ![w:900 center](assets/crowding-out.svg)
@@ -1343,7 +1473,8 @@ style: |
 
 > *企業資金流入がボランティア文化を変容させ内発動機を阻害する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">クラウディングアウト — お金が動機を壊す逆説</text>
 <rect x="50" y="55" width="320" height="270" fill="#16213e" rx="8"/>
@@ -1367,9 +1498,11 @@ style: |
 <text x="590" y="258" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ お金を「隠す」設計が必要</text>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「お金で解決」は OSS コミュニティを壊す可能性がある</text>
 </svg>
+</div>
+
 - **企業がOSSに参加するとき:**
-- - Red Hat・Google・Microsoft が Linux/Kubernetes に大規模投資
-- - 「企業の意図」がコミュニティ文化に摩擦を生じさせる
+- Red Hat・Google・Microsoft が Linux/Kubernetes に大規模投資
+- 「企業の意図」がコミュニティ文化に摩擦を生じさせる
 - **動機の変質パターン:**
 
 
@@ -1379,7 +1512,8 @@ style: |
 
 > *外的報酬の導入がアンダーマイニング効果で自発的貢献を減らす*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">メンテナーバーンアウトの構造的サイクル</text>
 <rect x="280" y="55" width="240" height="55" fill="#16213e" rx="8"/>
@@ -1408,19 +1542,22 @@ style: |
 <polygon points="280,82 273.73125262688546,93.86182137667186 266.74929447479377,84.10209492751147" fill="#f9a825"/>
 <text x="400" y="370" font-size="10" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">left-pad (2016), Faker.js (2022) — インフラになるほど要求が増え感謝が減る逆説</text>
 </svg>
-- - ボランティア参加者が雇用される → 「仕事」になり自律性が低下
-- - 企業のロードマップが優先 → 「自分のかゆいところ」に手が届かなくなる
-- - コア決定が非公開の企業会議で行われ、透明性が失われる
+</div>
+
+- ボランティア参加者が雇用される → 「仕事」になり自律性が低下
+- 企業のロードマップが優先 → 「自分のかゆいところ」に手が届かなくなる
+- コア決定が非公開の企業会議で行われ、透明性が失われる
 - **典型例: MongoDB → SSPL 採用で大規模フォーク**
 - → **商業化 ≠ コミュニティの死だが、設計が重要**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 持続可能性の危機
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">OSS エコシステムの現実と規模</text>
 <rect x="50" y="45" width="440" height="36" fill="#16213e" rx="8"/>
@@ -1449,6 +1586,7 @@ style: |
 <text x="625" y="309" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">2,600万人以上</text>
 <text x="400" y="370" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">経済価値は何兆ドルにもなるが、大半は「善意」で維持されている</text>
 </svg>
+</div>
 
 
 ---
@@ -1457,7 +1595,8 @@ style: |
 
 > *感謝なき要求の連続がメンテナーを燃え尽きに追い込む現実*
 
-- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 375" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">OSSサステナビリティへのアプローチ比較</text>
 <rect x="30" y="55" width="250" height="44" fill="#16213e" rx="8"/>
@@ -1487,10 +1626,12 @@ style: |
 <text x="532" y="314" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">スケール可・Fork懸念</text>
 <text x="400" y="360" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ プロジェクトの特性に合った持続モデルの設計が不可欠</text>
 </svg>
+</div>
+
 - **代表的な事例:**
-- - **left-pad（2016）**: 11行のモジュールを作者が削除 → npm エコシステムが崩壊
-- - **Log4Shell（2021）**: CVE スコア 10.0 の脆弱性。修正担当: 無報酬ボランティア1人
-- - **Faker.js（2022）**: 作者が故意にコードを破壊「無報酬で Fortune 500 を支援するな」
+- **left-pad（2016）**: 11行のモジュールを作者が削除 → npm エコシステムが崩壊
+- **Log4Shell（2021）**: CVE スコア 10.0 の脆弱性。修正担当: 無報酬ボランティア1人
+- **Faker.js（2022）**: 作者が故意にコードを破壊「無報酬で Fortune 500 を支援するな」
 
 
 ---
@@ -1499,7 +1640,8 @@ style: |
 
 > *OpenSSL・ Log4jが示すバーンアウトがインフラ危機につながる*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">自己決定理論（SDT）— 内発的動機の3要素</text>
 <rect x="60" y="55" width="200" height="240" fill="#0f3460" rx="8"/>
@@ -1525,16 +1667,18 @@ style: |
 <text x="640" y="226" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">グローバルな仲間</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">この3要素が揃うと、人は外部報酬なしでも高いパフォーマンスを発揮する</text>
 </svg>
+</div>
+
 - **バーンアウトの構造的原因:**
-- - サポートリクエスト・Issue の量が指数関数的に増加
-- - 感謝より「なぜ直らないのか」クレームが多い
-- - 「無料なんだから当然」という受益者のメンタリティ
+- サポートリクエスト・Issue の量が指数関数的に増加
+- 感謝より「なぜ直らないのか」クレームが多い
+- 「無料なんだから当然」という受益者のメンタリティ
 - → **インフラになるほど要求が増え、感謝が減る逆説**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # サステナビリティへの試み
 
 ![w:900 center](assets/sustainability-ecosystem.svg)
@@ -1542,10 +1686,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # インタラクティブワーク
 
-- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 375" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">OSS コントリビューターの動機分布 (研究より)</text>
 <rect x="200" y="55" width="350" height="34" fill="#f9a825" rx="8"/>
@@ -1568,6 +1713,7 @@ style: |
 <text x="290" y="328" font-size="12" fill="#ffffff" text-anchor="start" font-weight="normal" font-family="sans-serif">23%</text>
 <text x="400" y="360" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">動機は多層構造 — 単一の理由で説明できない。複数が重なり合っている</text>
 </svg>
+</div>
 
 
 ---
@@ -1576,7 +1722,8 @@ style: |
 
 > *内発・外発・社会規範を軸に自分の動機構造を可視化する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">シグナリング理論 — OSSが「評判資本」になる仕組み</text>
 <rect x="50" y="55" width="320" height="260" fill="#16213e" rx="8"/>
@@ -1597,10 +1744,12 @@ style: |
 <text x="590" y="240" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 個人と企業が共に得をする</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「無償労働」ではなく「長期的なキャリア投資」と捉えると合理的になる</text>
 </svg>
+</div>
+
 - **個人ワーク（10分）:**
-- - あなたが最近コントリビュートした（またはしてみたい）OSSを1つ選ぶ
-- - 以下の3軸でスコアをつける（0〜5）:
--   - **内発的動機**: 有能感・自律性・フロー・純粋な楽しさ
+- あなたが最近コントリビュートした（またはしてみたい）OSSを1つ選ぶ
+- 以下の3軸でスコアをつける（0〜5）:
+  - **内発的動機**: 有能感・自律性・フロー・純粋な楽しさ
 
 
 ---
@@ -1609,7 +1758,8 @@ style: |
 
 > *動機マップが自分に合ったOSS貢献方法の選択を助ける*
 
-- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 375" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">Ostrom のコモンズ設計原則 — OSS への適用</text>
 <rect x="50" y="55" width="350" height="38" fill="#16213e" rx="8"/>
@@ -1638,10 +1788,12 @@ style: |
 <text x="585" y="329" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Issue→PR→リリースの階層管理</text>
 <text x="400" y="360" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ Ostrom原則を満たすOSSは持続可能性が高い (2009年ノーベル経済学賞)</text>
 </svg>
--   - **社会的動機**: 評判・シグナリング・コミュニティへの帰属
--   - **経済的動機**: キャリア・雇用条件・金銭的報酬
+</div>
+
+  - **社会的動機**: 評判・シグナリング・コミュニティへの帰属
+  - **経済的動機**: キャリア・雇用条件・金銭的報酬
 - **ディスカッション（5分）:**
-- - 3軸の中でどれが最も強いか？時期によって変わるか？
+- 3軸の中でどれが最も強いか？時期によって変わるか？
 
 
 ---
@@ -1650,7 +1802,8 @@ style: |
 
 > *実在プロジェクトの貢献者動機を3理論で構造的に分析する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">贈与経済とハッカー倫理</text>
 <rect x="50" y="50" width="700" height="80" fill="#16213e" rx="8"/>
@@ -1674,10 +1827,12 @@ style: |
 <text x="506" y="322" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">みんなで使える「共有地」を作ることへの誇り</text>
 <text x="400" y="368" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">ハッカーにとって「シェアしない理由」が存在しない</text>
 </svg>
+</div>
+
 - **グループワーク（20分）:**
-- - グループで有名な OSS プロジェクトを1つ選ぶ
--   - 例: Linux / React / PostgreSQL / VSCode / curl
-- - 以下の問いに答える:
+- グループで有名な OSS プロジェクトを1つ選ぶ
+  - 例: Linux / React / PostgreSQL / VSCode / curl
+- 以下の問いに答える:
 
 
 ---
@@ -1686,7 +1841,8 @@ style: |
 
 > *分析結果をチームで比較し動機の多様性を発見する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">健全なOSSエコシステムの構造</text>
 <rect x="290" y="60" width="220" height="60" fill="#0f3460" rx="8"/>
@@ -1718,18 +1874,21 @@ style: |
 <text x="400" y="327" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">多様な動機の共存</text>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">動機を理解することが健全なコミュニティ設計の出発点</text>
 </svg>
--   - **① 誰がコントリビュートしているか？** 企業 or 個人の割合
--   - **② 動機の多様性**: 異なる動機の参加者がどう共存しているか
--   - **③ サステナビリティ**: 資金調達・ガバナンスはどうなっているか
+</div>
+
+  - **① 誰がコントリビュートしているか？** 企業 or 個人の割合
+  - **② 動機の多様性**: 異なる動機の参加者がどう共存しているか
+  - **③ サステナビリティ**: 資金調達・ガバナンスはどうなっているか
 - **発表（各グループ3分）:**
-- - 「このプロジェクトが20年後も存続する確率は何%か？」
+- 「このプロジェクトが20年後も存続する確率は何%か？」
 
 
 ---
 
 # まとめ（1/2）
 
-- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 375" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">OSSサステナビリティへのアプローチ比較</text>
 <rect x="30" y="55" width="250" height="44" fill="#16213e" rx="8"/>
@@ -1759,6 +1918,8 @@ style: |
 <text x="532" y="314" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">スケール可・Fork懸念</text>
 <text x="400" y="360" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ プロジェクトの特性に合った持続モデルの設計が不可欠</text>
 </svg>
+</div>
+
 - **3つの主要メッセージ:**
 - **① 経済合理性だけでは説明できない** — OSSは公共財ジレンマを「動機の多様性」で乗り越える
 - **② 動機は多層構造** — 内発（SDT）× 社会的（シグナリング・贈与）× 経済的が重なり合う
@@ -1782,7 +1943,8 @@ style: |
 
 > *OSS動機研究の主要論文と心理学的基礎文献の一覧*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">クラウディングアウト — お金が動機を壊す逆説</text>
 <rect x="50" y="55" width="320" height="270" fill="#16213e" rx="8"/>
@@ -1806,10 +1968,12 @@ style: |
 <text x="590" y="258" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ お金を「隠す」設計が必要</text>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「お金で解決」は OSS コミュニティを壊す可能性がある</text>
 </svg>
+</div>
+
 - **研究論文・書籍:**
-- - [Deci & Ryan (1985)](https://www.guilford.com/books/Intrinsic-Motivation-and-Self-Determination/Deci-Ryan/9780306420221) — 自己決定理論の原典
-- - [Lerner & Tirole (2002)](https://www.jstor.org/stable/3132114) — OSSのインセンティブ構造（経済学的分析）
-- - [Benkler (2006)](https://www.benkler.org/Benkler_Wealth_Of_Networks.pdf) — "The Wealth of Networks" コモンズ型生産
+- [Deci & Ryan (1985)](https://www.guilford.com/books/Intrinsic-Motivation-and-Self-Determination/Deci-Ryan/9780306420221) — 自己決定理論の原典
+- [Lerner & Tirole (2002)](https://www.jstor.org/stable/3132114) — OSSのインセンティブ構造（経済学的分析）
+- [Benkler (2006)](https://www.benkler.org/Benkler_Wealth_Of_Networks.pdf) — "The Wealth of Networks" コモンズ型生産
 
 
 ---
@@ -1818,7 +1982,8 @@ style: |
 
 > *実践的OSSコントリビューションガイドとコミュニティリソース*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">OSS エコシステムの現実と規模</text>
 <rect x="50" y="45" width="440" height="36" fill="#16213e" rx="8"/>
@@ -1847,9 +2012,11 @@ style: |
 <text x="625" y="309" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">2,600万人以上</text>
 <text x="400" y="370" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">経済価値は何兆ドルにもなるが、大半は「善意」で維持されている</text>
 </svg>
-- - [Ostrom (1990)](https://www.cambridge.org/core/books/governing-the-commons/A8BB63BC4A1433A50A3FB92EDBBB97D5) — コモンズのガバナンス
-- - [Raymond (1999)](http://www.catb.org/~esr/writings/cathedral-bazaar/) — 伽藍とバザール
+</div>
+
+- [Ostrom (1990)](https://www.cambridge.org/core/books/governing-the-commons/A8BB63BC4A1433A50A3FB92EDBBB97D5) — コモンズのガバナンス
+- [Raymond (1999)](http://www.catb.org/~esr/writings/cathedral-bazaar/) — 伽藍とバザール
 - **データ・レポート:**
-- - [GitHub Octoverse 2023](https://octoverse.github.com/) — コントリビューター実態調査
-- - [Synopsys OSSRA 2023](https://www.synopsys.com/software-integrity/resources/analyst-reports/open-source-security-risk-analysis.html) — OSS依存関係調査
+- [GitHub Octoverse 2023](https://octoverse.github.com/) — コントリビューター実態調査
+- [Synopsys OSSRA 2023](https://www.synopsys.com/software-integrity/resources/analyst-reports/open-source-security-risk-analysis.html) — OSS依存関係調査
 

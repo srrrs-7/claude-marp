@@ -7,41 +7,76 @@ paginate: true
 header: "エジソンと起業家精神"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # エジソンは発明家ではなく起業家だった
 イノベーションの真実
 
@@ -87,31 +122,68 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # アジェンダ
 
 > *神話を解体しR&D・IP・垂直統合の起業家モデルを再構成する*
 
-- 1. エジソン神話の解体
-- 2. メンロパーク：世界初の研究開発ラボ
-- 3. 発明ファクトリーのビジネスモデル
-- 4. エジソン vs テスラ：2つのモデル
-- 5. 現代テック企業との類似
-- 6. イノベーションの教訓
+1. エジソン神話の解体
+2. メンロパーク：世界初の研究開発ラボ
+3. 発明ファクトリーのビジネスモデル
+4. エジソン vs テスラ：2つのモデル
+5. 現代テック企業との類似
+6. イノベーションの教訓
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # エジソン神話の解体
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 「電球を発明した」は嘘
 
 > *改良+商業化+インフラ構築こそがエジソンの真の天才*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7pm7vnkIPjga7mrbTlj7LvvJrjgqjjgrjjgr3jg7Pjga/kvZXnlarnm67jgYvvvJ88L3RleHQ+CiAgPGxpbmUgeDE9IjYwIiB5MT0iMjAwIiB4Mj0iNzQwIiB5Mj0iMjAwIiBzdHJva2U9IiMxNjIxM2UiIHN0cm9rZS13aWR0aD0iNiIgcng9IjMiLz4KICA8IS0tIDE4MDIgRGF2eSAtLT4KICA8Y2lyY2xlIGN4PSIxMDAiIGN5PSIyMDAiIHI9IjEwIiBmaWxsPSIjNTU1NTU1Ii8+CiAgPGxpbmUgeDE9IjEwMCIgeTE9IjE5MCIgeDI9IjEwMCIgeTI9IjEyMCIgc3Ryb2tlPSIjNTU1NTU1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjEwMCIgeT0iMTEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+MTgwMjwvdGV4dD4KICA8dGV4dCB4PSIxMDAiIHk9Ijk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OH44Kk44O044Kj44O8PC90ZXh0PgogIDx0ZXh0IHg9IjEwMCIgeT0iODIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgqLjg7zjgq/nga88L3RleHQ+CiAgPCEtLSAxODQwcyBEZSBsYSBSdWUgLS0+CiAgPGNpcmNsZSBjeD0iMjIwIiBjeT0iMjAwIiByPSIxMCIgZmlsbD0iIzU1NTU1NSIvPgogIDxsaW5lIHgxPSIyMjAiIHkxPSIyMTAiIHgyPSIyMjAiIHkyPSIyODAiIHN0cm9rZT0iIzU1NTU1NSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8dGV4dCB4PSIyMjAiIHk9IjI5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjE4NDBzPC90ZXh0PgogIDx0ZXh0IHg9IjIyMCIgeT0iMzEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OH44O744Op44O744Oq44Ol44O8PC90ZXh0PgogIDx0ZXh0IHg9IjIyMCIgeT0iMzI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+55yf56m6566h6Zu755CD5a6f6aiTPC90ZXh0PgogIDwhLS0gMTg3OCBTd2FuIC0tPgogIDxjaXJjbGUgY3g9IjUwMCIgY3k9IjIwMCIgcj0iMTIiIGZpbGw9IiNmOWE4MjUiLz4KICA8bGluZSB4MT0iNTAwIiB5MT0iMTg4IiB4Mj0iNTAwIiB5Mj0iMTIwIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNTAwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+MTg3ODwvdGV4dD4KICA8dGV4dCB4PSI1MDAiIHk9Ijk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44K544Ov44OzPC90ZXh0PgogIDx0ZXh0IHg9IjUwMCIgeT0iODIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lrp/nlKjnmb3nhrHpm7vnkIM8L3RleHQ+CiAgPHRleHQgeD0iNTAwIiB5PSI2OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPueJueioseWPluW+lzwvdGV4dD4KICA8IS0tIDE4NzkgRWRpc29uIC0tPgogIDxjaXJjbGUgY3g9IjY1MCIgY3k9IjIwMCIgcj0iMTYiIGZpbGw9IiNlOTFlNjMiLz4KICA8bGluZSB4MT0iNjUwIiB5MT0iMjE2IiB4Mj0iNjUwIiB5Mj0iMjg1IiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjY1MCIgeT0iMzAwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjE4Nzk8L3RleHQ+CiAgPHRleHQgeD0iNjUwIiB5PSIzMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Ko44K444K944OzPC90ZXh0PgogIDx0ZXh0IHg9IjY1MCIgeT0iMzM1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44K544Ov44Oz44KS5pS56Imv44O754m56KixPC90ZXh0PgogIDx0ZXh0IHg9IjY1MCIgeT0iMzUwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+K+WVhualreWMlivjgqTjg7Pjg5Xjg6k8L3RleHQ+CiAgPCEtLSBHZW5pdXMgbGFiZWwgLS0+CiAgPHRleHQgeD0iNDAwIiB5PSIzNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgqjjgrjjgr3jg7Pjga7nnJ/jga7lpKnmiY0gPSDmlLnoia8gKyDllYbmpa3ljJYgKyDpm7vlipvjgqTjg7Pjg5Xjg6nmp4vnr4k8L3RleHQ+Cjwvc3ZnPg==)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="35" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">電球の歴史：エジソンは何番目か？</text>
+  <line x1="60" y1="200" x2="740" y2="200" stroke="#16213e" stroke-width="6" rx="3"/>
+  <!-- 1802 Davy -->
+  <circle cx="100" cy="200" r="10" fill="#555555"/>
+  <line x1="100" y1="190" x2="100" y2="120" stroke="#555555" stroke-width="1.5"/>
+  <text x="100" y="110" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">1802</text>
+  <text x="100" y="95" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">デイヴィー</text>
+  <text x="100" y="82" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">アーク灯</text>
+  <!-- 1840s De la Rue -->
+  <circle cx="220" cy="200" r="10" fill="#555555"/>
+  <line x1="220" y1="210" x2="220" y2="280" stroke="#555555" stroke-width="1.5"/>
+  <text x="220" y="295" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">1840s</text>
+  <text x="220" y="310" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">デ・ラ・リュー</text>
+  <text x="220" y="325" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">真空管電球実験</text>
+  <!-- 1878 Swan -->
+  <circle cx="500" cy="200" r="12" fill="#f9a825"/>
+  <line x1="500" y1="188" x2="500" y2="120" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="500" y="110" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">1878</text>
+  <text x="500" y="95" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">スワン</text>
+  <text x="500" y="82" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">実用白熱電球</text>
+  <text x="500" y="69" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">特許取得</text>
+  <!-- 1879 Edison -->
+  <circle cx="650" cy="200" r="16" fill="#e91e63"/>
+  <line x1="650" y1="216" x2="650" y2="285" stroke="#e91e63" stroke-width="2"/>
+  <text x="650" y="300" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">1879</text>
+  <text x="650" y="318" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">エジソン</text>
+  <text x="650" y="335" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">スワンを改良・特許</text>
+  <text x="650" y="350" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">+商業化+インフラ</text>
+  <!-- Genius label -->
+  <text x="400" y="375" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">エジソンの真の天才 = 改良 + 商業化 + 電力インフラ構築</text>
+</svg>
+</div>
+
 - **白熱電球の歴史：**
 - 1802年：ハンフリー・デイヴィーがアーク灯を実演
 - 1840年代：ウォーレン・デ・ラ・リューが真空管電球を実験
@@ -122,11 +194,50 @@ style: |
 
 ---
 
+<!-- _class: invert fit-82 -->
 # エジソンの本当の才能（1/2）
 
 > *発明家60%・起業家95%—スキルレーダーが真実を示す*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgqjjgrjjgr3jg7Pjga7jgrnjgq3jg6vjg5fjg63jg5XjgqPjg7zjg6vvvJrnmbrmmI7lrrYgdnMg6LW35qWt5a62PC90ZXh0PgogIDwhLS0gUmFkYXIgY2VudGVyIC0tPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQwMCwyMTApIj4KICAgIDwhLS0gQXhlczogNSBza2lsbHMgLS0+CiAgICA8IS0tIFB1cmUgSW52ZW50aW9uIC0tPgogICAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9Ii0xMzAiIHN0cm9rZT0iIzU1NTU1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8IS0tIEJ1c2luZXNzIC0tPgogICAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iMTI0IiB5Mj0iLTQwIiBzdHJva2U9IiM1NTU1NTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPCEtLSBUZWFtIC0tPgogICAgPGxpbmUgeDE9IjAiIHkxPSIwIiB4Mj0iNzYiIHkyPSIxMDQiIHN0cm9rZT0iIzU1NTU1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8IS0tIE1hcmtldGluZyAtLT4KICAgIDxsaW5lIHgxPSIwIiB5MT0iMCIgeDI9Ii03NiIgeTI9IjEwNCIgc3Ryb2tlPSIjNTU1NTU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDwhLS0gSW5mcmEgLS0+CiAgICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSItMTI0IiB5Mj0iLTQwIiBzdHJva2U9IiM1NTU1NTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPCEtLSBHcmlkIGNpcmNsZXMgLS0+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iNDMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iODYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8Y2lyY2xlIGN4PSIwIiBjeT0iMCIgcj0iMTMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPCEtLSBFZGlzb24gcG9seWdvbiAoc2NvcmVzOiBpbnZlbnRpb24gNjAlLCBidXNpbmVzcyA5NSUsIHRlYW0gOTAlLCBtYXJrZXRpbmcgOTUlLCBpbmZyYSA5NSUpIC0tPgogICAgPHBvbHlnb24gcG9pbnRzPSIwLC03OCAxMTgsLTM4IDcyLDk5IC03Miw5OSAtMTE4LC0zOCIgZmlsbD0iI2Y5YTgyNSIgb3BhY2l0eT0iMC4zIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogICAgPCEtLSBMYWJlbHMgLS0+CiAgICA8dGV4dCB4PSIwIiB5PSItMTQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+57SU57KL44Gq55m65piOPC90ZXh0PgogICAgPHRleHQgeD0iMTQ1IiB5PSItMzgiIHRleHQtYW5jaG9yPSJzdGFydCIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODk+OCuOODjeOCueaIpueVpTwvdGV4dD4KICAgIDx0ZXh0IHg9Ijg4IiB5PSIxMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg4Hjg7zjg6DnrqHnkIY8L3RleHQ+CiAgICA8dGV4dCB4PSItODgiIHk9IjEyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODnuODvOOCseODhuOCo+ODs+OCsDwvdGV4dD4KICAgIDx0ZXh0IHg9Ii0xNTUiIHk9Ii0zOCIgdGV4dC1hbmNob3I9ImVuZCIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCpOODs+ODleODqeani+eviTwvdGV4dD4KICAgIDwhLS0gU2NvcmVzIGF0IHRpcHMgLS0+CiAgICA8dGV4dCB4PSIwIiB5PSItOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj42MCU8L3RleHQ+CiAgICA8dGV4dCB4PSIxMzAiIHk9Ii0yNSIgdGV4dC1hbmNob3I9InN0YXJ0IiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+OTUlPC90ZXh0PgogICAgPHRleHQgeD0iODAiIHk9IjEwOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPjkwJTwvdGV4dD4KICAgIDx0ZXh0IHg9Ii04MCIgeT0iMTA4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+OTUlPC90ZXh0PgogICAgPHRleHQgeD0iLTEzNSIgeT0iLTI1IiB0ZXh0LWFuY2hvcj0iZW5kIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+OTUlPC90ZXh0PgogIDwvZz4KPC9zdmc+)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">エジソンのスキルプロフィール：発明家 vs 起業家</text>
+  <!-- Radar center -->
+  <g transform="translate(400,210)">
+    <!-- Axes: 5 skills -->
+    <!-- Pure Invention -->
+    <line x1="0" y1="0" x2="0" y2="-130" stroke="#555555" stroke-width="1"/>
+    <!-- Business -->
+    <line x1="0" y1="0" x2="124" y2="-40" stroke="#555555" stroke-width="1"/>
+    <!-- Team -->
+    <line x1="0" y1="0" x2="76" y2="104" stroke="#555555" stroke-width="1"/>
+    <!-- Marketing -->
+    <line x1="0" y1="0" x2="-76" y2="104" stroke="#555555" stroke-width="1"/>
+    <!-- Infra -->
+    <line x1="0" y1="0" x2="-124" y2="-40" stroke="#555555" stroke-width="1"/>
+    <!-- Grid circles -->
+    <circle cx="0" cy="0" r="43" fill="none" stroke="#333355" stroke-width="1"/>
+    <circle cx="0" cy="0" r="86" fill="none" stroke="#333355" stroke-width="1"/>
+    <circle cx="0" cy="0" r="130" fill="none" stroke="#333355" stroke-width="1"/>
+    <!-- Edison polygon (scores: invention 60%, business 95%, team 90%, marketing 95%, infra 95%) -->
+    <polygon points="0,-78 118,-38 72,99 -72,99 -118,-38" fill="#f9a825" opacity="0.3" stroke="#f9a825" stroke-width="2"/>
+    <!-- Labels -->
+    <text x="0" y="-145" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">純粋な発明</text>
+    <text x="145" y="-38" text-anchor="start" fill="#f9a825" font-size="11" font-family="sans-serif">ビジネス戦略</text>
+    <text x="88" y="120" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">チーム管理</text>
+    <text x="-88" y="120" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">マーケティング</text>
+    <text x="-155" y="-38" text-anchor="end" fill="#f9a825" font-size="11" font-family="sans-serif">インフラ構築</text>
+    <!-- Scores at tips -->
+    <text x="0" y="-90" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">60%</text>
+    <text x="130" y="-25" text-anchor="start" fill="#f9a825" font-size="10" font-family="sans-serif">95%</text>
+    <text x="80" y="108" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">90%</text>
+    <text x="-80" y="108" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">95%</text>
+    <text x="-135" y="-25" text-anchor="end" fill="#f9a825" font-size="10" font-family="sans-serif">95%</text>
+  </g>
+</svg>
+</div>
+
 - **発明家としてのエジソン：** 確かに優秀だが、突出した天才ではない
 - **起業家としてのエジソン：** 歴史上最も成功した一人
 - ---
@@ -135,11 +246,47 @@ style: |
 
 ---
 
+<!-- _class: invert fit-94 -->
 # エジソンの本当の才能（2/2）
 
 > *市場嗅覚+チーム構築+投資家説得が発明を産業に変えた*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgqjjgrjjgr3jg7Pjga4044Gk44Gu5qC45b+D6IO95YqbPC90ZXh0PgogIDwhLS0gNCBib3hlcyBpbiAyeDIgLS0+CiAgPCEtLSBNYXJrZXQgc2Vuc2luZyAtLT4KICA8cmVjdCB4PSIzMCIgeT0iNTUiIHdpZHRoPSIzNjAiIGhlaWdodD0iMTQwIiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iMjEwIiB5PSI4NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7luILloLTjg4vjg7zjgrrjgpLopovmipzjgY/lips8L3RleHQ+CiAgPHRleHQgeD0iMjEwIiB5PSIxMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgIzpm7vnkIPjgI3jgojjgorjgIzpm7vlipvjgrfjgrnjg4bjg6DlhajkvZPjgI3jgpLlo7Ljgos8L3RleHQ+CiAgPHRleHQgeD0iMjEwIiB5PSIxMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lgIvliKXoo73lk4Hjgafjga/jgarjgY/jg5fjg6njg4Pjg4jjg5Xjgqnjg7zjg6DjgpLmp4vmg7M8L3RleHQ+CiAgPHRleHQgeD0iMjEwIiB5PSIxNTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ihpIg54++5LujOiBKb2JzIOOBruOAjFBDIOOBp+OBquOBj+ODqeOCpOODleOCueOCv+OCpOODq+OCkuWjsuOCi+OAjTwvdGV4dD4KICA8dGV4dCB4PSIyMTAiIHk9IjE4MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OL44O844K655m66KaLIOKGkiDjg5fjg63jg4Djgq/jg4jljJYg4oaSIOOCpOODs+ODleODqeaVtOWCmTwvdGV4dD4KICA8IS0tIFRlYW0gbWFuYWdlbWVudCAtLT4KICA8cmVjdCB4PSI0MTAiIHk9IjU1IiB3aWR0aD0iMzYwIiBoZWlnaHQ9IjE0MCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjU5MCIgeT0iODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OB44O844Og44KS44Oe44ON44K444Oh44Oz44OI44GZ44KL5YqbPC90ZXh0PgogIDx0ZXh0IHg9IjU5MCIgeT0iMTEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5pWw5a2m6ICF44O75YyW5a2m6ICF44O76IG35Lq644KS57Wx546HPC90ZXh0PgogIDx0ZXh0IHg9IjU5MCIgeT0iMTMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44CMMTDml6Ux55m65piO44CN44Go44GE44GG5piO56K644GqU0xB44KS6Kit5a6aPC90ZXh0PgogIDx0ZXh0IHg9IjU5MCIgeT0iMTUyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4oaSIOePvuS7ozogR29vZ2xlIOOBriBPS1IgLyBTcHJpbnQg5paH5YyWPC90ZXh0PgogIDx0ZXh0IHg9IjU5MCIgeT0iMTgyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7kurrmnZDjga7lpJrmp5jmgKcgw5cg5piO56K644Gq44K044O844Or6Kit5a6aPC90ZXh0PgogIDwhLS0gSW52ZXN0b3IgcGVyc3Vhc2lvbiAtLT4KICA8cmVjdCB4PSIzMCIgeT0iMjE1IiB3aWR0aD0iMzYwIiBoZWlnaHQ9IjE0MCIgcng9IjEwIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjIxMCIgeT0iMjQ1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuaKleizh+WutuOCkuiqrOW+l+OBmeOCi+WKmzwvdGV4dD4KICA8dGV4dCB4PSIyMTAiIHk9IjI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPkpQIE1vcmdhbiDjgYvjgonos4fph5Hoqr/pgZQ8L3RleHQ+CiAgPHRleHQgeD0iMjEwIiB5PSIyOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg4fjg6LjgafjgIzlpKLjgI3jgpLopovjgZvos4fmnKzjgpLli5XjgYvjgZfjgZ88L3RleHQ+CiAgPHRleHQgeD0iMjEwIiB5PSIzMTIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ihpIg54++5LujOiBZIENvbWJpbmF0b3Ig44OH44Oi44OH44O8PC90ZXh0PgogIDx0ZXh0IHg9IjIxMCIgeT0iMzQyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7mioDooZPjgafjga/jgarjgY/jgIzmnKrmnaXjgI3jgpLlo7Ljgovog73lips8L3RleHQ+CiAgPCEtLSBNZWRpYSBtYW5pcHVsYXRpb24gLS0+CiAgPHJlY3QgeD0iNDEwIiB5PSIyMTUiIHdpZHRoPSIzNjAiIGhlaWdodD0iMTQwIiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNTkwIiB5PSIyNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Oh44OH44Kj44Ki44KS5pON5L2c44GZ44KL5YqbPC90ZXh0PgogIDx0ZXh0IHg9IjU5MCIgeT0iMjcwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44CM55m65piO546L44CN44Go44GE44GG44OW44Op44Oz44OJ44KS6Ieq44KJ5Ym16YCgPC90ZXh0PgogIDx0ZXh0IHg9IjU5MCIgeT0iMjkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6KiY6ICF44Gr56mN5qW155qE44Gr44OH44Oi44KS6KaL44Gb44GfPC90ZXh0PgogIDx0ZXh0IHg9IjU5MCIgeT0iMzEyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4oaSIOePvuS7ozogRWxvbiBNdXNrIOOBriBUd2l0dGVyIOaIpueVpTwvdGV4dD4KICA8dGV4dCB4PSI1OTAiIHk9IjM0MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OK44Op44OG44Kj44OW44GM6LOH6YeR44O75Lq65p2Q44KS5byV44GN5a+E44Gb44KLPC90ZXh0Pgo8L3N2Zz4=)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">エジソンの4つの核心能力</text>
+  <!-- 4 boxes in 2x2 -->
+  <!-- Market sensing -->
+  <rect x="30" y="55" width="360" height="140" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="210" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">市場ニーズを見抜く力</text>
+  <text x="210" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「電球」より「電力システム全体」を売る</text>
+  <text x="210" y="130" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">個別製品ではなくプラットフォームを構想</text>
+  <text x="210" y="152" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">→ 現代: Jobs の「PC でなくライフスタイルを売る」</text>
+  <text x="210" y="182" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">ニーズ発見 → プロダクト化 → インフラ整備</text>
+  <!-- Team management -->
+  <rect x="410" y="55" width="360" height="140" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="590" y="85" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">チームをマネジメントする力</text>
+  <text x="590" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">数学者・化学者・職人を統率</text>
+  <text x="590" y="130" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「10日1発明」という明確なSLAを設定</text>
+  <text x="590" y="152" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">→ 現代: Google の OKR / Sprint 文化</text>
+  <text x="590" y="182" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">人材の多様性 × 明確なゴール設定</text>
+  <!-- Investor persuasion -->
+  <rect x="30" y="215" width="360" height="140" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="210" y="245" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">投資家を説得する力</text>
+  <text x="210" y="270" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">JP Morgan から資金調達</text>
+  <text x="210" y="290" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">デモで「夢」を見せ資本を動かした</text>
+  <text x="210" y="312" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">→ 現代: Y Combinator デモデー</text>
+  <text x="210" y="342" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">技術ではなく「未来」を売る能力</text>
+  <!-- Media manipulation -->
+  <rect x="410" y="215" width="360" height="140" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="590" y="245" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">メディアを操作する力</text>
+  <text x="590" y="270" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「発明王」というブランドを自ら創造</text>
+  <text x="590" y="290" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">記者に積極的にデモを見せた</text>
+  <text x="590" y="312" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">→ 現代: Elon Musk の Twitter 戦略</text>
+  <text x="590" y="342" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">ナラティブが資金・人材を引き寄せる</text>
+</svg>
+</div>
+
 - 市場のニーズを見抜く力
 - チームをマネジメントする力
 - 投資家を説得する力
@@ -148,17 +295,60 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # メンロパーク：世界初の研究開発ラボ
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # メンロパーク研究所（1876年）
 
 > *組織的プロセスで発明する世界初のR&Dラボを設計した*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg6Hjg7Pjg63jg5Hjg7zjgq/noJTnqbbmiYDvvJrkuJbnlYzliJ3jga7ntYTnuZTnmoTjgqTjg47jg5njg7zjgrfjg6fjg7M8L3RleHQ+CiAgPCEtLSBFZGlzb24gYXQgdG9wIC0tPgogIDxyZWN0IHg9IjMxMCIgeT0iNTAiIHdpZHRoPSIxODAiIGhlaWdodD0iNTAiIHJ4PSIxMCIgZmlsbD0iI2U5MWU2MyIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSI0MDAiIHk9Ijc0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjE0IiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCqOOCuOOCveODszwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjkyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OT44K444On44OzIMOXIOizh+mHkeiqv+mBlDwvdGV4dD4KICA8IS0tIFRlYW1zIGJlbG93IC0tPgogIDxsaW5lIHgxPSI0MDAiIHkxPSIxMDAiIHgyPSI0MDAiIHkyPSIxMzUiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPGxpbmUgeDE9IjEzMCIgeTE9IjEzNSIgeDI9IjY3MCIgeTI9IjEzNSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8IS0tIE1hdGggLS0+CiAgPGxpbmUgeDE9IjEzMCIgeTE9IjEzNSIgeDI9IjEzMCIgeTI9IjE1NSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDxyZWN0IHg9IjYwIiB5PSIxNTUiIHdpZHRoPSIxNDAiIGhlaWdodD0iNTAiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iMTMwIiB5PSIxNzgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7mlbDlrabogIU8L3RleHQ+CiAgPHRleHQgeD0iMTMwIiB5PSIxOTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7nkIboq5bjg7voqIjnrpc8L3RleHQ+CiAgPCEtLSBNZWNoIC0tPgogIDxsaW5lIHgxPSIyODAiIHkxPSIxMzUiIHgyPSIyODAiIHkyPSIxNTUiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8cmVjdCB4PSIyMTAiIHk9IjE1NSIgd2lkdGg9IjE0MCIgaGVpZ2h0PSI1MCIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8dGV4dCB4PSIyODAiIHk9IjE3OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuapn+aisOW3pTwvdGV4dD4KICA8dGV4dCB4PSIyODAiIHk9IjE5NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODl+ODreODiOOCv+OCpOODl+ijveS9nDwvdGV4dD4KICA8IS0tIENoZW1pc3QgLS0+CiAgPGxpbmUgeDE9IjQzMCIgeTE9IjEzNSIgeDI9IjQzMCIgeTI9IjE1NSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDxyZWN0IHg9IjM2MCIgeT0iMTU1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjQzMCIgeT0iMTc4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5YyW5a2m6ICFPC90ZXh0PgogIDx0ZXh0IHg9IjQzMCIgeT0iMTk2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5p2Q5paZ44O75a6f6aiTPC90ZXh0PgogIDwhLS0gR2xhc3MgLS0+CiAgPGxpbmUgeDE9IjU4MCIgeTE9IjEzNSIgeDI9IjU4MCIgeTI9IjE1NSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDxyZWN0IHg9IjUxMCIgeT0iMTU1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjUwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjU4MCIgeT0iMTc4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Ks44Op44K56IG35Lq6PC90ZXh0PgogIDx0ZXh0IHg9IjU4MCIgeT0iMTk2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+55yf56m6566h44O76Zu755CDPC90ZXh0PgogIDwhLS0gT3V0cHV0IC0tPgogIDxyZWN0IHg9IjIwMCIgeT0iMjY1IiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjU1IiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44CMMTDml6XjgZTjgajjgavlsI/jgZXjgarnmbrmmI7jgI08L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgIw244O25pyI44GU44Go44Gr5aSn44GN44Gq55m65piO44CN4oaQIOS4lueVjOWIneOBrueZuuaYjlNMQTwvdGV4dD4KICA8IS0tIEFycm93IGRvd24gLS0+CiAgPGxpbmUgeDE9IjQwMCIgeTE9IjIwNSIgeDI9IjQwMCIgeTI9IjI2NSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8cG9seWdvbiBwb2ludHM9IjQwMCwyNjUgMzkyLDI1MCA0MDgsMjUwIiBmaWxsPSIjZTkxZTYzIi8+CiAgPCEtLSBHb29nbGUgWCBjb21wYXJpc29uIC0tPgogIDx0ZXh0IHg9IjQwMCIgeT0iMzYwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4oaSIEdvb2dsZSBYIC8gQXBwbGUgUiZhbXA7RCAvIEJlbGwgTGFicyDjga7nm7TmjqXjga7npZblhYg8L3RleHQ+Cjwvc3ZnPg==)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">メンロパーク研究所：世界初の組織的イノベーション</text>
+  <!-- Edison at top -->
+  <rect x="310" y="50" width="180" height="50" rx="10" fill="#e91e63" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="74" text-anchor="middle" fill="#ffffff" font-size="14" font-weight="bold" font-family="sans-serif">エジソン</text>
+  <text x="400" y="92" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">ビジョン × 資金調達</text>
+  <!-- Teams below -->
+  <line x1="400" y1="100" x2="400" y2="135" stroke="#f9a825" stroke-width="2"/>
+  <line x1="130" y1="135" x2="670" y2="135" stroke="#f9a825" stroke-width="2"/>
+  <!-- Math -->
+  <line x1="130" y1="135" x2="130" y2="155" stroke="#f9a825" stroke-width="1.5"/>
+  <rect x="60" y="155" width="140" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="130" y="178" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">数学者</text>
+  <text x="130" y="196" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">理論・計算</text>
+  <!-- Mech -->
+  <line x1="280" y1="135" x2="280" y2="155" stroke="#f9a825" stroke-width="1.5"/>
+  <rect x="210" y="155" width="140" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="280" y="178" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">機械工</text>
+  <text x="280" y="196" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">プロトタイプ製作</text>
+  <!-- Chemist -->
+  <line x1="430" y1="135" x2="430" y2="155" stroke="#f9a825" stroke-width="1.5"/>
+  <rect x="360" y="155" width="140" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="430" y="178" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">化学者</text>
+  <text x="430" y="196" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">材料・実験</text>
+  <!-- Glass -->
+  <line x1="580" y1="135" x2="580" y2="155" stroke="#f9a825" stroke-width="1.5"/>
+  <rect x="510" y="155" width="140" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="580" y="178" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ガラス職人</text>
+  <text x="580" y="196" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">真空管・電球</text>
+  <!-- Output -->
+  <rect x="200" y="265" width="400" height="55" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="400" y="290" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">「10日ごとに小さな発明」</text>
+  <text x="400" y="310" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「6ヶ月ごとに大きな発明」← 世界初の発明SLA</text>
+  <!-- Arrow down -->
+  <line x1="400" y1="205" x2="400" y2="265" stroke="#e91e63" stroke-width="2"/>
+  <polygon points="400,265 392,250 408,250" fill="#e91e63"/>
+  <!-- Google X comparison -->
+  <text x="400" y="360" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">→ Google X / Apple R&amp;D / Bell Labs の直接の祖先</text>
+</svg>
+</div>
+
 - ニュージャージー州に設立された**世界初の産業研究所**
 - 常時14-25人のエンジニア・科学者・職人が在籍
 - 「10日ごとに小さな発明、6ヶ月ごとに大きな発明」が目標
@@ -169,7 +359,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 発明ファクトリーのビジネスモデル
 
 
@@ -182,6 +372,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 特許戦略 ― 攻撃的IP経営
 
 > *1,093件の攻撃的特許戦略はApple/Qualcommの原型*
@@ -196,11 +387,43 @@ style: |
 
 ---
 
+<!-- _class: invert fit-64 -->
 # インフラ戦略 ― 製品だけでなくシステムを売る
 
 > *製品ではなくシステムを売る垂直統合がGAFAMに受け継がれた*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgqjjgrjjgr3jg7Pjga7nibnoqLHmiKbnlaXvvJrmlLvmkoPnmoRJUOe1jOWWtjwvdGV4dD4KICA8IS0tIFRvdGFsIHBhdGVudHMgdmlzdWFsIC0tPgogIDwhLS0gR3JpZCBvZiBwYXRlbnQgc3F1YXJlczogMTA5MyB0b3RhbCwgc2hvdyBwcm9wb3J0aW9uYWxseSAtLT4KICA8dGV4dCB4PSI0MDAiIHk9IjY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+MSwwOTPku7bjga7nsbPlm73nibnoqLEg4oCUIOeorumhnuWIpeWGheioszwvdGV4dD4KICA8IS0tIEltcHJvdmVtZW50IHBhdGVudHMgKGxhcmdlKSAtLT4KICA8cmVjdCB4PSI2MCIgeT0iODAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMTQwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIyMTAiIHk9IjE0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIyOCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5+NzAlPC90ZXh0PgogIDx0ZXh0IHg9IjIxMCIgeT0iMTY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjEzIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5pS56Imv54m56KixPC90ZXh0PgogIDx0ZXh0IHg9IjIxMCIgeT0iMTgzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5LuW6ICF44Gu55m65piO44KS5a6f55So5YyW44O75pS56ImvPC90ZXh0PgogIDwhLS0gT3JpZ2luYWwgcGF0ZW50cyAtLT4KICA8cmVjdCB4PSIzODAiIHk9IjgwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE0MCIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNDcwIiB5PSIxNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+fjMwJTwvdGV4dD4KICA8dGV4dCB4PSI0NzAiIHk9IjE2NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMyIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWOn+eZuuaYjjwvdGV4dD4KICA8dGV4dCB4PSI0NzAiIHk9IjE4MyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPueLrOiHquOBruaWsOimj+eZuuaYjjwvdGV4dD4KICA8IS0tIFN0cmF0ZWd5IC0tPgogIDxyZWN0IHg9IjU4MCIgeT0iODAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMTQwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjY2MCIgeT0iMTIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Ziy6KGb55qE54m56KixPC90ZXh0PgogIDx0ZXh0IHg9IjY2MCIgeT0iMTQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+56u25ZCI5o6S6ZmkPC90ZXh0PgogIDx0ZXh0IHg9IjY2MCIgeT0iMTY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5pS75pKD55qE54m56KixPC90ZXh0PgogIDx0ZXh0IHg9IjY2MCIgeT0iMTgzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Op44Kk44K744Oz44K55Y+O5YWlPC90ZXh0PgogIDwhLS0gQmF0dGxlIHdpdGggU3dhbiAtLT4KICA8cmVjdCB4PSI2MCIgeT0iMjUwIiB3aWR0aD0iNjgwIiBoZWlnaHQ9IjEwMCIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8dGV4dCB4PSI0MDAiIHk9IjI3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMyIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7pm7vnkIPnibnoqLHoqLToqJ8gKEVkaXNvbiB2cyBTd2FuKTwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjI5OCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCueODr+ODs+eJueiosSDihpDihpIg44Ko44K444K944Oz54m56KixIOKGkiDplbfmnJ/oqLToqJ8g4oaSIOWQiOW8geS8muekvuOAjEVkaXN3YW7jgI3jgaflkozop6M8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7oqLToqJ/jgrPjgrnjg4jjgojjgorluILloLTni6zljaDjgYzmnInliKnjgajliKTmlq0gPSDnj77ku6Pjga7nibnoqLHjg5fjg7zjg6vjgajlkIzjgZjnmbrmg7M8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzMzgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ihpIgQXBwbGUgdnMgU2Ftc3VuZyAvIFF1YWxjb21t44Gu44Op44Kk44K744Oz44K544Oi44OH44Or44Gu5Y6f5Z6LPC90ZXh0Pgo8L3N2Zz4=)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">エジソンの特許戦略：攻撃的IP経営</text>
+  <!-- Total patents visual -->
+  <!-- Grid of patent squares: 1093 total, show proportionally -->
+  <text x="400" y="65" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">1,093件の米国特許 — 種類別内訳</text>
+  <!-- Improvement patents (large) -->
+  <rect x="60" y="80" width="300" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="210" y="140" text-anchor="middle" fill="#f9a825" font-size="28" font-weight="bold" font-family="sans-serif">~70%</text>
+  <text x="210" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">改良特許</text>
+  <text x="210" y="183" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">他者の発明を実用化・改良</text>
+  <!-- Original patents -->
+  <rect x="380" y="80" width="180" height="140" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="470" y="140" text-anchor="middle" fill="#e91e63" font-size="24" font-weight="bold" font-family="sans-serif">~30%</text>
+  <text x="470" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">原発明</text>
+  <text x="470" y="183" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">独自の新規発明</text>
+  <!-- Strategy -->
+  <rect x="580" y="80" width="160" height="140" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="660" y="120" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">防衛的特許</text>
+  <text x="660" y="140" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">競合排除</text>
+  <text x="660" y="165" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">攻撃的特許</text>
+  <text x="660" y="183" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">ライセンス収入</text>
+  <!-- Battle with Swan -->
+  <rect x="60" y="250" width="680" height="100" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/>
+  <text x="400" y="275" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">電球特許訴訟 (Edison vs Swan)</text>
+  <text x="400" y="298" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">スワン特許 ←→ エジソン特許 → 長期訴訟 → 合弁会社「Ediswan」で和解</text>
+  <text x="400" y="318" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">訴訟コストより市場独占が有利と判断 = 現代の特許プールと同じ発想</text>
+  <text x="400" y="338" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ Apple vs Samsung / Qualcommのライセンスモデルの原型</text>
+</svg>
+</div>
+
 - 電球を売るだけでは不十分 → **電力インフラごと構築**
 - 1882年：パールストリート発電所（マンハッタン）開設
 - 発電所 + 送電線 + 電力メーター + 電球 = **垂直統合**
@@ -211,7 +434,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # エジソン vs テスラ：2つのモデル
 
 
@@ -224,11 +447,41 @@ style: |
 
 ---
 
+<!-- _class: invert fit-58 -->
 # テスラは正しかった、でもエジソンが勝った
 
 > *技術的優位より市場制圧速度がイノベーションの勝敗を決めた*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7pm7vmtYHmiKbkuonvvJrmioDooZPnmoTmraPop6MgdnMg44OT44K444ON44K544Gu5Yud6ICFPC90ZXh0PgogIDwhLS0gTGVmdDogREMgKEVkaXNvbikgLS0+CiAgPHJlY3QgeD0iMzAiIHk9IjYwIiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjMwMCIgcng9IjEyIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjIwMCIgeT0iOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Ko44K444K944OzIChEQyk8L3RleHQ+CiAgPHRleHQgeD0iMjAwIiB5PSIxMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7inJcg6YCB6Zu744Ot44K544GM5aSn44GN44GEPC90ZXh0PgogIDx0ZXh0IHg9IjIwMCIgeT0iMTU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4pyXIOmVt+i3nemboumAgembu+OBq+S4jemBqTwvdGV4dD4KICA8dGV4dCB4PSIyMDAiIHk9IjE4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKckyDml6LlrZjjgqTjg7Pjg5Xjg6njgYLjgoo8L3RleHQ+CiAgPHRleHQgeD0iMjAwIiB5PSIyMDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7inJMg6LOH5pys44O75pS/5rK75Yqb44GC44KKPC90ZXh0PgogIDx0ZXh0IHg9IjIwMCIgeT0iMjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4pyTIOW8t+WKm+OBquODoeODh+OCo+OCouaIpueVpTwvdGV4dD4KICA8dGV4dCB4PSIyMDAiIHk9IjI3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIyMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuaKgOihk+OBp+iyoOOBkTwvdGV4dD4KICA8dGV4dCB4PSIyMDAiIHk9IjMxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxNCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODk+OCuOODjeOCueOBr+WLneWIqTwvdGV4dD4KICA8IS0tIFJpZ2h0OiBBQyAoVGVzbGEvV2VzdGluZ2hvdXNlKSAtLT4KICA8cmVjdCB4PSI0MzAiIHk9IjYwIiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjMwMCIgcng9IjEyIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0IHg9IjYwMCIgeT0iOTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTUiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OG44K544OpIC8g44Km44Kn44K544OB44Oz44Kw44OP44Km44K5IChBQyk8L3RleHQ+CiAgPHRleHQgeD0iNjAwIiB5PSIxMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7inJMg6YCB6Zu75Yq5546H44GM6auY44GEPC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iMTU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4pyTIOmVt+i3nemboumAgembu+OBjOWPr+iDvTwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjE4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKckyDlpInlnKfjgYzlrrnmmJM8L3RleHQ+CiAgPHRleHQgeD0iNjAwIiB5PSIyMDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7inJcg44Kk44Oz44OV44Op5qeL56+J5Yqb44Gq44GXPC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iMjMwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4pyXIOODk+OCuOODjeOCuee1jOmok+OBjOiWhOOBhDwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjI3NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIyMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuaKgOihk+OBp+WLneOBoTwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjMxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxNCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPumVt+acn+OBp+OBr+aZruWPijwvdGV4dD4KICA8IS0tIFZTIGluIG1pZGRsZSAtLT4KICA8dGV4dCB4PSI0MDAiIHk9IjIxNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIyMiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5WUzwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjM1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuaVmeiok++8muaKgOihk+eahOato+OBl+OBlSDiiaAg44OT44K444ON44K544Gu5Yud5YipPC90ZXh0Pgo8L3N2Zz4=)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">電流戦争：技術的正解 vs ビジネスの勝者</text>
+  <!-- Left: DC (Edison) -->
+  <rect x="30" y="60" width="340" height="300" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="200" y="90" text-anchor="middle" fill="#e91e63" font-size="15" font-weight="bold" font-family="sans-serif">エジソン (DC)</text>
+  <text x="200" y="130" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">✗ 送電ロスが大きい</text>
+  <text x="200" y="155" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">✗ 長距離送電に不適</text>
+  <text x="200" y="180" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">✓ 既存インフラあり</text>
+  <text x="200" y="205" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">✓ 資本・政治力あり</text>
+  <text x="200" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">✓ 強力なメディア戦略</text>
+  <text x="200" y="275" text-anchor="middle" fill="#e91e63" font-size="20" font-family="sans-serif">技術で負け</text>
+  <text x="200" y="310" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">ビジネスは勝利</text>
+  <!-- Right: AC (Tesla/Westinghouse) -->
+  <rect x="430" y="60" width="340" height="300" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="600" y="90" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">テスラ / ウェスチングハウス (AC)</text>
+  <text x="600" y="130" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">✓ 送電効率が高い</text>
+  <text x="600" y="155" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">✓ 長距離送電が可能</text>
+  <text x="600" y="180" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">✓ 変圧が容易</text>
+  <text x="600" y="205" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">✗ インフラ構築力なし</text>
+  <text x="600" y="230" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">✗ ビジネス経験が薄い</text>
+  <text x="600" y="275" text-anchor="middle" fill="#f9a825" font-size="20" font-family="sans-serif">技術で勝ち</text>
+  <text x="600" y="310" text-anchor="middle" fill="#aaaaaa" font-size="14" font-family="sans-serif">長期では普及</text>
+  <!-- VS in middle -->
+  <text x="400" y="215" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="bold" font-family="sans-serif">VS</text>
+  <text x="400" y="355" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">教訓：技術的正しさ ≠ ビジネスの勝利</text>
+</svg>
+</div>
+
 - **技術的事実：** 交流（AC）は直流（DC）より送電効率が圧倒的に優れていた
 - **ビジネス的事実：** エジソンはDCインフラに巨額投資済みだった
 - エジソンの戦略：交流の危険性を宣伝（動物を交流で感電死させるデモ）
@@ -239,17 +492,53 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 現代テック企業との類似
 
 
 ---
 
+<!-- _class: invert fit-64 -->
 # エジソン → 現代テック企業マッピング
 
 > *130年後のAmazonとAppleはエジソンモデルを再現している*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgqjjgrjjgr3jg7Mg4oaSIOePvuS7o+ODhuODg+OCr+S8gealre+8mjE1MOW5tOOBrkROQTwvdGV4dD4KICA8IS0tIFRhYmxlIGhlYWRlciAtLT4KICA8cmVjdCB4PSI0MCIgeT0iNTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iNDAiIHJ4PSI0IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjE3MCIgeT0iNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Ko44K444K944Oz44Gu5oim55WlPC90ZXh0PgogIDxyZWN0IHg9IjMxMCIgeT0iNTAiIHdpZHRoPSI0NDAiIGhlaWdodD0iNDAiIHJ4PSI0IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogIDx0ZXh0IHg9IjUzMCIgeT0iNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+54++5Luj5LyB5qWt44Gu5a++5b+cPC90ZXh0PgogIDwhLS0gUm93cyAtLT4KICA8cmVjdCB4PSI0MCIgeT0iMTAwIiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjQ1IiByeD0iMiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjE3MCIgeT0iMTIyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Oh44Oz44Ot44OR44O844Kv56CU56m25omAPC90ZXh0PgogICAgPHRleHQgeD0iMTcwIiB5PSIxMzciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ihpAg44Ko44K444K944OzPC90ZXh0PgogICAgPHJlY3QgeD0iMzEwIiB5PSIxMDAiIHdpZHRoPSI0NDAiIGhlaWdodD0iNDUiIHJ4PSIyIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iNTMwIiB5PSIxMjciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5Hb29nbGUgWCAvIEFwcGxlIFBhcmsgLyBCZWxsIExhYnM8L3RleHQ+PHJlY3QgeD0iNDAiIHk9IjE1MiIgd2lkdGg9IjI2MCIgaGVpZ2h0PSI0NSIgcng9IjIiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSIxNzAiIHk9IjE3NCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPueJueioseOBq+OCiOOCi+eLrOWNoDwvdGV4dD4KICAgIDx0ZXh0IHg9IjE3MCIgeT0iMTg5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4oaQIOOCqOOCuOOCveODszwvdGV4dD4KICAgIDxyZWN0IHg9IjMxMCIgeT0iMTUyIiB3aWR0aD0iNDQwIiBoZWlnaHQ9IjQ1IiByeD0iMiIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjUzMCIgeT0iMTc5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+UXVhbGNvbW0g44Op44Kk44K744Oz44K544Oi44OH44OrPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIyMDQiIHdpZHRoPSIyNjAiIGhlaWdodD0iNDUiIHJ4PSIyIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTcwIiB5PSIyMjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lnoLnm7TntbHlkIjjgqTjg7Pjg5Xjg6k8L3RleHQ+CiAgICA8dGV4dCB4PSIxNzAiIHk9IjI0MSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKGkCDjgqjjgrjjgr3jg7M8L3RleHQ+CiAgICA8cmVjdCB4PSIzMTAiIHk9IjIwNCIgd2lkdGg9IjQ0MCIgaGVpZ2h0PSI0NSIgcng9IjIiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI1MzAiIHk9IjIzMSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPkFwcGxlICjjg4/jg7zjg4krT1MrQXBwIFN0b3JlKTwvdGV4dD48cmVjdCB4PSI0MCIgeT0iMjU2IiB3aWR0aD0iMjYwIiBoZWlnaHQ9IjQ1IiByeD0iMiIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjMzMzMzU1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjE3MCIgeT0iMjc4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Oh44OH44Kj44Ki5pON5L2c44O744OW44Op44Oz44OH44Kj44Oz44KwPC90ZXh0PgogICAgPHRleHQgeD0iMTcwIiB5PSIyOTMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ihpAg44Ko44K444K944OzPC90ZXh0PgogICAgPHJlY3QgeD0iMzEwIiB5PSIyNTYiIHdpZHRoPSI0NDAiIGhlaWdodD0iNDUiIHJ4PSIyIiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iNTMwIiB5PSIyODMiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5FbG9uIE11c2sgLyBUd2l0dGVy5oim55WlPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIzMDgiIHdpZHRoPSIyNjAiIGhlaWdodD0iNDUiIHJ4PSIyIiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiMzMzMzNTUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTcwIiB5PSIzMzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7ku5bogIXnmbrmmI7jga7llYbmpa3ljJY8L3RleHQ+CiAgICA8dGV4dCB4PSIxNzAiIHk9IjM0NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuKGkCDjgqjjgrjjgr3jg7M8L3RleHQ+CiAgICA8cmVjdCB4PSIzMTAiIHk9IjMwOCIgd2lkdGg9IjQ0MCIgaGVpZ2h0PSI0NSIgcng9IjIiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iIzMzMzM1NSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI1MzAiIHk9IjMzNSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPkZhY2Vib29r44CM44Kz44OU44O877yG44K544Kx44O844Or44CNPC90ZXh0PgogIDwhLS0gQXJyb3cgYmV0d2VlbiBjb2x1bW5zIC0tPgogIDx0ZXh0IHg9IjI5NSIgeT0iMjE1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjIyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+4oaSPC90ZXh0Pgo8L3N2Zz4=)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">エジソン → 現代テック企業：150年のDNA</text>
+  <!-- Table header -->
+  <rect x="40" y="50" width="260" height="40" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="170" y="75" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">エジソンの戦略</text>
+  <rect x="310" y="50" width="440" height="40" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
+  <text x="530" y="75" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">現代企業の対応</text>
+  <!-- Rows -->
+  <rect x="40" y="100" width="260" height="45" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="170" y="122" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">メンロパーク研究所</text>
+    <text x="170" y="137" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">← エジソン</text>
+    <rect x="310" y="100" width="440" height="45" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="530" y="127" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Google X / Apple Park / Bell Labs</text><rect x="40" y="152" width="260" height="45" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="170" y="174" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">特許による独占</text>
+    <text x="170" y="189" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">← エジソン</text>
+    <rect x="310" y="152" width="440" height="45" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="530" y="179" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Qualcomm ライセンスモデル</text><rect x="40" y="204" width="260" height="45" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="170" y="226" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">垂直統合インフラ</text>
+    <text x="170" y="241" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">← エジソン</text>
+    <rect x="310" y="204" width="440" height="45" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="530" y="231" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Apple (ハード+OS+App Store)</text><rect x="40" y="256" width="260" height="45" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="170" y="278" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">メディア操作・ブランディング</text>
+    <text x="170" y="293" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">← エジソン</text>
+    <rect x="310" y="256" width="440" height="45" rx="2" fill="#1a1a2e" stroke="#333355" stroke-width="1"/>
+    <text x="530" y="283" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Elon Musk / Twitter戦略</text><rect x="40" y="308" width="260" height="45" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="170" y="330" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">他者発明の商業化</text>
+    <text x="170" y="345" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">← エジソン</text>
+    <rect x="310" y="308" width="440" height="45" rx="2" fill="#16213e" stroke="#333355" stroke-width="1"/>
+    <text x="530" y="335" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Facebook「コピー＆スケール」</text>
+  <!-- Arrow between columns -->
+  <text x="295" y="215" text-anchor="middle" fill="#ffffff" font-size="22" font-family="sans-serif">→</text>
+</svg>
+</div>
+
 - **メンロパーク研究所** → Google X / Apple Park R&D
 - **特許による独占** → Qualcommのライセンスモデル
 - **インフラ垂直統合** → Apple（ハード+OS+サービス）
@@ -260,11 +549,54 @@ style: |
 
 ---
 
+<!-- _class: invert fit-70 -->
 # スティーブ・ジョブズとの類似点
 
 > *発明より商業化・デザインより体験—2人の起業家思想が一致*
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgqjjgrjjgr3jg7MgdnMg44K444On44OW44K677yaMTUw5bm044KS6LaF44GI44GfRE5BPC90ZXh0PgogIDwhLS0gVHdvIGNvbHVtbnMgY29tcGFyaXNvbiAtLT4KICA8cmVjdCB4PSIyMCIgeT0iNTAiIHdpZHRoPSIzNTAiIGhlaWdodD0iMzEwIiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iMTk1IiB5PSI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5UaG9tYXMgRWRpc29uICgxODQ3LTE5MzEpPC90ZXh0PgogIDxyZWN0IHg9IjQzMCIgeT0iNTAiIHdpZHRoPSIzNTAiIGhlaWdodD0iMzEwIiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNjA1IiB5PSI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxNCIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5TdGV2ZSBKb2JzICgxOTU1LTIwMTEpPC90ZXh0PgogIDwhLS0gQ29tbW9uIHRyYWl0cyAtLT4KICA8cmVjdCB4PSI0MCIgeT0iMTAwIiB3aWR0aD0iMzEwIiBoZWlnaHQ9IjQyIiByeD0iNCIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjE5NSIgeT0iMTE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Zu755CDPeOCueODr+ODs+aUueiJrzwvdGV4dD4KICAgIDx0ZXh0IHg9IjE5NSIgeT0iMTMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7mlLnoia/jgYzlpKnmiY08L3RleHQ+CiAgICA8cmVjdCB4PSI0NTAiIHk9IjEwMCIgd2lkdGg9IjMxMCIgaGVpZ2h0PSI0MiIgcng9IjQiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI2MDUiIHk9IjExNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPmlQb2Q9TVAz6Z2e5YidPC90ZXh0PgogICAgPHRleHQgeD0iNjA1IiB5PSIxMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuaUueiJr+OBjOWkqeaJjTwvdGV4dD48cmVjdCB4PSI0MCIgeT0iMTUwIiB3aWR0aD0iMzEwIiBoZWlnaHQ9IjQyIiByeD0iNCIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjE5NSIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Zu755CD44Gu6KaL44Gf55uu44KS6YeN6KaWPC90ZXh0PgogICAgPHRleHQgeD0iMTk1IiB5PSIxODIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS9k+mok+OBuOOBruOBk+OBoOOCj+OCijwvdGV4dD4KICAgIDxyZWN0IHg9IjQ1MCIgeT0iMTUwIiB3aWR0aD0iMzEwIiBoZWlnaHQ9IjQyIiByeD0iNCIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjYwNSIgeT0iMTY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OH44K244Kk44Oz5ZOy5a2mPC90ZXh0PgogICAgPHRleHQgeD0iNjA1IiB5PSIxODIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuS9k+mok+OBuOOBruOBk+OBoOOCj+OCijwvdGV4dD48cmVjdCB4PSI0MCIgeT0iMjAwIiB3aWR0aD0iMzEwIiBoZWlnaHQ9IjQyIiByeD0iNCIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjE5NSIgeT0iMjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Oh44Oz44Ot44OR44O844Kv5YWo5ZOhPC90ZXh0PgogICAgPHRleHQgeD0iMTk1IiB5PSIyMzIiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iOSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODgeODvOODoOOBruaJjeiDveW8leWHujwvdGV4dD4KICAgIDxyZWN0IHg9IjQ1MCIgeT0iMjAwIiB3aWR0aD0iMzEwIiBoZWlnaHQ9IjQyIiByeD0iNCIgZmlsbD0iIzFhMWEyZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjEiLz4KICAgIDx0ZXh0IHg9IjYwNSIgeT0iMjE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Km44Kp44K6PeODhuOCueODqeeahOWtmOWcqDwvdGV4dD4KICAgIDx0ZXh0IHg9IjYwNSIgeT0iMjMyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg4Hjg7zjg6Djga7miY3og73lvJXlh7o8L3RleHQ+PHJlY3QgeD0iNDAiIHk9IjI1MCIgd2lkdGg9IjMxMCIgaGVpZ2h0PSI0MiIgcng9IjQiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSIxOTUiIHk9IjI2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuODh+ODouOBjOizh+mHkeOCkumbhuOCgeOBnzwvdGV4dD4KICAgIDx0ZXh0IHg9IjE5NSIgeT0iMjgyIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjkiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg5fjg6zjgrzjg7Pjga7lpKnmiY08L3RleHQ+CiAgICA8cmVjdCB4PSI0NTAiIHk9IjI1MCIgd2lkdGg9IjMxMCIgaGVpZ2h0PSI0MiIgcng9IjQiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgICA8dGV4dCB4PSI2MDUiIHk9IjI2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2U5MWU2MyIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPk1hY3dvcmxkIEtleW5vdGU8L3RleHQ+CiAgICA8dGV4dCB4PSI2MDUiIHk9IjI4MiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OX44Os44K844Oz44Gu5aSp5omNPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIzMDAiIHdpZHRoPSIzMTAiIGhlaWdodD0iNDIiIHJ4PSI0IiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iMTk1IiB5PSIzMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lhYPjg5Hjg7zjg4jjg4rjg7zjgpLliIfjgos8L3RleHQ+CiAgICA8dGV4dCB4PSIxOTUiIHk9IjMzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5q6L6YW344Gq44OT44K444ON44K55Yik5patPC90ZXh0PgogICAgPHJlY3QgeD0iNDUwIiB5PSIzMDAiIHdpZHRoPSIzMTAiIGhlaWdodD0iNDIiIHJ4PSI0IiBmaWxsPSIjMWExYTJlIiBzdHJva2U9IiNlOTFlNjMiIHN0cm9rZS13aWR0aD0iMSIvPgogICAgPHRleHQgeD0iNjA1IiB5PSIzMTYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7lhbHlkIzlibXmpa3ogIXjgpLop6Ppm4c8L3RleHQ+CiAgICA8dGV4dCB4PSI2MDUiIHk9IjMzMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSI5IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5q6L6YW344Gq44OT44K444ON44K55Yik5patPC90ZXh0PgogIDwhLS0gQnJpZGdlIGJldHdlZW4gLS0+CiAgPHJlY3QgeD0iMzc1IiB5PSIyMDAiIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgcng9IjgiIGZpbGw9IiMxYTFhMmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyMjgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7iiaE8L3RleHQ+CiAgPHRleHQgeD0iNDAwIiB5PSIzNzUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTIiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj4xNTDlubTjgpLotoXjgYjjgablkIzjgZjjgIzotbfmpa3lrrbjga7lnovjgI3jgYznubDjgorov5TjgZXjgozjgos8L3RleHQ+Cjwvc3ZnPg==)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">エジソン vs ジョブズ：150年を超えたDNA</text>
+  <!-- Two columns comparison -->
+  <rect x="20" y="50" width="350" height="310" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="195" y="80" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold" font-family="sans-serif">Thomas Edison (1847-1931)</text>
+  <rect x="430" y="50" width="350" height="310" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+  <text x="605" y="80" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold" font-family="sans-serif">Steve Jobs (1955-2011)</text>
+  <!-- Common traits -->
+  <rect x="40" y="100" width="310" height="42" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+    <text x="195" y="116" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">電球=スワン改良</text>
+    <text x="195" y="132" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">改良が天才</text>
+    <rect x="450" y="100" width="310" height="42" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+    <text x="605" y="116" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">iPod=MP3非初</text>
+    <text x="605" y="132" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">改良が天才</text><rect x="40" y="150" width="310" height="42" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+    <text x="195" y="166" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">電球の見た目を重視</text>
+    <text x="195" y="182" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">体験へのこだわり</text>
+    <rect x="450" y="150" width="310" height="42" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+    <text x="605" y="166" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">デザイン哲学</text>
+    <text x="605" y="182" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">体験へのこだわり</text><rect x="40" y="200" width="310" height="42" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+    <text x="195" y="216" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">メンロパーク全員</text>
+    <text x="195" y="232" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">チームの才能引出</text>
+    <rect x="450" y="200" width="310" height="42" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+    <text x="605" y="216" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">ウォズ=テスラ的存在</text>
+    <text x="605" y="232" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">チームの才能引出</text><rect x="40" y="250" width="310" height="42" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+    <text x="195" y="266" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">デモが資金を集めた</text>
+    <text x="195" y="282" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">プレゼンの天才</text>
+    <rect x="450" y="250" width="310" height="42" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+    <text x="605" y="266" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Macworld Keynote</text>
+    <text x="605" y="282" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">プレゼンの天才</text><rect x="40" y="300" width="310" height="42" rx="4" fill="#1a1a2e" stroke="#f9a825" stroke-width="1"/>
+    <text x="195" y="316" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">元パートナーを切る</text>
+    <text x="195" y="332" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">残酷なビジネス判断</text>
+    <rect x="450" y="300" width="310" height="42" rx="4" fill="#1a1a2e" stroke="#e91e63" stroke-width="1"/>
+    <text x="605" y="316" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">共同創業者を解雇</text>
+    <text x="605" y="332" text-anchor="middle" fill="#aaaaaa" font-size="9" font-family="sans-serif">残酷なビジネス判断</text>
+  <!-- Bridge between -->
+  <rect x="375" y="200" width="50" height="50" rx="8" fill="#1a1a2e" stroke="#ffffff" stroke-width="1"/>
+  <text x="400" y="228" text-anchor="middle" fill="#ffffff" font-size="18" font-family="sans-serif">≡</text>
+  <text x="400" y="375" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">150年を超えて同じ「起業家の型」が繰り返される</text>
+</svg>
+</div>
+
 - **「発明」より「統合」が天才** ― iPodは最初のMP3プレーヤーではない
 - **デザインと体験への執着** ― エジソンも電球の「見た目」にこだわった
 - **チームの才能を引き出す** ― ウォズニアック = テスラ的存在
@@ -274,14 +606,55 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # イノベーションの教訓
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgqTjg47jg5njg7zjgrfjg6fjg7MgPSDnmbrmmI4gw5cg5ZWG5qWt5YyWIMOXIOOCv+OCpOODn+ODs+OCsCDDlyDmlL/msrs8L3RleHQ+CiAgPCEtLSBDZW50cmFsIGZvcm11bGEgLS0+CiAgPHJlY3QgeD0iMjUwIiB5PSIxNTUiIHdpZHRoPSIzMDAiIGhlaWdodD0iNjAiIHJ4PSIxMiIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIuNSIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMTgzIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCpOODjuODmeODvOOCt+ODp+ODszwvdGV4dD4KICA8dGV4dCB4PSI0MDAiIHk9IjIwMyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPueZuuaYjiDDlyDllYbmpa3ljJYgw5cg44K/44Kk44Of44Oz44KwIMOXIOaUv+ayuzwvdGV4dD4KICA8IS0tIDYgbGVzc29uIG5vZGVzIC0tPgogIDwhLS0gVG9wIC0tPgogIDxyZWN0IHg9IjMxMCIgeT0iNjAiIHdpZHRoPSIxODAiIGhlaWdodD0iNDUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNDAwIiB5PSI4MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPueZuuaYjiDiiaAg44Kk44OO44OZ44O844K344On44OzPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iOTciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7llYbmpa3ljJbjgZfjgabliJ3jgoHjgabkvqHlgKQ8L3RleHQ+CiAgPGxpbmUgeDE9IjQwMCIgeTE9IjEwNSIgeDI9IjQwMCIgeTI9IjE1NSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDwhLS0gQm90dG9tIC0tPgogIDxyZWN0IHg9IjMxMCIgeT0iMjcwIiB3aWR0aD0iMTgwIiBoZWlnaHQ9IjQ1IiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDx0ZXh0IHg9IjQwMCIgeT0iMjkwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44OK44Op44OG44Kj44OW44Gu5YqbPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMzA3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44CM55m65piO546L44CN44GM6LOH6YeR44KS6ZuG44KB44GfPC90ZXh0PgogIDxsaW5lIHgxPSI0MDAiIHkxPSIyMTUiIHgyPSI0MDAiIHkyPSIyNzAiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8IS0tIExlZnQgdG9wIC0tPgogIDxyZWN0IHg9IjUwIiB5PSIxMDAiIHdpZHRoPSIxNzAiIGhlaWdodD0iNDUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iMTM1IiB5PSIxMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jg4Hjg7zjg6DjgYzlgIvkurrjgavli53jgos8L3RleHQ+CiAgPHRleHQgeD0iMTM1IiB5PSIxMzciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgrfjgrnjg4bjg6DjgYzmjIHntprjgZnjgos8L3RleHQ+CiAgPGxpbmUgeDE9IjIyMCIgeTE9IjE0NSIgeDI9IjMwNSIgeTI9IjE3NSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgogIDwhLS0gTGVmdCBib3R0b20gLS0+CiAgPHJlY3QgeD0iNTAiIHk9IjI0MCIgd2lkdGg9IjE3MCIgaGVpZ2h0PSI0NSIgcng9IjgiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8dGV4dCB4PSIxMzUiIHk9IjI2MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2Y5YTgyNSIgZm9udC1zaXplPSIxMSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCpOODs+ODleODqeOCkuWItuOBmeOCizwvdGV4dD4KICA8dGV4dCB4PSIxMzUiIHk9IjI3NyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuiAheOBjOW4guWgtOOCkuWItuOBmeOCizwvdGV4dD4KICA8bGluZSB4MT0iMjIwIiB5MT0iMjYzIiB4Mj0iMzA1IiB5Mj0iMjAwIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPCEtLSBSaWdodCB0b3AgLS0+CiAgPHJlY3QgeD0iNTgwIiB5PSIxMDAiIHdpZHRoPSIxNzAiIGhlaWdodD0iNDUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNjY1IiB5PSIxMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7nibnoqLHjga/mlLvmkoPlhbXlmag8L3RleHQ+CiAgPHRleHQgeD0iNjY1IiB5PSIxMzciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj5JUOOBruaIpueVpeeahOa0u+eUqDwvdGV4dD4KICA8bGluZSB4MT0iNTgwIiB5MT0iMTQ1IiB4Mj0iNDk1IiB5Mj0iMTc1IiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPCEtLSBSaWdodCBib3R0b20gLS0+CiAgPHJlY3QgeD0iNTgwIiB5PSIyNDAiIHdpZHRoPSIxNzAiIGhlaWdodD0iNDUiIHJ4PSI4IiBmaWxsPSIjMTYyMTNlIiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMS41Ii8+CiAgPHRleHQgeD0iNjY1IiB5PSIyNjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTEiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7mioDooZPnmoTmraPjgZfjgZXjgaDjgZHjgafjga88L3RleHQ+CiAgPHRleHQgeD0iNjY1IiB5PSIyNzciIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNhYWFhYWEiIGZvbnQtc2l6ZT0iMTAiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7kuI3ljYHliIY8L3RleHQ+CiAgPGxpbmUgeDE9IjU4MCIgeTE9IjI2MyIgeDI9IjQ5NSIgeTI9IjIwMCIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjEuNSIvPgo8L3N2Zz4=)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="30" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">イノベーション = 発明 × 商業化 × タイミング × 政治</text>
+  <!-- Central formula -->
+  <rect x="250" y="155" width="300" height="60" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2.5"/>
+  <text x="400" y="183" text-anchor="middle" fill="#e91e63" font-size="16" font-weight="bold" font-family="sans-serif">イノベーション</text>
+  <text x="400" y="203" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">発明 × 商業化 × タイミング × 政治</text>
+  <!-- 6 lesson nodes -->
+  <!-- Top -->
+  <rect x="310" y="60" width="180" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="80" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">発明 ≠ イノベーション</text>
+  <text x="400" y="97" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">商業化して初めて価値</text>
+  <line x1="400" y1="105" x2="400" y2="155" stroke="#f9a825" stroke-width="1.5"/>
+  <!-- Bottom -->
+  <rect x="310" y="270" width="180" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="400" y="290" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ナラティブの力</text>
+  <text x="400" y="307" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「発明王」が資金を集めた</text>
+  <line x1="400" y1="215" x2="400" y2="270" stroke="#f9a825" stroke-width="1.5"/>
+  <!-- Left top -->
+  <rect x="50" y="100" width="170" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="135" y="120" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">チームが個人に勝る</text>
+  <text x="135" y="137" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">システムが持続する</text>
+  <line x1="220" y1="145" x2="305" y2="175" stroke="#f9a825" stroke-width="1.5"/>
+  <!-- Left bottom -->
+  <rect x="50" y="240" width="170" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="135" y="260" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">インフラを制する</text>
+  <text x="135" y="277" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">者が市場を制する</text>
+  <line x1="220" y1="263" x2="305" y2="200" stroke="#f9a825" stroke-width="1.5"/>
+  <!-- Right top -->
+  <rect x="580" y="100" width="170" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="665" y="120" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">特許は攻撃兵器</text>
+  <text x="665" y="137" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">IPの戦略的活用</text>
+  <line x1="580" y1="145" x2="495" y2="175" stroke="#f9a825" stroke-width="1.5"/>
+  <!-- Right bottom -->
+  <rect x="580" y="240" width="170" height="45" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
+  <text x="665" y="260" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">技術的正しさだけでは</text>
+  <text x="665" y="277" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">不十分</text>
+  <line x1="580" y1="263" x2="495" y2="200" stroke="#f9a825" stroke-width="1.5"/>
+</svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # エジソンから学ぶ6つの教訓
 
 > *失敗を数でこなし市場ニーズから逆算する6原則*
@@ -296,10 +669,46 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead fit-88 -->
 # まとめ
 
-![w:800 center](data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgODAwIDQwMCIgc3R5bGU9Im1heC1oZWlnaHQ6NzB2aDt3aWR0aDphdXRvO2Rpc3BsYXk6YmxvY2s7bWFyZ2luOjAgYXV0bztsZXR0ZXItc3BhY2luZzowIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxyZWN0IHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMWExYTJlIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIyOCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIxNiIgZm9udC13ZWlnaHQ9ImJvbGQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7jgqjjgrjjgr3jg7PjgYzoqLzmmI7jgZfjgZ/jgqTjg47jg5njg7zjgrfjg6fjg7PmlrnnqIvlvI88L3RleHQ+CiAgPCEtLSBGb3JtdWxhIHZpc3VhbGl6YXRpb24gLS0+CiAgPHJlY3QgeD0iNjAiIHk9IjcwIiB3aWR0aD0iNjgwIiBoZWlnaHQ9IjkwIiByeD0iMTIiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2U5MWU2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIxMDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNlOTFlNjMiIGZvbnQtc2l6ZT0iMTgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44Kk44OO44OZ44O844K344On44OzID0g55m65piOIMOXIOWVhualreWMliDDlyDjgr/jgqTjg5/jg7PjgrAgw5cg5pS/5rK7PC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMTQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEyIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5YWo44Gm44GM5o+D44Gj44Gm5Yid44KB44Gm44Kk44OO44OZ44O844K344On44Oz44GM5a6f54++44GZ44KLPC90ZXh0PgogIDwhLS0gNCBmYWN0b3JzIGJyZWFrZG93biAtLT4KICAKICAgIDxyZWN0IHg9IjIwIiB5PSIxOTUiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTAwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDx0ZXh0IHg9IjgwIiB5PSIyMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+55m65piOPC90ZXh0PgogICAgPHRleHQgeD0iODAiIHk9IjI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuaKgOihk+eahOOCouOCpOODh+OCojwvdGV4dD48dGV4dCB4PSI4MCIgeT0iMjU3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+77yI44Ko44K444K944Oz44GvNjAl77yJPC90ZXh0PgogIAogICAgPHJlY3QgeD0iMTkwIiB5PSIxOTUiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTAwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDx0ZXh0IHg9IjI1MCIgeT0iMjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuWVhualreWMljwvdGV4dD4KICAgIDx0ZXh0IHg9IjI1MCIgeT0iMjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+5biC5aC05YyW44O744K544Kx44O844OrPC90ZXh0Pjx0ZXh0IHg9IjI1MCIgeT0iMjU3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+77yI44Ko44K444K944Oz44GvOTUl77yJPC90ZXh0PgogIAogICAgPHJlY3QgeD0iNDUwIiB5PSIxOTUiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTAwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZjlhODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDx0ZXh0IHg9IjUxMCIgeT0iMjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZjlhODI1IiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuOCv+OCpOODn+ODs+OCsDwvdGV4dD4KICAgIDx0ZXh0IHg9IjUxMCIgeT0iMjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6Zu75Yqb6ZyA6KaB44GMPC90ZXh0Pjx0ZXh0IHg9IjUxMCIgeT0iMjU3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+6auY44G+44KL5pmC5LujPC90ZXh0PgogIAogICAgPHJlY3QgeD0iNTkwIiB5PSIxOTUiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTAwIiByeD0iOCIgZmlsbD0iIzE2MjEzZSIgc3Ryb2tlPSIjZTkxZTYzIiBzdHJva2Utd2lkdGg9IjIiLz4KICAgIDx0ZXh0IHg9IjY1MCIgeT0iMjIwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZTkxZTYzIiBmb250LXNpemU9IjEzIiBmb250LXdlaWdodD0iYm9sZCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuaUv+ayuzwvdGV4dD4KICAgIDx0ZXh0IHg9IjY1MCIgeT0iMjQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjEwIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+SlAgTW9yZ2FuIOOBrjwvdGV4dD48dGV4dCB4PSI2NTAiIHk9IjI1NyIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2FhYWFhYSIgZm9udC1zaXplPSIxMCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPuizh+acrOODu+imj+WItuWvvuW/nDwvdGV4dD4KICAKICA8IS0tIE11bHRpcGxpY2F0aW9uIHNpZ25zIC0tPgogIDx0ZXh0IHg9IjIxNSIgeT0iMjU1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjZmZmZmZmIiBmb250LXNpemU9IjI0IiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+w5c8L3RleHQ+CiAgPHRleHQgeD0iMzc4IiB5PSIyNTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmZmZmZmYiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtZmFtaWx5PSJzYW5zLXNlcmlmIj7DlzwvdGV4dD4KICA8dGV4dCB4PSI2MTUiIHk9IjI1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZmZmZiIgZm9udC1zaXplPSIyNCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPsOXPC90ZXh0PgogIDwhLS0gQ29uY2x1c2lvbiAtLT4KICA8cmVjdCB4PSI4MCIgeT0iMzI1IiB3aWR0aD0iNjQwIiBoZWlnaHQ9IjU1IiByeD0iMTAiIGZpbGw9IiMxNjIxM2UiIHN0cm9rZT0iI2Y5YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNDAwIiB5PSIzNDgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZpbGw9IiNmOWE4MjUiIGZvbnQtc2l6ZT0iMTMiIGZvbnQtd2VpZ2h0PSJib2xkIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44CM55m65piO5a6244Gn44Gv44Gq44GP55m65piO44KS55Sj5qWt5YyW44GZ44KL6LW35qWt5a6244CNPC90ZXh0PgogIDx0ZXh0IHg9IjQwMCIgeT0iMzY4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjYWFhYWFhIiBmb250LXNpemU9IjExIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiI+44GT44KM44GM44Ko44K444K944Oz44Gu5pys6LOq44Gn44GC44KK44CB54++5Luj44K344Oq44Kz44Oz44OQ44Os44O844Gu5Y6f5Z6LPC90ZXh0Pgo8L3N2Zz4=)
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="400" fill="#1a1a2e"/>
+  <text x="400" y="28" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" font-family="sans-serif">エジソンが証明したイノベーション方程式</text>
+  <!-- Formula visualization -->
+  <rect x="60" y="70" width="680" height="90" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="3"/>
+  <text x="400" y="105" text-anchor="middle" fill="#e91e63" font-size="18" font-weight="bold" font-family="sans-serif">イノベーション = 発明 × 商業化 × タイミング × 政治</text>
+  <text x="400" y="140" text-anchor="middle" fill="#aaaaaa" font-size="12" font-family="sans-serif">全てが揃って初めてイノベーションが実現する</text>
+  <!-- 4 factors breakdown -->
+  
+    <rect x="20" y="195" width="120" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+    <text x="80" y="220" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">発明</text>
+    <text x="80" y="240" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">技術的アイデア</text><text x="80" y="257" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">（エジソンは60%）</text>
+  
+    <rect x="190" y="195" width="120" height="100" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+    <text x="250" y="220" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">商業化</text>
+    <text x="250" y="240" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">市場化・スケール</text><text x="250" y="257" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">（エジソンは95%）</text>
+  
+    <rect x="450" y="195" width="120" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+    <text x="510" y="220" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">タイミング</text>
+    <text x="510" y="240" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">電力需要が</text><text x="510" y="257" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">高まる時代</text>
+  
+    <rect x="590" y="195" width="120" height="100" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
+    <text x="650" y="220" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">政治</text>
+    <text x="650" y="240" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">JP Morgan の</text><text x="650" y="257" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">資本・規制対応</text>
+  
+  <!-- Multiplication signs -->
+  <text x="215" y="255" text-anchor="middle" fill="#ffffff" font-size="24" font-family="sans-serif">×</text>
+  <text x="378" y="255" text-anchor="middle" fill="#ffffff" font-size="24" font-family="sans-serif">×</text>
+  <text x="615" y="255" text-anchor="middle" fill="#ffffff" font-size="24" font-family="sans-serif">×</text>
+  <!-- Conclusion -->
+  <rect x="80" y="325" width="640" height="55" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
+  <text x="400" y="348" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">「発明家ではなく発明を産業化する起業家」</text>
+  <text x="400" y="368" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">これがエジソンの本質であり、現代シリコンバレーの原型</text>
+</svg>
+</div>
+
 - エジソンは「発明家」ではなく**「発明を産業化する起業家」**だった
 - メンロパーク研究所は現代のR&Dラボの直接の祖先
 - 特許戦略・垂直統合・メディア操作は現代テック企業の手法そのもの
@@ -309,14 +718,15 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 参考文献
 
 > *エジソンの発明と経営を深く知るための主要書籍・文献一覧*
 
-- - **書籍:**
-- - [Edison: A Life of Invention - Paul Israel](https://www.amazon.com/dp/0471529427)
-- - [Empires of Light - Jill Jonnes](https://www.amazon.com/dp/0375758844)
-- - **学術資料:**
-- - [Thomas Edison Papers (Rutgers)](https://edison.rutgers.edu/)
-- - [Smithsonian: Edison's Inventions](https://www.si.edu/spotlight/thomas-edison)
+- **書籍:**
+- [Edison: A Life of Invention - Paul Israel](https://www.amazon.com/dp/0471529427)
+- [Empires of Light - Jill Jonnes](https://www.amazon.com/dp/0375758844)
+- **学術資料:**
+- [Thomas Edison Papers (Rutgers)](https://edison.rutgers.edu/)
+- [Smithsonian: Edison's Inventions](https://www.si.edu/spotlight/thomas-edison)
 

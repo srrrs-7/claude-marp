@@ -39,11 +39,18 @@ describe("normalizeSvg", () => {
 		expect(result).toContain("max-height");
 	});
 
-	test("does not modify style with both max-height and max-width", () => {
-		const style = "max-height:70vh;max-width:100%";
-		const input = `<svg style="${style}" viewBox="0 0 100 100">`;
+	test("strips vh-based sizing (vh resolves against the window, not the slide)", () => {
+		const input = `<svg style="max-height:70vh;max-width:100%" viewBox="0 0 100 100">`;
 		const result = normalizeSvg(input);
-		expect(result).toContain(style);
+		expect(result).not.toContain("vh");
+		expect(result).toContain("height:100%");
+	});
+
+	test("keeps author declarations that are not about sizing", () => {
+		const input = `<svg style="filter:drop-shadow(2px 2px 3px rgba(0,0,0,.15));width:800px" viewBox="0 0 100 100">`;
+		const result = normalizeSvg(input);
+		expect(result).toContain("filter:drop-shadow(2px 2px 3px rgba(0,0,0,.15))");
+		expect(result).not.toContain("width:800px");
 	});
 
 	test("does not modify non-SVG content", () => {

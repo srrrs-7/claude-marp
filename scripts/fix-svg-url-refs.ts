@@ -13,13 +13,20 @@
  */
 
 import { Glob } from "bun";
+import { DATA_FILENAME } from "../src/constants.js";
+import type { SlideContent } from "../src/generate/slide-schema.js";
+import { saveSlidesData } from "../src/model/presentation.js";
 
-// Auto-discover all .md and .svg files under docs/
+// Auto-discover all .md, .svg and slides-data.json files under docs/
+//
+// slides-data.json is the *source* an SVG comes from: fixing only the rendered
+// .md left the violation in place, so the next `rebuild` put it straight back.
 async function discoverTargetFiles(): Promise<string[]> {
 	const files: string[] = [];
-	for await (const path of new Glob("docs/**/*.{md,svg}").scan({
+	for await (const path of new Glob("docs/**/*.{md,svg,json}").scan({
 		cwd: ".",
 	})) {
+		if (path.endsWith(".json") && !path.endsWith(DATA_FILENAME)) continue;
 		files.push(path);
 	}
 	return files.sort();
@@ -143,6 +150,8 @@ function processSvgBlock(svg: string): string {
 
 	// --- 4. Add letter-spacing:0 to outer SVG to prevent Gaia theme inheritance ---
 	out = out.replace(/(<svg[^>]*style=")([^"]*?)(")/, (_, pre, style, post) => {
+		if (/(^|;)\s*letter-spacing\s*:/.test(style))
+			return `${pre}${style}${post}`;
 		const cleaned = style.replace(/;$/, "");
 		return `${pre}${cleaned};letter-spacing:0${post}`;
 	});
@@ -150,18 +159,94 @@ function processSvgBlock(svg: string): string {
 	return out;
 }
 
+/**
+ * A `url(#id)` that is actually referenced by markup, i.e. one used as an
+ * attribute value or inside a style declaration.
+ *
+ * Matching the bare string also hit the literal text "url(#id)" inside `<text>`
+ * labels and code comments — several decks in this repo document this very
+ * rule — which reported violations that were not there.
+ */
+const URL_REF_RE = /(?:=\s*"|:\s*)url\(#/g;
+
+/** True when a chunk of markup contains a real url(#id) reference. */
+function hasUrlRef(text: string): boolean {
+	URL_REF_RE.lastIndex = 0;
+	return URL_REF_RE.test(text);
+}
+
+/** Rewrite every `<svg>…</svg>` block in a string, counting url(#id) refs. */
+function processSvgBlocks(content: string): { result: string; refs: number } {
+	let refs = 0;
+	const result = content.replace(/<svg[\s\S]*?<\/svg>/g, (block) => {
+		if (!hasUrlRef(block)) return block;
+		refs += (block.match(URL_REF_RE) || []).length;
+		return processSvgBlock(block);
+	});
+	return { result, refs };
+}
+
+/**
+ * Fix slides-data.json.
+ *
+ * SVGs live in `content` as JSON string values, so they are processed after
+ * parsing rather than by regex over the escaped source text. Written back
+ * through saveSlidesData for the same atomic, Biome-compatible output every
+ * other deck-mutating script uses.
+ */
+async function processDataFile(
+	path: string,
+): Promise<{ path: string; refs: number }> {
+	const data = (await Bun.file(path).json()) as { slides?: SlideContent[] };
+	let refs = 0;
+
+	for (const slide of data.slides ?? []) {
+		const out: string[] = [];
+		for (let i = 0; i < slide.content.length; i++) {
+			const item = slide.content[i] as string;
+
+			// An inline SVG may be spread over one content item per line, so the
+			// whole run has to be rejoined before <svg>…</svg> can be matched.
+			if (item.trimStart().startsWith("<svg") && !item.includes("</svg>")) {
+				const run = [item];
+				while (i + 1 < slide.content.length) {
+					const line = slide.content[++i] as string;
+					run.push(line);
+					if (line.includes("</svg>")) break;
+				}
+				const joined = run.join("\n");
+				if (hasUrlRef(joined)) {
+					const { result, refs: n } = processSvgBlocks(joined);
+					refs += n;
+					out.push(...result.split("\n"));
+					continue;
+				}
+				out.push(...run);
+				continue;
+			}
+
+			if (!hasUrlRef(item)) {
+				out.push(item);
+				continue;
+			}
+			const { result, refs: n } = processSvgBlocks(item);
+			refs += n;
+			out.push(result);
+		}
+		slide.content = out;
+	}
+
+	if (refs > 0) await saveSlidesData(path, data.slides ?? []);
+	return { path, refs };
+}
+
 async function processFile(
 	path: string,
 ): Promise<{ path: string; refs: number }> {
-	const content = await Bun.file(path).text();
-	let refs = 0;
+	if (path.endsWith(DATA_FILENAME)) return processDataFile(path);
 
-	const result = content.replace(/<svg[\s\S]*?<\/svg>/g, (block) => {
-		if (!block.includes("url(#")) return block;
-		const count = (block.match(/url\(#/g) || []).length;
-		refs += count;
-		return processSvgBlock(block);
-	});
+	const content = await Bun.file(path).text();
+	const { result, refs } = processSvgBlocks(content);
 
 	await Bun.write(path, result);
 	return { path, refs };

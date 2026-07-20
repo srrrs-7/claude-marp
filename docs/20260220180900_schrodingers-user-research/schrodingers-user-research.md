@@ -7,41 +7,76 @@ paginate: true
 header: "シュレーディンガーのユーザー"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -77,15 +112,12 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # シュレーディンガーのユーザー
 
 - ## 観測するまで存在しない
-- 
 - ユーザーはあなたが思っている通りには使わない
-- 
 - **量子力学から学ぶユーザーリサーチの本質**
-- 
 - 2026年2月
 
 <!--
@@ -94,11 +126,10 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 量子力学の観測問題
 
 - **Part 1**
-- 
 - 物理学が先に気づいていた：
 - 「見ること」は「変えること」である
 
@@ -110,10 +141,10 @@ style: |
 > *観測前の猫と同じく状態は確定しない*
 
 ![w:680 center](assets/quantum-cat.svg)
-- 
-- - 1935年、エルヴィン・シュレーディンガーが提唱した思考実験
-- - 観測する前、猫は「生きている」と「死んでいる」が**重ね合わせ**の状態
-- - 蓋を開ける（観測する）まで、どちらの状態か確定しない
+
+- 1935年、エルヴィン・シュレーディンガーが提唱した思考実験
+- 観測する前、猫は「生きている」と「死んでいる」が**重ね合わせ**の状態
+- 蓋を開ける（観測する）まで、どちらの状態か確定しない
 
 <!--
 シュレーディンガーはこの思考実験でコペンハーゲン解釈の「おかしさ」を示そうとした。しかし逆に、観測の本質的な役割を証明することになった。
@@ -126,10 +157,10 @@ style: |
 > *観測行為そのものが現実を一つに収束させる*
 
 ![w:660 center](assets/wavefunction-collapse.svg)
-- 
-- - **観測前**: 粒子は複数の状態が重なった「波動関数」として存在
-- - **観測後**: 波動関数が崩壊し、一つの状態に確定する
-- - 観測という行為が「可能性」を「現実」に変換する
+
+- **観測前**: 粒子は複数の状態が重なった「波動関数」として存在
+- **観測後**: 波動関数が崩壊し、一つの状態に確定する
+- 観測という行為が「可能性」を「現実」に変換する
 
 <!--
 ボーアとハイゼンベルクが提唱したコペンハーゲン解釈は、量子力学の標準的な解釈。観測者が結果に影響を与えるという考え方はUXリサーチと直接対応する。
@@ -142,11 +173,11 @@ style: |
 > *測定精度と自然行動はトレードオフの関係にある*
 
 ![w:800 center](assets/uncertainty-principle.svg)
+
 - ### 不確定性原理（ハイゼンベルク, 1927）
-- 
-- - 粒子の「位置」と「運動量」を同時に正確に測定することは**不可能**
-- - 位置を測ろうとすること自体が、運動量に影響を与える
-- - **測定という行為が、測定対象を変えてしまう**
+- 粒子の「位置」と「運動量」を同時に正確に測定することは**不可能**
+- 位置を測ろうとすること自体が、運動量に影響を与える
+- **測定という行為が、測定対象を変えてしまう**
 
 <!--
 ハイゼンベルクの不確定性原理はΔx・Δp ≥ ℏ/2 で表される。これはユーザーリサーチにおいて「詳細に観察するほど自然な行動から遠ざかる」というトレードオフと同型。
@@ -159,12 +190,11 @@ style: |
 > *調査するほどユーザーの本音から遠ざかる*
 
 ![w:800 center](assets/observer-effect-ux.svg)
-- 
+
 - ### ユーザーリサーチへの示唆
-- 
-- - ユーザーを「調査する」行為が、ユーザーの行動を変える
-- - 「本当のユーザー行動」と「調査中のユーザー行動」は異なる
-- - 精密に測ろうとするほど、観測歪みが大きくなる可能性
+- ユーザーを「調査する」行為が、ユーザーの行動を変える
+- 「本当のユーザー行動」と「調査中のユーザー行動」は異なる
+- 精密に測ろうとするほど、観測歪みが大きくなる可能性
 
 <!--
 ハイゼンベルクの不確定性原理はΔx・Δp ≥ ℏ/2 で表される。これはユーザーリサーチにおいて「詳細に観察するほど自然な行動から遠ざかる」というトレードオフと同型。
@@ -172,11 +202,10 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ユーザーリサーチへの応用
 
 - **Part 2**
-- 
 - ユーザーもまた、
 - 観測されるまで状態が確定しない
 
@@ -188,10 +217,10 @@ style: |
 > *調査手法が「どのユーザー」を出現させるかを決める*
 
 ![w:660 center](assets/user-quantum-state.svg)
-- 
-- - 調査・テストをする前、ユーザーは複数の行動状態が**重なり合っている**
-- - リサーチという「観測」が、一つの行動パターンに「収束」させる
-- - 収束した結果が「本当の行動」とは限らない
+
+- 調査・テストをする前、ユーザーは複数の行動状態が**重なり合っている**
+- リサーチという「観測」が、一つの行動パターンに「収束」させる
+- 収束した結果が「本当の行動」とは限らない
 
 <!--
 ユーザーは「使う人」「使わない人」「たまに使う人」「誤った使い方をする人」の重ね合わせ。どの調査手法を使うかで、どの状態に収束するかが変わる。
@@ -204,10 +233,10 @@ style: |
 > *調査設計が生み出した幻想がペルソナになりうる*
 
 ![w:660 center](assets/persona-vs-reality.svg)
-- 
-- - ペルソナは調査結果を「典型像」に押し込めたもの
-- - 調査設計・質問設計が、どんなユーザー像が現れるかを決める
-- - **作られたペルソナは「観測が生み出した幻想」かもしれない**
+
+- ペルソナは調査結果を「典型像」に押し込めたもの
+- 調査設計・質問設計が、どんなユーザー像が現れるかを決める
+- **作られたペルソナは「観測が生み出した幻想」かもしれない**
 
 <!--
 ペルソナは有用なツールだが、観測バイアスの塊でもある。特に社会的望ましさバイアスが強く出るアンケートや、インタビュアーの誘導が入るインタビューから作られたペルソナは要注意。
@@ -220,10 +249,10 @@ style: |
 > *観察されていると知ると人は期待に応えようとする*
 
 ![w:660 center](assets/hawthorne-effect.svg)
-- 
-- - 1920年代、ウェスタン・エレクトリック社の工場実験で発見
-- - 観察されている従業員は、されていない時より**生産性が上がった**
-- - 原因は「照明の改善」ではなく「観察されている意識」だった
+
+- 1920年代、ウェスタン・エレクトリック社の工場実験で発見
+- 観察されている従業員は、されていない時より**生産性が上がった**
+- 原因は「照明の改善」ではなく「観察されている意識」だった
 
 <!--
 ホーソン効果の本質：人は観察されていると知ると、「観察者が期待する行動」をとろうとする。ユーザーテストで「このサイト使いやすいですか？」と聞かれたユーザーは、丁寧に使おうとする。
@@ -231,11 +260,10 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 観測手法の「歪み度」
 
 - **Part 3**
-- 
 - どの手法を使うかが、
 - どんなユーザーが「出現」するかを決める
 
@@ -257,11 +285,10 @@ style: |
 > *「すべきこと」を回答し「していること」は隠される*
 
 ![w:800 center](assets/survey-behavior-gap.svg)
+
 - ### 社会的望ましさバイアス（Social Desirability Bias）
-- 
-- - 人は「本当にしていること」より「すべきこと」を回答する傾向
-- - 「健康的な食事をしていますか？」→ 実際より多く「はい」と答える
-- 
+- 人は「本当にしていること」より「すべきこと」を回答する傾向
+- 「健康的な食事をしていますか？」→ 実際より多く「はい」と答える
 
 <!--
 言語で報告された行動と実際の行動の乖離は心理学で繰り返し実証されている。LaPiere(1934)の研究でも、レストランが中国人カップルを実際には受け入れたが、アンケートでは拒否すると回答。
@@ -274,11 +301,11 @@ style: |
 > *言うことと行動のギャップが施策判断を誤らせる*
 
 ![w:800 center](assets/say-do-gap.svg)
+
 - ### プロダクトでの実例
-- 
-- - アンケート：「このUIは使いにくい」と答えない → 実際は離脱している
-- - NPS調査：「推薦する」と答えたユーザーが実際には推薦しない
-- - ユーザーインタビュー：「わかりやすい」と言いながら迷っていた
+- アンケート：「このUIは使いにくい」と答えない → 実際は離脱している
+- NPS調査：「推薦する」と答えたユーザーが実際には推薦しない
+- ユーザーインタビュー：「わかりやすい」と言いながら迷っていた
 
 <!--
 言語で報告された行動と実際の行動の乖離は心理学で繰り返し実証されている。LaPiere(1934)の研究でも、レストランが中国人カップルを実際には受け入れたが、アンケートでは拒否すると回答。
@@ -291,8 +318,8 @@ style: |
 > *質問の連鎖がユーザーの記憶を再構成してしまう*
 
 ![w:800 center](assets/interview-quantum.svg)
+
 - ### 観測の連鎖反応
-- 
 - インタビュアーが質問する
 - → ユーザーが「正しい答え」を考える
 - → ユーザーが「観察者が期待する答え」を推測する
@@ -309,12 +336,10 @@ style: |
 > *誘導・記憶バイアス・同席効果が回答を歪める*
 
 - → 回答が「本当の行動」から乖離する
-- 
 - ### 典型的なトラップ
-- 
-- - **誘導質問**: 「このボタンわかりにくくないですか？」
-- - **記憶バイアス**: 「先月、どのくらい使いましたか？」
-- - **インタビュアー効果**: 開発者が同席すると批判しにくくなる
+- **誘導質問**: 「このボタンわかりにくくないですか？」
+- **記憶バイアス**: 「先月、どのくらい使いましたか？」
+- **インタビュアー効果**: 開発者が同席すると批判しにくくなる
 
 <!--
 量子的に言えば：インタビューという「測定装置」が粒子（ユーザー）の状態を変えてしまっている。測定精度を上げようとするほど、「自然な状態」から遠ざかる。
@@ -322,11 +347,10 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 「観察なし」の解決策
 
 - **Part 4**
-- 
 - 観測歪みを最小化する設計：
 - 「弱い測定」を積み重ねる
 
@@ -348,11 +372,10 @@ style: |
 > *行動ログは意識されない「弱い観測」として機能する*
 
 ![w:800 center](assets/ab-test-multiworld.svg)
+
 - ### 量子力学の「多世界解釈」（Everett, 1957）
-- 
-- - 観測のたびに世界が分岐し、すべての可能性が並行して実現する
-- - どの「世界」を観測するかで、見える結果が変わる
-- 
+- 観測のたびに世界が分岐し、すべての可能性が並行して実現する
+- どの「世界」を観測するかで、見える結果が変わる
 
 <!--
 エヴェレットの多世界解釈はA/Bテストの完璧なメタファー。ユーザーA群とB群は「異なる世界に生きるユーザー」。両世界を同時に走らせることで、観測の歪みを最小化しながら差異を測定できる。
@@ -365,11 +388,10 @@ style: |
 > *並行世界を走らせることで観測歪みを最小化できる*
 
 - ### A/Bテストとの対応
-- 
-- - バリアントA・Bは「並行して実現する世界」
-- - どちらの世界のユーザーが良い結果を出すかを**実際の行動で測定**
-- - 言語報告（アンケート）ではなく、**行動そのものを観測**
-- - 設計のポイント：測定指標・期間・対象の選択がバイアスになりうる
+- バリアントA・Bは「並行して実現する世界」
+- どちらの世界のユーザーが良い結果を出すかを**実際の行動で測定**
+- 言語報告（アンケート）ではなく、**行動そのものを観測**
+- 設計のポイント：測定指標・期間・対象の選択がバイアスになりうる
 
 <!--
 エヴェレットの多世界解釈はA/Bテストの完璧なメタファー。ユーザーA群とB群は「異なる世界に生きるユーザー」。両世界を同時に走らせることで、観測の歪みを最小化しながら差異を測定できる。
@@ -377,14 +399,12 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ：ユーザーは「観測設計」から始まる（1/2）
 
 - ### 3つの量子的教訓
-- 
 - **1. ユーザーは観測するまで確定しない**
 - 調査前のユーザー像は「可能性の波」でしかない
-- 
 - **2. 観測行為が現実を作る**
 
 <!--
@@ -393,14 +413,12 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ：ユーザーは「観測設計」から始まる（2/2）
 
 - どの手法で調べるかが、どんな「ユーザー」が現れるかを決める
-- 
 - **3. 弱い測定を積み重ねよ**
 - 定量ログ（弱い観測）と定性調査（強い観測）を組み合わせる
-- 
 - _「ユーザーを理解する」とは「観測設計を理解する」ことである_
 
 <!--
@@ -414,10 +432,9 @@ style: |
 > *量子力学・観測問題・ホーソン効果の原典文献を体系的に整理*
 
 - **量子力学・観測問題:**
-- - [Schrödinger's Cat - Wikipedia](https://en.wikipedia.org/wiki/Schr%C3%B6dinger%27s_cat)
-- - [Copenhagen Interpretation - Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/entries/qm-copenhagen/)
-- - [Many-Worlds Interpretation (Everett, 1957)](https://plato.stanford.edu/entries/qm-manyworlds/)
-- 
+- [Schrödinger's Cat - Wikipedia](https://en.wikipedia.org/wiki/Schr%C3%B6dinger%27s_cat)
+- [Copenhagen Interpretation - Stanford Encyclopedia of Philosophy](https://plato.stanford.edu/entries/qm-copenhagen/)
+- [Many-Worlds Interpretation (Everett, 1957)](https://plato.stanford.edu/entries/qm-manyworlds/)
 - **ホーソン効果・観察バイアス:**
 
 
@@ -427,10 +444,9 @@ style: |
 
 > *言動ギャップからリサーチ手法まで実践に直結する7文献を厳選*
 
-- - [Hawthorne Effect - Wikipedia](https://en.wikipedia.org/wiki/Hawthorne_effect)
-- - [Social Desirability Bias in Research](https://www.simplypsychology.org/social-desirability-bias.html)
-- 
+- [Hawthorne Effect - Wikipedia](https://en.wikipedia.org/wiki/Hawthorne_effect)
+- [Social Desirability Bias in Research](https://www.simplypsychology.org/social-desirability-bias.html)
 - **ユーザーリサーチ手法:**
-- - [Measuring the User Experience - Tom Tullis & Bill Albert](https://www.elsevier.com/books/measuring-the-user-experience/tullis/978-0-12-415781-1)
-- - [Just Enough Research - Erika Hall (A Book Apart)](https://abookapart.com/products/just-enough-research)
+- [Measuring the User Experience - Tom Tullis & Bill Albert](https://www.elsevier.com/books/measuring-the-user-experience/tullis/978-0-12-415781-1)
+- [Just Enough Research - Erika Hall (A Book Apart)](https://abookapart.com/products/just-enough-research)
 

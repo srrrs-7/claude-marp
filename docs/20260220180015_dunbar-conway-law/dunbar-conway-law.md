@@ -7,41 +7,76 @@ paginate: true
 header: "ダンバー数とコンウェイの法則"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,18 +111,17 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ダンバー数とコンウェイの法則
 
 - **チームサイズがアーキテクチャを決める**
-- 
 - なぜ人数が増えるとシステムが複雑になるのか
 - 人間の認知限界がソフトウェア設計を支配する
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 人間の認知限界
 
 - ソフトウェアの複雑さの根源は技術ではなく、人間にある
@@ -102,8 +136,10 @@ style: |
 - 人類学者ロビン・ダンバー（1992年）の発見
 - 霊長類の**新皮質サイズ**と**集団サイズ**に強い相関がある
 - 人間が安定的に維持できる社会関係の上限: **約150人**
-- 
-- <svg viewBox='0 0 800 250' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='250' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd700' font-size='14' font-weight='bold'>社会的グループの入れ子構造</text><circle cx='400' cy='140' r='110' fill='none' stroke='#555' stroke-width='1.5' stroke-dasharray='5,5'/><text x='520' y='50' fill='#aaa' font-size='10'>500 (知人)</text><circle cx='400' cy='140' r='85' fill='none' stroke='#e67e22' stroke-width='2'/><text x='500' y='75' fill='#e67e22' font-size='11'>150 (ダンバー数)</text><circle cx='400' cy='140' r='60' fill='none' stroke='#4ecdc4' stroke-width='2'/><text x='470' y='100' fill='#4ecdc4' font-size='11'>50 (友人)</text><circle cx='400' cy='140' r='38' fill='none' stroke='#ffd700' stroke-width='2'/><text x='445' y='120' fill='#ffd700' font-size='11'>15 (親密)</text><circle cx='400' cy='140' r='18' fill='#4ecdc4' opacity='0.3' style='filter: drop-shadow(0px 0px 8px rgba(78,205,196,0.5))'/><text x='400' y='144' text-anchor='middle' fill='#fff' font-size='10'>5</text><text x='410' y='160' fill='#fff' font-size='9'>コア</text></svg>
+
+<div class="fig">
+<svg viewBox='0 0 800 250' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x='0' y='0' width='800' height='250' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd700' font-size='14' font-weight='bold'>社会的グループの入れ子構造</text><circle cx='400' cy='140' r='110' fill='none' stroke='#555' stroke-width='1.5' stroke-dasharray='5,5'/><text x='520' y='50' fill='#aaa' font-size='10'>500 (知人)</text><circle cx='400' cy='140' r='85' fill='none' stroke='#e67e22' stroke-width='2'/><text x='500' y='75' fill='#e67e22' font-size='11'>150 (ダンバー数)</text><circle cx='400' cy='140' r='60' fill='none' stroke='#4ecdc4' stroke-width='2'/><text x='470' y='100' fill='#4ecdc4' font-size='11'>50 (友人)</text><circle cx='400' cy='140' r='38' fill='none' stroke='#ffd700' stroke-width='2'/><text x='445' y='120' fill='#ffd700' font-size='11'>15 (親密)</text><circle cx='400' cy='140' r='18' fill='#4ecdc4' opacity='0.3' style='filter: drop-shadow(0px 0px 8px rgba(78,205,196,0.5))'/><text x='400' y='144' text-anchor='middle' fill='#fff' font-size='10'>5</text><text x='410' y='160' fill='#fff' font-size='9'>コア</text></svg>
+</div>
 
 
 ---
@@ -115,8 +151,10 @@ style: |
 - 全員の**関係性・信頼度・スキル**を脳で記憶する認知コスト
 - 150人を超えると個人的な信頼が機能しなくなる
 - 「文化」と「ルール」が信頼を代替し始める
-- 
-- <svg viewBox='0 0 800 220' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='220' fill='#1a1a2e' rx='12'/><text x='250' y='28' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>150人以下</text><rect x='80' y='45' width='340' height='70' fill='#1b4332' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='250' y='72' text-anchor='middle' fill='#fff' font-size='12'>個人的信頼で協調</text><text x='250' y='95' text-anchor='middle' fill='#4ecdc4' font-size='11'>「あの人なら任せられる」</text><text x='600' y='28' text-anchor='middle' fill='#ff6b6b' font-size='13' font-weight='bold'>150人以上</text><rect x='450' y='45' width='310' height='70' fill='#5a1a1a' rx='8'/><text x='605' y='72' text-anchor='middle' fill='#fff' font-size='12'>ルール・プロセスで管理</text><text x='605' y='95' text-anchor='middle' fill='#ff6b6b' font-size='11'>「規約に従ってください」</text><line x1='80' y1='140' x2='720' y2='140' stroke='#555' stroke-width='1'/><text x='400' y='165' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>歴史的証拠</text><text x='200' y='190' text-anchor='middle' fill='#aaa' font-size='11'>ローマ軍の中隊: ~150人</text><text x='400' y='190' text-anchor='middle' fill='#aaa' font-size='11'>アーミッシュ集落: ~150人</text><text x='600' y='190' text-anchor='middle' fill='#aaa' font-size='11'>W.L.ゴア社: ~150人/工場</text></svg>
+
+<div class="fig">
+<svg viewBox='0 0 800 220' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x='0' y='0' width='800' height='220' fill='#1a1a2e' rx='12'/><text x='250' y='28' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>150人以下</text><rect x='80' y='45' width='340' height='70' fill='#1b4332' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='250' y='72' text-anchor='middle' fill='#fff' font-size='12'>個人的信頼で協調</text><text x='250' y='95' text-anchor='middle' fill='#4ecdc4' font-size='11'>「あの人なら任せられる」</text><text x='600' y='28' text-anchor='middle' fill='#ff6b6b' font-size='13' font-weight='bold'>150人以上</text><rect x='450' y='45' width='310' height='70' fill='#5a1a1a' rx='8'/><text x='605' y='72' text-anchor='middle' fill='#fff' font-size='12'>ルール・プロセスで管理</text><text x='605' y='95' text-anchor='middle' fill='#ff6b6b' font-size='11'>「規約に従ってください」</text><line x1='80' y1='140' x2='720' y2='140' stroke='#555' stroke-width='1'/><text x='400' y='165' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>歴史的証拠</text><text x='200' y='190' text-anchor='middle' fill='#aaa' font-size='11'>ローマ軍の中隊: ~150人</text><text x='400' y='190' text-anchor='middle' fill='#aaa' font-size='11'>アーミッシュ集落: ~150人</text><text x='600' y='190' text-anchor='middle' fill='#aaa' font-size='11'>W.L.ゴア社: ~150人/工場</text></svg>
+</div>
 
 
 ---
@@ -126,13 +164,15 @@ style: |
 > *5〜150人の各フェーズで必要なアーキテクチャパターンが変わる*
 
 - 各層でのコミュニケーション密度と責任範囲
-- 
-- <svg viewBox='0 0 800 280' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='280' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd700' font-size='14' font-weight='bold'>チーム規模と機能</text><rect x='50' y='50' width='130' height='80' fill='#4ecdc4' rx='8' opacity='0.9' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='115' y='80' text-anchor='middle' fill='#1a1a2e' font-size='14' font-weight='bold'>5人</text><text x='115' y='100' text-anchor='middle' fill='#1a1a2e' font-size='10'>ペアプロ・モブ</text><text x='115' y='115' text-anchor='middle' fill='#1a1a2e' font-size='9'>全員が全体を理解</text><rect x='200' y='50' width='130' height='80' fill='#ffd700' rx='8' opacity='0.9' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='265' y='80' text-anchor='middle' fill='#1a1a2e' font-size='14' font-weight='bold'>15人</text><text x='265' y='100' text-anchor='middle' fill='#1a1a2e' font-size='10'>サブチーム分割</text><text x='265' y='115' text-anchor='middle' fill='#1a1a2e' font-size='9'>スクラムが機能する限界</text><rect x='350' y='50' width='130' height='80' fill='#e67e22' rx='8' opacity='0.9' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='415' y='80' text-anchor='middle' fill='#fff' font-size='14' font-weight='bold'>50人</text><text x='415' y='100' text-anchor='middle' fill='#fff' font-size='10'>部門間調整が必要</text><text x='415' y='115' text-anchor='middle' fill='#fff' font-size='9'>API契約で境界定義</text><rect x='500' y='50' width='130' height='80' fill='#ff6b6b' rx='8' opacity='0.9' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='565' y='80' text-anchor='middle' fill='#fff' font-size='14' font-weight='bold'>150人</text><text x='565' y='100' text-anchor='middle' fill='#fff' font-size='10'>組織の壁が出現</text><text x='565' y='115' text-anchor='middle' fill='#fff' font-size='9'>プラットフォームチーム必須</text><rect x='650' y='50' width='110' height='80' fill='#5a1a1a' rx='8' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='705' y='80' text-anchor='middle' fill='#fff' font-size='14' font-weight='bold'>500+</text><text x='705' y='100' text-anchor='middle' fill='#fff' font-size='10'>官僚制が不可避</text><text x='705' y='115' text-anchor='middle' fill='#fff' font-size='9'>ルールブックで統治</text><line x1='50' y1='155' x2='750' y2='155' stroke='#555' stroke-width='1'/><text x='400' y='178' text-anchor='middle' fill='#ffd700' font-size='12'>コミュニケーション密度</text><rect x='50' y='190' width='700' height='15' fill='#2a2a4a' rx='4'/><rect x='50' y='190' width='700' height='15' fill='#4ecdc4' rx='4' opacity='0.1'/><rect x='50' y='190' width='130' height='15' fill='#4ecdc4' rx='4' opacity='0.6'/><text x='115' y='225' text-anchor='middle' fill='#4ecdc4' font-size='10'>高密度</text><text x='705' y='225' text-anchor='middle' fill='#ff6b6b' font-size='10'>低密度</text><text x='400' y='265' text-anchor='middle' fill='#aaa' font-size='11'>チームが大きくなるほど、暗黙知から明示知への転換が必要</text></svg>
+
+<div class="fig">
+<svg viewBox='0 0 800 280' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x='0' y='0' width='800' height='280' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd700' font-size='14' font-weight='bold'>チーム規模と機能</text><rect x='50' y='50' width='130' height='80' fill='#4ecdc4' rx='8' opacity='0.9' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='115' y='80' text-anchor='middle' fill='#1a1a2e' font-size='14' font-weight='bold'>5人</text><text x='115' y='100' text-anchor='middle' fill='#1a1a2e' font-size='10'>ペアプロ・モブ</text><text x='115' y='115' text-anchor='middle' fill='#1a1a2e' font-size='9'>全員が全体を理解</text><rect x='200' y='50' width='130' height='80' fill='#ffd700' rx='8' opacity='0.9' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='265' y='80' text-anchor='middle' fill='#1a1a2e' font-size='14' font-weight='bold'>15人</text><text x='265' y='100' text-anchor='middle' fill='#1a1a2e' font-size='10'>サブチーム分割</text><text x='265' y='115' text-anchor='middle' fill='#1a1a2e' font-size='9'>スクラムが機能する限界</text><rect x='350' y='50' width='130' height='80' fill='#e67e22' rx='8' opacity='0.9' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='415' y='80' text-anchor='middle' fill='#fff' font-size='14' font-weight='bold'>50人</text><text x='415' y='100' text-anchor='middle' fill='#fff' font-size='10'>部門間調整が必要</text><text x='415' y='115' text-anchor='middle' fill='#fff' font-size='9'>API契約で境界定義</text><rect x='500' y='50' width='130' height='80' fill='#ff6b6b' rx='8' opacity='0.9' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='565' y='80' text-anchor='middle' fill='#fff' font-size='14' font-weight='bold'>150人</text><text x='565' y='100' text-anchor='middle' fill='#fff' font-size='10'>組織の壁が出現</text><text x='565' y='115' text-anchor='middle' fill='#fff' font-size='9'>プラットフォームチーム必須</text><rect x='650' y='50' width='110' height='80' fill='#5a1a1a' rx='8' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='705' y='80' text-anchor='middle' fill='#fff' font-size='14' font-weight='bold'>500+</text><text x='705' y='100' text-anchor='middle' fill='#fff' font-size='10'>官僚制が不可避</text><text x='705' y='115' text-anchor='middle' fill='#fff' font-size='9'>ルールブックで統治</text><line x1='50' y1='155' x2='750' y2='155' stroke='#555' stroke-width='1'/><text x='400' y='178' text-anchor='middle' fill='#ffd700' font-size='12'>コミュニケーション密度</text><rect x='50' y='190' width='700' height='15' fill='#2a2a4a' rx='4'/><rect x='50' y='190' width='700' height='15' fill='#4ecdc4' rx='4' opacity='0.1'/><rect x='50' y='190' width='130' height='15' fill='#4ecdc4' rx='4' opacity='0.6'/><text x='115' y='225' text-anchor='middle' fill='#4ecdc4' font-size='10'>高密度</text><text x='705' y='225' text-anchor='middle' fill='#ff6b6b' font-size='10'>低密度</text><text x='400' y='265' text-anchor='middle' fill='#aaa' font-size='11'>チームが大きくなるほど、暗黙知から明示知への転換が必要</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # コンウェイの法則との交差
 
 - 組織がシステムを形づくる — 1968年からの不変の法則
@@ -140,14 +180,17 @@ style: |
 
 ---
 
+<!-- _class: invert fit-94 -->
 # コンウェイの法則
 
 > *チーム間の会話の少なさがそのままAPIの粗さに反映される*
 
 - Melvin Conway (1968):
 - *"Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations."*
-- 
-- <svg viewBox='0 0 800 280' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='280' fill='#1a1a2e' rx='12'/><text x='200' y='28' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>組織構造</text><text x='600' y='28' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>システム構造</text><rect x='80' y='45' width='120' height='40' fill='#4ecdc4' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='140' y='70' text-anchor='middle' fill='#1a1a2e' font-size='11'>フロントチーム</text><rect x='220' y='45' width='120' height='40' fill='#e67e22' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='280' y='70' text-anchor='middle' fill='#fff' font-size='11'>バックエンド</text><rect x='80' y='105' width='120' height='40' fill='#9b59b6' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='140' y='130' text-anchor='middle' fill='#fff' font-size='11'>インフラチーム</text><rect x='220' y='105' width='120' height='40' fill='#ff6b6b' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='280' y='130' text-anchor='middle' fill='#fff' font-size='11'>データチーム</text><line x1='200' y1='85' x2='280' y2='105' stroke='#555' stroke-width='1' stroke-dasharray='4,4'/><line x1='140' y1='85' x2='140' y2='105' stroke='#555' stroke-width='1' stroke-dasharray='4,4'/><line x1='280' y1='85' x2='220' y2='105' stroke='#555' stroke-width='1' stroke-dasharray='4,4'/><text x='400' y='100' text-anchor='middle' fill='#ffd700' font-size='24'>--></text><rect x='480' y='45' width='120' height='40' fill='#4ecdc4' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='540' y='70' text-anchor='middle' fill='#1a1a2e' font-size='11'>UI Layer</text><rect x='620' y='45' width='120' height='40' fill='#e67e22' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='680' y='70' text-anchor='middle' fill='#fff' font-size='11'>API Layer</text><rect x='480' y='105' width='120' height='40' fill='#9b59b6' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='540' y='130' text-anchor='middle' fill='#fff' font-size='11'>Infra Layer</text><rect x='620' y='105' width='120' height='40' fill='#ff6b6b' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='680' y='130' text-anchor='middle' fill='#fff' font-size='11'>Data Pipeline</text><line x1='600' y1='85' x2='680' y2='105' stroke='#555' stroke-width='1' stroke-dasharray='4,4'/><line x1='540' y1='85' x2='540' y2='105' stroke='#555' stroke-width='1' stroke-dasharray='4,4'/><line x1='680' y1='85' x2='620' y2='105' stroke='#555' stroke-width='1' stroke-dasharray='4,4'/><text x='400' y='185' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>組織のコミュニケーション境界 = システムのモジュール境界</text><text x='400' y='215' text-anchor='middle' fill='#aaa' font-size='11'>4チーム構成 → 4レイヤーアーキテクチャ</text><text x='400' y='240' text-anchor='middle' fill='#aaa' font-size='11'>チーム間の会話が少ない → モジュール間のAPI契約が粗い</text><text x='400' y='265' text-anchor='middle' fill='#ff6b6b' font-size='11'>アーキテクチャを変えたければ、まず組織を変えよ</text></svg>
+
+<div class="fig">
+<svg viewBox='0 0 800 280' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x='0' y='0' width='800' height='280' fill='#1a1a2e' rx='12'/><text x='200' y='28' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>組織構造</text><text x='600' y='28' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>システム構造</text><rect x='80' y='45' width='120' height='40' fill='#4ecdc4' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='140' y='70' text-anchor='middle' fill='#1a1a2e' font-size='11'>フロントチーム</text><rect x='220' y='45' width='120' height='40' fill='#e67e22' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='280' y='70' text-anchor='middle' fill='#fff' font-size='11'>バックエンド</text><rect x='80' y='105' width='120' height='40' fill='#9b59b6' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='140' y='130' text-anchor='middle' fill='#fff' font-size='11'>インフラチーム</text><rect x='220' y='105' width='120' height='40' fill='#ff6b6b' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='280' y='130' text-anchor='middle' fill='#fff' font-size='11'>データチーム</text><line x1='200' y1='85' x2='280' y2='105' stroke='#555' stroke-width='1' stroke-dasharray='4,4'/><line x1='140' y1='85' x2='140' y2='105' stroke='#555' stroke-width='1' stroke-dasharray='4,4'/><line x1='280' y1='85' x2='220' y2='105' stroke='#555' stroke-width='1' stroke-dasharray='4,4'/><text x='400' y='100' text-anchor='middle' fill='#ffd700' font-size='24'>--></text><rect x='480' y='45' width='120' height='40' fill='#4ecdc4' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='540' y='70' text-anchor='middle' fill='#1a1a2e' font-size='11'>UI Layer</text><rect x='620' y='45' width='120' height='40' fill='#e67e22' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='680' y='70' text-anchor='middle' fill='#fff' font-size='11'>API Layer</text><rect x='480' y='105' width='120' height='40' fill='#9b59b6' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='540' y='130' text-anchor='middle' fill='#fff' font-size='11'>Infra Layer</text><rect x='620' y='105' width='120' height='40' fill='#ff6b6b' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='680' y='130' text-anchor='middle' fill='#fff' font-size='11'>Data Pipeline</text><line x1='600' y1='85' x2='680' y2='105' stroke='#555' stroke-width='1' stroke-dasharray='4,4'/><line x1='540' y1='85' x2='540' y2='105' stroke='#555' stroke-width='1' stroke-dasharray='4,4'/><line x1='680' y1='85' x2='620' y2='105' stroke='#555' stroke-width='1' stroke-dasharray='4,4'/><text x='400' y='185' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>組織のコミュニケーション境界 = システムのモジュール境界</text><text x='400' y='215' text-anchor='middle' fill='#aaa' font-size='11'>4チーム構成 → 4レイヤーアーキテクチャ</text><text x='400' y='240' text-anchor='middle' fill='#aaa' font-size='11'>チーム間の会話が少ない → モジュール間のAPI契約が粗い</text><text x='400' y='265' text-anchor='middle' fill='#ff6b6b' font-size='11'>アーキテクチャを変えたければ、まず組織を変えよ</text></svg>
+</div>
 
 
 ---
@@ -158,8 +201,10 @@ style: |
 
 - **望むアーキテクチャがあるなら、先に組織を設計する**
 - Team Topologies (Skelton & Pais, 2019) の中核思想
-- 
-- <svg viewBox='0 0 800 240' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='240' fill='#1a1a2e' rx='12'/><text x='200' y='28' text-anchor='middle' fill='#ff6b6b' font-size='13' font-weight='bold'>通常のコンウェイの法則</text><rect x='60' y='45' width='120' height='35' fill='#5a1a1a' rx='6'/><text x='120' y='68' text-anchor='middle' fill='#fff' font-size='11'>既存の組織</text><polygon points='190,62 205,57 205,67' fill='#ff6b6b'/><rect x='215' y='45' width='120' height='35' fill='#5a1a1a' rx='6'/><text x='275' y='68' text-anchor='middle' fill='#fff' font-size='11'>システム構造</text><text x='200' y='105' text-anchor='middle' fill='#ff6b6b' font-size='10'>組織に引きずられる</text><text x='600' y='28' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>逆コンウェイ作戦</text><rect x='460' y='45' width='120' height='35' fill='#1b4332' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='520' y='68' text-anchor='middle' fill='#4ecdc4' font-size='11'>望むアーキテクチャ</text><polygon points='590,62 605,57 605,67' fill='#4ecdc4'/><rect x='615' y='45' width='120' height='35' fill='#1b4332' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='675' y='68' text-anchor='middle' fill='#4ecdc4' font-size='11'>組織を再設計</text><text x='600' y='105' text-anchor='middle' fill='#4ecdc4' font-size='10'>意図的にチームを配置</text><line x1='50' y1='125' x2='750' y2='125' stroke='#555' stroke-width='1'/><text x='400' y='150' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>実例</text><text x='200' y='175' text-anchor='middle' fill='#aaa' font-size='11'>Spotify: Squads/Tribes/Guilds</text><text x='200' y='195' text-anchor='middle' fill='#aaa' font-size='10'>チーム構造をプロダクト構造に合わせた</text><text x='600' y='175' text-anchor='middle' fill='#aaa' font-size='11'>Amazon: Two-Pizza Teams</text><text x='600' y='195' text-anchor='middle' fill='#aaa' font-size='10'>各サービスに独立チームを割り当てた</text></svg>
+
+<div class="fig">
+<svg viewBox='0 0 800 240' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x='0' y='0' width='800' height='240' fill='#1a1a2e' rx='12'/><text x='200' y='28' text-anchor='middle' fill='#ff6b6b' font-size='13' font-weight='bold'>通常のコンウェイの法則</text><rect x='60' y='45' width='120' height='35' fill='#5a1a1a' rx='6'/><text x='120' y='68' text-anchor='middle' fill='#fff' font-size='11'>既存の組織</text><polygon points='190,62 205,57 205,67' fill='#ff6b6b'/><rect x='215' y='45' width='120' height='35' fill='#5a1a1a' rx='6'/><text x='275' y='68' text-anchor='middle' fill='#fff' font-size='11'>システム構造</text><text x='200' y='105' text-anchor='middle' fill='#ff6b6b' font-size='10'>組織に引きずられる</text><text x='600' y='28' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>逆コンウェイ作戦</text><rect x='460' y='45' width='120' height='35' fill='#1b4332' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='520' y='68' text-anchor='middle' fill='#4ecdc4' font-size='11'>望むアーキテクチャ</text><polygon points='590,62 605,57 605,67' fill='#4ecdc4'/><rect x='615' y='45' width='120' height='35' fill='#1b4332' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='675' y='68' text-anchor='middle' fill='#4ecdc4' font-size='11'>組織を再設計</text><text x='600' y='105' text-anchor='middle' fill='#4ecdc4' font-size='10'>意図的にチームを配置</text><line x1='50' y1='125' x2='750' y2='125' stroke='#555' stroke-width='1'/><text x='400' y='150' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>実例</text><text x='200' y='175' text-anchor='middle' fill='#aaa' font-size='11'>Spotify: Squads/Tribes/Guilds</text><text x='200' y='195' text-anchor='middle' fill='#aaa' font-size='10'>チーム構造をプロダクト構造に合わせた</text><text x='600' y='175' text-anchor='middle' fill='#aaa' font-size='11'>Amazon: Two-Pizza Teams</text><text x='600' y='195' text-anchor='middle' fill='#aaa' font-size='10'>各サービスに独立チームを割り当てた</text></svg>
+</div>
 
 
 ---
@@ -170,13 +215,15 @@ style: |
 
 - チームが大きすぎると**調整コスト**が爆発する
 - 通信チャネル数 = n(n-1)/2
-- 
-- <svg viewBox='0 0 800 280' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='280' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd700' font-size='14' font-weight='bold'>チームサイズ vs 通信チャネル数</text><line x1='80' y1='230' x2='700' y2='230' stroke='#555' stroke-width='2'/><line x1='80' y1='40' x2='80' y2='230' stroke='#555' stroke-width='2'/><text x='400' y='265' text-anchor='middle' fill='#aaa' font-size='11'>チーム人数</text><text x='50' y='135' fill='#aaa' font-size='10' transform='rotate(-90 50 135)'>チャネル数</text><rect x='120' y='220' width='40' height='10' fill='#4ecdc4' rx='2'/><text x='140' y='215' text-anchor='middle' fill='#4ecdc4' font-size='9'>3</text><text x='140' y='250' text-anchor='middle' fill='#aaa' font-size='9'>3人</text><rect x='200' y='210' width='40' height='20' fill='#4ecdc4' rx='2'/><text x='220' y='205' text-anchor='middle' fill='#4ecdc4' font-size='9'>6</text><text x='220' y='250' text-anchor='middle' fill='#aaa' font-size='9'>4人</text><rect x='280' y='195' width='40' height='35' fill='#4ecdc4' rx='2'/><text x='300' y='190' text-anchor='middle' fill='#4ecdc4' font-size='9'>10</text><text x='300' y='250' text-anchor='middle' fill='#aaa' font-size='9'>5人</text><rect x='360' y='175' width='40' height='55' fill='#ffd700' rx='2'/><text x='380' y='170' text-anchor='middle' fill='#ffd700' font-size='9'>21</text><text x='380' y='250' text-anchor='middle' fill='#aaa' font-size='9'>7人</text><rect x='440' y='140' width='40' height='90' fill='#e67e22' rx='2'/><text x='460' y='135' text-anchor='middle' fill='#e67e22' font-size='9'>45</text><text x='460' y='250' text-anchor='middle' fill='#aaa' font-size='9'>10人</text><rect x='520' y='90' width='40' height='140' fill='#ff6b6b' rx='2'/><text x='540' y='85' text-anchor='middle' fill='#ff6b6b' font-size='9'>105</text><text x='540' y='250' text-anchor='middle' fill='#aaa' font-size='9'>15人</text><rect x='600' y='45' width='40' height='185' fill='#ff6b6b' rx='2' opacity='0.7'/><text x='620' y='43' text-anchor='middle' fill='#ff6b6b' font-size='9'>190</text><text x='620' y='250' text-anchor='middle' fill='#aaa' font-size='9'>20人</text><rect x='280' y='56' width='120' height='30' fill='#1b4332' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='340' y='76' text-anchor='middle' fill='#4ecdc4' font-size='10'>2-Pizza = 6-8人</text><line x1='340' y1='86' x2='340' y2='175' stroke='#4ecdc4' stroke-width='1' stroke-dasharray='4,4'/></svg>
+
+<div class="fig">
+<svg viewBox='0 0 800 280' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x='0' y='0' width='800' height='280' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd700' font-size='14' font-weight='bold'>チームサイズ vs 通信チャネル数</text><line x1='80' y1='230' x2='700' y2='230' stroke='#555' stroke-width='2'/><line x1='80' y1='40' x2='80' y2='230' stroke='#555' stroke-width='2'/><text x='400' y='265' text-anchor='middle' fill='#aaa' font-size='11'>チーム人数</text><text x='50' y='135' fill='#aaa' font-size='10' transform='rotate(-90 50 135)'>チャネル数</text><rect x='120' y='220' width='40' height='10' fill='#4ecdc4' rx='2'/><text x='140' y='215' text-anchor='middle' fill='#4ecdc4' font-size='9'>3</text><text x='140' y='250' text-anchor='middle' fill='#aaa' font-size='9'>3人</text><rect x='200' y='210' width='40' height='20' fill='#4ecdc4' rx='2'/><text x='220' y='205' text-anchor='middle' fill='#4ecdc4' font-size='9'>6</text><text x='220' y='250' text-anchor='middle' fill='#aaa' font-size='9'>4人</text><rect x='280' y='195' width='40' height='35' fill='#4ecdc4' rx='2'/><text x='300' y='190' text-anchor='middle' fill='#4ecdc4' font-size='9'>10</text><text x='300' y='250' text-anchor='middle' fill='#aaa' font-size='9'>5人</text><rect x='360' y='175' width='40' height='55' fill='#ffd700' rx='2'/><text x='380' y='170' text-anchor='middle' fill='#ffd700' font-size='9'>21</text><text x='380' y='250' text-anchor='middle' fill='#aaa' font-size='9'>7人</text><rect x='440' y='140' width='40' height='90' fill='#e67e22' rx='2'/><text x='460' y='135' text-anchor='middle' fill='#e67e22' font-size='9'>45</text><text x='460' y='250' text-anchor='middle' fill='#aaa' font-size='9'>10人</text><rect x='520' y='90' width='40' height='140' fill='#ff6b6b' rx='2'/><text x='540' y='85' text-anchor='middle' fill='#ff6b6b' font-size='9'>105</text><text x='540' y='250' text-anchor='middle' fill='#aaa' font-size='9'>15人</text><rect x='600' y='45' width='40' height='185' fill='#ff6b6b' rx='2' opacity='0.7'/><text x='620' y='43' text-anchor='middle' fill='#ff6b6b' font-size='9'>190</text><text x='620' y='250' text-anchor='middle' fill='#aaa' font-size='9'>20人</text><rect x='280' y='56' width='120' height='30' fill='#1b4332' rx='6' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='340' y='76' text-anchor='middle' fill='#4ecdc4' font-size='10'>2-Pizza = 6-8人</text><line x1='340' y1='86' x2='340' y2='175' stroke='#4ecdc4' stroke-width='1' stroke-dasharray='4,4'/></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 実践的な組織設計
 
 - 理論を現場に落とし込む
@@ -189,8 +236,10 @@ style: |
 > *4つの類型と3つの相互作用モードでチーム設計を体系化できる*
 
 - Skelton & Pais (2019) が提唱した4つのチーム類型
-- 
-- <svg viewBox='0 0 800 300' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='300' fill='#1a1a2e' rx='12'/><rect x='40' y='35' width='340' height='80' fill='#1b4332' rx='10' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='210' y='60' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>Stream-Aligned Team</text><text x='210' y='80' text-anchor='middle' fill='#fff' font-size='10'>ビジネス価値の流れに沿って配置</text><text x='210' y='97' text-anchor='middle' fill='#aaa' font-size='9'>主力チーム。End-to-endの責任</text><rect x='420' y='35' width='340' height='80' fill='#4a3a1a' rx='10' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='590' y='60' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>Platform Team</text><text x='590' y='80' text-anchor='middle' fill='#fff' font-size='10'>内部プラットフォームを提供</text><text x='590' y='97' text-anchor='middle' fill='#aaa' font-size='9'>認知負荷を減らすインフラ・ツール</text><rect x='40' y='140' width='340' height='80' fill='#2a2a4a' rx='10' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='210' y='165' text-anchor='middle' fill='#e67e22' font-size='13' font-weight='bold'>Enabling Team</text><text x='210' y='185' text-anchor='middle' fill='#fff' font-size='10'>他チームの能力向上を支援</text><text x='210' y='202' text-anchor='middle' fill='#aaa' font-size='9'>技術コーチング、ベストプラクティス共有</text><rect x='420' y='140' width='340' height='80' fill='#5a1a1a' rx='10' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='590' y='165' text-anchor='middle' fill='#ff6b6b' font-size='13' font-weight='bold'>Complicated Subsystem</text><text x='590' y='185' text-anchor='middle' fill='#fff' font-size='10'>専門知識が必要な複雑領域</text><text x='590' y='202' text-anchor='middle' fill='#aaa' font-size='9'>ML、暗号、リアルタイム処理等</text><text x='400' y='255' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>相互作用モード</text><text x='200' y='280' text-anchor='middle' fill='#aaa' font-size='11'>Collaboration (密接な協業)</text><text x='400' y='280' text-anchor='middle' fill='#aaa' font-size='11'>X-as-a-Service (API提供)</text><text x='620' y='280' text-anchor='middle' fill='#aaa' font-size='11'>Facilitating (支援・指導)</text></svg>
+
+<div class="fig">
+<svg viewBox='0 0 800 300' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x='0' y='0' width='800' height='300' fill='#1a1a2e' rx='12'/><rect x='40' y='35' width='340' height='80' fill='#1b4332' rx='10' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='210' y='60' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>Stream-Aligned Team</text><text x='210' y='80' text-anchor='middle' fill='#fff' font-size='10'>ビジネス価値の流れに沿って配置</text><text x='210' y='97' text-anchor='middle' fill='#aaa' font-size='9'>主力チーム。End-to-endの責任</text><rect x='420' y='35' width='340' height='80' fill='#4a3a1a' rx='10' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='590' y='60' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>Platform Team</text><text x='590' y='80' text-anchor='middle' fill='#fff' font-size='10'>内部プラットフォームを提供</text><text x='590' y='97' text-anchor='middle' fill='#aaa' font-size='9'>認知負荷を減らすインフラ・ツール</text><rect x='40' y='140' width='340' height='80' fill='#2a2a4a' rx='10' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='210' y='165' text-anchor='middle' fill='#e67e22' font-size='13' font-weight='bold'>Enabling Team</text><text x='210' y='185' text-anchor='middle' fill='#fff' font-size='10'>他チームの能力向上を支援</text><text x='210' y='202' text-anchor='middle' fill='#aaa' font-size='9'>技術コーチング、ベストプラクティス共有</text><rect x='420' y='140' width='340' height='80' fill='#5a1a1a' rx='10' style='filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.4))'/><text x='590' y='165' text-anchor='middle' fill='#ff6b6b' font-size='13' font-weight='bold'>Complicated Subsystem</text><text x='590' y='185' text-anchor='middle' fill='#fff' font-size='10'>専門知識が必要な複雑領域</text><text x='590' y='202' text-anchor='middle' fill='#aaa' font-size='9'>ML、暗号、リアルタイム処理等</text><text x='400' y='255' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>相互作用モード</text><text x='200' y='280' text-anchor='middle' fill='#aaa' font-size='11'>Collaboration (密接な協業)</text><text x='400' y='280' text-anchor='middle' fill='#aaa' font-size='11'>X-as-a-Service (API提供)</text><text x='620' y='280' text-anchor='middle' fill='#aaa' font-size='11'>Facilitating (支援・指導)</text></svg>
+</div>
 
 
 ---
@@ -200,8 +249,10 @@ style: |
 > *外在的負荷を排除して1チームが担える複雑度の上限を広げる*
 
 - チームが担当できるシステムの複雑度には**上限がある**
-- 
-- <svg viewBox='0 0 800 250' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='250' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd700' font-size='14' font-weight='bold'>認知負荷の3種類</text><rect x='50' y='50' width='220' height='80' fill='#1b4332' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='160' y='75' text-anchor='middle' fill='#4ecdc4' font-size='12' font-weight='bold'>内在的負荷</text><text x='160' y='95' text-anchor='middle' fill='#fff' font-size='10'>ドメインの本質的な複雑さ</text><text x='160' y='115' text-anchor='middle' fill='#aaa' font-size='9'>減らせない。受け入れるしかない</text><rect x='290' y='50' width='220' height='80' fill='#4a3a1a' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='400' y='75' text-anchor='middle' fill='#ffd700' font-size='12' font-weight='bold'>外在的負荷</text><text x='400' y='95' text-anchor='middle' fill='#fff' font-size='10'>不適切なツール・プロセス</text><text x='400' y='115' text-anchor='middle' fill='#ffd700' font-size='9'>積極的に排除すべき</text><rect x='530' y='50' width='220' height='80' fill='#5a1a1a' rx='8'/><text x='640' y='75' text-anchor='middle' fill='#ff6b6b' font-size='12' font-weight='bold'>学習関連負荷</text><text x='640' y='95' text-anchor='middle' fill='#fff' font-size='10'>新技術・新ドメインの習得</text><text x='640' y='115' text-anchor='middle' fill='#ff6b6b' font-size='9'>投資だが、管理が必要</text><line x1='50' y1='150' x2='750' y2='150' stroke='#555' stroke-width='1'/><text x='400' y='175' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>設計指針</text><text x='200' y='200' text-anchor='middle' fill='#aaa' font-size='11'>1サービス = 1チームの認知限界内</text><text x='600' y='200' text-anchor='middle' fill='#aaa' font-size='11'>複雑すぎたら分割、不要なら統合</text><text x='400' y='235' text-anchor='middle' fill='#4ecdc4' font-size='12'>「このチームが週末に全員休んでも月曜に回復できるか？」</text></svg>
+
+<div class="fig">
+<svg viewBox='0 0 800 250' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x='0' y='0' width='800' height='250' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd700' font-size='14' font-weight='bold'>認知負荷の3種類</text><rect x='50' y='50' width='220' height='80' fill='#1b4332' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='160' y='75' text-anchor='middle' fill='#4ecdc4' font-size='12' font-weight='bold'>内在的負荷</text><text x='160' y='95' text-anchor='middle' fill='#fff' font-size='10'>ドメインの本質的な複雑さ</text><text x='160' y='115' text-anchor='middle' fill='#aaa' font-size='9'>減らせない。受け入れるしかない</text><rect x='290' y='50' width='220' height='80' fill='#4a3a1a' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='400' y='75' text-anchor='middle' fill='#ffd700' font-size='12' font-weight='bold'>外在的負荷</text><text x='400' y='95' text-anchor='middle' fill='#fff' font-size='10'>不適切なツール・プロセス</text><text x='400' y='115' text-anchor='middle' fill='#ffd700' font-size='9'>積極的に排除すべき</text><rect x='530' y='50' width='220' height='80' fill='#5a1a1a' rx='8'/><text x='640' y='75' text-anchor='middle' fill='#ff6b6b' font-size='12' font-weight='bold'>学習関連負荷</text><text x='640' y='95' text-anchor='middle' fill='#fff' font-size='10'>新技術・新ドメインの習得</text><text x='640' y='115' text-anchor='middle' fill='#ff6b6b' font-size='9'>投資だが、管理が必要</text><line x1='50' y1='150' x2='750' y2='150' stroke='#555' stroke-width='1'/><text x='400' y='175' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>設計指針</text><text x='200' y='200' text-anchor='middle' fill='#aaa' font-size='11'>1サービス = 1チームの認知限界内</text><text x='600' y='200' text-anchor='middle' fill='#aaa' font-size='11'>複雑すぎたら分割、不要なら統合</text><text x='400' y='235' text-anchor='middle' fill='#4ecdc4' font-size='12'>「このチームが週末に全員休んでも月曜に回復できるか？」</text></svg>
+</div>
 
 
 ---
@@ -211,8 +262,10 @@ style: |
 > *150人の壁がアーキテクチャ分割の必然的タイミングになる*
 
 - 人数の閾値でアーキテクチャの再設計が不可避になる
-- 
-- <svg viewBox='0 0 800 280' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='280' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd700' font-size='14' font-weight='bold'>成長フェーズとアーキテクチャ変遷</text><rect x='40' y='50' width='150' height='90' fill='#1b4332' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='115' y='75' text-anchor='middle' fill='#4ecdc4' font-size='12' font-weight='bold'>~5人</text><text x='115' y='95' text-anchor='middle' fill='#fff' font-size='10'>モノリス</text><text x='115' y='115' text-anchor='middle' fill='#aaa' font-size='9'>全員が全体を理解</text><text x='115' y='130' text-anchor='middle' fill='#aaa' font-size='8'>Shopify初期</text><polygon points='195,95 210,90 210,100' fill='#4ecdc4'/><rect x='215' y='50' width='150' height='90' fill='#4a3a1a' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='290' y='75' text-anchor='middle' fill='#ffd700' font-size='12' font-weight='bold'>~50人</text><text x='290' y='95' text-anchor='middle' fill='#fff' font-size='10'>モジュラーモノリス</text><text x='290' y='115' text-anchor='middle' fill='#aaa' font-size='9'>チーム境界=モジュール境界</text><text x='290' y='130' text-anchor='middle' fill='#aaa' font-size='8'>Airbnb中期</text><polygon points='370,95 385,90 385,100' fill='#ffd700'/><rect x='390' y='50' width='150' height='90' fill='#5a1a1a' rx='8'/><text x='465' y='75' text-anchor='middle' fill='#e67e22' font-size='12' font-weight='bold'>~150人</text><text x='465' y='95' text-anchor='middle' fill='#fff' font-size='10'>サービス分割開始</text><text x='465' y='115' text-anchor='middle' fill='#aaa' font-size='9'>API契約・プラットフォーム</text><text x='465' y='130' text-anchor='middle' fill='#aaa' font-size='8'>Uber成長期</text><polygon points='545,95 560,90 560,100' fill='#e67e22'/><rect x='565' y='50' width='190' height='90' fill='#5a1a1a' rx='8'/><text x='660' y='75' text-anchor='middle' fill='#ff6b6b' font-size='12' font-weight='bold'>500+人</text><text x='660' y='95' text-anchor='middle' fill='#fff' font-size='10'>マイクロサービス + Platform</text><text x='660' y='115' text-anchor='middle' fill='#aaa' font-size='9'>Team Topologies適用</text><text x='660' y='130' text-anchor='middle' fill='#aaa' font-size='8'>Netflix現在</text><text x='400' y='175' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>各フェーズの注意点</text><text x='200' y='200' text-anchor='middle' fill='#4ecdc4' font-size='11'>早すぎる分割 = カーゴカルト</text><text x='600' y='200' text-anchor='middle' fill='#ff6b6b' font-size='11'>遅すぎる分割 = 開発速度の崩壊</text><text x='400' y='240' text-anchor='middle' fill='#aaa' font-size='12'>組織の成長に合わせてアーキテクチャを段階的に進化させる</text><text x='400' y='265' text-anchor='middle' fill='#aaa' font-size='11'>「チームが痛みを感じ始めた時」が再設計の適切なタイミング</text></svg>
+
+<div class="fig">
+<svg viewBox='0 0 800 280' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x='0' y='0' width='800' height='280' fill='#1a1a2e' rx='12'/><text x='400' y='28' text-anchor='middle' fill='#ffd700' font-size='14' font-weight='bold'>成長フェーズとアーキテクチャ変遷</text><rect x='40' y='50' width='150' height='90' fill='#1b4332' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='115' y='75' text-anchor='middle' fill='#4ecdc4' font-size='12' font-weight='bold'>~5人</text><text x='115' y='95' text-anchor='middle' fill='#fff' font-size='10'>モノリス</text><text x='115' y='115' text-anchor='middle' fill='#aaa' font-size='9'>全員が全体を理解</text><text x='115' y='130' text-anchor='middle' fill='#aaa' font-size='8'>Shopify初期</text><polygon points='195,95 210,90 210,100' fill='#4ecdc4'/><rect x='215' y='50' width='150' height='90' fill='#4a3a1a' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='290' y='75' text-anchor='middle' fill='#ffd700' font-size='12' font-weight='bold'>~50人</text><text x='290' y='95' text-anchor='middle' fill='#fff' font-size='10'>モジュラーモノリス</text><text x='290' y='115' text-anchor='middle' fill='#aaa' font-size='9'>チーム境界=モジュール境界</text><text x='290' y='130' text-anchor='middle' fill='#aaa' font-size='8'>Airbnb中期</text><polygon points='370,95 385,90 385,100' fill='#ffd700'/><rect x='390' y='50' width='150' height='90' fill='#5a1a1a' rx='8'/><text x='465' y='75' text-anchor='middle' fill='#e67e22' font-size='12' font-weight='bold'>~150人</text><text x='465' y='95' text-anchor='middle' fill='#fff' font-size='10'>サービス分割開始</text><text x='465' y='115' text-anchor='middle' fill='#aaa' font-size='9'>API契約・プラットフォーム</text><text x='465' y='130' text-anchor='middle' fill='#aaa' font-size='8'>Uber成長期</text><polygon points='545,95 560,90 560,100' fill='#e67e22'/><rect x='565' y='50' width='190' height='90' fill='#5a1a1a' rx='8'/><text x='660' y='75' text-anchor='middle' fill='#ff6b6b' font-size='12' font-weight='bold'>500+人</text><text x='660' y='95' text-anchor='middle' fill='#fff' font-size='10'>マイクロサービス + Platform</text><text x='660' y='115' text-anchor='middle' fill='#aaa' font-size='9'>Team Topologies適用</text><text x='660' y='130' text-anchor='middle' fill='#aaa' font-size='8'>Netflix現在</text><text x='400' y='175' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>各フェーズの注意点</text><text x='200' y='200' text-anchor='middle' fill='#4ecdc4' font-size='11'>早すぎる分割 = カーゴカルト</text><text x='600' y='200' text-anchor='middle' fill='#ff6b6b' font-size='11'>遅すぎる分割 = 開発速度の崩壊</text><text x='400' y='240' text-anchor='middle' fill='#aaa' font-size='12'>組織の成長に合わせてアーキテクチャを段階的に進化させる</text><text x='400' y='265' text-anchor='middle' fill='#aaa' font-size='11'>「チームが痛みを感じ始めた時」が再設計の適切なタイミング</text></svg>
+</div>
 
 
 ---
@@ -222,19 +275,20 @@ style: |
 > *弱いつながりは増えるが強い信頼はオンラインで育ちにくい*
 
 - 非同期コミュニケーションでダンバー数はどう変化するか？
-- 
-- <svg viewBox='0 0 800 250' style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect x='0' y='0' width='800' height='250' fill='#1a1a2e' rx='12'/><text x='250' y='28' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>ツールによる拡張</text><rect x='50' y='45' width='180' height='60' fill='#1b4332' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='140' y='72' text-anchor='middle' fill='#4ecdc4' font-size='11'>Slack / Teams</text><text x='140' y='90' text-anchor='middle' fill='#aaa' font-size='9'>非同期チャネルで接点拡大</text><rect x='250' y='45' width='180' height='60' fill='#1b4332' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='340' y='72' text-anchor='middle' fill='#4ecdc4' font-size='11'>GitHub / GitLab</text><text x='340' y='90' text-anchor='middle' fill='#aaa' font-size='9'>コードを介した間接的協業</text><text x='600' y='28' text-anchor='middle' fill='#ff6b6b' font-size='13' font-weight='bold'>しかし限界もある</text><rect x='480' y='45' width='280' height='60' fill='#5a1a1a' rx='8'/><text x='620' y='72' text-anchor='middle' fill='#ff6b6b' font-size='11'>「弱いつながり」は増えるが...</text><text x='620' y='90' text-anchor='middle' fill='#aaa' font-size='9'>「強い信頼」はオンラインでは構築しにくい</text><line x1='50' y1='125' x2='750' y2='125' stroke='#555' stroke-width='1'/><text x='400' y='150' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>リモート時代の設計原則</text><rect x='60' y='165' width='210' height='40' fill='#2a2a4a' rx='6'/><text x='165' y='190' text-anchor='middle' fill='#aaa' font-size='10'>チームは5-8人に維持</text><rect x='290' y='165' width='230' height='40' fill='#2a2a4a' rx='6'/><text x='405' y='190' text-anchor='middle' fill='#aaa' font-size='10'>API境界を明確に定義</text><rect x='540' y='165' width='210' height='40' fill='#2a2a4a' rx='6'/><text x='645' y='190' text-anchor='middle' fill='#aaa' font-size='10'>ドキュメント文化を徹底</text><text x='400' y='235' text-anchor='middle' fill='#aaa' font-size='11'>リモートでは暗黙知の共有が難しいため、モジュール境界の明確化がより重要</text></svg>
+
+<div class="fig">
+<svg viewBox='0 0 800 250' style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x='0' y='0' width='800' height='250' fill='#1a1a2e' rx='12'/><text x='250' y='28' text-anchor='middle' fill='#4ecdc4' font-size='13' font-weight='bold'>ツールによる拡張</text><rect x='50' y='45' width='180' height='60' fill='#1b4332' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='140' y='72' text-anchor='middle' fill='#4ecdc4' font-size='11'>Slack / Teams</text><text x='140' y='90' text-anchor='middle' fill='#aaa' font-size='9'>非同期チャネルで接点拡大</text><rect x='250' y='45' width='180' height='60' fill='#1b4332' rx='8' style='filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.3))'/><text x='340' y='72' text-anchor='middle' fill='#4ecdc4' font-size='11'>GitHub / GitLab</text><text x='340' y='90' text-anchor='middle' fill='#aaa' font-size='9'>コードを介した間接的協業</text><text x='600' y='28' text-anchor='middle' fill='#ff6b6b' font-size='13' font-weight='bold'>しかし限界もある</text><rect x='480' y='45' width='280' height='60' fill='#5a1a1a' rx='8'/><text x='620' y='72' text-anchor='middle' fill='#ff6b6b' font-size='11'>「弱いつながり」は増えるが...</text><text x='620' y='90' text-anchor='middle' fill='#aaa' font-size='9'>「強い信頼」はオンラインでは構築しにくい</text><line x1='50' y1='125' x2='750' y2='125' stroke='#555' stroke-width='1'/><text x='400' y='150' text-anchor='middle' fill='#ffd700' font-size='13' font-weight='bold'>リモート時代の設計原則</text><rect x='60' y='165' width='210' height='40' fill='#2a2a4a' rx='6'/><text x='165' y='190' text-anchor='middle' fill='#aaa' font-size='10'>チームは5-8人に維持</text><rect x='290' y='165' width='230' height='40' fill='#2a2a4a' rx='6'/><text x='405' y='190' text-anchor='middle' fill='#aaa' font-size='10'>API境界を明確に定義</text><rect x='540' y='165' width='210' height='40' fill='#2a2a4a' rx='6'/><text x='645' y='190' text-anchor='middle' fill='#aaa' font-size='10'>ドキュメント文化を徹底</text><text x='400' y='235' text-anchor='middle' fill='#aaa' font-size='11'>リモートでは暗黙知の共有が難しいため、モジュール境界の明確化がより重要</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ
 
 - **アーキテクチャの問題は**
 - **技術の問題である前に**
 - **人間の認知能力の問題である**
-- 
 - チームサイズを意識し、認知負荷を設計し、
 - 組織構造とシステム構造を整合させよ。
 
@@ -245,10 +299,10 @@ style: |
 
 > *Dunbar・Conway・Team Topologies・Man-Monthの基礎4文献*
 
-- - **Foundational Research:**
-- - Dunbar, R. (1992). Neocortex size as a constraint on group size in primates
-- - Conway, M. (1968). How Do Committees Invent?
-- - **Books:**
+- **Foundational Research:**
+- Dunbar, R. (1992). Neocortex size as a constraint on group size in primates
+- Conway, M. (1968). How Do Committees Invent?
+- **Books:**
 
 
 ---
@@ -257,9 +311,9 @@ style: |
 
 > *Spotify・Amazon・Team Topologies・Accelerate の実践事例5文献*
 
-- - Skelton & Pais, *Team Topologies* (2019)
-- - Brooks, *The Mythical Man-Month* (1975)
-- - **Industry Practice:**
-- - [Spotify Engineering Culture (2014)](https://engineering.atspotify.com/)
-- - [Amazon's Two-Pizza Teams](https://docs.aws.amazon.com/whitepapers/latest/introduction-devops-aws/two-pizza-teams.html)
+- Skelton & Pais, *Team Topologies* (2019)
+- Brooks, *The Mythical Man-Month* (1975)
+- **Industry Practice:**
+- [Spotify Engineering Culture (2014)](https://engineering.atspotify.com/)
+- [Amazon's Two-Pizza Teams](https://docs.aws.amazon.com/whitepapers/latest/introduction-devops-aws/two-pizza-teams.html)
 

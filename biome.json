@@ -14,7 +14,7 @@
 		"indentStyle": "tab"
 	},
 	"files": {
-		"ignore": ["node_modules", "dist", "docs/dist", "bun.lock"],
+		"ignore": ["node_modules", "dist", "docs/dist", "bun.lock", ".cache"],
 		"maxSize": 4194304
 	},
 	"overrides": [

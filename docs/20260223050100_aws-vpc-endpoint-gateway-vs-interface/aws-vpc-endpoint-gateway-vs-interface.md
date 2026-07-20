@@ -7,41 +7,76 @@ paginate: true
 header: "AWS ANS — VPC Endpoint 深掘り"
 footer: "Gateway Endpoint vs Interface Endpoint (PrivateLink)"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -95,10 +130,11 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # AWS VPC Endpoint 深掘り
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <rect x="40" y="40" width="720" height="320" rx="16" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
   <text x="400" y="100" font-family="sans-serif" font-size="24" font-weight="bold" fill="#f9a825" text-anchor="middle">VPC Endpoint 2種類の全体像</text>
@@ -122,6 +158,8 @@ style: |
   <polygon points="375,127 400,110 425,127" fill="#f9a825"/>
   <line x1="400" y1="127" x2="400" y2="310" stroke="#f9a825" stroke-width="1" stroke-dasharray="6,4"/>
 </svg>
+</div>
+
 - Gateway Endpoint vs Interface Endpoint (PrivateLink)
 - AWS ANS 受験対策 & 実務設計ガイド
 - 対象: AWS ネットワーク専門家・ANS 受験者
@@ -152,7 +190,8 @@ style: |
 
 # VPC Endpoint とは何か？
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <!-- AWS Cloud border -->
   <rect x="8" y="8" width="784" height="384" rx="12" fill="none" stroke="#ff9900" stroke-width="2" stroke-dasharray="8,4"/>
@@ -209,6 +248,7 @@ style: |
   <rect x="28" y="368" width="450" height="22" rx="4" fill="#7b5ea7" opacity="0.1"/>
   <text x="253" y="383" font-family="Arial,sans-serif" font-size="11" fill="#7b5ea7" text-anchor="middle">インターネットを経由せず、プライベートに AWS サービスへ接続</text>
 </svg>
+</div>
 
 <!--
 VPC Endpoint はインターネットを介さずに AWS サービスへプライベート接続する仕組みです。トラフィックは AWS バックボーン内に留まり、パブリック IP は不要です。
@@ -218,7 +258,8 @@ VPC Endpoint はインターネットを介さずに AWS サービスへプラ�
 
 # なぜ VPC Endpoint が必要か？
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <!-- Title divider -->
   <line x1="400" y1="10" x2="400" y2="390" stroke="#ddd" stroke-width="1" stroke-dasharray="4,3"/>
@@ -302,6 +343,7 @@ VPC Endpoint はインターネットを介さずに AWS サービスへプラ�
   <text x="600" y="360" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">メリット: Gateway は無料 / Interface はデータ転送料削減 + セキュリティ向上</text>
   <text x="600" y="376" font-family="Arial,sans-serif" font-size="10" fill="#888" text-anchor="middle">NAT GW 不要 / パブリックアクセス遮断 / VPC Endpoint Policy で制御</text>
 </svg>
+</div>
 
 <!--
 Before: IGW + NAT GW 経由でのインターネット経由接続はコスト高・セキュリティリスク有り。After: VPC Endpoint 経由でコスト削減とセキュリティ強化を同時に実現できます。
@@ -311,7 +353,8 @@ Before: IGW + NAT GW 経由でのインターネット経由接続はコスト�
 
 # 2 種類の VPC Endpoint — 全体像
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <line x1="400" y1="10" x2="400" y2="390" stroke="#e5e7eb" stroke-width="1.5"/>
   <!-- Left: Gateway Endpoint -->
@@ -371,6 +414,7 @@ Before: IGW + NAT GW 経由でのインターネット経由接続はコスト�
   <text x="452" y="335" font-family="Arial,sans-serif" font-size="11" fill="#ef4444">✗ 有料 ($0.01/hr/AZ + $0.01/GB)</text>
   <text x="452" y="353" font-family="Arial,sans-serif" font-size="11" fill="#ef4444">✗ AZ ごとに ENI が必要</text>
 </svg>
+</div>
 
 <!--
 Gateway Endpoint: ルートテーブルベース、S3/DDB のみ、無料。Interface Endpoint: ENI ベース、100+ サービス対応、有料。この違いが選定の基本になります。
@@ -380,7 +424,8 @@ Gateway Endpoint: ルートテーブルベース、S3/DDB のみ、無料。Inte
 
 # Gateway Endpoint — アーキテクチャ
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <!-- AWS Cloud border -->
   <rect x="8" y="8" width="784" height="384" rx="12" fill="none" stroke="#ff9900" stroke-width="2" stroke-dasharray="8,4"/>
@@ -450,6 +495,7 @@ Gateway Endpoint: ルートテーブルベース、S3/DDB のみ、無料。Inte
   <text x="400" y="310" font-family="Arial,sans-serif" font-size="9" fill="#b45309" text-anchor="middle" font-weight="bold">Gateway EP は ENI を持たない</text>
   <text x="400" y="323" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">セキュリティグループは設定不可（ルートのみ）</text>
 </svg>
+</div>
 
 <!--
 Gateway Endpoint は ENI を持たない仮想ゲートウェイです。ルートテーブルのエントリとして機能し、プレフィックスリスト宛てのトラフィックをエンドポイント経由に誘導します。
@@ -459,7 +505,8 @@ Gateway Endpoint は ENI を持たない仮想ゲートウェイです。ルー�
 
 # Gateway Endpoint — ルートテーブルの仕組み
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <!-- Title -->
   <text x="400" y="28" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Gateway Endpoint — ルートテーブルの仕組み</text>
@@ -544,6 +591,7 @@ Gateway Endpoint は ENI を持たない仮想ゲートウェイです。ルー�
   <text x="698" y="309" font-family="Arial,sans-serif" font-size="10" fill="#fff" text-anchor="middle">S3 / DDB</text>
   <text x="598" y="352" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle">プライベート経路 = 無料 + 安全</text>
 </svg>
+</div>
 
 <!--
 エンドポイント作成時にルートテーブルへ Managed Prefix List エントリが自動追加されます。プレフィックスリストは AWS が管理するため IP 範囲の変更を追跡する必要はありません。
@@ -555,7 +603,8 @@ Gateway Endpoint は ENI を持たない仮想ゲートウェイです。ルー�
 
 > *S3とDynamoDBのみ対応—ルートテーブルで通信を制御*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="40" font-family="sans-serif" font-size="20" font-weight="bold" fill="#f9a825" text-anchor="middle">Gateway Endpoint 対応サービス</text>
   <rect x="60" y="65" width="320" height="290" rx="12" fill="#0a2744" stroke="#00bcd4" stroke-width="2"/>
@@ -588,6 +637,8 @@ Gateway Endpoint は ENI を持たない仮想ゲートウェイです。ルー�
   <text x="580" y="318" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f9a825" text-anchor="middle">プライベートに最適化</text>
   <text x="400" y="375" font-family="sans-serif" font-size="12" fill="#a0a0a0" text-anchor="middle">この2サービスのみ対応 — それ以外はInterface Endpointを使用</text>
 </svg>
+</div>
+
 - **Amazon S3 (Gateway Endpoint)**
 - リージョン内全バケットに接続可能（クロスリージョンは不可）
 - Prefix List: `pl-68a54001` (us-east-1) / `pl-61a54008` (us-west-2) 等
@@ -644,7 +695,8 @@ aws ec2 describe-managed-prefix-lists \
 
 # Gateway Endpoint — アクセス制御（Endpoint Policy）
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Gateway Endpoint — アクセス制御レイヤー</text>
   <!-- EC2 -->
@@ -726,6 +778,7 @@ aws ec2 describe-managed-prefix-lists \
   <text x="400" y="361" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">重要条件キー: aws:sourceVpce (EP ID指定) / aws:sourceVpc (VPC ID指定) / aws:PrincipalAccount (アカウント制限)</text>
   <text x="400" y="378" font-family="Arial,sans-serif" font-size="10" fill="#888" text-anchor="middle">Bucket Policy で Deny + aws:sourceVpce → EP 経由以外からのアクセスを全拒否（最も強固な制御）</text>
 </svg>
+</div>
 
 <!--
 Gateway EP のアクセス制御は 4 層構造です。特に aws:sourceVpce 条件キーを使った Bucket Policy による Deny は、EP 経由以外からのアクセスを完全遮断する最も強力な制御手段です。
@@ -735,7 +788,8 @@ Gateway EP のアクセス制御は 4 層構造です。特に aws:sourceVpce �
 
 # Interface Endpoint (PrivateLink) — 概要
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <!-- AWS Cloud border -->
   <rect x="8" y="8" width="784" height="384" rx="12" fill="none" stroke="#ff9900" stroke-width="2" stroke-dasharray="8,4"/>
@@ -815,6 +869,7 @@ Gateway EP のアクセス制御は 4 層構造です。特に aws:sourceVpce �
   <text x="497" y="177" font-family="Arial,sans-serif" font-size="9" fill="#059669" text-anchor="middle" font-weight="bold">AWS PrivateLink</text>
   <text x="497" y="191" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">Backbone 経由</text>
 </svg>
+</div>
 
 <!--
 Interface Endpoint は VPC 内のサブネットに ENI を作成します。ENI はプライベート IP を持ち、セキュリティグループを適用できます。Private DNS により既存コードの変更なしでプライベート接続が可能です。
@@ -824,7 +879,8 @@ Interface Endpoint は VPC 内のサブネットに ENI を作成します。ENI
 
 # Interface Endpoint — マルチ AZ ENI 配置
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Interface Endpoint — マルチ AZ ENI 配置</text>
   <!-- VPC border -->
@@ -905,6 +961,7 @@ Interface Endpoint は VPC 内のサブネットに ENI を作成します。ENI
   <text x="400" y="370" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle" font-weight="bold">推奨: 使用するすべての AZ に ENI を作成してクロスAZコストを回避</text>
   <text x="400" y="384" font-family="Arial,sans-serif" font-size="9" fill="#888" text-anchor="middle">ENI は AZ ごとに独立したプライベート IP を持つ / 料金: $0.01/hr/AZ + $0.01/GB データ処理</text>
 </svg>
+</div>
 
 <!--
 高可用性のため、使用する全 AZ に ENI を作成することを推奨します。ENI がない AZ からアクセスするとクロスAZ通信が発生し $0.01/GB のコストが発生します。
@@ -914,7 +971,8 @@ Interface Endpoint は VPC 内のサブネットに ENI を作成します。ENI
 
 # Interface Endpoint — DNS 解決の仕組み
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Interface Endpoint — DNS 解決の仕組み</text>
   <!-- Two columns: without Private DNS / with Private DNS -->
@@ -995,6 +1053,7 @@ Interface Endpoint は VPC 内のサブネットに ENI を作成します。ENI
   <text x="600" y="348" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">標準 DNS 名のまま使用可能</text>
   <text x="600" y="364" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">既存アプリへの影響ゼロで移行可能</text>
 </svg>
+</div>
 
 <!--
 Private DNS を有効化すると Route 53 PHZ が自動作成され、標準の DNS 名がプライベート IP に解決されます。既存アプリのコード変更なしで移行できるため、本番環境での採用が容易です。
@@ -1004,7 +1063,8 @@ Private DNS を有効化すると Route 53 PHZ が自動作成され、標準の
 
 # Private DNS 機能と Route 53 PHZ
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Private DNS 機能と Route 53 Private Hosted Zone</text>
   <!-- VPC border -->
@@ -1087,6 +1147,7 @@ Private DNS を有効化すると Route 53 PHZ が自動作成され、標準の
   <line x1="487" y1="326" x2="523" y2="200" stroke="#10b981" stroke-width="2"/>
   <polygon points="517,197 526,207 531,196" fill="#10b981"/>
 </svg>
+</div>
 
 <!--
 PHZ は Interface Endpoint 作成時に自動生成・VPC 関連付けされます。enableDnsSupport と enableDnsHostnames の両方が true である必要があります。オンプレから PHZ へのアクセスには R53 Inbound Resolver EP が必要です。
@@ -1098,7 +1159,8 @@ PHZ は Interface Endpoint 作成時に自動生成・VPC 関連付けされま�
 
 > *300以上のAWSサービスに対応—ENIにプライベートIPを割当*
 
-- <svg viewBox="0 0 800 420" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 420" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="420" fill="#1a1a2e"/>
   <text x="400" y="36" font-family="sans-serif" font-size="19" font-weight="bold" fill="#f9a825" text-anchor="middle">Interface Endpoint 対応サービス (100+)</text>
   <rect x="30" y="55" width="220" height="150" rx="10" fill="#0a2744" stroke="#00bcd4" stroke-width="1.5"/>
@@ -1145,6 +1207,8 @@ PHZ は Interface Endpoint 作成時に自動生成・VPC 関連付けされま�
   <text x="660" y="355" font-family="sans-serif" font-size="10" fill="#a0a0a0" text-anchor="middle">★ DNS解決にR53 EP必要</text>
   <text x="400" y="398" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">サービス名: com.amazonaws.&lt;region&gt;.&lt;service&gt;</text>
 </svg>
+</div>
+
 - **コンピューティング & コンテナ:** EC2, ECS, ECR (API/dkr), Lambda
 - **管理 & 運用:** SSM, Systems Manager, CloudWatch (Logs/Monitoring), CloudTrail
 - **セキュリティ:** Secrets Manager, KMS, ACM, Security Hub, GuardDuty
@@ -1160,7 +1224,8 @@ PHZ は Interface Endpoint 作成時に自動生成・VPC 関連付けされま�
 
 # Interface Endpoint — セキュリティグループ設計
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Interface Endpoint — セキュリティグループ設計</text>
   <!-- VPC -->
@@ -1238,6 +1303,7 @@ PHZ は Interface Endpoint 作成時に自動生成・VPC 関連付けされま�
   <text x="560" y="319" font-family="Arial,sans-serif" font-size="9" fill="#555">・Endpoint Policy との二重制御</text>
   <text x="560" y="340" font-family="Arial,sans-serif" font-size="9" fill="#888">→ より細かいアクセス制御が可能</text>
 </svg>
+</div>
 
 <!--
 SG 参照（sg-id をソースに指定）は IP アドレス変更に依存しない堅牢な設計です。Gateway EP との最大の違いがこのセキュリティグループによる細粒度制御にあります。
@@ -1247,7 +1313,8 @@ SG 参照（sg-id をソースに指定）は IP アドレス変更に依存し�
 
 # 比較① — 技術仕様マトリクス
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">技術仕様比較マトリクス</text>
   <!-- Table -->
@@ -1320,6 +1387,7 @@ SG 参照（sg-id をソースに指定）は IP アドレス変更に依存し�
   <rect x="10" y="375" width="780" height="22" rx="4" fill="#7b5ea7" opacity="0.1"/>
   <text x="400" y="390" font-family="Arial,sans-serif" font-size="10" fill="#7b5ea7" text-anchor="middle">S3 / DynamoDB へのアクセスが目的なら Gateway を選ぶ — オンプレ連携・他サービスなら Interface を選ぶ</text>
 </svg>
+</div>
 
 <!--
 最重要の差分は「対応サービス数」「ENI 有無」「SG 設定可否」「オンプレ/TGW 経由可否」の 4 点です。ANS 試験ではこの比較から答えを導くケースが多いです。
@@ -1329,7 +1397,8 @@ SG 参照（sg-id をソースに指定）は IP アドレス変更に依存し�
 
 # 比較② — コスト構造
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">コスト構造比較</text>
   <!-- LEFT: Gateway Cost -->
@@ -1384,6 +1453,7 @@ SG 参照（sg-id をソースに指定）は IP アドレス変更に依存し�
   <text x="454" y="346" font-family="Arial,sans-serif" font-size="9" fill="#888">→ Interface EP より Gateway EP が安い</text>
   <text x="446" y="366" font-family="Arial,sans-serif" font-size="9" fill="#b45309" font-weight="bold">例外: オンプレや TGW 経由が必要なら Interface EP 一択</text>
 </svg>
+</div>
 
 <!--
 Gateway EP は完全無料です。大量の S3 アクセスがある場合は Gateway EP を使わないと NAT GW 経由で大きなコストが発生します。Interface EP は使用する AZ 数を最小化することでコスト最適化できます。
@@ -1393,7 +1463,8 @@ Gateway EP は完全無料です。大量の S3 アクセスがある場合は G
 
 # 比較③ — セキュリティモデル
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="26" font-family="Arial,sans-serif" font-size="14" fill="#7b5ea7" font-weight="bold" text-anchor="middle">セキュリティモデル比較</text>
   <!-- LEFT: Gateway Security -->
@@ -1461,6 +1532,7 @@ Gateway EP は完全無料です。大量の S3 アクセスがある場合は G
   <text x="425" y="359" font-family="Arial,sans-serif" font-size="9" fill="#555">・アプリチームと NW チームで責任分離しやすい</text>
   <text x="425" y="365" font-family="Arial,sans-serif" font-size="9" fill="#888">　(SG=アプリ / EP Policy=NW / IAM=セキュリティ)</text>
 </svg>
+</div>
 
 <!--
 Gateway EP はルートテーブル + EP Policy + Bucket Policy の 3 層。Interface EP は SG + EP Policy + Resource Policy + IAM の 4 層でより細粒度な制御が可能です。
@@ -1470,7 +1542,8 @@ Gateway EP はルートテーブル + EP Policy + Bucket Policy の 3 層。Inte
 
 # 比較④ — ユースケース選定フロー
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">ユースケース別 エンドポイント選定フロー</text>
   <!-- START -->
@@ -1546,6 +1619,7 @@ Gateway EP はルートテーブル + EP Policy + Bucket Policy の 3 層。Inte
   <text x="649" y="358" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">・Gateway EP (S3/DDB) + Interface EP</text>
   <text x="649" y="374" font-family="Arial,sans-serif" font-size="9" fill="#555" text-anchor="middle">・(他サービス) を組み合わせる</text>
 </svg>
+</div>
 
 <!--
 S3/DDB + VPC 内のみのアクセス → Gateway EP が第一選択。オンプレ経由や他サービス → Interface EP。両方組み合わせるのが現実的なアーキテクチャです。
@@ -1555,7 +1629,8 @@ S3/DDB + VPC 内のみのアクセス → Gateway EP が第一選択。オンプ
 
 # PrivateLink — Consumer / Provider アーキテクチャ
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">PrivateLink — Consumer / Provider アーキテクチャ</text>
   <!-- Consumer VPC (left) -->
@@ -1641,6 +1716,7 @@ S3/DDB + VPC 内のみのアクセス → Gateway EP が第一選択。オンプ
   <rect x="15" y="365" width="770" height="25" rx="4" fill="#f0fdf4" stroke="#10b981" stroke-width="1"/>
   <text x="400" y="382" font-family="Arial,sans-serif" font-size="10" fill="#059669" text-anchor="middle">PrivateLink は VPC CIDR が重複していても使用可能 — VPC Peering と異なり IP アドレス重複不可の制約なし</text>
 </svg>
+</div>
 
 <!--
 Consumer は Interface EP を通じて Provider の Endpoint Service に接続します。VPC CIDR が重複していても使用可能で、プロバイダー VPC の IP アドレス空間を意識する必要がありません。
@@ -1650,7 +1726,8 @@ Consumer は Interface EP を通じて Provider の Endpoint Service に接続�
 
 # PrivateLink — NLB 連携アーキテクチャ詳細
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">PrivateLink — NLB 連携アーキテクチャ詳細</text>
   <!-- Provider VPC -->
@@ -1735,6 +1812,7 @@ Consumer は Interface EP を通じて Provider の Endpoint Service に接続�
   <line x1="179" y1="187" x2="413" y2="141" stroke="#10b981" stroke-width="2.5"/>
   <polygon points="407,136 417,144 408,152" fill="#10b981"/>
 </svg>
+</div>
 
 <!--
 PrivateLink の Endpoint Service には Network Load Balancer（NLB）が必須です。ALB は対応していません。NLB の Target Type によって Source IP 保持の動作が異なります。
@@ -1744,7 +1822,8 @@ PrivateLink の Endpoint Service には Network Load Balancer（NLB）が必須�
 
 # カスタム PrivateLink サービスの公開手順
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">カスタム PrivateLink サービスの公開手順</text>
   <!-- Provider side (top) -->
@@ -1840,6 +1919,7 @@ PrivateLink の Endpoint Service には Network Load Balancer（NLB）が必須�
   <text x="30" y="356" font-family="monospace,Arial" font-size="9" fill="#555"># Consumer: Interface EP 作成</text>
   <text x="30" y="371" font-family="monospace,Arial" font-size="9" fill="#059669">aws ec2 create-vpc-endpoint --vpc-id vpc-XXX --service-name com.amazonaws.vpce... --subnet-ids subnet-XXX</text>
 </svg>
+</div>
 
 <!--
 Provider 側が NLB + Endpoint Service を作成し、Consumer 側が Interface EP を作成して接続リクエストを送ります。Provider が承認すると接続が確立します。Terraform では aws_vpc_endpoint_service / aws_vpc_endpoint リソースで管理できます。
@@ -1851,7 +1931,8 @@ Provider 側が NLB + Endpoint Service を作成し、Consumer 側が Interface 
 
 > *明示的拒否でデータ漏洩を防ぐ—Allow-Listが基本方針*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="36" font-family="sans-serif" font-size="19" font-weight="bold" fill="#f9a825" text-anchor="middle">VPC Endpoint Policy 設計方針</text>
   <rect x="40" y="56" width="720" height="60" rx="10" fill="#3d2000" stroke="#f9a825" stroke-width="2"/>
@@ -1881,6 +1962,8 @@ Provider 側が NLB + Endpoint Service を作成し、Consumer 側が Interface 
   <text x="400" y="342" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">Bucket Policy: aws:sourceVpce Deny で EP経由以外を完全拒否</text>
   <text x="400" y="362" font-family="sans-serif" font-size="11" fill="#f9a825" text-anchor="middle">→ 多層防御でデータの持ち出しを防止</text>
 </svg>
+</div>
+
 - **基本原則: 最小権限（Least Privilege）**
 - デフォルトは `Allow *` — 意図的に制限する必要がある
 - Principal / Action / Resource / Condition を組み合わせて制御
@@ -1944,7 +2027,8 @@ Endpoint Policy は JSON IAM ポリシーと同じ構文です。デフォルト
 
 # マルチ VPC / マルチアカウント 設計パターン
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">マルチ VPC / マルチアカウント PrivateLink パターン</text>
   <!-- Account A (left) - 3 Consumer VPCs -->
@@ -2029,6 +2113,7 @@ Endpoint Policy は JSON IAM ポリシーと同じ構文です。デフォルト
   <text x="474" y="344" font-family="Arial,sans-serif" font-size="9" fill="#555">不特定多数の Consumer に安全にサービスを提供</text>
   <text x="474" y="360" font-family="Arial,sans-serif" font-size="9" fill="#555">例: Datadog / Splunk / Snowflake 等が採用</text>
 </svg>
+</div>
 
 <!--
 PrivateLink は VPC CIDR 重複を許容するため、マルチアカウント環境で異なるアカウントの VPC が同じ CIDR を持つケースでも問題なく使用できます。Consumer ごとに独立した Interface EP が必要です。
@@ -2038,7 +2123,8 @@ PrivateLink は VPC CIDR 重複を許容するため、マルチアカウント�
 
 # Transit Gateway + PrivateLink — 集中型アーキテクチャ
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Transit Gateway + Interface Endpoint — 集中型アーキテクチャ</text>
   <!-- Shared Services VPC (center top) -->
@@ -2112,6 +2198,7 @@ PrivateLink は VPC CIDR 重複を許容するため、マルチアカウント�
   <!-- Benefit Note -->
   <rect x="15" y="392" width="770" height="0" rx="4"/>
 </svg>
+</div>
 
 <!--
 TGW を中心にした Hub-and-Spoke アーキテクチャでは、共有サービス VPC に Interface EP を集約し、すべての Spoke VPC および On-Premises から TGW 経由でアクセスさせます。EP 数を最小化できるコスト最適化パターンです。
@@ -2121,7 +2208,8 @@ TGW を中心にした Hub-and-Spoke アーキテクチャでは、共有サー�
 
 # Hub-and-Spoke — Interface Endpoint 集約
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Hub-and-Spoke — Interface Endpoint 集約パターン</text>
   <!-- Hub VPC (center) -->
@@ -2187,6 +2275,7 @@ TGW を中心にした Hub-and-Spoke アーキテクチャでは、共有サー�
   <!-- Cost saving note -->
   <rect x="5" y="388" width="790" height="10" rx="3"/>
 </svg>
+</div>
 
 <!--
 Hub VPC（共有サービス VPC）に Interface EP を集約し、Spoke VPC は EP を持たずに TGW 経由で Hub の EP を利用します。ただし Gateway EP は TGW を跨いで共有できないため、各 Spoke VPC に個別の Gateway EP が必要です。
@@ -2196,7 +2285,8 @@ Hub VPC（共有サービス VPC）に Interface EP を集約し、Spoke VPC は
 
 # PrivateLink + Direct Connect — オンプレ接続
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Direct Connect + PrivateLink — オンプレ接続パターン</text>
   <!-- On-Premises (left) -->
@@ -2271,6 +2361,7 @@ Hub VPC（共有サービス VPC）に Interface EP を集約し、Spoke VPC は
   <line x1="584" y1="183" x2="613" y2="183" stroke="#10b981" stroke-width="2"/>
   <polygon points="609,177 621,183 609,189" fill="#10b981"/>
 </svg>
+</div>
 
 <!--
 Gateway EP は VPC 外からのアクセスに対応していないため、オンプレからの接続には Interface EP が必須です。また Gateway EP の Endpoint Policy はオンプレからのアクセスには適用されない点も重要です。
@@ -2280,7 +2371,8 @@ Gateway EP は VPC 外からのアクセスに対応していないため、オ�
 
 # オンプレミス接続時の DNS 解決フロー
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">オンプレミス接続時の DNS 解決フロー</text>
   <!-- Step numbers flow diagram -->
@@ -2403,6 +2495,7 @@ Gateway EP は VPC 外からのアクセスに対応していないため、オ�
   <text x="420" y="359" font-family="Arial,sans-serif" font-size="9" fill="#555">今回の PrivateLink 用途では不要</text>
   <text x="420" y="378" font-family="Arial,sans-serif" font-size="9" fill="#888">Inbound EP の料金: $0.125/hr + $0.000125/クエリ</text>
 </svg>
+</div>
 
 <!--
 オンプレ DNS → Conditional Forwarder → R53 Inbound EP → PHZ の順で DNS 解決します。R53 Inbound EP は VPC 内に ENI を作成し、オンプレ DNS からの問い合わせを受け付けます。Gateway EP はこのフローでは機能しません。
@@ -2410,10 +2503,11 @@ Gateway EP は VPC 外からのアクセスに対応していないため、オ�
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # セキュリティ設計
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="60" font-family="sans-serif" font-size="26" font-weight="bold" fill="#f9a825" text-anchor="middle">セキュリティ設計</text>
   <text x="400" y="96" font-family="sans-serif" font-size="16" fill="#ffffff" text-anchor="middle">VPC Endpoint の多層防御アーキテクチャ</text>
@@ -2439,6 +2533,8 @@ Gateway EP は VPC 外からのアクセスに対応していないため、オ�
   <text x="400" y="324" font-family="sans-serif" font-size="12" fill="#ffffff" text-anchor="middle">aws:sourceVpce / aws:sourceVpc / aws:PrincipalAccount 条件キー</text>
   <text x="400" y="344" font-family="sans-serif" font-size="11" fill="#f9a825" text-anchor="middle">→ 4層の組み合わせで最強の防御を実現</text>
 </svg>
+</div>
+
 - VPC Endpoint Policy のベストプラクティス
 - IAM 条件キーの活用
 - セキュリティグループ設計パターン
@@ -2556,7 +2652,8 @@ aws:PrincipalOrgID を使うと AWS Organizations 全体を対象にしたポリ
 
 # セキュリティグループ設計パターン
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">Interface Endpoint — セキュリティグループ設計パターン</text>
   <!-- Pattern 1: SG Reference -->
@@ -2633,6 +2730,7 @@ aws:PrincipalOrgID を使うと AWS Organizations 全体を対象にしたポリ
   <text x="427" y="368" font-family="Arial,sans-serif" font-size="9" fill="#555">・SG はステートフル — Inbound 許可で返りトラフィックは自動許可</text>
   <text x="427" y="384" font-family="Arial,sans-serif" font-size="9" fill="#555">・Outbound ルールは通常デフォルトのまま (All Allow) で問題なし</text>
 </svg>
+</div>
 
 <!--
 SG 参照パターンが最も推奨です。EC2 の IP が変わっても SG を変更する必要がありません。Prefix List パターンは複数チーム・複数 VPC で EP を共有する際に有効です。
@@ -2640,10 +2738,11 @@ SG 参照パターンが最も推奨です。EC2 の IP が変わっても SG �
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # トラブルシューティング
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="400" fill="#1a1a2e"/>
   <text x="400" y="60" font-family="sans-serif" font-size="24" font-weight="bold" fill="#f9a825" text-anchor="middle">トラブルシューティング</text>
   <text x="400" y="92" font-family="sans-serif" font-size="15" fill="#ffffff" text-anchor="middle">VPC Endpoint 問題の基本診断フロー</text>
@@ -2669,6 +2768,8 @@ SG 参照パターンが最も推奨です。EC2 の IP が変わっても SG �
   <rect x="270" y="355" width="260" height="35" rx="8" fill="#16213e" stroke="#9c27b0" stroke-width="1.5"/>
   <text x="400" y="377" font-family="sans-serif" font-size="12" fill="#9c27b0" text-anchor="middle">EP Policy / IAM Policy 確認</text>
 </svg>
+</div>
+
 - 接続確認の基本フロー
 - Gateway / Interface EP の頻出問題
 - DNS デバッグ
@@ -2681,7 +2782,8 @@ SG 参照パターンが最も推奨です。EC2 の IP が変わっても SG �
 
 # 接続確認 — 基本トラブルシューティングフロー
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">接続確認 — 基本トラブルシューティングフロー</text>
   <!-- Start -->
@@ -2766,6 +2868,7 @@ SG 参照パターンが最も推奨です。EC2 の IP が変わっても SG �
   <text x="22" y="383" font-family="monospace,Arial" font-size="9" fill="#333">aws ec2 describe-vpc-endpoints --query 'VpcEndpoints[].State'</text>
   <text x="350" y="383" font-family="monospace,Arial" font-size="9" fill="#333">aws logs filter-log-events --log-group-name VPCFlowLogs</text>
 </svg>
+</div>
 
 <!--
 まず EP のステータスが available であることを確認します。次に DNS 解決がプライベート IP を返しているか確認し、SG/NACL → EP Policy → IAM の順にチェックします。
@@ -2837,7 +2940,8 @@ Interface EP のトラブルで最も多いのが DNS 関連です。まず nslo
 
 # DNS トラブルシューティングフロー
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">DNS トラブルシューティング — 診断決定木</text>
   <!-- Start -->
@@ -2921,6 +3025,7 @@ Interface EP のトラブルで最も多いのが DNS 関連です。まず nslo
   <text x="20" y="368" font-family="monospace,Arial" font-size="9" fill="#555"># ENI/EP 確認</text>
   <text x="20" y="383" font-family="monospace,Arial" font-size="9" fill="#333">aws ec2 describe-vpc-endpoints --filters "Name=service-name,Values=com.amazonaws.ap-northeast-1.ssm"</text>
 </svg>
+</div>
 
 <!--
 DNS 解決の問題は nslookup から始めます。プライベート IP が返らない場合は Private DNS 設定を確認し、接続タイムアウトの場合は SG/NACL を確認します。403 の場合はポリシー層を確認します。
@@ -2930,7 +3035,8 @@ DNS 解決の問題は nslookup から始めます。プライベート IP が�
 
 # CloudWatch メトリクス & VPC Flow Logs 活用
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">CloudWatch メトリクス &amp; VPC Flow Logs — 監視設計</text>
   <!-- Left: CloudWatch Metrics -->
@@ -2999,6 +3105,7 @@ DNS 解決の問題は nslookup から始めます。プライベート IP が�
   <text x="439" y="363" font-family="Arial,sans-serif" font-size="9" fill="#555">PacketsDropped急増: SG/NACL ブロック増加の可能性</text>
   <text x="439" y="376" font-family="Arial,sans-serif" font-size="9" fill="#555">BytesProcessed急増: 意図しないデータ転送やスキャン</text>
 </svg>
+</div>
 
 <!--
 Interface EP は CloudWatch の AWS/PrivateLinkEndpoints 名前空間でメトリクスを取得できます。Gateway EP はメトリクスなしのため VPC Flow Logs で補います。PacketsDropped が急増した場合は SG/NACL の設定を見直してください。
@@ -3006,10 +3113,11 @@ Interface EP は CloudWatch の AWS/PrivateLinkEndpoints 名前空間でメト�
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ANS 試験対策ポイント
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="55" font-family="sans-serif" font-size="24" font-weight="bold" fill="#f9a825" text-anchor="middle">ANS 試験対策ポイント</text>
   <text x="400" y="84" font-family="sans-serif" font-size="15" fill="#ffffff" text-anchor="middle">頻出パターンと設計判断の鍵</text>
@@ -3035,6 +3143,8 @@ Interface EP は CloudWatch の AWS/PrivateLinkEndpoints 名前空間でメト�
   <text x="592" y="296" font-family="sans-serif" font-size="12" fill="#f9a825" text-anchor="middle">→ NLB + Endpoint Service で解決</text>
   <text x="400" y="340" font-family="sans-serif" font-size="12" fill="#a0a0a0" text-anchor="middle">この4パターンを押さえれば ANS 設計問題の大半は解ける</text>
 </svg>
+</div>
+
 - ANS 頻出パターン問題
 - 試験で問われる設計判断ポイント
 
@@ -3076,7 +3186,8 @@ ANS 試験は「なぜその選択か」の理由が重要です。Gateway EP: �
 
 # ANS 試験 — 設計判断決定木
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="400" fill="#fafafa"/>
   <text x="400" y="24" font-family="Arial,sans-serif" font-size="13" fill="#7b5ea7" font-weight="bold" text-anchor="middle">ANS 試験 — 設計判断決定木</text>
   <!-- Question nodes - ANS exam style -->
@@ -3160,6 +3271,7 @@ ANS 試験は「なぜその選択か」の理由が重要です。Gateway EP: �
   <text x="550" y="358" font-family="Arial,sans-serif" font-size="9" fill="#555">Q: 「オンプレから SSM?」</text>
   <text x="550" y="372" font-family="Arial,sans-serif" font-size="9" fill="#059669">→ Interface EP + R53 Inbound EP</text>
 </svg>
+</div>
 
 <!--
 試験で迷った場合はこの決定木を使います。S3/DDB + コスト最小化 = Gateway EP。それ以外 = Interface EP。VPC CIDR 重複 + サービス共有 = PrivateLink。オンプレ + DNS = R53 Inbound EP。
@@ -3171,7 +3283,8 @@ ANS 試験は「なぜその選択か」の理由が重要です。Gateway EP: �
 
 > *Gateway=無料/S3+DynamoDB限定、Interface=有料/全サービス*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="44" font-family="sans-serif" font-size="20" font-weight="bold" fill="#f9a825" text-anchor="middle">まとめ: Gateway vs Interface Endpoint</text>
   <rect x="40" y="65" width="340" height="260" rx="12" fill="#0a2744" stroke="#00bcd4" stroke-width="2"/>
@@ -3200,6 +3313,8 @@ ANS 試験は「なぜその選択か」の理由が重要です。Gateway EP: �
   <text x="590" y="307" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f9a825" text-anchor="middle">多サービス・オンプレ・SG制御</text>
   <text x="400" y="355" font-family="sans-serif" font-size="13" fill="#ffffff" text-anchor="middle">実務では両者を組み合わせてコストとセキュリティを最適化</text>
 </svg>
+</div>
+
 - **Gateway Endpoint** — S3/DDB 専用・無料・ルートテーブルベース・VPC 内のみ
 - **Interface Endpoint** — 100+ サービス・有料・ENI+SG・オンプレ/TGW 対応
 - **選定基準** — S3/DDB のみ+コスト重視 → Gateway EP、それ以外 → Interface EP

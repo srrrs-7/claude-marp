@@ -6,41 +6,76 @@ size: 16:9
 paginate: true
 header: "DevSecOps実践ガイド"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -79,7 +114,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # DevSecOps実践ガイド
 
 - セキュリティエンジニア向け 完全実践ガイド
@@ -93,7 +128,10 @@ style: |
 
 > *シフトレフト・SBOM・脅威モデリング・ゼロトラストを体系的に習得*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps サイクル</text><rect x="80" y="160" width="130" height="55" rx="6" fill="#1565c0" stroke="#f9a825" stroke-width="1.5"/><text x="145" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Dev</text><rect x="335" y="65" width="130" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="97.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Sec</text><rect x="590" y="160" width="130" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="655" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Ops</text><path d="M210,187 Q335,140 335,120" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="333,108 341,124 325,124" fill="#f9a825"/><path d="M465,92 Q530,130 590,175" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="582,169 594,181 579,180" fill="#f9a825"/><path d="M590,215 Q400,320 210,215" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="212,207 204,220 219,221" fill="#f9a825"/><text x="260" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">設計・実装</text><text x="550" y="135" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">テスト・スキャン</text><text x="400" y="310" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">監視・フィードバック</text><rect x="315" y="170" width="170" height="45" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="197.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">継続的セキュリティ</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">セキュリティを全フェーズに統合</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps サイクル</text><rect x="80" y="160" width="130" height="55" rx="6" fill="#1565c0" stroke="#f9a825" stroke-width="1.5"/><text x="145" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Dev</text><rect x="335" y="65" width="130" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="97.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Sec</text><rect x="590" y="160" width="130" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="655" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Ops</text><path d="M210,187 Q335,140 335,120" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="333,108 341,124 325,124" fill="#f9a825"/><path d="M465,92 Q530,130 590,175" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="582,169 594,181 579,180" fill="#f9a825"/><path d="M590,215 Q400,320 210,215" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="212,207 204,220 219,221" fill="#f9a825"/><text x="260" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">設計・実装</text><text x="550" y="135" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">テスト・スキャン</text><text x="400" y="310" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">監視・フィードバック</text><rect x="315" y="170" width="170" height="45" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="197.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">継続的セキュリティ</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">セキュリティを全フェーズに統合</text></svg>
+</div>
+
 - **Chapter 1:** DevSecOpsとは（定義・背景・成熟度）
 - **Chapter 2:** シフトレフト戦略（SAST・SCA・シークレットスキャン・DAST）
 - **Chapter 3:** SBOM・サプライチェーンセキュリティ
@@ -104,7 +142,10 @@ style: |
 
 # アジェンダ (2/2)
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シフトレフト セキュリティ</text><line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="2"/><polygon points="735,194 750,200 735,206" fill="#444"/><rect x="60" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">設計</text><rect x="183" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="233" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コーディング</text><rect x="306" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="356" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド</text><rect x="429" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#555" stroke-width="1.5"/><text x="479" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト</text><rect x="552" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="602" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番</text><text x="110" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">脅威モデリング</text><text x="233" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SAST/シークレット</text><text x="356" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SCA/SBOM</text><text x="479" y="228" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">DAST</text><text x="602" y="228" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">CSPM</text><rect x="60" y="255" width="360" height="28" rx="4" fill="#1565c0" opacity="0.7"/><text x="240" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シフトレフト領域 — 修正コスト: 低</text><rect x="440" y="255" width="212" height="28" rx="4" fill="#e91e63" opacity="0.6"/><text x="546" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">遅延発見 — コスト: 高</text><text x="400" y="355" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">早期発見により修正コストを最大1/100に削減</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シフトレフト セキュリティ</text><line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="2"/><polygon points="735,194 750,200 735,206" fill="#444"/><rect x="60" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">設計</text><rect x="183" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="233" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コーディング</text><rect x="306" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="356" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド</text><rect x="429" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#555" stroke-width="1.5"/><text x="479" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト</text><rect x="552" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="602" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番</text><text x="110" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">脅威モデリング</text><text x="233" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SAST/シークレット</text><text x="356" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SCA/SBOM</text><text x="479" y="228" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">DAST</text><text x="602" y="228" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">CSPM</text><rect x="60" y="255" width="360" height="28" rx="4" fill="#1565c0" opacity="0.7"/><text x="240" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シフトレフト領域 — 修正コスト: 低</text><rect x="440" y="255" width="212" height="28" rx="4" fill="#e91e63" opacity="0.6"/><text x="546" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">遅延発見 — コスト: 高</text><text x="400" y="355" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">早期発見により修正コストを最大1/100に削減</text></svg>
+</div>
+
 - **Chapter 5:** クラウドネイティブセキュリティ（4C's・Falco・OPA・CSPM）
 - **Chapter 6:** ゼロトラスト・ID管理
 - **Chapter 7:** 実践ロードマップ・まとめ
@@ -112,7 +153,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Chapter 1: DevSecOpsとは
 
 - 定義・背景・成熟度モデル・ロードマップ
@@ -131,7 +172,8 @@ style: |
 
 > *本番後の侵害修正コストは開発段階の100倍、早期発見が最大ROIを生む*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CI/CD セキュリティパイプライン</text><rect x="20" y="162" width="85" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="62.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コード</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CI/CD セキュリティパイプライン</text><rect x="20" y="162" width="85" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="62.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コード</text>
 <line x1="105" y1="185" x2="123" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="118,179 133,185 118,191" fill="#f9a825"/>
 <rect x="133" y="162" width="85" height="46" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="175.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SAST</text>
 <line x1="218" y1="185" x2="236" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="231,179 246,185 231,191" fill="#f9a825"/>
@@ -147,6 +189,8 @@ style: |
 <rect x="133" y="233" width="537" height="28" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="401" y="252" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">セキュリティゲート: 失敗時はパイプライン自動停止</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">毎コミットで自動スキャン — 問題を早期に検出・ブロック</text></svg>
+</div>
+
 - **2023年データ侵害の平均コスト: $4.45M**（IBM報告）
 - 侵害発見までの平均日数: **197日**（発見→封じ込め: +73日）
 - サプライチェーン攻撃: 前年比 **742%増**（2021年）
@@ -160,7 +204,10 @@ style: |
 
 > *DevSecOpsはDevOpsのCI/CDパイプラインにセキュリティ自動化を内包した設計思想*
 
-- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">DevOps vs DevSecOps</text><rect x="60" y="50" width="300" height="110" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="210" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">DevOps</text><text x="210" y="90" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">開発+運用の協働</text><text x="210" y="110" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">セキュリティ: 後付け</text><rect x="440" y="50" width="300" height="110" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="590" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">DevSecOps</text><text x="590" y="90" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">開発+セキュリティ+運用</text><text x="590" y="110" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">セキュリティ: 設計から統合</text><line x1="360" y1="105" x2="440" y2="105" stroke="#f9a825" stroke-width="2"/><polygon points="435,99 450,105 435,111" fill="#f9a825"/></svg>
+<div class="fig">
+<svg viewBox="0 0 800 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">DevOps vs DevSecOps</text><rect x="60" y="50" width="300" height="110" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="210" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">DevOps</text><text x="210" y="90" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">開発+運用の協働</text><text x="210" y="110" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">セキュリティ: 後付け</text><rect x="440" y="50" width="300" height="110" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="590" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">DevSecOps</text><text x="590" y="90" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">開発+セキュリティ+運用</text><text x="590" y="110" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">セキュリティ: 設計から統合</text><line x1="360" y1="105" x2="440" y2="105" stroke="#f9a825" stroke-width="2"/><polygon points="435,99 450,105 435,111" fill="#f9a825"/></svg>
+</div>
+
 | 観点 | DevOps | DevSecOps |
 |------|--------|-----------|
 | セキュリティ投入時期 | 開発完了後 | 設計から全フェーズ |
@@ -182,7 +229,8 @@ style: |
 
 > *CI/CDゲート・SBOM・ゼロトラストで開発から本番まで多層防御を実現*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">STRIDE 脅威モデリング</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">STRIDE 脅威モデリング</text>
 <rect x="20" y="60" width="230" height="52" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="135" y="91" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">S — Spoofing (なりすまし)</text>
 <text x="135" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">対策: 多要素認証・証明書検証</text>
 <rect x="285" y="60" width="230" height="52" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="91" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">T — Tampering (改ざん)</text>
@@ -199,6 +247,8 @@ style: |
 <text x="400" y="274" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold">脅威モデリングプロセス</text>
 <text x="400" y="295" text-anchor="middle" fill="#ce93d8" font-size="11" font-family="sans-serif">資産特定 → 脅威列挙 → リスク評価 → 対策設計</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">設計フェーズで実施することで手戻りを最小化</text></svg>
+</div>
+
 - **このガイドで学べること:**
 - シフトレフト: CI/CDに自動セキュリティゲートを組み込む
 - SBOM管理: ソフトウェアサプライチェーンを可視化・保護
@@ -209,7 +259,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Chapter 2: シフトレフト戦略
 
 - SAST・SCA・シークレットスキャン・DAST・セキュリティゲート
@@ -228,7 +278,8 @@ style: |
 
 > *全セキュリティチェックをCI/CDに自動化し開発者ファーストで継続改善する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">セキュリティゲート 判断フロー</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">セキュリティゲート 判断フロー</text>
 <rect x="305" y="60" width="190" height="48" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コードプッシュ</text>
 <line x1="400" y1="108" x2="400" y2="126" stroke="#f9a825" stroke-width="2"/><polygon points="394,121 400,136 406,121" fill="#f9a825"/>
 <rect x="305" y="136" width="190" height="48" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">自動スキャン実行</text>
@@ -243,6 +294,8 @@ style: |
 <text x="415" y="302" fill="#66bb6a" font-size="11" font-family="sans-serif">NO</text>
 <rect x="305" y="322" width="190" height="48" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="400" y="351" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">次ステージへ進む</text>
 <text x="400" y="390" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Critical/High は即時ブロック — Low は許容ポリシー設定可</text></svg>
+</div>
+
 - ① **早期発見**: コードレビュー時にセキュリティ問題を検出
 - ② **自動化**: すべてのセキュリティチェックをCI/CDに統合
 - ③ **開発者ファースト**: 修正方法を明示し、学習機会に変える
@@ -259,7 +312,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # SAST（静的解析）
 
 - コードを実行せず脆弱性を検出するホワイトボックステスト手法
@@ -271,7 +324,8 @@ style: |
 
 > *SASTでSQL/XSS/暗号化ミスなど6種類の脆弱性をコードレビュー時に自動検出*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">コンテナイメージ スキャンパイプライン</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">コンテナイメージ スキャンパイプライン</text>
 <rect x="20" y="155" width="110" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="75" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Dockerfile</text>
 <line x1="130" y1="180" x2="148" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="143,174 158,180 143,186" fill="#f9a825"/>
 <rect x="158" y="155" width="110" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="213" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">イメージビルド</text>
@@ -290,6 +344,8 @@ style: |
 <text x="477" y="240" fill="#e91e63" font-size="10" font-family="sans-serif">NO</text>
 <rect x="362" y="275" width="200" height="48" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="462" y="304" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド失敗 / 通知</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Trivy / Snyk / ECR Scan — Critical CVE はブロック</text></svg>
+</div>
+
 - **SAST（Static Application Security Testing）**
 - SQLインジェクション / コマンドインジェクション
 - クロスサイトスクリプティング（XSS）
@@ -311,7 +367,8 @@ style: |
 
 > *Semgrepカスタムルールでサービス固有の禁止パターンをCI/CDゲートに追加できる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IaC セキュリティチェックフロー</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IaC セキュリティチェックフロー</text>
 <rect x="20" y="162" width="120" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="80" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Terraform/CF</text>
 <line x1="140" y1="185" x2="158" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="153,179 168,185 153,191" fill="#f9a825"/>
 <rect x="168" y="162" width="120" height="46" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="228" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">静的解析</text>
@@ -330,6 +387,8 @@ style: |
 <text x="400" y="292" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">検出される設定ミス例</text>
 <text x="400" y="312" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">S3パブリック公開 / SG 0.0.0.0/0 / 暗号化なし / IAM *</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">インフラコードもアプリコードと同様にスキャン必須</text></svg>
+</div>
+
 - **Semgrep**: パターンマッチングで独自ルールを記述
 - 公式レジストリに2,000+のルールが公開済み
 - CI/CD: `semgrep --config=auto --error`
@@ -359,7 +418,8 @@ rules:
 
 > *CodeQLクエリをGitHub ActionsのCIに組み込みPR段階で脆弱性を自動検出*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Compliance as Code ワークフロー</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Compliance as Code ワークフロー</text>
 <rect x="20" y="75" width="155" height="48" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="97.5" y="104" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">規制要件</text>
 <text x="97" y="140" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">PCI-DSS / SOC2 / ISO27001</text>
 <rect x="20" y="215" width="155" height="48" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="97.5" y="244" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ベースライン</text>
@@ -379,6 +439,8 @@ rules:
 <text x="440" y="310" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">コンプライアンス状態をダッシュボードで可視化</text>
 <text x="440" y="328" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Security Hub / AWS Config / Prowler</text>
 <text x="400" y="370" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">手作業監査を自動化 — 常時準拠状態を維持</text></svg>
+</div>
+
 - **CodeQL**: GitHubネイティブ統合、PRにインラインコメント
 - クエリ言語でカスタム脆弱性検出ルールを定義可能
 
@@ -405,7 +467,7 @@ jobs:
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # SCA・依存性管理
 
 - オープンソースコンポーネントの脆弱性とライセンスを管理
@@ -417,8 +479,12 @@ jobs:
 
 > *SCAはOSSライブラリのCVEをCI/CDで自動検出、93%の商用アプリに脆弱OSSが混入*
 
-- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">SCA スキャンフロー</text><rect x="40" y="50" width="140" height="110" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ソースコード</text><line x1="180" y1="105" x2="210" y2="105" stroke="#f9a825" stroke-width="2"/><polygon points="205,99 220,105 205,111" fill="#f9a825"/><rect x="220" y="50" width="160" height="110" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="300" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">依存性解析</text><line x1="380" y1="105" x2="410" y2="105" stroke="#f9a825" stroke-width="2"/><polygon points="405,99 420,105 405,111" fill="#f9a825"/><rect x="420" y="50" width="160" height="110" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="500" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">CVE照合</text><line x1="580" y1="105" x2="610" y2="105" stroke="#66bb6a" stroke-width="2"/><polygon points="605,99 620,105 605,111" fill="#66bb6a"/><rect x="620" y="50" width="140" height="110" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="690" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">レポート</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">SCA スキャンフロー</text><rect x="40" y="50" width="140" height="110" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ソースコード</text><line x1="180" y1="105" x2="210" y2="105" stroke="#f9a825" stroke-width="2"/><polygon points="205,99 220,105 205,111" fill="#f9a825"/><rect x="220" y="50" width="160" height="110" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="300" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">依存性解析</text><line x1="380" y1="105" x2="410" y2="105" stroke="#f9a825" stroke-width="2"/><polygon points="405,99 420,105 405,111" fill="#f9a825"/><rect x="420" y="50" width="160" height="110" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="500" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">CVE照合</text><line x1="580" y1="105" x2="610" y2="105" stroke="#66bb6a" stroke-width="2"/><polygon points="605,99 620,105 605,111" fill="#66bb6a"/><rect x="620" y="50" width="140" height="110" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="690" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">レポート</text></svg>
+</div>
+
 - **SCA**: 使用している OSS の脆弱性・ライセンスを自動スキャン
+
 | ツール | 特徴 | 価格 |
 |--------|------|------|
 | Dependabot | GitHub統合、自動PR | 無料 |
@@ -433,13 +499,17 @@ jobs:
 
 > *OSSライセンス違反は法的リスクに直結、GPL汚染を本番前にSCAで検出する*
 
-- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">SAST vs DAST</text><rect x="60" y="50" width="300" height="110" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="210" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">SAST (静的)</text><text x="210" y="85" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コード解析</text><text x="210" y="105" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">実行前・早期検出</text><text x="210" y="123" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">False Positive多め</text><rect x="440" y="50" width="300" height="110" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="590" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">DAST (動的)</text><text x="590" y="85" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">実行時テスト</text><text x="590" y="105" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">本番前・実際の脆弱性検出</text><text x="590" y="123" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">実行環境必要</text><text x="400" y="185" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">両方の組み合わせで高いカバレッジを実現</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">SAST vs DAST</text><rect x="60" y="50" width="300" height="110" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="210" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">SAST (静的)</text><text x="210" y="85" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コード解析</text><text x="210" y="105" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">実行前・早期検出</text><text x="210" y="123" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">False Positive多め</text><rect x="440" y="50" width="300" height="110" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="590" y="110" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">DAST (動的)</text><text x="590" y="85" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">実行時テスト</text><text x="590" y="105" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">本番前・実際の脆弱性検出</text><text x="590" y="123" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">実行環境必要</text><text x="400" y="185" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">両方の組み合わせで高いカバレッジを実現</text></svg>
+</div>
+
 | ライセンス | 商用利用 | コピーレフト | リスク |
 |------------|---------|-------------|--------|
 | MIT / Apache 2.0 | ✓ | なし | 低 |
 | LGPL | ✓（条件付き）| 弱い | 中 |
 | GPL v2/v3 | ✓（条件付き）| 強い | 高 |
 | AGPL | ✓（条件付き）| 最強 | 高 |
+
 - **対策**: SCA + ライセンス承認ポリシーを定義
 
 
@@ -447,7 +517,8 @@ jobs:
 
 # Dependabot設定例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ゼロトラスト アーキテクチャ</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ゼロトラスト アーキテクチャ</text>
 <rect x="295" y="150" width="210" height="115" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="190" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">ポリシーエンジン</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Never Trust, Always Verify</text>
@@ -466,6 +537,8 @@ jobs:
 <line x1="505" y1="205" x2="640" y2="201" stroke="#66bb6a" stroke-width="1.5"/><polygon points="634,195 649,201 634,207" fill="#66bb6a"/>
 <line x1="505" y1="245" x2="640" y2="301" stroke="#66bb6a" stroke-width="1.5"/><polygon points="633,295 645,304 633,293" fill="#66bb6a"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ネットワーク境界ではなくID・コンテキストで判断</text></svg>
+</div>
+
 - 週次自動PR + グルーピングで更新コストを削減
 
 
@@ -493,7 +566,7 @@ updates:
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # シークレットスキャン
 
 - コードリポジトリへの誤ったシークレット混入を検出・防止
@@ -505,7 +578,8 @@ updates:
 
 > *APIキー漏洩はpre-commit→CI→リポジトリ監視の3層防御で根絶できる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理 ベストプラクティス</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理 ベストプラクティス</text>
 <rect x="295" y="65" width="210" height="50" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">シークレットストア</text>
 <text x="400" y="133" text-anchor="middle" fill="#ce93d8" font-size="10" font-family="sans-serif">AWS Secrets Manager / HashiCorp Vault</text>
 <line x1="400" y1="115" x2="400" y2="148" stroke="#f9a825" stroke-width="2"/><polygon points="394,143 400,158 406,143" fill="#f9a825"/>
@@ -521,6 +595,8 @@ updates:
 <text x="400" y="303" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">禁止事項</text>
 <text x="400" y="323" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ハードコード / .env をGitコミット / ログへの出力 / 長期キー</text>
 <text x="400" y="370" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">git-secrets / truffleHog で事前検出</text></svg>
+</div>
+
 - **問題**: APIキー・パスワードをGitにコミットする事故が年間数千件
 - **被害**: クレデンシャルの悪用→不正アクセス→データ漏洩
 - **検出対象**: AWS/GCP APIキー・DBパスワード・JWTシークレット・OAuthトークン
@@ -533,13 +609,17 @@ updates:
 
 > *GitLeaks・TruffleHog・AWS Macieのツールで検出パターンと精度を比較選択*
 
-- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">セキュリティ KPI</text><rect x="30" y="50" width="170" height="110" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="115" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">脆弱性MTTR</text><text x="115" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">平均修復時間</text><rect x="220" y="50" width="170" height="110" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="305" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Critical件数</text><text x="305" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">未対処Critical CVE</text><rect x="410" y="50" width="170" height="110" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="495" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">カバレッジ</text><text x="495" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">コードスキャン率</text><rect x="600" y="50" width="170" height="110" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="685" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">偽陽性率</text><text x="685" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">False Positive %</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">セキュリティ KPI</text><rect x="30" y="50" width="170" height="110" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="115" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">脆弱性MTTR</text><text x="115" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">平均修復時間</text><rect x="220" y="50" width="170" height="110" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="305" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Critical件数</text><text x="305" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">未対処Critical CVE</text><rect x="410" y="50" width="170" height="110" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="495" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">カバレッジ</text><text x="495" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">コードスキャン率</text><rect x="600" y="50" width="170" height="110" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="685" y="110" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">偽陽性率</text><text x="685" y="120" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">False Positive %</text></svg>
+</div>
+
 | ツール | 実行タイミング | 精度 | カスタムパターン |
 |--------|--------------|------|----------------|
 | GitLeaks | pre-commit/CI | 高 | ✓ |
 | TruffleHog v3 | CI/GitHubActions | 最高 | ✓ |
 | GitHub Secret Scanning | Push時 | 高（パートナー）| 限定 |
 | detect-secrets | pre-commit | 中 | ✓ |
+
 - **推奨**: TruffleHog v3（エントロピー検出） + GitHub Secret Scanning
 
 
@@ -547,7 +627,10 @@ updates:
 
 # pre-commitフック設定
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps サイクル</text><rect x="80" y="160" width="130" height="55" rx="6" fill="#1565c0" stroke="#f9a825" stroke-width="1.5"/><text x="145" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Dev</text><rect x="335" y="65" width="130" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="97.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Sec</text><rect x="590" y="160" width="130" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="655" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Ops</text><path d="M210,187 Q335,140 335,120" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="333,108 341,124 325,124" fill="#f9a825"/><path d="M465,92 Q530,130 590,175" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="582,169 594,181 579,180" fill="#f9a825"/><path d="M590,215 Q400,320 210,215" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="212,207 204,220 219,221" fill="#f9a825"/><text x="260" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">設計・実装</text><text x="550" y="135" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">テスト・スキャン</text><text x="400" y="310" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">監視・フィードバック</text><rect x="315" y="170" width="170" height="45" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="197.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">継続的セキュリティ</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">セキュリティを全フェーズに統合</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps サイクル</text><rect x="80" y="160" width="130" height="55" rx="6" fill="#1565c0" stroke="#f9a825" stroke-width="1.5"/><text x="145" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Dev</text><rect x="335" y="65" width="130" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="97.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Sec</text><rect x="590" y="160" width="130" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="655" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Ops</text><path d="M210,187 Q335,140 335,120" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="333,108 341,124 325,124" fill="#f9a825"/><path d="M465,92 Q530,130 590,175" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="582,169 594,181 579,180" fill="#f9a825"/><path d="M590,215 Q400,320 210,215" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="212,207 204,220 219,221" fill="#f9a825"/><text x="260" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">設計・実装</text><text x="550" y="135" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">テスト・スキャン</text><text x="400" y="310" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">監視・フィードバック</text><rect x="315" y="170" width="170" height="45" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="197.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">継続的セキュリティ</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">セキュリティを全フェーズに統合</text></svg>
+</div>
+
 - `pre-commit install` で自動的にフックを登録
 
 
@@ -576,7 +659,10 @@ repos:
 
 > *Vault AgentとCI/CDの統合でシークレットを環境変数に動的注入、ソースに書かない*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シフトレフト セキュリティ</text><line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="2"/><polygon points="735,194 750,200 735,206" fill="#444"/><rect x="60" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">設計</text><rect x="183" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="233" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コーディング</text><rect x="306" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="356" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド</text><rect x="429" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#555" stroke-width="1.5"/><text x="479" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト</text><rect x="552" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="602" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番</text><text x="110" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">脅威モデリング</text><text x="233" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SAST/シークレット</text><text x="356" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SCA/SBOM</text><text x="479" y="228" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">DAST</text><text x="602" y="228" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">CSPM</text><rect x="60" y="255" width="360" height="28" rx="4" fill="#1565c0" opacity="0.7"/><text x="240" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シフトレフト領域 — 修正コスト: 低</text><rect x="440" y="255" width="212" height="28" rx="4" fill="#e91e63" opacity="0.6"/><text x="546" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">遅延発見 — コスト: 高</text><text x="400" y="355" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">早期発見により修正コストを最大1/100に削減</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シフトレフト セキュリティ</text><line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="2"/><polygon points="735,194 750,200 735,206" fill="#444"/><rect x="60" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">設計</text><rect x="183" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="233" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コーディング</text><rect x="306" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="356" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド</text><rect x="429" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#555" stroke-width="1.5"/><text x="479" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト</text><rect x="552" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="602" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番</text><text x="110" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">脅威モデリング</text><text x="233" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SAST/シークレット</text><text x="356" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SCA/SBOM</text><text x="479" y="228" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">DAST</text><text x="602" y="228" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">CSPM</text><rect x="60" y="255" width="360" height="28" rx="4" fill="#1565c0" opacity="0.7"/><text x="240" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シフトレフト領域 — 修正コスト: 低</text><rect x="440" y="255" width="212" height="28" rx="4" fill="#e91e63" opacity="0.6"/><text x="546" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">遅延発見 — コスト: 高</text><text x="400" y="355" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">早期発見により修正コストを最大1/100に削減</text></svg>
+</div>
+
 - JWT認証で環境変数にシークレットを注入
 - ハードコード不要・有効期限付き動的シークレット
 
@@ -601,7 +687,7 @@ repos:
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # DAST（動的解析）
 
 - 実行中のアプリケーションに対する外部攻撃シミュレーション
@@ -619,6 +705,7 @@ repos:
 | 実行タイミング | ビルド前 | テスト/ステージング環境 |
 | 検出できる問題 | 実装レベルの欠陥 | ランタイム脆弱性・設定ミス |
 | False Positive | 高め | 低め |
+
 - **主なツール**: OWASP ZAP, Burp Suite, Nuclei, nikto
 
 
@@ -628,7 +715,8 @@ repos:
 
 > *OWASP ZAP自動化でCI/CD毎にAPIへの自動ペネトレーションテストを実施できる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CI/CD セキュリティパイプライン</text><rect x="20" y="162" width="85" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="62.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コード</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CI/CD セキュリティパイプライン</text><rect x="20" y="162" width="85" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="62.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コード</text>
 <line x1="105" y1="185" x2="123" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="118,179 133,185 118,191" fill="#f9a825"/>
 <rect x="133" y="162" width="85" height="46" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="175.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SAST</text>
 <line x1="218" y1="185" x2="236" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="231,179 246,185 231,191" fill="#f9a825"/>
@@ -644,6 +732,8 @@ repos:
 <rect x="133" y="233" width="537" height="28" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="401" y="252" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">セキュリティゲート: 失敗時はパイプライン自動停止</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">毎コミットで自動スキャン — 問題を早期に検出・ブロック</text></svg>
+</div>
+
 - Baselineスキャン: パッシブのみ（安全）
 - Full Scan: アクティブ攻撃シミュレーション（ステージングのみ）
 
@@ -668,7 +758,7 @@ repos:
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # セキュリティゲート設計
 
 - CI/CDパイプラインで自動的に品質基準を強制する
@@ -680,7 +770,8 @@ repos:
 
 > *4段階のセキュリティゲートでシークレット・CRITICAL CVE・設定ミスをブロック*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">STRIDE 脅威モデリング</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">STRIDE 脅威モデリング</text>
 <rect x="20" y="60" width="230" height="52" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="135" y="91" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">S — Spoofing (なりすまし)</text>
 <text x="135" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">対策: 多要素認証・証明書検証</text>
 <rect x="285" y="60" width="230" height="52" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="91" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">T — Tampering (改ざん)</text>
@@ -697,6 +788,8 @@ repos:
 <text x="400" y="274" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold">脅威モデリングプロセス</text>
 <text x="400" y="295" text-anchor="middle" fill="#ce93d8" font-size="11" font-family="sans-serif">資産特定 → 脅威列挙 → リスク評価 → 対策設計</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">設計フェーズで実施することで手戻りを最小化</text></svg>
+</div>
+
 - **ゲート1 — コミット時**: シークレットスキャン（違反でブロック）
 - **ゲート2 — PR時**: SAST（高・重大脆弱性でブロック）、SCA（CVSSスコア9.0+でブロック）
 - **ゲート3 — ビルド時**: コンテナイメージスキャン（CRITICAL CVEでブロック）
@@ -721,7 +814,7 @@ repos:
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Chapter 3: SBOM・サプライチェーンセキュリティ
 
 - SolarWinds型攻撃への対策・SBOM・SLSA・Sigstore
@@ -740,7 +833,8 @@ repos:
 
 > *SolarWinds型からタイポスクワッティングまで4パターンのサプライチェーン攻撃を把握*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">セキュリティゲート 判断フロー</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">セキュリティゲート 判断フロー</text>
 <rect x="305" y="60" width="190" height="48" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コードプッシュ</text>
 <line x1="400" y1="108" x2="400" y2="126" stroke="#f9a825" stroke-width="2"/><polygon points="394,121 400,136 406,121" fill="#f9a825"/>
 <rect x="305" y="136" width="190" height="48" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">自動スキャン実行</text>
@@ -755,6 +849,8 @@ repos:
 <text x="415" y="302" fill="#66bb6a" font-size="11" font-family="sans-serif">NO</text>
 <rect x="305" y="322" width="190" height="48" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="400" y="351" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">次ステージへ進む</text>
 <text x="400" y="390" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Critical/High は即時ブロック — Low は許容ポリシー設定可</text></svg>
+</div>
+
 - ① **ビルドシステム侵害**: ビルドサーバーにバックドアを挿入（SolarWinds型）
 - ② **依存パッケージ汚染**: 正規パッケージへのマルウェア混入（event-stream型）
 - ③ **タイポスクワッティング**: 類似名パッケージで騙す（lodash → l0dash）
@@ -768,7 +864,8 @@ repos:
 
 > *SBOMは全コンポーネント可視化・CVE照合・規制対応を一元化するソフトウェア部品表*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">コンテナイメージ スキャンパイプライン</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">コンテナイメージ スキャンパイプライン</text>
 <rect x="20" y="155" width="110" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="75" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Dockerfile</text>
 <line x1="130" y1="180" x2="148" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="143,174 158,180 143,186" fill="#f9a825"/>
 <rect x="158" y="155" width="110" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="213" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">イメージビルド</text>
@@ -787,6 +884,8 @@ repos:
 <text x="477" y="240" fill="#e91e63" font-size="10" font-family="sans-serif">NO</text>
 <rect x="362" y="275" width="200" height="48" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="462" y="304" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド失敗 / 通知</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Trivy / Snyk / ECR Scan — Critical CVE はブロック</text></svg>
+</div>
+
 - **SBOM**: ソフトウェアに含まれる全コンポーネントの「部品表」
 - 記録内容: コンポーネント名・バージョン・ライセンス・依存関係・ハッシュ値
 - **活用場面**: 脆弱性CVE照合・ライセンスコンプライアンス・規制対応
@@ -812,7 +911,8 @@ repos:
 
 # Syft/Trivyによる SBOM生成
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IaC セキュリティチェックフロー</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IaC セキュリティチェックフロー</text>
 <rect x="20" y="162" width="120" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="80" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Terraform/CF</text>
 <line x1="140" y1="185" x2="158" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="153,179 168,185 153,191" fill="#f9a825"/>
 <rect x="168" y="162" width="120" height="46" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="228" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">静的解析</text>
@@ -831,6 +931,8 @@ repos:
 <text x="400" y="292" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">検出される設定ミス例</text>
 <text x="400" y="312" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">S3パブリック公開 / SG 0.0.0.0/0 / 暗号化なし / IAM *</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">インフラコードもアプリコードと同様にスキャン必須</text></svg>
+</div>
+
 - CycloneDXフォーマットで出力 → Grypeで脆弱性照合
 
 
@@ -863,7 +965,8 @@ grype sbom:sbom.json --fail-on high
 
 > *Sigstoreはメール認証で鍵管理なしのコード署名を誰でも無料で実現する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Compliance as Code ワークフロー</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Compliance as Code ワークフロー</text>
 <rect x="20" y="75" width="155" height="48" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="97.5" y="104" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">規制要件</text>
 <text x="97" y="140" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">PCI-DSS / SOC2 / ISO27001</text>
 <rect x="20" y="215" width="155" height="48" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="97.5" y="244" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ベースライン</text>
@@ -883,6 +986,8 @@ grype sbom:sbom.json --fail-on high
 <text x="440" y="310" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">コンプライアンス状態をダッシュボードで可視化</text>
 <text x="440" y="328" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Security Hub / AWS Config / Prowler</text>
 <text x="400" y="370" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">手作業監査を自動化 — 常時準拠状態を維持</text></svg>
+</div>
+
 - **Sigstore**: メールアドレスで誰でも無料でコード署名できるPKI基盤
 - **3つのコンポーネント**: Cosign（署名）・Fulcio（証明書発行）・Rekor（透明性ログ）
 - **特徴**: 鍵管理不要（OIDC/GitHub ActionsのIDで署名）
@@ -894,7 +999,8 @@ grype sbom:sbom.json --fail-on high
 
 # cosign署名・検証
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ゼロトラスト アーキテクチャ</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ゼロトラスト アーキテクチャ</text>
 <rect x="295" y="150" width="210" height="115" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="190" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">ポリシーエンジン</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Never Trust, Always Verify</text>
@@ -913,6 +1019,8 @@ grype sbom:sbom.json --fail-on high
 <line x1="505" y1="205" x2="640" y2="201" stroke="#66bb6a" stroke-width="1.5"/><polygon points="634,195 649,201 634,207" fill="#66bb6a"/>
 <line x1="505" y1="245" x2="640" y2="301" stroke="#66bb6a" stroke-width="1.5"/><polygon points="633,295 645,304 633,293" fill="#66bb6a"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ネットワーク境界ではなくID・コンテキストで判断</text></svg>
+</div>
+
 - キーレス署名: GitHub ActionsのOIDCトークンを使用
 
 
@@ -938,7 +1046,8 @@ cosign verify \
 
 # GitHub dependency-review-action
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理 ベストプラクティス</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理 ベストプラクティス</text>
 <rect x="295" y="65" width="210" height="50" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">シークレットストア</text>
 <text x="400" y="133" text-anchor="middle" fill="#ce93d8" font-size="10" font-family="sans-serif">AWS Secrets Manager / HashiCorp Vault</text>
 <line x1="400" y1="115" x2="400" y2="148" stroke="#f9a825" stroke-width="2"/><polygon points="394,143 400,158 406,143" fill="#f9a825"/>
@@ -954,6 +1063,8 @@ cosign verify \
 <text x="400" y="303" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">禁止事項</text>
 <text x="400" y="323" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ハードコード / .env をGitコミット / ログへの出力 / 長期キー</text>
 <text x="400" y="370" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">git-secrets / truffleHog で事前検出</text></svg>
+</div>
+
 - PRマージ前に新規依存性の CVE + ライセンスを自動チェック
 
 
@@ -983,7 +1094,10 @@ jobs:
 
 > *生成→署名→保存→照合→通知の5ステップSBOMフローで新CVEを即座に特定*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps サイクル</text><rect x="80" y="160" width="130" height="55" rx="6" fill="#1565c0" stroke="#f9a825" stroke-width="1.5"/><text x="145" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Dev</text><rect x="335" y="65" width="130" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="97.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Sec</text><rect x="590" y="160" width="130" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="655" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Ops</text><path d="M210,187 Q335,140 335,120" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="333,108 341,124 325,124" fill="#f9a825"/><path d="M465,92 Q530,130 590,175" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="582,169 594,181 579,180" fill="#f9a825"/><path d="M590,215 Q400,320 210,215" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="212,207 204,220 219,221" fill="#f9a825"/><text x="260" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">設計・実装</text><text x="550" y="135" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">テスト・スキャン</text><text x="400" y="310" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">監視・フィードバック</text><rect x="315" y="170" width="170" height="45" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="197.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">継続的セキュリティ</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">セキュリティを全フェーズに統合</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps サイクル</text><rect x="80" y="160" width="130" height="55" rx="6" fill="#1565c0" stroke="#f9a825" stroke-width="1.5"/><text x="145" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Dev</text><rect x="335" y="65" width="130" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="97.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Sec</text><rect x="590" y="160" width="130" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="655" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Ops</text><path d="M210,187 Q335,140 335,120" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="333,108 341,124 325,124" fill="#f9a825"/><path d="M465,92 Q530,130 590,175" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="582,169 594,181 579,180" fill="#f9a825"/><path d="M590,215 Q400,320 210,215" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="212,207 204,220 219,221" fill="#f9a825"/><text x="260" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">設計・実装</text><text x="550" y="135" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">テスト・スキャン</text><text x="400" y="310" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">監視・フィードバック</text><rect x="315" y="170" width="170" height="45" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="197.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">継続的セキュリティ</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">セキュリティを全フェーズに統合</text></svg>
+</div>
+
 - **Step 1 — 生成**: ビルドCI実行時にSBOMを自動生成（Syft/Trivy）
 - **Step 2 — 署名**: Cosignでビルド証明書を添付
 - **Step 3 — 保存**: OCI Artifactストアまたは DependencyTrack へアップロード
@@ -997,7 +1111,10 @@ jobs:
 
 > *EO 14028・EU CRA・NIS2・PCI DSS v4.0がSBOM提出・サプライチェーン管理を義務化*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シフトレフト セキュリティ</text><line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="2"/><polygon points="735,194 750,200 735,206" fill="#444"/><rect x="60" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">設計</text><rect x="183" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="233" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コーディング</text><rect x="306" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="356" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド</text><rect x="429" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#555" stroke-width="1.5"/><text x="479" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト</text><rect x="552" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="602" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番</text><text x="110" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">脅威モデリング</text><text x="233" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SAST/シークレット</text><text x="356" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SCA/SBOM</text><text x="479" y="228" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">DAST</text><text x="602" y="228" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">CSPM</text><rect x="60" y="255" width="360" height="28" rx="4" fill="#1565c0" opacity="0.7"/><text x="240" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シフトレフト領域 — 修正コスト: 低</text><rect x="440" y="255" width="212" height="28" rx="4" fill="#e91e63" opacity="0.6"/><text x="546" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">遅延発見 — コスト: 高</text><text x="400" y="355" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">早期発見により修正コストを最大1/100に削減</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シフトレフト セキュリティ</text><line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="2"/><polygon points="735,194 750,200 735,206" fill="#444"/><rect x="60" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">設計</text><rect x="183" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="233" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コーディング</text><rect x="306" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="356" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド</text><rect x="429" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#555" stroke-width="1.5"/><text x="479" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト</text><rect x="552" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="602" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番</text><text x="110" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">脅威モデリング</text><text x="233" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SAST/シークレット</text><text x="356" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SCA/SBOM</text><text x="479" y="228" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">DAST</text><text x="602" y="228" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">CSPM</text><rect x="60" y="255" width="360" height="28" rx="4" fill="#1565c0" opacity="0.7"/><text x="240" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シフトレフト領域 — 修正コスト: 低</text><rect x="440" y="255" width="212" height="28" rx="4" fill="#e91e63" opacity="0.6"/><text x="546" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">遅延発見 — コスト: 高</text><text x="400" y="355" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">早期発見により修正コストを最大1/100に削減</text></svg>
+</div>
+
 - **EO 14028（2021）**: 米政府調達ソフトウェアにSBOM必須
 - **NTIA最小要素**: サプライヤー名・コンポーネント名・バージョン・依存関係・タイムスタンプ
 - **EU Cyber Resilience Act**: デジタル製品のCEマーキングにSBOM必須（2025年〜）
@@ -1024,7 +1141,8 @@ jobs:
 
 # DependencyTrack導入
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CI/CD セキュリティパイプライン</text><rect x="20" y="162" width="85" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="62.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コード</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CI/CD セキュリティパイプライン</text><rect x="20" y="162" width="85" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="62.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コード</text>
 <line x1="105" y1="185" x2="123" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="118,179 133,185 118,191" fill="#f9a825"/>
 <rect x="133" y="162" width="85" height="46" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="175.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SAST</text>
 <line x1="218" y1="185" x2="236" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="231,179 246,185 231,191" fill="#f9a825"/>
@@ -1040,6 +1158,8 @@ jobs:
 <rect x="133" y="233" width="537" height="28" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="401" y="252" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">セキュリティゲート: 失敗時はパイプライン自動停止</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">毎コミットで自動スキャン — 問題を早期に検出・ブロック</text></svg>
+</div>
+
 - 継続的なSBOM管理・脆弱性ダッシュボード・Slack通知連携
 
 
@@ -1064,7 +1184,7 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Chapter 4: 脅威モデリング・STRIDE
 
 - 設計フェーズにセキュリティを組み込む実践手法
@@ -1076,7 +1196,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *設計段階の脅威モデリングで本番修正の1/100以下のコストでリスクを排除できる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">STRIDE 脅威モデリング</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">STRIDE 脅威モデリング</text>
 <rect x="20" y="60" width="230" height="52" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="135" y="91" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">S — Spoofing (なりすまし)</text>
 <text x="135" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">対策: 多要素認証・証明書検証</text>
 <rect x="285" y="60" width="230" height="52" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="91" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">T — Tampering (改ざん)</text>
@@ -1093,6 +1214,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <text x="400" y="274" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold">脅威モデリングプロセス</text>
 <text x="400" y="295" text-anchor="middle" fill="#ce93d8" font-size="11" font-family="sans-serif">資産特定 → 脅威列挙 → リスク評価 → 対策設計</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">設計フェーズで実施することで手戻りを最小化</text></svg>
+</div>
+
 - **定義**: システムに対する潜在的な脅威を体系的に特定・優先度付けするプロセス
 - **4つの質問（Adam Shostack）**: 何を作っているか？何が問題か？どう対処するか？正しく対処できたか？
 - **効果**: 設計段階での修正コストは本番の1/100以下
@@ -1112,6 +1235,7 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 | **PASTA** | リスクベース、9ステップ | エンタープライズ |
 | **LINDDUN** | プライバシー特化 | GDPRコンプライアンス |
 | **TRIKE** | リスク許容ベース | 金融・重要インフラ |
+
 - **スタートアップ推奨**: STRIDEがシンプルで学習コスト低
 
 
@@ -1121,7 +1245,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *本番リリース後のバグ修正コストは要件定義段階の最大6,000倍になる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">セキュリティゲート 判断フロー</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">セキュリティゲート 判断フロー</text>
 <rect x="305" y="60" width="190" height="48" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コードプッシュ</text>
 <line x1="400" y1="108" x2="400" y2="126" stroke="#f9a825" stroke-width="2"/><polygon points="394,121 400,136 406,121" fill="#f9a825"/>
 <rect x="305" y="136" width="190" height="48" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">自動スキャン実行</text>
@@ -1136,6 +1261,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <text x="415" y="302" fill="#66bb6a" font-size="11" font-family="sans-serif">NO</text>
 <rect x="305" y="322" width="190" height="48" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="400" y="351" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">次ステージへ進む</text>
 <text x="400" y="390" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Critical/High は即時ブロック — Low は許容ポリシー設定可</text></svg>
+</div>
+
 - **IBM NIST研究**: バグ修正コストはフェーズが進むほど指数的に増加
 - 要件定義での発見: **$1**（基準）
 - 設計での発見: **$6**
@@ -1157,7 +1284,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *JWTトークン偽造・IPスプーフィングなどなりすまし攻撃はMFA・CSRF対策で防止*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">コンテナイメージ スキャンパイプライン</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">コンテナイメージ スキャンパイプライン</text>
 <rect x="20" y="155" width="110" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="75" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Dockerfile</text>
 <line x1="130" y1="180" x2="148" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="143,174 158,180 143,186" fill="#f9a825"/>
 <rect x="158" y="155" width="110" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="213" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">イメージビルド</text>
@@ -1176,6 +1304,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <text x="477" y="240" fill="#e91e63" font-size="10" font-family="sans-serif">NO</text>
 <rect x="362" y="275" width="200" height="48" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="462" y="304" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド失敗 / 通知</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Trivy / Snyk / ECR Scan — Critical CVE はブロック</text></svg>
+</div>
+
 - **定義**: 正規ユーザーや別のシステムになりすます攻撃
 - **事例**: 偽のログインページ・JWTトークン偽造・IPスプーフィング
 - **対策リスト:**
@@ -1190,7 +1320,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *DBデータ改ざん・パケット書き換えには入力検証・チェックサム・デジタル署名で対抗*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IaC セキュリティチェックフロー</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IaC セキュリティチェックフロー</text>
 <rect x="20" y="162" width="120" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="80" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Terraform/CF</text>
 <line x1="140" y1="185" x2="158" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="153,179 168,185 153,191" fill="#f9a825"/>
 <rect x="168" y="162" width="120" height="46" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="228" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">静的解析</text>
@@ -1209,6 +1340,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <text x="400" y="292" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">検出される設定ミス例</text>
 <text x="400" y="312" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">S3パブリック公開 / SG 0.0.0.0/0 / 暗号化なし / IAM *</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">インフラコードもアプリコードと同様にスキャン必須</text></svg>
+</div>
+
 - **定義**: データやコードを不正に変更する攻撃
 - **事例**: DBデータの改ざん・メモリ改ざん・ネットワークパケット書き換え
 - **対策リスト:**
@@ -1223,7 +1356,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *不正行為の否認を防ぐにはappend-only監査ログと署名付きトランザクションが必須*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Compliance as Code ワークフロー</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Compliance as Code ワークフロー</text>
 <rect x="20" y="75" width="155" height="48" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="97.5" y="104" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">規制要件</text>
 <text x="97" y="140" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">PCI-DSS / SOC2 / ISO27001</text>
 <rect x="20" y="215" width="155" height="48" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="97.5" y="244" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ベースライン</text>
@@ -1243,6 +1377,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <text x="440" y="310" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">コンプライアンス状態をダッシュボードで可視化</text>
 <text x="440" y="328" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Security Hub / AWS Config / Prowler</text>
 <text x="400" y="370" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">手作業監査を自動化 — 常時準拠状態を維持</text></svg>
+</div>
+
 - **定義**: 実行した行動を否定・証拠を改ざんする攻撃
 - **事例**: トランザクションログの削除・監査証跡の改ざん
 - **対策リスト:**
@@ -1257,7 +1393,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *情報漏洩はRBAC最小権限・暗号化・エラーメッセージ最小化の3原則で防止する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ゼロトラスト アーキテクチャ</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ゼロトラスト アーキテクチャ</text>
 <rect x="295" y="150" width="210" height="115" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="190" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">ポリシーエンジン</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Never Trust, Always Verify</text>
@@ -1276,6 +1413,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <line x1="505" y1="205" x2="640" y2="201" stroke="#66bb6a" stroke-width="1.5"/><polygon points="634,195 649,201 634,207" fill="#66bb6a"/>
 <line x1="505" y1="245" x2="640" y2="301" stroke="#66bb6a" stroke-width="1.5"/><polygon points="633,295 645,304 633,293" fill="#66bb6a"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ネットワーク境界ではなくID・コンテキストで判断</text></svg>
+</div>
+
 - **定義**: 権限外のユーザーへの機密情報漏洩
 - **事例**: エラーメッセージにスタックトレース・HTTPレスポンスヘッダー暴露
 - **対策リスト:**
@@ -1290,7 +1429,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *DoS攻撃にはレート制限・自動スケーリング・DDoS保護の組み合わせで対応する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理 ベストプラクティス</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理 ベストプラクティス</text>
 <rect x="295" y="65" width="210" height="50" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">シークレットストア</text>
 <text x="400" y="133" text-anchor="middle" fill="#ce93d8" font-size="10" font-family="sans-serif">AWS Secrets Manager / HashiCorp Vault</text>
 <line x1="400" y1="115" x2="400" y2="148" stroke="#f9a825" stroke-width="2"/><polygon points="394,143 400,158 406,143" fill="#f9a825"/>
@@ -1306,6 +1446,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <text x="400" y="303" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">禁止事項</text>
 <text x="400" y="323" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ハードコード / .env をGitコミット / ログへの出力 / 長期キー</text>
 <text x="400" y="370" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">git-secrets / truffleHog で事前検出</text></svg>
+</div>
+
 - **定義**: 正規ユーザーのサービス利用を妨害する攻撃
 - **事例**: フラッド攻撃・リソース枯渇・アルゴリズム複雑性攻撃
 - **対策リスト:**
@@ -1320,7 +1462,10 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *権限昇格はLeast Privilege・non-rootコンテナ・RBACの定期棚卸しで封じ込める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps サイクル</text><rect x="80" y="160" width="130" height="55" rx="6" fill="#1565c0" stroke="#f9a825" stroke-width="1.5"/><text x="145" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Dev</text><rect x="335" y="65" width="130" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="97.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Sec</text><rect x="590" y="160" width="130" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="655" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Ops</text><path d="M210,187 Q335,140 335,120" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="333,108 341,124 325,124" fill="#f9a825"/><path d="M465,92 Q530,130 590,175" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="582,169 594,181 579,180" fill="#f9a825"/><path d="M590,215 Q400,320 210,215" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="212,207 204,220 219,221" fill="#f9a825"/><text x="260" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">設計・実装</text><text x="550" y="135" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">テスト・スキャン</text><text x="400" y="310" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">監視・フィードバック</text><rect x="315" y="170" width="170" height="45" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="197.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">継続的セキュリティ</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">セキュリティを全フェーズに統合</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps サイクル</text><rect x="80" y="160" width="130" height="55" rx="6" fill="#1565c0" stroke="#f9a825" stroke-width="1.5"/><text x="145" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Dev</text><rect x="335" y="65" width="130" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="97.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Sec</text><rect x="590" y="160" width="130" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="655" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Ops</text><path d="M210,187 Q335,140 335,120" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="333,108 341,124 325,124" fill="#f9a825"/><path d="M465,92 Q530,130 590,175" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="582,169 594,181 579,180" fill="#f9a825"/><path d="M590,215 Q400,320 210,215" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="212,207 204,220 219,221" fill="#f9a825"/><text x="260" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">設計・実装</text><text x="550" y="135" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">テスト・スキャン</text><text x="400" y="310" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">監視・フィードバック</text><rect x="315" y="170" width="170" height="45" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="197.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">継続的セキュリティ</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">セキュリティを全フェーズに統合</text></svg>
+</div>
+
 - **定義**: 低権限ユーザーが高権限を取得する攻撃
 - **事例**: SQLインジェクション→DBA権限・コンテナエスケープ→root
 - **対策リスト:**
@@ -1342,7 +1487,10 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *DFDの4要素にSTRIDEを適用してトラストバウンダリー越えの脅威を網羅特定する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シフトレフト セキュリティ</text><line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="2"/><polygon points="735,194 750,200 735,206" fill="#444"/><rect x="60" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">設計</text><rect x="183" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="233" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コーディング</text><rect x="306" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="356" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド</text><rect x="429" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#555" stroke-width="1.5"/><text x="479" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト</text><rect x="552" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="602" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番</text><text x="110" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">脅威モデリング</text><text x="233" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SAST/シークレット</text><text x="356" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SCA/SBOM</text><text x="479" y="228" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">DAST</text><text x="602" y="228" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">CSPM</text><rect x="60" y="255" width="360" height="28" rx="4" fill="#1565c0" opacity="0.7"/><text x="240" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シフトレフト領域 — 修正コスト: 低</text><rect x="440" y="255" width="212" height="28" rx="4" fill="#e91e63" opacity="0.6"/><text x="546" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">遅延発見 — コスト: 高</text><text x="400" y="355" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">早期発見により修正コストを最大1/100に削減</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シフトレフト セキュリティ</text><line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="2"/><polygon points="735,194 750,200 735,206" fill="#444"/><rect x="60" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">設計</text><rect x="183" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="233" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コーディング</text><rect x="306" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="356" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド</text><rect x="429" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#555" stroke-width="1.5"/><text x="479" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト</text><rect x="552" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="602" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番</text><text x="110" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">脅威モデリング</text><text x="233" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SAST/シークレット</text><text x="356" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SCA/SBOM</text><text x="479" y="228" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">DAST</text><text x="602" y="228" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">CSPM</text><rect x="60" y="255" width="360" height="28" rx="4" fill="#1565c0" opacity="0.7"/><text x="240" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シフトレフト領域 — 修正コスト: 低</text><rect x="440" y="255" width="212" height="28" rx="4" fill="#e91e63" opacity="0.6"/><text x="546" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">遅延発見 — コスト: 高</text><text x="400" y="355" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">早期発見により修正コストを最大1/100に削減</text></svg>
+</div>
+
 - **4つの要素:**
 - □ **プロセス**: データを処理するコンポーネント（円または角丸四角）
 - → **データフロー**: データの流れ（矢印） / = **データストア**: データの保存先（平行線）
@@ -1379,7 +1527,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *Microsoft TM Toolは無料でDFD→STRIDE脅威の自動列挙とステータス管理を実現*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CI/CD セキュリティパイプライン</text><rect x="20" y="162" width="85" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="62.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コード</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CI/CD セキュリティパイプライン</text><rect x="20" y="162" width="85" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="62.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コード</text>
 <line x1="105" y1="185" x2="123" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="118,179 133,185 118,191" fill="#f9a825"/>
 <rect x="133" y="162" width="85" height="46" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="175.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SAST</text>
 <line x1="218" y1="185" x2="236" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="231,179 246,185 231,191" fill="#f9a825"/>
@@ -1395,6 +1544,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <rect x="133" y="233" width="537" height="28" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="401" y="252" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">セキュリティゲート: 失敗時はパイプライン自動停止</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">毎コミットで自動スキャン — 問題を早期に検出・ブロック</text></svg>
+</div>
+
 - **Microsoft Threat Modeling Tool 2016 (無料)**
 - DFDを描くと自動でSTRIDE脅威を列挙
 - 各脅威にステータス管理・レポート出力
@@ -1409,7 +1560,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *Agile TMはスプリントごとの小規模レビューとPRテンプレートで継続的脅威管理を実現*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">STRIDE 脅威モデリング</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">STRIDE 脅威モデリング</text>
 <rect x="20" y="60" width="230" height="52" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="135" y="91" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">S — Spoofing (なりすまし)</text>
 <text x="135" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">対策: 多要素認証・証明書検証</text>
 <rect x="285" y="60" width="230" height="52" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="91" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">T — Tampering (改ざん)</text>
@@ -1426,6 +1578,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <text x="400" y="274" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold">脅威モデリングプロセス</text>
 <text x="400" y="295" text-anchor="middle" fill="#ce93d8" font-size="11" font-family="sans-serif">資産特定 → 脅威列挙 → リスク評価 → 対策設計</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">設計フェーズで実施することで手戻りを最小化</text></svg>
+</div>
+
 - **従来**: 大規模な脅威モデリングセッションを年に1回
 - **Agile TM**: スプリントごとに小さな脅威モデリングを繰り返す
 - **実践方法:**
@@ -1440,7 +1594,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *JWT窃取・SQLi・IDOR・エラー漏洩を4つのSTRIDE脅威に対応付けて設計段階で対処*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">セキュリティゲート 判断フロー</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">セキュリティゲート 判断フロー</text>
 <rect x="305" y="60" width="190" height="48" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="89" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コードプッシュ</text>
 <line x1="400" y1="108" x2="400" y2="126" stroke="#f9a825" stroke-width="2"/><polygon points="394,121 400,136 406,121" fill="#f9a825"/>
 <rect x="305" y="136" width="190" height="48" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">自動スキャン実行</text>
@@ -1455,6 +1610,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <text x="415" y="302" fill="#66bb6a" font-size="11" font-family="sans-serif">NO</text>
 <rect x="305" y="322" width="190" height="48" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="400" y="351" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">次ステージへ進む</text>
 <text x="400" y="390" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Critical/High は即時ブロック — Low は許容ポリシー設定可</text></svg>
+</div>
+
 - **対象**: RESTful API + JWT認証 + RDS
 - **識別した主要脅威:**
 - S: JWTトークン窃取によるなりすまし → 対策: 短い有効期限 + Refresh Token Rotation
@@ -1469,7 +1626,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *mTLS未設定の横断盗聴・過剰権限による横移動をSPIFFE/Istioで封じ込める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">コンテナイメージ スキャンパイプライン</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">コンテナイメージ スキャンパイプライン</text>
 <rect x="20" y="155" width="110" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="75" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Dockerfile</text>
 <line x1="130" y1="180" x2="148" y2="180" stroke="#f9a825" stroke-width="2"/><polygon points="143,174 158,180 143,186" fill="#f9a825"/>
 <rect x="158" y="155" width="110" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="213" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">イメージビルド</text>
@@ -1488,6 +1646,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <text x="477" y="240" fill="#e91e63" font-size="10" font-family="sans-serif">NO</text>
 <rect x="362" y="275" width="200" height="48" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="462" y="304" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド失敗 / 通知</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Trivy / Snyk / ECR Scan — Critical CVE はブロック</text></svg>
+</div>
+
 - **追加で考慮すべき脅威面:**
 - サービス間認証: mTLSなし→なりすまし（S）
 - サービスメッシュ未導入→横断的な盗聴（I）
@@ -1498,7 +1658,7 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Chapter 5: クラウドネイティブセキュリティ
 
 - 4C's・コンテナ・Kubernetes・OPA・CSPM・eBPF
@@ -1517,7 +1677,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *イメージ・ランタイム・レジストリ・オーケストレーションの4層でコンテナを多層防御*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IaC セキュリティチェックフロー</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">IaC セキュリティチェックフロー</text>
 <rect x="20" y="162" width="120" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="80" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Terraform/CF</text>
 <line x1="140" y1="185" x2="158" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="153,179 168,185 153,191" fill="#f9a825"/>
 <rect x="168" y="162" width="120" height="46" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="228" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">静的解析</text>
@@ -1536,6 +1697,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <text x="400" y="292" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">検出される設定ミス例</text>
 <text x="400" y="312" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">S3パブリック公開 / SG 0.0.0.0/0 / 暗号化なし / IAM *</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">インフラコードもアプリコードと同様にスキャン必須</text></svg>
+</div>
+
 - **4つのレイヤー:**
 - ① イメージセキュリティ: 脆弱なベースイメージの検出・署名
 - ② ランタイムセキュリティ: 異常な振る舞いの検出・遮断
@@ -1550,7 +1713,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 > *Trivy/Snyk/GrypeでCVE・設定ミス・シークレットを検出しCIでCRITICAL自動拒否する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Compliance as Code ワークフロー</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Compliance as Code ワークフロー</text>
 <rect x="20" y="75" width="155" height="48" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="97.5" y="104" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">規制要件</text>
 <text x="97" y="140" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">PCI-DSS / SOC2 / ISO27001</text>
 <rect x="20" y="215" width="155" height="48" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="97.5" y="244" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ベースライン</text>
@@ -1570,6 +1734,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <text x="440" y="310" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">コンプライアンス状態をダッシュボードで可視化</text>
 <text x="440" y="328" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Security Hub / AWS Config / Prowler</text>
 <text x="400" y="370" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">手作業監査を自動化 — 常時準拠状態を維持</text></svg>
+</div>
+
 - **Trivy（推奨）**: 高速・精度高・SBOM生成対応
 - **Snyk Container**: 開発者向けUIが優秀・修正提案あり
 - **Grype**: SBOMからの脆弱性照合に特化
@@ -1581,7 +1747,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 
 # Trivy実践 — イメージスキャン
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ゼロトラスト アーキテクチャ</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ゼロトラスト アーキテクチャ</text>
 <rect x="295" y="150" width="210" height="115" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
 <text x="400" y="190" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">ポリシーエンジン</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">Never Trust, Always Verify</text>
@@ -1600,6 +1767,8 @@ curl -X PUT https://dt.example.com/api/v1/bom \
 <line x1="505" y1="205" x2="640" y2="201" stroke="#66bb6a" stroke-width="1.5"/><polygon points="634,195 649,201 634,207" fill="#66bb6a"/>
 <line x1="505" y1="245" x2="640" y2="301" stroke="#66bb6a" stroke-width="1.5"/><polygon points="633,295 645,304 633,293" fill="#66bb6a"/>
 <text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ネットワーク境界ではなくID・コンテキストで判断</text></svg>
+</div>
+
 - `--exit-code 1` でCI/CDゲートとして機能
 
 
@@ -1628,7 +1797,8 @@ trivy image --format cyclonedx \
 
 # Dockerfileベストプラクティス
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理 ベストプラクティス</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレット管理 ベストプラクティス</text>
 <rect x="295" y="65" width="210" height="50" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="95" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">シークレットストア</text>
 <text x="400" y="133" text-anchor="middle" fill="#ce93d8" font-size="10" font-family="sans-serif">AWS Secrets Manager / HashiCorp Vault</text>
 <line x1="400" y1="115" x2="400" y2="148" stroke="#f9a825" stroke-width="2"/><polygon points="394,143 400,158 406,143" fill="#f9a825"/>
@@ -1644,6 +1814,8 @@ trivy image --format cyclonedx \
 <text x="400" y="303" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">禁止事項</text>
 <text x="400" y="323" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ハードコード / .env をGitコミット / ログへの出力 / 長期キー</text>
 <text x="400" y="370" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">git-secrets / truffleHog で事前検出</text></svg>
+</div>
+
 - Distroless: シェル・パッケージマネージャーなし → 攻撃面を最小化
 
 
@@ -1678,7 +1850,10 @@ CMD ["/app/server.js"]
 
 > *Falcoがカーネルシステムコールを監視しシェル実行や特権昇格をリアルタイム検出する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps サイクル</text><rect x="80" y="160" width="130" height="55" rx="6" fill="#1565c0" stroke="#f9a825" stroke-width="1.5"/><text x="145" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Dev</text><rect x="335" y="65" width="130" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="97.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Sec</text><rect x="590" y="160" width="130" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="655" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Ops</text><path d="M210,187 Q335,140 335,120" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="333,108 341,124 325,124" fill="#f9a825"/><path d="M465,92 Q530,130 590,175" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="582,169 594,181 579,180" fill="#f9a825"/><path d="M590,215 Q400,320 210,215" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="212,207 204,220 219,221" fill="#f9a825"/><text x="260" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">設計・実装</text><text x="550" y="135" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">テスト・スキャン</text><text x="400" y="310" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">監視・フィードバック</text><rect x="315" y="170" width="170" height="45" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="197.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">継続的セキュリティ</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">セキュリティを全フェーズに統合</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps サイクル</text><rect x="80" y="160" width="130" height="55" rx="6" fill="#1565c0" stroke="#f9a825" stroke-width="1.5"/><text x="145" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Dev</text><rect x="335" y="65" width="130" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="97.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Sec</text><rect x="590" y="160" width="130" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="655" y="192.5" text-anchor="middle" fill="#ffffff" font-size="17" font-family="sans-serif">Ops</text><path d="M210,187 Q335,140 335,120" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="333,108 341,124 325,124" fill="#f9a825"/><path d="M465,92 Q530,130 590,175" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="582,169 594,181 579,180" fill="#f9a825"/><path d="M590,215 Q400,320 210,215" stroke="#f9a825" stroke-width="2" fill="none"/><polygon points="212,207 204,220 219,221" fill="#f9a825"/><text x="260" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">設計・実装</text><text x="550" y="135" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">テスト・スキャン</text><text x="400" y="310" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">監視・フィードバック</text><rect x="315" y="170" width="170" height="45" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="197.5" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">継続的セキュリティ</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">セキュリティを全フェーズに統合</text></svg>
+</div>
+
 - **Falco（CNCF Graduated）**: カーネルシステムコールを監視し異常を検出
 - **検出例:**
 - コンテナ内でのシェル実行（/bin/bash）
@@ -1691,7 +1866,10 @@ CMD ["/app/server.js"]
 
 # Falcoルール作成例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シフトレフト セキュリティ</text><line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="2"/><polygon points="735,194 750,200 735,206" fill="#444"/><rect x="60" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">設計</text><rect x="183" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="233" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コーディング</text><rect x="306" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="356" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド</text><rect x="429" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#555" stroke-width="1.5"/><text x="479" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト</text><rect x="552" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="602" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番</text><text x="110" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">脅威モデリング</text><text x="233" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SAST/シークレット</text><text x="356" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SCA/SBOM</text><text x="479" y="228" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">DAST</text><text x="602" y="228" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">CSPM</text><rect x="60" y="255" width="360" height="28" rx="4" fill="#1565c0" opacity="0.7"/><text x="240" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シフトレフト領域 — 修正コスト: 低</text><rect x="440" y="255" width="212" height="28" rx="4" fill="#e91e63" opacity="0.6"/><text x="546" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">遅延発見 — コスト: 高</text><text x="400" y="355" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">早期発見により修正コストを最大1/100に削減</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シフトレフト セキュリティ</text><line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="2"/><polygon points="735,194 750,200 735,206" fill="#444"/><rect x="60" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="110" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">設計</text><rect x="183" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="233" y="185" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コーディング</text><rect x="306" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="356" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ビルド</text><rect x="429" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#555" stroke-width="1.5"/><text x="479" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">テスト</text><rect x="552" y="158" width="100" height="44" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="602" y="185" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番</text><text x="110" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">脅威モデリング</text><text x="233" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SAST/シークレット</text><text x="356" y="228" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SCA/SBOM</text><text x="479" y="228" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">DAST</text><text x="602" y="228" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">CSPM</text><rect x="60" y="255" width="360" height="28" rx="4" fill="#1565c0" opacity="0.7"/><text x="240" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シフトレフト領域 — 修正コスト: 低</text><rect x="440" y="255" width="212" height="28" rx="4" fill="#e91e63" opacity="0.6"/><text x="546" y="274" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">遅延発見 — コスト: 高</text><text x="400" y="355" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">早期発見により修正コストを最大1/100に削減</text></svg>
+</div>
+
 - MITREタグ付きで攻撃フェーズを分類
 
 
@@ -1726,7 +1904,8 @@ CMD ["/app/server.js"]
 
 # PodSecurityAdmission（PSA）設定
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CI/CD セキュリティパイプライン</text><rect x="20" y="162" width="85" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="62.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コード</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CI/CD セキュリティパイプライン</text><rect x="20" y="162" width="85" height="46" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="62.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コード</text>
 <line x1="105" y1="185" x2="123" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="118,179 133,185 118,191" fill="#f9a825"/>
 <rect x="133" y="162" width="85" height="46" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="175.5" y="190" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SAST</text>
 <line x1="218" y1="185" x2="236" y2="185" stroke="#f9a825" stroke-width="2"/><polygon points="231,179 246,185 231,191" fill="#f9a825"/>
@@ -1742,6 +1921,8 @@ CMD ["/app/server.js"]
 <rect x="133" y="233" width="537" height="28" rx="4" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
 <text x="401" y="252" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">セキュリティゲート: 失敗時はパイプライン自動停止</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">毎コミットで自動スキャン — 問題を早期に検出・ブロック</text></svg>
+</div>
+
 - **3段階**: privileged → baseline → restricted
 
 
@@ -1768,7 +1949,8 @@ metadata:
 
 # NetworkPolicy — ゼロトラスト通信
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">STRIDE 脅威モデリング</text>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">STRIDE 脅威モデリング</text>
 <rect x="20" y="60" width="230" height="52" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="135" y="91" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">S — Spoofing (なりすまし)</text>
 <text x="135" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">対策: 多要素認証・証明書検証</text>
 <rect x="285" y="60" width="230" height="52" rx="6" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="91" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">T — Tampering (改ざん)</text>
@@ -1785,6 +1967,8 @@ metadata:
 <text x="400" y="274" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold">脅威モデリングプロセス</text>
 <text x="400" y="295" text-anchor="middle" fill="#ce93d8" font-size="11" font-family="sans-serif">資産特定 → 脅威列挙 → リスク評価 → 対策設計</text>
 <text x="400" y="360" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">設計フェーズで実施することで手戻りを最小化</text></svg>
+</div>
+
 - 明示的許可リストで最小通信に制限
 
 
@@ -1818,7 +2002,10 @@ spec:
 
 # RBAC最小権限設計
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps 成熟度ロードマップ</text><rect x="30" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 1</text><text x="110" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">アドホック・手動</text><line x1="190" y1="97" x2="220" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="215,91 230,97 215,103" fill="#f9a825"/><rect x="230" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 2</text><text x="310" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">SAST/SCA導入</text><line x1="390" y1="97" x2="420" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="415,91 430,97 415,103" fill="#f9a825"/><rect x="430" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="510" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 3</text><text x="510" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">CI/CD統合完了</text><line x1="590" y1="97" x2="620" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="615,91 630,97 615,103" fill="#f9a825"/><rect x="630" y="70" width="160" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 4</text><text x="710" y="145" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">自動化+継続改善</text><rect x="200" y="175" width="400" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">成熟度向上のポイント</text><text x="400" y="222" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ツール → プロセス → 文化の順に整備</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">OWASP DSOMM / BSIMM で現状評価を実施</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps 成熟度ロードマップ</text><rect x="30" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 1</text><text x="110" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">アドホック・手動</text><line x1="190" y1="97" x2="220" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="215,91 230,97 215,103" fill="#f9a825"/><rect x="230" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 2</text><text x="310" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">SAST/SCA導入</text><line x1="390" y1="97" x2="420" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="415,91 430,97 415,103" fill="#f9a825"/><rect x="430" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="510" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 3</text><text x="510" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">CI/CD統合完了</text><line x1="590" y1="97" x2="620" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="615,91 630,97 615,103" fill="#f9a825"/><rect x="630" y="70" width="160" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 4</text><text x="710" y="145" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">自動化+継続改善</text><rect x="200" y="175" width="400" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">成熟度向上のポイント</text><text x="400" y="222" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ツール → プロセス → 文化の順に整備</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">OWASP DSOMM / BSIMM で現状評価を実施</text></svg>
+</div>
+
 - ツール: `kubectl-who-can`・`rakkess`でRBACを可視化
 
 
@@ -1855,7 +2042,10 @@ rules:
 
 # Regoポリシー記述例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps 成熟度ロードマップ</text><rect x="30" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 1</text><text x="110" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">アドホック・手動</text><line x1="190" y1="97" x2="220" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="215,91 230,97 215,103" fill="#f9a825"/><rect x="230" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 2</text><text x="310" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">SAST/SCA導入</text><line x1="390" y1="97" x2="420" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="415,91 430,97 415,103" fill="#f9a825"/><rect x="430" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="510" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 3</text><text x="510" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">CI/CD統合完了</text><line x1="590" y1="97" x2="620" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="615,91 630,97 615,103" fill="#f9a825"/><rect x="630" y="70" width="160" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 4</text><text x="710" y="145" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">自動化+継続改善</text><rect x="200" y="175" width="400" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">成熟度向上のポイント</text><text x="400" y="222" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ツール → プロセス → 文化の順に整備</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">OWASP DSOMM / BSIMM で現状評価を実施</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps 成熟度ロードマップ</text><rect x="30" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 1</text><text x="110" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">アドホック・手動</text><line x1="190" y1="97" x2="220" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="215,91 230,97 215,103" fill="#f9a825"/><rect x="230" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 2</text><text x="310" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">SAST/SCA導入</text><line x1="390" y1="97" x2="420" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="415,91 430,97 415,103" fill="#f9a825"/><rect x="430" y="70" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="510" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 3</text><text x="510" y="145" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">CI/CD統合完了</text><line x1="590" y1="97" x2="620" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="615,91 630,97 615,103" fill="#f9a825"/><rect x="630" y="70" width="160" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Level 4</text><text x="710" y="145" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">自動化+継続改善</text><rect x="200" y="175" width="400" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" font-weight="bold">成熟度向上のポイント</text><text x="400" y="222" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ツール → プロセス → 文化の順に整備</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">OWASP DSOMM / BSIMM で現状評価を実施</text></svg>
+</div>
+
 - **Constraint**: `labels: ["team", "env", "owner"]` のように指定
 
 
@@ -1881,7 +2071,10 @@ violation[{"msg": msg}] {
 
 # Kyverno — K8sネイティブポリシーエンジン
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps 成熟度ロードマップ</text><rect x="30" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="107" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">レベル1</text><line x1="185" y1="97" x2="215" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="210,91 225,97 210,103" fill="#f9a825"/><rect x="225" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="302" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">レベル2</text><line x1="380" y1="97" x2="410" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="405,91 420,97 405,103" fill="#f9a825"/><rect x="420" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="497" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">レベル3</text><line x1="575" y1="97" x2="605" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="600,91 615,97 600,103" fill="#f9a825"/><rect x="615" y="70" width="155" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="692" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">レベル4</text><rect x="250" y="175" width="300" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">改善ポイント</text><text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ツール→プロセス→文化の順に整備</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">OWASP DSOMM / BSIMM で現状評価</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps 成熟度ロードマップ</text><rect x="30" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="107" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">レベル1</text><line x1="185" y1="97" x2="215" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="210,91 225,97 210,103" fill="#f9a825"/><rect x="225" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="302" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">レベル2</text><line x1="380" y1="97" x2="410" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="405,91 420,97 405,103" fill="#f9a825"/><rect x="420" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="497" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">レベル3</text><line x1="575" y1="97" x2="605" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="600,91 615,97 600,103" fill="#f9a825"/><rect x="615" y="70" width="155" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="692" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">レベル4</text><rect x="250" y="175" width="300" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">改善ポイント</text><text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ツール→プロセス→文化の順に整備</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">OWASP DSOMM / BSIMM で現状評価</text></svg>
+</div>
+
 - OPA/Gatekeeper比: Rego不要・YAML記述・Mutate/Generateも対応
 
 
@@ -1916,7 +2109,10 @@ spec:
 
 > *クラウド侵害の99%は設定ミスが起因—CSPMでS3公開・MFA未設定を継続スキャン*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">SBOM サプライチェーン</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ソースコード</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><rect x="230" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">依存性解析</text><line x1="390" y1="107" x2="420" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="415,101 430,107 415,113" fill="#f9a825"/><rect x="430" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="510" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SBOM生成</text><line x1="590" y1="107" x2="620" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="615,101 630,107 615,113" fill="#f9a825"/><rect x="630" y="80" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="700" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">署名・公開</text><rect x="230" y="190" width="300" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="380" y="222" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">脆弱性追跡</text><text x="380" y="225" text-anchor="middle" fill="#ce93d8" font-size="11" font-family="sans-serif">CVE発見→影響範囲特定→パッチ</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">SPDX / CycloneDX 形式 — Dependency-Track で管理</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">SBOM サプライチェーン</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ソースコード</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><rect x="230" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">依存性解析</text><line x1="390" y1="107" x2="420" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="415,101 430,107 415,113" fill="#f9a825"/><rect x="430" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="510" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SBOM生成</text><line x1="590" y1="107" x2="620" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="615,101 630,107 615,113" fill="#f9a825"/><rect x="630" y="80" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="700" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">署名・公開</text><rect x="230" y="190" width="300" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="380" y="222" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">脆弱性追跡</text><text x="380" y="225" text-anchor="middle" fill="#ce93d8" font-size="11" font-family="sans-serif">CVE発見→影響範囲特定→パッチ</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">SPDX / CycloneDX 形式 — Dependency-Track で管理</text></svg>
+</div>
+
 - **CSPM（Cloud Security Posture Management）**
 - クラウド環境の設定ミスを継続的にスキャンし修正提案
 - **検出する問題例:**
@@ -1938,7 +2134,10 @@ spec:
 
 > *SecurityHubがGuardDuty/Inspector/Macie/Configを統合しASFF形式で全知見を一元管理*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレットスキャン フロー</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コードコミット</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><rect x="230" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Pre-commit Hook</text><line x1="390" y1="107" x2="420" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="415,101 430,107 415,113" fill="#f9a825"/><rect x="430" y="80" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="510" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">CI/CDスキャン</text><line x1="590" y1="107" x2="620" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="615,101 630,107 615,113" fill="#66bb6a"/><rect x="630" y="80" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="700" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">クリーン検出</text><rect x="230" y="195" width="300" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="380" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">検出時</text><text x="380" y="230" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コミット拒否→秘密情報のローテーション</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">git-secrets / truffleHog / Gitleaks で検出</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">シークレットスキャン フロー</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コードコミット</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><rect x="230" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="310" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Pre-commit Hook</text><line x1="390" y1="107" x2="420" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="415,101 430,107 415,113" fill="#f9a825"/><rect x="430" y="80" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="510" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">CI/CDスキャン</text><line x1="590" y1="107" x2="620" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="615,101 630,107 615,113" fill="#66bb6a"/><rect x="630" y="80" width="140" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="700" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">クリーン検出</text><rect x="230" y="195" width="300" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="380" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">検出時</text><text x="380" y="230" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">コミット拒否→秘密情報のローテーション</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">git-secrets / truffleHog / Gitleaks で検出</text></svg>
+</div>
+
 - **AWS SecurityHub**: AWSネイティブCSPM（追加費用最小）
 - Organizations連携: 全アカウントのセキュリティを一元管理
 - **統合されるサービス:**
@@ -1953,7 +2152,10 @@ spec:
 
 > *eBPFはカーネル改変なしに全システムコールをゼロオーバーヘッドで観測する革命的技術*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">クラウドネイティブ 4Cセキュリティ</text><rect x="40" y="55" width="720" height="300" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/><text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Cloud</text><rect x="70" y="90" width="660" height="245" rx="8" fill="#1a237e" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="113" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">Cluster: RBAC, NetworkPolicy, PodSecurity</text><rect x="100" y="125" width="600" height="190" rx="8" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="400" y="148" text-anchor="middle" fill="#66bb6a" font-size="12" font-family="sans-serif">Container: 非root, capabilities drop, seccomp</text><rect x="130" y="160" width="540" height="140" rx="8" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="183" text-anchor="middle" fill="#ce93d8" font-size="12" font-family="sans-serif">Code: SAST, SCA, シークレットスキャン</text><rect x="230" y="200" width="300" height="75" rx="6" fill="#12005e" stroke="#ce93d8" stroke-width="1.5"/><text x="380" y="242" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">アプリコード</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">外側レイヤーの脆弱性は内側にも影響する</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">クラウドネイティブ 4Cセキュリティ</text><rect x="40" y="55" width="720" height="300" rx="10" fill="#0d1117" stroke="#f9a825" stroke-width="2"/><text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">Cloud</text><rect x="70" y="90" width="660" height="245" rx="8" fill="#1a237e" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="113" text-anchor="middle" fill="#42a5f5" font-size="12" font-family="sans-serif">Cluster: RBAC, NetworkPolicy, PodSecurity</text><rect x="100" y="125" width="600" height="190" rx="8" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="400" y="148" text-anchor="middle" fill="#66bb6a" font-size="12" font-family="sans-serif">Container: 非root, capabilities drop, seccomp</text><rect x="130" y="160" width="540" height="140" rx="8" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="400" y="183" text-anchor="middle" fill="#ce93d8" font-size="12" font-family="sans-serif">Code: SAST, SCA, シークレットスキャン</text><rect x="230" y="200" width="300" height="75" rx="6" fill="#12005e" stroke="#ce93d8" stroke-width="1.5"/><text x="380" y="242" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">アプリコード</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">外側レイヤーの脆弱性は内側にも影響する</text></svg>
+</div>
+
 - **eBPF**: カーネルを改変せずにLinux内部を観測する革命的技術
 - **セキュリティ活用:**
 - すべてのシステムコールをゼロオーバーヘッドで観測
@@ -1966,7 +2168,10 @@ spec:
 
 # Tetragon設定例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">OPA ポリシー制御フロー</text><rect x="30" y="80" width="150" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="105" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">APIリクエスト</text><line x1="180" y1="107" x2="210" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="205,101 220,107 205,113" fill="#f9a825"/><rect x="220" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="300" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Admission Webhook</text><line x1="380" y1="107" x2="410" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="405,101 420,107 405,113" fill="#f9a825"/><rect x="420" y="80" width="160" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="500" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">OPA / Gatekeeper</text><line x1="580" y1="107" x2="610" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="605,101 620,107 605,113" fill="#66bb6a"/><rect x="620" y="80" width="150" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="695" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">許可/拒否</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Regoポリシー例</text><text x="400" y="230" text-anchor="middle" fill="#42a5f5" font-size="10" font-family="sans-serif">deny if container.image not contains registry-domain</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ポリシー違反を検出・強制</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">OPA ポリシー制御フロー</text><rect x="30" y="80" width="150" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="105" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">APIリクエスト</text><line x1="180" y1="107" x2="210" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="205,101 220,107 205,113" fill="#f9a825"/><rect x="220" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="300" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Admission Webhook</text><line x1="380" y1="107" x2="410" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="405,101 420,107 405,113" fill="#f9a825"/><rect x="420" y="80" width="160" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="500" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">OPA / Gatekeeper</text><line x1="580" y1="107" x2="610" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="605,101 620,107 605,113" fill="#66bb6a"/><rect x="620" y="80" width="150" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="695" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">許可/拒否</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Regoポリシー例</text><text x="400" y="230" text-anchor="middle" fill="#42a5f5" font-size="10" font-family="sans-serif">deny if container.image not contains registry-domain</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ポリシー違反を検出・強制</text></svg>
+</div>
+
 - Cilium/Hubbleと連携して観測性を向上
 
 
@@ -2002,17 +2207,19 @@ spec:
 > *Istio mTLSでサービス間通信を暗号化・認証、ゼロトラストネットワークを実現*
 
 - **Istio mTLS**: サービス間通信をすべて相互TLSで暗号化
+
 | モード | 説明 | 推奨 |
 |--------|------|------|
 | DISABLE | TLSなし | ❌ |
 | PERMISSIVE | TLS/平文両対応 | 移行期のみ |
 | STRICT | mTLSのみ | ✅ 本番 |
+
 - **証明書管理**: Istio CAが自動でSVID証明書をローテーション
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Chapter 6: ゼロトラスト・ID管理
 
 - NIST SP 800-207 / SPIFFE・SPIRE / Vault / IAM最小権限
@@ -2031,7 +2238,10 @@ spec:
 
 > *NIST SP 800-207の7原則は場所・ネットワーク問わず全通信を動的に認証・認可する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DAST 動的テストフロー</text><rect x="30" y="80" width="150" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="105" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">デプロイ(Staging)</text><line x1="180" y1="107" x2="210" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="205,101 220,107 205,113" fill="#f9a825"/><rect x="220" y="80" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="300" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">DASTスキャン</text><line x1="380" y1="107" x2="410" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="405,101 420,107 405,113" fill="#f9a825"/><rect x="420" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="500" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">脆弱性レポート</text><line x1="580" y1="107" x2="610" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="605,101 620,107 605,113" fill="#66bb6a"/><rect x="620" y="80" width="150" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="695" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番デプロイ</text><rect x="220" y="195" width="360" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">検出項目</text><text x="400" y="230" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">SQLインジェクション / XSS / 認証バイパス</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">OWASP ZAP / Burp Suite — 本番前に実施</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DAST 動的テストフロー</text><rect x="30" y="80" width="150" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="105" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">デプロイ(Staging)</text><line x1="180" y1="107" x2="210" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="205,101 220,107 205,113" fill="#f9a825"/><rect x="220" y="80" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="300" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">DASTスキャン</text><line x1="380" y1="107" x2="410" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="405,101 420,107 405,113" fill="#f9a825"/><rect x="420" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="500" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">脆弱性レポート</text><line x1="580" y1="107" x2="610" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="605,101 620,107 605,113" fill="#66bb6a"/><rect x="620" y="80" width="150" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="695" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">本番デプロイ</text><rect x="220" y="195" width="360" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">検出項目</text><text x="400" y="230" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">SQLインジェクション / XSS / 認証バイパス</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">OWASP ZAP / Burp Suite — 本番前に実施</text></svg>
+</div>
+
 - ① 全てのデータソース・コンピューティングをリソースとみなす
 - ② ネットワーク上の場所に関わらず全通信を保護する
 - ③ 個別リソースへのアクセスはセッション単位で付与する
@@ -2046,7 +2256,10 @@ spec:
 
 > *SPIFFEはX.509またはJWTでマイクロサービスに鍵管理不要の暗号的IDを自動付与する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ゼロトラスト ID管理</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ユーザーID</text><rect x="220" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="300" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">デバイス証明書</text><rect x="410" y="80" width="160" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="490" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コンテキスト判定</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><line x1="380" y1="107" x2="410" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="405,101 420,107 405,113" fill="#f9a825"/><line x1="570" y1="107" x2="610" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="605,101 620,107 605,113" fill="#f9a825"/><rect x="620" y="80" width="150" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="695" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">アクセス判定</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">MFA + 条件付きアクセス</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">場所・時間・リスクスコアで動的判定</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">継続的な認証・最小権限・常時検証</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">ゼロトラスト ID管理</text><rect x="30" y="80" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="110" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ユーザーID</text><rect x="220" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="300" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">デバイス証明書</text><rect x="410" y="80" width="160" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="490" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">コンテキスト判定</text><line x1="190" y1="107" x2="220" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="215,101 230,107 215,113" fill="#f9a825"/><line x1="380" y1="107" x2="410" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="405,101 420,107 405,113" fill="#f9a825"/><line x1="570" y1="107" x2="610" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="605,101 620,107 605,113" fill="#f9a825"/><rect x="620" y="80" width="150" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="695" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">アクセス判定</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">MFA + 条件付きアクセス</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">場所・時間・リスクスコアで動的判定</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">継続的な認証・最小権限・常時検証</text></svg>
+</div>
+
 - **SPIFFE（Secure Production Identity Framework For Everyone）**
 - マイクロサービス・コンテナに暗号的に証明されたIDを付与
 - **SVID（SPIFFE Verifiable Identity Document）**: X.509証明書またはJWT形式
@@ -2059,7 +2272,10 @@ spec:
 
 # SPIRE設定例
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Falco ランタイム監視</text><rect x="30" y="80" width="170" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="115" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Kernel syscall</text><line x1="200" y1="107" x2="230" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="225,101 240,107 225,113" fill="#f9a825"/><rect x="240" y="80" width="160" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="320" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Falco Probe</text><line x1="400" y1="107" x2="430" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="425,101 440,107 425,113" fill="#f9a825"/><rect x="440" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="520" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ルールエンジン</text><line x1="600" y1="107" x2="630" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="625,101 640,107 625,113" fill="#66bb6a"/><rect x="640" y="80" width="140" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="710" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">アラート</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">検出例</text><text x="400" y="230" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シェル起動 / /etc/shadow読み取り / 外部接続</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">CNCF Falco — eBPF/カーネルモジュールで低オーバーヘッド</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">Falco ランタイム監視</text><rect x="30" y="80" width="170" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="115" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Kernel syscall</text><line x1="200" y1="107" x2="230" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="225,101 240,107 225,113" fill="#f9a825"/><rect x="240" y="80" width="160" height="55" rx="6" fill="#4a148c" stroke="#ce93d8" stroke-width="1.5"/><text x="320" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Falco Probe</text><line x1="400" y1="107" x2="430" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="425,101 440,107 425,113" fill="#f9a825"/><rect x="440" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="520" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">ルールエンジン</text><line x1="600" y1="107" x2="630" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="625,101 640,107 625,113" fill="#66bb6a"/><rect x="640" y="80" width="140" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="710" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">アラート</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">検出例</text><text x="400" y="230" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">シェル起動 / /etc/shadow読み取り / 外部接続</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">CNCF Falco — eBPF/カーネルモジュールで低オーバーヘッド</text></svg>
+</div>
+
 - K8sのNamespace+ServiceAccountでIDを自動付与
 
 
@@ -2093,7 +2309,10 @@ spire-server entry create \
 
 > *Vaultは動的シークレット・暗号化as a Service・PKIをK8s統合で一元管理できる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CSPM クラウドセキュリティ管理</text><rect x="30" y="80" width="180" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="120" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">AWSリソース設定</text><line x1="210" y1="107" x2="240" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="235,101 250,107 235,113" fill="#f9a825"/><rect x="250" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="330" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">AWS Security Hub</text><line x1="410" y1="107" x2="440" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="435,101 450,107 435,113" fill="#f9a825"/><rect x="450" y="80" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="530" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">自動評価・スコア</text><line x1="610" y1="107" x2="640" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="635,101 650,107 635,113" fill="#f9a825"/><rect x="650" y="80" width="120" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">修正指示</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">検出するリスク</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">S3公開 / SG 0.0.0.0/0 / MFA無効 / 暗号化なし</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Prowler / AWS Config Rules でCIS基準を継続評価</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">CSPM クラウドセキュリティ管理</text><rect x="30" y="80" width="180" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="120" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">AWSリソース設定</text><line x1="210" y1="107" x2="240" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="235,101 250,107 235,113" fill="#f9a825"/><rect x="250" y="80" width="160" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="330" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">AWS Security Hub</text><line x1="410" y1="107" x2="440" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="435,101 450,107 435,113" fill="#f9a825"/><rect x="450" y="80" width="160" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="530" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">自動評価・スコア</text><line x1="610" y1="107" x2="640" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="635,101 650,107 635,113" fill="#f9a825"/><rect x="650" y="80" width="120" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="710" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">修正指示</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">検出するリスク</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">S3公開 / SG 0.0.0.0/0 / MFA無効 / 暗号化なし</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Prowler / AWS Config Rules でCIS基準を継続評価</text></svg>
+</div>
+
 - **Vault**: 動的シークレット・暗号化・PKIの統合管理プラットフォーム
 - **主要機能:**
 - 動的シークレット: DBパスワードを都度生成（有効期限付き）
@@ -2106,7 +2325,10 @@ spire-server entry create \
 
 # Vault Dynamic Secrets
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">インシデント対応フロー</text><rect x="30" y="80" width="130" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="95" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">検出</text><line x1="160" y1="107" x2="190" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="185,101 200,107 185,113" fill="#f9a825"/><rect x="200" y="80" width="120" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="260" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">トリアージ</text><line x1="320" y1="107" x2="350" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="345,101 360,107 345,113" fill="#f9a825"/><rect x="360" y="80" width="120" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="420" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">封じ込め</text><line x1="480" y1="107" x2="510" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="505,101 520,107 505,113" fill="#f9a825"/><rect x="520" y="80" width="120" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="580" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">根本原因分析</text><line x1="640" y1="107" x2="670" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="665,101 680,107 665,113" fill="#66bb6a"/><rect x="680" y="80" width="100" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="730" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">改善</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SRE連携・ポストモーテム</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">MTTR (平均復旧時間) を KPI として管理</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Playbook事前整備 — 定期的にドリルを実施</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">インシデント対応フロー</text><rect x="30" y="80" width="130" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="95" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">検出</text><line x1="160" y1="107" x2="190" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="185,101 200,107 185,113" fill="#f9a825"/><rect x="200" y="80" width="120" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="260" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">トリアージ</text><line x1="320" y1="107" x2="350" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="345,101 360,107 345,113" fill="#f9a825"/><rect x="360" y="80" width="120" height="55" rx="6" fill="#b71c1c" stroke="#e91e63" stroke-width="1.5"/><text x="420" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">封じ込め</text><line x1="480" y1="107" x2="510" y2="107" stroke="#f9a825" stroke-width="2"/><polygon points="505,101 520,107 505,113" fill="#f9a825"/><rect x="520" y="80" width="120" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="580" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">根本原因分析</text><line x1="640" y1="107" x2="670" y2="107" stroke="#66bb6a" stroke-width="2"/><polygon points="665,101 680,107 665,113" fill="#66bb6a"/><rect x="680" y="80" width="100" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="730" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">改善</text><rect x="200" y="195" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SRE連携・ポストモーテム</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">MTTR (平均復旧時間) を KPI として管理</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Playbook事前整備 — 定期的にドリルを実施</text></svg>
+</div>
+
 - 1時間で失効するDBユーザーを都度生成
 
 
@@ -2138,7 +2360,10 @@ vault read database/creds/readonly
 
 > *IAM Access Analyzer・CloudTrail分析・SCPで過剰権限を自動検出し最小化する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">AWS Security Hub 統合</text><rect x="30" y="80" width="150" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="105" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">GuardDuty</text><rect x="30" y="165" width="150" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="105" y="197" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Config Rules</text><rect x="30" y="250" width="150" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="105" y="282" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Inspector v2</text><line x1="180" y1="107" x2="235" y2="145" stroke="#f9a825" stroke-width="1.5"/><polygon points="228,139 240,149 228,137" fill="#f9a825"/><line x1="180" y1="192" x2="235" y2="192" stroke="#f9a825" stroke-width="1.5"/><polygon points="230,186 245,192 230,198" fill="#f9a825"/><line x1="180" y1="277" x2="235" y2="238" stroke="#f9a825" stroke-width="1.5"/><polygon points="228,232 240,242 228,230" fill="#f9a825"/><rect x="245" y="148" width="170" height="88" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="330" y="197" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Security Hub</text><text x="330" y="198" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">統合スコア</text><line x1="415" y1="192" x2="450" y2="192" stroke="#66bb6a" stroke-width="2"/><polygon points="445,186 460,192 445,198" fill="#66bb6a"/><rect x="460" y="165" width="160" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="540" y="197" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">自動修復</text><line x1="620" y1="192" x2="655" y2="192" stroke="#66bb6a" stroke-width="2"/><polygon points="650,186 665,192 650,198" fill="#66bb6a"/><rect x="665" y="165" width="115" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="722" y="197" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">EventBridge</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ASFF形式で全サービスの検出結果を一元管理</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">AWS Security Hub 統合</text><rect x="30" y="80" width="150" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="105" y="112" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">GuardDuty</text><rect x="30" y="165" width="150" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="105" y="197" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Config Rules</text><rect x="30" y="250" width="150" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="105" y="282" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Inspector v2</text><line x1="180" y1="107" x2="235" y2="145" stroke="#f9a825" stroke-width="1.5"/><polygon points="228,139 240,149 228,137" fill="#f9a825"/><line x1="180" y1="192" x2="235" y2="192" stroke="#f9a825" stroke-width="1.5"/><polygon points="230,186 245,192 230,198" fill="#f9a825"/><line x1="180" y1="277" x2="235" y2="238" stroke="#f9a825" stroke-width="1.5"/><polygon points="228,232 240,242 228,230" fill="#f9a825"/><rect x="245" y="148" width="170" height="88" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="330" y="197" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">Security Hub</text><text x="330" y="198" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">統合スコア</text><line x1="415" y1="192" x2="450" y2="192" stroke="#66bb6a" stroke-width="2"/><polygon points="445,186 460,192 445,198" fill="#66bb6a"/><rect x="460" y="165" width="160" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="540" y="197" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">自動修復</text><line x1="620" y1="192" x2="655" y2="192" stroke="#66bb6a" stroke-width="2"/><polygon points="650,186 665,192 650,198" fill="#66bb6a"/><rect x="665" y="165" width="115" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="722" y="197" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">EventBridge</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ASFF形式で全サービスの検出結果を一元管理</text></svg>
+</div>
+
 - **原則**: デフォルト拒否 + 必要なアクション・リソースのみ明示的許可
 - **ツール活用:**
 - IAM Access Analyzer: 過剰権限のポリシーを自動検出
@@ -2151,7 +2376,10 @@ vault read database/creds/readonly
 
 # IAM Access Analyzer活用
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">セキュリティテスト ピラミッド</text><polygon points="400,60 700,320 100,320" fill="#0d1117" stroke="#f9a825" stroke-width="2"/><line x1="220" y1="200" x2="580" y2="200" stroke="#16213e" stroke-width="2"/><line x1="310" y1="140" x2="490" y2="140" stroke="#16213e" stroke-width="2"/><text x="400" y="95" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">ペンテスト</text><text x="400" y="175" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">DAST / IAST</text><text x="400" y="270" text-anchor="middle" fill="#42a5f5" font-size="13" font-family="sans-serif">SAST / SCA / Unit Test</text><text x="130" y="165" fill="#e91e63" font-size="10" font-family="sans-serif">遅い・高コスト</text><text x="620" y="165" fill="#e91e63" font-size="10" font-family="sans-serif">少ない</text><text x="60" y="295" fill="#42a5f5" font-size="10" font-family="sans-serif">速い・低コスト</text><text x="680" y="295" fill="#42a5f5" font-size="10" font-family="sans-serif">多い</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">下層に投資するほどコスト対効果が高い</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">セキュリティテスト ピラミッド</text><polygon points="400,60 700,320 100,320" fill="#0d1117" stroke="#f9a825" stroke-width="2"/><line x1="220" y1="200" x2="580" y2="200" stroke="#16213e" stroke-width="2"/><line x1="310" y1="140" x2="490" y2="140" stroke="#16213e" stroke-width="2"/><text x="400" y="95" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">ペンテスト</text><text x="400" y="175" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">DAST / IAST</text><text x="400" y="270" text-anchor="middle" fill="#42a5f5" font-size="13" font-family="sans-serif">SAST / SCA / Unit Test</text><text x="130" y="165" fill="#e91e63" font-size="10" font-family="sans-serif">遅い・高コスト</text><text x="620" y="165" fill="#e91e63" font-size="10" font-family="sans-serif">少ない</text><text x="60" y="295" fill="#42a5f5" font-size="10" font-family="sans-serif">速い・低コスト</text><text x="680" y="295" fill="#42a5f5" font-size="10" font-family="sans-serif">多い</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">下層に投資するほどコスト対効果が高い</text></svg>
+</div>
+
 - 年次ではなく継続的（月次）でIAM棚卸しを実施
 
 
@@ -2179,7 +2407,10 @@ aws iam generate-service-last-accessed-details \
 
 > *パスキー/FIDO2で管理者、TOTP+PKCE必須で開発者のフィッシング耐性を確保する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">SLSA サプライチェーンレベル</text><rect x="30" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="107" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SLSA Level 1</text><text x="107" y="143" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ビルドスクリプト記録</text><rect x="215" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="292" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SLSA Level 2</text><text x="292" y="143" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">バージョン管理+CI</text><rect x="400" y="70" width="155" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="477" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SLSA Level 3</text><text x="477" y="143" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">強制されたビルド</text><rect x="585" y="70" width="185" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="677" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SLSA Level 4</text><text x="677" y="143" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">2者レビュー必須</text><line x1="185" y1="97" x2="215" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="210,91 225,97 210,103" fill="#f9a825"/><line x1="370" y1="97" x2="400" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="395,91 410,97 395,103" fill="#f9a825"/><line x1="555" y1="97" x2="585" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="580,91 595,97 580,103" fill="#f9a825"/><rect x="200" y="175" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="207" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">達成のメリット</text><text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">サプライチェーン攻撃リスクを段階的に低減</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Google SLSA Framework — 段階的に導入可能</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">SLSA サプライチェーンレベル</text><rect x="30" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="107" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SLSA Level 1</text><text x="107" y="143" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">ビルドスクリプト記録</text><rect x="215" y="70" width="155" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="292" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SLSA Level 2</text><text x="292" y="143" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">バージョン管理+CI</text><rect x="400" y="70" width="155" height="55" rx="6" fill="#1565c0" stroke="#42a5f5" stroke-width="1.5"/><text x="477" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SLSA Level 3</text><text x="477" y="143" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">強制されたビルド</text><rect x="585" y="70" width="185" height="55" rx="6" fill="#1b5e20" stroke="#66bb6a" stroke-width="1.5"/><text x="677" y="102" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">SLSA Level 4</text><text x="677" y="143" text-anchor="middle" fill="#66bb6a" font-size="10" font-family="sans-serif">2者レビュー必須</text><line x1="185" y1="97" x2="215" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="210,91 225,97 210,103" fill="#f9a825"/><line x1="370" y1="97" x2="400" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="395,91 410,97 395,103" fill="#f9a825"/><line x1="555" y1="97" x2="585" y2="97" stroke="#f9a825" stroke-width="2"/><polygon points="580,91 595,97 580,103" fill="#f9a825"/><rect x="200" y="175" width="400" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="207" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">達成のメリット</text><text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">サプライチェーン攻撃リスクを段階的に低減</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Google SLSA Framework — 段階的に導入可能</text></svg>
+</div>
+
 - **MFA戦略（リスクベース）:**
 - FIDO2 / パスキー（最強・フィッシング耐性）: 全管理者に必須
 - TOTP（Authenticator App）: 全開発者に必須
@@ -2190,7 +2421,7 @@ aws iam generate-service-last-accessed-details \
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Chapter 7: 実践ロードマップ・まとめ
 
 - 導入ロードマップ・失敗パターン・KPI・ツール全景
@@ -2223,7 +2454,10 @@ aws iam generate-service-last-accessed-details \
 
 > *各チームにセキュリティチャンピオンを配置し月次トレーニングとCTFで実力を育成する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps ツールエコシステム</text><rect x="30" y="60" width="170" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="115" y="90" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">SAST</text><text x="115" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Semgrep/CodeQL</text><rect x="220" y="60" width="170" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="305" y="90" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">SCA</text><text x="305" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Dependabot/Snyk</text><rect x="410" y="60" width="170" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="495" y="90" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">DAST</text><text x="495" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">OWASP ZAP/Burp</text><rect x="600" y="60" width="170" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="685" y="90" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Container</text><text x="685" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Trivy/Falco</text><rect x="30" y="170" width="170" height="50" rx="6" fill="#16213e" stroke="#4a148c" stroke-width="1.5"/><text x="115" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">IaC</text><text x="115" y="237" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Checkov/tfsec</text><rect x="220" y="170" width="170" height="50" rx="6" fill="#16213e" stroke="#4a148c" stroke-width="1.5"/><text x="305" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">CSPM</text><text x="305" y="237" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Prowler/ScoutSuite</text><rect x="410" y="170" width="170" height="50" rx="6" fill="#16213e" stroke="#b71c1c" stroke-width="1.5"/><text x="495" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Secrets</text><text x="495" y="237" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">git-secrets/Gitleaks</text><rect x="600" y="170" width="170" height="50" rx="6" fill="#16213e" stroke="#1b5e20" stroke-width="1.5"/><text x="685" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">SBOM</text><text x="685" y="237" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Syft/SPDX</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ツールを組み合わせて多層防御を実現</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">DevSecOps ツールエコシステム</text><rect x="30" y="60" width="170" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="115" y="90" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">SAST</text><text x="115" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Semgrep/CodeQL</text><rect x="220" y="60" width="170" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="305" y="90" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">SCA</text><text x="305" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Dependabot/Snyk</text><rect x="410" y="60" width="170" height="50" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="495" y="90" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">DAST</text><text x="495" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">OWASP ZAP/Burp</text><rect x="600" y="60" width="170" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="685" y="90" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Container</text><text x="685" y="127" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Trivy/Falco</text><rect x="30" y="170" width="170" height="50" rx="6" fill="#16213e" stroke="#4a148c" stroke-width="1.5"/><text x="115" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">IaC</text><text x="115" y="237" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Checkov/tfsec</text><rect x="220" y="170" width="170" height="50" rx="6" fill="#16213e" stroke="#4a148c" stroke-width="1.5"/><text x="305" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">CSPM</text><text x="305" y="237" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Prowler/ScoutSuite</text><rect x="410" y="170" width="170" height="50" rx="6" fill="#16213e" stroke="#b71c1c" stroke-width="1.5"/><text x="495" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Secrets</text><text x="495" y="237" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">git-secrets/Gitleaks</text><rect x="600" y="170" width="170" height="50" rx="6" fill="#16213e" stroke="#1b5e20" stroke-width="1.5"/><text x="685" y="200" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">SBOM</text><text x="685" y="237" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">Syft/SPDX</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">ツールを組み合わせて多層防御を実現</text></svg>
+</div>
+
 - **セキュリティチャンピオン**: 各開発チームに1人、セキュリティ推進役を配置
 - **役割:**
 - チーム内でのセキュリティレビュー実施
@@ -2245,7 +2479,10 @@ aws iam generate-service-last-accessed-details \
 
 > *OWASP・NIST・SLSA・Sigstoreの公式ドキュメントを基点に継続的学習を深める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">セキュリティチャンピオン制度</text><rect x="30" y="80" width="180" height="60" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="120" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">開発チーム</text><text x="120" y="160" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">各チームに1名</text><rect x="310" y="80" width="180" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">セキュリティチャンピオン</text><text x="400" y="160" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">トレーニング受講済み</text><rect x="590" y="80" width="180" height="60" rx="6" fill="#16213e" stroke="#4a148c" stroke-width="1.5"/><text x="680" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">セキュリティチーム</text><text x="680" y="160" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">専門チーム</text><line x1="210" y1="110" x2="310" y2="110" stroke="#f9a825" stroke-width="2"/><polygon points="305,104 320,110 305,116" fill="#f9a825"/><line x1="490" y1="110" x2="590" y2="110" stroke="#f9a825" stroke-width="2"/><polygon points="585,104 600,110 585,116" fill="#f9a825"/><rect x="250" y="195" width="300" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">役割</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">セキュリティ知識の橋渡し・PR レビュー</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">セキュリティ文化の醸成と開発速度の両立</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-family="sans-serif" font-weight="bold">セキュリティチャンピオン制度</text><rect x="30" y="80" width="180" height="60" rx="6" fill="#16213e" stroke="#42a5f5" stroke-width="1.5"/><text x="120" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">開発チーム</text><text x="120" y="160" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">各チームに1名</text><rect x="310" y="80" width="180" height="60" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">セキュリティチャンピオン</text><text x="400" y="160" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">トレーニング受講済み</text><rect x="590" y="80" width="180" height="60" rx="6" fill="#16213e" stroke="#4a148c" stroke-width="1.5"/><text x="680" y="115" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">セキュリティチーム</text><text x="680" y="160" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">専門チーム</text><line x1="210" y1="110" x2="310" y2="110" stroke="#f9a825" stroke-width="2"/><polygon points="305,104 320,110 305,116" fill="#f9a825"/><line x1="490" y1="110" x2="590" y2="110" stroke="#f9a825" stroke-width="2"/><polygon points="585,104 600,110 585,116" fill="#f9a825"/><rect x="250" y="195" width="300" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="227" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">役割</text><text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">セキュリティ知識の橋渡し・PR レビュー</text><text x="400" y="375" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">セキュリティ文化の醸成と開発速度の両立</text></svg>
+</div>
+
 - **公式ドキュメント・標準:**
 - [OWASP DevSecOps Guideline](https://owasp.org/www-project-devsecops-guideline/)
 - [NIST SP 800-207 Zero Trust](https://csrc.nist.gov/publications/detail/sp/800-207/final)

@@ -7,41 +7,76 @@ paginate: true
 header: "天才プログラマー神話"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 10xエンジニア神話
 
 - 天才プログラマーは存在するか？
@@ -85,21 +120,22 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 目次
 
 > *10x神話の起源から「本当に生産性を上げるもの」まで6章で解説*
 
-- - 1. 10xエンジニアの起源
-- - 2. 元の研究の問題点
-- - 3. 生産性は何で測るか
-- - 4. 個人 vs チームの生産性
-- - 5. 「天才」の害
-- - 6. 本当に生産性を上げるもの
+- 1. 10xエンジニアの起源
+- 2. 元の研究の問題点
+- 3. 生産性は何で測るか
+- 4. 個人 vs チームの生産性
+- 5. 「天才」の害
+- 6. 本当に生産性を上げるもの
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 1. 10xエンジニアの起源
 
 ![w:900 center](assets/myth-context.svg)
@@ -107,17 +143,19 @@ style: |
 
 ---
 
+<!-- _class: invert fit-58 -->
 # 1968年の伝説的研究
 
 > *サンプル12人の研究が50年間業界を支配した*
 
 ![w:900 center](assets/myth-origin.svg)
-- - **Sackman, Erikson & Grant (1968)**: プログラマー間の生産性差を測定
-- - 結果: 最も速い人と遅い人で **28倍** の差を報告
-- - この結果が「10xエンジニア」の概念の起源
-- - Brooks "The Mythical Man-Month" (1975) で広く引用される
-- - Steve McConnell "Code Complete" でも「10倍の差がある」と言及
-- - 以後50年以上、業界で当然視されてきた「常識」
+
+- **Sackman, Erikson & Grant (1968)**: プログラマー間の生産性差を測定
+- 結果: 最も速い人と遅い人で **28倍** の差を報告
+- この結果が「10xエンジニア」の概念の起源
+- Brooks "The Mythical Man-Month" (1975) で広く引用される
+- Steve McConnell "Code Complete" でも「10倍の差がある」と言及
+- 以後50年以上、業界で当然視されてきた「常識」
 
 
 ---
@@ -129,177 +167,195 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 2. 元の研究の問題点
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # なぜ28倍は信頼できないか
 
 > *外れ値1人が倍率を操作—再現実験なし*
 
 ![w:900 center](assets/invisible-productivity.svg)
-- - **サンプルサイズ**: たった12人のプログラマー
-- - **測定方法**: デバッグ時間とコーディング時間を別々に測定
-- - **タスクの違い**: 経験のあるタスクと初めてのタスクを混在
-- - **外れ値の扱い**: 1人の極端に遅い人が倍率を跳ね上げた
-- - **再現性**: 同じ条件での追試がほとんど行われていない
-- - 最大値/最小値の比較 = 統計的に無意味
+
+- **サンプルサイズ**: たった12人のプログラマー
+- **測定方法**: デバッグ時間とコーディング時間を別々に測定
+- **タスクの違い**: 経験のあるタスクと初めてのタスクを混在
+- **外れ値の扱い**: 1人の極端に遅い人が倍率を跳ね上げた
+- **再現性**: 同じ条件での追試がほとんど行われていない
+- 最大値/最小値の比較 = 統計的に無意味
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 3. 生産性は何で測るか
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # コード行数の罠
 
 > *DORA指標はチームのフローを測り個人LOCを捨てた*
 
 ![w:900 center](assets/dora-metrics.svg)
-- - **LOC (Lines of Code)** で測定 → コード量 = 生産性？
-- - 「最良のコードは書かれなかったコードである」
-- - 10行で解決する天才と100行で解決する凡人: どちらが生産的？
-- - バグを生み出すコード量が多い人は「非生産的」
-- - **DORA指標** (Google): デプロイ頻度、リードタイム、MTTR、変更失敗率
-- - 個人ではなくチームの「フロー」を測る方向に
+
+- **LOC (Lines of Code)** で測定 → コード量 = 生産性？
+- 「最良のコードは書かれなかったコードである」
+- 10行で解決する天才と100行で解決する凡人: どちらが生産的？
+- バグを生み出すコード量が多い人は「非生産的」
+- **DORA指標** (Google): デプロイ頻度、リードタイム、MTTR、変更失敗率
+- 個人ではなくチームの「フロー」を測る方向に
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 見えない生産性
 
 > *コードレビュー・設計判断が測定外の価値を生む*
 
 ![w:900 center](assets/productivity-research.svg)
-- - **コードレビュー**: 他人のコード品質を向上させる
-- - **メンタリング**: チーム全体の能力を底上げする
-- - **設計判断**: 良いアーキテクチャで将来の問題を防ぐ
-- - **ドキュメント**: オンボーディング時間を短縮する
-- - **コミュニケーション**: 要件の齟齬を早期発見する
-- - 「10xエンジニア」が測らない価値がチームを支える
+
+- **コードレビュー**: 他人のコード品質を向上させる
+- **メンタリング**: チーム全体の能力を底上げする
+- **設計判断**: 良いアーキテクチャで将来の問題を防ぐ
+- **ドキュメント**: オンボーディング時間を短縮する
+- **コミュニケーション**: 要件の齟齬を早期発見する
+- 「10xエンジニア」が測らない価値がチームを支える
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 4. 個人 vs チーム
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 「天才個人」モデルの限界
 
 > *心理的安全性がIQより強くチーム成果を左右する*
 
 ![w:900 center](assets/team-vs-individual.svg)
-- - Linuxカーネル: Linus Torvaldsだけでなく数千人の貢献者
-- - Wikipedia: 個人の天才ではなく集合知
-- - **Google "Project Aristotle"**: 最強チームの条件は「心理的安全性」
-- - 個人の能力 < チームのダイナミクス
-- - 10x個人よりも「1.5xを6人揃えたチーム」の方が強い
-- - コンテキストスイッチ、バス係数、知識共有の問題
+
+- Linuxカーネル: Linus Torvaldsだけでなく数千人の貢献者
+- Wikipedia: 個人の天才ではなく集合知
+- **Google "Project Aristotle"**: 最強チームの条件は「心理的安全性」
+- 個人の能力 < チームのダイナミクス
+- 10x個人よりも「1.5xを6人揃えたチーム」の方が強い
+- コンテキストスイッチ、バス係数、知識共有の問題
 
 
 ---
 
+<!-- _class: invert fit-64 -->
 # 環境が生産性を決める
 
 > *同一エンジニアが環境変化で3〜5倍差になる*
 
 ![w:900 center](assets/environment-productivity.svg)
-- - **SPACE framework** (GitHub/MS/University of Victoria):
-- - Satisfaction, Performance, Activity, Communication, Efficiency
-- - 同じエンジニアでも環境で生産性が3-5倍変わる
-- - **阻害要因**: 会議過多、コンテキストスイッチ、承認待ち、技術的負債
-- - **促進要因**: 集中時間、良いツール、明確な要件、自律性
-- - 「10xエンジニア」の多くは「10x環境」にいるだけ
+
+- **SPACE framework** (GitHub/MS/University of Victoria):
+- Satisfaction, Performance, Activity, Communication, Efficiency
+- 同じエンジニアでも環境で生産性が3-5倍変わる
+- **阻害要因**: 会議過多、コンテキストスイッチ、承認待ち、技術的負債
+- **促進要因**: 集中時間、良いツール、明確な要件、自律性
+- 「10xエンジニア」の多くは「10x環境」にいるだけ
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 5. 「天才」の害
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 10x神話がもたらす弊害
 
 > *有害行動を容認するロックスター文化の温床*
 
 ![w:900 center](assets/research-problems.svg)
-- - **ロックスターカルチャー**: 一部の「天才」に過度に依存する組織
-- - **バス係数1**: その人が辞めたらプロジェクトが止まる
-- - **有害な行動の容認**: 生産性が高ければ態度が悪くても許される
-- - **多様性の阻害**: 「天才像」= 若い白人男性のステレオタイプ
-- - **燃え尽き症候群**: 「10x」を期待されるプレッシャー
-- - **チーム文化の破壊**: 個人の英雄が協調を妨げる
+
+- **ロックスターカルチャー**: 一部の「天才」に過度に依存する組織
+- **バス係数1**: その人が辞めたらプロジェクトが止まる
+- **有害な行動の容認**: 生産性が高ければ態度が悪くても許される
+- **多様性の阻害**: 「天才像」= 若い白人男性のステレオタイプ
+- **燃え尽き症候群**: 「10x」を期待されるプレッシャー
+- **チーム文化の破壊**: 個人の英雄が協調を妨げる
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # Googleの「No Brilliant Jerks」方針
 
 > *有害1人の損失が10x貢献者の利益を上回る*
 
 ![w:900 center](assets/brilliant-jerks.svg)
-- - Netflix, Google等: 「優秀だが有害な人を雇わない」方針
-- - 研究: チームの**最も弱い** メンバーではなく**最も有害な**メンバーがパフォーマンスを決める
-- - 1人の「ブリリアント・ジャーク」の悪影響 > 1人の10xの貢献
-- - 周囲のモチベーション低下、離職率増加、心理的安全性の喪失
-- - **採用の教訓**: 技術力だけでなく協調性を評価する
+
+- Netflix, Google等: 「優秀だが有害な人を雇わない」方針
+- 研究: チームの**最も弱い** メンバーではなく**最も有害な**メンバーがパフォーマンスを決める
+- 1人の「ブリリアント・ジャーク」の悪影響 > 1人の10xの貢献
+- 周囲のモチベーション低下、離職率増加、心理的安全性の喪失
+- **採用の教訓**: 技術力だけでなく協調性を評価する
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 6. 本当に生産性を上げるもの
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # エビデンスに基づく生産性向上
 
 > *DX・CI/CD・心理的安全がチーム速度を決定する*
 
 ![w:900 center](assets/evidence-based-productivity.svg)
-- - **Developer Experience (DX)**: 開発者の日常体験を改善する
-- - **CI/CD**: 自動化でフィードバックループを短縮する
-- - **テスト文化**: 恐怖なくコードを変更できる環境
-- - **ペアプログラミング**: 知識共有 + リアルタイムレビュー
-- - **技術的負債の返済**: 定期的にメンテナンス時間を確保
-- - **認知負荷の削減**: シンプルなアーキテクチャ、良いドキュメント
+
+- **Developer Experience (DX)**: 開発者の日常体験を改善する
+- **CI/CD**: 自動化でフィードバックループを短縮する
+- **テスト文化**: 恐怖なくコードを変更できる環境
+- **ペアプログラミング**: 知識共有 + リアルタイムレビュー
+- **技術的負債の返済**: 定期的にメンテナンス時間を確保
+- **認知負荷の削減**: シンプルなアーキテクチャ、良いドキュメント
 
 
 ---
 
+<!-- _class: invert fit-88 -->
 # まとめ
 
 > *10xチームを作ることが10x個人を探すより現実的な解*
 
-- - 「10xエンジニア」の元の研究は方法論に重大な問題がある
-- - 生産性はコード行数では測れない — 見えない価値を見る
-- - 個人の天才よりチームのダイナミクスが重要
-- - 10x神話はロックスターカルチャーと有害行動の温床
-- - 環境・ツール・文化が生産性の最大の決定因子
-- - **10xエンジニアを探すより、10xチームを作る方が現実的**
+- 「10xエンジニア」の元の研究は方法論に重大な問題がある
+- 生産性はコード行数では測れない — 見えない価値を見る
+- 個人の天才よりチームのダイナミクスが重要
+- 10x神話はロックスターカルチャーと有害行動の温床
+- 環境・ツール・文化が生産性の最大の決定因子
+- **10xエンジニアを探すより、10xチームを作る方が現実的**
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # 参考文献
 
 > *Sackman(1968)〜Accelerate(2018)ら4文献が本デッキの典拠*
 
-- - **研究:**
-- - Sackman, H. et al. (1968) "Exploratory experimental studies"
-- - Forsgren, N. et al. "Accelerate" (2018) - DORA指標
-- - **書籍:**
-- - McConnell, S. "Code Complete" (2004)
-- - Edmondson, A. "The Fearless Organization" (2018)
+- **研究:**
+- Sackman, H. et al. (1968) "Exploratory experimental studies"
+- Forsgren, N. et al. "Accelerate" (2018) - DORA指標
+- **書籍:**
+- McConnell, S. "Code Complete" (2004)
+- Edmondson, A. "The Fearless Organization" (2018)
 

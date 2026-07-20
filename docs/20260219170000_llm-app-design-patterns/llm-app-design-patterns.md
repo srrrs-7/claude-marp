@@ -4,41 +4,76 @@ theme: gaia
 size: 16:9
 paginate: true
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -81,6 +116,7 @@ style: |
 
 ---
 
+<!-- _class: fit-94 -->
 # アジェンダ（1/2）
 
 > *プロンプト・RAG・Fine-tuning・エージェントを12セクションで体系的に解説*
@@ -107,11 +143,13 @@ style: |
 
 ---
 
+<!-- _class: fit-76 -->
 # LLMアプリ開発の現在地（1/2）
 
 > *LLMは万能ではない—設計パターンなしでは高コスト・低品質・セキュリティリスクを招く*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -150,6 +188,8 @@ style: |
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **なぜ設計パターンが必要か**
 - LLMは強力だが「万能ツール」ではない — 使い方を間違えると高コスト・低品質・セキュリティリスク
 - **3つの現実的課題**
@@ -158,11 +198,13 @@ style: |
 
 ---
 
+<!-- _class: fit-94 -->
 # LLMアプリ開発の現在地（2/2）
 
 > *知識カットオフ・コスト爆発・コンテキスト制限の3制約を設計で克服する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -205,6 +247,8 @@ style: |
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - ② 知識カットオフ — 最新情報・内部データにアクセスできない
 - ③ コスト爆発 — 非効率な実装は月数十万円のAPI費用に
 - **本ガイドのゴール**
@@ -221,11 +265,13 @@ style: |
 
 ---
 
+<!-- _class: fit-76 -->
 # LLMの仕組みと限界（1/2）
 
 > *LLMは次トークン予測器—確率的生成の強みと幻覚・知識カットオフの限界を理解する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -264,6 +310,8 @@ style: |
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **LLMの本質**: 次のトークンを確率的に予測するニューラルネットワーク
 - **強み**
 - 自然言語理解・生成、コード生成、推論、要約、翻訳
@@ -272,11 +320,13 @@ style: |
 
 ---
 
+<!-- _class: fit-70 -->
 # LLMの仕組みと限界（2/2）
 
 > *ハルシネーション・知識カットオフ・コスト・レイテンシがLLMの4大制約*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -317,6 +367,8 @@ style: |
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - ハルシネーション（確率的生成のため「それらしい嘘」を生成）
 - 知識カットオフ（学習データの日付で知識が固定）
 - コンテキスト制限（入力長に上限 — GPT-4o: 128K、Claude 3.5: 200K）
@@ -326,11 +378,13 @@ style: |
 
 ---
 
+<!-- _class: fit-82 -->
 # 4つの主要アプローチ概観（1/2）
 
 > *プロンプトエンジニアリングはほぼ全タスクで最初に試すべき最安アプローチ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -370,6 +424,8 @@ style: |
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **① プロンプトエンジニアリング** — モデルを変えずに指示を工夫
 - 適用場面: ほぼすべてのタスク。最初に試すべきアプローチ
 - **② RAG（検索拡張生成）** — 外部知識をリアルタイムで注入
@@ -378,11 +434,13 @@ style: |
 
 ---
 
+<!-- _class: fit-82 -->
 # 4つの主要アプローチ概観（2/2）
 
 > *RAGとFine-tuningの適用場面を明確に区別—エージェントは最後の選択肢*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -428,6 +486,8 @@ style: |
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - **③ Fine-tuning** — モデルの重みを特定タスク向けに更新
 - 適用場面: 特定スタイル・ドメイン特化・プロンプトでは達成困難な品質
 - **④ AIエージェント** — ツールを使い複数ステップで自律実行
@@ -436,11 +496,13 @@ style: |
 
 ---
 
+<!-- _class: fit-64 -->
 # アーキテクチャの共通コンポーネント
 
 > *入力→プロンプト構築→LLM→出力処理→副作用の5層がLLMアプリの共通構造*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -482,6 +544,8 @@ style: |
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **入力層**: ユーザー入力の受付・バリデーション・サニタイズ
 - **プロンプト構築層**: テンプレート管理・コンテキスト注入・Few-shot例
 - **LLM呼び出し層**: モデル選択・パラメータ管理・リトライ・フォールバック
@@ -492,11 +556,13 @@ style: |
 
 ---
 
+<!-- _class: fit-70 -->
 # コスト・レイテンシ・品質のトレードオフ（1/2）
 
 > *3指標の同時最適化は不可能—要件優先度を先に定義*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -542,6 +608,8 @@ style: |
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - **プロンプトエンジニアリング**: コスト○ レイテンシ○ 品質△（上限あり）
 - **RAG**: コスト△（ベクターDB費用追加） レイテンシ△（検索時間） 品質○
 - **Fine-tuning**: コスト✗（学習費用高） レイテンシ○（小モデル可） 品質◎
@@ -549,6 +617,7 @@ style: |
 
 ---
 
+<!-- _class: fit-82 -->
 # コスト・レイテンシ・品質のトレードオフ（2/2）
 
 > *エージェントはコスト・レイテンシ最悪だが品質最高—用途で使い分けが必須*
@@ -561,11 +630,13 @@ style: |
 
 ---
 
+<!-- _class: fit-70 -->
 # 技術選定フレームワーク（1/2）
 
 > *プロンプト→RAG→Fine-tuning→エージェントの順に試す4ステップ選択フロー*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -604,6 +675,8 @@ style: |
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **Step 1: プロンプトエンジニアリングで解けるか？**
 - → Few-shot / CoT / システムプロンプトで80%の品質が出るなら採用
 - **Step 2: 最新情報・社内データが必要か？**
@@ -613,11 +686,13 @@ style: |
 
 ---
 
+<!-- _class: fit-70 -->
 # 技術選定フレームワーク（2/2）
 
 > *Human-in-the-loop・複数ステップ推論・外部ツール実行の要否でエージェントを判断*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -660,6 +735,8 @@ style: |
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - → プロンプトで達成困難 → Fine-tuning を検討
 - **Step 4: 複数ステップの推論・外部ツール実行が必要か？**
 - → Yes → エージェントを検討
@@ -669,11 +746,13 @@ style: |
 
 ---
 
+<!-- _class: fit-58 -->
 # ベースモデル選択（2026年版）（1/2）
 
 > *GPT-4o・Claude 3.5・Gemini Ultra—クローズドモデルは用途と課金体系で選択*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -712,6 +791,8 @@ style: |
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **クローズドモデル（API）**
 - GPT-4o — OpenAI。コーディング・推論に強み。Function Calling成熟
 - Claude 3.5 Sonnet — Anthropic。長文コンテキスト・安全性。コードに優秀
@@ -720,11 +801,13 @@ style: |
 
 ---
 
+<!-- _class: fit-64 -->
 # ベースモデル選択（2026年版）（2/2）
 
 > *Llama 3.1 70BとMistral 7Bが商用利用可能なオープンモデルの二大選択肢*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -765,6 +848,8 @@ style: |
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - **オープンモデル（セルフホスト）**
 - Llama 3.1 70B — Meta。商用利用可。高品質でコスト効率良
 - Mistral Large — 欧州産。多言語・コーディング。Apache 2.0
@@ -774,11 +859,13 @@ style: |
 
 ---
 
+<!-- _class: fit-70 -->
 # プロダクション要件チェックリスト（1/2）
 
 > *精度・コスト上限・データ主権の3要件を事前定義しないと本番で詰まる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -818,6 +905,8 @@ style: |
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **機能要件**
 - □ 精度・品質の定義（どのメトリクスで何%以上か）
 - □ レイテンシ要件（P50/P95/P99）
@@ -827,11 +916,13 @@ style: |
 
 ---
 
+<!-- _class: fit-70 -->
 # プロダクション要件チェックリスト（2/2）
 
 > *コスト・レイテンシ・プライバシー・可用性・セキュリティの非機能要件を先に固める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -877,6 +968,8 @@ style: |
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - □ コスト上限（月間APIコスト予算）
 - □ データ主権・プライバシー規制（GDPR等）
 - □ 可用性要件（SLA）
@@ -894,11 +987,13 @@ style: |
 
 ---
 
+<!-- _class: fit-70 -->
 # プロンプトエンジニアリングの基礎（1/2）
 
 > *Role+Context+Instruction+Formatの4要素構造化プロンプトで出力品質が安定*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -940,6 +1035,8 @@ style: |
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **構造化プロンプトの4要素**
 - ① **Role（役割）**: 「あなたはシニアソフトウェアエンジニアです」
 - ② **Task（タスク）**: 明確で具体的な指示。動詞で始める
@@ -948,11 +1045,13 @@ style: |
 
 ---
 
+<!-- _class: fit-64 -->
 # プロンプトエンジニアリングの基礎（2/2）
 
 > *具体的・段階的・例示ありの3原則を守るだけでLLM出力品質が大幅に向上*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -998,6 +1097,8 @@ style: |
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - ④ **Format（形式）**: 出力形式の明示（JSON、箇条書き、N文字以内）
 - **効果的なプロンプトの原則**
 - 具体的であること（「良い文章を書いて」→「技術ブログ記事を500字で」）
@@ -1007,11 +1108,13 @@ style: |
 
 ---
 
+<!-- _class: fit-82 -->
 # CoT・ToT・GoTパターン（1/2）
 
 > *CoTで推論精度が大幅向上—「ステップバイステップで考えて」の一文が鍵*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -1050,6 +1153,8 @@ style: |
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **Chain-of-Thought（CoT）**
 - 「ステップバイステップで考えてください」で推論精度が大幅向上
 - 数学・論理・コード生成に特に有効
@@ -1059,11 +1164,13 @@ style: |
 
 ---
 
+<!-- _class: fit-76 -->
 # CoT・ToT・GoTパターン（2/2）
 
 > *ToTで並列探索、GoTで依存関係処理—複雑問題解決はCoTから段階的に高度化*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -1106,6 +1213,8 @@ style: |
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - 複雑な問題解決・計画立案に有効。コスト↑
 - **Graph-of-Thought（GoT）**
 - 推論を有向グラフで表現。関係性の複雑なタスクに適合
@@ -1115,11 +1224,13 @@ style: |
 
 ---
 
+<!-- _class: fit-64 -->
 # Few-shot / Zero-shot 戦略（1/2）
 
 > *Zero-shotは汎用、Few-shotは複雑タスク—3〜8例が最もコスパの高い選択*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -1158,6 +1269,8 @@ style: |
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **Zero-shot**: 例なしで直接指示
 - 「以下のレビューを Positive/Negative/Neutral に分類してください」
 - → シンプルなタスクに有効。プロンプトが短い
@@ -1167,11 +1280,13 @@ style: |
 
 ---
 
+<!-- _class: fit-64 -->
 # Few-shot / Zero-shot 戦略（2/2）
 
 > *Few-shot例の質と多様性が出力品質を決定—例が少なすぎると精度が不安定*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -1212,6 +1327,8 @@ style: |
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - **Few-shot**: 例を3〜8個提示
 - → 複雑なタスク・ドメイン特化に有効
 - **選択ガイド**
@@ -1222,11 +1339,13 @@ style: |
 
 ---
 
+<!-- _class: fit-70 -->
 # システムプロンプト設計（1/2）
 
 > *システムプロンプトがモデルの人格・役割・制約を定義—ユーザー入力より優先*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -1266,6 +1385,8 @@ style: |
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **システムプロンプトの役割**
 - モデルの「人格・役割・制約」を定義。ユーザー入力より優先度高
 - **設計パターン**
@@ -1275,11 +1396,13 @@ style: |
 
 ---
 
+<!-- _class: fit-64 -->
 # システムプロンプト設計（2/2）
 
 > *出力フォーマット指定と安全ガードレールをシステムプロンプトに必ず含める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -1325,6 +1448,8 @@ style: |
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - ③ 出力フォーマット指定: 「必ずJSON形式で返答してください」
 - ④ 安全ガードレール: 「有害・違法なコンテンツを生成しないでください」
 - **ベストプラクティス**
@@ -1335,11 +1460,13 @@ style: |
 
 ---
 
+<!-- _class: fit-76 -->
 # プロンプトテンプレート管理（1/2）
 
 > *プロンプト変更は本番と同等の影響—バージョン管理なしのリリースは事故の元*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -1381,6 +1508,8 @@ style: |
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **なぜプロンプトのバージョン管理が必要か**
 - プロンプト変更がモデル更新と同等の本番影響を持つ
 - A/Bテストなしの変更は品質劣化リスク
@@ -1390,11 +1519,13 @@ style: |
 
 ---
 
+<!-- _class: fit-76 -->
 # プロンプトテンプレート管理（2/2）
 
 > *LangSmith/Promptfoo+セマンティックバージョニング+ステージング確認で安全リリース*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -1440,6 +1571,8 @@ style: |
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - ② プロンプトレジストリ: LangSmith / Promptfoo / 独自DB
 - ③ セマンティックバージョニング: v1.2.3 形式
 - **デプロイ戦略**
@@ -1451,7 +1584,8 @@ style: |
 
 # 構造化出力（JSON mode・Function Calling）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -1490,11 +1624,14 @@ style: |
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - LLMの出力を型安全に扱う手法
 
 
 ---
 
+<!-- _class: fit-76 -->
 # 構造化出力（JSON mode・Function Calling）（コード例）
 
 ```python
@@ -1520,11 +1657,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-82 -->
 # プロンプトエンジニアリングの限界（1/2）
 
 > *コンテキスト長・スタイル一貫性・コスト削減はFTが優位*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -1567,6 +1706,8 @@ print(result.sentiment, result.score)
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **プロンプトだけでは解決できない問題**
 - ① 知識の鮮度 — 学習データ以降の情報は取得不可 → RAGが必要
 - ② 大規模知識ベース — コンテキスト長を超える文書群 → RAGが必要
@@ -1574,6 +1715,7 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-70 -->
 # プロンプトエンジニアリングの限界（2/2）
 
 > *一貫スタイル・複数ステップ操作はFine-tuningとエージェントに切り替えるサイン*
@@ -1594,11 +1736,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-58 -->
 # RAGアーキテクチャ（Naive RAG）（1/2）
 
 > *Indexing→Retrieval→Generationの3フローがNaive RAGの全体像*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -1637,6 +1781,8 @@ print(result.sentiment, result.score)
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **RAGの基本フロー**
 - ① Indexing: 文書 → チャンキング → Embedding → ベクターDB保存
 - ② Retrieval: クエリ → Embedding → 類似度検索 → Top-K文書取得
@@ -1646,11 +1792,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-70 -->
 # RAGアーキテクチャ（Naive RAG）（2/2）
 
 > *知識カットオフとハルシネーションの2大課題をRAGは最も低コストで解決する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -1691,6 +1839,8 @@ print(result.sentiment, result.score)
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - 知識カットオフ → 常に最新文書を参照
 - ハルシネーション低減 → 根拠となるソースを提供
 - 大規模知識ベース → 文書全体をコンテキストに入れる必要なし
@@ -1700,11 +1850,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-70 -->
 # Embedding + Vector DBの仕組み（1/2）
 
 > *テキストを1536次元ベクトルに変換—意味的類似性検索がRAGの技術的核心*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -1744,6 +1896,8 @@ print(result.sentiment, result.score)
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **Embeddingとは**
 - テキストを意味を保ったまま数値ベクトル（例: 1536次元）に変換
 - 意味的に近いテキストは高次元空間で近い位置に配置
@@ -1753,11 +1907,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-58 -->
 # Embedding + Vector DBの仕組み（2/2）
 
 > *HNSW+IVF-PQで大規模ベクター検索を実用速度に—k-NNとANNのトレードオフ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -1803,6 +1959,8 @@ print(result.sentiment, result.score)
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - k-NN（完全探索）vs ANN（近似最近傍）— HNSW, IVF-PQ
 - **インデックス構造**
 - HNSW（Hierarchical Navigable Small World）: 高速・高精度。メモリ大
@@ -1813,11 +1971,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-70 -->
 # チャンキング戦略（1/2）
 
 > *固定サイズ512トークン+オーバーラップがチャンキングの最も信頼できる基本手法*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -1859,6 +2019,8 @@ print(result.sentiment, result.score)
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **Fixed-size Chunking**
 - 固定文字数（例: 512トークン）でオーバーラップ付き分割
 - 実装簡単。意味の分断リスクあり
@@ -1869,11 +2031,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-64 -->
 # チャンキング戦略（2/2）
 
 > *Parent-Child二重インデックスとSentence-Window埋め込みで精度と速度を両立*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -1919,6 +2083,8 @@ print(result.sentiment, result.score)
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - **Hierarchical Chunking（Parent-Child）**
 - 大きなチャンク（Summary）と小さなチャンク（Detail）を二重インデックス
 - 検索は小チャンク → 提供は大チャンク
@@ -1929,11 +2095,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-76 -->
 # Embeddingモデル比較（1/2）
 
 > *タスク・コスト・言語要件でEmbeddingモデルを正しく使い分ける*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -1972,6 +2140,8 @@ print(result.sentiment, result.score)
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **OpenAI text-embedding-3-large**
 - 次元: 3072（削減可能）、MTEB 64.6、コスト: $0.13/1M tokens
 - バランス良。OpenAI API利用中なら第一選択
@@ -1981,11 +2151,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-64 -->
 # Embeddingモデル比較（2/2）
 
 > *BGE-M3はDense+Sparse+ColBERT統合でオープンモデル最高峰—セルフホスト可*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -2028,6 +2200,8 @@ print(result.sentiment, result.score)
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **BGE-M3（BAAI、オープン）**
 - 多言語・マルチ機能（Dense+Sparse+ColBERT）、セルフホスト可
 - **E5-mistral-7b（オープン）**
@@ -2038,11 +2212,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-64 -->
 # ベクターDB比較（1/2）
 
 > *Pineconeはゼロインフラでスケール、pgvectorはPostgres既存環境に最適*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -2081,6 +2257,8 @@ print(result.sentiment, result.score)
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **Pinecone** — フルマネージド。スケール簡単。コスト高。ベンダーロック
 - **Weaviate** — OSS+マネージド。GraphQLクエリ。マルチモーダル対応
 - **Qdrant** — OSS。Rust製で高速。フィルタリング強力。セルフホスト最有力
@@ -2089,11 +2267,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-76 -->
 # ベクターDB比較（2/2）
 
 > *ChromaDBはプロトタイプ向け、Milvusは10億ベクター以上の大規模本番向け*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -2134,6 +2314,8 @@ print(result.sentiment, result.score)
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - **ChromaDB** — 開発・プロトタイプ向け。ローカル起動が容易
 - **Milvus** — 大規模（10億ベクター）対応。Zilliz Cloud版あり
 - ---
@@ -2142,11 +2324,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-64 -->
 # 高度な検索技術（1/2）
 
 > *HyDEで仮想回答を生成してEmbedding検索—クエリの意図を補完し精度を向上*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -2186,6 +2370,8 @@ print(result.sentiment, result.score)
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **HyDE（Hypothetical Document Embeddings）**
 - クエリ → LLMで仮想的な回答文を生成 → その文をEmbeddingして検索
 - 短いクエリの検索精度が大幅改善。レイテンシ・コスト増
@@ -2195,11 +2381,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-64 -->
 # 高度な検索技術（2/2）
 
 > *Rerankerで上位K件を再順位付け、MMRで多様性確保—Naive RAGより精度大幅向上*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -2245,6 +2433,8 @@ print(result.sentiment, result.score)
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - Cohere Rerank / BGE-Reranker が高精度
 - **MMR（Maximal Marginal Relevance）**
 - 関連性と多様性のバランスを保った検索結果を返す
@@ -2255,11 +2445,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-70 -->
 # Hybrid Search（Dense + Sparse）（1/2）
 
 > *Dense検索は新語・固有名詞に弱く、Sparse検索は意味類似に弱い—両者を補完*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -2301,6 +2493,8 @@ print(result.sentiment, result.score)
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **Dense Search（ベクター検索）の弱点**
 - 新語・固有名詞・専門用語に弱い（学習データにない単語）
 - 例: 「AWS re:Invent 2025」「GPT-5o」などの新用語
@@ -2310,11 +2504,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-58 -->
 # Hybrid Search（Dense + Sparse）（2/2）
 
 > *Dense+Sparse+RRFフュージョンのHybrid SearchがRAG精度の現時点最高基準*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -2360,6 +2556,8 @@ print(result.sentiment, result.score)
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - 意味的類似性を考慮しない
 - **Hybrid Searchの仕組み**
 - Dense スコア + Sparse スコア を RRF（Reciprocal Rank Fusion）で統合
@@ -2370,11 +2568,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-64 -->
 # Advanced RAGアーキテクチャ（1/2）
 
 > *Pre/Post-Retrieval改善を独立モジュール化したModular RAGが本番RAGの基本形*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -2413,6 +2613,8 @@ print(result.sentiment, result.score)
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **Modular RAG（モジュラーRAG）**
 - Pre-Retrieval → Retrieval → Post-Retrieval → Generation の各段階を独立モジュール化
 - **Pre-Retrieval改善**
@@ -2422,11 +2624,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-64 -->
 # Advanced RAGアーキテクチャ（2/2）
 
 > *HyDE・Reranker・MMR・Knowledge Graphを組み合わせたAdvanced RAGで精度最大化*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -2469,6 +2673,8 @@ print(result.sentiment, result.score)
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - HyDE
 - **Post-Retrieval改善**
 - Reranking（再順位付け）
@@ -2479,11 +2685,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-64 -->
 # GraphRAG（1/2）
 
 > *知識グラフ表現でエンティティ間の関係を捕捉—多ホップ推論に必要な構造化知識*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -2522,6 +2730,8 @@ print(result.sentiment, result.score)
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **GraphRAGとは**
 - 文書をチャンクではなく「知識グラフ（エンティティと関係）」として表現
 - Microsoft Research が2024年に発表
@@ -2536,7 +2746,8 @@ print(result.sentiment, result.score)
 
 > *コミュニティサマリーで大規模グラフの要約検索を実現*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -2577,6 +2788,8 @@ print(result.sentiment, result.score)
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - **強み**
 - 「全体像を要約して」などのグローバルクエリに強い
 - 複数文書にまたがる関係の推論が可能
@@ -2596,11 +2809,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-64 -->
 # マルチモーダルRAG（1/2）
 
 > *テキスト・画像・表・PDFを統合処理—マルチモーダルRAGが企業文書の次世代基盤*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -2640,6 +2855,8 @@ print(result.sentiment, result.score)
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **マルチモーダルRAGとは**
 - テキスト・画像・表・PDFの混合文書を統合的に検索・活用
 - **実装アプローチ**
@@ -2649,11 +2866,13 @@ print(result.sentiment, result.score)
 
 ---
 
+<!-- _class: fit-58 -->
 # マルチモーダルRAG（2/2）
 
 > *ColPaliがマルチモーダルRAGの推奨実装—マルチベクターで各モダリティを独立インデックス*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -2699,6 +2918,8 @@ print(result.sentiment, result.score)
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - ③ マルチベクター: テキスト・画像それぞれをEmbeddingして別々にインデックス
 - **ColPali（推奨）**
 - PDF/スキャン文書のページ全体をVision Embeddingで直接インデックス
@@ -2711,7 +2932,8 @@ print(result.sentiment, result.score)
 
 # RAGパイプライン実装
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -2753,11 +2975,14 @@ print(result.sentiment, result.score)
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - LlamaIndexを使ったシンプルなRAGパイプライン
 
 
 ---
 
+<!-- _class: fit-64 -->
 # RAGパイプライン実装（コード例）
 
 ```python
@@ -2790,11 +3015,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-70 -->
 # RAG評価指標（RAGAS）（1/2）
 
 > *4指標がRAGの検索精度と生成品質のボトルネックを特定する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -2840,6 +3067,8 @@ print(response)
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - **RAGAS（RAG Assessment）の4指標**
 - ① **Faithfulness（忠実性）**: 回答が取得文書の内容に基づいているか
 - ハルシネーション検出の主要指標。高いほど良い（目標: 0.8以上）
@@ -2848,11 +3077,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-70 -->
 # RAG評価指標（RAGAS）（2/2）
 
 > *4指標バランスが健全なRAGの証—LLM-as-Judgeで自動評価を回す*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -2891,6 +3122,8 @@ print(response)
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - ③ **Context Precision（文脈精度）**: 取得文書にどれだけ関連コンテキストが含まれるか
 - ④ **Context Recall（文脈再現率）**: 正解に必要なコンテキストをどれだけ取得できたか
 - **実装**
@@ -2900,11 +3133,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-70 -->
 # RAGのデバッグ・改善ループ（1/2）
 
 > *Faithfulness低→プロンプト改善、Context Recall低→チャンク縮小の問題診断フロー*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -2947,6 +3182,8 @@ print(response)
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **問題診断フロー**
 - 品質が低い → Faithfulness低い？ → 検索は合ってるが生成が失敗 → プロンプト改善
 - 品質が低い → Context Recall低い？ → 必要な文書が取得できていない → チャンキング/検索改善
@@ -2955,11 +3192,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-70 -->
 # RAGのデバッグ・改善ループ（2/2）
 
 > *チャンクサイズ縮小・Embeddingモデル変更・Reranker追加の3改善施策でRAG品質向上*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -2998,6 +3237,8 @@ print(response)
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - チャンクサイズが大きすぎる → サイズを128〜256に縮小
 - Embeddingモデルが不適切 → ドメイン特化モデルへ変更
 - 検索上位K件が少ない → Top-Kを増やしてRerankで絞る
@@ -3007,11 +3248,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-82 -->
 # RAGアンチパターン（1/2）
 
 > *チャンク設計軽視・評価省略・再ランク未適用が三大失敗*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -3052,6 +3295,8 @@ print(response)
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - ❌ **チャンクサイズを考えずに固定**: 文書タイプによって最適サイズが異なる
 - ❌ **Top-K=3で固定**: クエリの複雑さに応じて動的に変更すべき
 - ❌ **Embeddingモデルを変えずにデータ再利用**: モデル変更時はインデックス再構築必須
@@ -3059,6 +3304,7 @@ print(response)
 
 ---
 
+<!-- _class: fit-70 -->
 # RAGアンチパターン（2/2）
 
 > *検索品質の単体モニタリングと文書信頼性・鮮度の重み付けがRAG運用の必須要件*
@@ -3071,11 +3317,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-76 -->
 # RAG いつ使うべきか（1/2）
 
 > *最新情報・頻繁な知識更新・大量文書の3条件が揃えばRAGが最も費用対効果が高い*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -3115,6 +3363,8 @@ print(response)
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **RAGが適している場面**
 - ✅ 最新情報が必要（ニュース・製品情報・法規制）
 - ✅ 社内文書・ナレッジベースへの質問応答
@@ -3124,11 +3374,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-70 -->
 # RAG いつ使うべきか（2/2）
 
 > *特定スタイル・推論コスト削減・知識内包が必要ならFine-tuningへ移行するサイン*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -3174,6 +3426,8 @@ print(response)
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - ✅ 知識が頻繁に更新される（再インデックスのみで対応可）
 - **RAGが不適切な場面**
 - ❌ 特定のスタイル・口調・形式の習得（→ Fine-tuning）
@@ -3192,11 +3446,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-64 -->
 # Fine-tuningとは・なぜ必要か（1/2）
 
 > *事前学習済みモデルの重みをタスク固有データで追加学習—プロンプトで解けない問題に*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -3238,6 +3494,8 @@ print(response)
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **Fine-tuningの定義**
 - 事前学習済みモデルの重みを、特定タスクのデータで追加学習すること
 - **RAGでは解決できない問題**
@@ -3247,11 +3505,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-64 -->
 # Fine-tuningとは・なぜ必要か（2/2）
 
 > *特定スタイル・一貫フォーマット・知識内包の3用途がFine-tuningの正当な適用場面*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -3297,6 +3557,8 @@ print(response)
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - ③ 特定のフォーマットへの一貫した出力
 - ④ 推論時にコンテキストを注入せずに知識を内包させたい
 - **Fine-tuningの効果**
@@ -3307,11 +3569,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-70 -->
 # Fine-tuningの種類（1/2）
 
 > *Full Fine-tuning→LoRA→QLoRAとGPU要件が段階的に低下—コストと精度のトレードオフ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -3350,6 +3614,8 @@ print(response)
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **Full Fine-tuning**
 - 全パラメータを更新。最高精度。GPU要件が高く費用大
 - GPT-3 175B → A100 80GB × 8台 × 数日
@@ -3360,11 +3626,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-70 -->
 # Fine-tuningの種類（2/2）
 
 > *QLoRAは4bit量子化でVRAMを1/4に削減—家庭用GPUでの本格Fine-tuningを実現*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -3407,6 +3675,8 @@ print(response)
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **QLoRA（Quantized LoRA）**
 - 4bit量子化 + LoRA。VRAM使用量をさらに削減
 - 24GB GPU（RTX 3090）で13Bモデルが可能
@@ -3417,11 +3687,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-76 -->
 # LoRA詳解（1/2）
 
 > *LoRAは低ランク行列近似で全パラメータの約0.1%のみ更新—品質は全パラメータ更新に近い*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -3460,6 +3732,8 @@ print(response)
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **LoRAの数学的仕組み**
 - 通常の重み更新: W → W + ΔW（ΔWは同じサイズ）
 - LoRA: ΔW ≈ A × B（低ランク行列の積で近似）
@@ -3469,11 +3743,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-70 -->
 # LoRA詳解（2/2）
 
 > *Full FTは7Bパラメータ全更新、LoRAは8Mのみ—100倍以上のパラメータ削減*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -3514,6 +3790,8 @@ print(response)
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - Full Fine-tuning: 7B パラメータ更新
 - LoRA: 約8M パラメータのみ更新（約0.1%）
 - **ハイパーパラメータ**
@@ -3524,11 +3802,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-76 -->
 # データセット設計（1/2）
 
 > *最小100〜500サンプルで形式学習、1000〜10000サンプルで高品質ドメイン適応*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -3568,6 +3848,8 @@ print(response)
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **データ量の目安（Instruction Tuning）**
 - 最小: 100〜500サンプル（特定タスクの形式学習）
 - 推奨: 1,000〜10,000サンプル（品質のある多様なデータ）
@@ -3577,11 +3859,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-64 -->
 # データセット設計（2/2）
 
 > *データ品質がデータ量より重要—1000件高品質が10000件低品質データを超える*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -3627,6 +3911,8 @@ print(response)
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - 1,000件の高品質データ > 10,000件の低品質データ
 - **フォーマット（Instruction Following形式）**
 - {"instruction": "〇〇してください", "input": "入力データ", "output": "期待される出力"}
@@ -3637,11 +3923,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-70 -->
 # Instruction Tuning vs RLHF vs DPO（1/2）
 
 > *SFTは指示-回答ペアで教師あり学習—最初のFine-tuningステップとして最も実用的*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -3683,6 +3971,8 @@ print(response)
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **Instruction Tuning（SFT）**
 - 高品質なInstruction-Responseペアで教師あり学習
 - 最もシンプル。データ準備が鍵
@@ -3692,11 +3982,13 @@ print(response)
 
 ---
 
+<!-- _class: fit-64 -->
 # Instruction Tuning vs RLHF vs DPO（2/2）
 
 > *DPOはRLHF不要でPPOより実装が簡単—GPT-4/Claude/LlamaがRLHFで採用*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -3742,6 +4034,8 @@ print(response)
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - GPT-4・Claude・Llamaで採用。コスト・実装複雑度が高い
 - **DPO（Direct Preference Optimization）**
 - RLHFの簡略版。選好ペア（chosen/rejected）で直接最適化
@@ -3754,7 +4048,8 @@ print(response)
 
 # Fine-tuning実装（QLoRA）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -3793,11 +4088,14 @@ print(response)
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - Hugging Face TRL + QLoRAによる実装例
 
 
 ---
 
+<!-- _class: fit-58 -->
 # Fine-tuning実装（QLoRA）（コード例）
 
 ```python
@@ -3834,11 +4132,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-88 -->
 # モデル評価と過学習の検出（1/2）（1/2）
 
 > *Train/Evalロス乖離の早期検知で無駄な学習を回避*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -3881,6 +4181,8 @@ trainer.train()
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **評価セットの重要性**
 - 学習データとは独立した評価セット（20%程度）を必ず用意
 - **過学習のサイン**
@@ -3888,6 +4190,7 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-94 -->
 # モデル評価と過学習の検出（1/2）（2/2）
 
 > *Train Loss低下+Eval Loss上昇の乖離拡大が過学習の定量的シグナル*
@@ -3900,11 +4203,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-88 -->
 # モデル評価と過学習の検出（2/2）（1/2）
 
 > *タスク固有評価メトリクスが汎用メトリクスより信頼できる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -3943,6 +4248,8 @@ trainer.train()
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - Weight Decay（正則化）
 - Dropout（LoRAのlora_dropout）
 - データ拡張
@@ -3950,6 +4257,7 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-88 -->
 # モデル評価と過学習の検出（2/2）（2/2）
 
 > *ROUGE/BLEU/BERTScoreで生成品質を定量化—LLM-as-a-Judgeで人間評価を補完*
@@ -3962,11 +4270,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-76 -->
 # 量子化・最適化（1/2）
 
 > *量子化でVRAMを1/4〜1/8に削減—esbuild+GGUF+vLLMで推論を本番レベルに最適化*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -4007,6 +4317,8 @@ trainer.train()
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - **なぜ量子化するか**
 - モデルサイズ・VRAM削減、推論速度向上
 - **量子化手法比較**
@@ -4016,11 +4328,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-70 -->
 # 量子化・最適化（2/2）
 
 > *AWQ(4bit)がGPTQより高精度、GGUF(llama.cpp)でCPU/GPU混合推論が可能*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -4060,6 +4374,8 @@ trainer.train()
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - AWQ（4bit）: 活性化を考慮した量子化。GPTQより高精度
 - GGUF（旧GGML）: CPU/GPU混合推論。llama.cpp対応
 - **VRAM早見表（7Bモデル）**
@@ -4070,11 +4386,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-70 -->
 # プロダクション展開（1/2）
 
 > *vLLMのPagedAttentionが高スループットを実現—本番GPU推論サーバーの第一選択肢*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -4120,6 +4438,8 @@ trainer.train()
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - **vLLM（推奨・GPU）**
 - PagedAttentionによる高スループット推論サーバー
 - OpenAI互換API。バッチ処理で最大スループット最大化
@@ -4134,7 +4454,8 @@ trainer.train()
 
 > *Blue/Greenデプロイでモデル切替時のダウンタイムをゼロに*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -4176,6 +4497,8 @@ trainer.train()
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **Ollama**
 - ローカル・開発環境向け。GGUF形式を簡単実行
 - **クラウドマネージド**
@@ -4195,11 +4518,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-76 -->
 # Fine-tuningコスト計算（1/2）
 
 > *Llama-3.1 8B QLoRAは10Kサンプル3エポックで$5〜20—低コストFine-tuningが現実に*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -4245,6 +4570,8 @@ trainer.train()
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - **学習コスト（A100 80GB）**
 - Llama-3.1 8B QLoRA（10K samples, 3 epoch）: 〜$5〜20
 - Llama-3.1 70B QLoRA（10K samples）: 〜$50〜200
@@ -4254,11 +4581,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-64 -->
 # Fine-tuningコスト計算（2/2）
 
 > *Modal/RunPod A100で自社推論コストをGPT-4oの50分の1に削減*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -4297,6 +4626,8 @@ trainer.train()
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - AWS Bedrock（Titan）: $0.008/1K training tokens
 - Modal.com / RunPod: $2〜4/h（A100）
 - **推論コスト比較**
@@ -4307,11 +4638,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-64 -->
 # RAG vs Fine-tuning の選択基準（1/2）
 
 > *知識更新頻度・ソース引用要否・コスト感でRAGを優先—Fine-tuningはスタイル固定に*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -4354,6 +4687,8 @@ trainer.train()
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **RAGを選ぶ場合**
 - ✅ 知識が頻繁に更新される（週次・日次）
 - ✅ 情報のソース・根拠を提示する必要がある
@@ -4364,11 +4699,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-88 -->
 # RAG vs Fine-tuning の選択基準（2/2）（1/2）
 
 > *両者の組み合わせが複雑ユースケースの最適解になる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -4407,6 +4744,8 @@ trainer.train()
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - ✅ 特定スタイル・トーン・フォーマットの一貫性
 - ✅ ドメイン専門用語・略語の正確な解釈
 - ✅ 知識が比較的静的（月次更新以下）
@@ -4414,6 +4753,7 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-88 -->
 # RAG vs Fine-tuning の選択基準（2/2）（2/2）
 
 > *RAG+Fine-tuningの組み合わせが最高品質—知識はRAG、挙動変更はFine-tuning*
@@ -4426,11 +4766,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-76 -->
 # Fine-tuningアンチパターン（1/2）
 
 > *知識注入目的のFT・少量データ・評価省略が三大アンチパターン*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -4471,6 +4813,8 @@ trainer.train()
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - ❌ **プロンプトで解決できる問題をFine-tuning**: まずプロンプト改善を試みる
 - ❌ **少量・低品質データでのFine-tuning**: 100件の粗悪データは有害
 - ❌ **評価データなしのFine-tuning**: ベースラインとの比較なしでは効果測定不可
@@ -4478,6 +4822,7 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-70 -->
 # Fine-tuningアンチパターン（2/2）
 
 > *知識注入のFine-tuningはRAGに負ける—Eval Lossを監視せず過学習に陥る失敗パターン*
@@ -4498,11 +4843,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-64 -->
 # AIエージェントとは・コアコンセプト（1/2）
 
 > *ツールを使いながら複数ステップを自律実行するLLMシステムがエージェントの本質*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -4542,6 +4889,8 @@ trainer.train()
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **AIエージェントの定義**
 - 目標を達成するために、ツールを使いながら複数ステップを自律的に実行するLLMシステム
 - **エージェントの4つのコアコンポーネント**
@@ -4551,11 +4900,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-58 -->
 # AIエージェントとは・コアコンセプト（2/2）
 
 > *Perception+Action+Memory+Plannerの4コンポーネントがエージェントの最小構成*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -4601,6 +4952,8 @@ trainer.train()
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - ③ **Memory（Memory）**: 短期（コンテキスト）+ 長期（外部ストレージ）
 - ④ **Planner（Planning）**: タスク分解・実行順序の決定
 - **エージェントが必要な場面**
@@ -4610,11 +4963,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-64 -->
 # ReActパターン詳解（1/2）
 
 > *Thought→Action→Observationのループを繰り返すReActが最も実績のある基本パターン*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -4656,6 +5011,8 @@ trainer.train()
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **ReAct（Reasoning + Acting）**
 - 思考（Thought）→ 行動（Action）→ 観察（Observation）のループ
 - Yao et al., 2023 が提唱。最も広く使われるエージェントパターン
@@ -4665,11 +5022,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-76 -->
 # ReActパターン詳解（2/2）
 
 > *ReActのコードレベル実装—ツール名+引数+観察結果のループが動作の核心*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -4715,6 +5074,8 @@ trainer.train()
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - Action: weather_tool(location='Tokyo')
 - Observation: {'temp': 12, 'condition': 'Cloudy'}
 - Thought: 取得できた。回答を生成できる
@@ -4725,11 +5086,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-76 -->
 # Plan-and-Executeパターン（1/2）
 
 > *Planner LLMが全体計画を立ててExecutorが実行—単純タスクより複雑問題に適合*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -4768,6 +5131,8 @@ trainer.train()
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **Plan-and-Executeとは**
 - 最初に全体計画を立て、各ステップを順次実行するパターン
 - ReActとの違い: 事前に計画を立ててからアクション
@@ -4777,11 +5142,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-70 -->
 # Plan-and-Executeパターン（2/2）
 
 > *Replannerが実行結果を見て計画を動的修正—長時間タスクの信頼性を大幅向上*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -4824,6 +5191,8 @@ trainer.train()
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - ② Executor: 各サブタスクをツールで実行
 - ③ Replanner: 実行結果を見て計画を動的に修正
 - **適用場面**
@@ -4834,11 +5203,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-70 -->
 # Reflexionパターン（1/2）
 
 > *実行結果を振り返り自己評価で改善を繰り返すReflexionで初回失敗から回復*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -4877,6 +5248,8 @@ trainer.train()
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **Reflexionとは**
 - 実行結果を振り返り、自己評価・改善を繰り返すパターン
 - Shinn et al., 2023 が提唱
@@ -4891,7 +5264,8 @@ trainer.train()
 
 > *自己評価ループがReflexionの核心—外部報酬なしで改善*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -4932,6 +5306,8 @@ trainer.train()
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - ③ Reflector: 失敗原因の言語化（反省文の生成）
 - ④ 反省を踏まえて再実行
 - **強み**
@@ -4951,11 +5327,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-64 -->
 # Tool use / Function Calling設計（1/2）
 
 > *Function Callingで自然言語の意図から適切な関数を選択—明確な引数型定義が鍵*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -4995,6 +5373,8 @@ trainer.train()
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **Function Callingとは**
 - LLMが自然言語の意図を解析し、適切な関数を選択・引数を生成する機能
 - OpenAI / Anthropic / Gemini が標準でサポート
@@ -5004,11 +5384,13 @@ trainer.train()
 
 ---
 
+<!-- _class: fit-58 -->
 # Tool use / Function Calling設計（2/2）
 
 > *ツール説明の明確化・エラー処理・Parallel Tool Callが本番Function Callingの3要件*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -5054,6 +5436,8 @@ trainer.train()
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - ② 明確な説明: ツールの目的・引数・戻り値を明確に記述
 - ③ エラー処理: ツールは必ずエラー状態を返せるよう設計
 - ④ 冪等性: 同じ引数での複数回実行が安全
@@ -5066,7 +5450,8 @@ trainer.train()
 
 # ツール設計のベストプラクティス
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -5108,11 +5493,14 @@ trainer.train()
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - Claude / OpenAI Function Callingのツール定義例
 
 
 ---
 
+<!-- _class: fit-58 -->
 # ツール設計のベストプラクティス（コード例）
 
 ```python
@@ -5150,11 +5538,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-58 -->
 # エージェントフレームワーク比較（1/2）
 
 > *LangGraphはグラフベースでHuman-in-the-loop対応—本番エージェントの第一選択肢*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -5200,6 +5590,8 @@ response = client.messages.create(
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - **LangGraph（推奨・本番向け）**
 - グラフベースのステートフルエージェント。Human-in-the-loop対応
 - 状態管理・分岐・ループが明示的。デバッグ・テストが容易
@@ -5210,11 +5602,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-58 -->
 # エージェントフレームワーク比較（2/2）
 
 > *AutoGenはマルチエージェント会話でコーディングに強み、CrewAIはRole定義が直感的*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -5253,6 +5647,8 @@ response = client.messages.create(
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **AutoGen（Microsoft）**
 - マルチエージェント会話フレームワーク。コーディングエージェントに強み
 - **Swarm（OpenAI）**
@@ -5263,11 +5659,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-64 -->
 # シングルエージェント vs マルチエージェント（1/2）
 
 > *シングルエージェントは実装簡単だがコンテキスト爆発—中規模タスクが最適適用範囲*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -5310,6 +5708,8 @@ response = client.messages.create(
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **シングルエージェント**
 - 1つのLLMが全ツールにアクセスして全タスクを処理
 - ✅ シンプル・低コスト・デバッグ容易
@@ -5320,11 +5720,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-64 -->
 # シングルエージェント vs マルチエージェント（2/2）
 
 > *専門化エージェントの並列処理で複雑タスクを分割—ただしオーバーヘッドが増大*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -5363,6 +5765,8 @@ response = client.messages.create(
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - 専門化された複数エージェントが協調して問題を解決
 - ✅ 複雑なタスクの並列処理・専門化
 - ✅ 各エージェントのコンテキストを最小化
@@ -5373,11 +5777,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-70 -->
 # マルチエージェントパターン（1/2）
 
 > *Supervisorパターンが複雑タスクの調整に最適—Workerエージェントは専門化して効率化*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -5418,6 +5824,8 @@ response = client.messages.create(
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - **Supervisorパターン（推奨）**
 - Supervisor LLMが専門エージェントにタスクを割り当て・集約
 - 実装: LangGraph Supervisor、CrewAI Manager
@@ -5428,11 +5836,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-64 -->
 # マルチエージェントパターン（2/2）
 
 > *Peer-to-Peerはエージェント間の直接協調、Hierarchicalは木構造で段階的タスク分解*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -5472,6 +5882,8 @@ response = client.messages.create(
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **Peer-to-Peerパターン**
 - エージェント同士が直接通信・協調
 - Blackboard: 共有状態を介してコミュニケーション
@@ -5482,11 +5894,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-76 -->
 # メモリ管理（1/2）
 
 > *コンテキスト圧縮と要約でウィンドウ管理—長期タスクでの記憶保持が設計の核心*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -5532,6 +5946,8 @@ response = client.messages.create(
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - **短期メモリ（コンテキストウィンドウ）**
 - 会話履歴をそのままコンテキストに格納
 - 制限: モデルのコンテキスト上限（128K〜200K tokens）
@@ -5541,11 +5957,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-70 -->
 # メモリ管理（2/2）
 
 > *エピソード記憶(ベクターDB)+セマンティック記憶(RAG)+手続き記憶の3種を使い分ける*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -5587,6 +6005,8 @@ response = client.messages.create(
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - エピソード記憶: 過去の会話・出来事（ベクターDB）
 - セマンティック記憶: 事実・知識（RAG）
 - 手続き記憶: スキル・ルール（プロンプト or Fine-tuning）
@@ -5597,11 +6017,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-64 -->
 # エラーハンドリング・リトライ・フォールバック（1/2）
 
 > *タイムアウト・API制限・権限エラー・LLM解析失敗の4種が主なエージェントエラー*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -5647,6 +6069,8 @@ response = client.messages.create(
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - **エージェントで発生する主なエラー**
 - ツール実行失敗（タイムアウト・API制限・権限エラー）
 - LLM出力のパースエラー（不正なJSON・不正な引数）
@@ -5657,11 +6081,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-88 -->
 # エラーハンドリング・リトライ・フォールバック（2/2）（1/2）
 
 > *フォールバック戦略の優先順位設計が本番品質を左右*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -5700,6 +6126,8 @@ response = client.messages.create(
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - 最大リトライ回数の設定（3回）
 - **フォールバック**
 - ツール失敗 → 代替ツール or ユーザーに確認
@@ -5707,6 +6135,7 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-88 -->
 # エラーハンドリング・リトライ・フォールバック（2/2）（2/2）
 
 > *精度不足は強力モデルへフォールバック、無限ループは最大ステップ数制限で防止*
@@ -5719,11 +6148,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-70 -->
 # エージェントのセキュリティ（1/2）
 
 > *Prompt Injection・過剰ツール・機密データ漏洩の3リスクがエージェントのセキュリティ核心*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -5766,6 +6197,8 @@ response = client.messages.create(
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **主要なセキュリティリスク**
 - ① **Prompt Injection**: 外部コンテンツが悪意ある指示を注入
 - 例: Webページの内容に「全ファイルを削除して」が埋め込まれている
@@ -5775,11 +6208,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-64 -->
 # エージェントのセキュリティ（2/2）
 
 > *最小権限+入力サニタイゼーション+Human-in-the-loopの3対策で副作用のあるツールを制御*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -5818,6 +6253,8 @@ response = client.messages.create(
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **対策**
 - 最小権限の原則: 必要なツールのみ提供
 - Human-in-the-loop: 副作用のある操作は人間の承認を要求
@@ -5828,11 +6265,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-70 -->
 # エージェントの観測可能性（1/2）
 
 > *自律判断のブラックボックス化を防ぐ観測可能性—なぜその判断をしたかを追跡可能に*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -5873,6 +6312,8 @@ response = client.messages.create(
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - **エージェント観測可能性の重要性**
 - 「なぜその判断をしたか」がブラックボックスになりがち
 - デバッグ・改善・コスト管理に不可欠
@@ -5883,11 +6324,13 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-88 -->
 # エージェントの観測可能性（2/2）（1/2）
 
 > *LangSmith/Langfuseでエージェントの思考過程を可視化*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -5927,6 +6370,8 @@ response = client.messages.create(
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - トークン使用量・コスト（step毎・task毎）
 - タスク完了率・失敗分類
 - エンドツーエンドレイテンシ
@@ -5934,6 +6379,7 @@ response = client.messages.create(
 
 ---
 
+<!-- _class: fit-88 -->
 # エージェントの観測可能性（2/2）（2/2）
 
 > *LangSmithがLangChain/LangGraph専用ビジュアルトレース、Langfuseはフレームワーク非依存*
@@ -5948,7 +6394,8 @@ response = client.messages.create(
 
 # エージェント実装例（LangGraph）
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -5994,11 +6441,14 @@ response = client.messages.create(
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - LangGraphによるReActエージェント実装
 
 
 ---
 
+<!-- _class: fit-58 -->
 # エージェント実装例（LangGraph）（コード例）
 
 ```python
@@ -6039,11 +6489,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-76 -->
 # エージェントのコスト最適化（1/2）
 
 > *全ステップで強力モデルを使うコスト爆発を防ぐため重要度別モデルルーティングが必須*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -6085,6 +6537,8 @@ for chunk in agent.stream(
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **コスト増加の主な原因**
 - 不必要に強力なモデルを全ステップで使用
 - ツール呼び出しの冗長なループ
@@ -6094,11 +6548,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-64 -->
 # エージェントのコスト最適化（2/2）
 
 > *Haiku/小型モデルのルーティング+LLMLingua圧縮+キャッシュでエージェントコストを90%削減*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -6144,6 +6600,8 @@ for chunk in agent.stream(
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - ① モデルルーティング: 簡単なステップは小型モデル（Haiku）、重要判断は大型モデル
 - ② コンテキスト圧縮: LLMLingua で履歴を圧縮（50〜80%削減）
 - ③ 早期終了: 目標達成を検出したら即座に終了
@@ -6154,11 +6612,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-76 -->
 # エージェント いつ使うべきか（1/2）
 
 > *多ツール連携・動的判断・長時間タスクの3条件が揃えばエージェントが最適選択*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -6197,6 +6657,8 @@ for chunk in agent.stream(
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **エージェントが適している場面**
 - ✅ 複数のツール・APIを組み合わせる必要がある
 - ✅ 実行順序が事前に決定できない（動的な計画が必要）
@@ -6206,11 +6668,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-70 -->
 # エージェント いつ使うべきか（2/2）
 
 > *単純Q&A・決定論的フロー・高信頼性要件ではエージェントよりシンプルな実装が優位*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -6253,6 +6717,8 @@ for chunk in agent.stream(
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **エージェントが不適切な場面**
 - ❌ 単純なQ&A → 通常のLLM呼び出し
 - ❌ 決まった手順のワークフロー → パイプラインで代替
@@ -6271,11 +6737,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-76 -->
 # LLMアプリ評価の全体像（1/2）
 
 > *確率的出力・正解の曖昧さ・コスト比が高い—LLMアプリ評価は従来とは別次元の難しさ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -6314,6 +6782,8 @@ for chunk in agent.stream(
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **なぜ評価が難しいか**
 - LLMの出力は確率的 → 同じ入力で毎回異なる出力
 - 正解が一意でない（自然言語の多様性）
@@ -6323,11 +6793,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-70 -->
 # LLMアプリ評価の全体像（2/2）
 
 > *5軸評価とオフライン/オンラインの二段構えでLLM品質を管理する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -6368,6 +6840,8 @@ for chunk in agent.stream(
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - ② **Faithfulness（忠実性）**: ソースに基づいているか（RAG）
 - ③ **Relevance（関連性）**: 質問に答えているか
 - ④ **Safety（安全性）**: 有害・偏見のある内容がないか
@@ -6378,11 +6852,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-70 -->
 # オフライン評価 vs オンライン評価（1/2）
 
 > *オフライン評価でデプロイ前ゲートを設け、オンライン評価で本番品質を継続監視*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -6422,6 +6898,8 @@ for chunk in agent.stream(
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **オフライン評価（開発フェーズ）**
 - 目的: デプロイ前の品質チェック
 - 手法: ゴールデンデータセット（Q&Aペア）を使った自動評価
@@ -6431,11 +6909,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-58 -->
 # オフライン評価 vs オンライン評価（2/2）
 
 > *本番ユーザーの実インタラクションから実際の品質劣化とドリフトを検出する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -6481,6 +6961,8 @@ for chunk in agent.stream(
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - **オンライン評価（プロダクション）**
 - 目的: 実ユーザーのインタラクションから品質を継続モニタリング
 - 手法: ユーザーフィードバック（👍👎）、暗黙的シグナル（再質問率）
@@ -6491,11 +6973,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-70 -->
 # RAG評価（RAGAS詳解）（1/2）
 
 > *FaithfulnessとAnswer Relevancyの2指標が最重要—Context指標で検索品質を別途評価*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -6537,6 +7021,8 @@ for chunk in agent.stream(
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **RAGAS フレームワークの4指標**
 - **① Faithfulness**: 回答内の各クレームが取得文書に裏付けられるか
 - 実装: LLM-as-a-Judge で「文書に書いてあるか？」を判定
@@ -6546,11 +7032,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-76 -->
 # RAG評価（RAGAS詳解）（2/2）
 
 > *Context Precision(取得精度)とContext Recall(再現率)の両立がRAG検索の最適化目標*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -6596,6 +7084,8 @@ for chunk in agent.stream(
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - 逆算評価: 回答から疑似クエリを生成し元クエリとの類似度を測定
 - **③ Context Precision**: Top-K文書中の関連文書の割合
 - 高い = 不要な文書が少ない（ノイズが少ない）
@@ -6609,7 +7099,8 @@ for chunk in agent.stream(
 
 > *強力モデルによる自動評価で人手コストを90%削減可能*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -6648,6 +7139,8 @@ for chunk in agent.stream(
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **LLM-as-a-Judgeとは**
 - 評価者としてLLMを使い、別のLLMの出力を自動スコアリング
 - 人間評価の代替として急速に普及
@@ -6655,6 +7148,7 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-94 -->
 # LLM-as-a-Judge（1/2）（2/2）
 
 > *GPT-4oに1〜5点評価を依頼するシンプルなJudge実装で人間評価を80%以上代替*
@@ -6671,7 +7165,8 @@ for chunk in agent.stream(
 
 > *Position BiasとSelf-Biasが自動評価精度の主な誤差源*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -6714,6 +7209,8 @@ for chunk in agent.stream(
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **メリット**
 - スケーラブル・低コスト・速い（人間比）
 - **バイアスと落とし穴**
@@ -6733,11 +7230,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-64 -->
 # 人間評価のベストプラクティス（1/2）
 
 > *安全性・倫理・文化的センシティビティは人間評価でしか正確に判定できない*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -6776,6 +7275,8 @@ for chunk in agent.stream(
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **人間評価が必要な場面**
 - 安全性・倫理・文化的センシティビティ
 - LLM評価の校正（Ground Truth構築）
@@ -6786,11 +7287,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-58 -->
 # 人間評価のベストプラクティス（2/2）
 
 > *ブラインド評価+Inter-annotator Agreement(Cohen's κ)で人間評価の信頼性を確保*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -6831,6 +7334,8 @@ for chunk in agent.stream(
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - ② ブラインド評価: 評価者がモデル名を知らない状態で評価
 - ③ Inter-annotator Agreement: 複数評価者の一致率を測定（Cohen's κ）
 - ④ サンプルの多様性: エッジケース・エラーケースを意図的に含める
@@ -6841,11 +7346,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-76 -->
 # コード生成評価（1/2）
 
 > *HumanEval 164問とMBPP374問がPython生成精度の標準ベンチマーク*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -6885,6 +7392,8 @@ for chunk in agent.stream(
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **HumanEval / MBPP**
 - OpenAIのベンチマーク。Pythonコーディング問題164件
 - 評価: pass@k（k回試行のうち1回でも正解するか）
@@ -6895,11 +7404,13 @@ for chunk in agent.stream(
 
 ---
 
+<!-- _class: fit-70 -->
 # コード生成評価（2/2）
 
 > *SWE-benchが実際のGitHubイシュー解決能力を測定—実務レベルのコード生成評価*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -6945,6 +7456,8 @@ for chunk in agent.stream(
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - **SWE-bench**
 - 実際のGitHubイシューを解決する能力を評価
 - より実践的なベンチマーク。Claude 3.5が49.0%（2025年）
@@ -6957,7 +7470,8 @@ for chunk in agent.stream(
 
 # 評価パイプライン実装
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -6999,11 +7513,14 @@ for chunk in agent.stream(
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - RAGAS + LangSmith による自動評価パイプライン
 
 
 ---
 
+<!-- _class: fit-58 -->
 # 評価パイプライン実装（コード例）
 
 ```python
@@ -7037,11 +7554,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-94 -->
 # 評価ツール比較（1/2）（1/2）
 
 > *Braintrustが評価の実験管理とA/Bテストを統合している*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -7087,6 +7606,8 @@ print(result)
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - **LangSmith（LangChain）**
 - LangChain/LangGraph専用。ビジュアルトレース・プロンプト管理
 - Datasets・Experiments機能でA/Bテストが容易
@@ -7110,7 +7631,8 @@ print(result)
 
 > *OSSツールはセルフホストでデータをコントロールできる利点*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -7149,6 +7671,8 @@ print(result)
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - OSS。プロンプト評価・比較に特化
 - YAML設定でシンプルに評価を定義
 - **Langfuse（OSS、推奨）**
@@ -7168,11 +7692,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-70 -->
 # A/Bテスト設計（1/2）
 
 > *プロンプト・モデル・RAG設定の変更効果をA/Bテストで定量的に検証する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -7215,6 +7741,8 @@ print(result)
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **LLMアプリのA/Bテスト**
 - プロンプト変更・モデル変更・RAG設定変更の効果測定
 - **設計原則**
@@ -7225,11 +7753,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-70 -->
 # A/Bテスト設計（2/2）
 
 > *Cookie/UserIDベースのランダム分割とLLM評価コストに注意したA/Bテスト設計*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -7268,6 +7798,8 @@ print(result)
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **LLMアプリ特有の注意事項**
 - ユーザーグループのランダム分割（Cookie/UserIDベース）
 - 評価メトリクスの事前定義（何をもって「良い」とするか）
@@ -7278,11 +7810,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # 継続的評価・プロダクションモニタリング（1/2）
 
 > *Faithfulness/Relevancy品質メトリクスとコスト・レイテンシを並行してKPIに設定*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -7323,6 +7857,8 @@ print(result)
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - **モニタリングすべきKPI**
 - 品質メトリクス: Faithfulness / Relevancy（LLM-as-a-Judge）
 - ユーザーシグナル: 👍👎率 / 再質問率 / セッション離脱率
@@ -7332,11 +7868,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-58 -->
 # 継続的評価・プロダクションモニタリング（2/2）
 
 > *Faithfulness<0.7でSlack通知+コスト急増でPagerDutyアラートが本番監視の基本*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -7376,6 +7914,8 @@ print(result)
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **アラート設定**
 - Faithfulness < 0.7 → Slack通知
 - P95レイテンシ > 5秒 → PagerDuty
@@ -7386,11 +7926,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-76 -->
 # 評価アンチパターン（1/2）
 
 > *評価省略・汚染セット・単一指標が三大アンチパターン*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -7436,6 +7978,8 @@ print(result)
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - ❌ **「なんとなく動いてる」で評価なしにリリース**: 必ずベースラインを測定
 - ❌ **評価データセットが小さすぎる（10件）**: 最低100件、理想は1000件以上
 - ❌ **Train/Testの汚染**: 評価データを学習・プロンプト改善に使い回す
@@ -7443,6 +7987,7 @@ print(result)
 
 ---
 
+<!-- _class: fit-70 -->
 # 評価アンチパターン（2/2）
 
 > *単一メトリクス集中とLLM Judge盲信の2アンチパターンが評価の客観性を損なう*
@@ -7463,11 +8008,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-70 -->
 # LLMアプリのシステムアーキテクチャ（1/2）
 
 > *クライアント→オーケストレーション→LLM→知識→データ→観測の6レイヤー構成*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -7509,6 +8056,8 @@ print(result)
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **レイヤー構成**
 - ① **クライアント層**: Web/Mobile UI、API消費者
 - ② **ゲートウェイ層**: 認証・レート制限・ルーティング・ロギング
@@ -7518,11 +8067,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # LLMアプリのシステムアーキテクチャ（2/2）
 
 > *データ層のベクターDB+キャッシュと観測可能性層のログ+トレースが本番の基盤*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -7568,6 +8119,8 @@ print(result)
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - ⑤ **データ層**: ベクターDB・キャッシュ・永続ストレージ
 - ⑥ **観測可能性層**: ログ・メトリクス・トレース
 - **設計原則**
@@ -7578,11 +8131,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-70 -->
 # LLMゲートウェイパターン（1/2）
 
 > *LLMゲートウェイで認証・レート制限・プロバイダー切り替えを一元管理する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -7621,6 +8176,8 @@ print(result)
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **LLMゲートウェイとは**
 - アプリケーションとLLMプロバイダーの間に置く共通レイヤー
 - **主な機能**
@@ -7630,11 +8187,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # LLMゲートウェイパターン（2/2）
 
 > *プロバイダーフォールバック+レート制限+コスト管理をゲートウェイで横断的に実装*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -7677,6 +8236,8 @@ print(result)
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - ② プロバイダーフォールバック: OpenAI障害時にAnthropic/Geminiへ
 - ③ レート制限: ユーザー毎・チーム毎のクォータ管理
 - ④ 統合ログ: 全LLM呼び出しを一元記録
@@ -7687,11 +8248,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # セマンティックキャッシング（1/2）
 
 > *意味的に同じクエリを完全一致キャッシュでは取得できない問題をセマンティックキャッシュが解決*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -7730,6 +8293,8 @@ print(result)
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **通常のキャッシュ（完全一致）の限界**
 - 「東京の天気は？」と「東京の現在の気温は？」は意味が同じだが別クエリ
 - **セマンティックキャッシュ**
@@ -7739,11 +8304,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # セマンティックキャッシング（2/2）
 
 > *閾値・TTL・Redisの設定がセマンティックキャッシュ効果を左右する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -7784,6 +8351,8 @@ print(result)
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - GPTCache（OSS）/ LangChain CacheBackedEmbeddings
 - Redis + pgvector でカスタム実装も可
 - **効果・注意点**
@@ -7794,11 +8363,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-88 -->
 # ストリーミングレスポンス設計（1/2）（1/2）
 
 > *トークンごとの送信でユーザーの知覚待ち時間を70%削減*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -7838,6 +8409,8 @@ print(result)
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **なぜストリーミングか**
 - LLMは全文生成まで数秒〜数十秒かかる
 - 非ストリーミング: ユーザーが完成まで待つ（UX悪化）
@@ -7845,6 +8418,7 @@ print(result)
 
 ---
 
+<!-- _class: fit-88 -->
 # ストリーミングレスポンス設計（1/2）（2/2）
 
 > *ストリーミングレスポンスで体感速度を大幅向上—LLMアプリでは標準実装にすべき*
@@ -7857,11 +8431,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-82 -->
 # ストリーミングレスポンス設計（2/2）（1/2）
 
 > *SSEかWebSocketでクライアントへのストリーム実装*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -7907,6 +8483,8 @@ print(result)
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - **バックエンド実装（FastAPI + SSE）**
 - async for chunk in client.messages.stream(): yield chunk
 - **フロントエンド**
@@ -7914,6 +8492,7 @@ print(result)
 
 ---
 
+<!-- _class: fit-82 -->
 # ストリーミングレスポンス設計（2/2）（2/2）
 
 > *EventSource APIとfetch ReadableStreamの2方式—バックプレッシャーとエラー処理に注意*
@@ -7926,11 +8505,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # レート制限・コスト管理（1/2）
 
 > *RPM/TPM/RPDの3種のレート制限を理解しExponential Backoff戦略で対処*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -7972,6 +8553,8 @@ print(result)
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **APIレート制限の種類**
 - RPM（Requests Per Minute）/ TPM（Tokens Per Minute）/ RPD（Requests Per Day）
 - **対策**
@@ -7982,11 +8565,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # レート制限・コスト管理（2/2）
 
 > *Anthropicのプロンプトキャッシング90%削減+バッチAPI50%割引でコストを激減*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -8032,6 +8617,8 @@ print(result)
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - **コスト管理**
 - プロンプトキャッシング（Anthropic）: 同じシステムプロンプトを繰り返す場合90%削減
 - 入力の圧縮: 不要なホワイトスペース・HTMLタグの除去
@@ -8042,11 +8629,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-58 -->
 # フォールバック・サーキットブレーカー（1/2）
 
 > *月間SLA 99.9%でも年9時間の障害が許容—LLMゲートウェイのフォールバックは必須*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -8085,6 +8674,8 @@ print(result)
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **LLM APIの可用性**
 - 主要プロバイダーでも月間SLA 99.9%（年間9時間の障害が許容される）
 - マルチプロバイダー戦略が本番では必須
@@ -8094,11 +8685,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-58 -->
 # フォールバック・サーキットブレーカー（2/2）
 
 > *CLOSED→OPEN→HALF-OPENの3状態サーキットブレーカーで外部LLM障害の連鎖を防止*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -8141,6 +8734,8 @@ print(result)
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - 実装: LiteLLM の fallback設定で自動切り替え
 - **サーキットブレーカーパターン**
 - Closed（正常） → エラー率↑ → Open（全リクエストをフォールバックへ）
@@ -8151,11 +8746,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-70 -->
 # プロンプトバージョン管理（1/2）
 
 > *プロンプト変更=コード変更と同等—Gitバージョン管理なしのリリースは本番事故を招く*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -8194,6 +8791,8 @@ print(result)
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **プロンプトをGitで管理する**
 - プロンプト変更 = コード変更と同等の影響範囲
 - 変更履歴・差分・ロールバックが必要
@@ -8204,11 +8803,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-58 -->
 # プロンプトバージョン管理（2/2）
 
 > *ステージング検証+本番逐次展開+即時ロールバックのデプロイフローでプロンプトを安全に管理*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -8249,6 +8850,8 @@ print(result)
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - Langfuse Prompt Management: バージョン管理 + 本番での使用率追跡
 - **デプロイフロー**
 - PR作成 → 自動評価（Promptfoo CI）→ レビュー → マージ → 段階ロールアウト
@@ -8259,11 +8862,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-76 -->
 # 観測可能性スタック（1/2）
 
 > *ログ+メトリクス+トレースの3本柱でLLMアプリの観測可能性を確立する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -8303,6 +8908,8 @@ print(result)
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **LLM観測可能性の3本柱**
 - **① ログ（Logs）**
 - 全LLM呼び出しの入力・出力・レイテンシ・コストを記録
@@ -8317,7 +8924,8 @@ print(result)
 
 > *LLM専用計装ツールで分散トレーシングの可視化を実現*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -8363,6 +8971,8 @@ print(result)
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - Prometheus + Grafana / Datadog
 - **③ トレース（Traces）**
 - エージェント・RAGパイプラインの各ステップを可視化
@@ -8382,11 +8992,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # スケーリング戦略（1/2）
 
 > *オーケストレーション層は水平スケール可、ベクターDB読み取りはレプリカで対応*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -8428,6 +9040,8 @@ print(result)
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **水平スケール**
 - ステートレスなLLMオーケストレーション層はそのまま水平スケール可
 - Kubernetes HPA（CPU/カスタムメトリクス）で自動スケール
@@ -8437,11 +9051,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # スケーリング戦略（2/2）
 
 > *バックグラウンドタスクはSQS+Lambda/Cloud Run Jobsで非同期化—同期LLM呼び出しを避ける*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -8487,6 +9103,8 @@ print(result)
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - Celery / AWS SQS + Lambda / Cloud Run Jobs
 - **LLM推論のスケール（セルフホスト）**
 - vLLM の Continuous Batching: 複数リクエストを効率的にバッチ処理
@@ -8497,11 +9115,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # セキュリティ（1/2）
 
 > *最大トークン長強制+プロンプトインジェクション検出+出力サニタイゼーションで基本防御*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -8540,6 +9160,8 @@ print(result)
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - **入力バリデーション**
 - 最大トークン長の強制（コスト爆発防止）
 - 不正なJSON・特殊文字のサニタイズ
@@ -8554,7 +9176,8 @@ print(result)
 
 > *APIキーローテーションとシークレット管理が漏洩防止の基本*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -8597,6 +9220,8 @@ print(result)
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - コンテンツモデレーション（OpenAI Moderation API）
 - 構造化出力バリデーション（型チェック・範囲チェック）
 - **認証・認可**
@@ -8604,6 +9229,7 @@ print(result)
 
 ---
 
+<!-- _class: fit-94 -->
 # セキュリティ（2/2）（2/2）
 
 > *シークレット管理+ABAC+APIキーローテーションがLLMアプリの最低限のセキュリティ要件*
@@ -8616,11 +9242,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # コスト最適化（1/2）
 
 > *タスク複雑度別モデルルーティング+セマンティックキャッシュ+バッチ処理でコスト最適化*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -8659,6 +9287,8 @@ print(result)
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **モデル選択の最適化**
 - タスク複雑度に応じたモデルルーティング（前述）
 - 週次でモデル別コスト対品質の再評価
@@ -8673,7 +9303,8 @@ print(result)
 
 > *Batch APIと非同期処理で優先度低タスクのコストを半減*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -8714,6 +9345,8 @@ print(result)
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - Few-shot例の最適化: 3〜5例で品質が飽和することが多い
 - **インフラ最適化**
 - セマンティックキャッシュ（30〜70%ヒット率で大幅削減）
@@ -8733,11 +9366,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-76 -->
 # LLMOpsパイプライン（1/2）
 
 > *LLMOpsはプロンプト変更→評価→デプロイ→監視のサイクルを継続的に回す実践*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -8777,6 +9412,8 @@ print(result)
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - **LLMOpsとは**
 - LLMアプリの開発・デプロイ・監視の継続的なオペレーション
 - MLOpsのLLM特化版
@@ -8786,11 +9423,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # LLMOpsパイプライン（2/2）
 
 > *コンテナビルド→ステージング自動デプロイ→品質ゲート→本番デプロイの自動化パイプライン*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -8836,6 +9475,8 @@ print(result)
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - ② マージ → コンテナビルド → ステージング自動デプロイ
 - ③ ステージングでの統合テスト → 品質ゲート通過で本番デプロイ
 - **品質ゲート例**
@@ -8846,11 +9487,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # デプロイパターン比較（1/2）
 
 > *クラウドLLM APIはゼロインフラでスケール自動、セルフホストはコスト効率だが管理負荷大*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -8892,6 +9535,8 @@ print(result)
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - **API（クラウドLLM）**
 - ゼロインフラ管理。スケール自動。コストが高くなりやすい
 - 最初の選択肢。プロトタイプ〜中規模本番に適する
@@ -8906,7 +9551,8 @@ print(result)
 
 > *コンテナデプロイがモデル管理の柔軟性と制御を最大化*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -8952,6 +9598,8 @@ print(result)
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - **サーバーレス推論**
 - AWS Lambda + Llama.cpp（GGUF）
 - 低トラフィック・バースト的な利用に最適
@@ -8979,11 +9627,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-58 -->
 # ユースケース別アプローチ比較マトリクス
 
 > *ユースケースと制約の組み合わせが最適アーキテクチャを決める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -9022,6 +9672,8 @@ print(result)
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 | ユースケース | Prompt | RAG | Fine-tune | Agent |
 | --- | --- | --- | --- | --- |
 | カスタマーサポートQ&A | ○ | ◎ | △ | △ |
@@ -9031,16 +9683,19 @@ print(result)
 | 特定スタイルの文章生成 | ○ | △ | ◎ | △ |
 | 複数APIの自動オーケストレーション | ✗ | ✗ | ✗ | ◎ |
 | リアルタイムニュース要約 | ✗ | ◎ | ✗ | ○ |
+
 - ◎=最適 ○=有効 △=限定的 ✗=不向き
 
 
 ---
 
+<!-- _class: fit-70 -->
 # 段階的実装戦略（1/2）
 
 > *Week1-2のプロンプトエンジニアリングから始め評価セットを構築するのが最速の起動*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -9083,6 +9738,8 @@ print(result)
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **フェーズ1: プロンプトエンジニアリング（Week 1〜2）**
 - ゼロコストで品質を最大化。基礎評価セットを構築
 - 目標品質の60〜70%をここで達成
@@ -9097,7 +9754,8 @@ print(result)
 
 > *各フェーズのEval基盤を整えてから次フェーズに進む*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -9136,6 +9794,8 @@ print(result)
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - **フェーズ3: Fine-tuning検討（Month 2〜3）**
 - プロンプト+RAGで品質目標に達しない場合のみ
 - QLoRAで小規模実験 → 効果確認 → 本番化
@@ -9155,11 +9815,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-58 -->
 # コスト・複雑さ・性能の総合比較（1/2）
 
 > *実装コストはPrompt<RAG<Fine-tuning<Agent、ROIと品質要件でステップを選ぶ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -9200,6 +9862,8 @@ print(result)
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - **実装コスト（開発工数）**
 - Prompt < RAG < Fine-tuning < Agent
 - Prompt: 1〜2日 / RAG: 1〜2週 / Fine-tuning: 2〜4週 / Agent: 4〜8週
@@ -9210,11 +9874,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # コスト・複雑さ・性能の総合比較（2/2）
 
 > *特定タスク最高性能はFine-tuning+RAGの組み合わせ、最広適用範囲はエージェント*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -9254,6 +9920,8 @@ print(result)
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - 特定タスク最高性能: Fine-tuning + RAG の組み合わせ
 - 最も広い適用範囲: Agent
 - **デバッグ難易度**
@@ -9264,11 +9932,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-70 -->
 # よくある失敗パターン（1/2）
 
 > *RAGで解ける問題にエージェント・プロンプト未改善のFine-tuningの2大失敗パターンを避ける*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">フォールバックチェーン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -9314,6 +9984,8 @@ print(result)
 <polygon points="650,350 639.3506739745475,339.11001123950905 650.5414911538365,334.77808200881645" fill="#ffcc80"/>
 <text x="400" y="395" text-anchor="middle" fill="#40c4ff" font-size="12">タイムアウト・レート制限・エラー時に自動フォールバック</text>
 </svg>
+</div>
+
 - ❌ **評価なしでエージェント化**: 単純なRAGで解ける問題にエージェントを使う
 - ❌ **初日からFine-tuning**: プロンプト改善を試みずに学習を始める
 - ❌ **RAGの品質を測定しない**: RAGAS等での定量評価なしに本番化
@@ -9322,11 +9994,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # よくある失敗パターン（2/2）
 
 > *Prompt Injection設計段階無視とコスト上限なしのエージェントが本番事故の2大原因*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ストリーミングレスポンスアーキテクチャ</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -9368,6 +10042,8 @@ print(result)
 <text x="630" y="333" text-anchor="middle" fill="#ffffff" font-size="12">早期キャンセル可能</text>
 <text x="400" y="363" text-anchor="middle" fill="#40c4ff" font-size="11">Server-Sent Events (SSE) | AsyncGenerator | WebSocket</text>
 </svg>
+</div>
+
 - ❌ **セキュリティ後回し**: Prompt Injectionやデータ漏洩を設計段階で考慮しない
 - ❌ **コスト上限なし**: Agentのループでコスト爆発（月$10K超の事故も）
 - ❌ **プロンプトのハードコーディング**: バージョン管理・実験なしで本番変更
@@ -9376,11 +10052,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-82 -->
 # 技術スタック選択ガイド（2026年版）（1/2）（1/2）
 
 > *LlamaIndex+Qdrantがフルコントロール志向の標準構成*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">マルチモデルオーケストレーション</text>
 <rect x="300" y="60" width="200" height="55" rx="8" fill="#e65100"/>
@@ -9426,6 +10104,8 @@ print(result)
 <polygon points="400,385 394,371 406,371" fill="#00e676"/>
 <text x="400" y="398" text-anchor="middle" fill="#00e676" font-size="13" font-weight="bold">Final Response</text>
 </svg>
+</div>
+
 - **オーケストレーション**
 - 本番フロー: LangGraph / プロトタイプ: LangChain / マルチエージェント: CrewAI
 - **RAG**
@@ -9433,6 +10113,7 @@ print(result)
 
 ---
 
+<!-- _class: fit-82 -->
 # 技術スタック選択ガイド（2026年版）（1/2）（2/2）
 
 > *LlamaIndex CloudとQdrantの組み合わせがフルマネージドRAGの現時点ベスト選択*
@@ -9445,11 +10126,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-88 -->
 # 技術スタック選択ガイド（2026年版）（2/2）（1/2）
 
 > *評価スタックの選択がLLMOps成熟度を最も左右する*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">プロンプトチェーニングパイプライン</text>
 <rect x="20" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -9488,6 +10171,8 @@ print(result)
 <text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12">中間結果の検証</text>
 <text x="640" y="340" text-anchor="middle" fill="#ffffff" font-size="12">コンテキスト管理</text>
 </svg>
+</div>
+
 - OSS優先: Langfuse / LangChain使用中: LangSmith
 - **LLMゲートウェイ**
 - OSS: LiteLLM / マネージド: Portkey
@@ -9495,6 +10180,7 @@ print(result)
 
 ---
 
+<!-- _class: fit-94 -->
 # 技術スタック選択ガイド（2026年版）（2/2）（2/2）
 
 > *PromptfooはCI統合、RAGAS+Langfuseは包括的評価—用途で使い分ける*
@@ -9507,11 +10193,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-82 -->
 # 設計レビューチェックリスト（1/2）（1/2）
 
 > *評価・コスト・セキュリティの三点確認が設計品質を決める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">ルーターパターン（Query → Classify → Route）</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -9554,6 +10242,8 @@ print(result)
 <polygon points="680,220 678.3945889306525,235.14670443688715 667.9245167392559,229.28346400970503" fill="#ffcdd2"/>
 <text x="400" y="390" text-anchor="middle" fill="#40c4ff" font-size="12">分類精度がシステム全体の品質を決定する</text>
 </svg>
+</div>
+
 - **アーキテクチャ**
 - □ なぜこのアプローチを選んだか（他との比較）が文書化されている
 - □ フォールバック戦略（LLM障害時）が定義されている
@@ -9561,6 +10251,7 @@ print(result)
 
 ---
 
+<!-- _class: fit-94 -->
 # 設計レビューチェックリスト（1/2）（2/2）
 
 > *コスト上限アラートと品質評価セットが本番LLMアプリの最低限の安全装置*
@@ -9573,11 +10264,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-88 -->
 # 設計レビューチェックリスト（2/2）（1/2）
 
 > *フォールバック設計の欠如が単一障害点を生み出す*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">エージェント ReAct ループ</text>
 <rect x="300" y="60" width="200" height="60" rx="8" fill="#40c4ff"/>
@@ -9616,6 +10309,8 @@ print(result)
 <polygon points="570,335 555.1703181730945,338.4757066781809 557.2557421800032,326.65830397236573" fill="#e91e63"/>
 <text x="400" y="398" text-anchor="middle" fill="#aaa" font-size="12">ReAct = Reasoning + Acting — Yao et al. 2022</text>
 </svg>
+</div>
+
 - □ CI/CDに自動評価が組み込まれている
 - **セキュリティ**
 - □ 入力バリデーション・サニタイズが実装されている
@@ -9623,6 +10318,7 @@ print(result)
 
 ---
 
+<!-- _class: fit-88 -->
 # 設計レビューチェックリスト（2/2）（2/2）
 
 > *Human-in-the-loop組み込みとPII/機密データ審査が副作用のあるエージェントの必須要件*
@@ -9635,11 +10331,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-70 -->
 # 参考リソース（1/2）
 
 > *LangGraph/LlamaIndex/RAGAS/Langfuseが現時点の本番LLMアプリ標準スタック*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">RAG + リランキングパイプライン</text>
 <rect x="20" y="155" width="110" height="70" rx="8" fill="#40c4ff"/>
@@ -9680,6 +10378,8 @@ print(result)
 <text x="640" y="335" text-anchor="middle" fill="#ffffff" font-size="12">精度 +15〜30% 向上</text>
 <text x="400" y="360" text-anchor="middle" fill="#40c4ff" font-size="11">Cohere Rerank / BGE Reranker / ColBERT</text>
 </svg>
+</div>
+
 - **フレームワーク・ツール**
 - [LangGraph](https://langchain-ai.github.io/langgraph/) — ステートフルエージェント
 - [LlamaIndex](https://docs.llamaindex.ai/) — RAGフレームワーク
@@ -9690,11 +10390,13 @@ print(result)
 
 ---
 
+<!-- _class: fit-64 -->
 # 参考リソース（2/2）
 
 > *DeepLearning.AI LLMOpsとHugging Face Fine-tuningガイドが実装学習の最速経路*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="35" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">アンサンブル・投票パターン</text>
 <rect x="30" y="155" width="120" height="70" rx="8" fill="#40c4ff"/>
@@ -9734,6 +10436,8 @@ print(result)
 <text x="400" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Weighted Average</text>
 <text x="640" y="374" text-anchor="middle" fill="#ffffff" font-size="11">Best-of-N Sampling</text>
 </svg>
+</div>
+
 - [Deep Learning AI — LLMOps](https://www.deeplearning.ai/courses/llmops/)
 - [Hugging Face — Fine-tuning Guide](https://huggingface.co/docs/transformers/training)
 - [LangGraph チュートリアル](https://langchain-ai.github.io/langgraph/tutorials/)

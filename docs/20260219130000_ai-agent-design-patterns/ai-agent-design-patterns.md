@@ -7,41 +7,76 @@ paginate: true
 header: "AI エージェント設計パターン"
 footer: "アーキテクト・テックリードのための実践ガイド"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -91,10 +126,11 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # AI エージェント設計パターン
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <circle cx="400" cy="150" r="60" fill="#16213e" stroke="#f9a825" stroke-width="3"/>
   <text x="400" y="145" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">AI Agent</text>
@@ -116,6 +152,8 @@ style: |
   <text x="640" y="237" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">Practices</text>
   <line x1="458" y1="177" x2="601" y2="204" stroke="#888" stroke-width="1.5"/>
 </svg>
+</div>
+
 - アーキテクト・テックリードのための実践ガイド
 - ワークショップ | 2026.02.19
 
@@ -126,27 +164,28 @@ style: |
 
 > *ReAct・CoT・Tool Use・Memoryから信頼性パターンまで8テーマを体系化している*
 
-- 1. **AI エージェントとは** — 定義・LLMとの違い・なぜパターンが必要か
-- 2. **Core Patterns** — ReAct / Chain-of-Thought / Tool Use / Memory
-- 3. **Orchestration Patterns** — Single / Multi-Agent / Parallel / Swarm
-- 4. **Reliability Patterns** — HiTL / 検証ループ / エラー回復 / Guardrails
+1. **AI エージェントとは** — 定義・LLMとの違い・なぜパターンが必要か
+2. **Core Patterns** — ReAct / Chain-of-Thought / Tool Use / Memory
+3. **Orchestration Patterns** — Single / Multi-Agent / Parallel / Swarm
+4. **Reliability Patterns** — HiTL / 検証ループ / エラー回復 / Guardrails
 
 
 ---
 
 # アジェンダ (2/2)
 
-- 5. **実アーキテクチャ事例** — コード生成 / リサーチ / RAG エージェント
-- 6. **実装ベストプラクティス** — プロンプト設計 / コンテキスト管理 / 評価
-- 7. **まとめ・Q&A**
+5. **実アーキテクチャ事例** — コード生成 / リサーチ / RAG エージェント
+6. **実装ベストプラクティス** — プロンプト設計 / コンテキスト管理 / 評価
+7. **まとめ・Q&A**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 1. AI エージェントとは
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <rect x="60" y="20" width="200" height="80" rx="8" fill="#16213e" stroke="#888" stroke-width="1.5"/>
   <text x="160" y="55" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">Traditional Software</text>
@@ -180,6 +219,8 @@ style: |
   <polygon points="558,170 578,164 578,176" fill="#888"/>
   <line x1="550" y1="170" x2="578" y2="170" stroke="#888" stroke-width="1.5"/>
 </svg>
+</div>
+
 - 定義・LLMとの違い・なぜパターンが必要か
 
 
@@ -189,7 +230,8 @@ style: |
 
 > *自律的な目標追求と環境認知がエージェントの本質的定義*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">AI エージェントのコアループ</text>
   <!-- Perceive -->
@@ -214,6 +256,8 @@ style: |
   <polygon points="40,160 34,172 46,172" fill="#f9a825"/>
   <text x="400" y="252" text-anchor="middle" fill="#f9a825" font-size="11">観察→思考→行動 の反復ループ</text>
 </svg>
+</div>
+
 - **目標志向**: 与えられた目標を達成するために自律的に行動する
 - **環境との相互作用**: ツール・API・DB などの外部リソースを利用できる
 - **ループ構造**: 観察 → 推論 → 行動のサイクルを繰り返す
@@ -225,7 +269,8 @@ style: |
 
 # LLM 単体 vs AI エージェント
 
-- <svg viewBox="0 0 800 290" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 290" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="290" fill="#1a1a2e"/>
   <!-- LLM alone -->
   <rect x="40" y="50" width="320" height="200" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -245,6 +290,8 @@ style: |
   <text x="600" y="210" text-anchor="middle" fill="#f9a825" font-size="12">能動的・継続的</text>
   <text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold" opacity="0.5">VS</text>
 </svg>
+</div>
+
 ![w:860 center](assets/agent-vs-llm.svg)
 
 
@@ -254,7 +301,8 @@ style: |
 
 > *アドホックな実装が本番で一貫性なく失敗する根本原因を解決*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">設計パターンがもたらす価値</text>
   <rect x="30" y="50" width="165" height="175" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -278,6 +326,8 @@ style: |
   <text x="677" y="116" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">体系的に構築</text>
   <text x="677" y="148" text-anchor="middle" fill="#f9a825" font-size="28" font-family="sans-serif">▲</text>
 </svg>
+</div>
+
 - **非決定性**: LLMの出力は確率的 → 予測不能な挙動が発生する
 - **状態管理の複雑さ**: マルチステップ処理で状態が爆発的に増加
 - **信頼性の確保**: エラー回復・リトライ・人間介入の設計が必須
@@ -289,7 +339,8 @@ style: |
 
 # エージェントの4つのコアコンポーネント
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">エージェントの4つのコアコンポーネント</text>
   <!-- LLM core -->
@@ -317,15 +368,18 @@ style: |
   <text x="700" y="250" text-anchor="middle" fill="#ffffff" font-size="10">自己評価・修正</text>
   <line x1="620" y1="235" x2="470" y2="180" stroke="#f9a825" stroke-width="1.5"/>
 </svg>
+</div>
+
 ![w:820 center](assets/agent-components.svg)
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 2. Core Patterns
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="30" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Core Patterns 概要</text>
   <rect x="50" y="55" width="160" height="85" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -352,6 +406,8 @@ style: |
   <line x1="490" y1="140" x2="400" y2="175" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
   <line x1="670" y1="140" x2="400" y2="175" stroke="#888" stroke-width="1" stroke-dasharray="4,3"/>
 </svg>
+</div>
+
 - ReAct / Chain-of-Thought / Tool Use / Memory
 
 
@@ -361,7 +417,8 @@ style: |
 
 > *Reason→Act→Observeループが自律問題解決の核心*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">ReAct パターン: Reasoning + Acting</text>
   <!-- Cycle boxes -->
@@ -392,6 +449,8 @@ style: |
   <rect x="300" y="250" width="200" height="26" rx="4" fill="#f9a825" opacity="0.9"/>
   <text x="400" y="268" text-anchor="middle" fill="#1a1a2e" font-size="12" font-weight="bold">Final Answer</text>
 </svg>
+</div>
+
 - **Reasoning + Acting** の組み合わせ（Yao et al., 2022）
 - LLMに「思考」と「行動」を交互に出力させるアプローチ
 - **Thought**: 次に何をすべきか推論する
@@ -404,7 +463,8 @@ style: |
 
 # ReAct: Thought-Action-Observation サイクル
 
-- <svg viewBox="0 0 800 270" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 270" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="270" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">ReAct サイクル</text>
   <circle cx="400" cy="145" r="38" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -430,6 +490,8 @@ style: |
   <text x="270" y="158" fill="#aaa" font-size="10" font-family="sans-serif" transform="rotate(-35,270,158)">解析</text>
   <text x="510" y="115" fill="#aaa" font-size="10" font-family="sans-serif" transform="rotate(25,510,115)">実行</text>
 </svg>
+</div>
+
 ![w:940 center](assets/react-cycle.svg)
 
 
@@ -475,7 +537,8 @@ for step in range(MAX_STEPS):
 
 > *思考連鎖の明示化が複雑推論の正答率を大幅改善する*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Chain-of-Thought (CoT) vs 直接回答</text>
   <!-- Direct answer -->
@@ -496,6 +559,8 @@ for step in range(MAX_STEPS):
   <!-- VS -->
   <text x="400" y="165" text-anchor="middle" fill="#ffffff" font-size="20" font-weight="bold" opacity="0.5">VS</text>
 </svg>
+</div>
+
 - **Zero-shot CoT**: プロンプトに "Let's think step by step" を追加するだけ
 - **Few-shot CoT**: 推論例（reasoning chain）をプロンプトに提供する
 - **Tree-of-Thought (ToT)**: 複数の推論経路を並列探索・評価する
@@ -509,7 +574,8 @@ for step in range(MAX_STEPS):
 
 > *ツール呼び出し精度がエージェント全体の信頼性を左右*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Tool Use パターン</text>
   <rect x="290" y="45" width="220" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -536,6 +602,8 @@ for step in range(MAX_STEPS):
   <line x1="400" y1="105" x2="580" y2="160" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
   <line x1="400" y1="105" x2="710" y2="160" stroke="#888" stroke-width="1.5" stroke-dasharray="4,3"/>
 </svg>
+</div>
+
 - LLMに外部ツール（関数・API）を呼び出す能力を付与するパターン
 - **Function Calling**: 構造化された引数でツールを呼び出す
 - **ツールの種類**: 検索・コード実行・DB操作・外部API・ファイルI/O
@@ -595,7 +663,8 @@ tools = [
 
 # Memory パターン概要
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Memory パターン: 4層構造</text>
   <rect x="40" y="50" width="340" height="90" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -615,6 +684,8 @@ tools = [
   <text x="590" y="206" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">知識・事実・ルールの保存</text>
   <text x="590" y="222" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">RAGによる知識検索</text>
 </svg>
+</div>
+
 ![w:870 center](assets/memory-types.svg)
 
 
@@ -650,7 +721,8 @@ tools = [
 
 > *状態の一貫性保証が長時間エージェントの信頼性を担保する*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">エージェント ステートマシン</text>
   <rect x="60" y="60" width="120" height="55" rx="8" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -682,6 +754,8 @@ tools = [
   <line x1="490" y1="115" x2="490" y2="175" stroke="#888" stroke-width="1.5"/>
   <polygon points="484,170 490,180 496,170" fill="#888"/>
 </svg>
+</div>
+
 - **ステートの種類**: 会話履歴・タスク進捗・ユーザープロファイル
 - **ステートマシン**: 明示的な状態遷移で制御フローを管理する
 - **永続化**: DB保存でセッション跨ぎのレジューム（再開）が可能
@@ -694,7 +768,8 @@ tools = [
 
 > *ReAct+CoT+Tool Use+Memoryの4パターンが実用エージェント構築の必須基礎セット*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Core Patterns タクソノミー</text>
   <!-- Pattern taxonomy tree -->
@@ -728,6 +803,8 @@ tools = [
   <text x="520" y="215" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.8">→ Function Calling</text>
   <text x="680" y="215" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.8">→ Vector Store</text>
 </svg>
+</div>
+
 - **ReAct**: Think → Act → Observe のループ。ほぼ全エージェントの基本
 - **CoT**: 推論品質向上。`think` ツールや拡張思考（Extended Thinking）で実現
 - **Tool Use**: 外部世界との接続。ツール設計の質が品質を直接左右する
@@ -736,10 +813,11 @@ tools = [
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 3. Orchestration Patterns
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Orchestration Patterns 比較</text>
   <rect x="30" y="50" width="220" height="185" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -778,6 +856,8 @@ tools = [
   <line x1="635" y1="153" x2="612" y2="143" stroke="#888" stroke-width="1"/>
   <text x="650" y="205" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">自律協調・創発</text>
 </svg>
+</div>
+
 - Single / Multi-Agent / Orchestrator-Subagents / Parallel / Swarm
 
 
@@ -800,7 +880,8 @@ tools = [
 
 > *役割分離と通信プロトコルがマルチ構成の安定性を決める*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Multi-Agent システム構成</text>
   <!-- Orchestrator -->
@@ -832,6 +913,8 @@ tools = [
   <!-- Parallel label -->
   <text x="400" y="178" text-anchor="middle" fill="#f9a825" font-size="10" opacity="0.7">並列実行</text>
 </svg>
+</div>
+
 - 複数のエージェントが協調して複雑なタスクを処理するアーキテクチャ
 - **分割統治**: タスクを専門エージェントに委任・分担する
 - **並列処理**: 独立したサブタスクを同時実行してレイテンシを削減
@@ -843,7 +926,8 @@ tools = [
 
 # 4つのOrchestration Patterns 比較
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">4つのOrchestration Patterns</text>
   <!-- Sequential -->
@@ -879,6 +963,8 @@ tools = [
   <text x="400" y="224" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold">選択指針</text>
   <text x="400" y="248" text-anchor="middle" fill="#ffffff" font-size="10">タスク依存度低 → Parallel | 委譲・スケール → Hierarchical | 自律協調 → Swarm</text>
 </svg>
+</div>
+
 ![w:880 center](assets/orchestration-overview.svg)
 
 
@@ -923,7 +1009,8 @@ response = client.messages.create(
 
 # Parallel Agents パターン
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Parallel Agents パターン</text>
   <rect x="310" y="45" width="180" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -952,6 +1039,8 @@ response = client.messages.create(
   <rect x="260" y="225" width="280" height="30" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
   <text x="400" y="245" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">結果マージ → 最終レスポンス</text>
 </svg>
+</div>
+
 ![w:870 center](assets/parallel-agents.svg)
 
 
@@ -996,7 +1085,8 @@ results = asyncio.run(parallel_research([
 
 > *スウォームが独立した専門エージェントの協調で性能を最大化する*
 
-- <svg viewBox="0 0 800 270" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 270" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="270" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Swarm パターン: 自律協調</text>
   <circle cx="400" cy="140" r="25" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1023,6 +1113,8 @@ results = asyncio.run(parallel_research([
   <line x1="620" y1="115" x2="620" y2="175" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/>
   <text x="400" y="260" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">エージェント間の直接通信・動的役割分担</text>
 </svg>
+</div>
+
 - 中央集権的なOrchestrator なしに複数エージェントが協調するパターン
 - **Handoff**: 専門エージェントへの動的な制御移譲（タスクの引き渡し）
 - **特徴**: 各エージェントが自律的に判断して次のエージェントへ委任
@@ -1048,7 +1140,8 @@ results = asyncio.run(parallel_research([
 
 > *タスクの複雑性と信頼性要件がパターン選択の二大基準*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">パターン選択ガイド (決定木)</text>
   <!-- Root question -->
@@ -1094,6 +1187,8 @@ results = asyncio.run(parallel_research([
   <text x="695" y="257" text-anchor="middle" fill="#e91e63" font-size="11">Hierarchical</text>
   <text x="695" y="273" text-anchor="middle" fill="#ffffff" font-size="9">委譲・スケール</text>
 </svg>
+</div>
+
 - タスクがシンプル → **Single Agent**（まずここから始める）
 - タスクに明確な依存関係あり → **Orchestrator-Subagents**
 - 独立したサブタスクがある → **Parallel Agents**（レイテンシ削減）
@@ -1103,7 +1198,7 @@ results = asyncio.run(parallel_research([
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 4. Reliability Patterns
 
 - Human-in-the-Loop / 検証ループ / エラー回復 / Guardrails
@@ -1115,7 +1210,8 @@ results = asyncio.run(parallel_research([
 
 > *本番エージェントの失敗コストは開発コストを大幅に上回る*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Reliability リスク マトリクス</text>
   <text x="60" y="80" fill="#aaa" font-size="11" font-family="sans-serif">高</text>
@@ -1139,6 +1235,8 @@ results = asyncio.run(parallel_research([
   <line x1="80" y1="142" x2="740" y2="142" stroke="#444" stroke-width="1"/>
   <line x1="410" y1="50" x2="410" y2="235" stroke="#444" stroke-width="1"/>
 </svg>
+</div>
+
 - **幻覚（Hallucination）**: LLMは事実でないことを自信を持って出力する
 - **副作用**: ツール呼び出しがDB削除・メール送信などの不可逆操作を実行
 - **非決定性**: 同じ入力でも出力が変わる → テストが難しい
@@ -1150,7 +1248,8 @@ results = asyncio.run(parallel_research([
 
 # Reliability パターン全体像
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Reliability パターン全体像</text>
   <!-- Concentric reliability rings -->
@@ -1168,6 +1267,8 @@ results = asyncio.run(parallel_research([
   <text x="400" y="255" text-anchor="middle" fill="#f9a825" font-size="10">外側ほど観測・制御レイヤー</text>
   <text x="700" y="255" text-anchor="middle" fill="#e91e63" font-size="10">人間監督が最重要</text>
 </svg>
+</div>
+
 ![w:840 center](assets/reliability-layers.svg)
 
 
@@ -1177,7 +1278,8 @@ results = asyncio.run(parallel_research([
 
 > *人間の介入ポイント設計が高リスク決定の安全性を保証する*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Human-in-the-Loop パターン</text>
   <rect x="30" y="55" width="130" height="55" rx="8" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -1211,6 +1313,8 @@ results = asyncio.run(parallel_research([
   <polygon points="274,114 280,104 286,114" fill="#888"/>
   <text x="480" y="150" fill="#aaa" font-size="9" font-family="sans-serif">承認→再実行</text>
 </svg>
+</div>
+
 - 人間が確認・承認するチェックポイントをパイプラインに設ける
 - **適用場面**: 不可逆操作・高リスクアクション・曖昧な判断が必要な場合
 - **同期HiTL**: アクション前に確認プロンプトを表示して待機
@@ -1251,7 +1355,8 @@ def execute_with_hitl(tool_name: str, tool_input: dict) -> dict:
 
 > *自己検証ループが出力品質を継続的に改善し幻覚を減らす*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">検証ループパターン</text>
   <rect x="60" y="60" width="140" height="55" rx="8" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -1284,6 +1389,8 @@ def execute_with_hitl(tool_name: str, tool_input: dict) -> dict:
   <line x1="130" y1="248" x2="130" y2="115" stroke="#e91e63" stroke-width="1.5"/>
   <polygon points="124,119 130,109 136,119" fill="#e91e63"/>
 </svg>
+</div>
+
 - 生成結果を別のLLM / ロジックで検証し、品質を自動保証するパターン
 - **Self-critique**: 同じLLMに自分の出力を批評させる（コスト効率が良い）
 - **Separate Verifier**: 独立した検証エージェントが客観的にレビュー
@@ -1310,7 +1417,8 @@ def execute_with_hitl(tool_name: str, tool_input: dict) -> dict:
 
 > *入出力ガードレールがエージェントの暴走を確実に防ぐ*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Guardrails パターン</text>
   <!-- Input -->
@@ -1348,6 +1456,8 @@ def execute_with_hitl(tool_name: str, tool_input: dict) -> dict:
   <line x1="595" y1="170" x2="595" y2="210" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="4"/>
   <text x="595" y="225" text-anchor="middle" fill="#e91e63" font-size="10">ブロック/修正</text>
 </svg>
+</div>
+
 - 入出力の安全性・品質を自動チェックする仕組み
 - **Input Guardrails**: 入力の無害性・スコープ確認・Injection 検出
 - **Output Guardrails**: PII 検出・有害コンテンツ除去・スキーマ検証
@@ -1392,7 +1502,8 @@ response = client.messages.create(
 
 > *分散トレーシングなしに本番エージェントの障害は診断できない*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Observability: 3つの柱</text>
   <rect x="30" y="50" width="220" height="185" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1426,6 +1537,8 @@ response = client.messages.create(
   <text x="572" y="205" fill="#888" font-size="9" font-family="sans-serif">  "status": "ok"</text>
   <text x="572" y="220" fill="#888" font-size="9" font-family="sans-serif">}</text>
 </svg>
+</div>
+
 - エージェントの挙動を可視化・追跡するインフラ。本番運用に必須
 - **Logging**: 全ステップの input / output / ツール呼び出しを記録
 - **Tracing**: リクエスト全体の処理フローを追跡（OpenTelemetry）
@@ -1448,10 +1561,11 @@ response = client.messages.create(
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 5. 実アーキテクチャ事例
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">実アーキテクチャ事例 概要</text>
   <rect x="30" y="50" width="220" height="185" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1470,6 +1584,8 @@ response = client.messages.create(
   <text x="660" y="130" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Advanced RAG</text>
   <text x="660" y="148" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">+ Memory パターン</text>
 </svg>
+</div>
+
 - コード生成 / リサーチ / RAG エージェント
 
 
@@ -1477,7 +1593,8 @@ response = client.messages.create(
 
 # コード生成エージェントのアーキテクチャ
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">コード生成エージェント アーキテクチャ</text>
   <!-- Requirement -->
@@ -1517,6 +1634,8 @@ response = client.messages.create(
   <line x1="310" y1="235" x2="200" y2="180" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="5"/>
   <polygon points="200,180 210,190 200,195" fill="#f9a825"/>
 </svg>
+</div>
+
 ![w:850 center](assets/code-gen-flow.svg)
 
 
@@ -1539,7 +1658,8 @@ response = client.messages.create(
 
 > *マルチソース検証がリサーチエージェントの事実精度を高める*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">リサーチエージェント アーキテクチャ</text>
   <rect x="300" y="45" width="200" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1564,6 +1684,8 @@ response = client.messages.create(
   <rect x="260" y="230" width="280" height="28" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
   <text x="400" y="249" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">Synthesizer: 結果統合 → 最終レポート</text>
 </svg>
+</div>
+
 - **目的**: 特定トピックについて自動で調査・レポート作成を行うエージェント
 - **ツール**: Web検索・ドキュメント取得・PDF解析・データ分析
 - **Memory**: 収集情報をベクターDBに蓄積して重複取得を防ぐ
@@ -1608,7 +1730,8 @@ report = writer_agent.run(
 
 # RAG エージェントのパイプライン
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">RAG エージェント パイプライン</text>
   <!-- Query -->
@@ -1647,6 +1770,8 @@ report = writer_agent.run(
   <polygon points="683,125 669,118 669,132" fill="#f9a825"/>
   <line x1="665" y1="125" x2="683" y2="125" stroke="#f9a825" stroke-width="2"/>
 </svg>
+</div>
+
 ![w:950 center](assets/rag-pipeline.svg)
 
 
@@ -1656,7 +1781,8 @@ report = writer_agent.run(
 
 > *検索品質の改善が生成精度を決める最重要変数*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Advanced RAG パイプライン</text>
   <rect x="30" y="55" width="120" height="55" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -1691,6 +1817,8 @@ report = writer_agent.run(
   <text x="400" y="215" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">Self-RAG (自己反省)</text>
   <text x="600" y="215" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">Contextual Compression</text>
 </svg>
+</div>
+
 - **HyDE**: 仮の回答を生成してそれをベクター検索に使用する
 - **Self-Query**: LLMがメタデータフィルターを自動生成して絞り込む
 - **Corrective RAG**: 取得品質が低い場合は自動的に再検索する
@@ -1712,10 +1840,11 @@ report = writer_agent.run(
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 6. 実装ベストプラクティス
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">実装ベストプラクティス 6領域</text>
   <rect x="30" y="55" width="220" height="80" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1737,6 +1866,8 @@ report = writer_agent.run(
   <text x="660" y="195" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">コスト管理</text>
   <text x="660" y="215" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">トークン最適化</text>
 </svg>
+</div>
+
 - プロンプト設計 / コンテキスト管理 / 評価・テスト / セキュリティ
 
 
@@ -1746,7 +1877,8 @@ report = writer_agent.run(
 
 > *システムプロンプトの設計がエージェントの行動境界を定める*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">システムプロンプト 構造</text>
   <rect x="60" y="50" width="680" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1762,6 +1894,8 @@ report = writer_agent.run(
   <text x="580" y="216" fill="#888" font-size="11" font-family="sans-serif">Few-shot Examples</text>
   <text x="580" y="232" fill="#888" font-size="10" font-family="sans-serif">1-3 個の良い例示</text>
 </svg>
+</div>
+
 - **役割と責務**: エージェントの目的・権限・制約を冒頭で明確に定義する
 - **制約の明示**: やってはいけないことを具体的に列挙する（否定形で明示）
 - **出力フォーマット**: 期待する出力形式を例示する（Few-shot が効果的）
@@ -1819,7 +1953,8 @@ print(response.usage)
 
 > *定量評価基盤なしにエージェントの改善は再現できない*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">エージェント評価の4層ピラミッド</text>
   <polygon points="400,50 700,220 100,220" fill="none" stroke="#444" stroke-width="1"/>
@@ -1835,6 +1970,8 @@ print(response.usage)
   <text x="60" y="78" fill="#aaa" font-size="9" font-family="sans-serif">低速/高品質</text>
   <text x="60" y="200" fill="#aaa" font-size="9" font-family="sans-serif">高速/低コスト</text>
 </svg>
+</div>
+
 - **Unit Test**: 個別ツールの入出力をモックして単体テスト
 - **Integration Test**: エージェントの完全なフローをE2Eでテスト
 - **Golden Set**: 期待する入出力ペアを蓄積し、自動で回帰テストに活用
@@ -1848,7 +1985,8 @@ print(response.usage)
 
 > *プロンプトインジェクション対策がエージェントセキュリティの最優先課題*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">エージェントセキュリティ 対策</text>
   <rect x="30" y="50" width="220" height="90" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -1876,6 +2014,8 @@ print(response.usage)
   <text x="660" y="190" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">Audit Logging</text>
   <text x="660" y="210" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">全操作の追跡</text>
 </svg>
+</div>
+
 - **Prompt Injection**: 外部コンテンツ（Web・DB）経由での悪意ある指示注入
 - **権限の最小化**: エージェントに必要最小限の権限・スコープのみ付与
 - **入力サニタイズ**: ユーザー入力の検証・エスケープを必ず実施
@@ -1889,7 +2029,8 @@ print(response.usage)
 
 > *LLM呼び出し最小化がエージェントのコスト効率を決める*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">コスト最適化 戦略</text>
   <rect x="40" y="55" width="680" height="45" rx="6" fill="#16213e" stroke="#444" stroke-width="1"/>
@@ -1914,6 +2055,8 @@ print(response.usage)
   <text x="642" y="158" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">非同期バッチ処理</text>
   <text x="642" y="174" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">50%割引</text>
 </svg>
+</div>
+
 - **モデル選択**: 計画→Opus 4.6 / 実装→Sonnet 4.6 / 分類→Haiku 4.5
 - **Batch API**: リアルタイム不要なタスクは非同期バッチ処理（50% 割引）
 - **Prompt Caching**: 繰り返し使うシステムプロンプトをキャッシュする
@@ -1936,10 +2079,11 @@ print(response.usage)
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 7. まとめ・Q&A
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">AIエージェント設計パターン まとめ</text>
   <rect x="30" y="50" width="340" height="85" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -1959,6 +2103,8 @@ print(response.usage)
   <text x="600" y="201" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">設計 · テスト · セキュリティ · コスト</text>
   <text x="600" y="219" text-anchor="middle" fill="#888" font-size="10" font-family="sans-serif">実装品質の向上</text>
 </svg>
+</div>
+
 - Key Takeaways / 参考リソース / Q&A
 
 
@@ -1968,7 +2114,8 @@ print(response.usage)
 
 > *ReAct+Tool Use+Memoryを基盤にパターンはユーザー価値から逆算して選択することが最重要*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">設計パターン選択マトリクス</text>
   <!-- 2x2 matrix -->
@@ -2002,6 +2149,8 @@ print(response.usage)
   <line x1="80" y1="160" x2="740" y2="160" stroke="#ffffff" stroke-width="0.8" stroke-dasharray="4" opacity="0.3"/>
   <line x1="410" y1="60" x2="410" y2="260" stroke="#ffffff" stroke-width="0.8" stroke-dasharray="4" opacity="0.3"/>
 </svg>
+</div>
+
 - **Core**: ReAct + Tool Use + Memory がほぼ全エージェントの基礎
 - **Orchestration**: タスクの複雑さに応じてパターンを選択。まずシンプルに
 - **Reliability**: 失敗前提の設計・HiTL・Guardrails・Observability で担保
@@ -2039,7 +2188,7 @@ print(response.usage)
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Q&A
 
 - ご質問・ご意見はお気軽にどうぞ

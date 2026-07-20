@@ -31,9 +31,10 @@ user-invocable: true
 - **図解ファースト**: 全スライドの50%以上にSVG図解を含めること
 
 **SVG記述ルール（JSON埋め込み時）:**
-- `viewBox` 必須
-- `style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0"` 必須
+- `viewBox` 必須 — ルート要素に必要な唯一のサイズ指定
+- width/height/max-width/max-height や `vh` 単位は書かない（`.fig` フレックスラッパーが自動で残り空間に収める。letter-spacing:0 も `normalizeSvg()` が自動付与）
 - `url(#id)` 参照禁止（filter/marker-end/gradient → インラインスタイルで代替）
+- base64データURI（`data:image/svg+xml;base64,…`）は使用禁止 — markdown-itがgif/png/jpeg/webp以外の `data:` URLを受け付けず生base64テキストになる
 - ダブルクォートは `\"` にエスケープ
 
 **⚠️ 生成ルール（必須）:**

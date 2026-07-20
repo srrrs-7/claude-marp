@@ -7,41 +7,76 @@ paginate: true
 header: "完全変態とソフトウェアマイグレーション"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,11 +117,10 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 完全変態
 
 - モノリスがマイクロサービスに変わるとき
-- 
 - 昆虫の驚異的な変身から学ぶシステム移行の哲学
 
 
@@ -96,20 +130,21 @@ style: |
 
 > *完全変態の6段階とStrangler Figを対応させる*
 
-- - 1. 完全変態とは何か
-- - 2. 4段階の変身プロセス
-- - 3. ソフトウェアマイグレーションとの対応
-- - 4. Strangler Fig Pattern
-- - 5. 蛹の中で起きていること
-- - 6. 変態の教訓 -- 移行の設計原則
+- 1. 完全変態とは何か
+- 2. 4段階の変身プロセス
+- 3. ソフトウェアマイグレーションとの対応
+- 4. Strangler Fig Pattern
+- 5. 蛹の中で起きていること
+- 6. 変態の教訓 -- 移行の設計原則
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 完全変態とは
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">完全変態 vs 不完全変態</text>
 <rect x="30" y="65" width="340" height="290" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -134,6 +169,7 @@ style: |
 <text x="470" y="298" fill="#ffffff" font-size="11">• ゴキブリ、シラミ</text>
 <text x="400" y="380" text-anchor="middle" fill="#aaaaaa" font-size="11">システム移行との対応：完全変態 ＝ ゼロダウンタイム移行の手本</text>
 </svg>
+</div>
 
 
 ---
@@ -142,7 +178,8 @@ style: |
 
 > *卵→幼虫→蛹→成虫の4段階が完全変態の本質*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">昆虫の完全変態：4ステージ</text>
 <rect x="30" y="80" width="160" height="220" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
@@ -178,9 +215,11 @@ style: |
 <text x="590" y="220" fill="#aaaaaa" font-size="10">= マイクロサービス</text>
 <text x="400" y="345" text-anchor="middle" fill="#aaaaaa" font-size="11">重要：幼虫と成虫は同じ DNA を持つが、完全に異なるシステムとして機能する</text>
 </svg>
-- - **完全変態**: 卵 → 幼虫 → 蛹 → 成虫の4段階
-- - 昆虫の約80%が完全変態を行う(チョウ、カブトムシ、ハチ等)
-- - 対義語: **不完全変態** = 蛹の段階がない(バッタ、カマキリ等)
+</div>
+
+- **完全変態**: 卵 → 幼虫 → 蛹 → 成虫の4段階
+- 昆虫の約80%が完全変態を行う(チョウ、カブトムシ、ハチ等)
+- 対義語: **不完全変態** = 蛹の段階がない(バッタ、カマキリ等)
 
 
 ---
@@ -189,8 +228,7 @@ style: |
 
 > *蛹の中の溶解・再構成こそ移行の核心モデル*
 
-- - 約3.5億年前に進化した戦略
-- 
+- 約3.5億年前に進化した戦略
 - なぜ完全変態は成功したのか？
 - → **幼虫と成虫で異なるニッチを占められる**
 
@@ -199,7 +237,8 @@ style: |
 
 # 4段階の変身プロセス
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">変身の4段階プロセス詳細</text>
 <rect x="30" y="70" width="175" height="260" rx="10" fill="#16213e" stroke="#4db6ac" stroke-width="2"/>
@@ -235,6 +274,8 @@ style: |
 <text x="612" y="198" fill="#f9a825" font-size="10">= カットオーバー</text>
 <text x="400" y="365" text-anchor="middle" fill="#aaaaaa" font-size="11">蛹の中では「サービス」は止まらない — Imaginal Disc は静かに動いている</text>
 </svg>
+</div>
+
 ![w:900 center](assets/complete-metamorphosis.svg)
 
 
@@ -244,12 +285,11 @@ style: |
 
 > *幼虫時代に埋め込まれた設計図が成虫を作り上げる*
 
-- - 蛹の中で幼虫の体は**酵素によってほぼ完全に分解**される
-- - しかし**imaginal disc**(成虫原基)は生き残る
-- - imaginal discは幼虫時代から存在する「未来の設計図」
--   - 翅のdisc、脚のdisc、目のdisc...
--   - 幼虫の体液(栄養)を使って成虫の体を構築
-- 
+- 蛹の中で幼虫の体は**酵素によってほぼ完全に分解**される
+- しかし**imaginal disc**(成虫原基)は生き残る
+- imaginal discは幼虫時代から存在する「未来の設計図」
+  - 翅のdisc、脚のdisc、目のdisc...
+  - 幼虫の体液(栄養)を使って成虫の体を構築
 - **「古いシステムのリソースを使って新システムを構築する」**
 
 
@@ -257,7 +297,8 @@ style: |
 
 # Imaginal Disc と Strangler Fig（図解）
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="360" fill="#1a1a2e"/>
 <text x="400" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">蛹の中で起きていること — Imaginal Disc</text>
 <ellipse cx="400" cy="185" rx="180" ry="120" fill="#16213e" stroke="#f9a825" stroke-width="2.5"/>
@@ -284,14 +325,16 @@ style: |
 <text x="550" y="316" text-anchor="middle" fill="#e91e63" font-size="11" font-weight="bold">新マイクロサービス = Imaginal Disc</text>
 <text x="550" y="330" text-anchor="middle" fill="#ffffff" font-size="10">旧システムの中で育つ新設計</text>
 </svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ソフトウェアとの対応
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">生物変態 ↔ ソフトウェア移行 対応図</text>
 <rect x="30" y="65" width="330" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -321,13 +364,15 @@ style: |
 <line x1="360" y1="298" x2="440" y2="298" stroke="#4db6ac" font-size="1.5" stroke-dasharray="4,3"/>
 <text x="400" y="375" text-anchor="middle" fill="#aaaaaa" font-size="11">自然は数億年かけて「ゼロダウンタイム移行」を完成させた</text>
 </svg>
+</div>
 
 
 ---
 
 # 完全変態 × マイグレーション対応図
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">完全変態 × マイグレーション 実践対応</text>
 <rect x="30" y="65" width="740" height="70" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -363,6 +408,8 @@ style: |
 <text x="570" y="266" fill="#ffffff" font-size="10">• チームが小さい</text>
 <text x="570" y="288" fill="#4db6ac" font-size="10">→ 変態の完成</text>
 </svg>
+</div>
+
 ![w:900 center](assets/software-migration-mapping.svg)
 
 
@@ -372,10 +419,13 @@ style: |
 
 > *モノリスは成長するが変化への適応力を失っていく*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">幼虫フェーズ：モノリスの成長と限界</text><rect x="30" y="65" width="360" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="96" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モノリス成長の軌跡</text><line x1="60" y1="320" x2="360" y2="320" stroke="#aaaaaa" stroke-width="1"/><line x1="60" y1="110" x2="60" y2="320" stroke="#aaaaaa" stroke-width="1"/><text x="210" y="340" text-anchor="middle" fill="#aaaaaa" font-size="10">時間（年）</text><text x="45" y="200" fill="#aaaaaa" font-size="9" transform="rotate(-90,45,200)">複雑度</text><polyline points="60,310 100,295 140,275 180,248 220,215 260,178 300,140 340,120" fill="none" stroke="#f9a825" stroke-width="2"/><text x="350" y="118" fill="#f9a825" font-size="9">複雑度↑</text><text x="90" y="308" fill="#4db6ac" font-size="9">Year 1</text><text x="170" y="246" fill="#f9a825" font-size="9">Year 3</text><text x="250" y="176" fill="#e91e63" font-size="9">Year 5+</text><rect x="60" y="115" width="8" height="205" fill="#f9a825" opacity="0.3"/><text x="95" y="220" fill="#aaaaaa" font-size="9">開発者: 5人</text><rect x="180" y="115" width="12" height="205" fill="#f9a825" opacity="0.5"/><text x="215" y="200" fill="#aaaaaa" font-size="9">15人</text><rect x="290" y="115" width="18" height="205" fill="#e91e63" opacity="0.6"/><text x="325" y="180" fill="#aaaaaa" font-size="9">40人</text><rect x="430" y="65" width="340" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="96" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">蛹化のサイン</text><text x="450" y="128" fill="#ffffff" font-size="11">• デプロイに8時間以上かかる</text><text x="450" y="150" fill="#ffffff" font-size="11">• バグ修正が新バグを生む</text><text x="450" y="172" fill="#ffffff" font-size="11">• 新機能追加が3ヶ月以上</text><text x="450" y="194" fill="#ffffff" font-size="11">• チームが「触りたくない」コード</text><text x="450" y="216" fill="#ffffff" font-size="11">• 本番環境が怖い</text><rect x="450" y="242" width="280" height="80" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="590" y="268" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">判断時期</text><text x="465" y="292" fill="#ffffff" font-size="10">幼虫が「もう限界」と感じたとき</text><text x="465" y="312" fill="#ffffff" font-size="10">が蛹化の最適タイミング</text><text x="400" y="378" text-anchor="middle" fill="#aaaaaa" font-size="11">完全変態は強さから生まれるのではなく、成長の必然として起きる</text></svg>
-- - 幼虫は**ひたすら食べて大きくなる**
-- - モノリスも**ひたすら機能を追加して大きくなる**
-- - 幼虫の脱皮(5回) = メジャーリリース
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">幼虫フェーズ：モノリスの成長と限界</text><rect x="30" y="65" width="360" height="290" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="96" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">モノリス成長の軌跡</text><line x1="60" y1="320" x2="360" y2="320" stroke="#aaaaaa" stroke-width="1"/><line x1="60" y1="110" x2="60" y2="320" stroke="#aaaaaa" stroke-width="1"/><text x="210" y="340" text-anchor="middle" fill="#aaaaaa" font-size="10">時間（年）</text><text x="45" y="200" fill="#aaaaaa" font-size="9" transform="rotate(-90,45,200)">複雑度</text><polyline points="60,310 100,295 140,275 180,248 220,215 260,178 300,140 340,120" fill="none" stroke="#f9a825" stroke-width="2"/><text x="350" y="118" fill="#f9a825" font-size="9">複雑度↑</text><text x="90" y="308" fill="#4db6ac" font-size="9">Year 1</text><text x="170" y="246" fill="#f9a825" font-size="9">Year 3</text><text x="250" y="176" fill="#e91e63" font-size="9">Year 5+</text><rect x="60" y="115" width="8" height="205" fill="#f9a825" opacity="0.3"/><text x="95" y="220" fill="#aaaaaa" font-size="9">開発者: 5人</text><rect x="180" y="115" width="12" height="205" fill="#f9a825" opacity="0.5"/><text x="215" y="200" fill="#aaaaaa" font-size="9">15人</text><rect x="290" y="115" width="18" height="205" fill="#e91e63" opacity="0.6"/><text x="325" y="180" fill="#aaaaaa" font-size="9">40人</text><rect x="430" y="65" width="340" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="96" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold">蛹化のサイン</text><text x="450" y="128" fill="#ffffff" font-size="11">• デプロイに8時間以上かかる</text><text x="450" y="150" fill="#ffffff" font-size="11">• バグ修正が新バグを生む</text><text x="450" y="172" fill="#ffffff" font-size="11">• 新機能追加が3ヶ月以上</text><text x="450" y="194" fill="#ffffff" font-size="11">• チームが「触りたくない」コード</text><text x="450" y="216" fill="#ffffff" font-size="11">• 本番環境が怖い</text><rect x="450" y="242" width="280" height="80" rx="6" fill="#e91e63" opacity="0.12" stroke="#e91e63" stroke-width="1"/><text x="590" y="268" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold">判断時期</text><text x="465" y="292" fill="#ffffff" font-size="10">幼虫が「もう限界」と感じたとき</text><text x="465" y="312" fill="#ffffff" font-size="10">が蛹化の最適タイミング</text><text x="400" y="378" text-anchor="middle" fill="#aaaaaa" font-size="11">完全変態は強さから生まれるのではなく、成長の必然として起きる</text></svg>
+</div>
+
+- 幼虫は**ひたすら食べて大きくなる**
+- モノリスも**ひたすら機能を追加して大きくなる**
+- 幼虫の脱皮(5回) = メジャーリリース
 
 
 ---
@@ -384,10 +434,10 @@ style: |
 
 > *結合度が高まるほど変更コストが指数的に増大する*
 
--   - 外殻を脱ぎ捨てるが内部構造は同じ
--   - リファクタリングせずにバージョンアップ
-- - **幼虫の限界**: ある大きさを超えると脱皮では対応できない
-- - **モノリスの限界**: ある規模を超えるとスケールしない
+  - 外殻を脱ぎ捨てるが内部構造は同じ
+  - リファクタリングせずにバージョンアップ
+- **幼虫の限界**: ある大きさを超えると脱皮では対応できない
+- **モノリスの限界**: ある規模を超えるとスケールしない
 
 
 ---
@@ -396,7 +446,8 @@ style: |
 
 > *旧システムと新システムが並行稼働する危険な過渡期*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">蛹フェーズ：移行期間の詳細設計</text>
 <rect x="30" y="70" width="340" height="290" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/>
@@ -423,9 +474,11 @@ style: |
 <text x="450" y="306" fill="#aaaaaa" font-size="11">△ フェイルオーバーテスト</text>
 <text x="430" y="340" fill="#aaaaaa" font-size="10">✓完了 ◯進行中 △未着手</text>
 </svg>
-- - 蛹の外見は静か。しかし中身は激変している
-- - **ソフトウェア移行も同じ:**
--   - ユーザーから見た挙動は変わらない(外殻 = API)
+</div>
+
+- 蛹の外見は静か。しかし中身は激変している
+- **ソフトウェア移行も同じ:**
+  - ユーザーから見た挙動は変わらない(外殻 = API)
 
 
 ---
@@ -434,17 +487,18 @@ style: |
 
 > *移行期は機能も責任も曖昧—ガバナンス設計が命綱*
 
--   - 内部は完全に作り直されている
--   - 古い組織が溶けて新しい組織に再構築される
-- - **重要**: 蛹の中でも生物は**生きている**
--   - 移行中もサービスは稼働し続ける必要がある
+  - 内部は完全に作り直されている
+  - 古い組織が溶けて新しい組織に再構築される
+- **重要**: 蛹の中でも生物は**生きている**
+  - 移行中もサービスは稼働し続ける必要がある
 
 
 ---
 
 # 変態中もサービスは稼働する（図解）
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="340" fill="#1a1a2e"/>
 <text x="400" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">蛹の移行原則 — 生きたまま変態する</text>
 <rect x="40" y="80" width="170" height="90" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -468,14 +522,16 @@ style: |
 <text x="335" y="280" text-anchor="middle" fill="#aaaaaa" font-size="9">一度に全部変えない</text>
 <text x="550" y="280" text-anchor="middle" fill="#aaaaaa" font-size="9">蛹も生きている</text>
 </svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Strangler Fig Pattern
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">Strangler Fig Pattern：段階的置き換え</text>
 <rect x="30" y="70" width="180" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -513,6 +569,7 @@ style: |
 <text x="685" y="258" text-anchor="middle" fill="#1a1a2e" font-size="9">モノリス終了</text>
 <text x="400" y="380" text-anchor="middle" fill="#aaaaaa" font-size="11">絞め殺しイチジクが宿主木を徐々に置き換えるように</text>
 </svg>
+</div>
 
 
 ---
@@ -528,10 +585,10 @@ style: |
 
 > *Strangler Figは段階的移行で旧を絞め殺す戦略*
 
-- - **Strangler Fig Pattern**: Martin Fowlerが命名
-- - 熱帯のイチジクは宿主の木に巻きついて成長
-- - やがて宿主を「絞め殺して」自立する
-- - **ソフトウェアへの応用:**
+- **Strangler Fig Pattern**: Martin Fowlerが命名
+- 熱帯のイチジクは宿主の木に巻きついて成長
+- やがて宿主を「絞め殺して」自立する
+- **ソフトウェアへの応用:**
 
 
 ---
@@ -540,10 +597,9 @@ style: |
 
 > *一括移行は失敗する—小さな勝利を積み重ねよ*
 
--   - 新システムを旧システムの周りに構築
--   - 機能を1つずつ新システムに移行
--   - 最終的に旧システムを除去
-- 
+  - 新システムを旧システムの周りに構築
+  - 機能を1つずつ新システムに移行
+  - 最終的に旧システムを除去
 - **Big Bang移行(一気に切り替え)の反対概念**
 
 
@@ -553,10 +609,10 @@ style: |
 
 > *新機能を新基盤で開発し旧を徐々に置き換える*
 
-- - **Imaginal disc**: 幼虫の中に潜む「未来の設計図」
--   - 幼虫の体(旧システム)の栄養を使って成長
--   - 幼虫が溶けても生き残る
-- - **新マイクロサービス**: モノリスの中に潜む「未来の設計」
+- **Imaginal disc**: 幼虫の中に潜む「未来の設計図」
+  - 幼虫の体(旧システム)の栄養を使って成長
+  - 幼虫が溶けても生き残る
+- **新マイクロサービス**: モノリスの中に潜む「未来の設計」
 
 
 ---
@@ -565,9 +621,8 @@ style: |
 
 > *Facade層が新旧両方に透過的にルーティングする*
 
--   - モノリスのデータとインフラを使って構築
--   - モノリスが除去されても動き続ける
-- 
+  - モノリスのデータとインフラを使って構築
+  - モノリスが除去されても動き続ける
 - **生物学的に最も正確なアナロジー**
 
 
@@ -577,7 +632,8 @@ style: |
 
 > *独立デプロイ・スケールが完全移行の証明*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">成虫フェーズ：マイクロサービスの飛翔</text>
 <circle cx="400" cy="190" r="50" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -615,9 +671,11 @@ style: |
 <polygon points="625,307 637,310 628,320" fill="#f9a825"/>
 <text x="400" y="375" text-anchor="middle" fill="#aaaaaa" font-size="11">各サービスが独立して「飛翔」できるようになった — 変態の完成</text>
 </svg>
-- - **成虫の特徴**: 飛行能力、生殖能力、分散
-- - **マイクロサービスの特徴**:
--   - **飛行** = 独立デプロイ(どこにでも配置可能)
+</div>
+
+- **成虫の特徴**: 飛行能力、生殖能力、分散
+- **マイクロサービスの特徴**:
+  - **飛行** = 独立デプロイ(どこにでも配置可能)
 
 
 ---
@@ -626,15 +684,15 @@ style: |
 
 > *サービスメッシュが分散した翅を調整する神経系*
 
--   - **生殖** = 新サービスを容易に生み出せる
--   - **分散** = 複数の環境で同時に動作
-- - 幼虫にはできなかったことが成虫にはできる
-- - モノリスにはできなかったことがマイクロサービスにはできる
+  - **生殖** = 新サービスを容易に生み出せる
+  - **分散** = 複数の環境で同時に動作
+- 幼虫にはできなかったことが成虫にはできる
+- モノリスにはできなかったことがマイクロサービスにはできる
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 移行の設計原則
 
 
@@ -644,7 +702,8 @@ style: |
 
 > *段階性・可逆性・並行稼働・観察・最小破壊が鍵*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">変態から学ぶ移行の5原則</text>
 <rect x="30" y="65" width="220" height="130" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -673,11 +732,13 @@ style: |
 <text x="435" y="298" fill="#ffffff" font-size="10">→ 後退計画より前進を優先</text>
 <text x="435" y="320" fill="#aaaaaa" font-size="10">ただし判断は慎重に</text>
 </svg>
-- - **1. 止まらない**: 蛹の中でも生物は生きている → ゼロダウンタイム
-- - **2. 外殻を維持**: APIの互換性を保つ → Facade Pattern
-- - **3. 段階的に溶かす**: 一度に全てを変えない → 漸進的移行
-- - **4. 設計図を先に**: imaginal discを先に作る → 新アーキテクチャを先に設計
-- - **5. 栄養を再利用**: 旧システムのリソースを新に活用 → データ移行
+</div>
+
+- **1. 止まらない**: 蛹の中でも生物は生きている → ゼロダウンタイム
+- **2. 外殻を維持**: APIの互換性を保つ → Facade Pattern
+- **3. 段階的に溶かす**: 一度に全てを変えない → 漸進的移行
+- **4. 設計図を先に**: imaginal discを先に作る → 新アーキテクチャを先に設計
+- **5. 栄養を再利用**: 旧システムのリソースを新に活用 → データ移行
 
 
 ---
@@ -686,7 +747,8 @@ style: |
 
 > *漸進的変化か断絶的再構成かが移行戦略の分岐点*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="36" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">移行戦略の比較：漸進 vs 変態</text>
 <rect x="30" y="65" width="340" height="290" rx="12" fill="#16213e" stroke="#aaaaaa" stroke-width="2"/>
@@ -714,10 +776,12 @@ style: |
 <text x="595" y="300" text-anchor="middle" fill="#f9a825" font-size="11">適用：大規模・複雑なシステム</text>
 <text x="595" y="320" text-anchor="middle" fill="#f9a825" font-size="11">技術的負債が深刻な場合</text>
 </svg>
-- - **不完全変態(バッタ型)** = インクリメンタルなリファクタリング
--   - 毎回少しずつ形が変わる
--   - 根本的な構造変化はない
--   - 安全だが限界がある
+</div>
+
+- **不完全変態(バッタ型)** = インクリメンタルなリファクタリング
+  - 毎回少しずつ形が変わる
+  - 根本的な構造変化はない
+  - 安全だが限界がある
 
 
 ---
@@ -726,10 +790,9 @@ style: |
 
 > *ビジネス継続性が要求される場合は完全変態を選べ*
 
-- - **完全変態(チョウ型)** = アーキテクチャの全面刷新
--   - 一度「溶けて」から再構築する
--   - リスクは高いが、根本的に異なる能力を獲得
-- 
+- **完全変態(チョウ型)** = アーキテクチャの全面刷新
+  - 一度「溶けて」から再構築する
+  - リスクは高いが、根本的に異なる能力を獲得
 - **どちらが正解かはコンテキスト次第**
 
 
@@ -737,7 +800,8 @@ style: |
 
 # 2つの変態戦略の比較（図解）
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect width="800" height="360" fill="#1a1a2e"/>
 <text x="400" y="34" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">不完全変態 vs 完全変態 — アーキテクチャ戦略の選択</text>
 <rect x="30" y="60" width="340" height="260" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -764,6 +828,7 @@ style: |
 <text x="460" y="270" fill="#aaaaaa" font-size="10">✗ リスクが高い、計画が重要</text>
 <text x="400" y="340" text-anchor="middle" fill="#aaaaaa" font-size="12">どちらが正解かはコンテキスト次第 — 変化の規模と許容リスクで選ぶ</text>
 </svg>
+</div>
 
 
 ---
@@ -772,12 +837,11 @@ style: |
 
 > *蛹の溶解を恐れるな—構造的移行だけが真の飛翔をもたらす*
 
-- - 昆虫の完全変態は3.5億年の進化が証明した移行戦略
-- - モノリス → マイクロサービスは完全変態そのもの
-- - Strangler Fig Pattern = 蛹の中のimaginal disc
-- - 「止まらない」「外殻を維持」「段階的に溶かす」
-- - Big Bang移行は進化が棄却した戦略
-- 
+- 昆虫の完全変態は3.5億年の進化が証明した移行戦略
+- モノリス → マイクロサービスは完全変態そのもの
+- Strangler Fig Pattern = 蛹の中のimaginal disc
+- 「止まらない」「外殻を維持」「段階的に溶かす」
+- Big Bang移行は進化が棄却した戦略
 - **「最も成功した移行は、外からは何も変わっていないように見える。」**
 
 
@@ -787,10 +851,10 @@ style: |
 
 > *生物学・Fowler・Newmanの3文献が変態移行論の土台*
 
-- - **Biology:**
-- - [Holometabolism - Wikipedia](https://en.wikipedia.org/wiki/Holometabolism)
-- - [What Happens Inside a Chrysalis - Scientific American](https://www.scientificamerican.com/article/caterpillar-butterfly-metamorphosis-explained/)
-- - **Software Architecture:**
-- - [Strangler Fig Application - Martin Fowler (2004)](https://martinfowler.com/bliki/StranglerFigApplication.html)
-- - [Building Microservices - Sam Newman (2021)](https://samnewman.io/books/building_microservices_2nd_edition/)
+- **Biology:**
+- [Holometabolism - Wikipedia](https://en.wikipedia.org/wiki/Holometabolism)
+- [What Happens Inside a Chrysalis - Scientific American](https://www.scientificamerican.com/article/caterpillar-butterfly-metamorphosis-explained/)
+- **Software Architecture:**
+- [Strangler Fig Application - Martin Fowler (2004)](https://martinfowler.com/bliki/StranglerFigApplication.html)
+- [Building Microservices - Sam Newman (2021)](https://samnewman.io/books/building_microservices_2nd_edition/)
 

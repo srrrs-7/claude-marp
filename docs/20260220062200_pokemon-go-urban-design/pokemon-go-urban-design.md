@@ -7,41 +7,76 @@ paginate: true
 header: "Pokemon GOと都市デザイン"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Pokemon GOと都市デザイン
 拡張現実が変えた街の歩き方
 
@@ -87,31 +122,34 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # アジェンダ
 
 > *ARが都市の歩き方・経済・コミュニティを変えた全貌を追う*
 
-- 1. Pokemon GOの社会現象
-- 2. 都市空間への影響メカニズム
-- 3. 歩行パターンの変化
-- 4. 経済・コミュニティ効果
-- 5. 都市計画への示唆
-- 6. AR時代の公共空間デザイン
+1. Pokemon GOの社会現象
+2. 都市空間への影響メカニズム
+3. 歩行パターンの変化
+4. 経済・コミュニティ効果
+5. 都市計画への示唆
+6. AR時代の公共空間デザイン
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Pokemon GOの社会現象
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 数字で見るPokemon GOのインパクト
 
 > *7.5億DL・初月26%歩行増加—史上最大の位置情報実験*
 
 ![w:900 center](assets/pokemon-go-impact.svg)
+
 - **2016年7月リリース** ― 初月で最もDLされたアプリの世界記録
 - 累計DL数：**7.5億以上**（2023年時点）
 - 累計収益：**60億ドル以上**
@@ -135,7 +173,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 都市空間への影響メカニズム
 
 
@@ -148,11 +186,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # PokeStopが都市の「目」を変えた
 
 > *NYセントラルパーク利用30%増—デジタルが物理空間を再発見させた*
 
 ![w:900 center](assets/pokestop-density.svg)
+
 - **PokeStop = 都市のランドマークの再発見装置**
 - 普段通り過ぎていた彫刻・記念碑・壁画に足を止める人々
 - 地域の歴史・文化遺産への「気づき」が生まれた
@@ -163,7 +203,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 歩行パターンの変化
 
 
@@ -176,11 +216,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 歩行データが示す変化
 
 > *非運動層への+1,473歩効果—ゲームが公衆衛生に貢献した稀有な事例*
 
 ![w:900 center](assets/walkability-data.svg)
+
 - **Microsoft Research（2017）の分析結果：**
 - Pokemon GOプレイヤーの1日あたり歩行数：**+1,473歩**
 - 効果の持続期間：約30日後に減衰（ただし完全にはゼロに戻らない）
@@ -191,17 +233,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 経済・コミュニティ効果
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 地域経済への波及効果
 
 > *3日間で8.9万人・18億円—ARが聖地巡礼の新しい形を創出した*
 
 ![w:900 center](assets/economic-impact.svg)
+
 - **スポンサードPokeStop** ― マクドナルド・スターバックスが参加
 - PokeStop近くの小売店：**売上+25-50%**（複数調査の報告）
 - 地方自治体のコラボイベント ― 鳥取砂丘・横須賀・熊本
@@ -211,11 +255,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # コミュニティの自発的形成
 
 > *デジタルがリアルなコミュニティを生む—弱い紐帯がゲームで実証*
 
 ![w:900 center](assets/community-formation.svg)
+
 - **レイドバトル** ― 見知らぬ人同士が協力する設計
 - コミュニティ・デイ ― 月1回の大規模イベントが公園に人を集める
 - Discord/LINEグループが自然発生 → リアルの友人関係に発展
@@ -226,7 +272,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 都市計画への示唆
 
 ![w:900 center](assets/urban-planning-lessons.svg)
@@ -234,6 +280,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # Pokemon GOが教えた都市計画の盲点
 
 > *動機付けなき公共空間は使われない—楽しさが経路を変える*
@@ -247,11 +294,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-58 -->
 # AR時代の都市計画フレームワーク
 
 > *Walkability指標にデジタルレイヤーを加えた共同設計が必須*
 
 ![w:900 center](assets/walkability-comparison.svg)
+
 - **Walkability（歩きやすさ）の再定義が必要：**
 - 従来：歩道幅・信号タイミング・バリアフリー
 - AR時代：+デジタルレイヤーとの共存・注意力の分散・集客ポイント設計
@@ -263,7 +312,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # AR時代の公共空間デザイン
 
 ![w:900 center](assets/ar-future-design.svg)
@@ -271,11 +320,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # Pokemon GOの先にある未来
 
 > *ARグラス時代に都市はパーソナライズされた景観になる*
 
 ![w:900 center](assets/ar-city-layers.svg)
+
 - **ARグラス時代** ― スマホを覗き込む必要がなくなる
 - デジタルツインと連携した都市体験（バーチャル歴史ガイドなど）
 - 「見える人だけに見える」パーソナライズされた都市景観
@@ -286,7 +337,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead fit-94 -->
 # まとめ
 
 - Pokemon GOは**ゲームの姿をした壮大な都市実験**だった
@@ -298,14 +349,15 @@ style: |
 
 ---
 
+<!-- _class: invert fit-82 -->
 # 参考文献
 
 > *Lancet・Stanford・Niantic公式など主要データソース一覧*
 
-- - **学術研究:**
-- - [Pokemon GO and Physical Activity (The Lancet, 2016)](https://www.thelancet.com/journals/landig/)
-- - [Influence of Pokemon GO on Physical Activity (JMIR, 2017)](https://www.jmir.org/)
-- - **データ・分析:**
-- - [Niantic Labs Official Blog](https://nianticlabs.com/blog)
-- - [Sensor Tower - Pokemon GO Revenue Data](https://sensortower.com/)
+- **学術研究:**
+- [Pokemon GO and Physical Activity (The Lancet, 2016)](https://www.thelancet.com/journals/landig/)
+- [Influence of Pokemon GO on Physical Activity (JMIR, 2017)](https://www.jmir.org/)
+- **データ・分析:**
+- [Niantic Labs Official Blog](https://nianticlabs.com/blog)
+- [Sensor Tower - Pokemon GO Revenue Data](https://sensortower.com/)
 

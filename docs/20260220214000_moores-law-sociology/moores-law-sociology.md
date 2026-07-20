@@ -7,41 +7,76 @@ paginate: true
 header: "ムーアの法則の社会学"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,11 +117,10 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ムーアの法則の社会学：予言が法則になった日
 
 - 観察が目標に、目標が予言に、予言が神話になった60年の物語
-- 
 - 半導体産業の「自己実現的予言」を社会学の視点から読み解く
 
 
@@ -96,12 +130,12 @@ style: |
 
 > *4フェーズ12章で観察が神話になる過程を追う*
 
-- 1. ムーアの法則とは何か
-- 2. 1965年：経験的観察の誕生
-- 3. 社会学的フレームワーク
-- 4. Phase 1：観察から目標へ
-- 5. Phase 2：産業ロードマップ化
-- 6. Phase 3：自己実現的予言
+1. ムーアの法則とは何か
+2. 1965年：経験的観察の誕生
+3. 社会学的フレームワーク
+4. Phase 1：観察から目標へ
+5. Phase 2：産業ロードマップ化
+6. Phase 3：自己実現的予言
 
 
 ---
@@ -110,12 +144,12 @@ style: |
 
 > *神話化・反例・Post-Moore時代まで網羅した後半*
 
-- 7. Phase 4：神話化と文化的影響
-- 8. トランジスタ数の推移
-- 9. 変容プロセスの全体像
-- 10. 「法則」と呼ばれる理由
-- 11. Post-Moore時代の展望
-- 12. まとめ：予言の社会学
+7. Phase 4：神話化と文化的影響
+8. トランジスタ数の推移
+9. 変容プロセスの全体像
+10. 「法則」と呼ばれる理由
+11. Post-Moore時代の展望
+12. まとめ：予言の社会学
 
 
 ---
@@ -124,10 +158,12 @@ style: |
 
 > *2年で2倍の観察が産業の目標に変わった——法則でなく預言だ*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">ムーアの法則：60年を支配した「予言」</text><rect x="40" y="50" width="340" height="260" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="80" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">Gordon Moore (1965年)</text><text x="210" y="110" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">「集積回路上のトランジスタ数は</text><text x="210" y="130" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">約2年で倍増する」</text><line x1="60" y1="145" x2="360" y2="145" stroke="#333355" stroke-width="1"/><text x="70" y="170" fill="#aaaaaa" font-size="11" font-family="sans-serif">元の論文（1965年）:</text><text x="70" y="190" fill="#aaaaaa" font-size="11" font-family="sans-serif">Electronics誌 4ページ</text><text x="70" y="210" fill="#aaaaaa" font-size="11" font-family="sans-serif">データポイント: わずか4つ</text><text x="70" y="235" fill="#4fc3f7" font-size="11" font-family="sans-serif">1975年: 2年で2倍に修正</text><text x="70" y="255" fill="#4fc3f7" font-size="11" font-family="sans-serif">業界標準として採用</text><text x="70" y="280" fill="#81c784" font-size="11" font-family="sans-serif">60年間: 「憲法」として機能</text><rect x="420" y="50" width="340" height="260" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="590" y="80" text-anchor="middle" fill="#4fc3f7" font-size="14" font-family="sans-serif" font-weight="bold">指数成長の実績</text><text x="440" y="110" fill="#ffffff" font-size="11" font-family="sans-serif">1971年: Intel 4004 (2,300素子)</text><text x="440" y="132" fill="#ffffff" font-size="11" font-family="sans-serif">1985年: Intel 386 (275,000素子)</text><text x="440" y="154" fill="#ffffff" font-size="11" font-family="sans-serif">2000年: Pentium 4 (4,200万素子)</text><text x="440" y="176" fill="#ffffff" font-size="11" font-family="sans-serif">2010年: i7 (1,170,000,000素子)</text><text x="440" y="198" fill="#f9a825" font-size="11" font-family="sans-serif">2020年: M1 (16,000,000,000素子)</text><line x1="440" y1="215" x2="740" y2="215" stroke="#333355" stroke-width="1"/><text x="590" y="240" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">50年で約700万倍</text><text x="590" y="265" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">物理法則ではなく</text><text x="590" y="283" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">「社会的合意」で維持された</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">ムーアの法則：60年を支配した「予言」</text><rect x="40" y="50" width="340" height="260" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="80" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">Gordon Moore (1965年)</text><text x="210" y="110" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">「集積回路上のトランジスタ数は</text><text x="210" y="130" text-anchor="middle" fill="#ffffff" font-size="13" font-family="sans-serif">約2年で倍増する」</text><line x1="60" y1="145" x2="360" y2="145" stroke="#333355" stroke-width="1"/><text x="70" y="170" fill="#aaaaaa" font-size="11" font-family="sans-serif">元の論文（1965年）:</text><text x="70" y="190" fill="#aaaaaa" font-size="11" font-family="sans-serif">Electronics誌 4ページ</text><text x="70" y="210" fill="#aaaaaa" font-size="11" font-family="sans-serif">データポイント: わずか4つ</text><text x="70" y="235" fill="#4fc3f7" font-size="11" font-family="sans-serif">1975年: 2年で2倍に修正</text><text x="70" y="255" fill="#4fc3f7" font-size="11" font-family="sans-serif">業界標準として採用</text><text x="70" y="280" fill="#81c784" font-size="11" font-family="sans-serif">60年間: 「憲法」として機能</text><rect x="420" y="50" width="340" height="260" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="590" y="80" text-anchor="middle" fill="#4fc3f7" font-size="14" font-family="sans-serif" font-weight="bold">指数成長の実績</text><text x="440" y="110" fill="#ffffff" font-size="11" font-family="sans-serif">1971年: Intel 4004 (2,300素子)</text><text x="440" y="132" fill="#ffffff" font-size="11" font-family="sans-serif">1985年: Intel 386 (275,000素子)</text><text x="440" y="154" fill="#ffffff" font-size="11" font-family="sans-serif">2000年: Pentium 4 (4,200万素子)</text><text x="440" y="176" fill="#ffffff" font-size="11" font-family="sans-serif">2010年: i7 (1,170,000,000素子)</text><text x="440" y="198" fill="#f9a825" font-size="11" font-family="sans-serif">2020年: M1 (16,000,000,000素子)</text><line x1="440" y1="215" x2="740" y2="215" stroke="#333355" stroke-width="1"/><text x="590" y="240" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">50年で約700万倍</text><text x="590" y="265" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">物理法則ではなく</text><text x="590" y="283" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">「社会的合意」で維持された</text></svg>
+</div>
+
 - **ゴードン・ムーア（1965年）の予測：**
 - 「集積回路上のトランジスタ数は約2年で倍増する」
-- 
 
 
 ---
@@ -136,10 +172,10 @@ style: |
 
 > *4データ点の観察が60年間の産業憲法になった*
 
-- - 物理法則ではなく**経験的観察**に基づく予測
-- - 元の論文：Electronics誌「Cramming more components onto integrated circuits」
-- - 当初は1年で2倍 → 1975年に2年で2倍に修正
-- - 60年間にわたり半導体産業の「憲法」として機能
+- 物理法則ではなく**経験的観察**に基づく予測
+- 元の論文：Electronics誌「Cramming more components onto integrated circuits」
+- 当初は1年で2倍 → 1975年に2年で2倍に修正
+- 60年間にわたり半導体産業の「憲法」として機能
 
 
 ---
@@ -148,11 +184,13 @@ style: |
 
 > *4ページの論文が半導体産業60年のロードマップを決定した*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">ムーアの観察：トランジスタ密度の推移</text><line x1="80" y1="300" x2="720" y2="300" stroke="#ffffff" stroke-width="2"/><line x1="80" y1="50" x2="80" y2="300" stroke="#ffffff" stroke-width="2"/><text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">年</text><text x="20" y="180" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" transform="rotate(-90,20,180)">トランジスタ数（対数）</text><text x="70" y="304" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">1</text><text x="70" y="250" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">10</text><text x="70" y="200" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">100</text><text x="70" y="150" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">10K</text><text x="70" y="100" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">1M</text><text x="70" y="60" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">1B</text><text x="133" y="316" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">1960</text><text x="290" y="316" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">1970</text><text x="448" y="316" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">1980</text><text x="606" y="316" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">1990</text><line x1="80" y1="250" x2="720" y2="250" stroke="#333355" stroke-width="1" stroke-dasharray="3,3"/><line x1="80" y1="200" x2="720" y2="200" stroke="#333355" stroke-width="1" stroke-dasharray="3,3"/><line x1="80" y1="150" x2="720" y2="150" stroke="#333355" stroke-width="1" stroke-dasharray="3,3"/><line x1="80" y1="100" x2="720" y2="100" stroke="#333355" stroke-width="1" stroke-dasharray="3,3"/><path d="M 133 290 L 196 268 L 259 246 L 322 224 L 385 202 L 448 180 L 511 158 L 574 136 L 637 114 L 700 92" stroke="#f9a825" stroke-width="3" fill="none"/><circle cx="133" cy="290" r="5" fill="#e91e63"/><text x="133" y="282" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">1965</text><text x="133" y="272" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">観察</text><line x1="290" y1="50" x2="290" y2="300" stroke="#f9a825" stroke-width="1" stroke-dasharray="6,3"/><text x="298" y="80" fill="#f9a825" font-size="11" font-family="sans-serif">「2年ごとに倍増」</text><text x="298" y="95" fill="#f9a825" font-size="11" font-family="sans-serif">予測を発表</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">ムーアの観察：トランジスタ密度の推移</text><line x1="80" y1="300" x2="720" y2="300" stroke="#ffffff" stroke-width="2"/><line x1="80" y1="50" x2="80" y2="300" stroke="#ffffff" stroke-width="2"/><text x="400" y="340" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">年</text><text x="20" y="180" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif" transform="rotate(-90,20,180)">トランジスタ数（対数）</text><text x="70" y="304" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">1</text><text x="70" y="250" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">10</text><text x="70" y="200" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">100</text><text x="70" y="150" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">10K</text><text x="70" y="100" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">1M</text><text x="70" y="60" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">1B</text><text x="133" y="316" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">1960</text><text x="290" y="316" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">1970</text><text x="448" y="316" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">1980</text><text x="606" y="316" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">1990</text><line x1="80" y1="250" x2="720" y2="250" stroke="#333355" stroke-width="1" stroke-dasharray="3,3"/><line x1="80" y1="200" x2="720" y2="200" stroke="#333355" stroke-width="1" stroke-dasharray="3,3"/><line x1="80" y1="150" x2="720" y2="150" stroke="#333355" stroke-width="1" stroke-dasharray="3,3"/><line x1="80" y1="100" x2="720" y2="100" stroke="#333355" stroke-width="1" stroke-dasharray="3,3"/><path d="M 133 290 L 196 268 L 259 246 L 322 224 L 385 202 L 448 180 L 511 158 L 574 136 L 637 114 L 700 92" stroke="#f9a825" stroke-width="3" fill="none"/><circle cx="133" cy="290" r="5" fill="#e91e63"/><text x="133" y="282" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">1965</text><text x="133" y="272" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">観察</text><line x1="290" y1="50" x2="290" y2="300" stroke="#f9a825" stroke-width="1" stroke-dasharray="6,3"/><text x="298" y="80" fill="#f9a825" font-size="11" font-family="sans-serif">「2年ごとに倍増」</text><text x="298" y="95" fill="#f9a825" font-size="11" font-family="sans-serif">予測を発表</text></svg>
+</div>
+
 - **背景：Fairchild Semiconductor の研究開発部長**
-- 
-- - データポイント：わずか**4つ**の集積回路の観察
-- - 1959年(1素子)→1962年(8素子)→1964年(32素子)→1965年(64素子)
+- データポイント：わずか**4つ**の集積回路の観察
+- 1959年(1素子)→1962年(8素子)→1964年(32素子)→1965年(64素子)
 
 
 ---
@@ -161,9 +199,8 @@ style: |
 
 > *ゴードン・ムーアは予測したのではなく目標を植え付けた*
 
-- - 「10年後には65,000素子のチップが実現する」と予測
-- - 学会論文ではなく業界誌の招待記事だった
-- 
+- 「10年後には65,000素子のチップが実現する」と予測
+- 学会論文ではなく業界誌の招待記事だった
 - **社会学的ポイント：科学論文ではなく「業界の合意形成」から始まった**
 
 
@@ -173,9 +210,11 @@ style: |
 
 > *信じるから達成する——予言の社会学が半導体産業を動かした*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">マートンの自己実現的予言：ムーアの法則の社会的メカニズム</text><rect x="300" y="50" width="200" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">ムーアの予測</text><text x="400" y="98" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「2年で2倍」という観察</text><line x1="400" y1="110" x2="400" y2="145" stroke="#4fc3f7" stroke-width="2"/><polygon points="393,145 400,160 407,145" fill="#4fc3f7"/><rect x="260" y="160" width="280" height="55" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="400" y="185" text-anchor="middle" fill="#4fc3f7" font-size="12" font-family="sans-serif" font-weight="bold">産業の信念形成</text><text x="400" y="203" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「これは達成すべき目標だ」</text><line x1="260" y1="188" x2="120" y2="250" stroke="#f9a825" stroke-width="2"/><polygon points="113,247 118,262 127,252" fill="#f9a825"/><rect x="40" y="262" width="180" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="130" y="288" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif" font-weight="bold">巨額投資の集中</text><text x="130" y="308" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">R&D、工場建設</text><line x1="540" y1="188" x2="680" y2="250" stroke="#e91e63" stroke-width="2"/><polygon points="673,247 682,262 687,252" fill="#e91e63"/><rect x="580" y="262" width="180" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="670" y="288" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif" font-weight="bold">競争圧力</text><text x="670" y="308" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「遅れたら脱落する」</text><line x1="130" y1="262" x2="350" y2="130" stroke="#81c784" stroke-width="1.5" stroke-dasharray="5,4"/><polygon points="344,122 356,128 348,138" fill="#81c784"/><line x1="670" y1="262" x2="450" y2="130" stroke="#81c784" stroke-width="1.5" stroke-dasharray="5,4"/><polygon points="452,122 444,132 456,138" fill="#81c784"/><text x="400" y="345" text-anchor="middle" fill="#81c784" font-size="12" font-family="sans-serif" font-weight="bold">→ 予測が現実を作り出す「自己実現ループ」が完成</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">マートンの自己実現的予言：ムーアの法則の社会的メカニズム</text><rect x="300" y="50" width="200" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">ムーアの予測</text><text x="400" y="98" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「2年で2倍」という観察</text><line x1="400" y1="110" x2="400" y2="145" stroke="#4fc3f7" stroke-width="2"/><polygon points="393,145 400,160 407,145" fill="#4fc3f7"/><rect x="260" y="160" width="280" height="55" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="400" y="185" text-anchor="middle" fill="#4fc3f7" font-size="12" font-family="sans-serif" font-weight="bold">産業の信念形成</text><text x="400" y="203" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「これは達成すべき目標だ」</text><line x1="260" y1="188" x2="120" y2="250" stroke="#f9a825" stroke-width="2"/><polygon points="113,247 118,262 127,252" fill="#f9a825"/><rect x="40" y="262" width="180" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="130" y="288" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif" font-weight="bold">巨額投資の集中</text><text x="130" y="308" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">R&D、工場建設</text><line x1="540" y1="188" x2="680" y2="250" stroke="#e91e63" stroke-width="2"/><polygon points="673,247 682,262 687,252" fill="#e91e63"/><rect x="580" y="262" width="180" height="60" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="670" y="288" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif" font-weight="bold">競争圧力</text><text x="670" y="308" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「遅れたら脱落する」</text><line x1="130" y1="262" x2="350" y2="130" stroke="#81c784" stroke-width="1.5" stroke-dasharray="5,4"/><polygon points="344,122 356,128 348,138" fill="#81c784"/><line x1="670" y1="262" x2="450" y2="130" stroke="#81c784" stroke-width="1.5" stroke-dasharray="5,4"/><polygon points="452,122 444,132 456,138" fill="#81c784"/><text x="400" y="345" text-anchor="middle" fill="#81c784" font-size="12" font-family="sans-serif" font-weight="bold">→ 予測が現実を作り出す「自己実現ループ」が完成</text></svg>
+</div>
+
 - **ロバート・K・マートン（1948年）の概念：**
-- 
 - 「最初の誤った状況定義が、新しい行動を呼び起こし、
 - 当初の誤った考えを真実にしてしまう」
 
@@ -186,11 +225,13 @@ style: |
 
 > *ムーアの法則はマートン理論の最大規模の実証例だ*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">マートンの自己実現的予言：3段階モデル</text><rect x="40" y="60" width="210" height="260" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="145" y="83" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">①予言</text><rect x="58" y="94" width="174" height="40" rx="6" fill="#1a1a2e"/><text x="145" y="114" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">信頼できる権威が</text><text x="145" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">未来を予測する</text><rect x="58" y="145" width="174" height="50" rx="6" fill="#1a1a2e"/><text x="145" y="163" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ムーアの法則</text><text x="145" y="179" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「2年で2倍」</text><rect x="58" y="207" width="174" height="40" rx="6" fill="#1a1a2e"/><text x="145" y="226" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">予言が広く信じられ</text><text x="145" y="242" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">行動に影響する</text><rect x="58" y="259" width="174" height="40" rx="6" fill="#f9a825" fill-opacity="0.15"/><text x="145" y="282" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">→ 投資・目標設定</text><polygon points="255,190 290,180 290,200" fill="#e91e63"/><line x1="250" y1="190" x2="290" y2="190" stroke="#e91e63" stroke-width="2"/><rect x="295" y="60" width="210" height="260" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="83" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">②行動変容</text><rect x="313" y="94" width="174" height="40" rx="6" fill="#1a1a2e"/><text x="400" y="114" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">予言を信じた人々が</text><text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">実現に向けて行動する</text><rect x="313" y="145" width="174" height="50" rx="6" fill="#1a1a2e"/><text x="400" y="163" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">半導体企業</text><text x="400" y="179" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">目標値に合わせ開発</text><rect x="313" y="207" width="174" height="40" rx="6" fill="#1a1a2e"/><text x="400" y="226" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ITRS標準化</text><text x="400" y="242" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ロードマップが産業調整</text><rect x="313" y="259" width="174" height="40" rx="6" fill="#e91e63" fill-opacity="0.15"/><text x="400" y="282" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">→ 協調的行動</text><polygon points="510,190 545,180 545,200" fill="#f9a825"/><line x1="505" y1="190" x2="545" y2="190" stroke="#f9a825" stroke-width="2"/><rect x="550" y="60" width="210" height="260" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="655" y="83" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">③予言の実現</text><rect x="568" y="94" width="174" height="40" rx="6" fill="#1a1a2e"/><text x="655" y="114" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">行動の結果として</text><text x="655" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">予言が実現する</text><rect x="568" y="145" width="174" height="50" rx="6" fill="#1a1a2e"/><text x="655" y="163" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">実際に2年で2倍</text><text x="655" y="179" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">40年間継続した</text><rect x="568" y="207" width="174" height="40" rx="6" fill="#1a1a2e"/><text x="655" y="226" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">「法則」として</text><text x="655" y="242" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">認知される</text><rect x="568" y="259" width="174" height="40" rx="6" fill="#f9a825" fill-opacity="0.15"/><text x="655" y="282" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">→ 神話化・制度化</text></svg>
-- 
-- - **銀行取り付け騒ぎ**：「破綻する」という噂 → 預金者が殺到 → 本当に破綻
-- - **株式市場バブル**：「上がる」という期待 → 投資集中 → 実際に上昇
-- - **ムーアの法則**：「2倍になる」という予測 → 投資集中 → 実際に2倍に
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">マートンの自己実現的予言：3段階モデル</text><rect x="40" y="60" width="210" height="260" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="145" y="83" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">①予言</text><rect x="58" y="94" width="174" height="40" rx="6" fill="#1a1a2e"/><text x="145" y="114" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">信頼できる権威が</text><text x="145" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">未来を予測する</text><rect x="58" y="145" width="174" height="50" rx="6" fill="#1a1a2e"/><text x="145" y="163" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">ムーアの法則</text><text x="145" y="179" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「2年で2倍」</text><rect x="58" y="207" width="174" height="40" rx="6" fill="#1a1a2e"/><text x="145" y="226" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">予言が広く信じられ</text><text x="145" y="242" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">行動に影響する</text><rect x="58" y="259" width="174" height="40" rx="6" fill="#f9a825" fill-opacity="0.15"/><text x="145" y="282" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">→ 投資・目標設定</text><polygon points="255,190 290,180 290,200" fill="#e91e63"/><line x1="250" y1="190" x2="290" y2="190" stroke="#e91e63" stroke-width="2"/><rect x="295" y="60" width="210" height="260" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="83" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">②行動変容</text><rect x="313" y="94" width="174" height="40" rx="6" fill="#1a1a2e"/><text x="400" y="114" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">予言を信じた人々が</text><text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">実現に向けて行動する</text><rect x="313" y="145" width="174" height="50" rx="6" fill="#1a1a2e"/><text x="400" y="163" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">半導体企業</text><text x="400" y="179" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">目標値に合わせ開発</text><rect x="313" y="207" width="174" height="40" rx="6" fill="#1a1a2e"/><text x="400" y="226" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ITRS標準化</text><text x="400" y="242" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">ロードマップが産業調整</text><rect x="313" y="259" width="174" height="40" rx="6" fill="#e91e63" fill-opacity="0.15"/><text x="400" y="282" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">→ 協調的行動</text><polygon points="510,190 545,180 545,200" fill="#f9a825"/><line x1="505" y1="190" x2="545" y2="190" stroke="#f9a825" stroke-width="2"/><rect x="550" y="60" width="210" height="260" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="655" y="83" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">③予言の実現</text><rect x="568" y="94" width="174" height="40" rx="6" fill="#1a1a2e"/><text x="655" y="114" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">行動の結果として</text><text x="655" y="130" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">予言が実現する</text><rect x="568" y="145" width="174" height="50" rx="6" fill="#1a1a2e"/><text x="655" y="163" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">実際に2年で2倍</text><text x="655" y="179" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">40年間継続した</text><rect x="568" y="207" width="174" height="40" rx="6" fill="#1a1a2e"/><text x="655" y="226" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">「法則」として</text><text x="655" y="242" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">認知される</text><rect x="568" y="259" width="174" height="40" rx="6" fill="#f9a825" fill-opacity="0.15"/><text x="655" y="282" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">→ 神話化・制度化</text></svg>
+</div>
+
+- **銀行取り付け騒ぎ**：「破綻する」という噂 → 預金者が殺到 → 本当に破綻
+- **株式市場バブル**：「上がる」という期待 → 投資集中 → 実際に上昇
+- **ムーアの法則**：「2倍になる」という予測 → 投資集中 → 実際に2倍に
 
 
 ---
@@ -199,11 +240,13 @@ style: |
 
 > *最初の10年は純粋な観察——予言色はまだなかった重要な事実*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">Phase 1: 経験的観察期 (1965–1975)</text><rect x="40" y="50" width="340" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="76" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">当時の技術的文脈</text><rect x="60" y="88" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="210" y="111" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1965年：ICは数十個のトランジスタ</text><rect x="60" y="132" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="210" y="155" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">観察期間：わずか6年のデータ</text><rect x="60" y="176" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="210" y="199" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ムーアはFairchild半導体の研究者</text><rect x="60" y="220" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="210" y="243" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">当初は「10年間の予測」として発表</text><rect x="60" y="264" width="300" height="50" rx="6" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="286" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">純粋な経験的観察</text><text x="210" y="304" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">「これまでそうだった」</text><rect x="420" y="50" width="340" height="280" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="76" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">業界の反応</text><rect x="440" y="88" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="590" y="111" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">専門家の間で注目を集める</text><rect x="440" y="132" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="590" y="155" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Intel設立(1968)に知識が活用</text><rect x="440" y="176" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="590" y="199" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1971年 Intel 4004: 2,300 TR</text><rect x="440" y="220" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="590" y="243" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">まだ「ムーアの法則」と呼ばれず</text><rect x="440" y="264" width="300" height="50" rx="6" fill="#e91e63" fill-opacity="0.15"/><text x="590" y="286" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">予言 → 計画指標へ変容</text><text x="590" y="304" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">「これからそうなる」</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">Phase 1: 経験的観察期 (1965–1975)</text><rect x="40" y="50" width="340" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="76" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">当時の技術的文脈</text><rect x="60" y="88" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="210" y="111" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1965年：ICは数十個のトランジスタ</text><rect x="60" y="132" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="210" y="155" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">観察期間：わずか6年のデータ</text><rect x="60" y="176" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="210" y="199" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ムーアはFairchild半導体の研究者</text><rect x="60" y="220" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="210" y="243" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">当初は「10年間の予測」として発表</text><rect x="60" y="264" width="300" height="50" rx="6" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="286" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">純粋な経験的観察</text><text x="210" y="304" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">「これまでそうだった」</text><rect x="420" y="50" width="340" height="280" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="76" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">業界の反応</text><rect x="440" y="88" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="590" y="111" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">専門家の間で注目を集める</text><rect x="440" y="132" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="590" y="155" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">Intel設立(1968)に知識が活用</text><rect x="440" y="176" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="590" y="199" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1971年 Intel 4004: 2,300 TR</text><rect x="440" y="220" width="300" height="36" rx="6" fill="#1a1a2e"/><text x="590" y="243" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">まだ「ムーアの法則」と呼ばれず</text><rect x="440" y="264" width="300" height="50" rx="6" fill="#e91e63" fill-opacity="0.15"/><text x="590" y="286" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">予言 → 計画指標へ変容</text><text x="590" y="304" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">「これからそうなる」</text></svg>
+</div>
+
 - **「パターンの発見」段階**
-- 
-- - ムーアは既存データから**トレンドライン**を引いただけ
-- - Fairchild/Intelの社内知見に基づく観察
+- ムーアは既存データから**トレンドライン**を引いただけ
+- Fairchild/Intelの社内知見に基づく観察
 
 
 ---
@@ -212,10 +255,12 @@ style: |
 
 > *観察期に業界が揃って法則を信じ始めたことが次の相を生んだ*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">初期の半導体業界：需要と技術の相互作用</text><rect x="40" y="50" width="340" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="75" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">技術革新の駆動力</text><rect x="58" y="88" width="304" height="40" rx="5" fill="#1a1a2e"/><text x="210" y="108" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">競争：Intel vs TI vs Motorola</text><text x="210" y="124" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">各社が「予言」に追いつこうとする</text><rect x="58" y="136" width="304" height="40" rx="5" fill="#1a1a2e"/><text x="210" y="156" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">軍事需要：宇宙/核/ミサイル</text><text x="210" y="172" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">政府の巨大資金が技術を加速</text><rect x="58" y="184" width="304" height="40" rx="5" fill="#1a1a2e"/><text x="210" y="204" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">学習曲線効果</text><text x="210" y="220" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">生産量増加→コスト低下→需要増加</text><rect x="58" y="232" width="304" height="40" rx="5" fill="#1a1a2e"/><text x="210" y="252" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">設計ツールの自動化</text><text x="210" y="268" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">CAD/EDAツールが複雑さを管理</text><rect x="58" y="280" width="304" height="34" rx="5" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="302" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">正のフィードバックループが形成</text><rect x="420" y="50" width="340" height="280" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="75" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">予言の自己実現メカニズム</text><rect x="438" y="88" width="304" height="36" rx="5" fill="#1a1a2e"/><text x="590" y="111" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">「2年で2倍」が業界の共通認識に</text><rect x="438" y="132" width="304" height="36" rx="5" fill="#1a1a2e"/><text x="590" y="155" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ソフトウェアが「2年後のHW」向けに設計</text><rect x="438" y="176" width="304" height="36" rx="5" fill="#1a1a2e"/><text x="590" y="199" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">その需要がHW開発を牽引</text><rect x="438" y="220" width="304" height="36" rx="5" fill="#1a1a2e"/><text x="590" y="243" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">HWが実現→ソフト需要さらに増大</text><rect x="438" y="264" width="304" height="50" rx="5" fill="#e91e63" fill-opacity="0.2"/><text x="590" y="283" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">観察→予言→行動→実現→観察</text><text x="590" y="301" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">40年間の自己強化サイクル</text></svg>
-- - 当時は「面白い仮説」程度の扱い
-- - 半導体業界内でのみ認知される
-- 
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">初期の半導体業界：需要と技術の相互作用</text><rect x="40" y="50" width="340" height="280" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="75" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">技術革新の駆動力</text><rect x="58" y="88" width="304" height="40" rx="5" fill="#1a1a2e"/><text x="210" y="108" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">競争：Intel vs TI vs Motorola</text><text x="210" y="124" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">各社が「予言」に追いつこうとする</text><rect x="58" y="136" width="304" height="40" rx="5" fill="#1a1a2e"/><text x="210" y="156" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">軍事需要：宇宙/核/ミサイル</text><text x="210" y="172" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">政府の巨大資金が技術を加速</text><rect x="58" y="184" width="304" height="40" rx="5" fill="#1a1a2e"/><text x="210" y="204" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">学習曲線効果</text><text x="210" y="220" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">生産量増加→コスト低下→需要増加</text><rect x="58" y="232" width="304" height="40" rx="5" fill="#1a1a2e"/><text x="210" y="252" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">設計ツールの自動化</text><text x="210" y="268" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">CAD/EDAツールが複雑さを管理</text><rect x="58" y="280" width="304" height="34" rx="5" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="302" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">正のフィードバックループが形成</text><rect x="420" y="50" width="340" height="280" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="75" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">予言の自己実現メカニズム</text><rect x="438" y="88" width="304" height="36" rx="5" fill="#1a1a2e"/><text x="590" y="111" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">「2年で2倍」が業界の共通認識に</text><rect x="438" y="132" width="304" height="36" rx="5" fill="#1a1a2e"/><text x="590" y="155" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ソフトウェアが「2年後のHW」向けに設計</text><rect x="438" y="176" width="304" height="36" rx="5" fill="#1a1a2e"/><text x="590" y="199" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">その需要がHW開発を牽引</text><rect x="438" y="220" width="304" height="36" rx="5" fill="#1a1a2e"/><text x="590" y="243" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">HWが実現→ソフト需要さらに増大</text><rect x="438" y="264" width="304" height="50" rx="5" fill="#e91e63" fill-opacity="0.2"/><text x="590" y="283" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">観察→予言→行動→実現→観察</text><text x="590" y="301" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">40年間の自己強化サイクル</text></svg>
+</div>
+
+- 当時は「面白い仮説」程度の扱い
+- 半導体業界内でのみ認知される
 - **重要：この時点では「予測」であり「法則」ではない**
 
 
@@ -225,11 +270,13 @@ style: |
 
 > *観察から目標へ——IntelとIBMが法則を設計基準に採用した転換点*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">Phase 2: 産業目標化 (1975–1995)</text><rect x="40" y="50" width="720" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="75" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1975年：ムーアが「2年→2年」に修正。IntelのCEOとして産業に権威を持つ</text><text x="400" y="97" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">単なる観察から「産業の目標値」へ変容する転換点</text><rect x="40" y="125" width="340" height="200" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="210" y="148" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">変化の駆動力</text><rect x="58" y="160" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="181" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">企業が2年サイクルで製品ロードマップを策定</text><rect x="58" y="200" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="221" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">研究開発予算の配分基準となる</text><rect x="58" y="240" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="261" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">投資家・アナリストの業績評価指標に</text><rect x="58" y="280" width="304" height="32" rx="5" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="301" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">法則が「現実を規定」し始める</text><rect x="420" y="125" width="340" height="200" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="590" y="148" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">主要マイルストーン</text><rect x="438" y="160" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="181" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1975: Zilog Z80 (8,500 TR)</text><rect x="438" y="200" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="221" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1982: Intel 286 (134,000 TR)</text><rect x="438" y="240" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="261" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1989: Intel 486 (1,200,000 TR)</text><rect x="438" y="280" width="304" height="32" rx="5" fill="#e91e63" fill-opacity="0.2"/><text x="590" y="301" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">ほぼ予言通りに進展</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">Phase 2: 産業目標化 (1975–1995)</text><rect x="40" y="50" width="720" height="60" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="75" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1975年：ムーアが「2年→2年」に修正。IntelのCEOとして産業に権威を持つ</text><text x="400" y="97" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">単なる観察から「産業の目標値」へ変容する転換点</text><rect x="40" y="125" width="340" height="200" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="210" y="148" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">変化の駆動力</text><rect x="58" y="160" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="181" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">企業が2年サイクルで製品ロードマップを策定</text><rect x="58" y="200" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="221" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">研究開発予算の配分基準となる</text><rect x="58" y="240" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="261" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">投資家・アナリストの業績評価指標に</text><rect x="58" y="280" width="304" height="32" rx="5" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="301" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">法則が「現実を規定」し始める</text><rect x="420" y="125" width="340" height="200" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="590" y="148" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">主要マイルストーン</text><rect x="438" y="160" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="181" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1975: Zilog Z80 (8,500 TR)</text><rect x="438" y="200" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="221" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1982: Intel 286 (134,000 TR)</text><rect x="438" y="240" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="261" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1989: Intel 486 (1,200,000 TR)</text><rect x="438" y="280" width="304" height="32" rx="5" fill="#e91e63" fill-opacity="0.2"/><text x="590" y="301" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">ほぼ予言通りに進展</text></svg>
+</div>
+
 - **観察から「達成すべきターゲット」への変容**
-- 
-- - 1977年：カルバー・ミードが「ムーアの法則」と命名
-- - 1980年代：半導体産業の**投資計画の基準**に採用
+- 1977年：カルバー・ミードが「ムーアの法則」と命名
+- 1980年代：半導体産業の**投資計画の基準**に採用
 
 
 ---
@@ -238,10 +285,12 @@ style: |
 
 > *競合全社が同じ目標を採用することで予言が強制力を持った*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">ITRSロードマップ：予言の制度化メカニズム</text><line x1="60" y1="290" x2="740" y2="290" stroke="#555577" stroke-width="2"/><polygon points="740,284 755,290 740,296" fill="#555577"/><text x="400" y="315" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">時間軸 →</text><text x="60" y="280" fill="#aaaaaa" font-size="10" font-family="sans-serif">1992</text><text x="200" y="280" fill="#aaaaaa" font-size="10" font-family="sans-serif">2000</text><text x="360" y="280" fill="#aaaaaa" font-size="10" font-family="sans-serif">2010</text><text x="520" y="280" fill="#aaaaaa" font-size="10" font-family="sans-serif">2020</text><text x="680" y="280" fill="#aaaaaa" font-size="10" font-family="sans-serif">2030</text><polyline points="60,240 80,230 130,225 200,210 270,190 360,165 430,145 520,120 600,110 680,100 740,95" stroke="#f9a825" stroke-width="3" fill="none"/><text x="760" y="100" fill="#f9a825" font-size="10" font-family="sans-serif">ムーア則</text><rect x="60" y="130" width="100" height="45" rx="5" fill="#16213e" stroke="#4fc3f7" stroke-width="1"/><text x="110" y="150" text-anchor="middle" fill="#4fc3f7" font-size="9" font-family="sans-serif" font-weight="bold">ITRS</text><text x="110" y="164" text-anchor="middle" fill="#aaaaaa" font-size="8" font-family="sans-serif">ロードマップ策定</text><line x1="110" y1="175" x2="110" y2="232" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="3,3"/><rect x="200" y="75" width="120" height="45" rx="5" fill="#16213e" stroke="#e91e63" stroke-width="1"/><text x="260" y="95" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif" font-weight="bold">R&D計画の</text><text x="260" y="110" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif" font-weight="bold">逆算</text><line x1="260" y1="120" x2="260" y2="192" stroke="#e91e63" stroke-width="1" stroke-dasharray="3,3"/><rect x="380" y="50" width="130" height="45" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="445" y="70" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif" font-weight="bold">工場投資 $1B</text><text x="445" y="85" text-anchor="middle" fill="#aaaaaa" font-size="8" font-family="sans-serif">→ $20B (TSMCアリゾナ)</text><line x1="445" y1="95" x2="445" y2="147" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/><text x="400" y="345" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">「ロードマップに載っていない技術は投資されない」→ 予測が計画を支配</text></svg>
-- - 1992年：SIA（米国半導体工業会）がITRSロードマップ策定
-- - 各社のR&D予算は「ムーアの法則を維持する」ために配分
-- 
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">ITRSロードマップ：予言の制度化メカニズム</text><line x1="60" y1="290" x2="740" y2="290" stroke="#555577" stroke-width="2"/><polygon points="740,284 755,290 740,296" fill="#555577"/><text x="400" y="315" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">時間軸 →</text><text x="60" y="280" fill="#aaaaaa" font-size="10" font-family="sans-serif">1992</text><text x="200" y="280" fill="#aaaaaa" font-size="10" font-family="sans-serif">2000</text><text x="360" y="280" fill="#aaaaaa" font-size="10" font-family="sans-serif">2010</text><text x="520" y="280" fill="#aaaaaa" font-size="10" font-family="sans-serif">2020</text><text x="680" y="280" fill="#aaaaaa" font-size="10" font-family="sans-serif">2030</text><polyline points="60,240 80,230 130,225 200,210 270,190 360,165 430,145 520,120 600,110 680,100 740,95" stroke="#f9a825" stroke-width="3" fill="none"/><text x="760" y="100" fill="#f9a825" font-size="10" font-family="sans-serif">ムーア則</text><rect x="60" y="130" width="100" height="45" rx="5" fill="#16213e" stroke="#4fc3f7" stroke-width="1"/><text x="110" y="150" text-anchor="middle" fill="#4fc3f7" font-size="9" font-family="sans-serif" font-weight="bold">ITRS</text><text x="110" y="164" text-anchor="middle" fill="#aaaaaa" font-size="8" font-family="sans-serif">ロードマップ策定</text><line x1="110" y1="175" x2="110" y2="232" stroke="#4fc3f7" stroke-width="1" stroke-dasharray="3,3"/><rect x="200" y="75" width="120" height="45" rx="5" fill="#16213e" stroke="#e91e63" stroke-width="1"/><text x="260" y="95" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif" font-weight="bold">R&D計画の</text><text x="260" y="110" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif" font-weight="bold">逆算</text><line x1="260" y1="120" x2="260" y2="192" stroke="#e91e63" stroke-width="1" stroke-dasharray="3,3"/><rect x="380" y="50" width="130" height="45" rx="5" fill="#16213e" stroke="#f9a825" stroke-width="1"/><text x="445" y="70" text-anchor="middle" fill="#f9a825" font-size="9" font-family="sans-serif" font-weight="bold">工場投資 $1B</text><text x="445" y="85" text-anchor="middle" fill="#aaaaaa" font-size="8" font-family="sans-serif">→ $20B (TSMCアリゾナ)</text><line x1="445" y1="95" x2="445" y2="147" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/><text x="400" y="345" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">「ロードマップに載っていない技術は投資されない」→ 予測が計画を支配</text></svg>
+</div>
+
+- 1992年：SIA（米国半導体工業会）がITRSロードマップ策定
+- 各社のR&D予算は「ムーアの法則を維持する」ために配分
 - **転換点：記述的観察が規範的目標になった瞬間**
 
 
@@ -251,12 +300,14 @@ style: |
 
 > *15年先の技術目標を業界全体で合意—予言が制度化した瞬間*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">ITRSロードマップ：予言の制度化</text><rect x="40" y="50" width="720" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="73" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ITRS (International Technology Roadmap for Semiconductors): 1992年から2016年まで半導体業界の共通目標</text><text x="400" y="91" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">年間数千万ドルの投資で「予言を維持する」機関</text><rect x="40" y="115" width="340" height="215" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="210" y="138" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">ロードマップの構造</text><rect x="58" y="150" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="171" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">15年先まで技術目標を定義</text><rect x="58" y="190" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="211" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">2年ごとに実績と目標を更新</text><rect x="58" y="230" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="251" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">全主要企業の技術者が参加</text><rect x="58" y="270" width="304" height="44" rx="5" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="291" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">「目標が現実を生み出す」</text><text x="210" y="307" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">予言が法則になる瞬間</text><rect x="420" y="115" width="340" height="215" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="590" y="138" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">制度化の効果</text><rect x="438" y="150" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="171" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">共通目標 → 業界の協調</text><rect x="438" y="190" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="211" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">重複投資の削減</text><rect x="438" y="230" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="251" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">技術的課題の早期特定</text><rect x="438" y="270" width="304" height="44" rx="5" fill="#e91e63" fill-opacity="0.15"/><text x="590" y="291" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">2016年：ロードマップ終了</text><text x="590" y="307" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">物理限界で予言が成立しなくなった</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">ITRSロードマップ：予言の制度化</text><rect x="40" y="50" width="720" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="73" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ITRS (International Technology Roadmap for Semiconductors): 1992年から2016年まで半導体業界の共通目標</text><text x="400" y="91" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">年間数千万ドルの投資で「予言を維持する」機関</text><rect x="40" y="115" width="340" height="215" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="210" y="138" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">ロードマップの構造</text><rect x="58" y="150" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="171" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">15年先まで技術目標を定義</text><rect x="58" y="190" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="211" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">2年ごとに実績と目標を更新</text><rect x="58" y="230" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="251" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">全主要企業の技術者が参加</text><rect x="58" y="270" width="304" height="44" rx="5" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="291" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">「目標が現実を生み出す」</text><text x="210" y="307" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">予言が法則になる瞬間</text><rect x="420" y="115" width="340" height="215" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="590" y="138" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">制度化の効果</text><rect x="438" y="150" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="171" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">共通目標 → 業界の協調</text><rect x="438" y="190" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="211" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">重複投資の削減</text><rect x="438" y="230" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="251" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">技術的課題の早期特定</text><rect x="438" y="270" width="304" height="44" rx="5" fill="#e91e63" fill-opacity="0.15"/><text x="590" y="291" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">2016年：ロードマップ終了</text><text x="590" y="307" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">物理限界で予言が成立しなくなった</text></svg>
+</div>
+
 - **International Technology Roadmap for Semiconductors**
-- 
-- - 15年先までの技術目標を「ムーアの法則に沿って」設定
-- - 各企業は逆算してR&D計画を策定
-- - 「ロードマップに載っていない技術は投資されない」
+- 15年先までの技術目標を「ムーアの法則に沿って」設定
+- 各企業は逆算してR&D計画を策定
+- 「ロードマップに載っていない技術は投資されない」
 
 
 ---
@@ -265,11 +316,10 @@ style: |
 
 > *工場投資が$1Mから$20Bへ—制度化が規模を変えた*
 
-- 
 - **投資規模の変化：**
-- - 1970年代：新工場 $1M
-- - 1990年代：$1B
-- - 2020年代：$20B（TSMCアリゾナ工場）
+- 1970年代：新工場 $1M
+- 1990年代：$1B
+- 2020年代：$20B（TSMCアリゾナ工場）
 
 
 ---
@@ -278,11 +328,13 @@ style: |
 
 > *予言の圧力が物理限界への挑戦を強制した最も純粋な自己実現期*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">Phase 3: 自己実現的予言期 (1995–2010)</text><text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ITRS設立により予言が公式制度化 → 全企業が同じ目標に向かって協調行動</text><!-- Timeline --><line x1="80" y1="100" x2="720" y2="100" stroke="#f9a825" stroke-width="2.5"/><circle cx="80" cy="100" r="6" fill="#f9a825"/><text x="80" y="88" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">1992</text><text x="80" y="75" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">SIA設立</text><circle cx="200" cy="100" r="6" fill="#e91e63"/><text x="200" y="88" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">1994</text><text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">NRS発刊</text><circle cx="330" cy="100" r="6" fill="#f9a825"/><text x="330" y="88" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">1998</text><text x="330" y="75" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">ITRS設立</text><circle cx="460" cy="100" r="6" fill="#e91e63"/><text x="460" y="88" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">2000</text><text x="460" y="75" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">130nm世代</text><circle cx="590" cy="100" r="6" fill="#f9a825"/><text x="590" y="88" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">2007</text><text x="590" y="75" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">45nm世代</text><circle cx="720" cy="100" r="6" fill="#e91e63"/><text x="720" y="88" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">2010</text><text x="720" y="75" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">32nm世代</text><rect x="40" y="130" width="340" height="200" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="210" y="153" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">ITRSロードマップの仕組み</text><rect x="58" y="165" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="186" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">15年先の技術目標を業界で合意</text><rect x="58" y="205" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="226" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">全主要企業が共通ロードマップを参照</text><rect x="58" y="245" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="266" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">2年ごとに更新・精緻化</text><rect x="58" y="285" width="304" height="32" rx="5" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="306" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">予言の制度的保証</text><rect x="420" y="130" width="340" height="200" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="590" y="153" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">自己実現的予言の完成</text><rect x="438" y="165" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="186" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">目標に合わせて開発するから実現する</text><rect x="438" y="205" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="226" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">競合も同じ目標 → 業界全体が前進</text><rect x="438" y="245" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="266" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">失敗は「遅れ」でなく「逸脱」となる</text><rect x="438" y="285" width="304" height="32" rx="5" fill="#e91e63" fill-opacity="0.2"/><text x="590" y="306" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">社会的現実が物理的制約を超える</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">Phase 3: 自己実現的予言期 (1995–2010)</text><text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">ITRS設立により予言が公式制度化 → 全企業が同じ目標に向かって協調行動</text><!-- Timeline --><line x1="80" y1="100" x2="720" y2="100" stroke="#f9a825" stroke-width="2.5"/><circle cx="80" cy="100" r="6" fill="#f9a825"/><text x="80" y="88" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">1992</text><text x="80" y="75" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">SIA設立</text><circle cx="200" cy="100" r="6" fill="#e91e63"/><text x="200" y="88" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">1994</text><text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">NRS発刊</text><circle cx="330" cy="100" r="6" fill="#f9a825"/><text x="330" y="88" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">1998</text><text x="330" y="75" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">ITRS設立</text><circle cx="460" cy="100" r="6" fill="#e91e63"/><text x="460" y="88" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">2000</text><text x="460" y="75" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">130nm世代</text><circle cx="590" cy="100" r="6" fill="#f9a825"/><text x="590" y="88" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">2007</text><text x="590" y="75" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">45nm世代</text><circle cx="720" cy="100" r="6" fill="#e91e63"/><text x="720" y="88" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">2010</text><text x="720" y="75" text-anchor="middle" fill="#ffffff" font-size="10" font-family="sans-serif">32nm世代</text><rect x="40" y="130" width="340" height="200" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="210" y="153" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">ITRSロードマップの仕組み</text><rect x="58" y="165" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="186" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">15年先の技術目標を業界で合意</text><rect x="58" y="205" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="226" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">全主要企業が共通ロードマップを参照</text><rect x="58" y="245" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="210" y="266" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">2年ごとに更新・精緻化</text><rect x="58" y="285" width="304" height="32" rx="5" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="306" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">予言の制度的保証</text><rect x="420" y="130" width="340" height="200" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="590" y="153" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">自己実現的予言の完成</text><rect x="438" y="165" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="186" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">目標に合わせて開発するから実現する</text><rect x="438" y="205" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="226" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">競合も同じ目標 → 業界全体が前進</text><rect x="438" y="245" width="304" height="32" rx="5" fill="#1a1a2e"/><text x="590" y="266" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">失敗は「遅れ」でなく「逸脱」となる</text><rect x="438" y="285" width="304" height="32" rx="5" fill="#e91e63" fill-opacity="0.2"/><text x="590" y="306" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">社会的現実が物理的制約を超える</text></svg>
+</div>
+
 - **予測が現実を作り出すメカニズム**
-- 
-- - ムーアの法則を「維持しなければ脱落する」という競争圧力
-- - 投資家は「ムーア則に従う企業」に資金を集中
+- ムーアの法則を「維持しなければ脱落する」という競争圧力
+- 投資家は「ムーア則に従う企業」に資金を集中
 
 
 ---
@@ -291,10 +343,12 @@ style: |
 
 > *限界を破るたびに次の限界への信頼が強まる正のフィードバック*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">自己実現的予言の完成：1995-2010の全貌</text><rect x="40" y="50" width="720" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="73" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">この時期、物理的限界への挑戦と制度的解決策が同時進行した</text><text x="400" y="91" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">「法則」が産業全体の行動規範として完全に定着した15年間</text><rect x="40" y="115" width="340" height="215" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="210" y="138" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">技術的マイルストーン</text><rect x="58" y="150" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="210" y="170" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1993: Intel Pentium (3.1M TR)</text><rect x="58" y="188" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="210" y="208" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">2000: Intel P4 Willamette (42M TR)</text><rect x="58" y="226" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="210" y="246" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">2006: Core2 Duo (291M TR)</text><rect x="58" y="264" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="210" y="284" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">2010: Sandy Bridge (1B TR超</text><rect x="58" y="302" width="304" height="22" rx="5" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="318" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ほぼ完璧に予言通り実現</text><rect x="420" y="115" width="340" height="215" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="590" y="138" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">社会的影響の完成</text><rect x="438" y="150" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="590" y="170" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">インターネット革命と同期</text><rect x="438" y="188" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="590" y="208" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">スマートフォン時代の基盤形成</text><rect x="438" y="226" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="590" y="246" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">「テクノ楽観主義」の確立</text><rect x="438" y="264" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="590" y="284" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">シリコンバレー神話の完成</text><rect x="438" y="302" width="304" height="22" rx="5" fill="#e91e63" fill-opacity="0.2"/><text x="590" y="318" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">法則が文化になった瞬間</text></svg>
-- - 政府も半導体産業支援の根拠として引用
-- - **年間$500億以上**のR&D投資が「予測通り」を実現
-- 
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">自己実現的予言の完成：1995-2010の全貌</text><rect x="40" y="50" width="720" height="50" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="400" y="73" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">この時期、物理的限界への挑戦と制度的解決策が同時進行した</text><text x="400" y="91" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">「法則」が産業全体の行動規範として完全に定着した15年間</text><rect x="40" y="115" width="340" height="215" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="210" y="138" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">技術的マイルストーン</text><rect x="58" y="150" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="210" y="170" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">1993: Intel Pentium (3.1M TR)</text><rect x="58" y="188" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="210" y="208" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">2000: Intel P4 Willamette (42M TR)</text><rect x="58" y="226" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="210" y="246" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">2006: Core2 Duo (291M TR)</text><rect x="58" y="264" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="210" y="284" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">2010: Sandy Bridge (1B TR超</text><rect x="58" y="302" width="304" height="22" rx="5" fill="#f9a825" fill-opacity="0.15"/><text x="210" y="318" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ほぼ完璧に予言通り実現</text><rect x="420" y="115" width="340" height="215" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="590" y="138" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">社会的影響の完成</text><rect x="438" y="150" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="590" y="170" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">インターネット革命と同期</text><rect x="438" y="188" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="590" y="208" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">スマートフォン時代の基盤形成</text><rect x="438" y="226" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="590" y="246" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">「テクノ楽観主義」の確立</text><rect x="438" y="264" width="304" height="30" rx="5" fill="#1a1a2e"/><text x="590" y="284" text-anchor="middle" fill="#ffffff" font-size="12" font-family="sans-serif">シリコンバレー神話の完成</text><rect x="438" y="302" width="304" height="22" rx="5" fill="#e91e63" fill-opacity="0.2"/><text x="590" y="318" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">法則が文化になった瞬間</text></svg>
+</div>
+
+- 政府も半導体産業支援の根拠として引用
+- **年間$500億以上**のR&D投資が「予測通り」を実現
 - **パラドックス：法則が正しいから投資するのではなく、投資するから法則が正しくなる**
 
 
@@ -311,16 +365,19 @@ style: |
 
 > *「法則」という命名が権威を与え自己実現を加速した言語の力*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">なぜ「法則」と呼ばれるのか：4つの社会的機能</text><rect x="40" y="50" width="340" height="135" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="73" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">①合法化機能</text><text x="210" y="93" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「法則」という言葉が</text><text x="210" y="109" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">投資・意思決定を正当化する</text><text x="210" y="130" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">"法則だから従うべき"という規範</text><text x="210" y="150" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">例：数兆円のFab投資の根拠</text><rect x="420" y="50" width="340" height="135" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="73" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">②調整機能</text><text x="590" y="93" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">業界全体の期待値を統一する</text><text x="590" y="109" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「いつ新製品が出るか」の予測が容易に</text><text x="590" y="130" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">設計者・顧客・投資家の調整ツール</text><text x="590" y="150" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">例：ソフト会社が2年後のHWを想定して設計</text><rect x="40" y="205" width="340" height="135" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="228" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">③動機付け機能</text><text x="210" y="248" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">目標が明確なため達成感が生まれる</text><text x="210" y="264" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">エンジニアの「問題解決」精神</text><text x="210" y="285" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">"法則を破れない"というプレッシャー</text><text x="210" y="305" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">例：物理限界でも「創造的解決策」を模索</text><rect x="420" y="205" width="340" height="135" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="228" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">④文化的シンボル</text><text x="590" y="248" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">テクノロジー楽観主義の象徴</text><text x="590" y="264" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「進歩は止まらない」という神話</text><text x="590" y="285" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">IT産業の正当性の根拠</text><text x="590" y="305" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">例：「シリコンバレーは世界を変える」</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">なぜ「法則」と呼ばれるのか：4つの社会的機能</text><rect x="40" y="50" width="340" height="135" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="73" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">①合法化機能</text><text x="210" y="93" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「法則」という言葉が</text><text x="210" y="109" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">投資・意思決定を正当化する</text><text x="210" y="130" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">"法則だから従うべき"という規範</text><text x="210" y="150" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">例：数兆円のFab投資の根拠</text><rect x="420" y="50" width="340" height="135" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="73" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">②調整機能</text><text x="590" y="93" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">業界全体の期待値を統一する</text><text x="590" y="109" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「いつ新製品が出るか」の予測が容易に</text><text x="590" y="130" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">設計者・顧客・投資家の調整ツール</text><text x="590" y="150" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">例：ソフト会社が2年後のHWを想定して設計</text><rect x="40" y="205" width="340" height="135" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="228" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold" font-family="sans-serif">③動機付け機能</text><text x="210" y="248" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">目標が明確なため達成感が生まれる</text><text x="210" y="264" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">エンジニアの「問題解決」精神</text><text x="210" y="285" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">"法則を破れない"というプレッシャー</text><text x="210" y="305" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">例：物理限界でも「創造的解決策」を模索</text><rect x="420" y="205" width="340" height="135" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="228" text-anchor="middle" fill="#e91e63" font-size="13" font-weight="bold" font-family="sans-serif">④文化的シンボル</text><text x="590" y="248" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">テクノロジー楽観主義の象徴</text><text x="590" y="264" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「進歩は止まらない」という神話</text><text x="590" y="285" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">IT産業の正当性の根拠</text><text x="590" y="305" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">例：「シリコンバレーは世界を変える」</text></svg>
+</div>
+
 - **物理法則との決定的な違い**
-- 
+
 | 観点 | 物理法則 | ムーアの法則 |
 | --- | --- | --- |
 | 根拠 | 自然の性質 | 人間の努力 |
 | 普遍性 | 時空に依存しない | 経済・技術条件に依存 |
 | 破れる条件 | 新理論が必要 | 投資が止まれば終了 |
 | 命名 | 発見者の名前 | 発見者の名前 |
-- 
+
 - **名前の力：「法則」という名称が権威と永続性を付与した**
 
 
@@ -337,11 +394,13 @@ style: |
 
 > *物理的減速後も「精神的ムーアの法則」が文化として生き続ける*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">Phase 4: 神話化期 (2010年代〜) — 法則の終焉と神話の継続</text><line x1="80" y1="200" x2="720" y2="200" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="4,4"/><text x="40" y="204" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">限界</text><path d="M 80 280 C 160 240, 240 200, 320 165 C 380 140, 420 130, 460 128 C 500 127, 560 135, 620 155 C 660 168, 690 185, 720 200" stroke="#f9a825" stroke-width="3" fill="none"/><text x="400" y="60" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">物理的進歩のペース</text><path d="M 80 270 C 160 230, 260 180, 380 140 C 460 115, 560 100, 720 90" stroke="#e91e63" stroke-width="2.5" fill="none" stroke-dasharray="8,4"/><text x="620" y="85" fill="#e91e63" font-size="11" font-family="sans-serif">「法則」への信念</text><rect x="40" y="225" width="200" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="140" y="248" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">物理的現実</text><text x="140" y="266" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">7nm以降：熱・漏電問題</text><text x="140" y="282" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">量子効果・原子サイズ限界</text><text x="140" y="298" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">ペースが鈍化</text><rect x="280" y="225" width="200" height="100" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="380" y="248" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">社会的神話</text><text x="380" y="266" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「AI が継続させる」</text><text x="380" y="282" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「3D統合で復活」</text><text x="380" y="298" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">神話は語り継がれる</text><rect x="520" y="225" width="240" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="640" y="248" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">意味の変容</text><text x="640" y="266" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「コンピューティング性能は</text><text x="640" y="282" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">2年で倍になる」から</text><text x="640" y="298" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">「進歩は止まらない」へ</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold" font-family="sans-serif">Phase 4: 神話化期 (2010年代〜) — 法則の終焉と神話の継続</text><line x1="80" y1="200" x2="720" y2="200" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="4,4"/><text x="40" y="204" text-anchor="end" fill="#aaaaaa" font-size="10" font-family="sans-serif">限界</text><path d="M 80 280 C 160 240, 240 200, 320 165 C 380 140, 420 130, 460 128 C 500 127, 560 135, 620 155 C 660 168, 690 185, 720 200" stroke="#f9a825" stroke-width="3" fill="none"/><text x="400" y="60" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">物理的進歩のペース</text><path d="M 80 270 C 160 230, 260 180, 380 140 C 460 115, 560 100, 720 90" stroke="#e91e63" stroke-width="2.5" fill="none" stroke-dasharray="8,4"/><text x="620" y="85" fill="#e91e63" font-size="11" font-family="sans-serif">「法則」への信念</text><rect x="40" y="225" width="200" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="140" y="248" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">物理的現実</text><text x="140" y="266" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">7nm以降：熱・漏電問題</text><text x="140" y="282" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">量子効果・原子サイズ限界</text><text x="140" y="298" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">ペースが鈍化</text><rect x="280" y="225" width="200" height="100" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="1.5"/><text x="380" y="248" text-anchor="middle" fill="#e91e63" font-size="12" font-weight="bold" font-family="sans-serif">社会的神話</text><text x="380" y="266" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「AI が継続させる」</text><text x="380" y="282" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「3D統合で復活」</text><text x="380" y="298" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">神話は語り継がれる</text><rect x="520" y="225" width="240" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/><text x="640" y="248" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">意味の変容</text><text x="640" y="266" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">「コンピューティング性能は</text><text x="640" y="282" text-anchor="middle" fill="#ffffff" font-size="11" font-family="sans-serif">2年で倍になる」から</text><text x="640" y="298" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">「進歩は止まらない」へ</text></svg>
+</div>
+
 - **物理的限界に到達しても「法則」は死なない**
-- 
-- - Dennardスケーリングは2006年に終了
-- - クロック周波数は3-5GHzで頭打ち
+- Dennardスケーリングは2006年に終了
+- クロック周波数は3-5GHzで頭打ち
 
 
 ---
@@ -350,9 +409,8 @@ style: |
 
 > *AI・量子・3Dが「新ムーア」を自称——神話の継承が始まった*
 
-- - 微細化は原子レベル（2nm = 原子10個分）に到達
-- - しかし「ムーアの法則」はメディアで引用され続ける
-- 
+- 微細化は原子レベル（2nm = 原子10個分）に到達
+- しかし「ムーアの法則」はメディアで引用され続ける
 - **文化的機能：「技術進歩は指数関数的」という信念体系の基盤**
 
 
@@ -362,11 +420,13 @@ style: |
 
 > *神話は共通の目標を作り集団行動を調整する——産業神話の効用*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">神話の社会的機能：ムーアの法則が果たした役割</text><rect x="40" y="50" width="340" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="60" y="76" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">① 秩序付け機能</text><text x="60" y="100" fill="#ffffff" font-size="11" font-family="sans-serif">混沌とした技術変化に「法則」という</text><text x="60" y="118" fill="#ffffff" font-size="11" font-family="sans-serif">秩序を与える → 予測可能性の担保</text><text x="60" y="138" fill="#aaaaaa" font-size="10" font-family="sans-serif">「2年後のチップ性能が分かる」</text><text x="60" y="155" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ 長期計画が立てられる</text><rect x="420" y="50" width="340" height="120" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="440" y="76" fill="#4fc3f7" font-size="13" font-family="sans-serif" font-weight="bold">② 正当化機能</text><text x="440" y="100" fill="#ffffff" font-size="11" font-family="sans-serif">巨額投資を「法則に従う合理的行動」</text><text x="440" y="118" fill="#ffffff" font-size="11" font-family="sans-serif">として正当化 → 株主・投資家を説得</text><text x="440" y="138" fill="#aaaaaa" font-size="10" font-family="sans-serif">「ムーアの法則があるから投資は安全だ」</text><rect x="40" y="200" width="340" height="120" rx="8" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="60" y="226" fill="#81c784" font-size="13" font-family="sans-serif" font-weight="bold">③ 予測機能</text><text x="60" y="250" fill="#ffffff" font-size="11" font-family="sans-serif">不確実な未来に「指数関数的成長」</text><text x="60" y="268" fill="#ffffff" font-size="11" font-family="sans-serif">という物語を提供</text><text x="60" y="295" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ Karpathy: 「AIも同じパターン」</text><rect x="420" y="200" width="340" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="440" y="226" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">④ 動員機能</text><text x="440" y="250" fill="#ffffff" font-size="11" font-family="sans-serif">産業全体を同じ方向に向かわせる</text><text x="440" y="268" fill="#ffffff" font-size="11" font-family="sans-serif">旗印として機能</text><text x="440" y="295" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ 競合他社も協調して「法則維持」</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">神話の社会的機能：ムーアの法則が果たした役割</text><rect x="40" y="50" width="340" height="120" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="60" y="76" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">① 秩序付け機能</text><text x="60" y="100" fill="#ffffff" font-size="11" font-family="sans-serif">混沌とした技術変化に「法則」という</text><text x="60" y="118" fill="#ffffff" font-size="11" font-family="sans-serif">秩序を与える → 予測可能性の担保</text><text x="60" y="138" fill="#aaaaaa" font-size="10" font-family="sans-serif">「2年後のチップ性能が分かる」</text><text x="60" y="155" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ 長期計画が立てられる</text><rect x="420" y="50" width="340" height="120" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="440" y="76" fill="#4fc3f7" font-size="13" font-family="sans-serif" font-weight="bold">② 正当化機能</text><text x="440" y="100" fill="#ffffff" font-size="11" font-family="sans-serif">巨額投資を「法則に従う合理的行動」</text><text x="440" y="118" fill="#ffffff" font-size="11" font-family="sans-serif">として正当化 → 株主・投資家を説得</text><text x="440" y="138" fill="#aaaaaa" font-size="10" font-family="sans-serif">「ムーアの法則があるから投資は安全だ」</text><rect x="40" y="200" width="340" height="120" rx="8" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="60" y="226" fill="#81c784" font-size="13" font-family="sans-serif" font-weight="bold">③ 予測機能</text><text x="60" y="250" fill="#ffffff" font-size="11" font-family="sans-serif">不確実な未来に「指数関数的成長」</text><text x="60" y="268" fill="#ffffff" font-size="11" font-family="sans-serif">という物語を提供</text><text x="60" y="295" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ Karpathy: 「AIも同じパターン」</text><rect x="420" y="200" width="340" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="440" y="226" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">④ 動員機能</text><text x="440" y="250" fill="#ffffff" font-size="11" font-family="sans-serif">産業全体を同じ方向に向かわせる</text><text x="440" y="268" fill="#ffffff" font-size="11" font-family="sans-serif">旗印として機能</text><text x="440" y="295" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ 競合他社も協調して「法則維持」</text></svg>
+</div>
+
 - **レヴィ＝ストロースの神話分析の視点から**
-- 
-- - **秩序付け機能**：混沌とした技術変化に「法則」という秩序を与える
-- - **正当化機能**：巨額投資を「法則に従う合理的行動」として正当化
+- **秩序付け機能**：混沌とした技術変化に「法則」という秩序を与える
+- **正当化機能**：巨額投資を「法則に従う合理的行動」として正当化
 
 
 ---
@@ -375,9 +435,8 @@ style: |
 
 > *神話が消えると投資と人材が散逸する——意図的に維持する価値がある*
 
-- - **予測機能**：不確実な未来に「指数関数的成長」という物語を提供
-- - **動員機能**：産業全体を同じ方向に向かわせる旗印
-- 
+- **予測機能**：不確実な未来に「指数関数的成長」という物語を提供
+- **動員機能**：産業全体を同じ方向に向かわせる旗印
 - **ムーアの法則は半導体産業の「創世神話」として機能している**
 
 
@@ -388,9 +447,8 @@ style: |
 > *スマホ・クラウド・AIはムーアの法則の副産物として生まれた*
 
 - **「指数関数思考」の一般化**
-- 
-- - **レイ・カーツワイルの収穫加速の法則**：すべての技術は指数関数的に進歩する
-- - **スタートアップ文化**：「10x成長」「指数関数型組織」の正当化根拠
+- **レイ・カーツワイルの収穫加速の法則**：すべての技術は指数関数的に進歩する
+- **スタートアップ文化**：「10x成長」「指数関数型組織」の正当化根拠
 
 
 ---
@@ -399,9 +457,8 @@ style: |
 
 > *予言が産業生態系全体を設計した——意図せぬ最大の成果だ*
 
-- - **AI楽観論**：計算能力の指数的増大 → AGIは必然、という論理
-- - **VC投資モデル**：Power Law分布を前提とした投資戦略
-- 
+- **AI楽観論**：計算能力の指数的増大 → AGIは必然、という論理
+- **VC投資モデル**：Power Law分布を前提とした投資戦略
 - **危険性：指数関数的成長が「自然法則」として内面化されている**
 
 
@@ -411,11 +468,13 @@ style: |
 
 > *バッテリー・量子エラー率は二乗則で改善しない——法則の射程を知れ*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">指数成長神話への反証：ムーアの法則が当てはまらない領域</text><rect x="30" y="50" width="230" height="270" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="145" y="78" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">バッテリー</text><text x="145" y="105" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">50年で密度: 5-8倍</text><text x="145" y="125" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">ムーア則なら: 100万倍</text><line x1="50" y1="140" x2="240" y2="140" stroke="#333355" stroke-width="1"/><text x="145" y="162" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">物理・化学的限界</text><text x="145" y="180" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">材料工学の壁</text><rect x="60" y="230" width="80" height="60" rx="3" fill="#333355"/><rect x="60" y="290" width="80" height="0" rx="3" fill="#e91e63"/><rect x="155" y="258" width="80" height="32" rx="3" fill="#e91e63"/><text x="100" y="260" text-anchor="middle" fill="#aaaaaa" font-size="8" font-family="sans-serif">CPU</text><text x="195" y="255" text-anchor="middle" fill="#e91e63" font-size="8" font-family="sans-serif">バッテリー</text><rect x="290" y="50" width="220" height="270" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">太陽電池効率</text><text x="400" y="105" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">理論限界: ~33%</text><text x="400" y="125" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">Shockley-Queisser限界に漸近</text><line x1="310" y1="140" x2="490" y2="140" stroke="#333355" stroke-width="1"/><text x="400" y="165" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">S字カーブで成長が鈍化</text><text x="400" y="183" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">物理的な上限が存在</text><rect x="540" y="50" width="220" height="270" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="650" y="78" text-anchor="middle" fill="#4fc3f7" font-size="13" font-family="sans-serif" font-weight="bold">ソフトウェア性能</text><text x="650" y="105" text-anchor="middle" fill="#4fc3f7" font-size="11" font-family="sans-serif">ヴィルトの法則</text><text x="650" y="125" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「ソフトはHWの進歩を</text><text x="650" y="143" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">相殺する速度で劣化する」</text><line x1="560" y1="155" x2="740" y2="155" stroke="#333355" stroke-width="1"/><text x="650" y="180" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">抽象化の重みが増す</text><text x="650" y="198" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">フレームワーク肥大化</text><text x="400" y="345" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">ムーアの法則は「例外」であり「普遍的法則」ではない</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">指数成長神話への反証：ムーアの法則が当てはまらない領域</text><rect x="30" y="50" width="230" height="270" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="145" y="78" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">バッテリー</text><text x="145" y="105" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">50年で密度: 5-8倍</text><text x="145" y="125" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">ムーア則なら: 100万倍</text><line x1="50" y1="140" x2="240" y2="140" stroke="#333355" stroke-width="1"/><text x="145" y="162" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">物理・化学的限界</text><text x="145" y="180" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">材料工学の壁</text><rect x="60" y="230" width="80" height="60" rx="3" fill="#333355"/><rect x="60" y="290" width="80" height="0" rx="3" fill="#e91e63"/><rect x="155" y="258" width="80" height="32" rx="3" fill="#e91e63"/><text x="100" y="260" text-anchor="middle" fill="#aaaaaa" font-size="8" font-family="sans-serif">CPU</text><text x="195" y="255" text-anchor="middle" fill="#e91e63" font-size="8" font-family="sans-serif">バッテリー</text><rect x="290" y="50" width="220" height="270" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="400" y="78" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">太陽電池効率</text><text x="400" y="105" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">理論限界: ~33%</text><text x="400" y="125" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">Shockley-Queisser限界に漸近</text><line x1="310" y1="140" x2="490" y2="140" stroke="#333355" stroke-width="1"/><text x="400" y="165" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">S字カーブで成長が鈍化</text><text x="400" y="183" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">物理的な上限が存在</text><rect x="540" y="50" width="220" height="270" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="650" y="78" text-anchor="middle" fill="#4fc3f7" font-size="13" font-family="sans-serif" font-weight="bold">ソフトウェア性能</text><text x="650" y="105" text-anchor="middle" fill="#4fc3f7" font-size="11" font-family="sans-serif">ヴィルトの法則</text><text x="650" y="125" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">「ソフトはHWの進歩を</text><text x="650" y="143" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">相殺する速度で劣化する」</text><line x1="560" y1="155" x2="740" y2="155" stroke="#333355" stroke-width="1"/><text x="650" y="180" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">抽象化の重みが増す</text><text x="650" y="198" text-anchor="middle" fill="#aaaaaa" font-size="10" font-family="sans-serif">フレームワーク肥大化</text><text x="400" y="345" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">ムーアの法則は「例外」であり「普遍的法則」ではない</text></svg>
+</div>
+
 - **指数関数神話への反証**
-- 
-- - **バッテリー技術**：50年で密度は5-8倍（ムーア則なら100万倍）
-- - **太陽電池効率**：理論限界（Shockley-Queisser限界 ~33%）に漸近
+- **バッテリー技術**：50年で密度は5-8倍（ムーア則なら100万倍）
+- **太陽電池効率**：理論限界（Shockley-Queisser限界 ~33%）に漸近
 
 
 ---
@@ -424,9 +483,8 @@ style: |
 
 > *適用外を知ることで新しい「法則」が必要な領域が見える*
 
-- - **通信帯域幅**：光ファイバーの物理限界（シャノン限界）
-- - **ソフトウェア性能**：ハードウェアの指数的向上を相殺（ヴィルトの法則）
-- 
+- **通信帯域幅**：光ファイバーの物理限界（シャノン限界）
+- **ソフトウェア性能**：ハードウェアの指数的向上を相殺（ヴィルトの法則）
 - **ムーアの法則の成功は「例外的」であり「普遍的」ではない**
 
 
@@ -444,9 +502,8 @@ style: |
 > *予言の力は技術ではなく社会的信頼と制度化にある——これが核心*
 
 - **予言と現実の相互構成**
-- 
-- - 技術予測は「中立的な観察」ではなく**社会を動かす力**を持つ
-- - 「法則」という命名が予測に**制度的権威**を付与した
+- 技術予測は「中立的な観察」ではなく**社会を動かす力**を持つ
+- 「法則」という命名が予測に**制度的権威**を付与した
 
 
 ---
@@ -455,9 +512,8 @@ style: |
 
 > *次の産業神話を作るには目標共有・制度化・信頼構築が必要だ*
 
-- - 自己実現的予言は**成功しすぎると神話化**する
-- - 神話化した予測は**反証されても存続**する
-- 
+- 自己実現的予言は**成功しすぎると神話化**する
+- 神話化した予測は**反証されても存続**する
 - **科学社会学の重要性：技術の「社会的構成」を理解する必要がある**
 
 
@@ -467,11 +523,13 @@ style: |
 
 > *AI算力・量子誤り率・バッテリー密度が候補——何が定着するか*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">次の「ムーアの法則」候補：自己実現予言の後継者</text><rect x="40" y="50" width="220" height="130" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="150" y="76" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">AIスケーリング則</text><text x="60" y="100" fill="#ffffff" font-size="10" font-family="sans-serif">「モデルを大きくすれば</text><text x="60" y="116" fill="#ffffff" font-size="10" font-family="sans-serif">性能は上がる」</text><text x="60" y="138" fill="#aaaaaa" font-size="9" font-family="sans-serif">Chinchillaスケーリング</text><text x="60" y="155" fill="#aaaaaa" font-size="9" font-family="sans-serif">→ 投資の正当化根拠</text><rect x="290" y="50" width="220" height="130" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="400" y="76" text-anchor="middle" fill="#4fc3f7" font-size="12" font-family="sans-serif" font-weight="bold">ライトの法則</text><text x="310" y="100" fill="#ffffff" font-size="10" font-family="sans-serif">「累積生産量が2倍で</text><text x="310" y="116" fill="#ffffff" font-size="10" font-family="sans-serif">コスト20%減」</text><text x="310" y="138" fill="#aaaaaa" font-size="9" font-family="sans-serif">テスラのバッテリー戦略</text><text x="310" y="155" fill="#aaaaaa" font-size="9" font-family="sans-serif">→ 製造業の「法則」化</text><rect x="540" y="50" width="220" height="130" rx="8" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="650" y="76" text-anchor="middle" fill="#81c784" font-size="12" font-family="sans-serif" font-weight="bold">ギルダーの法則</text><text x="560" y="100" fill="#ffffff" font-size="10" font-family="sans-serif">「帯域幅はCPU速度の</text><text x="560" y="116" fill="#ffffff" font-size="10" font-family="sans-serif">3倍速で拡大する」</text><text x="560" y="138" fill="#aaaaaa" font-size="9" font-family="sans-serif">通信インフラ投資の</text><text x="560" y="155" fill="#aaaaaa" font-size="9" font-family="sans-serif">根拠として使用</text><rect x="100" y="210" width="600" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="238" text-anchor="middle" fill="#e91e63" font-size="14" font-family="sans-serif" font-weight="bold">共通パターン：ムーアの法則の再現</text><text x="120" y="265" fill="#ffffff" font-size="11" font-family="sans-serif">1. 経験的観察 → 産業の目標化 → 巨額投資 → 自己実現</text><text x="120" y="288" fill="#ffffff" font-size="11" font-family="sans-serif">2. 「法則」という命名が権威を付与 → 反証されにくくなる</text><text x="120" y="310" fill="#aaaaaa" font-size="10" font-family="sans-serif">問い：これらも自己実現的予言になるのか？</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">次の「ムーアの法則」候補：自己実現予言の後継者</text><rect x="40" y="50" width="220" height="130" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="150" y="76" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">AIスケーリング則</text><text x="60" y="100" fill="#ffffff" font-size="10" font-family="sans-serif">「モデルを大きくすれば</text><text x="60" y="116" fill="#ffffff" font-size="10" font-family="sans-serif">性能は上がる」</text><text x="60" y="138" fill="#aaaaaa" font-size="9" font-family="sans-serif">Chinchillaスケーリング</text><text x="60" y="155" fill="#aaaaaa" font-size="9" font-family="sans-serif">→ 投資の正当化根拠</text><rect x="290" y="50" width="220" height="130" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="400" y="76" text-anchor="middle" fill="#4fc3f7" font-size="12" font-family="sans-serif" font-weight="bold">ライトの法則</text><text x="310" y="100" fill="#ffffff" font-size="10" font-family="sans-serif">「累積生産量が2倍で</text><text x="310" y="116" fill="#ffffff" font-size="10" font-family="sans-serif">コスト20%減」</text><text x="310" y="138" fill="#aaaaaa" font-size="9" font-family="sans-serif">テスラのバッテリー戦略</text><text x="310" y="155" fill="#aaaaaa" font-size="9" font-family="sans-serif">→ 製造業の「法則」化</text><rect x="540" y="50" width="220" height="130" rx="8" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="650" y="76" text-anchor="middle" fill="#81c784" font-size="12" font-family="sans-serif" font-weight="bold">ギルダーの法則</text><text x="560" y="100" fill="#ffffff" font-size="10" font-family="sans-serif">「帯域幅はCPU速度の</text><text x="560" y="116" fill="#ffffff" font-size="10" font-family="sans-serif">3倍速で拡大する」</text><text x="560" y="138" fill="#aaaaaa" font-size="9" font-family="sans-serif">通信インフラ投資の</text><text x="560" y="155" fill="#aaaaaa" font-size="9" font-family="sans-serif">根拠として使用</text><rect x="100" y="210" width="600" height="120" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="400" y="238" text-anchor="middle" fill="#e91e63" font-size="14" font-family="sans-serif" font-weight="bold">共通パターン：ムーアの法則の再現</text><text x="120" y="265" fill="#ffffff" font-size="11" font-family="sans-serif">1. 経験的観察 → 産業の目標化 → 巨額投資 → 自己実現</text><text x="120" y="288" fill="#ffffff" font-size="11" font-family="sans-serif">2. 「法則」という命名が権威を付与 → 反証されにくくなる</text><text x="120" y="310" fill="#aaaaaa" font-size="10" font-family="sans-serif">問い：これらも自己実現的予言になるのか？</text></svg>
+</div>
+
 - **同様のパターンを示す現代の予測**
-- 
-- - **スケーリング則（AI）**：「モデルを大きくすれば性能は上がる」
--   - Chinchillaスケーリング → 投資の正当化根拠に
+- **スケーリング則（AI）**：「モデルを大きくすれば性能は上がる」
+  - Chinchillaスケーリング → 投資の正当化根拠に
 
 
 ---
@@ -480,10 +538,9 @@ style: |
 
 > *ライト則・ギルダー則も同じ構造—次の自己実現予言が動き出す*
 
-- - **ライトの法則（製造）**：累積生産量が2倍で20%コスト減
--   - テスラのバッテリー戦略の根拠
-- - **ギルダーの法則（通信）**：帯域幅は計算能力の3倍速で拡大
-- 
+- **ライトの法則（製造）**：累積生産量が2倍で20%コスト減
+  - テスラのバッテリー戦略の根拠
+- **ギルダーの法則（通信）**：帯域幅は計算能力の3倍速で拡大
 - **問い：これらも「自己実現的予言」になるのか？**
 
 
@@ -493,11 +550,13 @@ style: |
 
 > *観察→目標→制度→神話の4段階が任意の「ムーア則」を作る*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">予言が世界を作る：ムーアの法則の社会学的教訓</text><rect x="40" y="50" width="340" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="76" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">技術予測は「社会的合意の形成」</text><text x="60" y="100" fill="#ffffff" font-size="11" font-family="sans-serif">発見ではなく「作られる」プロセス</text><text x="60" y="120" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ 中立な観察ではなく社会を動かす力</text><rect x="420" y="50" width="340" height="100" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="590" y="76" text-anchor="middle" fill="#4fc3f7" font-size="12" font-family="sans-serif" font-weight="bold">投資と信念が予測を実現</text><text x="440" y="100" fill="#ffffff" font-size="11" font-family="sans-serif">年間$500億のR&D投資が支えた</text><text x="440" y="120" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ 法則が正しいから投資するのではない</text><rect x="40" y="180" width="340" height="100" rx="8" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="210" y="206" text-anchor="middle" fill="#81c784" font-size="12" font-family="sans-serif" font-weight="bold">神話化した予測は存続する</text><text x="60" y="230" fill="#ffffff" font-size="11" font-family="sans-serif">物理限界に到達しても引用される</text><text x="60" y="250" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ 「指数関数的成長」という信念体系</text><rect x="420" y="180" width="340" height="100" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="206" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">パフォーマティブな命名力</text><text x="440" y="230" fill="#ffffff" font-size="11" font-family="sans-serif">「法則」という名前が権威付け</text><text x="440" y="250" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ AIスケーリング則で繰り返される</text><rect x="150" y="308" width="500" height="40" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="2"/><text x="400" y="325" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">「未来を予測する最良の方法は、それを発明することだ」</text><text x="400" y="343" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">— アラン・ケイ</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="17" font-family="sans-serif" font-weight="bold">予言が世界を作る：ムーアの法則の社会学的教訓</text><rect x="40" y="50" width="340" height="100" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="76" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif" font-weight="bold">技術予測は「社会的合意の形成」</text><text x="60" y="100" fill="#ffffff" font-size="11" font-family="sans-serif">発見ではなく「作られる」プロセス</text><text x="60" y="120" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ 中立な観察ではなく社会を動かす力</text><rect x="420" y="50" width="340" height="100" rx="8" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="590" y="76" text-anchor="middle" fill="#4fc3f7" font-size="12" font-family="sans-serif" font-weight="bold">投資と信念が予測を実現</text><text x="440" y="100" fill="#ffffff" font-size="11" font-family="sans-serif">年間$500億のR&D投資が支えた</text><text x="440" y="120" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ 法則が正しいから投資するのではない</text><rect x="40" y="180" width="340" height="100" rx="8" fill="#16213e" stroke="#81c784" stroke-width="2"/><text x="210" y="206" text-anchor="middle" fill="#81c784" font-size="12" font-family="sans-serif" font-weight="bold">神話化した予測は存続する</text><text x="60" y="230" fill="#ffffff" font-size="11" font-family="sans-serif">物理限界に到達しても引用される</text><text x="60" y="250" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ 「指数関数的成長」という信念体系</text><rect x="420" y="180" width="340" height="100" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="206" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">パフォーマティブな命名力</text><text x="440" y="230" fill="#ffffff" font-size="11" font-family="sans-serif">「法則」という名前が権威付け</text><text x="440" y="250" fill="#aaaaaa" font-size="10" font-family="sans-serif">→ AIスケーリング則で繰り返される</text><rect x="150" y="308" width="500" height="40" rx="6" fill="#1a1a2e" stroke="#f9a825" stroke-width="2"/><text x="400" y="325" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">「未来を予測する最良の方法は、それを発明することだ」</text><text x="400" y="343" text-anchor="middle" fill="#aaaaaa" font-size="11" font-family="sans-serif">— アラン・ケイ</text></svg>
+</div>
+
 - **ムーアの法則が教えてくれること**
-- 
-- - 技術予測は「発見」ではなく**「社会的合意の形成」**である
-- - 十分な投資と信念があれば、予測は**自己実現**する
+- 技術予測は「発見」ではなく**「社会的合意の形成」**である
+- 十分な投資と信念があれば、予測は**自己実現**する
 
 
 ---
@@ -506,9 +565,8 @@ style: |
 
 > *投資が止まれば法則が終わる—AIスケーリング則も同じ運命*
 
-- - 「法則」という名前が持つ**パフォーマティブな力**
-- - Post-Moore時代でも「指数関数的成長」の神話は形を変えて存続する
-- 
+- 「法則」という名前が持つ**パフォーマティブな力**
+- Post-Moore時代でも「指数関数的成長」の神話は形を変えて存続する
 - **「未来を予測する最良の方法は、それを発明することだ」**
 - 　　　　　　　　　　　　　　　　　　　— アラン・ケイ
 

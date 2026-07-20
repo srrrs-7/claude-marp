@@ -6,41 +6,76 @@ size: 16:9
 paginate: true
 footer: "RAG実装ガイド完全版 2026 | AWS GenAI Developer Pro"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   table { font-size: 0.66em; border-collapse: collapse; width: 100%; }
   th { background: #1565C0; color: white; padding: 4px 8px; text-align: left; }
   td { padding: 3px 8px; border-bottom: 1px solid #e0e0e0; }
-  tr:nth-child(even) td { background: #f0f6ff; }
+  tr:nth-child(even) td { background: rgba(255, 255, 255, 0.07); }
   section.lead h1 { font-size: 1.4em; }
   section.lead h2 { font-size: 1.1em; color: #fff; }
   h2 { color: #1565C0; }
@@ -84,7 +119,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # RAG実装ガイド完全版
 
 - OpenSearch Serverless · Aurora pgvector · Bedrock Knowledge Base
@@ -98,7 +133,8 @@ style: |
 
 > *全セクションのロードマップで自分の習熟度に合った学習順序を決める*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
 <rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -126,6 +162,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
 </svg>
+</div>
+
 | フェーズ | セクション | 重点度 | 試験比率目安 |
 |---------|-----------|--------|------------|
 | ① | RAG基礎（概念・アーキテクチャ） | ★★★ | ~10% |
@@ -143,7 +181,8 @@ style: |
 
 > *Domain 3はFM活用30%の最重要ドメイン、RAGとKBが最大の得点源*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
 <rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -157,6 +196,8 @@ style: |
 <text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
 <text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
 </svg>
+</div>
+
 | 出題テーマ | 頻出キーワード | 難易度 |
 |-----------|-------------|--------|
 | RAGアーキテクチャ | Pipeline, Chunking, Embedding, Indexing | ★★ |
@@ -171,7 +212,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Section 1: RAG基礎
 
 - Retrieval-Augmented Generation の仕組みと設計原則
@@ -183,7 +224,8 @@ style: |
 
 > *RAGはLLMの知識カットオフとハルシネーションを外部検索で根本解決する*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -205,7 +247,10 @@ style: |
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
 </svg>
+</div>
+
 - **RAG (Retrieval-Augmented Generation)** = 外部知識検索 + 生成AIの組み合わせ
+
 | 課題 | RAGによる解決策 |
 |------|--------------|
 | FMの知識カットオフ | 外部DBから最新データをリアルタイム検索 |
@@ -213,6 +258,7 @@ style: |
 | ドメイン知識不足 | 社内文書・専門DBを参照して特化回答 |
 | Fine-tuningコスト | 再学習不要で知識更新・低コスト |
 | コンテキスト長上限 | 必要な情報だけ抽出してプロンプトに注入 |
+
 - **RAGの3ステップ:** ① Indexing（インデックス作成） → ② Retrieval（検索） → ③ Generation（生成）
 
 
@@ -222,7 +268,8 @@ style: |
 
 > *RAGはIndexing・Retrieval・Generationの3フェーズで構成される完全パイプライン*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
 <rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -251,10 +298,13 @@ style: |
 <text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
 <text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
 </svg>
+</div>
+
 - **インジェスト（Indexing）パイプライン:**
 - ソースデータ（S3等）→ 前処理・OCR → チャンキング → エンベディング → ベクトルDB格納
 - **クエリ（Runtime）パイプライン:**
 - ユーザー質問 → クエリエンベディング → ベクトル検索 → Top-k取得 → コンテキスト挿入 → LLM生成 → 回答
+
 | コンポーネント | AWSサービス例 |
 |--------------|-------------|
 | ソースデータ | S3, Confluence, SharePoint, Web Crawler |
@@ -271,7 +321,8 @@ style: |
 
 > *新鮮データはRAG・タスク特化はFine-tuning・少数例はIn-Contextが選択の基本則*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -293,6 +344,8 @@ style: |
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
 </svg>
+</div>
+
 | 比較軸 | RAG | Fine-tuning | In-Context Learning |
 |-------|-----|------------|---------------------|
 | 知識更新 | リアルタイム | 再学習必要 | プロンプト内のみ |
@@ -302,6 +355,7 @@ style: |
 | ハルシネーション | 低（ソース参照） | 中 | 高 |
 | 最大知識量 | 無制限（DB容量次第） | 学習時固定 | コンテキスト長上限 |
 | 適用場面 | 最新情報・社内文書 | スタイル・タスク特化 | 数例のタスク示教 |
+
 - **試験頻出:** 「最新データが必要→RAG」「文体・スタイル変更→FT」「数例でタスク指定→ICL」
 
 
@@ -311,7 +365,8 @@ style: |
 
 > *インジェストとクエリで同一エンベディングモデルを使うことがRAG精度の大前提*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
 <text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
@@ -345,12 +400,15 @@ style: |
 <text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
 <text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
 </svg>
+</div>
+
 | モデル | Provider | 次元数 | 最大入力 | 特徴 |
 |-------|---------|--------|---------|------|
 | Titan Embeddings Text v2 | Amazon | 256/512/1024 | 8,192 tok | 可変次元・AWS最適化 |
 | Titan Embeddings Text v1 | Amazon | 1,536 | 8,192 tok | 旧世代・後方互換 |
 | Cohere Embed English v3 | Cohere | 1,024 | 512 tok | 英語特化・高精度 |
 | Cohere Embed Multilingual v3 | Cohere | 1,024 | 512 tok | 多言語100+対応 |
+
 - **重要ポイント:**
 - インジェスト時とクエリ時は必ず同一モデルを使用すること
 - 次元数が多い → 精度↑・ストレージ↑・コスト↑
@@ -364,7 +422,8 @@ style: |
 
 > *チャンクサイズと重複率の組み合わせが検索品質の最大の決定要因*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -388,6 +447,8 @@ style: |
 <text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
 </svg>
+</div>
+
 | 戦略 | 説明 | 最適ユースケース |
 |------|------|----------------|
 | Fixed-size | 固定トークン数で分割（オーバーラップあり） | 汎用テキスト・初期実装 |
@@ -396,6 +457,7 @@ style: |
 | Hierarchical | 親チャンク+子チャンク（要約+詳細） | 長文ドキュメント |
 | Custom（Lambda） | Lambda関数で独自ロジック | 非構造化・特殊フォーマット |
 | None | チャンキングなし（1文書=1ベクトル） | 短い文書（FAQ等） |
+
 - **KBのデフォルト設定:** チャンクサイズ300トークン、オーバーラップ20%
 - **オーバーラップの役割:** 境界付近の文脈を両チャンクに含め、分断を防ぐ
 - **Hierarchical chunking:** 検索は子チャンクで実行→回答は親チャンクのコンテキストで生成
@@ -407,7 +469,8 @@ style: |
 
 > *HYBRID検索（ベクトル+BM25）はOpenSearch Serverless限定でReranking追加で精度をさらに向上できる*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
 <rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -454,12 +517,15 @@ style: |
 <path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
 <text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
 </svg>
+</div>
+
 | 戦略 | 仕組み | 強み | 弱み |
 |------|--------|------|------|
 | Semantic（意味検索） | ベクトル類似度（ANN） | 同義語・意味的近傍を発見 | 固有名詞・完全一致に弱い |
 | Keyword（BM25） | TF-IDF系スコアリング | 固有名詞・コード完全一致 | 同義語・文脈に弱い |
 | Hybrid | Semantic + Keyword 統合 | 両方の長所を活かす | 重み調整が必要 |
 | Reranking | LLMで再スコアリング | 関連性精度↑↑ | レイテンシ・コスト↑ |
+
 - **Bedrock KB での設定:**
 - searchType: SEMANTIC（デフォルト）または HYBRID
 - HYBRID = ベクトル検索 + BM25 の両結果を統合してスコア正規化
@@ -472,7 +538,8 @@ style: |
 
 > *テキスト検索はコサイン類似度が最適—pgvectorの<=>演算子で実装、正規化済みなら内積と等価*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
 <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
@@ -505,12 +572,15 @@ style: |
 <text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
 </svg>
+</div>
+
 | 手法 | 数式 | 値域 | 特徴 |
 |------|------|------|------|
 | コサイン類似度 | A·B / (|A||B|) | -1〜1 | 方向の類似性。テキスト検索に最適 |
 | 内積（Dot Product） | ΣAiBi | -∞〜+∞ | 正規化済みで高速。Titan v2デフォルト |
 | L2（ユークリッド）距離 | √(Σ(Ai-Bi)²) | 0〜+∞ | 空間距離。小さいほど類似 |
 | マンハッタン距離 | Σ|Ai-Bi| | 0〜+∞ | 高次元でコサインより安定 |
+
 - **pgvector の演算子:**
 - <=> : コサイン距離（1-cosine）最小が最類似
 - <-> : ユークリッド距離（L2）最小が最類似
@@ -524,7 +594,8 @@ style: |
 
 > *Bedrock Model EvaluationとSageMaker Clarifyの組み合わせでRAGパイプライン全体の品質を自動評価する*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
 <rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -551,6 +622,8 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
 <text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
 </svg>
+</div>
+
 | 指標 | 説明 | 測定対象 |
 |------|------|---------|
 | Faithfulness（忠実性） | 回答がコンテキストに基づいているか | ハルシネーション検出 |
@@ -558,6 +631,7 @@ style: |
 | Context Precision | 取得チャンクのうち関連性のある割合 | 検索精度（Precision） |
 | Context Recall | 必要情報の取得漏れがないか | 検索再現率（Recall） |
 | Answer Correctness | 正解ラベルとの一致度 | エンドツーエンド精度 |
+
 - **AWS サービスでの評価:**
 - Bedrock Model Evaluation: RAGパイプライン全体をLLMジャッジで自動評価
 - SageMaker Clarify: バイアス検出・説明可能性の追加評価
@@ -570,7 +644,8 @@ style: |
 
 > *全工程チェックリストで本番投入前の品質ゲートを確認する*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
 <rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -592,6 +667,8 @@ style: |
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
 </svg>
+</div>
+
 | フェーズ | ステップ | 主要考慮点 |
 |---------|---------|-----------|
 | インジェスト① | データ収集（S3, Confluence等） | アクセス権限・データ品質 |
@@ -608,7 +685,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Section 2: Amazon Bedrock Knowledge Base
 
 - フルマネージドRAG — データソース連携からRetrieverまで一元管理
@@ -620,7 +697,8 @@ style: |
 
 > *Bedrock KBはS3自動同期+OSS Serverlessで最速RAGを数クリックで構築*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
 <rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -648,7 +726,10 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
 </svg>
+</div>
+
 - **フルマネージドRASサービス** — インフラ管理不要でRAGを即時実装
+
 | 機能カテゴリ | 提供内容 |
 |------------|---------|
 | データソース | S3, Web Crawler, Confluence, SharePoint, Salesforce, ServiceNow |
@@ -657,6 +738,7 @@ style: |
 | 検索API | Retrieve（検索のみ）/ RetrieveAndGenerate（検索+生成） |
 | 同期方式 | 手動 / EventBridgeスケジュール / S3イベント駆動 |
 | セキュリティ | KMS暗号化, VPCエンドポイント, IAMロール |
+
 - Agents との統合でマルチステップ推論・アクション実行も可能
 - Guardrails統合でコンテンツフィルタリングをRAGに適用
 
@@ -667,7 +749,8 @@ style: |
 
 > *KBのIAMロールにs3:GetObject権限とKMS kms:Decrypt権限の両方が必須—セキュリティ問題の頻出ペア*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
 <rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -681,6 +764,8 @@ style: |
 <text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
 <text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
 </svg>
+</div>
+
 | データソース | 対応フォーマット | 認証方式 |
 |------------|----------------|---------|
 | Amazon S3 | PDF, TXT, HTML, DOC, DOCX, CSV, XLS, JSON, MD | IAMロール |
@@ -689,6 +774,7 @@ style: |
 | Microsoft SharePoint | ドキュメントライブラリ・サイト | OAuth 2.0 (Entra ID) |
 | Salesforce | オブジェクト・レコード | OAuth 2.0 |
 | ServiceNow | 記事・インシデント | OAuth 2.0 |
+
 - **S3が試験の中心:**
 - KBのIAMロール → S3バケットへのs3:GetObject権限が必要
 - 暗号化: SSE-S3 / SSE-KMS 対応（KMSキーへのkms:Decrypt権限も必要）
@@ -701,7 +787,8 @@ style: |
 
 > *OpenSearch/Aurora pgvector/Pinecone/Kendra/MongoDBの5DBが試験頻出候補*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -723,6 +810,8 @@ style: |
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
 </svg>
+</div>
+
 | ベクトルDB | 種別 | 特徴 | 最適ユースケース |
 |----------|------|------|----------------|
 | Amazon OpenSearch Serverless | AWS管理 | スケーラブル・Hybrid検索・全文検索 | 大規模・検索機能豊富 |
@@ -741,7 +830,8 @@ style: |
 
 > *日本語コンテンツはTitan v2推奨、コスト重視なら256次元でストレージ・検索コストを大幅削減できる*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
 <rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -784,12 +874,15 @@ style: |
 <text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
 </svg>
+</div>
+
 | モデル | Provider | 次元数 | 最大入力 | 特徴 |
 |-------|---------|--------|---------|------|
 | Titan Embeddings Text v2 | Amazon | 256/512/1024 | 8,192 tok | 可変次元・AWS最適化・コスト低 |
 | Titan Embeddings Text v1 | Amazon | 1,536 | 8,192 tok | 旧世代・後方互換 |
 | Cohere Embed English v3 | Cohere | 1,024 | 512 tok | 英語特化・高精度 |
 | Cohere Embed Multilingual v3 | Cohere | 1,024 | 512 tok | 多言語100+対応・日本語可 |
+
 - **選択基準:**
 - 日本語コンテンツ → Titan v2 または Cohere Multilingual
 - コスト重視 → Titan v2（256次元でストレージ・検索コスト削減）
@@ -803,7 +896,8 @@ style: |
 
 > *チャンクサイズ・オーバーラップ・ベクトルDB・エンベディングモデルが主要設定*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
 <rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -832,6 +926,8 @@ style: |
 <text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
 <text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
 </svg>
+</div>
+
 | パラメータ | 設定値 | 説明 |
 |----------|--------|------|
 | チャンクサイズ | 20〜8,192 トークン | デフォルト300 |
@@ -852,7 +948,8 @@ style: |
 
 > *デフォルト300トークン固定・セマンティック分割・階層型の3設定を用途で選択*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -874,6 +971,8 @@ style: |
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
 </svg>
+</div>
+
 | チャンキング方式 | 設定項目 | 推奨シナリオ |
 |----------------|---------|-------------|
 | Default | 300トークン固定・管理簡単 | 初期実装・汎用テキスト |
@@ -882,6 +981,7 @@ style: |
 | Hierarchical | 親チャンクサイズ・子チャンクサイズ | 長文・要約+詳細参照 |
 | None | チャンキングなし（1文書=1ベクトル） | 短い文書（FAQ・Q&A） |
 | Custom（Lambda） | Lambda ARNを指定 | 独自前処理・特殊フォーマット |
+
 - **Hierarchical chunking の動作:**
 - 親チャンク（例: 1,500 tok）に子チャンク（例: 300 tok）が紐づく
 - 検索は子チャンクで実行 → LLM生成時は親チャンクのコンテキストで回答
@@ -893,7 +993,8 @@ style: |
 
 > *メタデータフィルターで検索スコープを事前絞り込み、精度と速度を両立*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -917,7 +1018,10 @@ style: |
 <text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
 </svg>
+</div>
+
 - **メタデータ属性でベクトル検索結果を事前フィルタリング（Pre-filter）**
+
 | 演算子 | 使用例 |
 |--------|-------|
 | equals | {"key": "department", "value": "engineering"} |
@@ -928,6 +1032,7 @@ style: |
 | listContains | {"key": "tags", "value": "security"} |
 | startsWith | {"key": "filename", "value": "report_"} |
 | andAll / orAll | 複数条件の AND / OR 組み合わせ |
+
 - **S3メタデータの設定:** doc.pdf → doc.pdf.metadata.json を同S3パスに配置
 
 
@@ -937,7 +1042,8 @@ style: |
 
 > *S3イベント自動同期とオンデマンド同期の2方式でインジェスト頻度を設計*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
 <rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -964,18 +1070,23 @@ style: |
 <text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
 <text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
 </svg>
+</div>
+
 | 同期方式 | トリガー | ユースケース |
 |---------|---------|-------------|
 | 手動同期 | Console / StartIngestionJob API | 初期ロード・スポット更新 |
 | スケジュール同期 | EventBridge Scheduler | 定期バッチ更新（日次・週次） |
 | イベント駆動 | S3イベント → Lambda → StartIngestionJob | リアルタイム更新 |
+
 - **インジェストジョブのステータス:**
+
 | ステータス | 説明 |
 |----------|------|
 | STARTING | ジョブ開始中 |
 | IN_PROGRESS | 処理中（チャンキング・エンベディング） |
 | COMPLETE | 完了 |
 | FAILED | 失敗（CloudWatch Logsでエラー確認） |
+
 - **増分同期:** 変更ファイルのみ再処理（全件より高速）
 - **削除同期:** ソースから削除されたドキュメントはKBからも削除
 
@@ -986,7 +1097,8 @@ style: |
 
 > *Retrieve APIはLLM生成なしの検索専用—カスタム後処理・複数KB統合・scoreThresholdが使えるのが利点*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Re-ranking パイプライン</text>
 <rect x="20" y="55" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1029,13 +1141,17 @@ style: |
 <text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12">Bedrock Knowledge Bases: Cohere Rerank ネイティブ統合</text>
 <text x="400" y="366" text-anchor="middle" fill="#f9a825" font-size="11">numberOfResults↑ → Re-rank → contextWindow内に収まる数を選択</text>
 </svg>
+</div>
+
 - **用途:** 独自プロンプト組み立て / 複数KB検索の統合 / 結果フィルタ後処理
+
 | レスポンス項目 | 説明 |
 |-------------|------|
 | content.text | チャンクテキスト本文 |
 | location.s3Location.uri | ソースS3 URI（引用元） |
 | score | 類似度スコア（0〜1） |
 | metadata | カスタムメタデータ |
+
 - Top-k件の retrieval_results リストで返却
 - scoreThreshold 指定で低スコア結果を除外可能
 - filter パラメータでメタデータ条件を追加
@@ -1045,7 +1161,8 @@ style: |
 
 # Retrieve API — 検索のみ（LLM生成なし）（コード例）
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
 <rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1067,6 +1184,7 @@ style: |
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
 </svg>
+</div>
 
 
 ---
@@ -1096,7 +1214,8 @@ response = bedrock_agent_runtime.retrieve(
 
 > *RetrieveAndGenerate APIは単一呼び出しでRAG全工程を完結、最短実装経路*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
 <rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1124,7 +1243,10 @@ response = bedrock_agent_runtime.retrieve(
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
 </svg>
+</div>
+
 - **用途:** エンドツーエンドRAG。検索・プロンプト構築・LLM生成を一括実行
+
 | 設定項目 | 説明 |
 |---------|------|
 | modelArn | 生成に使うFMのARN（Claude, Titan等） |
@@ -1133,6 +1255,7 @@ response = bedrock_agent_runtime.retrieve(
 | guardrailConfiguration | GuardrailsのIDとバージョン |
 | sessionId | マルチターン会話のセッションID |
 | orchestrationConfiguration | リランキングモデル指定 |
+
 - レスポンス: output.text（生成回答）+ citations（引用元リスト）
 - citations: retrievedReferences（ソースチャンク+URI+メタデータ）が含まれる
 
@@ -1141,7 +1264,8 @@ response = bedrock_agent_runtime.retrieve(
 
 # RetrieveAndGenerate API — 検索+LLM生成（コード例）
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
 <rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1155,6 +1279,7 @@ response = bedrock_agent_runtime.retrieve(
 <text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
 <text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
 </svg>
+</div>
 
 
 ---
@@ -1187,7 +1312,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *Retrieve(検索のみ)とRetrieveAndGenerate(生成まで)は要件のカスタム度で使い分ける*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1209,6 +1335,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
 </svg>
+</div>
+
 | 比較軸 | Retrieve | RetrieveAndGenerate |
 |-------|---------|---------------------|
 | LLM呼び出し | なし | あり（FM推論コスト発生） |
@@ -1219,6 +1347,7 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 | 引用情報 | スコア付きチャンク | citations（ソースURI付き） |
 | マルチターン | 非対応 | sessionIdで会話継続 |
 | Guardrails | 別途実装 | ネイティブ統合 |
+
 - **選択基準:**
 - 「カスタム生成・複数KB統合・後処理が必要」→ Retrieve API
 - 「RAGをすぐ使いたい・シンプル実装」→ RetrieveAndGenerate API
@@ -1230,7 +1359,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *KBとAgentsを統合するとRAG検索→複数ツール実行→回答生成を自律化できる*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG 評価指標 (RAGAS フレームワーク)</text>
 <line x1="250" y1="210" x2="250" y2="80" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.583302491977" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.58330249197707" y2="275" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="250" y2="340" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="275.00000000000006" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><polygon points="250,177.5 278.14582562299427,193.75 278.14582562299427,226.25 250,242.5 221.85417437700573,226.25 221.85417437700573,193.75 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,145 306.29165124598853,177.5 306.29165124598853,242.5 250,275 193.7083487540115,242.50000000000003 193.7083487540115,177.5 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,112.5 334.43747686898274,161.25 334.4374768689828,258.75 250,307.5 165.56252313101726,258.75000000000006 165.56252313101726,161.25 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,80 362.583302491977,145 362.58330249197707,275 250,340 137.416697508023,275.00000000000006 137.416697508023,145 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/>
@@ -1245,9 +1375,12 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="535" y="260" fill="#ffffff" font-size="11">Answer Correctness</text><text x="770" y="260" text-anchor="end" fill="#f9a825" font-size="11">正解一致率</text>
 <text x="535" y="298" fill="#ffffff" font-size="11">Latency</text><text x="770" y="298" text-anchor="end" fill="#f9a825" font-size="11">応答速度</text>
 </svg>
+</div>
+
 - **Agents + KB = マルチステップ推論 + 外部知識参照の組み合わせ**
 - **AgentがKBを参照するフロー:**
 - ユーザー入力 → Agent推論 → KB Retrieve → コンテキスト取得 → Action実行 → 最終回答
+
 | 統合方式 | 説明 |
 |---------|------|
 | KB as Knowledge Base | AgentがKBを知識ソースとして自動参照 |
@@ -1265,6 +1398,7 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 - KnowledgeBases配列でKB IDと使用指示（instructions）を指定
 - Guardrails はAgent側で設定（KB側の設定と統合可能）
 - **ユースケース例:** 社内FAQ検索 + 外部API呼び出しを1つのAgentで処理
+
 | 統合方式 | 説明 |
 |---------|------|
 | KB as Knowledge Base | AgentがKBを知識ソースとして自動参照 |
@@ -1278,7 +1412,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *BM25キーワードとkNNセマンティックのハイブリッド検索で単独比+15〜30%精度向上*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Advanced RAG パターン</text>
 <text x="200" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">HyDE (Hypothetical Doc Embedding)</text>
@@ -1339,9 +1474,12 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="11">例: 「Lambda timeout設定」→「Lambda設定全般とは？」で文脈収集</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">HyDE: 文書ドメインが専門的な場合に有効  |  Multi-Query: 質問が曖昧な場合</text>
 </svg>
+</div>
+
 - **HYBRID = ベクトル検索（Semantic）+ キーワード検索（BM25）の統合**
 - **ハイブリッド検索の動作:**
 - ① ベクトル検索で Top-k 件取得 → ② BM25でキーワード検索 → ③ スコア正規化（Min-Max）→ ④ 統合ランキング
+
 | 設定値 | 説明 | 適用場面 |
 |-------|------|---------|
 | SEMANTIC（デフォルト） | ベクトル類似度のみ | 意味検索・一般質問 |
@@ -1358,6 +1496,7 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 - 製品コード・型番・固有名詞を含む検索
 - 技術ドキュメント・API仕様書の検索
 - ⚠️ HYBRID は OpenSearch Serverless をベクトルDBとして使用する場合のみサポート
+
 | 設定値 | 説明 | 適用場面 |
 |-------|------|---------|
 | SEMANTIC（デフォルト） | ベクトル類似度のみ | 意味検索・一般質問 |
@@ -1370,7 +1509,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *Rerankingは最初のTop-k検索結果をLLMで再評価して順序を最適化—精度向上とレイテンシのトレードオフ*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">本番 RAG アーキテクチャ (AWS)</text>
 <rect x="20" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1423,10 +1563,13 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Provisioned Throughput</text><text x="400" y="333" text-anchor="middle" fill="#ffffff" font-size="10">キャッシュ / バッチ処理</text>
 <text x="665" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Spot Embedding / S3 Intelligent</text><text x="665" y="333" text-anchor="middle" fill="#ffffff" font-size="10">Haiku for classify</text>
 </svg>
+</div>
+
 - **Rerankingとは:** 最初の検索結果（Top-k）をLLMで再評価して順序を最適化
 - **Rerankingの流れ:**
 - Retrieve（Top-20等） → Rerankingモデルで関連度再評価 → 上位5件でLLM生成
 - **設定（RetrieveAndGenerate）:**
+
 | Rerankingモデル | Provider | 特徴 |
 |---------------|---------|------|
 | Amazon Rerank 1.0 | Amazon | AWS最適化・低コスト |
@@ -1439,7 +1582,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *Rerankingで精度大幅向上・長文複雑な質問に特に有効—レイテンシ増加とコスト増のトレードオフを許容する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
 <text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
@@ -1473,10 +1617,13 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
 <text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
 </svg>
+</div>
+
 - orchestrationConfiguration.queryTransformationConfiguration に rerankingModel を指定
 - **メリット / デメリット:**
 - 精度大幅向上（特に長文・複雑な質問）
 - レイテンシ増加・Rerankingモデルのコスト増
+
 | Rerankingモデル | Provider | 特徴 |
 |---------------|---------|------|
 | Amazon Rerank 1.0 | Amazon | AWS最適化・低コスト |
@@ -1489,7 +1636,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *GuardrailsのグラウンディングチェックはRAG固有機能—コンテキスト外の回答を自動ブロックしてハルシネーションを防ぐ*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
 <rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1536,7 +1684,10 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
 <text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
 </svg>
+</div>
+
 - **Guardrails = RAGパイプライン全体にコンテンツフィルタリングを適用**
+
 | フィルター種別 | 機能 |
 |-------------|------|
 | コンテンツフィルター | 有害コンテンツ（暴力・ヘイト・性的）の検出・ブロック |
@@ -1544,6 +1695,7 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 | PIIフィルター | 個人情報（氏名・住所・SSN等）のマスキング |
 | グラウンディング | 回答がコンテキストに基づいているか検証（RAG専用） |
 | 有害言語フィルター | プロファニティ・差別的表現のフィルタリング |
+
 - **グラウンディングチェック（RAG固有機能）:**
 - 回答がKBから取得したコンテキストに基づいているかをスコアリング
 - 閾値を下回ると回答をブロックまたは警告メッセージを返却
@@ -1556,7 +1708,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *CloudWatch LogsでIngestion/Retrievalのエラーを捕捉し、CloudTrailで全APIコールを記録して監査証跡を確保する*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
 <rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1585,6 +1738,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
 <text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
 </svg>
+</div>
+
 | メトリクス | 説明 | アラート推奨 |
 |----------|------|------------|
 | IngestionJobStatus | インジェストジョブ成否 | FAILED時 |
@@ -1592,6 +1747,7 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 | KnowledgeBaseQueryCount | Retrieve呼び出し数 | 急増時 |
 | KnowledgeBaseRetrieveAndGenerateLatency | R&G全体レイテンシ | p99 > 10秒 |
 | ModelInvocationThrottles | FMスロットリング | > 0 |
+
 - **CloudWatch Logs の設定:**
 - IngestionJobのエラー詳細: /aws/bedrock/knowledge-bases/ingestion
 - Retrieve/R&G呼び出しログ: /aws/bedrock/knowledge-bases/retrieval
@@ -1604,7 +1760,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *アプリ→BedrockKB→S3→ベクトルDBの3レイヤーで最小権限を設計—IAMとaoss権限を別々に管理する*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1626,10 +1783,13 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
 </svg>
+</div>
+
 - **KBアクセス制御の3レイヤー:**
 - ① アプリ → Bedrock KB API（bedrock:Retrieve/RetrieveAndGenerate権限）
 - ② KB → S3データソース（s3:GetObject/ListBucket権限）
 - ③ KB → ベクトルDB（OpenSearch aoss:APIAccessAll / RDS接続権限）
+
 | Bedrock KBの主要IAMアクション | 用途 |
 |------------------------------|------|
 | bedrock:Retrieve | Retrieve API呼び出し |
@@ -1643,7 +1803,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # KBのIAMポリシー設計（コード例）
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1667,6 +1828,7 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
 </svg>
+</div>
 
 
 ---
@@ -1692,7 +1854,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *VPCエンドポイントでインターネット回避+エンドポイントポリシーで特定KB ARNのみ許可が最小権限設計*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
 <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
@@ -1725,13 +1888,17 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
 </svg>
+</div>
+
 - **VPCエンドポイント利用でインターネット経由を回避（セキュリティ強化）**
+
 | エンドポイント | サービス | 用途 |
 |-------------|---------|------|
 | bedrock（Interface） | Bedrock KB API | Retrieve/R&G API呼び出し |
 | bedrock-runtime | Bedrock Runtime | FM推論 |
 | s3（Gateway） | S3 | データソースアクセス |
 | aoss（Interface） | OpenSearch Serverless | ベクトルDB接続 |
+
 - **設定手順:**
 - VPC → エンドポイント作成 → サービス名選択 → サブネット・セキュリティグループ指定
 - **セキュリティグループ:** HTTPS(443)のインバウンドをVPC CIDRから許可
@@ -1744,7 +1911,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *エンベディング・ベクトルDB・FM推論の3コスト要素を把握してRetrieve API活用でFMコストをゼロにできる*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
 <rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1771,6 +1939,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
 <text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
 </svg>
+</div>
+
 | コスト要因 | 最適化策 |
 |----------|---------|
 | エンベディング生成 | Titan v2の低次元（256）使用でトークンコスト削減 |
@@ -1780,6 +1950,7 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 | FM推論 | 最大トークン制限・安価なモデルを選択 |
 | インジェスト | 増分同期で全件再処理を回避 |
 | Reranking | 必要な場合のみ有効化 |
+
 - **コスト見積もりの3要素:**
 - ① エンベディングコスト（インジェスト時・クエリ時）
 - ② ベクトルDB保存・検索コスト（OpenSearch OCU等）
@@ -1792,7 +1963,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *KBのクォータ数値(最大ベクトル数・チャンクサイズ上限)は試験で直接出題される*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
 <rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1814,6 +1986,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
 </svg>
+</div>
+
 | 制限項目 | デフォルト値 | 備考 |
 |---------|------------|------|
 | KB数 / アカウント | 5 | Service Quotaで引き上げ可 |
@@ -1825,6 +1999,7 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 | インジェスト同時実行 | 1 ジョブ / KB | |
 | メタデータ属性数 | 10 / ドキュメント | |
 | セッション保持期間（R&G） | 1 時間（SessionId有効期限） | |
+
 - **OpenSearch Serverless 連携時:**
 - コレクション数上限: 50 / アカウント（デフォルト）
 
@@ -1835,7 +2010,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *同期失敗・検索精度低下・レイテンシ高騰の3大トラブルと原因・対処を把握*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
 <rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1863,6 +2039,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
 </svg>
+</div>
+
 | 症状 | 原因 | 対処法 |
 |------|------|--------|
 | インジェストFAILED | S3権限不足 | KB IAMロールにs3:GetObject追加 |
@@ -1881,7 +2059,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *Retrieve=検索専用、R&G=E2E RAG、HYBRID=OpenSearch Serverlessのみ、Reranking=精度↑レイテンシ↑*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
 <rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1924,6 +2103,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
 </svg>
+</div>
+
 - ✅ Retrieve API = 検索のみ（LLM不要）。カスタム後処理に最適
 - ✅ RetrieveAndGenerate = エンドツーエンドRAG。citations付き回答
 - ✅ HYBRID検索はOpenSearch Serverlessのみサポート
@@ -1937,7 +2118,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *メタデータフィルタ・増分同期・グラウンディングチェック・エンベディング同一モデル必須の4点を確認する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Re-ranking パイプライン</text>
 <rect x="20" y="55" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -1980,6 +2162,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12">Bedrock Knowledge Bases: Cohere Rerank ネイティブ統合</text>
 <text x="400" y="366" text-anchor="middle" fill="#f9a825" font-size="11">numberOfResults↑ → Re-rank → contextWindow内に収まる数を選択</text>
 </svg>
+</div>
+
 - ✅ メタデータフィルタは .metadata.json ファイルで設定（S3の場合）
 - ✅ 増分同期で変更分のみ再処理（全件再処理は避ける）
 - ✅ GuardrailsのグラウンディングチェックはRAG専用機能
@@ -1989,7 +2173,7 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Section 3: Amazon OpenSearch Serverless
 
 - k-NN ベクトル検索 + BM25 ハイブリッド検索のフルマネージドサービス
@@ -2001,7 +2185,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *OpenSearch Serviceはベクトル検索・全文検索・ハイブリッドを1サービスで提供*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
 <rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2015,12 +2200,17 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
 <text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
 </svg>
+</div>
+
 - **OpenSearch Service** = Elasticsearch互換のフルテキスト検索・分析エンジン（AWS管理）
+
 | 種別 | 説明 | 管理 |
 |------|------|------|
 | OpenSearch Service（Provisioned） | クラスター管理・スケーリング手動 | ユーザー管理 |
 | OpenSearch Serverless | サーバーレス・自動スケール | フルマネージド |
+
 - **Bedrock KBのデフォルトベクトルDB = OpenSearch Serverless**
+
 | 共通機能 | 説明 |
 |---------|------|
 | フルテキスト検索（BM25） | テキスト全文検索・アナライザー設定可能 |
@@ -2035,7 +2225,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *OSS ServerlessはサーバーレスでベクトルDB容量を自動スケールする*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2057,19 +2248,25 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
 </svg>
+</div>
+
 - **サーバーレスOpenSearch** — キャパシティ管理不要・リクエストに応じて自動スケール
+
 | 特徴 | 説明 |
 |------|------|
 | サーバーレス | クラスター・ノード管理不要 |
 | 自動スケール | 負荷に応じてOCU（OpenSearch Compute Unit）が自動増減 |
 | コレクション単位 | インデックスをコレクションにグループ化 |
 | 最小構成 | 0.5 OCU（アイドル時も最小コスト発生） |
+
 - **コレクションタイプ:**
+
 | タイプ | 用途 |
 |-------|------|
 | Search | 全文検索・ベクトル検索（Bedrock KB用） |
 | Time Series | ログ・時系列データ分析 |
 | VectorSearch | ベクトル検索専用（低コスト） |
+
 - **Bedrock KB統合:** コレクションタイプ = VectorSearch を使用
 
 
@@ -2079,7 +2276,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *管理型OSS(固定料金・高機能)とServerless(使用量課金・マネージド)の選択軸は規模*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
 <rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2108,6 +2306,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
 <text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
 </svg>
+</div>
+
 | 比較軸 | OpenSearch Service（Provisioned） | OpenSearch Serverless |
 |-------|----------------------------------|----------------------|
 | 管理 | クラスター・ノード管理が必要 | フルマネージド |
@@ -2118,6 +2318,7 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 | Bedrock KB統合 | 未対応 | 対応（デフォルト） |
 | ハイブリッド検索 | 対応 | 対応 |
 | VPC統合 | 対応 | 対応（VPCエンドポイント） |
+
 - **試験ポイント:** Bedrock KBのベクトルDBとして使えるのは OpenSearch **Serverless** のみ
 
 
@@ -2127,7 +2328,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *コレクション=インデックスの論理グループ、knn_vectorタイプとFaiss/nmslib/Luceneエンジン選択が精度を決める*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2149,7 +2351,10 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
 </svg>
+</div>
+
 - **コレクション** = インデックスの論理グループ（1コレクション = 1ベクトルDBに相当）
+
 | 設定項目 | 説明 |
 |---------|------|
 | コレクション名 | 一意の識別子 |
@@ -2157,6 +2362,7 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 | 暗号化ポリシー | AWS管理キー or カスタムKMSキー |
 | ネットワークポリシー | Public / VPCエンドポイント |
 | データアクセスポリシー | インデックス・コレクションへのアクセス制御 |
+
 - **インデックス作成時のベクトルフィールド設定:**
 - knn_vector タイプ・次元数・類似度メトリクス（cosinesimil / innerproduct / l2）を指定
 - エンジン指定: faiss / nmslib / lucene（デフォルトは自動選択）
@@ -2168,7 +2374,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *HNSWとIVF-PQの2アルゴリズムが高速近似最近傍検索の主要候補*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2192,14 +2399,19 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
 </svg>
+</div>
+
 - **ANN（Approximate Nearest Neighbor）** = 完全一致ではなく近似で高速化
+
 | 手法 | 仕組み | 特徴 |
 |------|--------|------|
 | Exact kNN | 全ベクトルと距離計算 | 精度100%・大規模で遅い |
 | HNSW | 階層グラフ構造で近傍探索 | 高精度・高速・メモリ大 |
 | IVF | クラスタリングで候補絞り込み | スケーラブル・中精度 |
 | Faiss Disk ANN | ベクトルをディスク保存 | 大規模・メモリ節約 |
+
 - **OpenSearch kNN設定パラメータ:**
+
 | パラメータ | 説明 |
 |----------|------|
 | ef_construction | インデックス構築時の探索幅（大きい→精度↑・遅い） |
@@ -2213,7 +2425,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *100万件超はFaiss（Disk ANN）・バランス型はnmslib・小規模フルテキスト統合はLuceneが最適な選択*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG 評価指標 (RAGAS フレームワーク)</text>
 <line x1="250" y1="210" x2="250" y2="80" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.583302491977" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.58330249197707" y2="275" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="250" y2="340" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="275.00000000000006" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><polygon points="250,177.5 278.14582562299427,193.75 278.14582562299427,226.25 250,242.5 221.85417437700573,226.25 221.85417437700573,193.75 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,145 306.29165124598853,177.5 306.29165124598853,242.5 250,275 193.7083487540115,242.50000000000003 193.7083487540115,177.5 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,112.5 334.43747686898274,161.25 334.4374768689828,258.75 250,307.5 165.56252313101726,258.75000000000006 165.56252313101726,161.25 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,80 362.583302491977,145 362.58330249197707,275 250,340 137.416697508023,275.00000000000006 137.416697508023,145 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/>
@@ -2228,11 +2441,14 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="535" y="260" fill="#ffffff" font-size="11">Answer Correctness</text><text x="770" y="260" text-anchor="end" fill="#f9a825" font-size="11">正解一致率</text>
 <text x="535" y="298" fill="#ffffff" font-size="11">Latency</text><text x="770" y="298" text-anchor="end" fill="#f9a825" font-size="11">応答速度</text>
 </svg>
+</div>
+
 | エンジン | アルゴリズム | 特徴 | 推奨シナリオ |
 |--------|------------|------|------------|
 | Faiss（Facebook AI） | IVF + HNSW | 大規模・GPU最適化・Disk ANN対応 | 1億件超の大規模 |
 | nmslib | HNSW | 高速・メモリ効率良好 | 中〜大規模・デフォルト推奨 |
 | Lucene | HNSW | Luceneネイティブ統合 | 小〜中規模・フルテキスト混在 |
+
 - **試験ポイント:**
 - 大規模（100万件超） → Faiss（Disk ANNでディスクオフロード）
 - バランス型 → nmslib（メモリ効率・速度のバランスが良い）
@@ -2246,7 +2462,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 > *dimとm・ef_construction・ef_searchのHNSWパラメータが検索精度の設定値*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
 <rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2273,7 +2490,10 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
 <text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
 </svg>
+</div>
+
 - **ベクトルフィールドの設定が検索精度・速度の鍵**
+
 | フィールド設定 | 説明 |
 |-------------|------|
 | type: knn_vector | ベクトルフィールドの型 |
@@ -2288,7 +2508,8 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 
 # OpenSearch インデックス設計（コード例）
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
 <rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2310,6 +2531,7 @@ response = bedrock_agent_runtime.retrieve_and_generate(
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
 </svg>
+</div>
 
 
 ---
@@ -2344,7 +2566,8 @@ PUT /my-vector-index
 
 > *HYBRID=ベクトル+BM25でBedrock KB HYBRID設定はOpenSearch Serverless限定、固有名詞検索精度が向上する*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
 <rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2372,7 +2595,10 @@ PUT /my-vector-index
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
 </svg>
+</div>
+
 - **ハイブリッドクエリ** = ベクトル検索 + キーワード検索のスコアを統合
+
 | ステップ | 処理 |
 |---------|------|
 | ① kNN検索 | クエリベクトルで近傍Top-k取得（knnスコア） |
@@ -2380,6 +2606,7 @@ PUT /my-vector-index
 | ③ スコア正規化 | 両スコアを同一スケールに変換（Min-Max等） |
 | ④ スコア統合 | 重み付き加重平均でランキング決定 |
 | ⑤ 上位k件返却 | 統合スコアの高い順 |
+
 - **Bedrock KB でのHYBRID設定:** searchType: HYBRID を指定（OpenSearch Serverless限定）
 - **重みの調整:** デフォルトはkNN:BM25 = 0.5:0.5（カスタム変更可）
 - **試験ポイント:** HYBRID = Semantic + Keyword の統合。固有名詞・コード検索精度が向上
@@ -2391,7 +2618,8 @@ PUT /my-vector-index
 
 > *Min-Max正規化+Arithmetic Meanの組み合わせがkNNとBM25の異スケールスコアを統合する最もシンプルな方法*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Advanced RAG パターン</text>
 <text x="200" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">HyDE (Hypothetical Doc Embedding)</text>
@@ -2452,12 +2680,16 @@ PUT /my-vector-index
 <text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="11">例: 「Lambda timeout設定」→「Lambda設定全般とは？」で文脈収集</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">HyDE: 文書ドメインが専門的な場合に有効  |  Multi-Query: 質問が曖昧な場合</text>
 </svg>
+</div>
+
 - **なぜ正規化が必要か:** kNNスコア（0〜1）とBM25スコア（0〜∞）の尺度が異なるため
+
 | 正規化手法 | 計算式 | 特徴 |
 |----------|--------|------|
 | Min-Max | (x - min) / (max - min) | 0〜1に正規化。外れ値に敏感 |
 | Z-score | (x - mean) / std | 外れ値に強い。負値になり得る |
 | L2 Norm | x / √(Σx²) | ベクトル正規化。コサイン準拠 |
+
 - **OpenSearch の正規化プロセッサ:**
 - norm_processor で normalization_technique を指定（min_max / z_score / l2）
 - combination_technique で統合方式（harmonic_mean / geometric_mean / arithmetic_mean）を選択
@@ -2470,7 +2702,8 @@ PUT /my-vector-index
 
 > *Network/Encryption/Data Access Policyの3ポリシーでServerlessのセキュリティを設計*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
 <rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2484,18 +2717,24 @@ PUT /my-vector-index
 <text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
 <text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
 </svg>
+</div>
+
 - **3種類のセキュリティポリシーでアクセス制御を多層構成**
+
 | ポリシー種別 | 制御内容 | 設定対象 |
 |-----------|---------|---------|
 | 暗号化ポリシー | 保存データ暗号化キー（AWS管理/KMS） | コレクション |
 | ネットワークポリシー | Public / VPCエンドポイント接続制限 | コレクション |
 | データアクセスポリシー | インデックスCRUD権限（IAMロール/ユーザー別） | インデックス |
+
 - **データアクセスポリシーの主要アクション:**
+
 | アクション | 説明 |
 |----------|------|
 | aoss:CreateIndex / DeleteIndex | インデックス管理 |
 | aoss:ReadDocument / WriteDocument | ドキュメントCRUD |
 | aoss:DescribeCollectionItems | コレクション情報参照 |
+
 - **Bedrock KB IAMロール:** aoss:APIAccessAll を付与（または個別アクション）
 
 
@@ -2505,7 +2744,8 @@ PUT /my-vector-index
 
 > *KB作成時にコレクション指定でaoss:APIAccessAll・s3:GetObject・bedrock:InvokeModelの3権限が必須*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">本番 RAG アーキテクチャ (AWS)</text>
 <rect x="20" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2558,7 +2798,10 @@ PUT /my-vector-index
 <text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Provisioned Throughput</text><text x="400" y="333" text-anchor="middle" fill="#ffffff" font-size="10">キャッシュ / バッチ処理</text>
 <text x="665" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Spot Embedding / S3 Intelligent</text><text x="665" y="333" text-anchor="middle" fill="#ffffff" font-size="10">Haiku for classify</text>
 </svg>
+</div>
+
 - **統合フロー:** KB作成時にOpenSearch Serverlessコレクションを指定
+
 | 設定項目 | 説明 |
 |---------|------|
 | コレクションARN | 連携するOpenSearch Serverlessコレクション |
@@ -2566,6 +2809,7 @@ PUT /my-vector-index
 | ベクトルフィールド名 | knn_vectorフィールド名 |
 | テキストフィールド名 | チャンクテキストを格納するフィールド名 |
 | メタデータフィールド名 | メタデータJSON格納フィールド名 |
+
 - **KBが自動作成するリソース:**
 - コレクション・インデックスはKB作成時に自動生成（手動作成も可）
 - **IAM権限（KBのサービスロール）:**
@@ -2578,7 +2822,8 @@ PUT /my-vector-index
 
 > *OCU数とef_search値のチューニングでServerlessのレイテンシを50ms以下に最適化*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2600,6 +2845,8 @@ PUT /my-vector-index
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
 </svg>
+</div>
+
 | チューニング項目 | 設定・対処法 |
 |--------------|------------|
 | ef_search 増加 | 検索精度↑・レイテンシ↑。デフォルト512 |
@@ -2609,6 +2856,7 @@ PUT /my-vector-index
 | フィールド絞り込み | 不要なフィールドをincludesで除外 |
 | バッチインジェスト | 1件ずつではなくBulk APIで一括登録 |
 | knnウォームアップ | インデックス再起動後にknn_warm_up APIで事前ロード |
+
 - **OCUのスケーリング:**
 - Search OCU（クエリ処理）とIndex OCU（インデックス処理）が独立スケール
 - 最小 0.5 OCU から自動スケールアップ（上限をCapacity Limitsで設定可）
@@ -2620,7 +2868,8 @@ PUT /my-vector-index
 
 > *CloudWatch OSS ServerlessメトリクスでOCU消費率とスロットリングを継続監視*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
 <rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2649,6 +2898,8 @@ PUT /my-vector-index
 <text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
 <text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
 </svg>
+</div>
+
 | メトリクス | 説明 | アラート推奨 |
 |----------|------|------------|
 | SearchLatency | 検索レイテンシ（p50/p90/p99） | p99 > 500ms |
@@ -2657,6 +2908,7 @@ PUT /my-vector-index
 | IndexingRate | インデックス登録数/秒 | |
 | OCUUtilization | OCU使用率 | > 80% |
 | StorageUtilization | ストレージ使用率 | > 80% |
+
 - **CloudWatch Dashboard 推奨設定:**
 - SearchLatency P99 + SearchRate + OCUUtilization を1ダッシュボードに集約
 - **アクセスログ:** データアクセスポリシーでCloudWatch Logsに転送可能
@@ -2668,7 +2920,8 @@ PUT /my-vector-index
 
 > *IAMとデータアクセスポリシーは独立した2層—両方設定しないとOpenSearch Serverlessは操作できない*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
 <text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
@@ -2702,10 +2955,13 @@ PUT /my-vector-index
 <text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
 <text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
 </svg>
+</div>
+
 - **IAM ≠ データアクセスポリシー。2層で制御する点が試験頻出**
 - **必要なIAMアクション（API呼び出し側）:**
 - aoss:APIAccessAll または個別アクション（aoss:CreateIndex等）
 - **データアクセスポリシー（インデックス操作側）:**
+
 | 制御レイヤー | 制御内容 | 設定場所 |
 |-----------|---------|---------|
 | IAM | AWSリソースへのAPI呼び出し制御 | IAMポリシー |
@@ -2718,7 +2974,8 @@ PUT /my-vector-index
 
 > *IAMのaoss:APIAccessAll付与だけでは操作不可—データアクセスポリシーとの両方設定が試験最頻出ポイント*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
 <rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2765,10 +3022,13 @@ PUT /my-vector-index
 <path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
 <text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
 </svg>
+</div>
+
 - IAMロールARNまたはIAMユーザーARNを対象として指定
 - **試験ポイント:**
 - IAMでaoss:APIAccessAllを付与してもデータアクセスポリシーがなければ操作不可
 - 両方の設定が必要（かつ一致している必要がある）
+
 | 制御レイヤー | 制御内容 | 設定場所 |
 |-----------|---------|---------|
 | IAM | AWSリソースへのAPI呼び出し制御 | IAMポリシー |
@@ -2781,7 +3041,8 @@ PUT /my-vector-index
 
 > *VectorSearchタイプ選択・不要インデックス削除・テスト環境の最小化でOpenSearch Serverlessコストを最適化する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
 <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
@@ -2814,12 +3075,15 @@ PUT /my-vector-index
 <text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
 </svg>
+</div>
+
 | コスト要因 | 単価目安 | 最適化策 |
 |----------|---------|---------|
 | OCU（検索） | ~$0.24/OCU-時 | ef_searchを下げてOCU削減 |
 | OCU（インデックス） | ~$0.24/OCU-時 | バッチインジェストで効率化 |
 | ストレージ | ~$0.024/GB-月 | 低次元（256）で削減 |
 | Disk ANN | 低コスト | メモリ不足時のコスト削減策 |
+
 - **コスト削減のベストプラクティス:**
 - テスト環境は使用時のみ起動（Serverlessはアイドルでも最小コスト）
 - VectorSearch タイプ（Search タイプより安価）を選択
@@ -2833,7 +3097,8 @@ PUT /my-vector-index
 
 > *Bedrock KBはOpenSearch Serverlessのみ対応、3種セキュリティポリシーとk-NNエンジン選択が試験頻出*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
 <rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2876,6 +3141,8 @@ PUT /my-vector-index
 <text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
 </svg>
+</div>
+
 - ✅ Bedrock KBのベクトルDBとして使えるのは OpenSearch **Serverless** のみ
 - ✅ コレクションタイプ: VectorSearch（低コスト）/ Search（全文+ベクトル）
 - ✅ k-NNエンジン: Faiss（大規模）/ nmslib（バランス）/ Lucene（小規模）
@@ -2889,7 +3156,8 @@ PUT /my-vector-index
 
 > *IAMとデータアクセスポリシーの独立性・ef_construction/ef_searchの意味・OCU課金の3点が試験必須知識*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Re-ranking パイプライン</text>
 <rect x="20" y="55" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -2932,6 +3200,8 @@ PUT /my-vector-index
 <text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12">Bedrock Knowledge Bases: Cohere Rerank ネイティブ統合</text>
 <text x="400" y="366" text-anchor="middle" fill="#f9a825" font-size="11">numberOfResults↑ → Re-rank → contextWindow内に収まる数を選択</text>
 </svg>
+</div>
+
 - ✅ IAMとデータアクセスポリシーは独立（両方設定が必要）
 - ✅ ef_construction/m: インデックス精度（高い→精度↑・メモリ↑）
 - ✅ ef_search: 検索精度（高い→精度↑・レイテンシ↑）
@@ -2941,7 +3211,7 @@ PUT /my-vector-index
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Section 4: Aurora PostgreSQL + pgvector
 
 - RDB + ベクトル検索の統合 — 既存PostgreSQL資産を活かしたRAG実装
@@ -2953,7 +3223,8 @@ PUT /my-vector-index
 
 > *pgvector=PostgreSQL拡張機能、Bedrock KBはAurora PostgreSQLのみ対応（RDS PostgreSQLは非対応）*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG 評価指標 (RAGAS フレームワーク)</text>
 <line x1="250" y1="210" x2="250" y2="80" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.583302491977" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.58330249197707" y2="275" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="250" y2="340" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="275.00000000000006" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><polygon points="250,177.5 278.14582562299427,193.75 278.14582562299427,226.25 250,242.5 221.85417437700573,226.25 221.85417437700573,193.75 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,145 306.29165124598853,177.5 306.29165124598853,242.5 250,275 193.7083487540115,242.50000000000003 193.7083487540115,177.5 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,112.5 334.43747686898274,161.25 334.4374768689828,258.75 250,307.5 165.56252313101726,258.75000000000006 165.56252313101726,161.25 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,80 362.583302491977,145 362.58330249197707,275 250,340 137.416697508023,275.00000000000006 137.416697508023,145 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/>
@@ -2968,7 +3239,10 @@ PUT /my-vector-index
 <text x="535" y="260" fill="#ffffff" font-size="11">Answer Correctness</text><text x="770" y="260" text-anchor="end" fill="#f9a825" font-size="11">正解一致率</text>
 <text x="535" y="298" fill="#ffffff" font-size="11">Latency</text><text x="770" y="298" text-anchor="end" fill="#f9a825" font-size="11">応答速度</text>
 </svg>
+</div>
+
 - **pgvector** = PostgreSQL拡張機能でベクトル検索を追加するオープンソースライブラリ
+
 | 特徴 | 説明 |
 |------|------|
 | RDB統合 | SQLでベクトル検索・フィルタリングを同時実行 |
@@ -2976,6 +3250,7 @@ PUT /my-vector-index
 | 既存資産活用 | Aurora PostgreSQL / RDS PostgreSQL に追加可能 |
 | SQL操作 | 標準SQLでINSERT/SELECT/UPDATE/DELETE |
 | インデックス | IVFFlat（低精度・高速）/ HNSW（高精度） |
+
 - **AWSでの利用:**
 - Amazon Aurora PostgreSQL（推奨・Bedrock KB対応）
 - Amazon RDS for PostgreSQL（Bedrock KB非対応）
@@ -2988,7 +3263,8 @@ PUT /my-vector-index
 
 > *Aurora PostgreSQLへのpgvector有効化は拡張機能インストール1コマンドで完了*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3010,8 +3286,11 @@ PUT /my-vector-index
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
 </svg>
+</div>
+
 - **Aurora PostgreSQL でのpgvector有効化手順**
 - 対応バージョン: Aurora PostgreSQL 13.6+ / 14.4+ / 15.2+
+
 | ステップ | コマンド / 操作 |
 |---------|---------------|
 | ① 拡張機能有効化 | CREATE EXTENSION vector; |
@@ -3025,7 +3304,8 @@ PUT /my-vector-index
 
 # pgvector — Aurora PostgreSQL 有効化（コード例）
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3049,6 +3329,7 @@ PUT /my-vector-index
 <text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
 </svg>
+</div>
 
 
 ---
@@ -3081,7 +3362,8 @@ LIMIT 5;
 
 > *コサイン類似度は1-(<=>の距離)、内積スコアは-(<#>の値)—演算子と類似度の変換式が問題で出る*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
 <rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3108,15 +3390,19 @@ LIMIT 5;
 <text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
 <text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
 </svg>
+</div>
+
 | 演算子 | 距離メトリクス | 説明 |
 |--------|-------------|------|
 | <-> | L2（ユークリッド）距離 | 空間的距離。小さいほど類似 |
 | <=> | コサイン距離（1-cosine） | 方向の類似性。小さいほど類似 |
 | <#> | 内積（負値） | 正規化済みで高速。小さいほど類似 |
+
 - **類似度スコアへの変換:**
 - コサイン類似度 = 1 - (embedding <=> query_vec)
 - 内積スコア = -(embedding <#> query_vec)
 - **vector型の制限:**
+
 | 制限 | 値 |
 |------|---|
 | 最大次元数 | 16,000（通常1,024以下推奨） |
@@ -3130,7 +3416,8 @@ LIMIT 5;
 
 > *IVFFlatはクラスタリングで検索範囲を絞る方式—probes値を増やすと精度↑・速度↓のトレードオフ*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Advanced RAG パターン</text>
 <text x="200" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">HyDE (Hypothetical Doc Embedding)</text>
@@ -3191,11 +3478,14 @@ LIMIT 5;
 <text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="11">例: 「Lambda timeout設定」→「Lambda設定全般とは？」で文脈収集</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">HyDE: 文書ドメインが専門的な場合に有効  |  Multi-Query: 質問が曖昧な場合</text>
 </svg>
+</div>
+
 - **IVFFlat（Inverted File Flat）** = ベクトルをクラスタリングして検索範囲を絞る
 - **インデックス作成:**
 - CREATE INDEX ON documents USING ivfflat(embedding vector_cosine_ops) WITH (lists = 100);
 - **検索時のprobes設定:**
 - SET ivfflat.probes = 10;  -- 精度↑はprobes↑
+
 | パラメータ | 説明 | 推奨値 |
 |----------|------|--------|
 | lists | クラスタ数（多い→精度↑・遅い） | rows/1000（最大100） |
@@ -3208,7 +3498,8 @@ LIMIT 5;
 
 > *IVFFlatは構築高速・大規模向き・中精度—空テーブルでの作成は非推奨で十分なデータ量が必要*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">本番 RAG アーキテクチャ (AWS)</text>
 <rect x="20" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3261,11 +3552,14 @@ LIMIT 5;
 <text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Provisioned Throughput</text><text x="400" y="333" text-anchor="middle" fill="#ffffff" font-size="10">キャッシュ / バッチ処理</text>
 <text x="665" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Spot Embedding / S3 Intelligent</text><text x="665" y="333" text-anchor="middle" fill="#ffffff" font-size="10">Haiku for classify</text>
 </svg>
+</div>
+
 - **特徴:**
 - インデックス構築が速い（HNSWより高速）
 - 大規模データ（100万件超）でスケールしやすい
 - 精度はHNSWより低め（probes調整で改善可）
 - **注意:** インデックス前に十分なデータが必要（空テーブルでの作成は非推奨）
+
 | パラメータ | 説明 | 推奨値 |
 |----------|------|--------|
 | lists | クラスタ数（多い→精度↑・遅い） | rows/1000（最大100） |
@@ -3278,7 +3572,8 @@ LIMIT 5;
 
 > *HNSWは高精度・高速・メモリ大でpgvector 0.5.0以降対応—IVFFlatより更新に強い階層グラフ構造*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
 <rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3300,16 +3595,21 @@ LIMIT 5;
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
 </svg>
+</div>
+
 - **HNSW（Hierarchical Navigable Small World）** = 階層グラフ構造で高精度・高速検索
+
 | パラメータ | 説明 | 推奨値 |
 |----------|------|--------|
 | m | グラフの接続数（多い→精度↑・メモリ↑） | 16（デフォルト） |
 | ef_construction | インデックス構築探索幅（多い→精度↑・遅い） | 64（デフォルト） |
+
 - **インデックス作成:**
 - CREATE INDEX ON documents USING hnsw(embedding vector_cosine_ops) WITH (m = 16, ef_construction = 64);
 - **検索時のef設定:**
 - SET hnsw.ef_search = 100;  -- 精度↑はef_search↑
 - **IVFFlat vs HNSW:**
+
 | | IVFFlat | HNSW |
 |--|---------|------|
 | 精度 | 中 | 高 |
@@ -3324,7 +3624,8 @@ LIMIT 5;
 
 > *parallel_workers・work_mem・shared_buffersのチューニングで検索速度を改善*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
 <rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3352,6 +3653,8 @@ LIMIT 5;
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
 </svg>
+</div>
+
 | チューニング項目 | 対処法 |
 |--------------|--------|
 | インデックス不使用 | WHERE句の条件を最小化、ANNインデックス適用確認 |
@@ -3361,6 +3664,7 @@ LIMIT 5;
 | 並列スキャン | max_parallel_workers_per_gather を増加 |
 | メモリ調整 | maintenance_work_mem でインデックス構築高速化 |
 | vacuum | 削除行が多い場合はVACUUMでパフォーマンス回復 |
+
 - **Aurora I/O-Optimized推奨:**
 - ベクトル検索はI/O集中型。Aurora I/O-Optimizedストレージでコスト削減可
 
@@ -3371,7 +3675,8 @@ LIMIT 5;
 
 > *pgvectorの最大次元数(16000)・インデックス制限・並行性制限が試験頻出数値*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
 <rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3385,6 +3690,8 @@ LIMIT 5;
 <text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
 <text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
 </svg>
+</div>
+
 | 制限項目 | 値 | 備考 |
 |---------|---|------|
 | 最大次元数 | 16,000 | 通常1,024以下を推奨 |
@@ -3392,12 +3699,15 @@ LIMIT 5;
 | HNSW最大m | 100 | |
 | HNSW最大ef_construction | 4,000 | |
 | 1クエリの最大ベクトル数 | PostgreSQL行数上限に準拠 | |
+
 - **Aurora PostgreSQL pgvector 対応バージョン:**
+
 | Auroraバージョン | pgvectorバージョン |
 |---------------|----------------|
 | Aurora PG 13.6+ | 0.4.0 |
 | Aurora PG 14.4+ | 0.4.0 |
 | Aurora PG 15.2+ | 0.5.0（HNSW対応） |
+
 - **Bedrock KB 対応:** Aurora PostgreSQL のみ（RDS PostgreSQLは非対応）
 
 
@@ -3407,7 +3717,8 @@ LIMIT 5;
 
 > *Aurora Serverless v2推奨でrds-data:ExecuteStatement・secretsmanager:GetSecretValueの2権限が必須*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3429,7 +3740,10 @@ LIMIT 5;
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
 </svg>
+</div>
+
 - **統合フロー:** KB作成時にAurora PostgreSQLクラスターを指定
+
 | 設定項目 | 説明 |
 |---------|------|
 | クラスターARN | Aurora PostgreSQLのARN |
@@ -3439,6 +3753,7 @@ LIMIT 5;
 | テキストフィールド名 | チャンクテキストカラム名 |
 | メタデータフィールド名 | JSONBメタデータカラム名 |
 | Secrets Manager ARN | DB接続情報を格納したSecret ARN |
+
 - **IAM権限（KBのサービスロール）:**
 - rds-data:ExecuteStatement / rds-data:BatchExecuteStatement
 - secretsmanager:GetSecretValue（DBクレデンシャル取得）
@@ -3451,7 +3766,8 @@ LIMIT 5;
 
 > *RDS暗号化・IAM認証・SSL接続・Parameter Storeのセキュリティ4点セットを設定*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
 <rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3480,7 +3796,10 @@ LIMIT 5;
 <text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
 <text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
 </svg>
+</div>
+
 - **セキュリティ設定:**
+
 | 項目 | 設定 |
 |------|------|
 | 暗号化（保存） | Aurora ストレージ暗号化 / KMS |
@@ -3488,12 +3807,15 @@ LIMIT 5;
 | アクセス制御 | PostgreSQLユーザー権限 + IAM認証 |
 | ネットワーク | VPC内に配置・パブリックアクセス無効化 |
 | 認証情報 | Secrets Managerで管理（ハードコード禁止） |
+
 - **コスト比較（概算）:**
+
 | 構成 | 月額概算 |
 |------|---------|
 | Aurora Serverless v2（最小） | ~$50〜（ACU課金） |
 | Aurora Provisioned（db.r7g.large） | ~$200〜 |
 | OpenSearch Serverless（最小） | ~$175〜（0.5OCU×2×30日） |
+
 - **小規模なら pgvector の方が安い場合が多い**
 
 
@@ -3503,7 +3825,8 @@ LIMIT 5;
 
 > *pgvectorはAurora PostgreSQL限定・IVFFlat構築高速/中精度・HNSW高精度/メモリ大の使い分けを確認*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
 <text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
@@ -3537,6 +3860,8 @@ LIMIT 5;
 <text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
 <text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
 </svg>
+</div>
+
 - ✅ pgvector = PostgreSQL拡張機能でRDB+ベクトル検索を統合
 - ✅ Bedrock KB対応 = Aurora PostgreSQLのみ（RDS PostgreSQLは非対応）
 - ✅ 演算子: <-> L2距離 / <=> コサイン距離 / <#> 内積（負値）
@@ -3550,7 +3875,8 @@ LIMIT 5;
 
 > *Secrets Manager必須・ACID対応・pgvector単体ではHybrid検索不可・RDS PostgreSQLはBedrock KB非対応*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
 <rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3597,6 +3923,8 @@ LIMIT 5;
 <path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
 <text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
 </svg>
+</div>
+
 - ✅ DB接続情報はSecrets Managerで管理
 - ✅ ACID対応 → ベクトル + リレーショナルデータのトランザクション処理が可能
 - ✅ コスト: 小規模ならOpenSearchより安価な場合が多い
@@ -3606,7 +3934,7 @@ LIMIT 5;
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Section 5: その他ベクトルDB・比較分析
 
 - MemoryDB / Pinecone / Neptune Analytics / 全DB比較マトリクス
@@ -3618,7 +3946,8 @@ LIMIT 5;
 
 > *MemoryDB=インメモリ+耐久性でFT.CREATE/FT.SEARCHによるリアルタイムレコメンデーションに最適*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
 <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
@@ -3651,7 +3980,10 @@ LIMIT 5;
 <text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
 </svg>
+</div>
+
 - **MemoryDB** = Redis互換のインメモリDB（耐久性あり）+ ベクトル検索対応
+
 | 特徴 | 説明 |
 |------|------|
 | 超低レイテンシ | マイクロ秒レベルの読み取り（インメモリ） |
@@ -3659,6 +3991,7 @@ LIMIT 5;
 | ベクトル検索 | HNSW / Flat インデックス対応 |
 | データ型 | Hash, Set, SortedSet, Vector等Redis全データ型 |
 | Bedrock KB対応 | 対応（ベクトルDB選択肢として利用可） |
+
 - **ベクトル検索コマンド（Redis Stack）:**
 - FT.CREATE / FT.SEARCH で全文検索 + ベクトル検索の統合
 - **最適ユースケース:** リアルタイムレコメンデーション・低レイテンシチャット履歴+RAG
@@ -3671,7 +4004,8 @@ LIMIT 5;
 
 > *PineconeはAWS PrivateLinkでVPC内から接続可能—ベクトル検索のみでシンプルな構成に最適*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
 <rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3714,7 +4048,10 @@ LIMIT 5;
 <text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
 </svg>
+</div>
+
 - **Pinecone** = ベクトル専用フルマネージドDBのSaaS（サードパーティ）
+
 | 特徴 | 説明 |
 |------|------|
 | ベクトル特化 | ベクトル検索のみに最適化（フルテキスト検索なし） |
@@ -3722,6 +4059,7 @@ LIMIT 5;
 | ネームスペース | テナント分離・マルチユーザー対応 |
 | メタデータフィルタ | 高速なPre-filtering対応 |
 | Bedrock KB対応 | サードパーティとして統合可能 |
+
 - **PineconeとAWS連携:**
 - AWS PrivateLinkでVPC内からセキュアに接続
 - AWS Marketplaceで契約一元管理
@@ -3735,7 +4073,8 @@ LIMIT 5;
 
 > *Weaviate(マルチモーダル)とMongoDB Atlas(既存Mongo活用)は用途特化型ベクトルDB*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3757,6 +4096,8 @@ LIMIT 5;
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
 </svg>
+</div>
+
 | | Weaviate | MongoDB Atlas |
 |-|---------|--------------|
 | 種別 | オープンソースVectorDB（SaaS版あり） | ドキュメントDB + ベクトル |
@@ -3766,6 +4107,7 @@ LIMIT 5;
 | ハイブリッド検索 | 対応（BM25+ベクトル統合） | 対応 |
 | スキーマ | 型付きスキーマ（クラス定義） | スキーマレス |
 | 最適ユースケース | 高精度セマンティック検索 | 既存MongoDB活用 |
+
 - **試験ポイント:** Bedrock KBはサードパーティDB（Pinecone/Weaviate/MongoDB Atlas等）にも対応
 
 
@@ -3775,7 +4117,8 @@ LIMIT 5;
 
 > *GraphRAGはエンティティ間の関係性を活用してマルチホップ推論を実現*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Re-ranking パイプライン</text>
 <rect x="20" y="55" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3818,9 +4161,12 @@ LIMIT 5;
 <text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12">Bedrock Knowledge Bases: Cohere Rerank ネイティブ統合</text>
 <text x="400" y="366" text-anchor="middle" fill="#f9a825" font-size="11">numberOfResults↑ → Re-rank → contextWindow内に収まる数を選択</text>
 </svg>
+</div>
+
 - **Neptune Analytics** = グラフDB + ベクトル検索 + グラフアルゴリズムの統合
 - **GraphRAGとは:**
 - エンティティ（人物・組織・概念）間の関係をグラフで表現
+
 | 特徴 | 説明 |
 |------|------|
 | グラフ+ベクトル | グラフ構造（エンティティ関係）+ ベクトル類似検索を同時実行 |
@@ -3839,6 +4185,7 @@ LIMIT 5;
 - **最適ユースケース:**
 - 医療知識グラフ・法規制コンプライアンス・組織内人脈検索・不正検知
 - **試験ポイント:** 「エンティティ間の関係情報が必要→Neptune Analytics + GraphRAG」
+
 | 特徴 | 説明 |
 |------|------|
 | グラフ+ベクトル | グラフ構造（エンティティ関係）+ ベクトル類似検索を同時実行 |
@@ -3853,7 +4200,8 @@ LIMIT 5;
 
 > *機能・スケーラビリティ・マネージド度の3軸でベクトルDBを比較する*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3877,6 +4225,8 @@ LIMIT 5;
 <text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
 </svg>
+</div>
+
 | DB | 種別 | Hybrid検索 | Transaction | グラフ統合 | KB対応 |
 |---|------|-----------|------------|-----------|--------|
 | OpenSearch Serverless | AWS管理 | ✅ BM25+kNN | ❌ | ❌ | ✅ |
@@ -3895,7 +4245,8 @@ LIMIT 5;
 
 > *大規模+ハイブリッド→OpenSearch、既存RDB→pgvector、超低レイテンシ→MemoryDB、グラフ→Neptune*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
 <rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -3922,6 +4273,8 @@ LIMIT 5;
 <text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
 <text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
 </svg>
+</div>
+
 | DB | コスト感 | 最大スケール | レイテンシ | ユースケース |
 |---|---------|------------|-----------|------------|
 | OpenSearch Serverless | 中（OCU課金） | 大規模 | 中 | 大規模・Hybrid |
@@ -3930,6 +4283,7 @@ LIMIT 5;
 | MemoryDB for Redis | 高（インメモリ） | 中 | 超低 | リアルタイム |
 | Pinecone | 中〜高（Pod/Serverless） | 大規模 | 低 | ベクトル特化 |
 | MongoDB Atlas | 中 | 大規模 | 中 | NoSQL+ベクトル |
+
 - **選択のサマリー:**
 - 大規模・ハイブリッド → OpenSearch Serverless
 - 既存RDB統合・トランザクション → pgvector
@@ -3943,7 +4297,8 @@ LIMIT 5;
 
 > *既存Aurora→pgvector、グラフ構造→Neptune、マイクロ秒→MemoryDB、大規模+ハイブリッド→OpenSearch Serverless*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG 評価指標 (RAGAS フレームワーク)</text>
 <line x1="250" y1="210" x2="250" y2="80" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.583302491977" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.58330249197707" y2="275" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="250" y2="340" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="275.00000000000006" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><polygon points="250,177.5 278.14582562299427,193.75 278.14582562299427,226.25 250,242.5 221.85417437700573,226.25 221.85417437700573,193.75 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,145 306.29165124598853,177.5 306.29165124598853,242.5 250,275 193.7083487540115,242.50000000000003 193.7083487540115,177.5 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,112.5 334.43747686898274,161.25 334.4374768689828,258.75 250,307.5 165.56252313101726,258.75000000000006 165.56252313101726,161.25 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,80 362.583302491977,145 362.58330249197707,275 250,340 137.416697508023,275.00000000000006 137.416697508023,145 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/>
@@ -3958,6 +4313,8 @@ LIMIT 5;
 <text x="535" y="260" fill="#ffffff" font-size="11">Answer Correctness</text><text x="770" y="260" text-anchor="end" fill="#f9a825" font-size="11">正解一致率</text>
 <text x="535" y="298" fill="#ffffff" font-size="11">Latency</text><text x="770" y="298" text-anchor="end" fill="#f9a825" font-size="11">応答速度</text>
 </svg>
+</div>
+
 - **要件ベースの選択フロー:**
 - 既存PostgreSQL/Auroraがある → pgvector（移行コスト最小）
 - グラフ構造（エンティティ関係）が必要 → Neptune Analytics
@@ -3971,7 +4328,8 @@ LIMIT 5;
 
 > *ベクトルのみシンプル→Pinecone、NoSQL+ベクトル→MongoDB Atlas、AWSネイティブ優先ならOpenSearch Serverless*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Advanced RAG パターン</text>
 <text x="200" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">HyDE (Hypothetical Doc Embedding)</text>
@@ -4032,6 +4390,8 @@ LIMIT 5;
 <text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="11">例: 「Lambda timeout設定」→「Lambda設定全般とは？」で文脈収集</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">HyDE: 文書ドメインが専門的な場合に有効  |  Multi-Query: 質問が曖昧な場合</text>
 </svg>
+</div>
+
 - ベクトル検索のみでシンプルに → Pinecone
 - NoSQL + ベクトル統合 → MongoDB Atlas / DocumentDB
 - **AWSネイティブが優先される場合:**
@@ -4046,7 +4406,8 @@ LIMIT 5;
 
 > *チャット履歴はMemoryDB、文書検索はOpenSearch、RDB統合はpgvectorが推奨*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
 <rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4068,6 +4429,8 @@ LIMIT 5;
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
 </svg>
+</div>
+
 | ユースケース | 推奨DB | 理由 |
 |-----------|--------|------|
 | 社内FAQ・ドキュメント検索 | OpenSearch Serverless | Hybrid検索・スケール |
@@ -4086,7 +4449,8 @@ LIMIT 5;
 
 > *AWSマネージドDBはサポート・統合・セキュリティが利点、サードパーティは機能特化*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
 <rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4114,6 +4478,8 @@ LIMIT 5;
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
 </svg>
+</div>
+
 | 比較軸 | AWS管理（OSS/pgvector等） | サードパーティ（Pinecone等） |
 |-------|------------------------|--------------------------|
 | IAM統合 | ネイティブ対応 | 独自認証（APIキー等） |
@@ -4123,6 +4489,7 @@ LIMIT 5;
 | SLA | AWS SLA適用 | 独自SLA |
 | コスト管理 | AWS Cost Explorer一元管理 | 別途管理 |
 | 機能特化 | 汎用（多機能） | ベクトル特化（シンプル） |
+
 - **試験ポイント:**
 - 「セキュリティ・コンプライアンス重視 → AWSネイティブ」
 - 「ベクトル検索のみシンプルに → Pinecone等サードパーティ」
@@ -4130,7 +4497,7 @@ LIMIT 5;
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Section 6: RAG設計パターン・ベストプラクティス
 
 - 基本RAG → Advanced RAG → CRAG / Self-RAG / GraphRAG
@@ -4142,7 +4509,8 @@ LIMIT 5;
 
 > *Naive RAGはシンプルで始めやすいが精度60〜70%が限界の基本パターン*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">本番 RAG アーキテクチャ (AWS)</text>
 <rect x="20" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4195,9 +4563,12 @@ LIMIT 5;
 <text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Provisioned Throughput</text><text x="400" y="333" text-anchor="middle" fill="#ffffff" font-size="10">キャッシュ / バッチ処理</text>
 <text x="665" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Spot Embedding / S3 Intelligent</text><text x="665" y="333" text-anchor="middle" fill="#ffffff" font-size="10">Haiku for classify</text>
 </svg>
+</div>
+
 - **最もシンプルなRAG実装**
 - **基本RAGの課題:**
 - 低品質チャンクが混入すると回答精度が低下（GIGO問題）
+
 | ステップ | 処理 |
 |---------|------|
 | ① Indexing | チャンキング → エンベディング → ベクトルDB格納 |
@@ -4215,6 +4586,7 @@ LIMIT 5;
 - 長文書でコンテキスト長を超える場合あり
 - **AWS実装:** Bedrock KBのRetrieveAndGenerateが基本RAGをワンライン実装
 - **改善策 → Advanced RAGパターンへ**
+
 | ステップ | 処理 |
 |---------|------|
 | ① Indexing | チャンキング → エンベディング → ベクトルDB格納 |
@@ -4228,7 +4600,8 @@ LIMIT 5;
 
 > *Advanced RAGはQuery変換・Reranking・HyDEで精度を70〜85%に引き上げる*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
 <rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4242,6 +4615,8 @@ LIMIT 5;
 <text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
 <text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
 </svg>
+</div>
+
 | 技術 | 解決する課題 | 実装方法 |
 |------|-----------|---------|
 | Query Rewriting | クエリの意味ギャップ | LLMでクエリを拡張・明確化 |
@@ -4251,6 +4626,7 @@ LIMIT 5;
 | Hierarchical chunking | 長文コンテキスト | 子で検索・親で生成 |
 | Multi-query | 1クエリで取得できない | 複数クエリを並列実行して統合 |
 | Contextual compression | コンテキスト肥大化 | 回答に必要な部分だけ抽出 |
+
 - **Bedrock KB実装:** Reranking + HYBRID + Hierarchical chunkingの組み合わせが最も効果的
 
 
@@ -4260,7 +4636,8 @@ LIMIT 5;
 
 > *CRAGは検索品質をLLMで評価し不良なら再検索—ハルシネーション大幅減少だがレイテンシとコストが増加*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4282,7 +4659,10 @@ LIMIT 5;
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
 </svg>
+</div>
+
 - **CRAG** = 検索結果の品質を評価し、品質不足なら検索戦略を修正する自己訂正型RAG
+
 | フェーズ | 処理 |
 |---------|------|
 | ① 検索 | 通常のベクトル検索でTop-k取得 |
@@ -4291,6 +4671,7 @@ LIMIT 5;
 | ③b AMBIGUOUS | 追加検索 or Webサーチで補完 |
 | ③c INCORRECT | 別の検索戦略（キーワード変更等）で再検索 |
 | ④ 生成 | 評価済みコンテキストでLLM生成 |
+
 - **AWS実装:** Bedrock Agents + Lambda（評価ロジック）+ KB（検索）
 - **メリット:** ハルシネーション大幅減少
 - **デメリット:** レイテンシ増加・コスト増（LLM評価ステップ追加）
@@ -4302,7 +4683,8 @@ LIMIT 5;
 
 > *Self-RAGはLLM自身が検索必要性を判断—不要な検索を省略してレイテンシ・コストを最適化する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
 <text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
@@ -4336,13 +4718,17 @@ LIMIT 5;
 <text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
 <text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
 </svg>
+</div>
+
 - **Self-RAG** = LLM自身が検索の必要性を判断し、回答を自己批評するRAG
+
 | トークン | 役割 |
 |---------|------|
 | [Retrieve] | 検索が必要かどうかをLLMが判断 |
 | [ISREL] | 取得チャンクが質問に関連しているか評価 |
 | [ISSUP] | 回答がチャンクに支持されているか評価 |
 | [ISUSE] | 回答が有用かどうか評価 |
+
 - **動作フロー:**
 - 質問受信 → [Retrieve]判断 → YES: 検索実行 / NO: 知識のみで回答
 - → [ISREL]評価 → 関連チャンク選択 → 生成 → [ISSUP]/[ISUSE]評価 → 最終回答
@@ -4356,7 +4742,8 @@ LIMIT 5;
 
 > *マルチホップRAGは複数検索を連鎖させてBedrock Agentsのオーケストレーションで複雑な質問に回答する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
 <rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4403,15 +4790,19 @@ LIMIT 5;
 <path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
 <text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
 </svg>
+</div>
+
 - **マルチホップ** = 複数の検索ステップを連鎖させて複雑な質問に回答
 - **例:** 「AWSのCEOが卒業した大学の創設者は誰ですか？」
 - → ①「AWSのCEO」を検索 → ②「○○の出身大学」を検索 → ③「大学の創設者」を検索 → 統合回答
+
 | ステップ | 処理 |
 |---------|------|
 | ① 質問分解 | LLMでサブ質問に分解 |
 | ② 逐次検索 | 各サブ質問を順次検索 |
 | ③ 中間回答生成 | 各ステップの中間回答を生成 |
 | ④ 最終統合 | 全中間回答を統合して最終回答 |
+
 - **AWS実装:** Bedrock Agents のオーケストレーションでマルチステップ推論を自動実行
 
 
@@ -4421,7 +4812,8 @@ LIMIT 5;
 
 > *GraphRAGはNeptune Analytics+ベクトル検索でエンティティ関係を活用し医療・コンプライアンスに最適*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
 <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
@@ -4454,12 +4846,16 @@ LIMIT 5;
 <text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
 </svg>
+</div>
+
 - **GraphRAG** = グラフ構造でエンティティ関係を表現し、ベクトル検索と組み合わせる
+
 | 通常RAG | GraphRAG |
 |--------|---------|
 | テキストチャンクのベクトル検索 | エンティティ（ノード）+ 関係（エッジ）で構造化 |
 | 孤立した情報の断片 | エンティティ間の関係も取得可能 |
 | 「AWSとは」→ チャンク返却 | 「AWSの子会社は」→ グラフ探索で関連企業列挙 |
+
 - **Neptune Analytics でのGraphRAG実装:**
 - ① NLP でエンティティ・関係を抽出 → Neptune Analyticsに格納
 - ② クエリ → ベクトル検索でノード発見 → グラフ探索で関連情報取得
@@ -4473,7 +4869,8 @@ LIMIT 5;
 
 > *RAGセキュリティはプロンプトインジェクション・認可制御・PIIの3軸で設計*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
 <rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4502,6 +4899,8 @@ LIMIT 5;
 <text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
 <text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
 </svg>
+</div>
+
 | セキュリティ脅威 | 対策 |
 |--------------|------|
 | プロンプトインジェクション（直接） | Guardrails + 入力バリデーション |
@@ -4511,6 +4910,7 @@ LIMIT 5;
 | 過剰な権限 | IAM最小権限（Retrieve専用ロール） |
 | 通信傍受 | VPCエンドポイント + TLS強制 |
 | 監査ログ不足 | CloudTrail + CloudWatch Logs 有効化 |
+
 - **マルチテナントRAGの分離戦略:**
 - ① テナント別KB（完全分離・コスト高）
 - ② 単一KB + メタデータフィルタ（テナントIDでpre-filter、コスト効率良）
@@ -4522,7 +4922,8 @@ LIMIT 5;
 
 > *間接プロンプトインジェクション対策にGuardrailsの拒否トピック設定とS3書き込み権限制限が必須*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
 <rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4565,13 +4966,17 @@ LIMIT 5;
 <text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
 </svg>
+</div>
+
 - **間接プロンプトインジェクション** = 悪意のある文書をベクトルDBに混入させ、検索経由でLLMを操作
+
 | 攻撃パターン | 対策 |
 |-----------|------|
 | 文書内に「前の指示を忘れて...」と埋め込み | Guardrailsで検出・ブロック |
 | SQLインジェクション風のプロンプト埋め込み | 入力サニタイゼーション |
 | システムプロンプト上書き試行 | プロンプトテンプレートを固定 |
 | 機密情報の引き出し指示を文書に隠す | PII検出 + データソース検証 |
+
 - **Bedrock Guardrailsの活用:**
 - 拒否トピック: 「システムプロンプトの変更」を拒否トピックに設定
 - PIIフィルター: 個人情報のマスキング
@@ -4585,7 +4990,8 @@ LIMIT 5;
 
 > *チャンク最適化・キャッシュ・Provisionedスループットの3戦略でRAGコストを削減*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG セキュリティ設計</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4607,6 +5013,8 @@ LIMIT 5;
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Guardrails: PII検出・トピックフィルタ・Grounding Check</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">監査: CloudTrail (API呼び出し) + CloudWatch Logs (詳細ログ)</text>
 </svg>
+</div>
+
 | フェーズ | コスト要因 | 最適化策 |
 |---------|----------|---------|
 | インジェスト | エンベディングトークン | Titan v2 低次元（256）選択 |
@@ -4616,6 +5024,7 @@ LIMIT 5;
 | クエリ | Reranking | 必要な場合のみ有効化 |
 | ベクトルDB | OpenSearch OCU | VectorSearch型 + OCU上限設定 |
 | ベクトルDB | pgvector | Aurora Serverless v2でアイドル時コスト削減 |
+
 - **キャッシング戦略:**
 - 同一クエリ → ElastiCache / DynamoDBにキャッシュ（エンベディング・検索結果）
 - Bedrock Prompt Caching でシステムプロンプトキャッシュ（最大90%削減）
@@ -4627,7 +5036,8 @@ LIMIT 5;
 
 > *Bedrock Model EvaluationでFaithfulness/Relevanceを自動評価—質問・正解・コンテキストの3セットが必要*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG レイテンシ最適化</text>
 <rect x="20" y="40" width="220" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4651,6 +5061,8 @@ LIMIT 5;
 <text x="600" y="188" text-anchor="middle" fill="#f9a825" font-size="11">LLM Gen: 1〜4sec</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">Provisioned Throughput: LLM呼び出し速度を最大2x向上</text>
 </svg>
+</div>
+
 | 指標 | 計算方法 | スコア範囲 | 改善策 |
 |------|---------|----------|--------|
 | Faithfulness | 回答の各文がコンテキストに支持されているか | 0〜1 | Guardrailsグラウンディング |
@@ -4658,6 +5070,7 @@ LIMIT 5;
 | Context Precision | 取得チャンク中の有用チャンク割合 | 0〜1 | Reranking・k削減 |
 | Context Recall | 正解回答の各文がチャンクで支持されているか | 0〜1 | k増加・Hybrid検索 |
 | Answer Correctness | 正解ラベルとの一致度 | 0〜1 | モデル変更・FT |
+
 - **AWS連携:**
 - Bedrock Model Evaluation: LLMジャッジで Faithfulness / Relevance を自動評価
 - SageMaker Clarify: バイアス・説明可能性の評価
@@ -4670,7 +5083,8 @@ LIMIT 5;
 
 > *X-Rayトレーシングで検索/生成/チャンキングのボトルネックを特定—p99>5秒でアラートが推奨設定*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG モニタリング スタック</text>
 <rect x="20" y="40" width="165" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4697,6 +5111,8 @@ LIMIT 5;
 <text x="400" y="188" text-anchor="middle" fill="#ffffff" font-size="11">アラーム設定: Latency P99 &gt; 5s / Error Rate &gt; 1% / Cost 日次上限</text>
 <text x="400" y="210" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock: InvocationsCount / InputTokenCount / OutputTokenCount</text>
 </svg>
+</div>
+
 | 監視レイヤー | メトリクス | AWSサービス |
 |-----------|----------|-----------|
 | インジェスト | IngestionJobStatus / 失敗件数 | CloudWatch |
@@ -4705,6 +5121,7 @@ LIMIT 5;
 | エンドツーエンド | R&Gレイテンシ / エラーレート | CloudWatch |
 | 品質 | Faithfulness / Context Recall | Bedrock Model Evaluation |
 | セキュリティ | Retrieve呼び出し元 / 異常パターン | CloudTrail + GuardDuty |
+
 - **X-Rayトレーシング:**
 - Bedrock + Lambda + OpenSearch をX-Rayで通しトレース
 - ボトルネック（検索 or 生成 or チャンキング）を特定
@@ -4717,7 +5134,8 @@ LIMIT 5;
 
 > *定期知識更新はRAG・チャンクサイズは中程度・Retrieve APIはLLM不使用の3点が試験最頻出ひっかけ*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Re-ranking パイプライン</text>
 <rect x="20" y="55" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4760,6 +5178,8 @@ LIMIT 5;
 <text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12">Bedrock Knowledge Bases: Cohere Rerank ネイティブ統合</text>
 <text x="400" y="366" text-anchor="middle" fill="#f9a825" font-size="11">numberOfResults↑ → Re-rank → contextWindow内に収まる数を選択</text>
 </svg>
+</div>
+
 - ❌ 「定期的な知識更新はFine-tuningで」→ ✅ 定期更新はRAGが最適
 - ❌ 「チャンクは大きいほど精度が上がる」→ ✅ 大きすぎると精度低下・コスト増
 - ❌ 「Retrieve APIはLLMを呼び出す」→ ✅ 検索のみ。LLM生成はR&G API
@@ -4773,7 +5193,8 @@ LIMIT 5;
 
 > *エンベディング同一モデル必須・OpenSearch Serverlessのみ・IAMとデータアクセスポリシー両方必要の3点確認*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG 評価指標 (RAGAS フレームワーク)</text>
 <line x1="250" y1="210" x2="250" y2="80" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.583302491977" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.58330249197707" y2="275" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="250" y2="340" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="275.00000000000006" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><polygon points="250,177.5 278.14582562299427,193.75 278.14582562299427,226.25 250,242.5 221.85417437700573,226.25 221.85417437700573,193.75 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,145 306.29165124598853,177.5 306.29165124598853,242.5 250,275 193.7083487540115,242.50000000000003 193.7083487540115,177.5 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,112.5 334.43747686898274,161.25 334.4374768689828,258.75 250,307.5 165.56252313101726,258.75000000000006 165.56252313101726,161.25 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,80 362.583302491977,145 362.58330249197707,275 250,340 137.416697508023,275.00000000000006 137.416697508023,145 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/>
@@ -4788,6 +5209,8 @@ LIMIT 5;
 <text x="535" y="260" fill="#ffffff" font-size="11">Answer Correctness</text><text x="770" y="260" text-anchor="end" fill="#f9a825" font-size="11">正解一致率</text>
 <text x="535" y="298" fill="#ffffff" font-size="11">Latency</text><text x="770" y="298" text-anchor="end" fill="#f9a825" font-size="11">応答速度</text>
 </svg>
+</div>
+
 - ❌ 「エンベディングモデルはクエリ時に変えても良い」→ ✅ インジェストと同一必須
 - ❌ 「OpenSearch ProvisionedはBedrock KB対応」→ ✅ Serverlessのみ
 - ❌ 「IAMだけでOpenSearch Serverlessを操作できる」→ ✅ データアクセスポリシーも必要
@@ -4797,7 +5220,7 @@ LIMIT 5;
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Section 7: 試験直前まとめ
 
 - 数値リファレンス・キーワード索引・選択フロー・直前チェックリスト
@@ -4809,7 +5232,8 @@ LIMIT 5;
 
 > *チャンクサイズ・オーバーラップ率・埋め込み次元数等の数値を丸ごと暗記*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">RAG コスト最適化戦略</text>
 <rect x="20" y="40" width="225" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4831,6 +5255,8 @@ LIMIT 5;
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">Semantic Cacheで重複クエリのLLM呼び出しを削減 (命中率30〜60%)</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">月次コスト試算: 1M queries × $0.003/query ≈ $3,000/月 (Sonnet)</text>
 </svg>
+</div>
+
 | 項目 | 数値 |
 |------|------|
 | Bedrock KB / アカウント上限 | 5（引き上げ可） |
@@ -4855,7 +5281,8 @@ LIMIT 5;
 
 > *A〜Kのキーワードは試験問題文から正解サービスを逆引きする索引として活用*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">OpenSearch Serverless — RAG構成</text>
 <rect x="20" y="40" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4883,6 +5310,8 @@ LIMIT 5;
 <text x="400" y="188" text-anchor="middle" fill="#f9a825" font-size="11">コレクション = インデックスの論理グループ | VPC Endpoint対応</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">料金: 0.24 USD/OCU-hour (最小0.5 OCU × 2リソース)</text>
 </svg>
+</div>
+
 | キーワード | 説明 |
 |----------|------|
 | ANN（Approximate Nearest Neighbor） | 近似最近傍検索。正確さよりも速度を優先 |
@@ -4905,7 +5334,8 @@ LIMIT 5;
 
 > *L〜Zのキーワード索引で知らない用語が出た瞬間に参照して解答精度を上げる*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Aurora PostgreSQL pgvector — セットアップ</text>
 <rect x="20" y="40" width="760" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -4919,6 +5349,8 @@ LIMIT 5;
 <text x="400" y="193" text-anchor="middle" fill="#ffffff" font-size="11">Serverless v2: 0.5〜128 ACU | 自動スケール | コスト最適</text>
 <text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB統合: データソース選択時に Aurora PostgreSQL を指定するだけ</text>
 </svg>
+</div>
+
 | キーワード | 説明 |
 |----------|------|
 | Knowledge Base（KB） | Bedrock のフルマネージドRAGサービス |
@@ -4942,7 +5374,8 @@ LIMIT 5;
 
 > *HYBRID必要→OpenSearch Serverless・既存Aurora→pgvector・グラフ関係→Neptune Analyticsが選択フロー*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Advanced RAG パターン</text>
 <text x="200" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">HyDE (Hypothetical Doc Embedding)</text>
@@ -5003,6 +5436,8 @@ LIMIT 5;
 <text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="11">例: 「Lambda timeout設定」→「Lambda設定全般とは？」で文脈収集</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">HyDE: 文書ドメインが専門的な場合に有効  |  Multi-Query: 質問が曖昧な場合</text>
 </svg>
+</div>
+
 - **Q1: ハイブリッド検索（BM25+ベクトル）が必要？**
 - YES → OpenSearch Serverless（唯一のBedrock KB対応Hybrid）
 - **Q2: 既存PostgreSQL/Auroraを活用したい？**
@@ -5017,7 +5452,8 @@ LIMIT 5;
 
 > *ベクトルDB選択フローの前半3ステップで候補を半数以下に絞り込む*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">本番 RAG アーキテクチャ (AWS)</text>
 <rect x="20" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -5070,6 +5506,8 @@ LIMIT 5;
 <text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Provisioned Throughput</text><text x="400" y="333" text-anchor="middle" fill="#ffffff" font-size="10">キャッシュ / バッチ処理</text>
 <text x="665" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Spot Embedding / S3 Intelligent</text><text x="665" y="333" text-anchor="middle" fill="#ffffff" font-size="10">Haiku for classify</text>
 </svg>
+</div>
+
 - **Q4: マイクロ秒レイテンシが必要？**
 - YES → MemoryDB for Redis
 - **Q5: ベクトル専用でシンプルに？**
@@ -5093,7 +5531,8 @@ LIMIT 5;
 
 > *OpenSearch Serverlessのみ・3種セキュリティポリシー全設定・k-NNエンジン3択・OCU課金の基本を確認*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
 <text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
@@ -5127,6 +5566,8 @@ LIMIT 5;
 <text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
 <text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
 </svg>
+</div>
+
 - ① Bedrock KBのデフォルトベクトルDB = OpenSearch **Serverless**（Provisioned不可）
 - ② コレクションタイプ: VectorSearch（安価）/ Search（全文+ベクトル）
 - ③ 3種ポリシー: 暗号化 + ネットワーク + データアクセス（全て設定必要）
@@ -5140,7 +5581,8 @@ LIMIT 5;
 
 > *ef値の意味・HYBRID=kNN+BM25でServerlessのみ・Min-Max正規化・OCU独立スケールの4点を確認*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
 <rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -5187,6 +5629,8 @@ LIMIT 5;
 <path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
 <text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
 </svg>
+</div>
+
 - ⑥ ef_construction = インデックス精度、ef_search = 検索精度（どちらも大きいほど精度↑）
 - ⑦ HYBRID = kNN + BM25。OpenSearch Serverlessのみ（他DBでは不可）
 - ⑧ スコア正規化: Min-Max / Z-score / L2（異なるスコア尺度を統一）
@@ -5200,7 +5644,8 @@ LIMIT 5;
 
 > *Aurora限定・pgvector有効化・3演算子・HNSW vs IVFFlat・空テーブルインデックス非推奨の5点確認*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
 <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
@@ -5233,6 +5678,8 @@ LIMIT 5;
 <text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
 </svg>
+</div>
+
 - ① Bedrock KB対応 = Aurora PostgreSQLのみ（RDS PostgreSQLは非対応）
 - ② pgvector有効化: CREATE EXTENSION vector;
 - ③ 演算子: <-> L2距離 / <=> コサイン距離 / <#> 内積（負値）
@@ -5246,7 +5693,8 @@ LIMIT 5;
 
 > *probes/ef_searchトレードオフ・Secrets Manager必須・ACID対応・Hybrid不可の4点を最終確認*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
 <rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -5289,6 +5737,8 @@ LIMIT 5;
 <text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
 </svg>
+</div>
+
 - ⑥ probes（IVFFlat）/ ef_search（HNSW）で精度と速度をトレードオフ調整
 - ⑦ DB接続情報はSecrets Managerで管理（ハードコード禁止）
 - ⑧ ACID対応 = ベクトル + リレーショナルデータのトランザクション処理が可能
@@ -5302,7 +5752,8 @@ LIMIT 5;
 
 > *Retrieve vs R&G・HYBRID=OpenSearch限定・Rerankingモデル2択・Hierarchicalチャンキングの5点確認*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Re-ranking パイプライン</text>
 <rect x="20" y="55" width="120" height="45" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -5345,6 +5796,8 @@ LIMIT 5;
 <text x="400" y="348" text-anchor="middle" fill="#ffffff" font-size="12">Bedrock Knowledge Bases: Cohere Rerank ネイティブ統合</text>
 <text x="400" y="366" text-anchor="middle" fill="#f9a825" font-size="11">numberOfResults↑ → Re-rank → contextWindow内に収まる数を選択</text>
 </svg>
+</div>
+
 - ① Retrieve API = 検索のみ。RetrieveAndGenerate = 検索+LLM生成
 - ② HYBRID searchType はOpenSearch Serverlessのみ対応
 - ③ Rerankingモデル: Amazon Rerank 1.0 / Cohere Rerank 1.0
@@ -5358,7 +5811,8 @@ LIMIT 5;
 
 > *増分同期・グラウンディングチェック・citations・sessionId・KB数上限5/アカウントの5点を確認*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG 評価指標 (RAGAS フレームワーク)</text>
 <line x1="250" y1="210" x2="250" y2="80" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.583302491977" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="362.58330249197707" y2="275" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="250" y2="340" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="275.00000000000006" stroke="#f9a825" stroke-width="1" opacity="0.4"/><line x1="250" y1="210" x2="137.416697508023" y2="145" stroke="#f9a825" stroke-width="1" opacity="0.4"/><polygon points="250,177.5 278.14582562299427,193.75 278.14582562299427,226.25 250,242.5 221.85417437700573,226.25 221.85417437700573,193.75 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,145 306.29165124598853,177.5 306.29165124598853,242.5 250,275 193.7083487540115,242.50000000000003 193.7083487540115,177.5 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,112.5 334.43747686898274,161.25 334.4374768689828,258.75 250,307.5 165.56252313101726,258.75000000000006 165.56252313101726,161.25 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/><polygon points="250,80 362.583302491977,145 362.58330249197707,275 250,340 137.416697508023,275.00000000000006 137.416697508023,145 " fill="none" stroke="#f9a825" stroke-width="0.5" opacity="0.3"/>
@@ -5373,6 +5827,8 @@ LIMIT 5;
 <text x="535" y="260" fill="#ffffff" font-size="11">Answer Correctness</text><text x="770" y="260" text-anchor="end" fill="#f9a825" font-size="11">正解一致率</text>
 <text x="535" y="298" fill="#ffffff" font-size="11">Latency</text><text x="770" y="298" text-anchor="end" fill="#f9a825" font-size="11">応答速度</text>
 </svg>
+</div>
+
 - ⑥ 増分同期で変更ファイルのみ再処理（全件再処理より高速）
 - ⑦ Guardrailsグラウンディングチェック = RAG専用機能（R&G API固有）
 - ⑧ RetrieveAndGenerateのcitations = ソースURI付き引用元リスト
@@ -5386,7 +5842,8 @@ LIMIT 5;
 
 > *基本RAGの3ステップ・Query Rewriting・HyDE・CRAG・Self-RAGの特徴を1行で説明できるようにする*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Advanced RAG パターン</text>
 <text x="200" y="55" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold">HyDE (Hypothetical Doc Embedding)</text>
@@ -5447,6 +5904,8 @@ LIMIT 5;
 <text x="400" y="345" text-anchor="middle" fill="#f9a825" font-size="11">例: 「Lambda timeout設定」→「Lambda設定全般とは？」で文脈収集</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">HyDE: 文書ドメインが専門的な場合に有効  |  Multi-Query: 質問が曖昧な場合</text>
 </svg>
+</div>
+
 - ① 基本RAG = Indexing → Retrieve → Generate の3ステップ
 - ② Advanced RAG: Query Rewriting / HyDE / Reranking / Multi-query
 - ③ CRAG = 検索品質をLLMで評価し、不良なら再検索する自己訂正型
@@ -5460,7 +5919,8 @@ LIMIT 5;
 
 > *GraphRAG・プロンプトインジェクション対策・マルチテナント分離・HyDE・低次元コスト最適化の5点確認*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">本番 RAG アーキテクチャ (AWS)</text>
 <rect x="20" y="50" width="120" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -5513,6 +5973,8 @@ LIMIT 5;
 <text x="400" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Provisioned Throughput</text><text x="400" y="333" text-anchor="middle" fill="#ffffff" font-size="10">キャッシュ / バッチ処理</text>
 <text x="665" y="315" text-anchor="middle" fill="#f9a825" font-size="10">Spot Embedding / S3 Intelligent</text><text x="665" y="333" text-anchor="middle" fill="#ffffff" font-size="10">Haiku for classify</text>
 </svg>
+</div>
+
 - ⑥ GraphRAG = Neptune Analytics + ベクトル検索でエンティティ関係を活用
 - ⑦ 間接プロンプトインジェクション = 悪意文書経由でLLMを操作→Guardrailsで対策
 - ⑧ マルチテナント分離: テナント別KB vs 単一KB+メタデータフィルタのトレードオフ
@@ -5526,7 +5988,8 @@ LIMIT 5;
 
 > *RAGセキュリティはインジェクション防御・認可・PII、コスト削減はキャッシュ・チャンク最適化*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">Embedding モデル — コスト・性能比較</text>
 <rect x="20" y="40" width="230" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -5548,14 +6011,19 @@ LIMIT 5;
 <text x="400" y="186" text-anchor="middle" fill="#f9a825" font-size="11">重要: Indexing時とQuery時は必ず同一モデルを使用</text>
 <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">次元数削減: Matryoshka Embedding で 1/4 次元でも精度維持可能</text>
 </svg>
+</div>
+
 - **セキュリティ最重要ポイント:**
+
 | 脅威 | 最小対策 |
 |------|---------|
 | 不正アクセス | IAM最小権限 + VPCエンドポイント |
 | データ漏洩 | メタデータフィルタ or テナント別KB分離 |
 | ハルシネーション | Guardrailsグラウンディングチェック |
 | 間接インジェクション | S3書き込み制限 + 拒否トピック設定 |
+
 - **コスト最適化最重要ポイント:**
+
 | 最大コスト要因 | 対策 |
 |------------|------|
 | FM推論 | 安価モデル + Prompt Caching（最大90%削減） |
@@ -5570,7 +6038,8 @@ LIMIT 5;
 
 > *全セクション直前チェックリストで合格スコアに達しているか最終確認する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">RAG パイプライン全体像</text>
 <text x="200" y="75" text-anchor="middle" fill="#ffffff" font-size="12">オフライン（Indexing Phase）</text>
@@ -5604,6 +6073,8 @@ LIMIT 5;
 <text x="660" y="299.5" text-anchor="middle" dominant-baseline="middle" fill="#f9a825" font-size="11">Claude 3.5 / Titan / Llama</text>
 <text x="400" y="365" text-anchor="middle" fill="#f9a825" font-size="12">Amazon Bedrock Knowledge Bases = マネージド RAG サービス</text>
 </svg>
+</div>
+
 - **RAG基礎:**
 - [ ] RAG vs FT vs ICL の使い分けを説明できる
 - [ ] エンベディングモデル4種の次元数と特徴を覚えた
@@ -5628,7 +6099,8 @@ LIMIT 5;
 
 > *全セクション直前チェックリスト2回目で弱点を再特定して集中強化する*
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">チャンキング戦略 比較</text>
 <rect x="20" y="50" width="180" height="50" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -5675,6 +6147,8 @@ LIMIT 5;
 <path d="M 100 290 Q 300 295 500 305 Q 600 315 700 340" stroke="#e91e63" stroke-width="2.5" fill="none"/>
 <text x="500" y="330" fill="#e91e63" font-size="11">速度</text>
 </svg>
+</div>
+
 - **OpenSearch Serverless:**
 - [ ] 3種セキュリティポリシーの違いを説明できる
 - [ ] Faiss/nmslib/Luceneの適切な使い分けを説明できる
@@ -5699,7 +6173,8 @@ LIMIT 5;
 
 > *全セクションの主要サービス・数値・設計判断を1ページで総復習する*
 
-- <svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 220" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="220" fill="#1a1a2e"/>
 <text x="400" y="22" text-anchor="middle" fill="#f9a825" font-size="13" font-weight="bold">クエリ処理パイプライン</text>
 <rect x="20" y="45" width="110" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -5728,6 +6203,8 @@ LIMIT 5;
 <text x="400" y="175" text-anchor="middle" fill="#ffffff" font-size="11">フィルタリング: メタデータ (date/source/category) で事前絞り込み</text>
 <text x="400" y="200" text-anchor="middle" fill="#f9a825" font-size="10">Bedrock KB: filter式でメタデータフィルタを実行時に指定可能</text>
 </svg>
+</div>
+
 | セクション | 最重要キーワード | ひっかけポイント |
 |-----------|---------------|----------------|
 | RAG基礎 | Embedding, Chunking, ANN | RAGとFTの使い分け |
@@ -5744,10 +6221,11 @@ LIMIT 5;
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # クロージング・参考資料（1/2）
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">Embedding ベクトル空間イメージ</text>
 <text x="400" y="50" text-anchor="middle" fill="#ffffff" font-size="12">意味が近い概念ほど近傍に配置される</text>
@@ -5780,8 +6258,9 @@ LIMIT 5;
 <text x="320" y="135" text-anchor="middle" fill="#ffffff" font-size="10" opacity="0.6">距離=非類似</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">クエリを同一空間に変換 → コサイン類似度でTop-K取得 → LLMへ送信</text>
 </svg>
+</div>
+
 - **RAG実装ガイド完全版 — 学習完了**
-- 
 - **AWS公式ドキュメント:**
 - Bedrock Knowledge Base: docs.aws.amazon.com/bedrock/latest/userguide/knowledge-base.html
 - OpenSearch Serverless: docs.aws.amazon.com/opensearch-service/latest/developerguide/serverless.html
@@ -5789,10 +6268,11 @@ LIMIT 5;
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # クロージング・参考資料（2/2）
 
-- <svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e"/>
 <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">検索手法 比較</text>
 <rect x="30" y="50" width="230" height="55" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -5835,10 +6315,10 @@ LIMIT 5;
 <text x="400" y="350" text-anchor="middle" fill="#f9a825" font-size="12">score = Σ 1/(k + rank_i)  where k=60 (常数)</text>
 <text x="400" y="375" text-anchor="middle" fill="#ffffff" font-size="11">OpenSearch Serverless: hybrid検索ネイティブサポート</text>
 </svg>
+</div>
+
 - pgvector on Aurora: docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/AuroraPostgreSQL.VectorDB.html
-- 
 - **試験申込:**
 - AWS Certification: aws.amazon.com/certification/
-- 
 - Good Luck on the Exam!
 

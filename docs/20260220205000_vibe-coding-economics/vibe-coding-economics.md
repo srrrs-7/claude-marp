@@ -7,41 +7,76 @@ paginate: true
 header: "Vibe Coding Economics"
 footer: "© 2026 AI-Assisted Development"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,11 +117,10 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # バイブコーディングの経済学：AIペアプログラミングのROI分析
 
 - Vibe Coding Economics
-- 
 - 「雰囲気でコードを書く」時代の生産性と品質のトレードオフ
 
 
@@ -96,17 +130,17 @@ style: |
 
 > *生産性→品質コスト→スキル格差→組織影響→戦略の6章構成*
 
-- - 1. バイブコーディングとは何か
-- - 2. 生産性の数字：本当に速くなったのか
-- - 3. 品質コスト：見えない技術的負債
-- - 4. スキル格差の経済学
-- - 5. 組織への影響：採用と育成
-- - 6. 持続可能なバイブコーディング戦略
+- 1. バイブコーディングとは何か
+- 2. 生産性の数字：本当に速くなったのか
+- 3. 品質コスト：見えない技術的負債
+- 4. スキル格差の経済学
+- 5. 組織への影響：採用と育成
+- 6. 持続可能なバイブコーディング戦略
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # バイブコーディングとは何か
 
 - Chapter 1: What is Vibe Coding?
@@ -118,18 +152,21 @@ style: |
 
 > *意図を伝えるだけ—開発者がレビュアーに移行する転換*
 
-- <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">バイブコーディングのバリューチェーン</text><rect x="30" y="50" width="130" height="260" fill="#16213e" rx="8" stroke="#2196f3" stroke-width="2"/><text x="95" y="74" text-anchor="middle" fill="#2196f3" font-size="11" font-weight="bold" font-family="sans-serif">意図を伝える</text><text x="95" y="92" text-anchor="middle" fill="#90a4ae" font-size="9" font-family="sans-serif">10%</text><rect x="50" y="105" width="90" height="80" fill="#1565c0" rx="5"/><text x="95" y="130" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold" font-family="sans-serif">要件理解</text><text x="95" y="147" text-anchor="middle" fill="#90caf9" font-size="8" font-family="sans-serif">ユーザーの</text><text x="95" y="160" text-anchor="middle" fill="#90caf9" font-size="8" font-family="sans-serif">本当の課題</text><text x="95" y="175" text-anchor="middle" fill="#f9a825" font-size="8" font-family="sans-serif">★最高価値</text><text x="95" y="240" text-anchor="middle" fill="#64b5f6" font-size="9" font-family="sans-serif">プロンプト</text><text x="95" y="255" text-anchor="middle" fill="#64b5f6" font-size="9" font-family="sans-serif">エンジニア</text><text x="95" y="270" text-anchor="middle" fill="#64b5f6" font-size="9" font-family="sans-serif">リング</text><polygon points="166,180 186,170 186,190" fill="#f9a825"/><line x1="162" y1="180" x2="186" y2="180" stroke="#f9a825" stroke-width="2"/><rect x="190" y="50" width="130" height="260" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="255" y="74" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">AIが生成</text><text x="255" y="92" text-anchor="middle" fill="#90a4ae" font-size="9" font-family="sans-serif">70%</text><rect x="210" y="105" width="90" height="150" fill="#f57f17" rx="5"/><text x="255" y="130" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold" font-family="sans-serif">コード生成</text><text x="255" y="150" text-anchor="middle" fill="#ffe082" font-size="8" font-family="sans-serif">55%速度向上</text><text x="255" y="168" text-anchor="middle" fill="#ffe082" font-size="8" font-family="sans-serif">定型コード</text><text x="255" y="186" text-anchor="middle" fill="#ffe082" font-size="8" font-family="sans-serif">CRUD操作</text><text x="255" y="204" text-anchor="middle" fill="#ffe082" font-size="8" font-family="sans-serif">テスト雛形</text><text x="255" y="222" text-anchor="middle" fill="#ffe082" font-size="8" font-family="sans-serif">ドキュメント</text><text x="255" y="265" text-anchor="middle" fill="#90a4ae" font-size="9" font-family="sans-serif">AIが</text><text x="255" y="280" text-anchor="middle" fill="#90a4ae" font-size="9" font-family="sans-serif">ほぼ自動化</text><polygon points="326,180 346,170 346,190" fill="#f9a825"/><line x1="322" y1="180" x2="346" y2="180" stroke="#f9a825" stroke-width="2"/><rect x="350" y="50" width="130" height="260" fill="#16213e" rx="8" stroke="#9c27b0" stroke-width="2"/><text x="415" y="74" text-anchor="middle" fill="#9c27b0" font-size="11" font-weight="bold" font-family="sans-serif">人間がレビュー</text><text x="415" y="92" text-anchor="middle" fill="#90a4ae" font-size="9" font-family="sans-serif">20%</text><rect x="370" y="105" width="90" height="150" fill="#4a148c" rx="5"/><text x="415" y="130" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold" font-family="sans-serif">品質確認</text><text x="415" y="150" text-anchor="middle" fill="#ce93d8" font-size="8" font-family="sans-serif">セキュリティ</text><text x="415" y="168" text-anchor="middle" fill="#ce93d8" font-size="8" font-family="sans-serif">パフォーマンス</text><text x="415" y="186" text-anchor="middle" fill="#ce93d8" font-size="8" font-family="sans-serif">エッジケース</text><text x="415" y="204" text-anchor="middle" fill="#ce93d8" font-size="8" font-family="sans-serif">デバッグ</text><text x="415" y="265" text-anchor="middle" fill="#ce93d8" font-size="9" font-family="sans-serif">人間の核心</text><text x="415" y="280" text-anchor="middle" fill="#ce93d8" font-size="9" font-family="sans-serif">業務</text><polygon points="486,180 506,170 506,190" fill="#f9a825"/><line x1="482" y1="180" x2="506" y2="180" stroke="#f9a825" stroke-width="2"/><rect x="510" y="50" width="130" height="260" fill="#16213e" rx="8" stroke="#4caf50" stroke-width="2"/><text x="575" y="74" text-anchor="middle" fill="#4caf50" font-size="11" font-weight="bold" font-family="sans-serif">出荷・責任</text><text x="575" y="92" text-anchor="middle" fill="#90a4ae" font-size="9" font-family="sans-serif">価値創出</text><rect x="530" y="105" width="90" height="150" fill="#1b5e20" rx="5"/><text x="575" y="130" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold" font-family="sans-serif">オーナーシップ</text><text x="575" y="150" text-anchor="middle" fill="#a5d6a7" font-size="8" font-family="sans-serif">AIが書いても</text><text x="575" y="168" text-anchor="middle" fill="#a5d6a7" font-size="8" font-family="sans-serif">責任は人間</text><text x="575" y="186" text-anchor="middle" fill="#a5d6a7" font-size="8" font-family="sans-serif">コード理解</text><text x="575" y="204" text-anchor="middle" fill="#a5d6a7" font-size="8" font-family="sans-serif">技術的負債</text><text x="575" y="265" text-anchor="middle" fill="#4caf50" font-size="9" font-family="sans-serif">最終的な</text><text x="575" y="280" text-anchor="middle" fill="#4caf50" font-size="9" font-family="sans-serif">価値提供</text><rect x="660" y="120" width="110" height="120" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="715" y="144" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">ROI課題</text><text x="715" y="162" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">コードレビュー</text><text x="715" y="178" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">40%増</text><text x="715" y="196" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">技術的負債</text><text x="715" y="212" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">蓄積リスク</text><text x="400" y="345" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">速さで測るな — 持続可能な価値創出で評価せよ</text></svg>
-- - Andrej Karpathy が命名: 「AIに雰囲気で指示してコードを生成」
-- - 詳細なロジックを書く代わりに **意図を伝える** だけ
-- - 「submitボタンを押したらデータをDBに保存して」→ コード生成
-- - 開発者は **レビュアー** の役割に移行
-- - GitHub Copilot → Claude Code → Cursor → Devin → 急速に進化
-- - 2026年: エンジニアの **70%以上** がAIコーディングツールを使用
+<div class="fig">
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">バイブコーディングのバリューチェーン</text><rect x="30" y="50" width="130" height="260" fill="#16213e" rx="8" stroke="#2196f3" stroke-width="2"/><text x="95" y="74" text-anchor="middle" fill="#2196f3" font-size="11" font-weight="bold" font-family="sans-serif">意図を伝える</text><text x="95" y="92" text-anchor="middle" fill="#90a4ae" font-size="9" font-family="sans-serif">10%</text><rect x="50" y="105" width="90" height="80" fill="#1565c0" rx="5"/><text x="95" y="130" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold" font-family="sans-serif">要件理解</text><text x="95" y="147" text-anchor="middle" fill="#90caf9" font-size="8" font-family="sans-serif">ユーザーの</text><text x="95" y="160" text-anchor="middle" fill="#90caf9" font-size="8" font-family="sans-serif">本当の課題</text><text x="95" y="175" text-anchor="middle" fill="#f9a825" font-size="8" font-family="sans-serif">★最高価値</text><text x="95" y="240" text-anchor="middle" fill="#64b5f6" font-size="9" font-family="sans-serif">プロンプト</text><text x="95" y="255" text-anchor="middle" fill="#64b5f6" font-size="9" font-family="sans-serif">エンジニア</text><text x="95" y="270" text-anchor="middle" fill="#64b5f6" font-size="9" font-family="sans-serif">リング</text><polygon points="166,180 186,170 186,190" fill="#f9a825"/><line x1="162" y1="180" x2="186" y2="180" stroke="#f9a825" stroke-width="2"/><rect x="190" y="50" width="130" height="260" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/><text x="255" y="74" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">AIが生成</text><text x="255" y="92" text-anchor="middle" fill="#90a4ae" font-size="9" font-family="sans-serif">70%</text><rect x="210" y="105" width="90" height="150" fill="#f57f17" rx="5"/><text x="255" y="130" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold" font-family="sans-serif">コード生成</text><text x="255" y="150" text-anchor="middle" fill="#ffe082" font-size="8" font-family="sans-serif">55%速度向上</text><text x="255" y="168" text-anchor="middle" fill="#ffe082" font-size="8" font-family="sans-serif">定型コード</text><text x="255" y="186" text-anchor="middle" fill="#ffe082" font-size="8" font-family="sans-serif">CRUD操作</text><text x="255" y="204" text-anchor="middle" fill="#ffe082" font-size="8" font-family="sans-serif">テスト雛形</text><text x="255" y="222" text-anchor="middle" fill="#ffe082" font-size="8" font-family="sans-serif">ドキュメント</text><text x="255" y="265" text-anchor="middle" fill="#90a4ae" font-size="9" font-family="sans-serif">AIが</text><text x="255" y="280" text-anchor="middle" fill="#90a4ae" font-size="9" font-family="sans-serif">ほぼ自動化</text><polygon points="326,180 346,170 346,190" fill="#f9a825"/><line x1="322" y1="180" x2="346" y2="180" stroke="#f9a825" stroke-width="2"/><rect x="350" y="50" width="130" height="260" fill="#16213e" rx="8" stroke="#9c27b0" stroke-width="2"/><text x="415" y="74" text-anchor="middle" fill="#9c27b0" font-size="11" font-weight="bold" font-family="sans-serif">人間がレビュー</text><text x="415" y="92" text-anchor="middle" fill="#90a4ae" font-size="9" font-family="sans-serif">20%</text><rect x="370" y="105" width="90" height="150" fill="#4a148c" rx="5"/><text x="415" y="130" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold" font-family="sans-serif">品質確認</text><text x="415" y="150" text-anchor="middle" fill="#ce93d8" font-size="8" font-family="sans-serif">セキュリティ</text><text x="415" y="168" text-anchor="middle" fill="#ce93d8" font-size="8" font-family="sans-serif">パフォーマンス</text><text x="415" y="186" text-anchor="middle" fill="#ce93d8" font-size="8" font-family="sans-serif">エッジケース</text><text x="415" y="204" text-anchor="middle" fill="#ce93d8" font-size="8" font-family="sans-serif">デバッグ</text><text x="415" y="265" text-anchor="middle" fill="#ce93d8" font-size="9" font-family="sans-serif">人間の核心</text><text x="415" y="280" text-anchor="middle" fill="#ce93d8" font-size="9" font-family="sans-serif">業務</text><polygon points="486,180 506,170 506,190" fill="#f9a825"/><line x1="482" y1="180" x2="506" y2="180" stroke="#f9a825" stroke-width="2"/><rect x="510" y="50" width="130" height="260" fill="#16213e" rx="8" stroke="#4caf50" stroke-width="2"/><text x="575" y="74" text-anchor="middle" fill="#4caf50" font-size="11" font-weight="bold" font-family="sans-serif">出荷・責任</text><text x="575" y="92" text-anchor="middle" fill="#90a4ae" font-size="9" font-family="sans-serif">価値創出</text><rect x="530" y="105" width="90" height="150" fill="#1b5e20" rx="5"/><text x="575" y="130" text-anchor="middle" fill="#ffffff" font-size="9" font-weight="bold" font-family="sans-serif">オーナーシップ</text><text x="575" y="150" text-anchor="middle" fill="#a5d6a7" font-size="8" font-family="sans-serif">AIが書いても</text><text x="575" y="168" text-anchor="middle" fill="#a5d6a7" font-size="8" font-family="sans-serif">責任は人間</text><text x="575" y="186" text-anchor="middle" fill="#a5d6a7" font-size="8" font-family="sans-serif">コード理解</text><text x="575" y="204" text-anchor="middle" fill="#a5d6a7" font-size="8" font-family="sans-serif">技術的負債</text><text x="575" y="265" text-anchor="middle" fill="#4caf50" font-size="9" font-family="sans-serif">最終的な</text><text x="575" y="280" text-anchor="middle" fill="#4caf50" font-size="9" font-family="sans-serif">価値提供</text><rect x="660" y="120" width="110" height="120" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/><text x="715" y="144" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">ROI課題</text><text x="715" y="162" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">コードレビュー</text><text x="715" y="178" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">40%増</text><text x="715" y="196" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">技術的負債</text><text x="715" y="212" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">蓄積リスク</text><text x="400" y="345" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">速さで測るな — 持続可能な価値創出で評価せよ</text></svg>
+</div>
+
+- Andrej Karpathy が命名: 「AIに雰囲気で指示してコードを生成」
+- 詳細なロジックを書く代わりに **意図を伝える** だけ
+- 「submitボタンを押したらデータをDBに保存して」→ コード生成
+- 開発者は **レビュアー** の役割に移行
+- GitHub Copilot → Claude Code → Cursor → Devin → 急速に進化
+- 2026年: エンジニアの **70%以上** がAIコーディングツールを使用
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 生産性の数字
 
 - Chapter 2: Productivity Numbers
@@ -141,12 +178,12 @@ style: |
 
 > *55%速度向上でもレビュー40%増—生産量と価値は別物*
 
-- - GitHub調査: Copilot使用で **タスク完了速度55%向上**
-- - Google内部調査: コーディング速度 **30-50%** 改善
-- - しかし: **コードレビュー時間は40%増加**
-- - バグ修正時間: 生成コードは手書きより **20%多い** バグ
-- - 「書く速度」vs「正しく書く速度」の区別が必要
-- - **スループット ≠ ベロシティ** — 生産量 ≠ 価値創出
+- GitHub調査: Copilot使用で **タスク完了速度55%向上**
+- Google内部調査: コーディング速度 **30-50%** 改善
+- しかし: **コードレビュー時間は40%増加**
+- バグ修正時間: 生成コードは手書きより **20%多い** バグ
+- 「書く速度」vs「正しく書く速度」の区別が必要
+- **スループット ≠ ベロシティ** — 生産量 ≠ 価値創出
 
 
 ---
@@ -155,13 +192,16 @@ style: |
 
 > *AI70%高速化でも残り30%の複雑化がROIを決める*
 
-- <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">70:20:10 — バイブコーディング時代の開発時間配分</text><rect x="50" y="52" width="490" height="65" fill="#f57f17" rx="6" stroke="#e65100" stroke-width="1"/><text x="295" y="76" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">70% コード生成（AIがほぼ自動化）</text><text x="295" y="96" text-anchor="middle" fill="#ffe082" font-size="10" font-family="sans-serif">CRUD実装・テスト雛形・ドキュメント・型定義 — AIに任せる領域</text><text x="570" y="76" fill="#ef9a9a" font-size="11" font-weight="bold" font-family="sans-serif">→ 55%速度向上</text><text x="570" y="92" fill="#90a4ae" font-size="9" font-family="sans-serif">しかし品質は要確認</text><rect x="50" y="130" width="140" height="65" fill="#9c27b0" rx="6" stroke="#7b1fa2" stroke-width="1"/><text x="120" y="154" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">20%</text><text x="120" y="172" text-anchor="middle" fill="#ce93d8" font-size="9" font-family="sans-serif">レビュー・デバッグ</text><text x="310" y="145" fill="#ce93d8" font-size="11" font-weight="bold" font-family="sans-serif">レビュー・デバッグ・修正</text><text x="310" y="163" fill="#90a4ae" font-size="10" font-family="sans-serif">人間の核心業務。AI生成コードの品質確認</text><text x="310" y="179" fill="#90a4ae" font-size="10" font-family="sans-serif">セキュリティ・パフォーマンス・エッジケース</text><text x="570" y="158" fill="#ce93d8" font-size="11" font-weight="bold" font-family="sans-serif">→ 複雑化 +40%</text><text x="570" y="174" fill="#90a4ae" font-size="9" font-family="sans-serif">AI生成コードの確認</text><rect x="50" y="208" width="46" height="65" fill="#2196f3" rx="6" stroke="#1565c0" stroke-width="1"/><text x="73" y="240" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">10%</text><text x="310" y="223" fill="#64b5f6" font-size="11" font-weight="bold" font-family="sans-serif">要件理解・設計判断</text><text x="310" y="241" fill="#90a4ae" font-size="10" font-family="sans-serif">最も価値の高い知的労働</text><text x="310" y="257" fill="#90a4ae" font-size="10" font-family="sans-serif">AIは「何を作るか」を判断できない</text><text x="570" y="236" fill="#64b5f6" font-size="11" font-weight="bold" font-family="sans-serif">★ 最高価値</text><text x="570" y="252" fill="#90a4ae" font-size="9" font-family="sans-serif">人間にしかできない</text><line x1="50" y1="300" x2="740" y2="300" stroke="#334" stroke-width="1"/><text x="400" y="325" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">ROI = 70%の効率化コスト vs 30%の複雑化コストのバランス</text><text x="400" y="350" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">AIは70%を高速化するが、残り30%はむしろ複雑化する</text></svg>
-- - 開発時間の内訳（バイブコーディング時代）:
-- - **70%**: コード生成（AI がほぼ自動化）
-- - **20%**: レビュー・デバッグ・修正（人間の核心業務）
-- - **10%**: 要件理解・設計判断（最も価値の高い知的労働）
-- - AI は70%を高速化するが、残り30%は **むしろ複雑化**
-- - ROIは70%の効率化 vs 30%の複雑化コストのバランス
+<div class="fig">
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">70:20:10 — バイブコーディング時代の開発時間配分</text><rect x="50" y="52" width="490" height="65" fill="#f57f17" rx="6" stroke="#e65100" stroke-width="1"/><text x="295" y="76" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">70% コード生成（AIがほぼ自動化）</text><text x="295" y="96" text-anchor="middle" fill="#ffe082" font-size="10" font-family="sans-serif">CRUD実装・テスト雛形・ドキュメント・型定義 — AIに任せる領域</text><text x="570" y="76" fill="#ef9a9a" font-size="11" font-weight="bold" font-family="sans-serif">→ 55%速度向上</text><text x="570" y="92" fill="#90a4ae" font-size="9" font-family="sans-serif">しかし品質は要確認</text><rect x="50" y="130" width="140" height="65" fill="#9c27b0" rx="6" stroke="#7b1fa2" stroke-width="1"/><text x="120" y="154" text-anchor="middle" fill="#ffffff" font-size="13" font-weight="bold" font-family="sans-serif">20%</text><text x="120" y="172" text-anchor="middle" fill="#ce93d8" font-size="9" font-family="sans-serif">レビュー・デバッグ</text><text x="310" y="145" fill="#ce93d8" font-size="11" font-weight="bold" font-family="sans-serif">レビュー・デバッグ・修正</text><text x="310" y="163" fill="#90a4ae" font-size="10" font-family="sans-serif">人間の核心業務。AI生成コードの品質確認</text><text x="310" y="179" fill="#90a4ae" font-size="10" font-family="sans-serif">セキュリティ・パフォーマンス・エッジケース</text><text x="570" y="158" fill="#ce93d8" font-size="11" font-weight="bold" font-family="sans-serif">→ 複雑化 +40%</text><text x="570" y="174" fill="#90a4ae" font-size="9" font-family="sans-serif">AI生成コードの確認</text><rect x="50" y="208" width="46" height="65" fill="#2196f3" rx="6" stroke="#1565c0" stroke-width="1"/><text x="73" y="240" text-anchor="middle" fill="#ffffff" font-size="12" font-weight="bold" font-family="sans-serif">10%</text><text x="310" y="223" fill="#64b5f6" font-size="11" font-weight="bold" font-family="sans-serif">要件理解・設計判断</text><text x="310" y="241" fill="#90a4ae" font-size="10" font-family="sans-serif">最も価値の高い知的労働</text><text x="310" y="257" fill="#90a4ae" font-size="10" font-family="sans-serif">AIは「何を作るか」を判断できない</text><text x="570" y="236" fill="#64b5f6" font-size="11" font-weight="bold" font-family="sans-serif">★ 最高価値</text><text x="570" y="252" fill="#90a4ae" font-size="9" font-family="sans-serif">人間にしかできない</text><line x1="50" y1="300" x2="740" y2="300" stroke="#334" stroke-width="1"/><text x="400" y="325" text-anchor="middle" fill="#f9a825" font-size="12" font-weight="bold" font-family="sans-serif">ROI = 70%の効率化コスト vs 30%の複雑化コストのバランス</text><text x="400" y="350" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">AIは70%を高速化するが、残り30%はむしろ複雑化する</text></svg>
+</div>
+
+- 開発時間の内訳（バイブコーディング時代）:
+- **70%**: コード生成（AI がほぼ自動化）
+- **20%**: レビュー・デバッグ・修正（人間の核心業務）
+- **10%**: 要件理解・設計判断（最も価値の高い知的労働）
+- AI は70%を高速化するが、残り30%は **むしろ複雑化**
+- ROIは70%の効率化 vs 30%の複雑化コストのバランス
 
 
 ---
@@ -180,7 +220,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 品質コスト
 
 - Chapter 3: Quality Costs
@@ -192,17 +232,17 @@ style: |
 
 > *動くが最適でないコードが将来のメンテコスト爆発を招く*
 
-- - AI生成コードの特徴: **動くが最適ではない**
-- - 冗長なコード、不要な依存、非効率なアルゴリズム
-- - セキュリティ: AI は **学習データの脆弱パターン** も再現する
-- - テスト: AI が書くテストは **ハッピーパスに偏る** 傾向
-- - 「とりあえず動く」コードの山 = 将来の **メンテナンスコスト爆発**
-- - 短期の生産性向上 vs 長期のメンテナンスコスト — 経済的判断が必要
+- AI生成コードの特徴: **動くが最適ではない**
+- 冗長なコード、不要な依存、非効率なアルゴリズム
+- セキュリティ: AI は **学習データの脆弱パターン** も再現する
+- テスト: AI が書くテストは **ハッピーパスに偏る** 傾向
+- 「とりあえず動く」コードの山 = 将来の **メンテナンスコスト爆発**
+- 短期の生産性向上 vs 長期のメンテナンスコスト — 経済的判断が必要
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # スキル格差の経済学
 
 - Chapter 4: Skill Gap Economics
@@ -214,13 +254,16 @@ style: |
 
 > *AI活用スキル格差が5-10倍の生産性差を生む*
 
-- <svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">スキル格差の拡大：AI活用能力が生産性を分ける</text><line x1="60" y1="300" x2="740" y2="300" stroke="#445" stroke-width="2"/><line x1="60" y1="50" x2="60" y2="300" stroke="#445" stroke-width="2"/><text x="30" y="185" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif" transform="rotate(-90,30,185)">生産性</text><text x="400" y="325" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">AI活用スキル →</text><text x="80" y="315" fill="#78909c" font-size="9" font-family="sans-serif">なし</text><text x="400" y="315" fill="#78909c" font-size="9" font-family="sans-serif">中程度</text><text x="700" y="315" fill="#78909c" font-size="9" font-family="sans-serif">高い</text><path d="M 80 285 Q 300 280 400 255 Q 550 210 720 85" fill="none" stroke="#f9a825" stroke-width="3"/><text x="580" y="130" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">AI活用エンジニア</text><text x="580" y="145" fill="#f9a825" font-size="9" font-family="sans-serif">5-10倍の生産性</text><path d="M 80 285 Q 300 283 500 275 Q 600 270 720 265" fill="none" stroke="#90a4ae" stroke-width="2"/><text x="500" y="260" fill="#90a4ae" font-size="10" font-family="sans-serif">非AI活用エンジニア</text><text x="500" y="274" fill="#78909c" font-size="9" font-family="sans-serif">ほぼ変化なし</text><rect x="620" y="150" width="105" height="95" fill="#16213e" rx="6" stroke="#4caf50" stroke-width="2"/><text x="672" y="172" text-anchor="middle" fill="#4caf50" font-size="10" font-weight="bold" font-family="sans-serif">高スキル</text><text x="672" y="190" text-anchor="middle" fill="#a5d6a7" font-size="9" font-family="sans-serif">要件を正しく</text><text x="672" y="206" text-anchor="middle" fill="#a5d6a7" font-size="9" font-family="sans-serif">AIに伝える</text><text x="672" y="222" text-anchor="middle" fill="#a5d6a7" font-size="9" font-family="sans-serif">深いドメイン知識</text><rect x="80" y="210" width="105" height="80" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="2"/><text x="132" y="232" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">低スキル</text><text x="132" y="250" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">カーナビ依存</text><text x="132" y="266" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">道を覚えない</text><line x1="400" y1="50" x2="400" y2="300" stroke="#334" stroke-width="1" stroke-dasharray="5 3"/><text x="300" y="350" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif" font-weight="bold">生産性格差</text><polygon points="300,335 220,340 300,345" fill="#e91e63"/><polygon points="500,335 580,340 500,345" fill="#f9a825"/><text x="500" y="350" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif" font-weight="bold">AI活用格差</text><line x1="220" y1="340" x2="580" y2="340" stroke="#556" stroke-width="1"/></svg>
-- - AI活用スキルの高いエンジニア → 生産性 **5-10倍** に
-- - AI活用スキルの低いエンジニア → 生産性 **ほぼ変わらず**
-- - 「コードを書ける人」から「AIに正しく指示できる人」へ
-- - **プロンプトエンジニアリング** が新しいスキルセット
-- - しかし「AIに正しく指示する」には **深いドメイン知識** が必須
-- - 初心者がAIを使う = カーナビに頼りすぎて道を覚えない
+<div class="fig">
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold" font-family="sans-serif">スキル格差の拡大：AI活用能力が生産性を分ける</text><line x1="60" y1="300" x2="740" y2="300" stroke="#445" stroke-width="2"/><line x1="60" y1="50" x2="60" y2="300" stroke="#445" stroke-width="2"/><text x="30" y="185" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif" transform="rotate(-90,30,185)">生産性</text><text x="400" y="325" text-anchor="middle" fill="#90a4ae" font-size="10" font-family="sans-serif">AI活用スキル →</text><text x="80" y="315" fill="#78909c" font-size="9" font-family="sans-serif">なし</text><text x="400" y="315" fill="#78909c" font-size="9" font-family="sans-serif">中程度</text><text x="700" y="315" fill="#78909c" font-size="9" font-family="sans-serif">高い</text><path d="M 80 285 Q 300 280 400 255 Q 550 210 720 85" fill="none" stroke="#f9a825" stroke-width="3"/><text x="580" y="130" fill="#f9a825" font-size="11" font-weight="bold" font-family="sans-serif">AI活用エンジニア</text><text x="580" y="145" fill="#f9a825" font-size="9" font-family="sans-serif">5-10倍の生産性</text><path d="M 80 285 Q 300 283 500 275 Q 600 270 720 265" fill="none" stroke="#90a4ae" stroke-width="2"/><text x="500" y="260" fill="#90a4ae" font-size="10" font-family="sans-serif">非AI活用エンジニア</text><text x="500" y="274" fill="#78909c" font-size="9" font-family="sans-serif">ほぼ変化なし</text><rect x="620" y="150" width="105" height="95" fill="#16213e" rx="6" stroke="#4caf50" stroke-width="2"/><text x="672" y="172" text-anchor="middle" fill="#4caf50" font-size="10" font-weight="bold" font-family="sans-serif">高スキル</text><text x="672" y="190" text-anchor="middle" fill="#a5d6a7" font-size="9" font-family="sans-serif">要件を正しく</text><text x="672" y="206" text-anchor="middle" fill="#a5d6a7" font-size="9" font-family="sans-serif">AIに伝える</text><text x="672" y="222" text-anchor="middle" fill="#a5d6a7" font-size="9" font-family="sans-serif">深いドメイン知識</text><rect x="80" y="210" width="105" height="80" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="2"/><text x="132" y="232" text-anchor="middle" fill="#e91e63" font-size="10" font-weight="bold" font-family="sans-serif">低スキル</text><text x="132" y="250" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">カーナビ依存</text><text x="132" y="266" text-anchor="middle" fill="#ef9a9a" font-size="9" font-family="sans-serif">道を覚えない</text><line x1="400" y1="50" x2="400" y2="300" stroke="#334" stroke-width="1" stroke-dasharray="5 3"/><text x="300" y="350" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif" font-weight="bold">生産性格差</text><polygon points="300,335 220,340 300,345" fill="#e91e63"/><polygon points="500,335 580,340 500,345" fill="#f9a825"/><text x="500" y="350" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif" font-weight="bold">AI活用格差</text><line x1="220" y1="340" x2="580" y2="340" stroke="#556" stroke-width="1"/></svg>
+</div>
+
+- AI活用スキルの高いエンジニア → 生産性 **5-10倍** に
+- AI活用スキルの低いエンジニア → 生産性 **ほぼ変わらず**
+- 「コードを書ける人」から「AIに正しく指示できる人」へ
+- **プロンプトエンジニアリング** が新しいスキルセット
+- しかし「AIに正しく指示する」には **深いドメイン知識** が必須
+- 初心者がAIを使う = カーナビに頼りすぎて道を覚えない
 
 
 ---
@@ -229,17 +272,17 @@ style: |
 
 > *写経がなくなり学習機会減—10年後のシニア不足リスク*
 
-- - バイブコーディングで **Jr.エンジニアの学習機会** が減少
-- - 「写経」→「AI生成コードのレビュー」に学習プロセスが変化
-- - デバッグ能力: 自分で書いていないコードのバグを直す難しさ
-- - 「AIが書いたコードを理解できない」エンジニアの出現
-- - 5-10年後の **シニアエンジニア不足** リスク
-- - 教育投資のROI: 短期コスト vs 長期的な組織能力
+- バイブコーディングで **Jr.エンジニアの学習機会** が減少
+- 「写経」→「AI生成コードのレビュー」に学習プロセスが変化
+- デバッグ能力: 自分で書いていないコードのバグを直す難しさ
+- 「AIが書いたコードを理解できない」エンジニアの出現
+- 5-10年後の **シニアエンジニア不足** リスク
+- 教育投資のROI: 短期コスト vs 長期的な組織能力
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 組織への影響
 
 - Chapter 5: Organizational Impact
@@ -251,17 +294,17 @@ style: |
 
 > *システム設計力とレビュー能力が新しい評価軸になる*
 
-- - 「コーディングテスト」の意味が変化（AIを使わせるテスト?）
-- - **システム設計力** と **レビュー能力** が評価軸に
-- - チーム構成: 少数精鋭 + AI → 大チーム不要?
-- - **1人チーム** の台頭（Solopreneur Engineer）
-- - マネジメント: AIの出力品質を管理する新しいスキル
-- - 組織のAI活用能力が **競争優位** に直結する時代
+- 「コーディングテスト」の意味が変化（AIを使わせるテスト?）
+- **システム設計力** と **レビュー能力** が評価軸に
+- チーム構成: 少数精鋭 + AI → 大チーム不要?
+- **1人チーム** の台頭（Solopreneur Engineer）
+- マネジメント: AIの出力品質を管理する新しいスキル
+- 組織のAI活用能力が **競争優位** に直結する時代
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 持続可能なバイブコーディング戦略
 
 - Chapter 6: Sustainable Strategy
@@ -273,24 +316,22 @@ style: |
 
 > *生成→レビュー→テストのサイクルとオーナーシップが必須*
 
-- - 1. **生成 → レビュー → テスト** のサイクルを必ず回す
-- - 2. AIが苦手な領域を理解: セキュリティ、パフォーマンス、エッジケース
-- - 3. **コードオーナーシップ**: AI が書いたコードも自分の責任
-- - 4. 技術的負債の定量的監視: 複雑度メトリクス、カバレッジ、依存関係
-- - 5. Jr.エンジニアの **意図的な学習機会** の設計
-- - 6. 「AIに書かせない方が良い」領域を明確にする
+- 1. **生成 → レビュー → テスト** のサイクルを必ず回す
+- 2. AIが苦手な領域を理解: セキュリティ、パフォーマンス、エッジケース
+- 3. **コードオーナーシップ**: AI が書いたコードも自分の責任
+- 4. 技術的負債の定量的監視: 複雑度メトリクス、カバレッジ、依存関係
+- 5. Jr.エンジニアの **意図的な学習機会** の設計
+- 6. 「AIに書かせない方が良い」領域を明確にする
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ：バイブコーディングの経済的現実
 
 - バイブコーディングは生産性革命であると同時に
 - 品質・スキル・組織の構造的課題を生む
-- 
 - 「AIに書かせる」のは簡単
 - 「AIが書いたコードに責任を持つ」のは難しい
-- 
 - **速度だけでなく、持続可能性を設計せよ**
 

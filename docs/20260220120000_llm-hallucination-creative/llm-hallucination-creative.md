@@ -7,41 +7,76 @@ paginate: true
 header: "LLMのハルシネーションを逆手に取る"
 footer: "© 2026 — Creative Hallucination Workshop"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,7 +117,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # LLMのハルシネーションを逆手に取る
 
 - 創作・ブレインストーミングでAIの「嘘」を武器にする
@@ -109,7 +144,8 @@ style: |
 
 > *幻覚を制御して創造的アウトプットを量産できるようになる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="42" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">本日のゴール</text>
 <!-- Four goal cards in 2x2 grid -->
@@ -137,6 +173,8 @@ style: |
 <text x="400" y="332" text-anchor="middle" fill="#f9a825" font-size="15" font-weight="bold">終了時の状態</text>
 <text x="400" y="358" text-anchor="middle" fill="#ffffff" font-size="13">ハルシネーションを「恐れる存在」から「使いこなす道具」に変える</text>
 </svg>
+</div>
+
 - ハルシネーションのメカニズムを技術的に理解する
 - 「バグ」を「創造ツール」として捉え直す視点を得る
 - 明日から使える実践的プロンプトパターンを習得する
@@ -145,7 +183,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 1
 
 - ハルシネーションとは
@@ -157,7 +195,8 @@ style: |
 
 > *幻覚は確率的言語生成の本質であり消去不能な特性だ*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Brain icon area -->
 <ellipse cx="200" cy="180" rx="90" ry="80" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -185,6 +224,8 @@ style: |
 <polygon points="461,268 465,278 469,268" fill="#e91e63"/>
 <text x="400" y="360" text-anchor="middle" fill="#6b7280" font-size="12">モデルは「嘘をついている」のではなく「確率的に最もらしいテキスト」を生成している</text>
 </svg>
+</div>
+
 - LLMが**事実と異なる情報**を自信を持って出力する現象
 - 例: 実在しない論文・人物・APIを引用する
 - 例: 歴史的事実を「それらしく」誤って述べる
@@ -196,7 +237,8 @@ style: |
 
 # なぜ起きるのか — トークン予測の仕組み
 
-- <svg viewBox="0 0 760 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 760 280" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="760" height="280" fill="#1e1e2e" rx="12"/>
 
 <!-- Step 1: Input -->
@@ -248,13 +290,15 @@ style: |
 <text x="420" y="68" text-anchor="middle" fill="#6b7280" font-size="11">③ 推論</text>
 <text x="630" y="48" text-anchor="middle" fill="#6b7280" font-size="11">④ サンプリング</text>
 </svg>
+</div>
 
 
 ---
 
 # temperature が確率分布を変える
 
-- <svg viewBox="0 0 760 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 760 340" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="760" height="340" fill="#1e1e2e" rx="12"/>
 
 <!-- Left: Low temp -->
@@ -305,6 +349,7 @@ style: |
 <!-- Caption -->
 <text x="380" y="335" text-anchor="middle" fill="#6b7280" font-size="12">高temperatureほど「意外なトークン」が選ばれやすくなる → 多様性・ハルシネーション増加</text>
 </svg>
+</div>
 
 
 ---
@@ -313,7 +358,8 @@ style: |
 
 > *バグ扱いの幻覚は修正しようとすると創造性まで失われる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Title bar -->
 <rect x="20" y="20" width="760" height="44" fill="#16213e" rx="8" stroke="#e91e63" stroke-width="2"/>
@@ -350,6 +396,8 @@ style: |
 <rect x="200" y="330" width="400" height="44" fill="#1f2937" rx="8" stroke="#e91e63" stroke-width="2"/>
 <text x="400" y="357" text-anchor="middle" fill="#e91e63" font-size="15" font-weight="bold">しかし… 正確さが不要な用途では話が変わる</text>
 </svg>
+</div>
+
 - RAG・ファインチューニングで「正確さ」を追求するのが主流
 - ハルシネーション率をKPIとして監視・削減
 - プロダクション環境では **0トレランス** が基本
@@ -359,7 +407,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 2
 
 - ハルシネーションを武器に
@@ -371,7 +419,8 @@ style: |
 
 > *ランダム性が多様なアイデアを生み、人間の選択肢を広げる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Human brain left -->
 <ellipse cx="160" cy="180" rx="100" ry="90" fill="#16213e" stroke="#f9a825" stroke-width="2"/>
@@ -399,6 +448,8 @@ style: |
 <rect x="100" y="310" width="600" height="48" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="1.5"/>
 <text x="400" y="338" text-anchor="middle" fill="#f9a825" font-size="14">「正解のない問い」に対して多様な候補を大量生成する能力</text>
 </svg>
+</div>
+
 - 人間の創造性も「予測不能な連想」から生まれる
 - ジャズのインプロビゼーション、夢の中のストーリー…
 - LLMのハルシネーション = **訓練データから逸脱した連想**
@@ -410,7 +461,8 @@ style: |
 
 # 「嘘」と「フィクション」の境界線
 
-- <svg viewBox="0 0 760 290" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 760 290" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="760" height="290" fill="#1e1e2e" rx="12"/>
 
 <!-- Spectrum bar: 4 color zones -->
@@ -451,11 +503,12 @@ style: |
 <polygon points="706,240 716,245 706,250" fill="#374151"/>
 <text x="380" y="265" text-anchor="middle" fill="#4b5563" font-size="12">← 事実要求 ————————————————————— 創造性要求 →</text>
 </svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 3
 
 - 5つの活用パターン
@@ -467,7 +520,8 @@ style: |
 
 > *プロットの飛躍と意外な展開を幻覚で意図的に生成できる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Title -->
 <rect x="20" y="18" width="760" height="40" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="2"/>
@@ -517,6 +571,8 @@ style: |
 <!-- Bottom note -->
 <text x="400" y="345" text-anchor="middle" fill="#6b7280" font-size="12">読者が「信じてくれれば勝ち」— 事実確認は不要なジャンル</text>
 </svg>
+</div>
+
 - **活用場面**: 書き出し・プロット・キャラクター設定の壁打ち
 - 「それらしい」が正解な唯一の用途 — 実在しなくてよい
 - 世界設定・固有名詞・歴史背景は自由に創造してOK
@@ -557,7 +613,8 @@ user: 2157年、火星コロニーで起きた謎の停電事件を
 
 > *予測不能な言葉の連想が詩的表現の質を高める*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Music note decoration -->
 <text x="60" y="90" fill="#f9a825" font-size="48" opacity="0.3">♪</text>
@@ -598,6 +655,8 @@ user: 2157年、火星コロニーで起きた謎の停電事件を
 <rect x="100" y="320" width="600" height="48" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="1.5"/>
 <text x="400" y="348" text-anchor="middle" fill="#f9a825" font-size="13">「音の連想」「感情の比喩」は — 事実と異なっていいからこそ美しい</text>
 </svg>
+</div>
+
 - **活用場面**: リリック・ライティング、ポエトリー、コピーライティング
 - 詩的表現では「事実と異なる比喩」こそが美しさを生む
 - 「太陽が泣いている」→ ハルシネーション的発想が詩になる
@@ -636,7 +695,8 @@ user: テーマ「孤独な深夜のデバッグ」で、
 
 > *幻覚を使えば人間が思いつかない発想の種を大量に得られる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Center: LLM Brainstorm engine -->
 <ellipse cx="400" cy="200" rx="90" ry="75" fill="#16213e" stroke="#f9a825" stroke-width="3"/>
@@ -670,6 +730,8 @@ user: テーマ「孤独な深夜のデバッグ」で、
 <text x="250" y="322" text-anchor="middle" fill="#f9a825" font-size="13">ブレストのルール: 「批判しない」「量を重視」</text>
 <text x="250" y="340" text-anchor="middle" fill="#9ca3af" font-size="12">LLMのハルシネーション = 訓練データの枠を超えた組み合わせ</text>
 </svg>
+</div>
+
 - **活用場面**: 新機能アイデア・ビジネスモデル・問題解決策の発散
 - ブレストのルール = **「批判しない」「量を重視」** → LLMと相性抜群
 - 「ありえない組み合わせ」が突破口になることが多い
@@ -710,7 +772,8 @@ user: 「宅配ピザ × ブロックチェーン × 瞑想アプリ」を
 
 > *反論・代替案の自動生成が意思決定の盲点を照らし出す*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Your idea box -->
 <rect x="30" y="80" width="200" height="100" fill="#16213e" rx="10" stroke="#f9a825" stroke-width="2"/>
@@ -742,6 +805,8 @@ user: 「宅配ピザ × ブロックチェーン × 瞑想アプリ」を
 <text x="400" y="333" text-anchor="middle" fill="#f9a825" font-size="13">「本当に間違った反論」でも — 思考の発散・盲点発見の記録になる</text>
 <text x="400" y="351" text-anchor="middle" fill="#9ca3af" font-size="12">反論の妥当性は必ず人間が検証する（レビュー必要度: 高）</text>
 </svg>
+</div>
+
 - **活用場面**: 設計レビュー前の「悪魔の代弁者」役
 - 自分のアイデアの穴を事前に洗い出す用途
 - LLMは「それらしい反論」を大量生成するのが得意
@@ -781,7 +846,8 @@ user: 新しいマイクロサービスに
 
 > *デバッグ仮説の発散生成で見落としていた原因を発見できる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Bug icon -->
 <text x="60" y="80" fill="#e91e63" font-size="36">🐛</text>
@@ -818,6 +884,8 @@ user: 新しいマイクロサービスに
 <!-- Bottom note -->
 <text x="400" y="360" text-anchor="middle" fill="#9ca3af" font-size="12">各仮説は実測・ログで検証 — LLMが出した「ありえなさそうな原因」が突破口になることも</text>
 </svg>
+</div>
+
 - **活用場面**: 再現しない不具合・謎のパフォーマンス劣化の原因探索
 - 「何が原因か分からない」状態に対して仮説を大量生成
 - LLMが「それらしい原因」を列挙 → 実際の調査の優先順位付けに
@@ -856,7 +924,8 @@ user: 本番環境でのみ、特定のAPIエンドポイントが
 
 # ユースケース比較表
 
-- <svg viewBox="0 0 760 330" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 760 330" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="760" height="330" fill="#1e1e2e" rx="12"/>
 
 <!-- Header row -->
@@ -912,11 +981,12 @@ user: 本番環境でのみ、特定のAPIエンドポイントが
 <text x="578" y="290" text-anchor="middle" fill="#facc15" font-size="12">中（実測検証）</text>
 <text x="700" y="290" text-anchor="middle" fill="#facc15" font-size="13">中</text>
 </svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 4
 
 - 実践テクニック
@@ -926,7 +996,8 @@ user: 本番環境でのみ、特定のAPIエンドポイントが
 
 # temperature / top-p を操る
 
-- <svg viewBox="0 0 760 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 760 300" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="760" height="300" fill="#1e1e2e" rx="12"/>
 
 <!-- Left: temperature -->
@@ -996,6 +1067,7 @@ user: 本番環境でのみ、特定のAPIエンドポイントが
 <rect x="400" y="168" width="340" height="30" fill="#374151" rx="6"/>
 <text x="570" y="187" text-anchor="middle" fill="#facc15" font-size="12">🎯 創作向け推奨: top-p 0.90〜0.95</text>
 </svg>
+</div>
 
 
 ---
@@ -1004,7 +1076,8 @@ user: 本番環境でのみ、特定のAPIエンドポイントが
 
 > *「正確さを求めない」プロンプトが幻覚を意図的に引き出す鍵*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Left: Don't use -->
 <rect x="20" y="30" width="360" height="340" fill="#16213e" rx="10" stroke="#e91e63" stroke-width="2"/>
@@ -1033,6 +1106,8 @@ user: 本番環境でのみ、特定のAPIエンドポイントが
 <rect x="450" y="295" width="300" height="44" fill="#1f2937" rx="6"/>
 <text x="600" y="321" text-anchor="middle" fill="#4ade80" font-size="12">✓ ブレスト・創作に最適</text>
 </svg>
+</div>
+
 - 通常のプロンプト設計と**逆の発想**が必要
 - ❌ 「正確に」「事実に基づいて」「根拠を示して」
 - ✅ 「自由に」「想像で」「ありえなくてもいい」「大量に」
@@ -1044,7 +1119,8 @@ user: 本番環境でのみ、特定のAPIエンドポイントが
 
 # パターン1 — 制約を外す
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="48" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">パターン1: 制約を外す</text>
 <!-- Before box -->
@@ -1072,6 +1148,8 @@ user: 本番環境でのみ、特定のAPIエンドポイントが
 <text x="400" y="318" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">「制約を外す言葉」がハルシネーションのスイッチ</text>
 <text x="400" y="342" text-anchor="middle" fill="#9ca3af" font-size="12">LLMの「保守的な回答」を回避 → 創造的アウトプットへ</text>
 </svg>
+</div>
+
 - **目的**: LLMの「保守的な回答」を回避する
 
 
@@ -1098,7 +1176,8 @@ user: 本番環境でのみ、特定のAPIエンドポイントが
 
 # パターン2 — 多様性を引き出す
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="48" text-anchor="middle" fill="#f9a825" font-size="18" font-weight="bold">パターン2: 多様性を引き出す</text>
 <!-- Without diversity forcing -->
@@ -1139,6 +1218,8 @@ user: 本番環境でのみ、特定のAPIエンドポイントが
 <text x="700" y="322" text-anchor="middle" fill="#9ca3af" font-size="11">不安/楽観/疲弊</text>
 <text x="700" y="340" text-anchor="middle" fill="#9ca3af" font-size="11">感情で分散</text>
 </svg>
+</div>
+
 - **目的**: 類似した回答のループを防ぐ
 
 
@@ -1165,7 +1246,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 
 # 出力の評価とフィルタリング
 
-- <svg viewBox="0 0 760 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 760 220" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="760" height="220" fill="#1e1e2e" rx="12"/>
 
 <!-- Step 1: Generate -->
@@ -1224,15 +1306,18 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 <text x="396" y="195" text-anchor="middle" fill="#4ade80" font-size="11">人間が収束</text>
 <text x="702" y="195" text-anchor="middle" fill="#a78bfa" font-size="11">LLMが深化</text>
 </svg>
+</div>
+
 - LLM = **発散**、人間 = **収束** の役割分担
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ライブデモ: ブレストセッション
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="44" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">ライブデモ: ブレストセッション</text>
 <!-- Large interactive icon -->
@@ -1250,13 +1335,15 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 <text x="660" y="336" text-anchor="middle" fill="#4ade80" font-size="13" font-weight="bold">Step 3</text>
 <text x="660" y="356" text-anchor="middle" fill="#9ca3af" font-size="12">出力をみんなで評価</text>
 </svg>
+</div>
+
 - ここで実際にブレストをやってみましょう
 - 参加者のお題を募集します
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 5
 
 - リスクと限界
@@ -1268,7 +1355,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 
 > *事実・法律・医療・数値など検証必須の領域では幻覚は有害*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="44" text-anchor="middle" fill="#e91e63" font-size="18" font-weight="bold">⚠️ ハルシネーション活用 禁止ゾーン</text>
 <!-- Warning grid 2x3 -->
@@ -1301,6 +1389,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 <text x="400" y="322" text-anchor="middle" fill="#e91e63" font-size="14" font-weight="bold">大原則: 正確さが必要な領域にはハルシネーションを持ち込まない</text>
 <text x="400" y="348" text-anchor="middle" fill="#9ca3af" font-size="12">「使えるアイデア」と「事実として使う情報」を明確に分ける</text>
 </svg>
+</div>
+
 - ⚠️ **医療・法律・財務アドバイス** — 誤情報が命取りになりうる
 - ⚠️ **技術文書・API仕様の作成** — ハルシネーションが静かに混入する
 - ⚠️ **引用・参考文献の自動生成** — 存在しない論文を引用しがち
@@ -1314,7 +1404,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 
 > *事実確認が必要な領域での幻覚は信頼損失と法的リスクを生む*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="44" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">事実確認チェックリスト — ハルシネーション活用後に必須</text>
 <!-- Items with check boxes -->
@@ -1338,6 +1429,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 <text x="400" y="328" text-anchor="middle" fill="#4ade80" font-size="14" font-weight="bold">黄金ルール</text>
 <text x="400" y="352" text-anchor="middle" fill="#ffffff" font-size="13">「アイデア・インスピレーション」として使う ≠ 「事実」として使う</text>
 </svg>
+</div>
+
 - ハルシネーション活用後も**人間による検証が必須**な項目
 - 数値・統計データ（LLMは「それらしい数字」を作ることがある）
 - 人名・組織名・製品名（架空のものが混入する）
@@ -1350,7 +1443,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 
 # 創造性 vs 信頼性のトレードオフ
 
-- <svg viewBox="0 0 760 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 760 320" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="760" height="320" fill="#1e1e2e" rx="12"/>
 
 <!-- Y axis -->
@@ -1401,6 +1495,7 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 <line x1="200" y1="308" x2="230" y2="308" stroke="#f87171" stroke-width="3"/>
 <text x="235" y="312" fill="#f87171" font-size="12">創造性</text>
 </svg>
+</div>
 
 
 ---
@@ -1409,7 +1504,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 
 > *AIの出力は人間が選別・検証してこそ価値になる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Role division -->
 <rect x="20" y="30" width="360" height="300" fill="#16213e" rx="12" stroke="#e91e63" stroke-width="2"/>
@@ -1439,6 +1535,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 <rect x="100" y="348" width="600" height="38" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="1.5"/>
 <text x="400" y="371" text-anchor="middle" fill="#f9a825" font-size="13">「創造性の民主化」であって「人間の代替」ではない</text>
 </svg>
+</div>
+
 - ハルシネーション活用はあくまで**インプット拡張の手段**
 - LLM = **多様なドラフトを大量生成するアシスタント**
 - 人間 = **価値を見極め、磨き上げるエディター**
@@ -1448,7 +1546,7 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 6
 
 - まとめ
@@ -1456,10 +1554,11 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ハルシネーションは「道具」である
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <!-- Large tool metaphor -->
 <text x="400" y="100" text-anchor="middle" fill="#f9a825" font-size="64">🔧</text>
@@ -1481,6 +1580,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 <rect x="150" y="325" width="500" height="44" fill="#16213e" rx="8" stroke="#f9a825" stroke-width="1.5"/>
 <text x="400" y="352" text-anchor="middle" fill="#f9a825" font-size="14">キーワード: 発散・多様性・意外性・ドラフト量産</text>
 </svg>
+</div>
+
 - バグでも欠陥でもなく — **特性**として使いこなす
 - 正確さが不要な場面では、むしろ「強み」
 - キーワード: 発散・多様性・意外性・ドラフト量産
@@ -1492,7 +1593,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 
 > *用途別パラメータを事前設定すると再現性が高まる*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;font-family:sans-serif;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
 <rect width="800" height="400" fill="#1a1a2e" rx="12"/>
 <text x="400" y="40" text-anchor="middle" fill="#f9a825" font-size="16" font-weight="bold">ハルシネーション活用 実践チェックリスト</text>
 <!-- Steps as timeline -->
@@ -1522,6 +1624,8 @@ user: 「睡眠改善アプリ」のユニークな機能を10個。
 <text x="110" y="348" fill="#ffffff" font-size="13" font-weight="bold">選んだアイデアを深掘り &amp; 事実情報は別途検証</text>
 <text x="110" y="366" fill="#9ca3af" font-size="12">深掘りはLLMで / 事実確認は一次ソースで</text>
 </svg>
+</div>
+
 - [ ] 用途を確認: 「正確さが不要」か？
 - [ ] temperature を 0.9〜1.3 に設定する
 - [ ] プロンプトに「自由に」「ありえなくてもOK」を追加

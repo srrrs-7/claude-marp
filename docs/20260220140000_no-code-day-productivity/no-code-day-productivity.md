@@ -7,41 +7,76 @@ paginate: true
 header: "コードを書かない日のほうが生産的な理由"
 footer: "© 2026 Engineer Productivity Workshop"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -77,11 +112,10 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # コードを書かない日のほうが生産的な理由
 
 - なぜ「動いている」エンジニアほど行き詰まるのか
-- 
 - Engineer Productivity Workshop 2026
 
 
@@ -91,28 +125,27 @@ style: |
 
 > *コーディング休止が生産性を上げる科学的根拠を体系的に提示*
 
-- 1. 「コードを書く＝生産的」という幻想
-- 2. 脳科学・認知科学の視点
-- 3. 研究が示す証拠
-- 4. 「非コーディング活動」が生む価値
-- 5. 実践フレームワーク
-- 6. ワークショップ
-- 7. まとめ
+1. 「コードを書く＝生産的」という幻想
+2. 脳科学・認知科学の視点
+3. 研究が示す証拠
+4. 「非コーディング活動」が生む価値
+5. 実践フレームワーク
+6. ワークショップ
+7. まとめ
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # あなたの「生産的な一日」とは？
 
 - 今日、何行コードを書きましたか？
-- 
 - → もしその問いが「生産性の指標」なら、今日は議論が必要です。
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 「コードを書く＝生産的」という幻想
 
 - 活動量と成果量は別物である
@@ -124,7 +157,8 @@ style: |
 
 > *コミット数と価値創出の相関係数は0.3以下*
 
-- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 350" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">活動量 ≠ 成果 — エンジニアの時間の実態</text>
 <rect x="50" y="60" width="320" height="200" fill="#16213e" rx="8"/>
@@ -149,9 +183,11 @@ style: |
 <text x="400" y="300" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">コーディング時間を増やしても ボトルネックは別の場所にある</text>
 <text x="400" y="328" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 「何をしたか」より「何が前進したか」が生産性の指標</text>
 </svg>
+</div>
+
 - **McKinsey 調査（2023）:**
-- - エンジニアの実作業のうち **コーディング：約32%**
-- - 残り68%：会議・レビュー・調査・コミュニケーション
+- エンジニアの実作業のうち **コーディング：約32%**
+- 残り68%：会議・レビュー・調査・コミュニケーション
 
 
 ---
@@ -161,8 +197,8 @@ style: |
 > *LOC増加と価値創出に相関がないデータが従来指標を否定する*
 
 - **GitHub の分析:**
-- - Pull Request マージまでの中央値：**3.6日**
-- - コードを書く時間：約1.2日 ／ 残りは待機・レビュー・修正
+- Pull Request マージまでの中央値：**3.6日**
+- コードを書く時間：約1.2日 ／ 残りは待機・レビュー・修正
 - → コーディング時間を増やしても **ボトルネックは別の場所にある**
 
 
@@ -172,7 +208,8 @@ style: |
 
 > *ポイント消化は出力指標であり成果指標ではない*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ベロシティの罠 — 速く動くことと前に進むことは別</text>
 <rect x="60" y="60" width="300" height="230" fill="#16213e" rx="8"/>
@@ -193,9 +230,11 @@ style: |
 <text x="590" y="235" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードの複雑度推移</text>
 <text x="400" y="330" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">計測するものが行動を変える — 良いKPIが良い文化を作る</text>
 </svg>
+</div>
+
 - **Sprint Velocity とは:**
-- - 1スプリントで完了したストーリーポイント数
-- - しかし「点数を稼ぐ」行動にインセンティブが歪む
+- 1スプリントで完了したストーリーポイント数
+- しかし「点数を稼ぐ」行動にインセンティブが歪む
 
 
 ---
@@ -205,8 +244,8 @@ style: |
 > *速く走ることと正しい方向に走ることは別の問題である*
 
 - **「ベロシティ信仰」のリスク:**
-- - 小さく分割しやすいタスクが優先される
-- - リファクタリング・設計・調査が後回しに
+- 小さく分割しやすいタスクが優先される
+- リファクタリング・設計・調査が後回しに
 - → **速く動くことと、前に進むことは別**
 
 
@@ -216,7 +255,8 @@ style: |
 
 > *常にコードを書くエンジニアが最も生産的とは限らない逆説*
 
-- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 350" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">書き続けることのコスト — 技術的負債の蓄積</text>
 <rect x="50" y="60" width="320" height="220" fill="#16213e" rx="8"/>
@@ -237,10 +277,12 @@ style: |
 <text x="590" y="262" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 今急ぐ = 後で10倍のコスト</text>
 <text x="400" y="320" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「後で直す」という判断が積み重なって行き詰まりを生む</text>
 </svg>
+</div>
+
 - **典型的な一日:**
-- - 朝：Slack の通知を処理（30分）
-- - 午前：スタンドアップ → コードレビュー → バグ修正
-- - 午後：会議 → Slack → コードをちょっと書く
+- 朝：Slack の通知を処理（30分）
+- 午前：スタンドアップ → コードレビュー → バグ修正
+- 午後：会議 → Slack → コードをちょっと書く
 
 
 ---
@@ -250,8 +292,8 @@ style: |
 > *割り込みと文脈切替のコストが集中の価値を消し去る*
 
 - **しかし実際は:**
-- - 深く考える時間：ゼロ
-- - 設計を見直す時間：ゼロ
+- 深く考える時間：ゼロ
+- 設計を見直す時間：ゼロ
 - → **「忙しい」と「前に進んでいる」は別概念**
 
 
@@ -261,7 +303,8 @@ style: |
 
 > *急いで書いたコードが将来の速度を奪う複利的な負の蓄積*
 
-- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 350" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">書き続けることのコスト — 技術的負債の蓄積</text>
 <rect x="50" y="60" width="320" height="220" fill="#16213e" rx="8"/>
@@ -282,9 +325,11 @@ style: |
 <text x="590" y="262" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 今急ぐ = 後で10倍のコスト</text>
 <text x="400" y="320" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「後で直す」という判断が積み重なって行き詰まりを生む</text>
 </svg>
+</div>
+
 - **Stripe 調査（2018）:**
-- - 開発者時間の **33%** が技術的負債の対処に費やされている
-- - 世界全体で年間 **$300 billion** の損失
+- 開発者時間の **33%** が技術的負債の対処に費やされている
+- 世界全体で年間 **$300 billion** の損失
 - **負債が生まれる原因 Top 3:**
 
 
@@ -294,18 +339,19 @@ style: |
 
 > *リファクタリングなし開発継続がいずれシステム全停止を招く*
 
-- - 設計をスキップしてコーディングを急いだ
-- - 仕様が固まる前に実装を始めた
-- - レビュー・テストの時間を削った
+- 設計をスキップしてコーディングを急いだ
+- 仕様が固まる前に実装を始めた
+- レビュー・テストの時間を削った
 - → **「後で直す」は「今の10倍のコスト」になる**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 脳科学・認知科学の視点
 
-- <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 365" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">インキュベーション効果 — 「寝かせる」ことの力</text>
 <rect x="50" y="65" width="300" height="200" fill="#16213e" rx="8"/>
@@ -326,15 +372,18 @@ style: |
 <text x="400" y="310" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「悩んで休む」は怠惰ではなく、戦略である</text>
 <text x="400" y="340" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">DMN (Default Mode Network) が休憩中に問題の解を探し続ける</text>
 </svg>
+</div>
+
 - 脳は「使わない時間」に最も創造的になる
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 集中モードと拡散モード
 
 ![w:840 center](assets/focused-diffuse-modes.svg)
+
 - Barbara Oakley『Learning How to Learn』(2014) — 両モードの切り替えが学習と創造を最大化する
 
 
@@ -345,8 +394,8 @@ style: |
 > *意識が解放された時こそ脳が最も創造的な問題解決を行う*
 
 - **DMN（Default Mode Network）とは:**
-- - 何もしていない・ボーッとしているときに活性化する脳回路
-- - 前頭前皮質・楔前部・後帯状皮質が連動
+- 何もしていない・ボーッとしているときに活性化する脳回路
+- 前頭前皮質・楔前部・後帯状皮質が連動
 - **DMN が担う機能:**
 
 
@@ -356,7 +405,8 @@ style: |
 
 > *画面から離れる時間がDMN活性化で突破口を生み出す*
 
-- <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 365" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">インキュベーション効果 — 「寝かせる」ことの力</text>
 <rect x="50" y="65" width="300" height="200" fill="#16213e" rx="8"/>
@@ -377,9 +427,11 @@ style: |
 <text x="400" y="310" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「悩んで休む」は怠惰ではなく、戦略である</text>
 <text x="400" y="340" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">DMN (Default Mode Network) が休憩中に問題の解を探し続ける</text>
 </svg>
-- - 過去の経験と新情報の **統合・接続**
-- - 将来シナリオの **シミュレーション**
-- - 自己参照的思考 → **アイデアのインキュベーション**
+</div>
+
+- 過去の経験と新情報の **統合・接続**
+- 将来シナリオの **シミュレーション**
+- 自己参照的思考 → **アイデアのインキュベーション**
 - → 集中してコードを書き続けると **DMN を封じている**
 
 
@@ -390,9 +442,9 @@ style: |
 > *問題を意識から離すことで無意識が解を温め表出させる*
 
 - **インキュベーション効果（Incubation Effect）:**
-- - 問題に取り組んだ後、意図的に「休む」と解決率が上がる現象
+- 問題に取り組んだ後、意図的に「休む」と解決率が上がる現象
 - **Sio & Ormerod（2009）メタ分析:**
-- - 117 の実験を分析
+- 117 の実験を分析
 
 
 ---
@@ -401,7 +453,8 @@ style: |
 
 > *仕事を止める勇気がブレークスルーを加速する科学的根拠*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">割り込みのコスト — 23分の回復時間</text>
 <rect x="50" y="60" width="700" height="30" fill="#0f3460" rx="8"/>
@@ -422,18 +475,21 @@ style: |
 <text x="400" y="300" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Slack通知オフ・会議を曜日集約 → 集中時間を守ることが最高の生産性施策</text>
 <text x="400" y="350" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">Stack Overflow 調査: 「頻繁な中断」が生産性低下要因 No.1 (62%)</text>
 </svg>
-- - インキュベーション後に洞察課題の成績が **平均15〜20%** 向上
+</div>
+
+- インキュベーション後に洞察課題の成績が **平均15〜20%** 向上
 - **なぜ機能するか:**
-- - 誤った思考パターンから「離れる」ことで固定観念がリセット
+- 誤った思考パターンから「離れる」ことで固定観念がリセット
 - → **「悩んで休む」は怠惰ではなく、戦略**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 文脈切り替えのコスト：23分の回復時間
 
 ![w:840 center](assets/context-switch-cost.svg)
+
 - Gloria Mark, UC Irvine (2005) — 中断後に深い集中に戻るまで平均 23分 6秒
 
 
@@ -444,9 +500,9 @@ style: |
 > *フロー突入には平均23分かかり割り込みが価値を破壊する*
 
 - **フロー（Flow）状態の特徴（Csikszentmihalyi, 1990）:**
-- - 完全な集中・時間感覚の消失・自己意識の低下
+- 完全な集中・時間感覚の消失・自己意識の低下
 - **フローの「前コスト」:**
-- - フローに入るまで **15〜20分** 必要
+- フローに入るまで **15〜20分** 必要
 
 
 ---
@@ -455,7 +511,8 @@ style: |
 
 > *フロー時間を確保するために非コーディング日が有効な手段*
 
-- <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 365" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">Deep Work理論 — 知的労働の本質</text>
 <rect x="50" y="60" width="700" height="55" fill="#16213e" rx="8"/>
@@ -474,15 +531,17 @@ style: |
 <text x="590" y="260" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">次のDeep Workへの充電</text>
 <text x="400" y="355" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">浅い作業 (Slack・会議) は価値を生まない — 「忙しい」≠「深く考えている」</text>
 </svg>
-- - 中断されると再入場まで同じコストがかかる
+</div>
+
+- 中断されると再入場まで同じコストがかかる
 - **誤解:**
-- - 「フロー = ずっとコードを書き続けること」ではない
+- 「フロー = ずっとコードを書き続けること」ではない
 - → **フローの前後に「非コーディング時間」が質を決める**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 研究が示す証拠
 
 - データとエビデンスで「非コーディング」を再評価する
@@ -494,7 +553,8 @@ style: |
 
 > *集中の深さが知的生産の質と量を指数関数的に決定する*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ディープワーク時間ブロックの設計</text>
 <rect x="50" y="65" width="130" height="180" fill="#334" rx="8"/>
@@ -526,9 +586,11 @@ style: |
 <text x="400" y="325" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">空き時間は会議に侵食される — 積極的に守らないと消える</text>
 <text x="400" y="355" font-size="11" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">週4時間がディープワークの上限 (Cal Newport) — それを超えると認知パフォーマンス急低下</text>
 </svg>
+</div>
+
 - **Deep Work（2016）の核心:**
-- - 「認知的に要求の高いタスクに完全に集中する能力」
-- - 浅い作業（メール・会議・Slack）は価値を生まない
+- 「認知的に要求の高いタスクに完全に集中する能力」
+- 浅い作業（メール・会議・Slack）は価値を生まない
 - **知的労働者の現実:**
 
 
@@ -538,7 +600,8 @@ style: |
 
 > *浅い仕事に費やす時間を削り深い仕事を週4時間確保する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">熟慮的実践 — 成長を生む「コードを書かない日」</text>
 <rect x="280" y="55" width="240" height="65" fill="#0f3460" rx="8"/>
@@ -570,18 +633,21 @@ style: |
 <text x="400" y="318" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードを書かない日の「振り返り」が成長を生む</text>
 <text x="400" y="365" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">1万時間の法則の本質は「時間」ではなく「振り返りの質」</text>
 </svg>
-- - 1日あたりディープワークが可能な時間：**約4時間が上限**
-- - それを超えると認知パフォーマンスが急低下
+</div>
+
+- 1日あたりディープワークが可能な時間：**約4時間が上限**
+- それを超えると認知パフォーマンスが急低下
 - → 1日中コードを書くことは **ディープワークの定義に反する**
 - → コードを書かない時間 = 次のディープワークへの充電
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Maker's Schedule vs Manager's Schedule
 
 ![w:840 center](assets/makers-schedule.svg)
+
 - Paul Graham『Maker's Schedule, Manager's Schedule』(2009) — 会議1つでMakerの半日が消える
 
 
@@ -591,7 +657,8 @@ style: |
 
 > *意識的な不快ゾーン練習が普通の経験より10倍速く上達させる*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">割り込みのコスト — 23分の回復時間</text>
 <rect x="50" y="60" width="700" height="30" fill="#0f3460" rx="8"/>
@@ -612,9 +679,11 @@ style: |
 <text x="400" y="300" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Slack通知オフ・会議を曜日集約 → 集中時間を守ることが最高の生産性施策</text>
 <text x="400" y="350" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">Stack Overflow 調査: 「頻繁な中断」が生産性低下要因 No.1 (62%)</text>
 </svg>
+</div>
+
 - **Anders Ericsson の研究（1993〜）:**
-- - 「1万時間の法則」の元ネタ（しかし誤解されている）
-- - 重要なのは時間ではなく **熟慮的実践の質**
+- 「1万時間の法則」の元ネタ（しかし誤解されている）
+- 重要なのは時間ではなく **熟慮的実践の質**
 - **熟慮的実践の要素:**
 
 
@@ -624,9 +693,9 @@ style: |
 
 > *コード以外の思考・設計・読書が次のコーディングの質を決める*
 
-- - 快適ゾーンをわずかに超えた難易度
-- - 即時のフィードバック
-- - **意識的な振り返りと修正**
+- 快適ゾーンをわずかに超えた難易度
+- 即時のフィードバック
+- **意識的な振り返りと修正**
 - → **コードを書かない日の「振り返り」が成長を生む**
 
 
@@ -636,7 +705,8 @@ style: |
 
 > *会議・割り込み・不明仕様が生産性を最も破壊する3大要因*
 
-- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 375" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「余白の時間」が革新を生む — Google 20%ルールの本質</text>
 <rect x="50" y="60" width="700" height="65" fill="#16213e" rx="8"/>
@@ -655,10 +725,12 @@ style: |
 <text x="590" y="278" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 拡散モード思考の活性化</text>
 <text x="400" y="360" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">組み込まれた余白が革新を生む — 余白なしに革新なし</text>
 </svg>
+</div>
+
 - **Stack Overflow Developer Survey 2023（N=89,000）:**
-- 1. **頻繁な中断・割り込み** — 62%
-- 2. **不明瞭な要件・仕様** — 54%
-- 3. **技術的負債** — 48%
+1. **頻繁な中断・割り込み** — 62%
+2. **不明瞭な要件・仕様** — 54%
+3. **技術的負債** — 48%
 
 
 ---
@@ -667,8 +739,8 @@ style: |
 
 > *エンジニア自身が認識する障害を取り除くと生産性が即座に改善*
 
-- 4. **過剰なミーティング** — 41%
-- 5. **コード以外の作業量** — 37%
+4. **過剰なミーティング** — 41%
+5. **コード以外の作業量** — 37%
 - → Top 5 のうち **コーディング自体が原因のものはゼロ**
 - → 非コーディング問題が生産性を支配している
 
@@ -680,8 +752,8 @@ style: |
 > *業務時間の20%を自由時間にするとGmail・Mapsが生まれた*
 
 - **20% ルールとは:**
-- - 就業時間の 20% を自由なプロジェクトに使える制度
-- - Gmail, Google Maps, Google News が誕生
+- 就業時間の 20% を自由なプロジェクトに使える制度
+- Gmail, Google Maps, Google News が誕生
 - **本質的な意味:**
 
 
@@ -691,7 +763,8 @@ style: |
 
 > *余白を制度化することで革新的アイデアが組織的に創出される*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動の価値マップ</text>
 <rect x="60" y="60" width="320" height="260" fill="#16213e" rx="8"/>
@@ -712,15 +785,17 @@ style: |
 <text x="580" y="233" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 忙しいが前に進まない</text>
 <text x="400" y="360" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「投資ゾーン」を意図的にカレンダーに入れることが戦略的生産性の核心</text>
 </svg>
-- - 「好きなものを作る時間」ではなく **「強制されない思考の時間」**
-- - 既存コードを書き続けない時間を制度化
+</div>
+
+- 「好きなものを作る時間」ではなく **「強制されない思考の時間」**
+- 既存コードを書き続けない時間を制度化
 - **含意:**
 - → **組み込まれた余白が革新を生む**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 「非コーディング活動」が生む価値
 
 - コードを書かない日に「本当に価値ある仕事」をする
@@ -732,7 +807,8 @@ style: |
 
 > *コードを書く前の設計思考が後工程のコスト10倍差を生む*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動の価値マップ</text>
 <rect x="60" y="60" width="320" height="260" fill="#16213e" rx="8"/>
@@ -753,9 +829,11 @@ style: |
 <text x="580" y="233" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 忙しいが前に進まない</text>
 <text x="400" y="360" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「投資ゾーン」を意図的にカレンダーに入れることが戦略的生産性の核心</text>
 </svg>
+</div>
+
 - **なぜ設計時間が削られるか:**
-- - 「考えている」と作業に見えない
-- - 即時の成果物が出ない
+- 「考えている」と作業に見えない
+- 即時の成果物が出ない
 - **設計に時間を使うことの価値:**
 
 
@@ -765,8 +843,8 @@ style: |
 
 > *ホワイトボード時間への投資がリリース後のリファクタを不要にする*
 
-- - DORA メトリクス：設計品質と **デプロイ頻度** は正相関
-- - アーキテクチャの問題は後から直すと **10〜100倍** のコスト
+- DORA メトリクス：設計品質と **デプロイ頻度** は正相関
+- アーキテクチャの問題は後から直すと **10〜100倍** のコスト
 - **具体的なアクティビティ:**
 - → **「書く前に考える日」が最も速く進む日**
 
@@ -777,7 +855,8 @@ style: |
 
 > *文書化はコーディング作業でなく意思決定の記録と合意形成*
 
-- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 375" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動のROI可視化</text>
 <rect x="220" y="55" width="650" height="34" fill="#f9a825" rx="8"/>
@@ -800,9 +879,11 @@ style: |
 <text x="375" y="328" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">即時成果だが技術的負債リスク</text>
 <text x="400" y="360" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 「非コーディング活動」のROIをチームに数字で見せることが文化変革の鍵</text>
 </svg>
+</div>
+
 - **RFC（Request for Comments）の効果:**
-- - 実装前に設計をチームでレビュー
-- - Google, Rust, IETF で標準的な開発プロセス
+- 実装前に設計をチームでレビュー
+- Google, Rust, IETF で標準的な開発プロセス
 - **ADR（Architecture Decision Record）:**
 
 
@@ -812,8 +893,8 @@ style: |
 
 > *ADR一枚が6ヶ月後の「なぜこうした？」論争を防ぐ*
 
-- - なぜそのアーキテクチャを選んだかを記録
-- - 未来の自分・チームへの説明書
+- なぜそのアーキテクチャを選んだかを記録
+- 未来の自分・チームへの説明書
 - **文章化が強制する思考:**
 - → **仕様書を書く日 = 設計を完成させる日**
 
@@ -824,7 +905,8 @@ style: |
 
 > *他者コードの読解力が自分のコード品質を最も効率よく高める*
 
-- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 375" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動のROI可視化</text>
 <rect x="220" y="55" width="650" height="34" fill="#f9a825" rx="8"/>
@@ -847,9 +929,11 @@ style: |
 <text x="375" y="328" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">即時成果だが技術的負債リスク</text>
 <text x="400" y="360" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 「非コーディング活動」のROIをチームに数字で見せることが文化変革の鍵</text>
 </svg>
+</div>
+
 - **コードを「読む」ことの重要性:**
-- - エンジニアは書く時間より **読む時間のほうが長い**（研究による）
-- - コードを書く前に既存コードを理解するコストが支配的
+- エンジニアは書く時間より **読む時間のほうが長い**（研究による）
+- コードを書く前に既存コードを理解するコストが支配的
 - **優れたコードリーダーになるには:**
 
 
@@ -859,8 +943,8 @@ style: |
 
 > *OSS名作コードの精読が設計センスを書くより速く育てる*
 
-- - OSS の優れたコードベースを読む（Linux, Ruby on Rails など）
-- - 「なぜこう書いたか」を考えながら読む
+- OSS の優れたコードベースを読む（Linux, Ruby on Rails など）
+- 「なぜこう書いたか」を考えながら読む
 - **コードを書かない日のアクティビティ:**
 - → PR のレビューに深く関与 → コードベースの「地図」を頭に作る
 
@@ -871,7 +955,8 @@ style: |
 
 > *対話による思考整理が一人での詰まりを数分で突破させる*
 
-- <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 365" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">インキュベーション効果 — 「寝かせる」ことの力</text>
 <rect x="50" y="65" width="300" height="200" fill="#16213e" rx="8"/>
@@ -892,9 +977,11 @@ style: |
 <text x="400" y="310" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「悩んで休む」は怠惰ではなく、戦略である</text>
 <text x="400" y="340" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">DMN (Default Mode Network) が休憩中に問題の解を探し続ける</text>
 </svg>
+</div>
+
 - **ペア思考（Pair Thinking）:**
-- - ペアプログラミングの「コーディングしない版」
-- - 問題を一緒に分解し、設計を言語化
+- ペアプログラミングの「コーディングしない版」
+- 問題を一緒に分解し、設計を言語化
 - **ホワイトボードの力:**
 
 
@@ -904,10 +991,10 @@ style: |
 
 > *ペアでの問題設定の見直しが解法より早く正解へ導く*
 
-- - 線を引く行為が思考を可視化・整理する
-- - チームの共通認識を形成
+- 線を引く行為が思考を可視化・整理する
+- チームの共通認識を形成
 - **1on1 の価値（見過ごされがち）:**
-- - ブロッカーの早期発見・認知的負荷の分散
+- ブロッカーの早期発見・認知的負荷の分散
 - → **「話し合う日」が次の1週間のコードの質を決める**
 
 
@@ -917,7 +1004,8 @@ style: |
 
 > *散歩中の脳がオフィスの集中より創造的思考を生成する*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動の価値マップ</text>
 <rect x="60" y="60" width="320" height="260" fill="#16213e" rx="8"/>
@@ -938,9 +1026,11 @@ style: |
 <text x="580" y="233" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 忙しいが前に進まない</text>
 <text x="400" y="360" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「投資ゾーン」を意図的にカレンダーに入れることが戦略的生産性の核心</text>
 </svg>
+</div>
+
 - **Stanford 研究（Oppezzo & Schwartz, 2014）:**
-- - 歩行中の創造的思考が **約60% 向上**
-- - 屋内のトレッドミルでも効果あり（景色は関係ない）
+- 歩行中の創造的思考が **約60% 向上**
+- 屋内のトレッドミルでも効果あり（景色は関係ない）
 - **Sleep と記憶の統合（Walker, 2017）:**
 
 
@@ -950,27 +1040,29 @@ style: |
 
 > *意図的な休息が次の集中セッションの質を決定する*
 
-- - 睡眠中に海馬から皮質へ記憶が転送・統合される
-- - 睡眠不足は技術的判断力を著しく低下させる
+- 睡眠中に海馬から皮質へ記憶が転送・統合される
+- 睡眠不足は技術的判断力を著しく低下させる
 - **「ボーッとする」ことの価値:**
 - → **休む日 = 次の突破口を準備する日**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 活動価値マップ
 
 ![w:800 center](assets/value-map.svg)
+
 - 「非コーディング活動」の多くは「投資ゾーン」に位置する — 長期的に最も高いリターンを生む
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 実践フレームワーク
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">理想の週次生産性パターン</text>
 () => {}
@@ -990,15 +1082,18 @@ style: |
 <text x="500" y="310" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">振り返り・学習</text>
 <text x="400" y="350" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">月: 会議・1on1集約  火水: ディープワーク保護  木: ADR/RFC  金: 振り返り</text>
 </svg>
+</div>
+
 - 「コードを書かない日」を意図的に設計する
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 週次リズムの設計
 
 ![w:840 center](assets/weekly-rhythm.svg)
+
 - 月: 計画・コミュニケーション  火水: ディープワーク  木: 非コーディング  金: 振り返り・学習
 
 
@@ -1008,7 +1103,8 @@ style: |
 
 > *週1日の非コーディング日設定が習慣化の最初の具体的一手*
 
-- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 375" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動のROI可視化</text>
 <rect x="220" y="55" width="650" height="34" fill="#f9a825" rx="8"/>
@@ -1031,10 +1127,12 @@ style: |
 <text x="375" y="328" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">即時成果だが技術的負債リスク</text>
 <text x="400" y="360" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 「非コーディング活動」のROIをチームに数字で見せることが文化変革の鍵</text>
 </svg>
+</div>
+
 - **ステップ 1：曜日でモードを決める**
-- - 月：週次計画・設計レビュー・1on1
-- - 火・水：ディープワーク（コーディング優先）
-- - 木：RFC・ADR・コードリーディング・ペア思考
+- 月：週次計画・設計レビュー・1on1
+- 火・水：ディープワーク（コーディング優先）
+- 木：RFC・ADR・コードリーディング・ペア思考
 
 
 ---
@@ -1043,9 +1141,9 @@ style: |
 
 > *チームカレンダーに予め入れることで権利として守り抜ける*
 
-- - 金：振り返り・ドキュメント・学習・来週の設計メモ
+- 金：振り返り・ドキュメント・学習・来週の設計メモ
 - **ステップ 2：「保護時間」を先にブロック**
-- - 会議は月・木午後に集約する
+- 会議は月・木午後に集約する
 - → **先に守らないと、空き時間は侵食される**
 
 
@@ -1055,7 +1153,8 @@ style: |
 
 > *LoC削減でなく不具合率・設計品質・KPI改善で正当化する*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ベロシティの罠 — 速く動くことと前に進むことは別</text>
 <rect x="60" y="60" width="300" height="230" fill="#16213e" rx="8"/>
@@ -1076,9 +1175,11 @@ style: |
 <text x="590" y="235" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードの複雑度推移</text>
 <text x="400" y="330" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">計測するものが行動を変える — 良いKPIが良い文化を作る</text>
 </svg>
+</div>
+
 - **よくある懸念:**
-- - 「コードを書いていない日はサボっているように見える」
-- - 「スプリントのポイントが稼げない」
+- 「コードを書いていない日はサボっているように見える」
+- 「スプリントのポイントが稼げない」
 - **説明フレームワーク（アウトカムで報告）:**
 
 
@@ -1088,8 +1189,8 @@ style: |
 
 > *マネージャーが納得する言語は成果と数字だけである*
 
-- - 「今日は RFC を書きました → 実装コストが X% 削減見込み」
-- - 「設計に1日使いました → バグが Y件 防げます」
+- 「今日は RFC を書きました → 実装コストが X% 削減見込み」
+- 「設計に1日使いました → バグが Y件 防げます」
 - **数字で語る:**
 - → **「非コーディング活動」のROIを可視化する**
 
@@ -1100,7 +1201,8 @@ style: |
 
 > *コード行数でなく価値創出・障害率・技術負債で評価する時代*
 
-- <svg viewBox="0 0 800 350" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 350" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">活動量 ≠ 成果 — エンジニアの時間の実態</text>
 <rect x="50" y="60" width="320" height="200" fill="#16213e" rx="8"/>
@@ -1125,9 +1227,11 @@ style: |
 <text x="400" y="300" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">コーディング時間を増やしても ボトルネックは別の場所にある</text>
 <text x="400" y="328" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 「何をしたか」より「何が前進したか」が生産性の指標</text>
 </svg>
+</div>
+
 - **悪いKPI（コーディング量）:**
-- - Lines of Code：多いほど複雑になる
-- - コミット数：細かく分割するだけで増える
+- Lines of Code：多いほど複雑になる
+- コミット数：細かく分割するだけで増える
 - **良いKPI（価値・品質）:**
 
 
@@ -1137,7 +1241,8 @@ style: |
 
 > *開発者体験指標がエンジニア組織の持続可能性を測る*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">理想の週次生産性パターン</text>
 () => {}
@@ -1157,15 +1262,17 @@ style: |
 <text x="500" y="310" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">振り返り・学習</text>
 <text x="400" y="350" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">月: 会議・1on1集約  火水: ディープワーク保護  木: ADR/RFC  金: 振り返り</text>
 </svg>
-- - **DORA メトリクス**：デプロイ頻度・変更失敗率・復旧時間
-- - **Flow Metrics**：タスクのリードタイム
-- - **技術的負債指数**：コードの複雑度推移
+</div>
+
+- **DORA メトリクス**：デプロイ頻度・変更失敗率・復旧時間
+- **Flow Metrics**：タスクのリードタイム
+- **技術的負債指数**：コードの複雑度推移
 - → **計測するものが行動を変える**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ワークショップ
 
 - 自分の「生産性パターン」を発見する
@@ -1177,7 +1284,8 @@ style: |
 
 > *自分の時間配分を可視化して非価値活動の比率を把握する*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ディープワーク時間ブロックの設計</text>
 <rect x="50" y="65" width="130" height="180" fill="#334" rx="8"/>
@@ -1209,10 +1317,12 @@ style: |
 <text x="400" y="325" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">空き時間は会議に侵食される — 積極的に守らないと消える</text>
 <text x="400" y="355" font-size="11" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">週4時間がディープワークの上限 (Cal Newport) — それを超えると認知パフォーマンス急低下</text>
 </svg>
+</div>
+
 - **作業時間（5分）:**
 - 直近1週間でやったことを書き出す
 - **分類する:**
-- - A：コーディング（コードを実際に書いた時間）
+- A：コーディング（コードを実際に書いた時間）
 
 
 ---
@@ -1221,9 +1331,9 @@ style: |
 
 > *分類結果が次週の時間再配分アクションの起点となる*
 
-- - B：思考・設計（問題を考えた時間）
-- - C：コミュニケーション（会議・Slack・レビュー）
-- - D：学習・調査（読む・調べる）
+- B：思考・設計（問題を考えた時間）
+- C：コミュニケーション（会議・Slack・レビュー）
+- D：学習・調査（読む・調べる）
 - **問い：「A が多い日と B が多い日、どちらが実際に前進しましたか？」**
 
 
@@ -1233,7 +1343,8 @@ style: |
 
 > *来週実行できる具体的な非コーディング日計画を今日立てる*
 
-- <svg viewBox="0 0 800 375" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 375" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動のROI可視化</text>
 <rect x="220" y="55" width="650" height="34" fill="#f9a825" rx="8"/>
@@ -1256,10 +1367,12 @@ style: |
 <text x="375" y="328" font-size="10" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">即時成果だが技術的負債リスク</text>
 <text x="400" y="360" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">→ 「非コーディング活動」のROIをチームに数字で見せることが文化変革の鍵</text>
 </svg>
+</div>
+
 - **作業時間（10分）:**
 - 来週の理想の週次スケジュールを設計する
 - **条件:**
-- - 少なくとも 1日、コーディングをしない日を設ける
+- 少なくとも 1日、コーディングをしない日を設ける
 
 
 ---
@@ -1268,9 +1381,9 @@ style: |
 
 > *活動内容と期待成果を明文化して実行可能性を高める*
 
-- - その日に何をするかを具体的に書く（「休む」はOK）
+- その日に何をするかを具体的に書く（「休む」はOK）
 - **問い:**
-- - その日に何をすることで、残りの4日のコードが良くなるか？
+- その日に何をすることで、残りの4日のコードが良くなるか？
 - → 来週の「非コーディング日 計画」を1枚にまとめる
 
 
@@ -1280,7 +1393,8 @@ style: |
 
 > *個人計画をチームで共有し互いの実行を支援し合う*
 
-- <svg viewBox="0 0 800 365" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 365" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">Deep Work理論 — 知的労働の本質</text>
 <rect x="50" y="60" width="700" height="55" fill="#16213e" rx="8"/>
@@ -1299,10 +1413,12 @@ style: |
 <text x="590" y="260" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">次のDeep Workへの充電</text>
 <text x="400" y="355" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">浅い作業 (Slack・会議) は価値を生まない — 「忙しい」≠「深く考えている」</text>
 </svg>
+</div>
+
 - **グループシェア（15分）:**
 - 2〜3人でペアを組んで互いの計画を共有
 - **ディスカッションテーマ:**
-- - 互いの「非コーディング日の過ごし方」の違いは？
+- 互いの「非コーディング日の過ごし方」の違いは？
 
 
 ---
@@ -1311,7 +1427,8 @@ style: |
 
 > *チームで合意した非コーディング日文化が制度として定着する*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">非コーディング活動の価値マップ</text>
 <rect x="60" y="60" width="320" height="260" fill="#16213e" rx="8"/>
@@ -1332,18 +1449,21 @@ style: |
 <text x="580" y="233" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 忙しいが前に進まない</text>
 <text x="400" y="360" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">「投資ゾーン」を意図的にカレンダーに入れることが戦略的生産性の核心</text>
 </svg>
-- - チームとして「非コーディング文化」を作るには？
-- - どんな組織的・個人的な障壁があるか？
+</div>
+
+- チームとして「非コーディング文化」を作るには？
+- どんな組織的・個人的な障壁があるか？
 - **全体シェア（10分）:**
 - → **「コードを書かない日」を個人の習慣からチームの文化へ**
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">理想の週次生産性パターン</text>
 () => {}
@@ -1363,19 +1483,19 @@ style: |
 <text x="500" y="310" font-size="11" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">振り返り・学習</text>
 <text x="400" y="350" font-size="11" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">月: 会議・1on1集約  火水: ディープワーク保護  木: ADR/RFC  金: 振り返り</text>
 </svg>
+</div>
+
 - 行動するのは今日から
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 今日のキーメッセージ
 
 - **生産性とは「何をしたか」ではなく「何が前進したか」**
-- 
 - 脳は使わない時間に最も創造的になる
 - コードを書かない日が、最速で進む日になる
-- 
 - → 意図的に「書かない日」を設計せよ
 
 
@@ -1385,7 +1505,8 @@ style: |
 
 > *今日から始める3つの具体的行動で変化を小さく起こす*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="28" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">熟慮的実践 — 成長を生む「コードを書かない日」</text>
 <rect x="280" y="55" width="240" height="65" fill="#0f3460" rx="8"/>
@@ -1417,10 +1538,12 @@ style: |
 <text x="400" y="318" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードを書かない日の「振り返り」が成長を生む</text>
 <text x="400" y="365" font-size="12" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">1万時間の法則の本質は「時間」ではなく「振り返りの質」</text>
 </svg>
+</div>
+
 - **今週からできること:**
-- - 週に1日、コーディングしない日をカレンダーにブロックする
-- - その日に ADR・RFC・設計メモを書く
-- - 30分の「散歩 × 問題思考」を習慣化する
+- 週に1日、コーディングしない日をカレンダーにブロックする
+- その日に ADR・RFC・設計メモを書く
+- 30分の「散歩 × 問題思考」を習慣化する
 
 
 ---
@@ -1430,8 +1553,8 @@ style: |
 > *チーム合意とKPI再定義が非コーディング文化を組織に根付かせる*
 
 - **チームでできること:**
-- - ベロシティ以外の指標（DORA）を導入する
-- - 非コーディング活動を1on1 で報告する文化をつくる
+- ベロシティ以外の指標（DORA）を導入する
+- 非コーディング活動を1on1 で報告する文化をつくる
 - **1ヶ月後に振り返る:**
 - 「コードを書かない日を作ったことで、何が変わったか？」
 
@@ -1443,9 +1566,9 @@ style: |
 > *科学的根拠となる認知科学・生産性研究の主要文献リスト*
 
 - **書籍・理論:**
-- - [Cal Newport『Deep Work』(2016)](https://calnewport.com/deep-work/)
-- - [Paul Graham『Maker's Schedule, Manager's Schedule』(2009)](http://paulgraham.com/makersschedule.html)
-- - [Barbara Oakley『Learning How to Learn』(2014)](https://www.coursera.org/learn/learning-how-to-learn)
+- [Cal Newport『Deep Work』(2016)](https://calnewport.com/deep-work/)
+- [Paul Graham『Maker's Schedule, Manager's Schedule』(2009)](http://paulgraham.com/makersschedule.html)
+- [Barbara Oakley『Learning How to Learn』(2014)](https://www.coursera.org/learn/learning-how-to-learn)
 
 
 ---
@@ -1455,8 +1578,8 @@ style: |
 > *実践に使えるツール・ポッドキャスト・コミュニティリソース集*
 
 - **研究・データ:**
-- - [Gloria Mark — Context Switching Study (2005)](https://www.ics.uci.edu/~gmark/chi08-mark.pdf)
-- - [Sio & Ormerod — Incubation Effect Meta-Analysis (2009)](https://doi.org/10.1037/a0014017)
-- - [Oppezzo & Schwartz — Walking and Creativity (2014)](https://doi.org/10.1037/a0036577)
-- - [Stack Overflow Developer Survey 2023](https://survey.stackoverflow.co/2023/)
+- [Gloria Mark — Context Switching Study (2005)](https://www.ics.uci.edu/~gmark/chi08-mark.pdf)
+- [Sio & Ormerod — Incubation Effect Meta-Analysis (2009)](https://doi.org/10.1037/a0014017)
+- [Oppezzo & Schwartz — Walking and Creativity (2014)](https://doi.org/10.1037/a0036577)
+- [Stack Overflow Developer Survey 2023](https://survey.stackoverflow.co/2023/)
 

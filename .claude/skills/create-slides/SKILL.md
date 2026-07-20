@@ -121,7 +121,7 @@ SVG合計: 24枚 (53%) ✅ 基準クリア
 【必須制約】
 - フィールド名は `content`（`bullets` は不可）
 - layout: "default" | "center" | "section" のみ
-- SVGは viewBox + letter-spacing:0 + url(#id)禁止
+- SVGは viewBox のみ指定（width/height/max-height等のサイズ指定・vh単位は書かない） + url(#id)禁止 + base64データURI禁止
 - JSON は Write tool でファイルに書き込む（インライン出力禁止）
 - 完了後に slides 数を検証して報告する
 
@@ -259,11 +259,12 @@ SVG図解: 14枚 (56%) ✅ 基準クリア
 
 ### SVG 設計の強制ガイドライン
 
-1. **すべての SVG に `viewBox` と `letter-spacing:0` を付与** — Gaia テーマの letter-spacing 継承を防ぐ
+1. **すべての SVG に `viewBox` を付与** — これがルート要素に必要な唯一のサイズ指定。`letter-spacing:0` は `normalizeSvg()` が自動付与するので手書き不要
 2. **`url(#id)` 参照は全面禁止** — `drop-shadow()` CSS / 明示的 `<polygon>` 矢印を使う
 3. **色はスライドテーマと調和させる** — gaia: 紫・白系 / default: 青・グレー系 / uncover: モノクロ系
 4. **複雑な図（8ノード以上）は単独スライド** — テキストと同居させない
-5. **サイズ指定**: `style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0"`
+5. **サイズ指定は書かない**: width/height/max-width/max-height/`vh`単位は一切使わない。`renderSlide()` が `<div class="fig">` フレックスラッパーで自動的に残り空間へ収める（`vh`はMarpのCSS transformスケーリング下でブラウザウィンドウ基準に解決されるためはみ出し防止にならない）
+6. **base64データURI（`![](data:image/svg+xml;base64,…)`）は使用禁止** — markdown-itがgif/png/jpeg/webp以外の`data:` URLを受け付けず、生base64テキストとして表示されてしまう
 
 ### レビューループでの図解比率チェック
 

@@ -7,41 +7,76 @@ paginate: true
 header: "統計的推定の誤解"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,14 +111,17 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 信頼区間の誤解
 — 「95%信頼区間」は何を意味するのか
 
 - ほぼすべての人が誤解している統計の概念
 - 「95%の確率で真の値がこの範囲にある」は間違い
 - p値・有意性・ベイズ統計との関係
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="60" text-anchor="middle" font-size="22" fill="#f9a825" font-family="sans-serif" font-weight="bold">「95%信頼区間」= よくある誤解</text><rect x="60" y="90" width="310" height="150" rx="12" fill="#c0392b" opacity="0.85"/><text x="215" y="120" text-anchor="middle" font-size="16" fill="white" font-family="sans-serif" font-weight="bold">❌ 誤解</text><text x="215" y="148" text-anchor="middle" font-size="13" fill="#ffd0cc" font-family="sans-serif">真の値が95%の確率で</text><text x="215" y="168" text-anchor="middle" font-size="13" fill="#ffd0cc" font-family="sans-serif">この区間に含まれる</text><text x="215" y="200" text-anchor="middle" font-size="12" fill="#ffb3ae" font-family="sans-serif">→ ほぼ全員がこう思っている</text><rect x="430" y="90" width="310" height="150" rx="12" fill="#27ae60" opacity="0.85"/><text x="585" y="120" text-anchor="middle" font-size="16" fill="white" font-family="sans-serif" font-weight="bold">✅ 正解</text><text x="585" y="148" text-anchor="middle" font-size="13" fill="#ccffe0" font-family="sans-serif">この手続きを繰り返したとき</text><text x="585" y="168" text-anchor="middle" font-size="13" fill="#ccffe0" font-family="sans-serif">95%の区間が真の値を含む</text><text x="585" y="200" text-anchor="middle" font-size="12" fill="#aaffc6" font-family="sans-serif">→ 手続きの信頼性</text><line x1="385" y1="165" x2="425" y2="165" stroke="#f9a825" stroke-width="3"/><polygon points="420,158 430,165 420,172" fill="#f9a825"/></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="300" fill="#1a1a2e"/><text x="400" y="60" text-anchor="middle" font-size="22" fill="#f9a825" font-family="sans-serif" font-weight="bold">「95%信頼区間」= よくある誤解</text><rect x="60" y="90" width="310" height="150" rx="12" fill="#c0392b" opacity="0.85"/><text x="215" y="120" text-anchor="middle" font-size="16" fill="white" font-family="sans-serif" font-weight="bold">❌ 誤解</text><text x="215" y="148" text-anchor="middle" font-size="13" fill="#ffd0cc" font-family="sans-serif">真の値が95%の確率で</text><text x="215" y="168" text-anchor="middle" font-size="13" fill="#ffd0cc" font-family="sans-serif">この区間に含まれる</text><text x="215" y="200" text-anchor="middle" font-size="12" fill="#ffb3ae" font-family="sans-serif">→ ほぼ全員がこう思っている</text><rect x="430" y="90" width="310" height="150" rx="12" fill="#27ae60" opacity="0.85"/><text x="585" y="120" text-anchor="middle" font-size="16" fill="white" font-family="sans-serif" font-weight="bold">✅ 正解</text><text x="585" y="148" text-anchor="middle" font-size="13" fill="#ccffe0" font-family="sans-serif">この手続きを繰り返したとき</text><text x="585" y="168" text-anchor="middle" font-size="13" fill="#ccffe0" font-family="sans-serif">95%の区間が真の値を含む</text><text x="585" y="200" text-anchor="middle" font-size="12" fill="#aaffc6" font-family="sans-serif">→ 手続きの信頼性</text><line x1="385" y1="165" x2="425" y2="165" stroke="#f9a825" stroke-width="3"/><polygon points="420,158 430,165 420,172" fill="#f9a825"/></svg>
+</div>
 
 
 ---
@@ -92,23 +130,26 @@ style: |
 
 > *信頼区間の誤解を解くことがデータ分析精度向上の最初の一歩*
 
-- 1. 信頼区間の正しい定義
-- 2. なぜ誤解されるのか
-- 3. p値との関係
-- 4. ベイズ信用区間との違い
-- 5. 統計的有意性の限界
+1. 信頼区間の正しい定義
+2. なぜ誤解されるのか
+3. p値との関係
+4. ベイズ信用区間との違い
+5. 統計的有意性の限界
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 信頼区間とは何か
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="38" text-anchor="middle" font-size="20" fill="#f9a825" font-family="sans-serif" font-weight="bold">信頼区間：手続きの信頼性を表す</text><line x1="100" y1="70" x2="700" y2="70" stroke="#555" stroke-width="1" stroke-dasharray="6,4"/><text x="400" y="65" text-anchor="middle" font-size="13" fill="#aaa" font-family="sans-serif">真の母平均 μ（未知）</text><polygon points="396,68 404,68 400,76" fill="#f9a825"/><g transform="translate(0,90)"><line x1="200" y1="20" x2="580" y2="20" stroke="#4fc3f7" stroke-width="4" stroke-linecap="round"/><circle cx="390" cy="20" r="6" fill="#f9a825"/><text x="390" y="12" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">x̄</text><text x="200" y="38" text-anchor="middle" font-size="11" fill="#4fc3f7" font-family="sans-serif">下限</text><text x="580" y="38" text-anchor="middle" font-size="11" fill="#4fc3f7" font-family="sans-serif">上限</text><text x="100" y="24" font-size="12" fill="#aaa" font-family="sans-serif">実験1</text><rect x="194" y="14" width="392" height="12" rx="6" fill="#4fc3f7" opacity="0.18"/></g><g transform="translate(0,145)"><line x1="230" y1="20" x2="610" y2="20" stroke="#4fc3f7" stroke-width="4" stroke-linecap="round"/><circle cx="420" cy="20" r="6" fill="#f9a825"/><text x="100" y="24" font-size="12" fill="#aaa" font-family="sans-serif">実験2</text><rect x="224" y="14" width="392" height="12" rx="6" fill="#4fc3f7" opacity="0.18"/></g><g transform="translate(0,200)"><line x1="170" y1="20" x2="550" y2="20" stroke="#4fc3f7" stroke-width="4" stroke-linecap="round"/><circle cx="360" cy="20" r="6" fill="#f9a825"/><text x="100" y="24" font-size="12" fill="#aaa" font-family="sans-serif">実験3</text><rect x="164" y="14" width="392" height="12" rx="6" fill="#4fc3f7" opacity="0.18"/></g><g transform="translate(0,255)"><line x1="310" y1="20" x2="690" y2="20" stroke="#e74c3c" stroke-width="4" stroke-linecap="round"/><circle cx="500" cy="20" r="6" fill="#f9a825"/><text x="100" y="24" font-size="12" fill="#e74c3c" font-family="sans-serif">実験4</text><rect x="304" y="14" width="392" height="12" rx="6" fill="#e74c3c" opacity="0.18"/><text x="750" y="24" font-size="11" fill="#e74c3c" font-family="sans-serif">外れ!</text></g><g transform="translate(0,310)"><line x1="180" y1="20" x2="560" y2="20" stroke="#4fc3f7" stroke-width="4" stroke-linecap="round"/><circle cx="370" cy="20" r="6" fill="#f9a825"/><text x="100" y="24" font-size="12" fill="#aaa" font-family="sans-serif">実験5</text><rect x="174" y="14" width="392" height="12" rx="6" fill="#4fc3f7" opacity="0.18"/></g><text x="400" y="370" text-anchor="middle" font-size="13" fill="#aaa" font-family="sans-serif">→ 100回中95回が真の値（点線）を含む = 95%信頼区間</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="380" fill="#1a1a2e"/><text x="400" y="38" text-anchor="middle" font-size="20" fill="#f9a825" font-family="sans-serif" font-weight="bold">信頼区間：手続きの信頼性を表す</text><line x1="100" y1="70" x2="700" y2="70" stroke="#555" stroke-width="1" stroke-dasharray="6,4"/><text x="400" y="65" text-anchor="middle" font-size="13" fill="#aaa" font-family="sans-serif">真の母平均 μ（未知）</text><polygon points="396,68 404,68 400,76" fill="#f9a825"/><g transform="translate(0,90)"><line x1="200" y1="20" x2="580" y2="20" stroke="#4fc3f7" stroke-width="4" stroke-linecap="round"/><circle cx="390" cy="20" r="6" fill="#f9a825"/><text x="390" y="12" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">x̄</text><text x="200" y="38" text-anchor="middle" font-size="11" fill="#4fc3f7" font-family="sans-serif">下限</text><text x="580" y="38" text-anchor="middle" font-size="11" fill="#4fc3f7" font-family="sans-serif">上限</text><text x="100" y="24" font-size="12" fill="#aaa" font-family="sans-serif">実験1</text><rect x="194" y="14" width="392" height="12" rx="6" fill="#4fc3f7" opacity="0.18"/></g><g transform="translate(0,145)"><line x1="230" y1="20" x2="610" y2="20" stroke="#4fc3f7" stroke-width="4" stroke-linecap="round"/><circle cx="420" cy="20" r="6" fill="#f9a825"/><text x="100" y="24" font-size="12" fill="#aaa" font-family="sans-serif">実験2</text><rect x="224" y="14" width="392" height="12" rx="6" fill="#4fc3f7" opacity="0.18"/></g><g transform="translate(0,200)"><line x1="170" y1="20" x2="550" y2="20" stroke="#4fc3f7" stroke-width="4" stroke-linecap="round"/><circle cx="360" cy="20" r="6" fill="#f9a825"/><text x="100" y="24" font-size="12" fill="#aaa" font-family="sans-serif">実験3</text><rect x="164" y="14" width="392" height="12" rx="6" fill="#4fc3f7" opacity="0.18"/></g><g transform="translate(0,255)"><line x1="310" y1="20" x2="690" y2="20" stroke="#e74c3c" stroke-width="4" stroke-linecap="round"/><circle cx="500" cy="20" r="6" fill="#f9a825"/><text x="100" y="24" font-size="12" fill="#e74c3c" font-family="sans-serif">実験4</text><rect x="304" y="14" width="392" height="12" rx="6" fill="#e74c3c" opacity="0.18"/><text x="750" y="24" font-size="11" fill="#e74c3c" font-family="sans-serif">外れ!</text></g><g transform="translate(0,310)"><line x1="180" y1="20" x2="560" y2="20" stroke="#4fc3f7" stroke-width="4" stroke-linecap="round"/><circle cx="370" cy="20" r="6" fill="#f9a825"/><text x="100" y="24" font-size="12" fill="#aaa" font-family="sans-serif">実験5</text><rect x="174" y="14" width="392" height="12" rx="6" fill="#4fc3f7" opacity="0.18"/></g><text x="400" y="370" text-anchor="middle" font-size="13" fill="#aaa" font-family="sans-serif">→ 100回中95回が真の値（点線）を含む = 95%信頼区間</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 95%信頼区間の正しい定義（1/2）（1/2）
 
 > *95%CIは特定の区間に真値が入る確率ではなく手続きの信頼性の話*
@@ -126,11 +167,15 @@ style: |
 - **正しい定義：**
 - 同じ方法で100回実験し100個の信頼区間を作ったとき、
 - そのうち95個が真の母数を含む
-- <svg viewBox="0 0 800 180" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="180" fill="#1a1a2e"/><line x1="400" y1="10" x2="400" y2="170" stroke="#f9a825" stroke-width="2" stroke-dasharray="6,4"/><text x="400" y="8" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">μ (真の値)</text><rect x="50" y="20" width="20" height="145" fill="#1e3a5f" rx="2"/><text x="60" y="175" text-anchor="middle" font-size="9" fill="#aaa" font-family="sans-serif">回数</text><g id="bars"><rect x="75" y="28" width="6" height="135" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="83" y="25" width="6" height="138" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="91" y="32" width="6" height="130" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="99" y="20" width="6" height="142" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="107" y="35" width="6" height="127" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="115" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="123" y="40" width="6" height="122" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="131" y="22" width="6" height="140" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="139" y="45" width="6" height="117" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="147" y="28" width="6" height="134" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="155" y="33" width="6" height="129" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="163" y="18" width="6" height="144" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="171" y="38" width="6" height="124" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="179" y="25" width="6" height="137" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="187" y="42" width="6" height="120" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="195" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="203" y="48" width="6" height="114" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="211" y="22" width="6" height="140" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="219" y="36" width="6" height="126" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="227" y="28" width="6" height="134" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="235" y="44" width="6" height="118" rx="1" fill="#e74c3c" opacity="0.9"/><rect x="243" y="24" width="6" height="138" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="251" y="38" width="6" height="124" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="259" y="20" width="6" height="142" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="267" y="46" width="6" height="116" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="275" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="283" y="25" width="6" height="137" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="291" y="40" width="6" height="122" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="299" y="18" width="6" height="144" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="307" y="35" width="6" height="127" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="315" y="28" width="6" height="134" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="323" y="42" width="6" height="120" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="331" y="22" width="6" height="140" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="339" y="50" width="6" height="112" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="347" y="32" width="6" height="130" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="355" y="25" width="6" height="137" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="363" y="38" width="6" height="124" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="371" y="20" width="6" height="142" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="379" y="45" width="6" height="117" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="387" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="415" y="28" width="6" height="135" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="423" y="35" width="6" height="127" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="431" y="22" width="6" height="140" rx="1" fill="#e74c3c" opacity="0.9"/><rect x="439" y="40" width="6" height="122" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="447" y="25" width="6" height="137" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="455" y="48" width="6" height="114" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="463" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="471" y="18" width="6" height="144" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="479" y="42" width="6" height="120" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="487" y="32" width="6" height="130" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="495" y="25" width="6" height="137" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="503" y="38" width="6" height="124" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="511" y="20" width="6" height="142" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="519" y="44" width="6" height="118" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="527" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="535" y="26" width="6" height="136" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="543" y="40" width="6" height="122" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="551" y="22" width="6" height="140" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="559" y="36" width="6" height="126" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="567" y="28" width="6" height="134" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="575" y="46" width="6" height="116" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="583" y="20" width="6" height="142" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="591" y="33" width="6" height="129" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="599" y="24" width="6" height="138" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="607" y="40" width="6" height="122" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="615" y="28" width="6" height="134" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="623" y="35" width="6" height="127" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="631" y="22" width="6" height="140" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="639" y="42" width="6" height="120" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="647" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="655" y="18" width="6" height="144" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="663" y="38" width="6" height="124" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="671" y="25" width="6" height="137" rx="1" fill="#e74c3c" opacity="0.9"/><rect x="679" y="44" width="6" height="118" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="687" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="695" y="20" width="6" height="142" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="703" y="36" width="6" height="126" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="711" y="28" width="6" height="134" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="719" y="45" width="6" height="117" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="727" y="22" width="6" height="140" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="735" y="38" width="6" height="124" rx="1" fill="#4fc3f7" opacity="0.85"/></g><text x="400" y="175" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">青=真の値を含む(95本), 赤=含まない(5本) ← 100回の実験</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 180" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="180" fill="#1a1a2e"/><line x1="400" y1="10" x2="400" y2="170" stroke="#f9a825" stroke-width="2" stroke-dasharray="6,4"/><text x="400" y="8" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">μ (真の値)</text><rect x="50" y="20" width="20" height="145" fill="#1e3a5f" rx="2"/><text x="60" y="175" text-anchor="middle" font-size="9" fill="#aaa" font-family="sans-serif">回数</text><g id="bars"><rect x="75" y="28" width="6" height="135" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="83" y="25" width="6" height="138" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="91" y="32" width="6" height="130" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="99" y="20" width="6" height="142" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="107" y="35" width="6" height="127" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="115" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="123" y="40" width="6" height="122" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="131" y="22" width="6" height="140" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="139" y="45" width="6" height="117" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="147" y="28" width="6" height="134" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="155" y="33" width="6" height="129" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="163" y="18" width="6" height="144" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="171" y="38" width="6" height="124" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="179" y="25" width="6" height="137" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="187" y="42" width="6" height="120" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="195" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="203" y="48" width="6" height="114" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="211" y="22" width="6" height="140" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="219" y="36" width="6" height="126" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="227" y="28" width="6" height="134" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="235" y="44" width="6" height="118" rx="1" fill="#e74c3c" opacity="0.9"/><rect x="243" y="24" width="6" height="138" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="251" y="38" width="6" height="124" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="259" y="20" width="6" height="142" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="267" y="46" width="6" height="116" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="275" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="283" y="25" width="6" height="137" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="291" y="40" width="6" height="122" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="299" y="18" width="6" height="144" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="307" y="35" width="6" height="127" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="315" y="28" width="6" height="134" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="323" y="42" width="6" height="120" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="331" y="22" width="6" height="140" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="339" y="50" width="6" height="112" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="347" y="32" width="6" height="130" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="355" y="25" width="6" height="137" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="363" y="38" width="6" height="124" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="371" y="20" width="6" height="142" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="379" y="45" width="6" height="117" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="387" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="415" y="28" width="6" height="135" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="423" y="35" width="6" height="127" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="431" y="22" width="6" height="140" rx="1" fill="#e74c3c" opacity="0.9"/><rect x="439" y="40" width="6" height="122" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="447" y="25" width="6" height="137" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="455" y="48" width="6" height="114" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="463" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="471" y="18" width="6" height="144" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="479" y="42" width="6" height="120" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="487" y="32" width="6" height="130" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="495" y="25" width="6" height="137" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="503" y="38" width="6" height="124" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="511" y="20" width="6" height="142" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="519" y="44" width="6" height="118" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="527" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="535" y="26" width="6" height="136" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="543" y="40" width="6" height="122" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="551" y="22" width="6" height="140" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="559" y="36" width="6" height="126" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="567" y="28" width="6" height="134" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="575" y="46" width="6" height="116" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="583" y="20" width="6" height="142" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="591" y="33" width="6" height="129" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="599" y="24" width="6" height="138" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="607" y="40" width="6" height="122" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="615" y="28" width="6" height="134" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="623" y="35" width="6" height="127" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="631" y="22" width="6" height="140" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="639" y="42" width="6" height="120" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="647" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="655" y="18" width="6" height="144" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="663" y="38" width="6" height="124" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="671" y="25" width="6" height="137" rx="1" fill="#e74c3c" opacity="0.9"/><rect x="679" y="44" width="6" height="118" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="687" y="30" width="6" height="132" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="695" y="20" width="6" height="142" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="703" y="36" width="6" height="126" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="711" y="28" width="6" height="134" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="719" y="45" width="6" height="117" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="727" y="22" width="6" height="140" rx="1" fill="#4fc3f7" opacity="0.85"/><rect x="735" y="38" width="6" height="124" rx="1" fill="#4fc3f7" opacity="0.85"/></g><text x="400" y="175" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">青=真の値を含む(95本), 赤=含まない(5本) ← 100回の実験</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # 95%信頼区間の正しい定義（2/2）（1/2）
 
 > *特定の区間に真の値が入るかどうかは確率ではなく0か1かしかない*
@@ -143,6 +188,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 95%信頼区間の正しい定義（2/2）（2/2）
 
 > *研究者ですら正確に理解できていないことがHoekstra調査で判明した*
@@ -155,6 +201,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # p値の誤用と再現性の危機（1/2）
 
 > *p<0.05は帰無仮説下での稀さを示すだけで効果の大きさを示さない*
@@ -165,11 +212,15 @@ style: |
 - ---
 - **よくある誤解：**
 - 「p < 0.05 なら効果がある」→ 誤り
-- <svg viewBox="0 0 800 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="22" text-anchor="middle" font-size="15" fill="#f9a825" font-family="sans-serif" font-weight="bold">p値の分布（帰無仮説が真のとき）</text><rect x="60" y="30" width="680" height="130" fill="#0d1b2a" rx="6"/><line x1="60" y1="160" x2="740" y2="160" stroke="#555" stroke-width="1"/><line x1="60" y1="30" x2="60" y2="160" stroke="#555" stroke-width="1"/><rect x="60" y="90" width="34" height="70" fill="#4fc3f7" opacity="0.7"/><rect x="94" y="85" width="34" height="75" fill="#4fc3f7" opacity="0.7"/><rect x="128" y="88" width="34" height="72" fill="#4fc3f7" opacity="0.7"/><rect x="162" y="84" width="34" height="76" fill="#4fc3f7" opacity="0.7"/><rect x="196" y="87" width="34" height="73" fill="#4fc3f7" opacity="0.7"/><rect x="230" y="86" width="34" height="74" fill="#4fc3f7" opacity="0.7"/><rect x="264" y="90" width="34" height="70" fill="#4fc3f7" opacity="0.7"/><rect x="298" y="83" width="34" height="77" fill="#4fc3f7" opacity="0.7"/><rect x="332" y="89" width="34" height="71" fill="#4fc3f7" opacity="0.7"/><rect x="366" y="85" width="34" height="75" fill="#4fc3f7" opacity="0.7"/><rect x="400" y="88" width="34" height="72" fill="#4fc3f7" opacity="0.7"/><rect x="434" y="86" width="34" height="74" fill="#4fc3f7" opacity="0.7"/><rect x="468" y="91" width="34" height="69" fill="#4fc3f7" opacity="0.7"/><rect x="502" y="84" width="34" height="76" fill="#4fc3f7" opacity="0.7"/><rect x="536" y="87" width="34" height="73" fill="#4fc3f7" opacity="0.7"/><rect x="570" y="89" width="34" height="71" fill="#4fc3f7" opacity="0.7"/><rect x="604" y="85" width="34" height="75" fill="#4fc3f7" opacity="0.7"/><rect x="638" y="90" width="34" height="70" fill="#4fc3f7" opacity="0.7"/><rect x="672" y="86" width="34" height="74" fill="#4fc3f7" opacity="0.7"/><rect x="706" y="88" width="34" height="72" fill="#4fc3f7" opacity="0.7"/><rect x="60" y="90" width="34" height="70" fill="#e74c3c" opacity="0.85"/><line x1="94" y1="30" x2="94" y2="165" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,3"/><text x="85" y="180" text-anchor="middle" font-size="11" fill="#e74c3c" font-family="sans-serif">p=0.05</text><text x="580" y="72" text-anchor="middle" font-size="12" fill="#4fc3f7" font-family="sans-serif">帰無仮説が真でも</text><text x="580" y="88" text-anchor="middle" font-size="12" fill="#4fc3f7" font-family="sans-serif">p値は一様分布</text><text x="70" y="72" text-anchor="start" font-size="11" fill="#e74c3c" font-family="sans-serif">5%は</text><text x="70" y="84" text-anchor="start" font-size="11" fill="#e74c3c" font-family="sans-serif">偽陽性</text><text x="60" y="195" text-anchor="start" font-size="10" fill="#aaa" font-family="sans-serif">p=0</text><text x="730" y="195" text-anchor="end" font-size="10" fill="#aaa" font-family="sans-serif">p=1.0</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="200" fill="#1a1a2e"/><text x="400" y="22" text-anchor="middle" font-size="15" fill="#f9a825" font-family="sans-serif" font-weight="bold">p値の分布（帰無仮説が真のとき）</text><rect x="60" y="30" width="680" height="130" fill="#0d1b2a" rx="6"/><line x1="60" y1="160" x2="740" y2="160" stroke="#555" stroke-width="1"/><line x1="60" y1="30" x2="60" y2="160" stroke="#555" stroke-width="1"/><rect x="60" y="90" width="34" height="70" fill="#4fc3f7" opacity="0.7"/><rect x="94" y="85" width="34" height="75" fill="#4fc3f7" opacity="0.7"/><rect x="128" y="88" width="34" height="72" fill="#4fc3f7" opacity="0.7"/><rect x="162" y="84" width="34" height="76" fill="#4fc3f7" opacity="0.7"/><rect x="196" y="87" width="34" height="73" fill="#4fc3f7" opacity="0.7"/><rect x="230" y="86" width="34" height="74" fill="#4fc3f7" opacity="0.7"/><rect x="264" y="90" width="34" height="70" fill="#4fc3f7" opacity="0.7"/><rect x="298" y="83" width="34" height="77" fill="#4fc3f7" opacity="0.7"/><rect x="332" y="89" width="34" height="71" fill="#4fc3f7" opacity="0.7"/><rect x="366" y="85" width="34" height="75" fill="#4fc3f7" opacity="0.7"/><rect x="400" y="88" width="34" height="72" fill="#4fc3f7" opacity="0.7"/><rect x="434" y="86" width="34" height="74" fill="#4fc3f7" opacity="0.7"/><rect x="468" y="91" width="34" height="69" fill="#4fc3f7" opacity="0.7"/><rect x="502" y="84" width="34" height="76" fill="#4fc3f7" opacity="0.7"/><rect x="536" y="87" width="34" height="73" fill="#4fc3f7" opacity="0.7"/><rect x="570" y="89" width="34" height="71" fill="#4fc3f7" opacity="0.7"/><rect x="604" y="85" width="34" height="75" fill="#4fc3f7" opacity="0.7"/><rect x="638" y="90" width="34" height="70" fill="#4fc3f7" opacity="0.7"/><rect x="672" y="86" width="34" height="74" fill="#4fc3f7" opacity="0.7"/><rect x="706" y="88" width="34" height="72" fill="#4fc3f7" opacity="0.7"/><rect x="60" y="90" width="34" height="70" fill="#e74c3c" opacity="0.85"/><line x1="94" y1="30" x2="94" y2="165" stroke="#e74c3c" stroke-width="2" stroke-dasharray="5,3"/><text x="85" y="180" text-anchor="middle" font-size="11" fill="#e74c3c" font-family="sans-serif">p=0.05</text><text x="580" y="72" text-anchor="middle" font-size="12" fill="#4fc3f7" font-family="sans-serif">帰無仮説が真でも</text><text x="580" y="88" text-anchor="middle" font-size="12" fill="#4fc3f7" font-family="sans-serif">p値は一様分布</text><text x="70" y="72" text-anchor="start" font-size="11" fill="#e74c3c" font-family="sans-serif">5%は</text><text x="70" y="84" text-anchor="start" font-size="11" fill="#e74c3c" font-family="sans-serif">偽陽性</text><text x="60" y="195" text-anchor="start" font-size="10" fill="#aaa" font-family="sans-serif">p=0</text><text x="730" y="195" text-anchor="end" font-size="10" fill="#aaa" font-family="sans-serif">p=1.0</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # p値の誤用と再現性の危機（2/2）（1/2）
 
 > *p>0.05は効果がないという証明にはならないことが最大の誤解の源*
@@ -182,18 +233,23 @@ style: |
 
 ---
 
+<!-- _class: invert fit-82 -->
 # p値の誤用と再現性の危機（2/2）（2/2）
 
 > *p-hackingと出版バイアスが心理学の再現率39%崩壊の主因*
 
-- - 心理学：100本の研究を追試 → 再現できたのは36〜39%（2015年）
-- - p-hacking：たくさん試してp<0.05を探す
-- - 出版バイアス：有意な結果しか論文にならない
-- <svg viewBox="0 0 800 170" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="170" fill="#1a1a2e"/><text x="400" y="22" text-anchor="middle" font-size="15" fill="#f9a825" font-family="sans-serif" font-weight="bold">p-hacking：有意な結果が出るまで試し続ける</text><rect x="40" y="38" width="100" height="50" rx="8" fill="#2d2d4e" stroke="#4fc3f7" stroke-width="1"/><text x="90" y="60" text-anchor="middle" font-size="11" fill="#ccc" font-family="sans-serif">分析1</text><text x="90" y="75" text-anchor="middle" font-size="11" fill="#e74c3c" font-family="sans-serif">p=0.12</text><line x1="140" y1="63" x2="175" y2="63" stroke="#555" stroke-width="2"/><polygon points="171,58 181,63 171,68" fill="#555"/><rect x="180" y="38" width="100" height="50" rx="8" fill="#2d2d4e" stroke="#4fc3f7" stroke-width="1"/><text x="230" y="60" text-anchor="middle" font-size="11" fill="#ccc" font-family="sans-serif">分析2</text><text x="230" y="75" text-anchor="middle" font-size="11" fill="#e74c3c" font-family="sans-serif">p=0.08</text><line x1="280" y1="63" x2="315" y2="63" stroke="#555" stroke-width="2"/><polygon points="311,58 321,63 311,68" fill="#555"/><rect x="320" y="38" width="100" height="50" rx="8" fill="#2d2d4e" stroke="#4fc3f7" stroke-width="1"/><text x="370" y="60" text-anchor="middle" font-size="11" fill="#ccc" font-family="sans-serif">分析3</text><text x="370" y="75" text-anchor="middle" font-size="11" fill="#e74c3c" font-family="sans-serif">p=0.09</text><line x1="420" y1="63" x2="455" y2="63" stroke="#555" stroke-width="2"/><polygon points="451,58 461,63 451,68" fill="#555"/><rect x="460" y="38" width="100" height="50" rx="8" fill="#2d2d4e" stroke="#27ae60" stroke-width="2"/><text x="510" y="60" text-anchor="middle" font-size="11" fill="#ccc" font-family="sans-serif">分析4</text><text x="510" y="75" text-anchor="middle" font-size="12" fill="#27ae60" font-family="sans-serif" font-weight="bold">p=0.03 ✓</text><line x1="560" y1="63" x2="595" y2="63" stroke="#f9a825" stroke-width="2"/><polygon points="591,58 601,63 591,68" fill="#f9a825"/><rect x="600" y="38" width="160" height="50" rx="8" fill="#1a3a1a" stroke="#27ae60" stroke-width="2"/><text x="680" y="57" text-anchor="middle" font-size="11" fill="#27ae60" font-family="sans-serif" font-weight="bold">論文発表!</text><text x="680" y="75" text-anchor="middle" font-size="10" fill="#aaa" font-family="sans-serif">「有意差あり p&lt;0.05」</text><text x="400" y="125" text-anchor="middle" font-size="12" fill="#e74c3c" font-family="sans-serif">→ 分析1〜3は捨てられる（出版バイアス）</text><text x="400" y="145" text-anchor="middle" font-size="12" fill="#aaa" font-family="sans-serif">多重比較問題：20回試せば1回は偶然 p&lt;0.05 になる</text><text x="400" y="162" text-anchor="middle" font-size="11" fill="#666" font-family="sans-serif">（第一種の過誤 = α = 0.05）</text></svg>
+- 心理学：100本の研究を追試 → 再現できたのは36〜39%（2015年）
+- p-hacking：たくさん試してp<0.05を探す
+- 出版バイアス：有意な結果しか論文にならない
+
+<div class="fig">
+<svg viewBox="0 0 800 170" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="170" fill="#1a1a2e"/><text x="400" y="22" text-anchor="middle" font-size="15" fill="#f9a825" font-family="sans-serif" font-weight="bold">p-hacking：有意な結果が出るまで試し続ける</text><rect x="40" y="38" width="100" height="50" rx="8" fill="#2d2d4e" stroke="#4fc3f7" stroke-width="1"/><text x="90" y="60" text-anchor="middle" font-size="11" fill="#ccc" font-family="sans-serif">分析1</text><text x="90" y="75" text-anchor="middle" font-size="11" fill="#e74c3c" font-family="sans-serif">p=0.12</text><line x1="140" y1="63" x2="175" y2="63" stroke="#555" stroke-width="2"/><polygon points="171,58 181,63 171,68" fill="#555"/><rect x="180" y="38" width="100" height="50" rx="8" fill="#2d2d4e" stroke="#4fc3f7" stroke-width="1"/><text x="230" y="60" text-anchor="middle" font-size="11" fill="#ccc" font-family="sans-serif">分析2</text><text x="230" y="75" text-anchor="middle" font-size="11" fill="#e74c3c" font-family="sans-serif">p=0.08</text><line x1="280" y1="63" x2="315" y2="63" stroke="#555" stroke-width="2"/><polygon points="311,58 321,63 311,68" fill="#555"/><rect x="320" y="38" width="100" height="50" rx="8" fill="#2d2d4e" stroke="#4fc3f7" stroke-width="1"/><text x="370" y="60" text-anchor="middle" font-size="11" fill="#ccc" font-family="sans-serif">分析3</text><text x="370" y="75" text-anchor="middle" font-size="11" fill="#e74c3c" font-family="sans-serif">p=0.09</text><line x1="420" y1="63" x2="455" y2="63" stroke="#555" stroke-width="2"/><polygon points="451,58 461,63 451,68" fill="#555"/><rect x="460" y="38" width="100" height="50" rx="8" fill="#2d2d4e" stroke="#27ae60" stroke-width="2"/><text x="510" y="60" text-anchor="middle" font-size="11" fill="#ccc" font-family="sans-serif">分析4</text><text x="510" y="75" text-anchor="middle" font-size="12" fill="#27ae60" font-family="sans-serif" font-weight="bold">p=0.03 ✓</text><line x1="560" y1="63" x2="595" y2="63" stroke="#f9a825" stroke-width="2"/><polygon points="591,58 601,63 591,68" fill="#f9a825"/><rect x="600" y="38" width="160" height="50" rx="8" fill="#1a3a1a" stroke="#27ae60" stroke-width="2"/><text x="680" y="57" text-anchor="middle" font-size="11" fill="#27ae60" font-family="sans-serif" font-weight="bold">論文発表!</text><text x="680" y="75" text-anchor="middle" font-size="10" fill="#aaa" font-family="sans-serif">「有意差あり p&lt;0.05」</text><text x="400" y="125" text-anchor="middle" font-size="12" fill="#e74c3c" font-family="sans-serif">→ 分析1〜3は捨てられる（出版バイアス）</text><text x="400" y="145" text-anchor="middle" font-size="12" fill="#aaa" font-family="sans-serif">多重比較問題：20回試せば1回は偶然 p&lt;0.05 になる</text><text x="400" y="162" text-anchor="middle" font-size="11" fill="#666" font-family="sans-serif">（第一種の過誤 = α = 0.05）</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # ベイズ統計という別のアプローチ（1/2）（1/2）
 
 > *ベイズ信用区間こそが直感的な95%確率の正しい表現方法である*
@@ -206,23 +262,28 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # ベイズ統計という別のアプローチ（1/2）（2/2）
 
 > *事前知識をモデル化できるベイズは直感的で小サンプルにも有効*
 
 - **ベイズ統計の特徴：**
-- - 事前知識（prior）をモデルに組み込める
-- - 結果は「確率」として直感的に解釈できる
-- <svg viewBox="0 0 800 190" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="190" fill="#1a1a2e"/><text x="400" y="20" text-anchor="middle" font-size="14" fill="#f9a825" font-family="sans-serif" font-weight="bold">ベイズ更新：事前分布 → 尤度 → 事後分布</text><text x="130" y="45" text-anchor="middle" font-size="13" fill="#4fc3f7" font-family="sans-serif" font-weight="bold">事前分布 (Prior)</text><text x="130" y="62" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">実験前の知識・信念</text><ellipse cx="130" cy="120" rx="80" ry="55" fill="#4fc3f7" opacity="0.15" stroke="#4fc3f7" stroke-width="1.5"/><ellipse cx="130" cy="108" rx="55" ry="35" fill="#4fc3f7" opacity="0.2"/><ellipse cx="130" cy="100" rx="30" ry="18" fill="#4fc3f7" opacity="0.3"/><text x="130" y="104" text-anchor="middle" font-size="12" fill="#4fc3f7" font-family="sans-serif">広い</text><text x="130" y="118" text-anchor="middle" font-size="11" fill="#4fc3f7" font-family="sans-serif">不確実</text><line x1="218" y1="110" x2="268" y2="110" stroke="#f9a825" stroke-width="2.5"/><polygon points="264,104 274,110 264,116" fill="#f9a825"/><text x="244" y="102" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">×</text><text x="244" y="125" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">データ</text><text x="400" y="45" text-anchor="middle" font-size="13" fill="#e91e63" font-family="sans-serif" font-weight="bold">尤度 (Likelihood)</text><text x="400" y="62" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">観測データの確からしさ</text><ellipse cx="400" cy="120" rx="55" ry="42" fill="#e91e63" opacity="0.15" stroke="#e91e63" stroke-width="1.5"/><ellipse cx="400" cy="112" rx="35" ry="26" fill="#e91e63" opacity="0.2"/><ellipse cx="400" cy="106" rx="18" ry="14" fill="#e91e63" opacity="0.3"/><text x="400" y="110" text-anchor="middle" font-size="12" fill="#e91e63" font-family="sans-serif">鋭い</text><text x="400" y="124" text-anchor="middle" font-size="11" fill="#e91e63" font-family="sans-serif">ピーク</text><line x1="463" y1="110" x2="513" y2="110" stroke="#f9a825" stroke-width="2.5"/><polygon points="509,104 519,110 509,116" fill="#f9a825"/><text x="489" y="102" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">=</text><text x="489" y="125" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">正規化</text><text x="660" y="45" text-anchor="middle" font-size="13" fill="#27ae60" font-family="sans-serif" font-weight="bold">事後分布 (Posterior)</text><text x="660" y="62" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">更新された信念</text><ellipse cx="660" cy="120" rx="65" ry="50" fill="#27ae60" opacity="0.12" stroke="#27ae60" stroke-width="1.5"/><ellipse cx="660" cy="110" rx="40" ry="30" fill="#27ae60" opacity="0.2"/><ellipse cx="660" cy="104" rx="20" ry="16" fill="#27ae60" opacity="0.35"/><text x="660" y="108" text-anchor="middle" font-size="12" fill="#27ae60" font-family="sans-serif">絞られた</text><text x="660" y="122" text-anchor="middle" font-size="11" fill="#27ae60" font-family="sans-serif">分布</text><text x="400" y="175" text-anchor="middle" font-size="12" fill="#aaa" font-family="sans-serif">事後分布の95%HDI (Highest Density Interval) = ベイズ信用区間</text></svg>
+- 事前知識（prior）をモデルに組み込める
+- 結果は「確率」として直感的に解釈できる
+
+<div class="fig">
+<svg viewBox="0 0 800 190" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="190" fill="#1a1a2e"/><text x="400" y="20" text-anchor="middle" font-size="14" fill="#f9a825" font-family="sans-serif" font-weight="bold">ベイズ更新：事前分布 → 尤度 → 事後分布</text><text x="130" y="45" text-anchor="middle" font-size="13" fill="#4fc3f7" font-family="sans-serif" font-weight="bold">事前分布 (Prior)</text><text x="130" y="62" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">実験前の知識・信念</text><ellipse cx="130" cy="120" rx="80" ry="55" fill="#4fc3f7" opacity="0.15" stroke="#4fc3f7" stroke-width="1.5"/><ellipse cx="130" cy="108" rx="55" ry="35" fill="#4fc3f7" opacity="0.2"/><ellipse cx="130" cy="100" rx="30" ry="18" fill="#4fc3f7" opacity="0.3"/><text x="130" y="104" text-anchor="middle" font-size="12" fill="#4fc3f7" font-family="sans-serif">広い</text><text x="130" y="118" text-anchor="middle" font-size="11" fill="#4fc3f7" font-family="sans-serif">不確実</text><line x1="218" y1="110" x2="268" y2="110" stroke="#f9a825" stroke-width="2.5"/><polygon points="264,104 274,110 264,116" fill="#f9a825"/><text x="244" y="102" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">×</text><text x="244" y="125" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">データ</text><text x="400" y="45" text-anchor="middle" font-size="13" fill="#e91e63" font-family="sans-serif" font-weight="bold">尤度 (Likelihood)</text><text x="400" y="62" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">観測データの確からしさ</text><ellipse cx="400" cy="120" rx="55" ry="42" fill="#e91e63" opacity="0.15" stroke="#e91e63" stroke-width="1.5"/><ellipse cx="400" cy="112" rx="35" ry="26" fill="#e91e63" opacity="0.2"/><ellipse cx="400" cy="106" rx="18" ry="14" fill="#e91e63" opacity="0.3"/><text x="400" y="110" text-anchor="middle" font-size="12" fill="#e91e63" font-family="sans-serif">鋭い</text><text x="400" y="124" text-anchor="middle" font-size="11" fill="#e91e63" font-family="sans-serif">ピーク</text><line x1="463" y1="110" x2="513" y2="110" stroke="#f9a825" stroke-width="2.5"/><polygon points="509,104 519,110 509,116" fill="#f9a825"/><text x="489" y="102" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">=</text><text x="489" y="125" text-anchor="middle" font-size="11" fill="#f9a825" font-family="sans-serif">正規化</text><text x="660" y="45" text-anchor="middle" font-size="13" fill="#27ae60" font-family="sans-serif" font-weight="bold">事後分布 (Posterior)</text><text x="660" y="62" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">更新された信念</text><ellipse cx="660" cy="120" rx="65" ry="50" fill="#27ae60" opacity="0.12" stroke="#27ae60" stroke-width="1.5"/><ellipse cx="660" cy="110" rx="40" ry="30" fill="#27ae60" opacity="0.2"/><ellipse cx="660" cy="104" rx="20" ry="16" fill="#27ae60" opacity="0.35"/><text x="660" y="108" text-anchor="middle" font-size="12" fill="#27ae60" font-family="sans-serif">絞られた</text><text x="660" y="122" text-anchor="middle" font-size="11" fill="#27ae60" font-family="sans-serif">分布</text><text x="400" y="175" text-anchor="middle" font-size="12" fill="#aaa" font-family="sans-serif">事後分布の95%HDI (Highest Density Interval) = ベイズ信用区間</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # ベイズ統計という別のアプローチ（2/2）
 
 > *頻度主義は手続きの信頼性を問い、ベイズは仮説の確からしさを問う*
 
-- - サンプルが小さくても有効
+- サンプルが小さくても有効
 - ---
 - **使い分け：**
 - 頻度主義：「この実験手続きが信頼できるか」を問う
@@ -233,6 +294,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-82 -->
 # まとめ：統計の正直な使い方
 
 > *p値とCIを正しく使うとp-hacking根絶と再現性向上に直結する*
@@ -241,7 +303,9 @@ style: |
 - ✅ **p < 0.05 ≠ 「効果がある」（サンプル数・多重比較を考慮）**
 - ✅ **p-hackingが再現性の危機の一因**
 - ✅ **ベイズ統計は「直感的」で「事前知識を活かせる」代替手法**
-- 
 - 「統計はうそをつかない。ただし統計家はうそをつく」
-- <svg viewBox="0 0 800 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="220" fill="#1a1a2e"/><text x="400" y="24" text-anchor="middle" font-size="15" fill="#f9a825" font-family="sans-serif" font-weight="bold">頻度主義 vs ベイズ統計：比較</text><rect x="40" y="40" width="330" height="165" rx="10" fill="#0d2137" stroke="#4fc3f7" stroke-width="1.5"/><text x="205" y="62" text-anchor="middle" font-size="14" fill="#4fc3f7" font-family="sans-serif" font-weight="bold">頻度主義</text><text x="205" y="82" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">(Frequentist)</text><text x="60" y="104" font-size="12" fill="#ccc" font-family="sans-serif">・手続きの長期的な振る舞いを問う</text><text x="60" y="122" font-size="12" fill="#ccc" font-family="sans-serif">・確率 = 長期相対頻度</text><text x="60" y="140" font-size="12" fill="#ccc" font-family="sans-serif">・信頼区間 → 手続きの信頼性</text><text x="60" y="158" font-size="12" fill="#ccc" font-family="sans-serif">・事前知識を使わない</text><text x="60" y="176" font-size="12" fill="#ccc" font-family="sans-serif">・大規模・標準的</text><text x="60" y="194" font-size="12" fill="#e74c3c" font-family="sans-serif">✗ 直感に反しやすい</text><rect x="430" y="40" width="330" height="165" rx="10" fill="#0d2a0d" stroke="#27ae60" stroke-width="1.5"/><text x="595" y="62" text-anchor="middle" font-size="14" fill="#27ae60" font-family="sans-serif" font-weight="bold">ベイズ統計</text><text x="595" y="82" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">(Bayesian)</text><text x="450" y="104" font-size="12" fill="#ccc" font-family="sans-serif">・仮説の確からしさを問う</text><text x="450" y="122" font-size="12" fill="#ccc" font-family="sans-serif">・確率 = 信念の度合い</text><text x="450" y="140" font-size="12" fill="#ccc" font-family="sans-serif">・信用区間 → 直感的な確率</text><text x="450" y="158" font-size="12" fill="#ccc" font-family="sans-serif">・事前知識をモデル化</text><text x="450" y="176" font-size="12" fill="#ccc" font-family="sans-serif">・小サンプルでも有効</text><text x="450" y="194" font-size="12" fill="#27ae60" font-family="sans-serif">✓ 解釈が直感的</text><text x="388" y="130" text-anchor="middle" font-size="18" fill="#f9a825" font-family="sans-serif" font-weight="bold">vs</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 220" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="220" fill="#1a1a2e"/><text x="400" y="24" text-anchor="middle" font-size="15" fill="#f9a825" font-family="sans-serif" font-weight="bold">頻度主義 vs ベイズ統計：比較</text><rect x="40" y="40" width="330" height="165" rx="10" fill="#0d2137" stroke="#4fc3f7" stroke-width="1.5"/><text x="205" y="62" text-anchor="middle" font-size="14" fill="#4fc3f7" font-family="sans-serif" font-weight="bold">頻度主義</text><text x="205" y="82" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">(Frequentist)</text><text x="60" y="104" font-size="12" fill="#ccc" font-family="sans-serif">・手続きの長期的な振る舞いを問う</text><text x="60" y="122" font-size="12" fill="#ccc" font-family="sans-serif">・確率 = 長期相対頻度</text><text x="60" y="140" font-size="12" fill="#ccc" font-family="sans-serif">・信頼区間 → 手続きの信頼性</text><text x="60" y="158" font-size="12" fill="#ccc" font-family="sans-serif">・事前知識を使わない</text><text x="60" y="176" font-size="12" fill="#ccc" font-family="sans-serif">・大規模・標準的</text><text x="60" y="194" font-size="12" fill="#e74c3c" font-family="sans-serif">✗ 直感に反しやすい</text><rect x="430" y="40" width="330" height="165" rx="10" fill="#0d2a0d" stroke="#27ae60" stroke-width="1.5"/><text x="595" y="62" text-anchor="middle" font-size="14" fill="#27ae60" font-family="sans-serif" font-weight="bold">ベイズ統計</text><text x="595" y="82" text-anchor="middle" font-size="11" fill="#aaa" font-family="sans-serif">(Bayesian)</text><text x="450" y="104" font-size="12" fill="#ccc" font-family="sans-serif">・仮説の確からしさを問う</text><text x="450" y="122" font-size="12" fill="#ccc" font-family="sans-serif">・確率 = 信念の度合い</text><text x="450" y="140" font-size="12" fill="#ccc" font-family="sans-serif">・信用区間 → 直感的な確率</text><text x="450" y="158" font-size="12" fill="#ccc" font-family="sans-serif">・事前知識をモデル化</text><text x="450" y="176" font-size="12" fill="#ccc" font-family="sans-serif">・小サンプルでも有効</text><text x="450" y="194" font-size="12" fill="#27ae60" font-family="sans-serif">✓ 解釈が直感的</text><text x="388" y="130" text-anchor="middle" font-size="18" fill="#f9a825" font-family="sans-serif" font-weight="bold">vs</text></svg>
+</div>
 

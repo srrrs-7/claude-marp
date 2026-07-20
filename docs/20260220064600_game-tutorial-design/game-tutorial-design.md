@@ -7,41 +7,76 @@ paginate: true
 header: "ゲームとUX設計"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ゲームのチュートリアル設計に学ぶUX
 — 最高の学習体験はゲームが作る
 
@@ -87,26 +122,31 @@ style: |
 
 ---
 
+<!-- _class: invert fit-82 -->
 # アジェンダ
 
 > *体験→フロー→AHA Momentの3段階でUXを設計する*
 
-- 1. ゲームチュートリアルの原則
-- 2. フロー理論とゲームデザイン
-- 3. 優れたチュートリアルの事例
-- 4. SaaSオンボーディングへの応用
-- 5. 教育設計との共通点
-![w:700 center](data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 180" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="700" height="180" fill="#1a1a2e" rx="10"/><rect x="20" y="20" width="130" height="40" rx="8" fill="#f9a825"/><text x="85" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e" text-anchor="middle">チュートリアル原則</text><rect x="170" y="20" width="130" height="40" rx="8" fill="#e91e63"/><text x="235" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">フロー理論</text><rect x="320" y="20" width="130" height="40" rx="8" fill="#4caf50"/><text x="385" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">優れた事例</text><rect x="470" y="20" width="130" height="40" rx="8" fill="#2196f3"/><text x="535" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">SaaS応用</text><rect x="95" y="70" width="130" height="40" rx="8" fill="#9c27b0"/><text x="160" y="96" font-family="sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">教育設計</text><polygon points="350,120 330,140 370,140" fill="#f9a825"/><rect x="200" y="140" width="300" height="30" rx="6" fill="#f9a825"/><text x="350" y="161" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e" text-anchor="middle">最高のUX設計へ</text></svg>)
+1. ゲームチュートリアルの原則
+2. フロー理論とゲームデザイン
+3. 優れたチュートリアルの事例
+4. SaaSオンボーディングへの応用
+5. 教育設計との共通点
+
+<div class="fig">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 180" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="700" height="180" fill="#1a1a2e" rx="10"/><rect x="20" y="20" width="130" height="40" rx="8" fill="#f9a825"/><text x="85" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e" text-anchor="middle">チュートリアル原則</text><rect x="170" y="20" width="130" height="40" rx="8" fill="#e91e63"/><text x="235" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">フロー理論</text><rect x="320" y="20" width="130" height="40" rx="8" fill="#4caf50"/><text x="385" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">優れた事例</text><rect x="470" y="20" width="130" height="40" rx="8" fill="#2196f3"/><text x="535" y="46" font-family="sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">SaaS応用</text><rect x="95" y="70" width="130" height="40" rx="8" fill="#9c27b0"/><text x="160" y="96" font-family="sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">教育設計</text><polygon points="350,120 330,140 370,140" fill="#f9a825"/><rect x="200" y="140" width="300" height="30" rx="6" fill="#f9a825"/><text x="350" y="161" font-family="sans-serif" font-size="13" font-weight="bold" fill="#1a1a2e" text-anchor="middle">最高のUX設計へ</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ゲームチュートリアルの原則
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 「ゲームには説明書がいらない」設計（1/2）
 
 > *アクティブラーニングが説明より記憶定着率を高める*
@@ -115,7 +155,10 @@ style: |
 - 「やれば分かる」= アクティブラーニングの徹底
 - 初期の成功体験で自己効力感を高める
 - 失敗のコストを低く保つ（即時リスタート）
-![w:750 center](data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="750" height="200" fill="#1a1a2e" rx="10"/><text x="375" y="30" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">暗黙の教え方 vs 明示的な説明</text><rect x="30" y="50" width="310" height="130" rx="8" fill="#1b2a4a" stroke="#e91e63" stroke-width="2"/><text x="185" y="75" font-family="sans-serif" font-size="13" font-weight="bold" fill="#e91e63" text-anchor="middle">明示的（BAD）</text><text x="185" y="98" font-family="sans-serif" font-size="11" fill="#cccccc" text-anchor="middle">「Aボタンでジャンプします」</text><text x="185" y="118" font-family="sans-serif" font-size="11" fill="#cccccc" text-anchor="middle">「敵に触れるとダメージです」</text><text x="185" y="138" font-family="sans-serif" font-size="11" fill="#cccccc" text-anchor="middle">→ 退屈・押しつけ感</text><text x="185" y="160" font-family="sans-serif" font-size="22" fill="#e91e63" text-anchor="middle">✗</text><rect x="410" y="50" width="310" height="130" rx="8" fill="#1b2a4a" stroke="#4caf50" stroke-width="2"/><text x="565" y="75" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4caf50" text-anchor="middle">暗黙的（GOOD）</text><text x="565" y="98" font-family="sans-serif" font-size="11" fill="#cccccc" text-anchor="middle">コインが空中に浮いている</text><text x="565" y="118" font-family="sans-serif" font-size="11" fill="#cccccc" text-anchor="middle">→ 自然にジャンプを試みる</text><text x="565" y="138" font-family="sans-serif" font-size="11" fill="#cccccc" text-anchor="middle">→ 体験で理解・達成感</text><text x="565" y="160" font-family="sans-serif" font-size="22" fill="#4caf50" text-anchor="middle">✓</text></svg>)
+
+<div class="fig">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="750" height="200" fill="#1a1a2e" rx="10"/><text x="375" y="30" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">暗黙の教え方 vs 明示的な説明</text><rect x="30" y="50" width="310" height="130" rx="8" fill="#1b2a4a" stroke="#e91e63" stroke-width="2"/><text x="185" y="75" font-family="sans-serif" font-size="13" font-weight="bold" fill="#e91e63" text-anchor="middle">明示的（BAD）</text><text x="185" y="98" font-family="sans-serif" font-size="11" fill="#cccccc" text-anchor="middle">「Aボタンでジャンプします」</text><text x="185" y="118" font-family="sans-serif" font-size="11" fill="#cccccc" text-anchor="middle">「敵に触れるとダメージです」</text><text x="185" y="138" font-family="sans-serif" font-size="11" fill="#cccccc" text-anchor="middle">→ 退屈・押しつけ感</text><text x="185" y="160" font-family="sans-serif" font-size="22" fill="#e91e63" text-anchor="middle">✗</text><rect x="410" y="50" width="310" height="130" rx="8" fill="#1b2a4a" stroke="#4caf50" stroke-width="2"/><text x="565" y="75" font-family="sans-serif" font-size="13" font-weight="bold" fill="#4caf50" text-anchor="middle">暗黙的（GOOD）</text><text x="565" y="98" font-family="sans-serif" font-size="11" fill="#cccccc" text-anchor="middle">コインが空中に浮いている</text><text x="565" y="118" font-family="sans-serif" font-size="11" fill="#cccccc" text-anchor="middle">→ 自然にジャンプを試みる</text><text x="565" y="138" font-family="sans-serif" font-size="11" fill="#cccccc" text-anchor="middle">→ 体験で理解・達成感</text><text x="565" y="160" font-family="sans-serif" font-size="22" fill="#4caf50" text-anchor="middle">✓</text></svg>
+</div>
 
 
 ---
@@ -123,11 +166,15 @@ style: |
 # 「ゲームには説明書がいらない」設計（2/2）
 
 - **「マリオ1-1」の教科書的設計：**
-![w:750 center](data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 230" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="750" height="230" fill="#1a1a2e" rx="10"/><text x="375" y="28" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f9a825" text-anchor="middle">スーパーマリオ 1-1 — 暗黙の教え方マップ</text><rect x="20" y="40" width="700" height="50" rx="6" fill="#0d47a1"/><text x="375" y="72" font-family="monospace" font-size="12" fill="#81d4fa" text-anchor="middle">← 左  [スタート] →右へ進む自然な誘導← 右 →</text><rect x="30" y="110" width="140" height="60" rx="6" fill="#1b3a2a" stroke="#4caf50" stroke-width="1"/><text x="100" y="132" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4caf50" text-anchor="middle">キノコ登場</text><text x="100" y="150" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">触ると大きくなる</text><text x="100" y="165" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">→ パワーアップを学習</text><rect x="200" y="110" width="140" height="60" rx="6" fill="#1b3a2a" stroke="#f9a825" stroke-width="1"/><text x="270" y="132" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f9a825" text-anchor="middle">小さな穴</text><text x="270" y="150" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">落ちないよう注意</text><text x="270" y="165" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">→ ジャンプを習得</text><rect x="370" y="110" width="140" height="60" rx="6" fill="#1b3a2a" stroke="#e91e63" stroke-width="1"/><text x="440" y="132" font-family="sans-serif" font-size="11" font-weight="bold" fill="#e91e63" text-anchor="middle">クリボー登場</text><text x="440" y="150" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">踏むと倒せる</text><text x="440" y="165" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">→ 攻撃方法を発見</text><rect x="540" y="110" width="140" height="60" rx="6" fill="#1b3a2a" stroke="#2196f3" stroke-width="1"/><text x="610" y="132" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2196f3" text-anchor="middle">旗ポール</text><text x="610" y="150" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">ゴールの明示</text><text x="610" y="165" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">→ 目標が明確</text><text x="375" y="210" font-family="sans-serif" font-size="11" fill="#f9a825" text-anchor="middle">すべてテキストなし — 体験だけで完全に教える</text></svg>)
+
+<div class="fig">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 230" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="750" height="230" fill="#1a1a2e" rx="10"/><text x="375" y="28" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f9a825" text-anchor="middle">スーパーマリオ 1-1 — 暗黙の教え方マップ</text><rect x="20" y="40" width="700" height="50" rx="6" fill="#0d47a1"/><text x="375" y="72" font-family="monospace" font-size="12" fill="#81d4fa" text-anchor="middle">← 左  [スタート] →右へ進む自然な誘導← 右 →</text><rect x="30" y="110" width="140" height="60" rx="6" fill="#1b3a2a" stroke="#4caf50" stroke-width="1"/><text x="100" y="132" font-family="sans-serif" font-size="11" font-weight="bold" fill="#4caf50" text-anchor="middle">キノコ登場</text><text x="100" y="150" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">触ると大きくなる</text><text x="100" y="165" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">→ パワーアップを学習</text><rect x="200" y="110" width="140" height="60" rx="6" fill="#1b3a2a" stroke="#f9a825" stroke-width="1"/><text x="270" y="132" font-family="sans-serif" font-size="11" font-weight="bold" fill="#f9a825" text-anchor="middle">小さな穴</text><text x="270" y="150" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">落ちないよう注意</text><text x="270" y="165" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">→ ジャンプを習得</text><rect x="370" y="110" width="140" height="60" rx="6" fill="#1b3a2a" stroke="#e91e63" stroke-width="1"/><text x="440" y="132" font-family="sans-serif" font-size="11" font-weight="bold" fill="#e91e63" text-anchor="middle">クリボー登場</text><text x="440" y="150" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">踏むと倒せる</text><text x="440" y="165" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">→ 攻撃方法を発見</text><rect x="540" y="110" width="140" height="60" rx="6" fill="#1b3a2a" stroke="#2196f3" stroke-width="1"/><text x="610" y="132" font-family="sans-serif" font-size="11" font-weight="bold" fill="#2196f3" text-anchor="middle">旗ポール</text><text x="610" y="150" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">ゴールの明示</text><text x="610" y="165" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">→ 目標が明確</text><text x="375" y="210" font-family="sans-serif" font-size="11" fill="#f9a825" text-anchor="middle">すべてテキストなし — 体験だけで完全に教える</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # フロー理論とゲームデザイン（1/2）
 
 > *スキル×難易度バランスが没入状態を生む*
@@ -135,7 +182,10 @@ style: |
 - **Mihaly Csikszentmihalyi の「フロー理論」：**
 - 完全に集中し、時間の感覚が消えるほど没入した状態
 - **フローが生まれる条件：** スキルとチャレンジのバランス、明確な目標と即時フィードバック、自己コントロールの感覚
-![w:700 center](data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="700" height="240" fill="#1a1a2e" rx="10"/><text x="350" y="28" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">フロー理論 — チャレンジ vs スキル</text><line x1="60" y1="210" x2="640" y2="210" stroke="#555" stroke-width="2"/><line x1="60" y1="210" x2="60" y2="45" stroke="#555" stroke-width="2"/><polygon points="640,206 650,210 640,214" fill="#555"/><polygon points="56,45 60,35 64,45" fill="#555"/><text x="660" y="214" font-family="sans-serif" font-size="11" fill="#aaa">スキル</text><text x="40" y="38" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">難易度</text><rect x="70" y="130" width="200" height="75" rx="6" fill="rgba(233,30,99,0.25)" stroke="#e91e63" stroke-width="1" stroke-dasharray="4,3"/><text x="170" y="172" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">退屈ゾーン</text><text x="170" y="188" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">スキル高 / チャレンジ低</text><rect x="390" y="50" width="200" height="75" rx="6" fill="rgba(233,30,99,0.25)" stroke="#e91e63" stroke-width="1" stroke-dasharray="4,3"/><text x="490" y="92" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">不安ゾーン</text><text x="490" y="108" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">スキル低 / チャレンジ高</text><line x1="70" y1="205" x2="590" y2="55" stroke="#f9a825" stroke-width="3"/><rect x="210" y="120" width="160" height="55" rx="8" fill="rgba(249,168,37,0.3)" stroke="#f9a825" stroke-width="2"/><text x="290" y="148" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f9a825" text-anchor="middle">フローゾーン</text><text x="290" y="166" font-family="sans-serif" font-size="10" fill="white" text-anchor="middle">最高の没入体験</text></svg>)
+
+<div class="fig">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="700" height="240" fill="#1a1a2e" rx="10"/><text x="350" y="28" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">フロー理論 — チャレンジ vs スキル</text><line x1="60" y1="210" x2="640" y2="210" stroke="#555" stroke-width="2"/><line x1="60" y1="210" x2="60" y2="45" stroke="#555" stroke-width="2"/><polygon points="640,206 650,210 640,214" fill="#555"/><polygon points="56,45 60,35 64,45" fill="#555"/><text x="660" y="214" font-family="sans-serif" font-size="11" fill="#aaa">スキル</text><text x="40" y="38" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">難易度</text><rect x="70" y="130" width="200" height="75" rx="6" fill="rgba(233,30,99,0.25)" stroke="#e91e63" stroke-width="1" stroke-dasharray="4,3"/><text x="170" y="172" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">退屈ゾーン</text><text x="170" y="188" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">スキル高 / チャレンジ低</text><rect x="390" y="50" width="200" height="75" rx="6" fill="rgba(233,30,99,0.25)" stroke="#e91e63" stroke-width="1" stroke-dasharray="4,3"/><text x="490" y="92" font-family="sans-serif" font-size="12" fill="#e91e63" text-anchor="middle">不安ゾーン</text><text x="490" y="108" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">スキル低 / チャレンジ高</text><line x1="70" y1="205" x2="590" y2="55" stroke="#f9a825" stroke-width="3"/><rect x="210" y="120" width="160" height="55" rx="8" fill="rgba(249,168,37,0.3)" stroke="#f9a825" stroke-width="2"/><text x="290" y="148" font-family="sans-serif" font-size="13" font-weight="bold" fill="#f9a825" text-anchor="middle">フローゾーン</text><text x="290" y="166" font-family="sans-serif" font-size="10" fill="white" text-anchor="middle">最高の没入体験</text></svg>
+</div>
 
 
 ---
@@ -143,18 +193,25 @@ style: |
 # フロー理論とゲームデザイン（2/2）
 
 - **ゲームがフローを作る方法：**
-![w:750 center](data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 220" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="750" height="220" fill="#1a1a2e" rx="10"/><text x="375" y="28" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">ゲームの難易度曲線 — フロー状態を保つ設計</text><line x1="50" y1="190" x2="700" y2="190" stroke="#555" stroke-width="2"/><line x1="50" y1="190" x2="50" y2="40" stroke="#555" stroke-width="2"/><polygon points="700,186 710,190 700,194" fill="#555"/><polygon points="46,40 50,30 54,40" fill="#555"/><text x="710" y="194" font-family="sans-serif" font-size="10" fill="#aaa">時間</text><text x="30" y="34" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">難易度</text><path d="M 60 175 Q 150 165 200 155 Q 250 145 300 130 Q 350 110 400 95 Q 450 75 500 65 Q 560 55 620 50" stroke="#4caf50" stroke-width="3" fill="none"/><line x1="60" y1="175" x2="620" y2="100" stroke="#f9a825" stroke-width="2" stroke-dasharray="6,4"/><text x="640" y="98" font-family="sans-serif" font-size="10" fill="#f9a825">フロー帯</text><rect x="60" y="145" width="100" height="40" rx="6" fill="rgba(76,175,80,0.2)" stroke="#4caf50" stroke-width="1"/><text x="110" y="162" font-family="sans-serif" font-size="10" fill="#4caf50" text-anchor="middle">チュートリアル</text><text x="110" y="177" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">簡単・自信</text><rect x="270" y="100" width="100" height="40" rx="6" fill="rgba(249,168,37,0.2)" stroke="#f9a825" stroke-width="1"/><text x="320" y="117" font-family="sans-serif" font-size="10" fill="#f9a825" text-anchor="middle">中盤</text><text x="320" y="132" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">バランス・没入</text><rect x="500" y="45" width="100" height="40" rx="6" fill="rgba(233,30,99,0.2)" stroke="#e91e63" stroke-width="1"/><text x="550" y="62" font-family="sans-serif" font-size="10" fill="#e91e63" text-anchor="middle">終盤・ボス</text><text x="550" y="77" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">高難度・達成感</text><text x="375" y="208" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">スキルの成長に合わせて難易度を動的に上昇させる</text></svg>)
+
+<div class="fig">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 220" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="750" height="220" fill="#1a1a2e" rx="10"/><text x="375" y="28" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">ゲームの難易度曲線 — フロー状態を保つ設計</text><line x1="50" y1="190" x2="700" y2="190" stroke="#555" stroke-width="2"/><line x1="50" y1="190" x2="50" y2="40" stroke="#555" stroke-width="2"/><polygon points="700,186 710,190 700,194" fill="#555"/><polygon points="46,40 50,30 54,40" fill="#555"/><text x="710" y="194" font-family="sans-serif" font-size="10" fill="#aaa">時間</text><text x="30" y="34" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">難易度</text><path d="M 60 175 Q 150 165 200 155 Q 250 145 300 130 Q 350 110 400 95 Q 450 75 500 65 Q 560 55 620 50" stroke="#4caf50" stroke-width="3" fill="none"/><line x1="60" y1="175" x2="620" y2="100" stroke="#f9a825" stroke-width="2" stroke-dasharray="6,4"/><text x="640" y="98" font-family="sans-serif" font-size="10" fill="#f9a825">フロー帯</text><rect x="60" y="145" width="100" height="40" rx="6" fill="rgba(76,175,80,0.2)" stroke="#4caf50" stroke-width="1"/><text x="110" y="162" font-family="sans-serif" font-size="10" fill="#4caf50" text-anchor="middle">チュートリアル</text><text x="110" y="177" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">簡単・自信</text><rect x="270" y="100" width="100" height="40" rx="6" fill="rgba(249,168,37,0.2)" stroke="#f9a825" stroke-width="1"/><text x="320" y="117" font-family="sans-serif" font-size="10" fill="#f9a825" text-anchor="middle">中盤</text><text x="320" y="132" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">バランス・没入</text><rect x="500" y="45" width="100" height="40" rx="6" fill="rgba(233,30,99,0.2)" stroke="#e91e63" stroke-width="1"/><text x="550" y="62" font-family="sans-serif" font-size="10" fill="#e91e63" text-anchor="middle">終盤・ボス</text><text x="550" y="77" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">高難度・達成感</text><text x="375" y="208" font-family="sans-serif" font-size="11" fill="#aaa" text-anchor="middle">スキルの成長に合わせて難易度を動的に上昇させる</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-94 -->
 # SaaSオンボーディングへの応用（1/2）
 
 > *AHA Momentまでの最短経路が定着率を決める*
 
 - **「AHA Moment」の設計：**
 - ユーザーが「これは使える！」と感じる瞬間まで最速で到達させる
-![w:750 center](data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 200" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="750" height="200" fill="#1a1a2e" rx="10"/><text x="375" y="28" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">AHA Moment までの最短経路設計</text><rect x="30" y="50" width="100" height="50" rx="8" fill="#263238" stroke="#78909c" stroke-width="1"/><text x="80" y="71" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">登録</text><text x="80" y="89" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">サインアップ</text><polygon points="135,75 145,79 135,83" fill="#f9a825"/><rect x="150" y="50" width="110" height="50" rx="8" fill="#263238" stroke="#78909c" stroke-width="1"/><text x="205" y="71" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">最初の操作</text><text x="205" y="89" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">コア機能体験</text><polygon points="265,75 275,79 265,83" fill="#f9a825"/><rect x="280" y="45" width="130" height="60" rx="8" fill="rgba(249,168,37,0.3)" stroke="#f9a825" stroke-width="2"/><text x="345" y="68" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f9a825" text-anchor="middle">AHA Moment</text><text x="345" y="86" font-family="sans-serif" font-size="10" fill="white" text-anchor="middle">「これは使える！」</text><text x="345" y="100" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">価値を実感</text><polygon points="415,75 425,79 415,83" fill="#4caf50"/><rect x="430" y="50" width="100" height="50" rx="8" fill="#1b2a1b" stroke="#4caf50" stroke-width="1"/><text x="480" y="71" font-family="sans-serif" font-size="11" fill="#4caf50" text-anchor="middle">継続利用</text><text x="480" y="89" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">習慣化・定着</text><rect x="80" y="130" width="100" height="40" rx="6" fill="#1b2a4a" stroke="#2196f3" stroke-width="1"/><text x="130" y="148" font-family="sans-serif" font-size="10" fill="#81d4fa" text-anchor="middle">Twitter</text><text x="130" y="163" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">5人フォロー</text><rect x="250" y="130" width="100" height="40" rx="6" fill="#1b2a4a" stroke="#2196f3" stroke-width="1"/><text x="300" y="148" font-family="sans-serif" font-size="10" fill="#81d4fa" text-anchor="middle">Dropbox</text><text x="300" y="163" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">ファイル同期</text><rect x="420" y="130" width="100" height="40" rx="6" fill="#1b2a4a" stroke="#2196f3" stroke-width="1"/><text x="470" y="148" font-family="sans-serif" font-size="10" fill="#81d4fa" text-anchor="middle">Slack</text><text x="470" y="163" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">初メッセージ</text></svg>)
+
+<div class="fig">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 200" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="750" height="200" fill="#1a1a2e" rx="10"/><text x="375" y="28" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">AHA Moment までの最短経路設計</text><rect x="30" y="50" width="100" height="50" rx="8" fill="#263238" stroke="#78909c" stroke-width="1"/><text x="80" y="71" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">登録</text><text x="80" y="89" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">サインアップ</text><polygon points="135,75 145,79 135,83" fill="#f9a825"/><rect x="150" y="50" width="110" height="50" rx="8" fill="#263238" stroke="#78909c" stroke-width="1"/><text x="205" y="71" font-family="sans-serif" font-size="11" fill="white" text-anchor="middle">最初の操作</text><text x="205" y="89" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">コア機能体験</text><polygon points="265,75 275,79 265,83" fill="#f9a825"/><rect x="280" y="45" width="130" height="60" rx="8" fill="rgba(249,168,37,0.3)" stroke="#f9a825" stroke-width="2"/><text x="345" y="68" font-family="sans-serif" font-size="12" font-weight="bold" fill="#f9a825" text-anchor="middle">AHA Moment</text><text x="345" y="86" font-family="sans-serif" font-size="10" fill="white" text-anchor="middle">「これは使える！」</text><text x="345" y="100" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">価値を実感</text><polygon points="415,75 425,79 415,83" fill="#4caf50"/><rect x="430" y="50" width="100" height="50" rx="8" fill="#1b2a1b" stroke="#4caf50" stroke-width="1"/><text x="480" y="71" font-family="sans-serif" font-size="11" fill="#4caf50" text-anchor="middle">継続利用</text><text x="480" y="89" font-family="sans-serif" font-size="10" fill="#aaa" text-anchor="middle">習慣化・定着</text><rect x="80" y="130" width="100" height="40" rx="6" fill="#1b2a4a" stroke="#2196f3" stroke-width="1"/><text x="130" y="148" font-family="sans-serif" font-size="10" fill="#81d4fa" text-anchor="middle">Twitter</text><text x="130" y="163" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">5人フォロー</text><rect x="250" y="130" width="100" height="40" rx="6" fill="#1b2a4a" stroke="#2196f3" stroke-width="1"/><text x="300" y="148" font-family="sans-serif" font-size="10" fill="#81d4fa" text-anchor="middle">Dropbox</text><text x="300" y="163" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">ファイル同期</text><rect x="420" y="130" width="100" height="40" rx="6" fill="#1b2a4a" stroke="#2196f3" stroke-width="1"/><text x="470" y="148" font-family="sans-serif" font-size="10" fill="#81d4fa" text-anchor="middle">Slack</text><text x="470" y="163" font-family="sans-serif" font-size="9" fill="#aaa" text-anchor="middle">初メッセージ</text></svg>
+</div>
 
 
 ---
@@ -162,7 +219,10 @@ style: |
 # SaaSオンボーディングへの応用（2/2）
 
 - **ゲーミフィケーションと進捗の可視化：**
-![w:750 center](data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 210" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="750" height="210" fill="#1a1a2e" rx="10"/><text x="375" y="28" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">ゲームUI → SaaS UXへの変換</text><rect x="30" y="45" width="320" height="145" rx="8" fill="#0d1b2a" stroke="#e91e63" stroke-width="2"/><text x="190" y="68" font-family="sans-serif" font-size="12" font-weight="bold" fill="#e91e63" text-anchor="middle">ゲームの仕組み</text><text x="60" y="95" font-family="sans-serif" font-size="11" fill="#f9a825">HPバー</text><text x="60" y="115" font-family="sans-serif" font-size="11" fill="#f9a825">レベルアップ</text><text x="60" y="135" font-family="sans-serif" font-size="11" fill="#f9a825">デイリークエスト</text><text x="60" y="155" font-family="sans-serif" font-size="11" fill="#f9a825">実績バッジ</text><text x="60" y="175" font-family="sans-serif" font-size="11" fill="#f9a825">リスポーン</text><rect x="400" y="45" width="320" height="145" rx="8" fill="#0d1b2a" stroke="#4caf50" stroke-width="2"/><text x="560" y="68" font-family="sans-serif" font-size="12" font-weight="bold" fill="#4caf50" text-anchor="middle">SaaS UX</text><text x="430" y="95" font-family="sans-serif" font-size="11" fill="white">→ プロフィール完成度バー（LinkedIn）</text><text x="430" y="115" font-family="sans-serif" font-size="11" fill="white">→ スキルバッジ・昇格（Duolingo）</text><text x="430" y="135" font-family="sans-serif" font-size="11" fill="white">→ ストリーク・連続ログイン</text><text x="430" y="155" font-family="sans-serif" font-size="11" fill="white">→ 完了バッジ・証明書</text><text x="430" y="175" font-family="sans-serif" font-size="11" fill="white">→ わかりやすいエラー復帰</text><line x1="350" y1="80" x2="398" y2="80" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/><line x1="350" y1="100" x2="398" y2="100" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/><line x1="350" y1="120" x2="398" y2="120" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/><line x1="350" y1="140" x2="398" y2="140" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/><line x1="350" y1="160" x2="398" y2="160" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/></svg>)
+
+<div class="fig">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 210" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="750" height="210" fill="#1a1a2e" rx="10"/><text x="375" y="28" font-family="sans-serif" font-size="14" font-weight="bold" fill="#f9a825" text-anchor="middle">ゲームUI → SaaS UXへの変換</text><rect x="30" y="45" width="320" height="145" rx="8" fill="#0d1b2a" stroke="#e91e63" stroke-width="2"/><text x="190" y="68" font-family="sans-serif" font-size="12" font-weight="bold" fill="#e91e63" text-anchor="middle">ゲームの仕組み</text><text x="60" y="95" font-family="sans-serif" font-size="11" fill="#f9a825">HPバー</text><text x="60" y="115" font-family="sans-serif" font-size="11" fill="#f9a825">レベルアップ</text><text x="60" y="135" font-family="sans-serif" font-size="11" fill="#f9a825">デイリークエスト</text><text x="60" y="155" font-family="sans-serif" font-size="11" fill="#f9a825">実績バッジ</text><text x="60" y="175" font-family="sans-serif" font-size="11" fill="#f9a825">リスポーン</text><rect x="400" y="45" width="320" height="145" rx="8" fill="#0d1b2a" stroke="#4caf50" stroke-width="2"/><text x="560" y="68" font-family="sans-serif" font-size="12" font-weight="bold" fill="#4caf50" text-anchor="middle">SaaS UX</text><text x="430" y="95" font-family="sans-serif" font-size="11" fill="white">→ プロフィール完成度バー（LinkedIn）</text><text x="430" y="115" font-family="sans-serif" font-size="11" fill="white">→ スキルバッジ・昇格（Duolingo）</text><text x="430" y="135" font-family="sans-serif" font-size="11" fill="white">→ ストリーク・連続ログイン</text><text x="430" y="155" font-family="sans-serif" font-size="11" fill="white">→ 完了バッジ・証明書</text><text x="430" y="175" font-family="sans-serif" font-size="11" fill="white">→ わかりやすいエラー復帰</text><line x1="350" y1="80" x2="398" y2="80" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/><line x1="350" y1="100" x2="398" y2="100" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/><line x1="350" y1="120" x2="398" y2="120" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/><line x1="350" y1="140" x2="398" y2="140" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/><line x1="350" y1="160" x2="398" y2="160" stroke="#f9a825" stroke-width="1" stroke-dasharray="3,3"/></svg>
+</div>
 
 
 ---

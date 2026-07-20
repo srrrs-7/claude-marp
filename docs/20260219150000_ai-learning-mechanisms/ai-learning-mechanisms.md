@@ -7,41 +7,76 @@ paginate: true
 header: "AIの学習の仕組み"
 footer: "© 2026 - 研究者・専門家向け完全解説"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -81,10 +116,11 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # AIの学習の仕組み
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="90" text-anchor="middle" fill="#f9a825" font-size="32" font-weight="bold">AIの学習の仕組み</text>
   <text x="400" y="130" text-anchor="middle" fill="#ffffff" font-size="18">Deep Learning · Transformers · RLHF</text>
@@ -92,6 +128,8 @@ style: |
   <text x="400" y="185" text-anchor="middle" fill="#f9a825" font-size="13">勾配降下法から最新アライメント技術まで</text>
   <text x="400" y="215" text-anchor="middle" fill="#ffffff" font-size="11" opacity="0.7">機械学習エンジニア向け深掘り解説</text>
 </svg>
+</div>
+
 - 研究者・専門家向け完全解説
 - 機械学習の基礎から最新手法まで
 - 2026年2月
@@ -103,7 +141,8 @@ style: |
 
 > *汎化こそが学習の本質—記憶ではなく未知データへの適応が目標*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">AIの「学習」とは何か</text>
   <!-- Analogy: data -> model -> prediction -->
@@ -130,6 +169,8 @@ style: |
   <polygon points="18,155 12,167 24,167" fill="#e91e63"/>
   <text x="400" y="232" text-anchor="middle" fill="#e91e63" font-size="10">誤差逆伝播 → パラメータ更新</text>
 </svg>
+</div>
+
 - **関数近似問題**: データから未知の関数 f: X → Y を近似する
 - **経験的リスク最小化 (ERM)**: min_θ (1/n) Σ L(f_θ(xᵢ), yᵢ)
 - **帰納バイアス**: 仮説空間の制約がなければ汎化は不可能 (No Free Lunch)
@@ -168,10 +209,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 1. 機械学習の3パラダイム
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">機械学習の3パラダイム</text>
   <!-- Three boxes -->
@@ -199,6 +241,8 @@ style: |
   <text x="655" y="175" text-anchor="middle" fill="#ffffff" font-size="10">例: AlphaGo</text>
   <text x="655" y="192" text-anchor="middle" fill="#ffffff" font-size="10">例: RLHF (LLM)</text>
 </svg>
+</div>
+
 - 教師あり学習 / 教師なし学習 / 強化学習
 
 
@@ -208,7 +252,8 @@ style: |
 
 > *教師あり・なし・強化学習の3分類が全AIの基礎*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">学習パラダイムの概要</text>
   <!-- Venn diagram-like: 3 paradigms -->
@@ -228,8 +273,11 @@ style: |
   <rect x="280" y="210" width="240" height="40" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1"/>
   <text x="400" y="232" text-anchor="middle" fill="#f9a825" font-size="11">教師なし: クラスタリング・生成</text>
 </svg>
+</div>
+
 - 問題の構造 (ラベルの有無・報酬の有無) がパラダイムを決定する
 - 3つのパラダイムは相互補完的に組み合わせて使われる
+
 ![w:850 center](assets/learning-paradigms.svg)
 
 
@@ -239,7 +287,8 @@ style: |
 
 > *汎化誤差の最小化が目標—経験的リスクと期待リスクのギャップを埋める*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">教師あり学習の定式化</text>
   <!-- Formula boxes -->
@@ -260,6 +309,8 @@ style: |
   <text x="640" y="188" text-anchor="middle" fill="#ffffff" font-size="10">損失最小化</text>
   <text x="640" y="205" text-anchor="middle" fill="#ffffff" font-size="10">SGD / Adam</text>
 </svg>
+</div>
+
 - 入力 x ∈ X, 出力 y ∈ Y, 仮説クラス H から h: X→Y を選択
 - **経験的リスク**: R̂(h) = (1/n) Σ L(h(xᵢ), yᵢ)
 - **期待リスク**: R(h) = E_{(x,y)~D}[L(h(x), y)] — 真の目標
@@ -274,7 +325,8 @@ style: |
 
 > *教師なし学習は密度構造の発見、自己教師あり学習は自動プレテキストで代替*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">学習パラダイム比較</text>
   <rect x="30" y="50" width="220" height="165" rx="8" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -294,6 +346,8 @@ style: |
   <text x="660" y="145" text-anchor="middle" fill="#e91e63" font-size="28" font-family="sans-serif">🤖</text>
   <text x="660" y="195" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">LLM 事前学習の基盤</text>
 </svg>
+</div>
+
 - **教師なし**: ラベルなしデータ p(x) の構造を発見
 - クラスタリング (K-means, DBSCAN): 密度に基づく分離
 - 次元削減 (PCA, t-SNE, UMAP): 潜在空間 z ∈ Z の学習
@@ -308,7 +362,8 @@ style: |
 
 > *MDP×ベルマン方程式でQ*を求めRLHFや自律エージェントの基盤を形成*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">強化学習の基礎 — MDP</text>
   <!-- RL cycle -->
@@ -329,6 +384,8 @@ style: |
   <!-- Goal -->
   <text x="400" y="225" text-anchor="middle" fill="#f9a825" font-size="11">目標: 累積報酬 G = Σ γᵗ rₜ を最大化する方策 π を学習</text>
 </svg>
+</div>
+
 - **マルコフ決定過程 (MDP)**: (S, A, P, R, γ) の5タプルで定義
 - 目標: 期待累積報酬 E[Σ γᵗ rₜ] の最大化 (γ: 割引率)
 - **方策 π(a|s)**: 状態から行動確率への写像
@@ -343,7 +400,8 @@ style: |
 
 > *過学習は訓練データの記憶—k-foldとテスト一回限り使用が汎化の鉄則*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">汎化誤差と過学習</text>
   <!-- Training vs validation loss curves -->
@@ -365,6 +423,8 @@ style: |
   <!-- Overfitting zone shading annotation -->
   <text x="580" y="195" text-anchor="middle" fill="#e91e63" font-size="10">過学習領域</text>
 </svg>
+</div>
+
 - **汎化誤差** = 期待リスク − 経験的リスク (理想は 0 に近い)
 - **過学習**: 訓練損失 ↓ だが汎化損失 ↑ — 訓練データを記憶
 - **過小適合**: モデル表現力が不足 — 両方の損失が高い
@@ -379,7 +439,8 @@ style: |
 
 > *二重降下とBenign Overfittingで深層モデルのバイアス低・バリアンス高を克服*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">バイアス・バリアンス・トレードオフ</text>
   <!-- Axes -->
@@ -406,6 +467,8 @@ style: |
   <text x="100" y="290" fill="#f9a825" font-size="10">高バイアス = 過小適合</text>
   <text x="400" y="290" text-anchor="middle" fill="#e91e63" font-size="10">高バリアンス = 過学習</text>
 </svg>
+</div>
+
 - 期待二乗誤差 = Bias²(ĥ) + Var(ĥ) + 不可約誤差 (ノイズ)
 - **Bias (偏り)**: 仮説クラスの表現力不足による系統的誤差
 - **Variance (分散)**: 訓練データへの高感度 → 過学習傾向
@@ -420,7 +483,8 @@ style: |
 
 > *L2/L1/Dropout/Early Stopping/Mixup—6種の正則化で過学習を多層防御*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">正則化手法の比較</text>
   <rect x="40" y="55" width="220" height="150" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="1.5"/>
@@ -445,6 +509,8 @@ style: |
   <text x="650" y="172" text-anchor="middle" fill="#ffffff" font-size="9">p=0.1〜0.5</text>
   <text x="650" y="192" text-anchor="middle" fill="#f9a825" font-size="9">例: Transformer</text>
 </svg>
+</div>
+
 - **L2 正則化 (Weight Decay)**: loss += λ Σ wᵢ² — 重みを小さく保つ
 - **L1 正則化 (Lasso)**: loss += λ Σ |wᵢ| — スパース解を誘導
 - **Dropout**: 学習時ランダムにニューロンをマスク (p = 0.1〜0.5)
@@ -455,10 +521,11 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 2. 最適化と損失関数
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">最適化: 損失景観と勾配降下</text>
   <line x1="60" y1="200" x2="740" y2="200" stroke="#444" stroke-width="1.5"/>
@@ -476,6 +543,8 @@ style: |
   <text x="400" y="68" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">SGD</text>
   <text x="400" y="220" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">損失景観: 多数の局所最小・サドル点を持つ複雑な空間</text>
 </svg>
+</div>
+
 - 損失設計と勾配ベース最適化の理論と実践
 
 
@@ -485,7 +554,8 @@ style: |
 
 > *MSE/CE/KL/Huber/Focal/InfoNCE—タスクと分布の性質で損失関数を選択*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">主要な損失関数</text>
   <!-- Loss function grid -->
@@ -506,6 +576,8 @@ style: |
   <text x="590" y="187" text-anchor="middle" fill="#ffffff" font-size="10">MSE + MAEのハイブリッド</text>
   <text x="590" y="205" text-anchor="middle" fill="#f9a825" font-size="9">外れ値ロバスト回帰</text>
 </svg>
+</div>
+
 - **MSE**: L = (1/n) Σ (yᵢ − ŷᵢ)² — 回帰の標準、外れ値に敏感
 - **Cross-Entropy**: L = −Σ yᵢ log ŷᵢ — 分類の標準、最大尤度推定
 - **KL Divergence**: DKL(P‖Q) = Σ P log(P/Q) — 分布間距離
@@ -520,7 +592,8 @@ style: |
 
 > *損失の勾配方向へパラメータを繰り返し更新する*
 
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="320" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">勾配降下法の原理</text>
   <!-- Loss landscape (parabola-like) -->
@@ -551,9 +624,12 @@ style: |
   <!-- Learning rate annotation -->
   <text x="400" y="308" text-anchor="middle" fill="#ffffff" font-size="11">学習率 η で -∇L(θ) 方向に更新: θ ← θ - η · ∇L(θ)</text>
 </svg>
+</div>
+
 - 更新則: θ_{t+1} = θ_t − η ∇_θ L(θ_t; X)
 - 学習率 η の役割: 大きすぎると発散、小さすぎると収束遅延
 - ミニバッチ SGD: B サンプルごとに更新 — 計算と品質のバランス
+
 ![w:800 center](assets/gradient-descent.svg)
 
 
@@ -563,7 +639,8 @@ style: |
 
 > *適応的学習率+重み減衰でAdamWが現在の標準*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">最適化アルゴリズムの進化</text>
   <rect x="30" y="55" width="165" height="155" rx="8" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -587,6 +664,8 @@ style: |
   <text x="677" y="123" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">ヘッセ行列近似</text>
   <text x="677" y="160" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">研究最前線</text>
 </svg>
+</div>
+
 - SGD + Momentum: 鞍点を乗り越える慣性を付与
 - AdaGrad: 疎な勾配に適応的学習率 (累積二乗和で除算)
 
@@ -613,7 +692,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *Warmup→Cosine Decayの組み合わせがTransformerの学習安定化に不可欠*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">学習率スケジューリング</text>
   <!-- Axes -->
@@ -634,6 +714,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <line x1="160" y1="60" x2="160" y2="230" stroke="#f9a825" stroke-width="1" stroke-dasharray="3" opacity="0.6"/>
   <text x="120" y="55" text-anchor="middle" fill="#f9a825" font-size="10">Warmup</text>
 </svg>
+</div>
+
 - **Warmup**: 初期の不安定な勾配を避けるため学習率を徐々に増加
 - **Cosine Decay**: η(t) = η_min + 0.5(η_max−η_min)(1+cos(πt/T))
 - **Linear Decay**: シンプルで BERT 系モデルに広く使用
@@ -648,7 +730,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *SAMでフラット最小を明示的に探索—シャープ最小より汎化性能が高い*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">損失地形と局所最適解</text>
   <!-- Non-convex loss landscape -->
@@ -672,6 +755,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <!-- Annotations -->
   <text x="400" y="300" text-anchor="middle" fill="#ffffff" font-size="10">SGD・AdamWはノイズ性質で局所最適を脱出しやすい</text>
 </svg>
+</div>
+
 - 高次元パラメータ空間では真の局所最小解は稀 — 多くは鞍点
 - **シャープ最小値 vs フラット最小値**: フラットほど汎化が良い傾向
 - **SAM (Sharpness-Aware Minimization)**: フラット最小を明示的に探索
@@ -686,7 +771,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *勾配クリッピング+BF16+LayerNormの三点セットがLLM学習安定化の標準*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">勾配クリッピング: 効果の可視化</text>
   <text x="240" y="55" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">クリッピングなし</text>
@@ -700,6 +786,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <text x="700" y="92" fill="#888" font-size="9" font-family="sans-serif">clip threshold</text>
   <text x="400" y="210" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">||grad|| > threshold → grad = grad * (threshold / ||grad||)</text>
 </svg>
+</div>
+
 - **勾配爆発**: 深いNNで勾配が指数的に増大 → 発散
 - **Gradient Clipping**: ‖g‖ > τ なら g ← g × (τ/‖g‖)
 - **LayerNorm / RMSNorm**: 各層の活性化を正規化して安定化
@@ -710,10 +798,11 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 3. ニューラルネットワーク基礎
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">ニューラルネットワーク: 基本構造</text>
   <text x="130" y="60" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">Input Layer</text>
@@ -766,6 +855,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <line x1="468" y1="180" x2="612" y2="110" stroke="#888" stroke-width="1"/>
   <line x1="468" y1="180" x2="612" y2="160" stroke="#888" stroke-width="1"/>
 </svg>
+</div>
+
 - パーセプトロンから深層モデルへ
 
 
@@ -775,7 +866,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *非線形活性化の追加で線形分離不能問題を解決*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">パーセプトロン → MLP の進化</text>
   <!-- Perceptron left -->
@@ -818,9 +910,12 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <line x1="572" y1="202" x2="676" y2="156" stroke="#f9a825" stroke-width="0.8" opacity="0.5"/>
   <text x="580" y="230" text-anchor="middle" fill="#ffffff" font-size="9">非線形分離可能</text>
 </svg>
+</div>
+
 - パーセプトロン (Rosenblatt 1957): 線形分離可能な問題のみ解ける
 - **XOR 問題**: 単層では解けず → 多層が必要 (Minsky & Papert 1969)
 - **普遍近似定理**: 十分な幅の1隠れ層 NN は任意の連続関数を近似
+
 ![w:820 center](assets/neural-network-mlp.svg)
 
 
@@ -830,7 +925,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *ReLUからGELU/SiLUへ—活性化関数の選択でBERT系とLLaMA系が分岐*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">活性化関数の進化</text>
   <!-- Axes -->
@@ -856,6 +952,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <text x="400" y="255" text-anchor="middle" fill="#f9a825" font-size="10">ReLU: 高速・シンプル</text>
   <text x="650" y="255" fill="#ffffff" font-size="10">GELU: Transformerで主流</text>
 </svg>
+</div>
+
 - **Sigmoid**: σ(z) = 1/(1+e^{−z}) — 勾配消失問題あり
 - **tanh**: (e^z − e^{−z})/(e^z + e^{−z}) — 中心化で Sigmoid 改善
 - **ReLU**: max(0, z) — 勾配消失を大幅改善 (Krizhevsky 2012)
@@ -870,7 +968,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *連鎖律で全層の勾配を効率計算し学習を可能に*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">誤差逆伝播法 (Backpropagation)</text>
   <!-- Neural network layers -->
@@ -919,9 +1018,12 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <polygon points="80,170 98,162 98,178" fill="#e91e63"/>
   <text x="400" y="35" text-anchor="middle" fill="#e91e63" font-size="11">逆伝播: ∂L/∂w = ∂L/∂ŷ · ∂ŷ/∂h · ∂h/∂w  (連鎖律)</text>
 </svg>
+</div>
+
 - **連鎖律**: ∂L/∂w = (∂L/∂a)(∂a/∂z)(∂z/∂w)
 - 計算グラフで演算ノードを通じて勾配を自動微分
 - PyTorch / JAX の autograd が実装の核心
+
 ![w:820 center](assets/backprop-graph.svg)
 
 
@@ -945,7 +1047,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *LLMではDropoutよりWeight Decayが主流—過学習の種類で手法を選択*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">バッチ正規化 (Batch Normalization)</text>
   <!-- Before BN -->
@@ -967,6 +1070,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <!-- Formula -->
   <text x="400" y="240" text-anchor="middle" fill="#ffffff" font-size="11">x̂ = (x - μ) / σ  →  γx̂ + β  (γ, β は学習パラメータ)</text>
 </svg>
+</div>
+
 - **Dropout** (Srivastava 2014): 訓練時に確率 p でユニットをゼロ化
 - **アンサンブル解釈**: 指数的な数のサブネットの平均と等価
 - **Inverted Dropout**: テスト時に (1−p) 補正で期待値を一致
@@ -981,7 +1086,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *残差接続で勾配の直接経路を確保—152層の超深層化を可能にした鍵*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">残差接続 (Skip Connection)</text>
   <rect x="50" y="60" width="140" height="55" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -1010,6 +1116,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <polygon points="607,113 610,103 613,113" fill="#e91e63"/>
   <text x="370" y="175" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">Skip Connection: 入力を直接加算 → 勾配消失を防ぐ</text>
 </svg>
+</div>
+
 - **消失勾配問題**: 深いNNで勾配が指数的に縮小する問題
 - **残差ブロック**: H(x) = F(x) + x — 恒等写像をスキップ
 - 勾配の直接経路: スキップ接続を通じて勾配がダイレクトに流れる
@@ -1034,10 +1142,11 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 4. 深層学習アーキテクチャ
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">深層学習アーキテクチャ 進化の系譜</text>
   <line x1="60" y1="130" x2="740" y2="130" stroke="#444" stroke-width="2"/>
@@ -1062,6 +1171,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <text x="680" y="148" text-anchor="middle" fill="#e91e63" font-size="9" font-family="sans-serif">LLM時代</text>
   <text x="400" y="200" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">深さ: 8層 → 100層+ → 1T パラメータ規模へ</text>
 </svg>
+</div>
+
 - CNN / RNN / Transformer の設計原理
 
 
@@ -1113,7 +1224,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *重要箇所への動的な重み付けで長距離依存を解決*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Attention 機構の原理</text>
   <!-- Q K V boxes -->
@@ -1157,9 +1269,12 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <!-- Formula bottom -->
   <text x="400" y="278" text-anchor="middle" fill="#ffffff" font-size="11">Attention(Q,K,V) = softmax(QKᵀ/√dₖ)V</text>
 </svg>
+</div>
+
 - RNN の固定長ベクトル圧縮による情報ボトルネックを解消
 - **Scaled Dot-Product**: Attention(Q,K,V) = softmax(QKᵀ/√d_k)·V
 - Q / K / V: 同じ入力から線形変換で生成 (Self-Attention)
+
 ![w:840 center](assets/attention-mechanism.svg)
 
 
@@ -1169,7 +1284,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *Self-Attentionのみで再帰不要・並列計算を実現*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="340" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Transformer アーキテクチャ</text>
   <!-- Encoder side -->
@@ -1202,9 +1318,12 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <line x1="370" y1="175" x2="430" y2="175" stroke="#f9a825" stroke-width="2.5"/>
   <polygon points="430,175 416,168 416,182" fill="#f9a825"/>
 </svg>
+</div>
+
 - Vaswani et al. (2017): 「Attention is All You Need」
 - Encoder-only (BERT) / Decoder-only (GPT) / Enc-Dec (T5) の3系統
 - FFN: 2層MLP、幅は Attention の4倍が標準
+
 ![w:640 center](assets/transformer-arch.svg)
 
 
@@ -1214,7 +1333,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *Multi-Head Attentionで構文/意味/照応を並列捕捉、FlashAttentionで4-10倍高速化*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Multi-Head Attention 構造</text>
   <rect x="40" y="55" width="155" height="55" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -1245,6 +1365,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <polygon points="568,117 568,111 558,117" fill="#e91e63"/>
   <line x1="520" y1="117" x2="568" y2="117" stroke="#e91e63" stroke-width="1.5"/>
 </svg>
+</div>
+
 - h 個の独立した Attention ヘッドを並列実行 → 多様な依存を捕捉
 - 各ヘッド: d_head = d_model / h 次元で独立した Q/K/V 変換
 - 出力: Concat([head₁, ..., headₕ]) · W_O で統合
@@ -1259,7 +1381,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *RoPEが相対位置をLLaMA標準に—ALiBiで学習長超えの外挿も可能*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Multi-Head Self-Attention の詳細</text>
   <!-- Multiple heads -->
@@ -1291,6 +1414,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <text x="700" y="100" text-anchor="middle" fill="#f9a825" font-size="11">h=8〜16</text>
   <text x="700" y="118" text-anchor="middle" fill="#ffffff" font-size="10">並列処理</text>
 </svg>
+</div>
+
 - Transformer は順序情報を持たない → 位置情報を明示的に付与
 - **Sinusoidal** (原論文): PE(pos, 2i) = sin(pos/10000^{2i/d})
 - **学習可能位置埋め込み**: BERT — 最大長のルックアップテーブル
@@ -1305,7 +1430,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *ViTは大規模事前学習でResNetを凌駕、MAEで自己教師あり学習も実現*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">Vision Transformer (ViT) パイプライン</text>
   <rect x="30" y="70" width="100" height="100" rx="4" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -1339,6 +1465,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <polygon points="678,120 678,114 668,120" fill="#888"/>
   <line x1="640" y1="120" x2="678" y2="120" stroke="#888" stroke-width="1.5"/>
 </svg>
+</div>
+
 - **画像パッチ化**: 16×16 ピクセルのパッチを「トークン」として処理
 - **ViT** (Dosovitskiy 2020): 大規模事前学習で ResNet を超える
 - スケーリング依存性: CNN より大量データで初めて性能を発揮
@@ -1349,7 +1477,7 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 5. 自己教師あり学習と事前学習
 
 - ラベルなしデータから汎用表現を獲得する手法群
@@ -1375,7 +1503,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *BERTのMLM15%マスクで双方向文脈を学習、RoBERTaでNSP廃止し大幅改善*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">自己教師あり学習の概念</text>
   <!-- The key idea: create supervision from data itself -->
@@ -1398,6 +1527,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <line x1="550" y1="170" x2="590" y2="150" stroke="#f9a825" stroke-width="2"/>
   <polygon points="590,150 580,162 594,162" fill="#f9a825"/>
 </svg>
+</div>
+
 - **BERT** (Devlin 2018): 双方向エンコーダによる文脈表現の学習
 - **MLM**: 入力の 15% をランダムマスク → マスクトークンを予測
 - → 80% を [MASK]、10% をランダム語、10% を元の語に置換
@@ -1412,7 +1543,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *GPT-1→GPT-3の進化で次トークン予測からIn-context Learningを発見*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">自己回帰型事前学習: 次トークン予測</text>
   <rect x="40" y="60" width="100" height="50" rx="6" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -1435,6 +1567,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <line x1="330" y1="110" x2="330" y2="155" stroke="#888" stroke-width="1" stroke-dasharray="3,3"/>
   <line x1="450" y1="110" x2="450" y2="155" stroke="#f9a825" stroke-width="1.5" stroke-dasharray="3,3"/>
 </svg>
+</div>
+
 - 目標: 次トークン予測 — P(x_t | x_1, ..., x_{t-1}) の最大化
 - **GPT-1 (2018)**: 大規模コーパス事前学習 → 少量データで微調整
 - **GPT-2 (2019)**: 1.5B パラメータ — Zero-shot マルチタスク
@@ -1477,7 +1611,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *InstructGPT=SFT+RLHFで有害出力を削減、指示品質が汎化能力を決定*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">MAE (Masked Autoencoder) の原理</text>
   <!-- Input image grid with masked patches -->
@@ -1517,6 +1652,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <line x1="560" y1="140" x2="600" y2="140" stroke="#f9a825" stroke-width="2"/>
   <polygon points="600,140 587,133 587,147" fill="#f9a825"/>
 </svg>
+</div>
+
 - **FLAN** (Wei 2021): 60+ データセットを自然言語指示に変換
 - **Instruction Following**: 指示文を理解して多様なタスクをゼロショット実行
 - **InstructGPT** (2022): SFT + RLHF で有害出力を大幅削減
@@ -1531,7 +1668,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *CoT→STaR→o1/R1と推論能力が進化、PRMでステップ単位の品質評価を実現*
 
-- <svg viewBox="0 0 800 240" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 240" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="240" fill="#1a1a2e"/>
   <text x="400" y="28" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif">MAE (Masked Autoencoder) 学習</text>
   <rect x="30" y="60" width="120" height="120" rx="4" fill="#16213e" stroke="#888" stroke-width="1.5"/>
@@ -1565,6 +1703,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <polygon points="688,120 688,114 678,120" fill="#f9a825"/>
   <line x1="660" y1="120" x2="688" y2="120" stroke="#f9a825" stroke-width="1.5"/>
 </svg>
+</div>
+
 - **CoT Prompting** (Wei 2022): 中間推論ステップを含む few-shot 例で推論誘導
 - **Zero-Shot CoT**: 「Let's think step by step」のみで推論を引き出す
 - **STaR** (Self-Taught Reasoner): 自己生成した正解推論でブートストラップ
@@ -1575,7 +1715,7 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 6. スケーリング則
 
 - 計算量・データ・モデルサイズの関係
@@ -1587,7 +1727,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *パラメータ・データ・計算が冪乗則で性能を決定する*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Kaplan スケーリング則 (2020) — 損失 vs 規模</text>
   <!-- Log-log axes -->
@@ -1611,9 +1752,12 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <!-- Annotation -->
   <text x="400" y="290" text-anchor="middle" fill="#ffffff" font-size="11">規模を10倍にすると損失は一定率で改善 → べき乗則</text>
 </svg>
+</div>
+
 - Kaplan et al. (2020): 計算量・モデルサイズ・データの3要素の冪乗則
 - L(N) ∝ N^{−0.076}: パラメータ数に対する冪乗的損失減少
 - L(C) ∝ C^{−0.050}: 計算量 FLOPs に対する冪乗的損失減少
+
 ![w:800 center](assets/scaling-laws.svg)
 
 
@@ -1661,7 +1805,7 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 7. ファインチューニングとアライメント
 
 - SFT / RLHF / DPO / PEFT の理論と実装
@@ -1687,7 +1831,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 > *人間の好み学習で安全で役立つ応答を最適化*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">RLHF パイプライン</text>
   <!-- Step 1: SFT -->
@@ -1722,9 +1867,12 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <line x1="500" y1="200" x2="500" y2="140" stroke="#e91e63" stroke-width="1.5" stroke-dasharray="5"/>
   <polygon points="500,140 493,152 507,152" fill="#e91e63"/>
 </svg>
+</div>
+
 - Ziegler et al. (2019) / InstructGPT (2022) が実用化を確立
 - KL 制約: L = R(π) − β DKL(π ‖ π_ref) で発散を防止
 - 人間評価コスト: 数万件の比較ラベルが必要
+
 ![w:860 center](assets/rlhf-pipeline.svg)
 
 
@@ -1768,7 +1916,8 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
 
 # DPO: 直接選好最適化（コード例）
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">DPO vs PPO: アライメント手法比較</text>
   <!-- RLHF/PPO -->
@@ -1791,6 +1940,7 @@ theta -= lr * (m_hat / (sqrt(v_hat) + eps) + weight_decay * theta)
   <text x="400" y="145" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="bold" opacity="0.4">→</text>
   <text x="400" y="230" text-anchor="middle" fill="#f9a825" font-size="11">DPO: Llama 2, Mistral等で広く採用</text>
 </svg>
+</div>
 
 
 ---
@@ -1829,7 +1979,8 @@ def dpo_loss(pi_logp_w, pi_logp_l, ref_logp_w, ref_logp_l, beta=0.1):
 
 > *LoRAが最も広く使われるPEFT—全パラメータの約1%で高品質ファインチューニング*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">PEFT: パラメータ効率的ファインチューニング</text>
   <!-- Full fine-tune vs PEFT comparison -->
@@ -1854,6 +2005,8 @@ def dpo_loss(pi_logp_w, pi_logp_l, ref_logp_w, ref_logp_l, beta=0.1):
   <!-- Bottom -->
   <text x="400" y="260" text-anchor="middle" fill="#ffffff" font-size="11">ΔW = BA (rank r分解行列)  r ≪ d</text>
 </svg>
+</div>
+
 - 動機: 170B モデルの完全 FT には数百 GB の VRAM が必要
 - **Adapter** (Houlsby 2019): 各層に小型 FFN を挿入 → 全パラメータの 1%
 - **Prefix Tuning**: Key/Value に連続的な「soft prompt」を前置
@@ -1890,7 +2043,7 @@ class LoRALayer(nn.Module):
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 8. 学習データとデータエンジニアリング
 
 - データ品質・キュレーション・合成データの実際
@@ -1930,7 +2083,8 @@ class LoRALayer(nn.Module):
 
 > *評価データの汚染が実能力を偽装—LiveBenchが定期更新で汚染を防止*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">データキュレーションパイプライン</text>
   <!-- Pipeline steps -->
@@ -1965,6 +2119,8 @@ class LoRALayer(nn.Module):
   <!-- Quality note -->
   <text x="400" y="195" text-anchor="middle" fill="#f9a825" font-size="11">品質 &gt; 量: 高品質1Tトークン &gt; 低品質10Tトークン</text>
 </svg>
+</div>
+
 - **データ汚染**: 評価ベンチマークのデータが訓練データに混入する問題
 - 汚染モデルはベンチマークを「暗記」→ 実能力より高いスコアを報告
 - **汚染検出**: n-gram 重複率 / Perplexity スパイク / カナリアデータ
@@ -1989,7 +2145,7 @@ class LoRALayer(nn.Module):
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 9. 分散学習・並列化
 
 - 大規模モデルを効率よく訓練する並列化戦略
@@ -2001,7 +2157,8 @@ class LoRALayer(nn.Module):
 
 > *データ・モデル・パイプライン並列の組み合わせが必須*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">分散学習の並列化戦略</text>
   <!-- Data parallel -->
@@ -2031,9 +2188,12 @@ class LoRALayer(nn.Module):
   <line x1="660" y1="140" x2="520" y2="190" stroke="#e91e63" stroke-width="1.5"/>
   <polygon points="520,190 524,176 534,186" fill="#e91e63"/>
 </svg>
+</div>
+
 - 各手法の適用範囲は問題規模とハードウェアに依存する
 - データ並列: モデルがGPU 1台に収まる場合の標準手法
 - モデル並列: 単一モデルが 1GPU を超える場合に必要
+
 ![w:880 center](assets/distributed-training.svg)
 
 
@@ -2095,7 +2255,7 @@ class LoRALayer(nn.Module):
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 10. 最新研究トレンド
 
 - 2024〜2026年の主要ブレークスルー
@@ -2107,7 +2267,8 @@ class LoRALayer(nn.Module):
 
 > *トークンごとに少数専門家を選択し推論コストを削減*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="300" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">Mixture of Experts (MoE)</text>
   <!-- Input -->
@@ -2144,9 +2305,12 @@ class LoRALayer(nn.Module):
   <line x1="520" y1="120" x2="600" y2="143" stroke="#f9a825" stroke-width="1.5"/>
   <line x1="520" y1="175" x2="600" y2="156" stroke="#e91e63" stroke-width="1.5"/>
 </svg>
+</div>
+
 - FFN 層を N 個の Expert に置き換え — 上位 K 個のみ実行
 - **Mixtral 8x7B** (2023): 8 Expert 中 2 使用 — 46.7B params / 12.9B active
 - Expert のロードバランス: routing collapse を防ぐ auxiliary loss
+
 ![w:760 center](assets/moe-architecture.svg)
 
 
@@ -2184,7 +2348,8 @@ class LoRALayer(nn.Module):
 
 > *DDPMのノイズ予測→DDIMで10倍高速化→Latent DiffusionでStable Diffusionへ*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">拡散モデルの学習原理</text>
   <!-- Forward process: add noise -->
@@ -2219,6 +2384,8 @@ class LoRALayer(nn.Module):
   <text x="400" y="192" text-anchor="middle" fill="#f9a825" font-size="11" font-weight="bold">訓練目標: ‖ε - εθ(xₜ, t)‖²</text>
   <text x="400" y="210" text-anchor="middle" fill="#ffffff" font-size="10">付加したノイズ ε を予測するようにモデルを訓練</text>
 </svg>
+</div>
+
 - **DDPM** (Ho 2020): q(x_t|x_{t-1}) = N(√αx_{t-1}, (1-α)I) でノイズ付加
 - **逆拡散**: εθ(x_t, t) でノイズを予測 → 段階的にデノイズ
 - **単純損失**: L = E[‖ε − εθ(√ᾱx₀+√(1-ᾱ)ε, t)‖²]
@@ -2271,7 +2438,7 @@ class LoRALayer(nn.Module):
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 11. 解釈可能性と評価
 
 - モデルの内部動作の理解と性能測定の方法論
@@ -2283,7 +2450,8 @@ class LoRALayer(nn.Module):
 
 > *MMLU〜FrontierMathの6ベンチマークで能力評価—現行モデルはFrontierMathで1%未満*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">主要AIベンチマーク</text>
   <!-- Benchmark grid -->
@@ -2307,6 +2475,8 @@ class LoRALayer(nn.Module):
   <text x="660" y="173" text-anchor="middle" fill="#ffffff" font-size="10">マルチターン対話評価</text>
   <text x="400" y="215" text-anchor="middle" fill="#f9a825" font-size="10" opacity="0.8">注: ベンチマーク汚染・饱和問題が近年深刻化</text>
 </svg>
+</div>
+
 - **MMLU** (2021): 57 分野 14,000 問 — 幅広い知識評価
 - **HumanEval / MBPP**: コード生成 — pass@k で機能的正確さを測定
 - **MATH** (Hendrycks 2021): 数学問題集 — 解法ステップが必要
@@ -2335,7 +2505,8 @@ class LoRALayer(nn.Module):
 
 > *Probing+Logit Lens+RepEで内部表現を可視化—概念は残差ストリームの線形方向に存在*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="280" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">内部表現の可視化 (t-SNE / Probing)</text>
   <!-- t-SNE scatter plot simulation -->
@@ -2366,6 +2537,8 @@ class LoRALayer(nn.Module):
   <!-- Axes labels -->
   <text x="400" y="270" text-anchor="middle" fill="#ffffff" font-size="10">t-SNE 次元削減: 高次元埋め込み空間に概念クラスターが形成される</text>
 </svg>
+</div>
+
 - **Probing**: 線形分類器でニューロン表現に格納された情報を検査
 - **Activation Atlas** (Carter 2019): UMAP + Concept Activation Vectors
 - **Logit Lens**: 中間層の残差ストリームを語彙空間に投影して可視化
@@ -2390,7 +2563,7 @@ class LoRALayer(nn.Module):
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 12. まとめと展望
 
 - AIの学習の変遷と未解決問題
@@ -2402,7 +2575,8 @@ class LoRALayer(nn.Module):
 
 > *特徴量エンジニアリング→深層学習→Transformer→RLHF→TTCへの学習パラダイムの変遷*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;">
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
   <rect width="800" height="260" fill="#1a1a2e"/>
   <text x="400" y="26" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">AI学習パラダイムの変遷</text>
   <!-- Timeline -->
@@ -2429,6 +2603,8 @@ class LoRALayer(nn.Module):
   <text x="660" y="150" text-anchor="middle" fill="#f9a825" font-size="9">RLHF / DPO</text>
   <text x="660" y="163" text-anchor="middle" fill="#f9a825" font-size="8">アライメント時代</text>
 </svg>
+</div>
+
 - **1990-2010**: 特徴量エンジニアリング + 浅い学習 (SVM, Boosting)
 - **2012**: AlexNet — 深層学習の幕開け、特徴量の自動学習
 - **2017**: Transformer — Self-Attention と自己回帰生成の確立

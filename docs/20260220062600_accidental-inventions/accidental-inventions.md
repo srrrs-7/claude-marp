@@ -7,41 +7,76 @@ paginate: true
 header: "偶然の発明"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 偶然の発明
 セレンディピティが変えた世界
 
@@ -87,21 +122,22 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # アジェンダ
 
 > *6テーマで偶然の発見から設計まで一気通貫で理解する*
 
-- 1. セレンディピティとは何か
-- 2. 医療を変えた偶然
-- 3. テクノロジーを変えた偶然
-- 4. 日常を変えた偶然
-- 5. セレンディピティの条件
-- 6. 偶然を「設計」できるか
+1. セレンディピティとは何か
+2. 医療を変えた偶然
+3. テクノロジーを変えた偶然
+4. 日常を変えた偶然
+5. セレンディピティの条件
+6. 偶然を「設計」できるか
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # セレンディピティとは何か
 
 ![w:900 center](assets/invention-summary.svg)
@@ -109,11 +145,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-64 -->
 # セレンディピティの定義
 
 > *偶然+専門知識+追求する意志の3条件が揃って初めて発見になる*
 
 ![w:900 center](assets/discovery-timeline.svg)
+
 - **1754年** ― ホレス・ウォルポールが造語
 - ペルシャの童話「セレンディップの三人の王子」から
 - 「探していないものを偶然見つけ、その価値に気づく能力」
@@ -125,17 +163,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 医療を変えた偶然
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # ペニシリン（1928年）
 
 > *細菌学者だから汚れた培養皿を発見と見た—年間700万人の命を救う*
 
 ![w:900 center](assets/invention-mechanism.svg)
+
 - **アレクサンダー・フレミング** ― ブドウ球菌の培養実験中
 - 休暇から戻ると、培養皿にカビが生えていた
 - カビの周囲だけ細菌が死滅していることに気づく
@@ -146,11 +186,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # X線（1895年）
 
 > *特許を取らなかった決断が初のノーベル物理学賞と医療革命を生んだ*
 
 ![w:900 center](assets/xray-discovery.svg)
+
 - **ヴィルヘルム・レントゲン** ― 陰極線の実験中
 - 黒い紙で包んだ装置から、離れた蛍光スクリーンが光った
 - 「何か未知の放射線が出ている」→ X（未知数）線と命名
@@ -161,6 +203,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # バイアグラ（1989年）
 
 > *被験者の返却拒否という副作用が年間20億ドル製品への転換点*
@@ -175,17 +218,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # テクノロジーを変えた偶然
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 電子レンジ（1945年）
 
 > *溶けたチョコレートへの好奇心が世界90%家庭に普及した家電を生んだ*
 
 ![w:900 center](assets/microwave-teflon.svg)
+
 - **パーシー・スペンサー** ― レイセオン社のレーダーエンジニア
 - マグネトロン（レーダー用真空管）の前に立っていた時
 - ポケットのチョコレートバーが溶けていることに気づく
@@ -196,11 +241,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-70 -->
 # ポストイット（1968-1980年）
 
 > *5年間用途のなかった失敗作が年間10億ドルのメモになった*
 
 ![w:900 center](assets/post-it-story.svg)
+
 - **スペンサー・シルバー（3M）** ― 超強力接着剤の開発中に失敗
 - できたのは「すぐ剥がれる弱い接着剤」→ 5年間、用途が見つからない
 - 1974年：同僚**アート・フライ**が聖歌隊の楽譜にしおりとして使う
@@ -211,12 +258,13 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 日常を変えた偶然
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # テフロン（1938年）
 
 > *最低摩擦係数の偶然の白い粉が宇宙服から人工関節まで使われる*
@@ -231,11 +279,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # コカ・コーラ（1886年）
 
 > *炭酸水の調合ミスが1日19億杯の世界最大ブランドを生んだ*
 
 ![w:900 center](assets/coca-cola.svg)
+
 - **ジョン・ペンバートン** ― 頭痛薬のシロップを開発
 - 薬局で水に溶かして販売する予定だった
 - 店員が**間違えて炭酸水で割った** → 「これは美味しい！」
@@ -246,7 +296,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # セレンディピティの条件
 
 
@@ -259,11 +309,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-64 -->
 # なぜ「偶然」は一部の人にしか訪れないのか
 
 > *専門知識+パターン認識+行動バイアスの3特性がセレンディピティを決める*
 
 ![w:900 center](assets/three-conditions.svg)
+
 - **選択的注意：** 専門知識がないと「異常」に気づけない
 - フレミングはカビを見た。他の研究者は汚れた培養皿を見た。
 - **パターン認識：** 異分野の知識がつながりを生む
@@ -275,7 +327,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 偶然を「設計」できるか
 
 ![w:900 center](assets/design-serendipity.svg)
@@ -283,11 +335,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-64 -->
 # セレンディピティを促進する環境設計
 
 > *学際チーム+20%ルール+失敗許容で偶然が起きやすい環境を設計できる*
 
 ![w:900 center](assets/serendipity-environment.svg)
+
 - **1. 学際的チーム** ― 異分野の人が隣り合うオフィス設計
 - ベル研究所：廊下が長く、全員がすれ違う設計
 - **2. 20%ルール** ― Googleの「本業以外に使える時間」
@@ -299,7 +353,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ
 
 - 世界を変えた発明の多くは**計画されたものではなかった**
@@ -311,14 +365,15 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 参考文献
 
 > *PNAS・Nature論文でセレンディピティの科学的根拠を示す*
 
-- - **書籍:**
-- - [Happy Accidents - Morton Meyers](https://www.amazon.com/dp/1611450276)
-- - [Where Good Ideas Come From - Steven Johnson](https://www.amazon.com/dp/1594485380)
-- - **学術資料:**
-- - [The Role of Serendipity in Discovery (PNAS)](https://www.pnas.org/)
-- - [Nobel Prize Discoveries and Serendipity (Nature)](https://www.nature.com/)
+- **書籍:**
+- [Happy Accidents - Morton Meyers](https://www.amazon.com/dp/1611450276)
+- [Where Good Ideas Come From - Steven Johnson](https://www.amazon.com/dp/1594485380)
+- **学術資料:**
+- [The Role of Serendipity in Discovery (PNAS)](https://www.pnas.org/)
+- [Nobel Prize Discoveries and Serendipity (Nature)](https://www.nature.com/)
 

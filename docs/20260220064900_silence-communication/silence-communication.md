@@ -7,41 +7,76 @@ paginate: true
 header: "非言語コミュニケーション"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,14 +111,17 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 沈黙のコミュニケーション
 — 言葉にならないメッセージの力
 
 - コミュニケーションの93%は非言語と言われる（本当か？）
 - 沈黙が持つ文化的意味の違い
 - 高文脈文化と低文脈文化の衝突
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e" rx="12"/><text x="400" y="40" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">コミュニケーションの3チャンネル</text><rect x="60" y="70" width="200" height="180" fill="#e91e63" rx="10" opacity="0.85"/><text x="160" y="145" font-family="sans-serif" font-size="36" fill="white" text-anchor="middle" font-weight="bold">55%</text><text x="160" y="175" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle">ボディランゲージ</text><text x="160" y="195" font-family="sans-serif" font-size="12" fill="#ffd" text-anchor="middle">(Mehrabian, 1967)</text><rect x="295" y="100" width="200" height="150" fill="#f9a825" rx="10" opacity="0.85"/><text x="395" y="165" font-family="sans-serif" font-size="32" fill="#1a1a2e" text-anchor="middle" font-weight="bold">38%</text><text x="395" y="192" font-family="sans-serif" font-size="14" fill="#1a1a2e" text-anchor="middle">声のトーン</text><rect x="530" y="200" width="200" height="50" fill="#4fc3f7" rx="10" opacity="0.85"/><text x="630" y="232" font-family="sans-serif" font-size="22" fill="#1a1a2e" text-anchor="middle" font-weight="bold">7% 言語</text><text x="400" y="295" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">※ この数字は「感情的文脈限定」— 一般化は誤用</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="320" fill="#1a1a2e" rx="12"/><text x="400" y="40" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">コミュニケーションの3チャンネル</text><rect x="60" y="70" width="200" height="180" fill="#e91e63" rx="10" opacity="0.85"/><text x="160" y="145" font-family="sans-serif" font-size="36" fill="white" text-anchor="middle" font-weight="bold">55%</text><text x="160" y="175" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle">ボディランゲージ</text><text x="160" y="195" font-family="sans-serif" font-size="12" fill="#ffd" text-anchor="middle">(Mehrabian, 1967)</text><rect x="295" y="100" width="200" height="150" fill="#f9a825" rx="10" opacity="0.85"/><text x="395" y="165" font-family="sans-serif" font-size="32" fill="#1a1a2e" text-anchor="middle" font-weight="bold">38%</text><text x="395" y="192" font-family="sans-serif" font-size="14" fill="#1a1a2e" text-anchor="middle">声のトーン</text><rect x="530" y="200" width="200" height="50" fill="#4fc3f7" rx="10" opacity="0.85"/><text x="630" y="232" font-family="sans-serif" font-size="22" fill="#1a1a2e" text-anchor="middle" font-weight="bold">7% 言語</text><text x="400" y="295" font-family="sans-serif" font-size="13" fill="#aaa" text-anchor="middle">※ この数字は「感情的文脈限定」— 一般化は誤用</text></svg>
+</div>
 
 
 ---
@@ -92,23 +130,26 @@ style: |
 
 > *沈黙は文化・交渉・デジタルで異なる強力なシグナル*
 
-- 1. 「93%は非言語」の真実
-- 2. 沈黙の文化的意味
-- 3. 高文脈・低文脈文化
-- 4. ビジネス交渉における沈黙
-- 5. デジタル時代の非言語コミュニケーション
+1. 「93%は非言語」の真実
+2. 沈黙の文化的意味
+3. 高文脈・低文脈文化
+4. ビジネス交渉における沈黙
+5. デジタル時代の非言語コミュニケーション
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 「93%は非言語」の真実
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="360" fill="#1a1a2e" rx="12"/><text x="400" y="38" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">Mehrabian実験 — 何が本当に研究されたか</text><rect x="40" y="60" width="340" height="260" fill="#0d1b4b" rx="10"/><text x="210" y="90" font-family="sans-serif" font-size="15" fill="#e91e63" text-anchor="middle" font-weight="bold">実験の実際の条件</text><text x="60" y="120" font-family="sans-serif" font-size="13" fill="#ccc">・感情語（好意/嫌悪）を</text><text x="60" y="142" font-family="sans-serif" font-size="13" fill="#ccc">　単語1語のみで伝える</text><text x="60" y="164" font-family="sans-serif" font-size="13" fill="#ccc">・矛盾したトーンと言葉の</text><text x="60" y="186" font-family="sans-serif" font-size="13" fill="#ccc">　組み合わせ実験</text><text x="60" y="208" font-family="sans-serif" font-size="13" fill="#ccc">・被験者は女性のみ</text><rect x="60" y="230" width="260" height="70" fill="#e91e6333" rx="8"/><text x="190" y="258" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle">Mehrabian自身の警告:</text><text x="190" y="278" font-family="sans-serif" font-size="12" fill="#fff" text-anchor="middle">「この式を一般的な</text><text x="190" y="295" font-family="sans-serif" font-size="12" fill="#fff" text-anchor="middle">コミュニケーションに</text><text x="190" y="312" font-family="sans-serif" font-size="12" fill="#fff" text-anchor="middle">使うな」</text><rect x="420" y="60" width="340" height="260" fill="#0d1b4b" rx="10"/><text x="590" y="90" font-family="sans-serif" font-size="15" fill="#4fc3f7" text-anchor="middle" font-weight="bold">現実のコミュニケーション</text><text x="440" y="120" font-family="sans-serif" font-size="13" fill="#ccc">・説明・指示・議論では</text><text x="440" y="142" font-family="sans-serif" font-size="13" fill="#ccc">　言語が最高情報密度</text><text x="440" y="164" font-family="sans-serif" font-size="13" fill="#ccc">・非言語は感情・態度・</text><text x="440" y="186" font-family="sans-serif" font-size="13" fill="#ccc">　関係性を「補足」する</text><text x="440" y="208" font-family="sans-serif" font-size="13" fill="#ccc">・文脈によって比率は変わる</text><rect x="440" y="230" width="280" height="70" fill="#4fc3f733" rx="8"/><text x="580" y="258" font-family="sans-serif" font-size="13" fill="#4fc3f7" text-anchor="middle">正しい解釈:</text><text x="580" y="278" font-family="sans-serif" font-size="12" fill="#fff" text-anchor="middle">感情的メッセージに限り</text><text x="580" y="295" font-family="sans-serif" font-size="12" fill="#fff" text-anchor="middle">非言語の比重が大きい</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="360" fill="#1a1a2e" rx="12"/><text x="400" y="38" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">Mehrabian実験 — 何が本当に研究されたか</text><rect x="40" y="60" width="340" height="260" fill="#0d1b4b" rx="10"/><text x="210" y="90" font-family="sans-serif" font-size="15" fill="#e91e63" text-anchor="middle" font-weight="bold">実験の実際の条件</text><text x="60" y="120" font-family="sans-serif" font-size="13" fill="#ccc">・感情語（好意/嫌悪）を</text><text x="60" y="142" font-family="sans-serif" font-size="13" fill="#ccc">　単語1語のみで伝える</text><text x="60" y="164" font-family="sans-serif" font-size="13" fill="#ccc">・矛盾したトーンと言葉の</text><text x="60" y="186" font-family="sans-serif" font-size="13" fill="#ccc">　組み合わせ実験</text><text x="60" y="208" font-family="sans-serif" font-size="13" fill="#ccc">・被験者は女性のみ</text><rect x="60" y="230" width="260" height="70" fill="#e91e6333" rx="8"/><text x="190" y="258" font-family="sans-serif" font-size="13" fill="#f9a825" text-anchor="middle">Mehrabian自身の警告:</text><text x="190" y="278" font-family="sans-serif" font-size="12" fill="#fff" text-anchor="middle">「この式を一般的な</text><text x="190" y="295" font-family="sans-serif" font-size="12" fill="#fff" text-anchor="middle">コミュニケーションに</text><text x="190" y="312" font-family="sans-serif" font-size="12" fill="#fff" text-anchor="middle">使うな」</text><rect x="420" y="60" width="340" height="260" fill="#0d1b4b" rx="10"/><text x="590" y="90" font-family="sans-serif" font-size="15" fill="#4fc3f7" text-anchor="middle" font-weight="bold">現実のコミュニケーション</text><text x="440" y="120" font-family="sans-serif" font-size="13" fill="#ccc">・説明・指示・議論では</text><text x="440" y="142" font-family="sans-serif" font-size="13" fill="#ccc">　言語が最高情報密度</text><text x="440" y="164" font-family="sans-serif" font-size="13" fill="#ccc">・非言語は感情・態度・</text><text x="440" y="186" font-family="sans-serif" font-size="13" fill="#ccc">　関係性を「補足」する</text><text x="440" y="208" font-family="sans-serif" font-size="13" fill="#ccc">・文脈によって比率は変わる</text><rect x="440" y="230" width="280" height="70" fill="#4fc3f733" rx="8"/><text x="580" y="258" font-family="sans-serif" font-size="13" fill="#4fc3f7" text-anchor="middle">正しい解釈:</text><text x="580" y="278" font-family="sans-serif" font-size="12" fill="#fff" text-anchor="middle">感情的メッセージに限り</text><text x="580" y="295" font-family="sans-serif" font-size="12" fill="#fff" text-anchor="middle">非言語の比重が大きい</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # メラビアンの法則という誤解（1/2）
 
 > *「7%は言葉」は感情語実験の誤用—言語は高密度媒体*
@@ -124,6 +165,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-82 -->
 # メラビアンの法則という誤解（2/2）
 
 > *非言語は感情・態度・関係性の補足に限られる*
@@ -143,7 +185,10 @@ style: |
 
 > *日本の「間」は尊重—米国では問題発生のシグナル*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="360" fill="#1a1a2e" rx="12"/><text x="400" y="38" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">文化別「沈黙への耐性」比較</text><rect x="40" y="55" width="340" height="270" fill="#0d2a1a" rx="10"/><text x="210" y="82" font-family="sans-serif" font-size="16" fill="#66bb6a" text-anchor="middle" font-weight="bold">沈黙が「快適」な文化</text><text x="60" y="112" font-family="sans-serif" font-size="22" fill="#f9a825">🇯🇵</text><text x="95" y="112" font-family="sans-serif" font-size="14" fill="#ccc">日本 — 「間（ま）」の美学</text><text x="60" y="140" font-family="sans-serif" font-size="22" fill="#f9a825">🇫🇮</text><text x="95" y="140" font-family="sans-serif" font-size="14" fill="#ccc">フィンランド — 沈黙は金</text><text x="60" y="168" font-family="sans-serif" font-size="22" fill="#f9a825">🇰🇷</text><text x="95" y="168" font-family="sans-serif" font-size="14" fill="#ccc">韓国 — 以心伝心</text><text x="60" y="196" font-family="sans-serif" font-size="22" fill="#f9a825">🇨🇳</text><text x="95" y="196" font-family="sans-serif" font-size="14" fill="#ccc">中国 — 言外の意</text><rect x="60" y="215" width="280" height="88" fill="#66bb6a22" rx="8"/><text x="80" y="238" font-family="sans-serif" font-size="13" fill="#aed581">沈黙の解釈:</text><text x="80" y="258" font-family="sans-serif" font-size="12" fill="#ccc">・答えを考えている証拠</text><text x="80" y="276" font-family="sans-serif" font-size="12" fill="#ccc">・相手への敬意</text><text x="80" y="294" font-family="sans-serif" font-size="12" fill="#ccc">・深い共感・同意</text><rect x="420" y="55" width="340" height="270" fill="#2a0d10" rx="10"/><text x="590" y="82" font-family="sans-serif" font-size="16" fill="#ef5350" text-anchor="middle" font-weight="bold">沈黙が「不快」な文化</text><text x="440" y="112" font-family="sans-serif" font-size="22" fill="#f9a825">🇺🇸</text><text x="475" y="112" font-family="sans-serif" font-size="14" fill="#ccc">米国 — 沈黙 = 問題発生</text><text x="440" y="140" font-family="sans-serif" font-size="22" fill="#f9a825">🇮🇹</text><text x="475" y="140" font-family="sans-serif" font-size="14" fill="#ccc">イタリア — 会話は重なる</text><text x="440" y="168" font-family="sans-serif" font-size="22" fill="#f9a825">🇧🇷</text><text x="475" y="168" font-family="sans-serif" font-size="14" fill="#ccc">ブラジル — 空白は埋めるもの</text><text x="440" y="196" font-family="sans-serif" font-size="22" fill="#f9a825">🇫🇷</text><text x="475" y="196" font-family="sans-serif" font-size="14" fill="#ccc">フランス — 議論が礼儀</text><rect x="440" y="215" width="280" height="88" fill="#ef535022" rx="8"/><text x="460" y="238" font-family="sans-serif" font-size="13" fill="#ef9a9a">沈黙の解釈:</text><text x="460" y="258" font-family="sans-serif" font-size="12" fill="#ccc">・何かまずいことを言った</text><text x="460" y="276" font-family="sans-serif" font-size="12" fill="#ccc">・不同意・敵意のシグナル</text><text x="460" y="294" font-family="sans-serif" font-size="12" fill="#ccc">・会話の失敗</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="360" fill="#1a1a2e" rx="12"/><text x="400" y="38" font-family="sans-serif" font-size="20" fill="#f9a825" text-anchor="middle" font-weight="bold">文化別「沈黙への耐性」比較</text><rect x="40" y="55" width="340" height="270" fill="#0d2a1a" rx="10"/><text x="210" y="82" font-family="sans-serif" font-size="16" fill="#66bb6a" text-anchor="middle" font-weight="bold">沈黙が「快適」な文化</text><text x="60" y="112" font-family="sans-serif" font-size="22" fill="#f9a825">🇯🇵</text><text x="95" y="112" font-family="sans-serif" font-size="14" fill="#ccc">日本 — 「間（ま）」の美学</text><text x="60" y="140" font-family="sans-serif" font-size="22" fill="#f9a825">🇫🇮</text><text x="95" y="140" font-family="sans-serif" font-size="14" fill="#ccc">フィンランド — 沈黙は金</text><text x="60" y="168" font-family="sans-serif" font-size="22" fill="#f9a825">🇰🇷</text><text x="95" y="168" font-family="sans-serif" font-size="14" fill="#ccc">韓国 — 以心伝心</text><text x="60" y="196" font-family="sans-serif" font-size="22" fill="#f9a825">🇨🇳</text><text x="95" y="196" font-family="sans-serif" font-size="14" fill="#ccc">中国 — 言外の意</text><rect x="60" y="215" width="280" height="88" fill="#66bb6a22" rx="8"/><text x="80" y="238" font-family="sans-serif" font-size="13" fill="#aed581">沈黙の解釈:</text><text x="80" y="258" font-family="sans-serif" font-size="12" fill="#ccc">・答えを考えている証拠</text><text x="80" y="276" font-family="sans-serif" font-size="12" fill="#ccc">・相手への敬意</text><text x="80" y="294" font-family="sans-serif" font-size="12" fill="#ccc">・深い共感・同意</text><rect x="420" y="55" width="340" height="270" fill="#2a0d10" rx="10"/><text x="590" y="82" font-family="sans-serif" font-size="16" fill="#ef5350" text-anchor="middle" font-weight="bold">沈黙が「不快」な文化</text><text x="440" y="112" font-family="sans-serif" font-size="22" fill="#f9a825">🇺🇸</text><text x="475" y="112" font-family="sans-serif" font-size="14" fill="#ccc">米国 — 沈黙 = 問題発生</text><text x="440" y="140" font-family="sans-serif" font-size="22" fill="#f9a825">🇮🇹</text><text x="475" y="140" font-family="sans-serif" font-size="14" fill="#ccc">イタリア — 会話は重なる</text><text x="440" y="168" font-family="sans-serif" font-size="22" fill="#f9a825">🇧🇷</text><text x="475" y="168" font-family="sans-serif" font-size="14" fill="#ccc">ブラジル — 空白は埋めるもの</text><text x="440" y="196" font-family="sans-serif" font-size="22" fill="#f9a825">🇫🇷</text><text x="475" y="196" font-family="sans-serif" font-size="14" fill="#ccc">フランス — 議論が礼儀</text><rect x="440" y="215" width="280" height="88" fill="#ef535022" rx="8"/><text x="460" y="238" font-family="sans-serif" font-size="13" fill="#ef9a9a">沈黙の解釈:</text><text x="460" y="258" font-family="sans-serif" font-size="12" fill="#ccc">・何かまずいことを言った</text><text x="460" y="276" font-family="sans-serif" font-size="12" fill="#ccc">・不同意・敵意のシグナル</text><text x="460" y="294" font-family="sans-serif" font-size="12" fill="#ccc">・会話の失敗</text></svg>
+</div>
+
 - **日本語の「間（ま）」：**
 - 沈黙は「考え中」「共感」「尊重」を意味する
 - すぐに答えることが無礼になることもある
@@ -177,11 +222,14 @@ style: |
 
 # ビジネス交渉と沈黙の戦略
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="360" fill="#1a1a2e" rx="12"/><text x="400" y="36" font-family="sans-serif" font-size="19" fill="#f9a825" text-anchor="middle" font-weight="bold">交渉シナリオ: 沈黙への反応の違い</text><rect x="30" y="56" width="220" height="270" fill="#0d1b4b" rx="10"/><text x="140" y="82" font-family="sans-serif" font-size="14" fill="#4fc3f7" text-anchor="middle" font-weight="bold">日本側 交渉者</text><text x="140" y="108" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">提案を出す</text><rect x="70" y="118" width="140" height="28" fill="#1565c0" rx="6"/><text x="140" y="137" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">「ご検討ください」</text><text x="140" y="165" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">沈黙 30秒</text><rect x="55" y="175" width="170" height="28" fill="#1565c0" rx="6"/><text x="140" y="194" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">（静かに待つ）</text><text x="140" y="222" font-family="sans-serif" font-size="12" fill="#66bb6a" text-anchor="middle">内心: 普通の状態</text><text x="140" y="245" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">相手が考えている</text><text x="140" y="263" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">と理解している</text><rect x="55" y="280" width="170" height="30" fill="#1b5e2066" rx="6"/><text x="140" y="300" font-family="sans-serif" font-size="12" fill="#a5d6a7" text-anchor="middle">有利な立場を維持</text><rect x="50" y="56" width="2" height="270" fill="transparent"/><rect x="290" y="56" width="220" height="270" fill="#1a0a00" rx="10"/><text x="400" y="82" font-family="sans-serif" font-size="14" fill="#ef5350" text-anchor="middle" font-weight="bold">米国側 交渉者</text><text x="400" y="108" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">提案を受け取る</text><rect x="320" y="118" width="160" height="28" fill="#b71c1c" rx="6"/><text x="400" y="137" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">（沈黙が続く）</text><text x="400" y="165" font-family="sans-serif" font-size="12" fill="#ffcc02" text-anchor="middle">5秒後: 不安感</text><text x="400" y="188" font-family="sans-serif" font-size="12" fill="#ff8a65" text-anchor="middle">15秒後: 焦り</text><text x="400" y="211" font-family="sans-serif" font-size="12" fill="#ef5350" text-anchor="middle">25秒後: パニック</text><rect x="315" y="225" width="170" height="42" fill="#b71c1c66" rx="6"/><text x="400" y="247" font-family="sans-serif" font-size="12" fill="#ffcdd2" text-anchor="middle">「では、価格を少し</text><text x="400" y="263" font-family="sans-serif" font-size="12" fill="#ffcdd2" text-anchor="middle">下げましょう…」</text><rect x="320" y="280" width="160" height="30" fill="#b71c1c66" rx="6"/><text x="400" y="300" font-family="sans-serif" font-size="12" fill="#ef9a9a" text-anchor="middle">不利な譲歩</text><rect x="550" y="56" width="220" height="270" fill="#1a1a00" rx="10"/><text x="660" y="82" font-family="sans-serif" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold">教訓</text><text x="570" y="118" font-family="sans-serif" font-size="12" fill="#fff176">沈黙の使い方:</text><text x="570" y="142" font-family="sans-serif" font-size="12" fill="#ccc">・提案後は黙って待つ</text><text x="570" y="162" font-family="sans-serif" font-size="12" fill="#ccc">・沈黙を埋めない</text><text x="570" y="182" font-family="sans-serif" font-size="12" fill="#ccc">・先に話した方が負け</text><text x="570" y="212" font-family="sans-serif" font-size="12" fill="#fff176">訓練ポイント:</text><text x="570" y="236" font-family="sans-serif" font-size="12" fill="#ccc">・30秒間の沈黙練習</text><text x="570" y="256" font-family="sans-serif" font-size="12" fill="#ccc">・「空白恐怖」の克服</text><text x="570" y="276" font-family="sans-serif" font-size="12" fill="#ccc">・文化的文脈の理解</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="360" fill="#1a1a2e" rx="12"/><text x="400" y="36" font-family="sans-serif" font-size="19" fill="#f9a825" text-anchor="middle" font-weight="bold">交渉シナリオ: 沈黙への反応の違い</text><rect x="30" y="56" width="220" height="270" fill="#0d1b4b" rx="10"/><text x="140" y="82" font-family="sans-serif" font-size="14" fill="#4fc3f7" text-anchor="middle" font-weight="bold">日本側 交渉者</text><text x="140" y="108" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">提案を出す</text><rect x="70" y="118" width="140" height="28" fill="#1565c0" rx="6"/><text x="140" y="137" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">「ご検討ください」</text><text x="140" y="165" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">沈黙 30秒</text><rect x="55" y="175" width="170" height="28" fill="#1565c0" rx="6"/><text x="140" y="194" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">（静かに待つ）</text><text x="140" y="222" font-family="sans-serif" font-size="12" fill="#66bb6a" text-anchor="middle">内心: 普通の状態</text><text x="140" y="245" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">相手が考えている</text><text x="140" y="263" font-family="sans-serif" font-size="12" fill="#aaa" text-anchor="middle">と理解している</text><rect x="55" y="280" width="170" height="30" fill="#1b5e2066" rx="6"/><text x="140" y="300" font-family="sans-serif" font-size="12" fill="#a5d6a7" text-anchor="middle">有利な立場を維持</text><rect x="50" y="56" width="2" height="270" fill="transparent"/><rect x="290" y="56" width="220" height="270" fill="#1a0a00" rx="10"/><text x="400" y="82" font-family="sans-serif" font-size="14" fill="#ef5350" text-anchor="middle" font-weight="bold">米国側 交渉者</text><text x="400" y="108" font-family="sans-serif" font-size="12" fill="#ccc" text-anchor="middle">提案を受け取る</text><rect x="320" y="118" width="160" height="28" fill="#b71c1c" rx="6"/><text x="400" y="137" font-family="sans-serif" font-size="12" fill="white" text-anchor="middle">（沈黙が続く）</text><text x="400" y="165" font-family="sans-serif" font-size="12" fill="#ffcc02" text-anchor="middle">5秒後: 不安感</text><text x="400" y="188" font-family="sans-serif" font-size="12" fill="#ff8a65" text-anchor="middle">15秒後: 焦り</text><text x="400" y="211" font-family="sans-serif" font-size="12" fill="#ef5350" text-anchor="middle">25秒後: パニック</text><rect x="315" y="225" width="170" height="42" fill="#b71c1c66" rx="6"/><text x="400" y="247" font-family="sans-serif" font-size="12" fill="#ffcdd2" text-anchor="middle">「では、価格を少し</text><text x="400" y="263" font-family="sans-serif" font-size="12" fill="#ffcdd2" text-anchor="middle">下げましょう…」</text><rect x="320" y="280" width="160" height="30" fill="#b71c1c66" rx="6"/><text x="400" y="300" font-family="sans-serif" font-size="12" fill="#ef9a9a" text-anchor="middle">不利な譲歩</text><rect x="550" y="56" width="220" height="270" fill="#1a1a00" rx="10"/><text x="660" y="82" font-family="sans-serif" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold">教訓</text><text x="570" y="118" font-family="sans-serif" font-size="12" fill="#fff176">沈黙の使い方:</text><text x="570" y="142" font-family="sans-serif" font-size="12" fill="#ccc">・提案後は黙って待つ</text><text x="570" y="162" font-family="sans-serif" font-size="12" fill="#ccc">・沈黙を埋めない</text><text x="570" y="182" font-family="sans-serif" font-size="12" fill="#ccc">・先に話した方が負け</text><text x="570" y="212" font-family="sans-serif" font-size="12" fill="#fff176">訓練ポイント:</text><text x="570" y="236" font-family="sans-serif" font-size="12" fill="#ccc">・30秒間の沈黙練習</text><text x="570" y="256" font-family="sans-serif" font-size="12" fill="#ccc">・「空白恐怖」の克服</text><text x="570" y="276" font-family="sans-serif" font-size="12" fill="#ccc">・文化的文脈の理解</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # デジタル時代の非言語（1/2）
 
 > *既読スルーが新たな社会規範として機能し始めた*
@@ -197,11 +245,15 @@ style: |
 
 ---
 
+<!-- _class: invert fit-94 -->
 # デジタル時代の非言語（2/2）
 
 > *返信速度・絵文字がデジタル非言語体系を形成する*
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="340" fill="#1a1a2e" rx="12"/><text x="400" y="36" font-family="sans-serif" font-size="19" fill="#f9a825" text-anchor="middle" font-weight="bold">デジタル非言語システム — 返信速度の社会的意味</text><rect x="30" y="58" width="740" height="54" fill="#0d1b4b" rx="8"/><text x="80" y="80" font-family="sans-serif" font-size="13" fill="#4fc3f7" font-weight="bold">返信速度</text><text x="220" y="80" font-family="sans-serif" font-size="13" fill="#4fc3f7" font-weight="bold">相手の解釈（一般的）</text><text x="480" y="80" font-family="sans-serif" font-size="13" fill="#4fc3f7" font-weight="bold">関係への影響</text><text x="80" y="100" font-family="sans-serif" font-size="12" fill="#aaa">速度帯</text><text x="220" y="100" font-family="sans-serif" font-size="12" fill="#aaa">シグナル</text><text x="480" y="100" font-family="sans-serif" font-size="12" fill="#aaa">評価</text><rect x="30" y="118" width="740" height="40" fill="#e91e6322" rx="4"/><text x="80" y="143" font-family="sans-serif" font-size="13" fill="#ef9a9a">1分以内</text><text x="220" y="143" font-family="sans-serif" font-size="13" fill="#ccc">暇・依存・重い</text><text x="480" y="143" font-family="sans-serif" font-size="13" fill="#ef5350">過度な期待値を設定</text><rect x="30" y="162" width="740" height="40" fill="#f9a82522" rx="4"/><text x="80" y="187" font-family="sans-serif" font-size="13" fill="#fff176">10〜60分</text><text x="220" y="187" font-family="sans-serif" font-size="13" fill="#ccc">普通・バランス良い</text><text x="480" y="187" font-family="sans-serif" font-size="13" fill="#66bb6a">健全な関係性</text><rect x="30" y="206" width="740" height="40" fill="#4fc3f722" rx="4"/><text x="80" y="231" font-family="sans-serif" font-size="13" fill="#81d4fa">数時間</text><text x="220" y="231" font-family="sans-serif" font-size="13" fill="#ccc">忙しい・適度な距離感</text><text x="480" y="231" font-family="sans-serif" font-size="13" fill="#fff176">許容範囲（文脈依存）</text><rect x="30" y="250" width="740" height="40" fill="#1a1a2e" rx="4" style="stroke:#555;stroke-width:1"/><text x="80" y="275" font-family="sans-serif" font-size="13" fill="#9e9e9e">翌日以降</text><text x="220" y="275" font-family="sans-serif" font-size="13" fill="#ccc">距離を置きたい</text><text x="480" y="275" font-family="sans-serif" font-size="13" fill="#ef5350">関係悪化のシグナル</text><text x="30" y="320" font-family="sans-serif" font-size="12" fill="#888">※ 絵文字の有無・メッセージ長も同様に「非言語チャンネル」として機能する</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="340" fill="#1a1a2e" rx="12"/><text x="400" y="36" font-family="sans-serif" font-size="19" fill="#f9a825" text-anchor="middle" font-weight="bold">デジタル非言語システム — 返信速度の社会的意味</text><rect x="30" y="58" width="740" height="54" fill="#0d1b4b" rx="8"/><text x="80" y="80" font-family="sans-serif" font-size="13" fill="#4fc3f7" font-weight="bold">返信速度</text><text x="220" y="80" font-family="sans-serif" font-size="13" fill="#4fc3f7" font-weight="bold">相手の解釈（一般的）</text><text x="480" y="80" font-family="sans-serif" font-size="13" fill="#4fc3f7" font-weight="bold">関係への影響</text><text x="80" y="100" font-family="sans-serif" font-size="12" fill="#aaa">速度帯</text><text x="220" y="100" font-family="sans-serif" font-size="12" fill="#aaa">シグナル</text><text x="480" y="100" font-family="sans-serif" font-size="12" fill="#aaa">評価</text><rect x="30" y="118" width="740" height="40" fill="#e91e6322" rx="4"/><text x="80" y="143" font-family="sans-serif" font-size="13" fill="#ef9a9a">1分以内</text><text x="220" y="143" font-family="sans-serif" font-size="13" fill="#ccc">暇・依存・重い</text><text x="480" y="143" font-family="sans-serif" font-size="13" fill="#ef5350">過度な期待値を設定</text><rect x="30" y="162" width="740" height="40" fill="#f9a82522" rx="4"/><text x="80" y="187" font-family="sans-serif" font-size="13" fill="#fff176">10〜60分</text><text x="220" y="187" font-family="sans-serif" font-size="13" fill="#ccc">普通・バランス良い</text><text x="480" y="187" font-family="sans-serif" font-size="13" fill="#66bb6a">健全な関係性</text><rect x="30" y="206" width="740" height="40" fill="#4fc3f722" rx="4"/><text x="80" y="231" font-family="sans-serif" font-size="13" fill="#81d4fa">数時間</text><text x="220" y="231" font-family="sans-serif" font-size="13" fill="#ccc">忙しい・適度な距離感</text><text x="480" y="231" font-family="sans-serif" font-size="13" fill="#fff176">許容範囲（文脈依存）</text><rect x="30" y="250" width="740" height="40" fill="#1a1a2e" rx="4" style="stroke:#555;stroke-width:1"/><text x="80" y="275" font-family="sans-serif" font-size="13" fill="#9e9e9e">翌日以降</text><text x="220" y="275" font-family="sans-serif" font-size="13" fill="#ccc">距離を置きたい</text><text x="480" y="275" font-family="sans-serif" font-size="13" fill="#ef5350">関係悪化のシグナル</text><text x="30" y="320" font-family="sans-serif" font-size="12" fill="#888">※ 絵文字の有無・メッセージ長も同様に「非言語チャンネル」として機能する</text></svg>
+</div>
+
 - 翌日以降 → 距離を置きたいシグナル
 - 絵文字の有無 → 感情的温度のシグナル
 - デジタルコミュニケーションも豊かな非言語システムを構築している
@@ -209,15 +261,18 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # まとめ：沈黙という雄弁
 
 > *沈黙を意図的に使う者が文化・交渉・デジタルで優位に立つ*
 
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="280" fill="#1a1a2e" rx="12"/><text x="400" y="36" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">本日の4つの洞察</text><rect x="30" y="52" width="350" height="90" fill="#0d1b4b" rx="8"/><text x="50" y="76" font-family="sans-serif" font-size="14" fill="#f9a825" font-weight="bold">1. 統計の誤用に注意</text><text x="50" y="98" font-family="sans-serif" font-size="12" fill="#ccc">「93%非言語」は感情的文脈限定の実験。</text><text x="50" y="118" font-family="sans-serif" font-size="12" fill="#ccc">一般化は誤り — 言語は高密度情報媒体。</text><rect x="420" y="52" width="350" height="90" fill="#0d1b4b" rx="8"/><text x="440" y="76" font-family="sans-serif" font-size="14" fill="#e91e63" font-weight="bold">2. 沈黙の意味は文化で逆転</text><text x="440" y="98" font-family="sans-serif" font-size="12" fill="#ccc">日本・フィンランド = 快適・尊重</text><text x="440" y="118" font-family="sans-serif" font-size="12" fill="#ccc">米国・南欧 = 不快・問題のシグナル</text><rect x="30" y="158" width="350" height="90" fill="#0d1b4b" rx="8"/><text x="50" y="182" font-family="sans-serif" font-size="14" fill="#4fc3f7" font-weight="bold">3. 沈黙は交渉戦術になる</text><text x="50" y="204" font-family="sans-serif" font-size="12" fill="#ccc">提案後の沈黙は相手に先に</text><text x="50" y="224" font-family="sans-serif" font-size="12" fill="#ccc">話させる強力な戦術。</text><rect x="420" y="158" width="350" height="90" fill="#0d1b4b" rx="8"/><text x="440" y="182" font-family="sans-serif" font-size="14" fill="#66bb6a" font-weight="bold">4. デジタルも非言語体系</text><text x="440" y="204" font-family="sans-serif" font-size="12" fill="#ccc">返信速度・既読・絵文字が</text><text x="440" y="224" font-family="sans-serif" font-size="12" fill="#ccc">新しい非言語システムを形成。</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="280" fill="#1a1a2e" rx="12"/><text x="400" y="36" font-family="sans-serif" font-size="18" fill="#f9a825" text-anchor="middle" font-weight="bold">本日の4つの洞察</text><rect x="30" y="52" width="350" height="90" fill="#0d1b4b" rx="8"/><text x="50" y="76" font-family="sans-serif" font-size="14" fill="#f9a825" font-weight="bold">1. 統計の誤用に注意</text><text x="50" y="98" font-family="sans-serif" font-size="12" fill="#ccc">「93%非言語」は感情的文脈限定の実験。</text><text x="50" y="118" font-family="sans-serif" font-size="12" fill="#ccc">一般化は誤り — 言語は高密度情報媒体。</text><rect x="420" y="52" width="350" height="90" fill="#0d1b4b" rx="8"/><text x="440" y="76" font-family="sans-serif" font-size="14" fill="#e91e63" font-weight="bold">2. 沈黙の意味は文化で逆転</text><text x="440" y="98" font-family="sans-serif" font-size="12" fill="#ccc">日本・フィンランド = 快適・尊重</text><text x="440" y="118" font-family="sans-serif" font-size="12" fill="#ccc">米国・南欧 = 不快・問題のシグナル</text><rect x="30" y="158" width="350" height="90" fill="#0d1b4b" rx="8"/><text x="50" y="182" font-family="sans-serif" font-size="14" fill="#4fc3f7" font-weight="bold">3. 沈黙は交渉戦術になる</text><text x="50" y="204" font-family="sans-serif" font-size="12" fill="#ccc">提案後の沈黙は相手に先に</text><text x="50" y="224" font-family="sans-serif" font-size="12" fill="#ccc">話させる強力な戦術。</text><rect x="420" y="158" width="350" height="90" fill="#0d1b4b" rx="8"/><text x="440" y="182" font-family="sans-serif" font-size="14" fill="#66bb6a" font-weight="bold">4. デジタルも非言語体系</text><text x="440" y="204" font-family="sans-serif" font-size="12" fill="#ccc">返信速度・既読・絵文字が</text><text x="440" y="224" font-family="sans-serif" font-size="12" fill="#ccc">新しい非言語システムを形成。</text></svg>
+</div>
+
 - ✅ **「93%は非言語」は誤用 — 感情的文脈に限定された実験結果**
 - ✅ **沈黙の意味は文化によって真逆（快適 vs 不快）**
 - ✅ **高文脈文化（日本）vs 低文脈文化（米国）の衝突は交渉の落とし穴**
 - ✅ **既読スルー・返信速度・絵文字がデジタル非言語体系を形成**
-- 
 - 「言葉が多いほど意味は薄くなる。沈黙こそが最も雄弁だ」
 

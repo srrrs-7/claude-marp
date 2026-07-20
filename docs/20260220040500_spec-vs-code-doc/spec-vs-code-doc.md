@@ -7,41 +7,76 @@ paginate: true
 header: "「仕様書文化」vs「コード is ドキュメント」"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -88,11 +123,10 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 「仕様書文化」vs「コード is ドキュメント」
 
 - ― 世代間・文化間の衝突を超えて ―
-- 
 - テックリード・エンジニアリングマネージャー向け
 - 2026年
 
@@ -113,7 +147,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 1: 両文化の誕生
 
 - 定義と歴史的背景
@@ -125,7 +159,8 @@ style: |
 
 > *仕様書文化の核心は「合意の証跡」と「先行設計」という2つの価値観*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
 <rect x="30" y="30" width="350" height="340" fill="#16213e" rx="8"/>
 <rect x="420" y="30" width="350" height="340" fill="#16213e" rx="8"/>
@@ -152,11 +187,12 @@ style: |
 <text x="595" y="310" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">スタートアップ・OSS</text>
 <text x="595" y="330" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">小規模・短サイクル</text>
 </svg>
+</div>
+
 - **定義**: コードを書く前に要件・設計を文書化し、それを正として開発を進める文化
-- 
 - **中心にある価値観:**
-- - 合意の証跡: 「書いてあること」が真実
-- - 先行設計: 動く前にすべてを決める
+- 合意の証跡: 「書いてあること」が真実
+- 先行設計: 動く前にすべてを決める
 
 
 ---
@@ -165,7 +201,8 @@ style: |
 
 > *責任の明確化と成果物主義が仕様書文化を形成する典型的実践*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">2つの文化が生まれた歴史的背景</text>
 <rect x="40" y="50" width="340" height="270" fill="#16213e" rx="8"/>
@@ -186,11 +223,12 @@ style: |
 <text x="590" y="228" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">CI/CD・テスト駆動開発の普及</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">どちらも「時代の要請」から生まれた。どちらかが間違いではない</text>
 </svg>
-- - 責任の明確化: 仕様通りに作ったか否か
-- 
+</div>
+
+- 責任の明確化: 仕様通りに作ったか否か
 - **典型的な成果物:**
-- - 要件定義書・外部設計書・内部設計書
-- - ER図・シーケンス図・テスト仕様書
+- 要件定義書・外部設計書・内部設計書
+- ER図・シーケンス図・テスト仕様書
 
 
 ---
@@ -199,7 +237,8 @@ style: |
 
 > *コードは嘘をつかない—単一の真実と自己文書化が文化の核心*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
 <text x="400" y="35" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">仕様書とコードの乖離が生まれるプロセス</text>
 <rect x="50" y="60" width="160" height="60" fill="#16213e" rx="8"/>
@@ -228,11 +267,12 @@ style: |
 <text x="400" y="300" font-size="14" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">誰も読まない・誰も信じない仕様書の誕生</text>
 <text x="400" y="340" font-size="13" fill="#888" text-anchor="middle" font-weight="normal" font-family="sans-serif">「書いてあることと動きが違う」→ 信頼崩壊</text>
 </svg>
+</div>
+
 - **定義**: コード自体が最も正確なドキュメントであり、別途文書を最小化する文化
-- 
 - **中心にある価値観:**
-- - 単一の真実: コードは嘘をつかない
-- - 自己文書化: 読めばわかるコードを書く
+- 単一の真実: コードは嘘をつかない
+- 自己文書化: 読めばわかるコードを書く
 
 
 ---
@@ -241,7 +281,8 @@ style: |
 
 > *メンテされない仕様書は害悪—README・型・テストだけで意図を伝える*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">オンボーディングで露わになるドキュメントの問題</text>
 <rect x="50" y="50" width="320" height="280" fill="#16213e" rx="8"/>
@@ -264,12 +305,13 @@ style: |
 <text x="590" y="258" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 信頼性ゼロの設計書</text>
 <text x="400" y="365" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">どちらも「WHY が残っていない」という共通の問題を抱えている</text>
 </svg>
-- - ドキュメントは負債: メンテされない仕様書は害悪
-- 
+</div>
+
+- ドキュメントは負債: メンテされない仕様書は害悪
 - **典型的な実践:**
-- - 関数名・型・テストコードが仕様
-- - README と inline comment のみ
-- - コードレビューで意図を伝える
+- 関数名・型・テストコードが仕様
+- README と inline comment のみ
+- コードレビューで意図を伝える
 
 
 ---
@@ -285,7 +327,8 @@ style: |
 
 > *リモート・グローバル化が暗黙知を消滅させ価値観の衝突を表面化した*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="360" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「エビデンス重視」vs「動くコード重視」のスペクトラム</text>
 <rect x="50" y="70" width="700" height="20" fill="#333" rx="8"/>
@@ -307,12 +350,12 @@ style: |
 <text x="640" y="300" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">内製・小規模チーム</text>
 <text x="400" y="320" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">↑ どちらが正しいかではなく、文脈が最適解を決める</text>
 </svg>
+</div>
+
 - **3つの構造変化が「価値観の衝突」を表面化させた**
-- 
 - **① リモート・グローバル化**
-- - 暗黙知が通じない。文脈が共有されない
-- - 時差・言語の壁で「口頭で補う」が不可能に
-- 
+- 暗黙知が通じない。文脈が共有されない
+- 時差・言語の壁で「口頭で補う」が不可能に
 
 
 ---
@@ -321,7 +364,8 @@ style: |
 
 > *世代交代で価値基準が衝突し仕様書論争が深刻化している*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">世代間・文化間の衝突パターン</text>
 <rect x="40" y="45" width="160" height="55" fill="#0f3460" rx="8"/>
@@ -358,9 +402,11 @@ style: |
 <polygon points="545,291 533,297 533,285" fill="#f9a825"/>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">根本: 「何が合意の証拠か」の定義がすれ違っている</text>
 </svg>
+</div>
+
 - **② 世代交代の加速**
-- - 「ウォーターフォール世代」とアジャイルネイティブの共存
-- - キャリアパス・評価基準の違い
+- 「ウォーターフォール世代」とアジャイルネイティブの共存
+- キャリアパス・評価基準の違い
 
 
 ---
@@ -369,18 +415,18 @@ style: |
 
 > *AIツールはコードを増やすがWHYを生成しないドキュメント逆説を招く*
 
-- 
 - **③ AI コーディングツールの普及**
-- - コードは書けるが、WHY は生成されない
-- - 「コードが増えるほどドキュメントが消える」逆説
+- コードは書けるが、WHY は生成されない
+- 「コードが増えるほどドキュメントが消える」逆説
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 2: 仕様書文化の光と影
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">自己文書化の限界 — コードが表現できないもの</text>
 <rect x="50" y="60" width="700" height="60" fill="#16213e" rx="8"/>
@@ -397,6 +443,8 @@ style: |
 <text x="500" y="300" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">✗ 法律 X 条に基づく仕様</text>
 <text x="400" y="345" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ ADR で補完することで「完全な」ドキュメントになる</text>
 </svg>
+</div>
+
 - 正しく機能する場面と崩壊する場面
 
 
@@ -406,7 +454,8 @@ style: |
 
 > *法的要件・外部委託・長期保守—仕様書が真価を発揮する3つの条件*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ドキュメント品質チェックリスト</text>
 
@@ -441,11 +490,12 @@ style: |
 <text x="110" y="348" font-size="12" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">CIで検証・壊れたら失敗する</text>
 
 </svg>
+</div>
+
 - **仕様書が本当に必要なケース:**
-- 
-- - **法的・コンプライアンス要件** — 金融・医療・官公庁
--   - 変更のたびに承認が必要。監査証跡が必須
-- - **外部委託・オフショア開発**
+- **法的・コンプライアンス要件** — 金融・医療・官公庁
+  - 変更のたびに承認が必要。監査証跡が必須
+- **外部委託・オフショア開発**
 
 
 ---
@@ -454,7 +504,8 @@ style: |
 
 > *言語・時差・契約境界がある現場では仕様書が唯一の「言った言わない」防止策*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ドキュメント棚卸しの進め方</text>
 <rect x="50" y="45" width="120" height="40" fill="#0f3460" rx="8"/>
@@ -495,12 +546,14 @@ style: |
 <text x="613" y="335" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">1年以上更新なし + 参照ゼロ = アーカイブ</text>
 <text x="400" y="368" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">棚卸しは一度やれば終わりではなく、四半期ごとの習慣にする</text>
 </svg>
--   - 同じ場所にいない、言語が違う、文化が違う
--   - 「言った言わない」をなくす唯一の手段
-- - **長期保守・引き継ぎ**
--   - 10年後に誰かが読む。コードだけでは足りない
-- - **複数ベンダー間の契約境界**
--   - API 仕様書がないと責任分界が曖昧になる
+</div>
+
+  - 同じ場所にいない、言語が違う、文化が違う
+  - 「言った言わない」をなくす唯一の手段
+- **長期保守・引き継ぎ**
+  - 10年後に誰かが読む。コードだけでは足りない
+- **複数ベンダー間の契約境界**
+  - API 仕様書がないと責任分界が曖昧になる
 
 
 ---
@@ -509,7 +562,8 @@ style: |
 
 > *多層下請け構造と責任文化が日本にフォーマル仕様書文化を根付かせた*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">オフショア開発で仕様書が必須になる理由</text>
 <rect x="60" y="60" width="200" height="250" fill="#16213e" rx="8"/>
@@ -533,11 +587,12 @@ style: |
 <polygon points="510,200 522,194 522,206" fill="#f9a825"/>
 <text x="400" y="340" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">言語・時差・文化の壁を超える唯一の手段</text>
 </svg>
+</div>
+
 - **なぜ日本に「仕様書文化」が根付いたか:**
-- 
-- - **体制**: 発注者 → 元請け → 下請け → 孫請けの多層構造
--   - 各レイヤーで「証拠」が必要
-- - **責任文化**: 問題が起きたとき「仕様通りに作った」が免責の根拠
+- **体制**: 発注者 → 元請け → 下請け → 孫請けの多層構造
+  - 各レイヤーで「証拠」が必要
+- **責任文化**: 問題が起きたとき「仕様通りに作った」が免責の根拠
 
 
 ---
@@ -546,7 +601,8 @@ style: |
 
 > *仕様書作成がエンジニア時間の30〜50%を占める現代SIerの本質的矛盾*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「書いたけど誰も読まない」症候群の診断</text>
 <rect x="40" y="45" width="700" height="38" fill="#16213e" rx="8"/>
@@ -575,12 +631,13 @@ style: |
 <text x="260" y="310" font-size="12" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">→  最低限しか書いていない</text>
 <text x="400" y="358" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">解決策: 読み手を先に定義し、目的から形式を選ぶ</text>
 </svg>
-- - **変更管理の硬直性**: 仕様変更は正式な変更管理プロセスが必要
-- - **成果物主義**: 納品物 = 設計書 + ソースコード + テスト証跡
-- 
+</div>
+
+- **変更管理の硬直性**: 仕様変更は正式な変更管理プロセスが必要
+- **成果物主義**: 納品物 = 設計書 + ソースコード + テスト証跡
 - **現代での弊害:**
-- - 仕様書作成コストがエンジニアリング時間の 30〜50% を占めることも
-- - ドキュメントのために機能実装が後回しになる
+- 仕様書作成コストがエンジニアリング時間の 30〜50% を占めることも
+- ドキュメントのために機能実装が後回しになる
 
 
 ---
@@ -596,7 +653,8 @@ style: |
 
 > *ドキュメントが読まれない4原因—発見不能・鮮度不明・長すぎ・乖離*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「書いたけど誰も読まない」症候群の診断</text>
 <rect x="40" y="45" width="700" height="38" fill="#16213e" rx="8"/>
@@ -625,11 +683,12 @@ style: |
 <text x="260" y="310" font-size="12" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">→  最低限しか書いていない</text>
 <text x="400" y="358" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">解決策: 読み手を先に定義し、目的から形式を選ぶ</text>
 </svg>
+</div>
+
 - **なぜドキュメントは読まれないのか:**
-- 
-- - **発見できない**: どこにあるか誰も知らない
-- - **最新かわからない**: 更新日時が半年前
-- - **長すぎる**: 読む気が起きない 200ページの設計書
+- **発見できない**: どこにあるか誰も知らない
+- **最新かわからない**: 更新日時が半年前
+- **長すぎる**: 読む気が起きない 200ページの設計書
 
 
 ---
@@ -638,7 +697,8 @@ style: |
 
 > *作る人と使う人の分離と義務執筆が「書いただけ」文化を生む*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「書いたけど誰も読まない」症候群の診断</text>
 <rect x="40" y="45" width="700" height="38" fill="#16213e" rx="8"/>
@@ -667,20 +727,22 @@ style: |
 <text x="260" y="310" font-size="12" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">→  最低限しか書いていない</text>
 <text x="400" y="358" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">解決策: 読み手を先に定義し、目的から形式を選ぶ</text>
 </svg>
-- - **コードと乖離している**: 動かしてみると違う
-- 
+</div>
+
+- **コードと乖離している**: 動かしてみると違う
 - **心理的メカニズム:**
-- - 作る人と使う人が違う → ゴール設定がズレる
-- - 「書いた」で満足 → 「読まれる」までが仕事だという認識がない
-- - 義務で書く → 最低限しか書かない
+- 作る人と使う人が違う → ゴール設定がズレる
+- 「書いた」で満足 → 「読まれる」までが仕事だという認識がない
+- 義務で書く → 最低限しか書かない
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 3: コード is ドキュメント文化の光と影
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
 <rect x="30" y="30" width="350" height="340" fill="#16213e" rx="8"/>
 <rect x="420" y="30" width="350" height="340" fill="#16213e" rx="8"/>
@@ -707,6 +769,8 @@ style: |
 <text x="595" y="310" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">スタートアップ・OSS</text>
 <text x="595" y="330" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">小規模・短サイクル</text>
 </svg>
+</div>
+
 - 哲学の正しさと現実の落とし穴
 
 
@@ -716,7 +780,8 @@ style: |
 
 > *命名・型・テストの3原則がコードの意図を完全に表現する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">オンボーディングで露わになるドキュメントの問題</text>
 <rect x="50" y="50" width="320" height="280" fill="#16213e" rx="8"/>
@@ -739,12 +804,13 @@ style: |
 <text x="590" y="258" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 信頼性ゼロの設計書</text>
 <text x="400" y="365" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">どちらも「WHY が残っていない」という共通の問題を抱えている</text>
 </svg>
+</div>
+
 - **Clean Code (Robert C. Martin) の核心:**
-- - 「コードで意図を表現せよ。コメントはコードの失敗を補うもの」
-- 
+- 「コードで意図を表現せよ。コメントはコードの失敗を補うもの」
 - **自己文書化の3原則:**
-- - **命名**: 変数・関数・クラス名で意図を完全表現
--   - `getUserByEmail()` > `get()` > `func1()`
+- **命名**: 変数・関数・クラス名で意図を完全表現
+  - `getUserByEmail()` > `get()` > `func1()`
 
 
 ---
@@ -753,7 +819,8 @@ style: |
 
 > *型システムとテストコードが強制する仕様—同一チームでのみ有効*
 
-- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 410" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="420" fill="#1a1a2e" rx="0"/>
 <text x="400" y="35" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">Living Documentation の循環フロー</text>
 <rect x="300" y="60" width="200" height="55" fill="#16213e" rx="8"/>
@@ -784,11 +851,12 @@ style: |
 <text x="400" y="340" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードが変わる → ドキュメントが自動追従 → 腐らない</text>
 <text x="400" y="370" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">Living Doc = 生きているドキュメント</text>
 </svg>
-- - **型**: 型システムが仕様を強制する
--   - `UserId` (型エイリアス) > `string`
-- - **テスト**: テストコードが動く仕様書
--   - `should_reject_expired_token()` は仕様そのもの
-- 
+</div>
+
+- **型**: 型システムが仕様を強制する
+  - `UserId` (型エイリアス) > `string`
+- **テスト**: テストコードが動く仕様書
+  - `should_reject_expired_token()` は仕様そのもの
 - **正しい前提条件**: 同じコードベースに長く関わるメンバーがいる場合
 
 
@@ -831,7 +899,8 @@ function calculateBillingAmount(
 
 > *WHY・捨てた選択肢・非自明なトレードオフはコードで表現できない*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">2つの文化が生まれた歴史的背景</text>
 <rect x="40" y="50" width="340" height="270" fill="#16213e" rx="8"/>
@@ -852,12 +921,13 @@ function calculateBillingAmount(
 <text x="590" y="228" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">CI/CD・テスト駆動開発の普及</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">どちらも「時代の要請」から生まれた。どちらかが間違いではない</text>
 </svg>
+</div>
+
 - **コードが表現できないもの:**
-- 
-- - **なぜその設計にしたか (WHY)**
--   - 「なぜ PostgreSQL を使ったか」はコードにない
--   - 「なぜこのアルゴリズムを選んだか」も同様
-- - **捨てた選択肢**
+- **なぜその設計にしたか (WHY)**
+  - 「なぜ PostgreSQL を使ったか」はコードにない
+  - 「なぜこのアルゴリズムを選んだか」も同様
+- **捨てた選択肢**
 
 
 ---
@@ -866,7 +936,8 @@ function calculateBillingAmount(
 
 > *型はWHATを示すがWHYとコンテキストは伝えられない*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">統合的アプローチの判断フロー</text>
 <rect x="280" y="60" width="240" height="50" fill="#0f3460" rx="8"/>
@@ -894,9 +965,11 @@ function calculateBillingAmount(
 <rect x="50" y="360" width="700" height="25" fill="#16213e" rx="8"/>
 <text x="400" y="378" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Living Doc で自動生成・常に最新を維持</text>
 </svg>
--   - 試みた別のアプローチとその失敗理由
-- - **ビジネスコンテキスト**
--   - 「この仕様は法律 X 条に基づく」という背景
+</div>
+
+  - 試みた別のアプローチとその失敗理由
+- **ビジネスコンテキスト**
+  - 「この仕様は法律 X 条に基づく」という背景
 
 
 ---
@@ -905,9 +978,8 @@ function calculateBillingAmount(
 
 > *新メンバーはコードを読んでも「なぜそうなっているか」を知る術がない*
 
-- - **非自明なトレードオフ**
--   - 「パフォーマンスより可読性を優先した理由」
-- 
+- **非自明なトレードオフ**
+  - 「パフォーマンスより可読性を優先した理由」
 - **結果:** 新メンバーがコードを読んでも「なぜそうなっているか」がわからない
 
 
@@ -917,7 +989,8 @@ function calculateBillingAmount(
 
 > *キーエンジニア退職時に「コードを読めばわかる」が崩壊する典型シナリオ*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">オンボーディングで露わになるドキュメントの問題</text>
 <rect x="50" y="50" width="320" height="280" fill="#16213e" rx="8"/>
@@ -940,10 +1013,12 @@ function calculateBillingAmount(
 <text x="590" y="258" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 信頼性ゼロの設計書</text>
 <text x="400" y="365" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">どちらも「WHY が残っていない」という共通の問題を抱えている</text>
 </svg>
+</div>
+
 - **典型的なシナリオ:**
-- 
-- - キーエンジニアが退職。コードしか残っていない
-- - 「コードを読めばわかる」 → 読んでもわからない
+- キーエンジニアが退職。コードしか残っていない
+- 「コードを読めばわかる」 → 読んでもわからない
+
 | 状況 | リスク |
 |------|-------|
 | 属人化したコードベース | 「書いた本人しか読めない」 |
@@ -958,7 +1033,8 @@ function calculateBillingAmount(
 
 > *暗黙のルールと設計制約が頭の中にのみ存在する状態が引き継ぎを壊す*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">世代間・文化間の衝突パターン</text>
 <rect x="40" y="45" width="160" height="55" fill="#0f3460" rx="8"/>
@@ -995,10 +1071,11 @@ function calculateBillingAmount(
 <polygon points="545,291 533,297 533,285" fill="#f9a825"/>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">根本: 「何が合意の証拠か」の定義がすれ違っている</text>
 </svg>
-- - 暗黙のルール・設計上の制約が頭の中だけに
-- 
+</div>
+
+- 暗黙のルール・設計上の制約が頭の中だけに
 - **コード is ドキュメントが失敗する条件:**
-- 
+
 | 状況 | リスク |
 |------|-------|
 | 属人化したコードベース | 「書いた本人しか読めない」 |
@@ -1009,10 +1086,11 @@ function calculateBillingAmount(
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 4: 世代間・文化間の衝突
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">世代間・文化間の衝突パターン</text>
 <rect x="40" y="45" width="160" height="55" fill="#0f3460" rx="8"/>
@@ -1049,6 +1127,8 @@ function calculateBillingAmount(
 <polygon points="545,291 533,297 533,285" fill="#f9a825"/>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">根本: 「何が合意の証拠か」の定義がすれ違っている</text>
 </svg>
+</div>
+
 - 対立の構造を解剖する
 
 
@@ -1065,7 +1145,8 @@ function calculateBillingAmount(
 
 > *ハイコンテキストとローコンテキストの差異がドキュメント摩擦の根本原因*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="360" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「エビデンス重視」vs「動くコード重視」のスペクトラム</text>
 <rect x="50" y="70" width="700" height="20" fill="#333" rx="8"/>
@@ -1087,18 +1168,20 @@ function calculateBillingAmount(
 <text x="640" y="300" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">内製・小規模チーム</text>
 <text x="400" y="320" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">↑ どちらが正しいかではなく、文脈が最適解を決める</text>
 </svg>
+</div>
+
 - **ハイコンテキスト文化 (日本) vs ローコンテキスト文化 (欧米):**
-- 
+
 | 観点 | 日本 (ハイコンテキスト) | 欧米 (ローコンテキスト) |
 |------|----------------------|----------------------|
 | コミュニケーション | 行間・空気を読む | 明文化・直接表現 |
 | ドキュメント観 | 書かなくても通じる | 書かないと存在しない |
 | 合意形成 | 根回し・阿吽の呼吸 | ミーティング + 議事録 |
 | 責任の所在 | 曖昧・全員で共有 | 個人・役割で明確 |
-- 
+
 - **グローバルチームでの衝突の本質:**
-- - 日本側: 「空気を読んでくれ」
-- - 海外側: 「書いてないことは決まっていない」
+- 日本側: 「空気を読んでくれ」
+- 海外側: 「書いてないことは決まっていない」
 
 
 ---
@@ -1107,7 +1190,8 @@ function calculateBillingAmount(
 
 > *言語バリアのある環境では仕様書が唯一の共通認識手段になる*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ドキュメント棚卸しの進め方</text>
 <rect x="50" y="45" width="120" height="40" fill="#0f3460" rx="8"/>
@@ -1148,9 +1232,10 @@ function calculateBillingAmount(
 <text x="613" y="335" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">1年以上更新なし + 参照ゼロ = アーカイブ</text>
 <text x="400" y="368" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">棚卸しは一度やれば終わりではなく、四半期ごとの習慣にする</text>
 </svg>
+</div>
+
 - **なぜオフショアで仕様書が必須になるか:**
-- 
-- - **言語バリア**: 英語 or 現地語の詳細仕様書がないと意図が伝わらない
+- **言語バリア**: 英語 or 現地語の詳細仕様書がないと意図が伝わらない
 
 
 ---
@@ -1159,10 +1244,9 @@ function calculateBillingAmount(
 
 > *時差・文化バリア・契約関係の3制約がオフショア仕様書を必須にする*
 
-- - **時差**: リアルタイムの確認ができない。非同期が前提
-- - **文化バリア**: 「察する」ができない
-- - **契約関係**: スコープ定義がないと追加費用の根拠が曖昧
-- 
+- **時差**: リアルタイムの確認ができない。非同期が前提
+- **文化バリア**: 「察する」ができない
+- **契約関係**: スコープ定義がないと追加費用の根拠が曖昧
 
 
 ---
@@ -1171,7 +1255,8 @@ function calculateBillingAmount(
 
 > *「あとで書く」文化はオフショア開始と同時に即座に破綻する*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">オフショア開発で仕様書が必須になる理由</text>
 <rect x="60" y="60" width="200" height="250" fill="#16213e" rx="8"/>
@@ -1195,9 +1280,11 @@ function calculateBillingAmount(
 <polygon points="510,200 522,194 522,206" fill="#f9a825"/>
 <text x="400" y="340" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">言語・時差・文化の壁を超える唯一の手段</text>
 </svg>
+</div>
+
 - **実際の問題:**
-- - 仕様書を「あとで書く」文化の会社がオフショアを始めると即座に破綻
-- - 「コードで確認して」は通じない
+- 仕様書を「あとで書く」文化の会社がオフショアを始めると即座に破綻
+- 「コードで確認して」は通じない
 
 
 ---
@@ -1206,10 +1293,9 @@ function calculateBillingAmount(
 
 > *OpenAPI・Protobufが実行可能な仕様書として腐敗防止の解答になる*
 
-- 
 - **解決策の方向性:**
-- - OpenAPI / Protobuf 定義が「実行可能な仕様書」として機能
-- - 自動生成ドキュメントで腐敗を防ぐ
+- OpenAPI / Protobuf 定義が「実行可能な仕様書」として機能
+- 自動生成ドキュメントで腐敗を防ぐ
 
 
 ---
@@ -1218,7 +1304,8 @@ function calculateBillingAmount(
 
 > *仕様書文化とアジャイル文化では成果物の定義が根本的に異なる*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">世代間・文化間の衝突パターン</text>
 <rect x="40" y="45" width="160" height="55" fill="#0f3460" rx="8"/>
@@ -1255,9 +1342,10 @@ function calculateBillingAmount(
 <polygon points="545,291 533,297 533,285" fill="#f9a825"/>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">根本: 「何が合意の証拠か」の定義がすれ違っている</text>
 </svg>
+</div>
+
 - **同じ作業、まったく違う価値基準:**
-- 
-- - **仕様書文化**: 成果物 = 設計書・テスト証跡・議事録
+- **仕様書文化**: 成果物 = 設計書・テスト証跡・議事録
 
 
 ---
@@ -1266,10 +1354,9 @@ function calculateBillingAmount(
 
 > *仕様書文化は「証拠があれば完了」という成果物主義に根ざしている*
 
--   - 「ドキュメントが揃っていれば仕事は完了」
--   - 「バグが出ても仕様通りなら問題ない」
-- 
-- - **コード is ドキュメント**: 成果物 = 動くソフトウェア
+  - 「ドキュメントが揃っていれば仕事は完了」
+  - 「バグが出ても仕様通りなら問題ない」
+- **コード is ドキュメント**: 成果物 = 動くソフトウェア
 
 
 ---
@@ -1278,7 +1365,8 @@ function calculateBillingAmount(
 
 > *デモ優先文化では設計書より動くソフトウェアが唯一の証拠になる*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ADR ワークフロー — 「なぜ」を残すプロセス</text>
 <rect x="50" y="70" width="140" height="60" fill="#16213e" rx="8"/>
@@ -1314,9 +1402,10 @@ function calculateBillingAmount(
 <text x="400" y="310" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードの近くに置く → GitHubで検索可能 → 腐らない</text>
 <text x="400" y="340" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">「なぜ」の記録がオンボーディング時間を劇的に短縮する</text>
 </svg>
--   - 「ドキュメントより先にデモを見せる」
--   - 「動かなければ存在しないのと同じ」
-- 
+</div>
+
+  - 「ドキュメントより先にデモを見せる」
+  - 「動かなければ存在しないのと同じ」
 
 
 ---
@@ -1326,9 +1415,9 @@ function calculateBillingAmount(
 > *PMとエンジニアの合意不成立—承認フローに通せる仕様書とは何か*
 
 - **マネジメント層での衝突:**
-- - PM: 「なぜ仕様書がないのか」
-- - エンジニア: 「コードとテストが仕様書です」
-- - PM: 「承認フローに通せない」
+- PM: 「なぜ仕様書がないのか」
+- エンジニア: 「コードとテストが仕様書です」
+- PM: 「承認フローに通せない」
 
 
 ---
@@ -1337,7 +1426,8 @@ function calculateBillingAmount(
 
 > *50ページ仕様書を送付して「読まれない」—リモート協業の典型的失敗*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">世代間・文化間の衝突パターン</text>
 <rect x="40" y="45" width="160" height="55" fill="#0f3460" rx="8"/>
@@ -1374,12 +1464,12 @@ function calculateBillingAmount(
 <polygon points="545,291 533,297 533,285" fill="#f9a825"/>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">根本: 「何が合意の証拠か」の定義がすれ違っている</text>
 </svg>
+</div>
+
 - **実際によくある状況 (複合ケース):**
-- 
 - **背景**: 日本チーム (仕様書文化) ＋ 海外チーム (アジャイル) の協業
-- 
 - **起きたこと:**
-- - 日本チームが 50ページの仕様書を送付
+- 日本チームが 50ページの仕様書を送付
 
 
 ---
@@ -1388,7 +1478,8 @@ function calculateBillingAmount(
 
 > *仕様書と実装の二重管理が国際チームの信頼崩壊を引き起こした*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
 <rect x="30" y="30" width="350" height="340" fill="#16213e" rx="8"/>
 <rect x="420" y="30" width="350" height="340" fill="#16213e" rx="8"/>
@@ -1415,9 +1506,11 @@ function calculateBillingAmount(
 <text x="595" y="310" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">スタートアップ・OSS</text>
 <text x="595" y="330" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">小規模・短サイクル</text>
 </svg>
-- - 海外チームが「古いから参考程度に」とコードを先行実装
-- - 日本チームが「仕様書と違う」と差し戻し
-- - 海外チームが「仕様書に書いてあることは現実的じゃない」と反発
+</div>
+
+- 海外チームが「古いから参考程度に」とコードを先行実装
+- 日本チームが「仕様書と違う」と差し戻し
+- 海外チームが「仕様書に書いてあることは現実的じゃない」と反発
 
 
 ---
@@ -1426,18 +1519,18 @@ function calculateBillingAmount(
 
 > *仕様書の粒度認識の違いが根本原因—叩き台か合意完了かが共有されていない*
 
-- 
 - **根本原因:**
-- - どの粒度のドキュメントが「合意の場」かが共有されていなかった
-- - 「仕様書 = 設計完了」vs「仕様書 = 叩き台」という認識の違い
+- どの粒度のドキュメントが「合意の場」かが共有されていなかった
+- 「仕様書 = 設計完了」vs「仕様書 = 叩き台」という認識の違い
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 5: 対立を超えて — 統合的アプローチ
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">2つの文化が生まれた歴史的背景</text>
 <rect x="40" y="50" width="340" height="270" fill="#16213e" rx="8"/>
@@ -1458,6 +1551,8 @@ function calculateBillingAmount(
 <text x="590" y="228" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">CI/CD・テスト駆動開発の普及</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">どちらも「時代の要請」から生まれた。どちらかが間違いではない</text>
 </svg>
+</div>
+
 - 問いを立て直す
 
 
@@ -1467,7 +1562,8 @@ function calculateBillingAmount(
 
 > *「書くか書かないか」ではなく「何のために書くか」が本質の問い*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「書いたけど誰も読まない」症候群の診断</text>
 <rect x="40" y="45" width="700" height="38" fill="#16213e" rx="8"/>
@@ -1496,8 +1592,9 @@ function calculateBillingAmount(
 <text x="260" y="310" font-size="12" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">→  最低限しか書いていない</text>
 <text x="400" y="358" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">解決策: 読み手を先に定義し、目的から形式を選ぶ</text>
 </svg>
+</div>
+
 - **対立の根本にある「問いの立て方の誤り」:**
-- 
 - ❌ 「仕様書を書くべきか、書かないべきか」
 
 
@@ -1508,9 +1605,7 @@ function calculateBillingAmount(
 > *ドキュメントの目的が定義されていないことが全対立の根本原因*
 
 - ✅ 「誰が・いつ・何のために読むドキュメントか」
-- 
 - **ドキュメントには複数の目的がある:**
-- 
 
 
 ---
@@ -1519,7 +1614,8 @@ function calculateBillingAmount(
 
 > *学習・参照・説明の目的別にドキュメント形式を使い分けることが解決策*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="420" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ドキュメントの目的マトリクス</text>
 <rect x="0" y="0" width="800" height="420" fill="#1a1a2e" rx="0"/>
@@ -1551,9 +1647,11 @@ function calculateBillingAmount(
 <text x="400" y="310" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="normal" font-family="sans-serif">「仕様書」という単語で全部を括るから議論が噛み合わない</text>
 <text x="400" y="340" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 目的を先に定義すれば最適な形式が決まる</text>
 </svg>
-- - **学習**: 初めて触れる人がシステムを理解する
-- - **参照**: 実装中に詳細を確認する
-- - **説明**: なぜその決定をしたか残す
+</div>
+
+- **学習**: 初めて触れる人がシステムを理解する
+- **参照**: 実装中に詳細を確認する
+- **説明**: なぜその決定をしたか残す
 
 
 ---
@@ -1562,8 +1660,7 @@ function calculateBillingAmount(
 
 > *目的が違えば最適な形式も違う—「仕様書」一語で括ることが議論を壊す*
 
-- - **手順**: 具体的な操作手順を再現する
-- 
+- **手順**: 具体的な操作手順を再現する
 - **目的が違えば、最適な形式も違う。**
 - "仕様書"という単語で全部を括るから議論が噛み合わない
 
@@ -1581,7 +1678,8 @@ function calculateBillingAmount(
 
 > *ADRはコードが表現できないWHYを最小コストで残す唯一の実践*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ドキュメント棚卸しの進め方</text>
 <rect x="50" y="45" width="120" height="40" fill="#0f3460" rx="8"/>
@@ -1622,8 +1720,9 @@ function calculateBillingAmount(
 <text x="613" y="335" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">1年以上更新なし + 参照ゼロ = アーカイブ</text>
 <text x="400" y="368" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">棚卸しは一度やれば終わりではなく、四半期ごとの習慣にする</text>
 </svg>
+</div>
+
 - **ADR = コードが表現できない「WHY」を残す最小限の実践**
-- 
 - **形式 (Michael Nygard の提案):**
 
 
@@ -1658,7 +1757,8 @@ PostgreSQL 17 を採用する
 
 > *コードとドキュメントを分離しない設計でズレを構造的に防ぐ*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">オンボーディングで露わになるドキュメントの問題</text>
 <rect x="50" y="50" width="320" height="280" fill="#16213e" rx="8"/>
@@ -1681,8 +1781,9 @@ PostgreSQL 17 を採用する
 <text x="590" y="258" font-size="13" fill="#e91e63" text-anchor="middle" font-weight="bold" font-family="sans-serif">→ 信頼性ゼロの設計書</text>
 <text x="400" y="365" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">どちらも「WHY が残っていない」という共通の問題を抱えている</text>
 </svg>
+</div>
+
 - **コードとドキュメントを分離しない実践:**
-- 
 - **Living Documentation:**
 
 
@@ -1692,10 +1793,10 @@ PostgreSQL 17 を採用する
 
 > *自動生成ドキュメントはコード変化と連動し腐敗しない唯一の解答*
 
-- - コードから自動生成されるドキュメント
-- - OpenAPI / GraphQL Schema → API ドキュメント自動生成
-- - JavaDoc / TSDoc → 型定義からリファレンス生成
-- - 「腐らない」: コードが変わればドキュメントも変わる
+- コードから自動生成されるドキュメント
+- OpenAPI / GraphQL Schema → API ドキュメント自動生成
+- JavaDoc / TSDoc → 型定義からリファレンス生成
+- 「腐らない」: コードが変わればドキュメントも変わる
 
 
 ---
@@ -1704,7 +1805,8 @@ PostgreSQL 17 を採用する
 
 > *BDDのGherkinシナリオは自然言語仕様とテストを同時に解決する*
 
-- <svg viewBox="0 0 800 410" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 410" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="420" fill="#1a1a2e" rx="0"/>
 <text x="400" y="35" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">Living Documentation の循環フロー</text>
 <rect x="300" y="60" width="200" height="55" fill="#16213e" rx="8"/>
@@ -1735,9 +1837,10 @@ PostgreSQL 17 を採用する
 <text x="400" y="340" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードが変わる → ドキュメントが自動追従 → 腐らない</text>
 <text x="400" y="370" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">Living Doc = 生きているドキュメント</text>
 </svg>
-- 
+</div>
+
 - **Executable Specification (BDD):**
-- - Gherkin / Cucumber: 自然言語で書いたシナリオがテストになる
+- Gherkin / Cucumber: 自然言語で書いたシナリオがテストになる
 
 
 ---
@@ -1746,10 +1849,9 @@ PostgreSQL 17 を採用する
 
 > *CIでドキュメントをチェックし壊れたらマージ禁止が実行可能な仕様書の姿*
 
-- - 「仕様書が動く」: 失敗したらドキュメントが壊れたことがわかる
-- 
+- 「仕様書が動く」: 失敗したらドキュメントが壊れたことがわかる
 - **実践のコツ:**
-- - ドキュメントを CI でチェック → 壊れたら PR がマージできない
+- ドキュメントを CI でチェック → 壊れたら PR がマージできない
 
 
 ---
@@ -1765,7 +1867,8 @@ PostgreSQL 17 を採用する
 
 > *ドキュメントも技術的負債と同じフレームで種類別に管理すべき*
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="400" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">統合的アプローチの判断フロー</text>
 <rect x="280" y="60" width="240" height="50" fill="#0f3460" rx="8"/>
@@ -1793,8 +1896,9 @@ PostgreSQL 17 を採用する
 <rect x="50" y="360" width="700" height="25" fill="#16213e" rx="8"/>
 <text x="400" y="378" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">Living Doc で自動生成・常に最新を維持</text>
 </svg>
+</div>
+
 - **ドキュメントを「技術的負債」と同じフレームで扱う:**
-- 
 - **負債の種類:**
 
 
@@ -1804,10 +1908,9 @@ PostgreSQL 17 を採用する
 
 > *腐敗・欠落・過剰の3種類のドキュメント負債を可視化することが返済の出発点*
 
-- - **腐敗ドキュメント**: 内容が現状と乖離している
-- - **欠落ドキュメント**: 重要な WHY が残っていない
-- - **過剰ドキュメント**: メンテコストが価値を超えている
-- 
+- **腐敗ドキュメント**: 内容が現状と乖離している
+- **欠落ドキュメント**: 重要な WHY が残っていない
+- **過剰ドキュメント**: メンテコストが価値を超えている
 
 
 ---
@@ -1816,7 +1919,8 @@ PostgreSQL 17 を採用する
 
 > *ADR→オンボーディングの順で返済するとチーム全体の費用対効果が最大*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ドキュメント棚卸しの進め方</text>
 <rect x="50" y="45" width="120" height="40" fill="#0f3460" rx="8"/>
@@ -1857,9 +1961,11 @@ PostgreSQL 17 を採用する
 <text x="613" y="335" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">1年以上更新なし + 参照ゼロ = アーカイブ</text>
 <text x="400" y="368" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">棚卸しは一度やれば終わりではなく、四半期ごとの習慣にする</text>
 </svg>
+</div>
+
 - **返済の優先順位:**
-- 1. アーキテクチャ判断 (ADR) — チーム全員が影響を受ける
-- 2. オンボーディングガイド — 採用コストに直結
+1. アーキテクチャ判断 (ADR) — チーム全員が影響を受ける
+2. オンボーディングガイド — 採用コストに直結
 
 
 ---
@@ -1868,19 +1974,19 @@ PostgreSQL 17 を採用する
 
 > *新メンバー初PR日数とSlack質問回数が負債の客観的定量指標になる*
 
-- 3. API リファレンス — 自動生成で返済コスト最小
-- 
+3. API リファレンス — 自動生成で返済コスト最小
 - **定量化のヒント:**
-- - 「新メンバーが最初の PR を出すまでの日数」を計測
-- - 「同じ質問が Slack で何回聞かれたか」をカウント
+- 「新メンバーが最初の PR を出すまでの日数」を計測
+- 「同じ質問が Slack で何回聞かれたか」をカウント
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # Part 6: テックリード・EM のための実践ガイド
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ADR ワークフロー — 「なぜ」を残すプロセス</text>
 <rect x="50" y="70" width="140" height="60" fill="#16213e" rx="8"/>
@@ -1916,6 +2022,8 @@ PostgreSQL 17 を採用する
 <text x="400" y="310" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードの近くに置く → GitHubで検索可能 → 腐らない</text>
 <text x="400" y="340" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">「なぜ」の記録がオンボーディング時間を劇的に短縮する</text>
 </svg>
+</div>
+
 - 今日から使えるアクション
 
 
@@ -1925,7 +2033,8 @@ PostgreSQL 17 を採用する
 
 > *PRのWHY必須化を即日始めればドキュメント文化は今週から変わる*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ドキュメント棚卸しの進め方</text>
 <rect x="50" y="45" width="120" height="40" fill="#0f3460" rx="8"/>
@@ -1966,9 +2075,11 @@ PostgreSQL 17 を採用する
 <text x="613" y="335" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">1年以上更新なし + 参照ゼロ = アーカイブ</text>
 <text x="400" y="368" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">棚卸しは一度やれば終わりではなく、四半期ごとの習慣にする</text>
 </svg>
+</div>
+
 - **即日: コードレビューの基準を変える**
-- - 「なぜこの実装にしたか」を PR description に必須化
-- - 型・テスト・コメントの「WHY」を指摘する習慣
+- 「なぜこの実装にしたか」を PR description に必須化
+- 型・テスト・コメントの「WHY」を指摘する習慣
 
 
 ---
@@ -1977,10 +2088,9 @@ PostgreSQL 17 を採用する
 
 > *ADR1枚から始めるテックリード向け今週から実践できる最小ステップ*
 
-- 
 - **今週: ADR を1枚書く**
-- - 直近の大きな技術判断を ADR フォーマットで残す
-- - `docs/adr/` ディレクトリを作ってコミット
+- 直近の大きな技術判断を ADR フォーマットで残す
+- `docs/adr/` ディレクトリを作ってコミット
 
 
 ---
@@ -1989,7 +2099,8 @@ PostgreSQL 17 を採用する
 
 > *Divio4分類でラベリングするだけで既存ドキュメントの価値が見えてくる*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ドキュメント棚卸しの進め方</text>
 <rect x="50" y="45" width="120" height="40" fill="#0f3460" rx="8"/>
@@ -2030,9 +2141,10 @@ PostgreSQL 17 を採用する
 <text x="613" y="335" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">1年以上更新なし + 参照ゼロ = アーカイブ</text>
 <text x="400" y="368" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">棚卸しは一度やれば終わりではなく、四半期ごとの習慣にする</text>
 </svg>
-- 
+</div>
+
 - **今月: ドキュメント棚卸し**
-- - 現存するドキュメントを Divio 4分類でラベリング
+- 現存するドキュメントを Divio 4分類でラベリング
 
 
 ---
@@ -2041,10 +2153,9 @@ PostgreSQL 17 を採用する
 
 > *腐敗可視化と自動化パイプライン—テックリードの今四半期アクションプラン*
 
-- - 腐敗・欠落・過剰を可視化してチームに共有
-- 
+- 腐敗・欠落・過剰を可視化してチームに共有
 - **今四半期: Living Doc パイプライン**
-- - OpenAPI / TSDoc の CI 自動生成を1つ実装
+- OpenAPI / TSDoc の CI 自動生成を1つ実装
 
 
 ---
@@ -2053,7 +2164,8 @@ PostgreSQL 17 を採用する
 
 > *用語を定義するだけで仕様書派とコード派の議論が建設的になる*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="360" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">テックリードのドキュメント改革ロードマップ</text>
 <rect x="60" y="80" width="155" height="180" fill="#16213e" rx="8"/>
@@ -2084,8 +2196,9 @@ PostgreSQL 17 を採用する
 <polygon points="570,170 558,176 558,164" fill="#f9a825"/>
 <text x="400" y="320" font-size="14" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">小さく始め、成功事例を作り、文化を変える</text>
 </svg>
+</div>
+
 - **「仕様書派」vs「コード派」の議論を建設的にする:**
-- 
 - **Step 1: 用語を定義する**
 
 
@@ -2095,11 +2208,10 @@ PostgreSQL 17 を採用する
 
 > *言葉の定義合わせとゴールからの逆算が文化的対立を超える合意形成の鍵*
 
-- - 「ドキュメント」が指すものを全員で揃える
-- - 「仕様書」= API 定義書なのか、設計書なのか、ADR なのか
-- 
+- 「ドキュメント」が指すものを全員で揃える
+- 「仕様書」= API 定義書なのか、設計書なのか、ADR なのか
 - **Step 2: 目的から合意する**
-- - 「誰がいつ読む？」を先に決めると選択肢が絞れる
+- 「誰がいつ読む？」を先に決めると選択肢が絞れる
 
 
 ---
@@ -2108,7 +2220,8 @@ PostgreSQL 17 を採用する
 
 > *ADR1枚から始める段階的導入が最も低コストで高効果な変革手順*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">世代間・文化間の衝突パターン</text>
 <rect x="40" y="45" width="160" height="55" fill="#0f3460" rx="8"/>
@@ -2145,9 +2258,10 @@ PostgreSQL 17 を採用する
 <polygon points="545,291 533,297 533,285" fill="#f9a825"/>
 <text x="400" y="368" font-size="13" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">根本: 「何が合意の証拠か」の定義がすれ違っている</text>
 </svg>
-- 
+</div>
+
 - **Step 3: 段階的に導入**
-- - まず ADR 1枚から始める (低コスト・高効果)
+- まず ADR 1枚から始める (低コスト・高効果)
 
 
 ---
@@ -2156,11 +2270,10 @@ PostgreSQL 17 を採用する
 
 > *一点突破の成功事例が文化変革を加速させる最も効果的なアプローチ*
 
-- - 全部一気に変えようとしない
-- 
+- 全部一気に変えようとしない
 - **Step 4: 成功事例を見せる**
-- - 「ADR があって助かった」実例をチームに共有
-- - 数字で効果を示す (オンボーディング日数の短縮など)
+- 「ADR があって助かった」実例をチームに共有
+- 数字で効果を示す (オンボーディング日数の短縮など)
 
 
 ---
@@ -2169,7 +2282,8 @@ PostgreSQL 17 を採用する
 
 > *ドキュメント種類×更新頻度のマトリクスが正しいツール選択の軸になる*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">2つの文化が生まれた歴史的背景</text>
 <rect x="40" y="50" width="340" height="270" fill="#16213e" rx="8"/>
@@ -2190,8 +2304,10 @@ PostgreSQL 17 を採用する
 <text x="590" y="228" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">CI/CD・テスト駆動開発の普及</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">どちらも「時代の要請」から生まれた。どちらかが間違いではない</text>
 </svg>
+</div>
+
 - **ドキュメントの種類 × 更新頻度で選ぶ:**
-- 
+
 | ドキュメント種別 | 推奨ツール | 理由 |
 |----------------|-----------|------|
 | ADR (設計判断) | GitHub Markdown | コードと同じ場所・PR で議論 |
@@ -2199,10 +2315,10 @@ PostgreSQL 17 を採用する
 | チュートリアル | Notion / Confluence | 非エンジニアも編集しやすい |
 | 手順書 (runbook) | GitHub Wiki | エンジニアが更新しやすい |
 | アーキテクチャ図 | Mermaid + コミット | バージョン管理できる |
-- 
+
 - **避けるべきパターン:**
-- - 全部 Confluence / Notion → 更新が止まり検索性が落ちる
-- - 全部コードコメント → 長大化して読まれなくなる
+- 全部 Confluence / Notion → 更新が止まり検索性が落ちる
+- 全部コードコメント → 長大化して読まれなくなる
 
 
 ---
@@ -2218,7 +2334,8 @@ PostgreSQL 17 を採用する
 
 > *対立の本質は目的の不一致——問いを変えることが唯一の解決策*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="14" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">「書いたけど誰も読まない」症候群の診断</text>
 <rect x="40" y="45" width="700" height="38" fill="#16213e" rx="8"/>
@@ -2247,8 +2364,9 @@ PostgreSQL 17 を採用する
 <text x="260" y="310" font-size="12" fill="#aaa" text-anchor="start" font-weight="normal" font-family="sans-serif">→  最低限しか書いていない</text>
 <text x="400" y="358" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="bold" font-family="sans-serif">解決策: 読み手を先に定義し、目的から形式を選ぶ</text>
 </svg>
+</div>
+
 - **3つの核心:**
-- 
 - **① 対立の本質は「目的の不一致」**
 
 
@@ -2258,9 +2376,8 @@ PostgreSQL 17 を採用する
 
 > *両文化とも「チームが動けること」を目指している—問い方が間違い*
 
-- - 仕様書派もコード派も「チームが動けること」を目指している
-- - 違うのは「何が証拠になるか」という前提
-- 
+- 仕様書派もコード派も「チームが動けること」を目指している
+- 違うのは「何が証拠になるか」という前提
 - **② 文脈によって最適解は変わる**
 
 
@@ -2270,7 +2387,8 @@ PostgreSQL 17 を採用する
 
 > *チーム規模・オフショア・規制要件で最適解が変わり絶対正義はない*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="16" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ドキュメント成熟度の5段階</text>
 <rect x="50" y="240" width="130" height="60" fill="#555" rx="8"/>
@@ -2294,9 +2412,11 @@ PostgreSQL 17 を採用する
 <text x="695" y="164" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">最適化</text>
 <text x="695" y="330" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">Living Doc・CI連携</text>
 </svg>
-- - オフショア・コンプライアンス → 仕様書が必要
-- - 小規模・同室チーム → コード＋ADR で十分
-- - どちらも「絶対正義」はない
+</div>
+
+- オフショア・コンプライアンス → 仕様書が必要
+- 小規模・同室チーム → コード＋ADR で十分
+- どちらも「絶対正義」はない
 
 
 ---
@@ -2305,11 +2425,10 @@ PostgreSQL 17 を採用する
 
 > *テックリードの役割は仲裁でなく誰が・いつ・何のためにを問い続けること*
 
-- 
 - **③ テックリード・EM の役割**
-- - 「どちらが正しいか」を仲裁するのではなく
-- - 「誰が・いつ・何のために読むか」を問い続けること
-- - 文化を強制するより、目的から合意形成する
+- 「どちらが正しいか」を仲裁するのではなく
+- 「誰が・いつ・何のために読むか」を問い続けること
+- 文化を強制するより、目的から合意形成する
 
 
 ---
@@ -2318,7 +2437,8 @@ PostgreSQL 17 を採用する
 
 > *Clean Code・Living Doc・A Philosophy of Software Design—三大古典厳選リスト*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">2つの文化が生まれた歴史的背景</text>
 <rect x="40" y="50" width="340" height="270" fill="#16213e" rx="8"/>
@@ -2339,11 +2459,12 @@ PostgreSQL 17 を採用する
 <text x="590" y="228" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">CI/CD・テスト駆動開発の普及</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">どちらも「時代の要請」から生まれた。どちらかが間違いではない</text>
 </svg>
+</div>
+
 - **書籍:**
-- - [Clean Code — Robert C. Martin](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)
-- - [A Philosophy of Software Design — John Ousterhout](https://web.stanford.edu/~ouster/cgi-bin/book.php)
-- - [Living Documentation — Cyrille Martraire](https://www.pearson.com/en-us/subject-catalog/p/living-documentation/P200000009483)
-- 
+- [Clean Code — Robert C. Martin](https://www.oreilly.com/library/view/clean-code-a/9780136083238/)
+- [A Philosophy of Software Design — John Ousterhout](https://web.stanford.edu/~ouster/cgi-bin/book.php)
+- [Living Documentation — Cyrille Martraire](https://www.pearson.com/en-us/subject-catalog/p/living-documentation/P200000009483)
 
 
 ---
@@ -2352,7 +2473,8 @@ PostgreSQL 17 を採用する
 
 > *OpenAPI・ADR・arc42—実践ツールと設計哲学の橋渡しとなるリソース集*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">2つの文化が生まれた歴史的背景</text>
 <rect x="40" y="50" width="340" height="270" fill="#16213e" rx="8"/>
@@ -2373,11 +2495,13 @@ PostgreSQL 17 を採用する
 <text x="590" y="228" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">CI/CD・テスト駆動開発の普及</text>
 <text x="400" y="355" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">どちらも「時代の要請」から生まれた。どちらかが間違いではない</text>
 </svg>
+</div>
+
 - **記事・仕様:**
-- - [Divio Documentation System](https://docs.divio.com/documentation-system/)
-- - [ADR GitHub — Michael Nygard](https://github.com/joelparkerhenderson/architecture-decision-record)
-- - [Architecture Haiku — Simon Brown](https://simonbrown.je/)
-- - [The Majestic Monolith — DHH (2016)](https://signalvnoise.com/svn3/the-majestic-monolith/)
+- [Divio Documentation System](https://docs.divio.com/documentation-system/)
+- [ADR GitHub — Michael Nygard](https://github.com/joelparkerhenderson/architecture-decision-record)
+- [Architecture Haiku — Simon Brown](https://simonbrown.je/)
+- [The Majestic Monolith — DHH (2016)](https://signalvnoise.com/svn3/the-majestic-monolith/)
 
 
 ---
@@ -2386,7 +2510,8 @@ PostgreSQL 17 を採用する
 
 > *Backstage・Cucumber・ASML—Developer Portal から実行可能仕様書まで*
 
-- <svg viewBox="0 0 800 370" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 370" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="30" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ADR ワークフロー — 「なぜ」を残すプロセス</text>
 <rect x="50" y="70" width="140" height="60" fill="#16213e" rx="8"/>
@@ -2422,11 +2547,13 @@ PostgreSQL 17 を採用する
 <text x="400" y="310" font-size="13" fill="#f9a825" text-anchor="middle" font-weight="normal" font-family="sans-serif">コードの近くに置く → GitHubで検索可能 → 腐らない</text>
 <text x="400" y="340" font-size="12" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">「なぜ」の記録がオンボーディング時間を劇的に短縮する</text>
 </svg>
+</div>
+
 - **ツール・実践:**
-- - [OpenAPI Specification](https://swagger.io/specification/)
-- - [Cucumber / BDD (Executable Specification)](https://cucumber.io/)
-- - [arc42 — Architecture Documentation](https://arc42.org/)
-- - [Backstage — Developer Portal (Spotify)](https://backstage.io/)
+- [OpenAPI Specification](https://swagger.io/specification/)
+- [Cucumber / BDD (Executable Specification)](https://cucumber.io/)
+- [arc42 — Architecture Documentation](https://arc42.org/)
+- [Backstage — Developer Portal (Spotify)](https://backstage.io/)
 
 
 ---
@@ -2435,7 +2562,8 @@ PostgreSQL 17 を採用する
 
 > *DX白書・ADR事例・Qiitaまとめ—日本語コミュニティで学べる実践事例集*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg">
 <rect x="0" y="0" width="800" height="380" fill="#1a1a2e" rx="0"/>
 <text x="400" y="26" font-size="15" fill="#ffffff" text-anchor="middle" font-weight="bold" font-family="sans-serif">ドキュメント棚卸しの進め方</text>
 <rect x="50" y="45" width="120" height="40" fill="#0f3460" rx="8"/>
@@ -2476,9 +2604,10 @@ PostgreSQL 17 を採用する
 <text x="613" y="335" font-size="10" fill="#aaa" text-anchor="middle" font-weight="normal" font-family="sans-serif">1年以上更新なし + 参照ゼロ = アーカイブ</text>
 <text x="400" y="368" font-size="12" fill="#ffffff" text-anchor="middle" font-weight="normal" font-family="sans-serif">棚卸しは一度やれば終わりではなく、四半期ごとの習慣にする</text>
 </svg>
-- 
+</div>
+
 - **日本語リソース:**
-- - [ドキュメント駆動開発 — Qiita まとめ](https://qiita.com/tags/ドキュメント駆動開発)
-- - [ADR を日本語チームに導入した話 — various tech blogs](https://zenn.dev/topics/adr)
-- - [DX白書 2023 — IPA](https://www.ipa.go.jp/publish/wp-dx/)
+- [ドキュメント駆動開発 — Qiita まとめ](https://qiita.com/tags/ドキュメント駆動開発)
+- [ADR を日本語チームに導入した話 — various tech blogs](https://zenn.dev/topics/adr)
+- [DX白書 2023 — IPA](https://www.ipa.go.jp/publish/wp-dx/)
 

@@ -7,41 +7,76 @@ paginate: true
 header: "英語の世界標準化"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 英語はなぜ世界標準になったのか
 言語帝国主義の歴史
 
@@ -87,32 +122,36 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # アジェンダ
 
 > *英語覇権の歴史的起源から未来の多言語社会まで6章で解説*
 
 ![w:800 center](assets/svg-en-agenda.svg)
-- 1. 英語の現在の地位
-- 2. 大英帝国と英語の拡散
-- 3. アメリカの経済力と文化力
-- 4. インターネットと英語
-- 5. プログラミングと英語
-- 6. 英語の未来と多言語の価値
+
+1. 英語の現在の地位
+2. 大英帝国と英語の拡散
+3. アメリカの経済力と文化力
+4. インターネットと英語
+5. プログラミングと英語
+6. 英語の未来と多言語の価値
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 英語の現在の地位
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 数字で見る英語の支配力
 
 > *科学論文95%・ネット60%が英語、歴史上唯一の覇権言語*
 
 ![w:800 center](assets/svg-english-dominance.svg)
+
 - 英語話者数：**約15億人**（母語3.8億 + 第二言語11億）
 - インターネットコンテンツの**60%以上**が英語
 - 科学論文の**95%以上**が英語で発表
@@ -123,17 +162,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 大英帝国と英語の拡散
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 「太陽の沈まない帝国」と言語
 
 > *植民地教育への英語強制が現在も続く言語格差の根本原因*
 
 ![w:800 center](assets/svg-empire.svg)
+
 - **19世紀ピーク時：** 世界の陸地の25%、人口の23%を支配
 - 北米・オーストラリア・インド・アフリカに英語を持ち込む
 - 植民地の教育制度に英語を強制 → 現地エリート層が英語を習得
@@ -143,11 +184,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-64 -->
 # なぜフランス語ではなく英語か
 
 > *WWⅡ後の米国覇権が外交言語をフランス語から英語へ塗り替えた*
 
 ![w:800 center](assets/svg-en-why-not-french.svg)
+
 - **18世紀まではフランス語が外交の共通語だった**
 - 1919年ベルサイユ条約：英語が初めて外交言語として使用
 - 決定的要因：**アメリカの台頭**
@@ -158,7 +201,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # アメリカの経済力と文化力
 
 ![w:800 center](assets/svg-american-power.svg)
@@ -179,7 +222,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # インターネットと英語
 
 ![w:800 center](assets/svg-soft-power.svg)
@@ -187,11 +230,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # インターネットは英語で生まれた
 
 > *技術仕様書が全て英語という設計思想がデジタル格差を固定化*
 
 ![w:800 center](assets/svg-en-internet.svg)
+
 - ARPANET（1969年）― 米国国防総省の英語プロジェクト
 - HTTP/HTML ― 英語のキーワードで構成
 - 初期のWebサイトは**99%が英語**（1995年時点）
@@ -202,7 +247,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # プログラミングと英語
 
 ![w:800 center](assets/svg-internet.svg)
@@ -210,11 +255,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-64 -->
 # なぜ全てのプログラミング言語は英語ベースか
 
 > *英語読めないプログラマーは構造的不利、技術的必然ではなく歴史的偶然*
 
 ![w:800 center](assets/svg-en-programming.svg)
+
 - **if, else, for, while, return, class, function...**
 - 全ての主要プログラミング言語のキーワードは英語
 - これは技術的必然ではない ― 歴史的偶然+文化的慣性
@@ -225,17 +272,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 英語の未来と多言語の価値
 
 
 ---
 
+<!-- _class: invert fit-58 -->
 # 英語の覇権は続くか？
 
 > *機械翻訳が言語壁を下げても英語の文化的覇権は数十年維持される*
 
 ![w:800 center](assets/svg-future.svg)
+
 - **英語が続く理由：** ネットワーク効果（皆が使うから皆が使う）
 - **揺らぐ要因：** 機械翻訳の進化（言語障壁が技術で解消される可能性）
 - **中国語の台頭：** 母語話者9億人、中国経済の成長
@@ -271,7 +320,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ
 
 - 英語の支配的地位は**軍事力・経済力・文化力の歴史的蓄積**の結果
@@ -283,14 +332,15 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 参考文献
 
 > *言語帝国主義の古典書籍とEthnologue・W3Techsの実証データを網羅*
 
-- - **書籍:**
-- - [Linguistic Imperialism - Robert Phillipson](https://www.amazon.com/dp/0194371468)
-- - [The Stories of English - David Crystal](https://www.amazon.com/dp/1585677191)
-- - **データ:**
-- - [Ethnologue: Languages of the World](https://www.ethnologue.com/)
-- - [W3Techs: Usage of Content Languages](https://w3techs.com/technologies/overview/content_language)
+- **書籍:**
+- [Linguistic Imperialism - Robert Phillipson](https://www.amazon.com/dp/0194371468)
+- [The Stories of English - David Crystal](https://www.amazon.com/dp/1585677191)
+- **データ:**
+- [Ethnologue: Languages of the World](https://www.ethnologue.com/)
+- [W3Techs: Usage of Content Languages](https://w3techs.com/technologies/overview/content_language)
 

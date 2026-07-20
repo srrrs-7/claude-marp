@@ -7,41 +7,76 @@ paginate: true
 header: "錬金術からAIへ"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -82,27 +117,31 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 錬金術からAIへ
 
 - 〜知識自動化の2000年史〜
 - 賢者の石を求める人類の2000年の旅
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="320" fill="#1a1a2e" rx="12"/><text x="400" y="60" font-size="20" fill="#f9a825" text-anchor="middle" font-family="sans-serif" font-weight="bold">錬金術師の問い</text><text x="400" y="88" font-size="14" fill="#aaa" text-anchor="middle" font-family="sans-serif">「卑金属を金に変えられるか？」</text><text x="200" y="200" font-size="42" text-anchor="middle">⚗️</text><text x="400" y="200" font-size="42" text-anchor="middle" fill="#f9a825">→</text><text x="600" y="200" font-size="42" text-anchor="middle">🤖</text><text x="200" y="240" font-size="13" fill="#ccc" text-anchor="middle" font-family="sans-serif">錬金術師</text><text x="600" y="240" font-size="13" fill="#ccc" text-anchor="middle" font-family="sans-serif">AI研究者</text><text x="400" y="285" font-size="15" fill="#e91e63" text-anchor="middle" font-family="sans-serif" font-weight="bold">2000年の夢：知識の自動変換</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="320" fill="#1a1a2e" rx="12"/><text x="400" y="60" font-size="20" fill="#f9a825" text-anchor="middle" font-family="sans-serif" font-weight="bold">錬金術師の問い</text><text x="400" y="88" font-size="14" fill="#aaa" text-anchor="middle" font-family="sans-serif">「卑金属を金に変えられるか？」</text><text x="200" y="200" font-size="42" text-anchor="middle">⚗️</text><text x="400" y="200" font-size="42" text-anchor="middle" fill="#f9a825">→</text><text x="600" y="200" font-size="42" text-anchor="middle">🤖</text><text x="200" y="240" font-size="13" fill="#ccc" text-anchor="middle" font-family="sans-serif">錬金術師</text><text x="600" y="240" font-size="13" fill="#ccc" text-anchor="middle" font-family="sans-serif">AI研究者</text><text x="400" y="285" font-size="15" fill="#e91e63" text-anchor="middle" font-family="sans-serif" font-weight="bold">2000年の夢：知識の自動変換</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # なぜ人類は知識の自動化を夢見るのか？
 
 - 古代から続く「知を機械化したい」という衝動
 - 錬金術師もAI研究者も、同じ夢を追っている
+
 ![w:800 center](assets/timeline.svg)
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第一章：古代〜中世（〜1600年）
 
 
@@ -116,7 +155,10 @@ style: |
 - アルゴリズムの概念の原型
 - 「論理学」＝ 推論の自動化への最初の試み
 - 三段論法: 形式的推論の発明
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="260" fill="#1a1a2e" rx="10"/><rect x="40" y="60" width="180" height="70" rx="8" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="130" y="90" font-size="14" fill="#f9a825" text-anchor="middle" font-family="sans-serif" font-weight="bold">前提1</text><text x="130" y="112" font-size="12" fill="#ddd" text-anchor="middle" font-family="sans-serif">すべての人は死ぬ</text><rect x="40" y="150" width="180" height="70" rx="8" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="130" y="180" font-size="14" fill="#f9a825" text-anchor="middle" font-family="sans-serif" font-weight="bold">前提2</text><text x="130" y="202" font-size="12" fill="#ddd" text-anchor="middle" font-family="sans-serif">ソクラテスは人間</text><rect x="310" y="105" width="180" height="70" rx="8" fill="#3a1a3e" stroke="#e91e63" stroke-width="2"/><text x="400" y="135" font-size="14" fill="#e91e63" text-anchor="middle" font-family="sans-serif" font-weight="bold">論理エンジン</text><text x="400" y="157" font-size="12" fill="#ddd" text-anchor="middle" font-family="sans-serif">三段論法</text><rect x="580" y="105" width="180" height="70" rx="8" fill="#1a3a1e" stroke="#4caf50" stroke-width="2"/><text x="670" y="135" font-size="14" fill="#4caf50" text-anchor="middle" font-family="sans-serif" font-weight="bold">結論</text><text x="670" y="157" font-size="12" fill="#ddd" text-anchor="middle" font-family="sans-serif">ソクラテスは死ぬ</text><polygon points="228,95 310,140 228,95" fill="#f9a825"/><line x1="228" y1="95" x2="308" y2="135" stroke="#f9a825" stroke-width="2"/><polygon points="304,132 316,143 306,148" fill="#f9a825"/><polygon points="228,185 310,140 228,185" fill="#f9a825"/><line x1="228" y1="185" x2="308" y2="145" stroke="#f9a825" stroke-width="2"/><polygon points="304,148 316,137 306,132" fill="#f9a825"/><line x1="490" y1="140" x2="576" y2="140" stroke="#4caf50" stroke-width="2"/><polygon points="572,134 582,140 572,146" fill="#4caf50"/><text x="400" y="230" font-size="13" fill="#aaa" text-anchor="middle" font-family="sans-serif">形式的推論の自動化 — アルゴリズム思想の起源</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="260" fill="#1a1a2e" rx="10"/><rect x="40" y="60" width="180" height="70" rx="8" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="130" y="90" font-size="14" fill="#f9a825" text-anchor="middle" font-family="sans-serif" font-weight="bold">前提1</text><text x="130" y="112" font-size="12" fill="#ddd" text-anchor="middle" font-family="sans-serif">すべての人は死ぬ</text><rect x="40" y="150" width="180" height="70" rx="8" fill="#2a2a4e" stroke="#f9a825" stroke-width="2"/><text x="130" y="180" font-size="14" fill="#f9a825" text-anchor="middle" font-family="sans-serif" font-weight="bold">前提2</text><text x="130" y="202" font-size="12" fill="#ddd" text-anchor="middle" font-family="sans-serif">ソクラテスは人間</text><rect x="310" y="105" width="180" height="70" rx="8" fill="#3a1a3e" stroke="#e91e63" stroke-width="2"/><text x="400" y="135" font-size="14" fill="#e91e63" text-anchor="middle" font-family="sans-serif" font-weight="bold">論理エンジン</text><text x="400" y="157" font-size="12" fill="#ddd" text-anchor="middle" font-family="sans-serif">三段論法</text><rect x="580" y="105" width="180" height="70" rx="8" fill="#1a3a1e" stroke="#4caf50" stroke-width="2"/><text x="670" y="135" font-size="14" fill="#4caf50" text-anchor="middle" font-family="sans-serif" font-weight="bold">結論</text><text x="670" y="157" font-size="12" fill="#ddd" text-anchor="middle" font-family="sans-serif">ソクラテスは死ぬ</text><polygon points="228,95 310,140 228,95" fill="#f9a825"/><line x1="228" y1="95" x2="308" y2="135" stroke="#f9a825" stroke-width="2"/><polygon points="304,132 316,143 306,148" fill="#f9a825"/><polygon points="228,185 310,140 228,185" fill="#f9a825"/><line x1="228" y1="185" x2="308" y2="145" stroke="#f9a825" stroke-width="2"/><polygon points="304,148 316,137 306,132" fill="#f9a825"/><line x1="490" y1="140" x2="576" y2="140" stroke="#4caf50" stroke-width="2"/><polygon points="572,134 582,140 572,146" fill="#4caf50"/><text x="400" y="230" font-size="13" fill="#aaa" text-anchor="middle" font-family="sans-serif">形式的推論の自動化 — アルゴリズム思想の起源</text></svg>
+</div>
 
 
 ---
@@ -129,6 +171,7 @@ style: |
 - al-Khwarizmi がアルゴリズムを発明（820年頃）
 - 「卑金属を金に変える」＝ データを価値に変える
 - Homunculus（人工人間）＝ AGIの原型概念
+
 ![w:750 center](assets/alchemy-lab.svg)
 
 
@@ -143,12 +186,13 @@ style: |
 - 賢者の石 ≈ 汎用知能（AGI）
 - 不老不死の霊薬 ≈ 老化の解明・超長寿研究
 - 「宇宙の真理の理解」≈ 世界モデルの構築
+
 ![w:700 center](assets/philosophers-stone.svg)
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第二章：機械の夢（1600〜1950年）
 
 
@@ -162,7 +206,10 @@ style: |
 - エイダ・ラブレスが世界初のプログラムを記述
 - 蒸気機関による「知識の機械化」の試み
 - 100年早すぎた発明 — 技術の制約で実現せず
-- <svg viewBox="0 0 800 250" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="250" fill="#1a1a2e" rx="10"/><rect x="30" y="50" width="150" height="80" rx="8" fill="#2a1a1e" stroke="#b5651d" stroke-width="2"/><text x="105" y="83" font-size="13" fill="#b5651d" text-anchor="middle" font-family="sans-serif" font-weight="bold">解析機関</text><text x="105" y="103" font-size="11" fill="#ddd" text-anchor="middle" font-family="sans-serif">1837年</text><text x="105" y="120" font-size="11" fill="#aaa" text-anchor="middle" font-family="sans-serif">バベッジ設計</text><rect x="230" y="50" width="150" height="80" rx="8" fill="#1a2a1e" stroke="#4caf50" stroke-width="2"/><text x="305" y="83" font-size="13" fill="#4caf50" text-anchor="middle" font-family="sans-serif" font-weight="bold">最初のプログラム</text><text x="305" y="103" font-size="11" fill="#ddd" text-anchor="middle" font-family="sans-serif">ベルヌーイ数計算</text><text x="305" y="120" font-size="11" fill="#aaa" text-anchor="middle" font-family="sans-serif">ラブレス記述</text><rect x="430" y="50" width="150" height="80" rx="8" fill="#1a1a3e" stroke="#5c6bc0" stroke-width="2"/><text x="505" y="83" font-size="13" fill="#5c6bc0" text-anchor="middle" font-family="sans-serif" font-weight="bold">真空管コンピュータ</text><text x="505" y="103" font-size="11" fill="#ddd" text-anchor="middle" font-family="sans-serif">1940年代</text><text x="505" y="120" font-size="11" fill="#aaa" text-anchor="middle" font-family="sans-serif">ENIAC等</text><rect x="630" y="50" width="140" height="80" rx="8" fill="#1a2a3e" stroke="#29b6f6" stroke-width="2"/><text x="700" y="83" font-size="13" fill="#29b6f6" text-anchor="middle" font-family="sans-serif" font-weight="bold">現代CPU</text><text x="700" y="103" font-size="11" fill="#ddd" text-anchor="middle" font-family="sans-serif">1970年代〜</text><text x="700" y="120" font-size="11" fill="#aaa" text-anchor="middle" font-family="sans-serif">シリコン集積回路</text><line x1="180" y1="90" x2="228" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="224,85 232,90 224,95" fill="#f9a825"/><line x1="380" y1="90" x2="428" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="424,85 432,90 424,95" fill="#f9a825"/><line x1="580" y1="90" x2="628" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="624,85 632,90 624,95" fill="#f9a825"/><text x="400" y="200" font-size="13" fill="#e91e63" text-anchor="middle" font-family="sans-serif" font-weight="bold">機械的計算の夢 → 電子計算へ</text><text x="400" y="225" font-size="12" fill="#888" text-anchor="middle" font-family="sans-serif">バベッジの設計思想はノイマン型アーキテクチャの原型</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 250" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="250" fill="#1a1a2e" rx="10"/><rect x="30" y="50" width="150" height="80" rx="8" fill="#2a1a1e" stroke="#b5651d" stroke-width="2"/><text x="105" y="83" font-size="13" fill="#b5651d" text-anchor="middle" font-family="sans-serif" font-weight="bold">解析機関</text><text x="105" y="103" font-size="11" fill="#ddd" text-anchor="middle" font-family="sans-serif">1837年</text><text x="105" y="120" font-size="11" fill="#aaa" text-anchor="middle" font-family="sans-serif">バベッジ設計</text><rect x="230" y="50" width="150" height="80" rx="8" fill="#1a2a1e" stroke="#4caf50" stroke-width="2"/><text x="305" y="83" font-size="13" fill="#4caf50" text-anchor="middle" font-family="sans-serif" font-weight="bold">最初のプログラム</text><text x="305" y="103" font-size="11" fill="#ddd" text-anchor="middle" font-family="sans-serif">ベルヌーイ数計算</text><text x="305" y="120" font-size="11" fill="#aaa" text-anchor="middle" font-family="sans-serif">ラブレス記述</text><rect x="430" y="50" width="150" height="80" rx="8" fill="#1a1a3e" stroke="#5c6bc0" stroke-width="2"/><text x="505" y="83" font-size="13" fill="#5c6bc0" text-anchor="middle" font-family="sans-serif" font-weight="bold">真空管コンピュータ</text><text x="505" y="103" font-size="11" fill="#ddd" text-anchor="middle" font-family="sans-serif">1940年代</text><text x="505" y="120" font-size="11" fill="#aaa" text-anchor="middle" font-family="sans-serif">ENIAC等</text><rect x="630" y="50" width="140" height="80" rx="8" fill="#1a2a3e" stroke="#29b6f6" stroke-width="2"/><text x="700" y="83" font-size="13" fill="#29b6f6" text-anchor="middle" font-family="sans-serif" font-weight="bold">現代CPU</text><text x="700" y="103" font-size="11" fill="#ddd" text-anchor="middle" font-family="sans-serif">1970年代〜</text><text x="700" y="120" font-size="11" fill="#aaa" text-anchor="middle" font-family="sans-serif">シリコン集積回路</text><line x1="180" y1="90" x2="228" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="224,85 232,90 224,95" fill="#f9a825"/><line x1="380" y1="90" x2="428" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="424,85 432,90 424,95" fill="#f9a825"/><line x1="580" y1="90" x2="628" y2="90" stroke="#f9a825" stroke-width="2"/><polygon points="624,85 632,90 624,95" fill="#f9a825"/><text x="400" y="200" font-size="13" fill="#e91e63" text-anchor="middle" font-family="sans-serif" font-weight="bold">機械的計算の夢 → 電子計算へ</text><text x="400" y="225" font-size="12" fill="#888" text-anchor="middle" font-family="sans-serif">バベッジの設計思想はノイマン型アーキテクチャの原型</text></svg>
+</div>
 
 
 ---
@@ -175,12 +222,13 @@ style: |
 - 計算可能性の理論: 何が「自動化」できるか
 - Entscheidungsproblem（決定問題）の否定的解答
 - 「すべての問題を解けるアルゴリズムは存在しない」
+
 ![w:750 center](assets/turing-to-ai.svg)
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第三章：AIの浮沈（1950〜2010年）
 
 
@@ -194,7 +242,10 @@ style: |
 - Prolog、エキスパートシステムの全盛（1970〜80年代）
 - AIの冬: 現実の複雑さはルールで書けない
 - これは錬金術師の「万能変換式」探しと同じ失敗
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="260" fill="#1a1a2e" rx="10"/><text x="400" y="30" font-size="15" fill="#f9a825" text-anchor="middle" font-family="sans-serif" font-weight="bold">シンボリックAI vs. 現実の複雑さ</text><rect x="30" y="50" width="340" height="170" rx="8" fill="#1e2a1e" stroke="#4caf50" stroke-width="2"/><text x="200" y="75" font-size="14" fill="#4caf50" text-anchor="middle" font-family="sans-serif" font-weight="bold">シンボリックAIの世界</text><text x="60" y="105" font-size="12" fill="#ddd" font-family="sans-serif">• 明示的ルール</text><text x="60" y="128" font-size="12" fill="#ddd" font-family="sans-serif">• 論理演算</text><text x="60" y="151" font-size="12" fill="#ddd" font-family="sans-serif">• 予測可能</text><text x="60" y="174" font-size="12" fill="#ddd" font-family="sans-serif">• 閉じた世界</text><text x="60" y="197" font-size="12" fill="#aaa" font-family="sans-serif">例: Prolog, MYCIN</text><rect x="430" y="50" width="340" height="170" rx="8" fill="#2a1a1e" stroke="#e91e63" stroke-width="2"/><text x="600" y="75" font-size="14" fill="#e91e63" text-anchor="middle" font-family="sans-serif" font-weight="bold">現実の世界</text><text x="460" y="105" font-size="12" fill="#ddd" font-family="sans-serif">• 曖昧・不確かさ</text><text x="460" y="128" font-size="12" fill="#ddd" font-family="sans-serif">• 例外だらけ</text><text x="460" y="151" font-size="12" fill="#ddd" font-family="sans-serif">• 常識推論が必要</text><text x="460" y="174" font-size="12" fill="#ddd" font-family="sans-serif">• 開放系・無限の文脈</text><text x="460" y="197" font-size="12" fill="#aaa" font-family="sans-serif">→ フレーム問題</text><text x="400" y="140" font-size="28" fill="#e91e63" text-anchor="middle">✗</text><text x="400" y="235" font-size="12" fill="#888" text-anchor="middle" font-family="sans-serif">錬金術師の「万能変換式」と同じ壁にぶつかった</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="260" fill="#1a1a2e" rx="10"/><text x="400" y="30" font-size="15" fill="#f9a825" text-anchor="middle" font-family="sans-serif" font-weight="bold">シンボリックAI vs. 現実の複雑さ</text><rect x="30" y="50" width="340" height="170" rx="8" fill="#1e2a1e" stroke="#4caf50" stroke-width="2"/><text x="200" y="75" font-size="14" fill="#4caf50" text-anchor="middle" font-family="sans-serif" font-weight="bold">シンボリックAIの世界</text><text x="60" y="105" font-size="12" fill="#ddd" font-family="sans-serif">• 明示的ルール</text><text x="60" y="128" font-size="12" fill="#ddd" font-family="sans-serif">• 論理演算</text><text x="60" y="151" font-size="12" fill="#ddd" font-family="sans-serif">• 予測可能</text><text x="60" y="174" font-size="12" fill="#ddd" font-family="sans-serif">• 閉じた世界</text><text x="60" y="197" font-size="12" fill="#aaa" font-family="sans-serif">例: Prolog, MYCIN</text><rect x="430" y="50" width="340" height="170" rx="8" fill="#2a1a1e" stroke="#e91e63" stroke-width="2"/><text x="600" y="75" font-size="14" fill="#e91e63" text-anchor="middle" font-family="sans-serif" font-weight="bold">現実の世界</text><text x="460" y="105" font-size="12" fill="#ddd" font-family="sans-serif">• 曖昧・不確かさ</text><text x="460" y="128" font-size="12" fill="#ddd" font-family="sans-serif">• 例外だらけ</text><text x="460" y="151" font-size="12" fill="#ddd" font-family="sans-serif">• 常識推論が必要</text><text x="460" y="174" font-size="12" fill="#ddd" font-family="sans-serif">• 開放系・無限の文脈</text><text x="460" y="197" font-size="12" fill="#aaa" font-family="sans-serif">→ フレーム問題</text><text x="400" y="140" font-size="28" fill="#e91e63" text-anchor="middle">✗</text><text x="400" y="235" font-size="12" fill="#888" text-anchor="middle" font-family="sans-serif">錬金術師の「万能変換式」と同じ壁にぶつかった</text></svg>
+</div>
 
 
 ---
@@ -207,12 +258,13 @@ style: |
 - 「ルールを書かず、データから学ぶ」への転換
 - 錬金術の「物質の変換」から「パターンの変換」へ
 - AlexNet（2012）で深層学習の実用性を証明
+
 ![w:800 center](assets/ai-evolution.svg)
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 第四章：LLMという現代の賢者の石
 
 
@@ -226,7 +278,10 @@ style: |
 - 錬金術師が夢見た「あらゆる知識を変換する装置」
 - **しかし**: ハルシネーション＝「偽金（Fool's Gold）」
 - AGIは本物の賢者の石か、それとも黄鉄鉱か？
-- <svg viewBox="0 0 800 250" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="250" fill="#1a1a2e" rx="10"/><text x="400" y="30" font-size="15" fill="#f9a825" text-anchor="middle" font-family="sans-serif" font-weight="bold">LLMの入力→変換→出力フロー</text><rect x="20" y="55" width="160" height="140" rx="8" fill="#2a2a4e" stroke="#5c6bc0" stroke-width="2"/><text x="100" y="85" font-size="13" fill="#5c6bc0" text-anchor="middle" font-family="sans-serif" font-weight="bold">入力</text><text x="100" y="110" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">テキスト</text><text x="100" y="130" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">コード</text><text x="100" y="150" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">画像</text><text x="100" y="170" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">音声</text><rect x="320" y="55" width="160" height="140" rx="8" fill="#2a1a3e" stroke="#f9a825" stroke-width="2"/><text x="400" y="85" font-size="13" fill="#f9a825" text-anchor="middle" font-family="sans-serif" font-weight="bold">LLM変換器</text><text x="400" y="110" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">Transformer</text><text x="400" y="130" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">Attention機構</text><text x="400" y="150" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">数百億パラメータ</text><text x="400" y="170" font-size="11" fill="#888" text-anchor="middle" font-family="sans-serif">≈ 賢者の石</text><rect x="620" y="55" width="160" height="140" rx="8" fill="#1a3a2e" stroke="#4caf50" stroke-width="2"/><text x="700" y="85" font-size="13" fill="#4caf50" text-anchor="middle" font-family="sans-serif" font-weight="bold">出力</text><text x="700" y="110" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">要約・翻訳</text><text x="700" y="130" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">コード生成</text><text x="700" y="150" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">推論・分析</text><text x="700" y="170" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">創作</text><line x1="180" y1="125" x2="318" y2="125" stroke="#f9a825" stroke-width="2"/><polygon points="314,119 322,125 314,131" fill="#f9a825"/><line x1="480" y1="125" x2="618" y2="125" stroke="#f9a825" stroke-width="2"/><polygon points="614,119 622,125 614,131" fill="#f9a825"/><text x="400" y="225" font-size="12" fill="#e91e63" text-anchor="middle" font-family="sans-serif">但しハルシネーション ≈ 偽金（Fool's Gold）に注意</text></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 250" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="250" fill="#1a1a2e" rx="10"/><text x="400" y="30" font-size="15" fill="#f9a825" text-anchor="middle" font-family="sans-serif" font-weight="bold">LLMの入力→変換→出力フロー</text><rect x="20" y="55" width="160" height="140" rx="8" fill="#2a2a4e" stroke="#5c6bc0" stroke-width="2"/><text x="100" y="85" font-size="13" fill="#5c6bc0" text-anchor="middle" font-family="sans-serif" font-weight="bold">入力</text><text x="100" y="110" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">テキスト</text><text x="100" y="130" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">コード</text><text x="100" y="150" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">画像</text><text x="100" y="170" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">音声</text><rect x="320" y="55" width="160" height="140" rx="8" fill="#2a1a3e" stroke="#f9a825" stroke-width="2"/><text x="400" y="85" font-size="13" fill="#f9a825" text-anchor="middle" font-family="sans-serif" font-weight="bold">LLM変換器</text><text x="400" y="110" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">Transformer</text><text x="400" y="130" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">Attention機構</text><text x="400" y="150" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">数百億パラメータ</text><text x="400" y="170" font-size="11" fill="#888" text-anchor="middle" font-family="sans-serif">≈ 賢者の石</text><rect x="620" y="55" width="160" height="140" rx="8" fill="#1a3a2e" stroke="#4caf50" stroke-width="2"/><text x="700" y="85" font-size="13" fill="#4caf50" text-anchor="middle" font-family="sans-serif" font-weight="bold">出力</text><text x="700" y="110" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">要約・翻訳</text><text x="700" y="130" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">コード生成</text><text x="700" y="150" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">推論・分析</text><text x="700" y="170" font-size="11" fill="#ccc" text-anchor="middle" font-family="sans-serif">創作</text><line x1="180" y1="125" x2="318" y2="125" stroke="#f9a825" stroke-width="2"/><polygon points="314,119 322,125 314,131" fill="#f9a825"/><line x1="480" y1="125" x2="618" y2="125" stroke="#f9a825" stroke-width="2"/><polygon points="614,119 622,125 614,131" fill="#f9a825"/><text x="400" y="225" font-size="12" fill="#e91e63" text-anchor="middle" font-family="sans-serif">但しハルシネーション ≈ 偽金（Fool's Gold）に注意</text></svg>
+</div>
 
 
 ---
@@ -239,5 +294,6 @@ style: |
 - 賢者の石を求めた錬金術師 ≈ AGIを求めるAI研究者
 - 真の問い: 自動化で「何を」達成したいのか？
 - **参考文献**: [The Alchemy of AI (MIT)](https://web.mit.edu/) / [Stanford AI Index 2024](https://aiindex.stanford.edu/) / [Turing (1950) Computing Machinery](https://doi.org/10.1093/mind/LIX.236.433)
+
 ![w:750 center](assets/eternal-quest.svg)
 

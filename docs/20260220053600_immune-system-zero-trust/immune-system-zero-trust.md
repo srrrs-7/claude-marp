@@ -7,41 +7,76 @@ paginate: true
 header: "生物の知恵をセキュリティに"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,14 +111,17 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 免疫システムと
 ゼロトラストセキュリティ
 
 - 生物の40億年の試行錯誤をセキュリティ設計に借用
 - 自己/非自己の認識がゼロトラストの本質
 - 境界型防御はなぜ失敗したか
-- <svg viewBox="0 0 800 280" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0"><rect width="800" height="280" fill="#1a1a2e"/><ellipse cx="400" cy="140" rx="180" ry="90" fill="none" stroke="#f9a825" stroke-width="3" stroke-dasharray="8 4"/><ellipse cx="400" cy="140" rx="110" ry="55" fill="none" stroke="#e91e63" stroke-width="2"/><circle cx="400" cy="140" r="45" fill="#e91e63" opacity="0.25"/><text x="400" y="148" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif" font-weight="bold">ゼロトラスト</text><text x="400" y="76" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">継続認証</text><text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">最小権限</text><text x="220" y="148" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">免疫記憶</text><text x="580" y="148" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">多層防御</text><text x="100" y="60" fill="white" font-size="14" font-family="sans-serif">免疫システム</text><text x="580" y="60" fill="white" font-size="14" font-family="sans-serif">セキュリティ</text><line x1="155" y1="66" x2="300" y2="100" stroke="#888" stroke-width="1"/><line x1="630" y1="66" x2="510" y2="100" stroke="#888" stroke-width="1"/></svg>
+
+<div class="fig">
+<svg viewBox="0 0 800 280" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="280" fill="#1a1a2e"/><ellipse cx="400" cy="140" rx="180" ry="90" fill="none" stroke="#f9a825" stroke-width="3" stroke-dasharray="8 4"/><ellipse cx="400" cy="140" rx="110" ry="55" fill="none" stroke="#e91e63" stroke-width="2"/><circle cx="400" cy="140" r="45" fill="#e91e63" opacity="0.25"/><text x="400" y="148" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif" font-weight="bold">ゼロトラスト</text><text x="400" y="76" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">継続認証</text><text x="400" y="212" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">最小権限</text><text x="220" y="148" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">免疫記憶</text><text x="580" y="148" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">多層防御</text><text x="100" y="60" fill="white" font-size="14" font-family="sans-serif">免疫システム</text><text x="580" y="60" fill="white" font-size="14" font-family="sans-serif">セキュリティ</text><line x1="155" y1="66" x2="300" y2="100" stroke="#888" stroke-width="1"/><line x1="630" y1="66" x2="510" y2="100" stroke="#888" stroke-width="1"/></svg>
+</div>
 
 
 ---
@@ -92,16 +130,16 @@ style: |
 
 > *40億年の免疫進化がゼロトラスト設計の生物学的モデルを示す*
 
-- 1. 境界型セキュリティの崩壊
-- 2. 免疫システムの設計原則
-- 3. ゼロトラストアーキテクチャとの対応
-- 4. 自己免疫疾患とセキュリティの過検知
-- 5. 実装パターン
+1. 境界型セキュリティの崩壊
+2. 免疫システムの設計原則
+3. ゼロトラストアーキテクチャとの対応
+4. 自己免疫疾患とセキュリティの過検知
+5. 実装パターン
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 境界型セキュリティの崩壊
 
 
@@ -109,27 +147,33 @@ style: |
 
 # 「城壁」モデル vs ゼロトラスト
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0"><rect width="800" height="380" fill="#1a1a2e"/><rect x="20" y="20" width="360" height="340" rx="8" fill="#16213e" stroke="#888" stroke-width="1"/><rect x="420" y="20" width="360" height="340" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="55" text-anchor="middle" fill="#aaa" font-size="16" font-family="sans-serif" font-weight="bold">城壁モデル（旧来）</text><text x="600" y="55" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">ゼロトラスト</text><rect x="50" y="80" width="300" height="220" rx="6" fill="#0f3460" stroke="#e91e63" stroke-width="3"/><text x="200" y="108" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">firewall</text><rect x="90" y="120" width="220" height="160" rx="4" fill="#1a3a6e" stroke="#4caf50" stroke-width="1"/><text x="200" y="148" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">「内側は安全」</text><circle cx="200" cy="190" r="30" fill="#4caf50" opacity="0.3"/><text x="200" y="196" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">内部</text><text x="200" y="255" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">一度通過 → 無条件信頼</text><circle cx="450" cy="140" r="22" fill="#e91e63" opacity="0.4"/><text x="450" y="145" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">Device</text><circle cx="530" cy="200" r="22" fill="#e91e63" opacity="0.4"/><text x="530" y="205" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">User</text><circle cx="610" cy="150" r="22" fill="#e91e63" opacity="0.4"/><text x="610" y="155" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">API</text><circle cx="700" cy="200" r="22" fill="#e91e63" opacity="0.4"/><text x="700" y="205" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">App</text><line x1="472" y1="140" x2="508" y2="190" stroke="#f9a825" stroke-width="1.5"/><line x1="550" y1="195" x2="588" y2="155" stroke="#f9a825" stroke-width="1.5"/><line x1="632" y1="150" x2="678" y2="190" stroke="#f9a825" stroke-width="1.5"/><text x="575" y="260" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">毎回認証・最小権限</text><rect x="445" y="275" width="290" height="28" rx="4" fill="#0d7a3e" opacity="0.5"/><text x="590" y="294" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">Never Trust, Always Verify</text><text x="200" y="345" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">境界が消えた世界で破綻</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 380" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="380" fill="#1a1a2e"/><rect x="20" y="20" width="360" height="340" rx="8" fill="#16213e" stroke="#888" stroke-width="1"/><rect x="420" y="20" width="360" height="340" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="55" text-anchor="middle" fill="#aaa" font-size="16" font-family="sans-serif" font-weight="bold">城壁モデル（旧来）</text><text x="600" y="55" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">ゼロトラスト</text><rect x="50" y="80" width="300" height="220" rx="6" fill="#0f3460" stroke="#e91e63" stroke-width="3"/><text x="200" y="108" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif">firewall</text><rect x="90" y="120" width="220" height="160" rx="4" fill="#1a3a6e" stroke="#4caf50" stroke-width="1"/><text x="200" y="148" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif">「内側は安全」</text><circle cx="200" cy="190" r="30" fill="#4caf50" opacity="0.3"/><text x="200" y="196" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">内部</text><text x="200" y="255" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">一度通過 → 無条件信頼</text><circle cx="450" cy="140" r="22" fill="#e91e63" opacity="0.4"/><text x="450" y="145" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">Device</text><circle cx="530" cy="200" r="22" fill="#e91e63" opacity="0.4"/><text x="530" y="205" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">User</text><circle cx="610" cy="150" r="22" fill="#e91e63" opacity="0.4"/><text x="610" y="155" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">API</text><circle cx="700" cy="200" r="22" fill="#e91e63" opacity="0.4"/><text x="700" y="205" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">App</text><line x1="472" y1="140" x2="508" y2="190" stroke="#f9a825" stroke-width="1.5"/><line x1="550" y1="195" x2="588" y2="155" stroke="#f9a825" stroke-width="1.5"/><line x1="632" y1="150" x2="678" y2="190" stroke="#f9a825" stroke-width="1.5"/><text x="575" y="260" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">毎回認証・最小権限</text><rect x="445" y="275" width="290" height="28" rx="4" fill="#0d7a3e" opacity="0.5"/><text x="590" y="294" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">Never Trust, Always Verify</text><text x="200" y="345" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">境界が消えた世界で破綻</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-64 -->
 # 「城壁」モデルはなぜ機能しなくなったか
 
 > *境界消滅・内部不正・SolarWinds—「内側は安全」前提が崩壊した*
 
-- <svg viewBox="0 0 800 190" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;"><rect width="800" height="190" fill="#1a1a2e"/><rect x="30" y="20" width="180" height="140" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="120" y="48" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">2010年以前</text><text x="120" y="72" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">社内ネットワーク</text><text x="120" y="92" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">=「安全な内側」</text><text x="120" y="118" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">境界が明確</text><text x="120" y="140" text-anchor="middle" fill="#4caf50" font-size="10" font-family="sans-serif">城壁モデルが有効</text><rect x="310" y="20" width="460" height="140" rx="8" fill="#2a1a1a" stroke="#e91e63" stroke-width="2"/><text x="540" y="48" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">クラウド時代・リモートワーク以降</text><text x="370" y="78" fill="#aaa" font-size="11" font-family="sans-serif">☁ クラウド: 境界消滅</text><text x="370" y="100" fill="#aaa" font-size="11" font-family="sans-serif">💻 端末が社外に</text><text x="540" y="78" fill="#e91e63" font-size="11" font-family="sans-serif">内部不正増加</text><text x="540" y="100" fill="#e91e63" font-size="11" font-family="sans-serif">SolarWinds侵害</text><text x="450" y="138" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif" font-weight="bold">「内側は安全」の前提が崩壊</text><polygon points="215,90 305,90 295,84 295,96" fill="#f9a825"/></svg>
-- - クラウド移行で「内側」の境界が消滅
-- - リモートワークで端末が社外に
-- - 内部不正・フィッシングで「内側」からの攻撃が増加
-- - SolarWinds・Colonial Pipeline：内部への信頼が命取り
+<div class="fig">
+<svg viewBox="0 0 800 190" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="190" fill="#1a1a2e"/><rect x="30" y="20" width="180" height="140" rx="8" fill="#16213e" stroke="#4caf50" stroke-width="2"/><text x="120" y="48" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">2010年以前</text><text x="120" y="72" text-anchor="middle" fill="#fff" font-size="11" font-family="sans-serif">社内ネットワーク</text><text x="120" y="92" text-anchor="middle" fill="#aaa" font-size="10" font-family="sans-serif">=「安全な内側」</text><text x="120" y="118" text-anchor="middle" fill="#4caf50" font-size="11" font-family="sans-serif">境界が明確</text><text x="120" y="140" text-anchor="middle" fill="#4caf50" font-size="10" font-family="sans-serif">城壁モデルが有効</text><rect x="310" y="20" width="460" height="140" rx="8" fill="#2a1a1a" stroke="#e91e63" stroke-width="2"/><text x="540" y="48" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif" font-weight="bold">クラウド時代・リモートワーク以降</text><text x="370" y="78" fill="#aaa" font-size="11" font-family="sans-serif">☁ クラウド: 境界消滅</text><text x="370" y="100" fill="#aaa" font-size="11" font-family="sans-serif">💻 端末が社外に</text><text x="540" y="78" fill="#e91e63" font-size="11" font-family="sans-serif">内部不正増加</text><text x="540" y="100" fill="#e91e63" font-size="11" font-family="sans-serif">SolarWinds侵害</text><text x="450" y="138" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif" font-weight="bold">「内側は安全」の前提が崩壊</text><polygon points="215,90 305,90 295,84 295,96" fill="#f9a825"/></svg>
+</div>
+
+- クラウド移行で「内側」の境界が消滅
+- リモートワークで端末が社外に
+- 内部不正・フィッシングで「内側」からの攻撃が増加
+- SolarWinds・Colonial Pipeline：内部への信頼が命取り
 - ---
 - **Forrester（2010）：** 「決して信頼せず、常に検証する」
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 免疫システムの設計原則
 
 
@@ -137,18 +181,23 @@ style: |
 
 # 免疫の2層構造とセキュリティの対応
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0"><rect width="800" height="360" fill="#1a1a2e"/><rect x="30" y="40" width="340" height="280" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><rect x="430" y="40" width="340" height="280" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="76" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">自然免疫</text><text x="600" y="76" text-anchor="middle" fill="#e91e63" font-size="16" font-family="sans-serif" font-weight="bold">適応免疫</text><text x="200" y="104" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">Innate Immunity</text><text x="600" y="104" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">Adaptive Immunity</text><rect x="60" y="120" width="280" height="40" rx="4" fill="#f9a825" opacity="0.2"/><text x="200" y="145" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">迅速応答 （分〜時間）</text><rect x="60" y="170" width="280" height="40" rx="4" fill="#f9a825" opacity="0.15"/><text x="200" y="195" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">パターン認識（非特異的）</text><rect x="60" y="220" width="280" height="40" rx="4" fill="#f9a825" opacity="0.1"/><text x="200" y="245" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">マクロファージ・NK細胞</text><rect x="60" y="270" width="280" height="36" rx="4" fill="#0f3460"/><text x="200" y="293" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">≒ WAF・EDR・アンチウイルス</text><rect x="460" y="120" width="280" height="40" rx="4" fill="#e91e63" opacity="0.2"/><text x="600" y="145" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">遅延応答 （日〜週）</text><rect x="460" y="170" width="280" height="40" rx="4" fill="#e91e63" opacity="0.15"/><text x="600" y="195" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">特異的認識 + 記憶形成</text><rect x="460" y="220" width="280" height="40" rx="4" fill="#e91e63" opacity="0.1"/><text x="600" y="245" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">T細胞・B細胞・抗体</text><rect x="460" y="270" width="280" height="36" rx="4" fill="#0f3460"/><text x="600" y="293" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">≒ SIEM・SOC・機械学習</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="360" fill="#1a1a2e"/><rect x="30" y="40" width="340" height="280" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><rect x="430" y="40" width="340" height="280" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="76" text-anchor="middle" fill="#f9a825" font-size="16" font-family="sans-serif" font-weight="bold">自然免疫</text><text x="600" y="76" text-anchor="middle" fill="#e91e63" font-size="16" font-family="sans-serif" font-weight="bold">適応免疫</text><text x="200" y="104" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">Innate Immunity</text><text x="600" y="104" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">Adaptive Immunity</text><rect x="60" y="120" width="280" height="40" rx="4" fill="#f9a825" opacity="0.2"/><text x="200" y="145" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif">迅速応答 （分〜時間）</text><rect x="60" y="170" width="280" height="40" rx="4" fill="#f9a825" opacity="0.15"/><text x="200" y="195" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">パターン認識（非特異的）</text><rect x="60" y="220" width="280" height="40" rx="4" fill="#f9a825" opacity="0.1"/><text x="200" y="245" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">マクロファージ・NK細胞</text><rect x="60" y="270" width="280" height="36" rx="4" fill="#0f3460"/><text x="200" y="293" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">≒ WAF・EDR・アンチウイルス</text><rect x="460" y="120" width="280" height="40" rx="4" fill="#e91e63" opacity="0.2"/><text x="600" y="145" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">遅延応答 （日〜週）</text><rect x="460" y="170" width="280" height="40" rx="4" fill="#e91e63" opacity="0.15"/><text x="600" y="195" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">特異的認識 + 記憶形成</text><rect x="460" y="220" width="280" height="40" rx="4" fill="#e91e63" opacity="0.1"/><text x="600" y="245" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">T細胞・B細胞・抗体</text><rect x="460" y="270" width="280" height="36" rx="4" fill="#0f3460"/><text x="600" y="293" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">≒ SIEM・SOC・機械学習</text></svg>
+</div>
 
 
 ---
 
 # T細胞の「ゼロトラスト認証」しくみ
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0"><rect width="800" height="340" fill="#1a1a2e"/><circle cx="130" cy="170" r="55" fill="#1a4a7a" stroke="#f9a825" stroke-width="2"/><text x="130" y="165" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">体細胞</text><text x="130" y="182" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">(MHC提示)</text><rect x="235" y="140" width="100" height="60" rx="6" fill="#f9a825" opacity="0.3" stroke="#f9a825" stroke-width="1.5"/><text x="285" y="168" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">MHC</text><text x="285" y="185" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">身分証明書</text><circle cx="430" cy="170" r="55" fill="#4a1a3e" stroke="#e91e63" stroke-width="2"/><text x="430" y="165" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">T細胞</text><text x="430" y="182" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">(認証チェック)</text><line x1="335" y1="170" x2="375" y2="170" stroke="#f9a825" stroke-width="2"/><polygon points="375,164 390,170 375,176" fill="#f9a825"/><circle cx="620" cy="110" r="38" fill="#0d4a1e" stroke="#4caf50" stroke-width="2"/><text x="620" y="106" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">Pass</text><text x="620" y="122" text-anchor="middle" fill="#4caf50" font-size="10" font-family="sans-serif">スルー</text><circle cx="620" cy="240" r="38" fill="#4a0d0d" stroke="#e91e63" stroke-width="2"/><text x="620" y="236" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">Fail</text><text x="620" y="252" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">排除</text><line x1="485" y1="145" x2="582" y2="115" stroke="#4caf50" stroke-width="1.5"/><polygon points="574,108 588,114 578,124" fill="#4caf50"/><line x1="485" y1="195" x2="582" y2="225" stroke="#e91e63" stroke-width="1.5"/><polygon points="574,232 588,226 578,216" fill="#e91e63"/><text x="400" y="310" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">MHC = JWT / クライアント証明書　　T細胞 = APIゲートウェイ / IdP</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="340" fill="#1a1a2e"/><circle cx="130" cy="170" r="55" fill="#1a4a7a" stroke="#f9a825" stroke-width="2"/><text x="130" y="165" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">体細胞</text><text x="130" y="182" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">(MHC提示)</text><rect x="235" y="140" width="100" height="60" rx="6" fill="#f9a825" opacity="0.3" stroke="#f9a825" stroke-width="1.5"/><text x="285" y="168" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">MHC</text><text x="285" y="185" text-anchor="middle" fill="#f9a825" font-size="10" font-family="sans-serif">身分証明書</text><circle cx="430" cy="170" r="55" fill="#4a1a3e" stroke="#e91e63" stroke-width="2"/><text x="430" y="165" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">T細胞</text><text x="430" y="182" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">(認証チェック)</text><line x1="335" y1="170" x2="375" y2="170" stroke="#f9a825" stroke-width="2"/><polygon points="375,164 390,170 375,176" fill="#f9a825"/><circle cx="620" cy="110" r="38" fill="#0d4a1e" stroke="#4caf50" stroke-width="2"/><text x="620" y="106" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">Pass</text><text x="620" y="122" text-anchor="middle" fill="#4caf50" font-size="10" font-family="sans-serif">スルー</text><circle cx="620" cy="240" r="38" fill="#4a0d0d" stroke="#e91e63" stroke-width="2"/><text x="620" y="236" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">Fail</text><text x="620" y="252" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">排除</text><line x1="485" y1="145" x2="582" y2="115" stroke="#4caf50" stroke-width="1.5"/><polygon points="574,108 588,114 578,124" fill="#4caf50"/><line x1="485" y1="195" x2="582" y2="225" stroke="#e91e63" stroke-width="1.5"/><polygon points="574,232 588,226 578,216" fill="#e91e63"/><text x="400" y="310" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">MHC = JWT / クライアント証明書　　T細胞 = APIゲートウェイ / IdP</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-76 -->
 # T細胞の「ゼロトラスト認証」（対応）
 
 > *MHC証明書をT細胞認証—毎回確認が最小権限の本質的実装*
@@ -156,14 +205,14 @@ style: |
 - → **「内側だから安全」ではなく「毎回証明書を確認する」**
 - ---
 - ゼロトラストの対応：
-- - MHC = クライアント証明書・JWT トークン
-- - T細胞 = APIゲートウェイ・IDプロバイダー
-- - 毎回確認 = すべてのリクエストを認証・認可
+- MHC = クライアント証明書・JWT トークン
+- T細胞 = APIゲートウェイ・IDプロバイダー
+- 毎回確認 = すべてのリクエストを認証・認可
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ゼロトラストとの対応
 
 
@@ -187,19 +236,23 @@ style: |
 
 # 多層防御：免疫の「深さ」
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0"><rect width="800" height="360" fill="#1a1a2e"/><rect x="40" y="30" width="720" height="52" rx="6" fill="#2d2d5e" stroke="#f9a825" stroke-width="2"/><text x="240" y="62" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">皮膚・粘膜バリア</text><text x="560" y="62" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">→ ファイアウォール / WAF</text><rect x="80" y="96" width="640" height="48" rx="6" fill="#1e3a5f" stroke="#42a5f5" stroke-width="2"/><text x="260" y="125" text-anchor="middle" fill="#42a5f5" font-size="14" font-family="sans-serif" font-weight="bold">自然免疫（マクロファージ）</text><text x="560" y="125" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">→ EDR / アンチウイルス</text><rect x="120" y="158" width="560" height="48" rx="6" fill="#1a3a3a" stroke="#26c6da" stroke-width="2"/><text x="280" y="187" text-anchor="middle" fill="#26c6da" font-size="14" font-family="sans-serif" font-weight="bold">適応免疫（T/B細胞）</text><text x="550" y="187" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">→ SIEM / SOC</text><rect x="160" y="220" width="480" height="48" rx="6" fill="#1a2e1a" stroke="#66bb6a" stroke-width="2"/><text x="310" y="249" text-anchor="middle" fill="#66bb6a" font-size="14" font-family="sans-serif" font-weight="bold">免疫記憶</text><text x="550" y="249" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">→ 脅威インテリジェンス</text><rect x="240" y="282" width="320" height="44" rx="6" fill="#2e1a1a" stroke="#e91e63" stroke-width="2"/><text x="400" y="309" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">攻撃者（ここまで到達は稀）</text><text x="400" y="346" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">各層を突破しても次の層が機能する</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="360" fill="#1a1a2e"/><rect x="40" y="30" width="720" height="52" rx="6" fill="#2d2d5e" stroke="#f9a825" stroke-width="2"/><text x="240" y="62" text-anchor="middle" fill="#f9a825" font-size="14" font-family="sans-serif" font-weight="bold">皮膚・粘膜バリア</text><text x="560" y="62" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">→ ファイアウォール / WAF</text><rect x="80" y="96" width="640" height="48" rx="6" fill="#1e3a5f" stroke="#42a5f5" stroke-width="2"/><text x="260" y="125" text-anchor="middle" fill="#42a5f5" font-size="14" font-family="sans-serif" font-weight="bold">自然免疫（マクロファージ）</text><text x="560" y="125" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">→ EDR / アンチウイルス</text><rect x="120" y="158" width="560" height="48" rx="6" fill="#1a3a3a" stroke="#26c6da" stroke-width="2"/><text x="280" y="187" text-anchor="middle" fill="#26c6da" font-size="14" font-family="sans-serif" font-weight="bold">適応免疫（T/B細胞）</text><text x="550" y="187" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">→ SIEM / SOC</text><rect x="160" y="220" width="480" height="48" rx="6" fill="#1a2e1a" stroke="#66bb6a" stroke-width="2"/><text x="310" y="249" text-anchor="middle" fill="#66bb6a" font-size="14" font-family="sans-serif" font-weight="bold">免疫記憶</text><text x="550" y="249" text-anchor="middle" fill="#aaa" font-size="13" font-family="sans-serif">→ 脅威インテリジェンス</text><rect x="240" y="282" width="320" height="44" rx="6" fill="#2e1a1a" stroke="#e91e63" stroke-width="2"/><text x="400" y="309" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif">攻撃者（ここまで到達は稀）</text><text x="400" y="346" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">各層を突破しても次の層が機能する</text></svg>
+</div>
 
 
 ---
 
 # マイクロセグメンテーション：隔離の仕組み
 
-- <svg viewBox="0 0 800 340" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0"><rect width="800" height="340" fill="#1a1a2e"/><rect x="30" y="30" width="220" height="130" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="140" y="58" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">セグメント A</text><circle cx="90" cy="105" r="22" fill="#0d4a6e" stroke="#42a5f5" stroke-width="1.5"/><text x="90" y="110" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">Web</text><circle cx="160" cy="105" r="22" fill="#0d4a6e" stroke="#42a5f5" stroke-width="1.5"/><text x="160" y="110" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">API</text><line x1="112" y1="105" x2="138" y2="105" stroke="#42a5f5" stroke-width="1"/><rect x="290" y="30" width="220" height="130" rx="6" fill="#2e1a1a" stroke="#e91e63" stroke-width="2" stroke-dasharray="6 3"/><text x="400" y="58" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">セグメント B（感染）</text><circle cx="350" cy="105" r="22" fill="#4a1a1a" stroke="#e91e63" stroke-width="2"/><text x="350" y="110" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">侵害</text><circle cx="420" cy="105" r="22" fill="#0d4a6e" stroke="#42a5f5" stroke-width="1.5"/><text x="420" y="105" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">DB</text><line x1="372" y1="105" x2="398" y2="105" stroke="#e91e63" stroke-width="1" stroke-dasharray="4 2"/><rect x="550" y="30" width="220" height="130" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="660" y="58" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">セグメント C</text><circle cx="610" cy="105" r="22" fill="#0d4a6e" stroke="#42a5f5" stroke-width="1.5"/><text x="610" y="110" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">Auth</text><circle cx="680" cy="105" r="22" fill="#0d4a6e" stroke="#42a5f5" stroke-width="1.5"/><text x="680" y="110" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">Logs</text><line x1="632" y1="105" x2="658" y2="105" stroke="#42a5f5" stroke-width="1"/><line x1="250" y1="95" x2="290" y2="95" stroke="#888" stroke-width="1.5" stroke-dasharray="4 2"/><polygon points="285,89 300,95 285,101" fill="#888"/><line x1="510" y1="95" x2="550" y2="95" stroke="#888" stroke-width="1.5" stroke-dasharray="4 2"/><polygon points="545,89 560,95 545,101" fill="#888"/><text x="400" y="210" text-anchor="middle" fill="#e91e63" font-size="14" font-family="sans-serif" font-weight="bold">感染したセグメントを即座に隔離</text><text x="140" y="235" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">正常稼働中</text><text x="400" y="235" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">隔離・封鎖</text><text x="660" y="235" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">正常稼働中</text><rect x="350" y="255" width="100" height="28" rx="4" fill="#e91e63" opacity="0.4"/><text x="400" y="274" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">免疫の隔離と同じ</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 340" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="340" fill="#1a1a2e"/><rect x="30" y="30" width="220" height="130" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="140" y="58" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">セグメント A</text><circle cx="90" cy="105" r="22" fill="#0d4a6e" stroke="#42a5f5" stroke-width="1.5"/><text x="90" y="110" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">Web</text><circle cx="160" cy="105" r="22" fill="#0d4a6e" stroke="#42a5f5" stroke-width="1.5"/><text x="160" y="110" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">API</text><line x1="112" y1="105" x2="138" y2="105" stroke="#42a5f5" stroke-width="1"/><rect x="290" y="30" width="220" height="130" rx="6" fill="#2e1a1a" stroke="#e91e63" stroke-width="2" stroke-dasharray="6 3"/><text x="400" y="58" text-anchor="middle" fill="#e91e63" font-size="13" font-family="sans-serif" font-weight="bold">セグメント B（感染）</text><circle cx="350" cy="105" r="22" fill="#4a1a1a" stroke="#e91e63" stroke-width="2"/><text x="350" y="110" text-anchor="middle" fill="#e91e63" font-size="10" font-family="sans-serif">侵害</text><circle cx="420" cy="105" r="22" fill="#0d4a6e" stroke="#42a5f5" stroke-width="1.5"/><text x="420" y="105" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">DB</text><line x1="372" y1="105" x2="398" y2="105" stroke="#e91e63" stroke-width="1" stroke-dasharray="4 2"/><rect x="550" y="30" width="220" height="130" rx="6" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="660" y="58" text-anchor="middle" fill="#f9a825" font-size="13" font-family="sans-serif" font-weight="bold">セグメント C</text><circle cx="610" cy="105" r="22" fill="#0d4a6e" stroke="#42a5f5" stroke-width="1.5"/><text x="610" y="110" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">Auth</text><circle cx="680" cy="105" r="22" fill="#0d4a6e" stroke="#42a5f5" stroke-width="1.5"/><text x="680" y="110" text-anchor="middle" fill="white" font-size="10" font-family="sans-serif">Logs</text><line x1="632" y1="105" x2="658" y2="105" stroke="#42a5f5" stroke-width="1"/><line x1="250" y1="95" x2="290" y2="95" stroke="#888" stroke-width="1.5" stroke-dasharray="4 2"/><polygon points="285,89 300,95 285,101" fill="#888"/><line x1="510" y1="95" x2="550" y2="95" stroke="#888" stroke-width="1.5" stroke-dasharray="4 2"/><polygon points="545,89 560,95 545,101" fill="#888"/><text x="400" y="210" text-anchor="middle" fill="#e91e63" font-size="14" font-family="sans-serif" font-weight="bold">感染したセグメントを即座に隔離</text><text x="140" y="235" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">正常稼働中</text><text x="400" y="235" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">隔離・封鎖</text><text x="660" y="235" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">正常稼働中</text><rect x="350" y="255" width="100" height="28" rx="4" fill="#e91e63" opacity="0.4"/><text x="400" y="274" text-anchor="middle" fill="white" font-size="11" font-family="sans-serif">免疫の隔離と同じ</text></svg>
+</div>
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 自己免疫疾患と過検知
 
 
@@ -207,7 +260,9 @@ style: |
 
 # 自己免疫疾患 = セキュリティの誤検知
 
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0"><rect width="800" height="320" fill="#1a1a2e"/><rect x="30" y="30" width="340" height="260" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><rect x="430" y="30" width="340" height="260" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="66" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif" font-weight="bold">自己免疫疾患</text><text x="600" y="66" text-anchor="middle" fill="#f9a825" font-size="15" font-family="sans-serif" font-weight="bold">セキュリティ誤検知</text><text x="200" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">Autoimmune Disease</text><text x="600" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">False Positive</text><rect x="60" y="115" width="280" height="36" rx="4" fill="#4a1a1a"/><text x="200" y="138" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">免疫が自己細胞を攻撃</text><rect x="60" y="160" width="280" height="36" rx="4" fill="#3a1a1a"/><text x="200" y="183" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">関節リウマチ / 1型糖尿病</text><rect x="60" y="205" width="280" height="36" rx="4" fill="#2a1a1a"/><text x="200" y="228" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">多発性硬化症</text><rect x="60" y="255" width="280" height="24" rx="4" fill="#1a1a1a"/><text x="200" y="272" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">自己破壊</text><rect x="460" y="115" width="280" height="36" rx="4" fill="#2a2a1a"/><text x="600" y="138" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">正規ユーザーをブロック</text><rect x="460" y="160" width="280" height="36" rx="4" fill="#2a2a0a"/><text x="600" y="183" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">正規トラフィックをWAFが遮断</text><rect x="460" y="205" width="280" height="36" rx="4" fill="#1a2a1a"/><text x="600" y="228" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">アラート疲弊（SOCの過負荷）</text><rect x="460" y="255" width="280" height="24" rx="4" fill="#0a1a0a"/><text x="600" y="272" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ビジネス損失・サービス停止</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="320" fill="#1a1a2e"/><rect x="30" y="30" width="340" height="260" rx="8" fill="#16213e" stroke="#e91e63" stroke-width="2"/><rect x="430" y="30" width="340" height="260" rx="8" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="66" text-anchor="middle" fill="#e91e63" font-size="15" font-family="sans-serif" font-weight="bold">自己免疫疾患</text><text x="600" y="66" text-anchor="middle" fill="#f9a825" font-size="15" font-family="sans-serif" font-weight="bold">セキュリティ誤検知</text><text x="200" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">Autoimmune Disease</text><text x="600" y="100" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">False Positive</text><rect x="60" y="115" width="280" height="36" rx="4" fill="#4a1a1a"/><text x="200" y="138" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">免疫が自己細胞を攻撃</text><rect x="60" y="160" width="280" height="36" rx="4" fill="#3a1a1a"/><text x="200" y="183" text-anchor="middle" fill="#e91e63" font-size="12" font-family="sans-serif">関節リウマチ / 1型糖尿病</text><rect x="60" y="205" width="280" height="36" rx="4" fill="#2a1a1a"/><text x="200" y="228" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">多発性硬化症</text><rect x="60" y="255" width="280" height="24" rx="4" fill="#1a1a1a"/><text x="200" y="272" text-anchor="middle" fill="#e91e63" font-size="11" font-family="sans-serif">自己破壊</text><rect x="460" y="115" width="280" height="36" rx="4" fill="#2a2a1a"/><text x="600" y="138" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">正規ユーザーをブロック</text><rect x="460" y="160" width="280" height="36" rx="4" fill="#2a2a0a"/><text x="600" y="183" text-anchor="middle" fill="#f9a825" font-size="12" font-family="sans-serif">正規トラフィックをWAFが遮断</text><rect x="460" y="205" width="280" height="36" rx="4" fill="#1a2a1a"/><text x="600" y="228" text-anchor="middle" fill="#aaa" font-size="12" font-family="sans-serif">アラート疲弊（SOCの過負荷）</text><rect x="460" y="255" width="280" height="24" rx="4" fill="#0a1a0a"/><text x="600" y="272" text-anchor="middle" fill="#f9a825" font-size="11" font-family="sans-serif">ビジネス損失・サービス停止</text></svg>
+</div>
 
 
 ---
@@ -216,21 +271,27 @@ style: |
 
 > *感度と特異度のトレードオフ—過剰検知が自己免疫疾患になる*
 
-- <svg viewBox="0 0 800 300" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0"><rect width="800" height="300" fill="#1a1a2e"/><line x1="80" y1="240" x2="700" y2="240" stroke="#888" stroke-width="2"/><line x1="80" y1="240" x2="80" y2="40" stroke="#888" stroke-width="2"/><polygon points="695,234 710,240 695,246" fill="#888"/><polygon points="74,45 80,30 86,45" fill="#888"/><text x="712" y="244" fill="#aaa" font-size="11" font-family="sans-serif">感度</text><text x="55" y="35" fill="#aaa" font-size="11" font-family="sans-serif">FP率</text><path d="M 110 228 Q 390 240 670 55" stroke="#e91e63" stroke-width="3" fill="none"/><line x1="80" y1="240" x2="670" y2="55" stroke="#555" stroke-width="1" stroke-dasharray="5 4"/><circle cx="270" cy="188" r="9" fill="#4caf50"/><circle cx="460" cy="120" r="9" fill="#f9a825"/><text x="282" y="183" fill="#4caf50" font-size="11" font-family="sans-serif" font-weight="bold">低感度（見逃し多）</text><text x="472" y="116" fill="#f9a825" font-size="11" font-family="sans-serif" font-weight="bold">高感度（誤検知多）</text><text x="390" y="22" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">感度・特異度のトレードオフ（ROC曲線）</text><text x="360" y="175" fill="#555" font-size="10" font-family="sans-serif">ランダム</text><text x="390" y="268" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">最適点はビジネスリスクで決まる</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 300" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="300" fill="#1a1a2e"/><line x1="80" y1="240" x2="700" y2="240" stroke="#888" stroke-width="2"/><line x1="80" y1="240" x2="80" y2="40" stroke="#888" stroke-width="2"/><polygon points="695,234 710,240 695,246" fill="#888"/><polygon points="74,45 80,30 86,45" fill="#888"/><text x="712" y="244" fill="#aaa" font-size="11" font-family="sans-serif">感度</text><text x="55" y="35" fill="#aaa" font-size="11" font-family="sans-serif">FP率</text><path d="M 110 228 Q 390 240 670 55" stroke="#e91e63" stroke-width="3" fill="none"/><line x1="80" y1="240" x2="670" y2="55" stroke="#555" stroke-width="1" stroke-dasharray="5 4"/><circle cx="270" cy="188" r="9" fill="#4caf50"/><circle cx="460" cy="120" r="9" fill="#f9a825"/><text x="282" y="183" fill="#4caf50" font-size="11" font-family="sans-serif" font-weight="bold">低感度（見逃し多）</text><text x="472" y="116" fill="#f9a825" font-size="11" font-family="sans-serif" font-weight="bold">高感度（誤検知多）</text><text x="390" y="22" text-anchor="middle" fill="white" font-size="13" font-family="sans-serif" font-weight="bold">感度・特異度のトレードオフ（ROC曲線）</text><text x="360" y="175" fill="#555" font-size="10" font-family="sans-serif">ランダム</text><text x="390" y="268" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">最適点はビジネスリスクで決まる</text></svg>
+</div>
+
 - → **免疫系は「許容できる自己免疫レベル」に調整されている**
-- - 感度を上げる = 見逃し減（FN↓）、誤検知増（FP↑）
-- - 特異度を上げる = 誤検知減（FP↓）、見逃し増（FN↑）
+- 感度を上げる = 見逃し減（FN↓）、誤検知増（FP↑）
+- 特異度を上げる = 誤検知減（FP↓）、見逃し増（FN↑）
 
 
 ---
 
 # 免疫記憶とSIEM/SOCの対応
 
-- <svg viewBox="0 0 800 320" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0"><rect width="800" height="320" fill="#1a1a2e"/><rect x="40" y="40" width="160" height="60" rx="6" fill="#1e3a5f" stroke="#42a5f5" stroke-width="2"/><text x="120" y="75" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">初回感染</text><line x1="200" y1="70" x2="240" y2="70" stroke="#42a5f5" stroke-width="2"/><polygon points="236,64 252,70 236,76" fill="#42a5f5"/><rect x="252" y="40" width="160" height="60" rx="6" fill="#1e5a3e" stroke="#4caf50" stroke-width="2"/><text x="332" y="75" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">抗体生成 + 記憶</text><line x1="412" y1="70" x2="452" y2="70" stroke="#4caf50" stroke-width="2"/><polygon points="448,64 464,70 448,76" fill="#4caf50"/><rect x="464" y="40" width="160" height="60" rx="6" fill="#3a1e5f" stroke="#9c27b0" stroke-width="2"/><text x="544" y="75" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">再感染</text><line x1="624" y1="70" x2="664" y2="70" stroke="#9c27b0" stroke-width="2"/><polygon points="660,64 676,70 660,76" fill="#9c27b0"/><rect x="676" y="40" width="100" height="60" rx="6" fill="#1e5a1e" stroke="#4caf50" stroke-width="3"/><text x="726" y="68" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">即時</text><text x="726" y="85" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">撃退</text><line x1="400" y1="130" x2="400" y2="170" stroke="#888" stroke-width="1.5"/><text x="400" y="160" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">対応するセキュリティ</text><rect x="40" y="190" width="160" height="60" rx="6" fill="#1e3a5f" stroke="#42a5f5" stroke-width="2"/><text x="120" y="225" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">初回インシデント</text><line x1="200" y1="220" x2="240" y2="220" stroke="#42a5f5" stroke-width="2"/><polygon points="236,214 252,220 236,226" fill="#42a5f5"/><rect x="252" y="190" width="160" height="60" rx="6" fill="#1e5a3e" stroke="#4caf50" stroke-width="2"/><text x="332" y="218" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">IoC登録</text><text x="332" y="235" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">SIEM/SOC</text><line x1="412" y1="220" x2="452" y2="220" stroke="#4caf50" stroke-width="2"/><polygon points="448,214 464,220 448,226" fill="#4caf50"/><rect x="464" y="190" width="160" height="60" rx="6" fill="#3a1e5f" stroke="#9c27b0" stroke-width="2"/><text x="544" y="225" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">同様の攻撃</text><line x1="624" y1="220" x2="664" y2="220" stroke="#9c27b0" stroke-width="2"/><polygon points="660,214 676,220 660,226" fill="#9c27b0"/><rect x="676" y="190" width="100" height="60" rx="6" fill="#1e5a1e" stroke="#4caf50" stroke-width="3"/><text x="726" y="218" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">自動</text><text x="726" y="235" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">遮断</text><text x="400" y="290" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">免疫記憶 ≒ IoC（侵害指標）データベース + 自動応答</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 320" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect width="800" height="320" fill="#1a1a2e"/><rect x="40" y="40" width="160" height="60" rx="6" fill="#1e3a5f" stroke="#42a5f5" stroke-width="2"/><text x="120" y="75" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">初回感染</text><line x1="200" y1="70" x2="240" y2="70" stroke="#42a5f5" stroke-width="2"/><polygon points="236,64 252,70 236,76" fill="#42a5f5"/><rect x="252" y="40" width="160" height="60" rx="6" fill="#1e5a3e" stroke="#4caf50" stroke-width="2"/><text x="332" y="75" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">抗体生成 + 記憶</text><line x1="412" y1="70" x2="452" y2="70" stroke="#4caf50" stroke-width="2"/><polygon points="448,64 464,70 448,76" fill="#4caf50"/><rect x="464" y="40" width="160" height="60" rx="6" fill="#3a1e5f" stroke="#9c27b0" stroke-width="2"/><text x="544" y="75" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">再感染</text><line x1="624" y1="70" x2="664" y2="70" stroke="#9c27b0" stroke-width="2"/><polygon points="660,64 676,70 660,76" fill="#9c27b0"/><rect x="676" y="40" width="100" height="60" rx="6" fill="#1e5a1e" stroke="#4caf50" stroke-width="3"/><text x="726" y="68" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">即時</text><text x="726" y="85" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">撃退</text><line x1="400" y1="130" x2="400" y2="170" stroke="#888" stroke-width="1.5"/><text x="400" y="160" text-anchor="middle" fill="#888" font-size="11" font-family="sans-serif">対応するセキュリティ</text><rect x="40" y="190" width="160" height="60" rx="6" fill="#1e3a5f" stroke="#42a5f5" stroke-width="2"/><text x="120" y="225" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">初回インシデント</text><line x1="200" y1="220" x2="240" y2="220" stroke="#42a5f5" stroke-width="2"/><polygon points="236,214 252,220 236,226" fill="#42a5f5"/><rect x="252" y="190" width="160" height="60" rx="6" fill="#1e5a3e" stroke="#4caf50" stroke-width="2"/><text x="332" y="218" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">IoC登録</text><text x="332" y="235" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">SIEM/SOC</text><line x1="412" y1="220" x2="452" y2="220" stroke="#4caf50" stroke-width="2"/><polygon points="448,214 464,220 448,226" fill="#4caf50"/><rect x="464" y="190" width="160" height="60" rx="6" fill="#3a1e5f" stroke="#9c27b0" stroke-width="2"/><text x="544" y="225" text-anchor="middle" fill="white" font-size="12" font-family="sans-serif">同様の攻撃</text><line x1="624" y1="220" x2="664" y2="220" stroke="#9c27b0" stroke-width="2"/><polygon points="660,214 676,220 660,226" fill="#9c27b0"/><rect x="676" y="190" width="100" height="60" rx="6" fill="#1e5a1e" stroke="#4caf50" stroke-width="3"/><text x="726" y="218" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">自動</text><text x="726" y="235" text-anchor="middle" fill="#4caf50" font-size="12" font-family="sans-serif" font-weight="bold">遮断</text><text x="400" y="290" text-anchor="middle" fill="#aaa" font-size="11" font-family="sans-serif">免疫記憶 ≒ IoC（侵害指標）データベース + 自動応答</text></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-88 -->
 # まとめ：生物から学ぶゼロトラスト
 
 > *内側を信頼せず毎回認証—40億年の免疫進化がゼロトラストの答え*
@@ -240,6 +301,5 @@ style: |
 - ✅ **自然免疫と適応免疫の両方** — 速い応答と学習する応答
 - ✅ **免疫記憶を持つ** — 過去の攻撃パターンを記録・活用
 - ✅ **自己免疫に注意** — 過剰なセキュリティはビジネスを殺す
-- 
 - 「セキュリティとは、完璧な防御ではなく、回復力の設計だ」
 

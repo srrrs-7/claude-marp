@@ -2,6 +2,7 @@
 
 import { Glob } from "bun";
 import { parse as parseYaml } from "yaml";
+import { resolveBaseName } from "../src/utils/files.js";
 import { CATEGORY_CONFIGS, type CategoryId } from "./config/categories.js";
 import { type SlideRecord, computeDeckMetrics } from "./lib/quality.js";
 
@@ -107,15 +108,18 @@ async function findHtmlFile(
 	dirName: string,
 	config: Record<string, unknown>,
 ): Promise<string | null> {
-	// Try baseName from output.baseName
+	// Resolve exactly the way the render pipeline does, so the site always links
+	// to the file `rebuild` refreshes rather than a leftover from an older name.
 	const output = config.output as Record<string, unknown> | undefined;
-	const baseName = output?.baseName ?? config.outputFileName;
+	const declared = (output?.baseName ?? config.outputFileName) as unknown;
+	const baseName = resolveBaseName(
+		typeof declared === "string" ? declared : undefined,
+		typeof config.topic === "string" ? config.topic : "",
+	);
 
-	if (typeof baseName === "string") {
-		const candidate = `${docsDir}/${dirName}/dist/${baseName}.html`;
-		if (await Bun.file(candidate).exists()) {
-			return `${dirName}/dist/${baseName}.html`;
-		}
+	const candidate = `${docsDir}/${dirName}/dist/${baseName}.html`;
+	if (await Bun.file(candidate).exists()) {
+		return `${dirName}/dist/${baseName}.html`;
 	}
 
 	// Fallback: first .html in dist/ that matches the dir slug

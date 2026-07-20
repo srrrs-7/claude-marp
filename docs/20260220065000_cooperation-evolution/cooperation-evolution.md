@@ -7,41 +7,76 @@ paginate: true
 header: "協力と進化ゲーム理論"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 協力の進化
 — なぜ利己的遺伝子から利他的行動が生まれるのか
 
@@ -91,26 +126,30 @@ style: |
 
 > *利己的遺伝子からしっぺ返し戦略まで協力の全機序*
 
-- 1. 進化のパラドックス
-- 2. 囚人のジレンマ
-- 3. Axelrodのトーナメント
-- 4. 協力を生む仕組みの進化
-- 5. 人間社会への応用
+1. 進化のパラドックス
+2. 囚人のジレンマ
+3. Axelrodのトーナメント
+4. 協力を生む仕組みの進化
+5. 人間社会への応用
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 進化のパラドックス
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 利己的遺伝子はなぜ協力を生むか（1/2）
 
 > *rB>Cを満たせば血縁者支援が遺伝子的に合理的*
 
-- <svg viewBox="0 0 800 260" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="30" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">ダーウィンのパラドックス</text><rect x="30" y="50" width="340" height="160" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="76" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">古典的ダーウィニズムの予測</text><text x="50" y="105" font-size="12" fill="#ccccdd" font-family="sans-serif">「最も適した個体が生き残る」</text><text x="50" y="128" font-size="12" fill="#ccccdd" font-family="sans-serif">→ 自己利益の最大化が合理的</text><text x="50" y="151" font-size="12" fill="#ccccdd" font-family="sans-serif">→ 他者を助ける行動は不利</text><text x="50" y="174" font-size="12" fill="#e91e63" font-family="sans-serif">→ 利他行動は「起きないはず」</text><text x="50" y="197" font-size="12" fill="#ccccdd" font-family="sans-serif">× 現実と矛盾</text><rect x="430" y="50" width="340" height="160" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="600" y="76" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">実際に観察される協力行動</text><text x="450" y="105" font-size="12" fill="#ccccdd" font-family="sans-serif">ミツバチ → 女王のために死ぬ</text><text x="450" y="128" font-size="12" fill="#ccccdd" font-family="sans-serif">アリ → 集団のために働く</text><text x="450" y="151" font-size="12" fill="#ccccdd" font-family="sans-serif">ヒト → 見知らぬ他人を助ける</text><text x="450" y="174" font-size="12" fill="#f9a825" font-family="sans-serif">→ 利他行動が普遍的に存在</text><text x="450" y="197" font-size="12" fill="#f9a825" font-family="sans-serif">✓ 説明が必要な現実</text><text x="400" y="234" text-anchor="middle" font-size="13" fill="#888899" font-family="sans-serif">Hamilton (1964) が包括適応度理論でこのパラドックスを解いた</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 260" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="260" fill="#1a1a2e" rx="12"/><text x="400" y="30" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold" font-family="sans-serif">ダーウィンのパラドックス</text><rect x="30" y="50" width="340" height="160" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="200" y="76" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" font-family="sans-serif">古典的ダーウィニズムの予測</text><text x="50" y="105" font-size="12" fill="#ccccdd" font-family="sans-serif">「最も適した個体が生き残る」</text><text x="50" y="128" font-size="12" fill="#ccccdd" font-family="sans-serif">→ 自己利益の最大化が合理的</text><text x="50" y="151" font-size="12" fill="#ccccdd" font-family="sans-serif">→ 他者を助ける行動は不利</text><text x="50" y="174" font-size="12" fill="#e91e63" font-family="sans-serif">→ 利他行動は「起きないはず」</text><text x="50" y="197" font-size="12" fill="#ccccdd" font-family="sans-serif">× 現実と矛盾</text><rect x="430" y="50" width="340" height="160" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="600" y="76" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold" font-family="sans-serif">実際に観察される協力行動</text><text x="450" y="105" font-size="12" fill="#ccccdd" font-family="sans-serif">ミツバチ → 女王のために死ぬ</text><text x="450" y="128" font-size="12" fill="#ccccdd" font-family="sans-serif">アリ → 集団のために働く</text><text x="450" y="151" font-size="12" fill="#ccccdd" font-family="sans-serif">ヒト → 見知らぬ他人を助ける</text><text x="450" y="174" font-size="12" fill="#f9a825" font-family="sans-serif">→ 利他行動が普遍的に存在</text><text x="450" y="197" font-size="12" fill="#f9a825" font-family="sans-serif">✓ 説明が必要な現実</text><text x="400" y="234" text-anchor="middle" font-size="13" fill="#888899" font-family="sans-serif">Hamilton (1964) が包括適応度理論でこのパラドックスを解いた</text></svg>
+</div>
+
 - **ダーウィンのパラドックス：**
 - 自然選択は「最も適した個体」が生き残る競争
 - なぜミツバチは女王のために死ぬのか？
@@ -122,18 +161,23 @@ style: |
 
 # 血縁選択と互恵的利他主義
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">協力を生む2つのメカニズム</text><rect x="40" y="60" width="320" height="300" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="95" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold">血縁選択</text><text x="200" y="125" text-anchor="middle" font-size="12" fill="#ccc">r × B &gt; C</text><text x="200" y="148" text-anchor="middle" font-size="11" fill="#aaa">r=血縁係数, B=受益者の利得</text><text x="200" y="168" text-anchor="middle" font-size="11" fill="#aaa">C=提供者のコスト</text><circle cx="200" cy="230" r="30" fill="#f9a825" opacity="0.85"/><text x="200" y="235" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="bold">自分</text><circle cx="120" cy="310" r="24" fill="#e91e63" opacity="0.85"/><text x="120" y="315" text-anchor="middle" font-size="10" fill="white">兄弟 r=0.5</text><circle cx="200" cy="310" r="24" fill="#e91e63" opacity="0.85"/><text x="200" y="315" text-anchor="middle" font-size="10" fill="white">従兄 r=0.125</text><circle cx="280" cy="310" r="24" fill="#e91e63" opacity="0.85"/><text x="280" y="315" text-anchor="middle" font-size="10" fill="white">子 r=0.5</text><line x1="200" y1="260" x2="120" y2="286" stroke="#f9a825" stroke-width="2"/><line x1="200" y1="260" x2="200" y2="286" stroke="#f9a825" stroke-width="2"/><line x1="200" y1="260" x2="280" y2="286" stroke="#f9a825" stroke-width="2"/><rect x="440" y="60" width="320" height="300" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="95" text-anchor="middle" font-size="15" fill="#e91e63" font-weight="bold">互恵的利他主義</text><text x="600" y="125" text-anchor="middle" font-size="12" fill="#ccc">Trivers (1971)</text><text x="600" y="148" text-anchor="middle" font-size="11" fill="#aaa">非血縁者間でも繰り返し交流で</text><text x="600" y="168" text-anchor="middle" font-size="11" fill="#aaa">協力が進化する</text><circle cx="520" cy="240" r="28" fill="#e91e63" opacity="0.85"/><text x="520" y="245" text-anchor="middle" font-size="11" fill="white">A</text><circle cx="680" cy="240" r="28" fill="#4fc3f7" opacity="0.85"/><text x="680" y="245" text-anchor="middle" font-size="11" fill="#1a1a2e">B</text><polygon points="556,235 644,235 644,240 556,240" fill="#f9a825"/><polygon points="640,228 656,237 640,246" fill="#f9a825"/><polygon points="584,255 568,264 584,273" fill="#aaa"/><polygon points="548,255 564,264 548,273" fill="#aaa"/><text x="600" y="295" text-anchor="middle" font-size="10" fill="#f9a825">今助ける → 将来助けてもらう</text><text x="600" y="315" text-anchor="middle" font-size="10" fill="#aaa">吸血コウモリ・魚のクリーニング行動</text><text x="600" y="335" text-anchor="middle" font-size="10" fill="#aaa">人間の互助組合・保険制度</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">協力を生む2つのメカニズム</text><rect x="40" y="60" width="320" height="300" rx="12" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="200" y="95" text-anchor="middle" font-size="15" fill="#f9a825" font-weight="bold">血縁選択</text><text x="200" y="125" text-anchor="middle" font-size="12" fill="#ccc">r × B &gt; C</text><text x="200" y="148" text-anchor="middle" font-size="11" fill="#aaa">r=血縁係数, B=受益者の利得</text><text x="200" y="168" text-anchor="middle" font-size="11" fill="#aaa">C=提供者のコスト</text><circle cx="200" cy="230" r="30" fill="#f9a825" opacity="0.85"/><text x="200" y="235" text-anchor="middle" font-size="11" fill="#1a1a2e" font-weight="bold">自分</text><circle cx="120" cy="310" r="24" fill="#e91e63" opacity="0.85"/><text x="120" y="315" text-anchor="middle" font-size="10" fill="white">兄弟 r=0.5</text><circle cx="200" cy="310" r="24" fill="#e91e63" opacity="0.85"/><text x="200" y="315" text-anchor="middle" font-size="10" fill="white">従兄 r=0.125</text><circle cx="280" cy="310" r="24" fill="#e91e63" opacity="0.85"/><text x="280" y="315" text-anchor="middle" font-size="10" fill="white">子 r=0.5</text><line x1="200" y1="260" x2="120" y2="286" stroke="#f9a825" stroke-width="2"/><line x1="200" y1="260" x2="200" y2="286" stroke="#f9a825" stroke-width="2"/><line x1="200" y1="260" x2="280" y2="286" stroke="#f9a825" stroke-width="2"/><rect x="440" y="60" width="320" height="300" rx="12" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="600" y="95" text-anchor="middle" font-size="15" fill="#e91e63" font-weight="bold">互恵的利他主義</text><text x="600" y="125" text-anchor="middle" font-size="12" fill="#ccc">Trivers (1971)</text><text x="600" y="148" text-anchor="middle" font-size="11" fill="#aaa">非血縁者間でも繰り返し交流で</text><text x="600" y="168" text-anchor="middle" font-size="11" fill="#aaa">協力が進化する</text><circle cx="520" cy="240" r="28" fill="#e91e63" opacity="0.85"/><text x="520" y="245" text-anchor="middle" font-size="11" fill="white">A</text><circle cx="680" cy="240" r="28" fill="#4fc3f7" opacity="0.85"/><text x="680" y="245" text-anchor="middle" font-size="11" fill="#1a1a2e">B</text><polygon points="556,235 644,235 644,240 556,240" fill="#f9a825"/><polygon points="640,228 656,237 640,246" fill="#f9a825"/><polygon points="584,255 568,264 584,273" fill="#aaa"/><polygon points="548,255 564,264 548,273" fill="#aaa"/><text x="600" y="295" text-anchor="middle" font-size="10" fill="#f9a825">今助ける → 将来助けてもらう</text><text x="600" y="315" text-anchor="middle" font-size="10" fill="#aaa">吸血コウモリ・魚のクリーニング行動</text><text x="600" y="335" text-anchor="middle" font-size="10" fill="#aaa">人間の互助組合・保険制度</text></svg>
+</div>
 
 
 ---
 
 # 囚人のジレンマ — ペイオフマトリクス
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">囚人のジレンマ — ペイオフマトリクス</text><text x="400" y="60" text-anchor="middle" font-size="12" fill="#aaa">（数字 = 獲得ポイント。大きいほど良い）</text><text x="280" y="95" text-anchor="middle" font-size="14" fill="#4fc3f7" font-weight="bold">プレイヤーB: 協力</text><text x="520" y="95" text-anchor="middle" font-size="14" fill="#e91e63" font-weight="bold">プレイヤーB: 裏切り</text><text x="80" y="185" text-anchor="middle" font-size="13" fill="#4fc3f7" font-weight="bold" transform="rotate(-90 80 185)">A: 協力</text><text x="80" y="295" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" transform="rotate(-90 80 295)">A: 裏切り</text><rect x="140" y="110" width="280" height="120" rx="8" fill="#0d4f3c" stroke="#4fc3f7" stroke-width="2"/><text x="280" y="160" text-anchor="middle" font-size="20" fill="#4fc3f7" font-weight="bold">+3, +3</text><text x="280" y="185" text-anchor="middle" font-size="11" fill="#aaa">双方協力 — 最良の社会的結果</text><text x="280" y="205" text-anchor="middle" font-size="10" fill="#4fc3f7">★ パレート最適</text><rect x="440" y="110" width="280" height="120" rx="8" fill="#4a1a2e" stroke="#e91e63" stroke-width="2"/><text x="580" y="155" text-anchor="middle" font-size="20" fill="white" font-weight="bold">0, +5</text><text x="580" y="180" text-anchor="middle" font-size="11" fill="#aaa">A搾取される — Bが勝ち逃げ</text><text x="580" y="200" text-anchor="middle" font-size="10" fill="#e91e63">誘惑の利得</text><rect x="140" y="250" width="280" height="120" rx="8" fill="#4a1a2e" stroke="#f9a825" stroke-width="2"/><text x="280" y="295" text-anchor="middle" font-size="20" fill="white" font-weight="bold">+5, 0</text><text x="280" y="320" text-anchor="middle" font-size="11" fill="#aaa">B搾取される — Aが勝ち逃げ</text><text x="280" y="340" text-anchor="middle" font-size="10" fill="#f9a825">誘惑の利得</text><rect x="440" y="250" width="280" height="120" rx="8" fill="#2a1a1e" stroke="#888" stroke-width="2"/><text x="580" y="295" text-anchor="middle" font-size="20" fill="#ff8888" font-weight="bold">+1, +1</text><text x="580" y="320" text-anchor="middle" font-size="11" fill="#aaa">双方裏切り — 最悪の結果</text><text x="580" y="340" text-anchor="middle" font-size="10" fill="#ff8888">★ ナッシュ均衡（個人合理的）</text><line x1="140" y1="108" x2="720" y2="108" stroke="#555" stroke-width="1"/><line x1="140" y1="248" x2="720" y2="248" stroke="#555" stroke-width="1"/><line x1="140" y1="370" x2="720" y2="370" stroke="#555" stroke-width="1"/><line x1="140" y1="108" x2="140" y2="370" stroke="#555" stroke-width="1"/><line x1="420" y1="108" x2="420" y2="370" stroke="#555" stroke-width="1"/><line x1="720" y1="108" x2="720" y2="370" stroke="#555" stroke-width="1"/></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" font-size="18" fill="#f9a825" font-weight="bold">囚人のジレンマ — ペイオフマトリクス</text><text x="400" y="60" text-anchor="middle" font-size="12" fill="#aaa">（数字 = 獲得ポイント。大きいほど良い）</text><text x="280" y="95" text-anchor="middle" font-size="14" fill="#4fc3f7" font-weight="bold">プレイヤーB: 協力</text><text x="520" y="95" text-anchor="middle" font-size="14" fill="#e91e63" font-weight="bold">プレイヤーB: 裏切り</text><text x="80" y="185" text-anchor="middle" font-size="13" fill="#4fc3f7" font-weight="bold" transform="rotate(-90 80 185)">A: 協力</text><text x="80" y="295" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold" transform="rotate(-90 80 295)">A: 裏切り</text><rect x="140" y="110" width="280" height="120" rx="8" fill="#0d4f3c" stroke="#4fc3f7" stroke-width="2"/><text x="280" y="160" text-anchor="middle" font-size="20" fill="#4fc3f7" font-weight="bold">+3, +3</text><text x="280" y="185" text-anchor="middle" font-size="11" fill="#aaa">双方協力 — 最良の社会的結果</text><text x="280" y="205" text-anchor="middle" font-size="10" fill="#4fc3f7">★ パレート最適</text><rect x="440" y="110" width="280" height="120" rx="8" fill="#4a1a2e" stroke="#e91e63" stroke-width="2"/><text x="580" y="155" text-anchor="middle" font-size="20" fill="white" font-weight="bold">0, +5</text><text x="580" y="180" text-anchor="middle" font-size="11" fill="#aaa">A搾取される — Bが勝ち逃げ</text><text x="580" y="200" text-anchor="middle" font-size="10" fill="#e91e63">誘惑の利得</text><rect x="140" y="250" width="280" height="120" rx="8" fill="#4a1a2e" stroke="#f9a825" stroke-width="2"/><text x="280" y="295" text-anchor="middle" font-size="20" fill="white" font-weight="bold">+5, 0</text><text x="280" y="320" text-anchor="middle" font-size="11" fill="#aaa">B搾取される — Aが勝ち逃げ</text><text x="280" y="340" text-anchor="middle" font-size="10" fill="#f9a825">誘惑の利得</text><rect x="440" y="250" width="280" height="120" rx="8" fill="#2a1a1e" stroke="#888" stroke-width="2"/><text x="580" y="295" text-anchor="middle" font-size="20" fill="#ff8888" font-weight="bold">+1, +1</text><text x="580" y="320" text-anchor="middle" font-size="11" fill="#aaa">双方裏切り — 最悪の結果</text><text x="580" y="340" text-anchor="middle" font-size="10" fill="#ff8888">★ ナッシュ均衡（個人合理的）</text><line x1="140" y1="108" x2="720" y2="108" stroke="#555" stroke-width="1"/><line x1="140" y1="248" x2="720" y2="248" stroke="#555" stroke-width="1"/><line x1="140" y1="370" x2="720" y2="370" stroke="#555" stroke-width="1"/><line x1="140" y1="108" x2="140" y2="370" stroke="#555" stroke-width="1"/><line x1="420" y1="108" x2="420" y2="370" stroke="#555" stroke-width="1"/><line x1="720" y1="108" x2="720" y2="370" stroke="#555" stroke-width="1"/></svg>
+</div>
 
 
 ---
 
+<!-- _class: invert fit-82 -->
 # 囚人のジレンマ（2/2）
 
 > *繰り返しゲームで協力が個人合理的戦略に変わる*
@@ -151,14 +195,18 @@ style: |
 
 # Axelrodのトーナメント — しっぺ返し戦略
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" font-size="16" fill="#f9a825" font-weight="bold">Axelrodトーナメント — 戦略別得点ランキング</text><text x="400" y="55" text-anchor="middle" font-size="11" fill="#aaa">63戦略の繰り返し囚人ジレンマ大会 (Axelrod 1984)</text><rect x="60" y="70" width="420" height="36" rx="6" fill="#f9a825" opacity="0.9"/><text x="80" y="93" font-size="13" fill="#1a1a2e" font-weight="bold">1位 TIT FOR TAT（しっぺ返し）</text><text x="490" y="93" font-size="14" fill="#1a1a2e" font-weight="bold">504点</text><rect x="60" y="115" width="370" height="32" rx="6" fill="#4fc3f7" opacity="0.7"/><text x="80" y="136" font-size="12" fill="#1a1a2e">2位 TFT with forgiveness（時々許す）</text><text x="490" y="136" font-size="13" fill="#4fc3f7" font-weight="bold">487点</text><rect x="60" y="156" width="320" height="32" rx="6" fill="#4fc3f7" opacity="0.5"/><text x="80" y="177" font-size="12" fill="white">3位 GRIM TRIGGER（永遠に報復）</text><text x="490" y="177" font-size="13" fill="#4fc3f7">462点</text><rect x="60" y="197" width="240" height="32" rx="6" fill="#888" opacity="0.5"/><text x="80" y="218" font-size="12" fill="white">... 中間戦略</text><text x="490" y="218" font-size="13" fill="#aaa">..点</text><rect x="60" y="238" width="120" height="32" rx="6" fill="#e91e63" opacity="0.7"/><text x="80" y="259" font-size="12" fill="white">63位 ALWAYS DEFECT（常に裏切り）</text><text x="490" y="259" font-size="13" fill="#e91e63">216点</text><line x1="60" y1="310" x2="740" y2="310" stroke="#555" stroke-width="1"/><text x="80" y="335" font-size="12" fill="#f9a825">TFTの4原則：</text><text x="80" y="355" font-size="11" fill="#aaa">① 善意（最初は協力）</text><text x="260" y="355" font-size="11" fill="#aaa">② 即応（裏切りには即座に報復）</text><text x="530" y="355" font-size="11" fill="#aaa">③ 許し（相手が戻れば許す）</text><text x="80" y="375" font-size="11" fill="#aaa">④ 明快（シンプルで予測しやすい）</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" font-size="16" fill="#f9a825" font-weight="bold">Axelrodトーナメント — 戦略別得点ランキング</text><text x="400" y="55" text-anchor="middle" font-size="11" fill="#aaa">63戦略の繰り返し囚人ジレンマ大会 (Axelrod 1984)</text><rect x="60" y="70" width="420" height="36" rx="6" fill="#f9a825" opacity="0.9"/><text x="80" y="93" font-size="13" fill="#1a1a2e" font-weight="bold">1位 TIT FOR TAT（しっぺ返し）</text><text x="490" y="93" font-size="14" fill="#1a1a2e" font-weight="bold">504点</text><rect x="60" y="115" width="370" height="32" rx="6" fill="#4fc3f7" opacity="0.7"/><text x="80" y="136" font-size="12" fill="#1a1a2e">2位 TFT with forgiveness（時々許す）</text><text x="490" y="136" font-size="13" fill="#4fc3f7" font-weight="bold">487点</text><rect x="60" y="156" width="320" height="32" rx="6" fill="#4fc3f7" opacity="0.5"/><text x="80" y="177" font-size="12" fill="white">3位 GRIM TRIGGER（永遠に報復）</text><text x="490" y="177" font-size="13" fill="#4fc3f7">462点</text><rect x="60" y="197" width="240" height="32" rx="6" fill="#888" opacity="0.5"/><text x="80" y="218" font-size="12" fill="white">... 中間戦略</text><text x="490" y="218" font-size="13" fill="#aaa">..点</text><rect x="60" y="238" width="120" height="32" rx="6" fill="#e91e63" opacity="0.7"/><text x="80" y="259" font-size="12" fill="white">63位 ALWAYS DEFECT（常に裏切り）</text><text x="490" y="259" font-size="13" fill="#e91e63">216点</text><line x1="60" y1="310" x2="740" y2="310" stroke="#555" stroke-width="1"/><text x="80" y="335" font-size="12" fill="#f9a825">TFTの4原則：</text><text x="80" y="355" font-size="11" fill="#aaa">① 善意（最初は協力）</text><text x="260" y="355" font-size="11" fill="#aaa">② 即応（裏切りには即座に報復）</text><text x="530" y="355" font-size="11" fill="#aaa">③ 許し（相手が戻れば許す）</text><text x="80" y="375" font-size="11" fill="#aaa">④ 明快（シンプルで予測しやすい）</text></svg>
+</div>
 
 
 ---
 
 # ゲームの繰り返しと協力の出現
 
-- <svg viewBox="0 0 800 400" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" font-size="16" fill="#f9a825" font-weight="bold">繰り返し回数と協力率の関係</text><text x="400" y="55" text-anchor="middle" font-size="11" fill="#aaa">ゲーム理論シミュレーション (N=1000プレイヤー)</text><line x1="80" y1="320" x2="740" y2="320" stroke="#555" stroke-width="2"/><line x1="80" y1="320" x2="80" y2="70" stroke="#555" stroke-width="2"/><text x="400" y="355" text-anchor="middle" font-size="12" fill="#aaa">繰り返し回数</text><text x="30" y="195" text-anchor="middle" font-size="12" fill="#aaa" transform="rotate(-90 30 195)">協力率 (%)</text><text x="75" y="324" text-anchor="end" font-size="10" fill="#888">0%</text><text x="75" y="274" text-anchor="end" font-size="10" fill="#888">20%</text><text x="75" y="224" text-anchor="end" font-size="10" fill="#888">40%</text><text x="75" y="174" text-anchor="end" font-size="10" fill="#888">60%</text><text x="75" y="124" text-anchor="end" font-size="10" fill="#888">80%</text><text x="75" y="74" text-anchor="end" font-size="10" fill="#888">100%</text><line x1="80" y1="74" x2="740" y2="74" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/><line x1="80" y1="124" x2="740" y2="124" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/><line x1="80" y1="174" x2="740" y2="174" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/><line x1="80" y1="224" x2="740" y2="224" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/><line x1="80" y1="274" x2="740" y2="274" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/><text x="150" y="335" text-anchor="middle" font-size="10" fill="#888">1回</text><text x="280" y="335" text-anchor="middle" font-size="10" fill="#888">5回</text><text x="410" y="335" text-anchor="middle" font-size="10" fill="#888">10回</text><text x="540" y="335" text-anchor="middle" font-size="10" fill="#888">20回</text><text x="670" y="335" text-anchor="middle" font-size="10" fill="#888">50回</text><polyline points="150,314 280,298 410,244 540,164 670,94" fill="none" stroke="#f9a825" stroke-width="3"/><circle cx="150" cy="314" r="5" fill="#f9a825"/><circle cx="280" cy="298" r="5" fill="#f9a825"/><circle cx="410" cy="244" r="5" fill="#f9a825"/><circle cx="540" cy="164" r="5" fill="#f9a825"/><circle cx="670" cy="94" r="5" fill="#f9a825"/><polyline points="150,318 280,316 410,310 540,294 670,244" fill="none" stroke="#e91e63" stroke-width="3"/><circle cx="150" cy="318" r="5" fill="#e91e63"/><circle cx="280" cy="316" r="5" fill="#e91e63"/><circle cx="410" cy="310" r="5" fill="#e91e63"/><circle cx="540" cy="294" r="5" fill="#e91e63"/><circle cx="670" cy="244" r="5" fill="#e91e63"/><polyline points="150,318 280,308 410,274 540,214 670,164" fill="none" stroke="#4fc3f7" stroke-width="3"/><circle cx="150" cy="318" r="5" fill="#4fc3f7"/><circle cx="280" cy="308" r="5" fill="#4fc3f7"/><circle cx="410" cy="274" r="5" fill="#4fc3f7"/><circle cx="540" cy="214" r="5" fill="#4fc3f7"/><circle cx="670" cy="164" r="5" fill="#4fc3f7"/><rect x="460" y="70" width="270" height="100" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/><line x1="475" y1="88" x2="505" y2="88" stroke="#f9a825" stroke-width="3"/><text x="515" y="93" font-size="11" fill="#f9a825">TIT FOR TAT</text><line x1="475" y1="110" x2="505" y2="110" stroke="#4fc3f7" stroke-width="3"/><text x="515" y="115" font-size="11" fill="#4fc3f7">混合戦略集団</text><line x1="475" y1="132" x2="505" y2="132" stroke="#e91e63" stroke-width="3"/><text x="515" y="137" font-size="11" fill="#e91e63">ALWAYS DEFECT</text><text x="430" y="190" font-size="10" fill="#aaa">↑ 繰り返しが増えるほど協力が支配的戦略に</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 400" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="400" fill="#1a1a2e"/><text x="400" y="32" text-anchor="middle" font-size="16" fill="#f9a825" font-weight="bold">繰り返し回数と協力率の関係</text><text x="400" y="55" text-anchor="middle" font-size="11" fill="#aaa">ゲーム理論シミュレーション (N=1000プレイヤー)</text><line x1="80" y1="320" x2="740" y2="320" stroke="#555" stroke-width="2"/><line x1="80" y1="320" x2="80" y2="70" stroke="#555" stroke-width="2"/><text x="400" y="355" text-anchor="middle" font-size="12" fill="#aaa">繰り返し回数</text><text x="30" y="195" text-anchor="middle" font-size="12" fill="#aaa" transform="rotate(-90 30 195)">協力率 (%)</text><text x="75" y="324" text-anchor="end" font-size="10" fill="#888">0%</text><text x="75" y="274" text-anchor="end" font-size="10" fill="#888">20%</text><text x="75" y="224" text-anchor="end" font-size="10" fill="#888">40%</text><text x="75" y="174" text-anchor="end" font-size="10" fill="#888">60%</text><text x="75" y="124" text-anchor="end" font-size="10" fill="#888">80%</text><text x="75" y="74" text-anchor="end" font-size="10" fill="#888">100%</text><line x1="80" y1="74" x2="740" y2="74" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/><line x1="80" y1="124" x2="740" y2="124" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/><line x1="80" y1="174" x2="740" y2="174" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/><line x1="80" y1="224" x2="740" y2="224" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/><line x1="80" y1="274" x2="740" y2="274" stroke="#333" stroke-width="1" stroke-dasharray="4,4"/><text x="150" y="335" text-anchor="middle" font-size="10" fill="#888">1回</text><text x="280" y="335" text-anchor="middle" font-size="10" fill="#888">5回</text><text x="410" y="335" text-anchor="middle" font-size="10" fill="#888">10回</text><text x="540" y="335" text-anchor="middle" font-size="10" fill="#888">20回</text><text x="670" y="335" text-anchor="middle" font-size="10" fill="#888">50回</text><polyline points="150,314 280,298 410,244 540,164 670,94" fill="none" stroke="#f9a825" stroke-width="3"/><circle cx="150" cy="314" r="5" fill="#f9a825"/><circle cx="280" cy="298" r="5" fill="#f9a825"/><circle cx="410" cy="244" r="5" fill="#f9a825"/><circle cx="540" cy="164" r="5" fill="#f9a825"/><circle cx="670" cy="94" r="5" fill="#f9a825"/><polyline points="150,318 280,316 410,310 540,294 670,244" fill="none" stroke="#e91e63" stroke-width="3"/><circle cx="150" cy="318" r="5" fill="#e91e63"/><circle cx="280" cy="316" r="5" fill="#e91e63"/><circle cx="410" cy="310" r="5" fill="#e91e63"/><circle cx="540" cy="294" r="5" fill="#e91e63"/><circle cx="670" cy="244" r="5" fill="#e91e63"/><polyline points="150,318 280,308 410,274 540,214 670,164" fill="none" stroke="#4fc3f7" stroke-width="3"/><circle cx="150" cy="318" r="5" fill="#4fc3f7"/><circle cx="280" cy="308" r="5" fill="#4fc3f7"/><circle cx="410" cy="274" r="5" fill="#4fc3f7"/><circle cx="540" cy="214" r="5" fill="#4fc3f7"/><circle cx="670" cy="164" r="5" fill="#4fc3f7"/><rect x="460" y="70" width="270" height="100" rx="6" fill="#16213e" stroke="#555" stroke-width="1"/><line x1="475" y1="88" x2="505" y2="88" stroke="#f9a825" stroke-width="3"/><text x="515" y="93" font-size="11" fill="#f9a825">TIT FOR TAT</text><line x1="475" y1="110" x2="505" y2="110" stroke="#4fc3f7" stroke-width="3"/><text x="515" y="115" font-size="11" fill="#4fc3f7">混合戦略集団</text><line x1="475" y1="132" x2="505" y2="132" stroke="#e91e63" stroke-width="3"/><text x="515" y="137" font-size="11" fill="#e91e63">ALWAYS DEFECT</text><text x="430" y="190" font-size="10" fill="#aaa">↑ 繰り返しが増えるほど協力が支配的戦略に</text></svg>
+</div>
 
 
 ---
@@ -167,7 +215,10 @@ style: |
 
 > *しっぺ返し戦略の4原則が人間社会の制度設計の雛形*
 
-- <svg viewBox="0 0 800 360" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" font-size="17" fill="#f9a825" font-weight="bold">協力の進化 — 4つのメカニズム</text><rect x="40" y="55" width="340" height="120" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="82" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold">血縁選択</text><text x="210" y="105" text-anchor="middle" font-size="11" fill="#ccc">r × B &gt; C を満たせば</text><text x="210" y="123" text-anchor="middle" font-size="11" fill="#ccc">血縁者への利他行動が進化</text><text x="210" y="145" text-anchor="middle" font-size="10" fill="#888">例: アリ・ミツバチ・ヒト家族</text><text x="210" y="163" text-anchor="middle" font-size="10" fill="#888">Hamilton (1964)</text><rect x="420" y="55" width="340" height="120" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="82" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold">互恵的利他主義</text><text x="590" y="105" text-anchor="middle" font-size="11" fill="#ccc">繰り返し交流で非血縁間でも</text><text x="590" y="123" text-anchor="middle" font-size="11" fill="#ccc">協力が安定する</text><text x="590" y="145" text-anchor="middle" font-size="10" fill="#888">例: 吸血コウモリ・人間の互助</text><text x="590" y="163" text-anchor="middle" font-size="10" fill="#888">Trivers (1971)</text><rect x="40" y="195" width="340" height="120" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="210" y="222" text-anchor="middle" font-size="13" fill="#4fc3f7" font-weight="bold">評判と間接互恵</text><text x="210" y="245" text-anchor="middle" font-size="11" fill="#ccc">他者に親切にすると評判が上がり</text><text x="210" y="263" text-anchor="middle" font-size="11" fill="#ccc">第三者から助けを受けやすくなる</text><text x="210" y="285" text-anchor="middle" font-size="10" fill="#888">例: ヒト社会の評判システム</text><text x="210" y="303" text-anchor="middle" font-size="10" fill="#888">Nowak &amp; Sigmund (1998)</text><rect x="420" y="195" width="340" height="120" rx="10" fill="#16213e" stroke="#a0c060" stroke-width="2"/><text x="590" y="222" text-anchor="middle" font-size="13" fill="#a0c060" font-weight="bold">ネットワーク互恵</text><text x="590" y="245" text-anchor="middle" font-size="11" fill="#ccc">空間構造・ネットワーク上で</text><text x="590" y="263" text-anchor="middle" font-size="11" fill="#ccc">協力者クラスターが形成される</text><text x="590" y="285" text-anchor="middle" font-size="10" fill="#888">例: SNS・地域コミュニティ</text><text x="590" y="303" text-anchor="middle" font-size="10" fill="#888">Nowak &amp; May (1992)</text><text x="400" y="345" text-anchor="middle" font-size="11" fill="#f9a825">「協力は単なる美徳ではない。それは自然が数十億年かけて発見した最適戦略だ」</text></svg>
+<div class="fig">
+<svg viewBox="0 0 800 360" style="display:block;margin:0 auto;display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="360" fill="#1a1a2e"/><text x="400" y="35" text-anchor="middle" font-size="17" fill="#f9a825" font-weight="bold">協力の進化 — 4つのメカニズム</text><rect x="40" y="55" width="340" height="120" rx="10" fill="#16213e" stroke="#f9a825" stroke-width="2"/><text x="210" y="82" text-anchor="middle" font-size="13" fill="#f9a825" font-weight="bold">血縁選択</text><text x="210" y="105" text-anchor="middle" font-size="11" fill="#ccc">r × B &gt; C を満たせば</text><text x="210" y="123" text-anchor="middle" font-size="11" fill="#ccc">血縁者への利他行動が進化</text><text x="210" y="145" text-anchor="middle" font-size="10" fill="#888">例: アリ・ミツバチ・ヒト家族</text><text x="210" y="163" text-anchor="middle" font-size="10" fill="#888">Hamilton (1964)</text><rect x="420" y="55" width="340" height="120" rx="10" fill="#16213e" stroke="#e91e63" stroke-width="2"/><text x="590" y="82" text-anchor="middle" font-size="13" fill="#e91e63" font-weight="bold">互恵的利他主義</text><text x="590" y="105" text-anchor="middle" font-size="11" fill="#ccc">繰り返し交流で非血縁間でも</text><text x="590" y="123" text-anchor="middle" font-size="11" fill="#ccc">協力が安定する</text><text x="590" y="145" text-anchor="middle" font-size="10" fill="#888">例: 吸血コウモリ・人間の互助</text><text x="590" y="163" text-anchor="middle" font-size="10" fill="#888">Trivers (1971)</text><rect x="40" y="195" width="340" height="120" rx="10" fill="#16213e" stroke="#4fc3f7" stroke-width="2"/><text x="210" y="222" text-anchor="middle" font-size="13" fill="#4fc3f7" font-weight="bold">評判と間接互恵</text><text x="210" y="245" text-anchor="middle" font-size="11" fill="#ccc">他者に親切にすると評判が上がり</text><text x="210" y="263" text-anchor="middle" font-size="11" fill="#ccc">第三者から助けを受けやすくなる</text><text x="210" y="285" text-anchor="middle" font-size="10" fill="#888">例: ヒト社会の評判システム</text><text x="210" y="303" text-anchor="middle" font-size="10" fill="#888">Nowak &amp; Sigmund (1998)</text><rect x="420" y="195" width="340" height="120" rx="10" fill="#16213e" stroke="#a0c060" stroke-width="2"/><text x="590" y="222" text-anchor="middle" font-size="13" fill="#a0c060" font-weight="bold">ネットワーク互恵</text><text x="590" y="245" text-anchor="middle" font-size="11" fill="#ccc">空間構造・ネットワーク上で</text><text x="590" y="263" text-anchor="middle" font-size="11" fill="#ccc">協力者クラスターが形成される</text><text x="590" y="285" text-anchor="middle" font-size="10" fill="#888">例: SNS・地域コミュニティ</text><text x="590" y="303" text-anchor="middle" font-size="10" fill="#888">Nowak &amp; May (1992)</text><text x="400" y="345" text-anchor="middle" font-size="11" fill="#f9a825">「協力は単なる美徳ではない。それは自然が数十億年かけて発見した最適戦略だ」</text></svg>
+</div>
+
 - ✅ **利己的な遺伝子が協力を生む：血縁選択・互恵的利他主義**
 - ✅ **しっぺ返し戦略が長期的に最強（善意・即応・許し）**
 - ✅ **繰り返し・評判・罰則が社会的協力を維持する仕組み**

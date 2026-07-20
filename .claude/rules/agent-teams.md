@@ -25,7 +25,7 @@ Claude Code Agent Teams を使った並列処理のテンプレート集。
 1. マークダウン内の ```mermaid ブロックをすべて特定
 2. 各ブロックをインラインSVGに変換
    - SVG ID は <diagram-name>-<element> 形式でプレフィックス付与
-   - viewBox 必須、style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0"
+   - viewBox 必須。width/height/max-height等のサイズ指定・vh単位は書かない（`.fig`ラッパーが自動で収める）
    - url(#id) は使用禁止（filter: drop-shadow() と <polygon> で代替）
    - 空行をSVG内に入れない
 3. 変換後に検証:

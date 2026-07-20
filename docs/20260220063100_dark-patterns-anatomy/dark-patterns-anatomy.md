@@ -7,41 +7,76 @@ paginate: true
 header: "ダークパターンの解剖学"
 footer: "© 2026"
 style: |
-  /* ── Overflow prevention ──────────────────────────────── */
-    section { overflow: hidden; }
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
     section * { max-width: 100%; box-sizing: border-box; }
     section h1 { overflow-wrap: break-word; word-break: break-word; }
   
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
     /* ── Readability ──────────────────────────────────────── */
     section li {
-      line-height: 1.7;
+      line-height: 1.5;
       margin-bottom: 0.1em;
       overflow-wrap: break-word;
       word-break: break-word;
     }
     section p { line-height: 1.7; overflow-wrap: break-word; }
   
-    /* ── Images (all, not only SVG) ───────────────────────── */
-    section img:not([src$=".svg"]) {
-      max-height: 65vh;
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
       max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
       object-fit: contain;
-      display: block;
-      margin: 0 auto;
+      height: auto;
+      width: auto;
     }
-    section svg {
-      max-height: 70vh;
-      max-width: 100%;
-      display: block;
-      margin: 0 auto;
-    }
-    section img[src$=".svg"] {
-      max-height: 70vh;
-      max-width: 100%;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto;
-    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
   
     /* ── Code blocks ──────────────────────────────────────── */
     section pre { overflow: hidden; }
@@ -76,7 +111,7 @@ style: |
   
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ダークパターンの解剖学
 ユーザーを欺くUIの仕組み
 
@@ -87,21 +122,22 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # アジェンダ
 
 > *6章構成でダークパターンの分類・心理・規制・対策を体系化する*
 
-- 1. ダークパターンとは何か
-- 2. 6つの分類と具体例
-- 3. なぜ効くのか：認知科学の視点
-- 4. 企業にとってのリスク
-- 5. 規制の動向（EU・FTC）
-- 6. エシカルデザインの実践
+1. ダークパターンとは何か
+2. 6つの分類と具体例
+3. なぜ効くのか：認知科学の視点
+4. 企業にとってのリスク
+5. 規制の動向（EU・FTC）
+6. エシカルデザインの実践
 
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # ダークパターンとは何か
 
 ![w:900 center](assets/what-is-darkpattern.svg)
@@ -109,6 +145,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-82 -->
 # ハリー・ブリグヌルの定義（2010年）
 
 > *A/Bテスト済みの意図的設計、UX知識の組織的悪用*
@@ -124,7 +161,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 6つの分類と具体例
 
 ![w:900 center](assets/dark-pattern-taxonomy.svg)
@@ -139,11 +176,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-70 -->
 # 1. 強制（Forced Action）
 
 > *「嫌なら使うな」論理でユーザーを人質にする手法*
 
 ![w:900 center](assets/user-flow-traps.svg)
+
 - **望まない選択をしないとサービスを使えなくする**
 - 例：アカウント作成しないとゲスト購入できない
 - 例：メール通知をONにしないと次に進めない
@@ -154,6 +193,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 2. 欺瞞（Sneaking）
 
 > *無料トライアル後の自動課金など「同意した」ことにする手法*
@@ -168,6 +208,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 3. 緊急性・希少性（Urgency / Scarcity）
 
 > *「残り2部屋」など架空数字でFOMOを悪用し冷静判断を奪う*
@@ -182,6 +223,7 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 4. 妨害（Obstruction）
 
 > *登録1クリック・解約20ステップで離脱を諦めさせる*
@@ -196,7 +238,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # なぜ効くのか：認知科学の視点
 
 ![w:900 center](assets/cognitive-science-why.svg)
@@ -204,11 +246,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-94 -->
 # 悪用される4つの認知バイアス（1/2）
 
 > *デフォルトONで90%がそのまま、損失回避で解約率が半減*
 
 ![w:900 center](assets/cognitive-bias-exploitation.svg)
+
 - **1. 現状維持バイアス** ― デフォルト設定を変えない傾向
 - チェックボックスのデフォルトON → 90%以上がそのまま
 - **2. 損失回避** ― 得るより失う方が2倍痛い
@@ -229,7 +273,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 企業にとってのリスク
 
 ![w:900 center](assets/business-risk.svg)
@@ -237,11 +281,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # 短期利益、長期損失
 
 > *Epic5.2億ドル和解が示す、ダークパターンは技術的負債*
 
 ![w:900 center](assets/user-flow-traps.svg)
+
 - **短期：** コンバージョン率は確かに上がる
 - **長期：** ブランド信頼の毀損、NPS低下、離脱率増加
 - **法的リスク：** EU・FTCの規制強化（後述）
@@ -252,17 +298,19 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # 規制の動向
 
 
 ---
 
+<!-- _class: invert fit-70 -->
 # EU・FTCの対応
 
 > *EU DSA違反で全世界売上6%制裁、デザインの自由は欺瞞の自由でない*
 
 ![w:900 center](assets/regulation-timeline.svg)
+
 - **EU DSA（デジタルサービス法、2024年施行）**
 - ダークパターンを明示的に禁止（初の包括的規制）
 - 違反時：全世界売上の6%の制裁金
@@ -274,7 +322,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # エシカルデザインの実践
 
 ![w:900 center](assets/ethical-ux-principles.svg)
@@ -282,11 +330,13 @@ style: |
 
 ---
 
+<!-- _class: invert fit-76 -->
 # エシカルデザイン5原則
 
 > *良いUXとエシカルなUXは矛盾しない、持続可能な設計の基盤*
 
 ![w:900 center](assets/ethical-design.svg)
+
 - **1. 対称性** ― 登録と同じ簡単さで解約できるようにする
 - **2. 透明性** ― 隠しコストなし、デフォルトは最小限に
 - **3. 選択の自由** ― 全ての選択肢を同等に提示する
@@ -297,7 +347,7 @@ style: |
 
 ---
 
-<!-- _class: lead -->
+<!-- _class: invert lead -->
 # まとめ
 
 - ダークパターンは**意図的に設計されたユーザー搾取のUI**
@@ -309,14 +359,15 @@ style: |
 
 ---
 
+<!-- _class: invert fit-88 -->
 # 参考文献
 
 > *ダークパターン規制と事例研究の一次資料を網羅した参照リスト*
 
-- - **書籍・サイト:**
-- - [Deceptive Patterns (旧 darkpatterns.org)](https://www.deceptive.design/)
-- - [Evil by Design - Chris Nodder](https://www.amazon.com/dp/1118422147)
-- - **規制:**
-- - [EU Digital Services Act](https://digital-strategy.ec.europa.eu/)
-- - [FTC Dark Patterns Report](https://www.ftc.gov/)
+- **書籍・サイト:**
+- [Deceptive Patterns (旧 darkpatterns.org)](https://www.deceptive.design/)
+- [Evil by Design - Chris Nodder](https://www.amazon.com/dp/1118422147)
+- **規制:**
+- [EU Digital Services Act](https://digital-strategy.ec.europa.eu/)
+- [FTC Dark Patterns Report](https://www.ftc.gov/)
 

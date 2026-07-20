@@ -135,11 +135,20 @@ Ask one question at a time. Do not proceed without explicit approval ("OK", "続
 
 ### Content rendering behavior (`src/generate/markdown.ts`)
 
-- Items starting with `|` → rendered verbatim (Markdown table rows)
-- Items starting with `![` → rendered verbatim (image directives)
-- All other items → prefixed with `- ` (bullet points)
+`content` is split into **blocks**, separated by blank lines. Consecutive items of the same kind form one block:
+
+- Items starting with `|` → one Markdown table
+- Items starting with `![` → a standalone image paragraph
+- Items starting with `<svg` → wrapped in `<div class="fig">` (an SVG may span several items, one per line — the run is consumed to `</svg>`)
+- Everything else → bullet points, prefixed with `- `
+- An item that **already** starts with a list marker (`- `, `* `, `1. `) is emitted as-is, not prefixed again
+- Blank items are dropped — they used to render as an empty bullet costing a full line
+
+> The blank line between blocks is load-bearing. Emitting every item as one run made markdown treat anything after a bullet as a *lazy continuation* of that list item: tables rendered as literal `| a | b |` text inside a `<li>`, and diagrams ended up nested in a list where the layout could not size them.
+
 - `"center"` and `"section"` layouts both emit `<!-- _class: lead -->` before the title
 - Use `"![w:800 center](assets/file.svg)"` in `content` for standalone SVG files
+- A `fit-NN` class may be added alongside — see **Auto-fit** below
 
 ### Pipeline (never skip steps)
 
@@ -171,20 +180,36 @@ outline → config YAML → JSON data (Write tool) → validate → render → a
 | `<marker id="a">` + `marker-end="url(#a)"` | Explicit `<polygon points="..." fill="..."/>` at line endpoint |
 | `fill="url(#g)"` (gradient) | Solid color |
 
-**Required on every SVG root tag:**
-```
-viewBox="0 0 W H"
-style="max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0"
-```
+**Required on every SVG root tag:** `viewBox="0 0 W H"` — and nothing else about size.
+
+**Never set `width`, `height`, `max-height` or `max-width` yourself, and never use `vh` units.**
+Marp scales the slide with a CSS transform, so `vh` resolves against the *browser window*, not the slide: on a tall window `max-height:70vh` is bigger than the whole slide and caps nothing. This was the single largest source of overflow in this repo (5,397 of 9,619 slides).
+
+**How sizing actually works now (all automatic):**
+- `renderSlide()` wraps each diagram in `<div class="fig">`, a flex item on the slide's flex column
+- The `.fig` absorbs only the space left over after the title, subtitle, bullets and tables
+- The SVG fills that box at `width:100%;height:100%`, and `preserveAspectRatio` letterboxes the drawing inside it — so it scales down instead of overflowing, always
 
 **`normalizeSvg()` behavior (auto-applied by render pipeline):**
 - Removes hardcoded `width` and `height` attributes from `<svg>` tags
-- Injects `max-height:70vh;max-width:100%;display:block;margin:0 auto;` if style is absent or lacks both properties
-- Does **not** add `letter-spacing:0` — you must include this manually to prevent Gaia theme's `letter-spacing: 1.25px` from bleeding into SVG text
+- Rewrites the `style` attribute so containment always wins, **preserving** non-sizing declarations you wrote (`filter: drop-shadow(...)`, `font-family`, …)
+- Adds `letter-spacing:0` for you — it stops Gaia's `letter-spacing: 1.25px` bleeding into `<text>` labels
 
-**Auto-fix:** `bun scripts/fix-svg-url-refs.ts` scans all `.md` and `.svg` under `docs/`
+**Auto-fix:** `bun scripts/fix-svg-url-refs.ts` scans all `.md`, `.svg` **and `slides-data.json`** under `docs/`. Fixing only the rendered `.md` never stuck — the next `rebuild` regenerated the violation from the JSON source.
 
 **Standalone SVG files:** Place in `assets/`. Reference as `![w:800 center](assets/file.svg)` in `content` array.
+
+**Never use a base64 data URI** (`![](data:image/svg+xml;base64,…)`). markdown-it rejects `data:` URLs other than gif/png/jpeg/webp, so the directive is not parsed at all and the raw base64 renders as a wall of text. Use an inline `<svg>` or an `assets/*.svg` file. `bun run fix:data-uri` converts existing ones; `bun run validate:quality` flags them.
+
+---
+
+## Auto-fit — how text is kept inside the slide
+
+A diagram can shrink; text cannot. `src/generate/fit.ts` estimates each slide's rendered height and, when the text alone would be clipped, attaches a `fit-NN` class (`fit-94` … `fit-58`) that scales the section font to a fraction of `--marpit-root-font-size`. The ladder is defined in `BASE_CSS`; the estimate is calibrated against headless-Chromium measurements of the rendered decks.
+
+- Using `--marpit-root-font-size` means the fraction is correct for any theme **and** for decks that override the base size in `marp.style`
+- `bun run validate:quality` warns (`overflowing_slide`) when a slide still would not fit at the smallest step — that is a content problem: **split the slide**, don't shrink further
+- ⚠️ `section { font-size: 1.05em }` in a `marp.style` does **not** mean "5% larger". `em` resolves against the inherited 16px, not Gaia's 35px, so it renders at 16.8px — less than half the intended size. Use `px` if you must override.
 
 ---
 
@@ -243,10 +268,11 @@ bun run validate                        # Validate all slides-data.json (Zod sch
 bun run validate:quality                # Quality check: assertive titles, subtitle coverage, SVG ratio
 bun run lint                            # Shorthand: validate + validate:quality
 bun run fix                             # Auto-fix common schema issues (bullets→content, layout values, codeLanguage)
-bun run fix:all                         # Chain: fix → split (code) → split:bullets → fix-svg → fix-svg-url-refs → generate:index
+bun run fix:all                         # Chain: fix → fix:data-uri → split (code) → split:bullets → fix-svg → fix-svg-url-refs → generate:index
 bun run split                           # Split code+bullets co-located on same slide (all) — scripts/split-slides.ts --mode code
 bun run split:bullets                   # Split slides with 8+ bullet points into 2 slides — scripts/split-slides.ts --mode bullets
 bun run fix-svg                         # Fix SVG overflow issues in markdown files
+bun run fix:data-uri                    # Convert unrenderable base64 SVG data URIs to inline <svg>
 bun run doctor                          # Project health check (toolchain, exports, SVG violations)
 bun run single <deckDir> [render|export|all]  # Render+export one deck; accepts partial name match
 bun run dev [docs/<dir>]                # Watch mode: auto-render on file change (400ms debounce)
@@ -570,6 +596,12 @@ tmux-based parallel execution: Claude Code (impl) + Codex (review) workers in sp
 | Header/footer/style not rendered | Placed at YAML top level in `slides.config.yaml` (Zod strips unknown keys) | Move under `marp:` key in config YAML |
 | Files render to wrong directory | `output.dir` is relative path | Use full path: `"docs/<timestamp>_<slug>"` |
 | SVG shadows/arrows missing in HTML | `url(#id)` refs break in Marp's foreignObject context | `bun scripts/fix-svg-url-refs.ts` → re-export |
+| Content clipped at the bottom of a slide | Text exceeds the 580px content box; auto-fit already at its smallest step | `bun run validate:quality` → look for `overflowing_slide`, then split the slide |
+| A diagram is squeezed to a sliver | The slide's text fills the box, so the `.fig` flex item gets almost nothing | Move bullets to a second slide — the diagram takes whatever is left over by design |
+| Body text unexpectedly tiny | `marp.style` sets `section { font-size: N em }`; `em` resolves against 16px, not the theme's 35px | Use `px`, or delete the override |
+| A wall of base64 text on a slide | `![](data:image/svg+xml;base64,…)` — markdown-it refuses SVG data URIs | `bun run fix:data-uri` → re-render |
+| A code block swallows the rest of the deck | `slide.code` contains its own ``` fence | Fixed in the renderer (it now opens with a longer fence); re-render |
+| Site links to an outdated render of a deck | `output.baseName` empty and index/pipeline disagreed on the filename | Both now use `resolveBaseName()`; delete leftover `<other-name>.md` / `dist/<other-name>.html` |
 | SVG images not showing in `dist/` | Marp CLI doesn't inline external `<img src="assets/">` | `fixAssetPaths()` auto-rewrites to `../assets/`; verify `assets/` dir exists |
 | Slide content overflowing (bullets) | 8+ bullet points on one slide | `bun run split:bullets` → re-render |
 | Slide content overflowing (code) | Code block > 12 lines or code+bullets combined | `bun run split` → re-render |
