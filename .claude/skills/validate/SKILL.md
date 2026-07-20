@@ -36,7 +36,7 @@ user-invocable: true
    | コード+箇条書き混在 | コード7〜10行で箇条書き3項目以上 | `bun run split` |
    | SVG比率 | 全スライドの50%未満 | 手動でSVGスライドを追加 |
    | url(#id) 参照 | SVG内に filter/marker-end/fill の url(#...) | `bun scripts/fix-svg-url-refs.ts` |
-   | class:invert | gaiaテーマで未設定 | フロントマターに手動追加 |
+   | class:invert | gaiaテーマでダークにしたいのに未設定 | `slides.config.yaml` に `marp.class: "invert"` を追加して再render（.md の手動編集は不要） |
 
 3. **結果分析**
    - ✅ Valid files のリスト
@@ -106,7 +106,7 @@ bun run validate \
   && bun run split:bullets \
   && bun scripts/fix-svg-url-refs.ts \
   && bun run rebuild:render
-# After render: manually add class:invert to gaia theme .md files
+# Dark mode: set marp.class: "invert" in slides.config.yaml — emitted automatically on render
 # Then: bun run rebuild:export && bun run generate:index
 ```
 

@@ -151,9 +151,9 @@ pending → in_progress → impl_done → in_review → review_done → complete
 10以上の並列タスクは波状に分割して実行:
 
 ```
-Wave 1: タスク 1-5  → 全完了を待つ
-Wave 2: タスク 6-10 → 全完了を待つ
-Wave 3: タスク 11-  → 全完了を待つ
+Wave 1: タスク 1-7   → 全完了を待つ
+Wave 2: タスク 8-14  → 全完了を待つ
+Wave 3: タスク 15-   → 全完了を待つ
 Export: 全 Wave 完了後に逐次エクスポート（並列不可）
 ```
 

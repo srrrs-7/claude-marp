@@ -51,7 +51,7 @@ user-invocable: true
 - `marp: true` が存在するか
 - `class: invert` が設定されているか（gaiaテーマ）— config.yamlの `marp.class: "invert"` で自動適用
 - `size: 16:9` が設定されているか
-- `section pre code { font-size: 0.6em; }` がstyleに含まれているか
+- コードブロックのフォント縮小は `BASE_CSS` が自動注入するため確認不要。逆に `marp.style` で `section pre code` を再定義していたら、自動設定を上書きしているので指摘する
 
 ### 構成と論理
 - **構成**: intro → body → conclusion の論理的な流れ

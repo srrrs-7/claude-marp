@@ -27,8 +27,8 @@ Read src/generate/slide-schema.ts
 ```
 
 **確認項目:**
-- ✅ 有効なフィールド名: `title`, `content`, `layout` (必須)
-- ✅ オプショナル: `code`, `codeLanguage`, `speakerNotes`
+- ✅ **必須**: `title`, `content` のみ
+- ✅ オプショナル: `subtitle`（BLUF一文。4項目以上のスライドに推奨）, `layout`, `code`, `codeLanguage`, `speakerNotes`
 - ✅ `layout` enum 値: `"default" | "center" | "section"`
 - ❌ 存在しないフィールド: `bullets` (これは間違い、`content` を使う)
 
@@ -92,7 +92,7 @@ const timestamp = new Date().toISOString()
   - `gaia`: カラフルで目を引く（技術系カンファレンス向け）
   - `default`: シンプルで落ち着いた（ビジネス向け）
   - `uncover`: モダンでミニマル（デザイン/アカデミック向け）
-- ダーク/ライト？（gaiaの `_class: invert` でダーク対応）
+- ダーク/ライト？（ダークなら `slides.config.yaml` に `marp.class: "invert"` を設定。render時に自動でフロントマターへ出力される）
 - ヘッダー/フッターに入れたいテキストは？（イベント名、日付、著者名など）
 - 言語は？（日本語 / 英語 / 他）
 
@@ -164,10 +164,7 @@ goal: "（ヒアリング結果から）"
 language: "ja"
 
 slides:
-  count: （アウトラインの枚数）
-  includeTableOfContents: true
-  includeTitleSlide: true
-  includeSummarySlide: true
+  count: （アウトラインの枚数）   # slides: に指定できるのは count のみ。他のキーはZodが黙って捨てる
 
 marp:
   theme: "（選択されたテーマ）"
@@ -176,12 +173,8 @@ marp:
   header: "（必要なら）"
   footer: "（必要なら）"
   style: |
-    /* コードブロックのフォントサイズを縮小してはみ出しを防ぐ */
-    section pre code {
-      font-size: 0.6em;
-      line-height: 1.4;
-    }
-    （その他のカスタムCSSがあれば）
+    （カスタムCSSがあれば。`section pre code` の縮小は markdown.ts の BASE_CSS が
+     常時 0.58em で自動注入するので書かなくてよい — ここに書くと上書きされる）
 
 content:
   codeBlocks: （true/false）
@@ -190,7 +183,7 @@ content:
   speakerNotes: true
 
 output:
-  dir: "./docs"
+  dir: "docs/<timestamp>_<slug>"   # 相対パスは cwd 基準で解決されるため必ずフルパス
   baseName: "（topicからslug生成）"
 ```
 
@@ -214,15 +207,15 @@ output:
 
 **⚠️ 重要: JSON は絶対にインライン出力しない。Write tool でファイルに直接書き込む。**
 
-**40枚以上のデッキはチャンク分割必須:**
+**30枚以上のデッキはチャンク分割必須**（1チャンク15枚。SVG比率が50%未満なら20枚まで可）:
 
 ```
-# スライド数 >= 40 の場合
-Chunk 1 (slides 1-30):
+# スライド数 >= 30 の場合
+Chunk 1 (slides 1-15):
   → Write tool: docs/<timestamp>_<slug>/slides-data-part1.json
-  → 形式: { "slides": [...] } (30枚分)
+  → 形式: { "slides": [...] } (15枚分)
 
-Chunk 2 (slides 31-60):
+Chunk 2 (slides 16-30):
   → Write tool: docs/<timestamp>_<slug>/slides-data-part2.json
   → 形式: { "slides": [...] } (残り枚数)
 
@@ -238,8 +231,9 @@ Cleanup:
 **各スライドの構造:**
 ```json
 {
-  "title": "スライドタイトル",
-  "content": ["箇条書き項目"],  // ← "bullets" ではない
+  "title": "スライドタイトル",          // ← 必須
+  "subtitle": "So What? の一行",       // ← 任意。4項目以上の時に推奨（> *…* で描画）
+  "content": ["箇条書き項目"],         // ← 必須。"bullets" ではない
   "layout": "default",          // ← enum 値のみ: "default" | "center" | "section"
   "code": "コード例 (optional)",
   "codeLanguage": "typescript",
@@ -296,7 +290,7 @@ if (!isValid) {
 |--------|------|
 | Field `bullets` found | Rename to `content` |
 | Invalid layout value | Use only: `default`, `center`, `section` |
-| Missing required field | Add `title` and `layout` |
+| Missing required field | Add `title` and `content`（`layout` は任意） |
 
 ### 4-5. ファイル書き込みとスライド数確認
 
@@ -321,7 +315,7 @@ bun -e "const d=JSON.parse(require('fs').readFileSync('docs/<timestamp>_<slug>/s
 ## Phase 5: レンダリング
 
 ```bash
-bun run slides render --in docs/slides-data.json
+bun run slides render -c docs/<timestamp>_<slug>/slides.config.yaml --in docs/<timestamp>_<slug>/slides-data.json
 ```
 
 生成されたマークダウンの内容をユーザーに要約して報告:
@@ -372,7 +366,7 @@ bun run slides render --in docs/slides-data.json
 ## Phase 8: 最終エクスポート
 
 ```bash
-bun run slides export -f html --in docs/（ファイル名）.md
+bun run slides export -c docs/<timestamp>_<slug>/slides.config.yaml -f html --in docs/<timestamp>_<slug>/<baseName>.md
 ```
 
 完了報告:

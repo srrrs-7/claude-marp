@@ -28,7 +28,7 @@ argument-hint: "[デッキ名の部分一致 | 省略で最悪デッキを自動
 
 ## Phase 3 — 並列実行
 
-- **1メッセージ内で全 subagent を同時起動**（`run_in_background: true`, `mode: "bypassPermissions"`）
+- **1メッセージ内で全 subagent を同時起動**（`run_in_background: true`）。`mode: "bypassPermissions"` は Deprecated なので指定しない — サブエージェントは親の権限モードを継承する
 - 各 subagent は**重ならないスライド範囲**を担当し、専用の part ファイルに書く
 - 10体を超えるならウェーブ（1ウェーブ最大7体）
 

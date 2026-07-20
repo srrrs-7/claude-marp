@@ -30,7 +30,7 @@ date +%Y%m%d%H%M%S
 
 ## Phase 2 — 並列起動
 
-- **1メッセージ内で全 subagent を同時起動**（`run_in_background: true`, `mode: "bypassPermissions"`）
+- **1メッセージ内で全 subagent を同時起動**（`run_in_background: true`）。`mode: "bypassPermissions"` は Deprecated なので指定しない — サブエージェントは親の権限モードを継承する
 - ウェーブは最大7体。全ウェーブ完了を待ってから次へ
 - 各 subagent に渡すもの: トピック / 出力ディレクトリ（**専用**）/ 枚数 / テーマ / 言語
 - 使う agent: `slide-chunk-writer`（本文）、必要なら `svg-diagram-author` を続けて起動

@@ -263,7 +263,7 @@ bun run check                           # Biome lint + format check
 bun run format                          # Auto-format with Biome
 bun run test                            # Regression tests (bun:test)
 bun run spellcheck                      # cspell spell check across all files
-bun run generate:index                  # Regenerate docs/index.html (grade badges, sort, search, reading time)
+bun run generate:index                  # Regenerate docs/index.html (bookshelf UI) + mirror pdf/ → docs/pdf/
 bun scripts/fix-svg-url-refs.ts        # Fix url(#id) violations across all SVGs/markdown
 ```
 
@@ -359,6 +359,10 @@ A ≥ 70   B ≥ 50   C ≥ 30   D < 30
 **`output.dir` is resolved to an absolute path by the Zod schema** (`.transform()` in `src/config/schema.ts`), so relative values silently resolve against `process.cwd()` — always write the full `docs/<timestamp>_<slug>` path.
 
 **Deployment:** `.github/workflows/deploy-pages.yml` publishes `docs/` to GitHub Pages on any push to `main` touching `docs/**`. CI runs `bun run generate:index` first — the whole `docs/` tree is the published site, so committed decks go live automatically.
+
+**Standalone PDFs:** drop them in the repo-root `pdf/` directory. `generate:index` mirrors them into `docs/pdf/` (only `docs/` is published) and lists them on a dedicated "PDF Library" shelf in `docs/index.html`. `docs/pdf/` must be committed for the links to work on Pages. PDFs have no quality grade, so grade filters exclude them by design.
+
+**`docs/index.html` is generated from `scripts/index-template/`** — `shelf.css` and `shelf.js` are read at build time and inlined, so the published page stays a single self-contained file. Edit those two files, not the generated HTML. Deck/PDF metadata is embedded as JSON and the three views (bookshelf / card / list) are rendered client-side.
 
 **Parallel instruction files:** `AGENTS.md` (Codex/OpenAI-format repo guidelines) and `.codex/` (installed via `bash .codex/install-skills.sh`) cover the same ground as this file for other tools.
 
@@ -475,24 +479,20 @@ SVG使用スライド: 12/20
 | `team-leader` / `impl-worker` / `review-worker` | Agent Teams（コード実装＋レビュー） | `/agent-teams` |
 | `marp-customizer` | テーマ・CSS調整 | 親（デザイン調整時） |
 
-> 権限は **呼び出し側の `mode: "bypassPermissions"`** で渡す。エージェント定義ファイルに `permissionMode: bypassPermissions` を書くこともできるが、そのエージェントの全呼び出しで恒久的に権限が緩むため、**既定では設定していない**。
-
 ### 実行パラメータ
 
-**CRITICAL — Worker agents do NOT inherit the parent session's permission grants.**
-Text in the agent prompt ("you have full permissions") does nothing. Permissions are granted only via the Agent/Task tool's `mode` parameter.
+> **⚠️ `mode: "bypassPermissions"` はもう指定しない。** Agent ツールの `mode` は現在 **Deprecated / 無視される** パラメータで、サブエージェントは**親セッションの権限モードを自動的に継承**する。かつて「これを付けないとワーカーが停止する」と書かれていたが、現在は誤り。恒久的に権限を変えたい場合のみ、エージェント定義ファイルの `permissionMode:` で上書きする（全呼び出しに効くため既定では設定していない）。
+>
+> プロンプト本文に「You have full permissions to use Bash, Write, …」と書くことにも権限付与の効果はない。ツール制限は定義ファイルの `tools:` で決まる。
 
-| Agent (Task) tool parameter | Required value | Effect |
+| Agent ツールのパラメータ | 値 | 効果 |
 |--------------------|---------------|--------|
-| `mode` | `"bypassPermissions"` | Grants Bash/Write/Read/Edit/Glob without prompts |
-| `run_in_background` | `true` | Enables parallel execution |
-| `subagent_type` | `"slide-creator"` / `"general-purpose"` | スライド生成は `slide-creator`、調査・修正は `general-purpose` |
+| `subagent_type` | `"slide-chunk-writer"` / `"general-purpose"` など | 用途に合ったエージェントを選ぶ（「エージェント一覧」参照） |
+| `run_in_background` | `true`（既定） | 並列実行。`false` で結果を待って同期実行 |
 | `name` | `worker-1`, `worker-2`, … | 親から `SendMessage` で追撃指示を出せるようにする |
+| `model` | 省略推奨 | 定義ファイルの `model:` が効く。ここで上書きすると振り分け設計が崩れる |
 
-**Failure symptom:** worker stalls or falls back to sequential = `mode: "bypassPermissions"` was not set.
-
-Also include in each agent prompt (belt-and-suspenders):
-> "You have full permissions to use Bash, Write, Read, Edit, and Glob tools."
+**Failure symptom:** ワーカーが並列にならない場合、原因はほぼ「1つずつ起動して待っている」こと。全 subagent を**1メッセージ内で**起動する。
 
 **File isolation:** Assign non-overlapping output files (`slides-data-part1.json`, `part2.json`, …) to each worker. Overlapping slide ranges → Marp CLI cache conflict → silent corruption.
 
@@ -564,7 +564,7 @@ tmux-based parallel execution: Claude Code (impl) + Codex (review) workers in sp
 | Slide content overflowing (code) | Code block > 12 lines or code+bullets combined | `bun run split` → re-render |
 | 32K token API error | Large content output inline instead of via Write tool | Use Write tool for all large output; set `CLAUDE_CODE_MAX_OUTPUT_TOKENS` |
 | Render fails for one deck but not others | Need to iterate on a single deck without full rebuild | `bun run single <partial-name>` — partial name matching, render+export one deck |
-| Parallel worker stalls / falls back to sequential | `mode: "bypassPermissions"` not set in Task tool call | Add `mode: "bypassPermissions"` to every Task tool call that spawns a slide worker |
+| Parallel worker stalls / falls back to sequential | subagent を1つずつ起動して待っている（`mode: "bypassPermissions"` は Deprecated で無関係） | 全 subagent を1メッセージ内で `Agent` 呼び出しする |
 | Worker completes but output file missing | Overlapping file paths between workers (cache conflict) | Assign strictly non-overlapping `slides-data-part{N}.json` paths |
 | Subagent の返り値が巨大で応答が切れる | 成果物本体を返り値に入れた | 本体は Write でファイルへ。返り値はパス+枚数+品質メタのみ |
 | 並列にしたのに速くならない | subagent を1つずつ起動して待っている | 全 subagent を **1メッセージ内で同時に** `Agent` 呼び出しする |
