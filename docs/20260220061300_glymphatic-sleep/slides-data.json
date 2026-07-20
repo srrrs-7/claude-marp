@@ -65,7 +65,7 @@
 		},
 		{
 			"title": "アルツハイマー病との関係（2/2）",
-			"subtitle": "慢性6時間睡眠でアルツハイマーリスクが1.5〜2倍に増加",
+			"subtitle": "睡眠6時間以下が続くとアルツハイマーリスクが1.5〜2倍に増加",
 			"content": [
 				"**睡眠不足との関係：**",
 				"睡眠不足 → アミロイドβが蓄積 → 神経毒性",
@@ -74,8 +74,7 @@
 				"慢性的睡眠不足（< 6時間/日）は",
 				"アルツハイマー病リスクを1.5〜2倍に高める（複数研究）"
 			],
-			"layout": "default",
-			"subtitle": "睡眠6時間以下が続くとアルツハイマーリスクが1.5〜2倍に増加"
+			"layout": "default"
 		},
 		{
 			"title": "睡眠負債と脳への影響（1/2）",
@@ -91,7 +90,7 @@
 		},
 		{
 			"title": "睡眠負債と脳への影響（2/2）",
-			"subtitle": "週末の寝だめでは補えない慢性負債が認知機能を恒久的に低下させる",
+			"subtitle": "週末の寝だめではグリンパティック損傷を回復できない",
 			"content": [
 				"グリンパティック洗浄の不足は完全には補えない",
 				"慢性的負債は認知機能の永続的低下を引き起こす可能性",
@@ -99,8 +98,7 @@
 				"REM睡眠の短縮 → 学習効率と創造性の低下",
 				"<svg viewBox=\"0 0 800 290\" style=\"max-height:70vh;width:auto;display:block;margin:0 auto;letter-spacing:0\"><rect width=\"800\" height=\"290\" fill=\"#1a1a2e\"/><text x=\"400\" y=\"28\" fill=\"#f9a825\" font-size=\"15\" font-weight=\"bold\" text-anchor=\"middle\" font-family=\"sans-serif\">慢性睡眠不足と認知機能の低下</text><line x1=\"70\" y1=\"230\" x2=\"760\" y2=\"230\" stroke=\"#555\" stroke-width=\"1\"/><line x1=\"70\" y1=\"50\" x2=\"70\" y2=\"230\" stroke=\"#555\" stroke-width=\"1\"/><text x=\"415\" y=\"275\" fill=\"#aaa\" font-size=\"12\" text-anchor=\"middle\" font-family=\"sans-serif\">睡眠不足の継続期間（日）</text><text x=\"30\" y=\"145\" fill=\"#aaa\" font-size=\"11\" text-anchor=\"middle\" font-family=\"sans-serif\" transform=\"rotate(-90, 30, 145)\">認知機能（%）</text><text x=\"60\" y=\"55\" fill=\"#aaa\" font-size=\"10\" text-anchor=\"end\" font-family=\"sans-serif\">100</text><text x=\"60\" y=\"100\" fill=\"#aaa\" font-size=\"10\" text-anchor=\"end\" font-family=\"sans-serif\">80</text><text x=\"60\" y=\"145\" fill=\"#aaa\" font-size=\"10\" text-anchor=\"end\" font-family=\"sans-serif\">60</text><text x=\"60\" y=\"190\" fill=\"#aaa\" font-size=\"10\" text-anchor=\"end\" font-family=\"sans-serif\">40</text><line x1=\"70\" y1=\"55\" x2=\"760\" y2=\"55\" stroke=\"#333\" stroke-width=\"0.5\" stroke-dasharray=\"4,4\"/><line x1=\"70\" y1=\"100\" x2=\"760\" y2=\"100\" stroke=\"#333\" stroke-width=\"0.5\" stroke-dasharray=\"4,4\"/><line x1=\"70\" y1=\"145\" x2=\"760\" y2=\"145\" stroke=\"#333\" stroke-width=\"0.5\" stroke-dasharray=\"4,4\"/><line x1=\"70\" y1=\"190\" x2=\"760\" y2=\"190\" stroke=\"#333\" stroke-width=\"0.5\" stroke-dasharray=\"4,4\"/><polyline points=\"70,58 180,65 290,80 400,108 510,148 620,188 730,218\" stroke=\"#66bb6a\" stroke-width=\"2.5\" fill=\"none\"/><text x=\"740\" y=\"215\" fill=\"#66bb6a\" font-size=\"10\" font-family=\"sans-serif\">8h睡眠</text><polyline points=\"70,58 180,75 290,105 400,148 510,185 620,210 730,225\" stroke=\"#f9a825\" stroke-width=\"2.5\" fill=\"none\"/><text x=\"740\" y=\"222\" fill=\"#f9a825\" font-size=\"10\" font-family=\"sans-serif\">6h睡眠</text><polyline points=\"70,58 180,90 290,135 400,175 510,205 620,220 730,228\" stroke=\"#e91e63\" stroke-width=\"2.5\" fill=\"none\"/><text x=\"740\" y=\"229\" fill=\"#e91e63\" font-size=\"10\" font-family=\"sans-serif\">4h睡眠</text><text x=\"400\" y=\"48\" fill=\"white\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">正常</text><text x=\"415\" y=\"125\" fill=\"#f9a825\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">本人は「慣れた」と感じるが</text><text x=\"415\" y=\"140\" fill=\"#f9a825\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">実際の機能は低下し続ける</text><line x1=\"70\" y1=\"230\" x2=\"195\" y2=\"230\" stroke=\"#555\" stroke-width=\"1\"/><text x=\"132\" y=\"244\" fill=\"#aaa\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">3日</text><line x1=\"70\" y1=\"230\" x2=\"310\" y2=\"230\" stroke=\"#555\" stroke-width=\"1\"/><text x=\"308\" y=\"244\" fill=\"#aaa\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">6日</text><text x=\"445\" y=\"244\" fill=\"#aaa\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">9日</text><text x=\"580\" y=\"244\" fill=\"#aaa\" font-size=\"10\" text-anchor=\"middle\" font-family=\"sans-serif\">12日</text></svg>"
 			],
-			"layout": "default",
-			"subtitle": "週末の寝だめではグリンパティック損傷を回復できない"
+			"layout": "default"
 		},
 		{
 			"title": "まとめ：睡眠は脳のメンテナンス",

@@ -1,7 +1,7 @@
 ---
 name: ship
 description: 変更をステージング → コミット → プッシュまで一括実行
-user_invocable: true
+user-invocable: true
 ---
 
 # Ship (Commit & Push)
@@ -29,7 +29,7 @@ user_invocable: true
 
 - `.env`、credentials、秘密鍵など機密ファイルはコミットしない（検出したら警告）
 - `git add -A` ではなく、関連ファイルを明示的に指定
-- コミットメッセージ末尾に `Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>` を付与
+- コミットメッセージ末尾に `Co-Authored-By: Claude <モデル名> <noreply@anthropic.com>` を付与。モデル名は**実行中の自分のモデル**を使う（固定値をコピーしない）
 - プッシュ前にリモートとの差分を確認し、force push が必要な場合はユーザーに警告
 - 変更がない場合は「コミットする変更がありません」と報告して終了
 

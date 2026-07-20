@@ -58,11 +58,12 @@ Key exports:
 | `ASSERTIVE_TARGET_RATIO` | 0.6 | Google/Amazon title standard |
 | `SUBTITLE_GOOD_RATIO` | 0.3 | Minimum "good" subtitle coverage |
 | `MAX_BULLET_CHARS` | 60 | Max chars per bullet point |
+| `MAX_BULLETS_PER_SLIDE` | 7 | Max bullets before `split:bullets` splits the slide |
 | `SUBTITLE_BULLET_THRESHOLD` | 4 | Bullets before subtitle is encouraged |
 | `CONSECUTIVE_TEXT_LIMIT` | 3 | Consecutive text-only slides before warning |
 | `RENDER_PARALLEL` | 8 | Concurrent render jobs in rebuild |
 
-Used by: `quality.ts`, `split-bullet-overflow.ts`, `rebuild-all-slides.ts`, tests
+Used by: `quality.ts`, `split-slides.ts`, `rebuild-all-slides.ts`, tests
 
 ---
 

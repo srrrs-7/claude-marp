@@ -18,9 +18,9 @@
 
 import { existsSync } from "node:fs";
 import { Glob } from "bun";
+import { isFresh, readCache, updateEntry, writeCache } from "./lib/cache.js";
 import { c } from "./lib/colors.js";
 import { RENDER_PARALLEL } from "./lib/constants.js";
-import { isFresh, readCache, updateEntry, writeCache } from "./lib/cache.js";
 import { run } from "./lib/spawn.js";
 
 // ---------------------------------------------------------------------------

@@ -1,7 +1,7 @@
 ---
 name: validate
 description: スライドデータとconfigをスキーマに対して検証
-user_invocable: true
+user-invocable: true
 ---
 
 # Validate Skill
@@ -31,12 +31,12 @@ user_invocable: true
 
    | チェック項目 | NG条件 | 修正コマンド |
    |-------------|--------|------------|
-   | 箇条書き数 | 1スライドに8項目以上 | `python3 scripts/split-bullet-overflow.py --all` |
+   | 箇条書き数 | 1スライドに8項目以上 | `bun run split:bullets` |
    | コードブロック行数 | 12行超え | `bun run split` |
    | コード+箇条書き混在 | コード7〜10行で箇条書き3項目以上 | `bun run split` |
    | SVG比率 | 全スライドの50%未満 | 手動でSVGスライドを追加 |
    | url(#id) 参照 | SVG内に filter/marker-end/fill の url(#...) | `bun scripts/fix-svg-url-refs.ts` |
-   | class:invert | gaiaテーマで未設定 | フロントマターに手動追加 |
+   | class:invert | gaiaテーマでダークにしたいのに未設定 | `slides.config.yaml` に `marp.class: "invert"` を追加して再render（.md の手動編集は不要） |
 
 3. **結果分析**
    - ✅ Valid files のリスト
@@ -92,7 +92,7 @@ bun run fix:all                                      # 一括修正: fix → spl
 # または個別に:
 bun run fix                                          # bullets→content, invalid layout values
 bun run split                                        # split code+bullets co-located slides
-python3 scripts/split-bullet-overflow.py --all       # split 8+ bullet slides into 2
+bun run split:bullets       # split 8+ bullet slides into 2
 bun scripts/fix-svg-url-refs.ts                      # fix url(#id) violations in SVGs
 bun run doctor                                       # project health check (toolchain, exports, SVG violations)
 ```
@@ -103,10 +103,10 @@ bun run doctor                                       # project health check (too
 bun run validate \
   && bun run fix \
   && bun run split \
-  && python3 scripts/split-bullet-overflow.py --all \
+  && bun run split:bullets \
   && bun scripts/fix-svg-url-refs.ts \
   && bun run rebuild:render
-# After render: manually add class:invert to gaia theme .md files
+# Dark mode: set marp.class: "invert" in slides.config.yaml — emitted automatically on render
 # Then: bun run rebuild:export && bun run generate:index
 ```
 

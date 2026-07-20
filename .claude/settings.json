@@ -5,41 +5,13 @@
 	"hooks": {
 		"PostToolUse": [
 			{
-				"matcher": "Write.*slides-data\\.json",
-				"hooks": [
-					{
-						"type": "command",
-						"command": "bun run validate",
-						"statusMessage": "Validating slides schema..."
-					},
-					{
-						"type": "command",
-						"command": "bash -c 'FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | grep -o \"docs/[^\"]*slides-data\\.json\" | head -1); if [ -n \"$FILE\" ] && [ -f \"$FILE\" ]; then ACTUAL=$(bun -e \"const d=JSON.parse(require(\\\"fs\\\").readFileSync(process.argv[1],\\\"utf-8\\\"));console.log(d.slides?d.slides.length:0)\" \"$FILE\" 2>/dev/null); echo \"📊 Slide count: $ACTUAL slides in $FILE\"; fi'",
-						"statusMessage": "Counting slides...",
-						"async": true
-					},
-					{
-						"type": "command",
-						"command": "bun run generate:index",
-						"statusMessage": "Updating docs/index.html...",
-						"async": true
-					}
-				]
-			},
-			{
-				"matcher": "Write.*\\.json",
-				"hooks": [
-					{
-						"type": "command",
-						"command": "bash -c 'FILE=$(echo \"$CLAUDE_TOOL_INPUT\" | grep -o \"docs/[^\"]*\\.json\" | head -1); if [ -n \"$FILE\" ] && [ -f \"$FILE\" ]; then bun -e \"try { JSON.parse(require(\\\"fs\\\").readFileSync(process.argv[1],\\\"utf-8\\\")); console.log(\\\"✅ JSON valid: $FILE\\\"); } catch(e) { console.error(\\\"❌ JSON parse error in $FILE: \\\" + e.message); process.exit(1); }\" \"$FILE\" 2>&1; fi'",
-						"statusMessage": "Linting JSON...",
-						"async": true
-					}
-				]
-			},
-			{
 				"matcher": "Write|Edit",
 				"hooks": [
+					{
+						"type": "command",
+						"command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/post-write.sh\"",
+						"statusMessage": "Running post-write checks..."
+					},
 					{
 						"type": "command",
 						"command": "bun run format",
@@ -55,45 +27,12 @@
 				]
 			},
 			{
-				"matcher": "Bash.*export.*-f html",
+				"matcher": "Bash",
 				"hooks": [
 					{
 						"type": "command",
-						"command": "bash -c 'BROKEN=$(grep -rn \"src=\\\"assets/\" docs/*/dist/*.html 2>/dev/null); if [ -n \"$BROKEN\" ]; then echo \"⚠️ Broken asset paths found in dist/ HTML:\"; echo \"$BROKEN\"; exit 1; fi; echo \"✅ Asset paths OK\"'",
+						"command": "bash \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/post-bash.sh\"",
 						"statusMessage": "Verifying HTML asset paths..."
-					}
-				]
-			},
-			{
-				"matcher": "Write.*\\.svg|Edit.*\\.svg",
-				"hooks": [
-					{
-						"type": "command",
-						"command": "bash -c 'FOUND=$(grep -rn \"url(#\" docs/**/*.svg 2>/dev/null); if [ -n \"$FOUND\" ]; then echo \"⚠️ Prohibited url(#id) references found — auto-fixing...\"; bun scripts/fix-svg-url-refs.ts && echo \"✅ SVG url(#id) references fixed\"; else echo \"✅ SVG url(#id) check passed\"; fi'",
-						"statusMessage": "Checking and auto-fixing SVG url(#id) references...",
-						"async": true
-					}
-				]
-			},
-			{
-				"matcher": "Write.*docs/.*\\.md|Edit.*docs/.*\\.md",
-				"hooks": [
-					{
-						"type": "command",
-						"command": "bash -c 'FOUND=$(grep -rn \"^\\`\\`\\`mermaid\" docs/**/*.md 2>/dev/null); if [ -n \"$FOUND\" ]; then echo \"⚠️ Unconverted Mermaid blocks found:\"; echo \"$FOUND\"; exit 1; fi; echo \"✅ No Mermaid blocks\"'",
-						"statusMessage": "Checking for Mermaid residue..."
-					}
-				]
-			}
-		],
-		"SessionEnd": [
-			{
-				"hooks": [
-					{
-						"type": "prompt",
-						"prompt": "If this was a long conversation (20+ messages), remind the user to run /compact to reduce context size. Keep it brief and friendly.",
-						"statusMessage": "Checking session length...",
-						"async": true
 					}
 				]
 			}

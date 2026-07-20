@@ -4,9 +4,10 @@ import { parseArgs as parseNodeArgs } from "node:util";
 import { z } from "zod";
 import { defaultConfigYaml } from "../config/defaults.js";
 import { loadConfig } from "../config/loader.js";
-import { CONFIG_FILENAME } from "../constants.js";
+import { CONFIG_FILENAME, DATA_FILENAME } from "../constants.js";
 import { exportSlides } from "../export/marp.js";
 import { renderSlides } from "../generate/pipeline.js";
+import { saveSlidesData } from "../model/presentation.js";
 import { ensureDir, slugify } from "../utils/files.js";
 
 const FORMAT_SCHEMA = z.enum(["html", "pdf", "pptx"]);
@@ -24,7 +25,7 @@ export async function initCommand(): Promise<void> {
 	const file = Bun.file(configPath);
 
 	if (await file.exists()) {
-		console.log(`slides.config.yaml already exists at ${configPath}`);
+		console.log(`${CONFIG_FILENAME} already exists at ${configPath}`);
 		return;
 	}
 
@@ -85,30 +86,19 @@ export async function newCommand(topic: string): Promise<void> {
 		'"Your Presentation Topic"',
 		JSON.stringify(topic),
 	);
-	await Bun.write(resolve(dirPath, "slides.config.yaml"), config);
+	await Bun.write(resolve(dirPath, CONFIG_FILENAME), config);
 
-	// Write empty slides-data.json
-	const emptyData = JSON.stringify(
-		{
-			slides: [
-				{
-					title: topic,
-					content: [],
-					layout: "center",
-				},
-			],
-		},
-		null,
-		2,
-	);
-	await Bun.write(resolve(dirPath, "slides-data.json"), emptyData);
+	// Seed slides-data.json with a single title slide
+	await saveSlidesData(resolve(dirPath, DATA_FILENAME), [
+		{ title: topic, content: [], layout: "center" },
+	]);
 
 	console.log(`Created: ${dirPath}`);
-	console.log(`  - slides.config.yaml`);
-	console.log(`  - slides-data.json`);
-	console.log(`\nNext steps:`);
+	console.log(`  - ${CONFIG_FILENAME}`);
+	console.log(`  - ${DATA_FILENAME}`);
+	console.log("\nNext steps:");
 	console.log(
-		`  bun run slides render -c ${dirPath}/slides.config.yaml --in ${dirPath}/slides-data.json`,
+		`  bun run slides render -c ${dirPath}/${CONFIG_FILENAME} --in ${dirPath}/${DATA_FILENAME}`,
 	);
 }
 
