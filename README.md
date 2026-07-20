@@ -210,4 +210,4 @@ bun run spellcheck  # スペルチェック (cspell)
 ## 制約事項
 
 - **PDF出力**: Chromiumが必要。HTML出力を推奨。
-- **テスト**: 未整備。追加時は `bun:test` を使用。
+- **テスト**: `bun run test` で全8ファイル・4061テストを実行（`bun:test`）。単体は `bun test <file>`、名前指定は `bun test -t "<name>"`。

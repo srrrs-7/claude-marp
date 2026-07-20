@@ -22,9 +22,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 > SVG-heavy decks (≥50% of slides have SVG) — use **15-slide** chunks, not 20, to avoid SVG token bloat.
 
 ```
-Chunk 1 (slides 1-20)  → Write to slides-data-part1.json
-Chunk 2 (slides 21-40) → Write to slides-data-part2.json
-Chunk 3 (slides 41-60) → Write to slides-data-part3.json
+Chunk 1 (slides 1-15)  → Write to slides-data-part1.json
+Chunk 2 (slides 16-30) → Write to slides-data-part2.json
+Chunk 3 (slides 31-45) → Write to slides-data-part3.json
 Merge: { "slides": [...part1.slides, ...part2.slides, ...part3.slides] } → Write to slides-data.json
 Delete: slides-data-part*.json
 Verify: bun -e "const d=JSON.parse(require('fs').readFileSync('slides-data.json','utf-8')); console.log('Slides:', d.slides.length)"
@@ -84,6 +84,8 @@ S（状況）→ C（複雑化）→ Q（問い）→ A（答え = BLUF）
 **Applied to all task interactions — complete before executing any task.**
 
 Ask one question at a time. Do not proceed without explicit approval ("OK", "続けて", "next").
+
+**Scope — this policy does NOT apply when:** the request matches the Shorthand table below; the user names an explicit slash command or skill; or the answer is already determined by this file, the code, or an earlier decision in the conversation. In those cases act immediately. Ask only when the answer would actually change what you do.
 
 **Layer 1 — Required for all tasks (ask only unknown items):**
 
@@ -252,7 +254,6 @@ bun run stats                           # Quality statistics: SVG %, assertive t
 bun run stats -- --verbose              # Per-deck breakdown sorted by grade
 bun run stats -- --worst                # Show only C/D grade decks (improvement targets)
 bun run stats:csv                       # Export per-deck metrics to CSV
-bun run add-subtitles                   # Bulk-add BLUF subtitles to slides missing them
 bun run rebuild                         # Re-render + re-export all presentations (incremental; parallel render)
 bun run rebuild -- --force              # Force full rebuild (ignore cache)
 bun run rebuild:render                  # Re-render only (parallel)
@@ -281,14 +282,11 @@ bun run team:status <session-id> [--watch]
 ### Testing
 
 ```bash
-bun run test                            # NOTE: only runs scripts/test-slides.test.ts + src/__tests__/ + scripts/__tests__/
-bun test                                # Everything, including the two files bun run test omits
-bun test scripts/test-unit.test.ts      # Single file (normalizeSvg, renderMarpMarkdown, quality helpers — 64 tests)
+bun run test                            # = `bun test` — all 8 test files (4061 tests)
+bun test scripts/test-unit.test.ts      # Single file (normalizeSvg, renderMarpMarkdown, quality helpers)
 bun test scripts/test-e2e.test.ts       # Single file (full render→export round-trip)
 bun test -t "normalizeSvg"              # Single test by name pattern
 ```
-
-> `scripts/test-unit.test.ts` and `scripts/test-e2e.test.ts` are **not** in the `test` script's file list — run them explicitly (or plain `bun test`) before claiming the suite is green.
 
 `bun run check` = Biome (code lint/format). `bun run lint` = *slide quality* gate (`validate` + `validate:quality`). Different things despite the names.
 
@@ -346,7 +344,7 @@ docs/20260214073222_example/
 **Critical rendering rule:** Front-matter + first slide joined with `\n\n` only. Slide separator `\n\n---\n\n` used between slides only, never after front-matter.
 
 **Two loaders, pick deliberately:**
-- `src/model/presentation.ts` — validated load + **atomic** save. Required for read-modify-write scripts (`split-slides`, `auto-fix`, `add-subtitles`).
+- `src/model/presentation.ts` — validated load + **atomic** save. Required for read-modify-write scripts (`split-slides`, `auto-fix`).
 - `scripts/lib/presentation-loader.ts` — `collectPresentations()`, fast Glob scan, **no validation, read-only**. For analytics (`stats`, `validate`, `generate-index`) over all 220+ decks.
 
 **Quality grade formula** (`scripts/lib/quality.ts` → `computeDeckMetrics()`), surfaced by `bun run stats` and as badges in `docs/index.html`:
@@ -356,13 +354,15 @@ A ≥ 70   B ≥ 50   C ≥ 30   D < 30
 ```
 `svgRatio` is over **all** slides; `assertiveRatio` and `subtitleRatio` are over `layout: "default"` slides only — adding `section`/`center` slides dilutes the SVG score but not the title score. Empty deck → `D`. `LABEL_TITLE_RE` is the single source of truth for what counts as a non-assertive "label" title.
 
-**`marp.config.mjs` at the repo root is dead config.** `src/export/marp.ts` spawns Marp CLI with `--no-config --allow-local-files`, so editing that file changes nothing. Theme/header/footer/style must go under `marp:` in each deck's `slides.config.yaml`. Export has a hard 120s timeout per deck (SIGTERM on expiry).
+**Do not add a root `marp.config.mjs`.** `src/export/marp.ts` spawns Marp CLI with `--no-config --allow-local-files`, so any root Marp config is ignored (one existed and was deleted for this reason). Theme/header/footer/style must go under `marp:` in each deck's `slides.config.yaml`. Export has a hard 120s timeout per deck (SIGTERM on expiry).
 
 **`output.dir` is resolved to an absolute path by the Zod schema** (`.transform()` in `src/config/schema.ts`), so relative values silently resolve against `process.cwd()` — always write the full `docs/<timestamp>_<slug>` path.
 
 **Deployment:** `.github/workflows/deploy-pages.yml` publishes `docs/` to GitHub Pages on any push to `main` touching `docs/**`. CI runs `bun run generate:index` first — the whole `docs/` tree is the published site, so committed decks go live automatically.
 
-**Parallel instruction files:** `AGENTS.md` (Codex/OpenAI-format repo guidelines) and `.codex/` (skills/rules/agents mirrored from `.claude/`, installed via `bash .codex/install-skills.sh`) cover the same ground as this file for other tools. Keep them in sync when changing conventions here.
+**Parallel instruction files:** `AGENTS.md` (Codex/OpenAI-format repo guidelines) and `.codex/` (installed via `bash .codex/install-skills.sh`) cover the same ground as this file for other tools.
+
+> ⚠️ **`.codex/` is NOT currently a mirror of `.claude/`, despite what `AGENTS.md` says.** It is a pre-BLUF snapshot: 8 of 10 agents, 5 of 8 skills and 2 of 6 rules are missing entirely, and every file present in both trees has diverged (`.codex/rules/slide-design.md` lacks the whole Google/Amazon quality section; `.codex/agents/slide-creator.md` predates Phase 0, SCQA and chunking). **Treat `.claude/` as the single source of truth** and re-mirror deliberately rather than assuming parity.
 
 ---
 
@@ -433,7 +433,7 @@ SVG使用スライド: 12/20
 
 | 状況 | 形態 |
 |------|------|
-| 30枚以上のデッキ生成 | 15-20枚ずつ分割 → subagent 並列 |
+| 30枚以上のデッキ生成 | 15枚ずつ分割 → subagent 並列（SVG比率が低ければ20枚まで可） |
 | 複数デッキの一括作成（"全N個"） | デッキ1つ = subagent 1つ |
 | 横断調査（どのデッキが grade C か 等） | 観点ごとに subagent を分けて並列探索 |
 | 独立した複数ファイルの修正 | ファイル群ごとに subagent |
