@@ -1,7 +1,7 @@
 ---
 name: create-slides
 description: 対話型でスライドを一から作成（ヒアリング → 構成 → タスク分割 → 並列生成 → デザイン → エクスポート）
-user_invocable: true
+user-invocable: true
 ---
 
 # Create Slides
@@ -21,7 +21,7 @@ user_invocable: true
    ```bash
    bun run fix                                         # bullets→content, layout修正, codeLanguage補完
    bun run split                                       # コード+箇条書き分離
-   python3 scripts/split-bullet-overflow.py --all     # 8+項目スライド分割
+   bun run split:bullets     # 8+項目スライド分割
    bun scripts/fix-svg-url-refs.ts                    # url(#id)違反修正
    ```
 7a. **品質ゲート** — 修正後に品質チェックを実行:

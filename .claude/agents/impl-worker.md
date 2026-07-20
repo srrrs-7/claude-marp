@@ -1,6 +1,8 @@
 ---
 name: impl-worker
 description: 実装ワーカーエージェント。タスクを取得して実装し、ステータスを更新する
+model: sonnet
+effort: medium
 ---
 
 # Implementation Worker Agent

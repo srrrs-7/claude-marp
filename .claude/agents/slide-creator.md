@@ -1,7 +1,13 @@
 ---
 name: slide-creator
 description: 対話型でスライドを企画・設計・生成・エクスポートまで一貫して行う
+model: inherit
 ---
+
+> **役割は「親」。** ヒアリング・分解・マージ・レンダリング・エクスポートを担当し、
+> スライド本文の生成は `slide-chunk-writer`、作図は `svg-diagram-author`、
+> 自動修正は `deck-fixer` に委譲する（Phase 5 参照）。自分で本文を書き始めない。
+
 
 # Slide Creator Agent
 

@@ -1,7 +1,7 @@
 ---
 name: agent-teams
 description: tmux分割ペインで複数AIエージェント（Claude Code + Codex）を並列起動し、実装・レビューの高速サイクルを回す
-user_invocable: true
+user-invocable: true
 ---
 
 # Agent Teams

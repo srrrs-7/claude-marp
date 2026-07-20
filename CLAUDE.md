@@ -440,6 +440,43 @@ SVG使用スライド: 12/20
 | 1ファイルの小さな修正・確認だけ | **subagent を使わず親が直接やる** |
 | render / export | **常に親が逐次実行**（Marp CLI キャッシュ競合） |
 
+### モデル振り分け — 複雑度に応じてコストを下げる
+
+**サブエージェントの `model:` を省略すると既定は `inherit`（＝親と同じ最上位モデル）。** 機械的な作業まで最上位で回るのが従来の浪費要因だった。複雑度の階層で明示的に割り当てる。
+
+| 階層 | 作業の性質 | model | effort | 該当エージェント |
+|------|-----------|-------|--------|----------------|
+| **L3 設計・統合** | 分解、判断、対話、マージ可否の決定 | `inherit` | 既定 | `slide-creator`, `team-leader` |
+| **L2 生成** | スライド本文・作図（品質が直接成果物になる） | `opus` | 既定 | `slide-chunk-writer`, `svg-diagram-author` |
+| **L2 実装・調査** | コード実装、レビュー、出典調査、CSS調整 | `sonnet` | `medium`/`low` | `impl-worker`, `review-worker`, `slide-researcher`, `marp-customizer` |
+| **L1 機械** | 決定論的コマンド実行、集計、整形 | `haiku` | `low` | `deck-fixer`, `deck-quality-auditor` |
+
+**判断基準:** 「出力が正解かどうかを `bun run validate` / `stats` で機械判定できるか？」— できる作業は L1。できない（人が読んで良し悪しを決める）作業は L2 以上。
+
+**効くレバーと効かないレバー:**
+- ✅ `model:` — 最大の削減要因。L1をhaikuに落とすだけで機械作業のコストが桁で下がる
+- ✅ `effort: low` — 推論トークンを直接削る。決定論的な作業に高い推論は要らない
+- ✅ 返り値をメタ情報に限定する（本文を返させない）
+- ✅ エージェント定義ファイル自体を短く保つ（毎回読まれる）
+- ⚠️ `tools:` の絞り込み — **トークン削減効果は未確認**。権限の最小化として設定する価値はあるが、コスト根拠にはしない
+
+**`model` に指定できる値:** `haiku` / `sonnet` / `opus` / `fable` / `inherit` / フルモデルID。省略時は `inherit`。
+
+### エージェント一覧
+
+| エージェント | 役割 | 呼び出し元 |
+|------------|------|-----------|
+| `slide-creator` | 対話型デッキ作成の**親**。分解と統合のみ | ユーザー / `/create-slides` |
+| `slide-chunk-writer` | 担当レンジのJSONチャンクだけ生成 | 親が並列起動 |
+| `svg-diagram-author` | Marp互換SVG図版の作図 | 親が並列起動 |
+| `slide-researcher` | 出典付きの事実・数値の調査 | 親（本文生成の前段） |
+| `deck-fixer` | `fix`/`split`/`validate` を機械実行 | 親（マージ後） |
+| `deck-quality-auditor` | `stats` を集計し改善対象を優先順位付け | 親（改善フェーズの入口） |
+| `team-leader` / `impl-worker` / `review-worker` | Agent Teams（コード実装＋レビュー） | `/agent-teams` |
+| `marp-customizer` | テーマ・CSS調整 | 親（デザイン調整時） |
+
+> 権限は **呼び出し側の `mode: "bypassPermissions"`** で渡す。エージェント定義ファイルに `permissionMode: bypassPermissions` を書くこともできるが、そのエージェントの全呼び出しで恒久的に権限が緩むため、**既定では設定していない**。
+
 ### 実行パラメータ
 
 **CRITICAL — Worker agents do NOT inherit the parent session's permission grants.**
@@ -544,5 +581,6 @@ tmux-based parallel execution: Claude Code (impl) + Codex (review) workers in sp
   - `schemas.md` — Schema change checklist (triggers on `*schema.ts`)
   - `validation.md` — Pre-flight validation (triggers on `slides-data.json`, `slides.config.yaml`)
   - `agent-teams.md` — Batch workflow templates (triggers on `docs/**/*`)
-- **`agents/`** — `slide-creator`, `marp-customizer`, `team-leader`, `impl-worker`, `review-worker`
-- **`skills/`** — `/create-slides`, `/generate`, `/review-slides`, `/ship`, `/agent-teams`, `/validate`
+- **`agents/`** — `slide-creator`, `slide-chunk-writer`, `svg-diagram-author`, `slide-researcher`, `deck-fixer`, `deck-quality-auditor`, `marp-customizer`, `team-leader`, `impl-worker`, `review-worker`（モデル振り分けは「エージェント一覧」参照）
+- **`skills/`** — `/create-slides`, `/batch-decks`, `/improve-deck`, `/generate`, `/review-slides`, `/validate`, `/ship`, `/agent-teams`
+  - frontmatter のフィールド名は **`user-invocable`（ハイフン）**。`user_invocable` は無効フィールドとして無視される

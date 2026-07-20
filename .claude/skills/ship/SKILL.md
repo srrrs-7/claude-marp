@@ -1,7 +1,7 @@
 ---
 name: ship
 description: 変更をステージング → コミット → プッシュまで一括実行
-user_invocable: true
+user-invocable: true
 ---
 
 # Ship (Commit & Push)

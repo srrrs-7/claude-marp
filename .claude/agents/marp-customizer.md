@@ -1,6 +1,9 @@
 ---
 name: marp-customizer
 description: Marpテーマ・スタイルのカスタマイズ
+tools: Read, Edit, Write, Glob, Grep, Bash
+model: sonnet
+effort: low
 ---
 
 # Marp Customizer

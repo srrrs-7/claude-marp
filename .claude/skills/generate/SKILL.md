@@ -1,7 +1,7 @@
 ---
 name: generate
 description: スライドデータJSONを生成してMarpマークダウンにレンダリング、HTMLエクスポートまで実行
-user_invocable: true
+user-invocable: true
 ---
 
 # Generate Slides
@@ -45,7 +45,7 @@ user_invocable: true
 4. `docs/<timestamp>_<title>/slides-data.json` に保存（Write tool で直接書き込み）
 5. スライド数確認: `bun -e "const d=JSON.parse(require('fs').readFileSync('<path>/slides-data.json','utf-8')); console.log(d.slides.length)"`
 6. バリデーション: `bun run validate`
-7. 自動修正: `bun run fix && bun run split && python3 scripts/split-bullet-overflow.py <path>/slides-data.json`
+7. 自動修正: `bun run fix && bun run split && bun run split:bullets`
 8. レンダリング: `bun run slides render -c <config> --in <path>/slides-data.json`
    - gaiaテーマの場合、`slides.config.yaml` の `marp.class: invert` が自動的にフロントマターに出力される（手動追加不要）
 9. エクスポート: `bun run slides export -c <config> -f html --in <path>/<name>.md`
