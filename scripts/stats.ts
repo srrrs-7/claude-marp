@@ -13,8 +13,8 @@
 import { c } from "./lib/colors.js";
 import {
 	ASSERTIVE_TARGET_RATIO,
-	SVG_TARGET_RATIO,
 	SUBTITLE_GOOD_RATIO,
+	SVG_TARGET_RATIO,
 } from "./lib/constants.js";
 import { EXIT } from "./lib/exit-codes.js";
 import { collectPresentations } from "./lib/presentation-loader.js";

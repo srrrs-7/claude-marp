@@ -217,7 +217,7 @@ describe("validateSlideQuality", () => {
 				content: [
 					"| Header 1 | Header 2 | Header 3 | Header 4 | Header 5 |",
 					"| --- | --- | --- | --- | --- |",
-					"| a".repeat(20) + " |",
+					`${"| a".repeat(20)} |`,
 				],
 				speakerNotes: "notes",
 			},

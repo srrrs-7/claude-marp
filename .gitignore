@@ -3,6 +3,10 @@ docs/dist/
 *.tsbuildinfo
 bun.lock
 
+# PDF source drop — `bun run generate:index` mirrors these into docs/pdf/,
+# and only that published copy is tracked (see CLAUDE.md "Standalone PDFs").
+/pdf/
+
 # Environment
 .env
 .env.local

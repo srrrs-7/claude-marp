@@ -1,10 +1,10 @@
 #!/usr/bin/env bun
 
-import { unlink } from "node:fs/promises";
 import { Glob } from "bun";
 import { z } from "zod";
-import { VALID_LAYOUTS } from "../src/constants.js";
+import { DATA_FILENAME, VALID_LAYOUTS } from "../src/constants.js";
 import { generationResultSchema } from "../src/generate/slide-schema.js";
+import { saveSlidesData } from "../src/model/presentation.js";
 
 // ---------------------------------------------------------------------------
 // Fix tracker
@@ -39,11 +39,11 @@ class FixTracker {
 // ---------------------------------------------------------------------------
 
 async function autoFixSlides() {
-	const glob = new Glob("docs/**/slides-data.json");
+	const glob = new Glob(`docs/**/${DATA_FILENAME}`);
 	const files = Array.from(glob.scanSync());
 
 	if (files.length === 0) {
-		console.log("ℹ️  No slides-data.json files found in docs/");
+		console.log(`ℹ️  No ${DATA_FILENAME} files found in docs/`);
 		return;
 	}
 
@@ -54,8 +54,8 @@ async function autoFixSlides() {
 
 	for (const file of files) {
 		try {
-			const originalData = await Bun.file(file).json();
-			const data = JSON.parse(JSON.stringify(originalData));
+			// Mutate a copy so a post-fix validation failure leaves the file alone.
+			const data = structuredClone(await Bun.file(file).json());
 			const tracker = new FixTracker();
 
 			if (data.slides && Array.isArray(data.slides)) {
@@ -113,18 +113,9 @@ async function autoFixSlides() {
 				generationResultSchema.parse(data);
 
 				if (tracker.size > 0) {
-					// Write backup before modifying
-					const backupPath = `${file}.bak`;
-					await Bun.write(backupPath, JSON.stringify(originalData, null, 2));
-					try {
-						await Bun.write(file, JSON.stringify(data, null, 2));
-						await unlink(backupPath); // Remove backup on success
-					} catch (writeError) {
-						console.error(
-							`   ⚠️  Write failed, backup preserved at ${backupPath}`,
-						);
-						throw writeError;
-					}
+					// saveSlidesData writes atomically (tmp + rename), so a failed or
+					// interrupted write leaves the original file untouched — no .bak needed.
+					await saveSlidesData(file, data.slides);
 					console.log(`✅ ${file}`);
 					for (const fix of tracker.toArray()) {
 						console.log(`   - ${fix.description} (${fix.count} slides)`);

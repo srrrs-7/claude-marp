@@ -54,6 +54,9 @@ export const MAX_BULLET_CHARS = 60;
 /** Minimum number of bullets on a content slide before subtitle is encouraged. */
 export const SUBTITLE_BULLET_THRESHOLD = 4;
 
+/** Maximum bullet points on one slide before `split:bullets` splits it in two. */
+export const MAX_BULLETS_PER_SLIDE = 7;
+
 /** Number of consecutive text-only slides before a warning is emitted. */
 export const CONSECUTIVE_TEXT_LIMIT = 3;
 
