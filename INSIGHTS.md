@@ -360,3 +360,13 @@ file:///home/vscode/.claude/usage-data/report-2026-07-20-143548.html
 
 Want to dig into any section or try one of the suggestions?
 
+
+---
+
+## 2026-07-20 14:40:07 — branch: `refactor/cleanup-and-consolidate`
+
+Your shareable insights report is ready:
+file:///home/vscode/.claude/usage-data/report-2026-07-20-144052.html
+
+Want to dig into any section or try one of the suggestions?
+

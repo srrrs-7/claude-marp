@@ -330,7 +330,7 @@ style: |
 
 > *Googleは独自ケーブル網でCDN遅延とコストを最小化する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -375,7 +375,7 @@ style: |
 
 > *ハイパースケーラーはケーブル所有でクラウド競争優位を確保*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -419,7 +419,7 @@ style: |
 
 > *Metaのケーブルは容量世界最大クラスの自社専用インフラ*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->
@@ -464,7 +464,7 @@ style: |
 
 > *敷設船は世界に数十隻しかなく需要過多で修復が遅延する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg">
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg">
   <rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="32" text-anchor="middle" fill="#f9a825" font-size="19" font-weight="bold" font-family="sans-serif">国際帯域の所有構造（2025年推計）</text>
   <!-- Donut chart area -->

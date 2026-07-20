@@ -432,7 +432,7 @@ bash .codex/install-skills.sh
 
 > *5時間の資料作成を30〜45分に90%削減する8フェーズ自動生成パイプライン*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">/create-slides — スライド自動作成パイプライン</text>
   
       <rect x="60" y="80" width="110" height="80" fill="#2196f3" opacity="0.25" rx="8"/>
@@ -700,7 +700,7 @@ bash .codex/install-skills.sh
 
 > *スキーマ検証と品質チェックを事前実行し本番環境での障害を未然に防ぐ*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">/validate — スキーマ検証パイプライン</text>
   <rect x="60" y="65" width="680" height="200" fill="#16213e" rx="8"/>
   <text x="400" y="90" text-anchor="middle" fill="#ffffff" font-size="15" font-weight="bold">バリデーション対象と検証内容</text>
@@ -1787,7 +1787,7 @@ AskUserQuestion(
 
 > *セルフヒーリング未実装・パス依存・並列安全性欠如が実運用での致命的バグになる*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#e91e63" font-size="20" font-weight="bold">スキル設計のアンチパターン (2/2)</text>
   
       <rect x="60" y="75" width="320" height="58" fill="#16213e" rx="6" stroke="#e91e63" stroke-width="1" opacity="0.6"/>
@@ -1841,7 +1841,7 @@ AskUserQuestion(
 
 > *構造・インタビュー・ワークフロー・エラー処理・出力形式の5軸でスキルを評価する*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">スキルレビューチェックリスト</text>
   <rect x="60" y="60" width="330" height="295" fill="#16213e" rx="8"/>
   <text x="225" y="85" text-anchor="middle" fill="#f9a825" font-size="14" font-weight="bold">必須項目</text>
@@ -2173,7 +2173,7 @@ AskUserQuestion(
 
 > *5つのスキル体系と3つのユースケース効果で組織全体のAI活用を底上げできる*
 
-- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;letter-spacing:0" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
+- <svg viewBox="0 0 800 380" style="max-height:70vh;max-width:100%;display:block;margin:0 auto;" xmlns="http://www.w3.org/2000/svg"><rect width="800" height="380" fill="#1a1a2e"/>
   <text x="400" y="38" text-anchor="middle" fill="#f9a825" font-size="20" font-weight="bold">重要ポイントの振り返り</text>
   
       <rect x="60" y="65" width="680" height="46" fill="#16213e" rx="6"/>
