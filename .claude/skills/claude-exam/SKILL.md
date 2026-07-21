@@ -2,7 +2,7 @@
 name: claude-exam
 description: Anthropic Claude認定試験（CCAO-F / CCDV-F / CCA-F / CCAR-P）の実践的な模擬問題を、公式ブループリントの配点どおりに並列生成する。解答根拠と参照リンク付き
 user-invocable: true
-argument-hint: "[CCAO-F|CCDV-F|CCA-F|CCAR-P] [問題数] [ja|en] （例: \"CCDV-F 30 ja\"）"
+argument-hint: "[CCAO-F|CCDV-F|CCA-F|CCAR-P] [問題数] [en|ja] （既定は英語。例: \"CCDV-F 30\" / \"CCDV-F 30 ja\"）"
 ---
 
 # Claude Certification Exam Generator
@@ -17,6 +17,8 @@ argument-hint: "[CCAO-F|CCDV-F|CCA-F|CCAR-P] [問題数] [ja|en] （例: \"CCDV-
 | `references/item-style.md` | 作問規則・ディストラクタ設計・NGパターン・良い例/悪い例 |
 | `references/links.md` | ドメイン別の公式ドキュメントURL（全URL到達確認済み） |
 | `assets/item-schema.json` | 問題JSONのスキーマ |
+| `scripts/build-exam.ts` | `items.json` / `items.<lang>.json` から冊子（`exam.<lang>.md` / `answers.<lang>.md` / `<EXAM>.<lang>.html`）と `README.md` を多言語生成 |
+| `scripts/topdf.sh` | 自己完結HTML → PDF（ヘッドレスChromium）。Chromiumは `CHROME_BIN` / Playwright cache / PATH から自動探索 |
 | `scripts/check-exam.ts` | 生成物の機械チェック（スキーマ・正答分布・重複・リンク死活） |
 
 ---
@@ -29,7 +31,7 @@ argument-hint: "[CCAO-F|CCDV-F|CCA-F|CCAR-P] [問題数] [ja|en] （例: \"CCDV-
 |---|---|---|
 | 対象試験 | — | どの試験ですか？（CCAO-F / CCDV-F / CCA-F / CCAR-P） |
 | 問題数 | 本番同数（下表） | 何問作りますか？（本番: CCAO-F 60 / CCDV-F 53 / CCA-F 60 / CCAR-P 63） |
-| 言語 | `ja` | 日本語 / 英語 / 対訳 |
+| 言語 | `en`（英語）| 日本語 / 英語 / 対訳。**明示指定がなければ英語で作問する。** 対訳指定時は ja と en の両方を出す |
 | 難易度 | `本番相当` | 本番相当 / 難（引っかけ強め） |
 | 出力 | `exam.md` + `answers.md` + `items.json` | 問題冊子と解答冊子を分けますか？ |
 
@@ -82,17 +84,25 @@ argument-hint: "[CCAO-F|CCDV-F|CCA-F|CCAR-P] [問題数] [ja|en] （例: \"CCDV-
 
 ## Phase 3 — 統合（親が逐次でやる）
 
-1. `items-part*.json` をマージ → `items.json`（通し番号を振り直す）
-2. `bun .claude/skills/claude-exam/scripts/check-exam.ts exams/<dir>/items.json` を実行
+1. `bun .claude/skills/claude-exam/scripts/build-exam.ts exams/<dir>` を実行
+   - `items-part*.json` があればマージ → `items.json`（通し番号を振り直す）
+   - `items.json`（主言語）＋ 存在する `items.<lang>.json` の **全言語分** について、`exam.<lang>.md` / `answers.<lang>.md` / `<EXAM>.<lang>.html`（表紙・問題・解答を含む自己完結HTML）と `README.md` を生成
+2. `bun .claude/skills/claude-exam/scripts/check-exam.ts exams/<dir>/items.json` を実行（言語別ファイルがあれば `items.<lang>.json` も同様にチェック）
    - スキーマ違反 / 正答が特定文字に偏り（どれか1文字が40%超）/ 設問文の重複 / `links.md` 外のURL / リンク死活 を検出
    - `--no-net` でリンク死活チェックをスキップ
 3. 指摘が出たら **該当ワーカーだけ** 再起動して直す（全体再生成はしない）
-4. `items.json` から2冊を生成:
-   - `exam.md` — 表紙（試験形式・ブループリント・受験方法）＋ 問題のみ。**正答を書かない**
-   - `answers.md` — 問ごとに `正答 / なぜ正しいか / 各ディストラクタがなぜ違うか / 参照リンク`
-5. `README.md` にドメイン別内訳と採点表（下記）を書く
+4. 各言語の HTML を PDF 化する。`build-exam.ts` が書き出す `pdf-manifest.tsv`（`<html>\t<pdf名>`）をそのまま流す:
+   ```bash
+   d=exams/<dir>
+   while IFS=$'\t' read -r html pdf; do
+     .claude/skills/claude-exam/scripts/topdf.sh "$d/$html" "pdf/$pdf"
+   done < "$d/pdf-manifest.tsv"
+   ```
+   出力は `pdf/<pdfBase>_<lang>.pdf`。`bun run generate:index` で `docs/pdf/` にミラーされ公開される（`docs/pdf/` もコミットする）。PDF名の基底 `pdfBase` は `build-exam.ts` の `EXAM_META` が唯一の正。
 
-`assets/exam-template.md` が2冊の雛形。
+**多言語の作り方:** 主言語で `items.json` を作り、翻訳版は同じ構造・同じ `id`/`answer`/`refs` のまま `items.<lang>.json`（例 `items.ja.json`）を置くだけ。`build-exam.ts` が全言語分の冊子とHTMLを自動生成する。表紙・見出し・ラベル等の定型文は `build-exam.ts` の `LABELS` に言語別に定義済み（`en`/`ja`）。新言語は `LABELS` に1エントリ追加する。
+
+`assets/exam-template.md` が冊子の雛形。
 
 ---
 
@@ -116,17 +126,23 @@ scaled ≒ 100 + 900 × (正答数 / 総問題数)   ※あくまで目安。合
 
 ```
 exams/20260720143000_ccdv-f-set4/
-├── README.md          # 内訳・採点表・使い方
-├── items.json         # 機械可読（採点・再出題・シャッフル用）
-├── exam.md            # 問題冊子（正答なし）
-├── answers.md         # 解答・根拠・参照リンク
-└── items-part*.json   # 統合後に削除する
+├── README.md            # 内訳・採点表・使い方（主言語）
+├── items.json           # 主言語の機械可読データ（採点・再出題・シャッフル用）
+├── items.<lang>.json    # 翻訳版（対訳指定時。id/answer/refs は items.json と同一）
+├── exam.<lang>.md       # 問題冊子（正答なし）— 言語ごと
+├── answers.<lang>.md    # 解答・根拠・参照リンク — 言語ごと
+├── <EXAM>.<lang>.html   # PDF用の自己完結HTML — 言語ごと
+├── pdf-manifest.tsv     # <html>\t<pdf名>。topdf.sh の入力
+└── items-part*.json     # 統合後に削除する
+
+pdf/<pdfBase>_<lang>.pdf # 最終PDF（例 CCDV-F_Developer_practice_20_en.pdf）
 ```
 
 ---
 
 ## 絶対規則
 
+- **既定言語は英語。** ユーザーが `ja` / 日本語 / 対訳を明示しない限り、作問は英語（`items.json` の `language: "en"`）で行う。対訳指定時のみ `items.ja.json` を追加し、両言語のPDFを出す
 - **URLを創作しない。** 参照リンクは `references/links.md` に載っているものだけを使う。新しいURLが必要なら親が `curl -o /dev/null -w '%{http_code}'` で到達確認し、`links.md` に追記してから使う
 - **本番問題の再現・流出は扱わない。** 生成するのは公開ブループリントに沿った独自作問のみ。冊子には出典表記を必ず入れる（`assets/exam-template.md` の免責文）
 - **問題文・解説は必ず Write でファイルへ。** インラインで長文を出すと32Kトークン上限に当たる

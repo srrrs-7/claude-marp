@@ -11,18 +11,18 @@
 
 | ドメイン | 公式配点 | 本問題集 |
 |---|---|---|
-| D1 Solution Design & Architecture | 17% | 3問 |
-| D2 Models, Prompting & Context Engineering | 13% | 3問 |
-| D3 Integration | 19% | 4問 |
-| D4 Evaluation, Testing & Optimization | 16% | 3問 |
-| D5 Governance, Safety & Risk | 14% | 3問 |
-| D6 Stakeholder Communication & Lifecycle Management | 14% | 3問 |
-| D7 Developer Productivity & Operational Enablement | 7% | 1問 |
+| D1 Solution Design & Architecture | 17% | 3 |
+| D2 Models, Prompting & Context Engineering | 13% | 3 |
+| D3 Integration | 19% | 4 |
+| D4 Evaluation, Testing & Optimization | 16% | 3 |
+| D5 Governance, Safety & Risk | 14% | 3 |
+| D6 Stakeholder Communication & Lifecycle Management | 14% | 3 |
+| D7 Developer Productivity & Operational Enablement | 7% | 1 |
 
 ## 使い方
 
-1. `exam.md`（または `CCAR-P.pdf`）を時間を計って解く
-2. 巻末／`answers.md` で採点し、下の表にドメイン別の正誤を記入する
+1. `exam.ja.md`（または `CCAR-P_Architect_Professional_practice_20_ja.pdf`）を時間を計って解く
+2. 巻末／`answers.ja.md` で採点し、下の表にドメイン別の正誤を記入する
 3. 正答率が低いドメインは `.claude/skills/claude-exam/references/links.md` の該当リンクで復習する
 
 ## 採点表

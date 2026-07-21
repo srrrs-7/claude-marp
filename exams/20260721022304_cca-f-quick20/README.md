@@ -11,16 +11,16 @@
 
 | ドメイン | 公式配点 | 本問題集 |
 |---|---|---|
-| D1 Agentic Architecture & Orchestration | 27% | 5問 |
-| D2 Claude Code Configuration & Workflows | 20% | 4問 |
-| D3 Prompt Engineering & Structured Output | 20% | 4問 |
-| D4 Tool Design & MCP Integration | 18% | 4問 |
-| D5 Context Management & Reliability | 15% | 3問 |
+| D1 Agentic Architecture & Orchestration | 27% | 5 |
+| D2 Claude Code Configuration & Workflows | 20% | 4 |
+| D3 Prompt Engineering & Structured Output | 20% | 4 |
+| D4 Tool Design & MCP Integration | 18% | 4 |
+| D5 Context Management & Reliability | 15% | 3 |
 
 ## 使い方
 
-1. `exam.md`（または `CCA-F.pdf`）を時間を計って解く
-2. 巻末／`answers.md` で採点し、下の表にドメイン別の正誤を記入する
+1. `exam.ja.md`（または `CCA-F_Architect_Foundations_practice_20_ja.pdf`）を時間を計って解く
+2. 巻末／`answers.ja.md` で採点し、下の表にドメイン別の正誤を記入する
 3. 正答率が低いドメインは `.claude/skills/claude-exam/references/links.md` の該当リンクで復習する
 
 ## 採点表

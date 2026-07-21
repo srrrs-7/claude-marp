@@ -11,18 +11,18 @@
 
 | ドメイン | 公式配点 | 本問題集 |
 |---|---|---|
-| D1 Prompting & Task Execution | 14% | 3問 |
-| D2 Output Evaluation & Validation | 21% | 5問 |
-| D3 Product & Model Selection | 12% | 2問 |
-| D4 Workflow Integration & Solution Design | 16% | 3問 |
-| D5 Configuration & Knowledge Management | 12% | 2問 |
-| D6 Governance, Risk & Responsible Use | 15% | 3問 |
-| D7 Troubleshooting & Optimization | 10% | 2問 |
+| D1 Prompting & Task Execution | 14% | 3 |
+| D2 Output Evaluation & Validation | 21% | 5 |
+| D3 Product & Model Selection | 12% | 2 |
+| D4 Workflow Integration & Solution Design | 16% | 3 |
+| D5 Configuration & Knowledge Management | 12% | 2 |
+| D6 Governance, Risk & Responsible Use | 15% | 3 |
+| D7 Troubleshooting & Optimization | 10% | 2 |
 
 ## 使い方
 
-1. `exam.md`（または `CCAO-F.pdf`）を時間を計って解く
-2. 巻末／`answers.md` で採点し、下の表にドメイン別の正誤を記入する
+1. `exam.ja.md`（または `CCAO-F_Associate_practice_20_ja.pdf`）を時間を計って解く
+2. 巻末／`answers.ja.md` で採点し、下の表にドメイン別の正誤を記入する
 3. 正答率が低いドメインは `.claude/skills/claude-exam/references/links.md` の該当リンクで復習する
 
 ## 採点表
