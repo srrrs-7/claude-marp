@@ -452,3 +452,15 @@ file:///home/vscode/.claude/usage-data/report-2026-07-21-032701.html
 
 Want to dig into any section or try one of the suggestions?
 
+
+---
+
+## 2026-07-21 09:58:07 — branch: `main`
+
+<message>
+Your shareable insights report is ready:
+file:///home/vscode/.claude/usage-data/report-2026-07-21-095857.html
+
+Want to dig into any section or try one of the suggestions?
+</message>
+
