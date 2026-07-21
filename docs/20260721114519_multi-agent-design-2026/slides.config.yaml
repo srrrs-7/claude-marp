@@ -1,0 +1,20 @@
+topic: "マルチエージェント設計 2026 — 6つのオーケストレーションパターンと本番化の指針"
+language: "ja"
+
+slides:
+  count: 40
+
+output:
+  dir: "docs/20260721114519_multi-agent-design-2026"
+  baseName: "multi-agent-design-2026"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "マルチエージェント設計 2026"
+  footer: "© 2026 Classmethod"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
