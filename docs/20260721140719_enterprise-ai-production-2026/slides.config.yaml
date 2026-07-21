@@ -1,0 +1,20 @@
+topic: "エンタープライズAIエージェント本番化戦略 2026 — パイロット地獄を越える"
+language: "ja"
+
+slides:
+  count: 30
+
+output:
+  dir: "docs/20260721140719_enterprise-ai-production-2026"
+  baseName: "enterprise-ai-production-2026"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "エンタープライズAI本番化戦略 2026"
+  footer: "© 2026 Classmethod"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

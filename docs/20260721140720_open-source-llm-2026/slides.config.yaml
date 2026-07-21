@@ -1,0 +1,20 @@
+topic: "オープンソースLLMの現在地 2026 — 性能の追いつきと損益分岐"
+language: "ja"
+
+slides:
+  count: 30
+
+output:
+  dir: "docs/20260721140720_open-source-llm-2026"
+  baseName: "open-source-llm-2026"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "オープンソースLLMの現在地 2026"
+  footer: "© 2026 Classmethod"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }

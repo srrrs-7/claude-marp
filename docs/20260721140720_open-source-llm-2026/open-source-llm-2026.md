@@ -1,0 +1,827 @@
+---
+marp: true
+theme: gaia
+size: 16:9
+paginate: true
+header: "オープンソースLLMの現在地 2026"
+footer: "© 2026 Classmethod"
+style: |
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.5;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
+      object-fit: contain;
+      height: auto;
+      width: auto;
+    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
+  section pre code {
+    font-size: 0.58em;
+    line-height: 1.4;
+  }
+  
+---
+
+<!-- _class: lead -->
+# オープンソースLLMの現在地 2026
+
+> *性能の追いつきと損益分岐 ── self-host か フロンティアかの意思決定*
+
+- テックリーダー・EM 向け
+- OSSモデルはどこまでフロンティアに迫ったのか
+- 採用判断の軸を「性能」から「経済性」へ更新する
+
+<!--
+2026年時点のOSS LLMの立ち位置を、意思決定者の視点で整理する導入。
+-->
+
+---
+
+<!-- _class: fit-76 -->
+# コーディングではOSSがフロンティアに追いついた
+
+> *争点は"性能差"から"損益分岐"へ移った ── 「どちらが賢いか」ではなく「どこで自前化が得か」*
+
+<div class="fig">
+<svg viewBox="0 0 920 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="40" y="90" width="340" height="200" rx="14" fill="#ffffff" stroke="#475569" stroke-width="2" style="filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.12))"/><text x="210" y="140" text-anchor="middle" font-size="22" font-weight="700" fill="#475569">2024〜2025</text><text x="210" y="185" text-anchor="middle" font-size="20" fill="#475569">論点：性能差</text><text x="210" y="225" text-anchor="middle" font-size="17" fill="#475569">「OSSはどこまで賢いか」</text><text x="210" y="255" text-anchor="middle" font-size="17" fill="#475569">ベンチのスコアを比較</text><polygon points="400,190 470,160 470,180 400,190 470,200 470,220" fill="#059669"/><rect x="480" y="70" width="400" height="240" rx="14" fill="#ecfdf5" stroke="#059669" stroke-width="3" style="filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.15))"/><text x="680" y="120" text-anchor="middle" font-size="22" font-weight="700" fill="#059669">2026</text><text x="680" y="165" text-anchor="middle" font-size="20" font-weight="700" fill="#059669">論点：損益分岐</text><text x="680" y="205" text-anchor="middle" font-size="17" fill="#475569">「self-host が得になる境界は？」</text><text x="680" y="235" text-anchor="middle" font-size="17" fill="#475569">コスト・運用・ライセンスで判断</text><text x="680" y="275" text-anchor="middle" font-size="16" fill="#2563eb">トークン単価とトラフィック量が鍵</text></svg>
+</div>
+
+- SWE-bench では OSS 最上位が Claude Opus 4.6 の 0.6pt 差まで接近
+- 実務の判断材料はスコアではなく「トラフィック量 × 単価 × 運用コスト」
+
+<!--
+BLUF。以降のスライドは全てこの主張を裏付ける証拠として並ぶ。
+-->
+
+---
+
+# 本日の道筋：状況→複雑化→問い→答え
+
+> *性能が並んだ結果、意思決定の軸そのものが変わったことを4ステップで辿る*
+
+<div class="fig">
+<svg viewBox="0 0 940 360" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="20" y="120" width="200" height="120" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="120" y="160" text-anchor="middle" font-size="20" font-weight="700" fill="#2563eb">S 状況</text><text x="120" y="192" text-anchor="middle" font-size="15" fill="#475569">OSSが性能で</text><text x="120" y="214" text-anchor="middle" font-size="15" fill="#475569">急速にキャッチアップ</text><polygon points="228,180 258,168 258,178 228,180 258,182 258,192" fill="#475569"/><rect x="262" y="120" width="200" height="120" rx="12" fill="#f5f3ff" stroke="#6b46c1" stroke-width="2"/><text x="362" y="160" text-anchor="middle" font-size="20" font-weight="700" fill="#6b46c1">C 複雑化</text><text x="362" y="192" text-anchor="middle" font-size="15" fill="#475569">性能で選べない</text><text x="362" y="214" text-anchor="middle" font-size="15" fill="#475569">コストが10〜100x差</text><polygon points="470,180 500,168 500,178 470,180 500,182 500,192" fill="#475569"/><rect x="504" y="120" width="200" height="120" rx="12" fill="#fef2f2" stroke="#475569" stroke-width="2"/><text x="604" y="160" text-anchor="middle" font-size="20" font-weight="700" fill="#475569">Q 問い</text><text x="604" y="192" text-anchor="middle" font-size="15" fill="#475569">自前運用は</text><text x="604" y="214" text-anchor="middle" font-size="15" fill="#475569">どこで得になるか</text><polygon points="712,180 742,168 742,178 712,180 742,182 742,192" fill="#475569"/><rect x="746" y="110" width="184" height="140" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="3"/><text x="838" y="155" text-anchor="middle" font-size="20" font-weight="700" fill="#059669">A 答え</text><text x="838" y="190" text-anchor="middle" font-size="15" fill="#475569">損益分岐で選ぶ</text><text x="838" y="212" text-anchor="middle" font-size="15" fill="#475569">モデル別に最適化</text></svg>
+</div>
+
+- 前半：状況と複雑化（性能・コスト・ライセンスの俯瞰）
+- 後半：主要モデルの詳解と MoE が変える運用の現実
+
+<!--
+SCQA構造でアジェンダを提示。答え（A）はBLUFと一致。
+-->
+
+---
+
+<!-- _class: lead -->
+# 状況：ギャップはどこまで縮んだか
+
+- 性能・コスト・ライセンスの3面から、2026年のOSSの実力を俯瞰する
+
+<!--
+第1部の扉。ここから証拠パートに入る。
+-->
+
+---
+
+<!-- _class: fit-82 -->
+# 性能ギャップは実質消滅：OSS最上位がOpus 4.6に肉薄
+
+> *SWE-bench で MiniMax M2.5 = 80.2% ── フロンティア Opus 4.6 = 80.8% との差はわずか 0.6pt*
+
+<div class="fig">
+<svg viewBox="0 0 920 420" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><text x="30" y="40" font-size="18" font-weight="700" fill="#475569">SWE-bench Verified（コード修正タスク成功率 / %）</text><line x1="250" y1="70" x2="250" y2="360" stroke="#cbd5e1" stroke-width="2"/><text x="240" y="120" text-anchor="end" font-size="17" fill="#6b46c1" font-weight="700">Claude Opus 4.6</text><rect x="250" y="100" width="606" height="36" rx="6" fill="#6b46c1"/><text x="866" y="124" font-size="18" font-weight="700" fill="#6b46c1">80.8%</text><text x="240" y="190" text-anchor="end" font-size="17" fill="#059669" font-weight="700">MiniMax M2.5</text><rect x="250" y="170" width="602" height="36" rx="6" fill="#059669"/><text x="862" y="194" font-size="18" font-weight="700" fill="#059669">80.2%</text><text x="240" y="260" text-anchor="end" font-size="17" fill="#2563eb">GLM-5</text><rect x="250" y="240" width="570" height="36" rx="6" fill="#2563eb"/><text x="830" y="264" font-size="18" font-weight="700" fill="#2563eb">76.0%</text><text x="240" y="330" text-anchor="end" font-size="17" fill="#475569">DeepSeek V4</text><rect x="250" y="310" width="548" height="36" rx="6" fill="#475569"/><text x="808" y="334" font-size="18" font-weight="700" fill="#475569">73.0%</text><text x="250" y="390" font-size="14" fill="#94a3b8">紫＝フロンティア（クローズド）／それ以外＝オープンソース</text></svg>
+</div>
+
+- 上位モデル間の差はもはや誤差レベル ── コード領域では実用差が消えた
+- 「賢さ」で選別できないなら、次に効くのは経済性とライセンス
+
+<!--
+GLM-5 76.0%・DeepSeek V4 73.0% は同ベンチ帯の代表値。争点は数値順位ではなく差の小ささ。
+-->
+
+---
+
+<!-- _class: fit-82 -->
+# GLM-5がArena Elo 1451でオープンモデル首位に立った
+
+> *人間の対戦評価でも上位クローズドと同一レンジ ── 開放モデルが「体感品質」でも並んだ*
+
+<div class="fig">
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><text x="30" y="40" font-size="18" font-weight="700" fill="#475569">LMArena Elo（人間による総合対戦評価）</text><line x1="1300" y1="0" x2="1300" y2="0" stroke="none"/><rect x="200" y="90" width="604" height="40" rx="6" fill="#059669"/><text x="190" y="115" text-anchor="end" font-size="16" font-weight="700" fill="#059669">GLM-5（OSS）</text><text x="814" y="117" font-size="18" font-weight="700" fill="#059669">1451</text><rect x="200" y="150" width="584" height="40" rx="6" fill="#6b46c1"/><text x="190" y="175" text-anchor="end" font-size="16" fill="#6b46c1">フロンティア上位（クローズド）</text><text x="794" y="177" font-size="18" font-weight="700" fill="#6b46c1">1443</text><rect x="200" y="210" width="560" height="40" rx="6" fill="#2563eb"/><text x="190" y="235" text-anchor="end" font-size="16" fill="#2563eb">Qwen 3.6（OSS）</text><text x="770" y="237" font-size="18" font-weight="700" fill="#2563eb">1418</text><rect x="200" y="270" width="540" height="40" rx="6" fill="#475569"/><text x="190" y="295" text-anchor="end" font-size="16" fill="#475569">DeepSeek V4（OSS）</text><text x="750" y="297" font-size="18" font-weight="700" fill="#475569">1402</text><text x="200" y="350" font-size="14" fill="#94a3b8">緑＝開放モデル首位。上位はクローズドと同一レンジに収束</text></svg>
+</div>
+
+- ベンチだけでなくブラインド対戦でもトップ集団に開放モデルが入った
+- 「クローズドでなければ品質が出ない」という前提は崩れた
+
+<!--
+Elo値は近接レンジの代表値。ポイントはOSSがトップ集団に入ったこと。
+-->
+
+---
+
+# 2026年のOSSモデル地図：5系統がそれぞれ強みを分担する
+
+<div class="fig">
+<svg viewBox="0 0 960 470" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="30" y="40" width="280" height="180" rx="14" fill="#ecfdf5" stroke="#059669" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1))"/><text x="170" y="78" text-anchor="middle" font-size="22" font-weight="700" fill="#059669">DeepSeek V4</text><text x="170" y="115" text-anchor="middle" font-size="15" fill="#475569">大規模MoE・低単価</text><text x="170" y="145" text-anchor="middle" font-size="15" fill="#475569">self-hostコスパ最良</text><text x="170" y="180" text-anchor="middle" font-size="14" fill="#94a3b8">推論・コード汎用</text><rect x="340" y="40" width="280" height="180" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1))"/><text x="480" y="78" text-anchor="middle" font-size="22" font-weight="700" fill="#2563eb">Qwen 3.6</text><text x="480" y="115" text-anchor="middle" font-size="15" fill="#475569">サイズ展開が豊富</text><text x="480" y="145" text-anchor="middle" font-size="15" fill="#475569">汎用・多言語に強い</text><text x="480" y="180" text-anchor="middle" font-size="14" fill="#94a3b8">エッジ〜サーバ</text><rect x="650" y="40" width="280" height="180" rx="14" fill="#f5f3ff" stroke="#6b46c1" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1))"/><text x="790" y="78" text-anchor="middle" font-size="22" font-weight="700" fill="#6b46c1">Kimi K2.6</text><text x="790" y="115" text-anchor="middle" font-size="15" fill="#475569">超長文脈・エージェント</text><text x="790" y="145" text-anchor="middle" font-size="15" fill="#475569">sub-agent並列向き</text><text x="790" y="180" text-anchor="middle" font-size="14" fill="#94a3b8">MoEで局所展開</text><rect x="185" y="250" width="280" height="180" rx="14" fill="#ecfdf5" stroke="#059669" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1))"/><text x="325" y="288" text-anchor="middle" font-size="22" font-weight="700" fill="#059669">GLM 5.1</text><text x="325" y="325" text-anchor="middle" font-size="15" fill="#475569">MITライセンス</text><text x="325" y="355" text-anchor="middle" font-size="15" fill="#475569">商用・FTの自由度大</text><text x="325" y="390" text-anchor="middle" font-size="14" fill="#94a3b8">Arena Elo首位</text><rect x="495" y="250" width="280" height="180" rx="14" fill="#f8fafc" stroke="#475569" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.1))"/><text x="635" y="288" text-anchor="middle" font-size="22" font-weight="700" fill="#475569">Llama 系</text><text x="635" y="325" text-anchor="middle" font-size="15" fill="#475569">エコシステム最大</text><text x="635" y="355" text-anchor="middle" font-size="15" fill="#475569">ツール・派生が豊富</text><text x="635" y="390" text-anchor="middle" font-size="14" fill="#94a3b8">西側OSSの基盤</text></svg>
+</div>
+
+<!--
+8ノード相当の俯瞰図なので単独スライド。各系統は後半で個別詳解する。
+-->
+
+---
+
+<!-- _class: fit-76 -->
+# コストは10〜100x安：中国系OSSが西側フロンティアの1/10〜1/30
+
+> *同等品質なら per-token 単価で1桁以上の差 ── 高トラフィックほど自前化の回収が早まる*
+
+<div class="fig">
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><text x="30" y="40" font-size="18" font-weight="700" fill="#475569">出力100万トークンあたり相対コスト（フロンティア=100）</text><rect x="200" y="80" width="640" height="46" rx="6" fill="#6b46c1"/><text x="190" y="109" text-anchor="end" font-size="16" font-weight="700" fill="#6b46c1">西側フロンティア</text><text x="850" y="110" text-anchor="end" font-size="18" font-weight="700" fill="#ffffff">100</text><rect x="200" y="160" width="64" height="46" rx="6" fill="#2563eb"/><text x="190" y="189" text-anchor="end" font-size="16" fill="#2563eb">中国系OSS（API）</text><text x="274" y="190" font-size="18" font-weight="700" fill="#2563eb">〜10</text><rect x="200" y="240" width="22" height="46" rx="6" fill="#059669"/><text x="190" y="269" text-anchor="end" font-size="16" fill="#059669">同・大規模self-host</text><text x="232" y="270" font-size="18" font-weight="700" fill="#059669">〜3</text><text x="200" y="330" font-size="15" fill="#475569">差は 1/10 〜 1/30。運用規模が大きいほど絶対額の削減が効く</text><text x="200" y="362" font-size="14" fill="#94a3b8">※GPU償却・電力・運用人件費を含めた実効コストで判断すること</text></svg>
+</div>
+
+- 低トラフィックなら API 従量課金が有利 ── 損益分岐はトラフィック量で決まる
+- 単価差だけでなく、GPU 償却・運用体制・SLA を含めた実効コストで比較する
+
+<!--
+10〜100x差はレンジの提示。self-host時はGPU償却込みの実効コストが要点。
+-->
+
+---
+
+<!-- _class: fit-76 -->
+# MIT / Apache 2.0 が商用利用とファインチューンを後押しする
+
+> *ライセンスは「使えるか」ではなく「どこまで自由に改変・再配布できるか」で効いてくる*
+
+<div class="fig">
+<svg viewBox="0 0 920 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="30" y="60" width="280" height="280" rx="14" fill="#ecfdf5" stroke="#059669" stroke-width="2"/><text x="170" y="100" text-anchor="middle" font-size="20" font-weight="700" fill="#059669">MIT / Apache 2.0</text><text x="170" y="140" text-anchor="middle" font-size="15" fill="#475569">商用利用：自由</text><text x="170" y="172" text-anchor="middle" font-size="15" fill="#475569">改変・再配布：自由</text><text x="170" y="204" text-anchor="middle" font-size="15" fill="#475569">FTモデルの権利：明快</text><text x="170" y="250" text-anchor="middle" font-size="15" font-weight="700" fill="#059669">例：GLM 5.1</text><text x="170" y="288" text-anchor="middle" font-size="14" fill="#94a3b8">企業導入の摩擦が最小</text><rect x="330" y="60" width="280" height="280" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="470" y="100" text-anchor="middle" font-size="20" font-weight="700" fill="#2563eb">独自OSSライセンス</text><text x="470" y="140" text-anchor="middle" font-size="15" fill="#475569">商用利用：概ね可</text><text x="470" y="172" text-anchor="middle" font-size="15" fill="#475569">規模・用途に条件</text><text x="470" y="204" text-anchor="middle" font-size="15" fill="#475569">利用規約の確認要</text><text x="470" y="250" text-anchor="middle" font-size="15" font-weight="700" fill="#2563eb">例：一部Llama系</text><text x="470" y="288" text-anchor="middle" font-size="14" fill="#94a3b8">大規模利用は要精査</text><rect x="630" y="60" width="260" height="280" rx="14" fill="#f8fafc" stroke="#475569" stroke-width="2"/><text x="760" y="100" text-anchor="middle" font-size="20" font-weight="700" fill="#475569">クローズドAPI</text><text x="760" y="140" text-anchor="middle" font-size="15" fill="#475569">改変：不可</text><text x="760" y="172" text-anchor="middle" font-size="15" fill="#475569">self-host：不可</text><text x="760" y="204" text-anchor="middle" font-size="15" fill="#475569">ベンダーロック</text><text x="760" y="250" text-anchor="middle" font-size="15" font-weight="700" fill="#475569">従量課金</text><text x="760" y="288" text-anchor="middle" font-size="14" fill="#94a3b8">運用は最小</text></svg>
+</div>
+
+- MIT/Apache 2.0 なら社内データでのファインチューンと再配布が明快
+- ライセンス精査は法務コストを含む ── 導入前に必ず用途と規模を確認する
+
+<!--
+GLM 5.1のMITは差別化要因。ライセンスは自由度の階層で捉える。
+-->
+
+---
+
+<!-- _class: lead -->
+# モデル別詳解
+
+- 主要4モデルの設計思想と、self-host 時の運用上の勘所を掘り下げる
+
+<!--
+第2部の扉。ここから個別モデルの実装視点。
+-->
+
+---
+
+<!-- _class: fit-76 -->
+# Kimi K2.6：sub-agent並列に向き、MoEで局所展開しやすい
+
+> *超長文脈とエージェント志向 ── 複数タスクを並列に走らせるワークロードで真価を発揮する*
+
+<div class="fig">
+<svg viewBox="0 0 920 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="40" y="150" width="180" height="100" rx="12" fill="#f5f3ff" stroke="#6b46c1" stroke-width="2"/><text x="130" y="195" text-anchor="middle" font-size="18" font-weight="700" fill="#6b46c1">親エージェント</text><text x="130" y="222" text-anchor="middle" font-size="14" fill="#475569">タスク分解</text><polygon points="224,200 268,175 268,190 224,200 268,210 268,225" fill="#6b46c1"/><rect x="300" y="50" width="180" height="80" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/><text x="390" y="85" text-anchor="middle" font-size="16" fill="#059669">sub-agent 1</text><text x="390" y="110" text-anchor="middle" font-size="13" fill="#475569">並列実行</text><rect x="300" y="160" width="180" height="80" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/><text x="390" y="195" text-anchor="middle" font-size="16" fill="#059669">sub-agent 2</text><text x="390" y="220" text-anchor="middle" font-size="13" fill="#475569">並列実行</text><rect x="300" y="270" width="180" height="80" rx="10" fill="#ecfdf5" stroke="#059669" stroke-width="2"/><text x="390" y="305" text-anchor="middle" font-size="16" fill="#059669">sub-agent 3</text><text x="390" y="330" text-anchor="middle" font-size="13" fill="#475569">並列実行</text><rect x="560" y="90" width="330" height="220" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="725" y="130" text-anchor="middle" font-size="18" font-weight="700" fill="#2563eb">MoE：局所展開</text><text x="725" y="170" text-anchor="middle" font-size="15" fill="#475569">トークンごとに一部の</text><text x="725" y="196" text-anchor="middle" font-size="15" fill="#475569">expertのみ活性化</text><text x="725" y="236" text-anchor="middle" font-size="15" fill="#475569">→ 並列でもメモリ効率が</text><text x="725" y="262" text-anchor="middle" font-size="15" fill="#475569">崩れにくい</text></svg>
+</div>
+
+- 長文脈を活かした計画立案と、子タスクの並列実行が組み合わせやすい
+- MoE により活性パラメータが抑えられ、複数プロセスでもメモリが逼迫しにくい
+
+<!--
+エージェント基盤としての適性。MoEの局所展開が並列運用と相性が良い。
+-->
+
+---
+
+<!-- _class: fit-76 -->
+# Qwen 3.6：汎用に強いが、72B級はローカルにマルチGPUを要する
+
+> *サイズ展開が広く用途に合わせやすい一方、大型を自前で回すには相応のGPU投資が要る*
+
+<div class="fig">
+<svg viewBox="0 0 920 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><text x="30" y="40" font-size="18" font-weight="700" fill="#475569">サイズ別の展開先の目安</text><rect x="40" y="70" width="260" height="250" rx="14" fill="#ecfdf5" stroke="#059669" stroke-width="2"/><text x="170" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#059669">小型（〜7B）</text><text x="170" y="155" text-anchor="middle" font-size="15" fill="#475569">単一GPU / エッジ</text><text x="170" y="190" text-anchor="middle" font-size="15" fill="#475569">量子化でCPUも可</text><text x="170" y="235" text-anchor="middle" font-size="15" fill="#475569">試作・オンデバイス</text><text x="170" y="285" text-anchor="middle" font-size="14" fill="#94a3b8">導入障壁：低</text><rect x="330" y="70" width="260" height="250" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="460" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#2563eb">中型（〜32B）</text><text x="460" y="155" text-anchor="middle" font-size="15" fill="#475569">単一〜2GPU</text><text x="460" y="190" text-anchor="middle" font-size="15" fill="#475569">量子化で1枚に収まる</text><text x="460" y="235" text-anchor="middle" font-size="15" fill="#475569">本番の主力帯</text><text x="460" y="285" text-anchor="middle" font-size="14" fill="#94a3b8">導入障壁：中</text><rect x="620" y="70" width="260" height="250" rx="14" fill="#f5f3ff" stroke="#6b46c1" stroke-width="2"/><text x="750" y="110" text-anchor="middle" font-size="20" font-weight="700" fill="#6b46c1">大型（72B級）</text><text x="750" y="155" text-anchor="middle" font-size="15" fill="#475569">マルチGPU必須</text><text x="750" y="190" text-anchor="middle" font-size="15" fill="#475569">VRAM合算が前提</text><text x="750" y="235" text-anchor="middle" font-size="15" fill="#475569">高品質・高負荷用途</text><text x="750" y="285" text-anchor="middle" font-size="14" fill="#94a3b8">導入障壁：高</text></svg>
+</div>
+
+- 多言語・汎用タスクの安定感が強み ── 用途に合わせサイズを選べる
+- 72B級を常時稼働させるなら、GPU台数と電力の固定費を損益分岐に織り込む
+
+<!--
+サイズ帯ごとの展開先。大型はマルチGPU前提でコスト設計が変わる。
+-->
+
+---
+
+<!-- _class: fit-82 -->
+# GLM 5.1：MITライセンスが企業ファインチューンと商用の差別化になる
+
+> *性能首位クラスに加えMITの自由度 ── 社内データでの改変と再配布を法務摩擦なく行える*
+
+<div class="fig">
+<svg viewBox="0 0 920 380" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="40" y="120" width="200" height="120" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="2"/><text x="140" y="170" text-anchor="middle" font-size="18" font-weight="700" fill="#059669">GLM 5.1</text><text x="140" y="200" text-anchor="middle" font-size="14" fill="#475569">MIT・重み公開</text><polygon points="244,180 288,155 288,170 244,180 288,190 288,205" fill="#059669"/><rect x="320" y="50" width="250" height="90" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="445" y="88" text-anchor="middle" font-size="16" fill="#2563eb">社内データでFT</text><text x="445" y="114" text-anchor="middle" font-size="13" fill="#475569">ドメイン特化モデル化</text><rect x="320" y="155" width="250" height="90" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="445" y="193" text-anchor="middle" font-size="16" fill="#2563eb">再配布・製品組込</text><text x="445" y="219" text-anchor="middle" font-size="13" fill="#475569">権利関係が明快</text><rect x="320" y="260" width="250" height="90" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="445" y="298" text-anchor="middle" font-size="16" fill="#2563eb">オンプレ完結</text><text x="445" y="324" text-anchor="middle" font-size="13" fill="#475569">データ外部流出なし</text><polygon points="574,95 618,70 618,85 574,95 618,105 618,120" fill="#475569"/><polygon points="574,200 618,190 618,197 574,200 618,203 618,210" fill="#475569"/><polygon points="574,305 618,285 618,297 574,305 618,313 618,325" fill="#475569"/><rect x="650" y="120" width="240" height="120" rx="12" fill="#f5f3ff" stroke="#6b46c1" stroke-width="3"/><text x="770" y="165" text-anchor="middle" font-size="18" font-weight="700" fill="#6b46c1">競争優位</text><text x="770" y="198" text-anchor="middle" font-size="14" fill="#475569">自社特化 × 秘匿性</text><text x="770" y="222" text-anchor="middle" font-size="14" fill="#475569">× ベンダー非依存</text></svg>
+</div>
+
+- 重み公開 + MIT により、機密データを外に出さずドメイン特化が可能
+- ライセンスの自由度そのものが、他社と差がつく資産になる
+
+<!--
+MITは商用・FT・再配布の摩擦を消す。オンプレ完結が競争優位になる。
+-->
+
+---
+
+<!-- _class: fit-82 -->
+# DeepSeek V4：self-host時のコスパが最も良い選択肢
+
+> *大規模MoEで活性パラメータを抑え、高トラフィックほど自前運用の回収が早い*
+
+<div class="fig">
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><text x="30" y="40" font-size="17" font-weight="700" fill="#475569">月間トークン量と累積コスト（概念図）</text><line x1="90" y1="330" x2="860" y2="330" stroke="#475569" stroke-width="2"/><line x1="90" y1="330" x2="90" y2="60" stroke="#475569" stroke-width="2"/><text x="470" y="370" text-anchor="middle" font-size="14" fill="#94a3b8">トラフィック量 →</text><text x="60" y="200" text-anchor="middle" font-size="14" fill="#94a3b8" transform="rotate(-90 60 200)">累積コスト</text><line x1="90" y1="310" x2="860" y2="110" stroke="#6b46c1" stroke-width="3"/><text x="760" y="100" font-size="15" font-weight="700" fill="#6b46c1">API従量</text><line x1="90" y1="180" x2="860" y2="250" stroke="#059669" stroke-width="3"/><text x="720" y="275" font-size="15" font-weight="700" fill="#059669">self-host（GPU固定費）</text><circle cx="470" cy="224" r="8" fill="#2563eb"/><text x="470" y="210" text-anchor="middle" font-size="14" font-weight="700" fill="#2563eb">損益分岐点</text><text x="120" y="310" font-size="13" fill="#94a3b8">低トラフィック：APIが安い</text><text x="600" y="320" font-size="13" fill="#94a3b8">高トラフィック：self-hostが安い</text></svg>
+</div>
+
+- 初期はGPU固定費が重いが、量が増えるほど1トークン単価が下がる
+- 損益分岐点を超えるトラフィックがあるかが、自前化を選ぶ唯一の条件
+
+<!--
+損益分岐の可視化。DeepSeek V4は分岐点を左に寄せられる（=少ない量で得になる）。
+-->
+
+---
+
+<!-- _class: fit-76 -->
+# MoEアーキが「局所展開」を実用化する仕組み
+
+> *総パラメータは巨大でも、1トークンで動くのは一部のexpertだけ ── だから省メモリで回る*
+
+<div class="fig">
+<svg viewBox="0 0 920 400" xmlns="http://www.w3.org/2000/svg" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="40" y="160" width="150" height="80" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/><text x="115" y="195" text-anchor="middle" font-size="16" fill="#2563eb">入力トークン</text><text x="115" y="220" text-anchor="middle" font-size="13" fill="#475569">1個ずつ</text><polygon points="194,200 236,180 236,193 194,200 236,207 236,220" fill="#475569"/><rect x="250" y="150" width="140" height="100" rx="10" fill="#f5f3ff" stroke="#6b46c1" stroke-width="2"/><text x="320" y="195" text-anchor="middle" font-size="16" font-weight="700" fill="#6b46c1">ルーター</text><text x="320" y="222" text-anchor="middle" font-size="13" fill="#475569">expertを選ぶ</text><polygon points="394,175 430,150 430,165 394,175 430,183 430,198" fill="#059669"/><polygon points="394,225 430,215 430,222 394,225 430,228 430,240" fill="#059669"/><rect x="445" y="60" width="120" height="55" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="3"/><text x="505" y="93" text-anchor="middle" font-size="15" font-weight="700" fill="#059669">expert A 稼働</text><rect x="445" y="135" width="120" height="55" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><text x="505" y="168" text-anchor="middle" font-size="15" fill="#94a3b8">expert B 休止</text><rect x="445" y="210" width="120" height="55" rx="8" fill="#ecfdf5" stroke="#059669" stroke-width="3"/><text x="505" y="243" text-anchor="middle" font-size="15" font-weight="700" fill="#059669">expert C 稼働</text><rect x="445" y="285" width="120" height="55" rx="8" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><text x="505" y="318" text-anchor="middle" font-size="15" fill="#94a3b8">expert D 休止</text><rect x="640" y="140" width="250" height="120" rx="12" fill="#ecfdf5" stroke="#059669" stroke-width="3"/><text x="765" y="180" text-anchor="middle" font-size="17" font-weight="700" fill="#059669">活性パラメータは小さい</text><text x="765" y="213" text-anchor="middle" font-size="14" fill="#475569">総容量は巨大でも</text><text x="765" y="238" text-anchor="middle" font-size="14" fill="#475569">1回の計算は一部だけ</text></svg>
+</div>
+
+- 総パラメータ＝品質、活性パラメータ＝1トークンあたりの計算量とメモリ帯域
+- この分離により、巨大モデルでも現実的なGPU構成で self-host できる
+
+<!--
+MoEの核心。総容量と活性量の分離が、OSSの局所展開と低コストを支える。
+-->
+
+---
+
+<!-- _class: fit-82 -->
+# coding精度・tool-call・回復力の3軸で優劣が分かれる
+
+> *単一スコアではなく用途軸ごとの相対比較が選定の起点になる*
+
+- 同じOSSモデルでも、coding、tool-call、失敗回復の得意分野は一様ではない
+
+<div class="fig">
+<svg viewBox="0 0 940 460" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="0" y="0" width="940" height="460" fill="#ffffff"/>
+<text x="470" y="34" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#475569">主要OSSモデルの多軸比較（相対イメージ / 高いほど良い）</text>
+<text x="150" y="90" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#475569">軸</text>
+<text x="420" y="90" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#059669">coding精度</text>
+<text x="620" y="90" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2563eb">tool-call精度</text>
+<text x="820" y="90" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#6b46c1">回復可能な失敗</text>
+<text x="150" y="150" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">大型フラッグシップ級</text>
+<rect x="330" y="135" width="180" height="20" rx="4" fill="#059669"/>
+<rect x="540" y="135" width="160" height="20" rx="4" fill="#2563eb"/>
+<rect x="740" y="135" width="150" height="20" rx="4" fill="#6b46c1"/>
+<text x="150" y="220" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">中型汎用級</text>
+<rect x="330" y="205" width="140" height="20" rx="4" fill="#059669"/>
+<rect x="540" y="205" width="130" height="20" rx="4" fill="#2563eb"/>
+<rect x="740" y="205" width="120" height="20" rx="4" fill="#6b46c1"/>
+<text x="150" y="290" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">小型ローカル級</text>
+<rect x="330" y="275" width="90" height="20" rx="4" fill="#059669"/>
+<rect x="540" y="275" width="80" height="20" rx="4" fill="#2563eb"/>
+<rect x="740" y="275" width="70" height="20" rx="4" fill="#6b46c1"/>
+<line x1="330" y1="320" x2="900" y2="320" stroke="#94a3b8" stroke-width="1"/>
+<text x="470" y="370" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">サイズが上がるほど3軸とも底上げされるが、伸び幅は軸ごとに異なる</text>
+<text x="470" y="400" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#94a3b8">※相対傾向の概念図。実測はベンチ条件に依存し変動する</text>
+</svg>
+</div>
+
+- tool-callの安定性はエージェント用途で特に効く。回復力は長時間タスクの完走率を左右する
+
+<!--
+単一スコアで語らず、用途に対応する軸で見る姿勢を促す。数値は概念図であることを明示。
+-->
+
+---
+
+<!-- _class: fit-94 -->
+# ライセンスの寛容さが商用self-hostの自由度を決める
+
+> *Apache/MIT系は改変・再配布・商用が自由、制限付きは条件確認が必須*
+
+- 同じ「オープン」でも、商用可否・配布条件・利用規模の制約は大きく異なる
+
+<div class="fig">
+<svg viewBox="0 0 960 440" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="0" y="0" width="960" height="440" fill="#ffffff"/>
+<text x="480" y="34" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#475569">ライセンス類型の比較</text>
+<rect x="40" y="60" width="440" height="340" rx="12" fill="#f0fdf4" stroke="#059669" stroke-width="2"/>
+<text x="260" y="96" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#059669">寛容型（Apache-2.0 / MIT）</text>
+<text x="70" y="140" font-family="sans-serif" font-size="16" fill="#475569">・商用利用：自由</text>
+<text x="70" y="178" font-family="sans-serif" font-size="16" fill="#475569">・改変・派生モデル：可</text>
+<text x="70" y="216" font-family="sans-serif" font-size="16" fill="#475569">・再配布：帰属表示のみ</text>
+<text x="70" y="254" font-family="sans-serif" font-size="16" fill="#475569">・利用規模の上限：なし</text>
+<text x="70" y="300" font-family="sans-serif" font-size="15" fill="#059669">→ 企業self-hostに最も適する</text>
+<text x="70" y="336" font-family="sans-serif" font-size="15" fill="#475569">Qwen系やApache採用の多くがこの型</text>
+<rect x="500" y="60" width="420" height="340" rx="12" fill="#f5f3ff" stroke="#6b46c1" stroke-width="2"/>
+<text x="710" y="96" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#6b46c1">制限付き（独自ライセンス）</text>
+<text x="530" y="140" font-family="sans-serif" font-size="16" fill="#475569">・商用利用：条件付き</text>
+<text x="530" y="178" font-family="sans-serif" font-size="16" fill="#475569">・大規模利用に許諾要の場合</text>
+<text x="530" y="216" font-family="sans-serif" font-size="16" fill="#475569">・出力・派生の扱いに条件</text>
+<text x="530" y="254" font-family="sans-serif" font-size="16" fill="#475569">・許容用途の限定あり</text>
+<text x="530" y="300" font-family="sans-serif" font-size="15" fill="#6b46c1">→ 導入前に規約を精読すべき</text>
+<text x="530" y="336" font-family="sans-serif" font-size="15" fill="#475569">「オープン」でも一律ではない点に注意</text>
+</svg>
+</div>
+
+<!--
+モデル固有名の断定は避け、類型で整理。実際の導入時は各モデルの規約原文を確認する前提を強調。
+-->
+
+---
+
+<!-- _class: fit-94 -->
+# 選定は性能×コスト×ライセンス×運用性の4軸で決める
+
+> *どれか一つの最強ではなく、4軸のバランスが自社要件に合うかで選ぶ*
+
+<div class="fig">
+<svg viewBox="0 0 900 460" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="0" y="0" width="900" height="460" fill="#ffffff"/>
+<text x="450" y="34" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#475569">OSSモデル選定の4象限</text>
+<line x1="450" y1="70" x2="450" y2="430" stroke="#cbd5e1" stroke-width="2"/>
+<line x1="90" y1="250" x2="810" y2="250" stroke="#cbd5e1" stroke-width="2"/>
+<rect x="120" y="95" width="300" height="120" rx="10" fill="#f0fdf4" stroke="#059669" stroke-width="2"/>
+<text x="270" y="130" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#059669">性能</text>
+<text x="270" y="162" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">ベンチ／実タスク完走率</text>
+<text x="270" y="190" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">tool-call・長文の安定性</text>
+<rect x="480" y="95" width="300" height="120" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="630" y="130" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#2563eb">コスト</text>
+<text x="630" y="162" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">GPU・電力・保守の総額</text>
+<text x="630" y="190" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">API単価との損益分岐</text>
+<rect x="120" y="285" width="300" height="120" rx="10" fill="#f5f3ff" stroke="#6b46c1" stroke-width="2"/>
+<text x="270" y="320" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#6b46c1">ライセンス</text>
+<text x="270" y="352" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">商用可否・再配布条件</text>
+<text x="270" y="380" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">派生モデルの権利</text>
+<rect x="480" y="285" width="300" height="120" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+<text x="630" y="320" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#475569">運用性</text>
+<text x="630" y="352" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">推論基盤・監視・更新</text>
+<text x="630" y="380" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">人材・エコシステム成熟度</text>
+</svg>
+</div>
+
+- 1軸で選ぶと後段で破綻する。4軸を要件の重み付きで評価するのが実務的
+
+<!--
+4象限で網羅性を示す。次のセクションでコスト・運用性を深掘りする布石。
+-->
+
+---
+
+<!-- _class: lead -->
+# self-hostの課題
+
+- 自前運用が抱える現実的なコストと制約を直視する
+
+<!--
+Cセクション（複雑化）の扉。ここからGPU・運用コスト・推論最適化を扱う。
+-->
+
+---
+
+<!-- _class: fit-94 -->
+# 72B級モデルは単一GPUに載らずマルチGPU前提になる
+
+> *パラメータ規模が上がるほどVRAM要件が跳ね上がり分散構成が必須になる*
+
+<div class="fig">
+<svg viewBox="0 0 920 450" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="0" y="0" width="920" height="450" fill="#ffffff"/>
+<text x="460" y="34" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#475569">モデル規模とGPUメモリ要件の関係（概念）</text>
+<line x1="110" y1="390" x2="880" y2="390" stroke="#94a3b8" stroke-width="2"/>
+<line x1="110" y1="390" x2="110" y2="70" stroke="#94a3b8" stroke-width="2"/>
+<text x="70" y="230" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569" transform="rotate(-90 70 230)">必要VRAM（相対）</text>
+<rect x="150" y="330" width="110" height="60" rx="4" fill="#059669"/>
+<text x="205" y="365" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#ffffff">7〜8B</text>
+<text x="205" y="415" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">単一GPUで可</text>
+<rect x="320" y="250" width="110" height="140" rx="4" fill="#2563eb"/>
+<text x="375" y="330" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#ffffff">30B級</text>
+<text x="375" y="415" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">量子化で単一〜2枚</text>
+<rect x="490" y="150" width="110" height="240" rx="4" fill="#6b46c1"/>
+<text x="545" y="280" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#ffffff">72B級</text>
+<text x="545" y="415" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#6b46c1">マルチGPU前提</text>
+<rect x="660" y="90" width="110" height="300" rx="4" fill="#475569"/>
+<text x="715" y="250" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#ffffff">100B+/MoE</text>
+<text x="715" y="415" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">ノード分散</text>
+</svg>
+</div>
+
+- 量子化（4bit/8bit）で要件は緩和できるが、精度とのトレードオフを伴う
+
+<!--
+規模が上がるほどVRAMが階段状に増える。量子化は緩和策だが万能ではないと補足。
+-->
+
+---
+
+# 運用コストは電力・保守・可用性を含めた総所有で測る
+
+> *GPU購入費だけでなく、稼働し続けるための継続費が本当のコストを決める*
+
+<div class="fig">
+<svg viewBox="0 0 920 440" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="0" y="0" width="920" height="440" fill="#ffffff"/>
+<text x="460" y="34" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#475569">self-host の総所有コスト（TCO）構成</text>
+<rect x="60" y="80" width="200" height="150" rx="10" fill="#f0fdf4" stroke="#059669" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.12))"/>
+<text x="160" y="120" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#059669">初期</text>
+<text x="160" y="155" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">GPU・サーバ</text>
+<text x="160" y="185" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">ネットワーク</text>
+<text x="160" y="215" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">設計・構築工数</text>
+<rect x="360" y="80" width="200" height="150" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.12))"/>
+<text x="460" y="120" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#2563eb">継続</text>
+<text x="460" y="155" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">電力・冷却</text>
+<text x="460" y="185" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">保守・部品交換</text>
+<text x="460" y="215" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">運用人件費</text>
+<rect x="660" y="80" width="200" height="150" rx="10" fill="#f5f3ff" stroke="#6b46c1" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.12))"/>
+<text x="760" y="120" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#6b46c1">可用性</text>
+<text x="760" y="155" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">冗長化・予備機</text>
+<text x="760" y="185" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">監視・オンコール</text>
+<text x="760" y="215" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">SLA担保</text>
+<rect x="120" y="300" width="680" height="90" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+<text x="460" y="338" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#475569">TCO ＝ 初期 ＋ 継続 ＋ 可用性担保</text>
+<text x="460" y="368" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">GPU価格の話に閉じると継続費と可用性コストを取りこぼす</text>
+</svg>
+</div>
+
+<!--
+初期費だけで比較しがちだが、継続費・可用性担保が積み上がる点を強調。
+-->
+
+---
+
+# 量子化・バッチング・KVキャッシュが推論効率を底上げする
+
+> *同じGPUでもこの3手法でスループットと収容量が大きく変わる*
+
+<div class="fig">
+<svg viewBox="0 0 940 440" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="0" y="0" width="940" height="440" fill="#ffffff"/>
+<text x="470" y="34" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#475569">主要な推論最適化の3手法</text>
+<rect x="40" y="75" width="280" height="300" rx="12" fill="#f0fdf4" stroke="#059669" stroke-width="2"/>
+<text x="180" y="115" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#059669">量子化</text>
+<text x="180" y="155" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">重みを低ビット化</text>
+<text x="180" y="185" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">4bit / 8bit</text>
+<text x="180" y="230" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#059669">効果</text>
+<text x="180" y="260" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">VRAM削減・収容増</text>
+<text x="180" y="305" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">代償</text>
+<text x="180" y="335" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">精度が微減しうる</text>
+<rect x="340" y="75" width="280" height="300" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="480" y="115" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#2563eb">バッチング</text>
+<text x="480" y="155" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">複数リクエストを</text>
+<text x="480" y="185" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">まとめて処理</text>
+<text x="480" y="230" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#2563eb">効果</text>
+<text x="480" y="260" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">GPU利用率を最大化</text>
+<text x="480" y="305" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">代償</text>
+<text x="480" y="335" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">個別遅延がやや増</text>
+<rect x="640" y="75" width="280" height="300" rx="12" fill="#f5f3ff" stroke="#6b46c1" stroke-width="2"/>
+<text x="780" y="115" text-anchor="middle" font-family="sans-serif" font-size="18" font-weight="bold" fill="#6b46c1">KVキャッシュ</text>
+<text x="780" y="155" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">過去トークンの</text>
+<text x="780" y="185" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">中間状態を再利用</text>
+<text x="780" y="230" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#6b46c1">効果</text>
+<text x="780" y="260" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">長文生成を高速化</text>
+<text x="780" y="305" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">代償</text>
+<text x="780" y="335" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">追加VRAMを消費</text>
+</svg>
+</div>
+
+<!--
+3手法とも効果と代償が対になっている点を示す。組み合わせで最適点を探す前振り。
+-->
+
+---
+
+<!-- _class: fit-70 -->
+# self-hostの負担は規模・運用・技術の3点に集約される
+
+> *GPU確保、24/365運用、推論チューニングの3つが同時に効いてくる*
+
+- ここまでの課題を、意思決定に効く3点へ整理する
+- GPU規模：72B級以上はマルチGPU前提。VRAMと調達コストが階段状に増える
+- 運用負担：電力・保守・可用性担保が継続費として積み上がり、TCOを押し上げる
+- 技術要求：量子化・バッチング・KVキャッシュを使いこなす専門性が完走率を左右する
+- これらを内製で吸収できるかが、self-host成否の分かれ目になる
+
+<!--
+Cセクションの締め。3点に集約し、次のQ→A（損益判断）へ橋渡し。
+-->
+
+---
+
+<!-- _class: lead -->
+# 損益判断と指針
+
+- self-hostとAPIのどちらが得か、判断軸と実行指針を示す
+
+<!--
+Q→Aの扉。損益分岐・選定チャート・ハイブリッド戦略・ロードマップへ。
+-->
+
+---
+
+<!-- _class: fit-88 -->
+# 高volume帯ではself-hostがAPIのコストを逆転する
+
+> *利用量が損益分岐点を超えると、固定費型のself-hostが従量課金を下回る*
+
+<div class="fig">
+<svg viewBox="0 0 900 450" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="0" y="0" width="900" height="450" fill="#ffffff"/>
+<text x="450" y="34" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#475569">self-host と API のコスト交点（概念）</text>
+<line x1="110" y1="390" x2="850" y2="390" stroke="#94a3b8" stroke-width="2"/>
+<line x1="110" y1="390" x2="110" y2="70" stroke="#94a3b8" stroke-width="2"/>
+<text x="480" y="430" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">利用量（トークン / 月）→</text>
+<text x="60" y="230" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569" transform="rotate(-90 60 230)">月額コスト</text>
+<line x1="110" y1="370" x2="850" y2="110" stroke="#2563eb" stroke-width="3"/>
+<text x="800" y="100" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#2563eb">API（従量）</text>
+<line x1="110" y1="250" x2="850" y2="210" stroke="#059669" stroke-width="3"/>
+<text x="790" y="235" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#059669">self-host</text>
+<text x="150" y="270" font-family="sans-serif" font-size="13" fill="#475569">固定費が起点</text>
+<circle cx="470" cy="258" r="7" fill="#6b46c1"/>
+<line x1="470" y1="258" x2="470" y2="390" stroke="#6b46c1" stroke-width="1.5" stroke-dasharray="5 4"/>
+<text x="470" y="300" text-anchor="middle" font-family="sans-serif" font-size="15" font-weight="bold" fill="#6b46c1">損益分岐点</text>
+<text x="280" y="150" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#2563eb">低volume：APIが有利</text>
+<text x="680" y="340" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#059669">高volume：self-hostが有利</text>
+</svg>
+</div>
+
+- 分岐点の位置は、モデル規模・GPU調達方式・稼働率で前後する。自社の実測volumeで検証する
+
+<!--
+固定費型と従量型の交点。分岐点はケース依存であり、実測で確認する姿勢を促す。
+-->
+
+---
+
+# 機密性・volume・カスタム要件で推奨構成が決まる
+
+> *3つの分岐を順に辿ると、self-host / API / ハイブリッドのどれが適合するか見える*
+
+<div class="fig">
+<svg viewBox="0 0 940 450" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="0" y="0" width="940" height="450" fill="#ffffff"/>
+<text x="470" y="32" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#475569">用途別選定チャート</text>
+<rect x="370" y="55" width="200" height="56" rx="8" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+<text x="470" y="89" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">機密データを扱うか？</text>
+<line x1="370" y1="83" x2="210" y2="150" stroke="#94a3b8" stroke-width="2"/>
+<polygon points="210,150 218,138 224,150" fill="#94a3b8"/>
+<text x="270" y="128" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#059669">はい</text>
+<line x1="570" y1="83" x2="690" y2="150" stroke="#94a3b8" stroke-width="2"/>
+<polygon points="690,150 676,148 686,138" fill="#94a3b8"/>
+<text x="650" y="128" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#2563eb">いいえ</text>
+<rect x="90" y="155" width="240" height="56" rx="8" fill="#f0fdf4" stroke="#059669" stroke-width="2"/>
+<text x="210" y="189" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#059669">自前運用の余力があるか？</text>
+<rect x="590" y="155" width="260" height="56" rx="8" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="720" y="189" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#2563eb">月間volumeは高いか？</text>
+<line x1="150" y1="211" x2="120" y2="265" stroke="#94a3b8" stroke-width="2"/>
+<polygon points="120,265 118,251 130,257" fill="#94a3b8"/>
+<text x="105" y="245" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#059669">有</text>
+<line x1="270" y1="211" x2="320" y2="265" stroke="#94a3b8" stroke-width="2"/>
+<polygon points="320,265 308,257 320,251" fill="#94a3b8"/>
+<text x="320" y="245" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#6b46c1">薄</text>
+<line x1="680" y1="211" x2="640" y2="265" stroke="#94a3b8" stroke-width="2"/>
+<polygon points="640,265 638,251 650,257" fill="#94a3b8"/>
+<text x="625" y="245" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#059669">高</text>
+<line x1="760" y1="211" x2="800" y2="265" stroke="#94a3b8" stroke-width="2"/>
+<polygon points="800,265 788,251 800,257" fill="#94a3b8"/>
+<text x="810" y="245" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#2563eb">低</text>
+<rect x="40" y="270" width="170" height="58" rx="8" fill="#059669"/>
+<text x="125" y="297" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">self-host</text>
+<text x="125" y="318" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#ffffff">（機密＋自前）</text>
+<rect x="240" y="270" width="180" height="58" rx="8" fill="#6b46c1"/>
+<text x="330" y="297" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">ハイブリッド</text>
+<text x="330" y="318" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#ffffff">（機密のみ自前）</text>
+<rect x="560" y="270" width="170" height="58" rx="8" fill="#059669"/>
+<text x="645" y="297" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">self-host</text>
+<text x="645" y="318" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#ffffff">（高volume）</text>
+<rect x="750" y="270" width="150" height="58" rx="8" fill="#2563eb"/>
+<text x="825" y="297" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">API</text>
+<text x="825" y="318" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#ffffff">（低volume）</text>
+<text x="470" y="375" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#94a3b8">※分岐は簡略化した目安。実際は複数要因の重み付けで判断する</text>
+</svg>
+</div>
+
+<!--
+3分岐のフローチャート。8ノード以上のため単独スライド。目安である旨を明示。
+-->
+
+---
+
+<!-- _class: fit-94 -->
+# 機密はself-host・バーストはAPIで賄うのが現実解
+
+> *ワークロードを性質で振り分ければ、統制と弾力性を両取りできる*
+
+<div class="fig">
+<svg viewBox="0 0 920 430" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="0" y="0" width="920" height="430" fill="#ffffff"/>
+<text x="460" y="34" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#475569">ハイブリッド構成の振り分け</text>
+<rect x="350" y="70" width="220" height="70" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+<text x="460" y="100" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#475569">ルーティング層</text>
+<text x="460" y="126" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">要求の性質で振り分け</text>
+<line x1="410" y1="140" x2="250" y2="215" stroke="#94a3b8" stroke-width="2"/>
+<polygon points="250,215 254,201 264,211" fill="#94a3b8"/>
+<line x1="510" y1="140" x2="670" y2="215" stroke="#94a3b8" stroke-width="2"/>
+<polygon points="670,215 656,211 666,201" fill="#94a3b8"/>
+<rect x="90" y="220" width="320" height="150" rx="12" fill="#f0fdf4" stroke="#059669" stroke-width="2"/>
+<text x="250" y="255" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#059669">self-host</text>
+<text x="250" y="290" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">機密データ・PII</text>
+<text x="250" y="320" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">定常・予測可能な負荷</text>
+<text x="250" y="350" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">データ統制が必要な処理</text>
+<rect x="510" y="220" width="320" height="150" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="670" y="255" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#2563eb">API</text>
+<text x="670" y="290" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">突発的なバースト負荷</text>
+<text x="670" y="320" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">最新・最大モデルの実験</text>
+<text x="670" y="350" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#475569">非機密の一般タスク</text>
+</svg>
+</div>
+
+- 統制が要る処理は自前で守り、弾力性が要る処理はAPIに逃がす。二者択一にしない
+
+<!--
+ハイブリッドは折衷ではなく、性質に応じた最適配置であることを示す。
+-->
+
+---
+
+# MoE選択・量子化・ルーティング・キャッシュでコストを削る
+
+> *モデル選択と運用工夫を重ねると、同じ処理量でも総コストが下がる*
+
+- コスト最適化は単発の施策ではなく、複数レバーの積み上げで効く
+
+<div class="fig">
+<svg viewBox="0 0 920 400" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="0" y="0" width="920" height="400" fill="#ffffff"/>
+<text x="460" y="32" text-anchor="middle" font-family="sans-serif" font-size="20" font-weight="bold" fill="#475569">コスト最適化の4つの打ち手</text>
+<rect x="40" y="70" width="200" height="110" rx="10" fill="#f0fdf4" stroke="#059669" stroke-width="2"/>
+<text x="140" y="110" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#059669">MoE選択</text>
+<text x="140" y="140" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">活性パラメータのみ</text>
+<text x="140" y="163" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">計算で高効率</text>
+<rect x="260" y="70" width="200" height="110" rx="10" fill="#eff6ff" stroke="#2563eb" stroke-width="2"/>
+<text x="360" y="110" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#2563eb">量子化</text>
+<text x="360" y="140" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">VRAM削減で</text>
+<text x="360" y="163" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">GPU枚数を圧縮</text>
+<rect x="480" y="70" width="200" height="110" rx="10" fill="#f5f3ff" stroke="#6b46c1" stroke-width="2"/>
+<text x="580" y="110" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#6b46c1">ルーティング</text>
+<text x="580" y="140" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">易しい要求は</text>
+<text x="580" y="163" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">小型モデルへ</text>
+<rect x="700" y="70" width="200" height="110" rx="10" fill="#f8fafc" stroke="#475569" stroke-width="2"/>
+<text x="800" y="110" text-anchor="middle" font-family="sans-serif" font-size="16" font-weight="bold" fill="#475569">キャッシュ</text>
+<text x="800" y="140" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">同一要求の</text>
+<text x="800" y="163" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#475569">再計算を回避</text>
+<rect x="160" y="240" width="600" height="80" rx="10" fill="#059669"/>
+<text x="460" y="278" text-anchor="middle" font-family="sans-serif" font-size="17" font-weight="bold" fill="#ffffff">4つを重ねてコストを段階的に圧縮する</text>
+<text x="460" y="305" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#ffffff">単発ではなく組み合わせで効かせる</text>
+</svg>
+</div>
+
+<!--
+4レバーの積み上げ。どれか一つでなく組み合わせる点を強調。
+-->
+
+---
+
+<!-- _class: fit-58 -->
+# 小さく検証し、成功パターンを段階的に本番へ広げる
+
+> *PoC→限定本番→拡大の3段で、リスクを抑えつつ内製力を蓄積する*
+
+- 導入は一足飛びにせず、学習しながら投資を増やすのが失敗しにくい
+- ステップ1：非機密の限定用途でPoC。API併用で素早く価値を検証する
+- ステップ2：損益と要件が見合う処理からself-host化。運用監視・回復手順を固める
+- ステップ3：ハイブリッドで拡大。機密は自前、バーストはAPIへ振り分けを標準化する
+- 3アクション：①損益分岐volumeを実測 ②ライセンス規約を精読 ③運用体制と撤退条件を先に決める
+
+<!--
+SCQAのAを実行計画に落とす。3ステップ＋3アクションで持ち帰りを明確化。
+-->
+
+---
+
+<!-- _class: lead fit-94 -->
+# まとめ：性能から損益分岐へ
+
+> *OSS LLMは「使えるか」から「どう賢く使い分けるか」の段階に入った*
+
+- OSS LLMは「使えるか」から「どう賢く使い分けるか」の段階に入った
+- 性能・コスト・ライセンス・運用性の4軸で、自社volumeに合った構成を選ぶ
+- 機密はself-host、バーストはAPI——二者択一ではなくハイブリッドが現実解
+
+
+---
+
+<!-- _class: fit-64 -->
+# 参考文献・出典
+
+- 以下の公開情報を参照
+- Kimi K2.6 and Qwen 3.6: Closing the Frontier Gap — MindStudio: https://www.mindstudio.ai/blog/kimmy-k2-6-qwen-3-6-open-source-frontier-models
+- Best Open-Source LLMs for Agentic Coding in 2026 — MindStudio: https://www.mindstudio.ai/blog/best-open-source-llms-agentic-coding-2026
+- Open-Weight LLM Showdown 2026 — Wavect: https://wavect.io/blog/open-weight-llm-comparison-2026/
+- Best Open Source Self-Hosted LLMs for Coding in 2026 — Pinggy: https://pinggy.io/blog/best_open_source_self_hosted_llms_for_coding/
+

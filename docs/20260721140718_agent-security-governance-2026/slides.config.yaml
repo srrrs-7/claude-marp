@@ -1,0 +1,20 @@
+topic: "AIエージェントのセキュリティ／ガバナンス 2026 — 多層防御で自律エージェントを守る"
+language: "ja"
+
+slides:
+  count: 30
+
+output:
+  dir: "docs/20260721140718_agent-security-governance-2026"
+  baseName: "agent-security-governance-2026"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "AIエージェントのセキュリティ／ガバナンス 2026"
+  footer: "© 2026 Classmethod"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
