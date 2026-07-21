@@ -301,28 +301,40 @@
 		return `${Math.round(x * 100)}%`;
 	}
 
-	function openSheet(dir) {
+	// `animate` replays the book-opening animation. A fav toggle re-renders the
+	// same open book in place, so it passes false to avoid re-flipping the pages.
+	function openSheet(dir, animate = true) {
 		const d = DECKS.find((x) => x.dir === dir);
 		if (!d) return;
-		lastFocused = document.activeElement;
+		if (animate) lastFocused = document.activeElement;
 
 		const isFav = favs.has(d.dir);
 		const fileName = d.href.split("/").pop();
 
-		// A PDF has no slide-quality metrics — show file facts instead of empty meters.
-		const metrics = isPdf(d)
-			? `<div class="metric"><div class="k">Pages</div><div class="v">${d.slides || "—"}</div></div>
-				<div class="metric"><div class="k">Size</div><div class="v">${sizeLabel(d.bytes)}</div></div>
-				<div class="metric"><div class="k">Format</div><div class="v">PDF</div></div>`
-			: `<div class="metric"><div class="k">Slides</div><div class="v">${d.slides}</div></div>
-				<div class="metric"><div class="k">Reading</div><div class="v">${readingLabel(d.mins)}</div></div>
-				<div class="metric"><div class="k">Grade</div><div class="v">${d.grade}</div></div>
-				<div class="metric"><div class="k">図解率</div><div class="v">${pct(d.svg)}</div>
+		// Left page — identity & quality. A PDF has file facts where a deck has meters.
+		const stats = isPdf(d)
+			? `<div class="pstat"><b>${d.slides || "—"}</b><span>Pages</span></div>
+				<div class="pstat"><b>${sizeLabel(d.bytes)}</b><span>Size</span></div>
+				<div class="pstat"><b>PDF</b><span>Format</span></div>`
+			: `<div class="pstat"><b>${d.slides}</b><span>Slides</span></div>
+				<div class="pstat"><b>${readingLabel(d.mins)}</b><span>Reading</span></div>
+				<div class="pstat grade-${d.grade}"><b>${d.grade}</b><span>Grade</span></div>`;
+
+		const meters = isPdf(d)
+			? ""
+			: `<div class="pmeter"><div class="pm-k">図解率<em>${pct(d.svg)}</em></div>
 					<div class="meter"><i style="width:${pct(d.svg)}"></i></div></div>
-				<div class="metric"><div class="k">主張タイトル</div><div class="v">${pct(d.assertive)}</div>
+				<div class="pmeter"><div class="pm-k">主張タイトル<em>${pct(d.assertive)}</em></div>
 					<div class="meter"><i style="width:${pct(d.assertive)}"></i></div></div>
-				<div class="metric"><div class="k">BLUF</div><div class="v">${pct(d.subtitle)}</div>
+				<div class="pmeter"><div class="pm-k">BLUF<em>${pct(d.subtitle)}</em></div>
 					<div class="meter"><i style="width:${pct(d.subtitle)}"></i></div></div>`;
+
+		// Right page — where the book leads. TOC for decks, file facts for PDFs.
+		const rightBody = isPdf(d)
+			? `<h4>ファイル</h4><p class="file-name">${esc(fileName)}</p>`
+			: d.toc.length
+				? `<h4>目次</h4><ol class="toc">${d.toc.map((t) => `<li>${esc(t)}</li>`).join("")}</ol>`
+				: `<h4>この本について</h4><p class="page-note">${d.bluf ? esc(d.bluf) : "目次情報はありません。"}</p>`;
 
 		const primary = isPdf(d)
 			? `<a class="btn" id="sheet-open" href="${esc(d.href)}" target="_blank" rel="noopener">${ICON.doc} PDF を開く</a>
@@ -332,24 +344,27 @@
 		sheet.style.setProperty("--spine", color(d.cat));
 		sheet.innerHTML = `
 			<button class="sheet-close" id="sheet-close" aria-label="閉じる">×</button>
-			<div class="sheet-head">
-				<div class="cat">${esc(catLabel.get(d.cat) ?? "Other")}</div>
-				<h2>${esc(d.topic)}</h2>
-				${d.bluf ? `<p class="bluf">${esc(d.bluf)}</p>` : ""}
-			</div>
-			<div class="sheet-body">
-				<div class="metric-grid">${metrics}</div>
-				${
-					d.toc.length
-						? `<h4>目次</h4><ol class="toc">${d.toc.map((t) => `<li>${esc(t)}</li>`).join("")}</ol>`
-						: ""
-				}
-				${isPdf(d) ? `<h4>ファイル</h4><p class="file-name">${esc(fileName)}</p>` : ""}
-				<div class="sheet-actions">
-					${primary}
-					<button class="btn btn-ghost ${isFav ? "on" : ""}" id="sheet-fav">
-						${isFav ? "★ お気に入り解除" : "☆ お気に入りに追加"}
-					</button>
+			<div class="spread${animate ? " is-opening" : ""}">
+				<div class="page page-left">
+					<div class="page-inner">
+						<div class="cat">${esc(catLabel.get(d.cat) ?? "Other")}</div>
+						<h2>${esc(d.topic)}</h2>
+						${d.bluf ? `<p class="bluf">${esc(d.bluf)}</p>` : ""}
+						<div class="pstats">${stats}</div>
+						${meters}
+					</div>
+				</div>
+				<div class="spine-fold"></div>
+				<div class="page page-right">
+					<div class="page-inner">
+						${rightBody}
+						<div class="sheet-actions">
+							${primary}
+							<button class="btn btn-ghost ${isFav ? "on" : ""}" id="sheet-fav">
+								${isFav ? "★ お気に入り解除" : "☆ お気に入りに追加"}
+							</button>
+						</div>
+					</div>
 				</div>
 			</div>`;
 
@@ -366,7 +381,7 @@
 			if (favs.has(d.dir)) favs.delete(d.dir);
 			else favs.add(d.dir);
 			saveFavs();
-			openSheet(dir);
+			openSheet(dir, false);
 			render();
 		};
 	}
