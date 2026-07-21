@@ -1,0 +1,123 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"title": "Claude Certification practice exam item set",
+	"type": "object",
+	"required": ["exam", "language", "items"],
+	"additionalProperties": false,
+	"properties": {
+		"exam": {
+			"description": "Exam code",
+			"enum": ["CCAO-F", "CCDV-F", "CCA-F", "CCAR-P"]
+		},
+		"language": { "enum": ["ja", "en", "ja-en"] },
+		"title": { "type": "string" },
+		"generatedFor": {
+			"type": "string",
+			"description": "Free text, e.g. 'Set 4 — practice'"
+		},
+		"scenarios": {
+			"description": "Shared scenarios referenced by items via scenarioId",
+			"type": "array",
+			"items": {
+				"type": "object",
+				"required": ["id", "title", "body"],
+				"additionalProperties": false,
+				"properties": {
+					"id": { "type": "string", "pattern": "^sc-[0-9]+$" },
+					"title": { "type": "string" },
+					"body": { "type": "string", "minLength": 80 }
+				}
+			}
+		},
+		"items": {
+			"type": "array",
+			"minItems": 1,
+			"items": {
+				"type": "object",
+				"required": [
+					"id",
+					"domain",
+					"domainName",
+					"type",
+					"stem",
+					"options",
+					"answer",
+					"rationale",
+					"distractors",
+					"refs"
+				],
+				"additionalProperties": false,
+				"properties": {
+					"id": { "type": "string", "pattern": "^Q[0-9]+$" },
+					"domain": {
+						"type": "string",
+						"pattern": "^D[1-8]$",
+						"description": "Domain id from references/blueprints.md"
+					},
+					"domainName": {
+						"type": "string",
+						"description": "Official domain name, e.g. 'Applications & Integration'"
+					},
+					"type": {
+						"enum": ["single", "multi"],
+						"description": "multi = 'Multiple response (select TWO)'"
+					},
+					"scenarioId": { "type": "string", "pattern": "^sc-[0-9]+$" },
+					"stem": {
+						"type": "string",
+						"minLength": 80,
+						"description": "Scenario-first question body. Ends with the actual question."
+					},
+					"options": {
+						"type": "object",
+						"required": ["A", "B", "C", "D"],
+						"additionalProperties": false,
+						"properties": {
+							"A": { "type": "string", "minLength": 10 },
+							"B": { "type": "string", "minLength": 10 },
+							"C": { "type": "string", "minLength": 10 },
+							"D": { "type": "string", "minLength": 10 }
+						}
+					},
+					"answer": {
+						"type": "array",
+						"items": { "enum": ["A", "B", "C", "D"] },
+						"minItems": 1,
+						"maxItems": 2,
+						"uniqueItems": true,
+						"description": "1 entry for type=single, exactly 2 for type=multi"
+					},
+					"rationale": {
+						"type": "string",
+						"minLength": 60,
+						"description": "Why the correct answer is correct — root cause, not restatement"
+					},
+					"distractors": {
+						"type": "object",
+						"description": "Key = option letter that is NOT in answer. Every wrong option needs an entry.",
+						"propertyNames": { "enum": ["A", "B", "C", "D"] },
+						"additionalProperties": { "type": "string", "minLength": 20 }
+					},
+					"trap": {
+						"description": "Which trap pattern the strongest distractor uses (see references/item-style.md)",
+						"enum": [
+							"sounds-responsible",
+							"prompt-only-fix",
+							"bigger-model",
+							"knob-twiddling",
+							"over-restriction",
+							"detect-after-the-fact",
+							"true-but-irrelevant"
+						]
+					},
+					"refs": {
+						"type": "array",
+						"minItems": 1,
+						"items": { "type": "string", "format": "uri" },
+						"description": "URLs copied verbatim from references/links.md. Never invented."
+					}
+				}
+			}
+		}
+	}
+}

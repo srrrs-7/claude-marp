@@ -625,6 +625,7 @@ tmux-based parallel execution: Claude Code (impl) + Codex (review) workers in sp
   - `validation.md` — Pre-flight validation (triggers on `slides-data.json`, `slides.config.yaml`)
   - `agent-teams.md` — Batch workflow templates (triggers on `docs/**/*`)
 - **`agents/`** — `slide-creator`, `slide-chunk-writer`, `svg-diagram-author`, `slide-researcher`, `deck-fixer`, `deck-quality-auditor`, `marp-customizer`, `team-leader`, `impl-worker`, `review-worker`（モデル振り分けは「エージェント一覧」参照）
-- **`skills/`** — `/create-slides`, `/batch-decks`, `/improve-deck`, `/generate`, `/review-slides`, `/validate`, `/ship`, `/agent-teams`
+- **`skills/`** — `/create-slides`, `/batch-decks`, `/improve-deck`, `/generate`, `/review-slides`, `/validate`, `/ship`, `/agent-teams`, `/claude-exam`
+  - `/claude-exam` は Claude認定試験（CCAO-F / CCDV-F / CCA-F / CCAR-P）の模擬問題ジェネレータ。出典は `pdf/Claude_Certification_Practice_Exams*.pdf`、配点は `.claude/skills/claude-exam/references/blueprints.md`、参照URLは同 `references/links.md` に載っているものだけを使う（URL創作禁止）。出力は `exams/<timestamp>_<exam>-<slug>/`
   - frontmatter のフィールド名は **`user-invocable`（ハイフン）**。`user_invocable` は無効フィールドとして無視される
 - **`hooks/`** — PostToolUse フックの実体（`post-write.sh`, `post-bash.sh`, `check-svg-url-refs.ts`）。`settings.json` はここへのディスパッチのみ
