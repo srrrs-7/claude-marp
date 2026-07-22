@@ -10,8 +10,8 @@ import { type SlideRecord, computeDeckMetrics } from "./lib/quality.js";
 // Types
 // ---------------------------------------------------------------------------
 
-/** Shelf id — a deck category, or the dedicated PDF shelf. */
-type ShelfId = CategoryId | typeof PDF_SHELF_ID;
+/** Shelf id — a deck category. PDFs are classified into these shelves too. */
+type ShelfId = CategoryId;
 
 /**
  * One library item as consumed by the client-side bookshelf renderer (shelf.js).
@@ -53,10 +53,6 @@ function classify(topic: string, slug: string): CategoryId {
 	return "other";
 }
 
-/** Shelf holding standalone PDFs — not a keyword category, appended last. */
-const PDF_SHELF_ID = "pdf" as const;
-const PDF_SHELF_LABEL = "PDF Library";
-
 /** Display order of shelves. */
 const CATEGORY_ORDER: CategoryId[] = [
 	"ai",
@@ -69,6 +65,7 @@ const CATEGORY_ORDER: CategoryId[] = [
 	"investment",
 	"career",
 	"aws",
+	"claude-exam",
 	"other",
 ];
 
@@ -335,11 +332,15 @@ async function collectPdfs(): Promise<LibraryItem[]> {
 			? source.lastModified
 			: file.lastModified;
 
+		const topic = pdfTitle(raw) || titleFromFileName(name);
+
 		items.push({
 			kind: "pdf",
 			dir: `pdf/${name}`,
-			topic: pdfTitle(raw) || titleFromFileName(name),
-			cat: PDF_SHELF_ID,
+			topic,
+			// PDFs are shelved by keyword like decks (no dedicated PDF shelf).
+			// `name` is passed as the slug so exam codes (CCA-F, …) are matched.
+			cat: classify(topic, name),
 			theme: "PDF",
 			slides: pages,
 			mins: 0,
@@ -517,9 +518,6 @@ async function main() {
 		id,
 		label: CATEGORY_CONFIGS.find((c) => c.id === id)?.label ?? "Other",
 	}));
-	if (pdfs.length > 0) {
-		categories.push({ id: PDF_SHELF_ID, label: PDF_SHELF_LABEL });
-	}
 
 	const totals: Totals = {
 		decks: decks.length,

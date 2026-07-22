@@ -25,8 +25,8 @@
 		investment: "#7a6a2f",
 		career: "#8a5578",
 		aws: "#a0662c",
+		"claude-exam": "#c0623e",
 		other: "#5f5f6b",
-		pdf: "#57534e",
 	};
 
 	const catLabel = new Map(CATEGORIES.map((c) => [c.id, c.label]));

@@ -1,4 +1,5 @@
 export type CategoryId =
+	| "claude-exam"
 	| "security"
 	| "infra"
 	| "science"
@@ -18,8 +19,27 @@ export interface CategoryConfig {
 }
 
 // Rules are checked in order — first match wins.
-// Priority: security > infra > science > thinking > engineering > aws > business > investment > career > ai > other
+// Priority: claude-exam > security > infra > science > thinking > engineering > aws > business > investment > career > ai > other
+//
+// claude-exam is first on purpose: the CCA-F / CCAR-P practice PDFs carry
+// "Architect" in their file names, which the engineering rule ("architect")
+// would otherwise claim. Its keywords are Claude-specific exam codes so they
+// never steal an AWS certification deck (those match "aws"/"認定試験" elsewhere).
 export const CATEGORY_CONFIGS: CategoryConfig[] = [
+	{
+		id: "claude-exam",
+		label: "Claude資格試験",
+		keywords: [
+			"cca-f",
+			"ccao-f",
+			"ccar-p",
+			"ccdv-f",
+			"claude certification",
+			"claude_certification",
+			"claude認定",
+			"claude資格",
+		],
+	},
 	{
 		id: "security",
 		label: "Security & Compliance",
