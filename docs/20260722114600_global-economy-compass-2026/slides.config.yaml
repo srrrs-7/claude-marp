@@ -1,0 +1,22 @@
+topic: "世界経済の羅針盤 2026 ― 5つのレンズで読む投資戦略"
+language: "ja"
+
+slides:
+  count: 32
+
+output:
+  dir: "docs/20260722114600_global-economy-compass-2026"
+  baseName: "global-economy-compass-2026"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "世界経済の羅針盤 2026"
+  footer: "© 2026 Classmethod — 投資判断は自己責任で / 出典は各スピーカーノート参照"
+  style: |
+    section {
+      font-size: 33px;
+    }
+    section table {
+      font-size: 0.82em;
+    }
