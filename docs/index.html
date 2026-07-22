@@ -343,7 +343,7 @@ body {
    -------------------------------------------------------------------------- */
 
 .shelf-unit {
-	margin-bottom: 2.25rem;
+	margin-bottom: 2.75rem;
 }
 
 .shelf-head {
@@ -365,16 +365,82 @@ body {
 	color: var(--text-sub);
 }
 
-/* The recessed cavity the books sit in */
+/* ---- The bookcase: a wooden frame with side posts, top rail and floor ---- */
+.shelf-case {
+	position: relative;
+	padding: 0 14px;
+	border-radius: 11px 11px 3px 3px;
+	background: linear-gradient(
+			180deg,
+			rgba(255, 255, 255, 0.14),
+			rgba(0, 0, 0, 0.06) 26px,
+			transparent 60px
+		),
+		linear-gradient(
+			90deg,
+			var(--wood-edge),
+			var(--wood-3) 3px,
+			var(--wood-1) 14px,
+			var(--wood-1) calc(100% - 14px),
+			var(--wood-3) calc(100% - 3px),
+			var(--wood-edge)
+		);
+	box-shadow: 0 30px 48px -30px rgba(0, 0, 0, 0.6), inset 0 1px 0
+		rgba(255, 255, 255, 0.22);
+}
+
+/* Wooden side posts get a lit inner edge so they read as raised rails. */
+.shelf-case::before,
+.shelf-case::after {
+	content: "";
+	position: absolute;
+	top: 13px;
+	bottom: 12px;
+	width: 3px;
+	pointer-events: none;
+}
+.shelf-case::before {
+	left: 11px;
+	background: linear-gradient(90deg, rgba(255, 255, 255, 0.28), transparent);
+}
+.shelf-case::after {
+	right: 11px;
+	background: linear-gradient(270deg, rgba(255, 255, 255, 0.16), transparent);
+}
+
+/* The top rail that caps the bookcase. */
+.shelf-rail {
+	height: 13px;
+	margin: 0 -14px;
+	border-radius: 10px 10px 0 0;
+	background: repeating-linear-gradient(
+		90deg,
+		var(--wood-1) 0,
+		var(--wood-2) 4px,
+		var(--wood-1) 9px,
+		var(--wood-3) 13px,
+		var(--wood-1) 19px
+	);
+	box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.25), inset 0 -4px 7px -2px
+		rgba(0, 0, 0, 0.4);
+}
+
+/* The recessed cavity the books sit in — lit from the top rail, dark at the back. */
 .shelf-body {
 	position: relative;
-	background: linear-gradient(to bottom, var(--shelf-void) 0%, transparent 12%),
+	background: radial-gradient(
+			120% 70% at 50% -8%,
+			rgba(255, 246, 224, 0.5),
+			transparent 55%
+		), linear-gradient(to bottom, var(--shelf-void) 0%, transparent 14%),
 		var(--shelf-back);
-	border-radius: 6px 6px 0 0;
-	border: 1px solid var(--wood-edge);
-	border-bottom: 0;
-	box-shadow: inset 0 18px 26px -22px rgba(0, 0, 0, 0.9);
-	padding: 1.75rem 1rem 0;
+	border-left: 1px solid var(--wood-edge);
+	border-right: 1px solid var(--wood-edge);
+	box-shadow:
+		inset 0 20px 30px -22px rgba(0, 0, 0, 0.95),
+		inset 14px 0 22px -18px rgba(0, 0, 0, 0.7),
+		inset -14px 0 22px -18px rgba(0, 0, 0, 0.7);
+	padding: 2.5rem 0.9rem 0;
 	overflow-x: auto;
 	overflow-y: hidden;
 	scrollbar-width: thin;
@@ -387,12 +453,15 @@ body {
 	min-height: 300px;
 	width: max-content;
 	min-width: 100%;
+	padding: 0 0.2rem;
 }
 
-/* The wooden plank */
+/* The wooden floor board — a lit top surface over a darker front edge. */
 .shelf-plank {
-	height: 16px;
-	border-radius: 0 0 5px 5px;
+	position: relative;
+	height: 17px;
+	margin: 0 -14px;
+	border-radius: 0 0 4px 4px;
 	background: repeating-linear-gradient(
 		90deg,
 		var(--wood-1) 0px,
@@ -401,10 +470,21 @@ body {
 		var(--wood-3) 11px,
 		var(--wood-1) 17px
 	);
-	border: 1px solid var(--wood-edge);
-	border-top: 0;
-	box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.18), 0 4px 10px -3px
-		rgba(0, 0, 0, 0.45);
+	box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.22);
+	z-index: 1;
+}
+
+/* The board's front face — its visible thickness. */
+.shelf-plank::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: 100%;
+	height: 8px;
+	border-radius: 0 0 5px 5px;
+	background: linear-gradient(180deg, var(--wood-3), var(--wood-edge));
+	box-shadow: 0 7px 12px -5px rgba(0, 0, 0, 0.55);
 }
 
 /* ---- Book spine ---- */
@@ -416,16 +496,24 @@ body {
 	padding: 0;
 	cursor: pointer;
 	font-family: inherit;
-	border-radius: 2px 3px 3px 2px;
+	border-radius: 2px 3px 0 0;
 	color: #fff;
-	background: var(--spine);
+	background: linear-gradient(
+		90deg,
+		color-mix(in srgb, var(--spine) 78%, #000) 0%,
+		var(--spine) 16%,
+		color-mix(in srgb, var(--spine) 88%, #fff) 42%,
+		var(--spine) 74%,
+		color-mix(in srgb, var(--spine) 70%, #000) 100%
+	);
 	box-shadow:
 		inset -3px 0 6px -2px rgba(0, 0, 0, 0.55),
-		inset 3px 0 3px -2px rgba(255, 255, 255, 0.25),
-		2px 3px 8px -3px rgba(0, 0, 0, 0.6);
-	transition: transform 0.18s cubic-bezier(0.34, 1.3, 0.64, 1), box-shadow 0.18s;
+		inset 3px 0 3px -2px rgba(255, 255, 255, 0.28),
+		2px 3px 8px -3px rgba(0, 0, 0, 0.55);
+	transition: transform 0.2s cubic-bezier(0.34, 1.3, 0.64, 1), box-shadow 0.2s,
+		filter 0.2s;
 	transform-origin: bottom center;
-	overflow: hidden;
+	transform: rotate(var(--lean, 0deg));
 }
 
 .book::before {
@@ -433,6 +521,7 @@ body {
 	content: "";
 	position: absolute;
 	inset: 0;
+	border-radius: inherit;
 	background: repeating-linear-gradient(
 		90deg,
 		rgba(255, 255, 255, 0.05) 0px,
@@ -442,19 +531,47 @@ body {
 	pointer-events: none;
 }
 
+/* The book's top — a skewed face so the eye looks slightly down onto the shelf. */
+.book .cap {
+	position: absolute;
+	left: 0;
+	right: 0;
+	top: calc(-1 * var(--cap, 11px));
+	height: var(--cap, 11px);
+	transform-origin: bottom right;
+	transform: skewX(-46deg);
+	background: linear-gradient(
+			90deg,
+			rgba(0, 0, 0, 0.2),
+			rgba(255, 255, 255, 0.22) 58%,
+			rgba(0, 0, 0, 0.1)
+		),
+		repeating-linear-gradient(
+			90deg,
+			#efe7d2 0,
+			#efe7d2 1px,
+			#e5dabf 1.6px,
+			#efe7d2 2.4px
+		);
+	border-top: 2.5px solid color-mix(in srgb, var(--spine) 74%, #000);
+	box-shadow: inset 0 2px 3px -1px rgba(0, 0, 0, 0.22);
+	pointer-events: none;
+}
+
 .book:hover,
 .book:focus-visible {
-	transform: translateY(-16px);
+	transform: translateY(-22px) rotate(0deg) scale(1.015);
+	filter: brightness(1.07);
 	box-shadow:
 		inset -3px 0 6px -2px rgba(0, 0, 0, 0.55),
-		inset 3px 0 3px -2px rgba(255, 255, 255, 0.25),
-		4px 10px 22px -4px rgba(0, 0, 0, 0.7);
+		inset 3px 0 3px -2px rgba(255, 255, 255, 0.28),
+		7px 16px 30px -6px rgba(0, 0, 0, 0.65);
 	outline: none;
-	z-index: 2;
+	z-index: 3;
 }
 
 .book:focus-visible {
-	box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent), 4px 10px 22px -4px
+	box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent), 7px 16px 30px -6px
 		rgba(0, 0, 0, 0.7);
 }
 
@@ -1329,6 +1446,47 @@ footer a {
 	const catLabel = new Map(CATEGORIES.map((c) => [c.id, c.label]));
 	const color = (id) => CAT_COLOR[id] ?? CAT_COLOR.other;
 
+	// --- Spine colour variation ------------------------------------------------
+	// Every book in a shelf shares the category hue, but a real shelf is never one
+	// flat colour. Jitter H/S/L deterministically per deck so a run of books reads
+	// as a family of related spines — while staying dark enough for white text.
+
+	function hexToHsl(hex) {
+		const n = Number.parseInt(hex.slice(1), 16);
+		const r = (n >> 16) / 255;
+		const g = ((n >> 8) & 255) / 255;
+		const b = (n & 255) / 255;
+		const max = Math.max(r, g, b);
+		const min = Math.min(r, g, b);
+		const l = (max + min) / 2;
+		let h = 0;
+		let s = 0;
+		const d = max - min;
+		if (d) {
+			s = d / (1 - Math.abs(2 * l - 1));
+			if (max === r) h = ((g - b) / d) % 6;
+			else if (max === g) h = (b - r) / d + 2;
+			else h = (r - g) / d + 4;
+			h *= 60;
+			if (h < 0) h += 360;
+		}
+		return { h, s, l };
+	}
+
+	const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
+
+	/** A deterministic, category-consistent spine colour for one deck. */
+	function spineColor(d) {
+		const { h, s, l } = hexToHsl(color(d.cat));
+		const r1 = hash01(d.dir);
+		const r2 = hash01(`${d.dir}~s`);
+		const r3 = hash01(`${d.dir}~l`);
+		const H = (h + (r1 * 2 - 1) * 18 + 360) % 360;
+		const S = clamp(s * (0.78 + r2 * 0.5), 0.16, 0.62);
+		const L = clamp(l * (0.82 + r3 * 0.42), 0.26, 0.5);
+		return `hsl(${H.toFixed(0)} ${(S * 100).toFixed(0)}% ${(L * 100).toFixed(0)}%)`;
+	}
+
 	const FOIL = {
 		A: "#f2d489",
 		B: "#dfe4ea",
@@ -1483,15 +1641,22 @@ footer a {
 		// Thickness tracks slide/page count; height jitters so the row looks like a real shelf.
 		const width = Math.round(36 + Math.min(d.slides, 90) * 0.44);
 		const height = Math.round(252 + hash01(d.dir) * 44);
+		// A little life: cap depth and an occasional lean, both deterministic so the
+		// shelf looks identical across rebuilds.
+		const cap = (8 + hash01(`${d.dir}~cap`) * 5).toFixed(1);
+		const leanR = hash01(`${d.dir}~lean`);
+		const lean = leanR > 0.86 ? ((leanR - 0.86) / 0.14) * 2.2 : 0;
 		const cls = [
 			"book",
 			opened.has(d.dir) ? "is-read" : "",
 			isPdf(d) ? "is-pdf" : "",
+			lean ? "is-leaning" : "",
 		]
 			.filter(Boolean)
 			.join(" ");
 		return `<button class="${cls}" data-dir="${esc(d.dir)}" title="${esc(d.topic)}"
-			style="--spine:${color(d.cat)};--foil:${FOIL[d.grade]};width:${width}px;height:${height}px">
+			style="--spine:${spineColor(d)};--foil:${FOIL[d.grade]};--cap:${cap}px;--lean:${lean.toFixed(2)}deg;width:${width}px;height:${height}px">
+			<span class="cap"></span>
 			<span class="foil foil-top"></span>
 			<span class="foil foil-bottom"></span>
 			${isPdf(d) ? '<span class="paper-edge"></span>' : ""}
@@ -1578,8 +1743,11 @@ footer a {
 							<h2>${esc(catLabel.get(id) ?? "Other")}</h2>
 							<span class="count">${books.length} 冊</span>
 						</div>
-						<div class="shelf-body"><div class="shelf-row">${books.map(bookHtml).join("")}</div></div>
-						<div class="shelf-plank"></div>
+						<div class="shelf-case">
+							<div class="shelf-rail"></div>
+							<div class="shelf-body"><div class="shelf-row">${books.map(bookHtml).join("")}</div></div>
+							<div class="shelf-plank"></div>
+						</div>
 					</section>`;
 				})
 				.join("");

@@ -32,6 +32,47 @@
 	const catLabel = new Map(CATEGORIES.map((c) => [c.id, c.label]));
 	const color = (id) => CAT_COLOR[id] ?? CAT_COLOR.other;
 
+	// --- Spine colour variation ------------------------------------------------
+	// Every book in a shelf shares the category hue, but a real shelf is never one
+	// flat colour. Jitter H/S/L deterministically per deck so a run of books reads
+	// as a family of related spines — while staying dark enough for white text.
+
+	function hexToHsl(hex) {
+		const n = Number.parseInt(hex.slice(1), 16);
+		const r = (n >> 16) / 255;
+		const g = ((n >> 8) & 255) / 255;
+		const b = (n & 255) / 255;
+		const max = Math.max(r, g, b);
+		const min = Math.min(r, g, b);
+		const l = (max + min) / 2;
+		let h = 0;
+		let s = 0;
+		const d = max - min;
+		if (d) {
+			s = d / (1 - Math.abs(2 * l - 1));
+			if (max === r) h = ((g - b) / d) % 6;
+			else if (max === g) h = (b - r) / d + 2;
+			else h = (r - g) / d + 4;
+			h *= 60;
+			if (h < 0) h += 360;
+		}
+		return { h, s, l };
+	}
+
+	const clamp = (x, lo, hi) => Math.max(lo, Math.min(hi, x));
+
+	/** A deterministic, category-consistent spine colour for one deck. */
+	function spineColor(d) {
+		const { h, s, l } = hexToHsl(color(d.cat));
+		const r1 = hash01(d.dir);
+		const r2 = hash01(`${d.dir}~s`);
+		const r3 = hash01(`${d.dir}~l`);
+		const H = (h + (r1 * 2 - 1) * 18 + 360) % 360;
+		const S = clamp(s * (0.78 + r2 * 0.5), 0.16, 0.62);
+		const L = clamp(l * (0.82 + r3 * 0.42), 0.26, 0.5);
+		return `hsl(${H.toFixed(0)} ${(S * 100).toFixed(0)}% ${(L * 100).toFixed(0)}%)`;
+	}
+
 	const FOIL = {
 		A: "#f2d489",
 		B: "#dfe4ea",
@@ -186,15 +227,22 @@
 		// Thickness tracks slide/page count; height jitters so the row looks like a real shelf.
 		const width = Math.round(36 + Math.min(d.slides, 90) * 0.44);
 		const height = Math.round(252 + hash01(d.dir) * 44);
+		// A little life: cap depth and an occasional lean, both deterministic so the
+		// shelf looks identical across rebuilds.
+		const cap = (8 + hash01(`${d.dir}~cap`) * 5).toFixed(1);
+		const leanR = hash01(`${d.dir}~lean`);
+		const lean = leanR > 0.86 ? ((leanR - 0.86) / 0.14) * 2.2 : 0;
 		const cls = [
 			"book",
 			opened.has(d.dir) ? "is-read" : "",
 			isPdf(d) ? "is-pdf" : "",
+			lean ? "is-leaning" : "",
 		]
 			.filter(Boolean)
 			.join(" ");
 		return `<button class="${cls}" data-dir="${esc(d.dir)}" title="${esc(d.topic)}"
-			style="--spine:${color(d.cat)};--foil:${FOIL[d.grade]};width:${width}px;height:${height}px">
+			style="--spine:${spineColor(d)};--foil:${FOIL[d.grade]};--cap:${cap}px;--lean:${lean.toFixed(2)}deg;width:${width}px;height:${height}px">
+			<span class="cap"></span>
 			<span class="foil foil-top"></span>
 			<span class="foil foil-bottom"></span>
 			${isPdf(d) ? '<span class="paper-edge"></span>' : ""}
@@ -281,8 +329,11 @@
 							<h2>${esc(catLabel.get(id) ?? "Other")}</h2>
 							<span class="count">${books.length} 冊</span>
 						</div>
-						<div class="shelf-body"><div class="shelf-row">${books.map(bookHtml).join("")}</div></div>
-						<div class="shelf-plank"></div>
+						<div class="shelf-case">
+							<div class="shelf-rail"></div>
+							<div class="shelf-body"><div class="shelf-row">${books.map(bookHtml).join("")}</div></div>
+							<div class="shelf-plank"></div>
+						</div>
 					</section>`;
 				})
 				.join("");
