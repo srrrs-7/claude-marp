@@ -524,3 +524,35 @@ file:///home/vscode/.claude/usage-data/report-2026-07-22-113706.html
 Want to dig into any section or try one of the suggestions?
 </message>
 
+
+---
+
+## 2026-07-22 12:33:05 — branch: `main`
+
+<message>
+Your shareable insights report is ready:
+file:///home/vscode/.claude/usage-data/report-2026-07-22-123344.html
+
+Want to dig into any section or try one of the suggestions?
+</message>
+
+
+---
+
+## 2026-07-23 09:21:26 — branch: `main`
+
+Your shareable insights report is ready:
+file:///home/vscode/.claude/usage-data/report-2026-07-23-092208.html
+
+Want to dig into any section or try one of the suggestions?
+
+
+---
+
+## 2026-07-23 09:31:52 — branch: `main`
+
+Your shareable insights report is ready:
+file:///home/vscode/.claude/usage-data/report-2026-07-23-093233.html
+
+Want to dig into any section or try one of the suggestions?
+

@@ -1,0 +1,708 @@
+---
+marp: true
+theme: gaia
+size: 16:9
+paginate: true
+footer: "2026-07-23 | Trend Research"
+style: |
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.5;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
+      object-fit: contain;
+      height: auto;
+      width: auto;
+    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
+---
+
+<!-- _class: lead -->
+# AIバブルは弾けるのか？
+
+> *電力・メモリ・金利から読む2026年後半*
+
+- 2026年7月 社内勉強会
+- テック系エンジニア・ビジネス層向け
+
+<!--
+本デッキの狙いは「バブルか否か」の二択ではなく、崩壊ではなく減速という第三の見立てを、電力・メモリ・金利という物理と金融の制約から読み解くこと。冒頭でこの視点を共有する。
+-->
+
+---
+
+# 結論: 崩壊ではなく「物理と金利による減速」が本線
+
+> *見るべきはGPUではなく、電力・メモリ・FOMC*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="40" y="120" width="270" height="330" rx="14" fill="#e8f0fe" stroke="#1a73e8" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<rect x="345" y="120" width="270" height="330" rx="14" fill="#fef3e8" stroke="#f29900" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<rect x="650" y="120" width="270" height="330" rx="14" fill="#fce8e6" stroke="#d93025" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<text x="175" y="175" text-anchor="middle" font-size="27" font-weight="bold" fill="#1a73e8">① 収益は本物</text>
+<text x="175" y="235" text-anchor="middle" font-size="21" fill="#202124">実キャッシュフローを</text>
+<text x="175" y="265" text-anchor="middle" font-size="21" fill="#202124">伴い、ドットコム期</text>
+<text x="175" y="295" text-anchor="middle" font-size="21" fill="#202124">とは質が異なる</text>
+<text x="480" y="175" text-anchor="middle" font-size="27" font-weight="bold" fill="#c5760a">② 物理が律速</text>
+<text x="480" y="235" text-anchor="middle" font-size="21" fill="#202124">電力・メモリの制約が</text>
+<text x="480" y="265" text-anchor="middle" font-size="21" fill="#202124">成長率の上限を</text>
+<text x="480" y="295" text-anchor="middle" font-size="21" fill="#202124">押し下げる</text>
+<text x="785" y="175" text-anchor="middle" font-size="27" font-weight="bold" fill="#d93025">③ 金利が反転</text>
+<text x="785" y="235" text-anchor="middle" font-size="21" fill="#202124">FOMCは利下げ予想</text>
+<text x="785" y="265" text-anchor="middle" font-size="21" fill="#202124">から利上げ予想へ</text>
+<text x="785" y="295" text-anchor="middle" font-size="21" fill="#202124">半年で転換した</text>
+<text x="480" y="495" text-anchor="middle" font-size="23" font-weight="bold" fill="#202124">3つが重なり「急落」ではなく「減速・選別」が本線</text>
+</svg>
+</div>
+
+<!--
+BLUFとして結論を最初に置く。収益は本物というのはヤルデニ氏らの強気論の核、物理制約は電力・メモリ、金利反転は6月FOMCで中心見通しが利下げから利上げへ変わった事実に基づく。詳細は各部で展開する。出典: https://www.dlri.co.jp/report/macro/622959.html
+-->
+
+---
+
+<!-- _class: fit-94 -->
+# 本日は3つの問いに沿って現在地を確かめる
+
+> *ブームの実体 → ボトルネック → 市場と金利、の順に見る*
+
+- Q1: AIブームの実体はどこまで本物か（第1部）
+- Q2: 成長を止める真のボトルネックは何か（第2部）
+- Q3: 市場と金利はどう動くか、1999年の再来か（第3部）
+- そして第4部で2026年後半のシナリオを描く
+
+<!--
+全体の地図を示すスライド。SCQAでいうQuestionにあたる3つの問いを提示し、第1〜4部の構成に対応づける。聴衆が今どこを話しているか見失わないための道標。
+-->
+
+---
+
+<!-- _class: lead -->
+# 第1部　AIブームの現在地
+
+- 投資・モデル競争・導入実態から実体を測る
+
+<!--
+第1部の扉。ここでは「本物かバブルか」を判断する材料として、設備投資の規模、モデルリリースの速度、そして導入と本番運用のギャップを順に見ていく。
+-->
+
+---
+
+<!-- _class: fit-94 -->
+# Big Tech 4社のAI投資は年$725B、前年比+77%
+
+> *2027年には4社合計で$1兆超えの予測*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<line x1="90" y1="470" x2="920" y2="470" stroke="#5f6368" stroke-width="2"/>
+<rect x="120" y="170" width="120" height="300" rx="6" fill="#1a73e8" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<rect x="320" y="200" width="120" height="270" rx="6" fill="#1a73e8" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<rect x="520" y="282" width="120" height="188" rx="6" fill="#34a853" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<rect x="720" y="290" width="120" height="180" rx="6" fill="#34a853" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<text x="180" y="155" text-anchor="middle" font-size="24" font-weight="bold" fill="#1a73e8">$200B</text>
+<text x="380" y="185" text-anchor="middle" font-size="24" font-weight="bold" fill="#1a73e8">$175-185B</text>
+<text x="580" y="267" text-anchor="middle" font-size="24" font-weight="bold" fill="#188038">$115-135B</text>
+<text x="780" y="275" text-anchor="middle" font-size="24" font-weight="bold" fill="#188038">~$120B</text>
+<text x="180" y="505" text-anchor="middle" font-size="22" fill="#202124">Amazon</text>
+<text x="380" y="505" text-anchor="middle" font-size="22" fill="#202124">Alphabet</text>
+<text x="580" y="505" text-anchor="middle" font-size="22" fill="#202124">Meta</text>
+<text x="780" y="505" text-anchor="middle" font-size="22" fill="#202124">Microsoft</text>
+</svg>
+</div>
+
+- 集計基準の違いで合計は$600B〜$725Bの幅（財務系メディア調べ）
+
+<!--
+アンカリング効果を狙い、まず投資規模の大きさを示す。前年$410Bから+77%。数字は集計対象企業の範囲で$600B〜$725Bとブレる点も正直に添える。出典: https://www.tomshardware.com/tech-industry/big-tech/big-techs-ai-spending-plans-reach-725-billion
+-->
+
+---
+
+# モデル競争は「2週間に1回」の速度に達した
+
+> *Anthropicは5ヶ月で29件の製品アップデートを実施*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<line x1="70" y1="270" x2="900" y2="270" stroke="#5f6368" stroke-width="3"/>
+<polygon points="900,270 884,262 884,278" fill="#5f6368"/>
+<circle cx="140" cy="270" r="12" fill="#1a73e8"/>
+<circle cx="300" cy="270" r="12" fill="#1a73e8"/>
+<circle cx="460" cy="270" r="12" fill="#1a73e8"/>
+<circle cx="620" cy="270" r="12" fill="#f29900"/>
+<circle cx="790" cy="270" r="12" fill="#34a853"/>
+<text x="140" y="185" text-anchor="middle" font-size="21" font-weight="bold" fill="#202124">Opus 4.8</text>
+<text x="140" y="212" text-anchor="middle" font-size="19" fill="#5f6368">5/28</text>
+<text x="300" y="330" text-anchor="middle" font-size="21" font-weight="bold" fill="#202124">Fable 5</text>
+<text x="300" y="357" text-anchor="middle" font-size="19" fill="#5f6368">6/9</text>
+<text x="460" y="185" text-anchor="middle" font-size="21" font-weight="bold" fill="#202124">Sonnet 5</text>
+<text x="460" y="212" text-anchor="middle" font-size="19" fill="#5f6368">6/30</text>
+<text x="620" y="330" text-anchor="middle" font-size="21" font-weight="bold" fill="#c5760a">GPT-5.6 / Live-1</text>
+<text x="620" y="357" text-anchor="middle" font-size="19" fill="#5f6368">7/8-9</text>
+<text x="790" y="185" text-anchor="middle" font-size="21" font-weight="bold" fill="#188038">Gemini 3.6 Flash</text>
+<text x="790" y="212" text-anchor="middle" font-size="19" fill="#5f6368">7/21</text>
+<text x="480" y="460" text-anchor="middle" font-size="22" fill="#202124">2026年前半、主要3社が2週間おきに新モデルを投入</text>
+</svg>
+</div>
+
+<!--
+リリース速度そのものが競争の激しさを物語る。Anthropicは1月以降ほぼ2週おき、5ヶ月で29件。速度＝実需の裏返しか、過当競争かの両面を意識させる。出典: https://techcrunch.com/2026/06/30/anthropic-launches-claude-sonnet-5-as-a-cheaper-way-to-run-agents/
+-->
+
+---
+
+# SpaceXのCursor買収$60Bが示すコーディングAIの地殻変動
+
+> *GitHubのAIエージェントPRは累計100万件超（2025年5-9月）*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="70" y="210" width="230" height="120" rx="12" fill="#e8f0fe" stroke="#1a73e8" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<text x="185" y="263" text-anchor="middle" font-size="26" font-weight="bold" fill="#1a73e8">SpaceX / xAI</text>
+<text x="185" y="298" text-anchor="middle" font-size="20" fill="#202124">Grok強化が狙い</text>
+<rect x="660" y="210" width="230" height="120" rx="12" fill="#fef3e8" stroke="#f29900" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<text x="775" y="258" text-anchor="middle" font-size="26" font-weight="bold" fill="#c5760a">Anysphere</text>
+<text x="775" y="293" text-anchor="middle" font-size="20" fill="#202124">Cursor 運営元</text>
+<line x1="300" y1="270" x2="650" y2="270" stroke="#5f6368" stroke-width="3"/>
+<polygon points="660,270 642,261 642,279" fill="#5f6368"/>
+<text x="480" y="250" text-anchor="middle" font-size="24" font-weight="bold" fill="#d93025">全株式交換 $60B</text>
+<text x="480" y="305" text-anchor="middle" font-size="20" fill="#5f6368">2026/6/16発表・Q3クローズ予定</text>
+<text x="480" y="420" text-anchor="middle" font-size="22" fill="#202124">コーディングAIは巨大M&Aの主戦場になった</text>
+</svg>
+</div>
+
+<!--
+個別モデルの優劣より、コーディングAIを巡る資本の動きが業界地図を塗り替えている。$60Bは全株式交換。GitHubのエージェントPR100万件超が需要の実在を裏付ける。出典: https://www.forbes.com/sites/siladityaray/2026/06/16/spacex-will-buy-ai-coding-firm-cursor-for-60-billion/
+-->
+
+---
+
+# 導入8割・本番運用2割 — agentic AIの「死の谷」
+
+> *顕著なROIを実感した組織はわずか23%（業界調査）*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<polygon points="180,110 780,110 700,190 260,190" fill="#1a73e8" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<polygon points="270,210 690,210 610,290 350,290" fill="#4285f4" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<polygon points="360,310 600,310 520,390 440,390" fill="#f29900" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<text x="480" y="162" text-anchor="middle" font-size="24" font-weight="bold" fill="#ffffff">導入している 約80%</text>
+<text x="480" y="262" text-anchor="middle" font-size="23" font-weight="bold" fill="#ffffff">本番へスケール 23%</text>
+<text x="480" y="362" text-anchor="middle" font-size="22" font-weight="bold" fill="#ffffff">ROI実感 23%</text>
+<text x="480" y="460" text-anchor="middle" font-size="22" fill="#d93025">Gartnerは2027年末までに40%超のプロジェクト中止を予測</text>
+</svg>
+</div>
+
+<!--
+損失回避のフレームで「導入したのに本番に届かない」谷を可視化。数値はagenticaiinstitute等の業界調査で、断定は避け出典明示。Gartner中止予測もまとめ記事経由である旨を口頭で補う。出典: https://agenticaiinstitute.org/agentic-ai-enterprise-adoption-2026-governance-gap/
+-->
+
+---
+
+# 雇用への影響は「レイオフ」でなく「採用の静かな鈍化」で現れる
+
+> *S&P Global 1200の83%が前年比で従業員数を減らした（2026年1月）*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="120" y="200" width="600" height="80" rx="8" fill="#d93025" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<rect x="720" y="200" width="95" height="80" rx="8" fill="#34a853" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<text x="420" y="250" text-anchor="middle" font-size="26" font-weight="bold" fill="#ffffff">従業員 減 83%（994社）</text>
+<text x="767" y="250" text-anchor="middle" font-size="20" font-weight="bold" fill="#ffffff">増 13%</text>
+<text x="480" y="350" text-anchor="middle" font-size="22" fill="#202124">解雇件数は異常増加せず＝自然減・採用鈍化が主経路</text>
+<text x="480" y="400" text-anchor="middle" font-size="22" fill="#202124">IT分野では2026年に約7〜8万人が離職（うち約3/4が米国）</text>
+</svg>
+</div>
+
+<!--
+「AIで大量失業」という煽りより実態は静か。解雇の急増ではなく採用抑制・自然減で表れているというS&P Globalの分析が要点。数値は確度の高いS&P一次資料を使う。出典: https://www.spglobal.com/en/research-insights/special-reports/ai-impact-on-employment-2026
+-->
+
+---
+
+<!-- _class: lead -->
+# 第2部　ボトルネックはGPUではない
+
+- 真の制約は電力・メモリ・資本コストにある
+
+<!--
+第2部の扉。ここが本デッキのピーク。GPU供給は改善方向に向かう一方、電力・冷却・メモリ・金利が新たな律速要因として立ち上がっていることを示す。
+-->
+
+---
+
+<!-- _class: fit-94 -->
+# データセンター電力は前年比+26%、565TWhへ膨張する
+
+> *国内DCの消費電力は日本全体の約3%に迫る見通し*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<line x1="110" y1="440" x2="900" y2="440" stroke="#5f6368" stroke-width="2"/>
+<rect x="200" y="300" width="150" height="140" rx="6" fill="#9aa0a6" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<rect x="560" y="160" width="150" height="280" rx="6" fill="#d93025" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<polygon points="350,340 560,220 560,250 380,350" fill="#f29900"/>
+<text x="275" y="285" text-anchor="middle" font-size="22" fill="#5f6368">前年</text>
+<text x="635" y="140" text-anchor="middle" font-size="26" font-weight="bold" fill="#d93025">565TWh</text>
+<text x="635" y="475" text-anchor="middle" font-size="22" fill="#202124">2026年予測</text>
+<text x="275" y="475" text-anchor="middle" font-size="22" fill="#202124">2025年</text>
+<text x="455" y="200" text-anchor="middle" font-size="26" font-weight="bold" fill="#c5760a">+26%</text>
+</svg>
+</div>
+
+- 国内はIT供給電力が2年で2.6倍、電力8社が全国30カ所で送電網を増強
+
+<!--
+ここでGPU論から電力論へ視点を移す。世界+26%で565TWh、日本は2年で2.6倍・全電力の約3%に迫る。電力8社の送電網増強が需要予測の2倍ペースで進む点も添える。出典: https://money.hb449.com/archives/4222 / https://research.impress.co.jp/topics/list/dc/726
+-->
+
+---
+
+# DRAM価格は1四半期で+90% — 「メモリインフレ」の衝撃
+
+> *供給メモリの最大70%をデータセンターが消費し、PC・スマホに波及*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<line x1="110" y1="450" x2="900" y2="450" stroke="#5f6368" stroke-width="2"/>
+<polyline points="150,400 400,250 720,140" fill="none" stroke="#d93025" stroke-width="5"/>
+<circle cx="150" cy="400" r="9" fill="#d93025"/>
+<circle cx="400" cy="250" r="9" fill="#d93025"/>
+<circle cx="720" cy="140" r="9" fill="#d93025"/>
+<text x="150" y="430" text-anchor="middle" font-size="20" fill="#5f6368">2025末</text>
+<text x="400" y="230" text-anchor="middle" font-size="24" font-weight="bold" fill="#d93025">Q1 +90%</text>
+<text x="720" y="120" text-anchor="middle" font-size="24" font-weight="bold" fill="#d93025">年末 +130%（試算）</text>
+<text x="480" y="500" text-anchor="middle" font-size="22" fill="#202124">Gartner試算: PC価格+17%・スマホ+13%を押し上げ</text>
+</svg>
+</div>
+
+<!--
+電力に続く第二の物理制約がメモリ。Q1で前四半期比+90%、年末までに+130%（Gartner試算）。HBMシフトでレガシーメモリが逼迫し、消費者価格へ波及する構図を示す。出典: https://biz-journal.jp/economy/post_394409.html / https://gigazine.net/news/20260119-memory-chips-supply-shortfall/
+-->
+
+---
+
+# TSMCは好決算でも売られた — 市場はcapex増を恐れ始めた
+
+> *設備投資の上方修正が将来の利益率圧迫として嫌気された*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="60" y="140" width="400" height="320" rx="12" fill="#e6f4ea" stroke="#34a853" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<rect x="500" y="140" width="400" height="320" rx="12" fill="#fce8e6" stroke="#d93025" stroke-width="2" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<text x="260" y="185" text-anchor="middle" font-size="25" font-weight="bold" fill="#188038">好決算（実績）</text>
+<text x="260" y="245" text-anchor="middle" font-size="22" fill="#202124">Q2純利益 前年比+77%</text>
+<text x="260" y="295" text-anchor="middle" font-size="22" fill="#202124">粗利率 67.7%（過去最高）</text>
+<text x="260" y="345" text-anchor="middle" font-size="22" fill="#202124">通期売上見通しを上方修正</text>
+<text x="700" y="185" text-anchor="middle" font-size="25" font-weight="bold" fill="#c5221f">株価は軟調（懸念）</text>
+<text x="700" y="245" text-anchor="middle" font-size="22" fill="#202124">capex $52-56B→$60-64B</text>
+<text x="700" y="295" text-anchor="middle" font-size="22" fill="#202124">+15%上方修正を嫌気</text>
+<text x="700" y="345" text-anchor="middle" font-size="22" fill="#202124">同日 NVIDIA ▲2.2%</text>
+<text x="480" y="430" text-anchor="middle" font-size="22" fill="#5f6368">2nmはAppleが過半確保、供給不足は2027年まで続く見込み</text>
+</svg>
+</div>
+
+<!--
+「好決算なのに売られる」逆説を対比図で示す。市場が資本コストの重さを織り込み始めたサイン。capex増＝将来の利益率圧迫懸念という一般的解釈を添える。出典: https://www.trendforce.com/news/2026/07/16/news-tsmc-lifts-2026-capex-15-to-60-64b-hikes-sales-outlook-to-over-40-despite-q3-margin-dip/ / https://abcnews.com/Business/ai-chip-stock-selloff/story?id=134844421
+-->
+
+---
+
+<!-- _class: fit-94 -->
+# アリゾナ$100B追加投資 — 半導体供給網の再配置が進む
+
+> *地政学リスクとAI需要が二重の動機となり生産拠点が分散する*
+
+- TSMCがアリゾナへ追加$100Bを投資すると発表
+- 2nm以降の量産で最低4棟の新工場・先端パッケージング施設を建設
+- 投資額の70〜80%が先端プロセス向けに集中
+- 米国内生産の強化で地政学リスクとAI需要の双方に対応
+
+<!--
+供給制約は投資で緩む方向に動いている点を示す。ただし2nm量産のランプアップで短期の粗利率は3〜4pt希薄化する見込み。供給網の再配置は時間もコストもかかる。出典: https://www.tomshardware.com/tech-industry/tsmc-commits-another-100-billion-to-arizona-for-at-least-four-more-2nm-fabs
+-->
+
+---
+
+<!-- _class: fit-94 -->
+# AI拡大の律速要因は「電力×メモリ×金利」の三重制約
+
+> *GPU供給は改善方向、真の制約は電源・冷却・メモリ・資本コスト*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<circle cx="370" cy="250" r="160" fill="#1a73e8" fill-opacity="0.25" stroke="#1a73e8" stroke-width="2"/>
+<circle cx="590" cy="250" r="160" fill="#f29900" fill-opacity="0.25" stroke="#f29900" stroke-width="2"/>
+<circle cx="480" cy="400" r="160" fill="#d93025" fill-opacity="0.22" stroke="#d93025" stroke-width="2"/>
+<text x="300" y="210" text-anchor="middle" font-size="25" font-weight="bold" fill="#174ea6">電力</text>
+<text x="300" y="245" text-anchor="middle" font-size="19" fill="#202124">電源・冷却</text>
+<text x="660" y="210" text-anchor="middle" font-size="25" font-weight="bold" fill="#c5760a">メモリ</text>
+<text x="660" y="245" text-anchor="middle" font-size="19" fill="#202124">DRAM/HBM</text>
+<text x="480" y="455" text-anchor="middle" font-size="25" font-weight="bold" fill="#c5221f">金利</text>
+<text x="480" y="488" text-anchor="middle" font-size="19" fill="#202124">資本コスト</text>
+<text x="480" y="300" text-anchor="middle" font-size="22" font-weight="bold" fill="#202124">AI拡大</text>
+<text x="480" y="330" text-anchor="middle" font-size="22" font-weight="bold" fill="#202124">の律速</text>
+</svg>
+</div>
+
+- 冷却では消費電力60%減の新技術（パナソニックHD傘下）も登場している
+
+<!--
+第2部の締め。GPUではなく電力・メモリ・金利の三重制約が重なる交点にAI拡大の律速がある、というのが本デッキの中核メッセージ。冷却技術の進歩など緩和の芽も紹介する。出典: https://www.nikkei.com/article/DGXZQOUF075Y00X00C26A7000000/
+-->
+
+---
+
+<!-- _class: lead -->
+# 第3部 市場と金利 — 1999年の再来か
+
+- 株価・金利・為替は、AIブームが「本物」か「バブル」かを映す鏡になる
+
+<!--
+ここから市場とマクロの話に移る。バリュエーション指標はドットコム期に迫るが、収益の質が違うという論点を提示していく。まず日本株の急騰から見る。
+-->
+
+---
+
+<!-- _class: fit-94 -->
+# 日経平均は2ヶ月弱で6万円から7万円へ、年初来高値72,831円
+
+> *AIブームが日本株を史上最高値へ押し上げ、大和証券は年末8万円を予想*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="0" y="0" width="960" height="540" fill="#ffffff"/><text x="120" y="55" font-size="24" fill="#1e293b" font-weight="bold">日経平均株価の推移（円）</text><line x1="120" y1="440" x2="890" y2="440" stroke="#94a3b8" stroke-width="2"/><line x1="120" y1="80" x2="120" y2="440" stroke="#94a3b8" stroke-width="2"/><polyline points="160,400 340,345 520,250 680,155" fill="none" stroke="#2563eb" stroke-width="5" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><polyline points="680,155 850,95" fill="none" stroke="#f59e0b" stroke-width="4" stroke-dasharray="10 8"/><circle cx="160" cy="400" r="7" fill="#2563eb"/><circle cx="680" cy="155" r="10" fill="#2563eb"/><circle cx="850" cy="95" r="8" fill="#f59e0b"/><text x="140" y="475" font-size="20" fill="#475569">5月</text><text x="135" y="385" font-size="22" fill="#1e3a8a" font-weight="bold">60,000円</text><text x="555" y="135" font-size="24" fill="#1e3a8a" font-weight="bold">72,831円（6/22）</text><text x="790" y="80" font-size="22" fill="#b45309" font-weight="bold">8万円</text><text x="760" y="125" font-size="18" fill="#b45309">大和・年末予想</text></svg>
+</div>
+
+- 6/22時点で年初来高値72,831.73円、史上最高値を連日更新
+- Al Jazeeraも「AIブームが日本株を史上最高値に」と報道
+
+<!--
+6万円から7万円まで2か月弱という急騰。数値は6月22日時点の年初来高値であることを明示する。7月は調整の可能性があるが正確な現在値は未確認のため触れない。出典: https://www.nikkei.com/article/DGXZQOUB191SI0Z10C26A6000000/ , https://www.aljazeera.com/economy/2026/6/3/japans-stock-market-hits-new-record-as-ai-boom-gathers-steam
+-->
+
+---
+
+<!-- _class: fit-88 -->
+# S&P500の上位10銘柄集中度35%は、ドットコム期の25%を超えた
+
+> *マグニフィセント7が指数の約1/3を占め、NVIDIA単独で時価総額5.3兆ドル*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="0" y="0" width="960" height="540" fill="#ffffff"/><text x="280" y="55" font-size="24" fill="#1e293b" font-weight="bold">上位10銘柄の指数集中度</text><line x1="150" y1="470" x2="820" y2="470" stroke="#94a3b8" stroke-width="2"/><rect x="250" y="220" width="160" height="250" rx="6" fill="#64748b" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><rect x="560" y="120" width="160" height="350" rx="6" fill="#dc2626" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><text x="290" y="200" font-size="32" fill="#334155" font-weight="bold">25%</text><text x="600" y="100" font-size="36" fill="#b91c1c" font-weight="bold">35%</text><text x="238" y="505" font-size="22" fill="#334155">ドットコム期ピーク</text><text x="575" y="505" font-size="22" fill="#334155">現在（2026）</text></svg>
+</div>
+
+- S&P500の時価総額は69兆ドル超（6/2時点）
+- NVIDIA単独の時価総額は5.3兆ドルに到達
+
+<!--
+少数の巨大テックへの集中度がドットコム期を超えたことが最大の警戒材料。ただし集中の中身が実収益を伴う点は次のスライドで論じる。出典: https://www.tradingkey.com/analysis/stocks/us-stocks/261950917-sp500-valuation-bubble-ai-concentration-shiller-pe-buffett-indicator-fed-hawkish-yield-market-nifty-fifty-strategy-tradingkey
+-->
+
+---
+
+# Shiller PE 42・バフェット指標237%、それでも「本物」と言える理由
+
+> *指標はドットコム期並みだが、AIリーダーは実収益とキャッシュフローを伴う*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="0" y="0" width="960" height="540" fill="#ffffff"/><rect x="50" y="80" width="390" height="400" rx="14" fill="#fef2f2" stroke="#dc2626" stroke-width="3"/><rect x="520" y="80" width="390" height="400" rx="14" fill="#eff6ff" stroke="#2563eb" stroke-width="3"/><text x="85" y="135" font-size="28" fill="#b91c1c" font-weight="bold">バブル派</text><text x="85" y="200" font-size="24" fill="#334155">Shiller PE 42.32</text><text x="85" y="250" font-size="24" fill="#334155">バフェット指標 237%</text><text x="85" y="300" font-size="22" fill="#334155">ドットコム期並みの高値</text><text x="85" y="370" font-size="21" fill="#334155">「2026年は1999年に</text><text x="105" y="400" font-size="21" fill="#334155">似てきた」(Fortune)</text><text x="555" y="135" font-size="28" fill="#1d4ed8" font-weight="bold">強気派</text><text x="555" y="200" font-size="24" fill="#334155">ヤルデニ「AIは本物」</text><text x="555" y="250" font-size="24" fill="#334155">S&amp;P500目標 8,250</text><text x="555" y="300" font-size="22" fill="#334155">実収益・CFを伴う</text><text x="555" y="370" font-size="21" fill="#334155">キャッシュ創出力が</text><text x="575" y="400" font-size="21" fill="#334155">ドットコム期と異なる</text></svg>
+</div>
+
+- 違いは実際の収益・キャッシュフローの有無に集約される
+
+<!--
+バリュエーション指標だけ見ればバブルだが、AIリーダー企業は赤字先行だったドットコム期と違い巨額のキャッシュを生んでいる。ここが本デッキの中心的論点。両論併記で提示する。出典: https://www.tradingkey.com/analysis/stocks/us-stocks/261950917-sp500-valuation-bubble-ai-concentration-shiller-pe-buffett-indicator-fed-hawkish-yield-market-nifty-fifty-strategy-tradingkey , https://247wallst.com/investing/2026/07/07/yardeni-ai-is-the-real-deal-not-a-bubble-targets-sp-500-at-8250-by-year-end/ , https://fortune.com/2026/06/08/ai-boom-tech-stocks-bubble-fears-earnings-growth-chipmakers-ipo/
+-->
+
+---
+
+<!-- _class: fit-94 -->
+# FOMCは半年で「利下げ」から「利上げ」へ180度転換した
+
+> *3月の年内1回利下げ予想が、6月には年内1回利上げ予想へ反転した*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="0" y="0" width="960" height="540" fill="#ffffff"/><rect x="70" y="110" width="320" height="300" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="3"/><text x="110" y="165" font-size="28" fill="#1d4ed8" font-weight="bold">3月時点</text><text x="110" y="225" font-size="25" fill="#334155">年内 1回</text><text x="110" y="285" font-size="40" fill="#2563eb" font-weight="bold">利下げ ↓</text><text x="110" y="355" font-size="21" fill="#475569">年末見通し 据え置き</text><polygon points="410,245 470,245 470,225 540,280 470,335 470,315 410,315" fill="#64748b" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><rect x="570" y="110" width="320" height="300" rx="14" fill="#fef2f2" stroke="#dc2626" stroke-width="3"/><text x="610" y="165" font-size="28" fill="#b91c1c" font-weight="bold">6月時点</text><text x="610" y="225" font-size="25" fill="#334155">年内 1回</text><text x="610" y="285" font-size="40" fill="#dc2626" font-weight="bold">利上げ ↑</text><text x="610" y="355" font-size="21" fill="#475569">年末見通し 3.8%へ</text><text x="300" y="465" font-size="24" fill="#1e293b" font-weight="bold">半年で180度の方向転換</text></svg>
+</div>
+
+- 5月CPIは前年比+4.2%と2%目標を大きく上回る
+- 7月議事録は2027年前半まで利下げなしを示唆
+
+<!--
+政策金利は3.5〜3.75%で4会合連続据え置きだが、注目すべきは見通しの方向転換。利下げ待ちだった市場前提が崩れた点が重要。出典: https://www.dlri.co.jp/report/macro/622959.html , https://www.investing.com/economic-calendar/cpi-733 , https://www.interactivecrypto.com/ja/2026-7-fomc-jul-2026
+-->
+
+---
+
+<!-- _class: fit-88 -->
+# FRB議長交代 — ウォーシュ体制は僅差承認の54対45で始まった
+
+> *近代のFRB人事として異例の僅差、就任宣誓もホワイトハウスで行われた*
+
+- 5/13に上院が54対45で承認、近代の議長人事で異例の僅差
+- 5/22に第17代FRB議長に就任
+- 就任宣誓はホワイトハウスで大統領主催という異例の形
+- モルガン・スタンレー出身、2008年金融危機対応に関与
+- タカ派かハト派かは分析記事レベルで両論が並存する
+
+<!--
+議長交代は政策の連続性への不確実性を高める。ウォーシュ体制の性格は市場でも評価が割れており、断定を避け両論併記で扱う。出典: https://www.nikkei.com/article/DGXZQOGN19ATA0Z10C26A5000000/ , https://www.nomura.co.jp/wealthstyle/article/0785/
+-->
+
+---
+
+<!-- _class: fit-88 -->
+# 最高裁が関税を違憲としても、関税は翌日には復活した
+
+> *IEEPA関税の違憲判決と同日に、通商法122条で10%課徴金へ差し替えられた*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="0" y="0" width="960" height="540" fill="#ffffff"/><text x="200" y="120" font-size="26" fill="#1e293b" font-weight="bold">違憲判決の当日に関税は差し替えられた</text><rect x="40" y="200" width="250" height="150" rx="12" fill="#fef2f2" stroke="#dc2626" stroke-width="3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><text x="70" y="255" font-size="24" fill="#b91c1c" font-weight="bold">2/20 最高裁</text><text x="70" y="295" font-size="22" fill="#334155">6対3で</text><text x="70" y="325" font-size="22" fill="#334155">IEEPA関税を違憲</text><polygon points="300,260 350,275 300,290" fill="#64748b"/><rect x="355" y="200" width="250" height="150" rx="12" fill="#fffbeb" stroke="#f59e0b" stroke-width="3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><text x="385" y="255" font-size="24" fill="#b45309" font-weight="bold">同日</text><text x="385" y="295" font-size="22" fill="#334155">通商法122条で</text><text x="385" y="325" font-size="22" fill="#334155">10%一律課徴金</text><polygon points="615,260 665,275 615,290" fill="#64748b"/><rect x="670" y="200" width="250" height="150" rx="12" fill="#eff6ff" stroke="#2563eb" stroke-width="3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><text x="700" y="255" font-size="24" fill="#1d4ed8" font-weight="bold">2/24 発効</text><text x="700" y="295" font-size="22" fill="#334155">150日間の</text><text x="700" y="325" font-size="22" fill="#334155">時限措置</text></svg>
+</div>
+
+- 米世帯当たり年約$1,500の負担増と試算される
+- 実効関税率は10%→6.7%へ低下も、輸入は15%超増加
+
+<!--
+司法が違憲としても行政が別の法的根拠で即座に復活させた。関税は制度的にしぶとく、コスト高要因として残り続ける。出典: https://www.jetro.go.jp/biznews/2026/02/01180e362b158f46.html , https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/
+-->
+
+---
+
+<!-- _class: fit-88 -->
+# ドル円162円は1986年以来 — 日銀1%利上げでも円安が止まらない
+
+> *日銀が31年ぶりに政策金利1.00%へ引き上げても米金利の先高観が円安を支える*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="0" y="0" width="960" height="540" fill="#ffffff"/><text x="330" y="55" font-size="24" fill="#1e293b" font-weight="bold">日米の政策金利差</text><line x1="120" y1="400" x2="600" y2="400" stroke="#94a3b8" stroke-width="2"/><rect x="180" y="360" width="120" height="40" rx="6" fill="#3b82f6" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><text x="185" y="345" font-size="24" fill="#1d4ed8" font-weight="bold">1.00%</text><text x="195" y="430" font-size="22" fill="#334155">日本</text><rect x="420" y="250" width="120" height="150" rx="6" fill="#dc2626" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><text x="410" y="235" font-size="24" fill="#b91c1c" font-weight="bold">3.5-3.75%</text><text x="455" y="430" font-size="22" fill="#334155">米国</text><text x="665" y="250" font-size="30" fill="#1e293b" font-weight="bold">ドル円</text><text x="660" y="325" font-size="56" fill="#b45309" font-weight="bold">162円</text><text x="660" y="370" font-size="22" fill="#475569">7/1・1986年以来</text></svg>
+</div>
+
+- 日銀は6月に0.25%利上げ、政策金利1.00%は31年ぶり
+- 米金利の先高観がドルを支え、円買いは上値を抑えられる
+
+<!--
+日銀が31年ぶりの1%まで利上げしても、日米金利差が大きく円安が止まらない。為替はインフラ調達コストにも効くため後半のリスク要因。出典: https://www.oanda.jp/lab-education/historical-rate/usdjpy/20260701/ , https://www.dlri.co.jp/report/macro/623090.html
+-->
+
+---
+
+<!-- _class: fit-82 -->
+# リスクオフの受け皿は金 — 4,150ドルへ再上昇した
+
+> *中東緊迫でリスクオフが進み、金は4,150ドルへ回復・BTCは円建て約1,000万円へ調整*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="0" y="0" width="960" height="540" fill="#ffffff"/><rect x="60" y="100" width="390" height="370" rx="14" fill="#fffbeb" stroke="#f59e0b" stroke-width="3"/><rect x="510" y="100" width="390" height="370" rx="14" fill="#f8fafc" stroke="#64748b" stroke-width="3"/><text x="95" y="155" font-size="30" fill="#b45309" font-weight="bold">金（ゴールド）</text><polyline points="100,380 190,360 270,300 370,240" fill="none" stroke="#f59e0b" stroke-width="5"/><polygon points="370,240 348,250 356,228" fill="#f59e0b"/><text x="95" y="435" font-size="26" fill="#334155" font-weight="bold">4,150ドルへ回復</text><text x="545" y="155" font-size="30" fill="#334155" font-weight="bold">ビットコイン</text><polyline points="545,240 630,285 720,330 830,365" fill="none" stroke="#64748b" stroke-width="5"/><polygon points="830,365 808,352 826,340" fill="#64748b"/><text x="545" y="435" font-size="24" fill="#334155" font-weight="bold">円建て約1,000万円へ調整</text></svg>
+</div>
+
+- 金は7/22に4,150ドル、安全資産需要と地政学リスクが背景
+- ブレント原油90ドル超・ホルムズ海峡リスクでUBSはS&P500目標を引き下げ
+
+<!--
+金への資金回帰はリスクオフの象徴。BTCのドル建て現在値は未確認のため円建て概算のみ提示する。中東情勢は原油と株の両面でリスク。出典: https://www.otakaraya.jp/contents/gold-platinum/gold/gold-souba/kinsouba-sekaijousei-doukou-kaisetsu/ , https://www.rakuten-wallet.co.jp/market/market-list/2026/012902/ , https://finance.yahoo.co.jp/news/detail/23895403bcee05c46a0b6c680c32f604d7f4d572
+-->
+
+---
+
+<!-- _class: lead -->
+# 第4部 2026年後半のシナリオ
+
+- 過熱継続・減速選別・急落の3つを、トリガーとともに見取り図にする
+
+<!--
+ここまでの電力・メモリ・金利の論点を統合し、後半のシナリオと先行指標、具体的な備えへと落とし込む。
+-->
+
+---
+
+<!-- _class: fit-94 -->
+# 後半のシナリオは3つ — 本線は「物理制約による減速」
+
+> *本線は②減速・選別、電力とメモリの制約でcapex効率が問われる展開*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="0" y="0" width="960" height="540" fill="#ffffff"/><rect x="40" y="230" width="180" height="90" rx="12" fill="#1e293b"/><text x="70" y="270" font-size="22" fill="#ffffff">2026年</text><text x="70" y="300" font-size="22" fill="#ffffff">後半</text><line x1="220" y1="275" x2="340" y2="110" stroke="#94a3b8" stroke-width="3"/><line x1="220" y1="275" x2="340" y2="275" stroke="#dc2626" stroke-width="4"/><line x1="220" y1="275" x2="340" y2="440" stroke="#94a3b8" stroke-width="3"/><rect x="340" y="70" width="560" height="80" rx="12" fill="#eff6ff" stroke="#3b82f6" stroke-width="2"/><text x="365" y="105" font-size="22" fill="#1d4ed8" font-weight="bold">①過熱継続</text><text x="365" y="135" font-size="20" fill="#334155">制約が緩む・金利据え置き</text><rect x="340" y="235" width="560" height="80" rx="12" fill="#fef2f2" stroke="#dc2626" stroke-width="3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><text x="365" y="270" font-size="22" fill="#b91c1c" font-weight="bold">②減速・選別【本線】</text><text x="365" y="300" font-size="20" fill="#334155">制約顕在化でcapex効率が問われる</text><rect x="340" y="400" width="560" height="80" rx="12" fill="#fffbeb" stroke="#f59e0b" stroke-width="2"/><text x="365" y="435" font-size="22" fill="#b45309" font-weight="bold">③急落</text><text x="365" y="465" font-size="20" fill="#334155">利上げ加速×中東ショック</text></svg>
+</div>
+
+- トリガー: ①制約緩和 ②制約顕在化（本線） ③利上げ加速＋地政学ショック
+
+<!--
+崩壊を断定しない。収益は本物でも物理と金利が成長率を律速するため、本線は減速・選別。各シナリオを分けるのは電力・メモリの制約と金利の動き。
+-->
+
+---
+
+# ウォッチすべき先行指標は「電力契約・メモリ価格・FOMCドット」
+
+> *見るべきはGPU出荷でなく、電力・メモリ・金利の3つの先行指標*
+
+<div class="fig">
+<svg viewBox="0 0 960 540" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;"><rect x="0" y="0" width="960" height="540" fill="#ffffff"/><text x="330" y="70" font-size="24" fill="#1e293b" font-weight="bold">見るべき3つの先行指標</text><rect x="40" y="120" width="280" height="300" rx="14" fill="#eff6ff" stroke="#3b82f6" stroke-width="3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><text x="75" y="175" font-size="24" fill="#1d4ed8" font-weight="bold">電力契約</text><text x="75" y="250" font-size="40" fill="#1e293b" font-weight="bold">+26%</text><text x="75" y="290" font-size="20" fill="#475569">DC電力 565TWh</text><text x="75" y="360" font-size="19" fill="#334155">注目: 送電網増強</text><rect x="340" y="120" width="280" height="300" rx="14" fill="#fef2f2" stroke="#dc2626" stroke-width="3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><text x="375" y="175" font-size="24" fill="#b91c1c" font-weight="bold">メモリ価格</text><text x="375" y="250" font-size="40" fill="#1e293b" font-weight="bold">+90%</text><text x="375" y="290" font-size="20" fill="#475569">DRAM・Q1</text><text x="375" y="360" font-size="19" fill="#334155">注目: スポット価格</text><rect x="640" y="120" width="280" height="300" rx="14" fill="#fffbeb" stroke="#f59e0b" stroke-width="3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/><text x="675" y="175" font-size="24" fill="#b45309" font-weight="bold">FOMCドット</text><text x="675" y="250" font-size="40" fill="#1e293b" font-weight="bold">3.8%</text><text x="675" y="290" font-size="20" fill="#475569">年末見通し</text><text x="675" y="360" font-size="19" fill="#334155">注目: 次回FOMC</text></svg>
+</div>
+
+- TSMCのQ3粗利率とDRAMスポット価格が減速の早期サイン
+
+<!--
+GPU出荷台数は改善方向のため先行指標にならない。真に効くのは電源・メモリ・資本コストの3つ。この3指標を四半期ごとに確認する運用を勧める。
+-->
+
+---
+
+# 崩壊を待つな — 減速シナリオを前提に動く3つの備え
+
+> *AI導入・インフラコスト・為替金利の3軸で前提を四半期ごとに見直す*
+
+<div class="fig">
+<svg viewBox="0 0 960 380" role="img" aria-label="3つの備え" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="30" y="60" width="280" height="260" rx="14" fill="#e8f0fe" stroke="#1a73e8" stroke-width="3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<text x="170" y="110" text-anchor="middle" font-size="26" font-weight="bold" fill="#1a73e8">1. AI導入</text>
+<text x="170" y="165" text-anchor="middle" font-size="21" fill="#202124">「本番運用23%」の</text>
+<text x="170" y="195" text-anchor="middle" font-size="21" fill="#202124">壁を意識する</text>
+<text x="170" y="255" text-anchor="middle" font-size="20" fill="#5f6368">小さく作りROIを検証</text>
+<rect x="340" y="60" width="280" height="260" rx="14" fill="#fef7e0" stroke="#f9ab00" stroke-width="3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<text x="480" y="110" text-anchor="middle" font-size="26" font-weight="bold" fill="#e37400">2. インフラ設計</text>
+<text x="480" y="165" text-anchor="middle" font-size="21" fill="#202124">メモリ・電力コストの</text>
+<text x="480" y="195" text-anchor="middle" font-size="21" fill="#202124">高騰を前提にする</text>
+<text x="480" y="255" text-anchor="middle" font-size="20" fill="#5f6368">DRAM +90%/四半期の世界</text>
+<rect x="650" y="60" width="280" height="260" rx="14" fill="#e6f4ea" stroke="#188038" stroke-width="3" style="filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.15))"/>
+<text x="790" y="110" text-anchor="middle" font-size="26" font-weight="bold" fill="#188038">3. マクロ前提</text>
+<text x="790" y="165" text-anchor="middle" font-size="21" fill="#202124">為替・金利の前提を</text>
+<text x="790" y="195" text-anchor="middle" font-size="21" fill="#202124">四半期ごとに見直す</text>
+<text x="790" y="255" text-anchor="middle" font-size="20" fill="#5f6368">利上げ反転・162円を織り込む</text>
+</svg>
+</div>
+
+<!--
+崩壊を待つのではなく、減速シナリオを前提に行動する。導入は小さく検証、コストは高止まり前提、マクロ前提は定期的に更新するのが実務的な備え。
+-->
+
+---
+
+<!-- _class: fit-82 -->
+# 参照資料 (1/2) — AI・テクノロジー
+
+> *本編のAI・テック領域の数値はこれらの主要出典に基づく*
+
+- [Anthropic 公式ニュース](https://www.anthropic.com/news)
+- [SpaceXがCursor(Anysphere)を$60Bで買収(Forbes)](https://www.forbes.com/sites/siladityaray/2026/06/16/spacex-will-buy-ai-coding-firm-cursor-for-60-billion/)
+- [S&P Global: AIの雇用への影響(2026)](https://www.spglobal.com/en/research-insights/special-reports/ai-impact-on-employment-2026)
+- [Tom's Hardware: Big Tech capex $725B](https://www.tomshardware.com/tech-industry/big-tech/big-techs-ai-spending-plans-reach-725-billion)
+- [TrendForce: TSMC 2026 capexを$60-64Bへ](https://www.trendforce.com/news/2026/07/16/news-tsmc-lifts-2026-capex-15-to-60-64b-hikes-sales-outlook-to-over-40-despite-q3-margin-dip/)
+- [ビジネスジャーナル: メモリ・インフレ(DRAM+90%)](https://biz-journal.jp/economy/post_394409.html)
+- [インプレス総合研究所: データセンター調査報告書2026](https://research.impress.co.jp/topics/list/dc/726)
+
+<!--
+AI・テック領域の主要出典。数値はすべてこれらの記事・調査から引用しており、確度が中以下のものはスライド本文で断定を避けている。
+-->
+
+---
+
+<!-- _class: fit-82 -->
+# 参照資料 (2/2) — 市場・マクロ経済
+
+> *本編の株価・金利・為替・関税の数値はこれらの主要出典に基づく*
+
+- [第一生命経済研究所: 2026年6月FOMCプレビュー](https://www.dlri.co.jp/report/macro/622959.html)
+- [日経新聞: ウォーシュ氏、第17代FRB議長に就任](https://www.nikkei.com/article/DGXZQOGN19ATA0Z10C26A5000000/)
+- [ジェトロ: 米最高裁がIEEPA関税を無効と判断](https://www.jetro.go.jp/biznews/2026/02/01180e362b158f46.html)
+- [Tax Foundation: Trump Tariffs Tracker](https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/)
+- [TradingKey: S&P500 valuation bubble](https://www.tradingkey.com/analysis/stocks/us-stocks/261950917-sp500-valuation-bubble-ai-concentration-shiller-pe-buffett-indicator-fed-hawkish-yield-market-nifty-fifty-strategy-tradingkey)
+- [日経新聞: 日経平均7万円](https://www.nikkei.com/article/DGXZQOUB191SI0Z10C26A6000000/)
+- [おたからや: 2026年7月 金価格見通し](https://www.otakaraya.jp/contents/gold-platinum/gold/gold-souba/kinsouba-sekaijousei-doukou-kaisetsu/)
+
+<!--
+市場・マクロ領域の主要出典。日経平均は6/22時点、ドル円は7/1時点など、時点を明示した数値の裏付けとなる一次〜準一次資料を中心にまとめた。
+-->

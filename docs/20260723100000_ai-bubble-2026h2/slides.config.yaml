@@ -1,0 +1,14 @@
+topic: "AIバブルは弾けるのか？ — 電力・メモリ・金利から読む2026年後半"
+language: "ja"
+
+slides:
+  count: 30
+
+output:
+  dir: "docs/20260723100000_ai-bubble-2026h2"
+  baseName: "ai-bubble-2026h2"
+
+marp:
+  theme: gaia
+  paginate: true
+  footer: "2026-07-23 | Trend Research"
