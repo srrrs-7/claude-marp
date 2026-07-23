@@ -567,6 +567,15 @@ body {
 		rgba(0, 0, 0, 0.7);
 }
 
+/* The book whose detail sheet is open: pulled off the shelf, accent ring. */
+.book.is-selected {
+	transform: translateY(-26px) rotate(0deg) scale(1.03);
+	filter: brightness(1.1);
+	z-index: 4;
+	box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent), 7px 18px 32px -6px
+		rgba(0, 0, 0, 0.7);
+}
+
 /* Foil bands top & bottom */
 .book .foil {
 	position: absolute;
@@ -690,6 +699,12 @@ body {
 	transform: translateY(-2px);
 }
 
+/* Card whose detail sheet is open */
+.card.is-selected {
+	transform: translateY(-2px);
+	box-shadow: 0 0 0 2px var(--accent), var(--shadow-hover);
+}
+
 .card-category {
 	font-size: 0.68rem;
 	font-weight: 700;
@@ -807,6 +822,12 @@ body {
 
 .list-row:hover {
 	background: var(--tag-bg);
+}
+
+/* Row whose detail sheet is open */
+.list-row.is-selected {
+	background: var(--tag-bg);
+	box-shadow: inset 2px 0 0 var(--accent);
 }
 
 .list-row .swatch {

@@ -338,6 +338,9 @@
 				})
 				.join("");
 		}
+		// A re-render (e.g. fav toggle while the sheet is open) rebuilds the DOM,
+		// so the selection highlight must be re-applied to the fresh elements.
+		applySelection();
 	}
 
 	// -------------------------------------------------------------------------
@@ -347,6 +350,18 @@
 	const overlay = document.getElementById("overlay");
 	const sheet = document.getElementById("sheet");
 	let lastFocused = null;
+	let selectedDir = null;
+
+	/** Highlight the currently-open deck in whatever view is rendered. */
+	function applySelection() {
+		for (const el of main.querySelectorAll(".is-selected"))
+			el.classList.remove("is-selected");
+		if (selectedDir) {
+			main
+				.querySelector(`[data-dir="${CSS.escape(selectedDir)}"]`)
+				?.classList.add("is-selected");
+		}
+	}
 
 	function pct(x) {
 		return `${Math.round(x * 100)}%`;
@@ -358,6 +373,8 @@
 		const d = DECKS.find((x) => x.dir === dir);
 		if (!d) return;
 		if (animate) lastFocused = document.activeElement;
+		selectedDir = d.dir;
+		applySelection();
 
 		const isFav = favs.has(d.dir);
 		const fileName = d.href.split("/").pop();
@@ -438,6 +455,8 @@
 	}
 
 	function closeSheet() {
+		selectedDir = null;
+		applySelection();
 		overlay.classList.remove("open");
 		document.body.style.overflow = "";
 		sheet.innerHTML = "";

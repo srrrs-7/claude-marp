@@ -575,6 +575,15 @@ body {
 		rgba(0, 0, 0, 0.7);
 }
 
+/* The book whose detail sheet is open: pulled off the shelf, accent ring. */
+.book.is-selected {
+	transform: translateY(-26px) rotate(0deg) scale(1.03);
+	filter: brightness(1.1);
+	z-index: 4;
+	box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent), 7px 18px 32px -6px
+		rgba(0, 0, 0, 0.7);
+}
+
 /* Foil bands top & bottom */
 .book .foil {
 	position: absolute;
@@ -698,6 +707,12 @@ body {
 	transform: translateY(-2px);
 }
 
+/* Card whose detail sheet is open */
+.card.is-selected {
+	transform: translateY(-2px);
+	box-shadow: 0 0 0 2px var(--accent), var(--shadow-hover);
+}
+
 .card-category {
 	font-size: 0.68rem;
 	font-weight: 700;
@@ -815,6 +830,12 @@ body {
 
 .list-row:hover {
 	background: var(--tag-bg);
+}
+
+/* Row whose detail sheet is open */
+.list-row.is-selected {
+	background: var(--tag-bg);
+	box-shadow: inset 2px 0 0 var(--accent);
 }
 
 .list-row .swatch {
@@ -1752,6 +1773,9 @@ footer a {
 				})
 				.join("");
 		}
+		// A re-render (e.g. fav toggle while the sheet is open) rebuilds the DOM,
+		// so the selection highlight must be re-applied to the fresh elements.
+		applySelection();
 	}
 
 	// -------------------------------------------------------------------------
@@ -1761,6 +1785,18 @@ footer a {
 	const overlay = document.getElementById("overlay");
 	const sheet = document.getElementById("sheet");
 	let lastFocused = null;
+	let selectedDir = null;
+
+	/** Highlight the currently-open deck in whatever view is rendered. */
+	function applySelection() {
+		for (const el of main.querySelectorAll(".is-selected"))
+			el.classList.remove("is-selected");
+		if (selectedDir) {
+			main
+				.querySelector(`[data-dir="${CSS.escape(selectedDir)}"]`)
+				?.classList.add("is-selected");
+		}
+	}
 
 	function pct(x) {
 		return `${Math.round(x * 100)}%`;
@@ -1772,6 +1808,8 @@ footer a {
 		const d = DECKS.find((x) => x.dir === dir);
 		if (!d) return;
 		if (animate) lastFocused = document.activeElement;
+		selectedDir = d.dir;
+		applySelection();
 
 		const isFav = favs.has(d.dir);
 		const fileName = d.href.split("/").pop();
@@ -1852,6 +1890,8 @@ footer a {
 	}
 
 	function closeSheet() {
+		selectedDir = null;
+		applySelection();
 		overlay.classList.remove("open");
 		document.body.style.overflow = "";
 		sheet.innerHTML = "";
