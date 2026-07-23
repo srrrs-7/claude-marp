@@ -64,6 +64,12 @@ type ExamMeta = {
 	domains: { id: string; name: string; weight: string }[];
 };
 
+// pdfBase historically ends in the default set size "_20" — swap that suffix
+// for the actual item count so differently-sized sets never overwrite each
+// other's PDFs in pdf/.
+const pdfBaseFor = (meta: ExamMeta, count: number): string =>
+	meta.pdfBase.replace(/_\d+$/, `_${count}`);
+
 // ── exam metadata ────────────────────────────────────────────────────────────
 const EXAM_META: Record<string, ExamMeta> = {
 	"CCAO-F": {
@@ -186,6 +192,94 @@ const CCAF_SCENARIOS: LocalizedScenario[] = [
 			ja: "あなたは経理BPO企業で、取引先から届く請求書PDFを処理するエージェントを構築している。1通あたり平均12ページのPDFを取り込み、カスタムMCPツール `parse_invoice` / `match_purchase_order` / `schedule_payment` / `flag_for_review` を通じて会計システムに連携する。`schedule_payment` は実際に支払いを予約する高影響ツールである。目標は明細が発注書と一致する請求書の80%を自動で支払予約まで進め、不一致・高額は人間のレビューに回すこと。月間の処理量は40,000通。以下の設問はこのシステムに関するものである。",
 		},
 	},
+	{
+		id: "sc-4",
+		title: {
+			en: "Healthcare Prior-Authorization Triage Agent",
+			ja: "医療事前承認トリアージ・エージェント",
+		},
+		body: {
+			en: "You are the architect for a health insurer building a prior-authorization triage agent on the Claude Agent SDK. It receives authorization requests from provider portals (clinical notes plus a coded procedure request) and connects to core systems through the custom MCP tools `get_patient_record` / `check_coverage_policy` / `approve_authorization` / `escalate_to_clinician`. `approve_authorization` is a high-impact tool that actually commits an approval decision to the claims system. The goal is to auto-approve the 60% of requests that clearly meet coverage policy and route everything ambiguous or high-risk to a clinical reviewer. Peak volume is 3,000 requests per day in a regulated environment. The following questions concern this system.",
+			ja: "あなたは医療保険会社のアーキテクトとして、Claude Agent SDK で事前承認トリアージ・エージェントを構築している。医療機関ポータルから届く承認申請（診療メモと処置コード）を受け、カスタムMCPツール `get_patient_record` / `check_coverage_policy` / `approve_authorization` / `escalate_to_clinician` で基幹システムに接続する。`approve_authorization` は承認判定を実際に請求システムへ確定させる高影響ツールである。目標は補償方針を明確に満たす60%の申請を自動承認し、曖昧・高リスクな案件は臨床レビュアーに回すこと。規制環境下でピーク時1日3,000件を処理する。以下の設問はこのシステムに関するものである。",
+		},
+	},
+	{
+		id: "sc-5",
+		title: {
+			en: "Claude Code Monorepo Migration Fleet",
+			ja: "Claude Code モノレポ移行フリート",
+		},
+		body: {
+			en: "You are designing a migration program that uses Claude Code to move 1,400 packages in a monorepo from a deprecated HTTP client to its replacement. Claude Code runs headless in CI, package by package, with a repo-level CLAUDE.md describing the migration recipe, subagent definitions for edit and verify roles, PostToolUse hooks that run the package's tests, and a permission configuration. Some packages also contain scripts that can touch production infrastructure. About 90% of migrations are mechanical; the rest need judgment about behavior changes. The following questions concern this pipeline.",
+			ja: "あなたは、モノレポ内の1,400パッケージを非推奨のHTTPクライアントから後継ライブラリへ移行するプログラムを、Claude Code を使って設計している。Claude Code はCI上で headless モードでパッケージ単位に実行され、移行手順を書いたリポジトリ直下の CLAUDE.md、編集役と検証役のサブエージェント定義、パッケージのテストを走らせる PostToolUse フック、権限設定を持つ。一部のパッケージには本番インフラを触りうるスクリプトも含まれる。移行の約9割は機械的だが、残りは挙動変化の判断を要する。以下の設問はこのパイプラインに関するものである。",
+		},
+	},
+	{
+		id: "sc-6",
+		title: {
+			en: "Wealth-Management Research Assistant",
+			ja: "資産運用リサーチ・アシスタント",
+		},
+		body: {
+			en: "You are building a research assistant for a wealth-management firm's advisors. It answers questions by combining retrieval over a corpus of 80,000 filings and research notes with live systems reached through the custom MCP tools `search_filings` / `get_portfolio_positions` / `get_market_price` / `send_client_report`. `send_client_report` is a high-impact tool that actually delivers a report to an end client. Answers must distinguish stable knowledge (filings, methodology) from live state (prices, positions), and advisors expect cited sources. Around 400 advisors use it daily. The following questions concern this system.",
+			ja: "あなたは資産運用会社のアドバイザー向けリサーチ・アシスタントを構築している。8万件の開示資料・リサーチノートに対する検索（RAG）と、カスタムMCPツール `search_filings` / `get_portfolio_positions` / `get_market_price` / `send_client_report` で到達するライブ系システムを組み合わせて回答する。`send_client_report` は実際に顧客へレポートを送付する高影響ツールである。回答では安定した知識（開示資料・手法）とライブな状態（価格・ポジション）を区別し、出典の提示が求められる。約400人のアドバイザーが毎日利用する。以下の設問はこのシステムに関するものである。",
+		},
+	},
+	{
+		id: "sc-7",
+		title: {
+			en: "Logistics Dispatch & Notification Agent",
+			ja: "物流ディスパッチ・通知エージェント",
+		},
+		body: {
+			en: "You are the architect for a parcel carrier's dispatch agent. When shipments are delayed or misrouted it investigates and remediates through the custom MCP tools `track_shipment` / `reroute_shipment` / `issue_credit` / `notify_customer`. `issue_credit` is a high-impact tool that actually grants monetary credits to customer accounts, and `reroute_shipment` changes physical routing. The agent handles 25,000 shipment exceptions per day, and the business tracks resolution accuracy, cost of credits issued, and time-to-notification as its key metrics. The following questions concern this system.",
+			ja: "あなたは宅配事業者のディスパッチ・エージェントを設計するアーキテクトである。配送の遅延・誤配送が起きると、カスタムMCPツール `track_shipment` / `reroute_shipment` / `issue_credit` / `notify_customer` を通じて調査・是正する。`issue_credit` は顧客アカウントへ実際に金銭クレジットを付与する高影響ツールで、`reroute_shipment` は物理的な配送経路を変更する。1日25,000件の配送例外を処理し、事業側は解決精度・付与クレジットのコスト・通知までの時間を主要指標として追っている。以下の設問はこのシステムに関するものである。",
+		},
+	},
+	{
+		id: "sc-8",
+		title: {
+			en: "Contract-Review Structured-Output Workflow",
+			ja: "契約レビュー構造化出力ワークフロー",
+		},
+		body: {
+			en: "You are building a contract-review workflow for a legal-operations team. Inbound vendor contracts (30–80 pages) flow through a fixed sequence: `extract_clauses` pulls clause text, Claude compares each clause to the firm's negotiation playbook via `compare_to_playbook`, drafts proposed edits with `draft_redlines`, and `send_to_counsel` routes the package to an attorney. Downstream systems consume the clause analysis as strict JSON conforming to a published schema; a malformed document blocks the whole batch. Volume is 900 contracts per month. The following questions concern this workflow.",
+			ja: "あなたはリーガルオペレーションチームの契約レビュー・ワークフローを構築している。受領したベンダー契約（30〜80ページ）は固定の手順を流れる: `extract_clauses` が条項テキストを抽出し、Claude が `compare_to_playbook` で各条項を自社の交渉プレイブックと照合し、`draft_redlines` で修正案を起案し、`send_to_counsel` が弁護士へ一式を回付する。下流システムは条項分析を公開スキーマ準拠の厳格なJSONとして消費し、不正な1件がバッチ全体を止める。処理量は月900契約。以下の設問はこのワークフローに関するものである。",
+		},
+	},
+	{
+		id: "sc-9",
+		title: {
+			en: "Claude Code Enablement for a 40-Developer Fintech",
+			ja: "40人開発組織への Claude Code 展開",
+		},
+		body: {
+			en: "You are rolling out Claude Code to a fintech engineering organization of 40 developers across four teams. The monorepo has a root CLAUDE.md, per-team rules files, a set of custom skills, and MCP servers for the ticket tracker and the feature-flag service. Deploy scripts that can reach production live in the same repo, and the compliance team requires that AI-driven changes be reviewable and that production access be controlled. Developers range from enthusiastic early adopters to skeptics burned by a previous tool. The following questions concern this rollout.",
+			ja: "あなたはフィンテック企業の4チーム・40人の開発組織へ Claude Code を展開している。モノレポにはルートの CLAUDE.md、チーム別のルールファイル、カスタムスキル群、チケットトラッカーとフィーチャーフラグサービスの MCP サーバがある。本番に到達しうるデプロイスクリプトが同じリポジトリにあり、コンプライアンスチームは AI による変更のレビュー可能性と本番アクセスの統制を要求している。開発者は熱心な早期採用者から、以前のツールで痛い目を見た懐疑派までいる。以下の設問はこの展開に関するものである。",
+		},
+	},
+	{
+		id: "sc-10",
+		title: {
+			en: "Multi-Agent Competitive-Intelligence Orchestrator",
+			ja: "マルチエージェント競合調査オーケストレータ",
+		},
+		body: {
+			en: "You are designing a competitive-intelligence system in which a supervisor agent decomposes a weekly research brief into per-competitor units, fans them out to research subagents that use `web_search` and `fetch_page` over roughly 60 external sources, and synthesizes their returns into one report. `write_report_section` stores drafted sections, and `publish_brief` is a high-impact tool that actually distributes the finished brief to 300 executives. Fetched web content is untrusted third-party input. The run must finish within a 4-hour overnight window. The following questions concern this system.",
+			ja: "あなたは競合調査システムを設計している。スーパーバイザー・エージェントが週次の調査依頼を競合企業単位に分解し、`web_search` と `fetch_page` で約60の外部ソースを調べるリサーチ・サブエージェント群にファンアウトし、返ってきた結果を1本のレポートに統合する。`write_report_section` は起案済みセクションを保存し、`publish_brief` は完成したブリーフを実際に役員300人へ配信する高影響ツールである。取得したWebコンテンツは信頼できない第三者入力である。実行は夜間4時間の枠内に収める必要がある。以下の設問はこのシステムに関するものである。",
+		},
+	},
+	{
+		id: "sc-11",
+		title: {
+			en: "Regulated Policy-Renewal Notice Pipeline",
+			ja: "規制下の保険更新通知パイプライン",
+		},
+		body: {
+			en: "You are building a pipeline that drafts policy-renewal notices for an insurer. For each of 200,000 policies per quarter it loads policy terms with `get_policy_terms`, generates a personalized notice with `generate_notice` under a 30,000-token system prompt containing regulated template wording, and either queues the letter for physical mail with `queue_for_print` — a high-impact, irreversible tool — or routes edge cases to `flag_compliance_review`. Regulators require that mandatory disclosures appear verbatim, and marketing wants each notice personalized to the policyholder. The following questions concern this pipeline.",
+			ja: "あなたは保険会社の更新通知を起案するパイプラインを構築している。四半期あたり20万契約それぞれについて、`get_policy_terms` で契約条件を読み込み、規制上のテンプレート文言を含む30,000トークンのシステムプロンプトのもと `generate_notice` で個別化した通知文を生成し、`queue_for_print`（実際に郵送キューへ投入する取り消し不能の高影響ツール）へ送るか、エッジケースを `flag_compliance_review` に回す。規制当局は必須開示文言の逐語一致を要求し、マーケティングは契約者ごとの個別化を求めている。以下の設問はこのパイプラインに関するものである。",
+		},
+	},
 ];
 
 // ── localized chrome (everything that is NOT item content) ───────────────────
@@ -228,7 +322,7 @@ type Labels = {
 		domainBreakHdr: string;
 		domainCols: string; // "| ドメイン | 公式配点 | 本問題集 |"
 		howtoHdr: string;
-		howtoBody: (exam: string, m: ExamMeta) => string;
+		howtoBody: (exam: string, m: ExamMeta, count: number) => string;
 		scoreSheetHdr: string;
 		scoreCols: string; // "| ドメイン | 出題数 | 正答数 | 正答率 |"
 		totalLabel: string;
@@ -297,8 +391,8 @@ const LABELS: Record<Lang, Labels> = {
 			domainBreakHdr: "## Domain breakdown",
 			domainCols: "| Domain | Official weight | This set |",
 			howtoHdr: "## How to use",
-			howtoBody: (exam, _m) =>
-				`1. Time yourself on \`exam.en.md\` (or \`${_m.pdfBase}_en.pdf\`).\n2. Score with \`answers.en.md\` and fill the domain rows in the score sheet below.\n3. For weak domains, review the matching links in \`.claude/skills/claude-exam/references/links.md\`.`,
+			howtoBody: (exam, m, count) =>
+				`1. Time yourself on \`exam.en.md\` (or \`${pdfBaseFor(m, count)}_en.pdf\`).\n2. Score with \`answers.en.md\` and fill the domain rows in the score sheet below.\n3. For weak domains, review the matching links in \`.claude/skills/claude-exam/references/links.md\`.`,
 			scoreSheetHdr: "## Score sheet",
 			scoreCols: "| Domain | Items | Correct | Accuracy |",
 			totalLabel: "**Total**",
@@ -348,8 +442,8 @@ const LABELS: Record<Lang, Labels> = {
 			domainBreakHdr: "## ドメイン別内訳",
 			domainCols: "| ドメイン | 公式配点 | 本問題集 |",
 			howtoHdr: "## 使い方",
-			howtoBody: (exam, m) =>
-				`1. \`exam.ja.md\`（または \`${m.pdfBase}_ja.pdf\`）を時間を計って解く\n2. 巻末／\`answers.ja.md\` で採点し、下の表にドメイン別の正誤を記入する\n3. 正答率が低いドメインは \`.claude/skills/claude-exam/references/links.md\` の該当リンクで復習する`,
+			howtoBody: (exam, m, count) =>
+				`1. \`exam.ja.md\`（または \`${pdfBaseFor(m, count)}_ja.pdf\`）を時間を計って解く\n2. 巻末／\`answers.ja.md\` で採点し、下の表にドメイン別の正誤を記入する\n3. 正答率が低いドメインは \`.claude/skills/claude-exam/references/links.md\` の該当リンクで復習する`,
 			scoreSheetHdr: "## 採点表",
 			scoreCols: "| ドメイン | 出題数 | 正答数 | 正答率 |",
 			totalLabel: "**合計**",
@@ -407,11 +501,27 @@ function mergeParts(examDir: string): void {
 	items.forEach((it, i) => {
 		it.id = `Q${i + 1}`;
 	});
+	// Attach the referenced shared scenarios (localized to the set's language)
+	// so items.json is self-contained and passes check-exam's scenario check.
+	const scenarioIds: string[] = [];
+	for (const it of items)
+		if (it.scenarioId && !scenarioIds.includes(it.scenarioId))
+			scenarioIds.push(it.scenarioId);
+	const scenarios = scenarioIds.map((id) => {
+		const s = CCAF_SCENARIOS.find((x) => x.id === id);
+		if (!s) throw new Error(`unknown scenarioId ${id} in merged parts`);
+		return {
+			id: s.id,
+			title: s.title[language] ?? s.title.en,
+			body: s.body[language] ?? s.body.en,
+		};
+	});
 	const out: Record<string, unknown> = {
 		exam,
 		language,
-		title: `${exam} practice quick20 (${items.length} items)`,
-		generatedFor: "Quick practice set — 20 items",
+		title: `${exam} practice set (${items.length} items)`,
+		generatedFor: `Practice set — ${items.length} items`,
+		...(scenarios.length > 0 ? { scenarios } : {}),
 		items,
 	};
 	writeFileSync(
@@ -572,7 +682,7 @@ function genReadmeMd(
 		);
 	out.push("");
 	out.push(`${r.howtoHdr}\n`);
-	out.push(`${r.howtoBody(exam, meta)}\n`);
+	out.push(`${r.howtoBody(exam, meta, items.length)}\n`);
 	out.push(`${r.scoreSheetHdr}\n`);
 	out.push(r.scoreCols);
 	out.push("|---|---|---|---|");
@@ -759,7 +869,7 @@ for (const v of variants) {
 		join(dirAbs, htmlName),
 		genHtml(v.exam, v.lang, v.items, scenarios),
 	);
-	const pdfName = `${meta.pdfBase}_${v.lang}.pdf`;
+	const pdfName = `${pdfBaseFor(meta, v.items.length)}_${v.lang}.pdf`;
 	built.push(`${htmlName} (${pdfName})`);
 	// manifest row: <html basename>\t<target pdf filename> — consumed by the
 	// topdf step so PDF naming stays in one place (EXAM_META.pdfBase).
