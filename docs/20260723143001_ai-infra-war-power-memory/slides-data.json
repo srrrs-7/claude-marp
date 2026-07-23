@@ -1,0 +1,334 @@
+{
+	"slides": [
+		{
+			"title": "AIの敵はGPUではない",
+			"subtitle": "電力とメモリが律速する2026年のインフラ戦争",
+			"content": [
+				"Big Tech capex $725B(+77%)の資金が、いま物理の壁にぶつかっている",
+				"2026年7月時点の一次報道・業界統計にもとづく現状整理"
+			],
+			"speakerNotes": "本デッキのテーマは、AI拡大の律速要因がGPU供給ではなく電力・冷却・メモリという物理制約に移ったという主張。金利や株式市場の話ではなく、データセンターの物理設計に焦点を当てる。",
+			"layout": "center"
+		},
+		{
+			"title": "AI拡大の律速要因はGPUではなく電力・冷却・メモリだ",
+			"subtitle": "巨額のcapexは、半導体ではなく物理インフラの壁に先に突き当たる",
+			"content": [
+				"4大テックの2026年AIインフラ投資は合計$725B、前年比+77%",
+				"その金の行き先＝データセンターは、電力・メモリ・冷却で逼迫",
+				"GPUを買えても、動かす電力と載せるメモリが足りない構図"
+			],
+			"speakerNotes": "BLUF。結論を先に置く。GPUが手に入ってもデータセンターの電力容量・メモリ供給・冷却能力という物理制約が先に律速する。以降のスライドで証拠を積む。",
+			"layout": "default"
+		},
+		{
+			"title": "投資は巨大化した ── では、その金は何にぶつかるのか",
+			"content": [
+				"まず投資規模を押さえ、次にそれが直面する3つの物理の壁を見る"
+			],
+			"speakerNotes": "セクション扉。投資規模のパートに入る。規模を確認したうえで、電力・メモリ・製造キャパという壁へ話を進める。",
+			"layout": "section"
+		},
+		{
+			"title": "4大テックのAI投資は前年比+77%で$725Bに達した",
+			"subtitle": "1年で$410B→$725B、2027年には合計$1兆超えの予測",
+			"content": [
+				"<svg viewBox=\"0 0 960 460\" font-family=\"sans-serif\">",
+				"<text x=\"40\" y=\"46\" font-size=\"26\" font-weight=\"bold\" fill=\"#1a1a2e\">4大テック AIインフラ投資額（年間）</text>",
+				"<line x1=\"120\" y1=\"400\" x2=\"900\" y2=\"400\" stroke=\"#888\" stroke-width=\"2\"/>",
+				"<rect x=\"200\" y=\"250\" width=\"140\" height=\"150\" fill=\"#7189bf\"/>",
+				"<rect x=\"470\" y=\"130\" width=\"140\" height=\"270\" fill=\"#e94560\"/>",
+				"<rect x=\"740\" y=\"60\" width=\"140\" height=\"340\" fill=\"#c0c0d0\"/>",
+				"<text x=\"270\" y=\"430\" font-size=\"24\" fill=\"#333\" text-anchor=\"middle\">2025</text>",
+				"<text x=\"540\" y=\"430\" font-size=\"24\" fill=\"#333\" text-anchor=\"middle\">2026</text>",
+				"<text x=\"810\" y=\"430\" font-size=\"24\" fill=\"#333\" text-anchor=\"middle\">2027予測</text>",
+				"<text x=\"270\" y=\"235\" font-size=\"26\" font-weight=\"bold\" fill=\"#1a1a2e\" text-anchor=\"middle\">$410B</text>",
+				"<text x=\"540\" y=\"115\" font-size=\"28\" font-weight=\"bold\" fill=\"#e94560\" text-anchor=\"middle\">$725B</text>",
+				"<text x=\"810\" y=\"46\" font-size=\"26\" font-weight=\"bold\" fill=\"#555\" text-anchor=\"middle\">$1兆+</text>",
+				"<text x=\"540\" y=\"350\" font-size=\"22\" font-weight=\"bold\" fill=\"#fff\" text-anchor=\"middle\">+77%</text>",
+				"</svg>"
+			],
+			"speakerNotes": "Microsoft・Amazon・Alphabet・Metaの2026年AIインフラ設備投資は合計$725B、前年の$410Bから+77%。内訳目安はAmazon $200B、Alphabet $175-185B、Meta $115-135B、Microsoft約$120B。集計により$600B〜$725Bの幅がある。出典: Tom's Hardware, valueaddvc.com。",
+			"layout": "default"
+		},
+		{
+			"title": "capexは半導体の先で、電力・メモリ・冷却の3つの壁に阻まれる",
+			"subtitle": "GPU調達は入口にすぎず、実際に稼働させる物理資源が不足する",
+			"content": [
+				"<svg viewBox=\"0 0 960 440\" font-family=\"sans-serif\">",
+				"<rect x=\"40\" y=\"170\" width=\"170\" height=\"100\" rx=\"12\" fill=\"#7189bf\"/>",
+				"<text x=\"125\" y=\"215\" font-size=\"23\" fill=\"#fff\" text-anchor=\"middle\">$725B</text>",
+				"<text x=\"125\" y=\"245\" font-size=\"20\" fill=\"#fff\" text-anchor=\"middle\">投資</text>",
+				"<polygon points=\"230,220 275,205 275,235\" fill=\"#555\"/>",
+				"<line x1=\"210\" y1=\"220\" x2=\"260\" y2=\"220\" stroke=\"#555\" stroke-width=\"4\"/>",
+				"<rect x=\"290\" y=\"40\" width=\"180\" height=\"90\" rx=\"12\" fill=\"#e94560\"/>",
+				"<text x=\"380\" y=\"78\" font-size=\"22\" fill=\"#fff\" text-anchor=\"middle\">電力</text>",
+				"<text x=\"380\" y=\"106\" font-size=\"18\" fill=\"#fff\" text-anchor=\"middle\">+26% 565TWh</text>",
+				"<rect x=\"290\" y=\"175\" width=\"180\" height=\"90\" rx=\"12\" fill=\"#e94560\"/>",
+				"<text x=\"380\" y=\"213\" font-size=\"22\" fill=\"#fff\" text-anchor=\"middle\">メモリ</text>",
+				"<text x=\"380\" y=\"241\" font-size=\"18\" fill=\"#fff\" text-anchor=\"middle\">DRAM +90%</text>",
+				"<rect x=\"290\" y=\"310\" width=\"180\" height=\"90\" rx=\"12\" fill=\"#e94560\"/>",
+				"<text x=\"380\" y=\"348\" font-size=\"22\" fill=\"#fff\" text-anchor=\"middle\">冷却</text>",
+				"<text x=\"380\" y=\"376\" font-size=\"18\" fill=\"#fff\" text-anchor=\"middle\">発熱の増大</text>",
+				"<text x=\"620\" y=\"210\" font-size=\"30\" font-weight=\"bold\" fill=\"#1a1a2e\">物理の壁</text>",
+				"<text x=\"620\" y=\"250\" font-size=\"22\" fill=\"#555\">= 2026年の律速要因</text>",
+				"</svg>"
+			],
+			"speakerNotes": "投資は入口にすぎない。GPUを調達しても、稼働に必要な電力容量・搭載するDRAM・排熱する冷却能力が同時に不足している。以降で各壁を定量的に見ていく。",
+			"layout": "default"
+		},
+		{
+			"title": "第1の壁：電力 ── 需要は送電網の増強ペースを上回る",
+			"content": [
+				"世界のデータセンター電力と、日本の系統増強の現状を見る"
+			],
+			"speakerNotes": "電力パートのセクション扉。世界の消費量と日本国内の系統整備の両面から、電力が最大のボトルネックであることを示す。",
+			"layout": "section"
+		},
+		{
+			"title": "データセンター電力は前年比+26%、565TWhへ膨張した",
+			"subtitle": "米ハイパースケーラー4社の年間設備投資は$6000億超に到達",
+			"content": [
+				"<svg viewBox=\"0 0 960 440\" font-family=\"sans-serif\">",
+				"<text x=\"40\" y=\"46\" font-size=\"26\" font-weight=\"bold\" fill=\"#1a1a2e\">世界のデータセンター電力消費（2026年予測）</text>",
+				"<line x1=\"120\" y1=\"370\" x2=\"900\" y2=\"370\" stroke=\"#888\" stroke-width=\"2\"/>",
+				"<rect x=\"260\" y=\"250\" width=\"150\" height=\"120\" fill=\"#7189bf\"/>",
+				"<rect x=\"620\" y=\"120\" width=\"150\" height=\"250\" fill=\"#e94560\"/>",
+				"<text x=\"335\" y=\"410\" font-size=\"24\" fill=\"#333\" text-anchor=\"middle\">前年</text>",
+				"<text x=\"695\" y=\"410\" font-size=\"24\" fill=\"#333\" text-anchor=\"middle\">2026</text>",
+				"<text x=\"695\" y=\"105\" font-size=\"30\" font-weight=\"bold\" fill=\"#e94560\" text-anchor=\"middle\">565TWh</text>",
+				"<polygon points=\"470,300 570,300 570,285 600,315 570,345 570,330 470,330\" fill=\"#333\"/>",
+				"<text x=\"535\" y=\"250\" font-size=\"30\" font-weight=\"bold\" fill=\"#1a1a2e\" text-anchor=\"middle\">+26%</text>",
+				"</svg>"
+			],
+			"speakerNotes": "2026年7月時点、世界のデータセンター電力消費は前年比+26%の565TWhという予測。米ハイパースケーラー4社の年間設備投資は$6000億超に到達。出典: 基板実装.com データセンター週次レポート（2026年7月第2週）。",
+			"layout": "default"
+		},
+		{
+			"title": "日本のIT供給電力は2年で2.6倍、国内総電力の3%に迫る",
+			"subtitle": "AI需要はもはや一企業でなく国の電力設計の問題になった",
+			"content": [
+				"<svg viewBox=\"0 0 960 430\" font-family=\"sans-serif\">",
+				"<text x=\"40\" y=\"46\" font-size=\"26\" font-weight=\"bold\" fill=\"#1a1a2e\">日本のIT供給電力量の拡大予測</text>",
+				"<line x1=\"120\" y1=\"360\" x2=\"900\" y2=\"360\" stroke=\"#888\" stroke-width=\"2\"/>",
+				"<rect x=\"250\" y=\"250\" width=\"140\" height=\"110\" fill=\"#7189bf\"/>",
+				"<rect x=\"620\" y=\"70\" width=\"140\" height=\"290\" fill=\"#e94560\"/>",
+				"<text x=\"320\" y=\"398\" font-size=\"24\" fill=\"#333\" text-anchor=\"middle\">現在</text>",
+				"<text x=\"690\" y=\"398\" font-size=\"24\" fill=\"#333\" text-anchor=\"middle\">2年後</text>",
+				"<text x=\"320\" y=\"235\" font-size=\"24\" font-weight=\"bold\" fill=\"#333\" text-anchor=\"middle\">1.0x</text>",
+				"<text x=\"690\" y=\"55\" font-size=\"32\" font-weight=\"bold\" fill=\"#e94560\" text-anchor=\"middle\">2.6x</text>",
+				"<text x=\"815\" y=\"210\" font-size=\"22\" fill=\"#555\">国内総電力</text>",
+				"<text x=\"815\" y=\"240\" font-size=\"22\" fill=\"#555\">の約3%へ</text>",
+				"</svg>"
+			],
+			"speakerNotes": "日本国内のIT供給電力量は今後2年で2.6倍へ拡大予測。国内データセンターの消費電力量は日本全体の約3%に迫る見通し。出典: インプレス総合研究所 データセンター調査報告書2026。",
+			"layout": "default"
+		},
+		{
+			"title": "電力8社は需要予測の2倍ペースで全国30カ所の送電網を増強中",
+			"subtitle": "系統整備が追いつかなければ、GPUがあっても通電できない",
+			"content": [
+				"<svg viewBox=\"0 0 960 400\" font-family=\"sans-serif\">",
+				"<text x=\"40\" y=\"46\" font-size=\"25\" font-weight=\"bold\" fill=\"#1a1a2e\">大手電力8社の送電網増強</text>",
+				"<circle cx=\"180\" cy=\"210\" r=\"75\" fill=\"#7189bf\"/>",
+				"<text x=\"180\" y=\"205\" font-size=\"40\" font-weight=\"bold\" fill=\"#fff\" text-anchor=\"middle\">30</text>",
+				"<text x=\"180\" y=\"240\" font-size=\"20\" fill=\"#fff\" text-anchor=\"middle\">カ所</text>",
+				"<polygon points=\"290,210 360,210 360,195 395,215 360,235 360,220 290,220\" fill=\"#555\"/>",
+				"<rect x=\"430\" y=\"150\" width=\"470\" height=\"55\" rx=\"10\" fill=\"#eef1f8\"/>",
+				"<text x=\"455\" y=\"185\" font-size=\"22\" fill=\"#1a1a2e\">送電網の増強・変電所の新増設</text>",
+				"<rect x=\"430\" y=\"225\" width=\"470\" height=\"55\" rx=\"10\" fill=\"#fde8ec\"/>",
+				"<text x=\"455\" y=\"260\" font-size=\"22\" fill=\"#e94560\">需要予測の2倍ペースで整備</text>",
+				"</svg>"
+			],
+			"speakerNotes": "東京電力ほか大手電力8社が、AI需要を見据えて全国30カ所で送電網を増強・変電所を新増設。需要予測の2倍ペースで整備を進めている。出典: 日本経済新聞。系統整備が律速すれば通電できず、GPUは遊ぶ。",
+			"layout": "default"
+		},
+		{
+			"title": "第2の壁：メモリ ── DCが供給を吸い上げ、価格が家計へ転嫁される",
+			"content": [
+				"DRAM高騰の実態と、PC・スマホへの波及を見る"
+			],
+			"speakerNotes": "メモリパートのセクション扉。DRAM価格の急騰、データセンターによる供給の吸い上げ、そして消費者製品への価格転嫁までを追う。",
+			"layout": "section"
+		},
+		{
+			"title": "DRAM価格はQ1だけで前四半期比+90%急騰した",
+			"subtitle": "HBMへの生産シフトがレガシーメモリの供給を逼迫させた",
+			"content": [
+				"<svg viewBox=\"0 0 960 420\" font-family=\"sans-serif\">",
+				"<text x=\"40\" y=\"46\" font-size=\"26\" font-weight=\"bold\" fill=\"#1a1a2e\">DRAM価格（前四半期比）</text>",
+				"<line x1=\"120\" y1=\"350\" x2=\"900\" y2=\"350\" stroke=\"#888\" stroke-width=\"2\"/>",
+				"<rect x=\"260\" y=\"250\" width=\"150\" height=\"100\" fill=\"#7189bf\"/>",
+				"<rect x=\"620\" y=\"90\" width=\"150\" height=\"260\" fill=\"#e94560\"/>",
+				"<text x=\"335\" y=\"388\" font-size=\"24\" fill=\"#333\" text-anchor=\"middle\">前四半期</text>",
+				"<text x=\"695\" y=\"388\" font-size=\"24\" fill=\"#333\" text-anchor=\"middle\">2026 Q1</text>",
+				"<text x=\"695\" y=\"75\" font-size=\"34\" font-weight=\"bold\" fill=\"#e94560\" text-anchor=\"middle\">+90%</text>",
+				"<text x=\"335\" y=\"235\" font-size=\"22\" fill=\"#333\" text-anchor=\"middle\">基準</text>",
+				"</svg>"
+			],
+			"speakerNotes": "2026年Q1のDRAM価格は前四半期比+90%急騰。SK hynix・Micronなど大手がHBM（広帯域メモリ）生産へシフトした結果、LPDDR4等のレガシーメモリの供給が逼迫した。出典: ビジネスジャーナル、GIGAZINE、PC Watch。数値は業界推定値。",
+			"layout": "default"
+		},
+		{
+			"title": "2026年は供給メモリの最大70%をデータセンターが飲み込む",
+			"subtitle": "PC・スマホ向けの品不足は、この構造的な奪い合いが原因",
+			"content": [
+				"<svg viewBox=\"0 0 960 420\" font-family=\"sans-serif\">",
+				"<text x=\"40\" y=\"46\" font-size=\"26\" font-weight=\"bold\" fill=\"#1a1a2e\">2026年 メモリ供給の配分（最大値）</text>",
+				"<rect x=\"120\" y=\"110\" width=\"720\" height=\"90\" rx=\"8\" fill=\"#e0e0ea\"/>",
+				"<rect x=\"120\" y=\"110\" width=\"504\" height=\"90\" rx=\"8\" fill=\"#e94560\"/>",
+				"<text x=\"372\" y=\"168\" font-size=\"26\" font-weight=\"bold\" fill=\"#fff\" text-anchor=\"middle\">データセンター 70%</text>",
+				"<text x=\"732\" y=\"162\" font-size=\"22\" fill=\"#555\" text-anchor=\"middle\">PC・スマホ</text>",
+				"<text x=\"732\" y=\"188\" font-size=\"22\" fill=\"#555\" text-anchor=\"middle\">ほか 30%</text>",
+				"<text x=\"120\" y=\"290\" font-size=\"23\" fill=\"#333\">受注残が積み上がり、需要は少なくとも2026年前半まで旺盛</text>",
+				"<text x=\"120\" y=\"330\" font-size=\"23\" fill=\"#333\">レガシーメモリの品不足が消費者製品へ波及</text>",
+				"</svg>"
+			],
+			"speakerNotes": "2026年は供給メモリの最大70%をデータセンターが消費する見込みで、PC・スマホ向けの品不足に波及。GPU/DRAMともにデータセンター向け需要は少なくとも2026年前半まで旺盛。Micronなどの受注残が積み上がっている。出典: GIGAZINE、PC Watch、基板実装.com。",
+			"layout": "default"
+		},
+		{
+			"title": "メモリインフレはPCを+17%、スマホを+13%押し上げる",
+			"subtitle": "Gartnerは2026年末までにメモリ価格が+130%上昇すると試算",
+			"content": [
+				"<svg viewBox=\"0 0 960 400\" font-family=\"sans-serif\">",
+				"<text x=\"40\" y=\"46\" font-size=\"25\" font-weight=\"bold\" fill=\"#1a1a2e\">Gartner試算：価格転嫁の連鎖</text>",
+				"<rect x=\"60\" y=\"150\" width=\"210\" height=\"120\" rx=\"12\" fill=\"#e94560\"/>",
+				"<text x=\"165\" y=\"200\" font-size=\"22\" fill=\"#fff\" text-anchor=\"middle\">メモリ価格</text>",
+				"<text x=\"165\" y=\"240\" font-size=\"32\" font-weight=\"bold\" fill=\"#fff\" text-anchor=\"middle\">+130%</text>",
+				"<polygon points=\"290,210 340,210 340,196 372,216 340,236 340,222 290,222\" fill=\"#555\"/>",
+				"<rect x=\"400\" y=\"90\" width=\"200\" height=\"110\" rx=\"12\" fill=\"#7189bf\"/>",
+				"<text x=\"500\" y=\"135\" font-size=\"22\" fill=\"#fff\" text-anchor=\"middle\">PC販売価格</text>",
+				"<text x=\"500\" y=\"175\" font-size=\"30\" font-weight=\"bold\" fill=\"#fff\" text-anchor=\"middle\">+17%</text>",
+				"<rect x=\"400\" y=\"225\" width=\"200\" height=\"110\" rx=\"12\" fill=\"#7189bf\"/>",
+				"<text x=\"500\" y=\"270\" font-size=\"22\" fill=\"#fff\" text-anchor=\"middle\">スマホ価格</text>",
+				"<text x=\"500\" y=\"310\" font-size=\"30\" font-weight=\"bold\" fill=\"#fff\" text-anchor=\"middle\">+13%</text>",
+				"<text x=\"640\" y=\"200\" font-size=\"22\" fill=\"#333\">DC需要が</text>",
+				"<text x=\"640\" y=\"232\" font-size=\"22\" fill=\"#333\">家計に転嫁</text>",
+				"</svg>"
+			],
+			"speakerNotes": "Gartnerは2026年末までにメモリ価格が+130%上昇、PC販売価格を+17%、スマートフォンを+13%押し上げると試算。データセンター需要が最終的に消費者の家計へ転嫁される構図。出典: ビジネスジャーナル。",
+			"layout": "default"
+		},
+		{
+			"title": "第3の壁：製造キャパ ── 先端プロセスの奪い合いが起きている",
+			"content": [
+				"TSMCの投資拡大と2nm争奪、そして好決算下の株安を見る"
+			],
+			"speakerNotes": "製造キャパのセクション扉。TSMCの設備投資引き上げ、アリゾナ増設、2nmの奪い合い、そして好決算なのに株が売られる逆説を扱う。",
+			"layout": "section"
+		},
+		{
+			"title": "TSMCは2026年capexを$60-64Bへ15%引き上げた",
+			"subtitle": "投資の70-80%が先端プロセス向け、Q2純利益は前年比+77%",
+			"content": [
+				"<svg viewBox=\"0 0 960 420\" font-family=\"sans-serif\">",
+				"<text x=\"40\" y=\"46\" font-size=\"26\" font-weight=\"bold\" fill=\"#1a1a2e\">TSMC 2026年設備投資ガイダンス</text>",
+				"<line x1=\"120\" y1=\"350\" x2=\"900\" y2=\"350\" stroke=\"#888\" stroke-width=\"2\"/>",
+				"<rect x=\"250\" y=\"190\" width=\"150\" height=\"160\" fill=\"#7189bf\"/>",
+				"<rect x=\"600\" y=\"120\" width=\"150\" height=\"230\" fill=\"#e94560\"/>",
+				"<text x=\"325\" y=\"388\" font-size=\"23\" fill=\"#333\" text-anchor=\"middle\">従来</text>",
+				"<text x=\"675\" y=\"388\" font-size=\"23\" fill=\"#333\" text-anchor=\"middle\">上方修正</text>",
+				"<text x=\"325\" y=\"175\" font-size=\"25\" font-weight=\"bold\" fill=\"#333\" text-anchor=\"middle\">$52-56B</text>",
+				"<text x=\"675\" y=\"105\" font-size=\"28\" font-weight=\"bold\" fill=\"#e94560\" text-anchor=\"middle\">$60-64B</text>",
+				"<text x=\"470\" y=\"250\" font-size=\"26\" font-weight=\"bold\" fill=\"#1a1a2e\" text-anchor=\"middle\">+15%</text>",
+				"</svg>"
+			],
+			"speakerNotes": "TSMCは2026年capexガイダンスを$52-56Bから$60-64Bへ上方修正（+15%）。投資額の70-80%が先端プロセス向け。Q2 2026決算は純利益前年比+77%、粗利率67.7%の過去最高水準。出典: TrendForce（2026年7月16日）、XenoSpectrum。",
+			"layout": "default"
+		},
+		{
+			"title": "2nmの供給不足は2027年まで続き、アリゾナに$100Bが追加投入される",
+			"subtitle": "Appleが2026年の2nmキャパ過半を確保、NVIDIA等が残りを奪い合う",
+			"content": [
+				"<svg viewBox=\"0 0 960 410\" font-family=\"sans-serif\">",
+				"<text x=\"40\" y=\"46\" font-size=\"25\" font-weight=\"bold\" fill=\"#1a1a2e\">2nm生産キャパの争奪</text>",
+				"<rect x=\"120\" y=\"110\" width=\"600\" height=\"80\" rx=\"8\" fill=\"#e0e0ea\"/>",
+				"<rect x=\"120\" y=\"110\" width=\"330\" height=\"80\" rx=\"8\" fill=\"#e94560\"/>",
+				"<text x=\"285\" y=\"160\" font-size=\"23\" font-weight=\"bold\" fill=\"#fff\" text-anchor=\"middle\">Apple 過半</text>",
+				"<text x=\"585\" y=\"160\" font-size=\"22\" fill=\"#555\" text-anchor=\"middle\">NVIDIA他</text>",
+				"<rect x=\"120\" y=\"250\" width=\"350\" height=\"110\" rx=\"12\" fill=\"#7189bf\"/>",
+				"<text x=\"295\" y=\"295\" font-size=\"22\" fill=\"#fff\" text-anchor=\"middle\">アリゾナ追加投資</text>",
+				"<text x=\"295\" y=\"335\" font-size=\"30\" font-weight=\"bold\" fill=\"#fff\" text-anchor=\"middle\">$100B</text>",
+				"<rect x=\"510\" y=\"250\" width=\"350\" height=\"110\" rx=\"12\" fill=\"#eef1f8\"/>",
+				"<text x=\"685\" y=\"295\" font-size=\"22\" fill=\"#1a1a2e\" text-anchor=\"middle\">2nm新工場</text>",
+				"<text x=\"685\" y=\"335\" font-size=\"28\" font-weight=\"bold\" fill=\"#1a1a2e\" text-anchor=\"middle\">最低4棟</text>",
+				"</svg>"
+			],
+			"speakerNotes": "TSMCは米アリゾナへ追加で$100Bを投資し、2nm以降の量産拠点として最低4棟の新工場・先端パッケージング施設を建設する計画。2nmはAppleが2026年キャパの過半を確保との報道で、供給不足は2027年まで続く見込み。出典: Tom's Hardware、EBC Financial Group、TradingKey。",
+			"layout": "default"
+		},
+		{
+			"title": "好決算でも株が売られたのは、投資増が将来の利益率圧迫を映すから",
+			"subtitle": "設備投資の膨張は、そのまま物理制約の深さを示すシグナル",
+			"content": [
+				"TSMCは好決算＋capex上振れを発表、しかしAI半導体株は軟調化",
+				"市場は設備投資増を「将来の利益率圧迫懸念」として織り込んだ",
+				"Q3粗利率は2nm量産ランプで3-4pt希薄化する見込み",
+				"巨額投資が要る＝物理の壁が高い、という裏返しの読み方"
+			],
+			"speakerNotes": "TSMCの好決算＋設備投資上振れ発表を受けAI半導体株が軟調化。設備投資増額が将来の利益率圧迫懸念として織り込まれたという解釈が一般的。Q3粗利率は2nm量産ランプアップで3-4pt希薄化見込み。株価そのものより、投資規模が物理制約の深さを示す点に注目する。出典: ABC News、TrendForce。",
+			"layout": "default"
+		},
+		{
+			"title": "冷却は解ける ── パナソニックは消費電力を60%削減する技術を開発した",
+			"subtitle": "物理の壁のうち、冷却は技術革新で緩和しうる領域",
+			"content": [
+				"<svg viewBox=\"0 0 960 400\" font-family=\"sans-serif\">",
+				"<text x=\"40\" y=\"46\" font-size=\"25\" font-weight=\"bold\" fill=\"#1a1a2e\">AIデータセンター向け冷却の新技術</text>",
+				"<line x1=\"120\" y1=\"350\" x2=\"760\" y2=\"350\" stroke=\"#888\" stroke-width=\"2\"/>",
+				"<rect x=\"220\" y=\"110\" width=\"140\" height=\"240\" fill=\"#7189bf\"/>",
+				"<rect x=\"520\" y=\"254\" width=\"140\" height=\"96\" fill=\"#e94560\"/>",
+				"<text x=\"290\" y=\"388\" font-size=\"22\" fill=\"#333\" text-anchor=\"middle\">従来技術</text>",
+				"<text x=\"590\" y=\"388\" font-size=\"22\" fill=\"#333\" text-anchor=\"middle\">新技術</text>",
+				"<text x=\"290\" y=\"95\" font-size=\"24\" font-weight=\"bold\" fill=\"#333\" text-anchor=\"middle\">100%</text>",
+				"<text x=\"590\" y=\"240\" font-size=\"26\" font-weight=\"bold\" fill=\"#e94560\" text-anchor=\"middle\">▲60%</text>",
+				"<text x=\"760\" y=\"200\" font-size=\"22\" fill=\"#555\">冷却の</text>",
+				"<text x=\"760\" y=\"232\" font-size=\"22\" fill=\"#555\">消費電力</text>",
+				"</svg>"
+			],
+			"speakerNotes": "パナソニックHD傘下が、AIデータセンター向け冷却技術で消費電力60%減を実現する新技術を開発。3つの壁のうち冷却は技術革新で緩和しうる領域である点を示す。出典: 日本経済新聞。",
+			"layout": "default"
+		},
+		{
+			"title": "設計者は電力・メモリ高騰を前提に、システムを組み直すべきだ",
+			"subtitle": "GPU中心の思考から、電力・メモリ・冷却を制約変数に据える設計へ",
+			"content": [
+				"電力: 通電できる容量が上限。系統制約を前提に配置を決める",
+				"メモリ: DRAM高騰を織り込み、モデルとデータのメモリ効率を最優先",
+				"冷却: 消費電力削減技術がPUE・TCOを左右する競争軸になる",
+				"調達: 2nm・HBMの供給不足は2027年まで。前倒し確保が要る"
+			],
+			"speakerNotes": "インフラ設計者・エンジニアへの示唆。GPU調達中心の発想から、電力容量・メモリ効率・冷却効率を第一級の制約変数として扱う設計へ転換すべき。供給不足の期限（2027年まで）を織り込んだ調達計画が要る。",
+			"layout": "default"
+		},
+		{
+			"title": "参照資料",
+			"content": [
+				"- [Tom's Hardware: Big Tech capex $725B in 2026](https://www.tomshardware.com/tech-industry/big-tech/big-techs-ai-spending-plans-reach-725-billion)",
+				"- [基板実装.com: データセンター週次レポート（2026年7月第2週）](https://money.hb449.com/archives/4222)",
+				"- [インプレス総合研究所: データセンター調査報告書2026](https://research.impress.co.jp/topics/list/dc/726)",
+				"- [日本経済新聞: 電力8社がデータセンター送電網増強](https://www.nikkei.com/article/DGXZQOUC0889M0Y6A500C2000000/)",
+				"- [ビジネスジャーナル: AIが引き起こす「メモリ・インフレ」](https://biz-journal.jp/economy/post_394409.html)",
+				"- [GIGAZINE: 供給の最大70%をデータセンターが消費](https://gigazine.net/news/20260119-memory-chips-supply-shortfall/)"
+			],
+			"speakerNotes": "参照資料1/2。電力・投資規模・メモリ関連の一次〜準一次ソース。Markdownリンク形式で折り返しオーバーフローを防ぐ。",
+			"layout": "default",
+			"subtitle": "インフラ投資・電力の数値の裏付けとなる主要出典"
+		},
+		{
+			"title": "参照資料（続き）",
+			"content": [
+				"- [TrendForce: TSMC Lifts 2026 Capex to $60-64B](https://www.trendforce.com/news/2026/07/16/news-tsmc-lifts-2026-capex-15-to-60-64b-hikes-sales-outlook-to-over-40-despite-q3-margin-dip/)",
+				"- [Tom's Hardware: TSMC commits $100B more to Arizona](https://www.tomshardware.com/tech-industry/tsmc-commits-another-100-billion-to-arizona-for-at-least-four-more-2nm-fabs)",
+				"- [XenoSpectrum: TSMC Q2 2026 record margin, capex](https://xenospectrum.com/en/tsmc-q2-2026-record-margin-capex/)",
+				"- [ABC News: AI chip stock selloff](https://abcnews.com/Business/ai-chip-stock-selloff/story?id=134844421)",
+				"- [PC Watch: AI巡るメモリ争奪戦](https://pc.watch.impress.co.jp/docs/topic/feature/2073359.html)",
+				"- [日本経済新聞: パナソニックHD、データセンター冷却の新技術](https://www.nikkei.com/article/DGXZQOUF075Y00X00C26A7000000/)"
+			],
+			"speakerNotes": "参照資料2/2。半導体製造・冷却技術関連のソース。数値の確度はノートに準拠し、業界推定値は本文で明示済み。",
+			"layout": "default",
+			"subtitle": "半導体・メモリ・冷却技術の数値の裏付けとなる主要出典"
+		}
+	]
+}

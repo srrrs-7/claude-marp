@@ -1,0 +1,546 @@
+---
+marp: true
+theme: gaia
+size: 16:9
+paginate: true
+footer: "2026-07-23 | Trend Research"
+style: |
+  /* ── Slide layout ─────────────────────────────────────────
+       The slide is a fixed 1280x720 box, so its blocks are laid out as a flex
+       column: text keeps its natural height and diagrams absorb whatever space
+       is left over. Without this a diagram sizes itself from its aspect ratio
+       alone and pushes the bullets off the bottom of the slide.
+       This also activates Gaia's own `section.lead` centering, which is dead
+       while the section is display:block. */
+    section {
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    section > * { flex: 0 0 auto; min-width: 0; }
+    section * { max-width: 100%; box-sizing: border-box; }
+    section h1 { overflow-wrap: break-word; word-break: break-word; }
+  
+    /* ── Auto-fit ─────────────────────────────────────────────
+       Applied per slide by estimateFit() when the text would otherwise be
+       clipped. Text cannot shrink itself the way a diagram can. */
+    section.fit-94 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.94); }
+    section.fit-88 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.88); }
+    section.fit-82 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.82); }
+    section.fit-76 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.76); }
+    section.fit-70 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.7); }
+    section.fit-64 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.64); }
+    section.fit-58 { font-size: calc(var(--marpit-root-font-size, 1em) * 0.58); }
+  
+    /* ── Readability ──────────────────────────────────────── */
+    section li {
+      line-height: 1.5;
+      margin-bottom: 0.1em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+    section p { line-height: 1.7; overflow-wrap: break-word; }
+  
+    /* ── Figures (inline SVG + standalone images) ─────────────
+       `vh` is deliberately not used anywhere here. Marp scales the slide with a
+       CSS transform, so vh resolves against the browser window rather than the
+       slide — on a tall window `max-height:70vh` exceeds the whole slide and
+       caps nothing. These blocks are bounded by flex layout instead. */
+    section > .fig,
+    section > p:has(> img) {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0.2em 0;
+    }
+    /* The SVG fills the wrapper; preserveAspectRatio letterboxes the drawing
+       inside it, so it scales down instead of overflowing. */
+    section > .fig > svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+    }
+    /* `!important` overrides the inline width Marp emits for `![w:800]`. */
+    section > p:has(> img) > img {
+      max-height: 100% !important;
+      max-width: 100% !important;
+      object-fit: contain;
+      height: auto;
+      width: auto;
+    }
+    /* Fallback for images/SVGs that are not a direct child of the section
+       (hand-written markdown, table cells): keep them inside the slide. */
+    section img, section svg { max-width: 100%; }
+  
+    /* ── Code blocks ──────────────────────────────────────── */
+    section pre { overflow: hidden; }
+    section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-word; }
+  
+    /* ── Tables ───────────────────────────────────────────── */
+    section table {
+      font-size: 0.78em;
+      width: 100%;
+      overflow: hidden;
+      word-break: break-word;
+      border-collapse: collapse;
+    }
+    section th, section td {
+      padding: 0.35em 0.6em;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+  
+    /* ── Subtitle / BLUF callout (blockquote) ─────────────── */
+    section blockquote {
+      font-size: 0.88em;
+      line-height: 1.55;
+      padding: 0.25em 0.8em;
+      margin: 0.15em 0 0.35em;
+      opacity: 0.88;
+      overflow-wrap: break-word;
+    }
+    section blockquote p { margin: 0; }
+  
+---
+
+<!-- _class: lead -->
+# 導入8割、本番2割
+
+> *agentic AIの「死の谷」を越える企業、落ちる企業*
+
+- 2026-07-23 | AIトレンド調査
+- 「入れたか」ではなく「本番でROIを出せたか」で二極化する時代へ
+
+<!--
+本デッキはagentic AI（自律的にタスクを遂行するAIエージェント）の実用化局面を扱う。導入率は高いが、本番でスケールできた企業はごく一部という「死の谷」がテーマ。数値は業界調査ベースが多く、断定を避けて出典を明示する方針で進める。
+-->
+
+---
+
+<!-- _class: fit-70 -->
+# 勝敗は「導入したか」ではなく「本番でROIを出せたか」で決まる
+
+> *導入8割に対し本番スケールは23%。このギャップこそが2026年の主戦場*
+
+- 約8割の企業が何らかのAIエージェントを導入済み（Agentic AI Institute調べ）
+- 本番環境までスケールしたのは23%、39%は実験段階にとどまる
+- Gartnerは2027年末までにagentic AIプロジェクトの40%超が中止と予測（まとめ調査経由）
+- 越える企業は「小さくROI検証・ガバナンス・人材」の3点を押さえている
+
+<!--
+BLUF。ここで結論を言い切る。導入率と本番スケール率のギャップが本題であることを冒頭で提示。Gartner予測は一次資料未確認のためまとめ調査経由と注記。出典: https://agenticaiinstitute.org/agentic-ai-enterprise-adoption-2026-governance-gap/ https://www.digitalapplied.com/blog/agentic-ai-statistics-2026-definitive-collection-150-data-points
+-->
+
+---
+
+<!-- _class: lead -->
+# 第1章：死の谷はどこにあるのか
+
+- 導入と本番運用を隔てる数値のギャップを直視する
+
+<!--
+第1章は問題の可視化。導入率・本番率・ROI実感の3つの数字でギャップの大きさを示す。ここで聴衆に「うちも実験止まりでは」という当事者意識を持たせる。
+-->
+
+---
+
+# 導入8割の裏で、本番までスケールできたのは4社に1社未満
+
+> *62%が何らかの形で関与するが、23%しか本番の壁を越えていない*
+
+<div class="fig">
+<svg viewBox="0 0 960 460" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<text x="40" y="46" font-size="26" font-weight="bold" fill="#1f2933">企業の到達段階（%）</text>
+<rect x="120" y="90" width="640" height="52" rx="6" fill="#2f6fb0"/>
+<text x="130" y="124" font-size="24" fill="#ffffff">導入（何らかの形で関与）</text>
+<text x="780" y="124" font-size="26" font-weight="bold" fill="#1f2933">80%</text>
+<rect x="120" y="170" width="496" height="52" rx="6" fill="#5b93c9"/>
+<text x="130" y="204" font-size="24" fill="#ffffff">日常業務でAIを定常利用</text>
+<text x="636" y="204" font-size="26" font-weight="bold" fill="#1f2933">62%</text>
+<rect x="120" y="250" width="312" height="52" rx="6" fill="#9dc3e0"/>
+<text x="130" y="284" font-size="24" fill="#1f2933">実験・PoC段階</text>
+<text x="452" y="284" font-size="26" font-weight="bold" fill="#1f2933">39%</text>
+<rect x="120" y="330" width="184" height="52" rx="6" fill="#e07b39"/>
+<text x="130" y="364" font-size="24" fill="#ffffff">本番へスケール</text>
+<text x="324" y="364" font-size="26" font-weight="bold" fill="#e07b39">23%</text>
+<line x1="120" y1="410" x2="760" y2="410" stroke="#c0c7cf" stroke-width="2"/>
+<text x="120" y="438" font-size="20" fill="#7b8794">出典: Agentic AI Institute 2026（確度: 中）</text>
+</svg>
+</div>
+
+<!--
+ギャップの本体。導入80%から本番23%へと段階が下るほど数字が減る漏斗を見せる。実験段階39%が滞留している点が「谷」。出典: https://agenticaiinstitute.org/agentic-ai-enterprise-adoption-2026-governance-gap/
+-->
+
+---
+
+# 市場は8年で15倍、谷を越えた企業がこの成長を総取りする
+
+> *2026年$9.14B→2034年$139.19B（CAGR 40.5%、業界レポートまとめ・確度中）*
+
+<div class="fig">
+<svg viewBox="0 0 960 460" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<text x="40" y="46" font-size="26" font-weight="bold" fill="#1f2933">agentic AI 市場規模予測（10億ドル）</text>
+<line x1="110" y1="400" x2="900" y2="400" stroke="#7b8794" stroke-width="2"/>
+<rect x="170" y="378" width="90" height="22" rx="4" fill="#2f6fb0"/>
+<text x="175" y="368" font-size="24" font-weight="bold" fill="#2f6fb0">$9.1B</text>
+<text x="185" y="430" font-size="24" fill="#1f2933">2026</text>
+<rect x="470" y="250" width="90" height="150" rx="4" fill="#4f86bd"/>
+<text x="470" y="238" font-size="24" font-weight="bold" fill="#4f86bd">$52B</text>
+<text x="485" y="430" font-size="24" fill="#1f2933">2030</text>
+<rect x="770" y="110" width="90" height="290" rx="4" fill="#e07b39"/>
+<text x="760" y="98" font-size="24" font-weight="bold" fill="#e07b39">$139B</text>
+<text x="785" y="430" font-size="24" fill="#1f2933">2034</text>
+<text x="110" y="455" font-size="20" fill="#7b8794">出典: digitalapplied.com 2026（確度: 中、2030年値は成長曲線上の目安）</text>
+</svg>
+</div>
+
+<!--
+市場の伸びを見せる。CAGR40.5%は業界レポートまとめの数字で確度中と明記。2030年の中間値はCAGRから引いた目安であり参考値。谷を越えた企業がこの成長を取り込むという文脈で使う。出典: https://www.digitalapplied.com/blog/agentic-ai-statistics-2026-definitive-collection-150-data-points
+-->
+
+---
+
+<!-- _class: fit-70 -->
+# 「顕著なROIあり」はわずか23%、価値が見えず4割が中止に向かう
+
+> *ROI実感の低さとコスト・リスク管理不足が中止の主因（まとめ調査経由）*
+
+- AIエージェントで顕著なROIを実感した組織は23%（生成AI全般は29%）
+- AIを定常利用する組織は88%へ増加（前年78%）— 利用は広がる一方で価値実感は伴わない
+- Gartner予測: 2027年末までにagentic AIプロジェクトの40%超が中止（一次資料未確認）
+- 中止理由は「不明瞭な価値・コスト・リスク管理不足」に集約される
+
+<!--
+谷の正体はROIの欠如。利用は広がるが価値実感が23%どまり。Gartner予測はまとめ記事経由の再引用で一次資料未確認と明示。次章の『越える企業』への橋渡し。出典: https://www.digitalapplied.com/blog/agentic-ai-statistics-2026-definitive-collection-150-data-points
+-->
+
+---
+
+<!-- _class: lead -->
+# 第2章：谷を越える企業は何をしているか
+
+- コーディングエージェントを起点に、本番でROIを出す実例
+
+<!--
+第2章は成功側の事例。最もROIが可視化しやすいコーディングエージェント領域を軸に、導入企業・目標・実績を示す。数値は確度中が多いため注記を徹底する。
+-->
+
+---
+
+# コーディングエージェントは本番でROIが出る最初の領域になった
+
+> *大手エンタープライズが実業務に組み込み、開発者の71%が常用（独自調査・確度中）*
+
+<div class="fig">
+<svg viewBox="0 0 960 430" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<text x="40" y="44" font-size="26" font-weight="bold" fill="#1f2933">主要エンタープライズ導入企業（報道ベース）</text>
+<rect x="60" y="80" width="260" height="70" rx="8" fill="#eaf1f8" stroke="#2f6fb0" stroke-width="2"/>
+<text x="80" y="124" font-size="26" fill="#1f2933">Netflix</text>
+<rect x="350" y="80" width="260" height="70" rx="8" fill="#eaf1f8" stroke="#2f6fb0" stroke-width="2"/>
+<text x="370" y="124" font-size="26" fill="#1f2933">Microsoft</text>
+<rect x="640" y="80" width="260" height="70" rx="8" fill="#eaf1f8" stroke="#2f6fb0" stroke-width="2"/>
+<text x="660" y="124" font-size="26" fill="#1f2933">Uber</text>
+<rect x="60" y="170" width="260" height="70" rx="8" fill="#eaf1f8" stroke="#2f6fb0" stroke-width="2"/>
+<text x="80" y="214" font-size="26" fill="#1f2933">Shopify</text>
+<rect x="350" y="170" width="260" height="70" rx="8" fill="#eaf1f8" stroke="#2f6fb0" stroke-width="2"/>
+<text x="370" y="214" font-size="26" fill="#1f2933">Goldman Sachs</text>
+<rect x="640" y="170" width="260" height="70" rx="8" fill="#eaf1f8" stroke="#2f6fb0" stroke-width="2"/>
+<text x="660" y="214" font-size="26" fill="#1f2933">ServiceNow</text>
+<rect x="60" y="270" width="840" height="78" rx="8" fill="#e07b39"/>
+<text x="84" y="318" font-size="28" font-weight="bold" fill="#ffffff">AIエージェント常用の開発者は 71%（Claude Code等）</text>
+<text x="60" y="392" font-size="20" fill="#7b8794">出典: serpsculpt.com 2026（独自調査・確度中、各社IRでの裏取り未実施）</text>
+</svg>
+</div>
+
+<!--
+社会的証明。有名企業が実務に組み込んでいる事実を並べる。71%は独自調査で母集団未確認のため確度中と注記。次スライドで最も踏み込んだ目標値（Mercado Libre）を出す。出典: https://serpsculpt.com/claude-code-usage-statistics/
+-->
+
+---
+
+# Mercado Libreは2.3万人の開発組織で自律コーディング90%を狙う
+
+> *谷を越える企業は全社スケールの数値目標を掲げる（報道ベース・確度中）*
+
+<div class="fig">
+<svg viewBox="0 0 960 380" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<text x="40" y="48" font-size="26" font-weight="bold" fill="#1f2933">自律コーディング比率の目標（2026 Q3）</text>
+<rect x="80" y="110" width="800" height="60" rx="8" fill="#eef1f4" stroke="#c0c7cf" stroke-width="2"/>
+<rect x="80" y="110" width="720" height="60" rx="8" fill="#2f6fb0"/>
+<text x="110" y="150" font-size="30" font-weight="bold" fill="#ffffff">90%</text>
+<text x="820" y="150" font-size="24" fill="#1f2933">目標</text>
+<text x="80" y="235" font-size="26" fill="#1f2933">対象: 23,000人のエンジニア組織全体</text>
+<text x="80" y="280" font-size="26" fill="#1f2933">狙い: PoCではなく全社スケールでROIを確定</text>
+<text x="80" y="340" font-size="20" fill="#7b8794">出典: serpsculpt.com 2026（確度: 中、達成可否は要フォロー）</text>
+</svg>
+</div>
+
+<!--
+ピークスライド。90%という踏み込んだ目標値がインパクト。ただし達成済みではなく目標であり確度中である点を口頭でも補足する。谷を越える企業は全社スケールの数値目標を掲げるという主張の証拠。出典: https://serpsculpt.com/claude-code-usage-statistics/
+-->
+
+---
+
+# GitHubのAIエージェントPRは5か月で累計100万件を突破した
+
+> *実験ではなく本番のコードがエージェントから生まれ始めている（確度中）*
+
+<div class="fig">
+<svg viewBox="0 0 960 400" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<text x="40" y="46" font-size="26" font-weight="bold" fill="#1f2933">AIエージェント作成のPR累計（2025年5〜9月）</text>
+<line x1="110" y1="330" x2="900" y2="330" stroke="#7b8794" stroke-width="2"/>
+<rect x="150" y="310" width="70" height="20" rx="3" fill="#9dc3e0"/>
+<text x="165" y="358" font-size="22" fill="#1f2933">5月</text>
+<rect x="320" y="260" width="70" height="70" rx="3" fill="#6ba3d0"/>
+<text x="335" y="358" font-size="22" fill="#1f2933">6月</text>
+<rect x="490" y="195" width="70" height="135" rx="3" fill="#4f86bd"/>
+<text x="505" y="358" font-size="22" fill="#1f2933">7月</text>
+<rect x="660" y="120" width="70" height="210" rx="3" fill="#2f6fb0"/>
+<text x="675" y="358" font-size="22" fill="#1f2933">8月</text>
+<rect x="830" y="70" width="70" height="260" rx="3" fill="#e07b39"/>
+<text x="845" y="358" font-size="22" fill="#1f2933">9月</text>
+<text x="560" y="55" font-size="30" font-weight="bold" fill="#e07b39">累計 100万件超</text>
+<text x="110" y="392" font-size="20" fill="#7b8794">出典: northflank.com 2026（月別内訳はイメージ、累計値が実データ・確度中）</text>
+</svg>
+</div>
+
+<!--
+実績の可視化。累計100万件超が本デ実データ。月別の伸びは累計に至る増加イメージで、正確な月次内訳ではない旨をグラフ内に注記。エージェントが本番のコードを生み始めている証拠。出典: https://northflank.com/blog/top-enterprise-coding-agents
+-->
+
+---
+
+<!-- _class: lead -->
+# 第3章：足元で起きている業界の地殻変動
+
+- 買収・モデル競争・標準化が谷の地形そのものを変えている
+
+<!--
+第3章は環境変化。企業が谷を越えるかどうかは自社努力だけでなく、業界構造の激変にも左右される。M&A・モデル競争・MCP標準化の3点を扱う。
+-->
+
+---
+
+# SpaceXのCursor買収$60Bは、コーディングエージェントの戦略資産化を示す
+
+> *AIコーディングツールが宇宙・自動車企業の中核投資対象になった（確度高）*
+
+<div class="fig">
+<svg viewBox="0 0 960 380" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="60" y="140" width="250" height="110" rx="10" fill="#2f6fb0"/>
+<text x="110" y="190" font-size="30" font-weight="bold" fill="#ffffff">SpaceX</text>
+<text x="95" y="225" font-size="22" fill="#dbe7f2">xAI / Grok 陣営</text>
+<line x1="310" y1="195" x2="640" y2="195" stroke="#e07b39" stroke-width="5"/>
+<polygon points="640,183 670,195 640,207" fill="#e07b39"/>
+<text x="360" y="175" font-size="28" font-weight="bold" fill="#e07b39">$60B 全株式交換</text>
+<text x="370" y="235" font-size="22" fill="#7b8794">3Qクローズ予定</text>
+<rect x="680" y="140" width="220" height="110" rx="10" fill="#3b7a57"/>
+<text x="715" y="185" font-size="30" font-weight="bold" fill="#ffffff">Cursor</text>
+<text x="705" y="222" font-size="22" fill="#d6e8dd">運営元 Anysphere</text>
+<text x="60" y="330" font-size="20" fill="#7b8794">出典: Forbes / CNBC 2026（複数独立報道が一致・確度高）</text>
+</svg>
+</div>
+
+<!--
+M&Aの象徴。$60Bという規模がコーディングエージェントの戦略的価値を物語る。xAI/Grokのコーディング競争力強化が狙いと報道。複数媒体一致で確度高。出典: https://www.forbes.com/sites/siladityaray/2026/06/16/spacex-will-buy-ai-coding-firm-cursor-for-60-billion/
+-->
+
+---
+
+# モデルは約2週間に1回更新され、谷を越える前提が動き続ける
+
+> *Anthropicは5か月で29件の製品アップデート。基盤の陳腐化が速い（確度高）*
+
+<div class="fig">
+<svg viewBox="0 0 960 380" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<text x="40" y="44" font-size="26" font-weight="bold" fill="#1f2933">主要モデルの直近リリース（2026年）</text>
+<line x1="90" y1="200" x2="910" y2="200" stroke="#7b8794" stroke-width="3"/>
+<circle cx="170" cy="200" r="12" fill="#2f6fb0"/>
+<text x="120" y="160" font-size="22" fill="#1f2933">Opus 4.8</text>
+<text x="140" y="245" font-size="20" fill="#7b8794">5/28</text>
+<circle cx="370" cy="200" r="12" fill="#2f6fb0"/>
+<text x="320" y="160" font-size="22" fill="#1f2933">Fable 5</text>
+<text x="345" y="245" font-size="20" fill="#7b8794">6/9</text>
+<circle cx="560" cy="200" r="12" fill="#2f6fb0"/>
+<text x="505" y="160" font-size="22" fill="#1f2933">Sonnet 5</text>
+<text x="535" y="245" font-size="20" fill="#7b8794">6/30</text>
+<circle cx="720" cy="200" r="12" fill="#e07b39"/>
+<text x="660" y="160" font-size="22" fill="#1f2933">GPT-5.6</text>
+<text x="695" y="245" font-size="20" fill="#7b8794">7/9</text>
+<circle cx="860" cy="200" r="12" fill="#3b7a57"/>
+<text x="795" y="160" font-size="22" fill="#1f2933">Gemini 3.6</text>
+<text x="830" y="245" font-size="20" fill="#7b8794">7/21</text>
+<text x="90" y="330" font-size="20" fill="#7b8794">出典: Anthropic公式 / TechCrunch / 9to5google 2026（確度: 高）</text>
+</svg>
+</div>
+
+<!--
+モデル競争の速度。約2週間に1度の更新ペースは、設計した前提がすぐ古くなることを意味する。谷を越えるには特定モデルに固定せず差し替え可能な設計が要る。出典: https://www.anthropic.com/news https://techcrunch.com/2026/06/30/anthropic-launches-claude-sonnet-5-as-a-cheaper-way-to-run-agents/
+-->
+
+---
+
+# MCPのAAIF寄贈で、エージェント連携はベンダー中立の標準に向かう
+
+> *ガバナンス基盤の共通化が、本番運用のリスク管理を後押しする（確度中）*
+
+<div class="fig">
+<svg viewBox="0 0 960 380" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="360" y="40" width="240" height="70" rx="10" fill="#3b3f7a"/>
+<text x="398" y="72" font-size="24" font-weight="bold" fill="#ffffff">AAIF</text>
+<text x="382" y="98" font-size="19" fill="#d2d4ea">Linux Foundation傘下</text>
+<line x1="480" y1="110" x2="480" y2="160" stroke="#7b8794" stroke-width="3"/>
+<polygon points="468,160 480,190 492,160" fill="#7b8794"/>
+<rect x="360" y="190" width="240" height="64" rx="10" fill="#2f6fb0"/>
+<text x="388" y="230" font-size="26" font-weight="bold" fill="#ffffff">MCP 標準</text>
+<rect x="70" y="300" width="250" height="56" rx="8" fill="#eaf1f8" stroke="#2f6fb0" stroke-width="2"/>
+<text x="95" y="335" font-size="22" fill="#1f2933">Anthropic / Block</text>
+<rect x="355" y="300" width="250" height="56" rx="8" fill="#eaf1f8" stroke="#2f6fb0" stroke-width="2"/>
+<text x="398" y="335" font-size="22" fill="#1f2933">OpenAI 共同設立</text>
+<rect x="640" y="300" width="250" height="56" rx="8" fill="#eaf1f8" stroke="#2f6fb0" stroke-width="2"/>
+<text x="665" y="335" font-size="22" fill="#1f2933">OAuth 2.1 / Tasks</text>
+<line x1="195" y1="254" x2="430" y2="300" stroke="#c0c7cf" stroke-width="2"/>
+<line x1="480" y1="254" x2="480" y2="300" stroke="#c0c7cf" stroke-width="2"/>
+<line x1="765" y1="254" x2="530" y2="300" stroke="#c0c7cf" stroke-width="2"/>
+</svg>
+</div>
+
+<!--
+標準化はガバナンス面のみ扱う。2025年12月にAnthropicがMCPをAAIF（Anthropic/Block/OpenAI共同設立、Linux Foundation傘下）へ寄贈。OAuth2.1やTasks抽象化も追加。サーバー数は確度低のため触れない。出典: https://toloka.ai/blog/the-future-of-mcp-enterprise-adoption/
+-->
+
+---
+
+<!-- _class: lead -->
+# 第4章：雇用と規制という2つの逆風
+
+- 谷を越える過程で、人と法への配慮を欠くと落ちる
+
+<!--
+第4章は制約条件。技術で越えても雇用と規制の扱いを誤ると失速する。S&P Globalの雇用データとEU AI Actの二重状態を両論併記で扱う。
+-->
+
+---
+
+# 雇用への影響は「レイオフ急増」ではなく「採用鈍化」として表れている
+
+> *S&P Global 1200の83%が前年比で従業員減、しかし解雇件数は異常増ではない*
+
+<div class="fig">
+<svg viewBox="0 0 960 400" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<text x="40" y="46" font-size="26" font-weight="bold" fill="#1f2933">S&P Global 1200 の従業員数 前年同月比（2026年1月）</text>
+<rect x="120" y="110" width="640" height="70" rx="8" fill="#e07b39"/>
+<text x="140" y="155" font-size="26" font-weight="bold" fill="#ffffff">従業員 減少（994社）</text>
+<text x="780" y="155" font-size="28" font-weight="bold" fill="#e07b39">83%</text>
+<rect x="120" y="200" width="100" height="70" rx="8" fill="#3b7a57"/>
+<text x="120" y="300" font-size="26" fill="#1f2933">増加（153社）</text>
+<text x="240" y="245" font-size="28" font-weight="bold" fill="#3b7a57">13%</text>
+<text x="120" y="350" font-size="22" fill="#1f2933">→ 影響はまず自然減・採用鈍化を経由（分析・確度中）</text>
+<text x="120" y="388" font-size="20" fill="#7b8794">出典: S&P Global 2026（一次情報に近い・確度高）</text>
+</svg>
+</div>
+
+<!--
+雇用データはS&P Globalの一次に近い情報で確度高。ただし解雇急増ではなく採用鈍化・自然減として表れているという解釈が重要。世界8,500万人喪失などの数値は確度低のため使わない。出典: https://www.spglobal.com/en/research-insights/special-reports/ai-impact-on-employment-2026
+-->
+
+---
+
+# EU AI Actは「8/2施行」と「Omnibusで延期」が同時進行している
+
+> *法定は2026年8月2日施行、しかし高リスク義務の1年超延期案が同日までに成立見込み*
+
+<div class="fig">
+<svg viewBox="0 0 960 380" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="50" y="70" width="410" height="250" rx="12" fill="#fbeee6" stroke="#e07b39" stroke-width="2"/>
+<text x="75" y="115" font-size="26" font-weight="bold" fill="#e07b39">法定: 施行</text>
+<text x="75" y="165" font-size="24" fill="#1f2933">2026/8/2 高リスク義務</text>
+<text x="75" y="205" font-size="24" fill="#1f2933">提供者要件・透明性義務</text>
+<text x="75" y="245" font-size="24" fill="#1f2933">適合性評価・CEマーク</text>
+<text x="75" y="290" font-size="22" fill="#7b8794">78%が準備未着手（CSA調べ）</text>
+<rect x="500" y="70" width="410" height="250" rx="12" fill="#e9f1ec" stroke="#3b7a57" stroke-width="2"/>
+<text x="525" y="115" font-size="26" font-weight="bold" fill="#3b7a57">Omnibus: 延期案</text>
+<text x="525" y="165" font-size="24" fill="#1f2933">附属書III → 2027/12/2</text>
+<text x="525" y="205" font-size="24" fill="#1f2933">組込AI → 2028/8/2</text>
+<text x="525" y="245" font-size="24" fill="#1f2933">暫定トライローグ合意</text>
+<text x="525" y="290" font-size="22" fill="#7b8794">8/2までの正式成立が見込み</text>
+</svg>
+</div>
+
+<!--
+両論併記が必須。施行日は法定上8/2だが、高リスク義務を1年超延期するOmnibus合意が同日までに成立見込みという二重状態。どちらかに断定しない。出典: https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/ https://www.hklaw.com/en/insights/publications/2026/04/us-companies-face-eu-ai-acts-possible-august-2026-compliance-deadline
+-->
+
+---
+
+# 死の谷を越える3つの実務チェックリストで締める
+
+> *小さくROI検証・ガバナンス・人材 — この3点が本番スケールの分岐点*
+
+<div class="fig">
+<svg viewBox="0 0 960 400" font-family="sans-serif" style="display:block;width:100%;height:100%;max-width:100%;max-height:100%;margin:0 auto;letter-spacing:0;">
+<rect x="40" y="70" width="280" height="270" rx="12" fill="#eaf1f8" stroke="#2f6fb0" stroke-width="2"/>
+<text x="70" y="120" font-size="28" font-weight="bold" fill="#2f6fb0">1. ROI検証</text>
+<text x="70" y="170" font-size="22" fill="#1f2933">小さく始め</text>
+<text x="70" y="205" font-size="22" fill="#1f2933">価値を数値で確認</text>
+<text x="70" y="240" font-size="22" fill="#1f2933">PoC止まりを回避</text>
+<text x="70" y="290" font-size="22" fill="#7b8794">→ ROI実感23%の壁</text>
+<rect x="340" y="70" width="280" height="270" rx="12" fill="#e9f1ec" stroke="#3b7a57" stroke-width="2"/>
+<text x="370" y="120" font-size="28" font-weight="bold" fill="#3b7a57">2. ガバナンス</text>
+<text x="370" y="170" font-size="22" fill="#1f2933">MCP標準を活用</text>
+<text x="370" y="205" font-size="22" fill="#1f2933">リスク管理を組込</text>
+<text x="370" y="240" font-size="22" fill="#1f2933">EU AI Actへ備え</text>
+<text x="370" y="290" font-size="22" fill="#7b8794">→ 中止理由の主因</text>
+<rect x="640" y="70" width="280" height="270" rx="12" fill="#fbeee6" stroke="#e07b39" stroke-width="2"/>
+<text x="670" y="120" font-size="28" font-weight="bold" fill="#e07b39">3. 人材</text>
+<text x="670" y="170" font-size="22" fill="#1f2933">採用鈍化に対応</text>
+<text x="670" y="205" font-size="22" fill="#1f2933">再配置・再教育</text>
+<text x="670" y="240" font-size="22" fill="#1f2933">常用体制を構築</text>
+<text x="670" y="290" font-size="22" fill="#7b8794">→ 開発者71%が常用</text>
+</svg>
+</div>
+
+<!--
+締めの行動喚起。技術導入だけでは谷を越えられない。ROI検証・ガバナンス・人材の3点をチェックリスト化。各項目が本デッキで示した数値（23%の壁、中止理由、採用鈍化）に対応することを口頭で結び直す。
+-->
+
+---
+
+<!-- _class: fit-70 -->
+# 参照資料
+
+> *導入率・ROI・事例の数値の裏付けとなる主要出典*
+
+- [Agentic AI Enterprise Adoption 2026 (Agentic AI Institute)](https://agenticaiinstitute.org/agentic-ai-enterprise-adoption-2026-governance-gap/)
+- [Agentic AI Statistics 2026 (digitalapplied.com)](https://www.digitalapplied.com/blog/agentic-ai-statistics-2026-definitive-collection-150-data-points)
+- [Claude Code Usage Statistics (serpsculpt.com)](https://serpsculpt.com/claude-code-usage-statistics/)
+- [Top Enterprise Coding Agents (northflank.com)](https://northflank.com/blog/top-enterprise-coding-agents)
+- [SpaceX to Buy AI Coding Firm Cursor for $60B (Forbes)](https://www.forbes.com/sites/siladityaray/2026/06/16/spacex-will-buy-ai-coding-firm-cursor-for-60-billion/)
+- [The Future of MCP: Enterprise Adoption (toloka.ai)](https://toloka.ai/blog/the-future-of-mcp-enterprise-adoption/)
+- [AI Impact on Employment 2026 (S&P Global)](https://www.spglobal.com/en/research-insights/special-reports/ai-impact-on-employment-2026)
+
+<!--
+参照資料その1。EU AI Act関連はもう1枚に分けても良いが、主要7件をここに集約。すべてMarkdownリンク形式で折り返しオーバーフローを回避。数値の確度は本文各スライドの注記を参照。
+-->
+
+---
+
+<!-- _class: fit-82 -->
+# 参照資料（規制・モデル動向）
+
+> *規制・モデル動向の裏付けとなる主要出典*
+
+- [EU AI Act Omnibus Agreement (Gibson Dunn)](https://www.gibsondunn.com/eu-ai-act-omnibus-agreement-postponed-high-risk-deadlines-and-other-key-changes/)
+- [US Companies Face EU AI Act August 2026 Deadline (Holland & Knight)](https://www.hklaw.com/en/insights/publications/2026/04/us-companies-face-eu-ai-acts-possible-august-2026-compliance-deadline)
+- [Anthropic News (公式ニュースルーム)](https://www.anthropic.com/news)
+- [Anthropic Launches Claude Sonnet 5 (TechCrunch)](https://techcrunch.com/2026/06/30/anthropic-launches-claude-sonnet-5-as-a-cheaper-way-to-run-agents/)
+- [Google Releases Three New Gemini Models (9to5google)](https://9to5google.com/2026/07/21/gemini-3-6-flash-launch/)
+
+<!--
+参照資料その2。規制とモデル動向の出典を集約。数値は業界まとめ経由のものが多く、一次資料未確認のものは本文で確度中と注記済み。断定を避ける方針で全編を構成した。
+-->

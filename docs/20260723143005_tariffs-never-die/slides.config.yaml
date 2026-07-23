@@ -1,0 +1,14 @@
+topic: "関税は死なず — 最高裁が違憲としても翌日復活した10%関税の構造"
+language: "ja"
+
+slides:
+  count: 20
+
+output:
+  dir: "docs/20260723143005_tariffs-never-die"
+  baseName: "tariffs-never-die"
+
+marp:
+  theme: uncover
+  paginate: true
+  footer: "2026-07-23 | Trend Research"

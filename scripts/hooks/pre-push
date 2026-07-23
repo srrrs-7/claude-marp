@@ -1,24 +1,83 @@
 #!/bin/bash
 
-# Pre-push hook: run /insights analysis and append to INSIGHTS.md
+# Pre-push hook: run /insights analysis and append a *summary* to INSIGHTS.md
+#
+# Design notes (each guard exists because its absence caused real damage — see
+# INSIGHTS.md history before 2026-07-23):
+#   - `claude -p "/insights"` prints only a link to an HTML report; appending
+#     that raw output produced 55 zero-content entries. We therefore run a
+#     second, cheap pass that extracts actual insights from the report.
+#   - No throttle once produced 13 identical entries in 40 minutes.
+#   - The background subshell can outlive the terminal and lose PATH
+#     (`env: node: No such file or directory`), so binaries are resolved to
+#     absolute paths up front.
 
+REPO_ROOT="$(git rev-parse --show-toplevel)"
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
-INSIGHTS_FILE="$(git rev-parse --show-toplevel)/INSIGHTS.md"
+INSIGHTS_FILE="${REPO_ROOT}/INSIGHTS.md"
+THROTTLE_FILE="${REPO_ROOT}/.git/insights-last-run"
+THROTTLE_SECONDS=$((6 * 3600))
 
-# Check if claude is available
-if ! command -v claude &> /dev/null; then
+CLAUDE_BIN="$(command -v claude)"
+if [ -z "$CLAUDE_BIN" ]; then
   echo "⚠️  claude not found, skipping insights analysis"
   exit 0
 fi
+# Keep the runtime that claude itself needs reachable after the terminal closes
+NODE_DIR="$(dirname "$(command -v node 2>/dev/null || echo /usr/local/bin/node)")"
+export PATH="$NODE_DIR:$PATH"
+
+# Throttle: one analysis per THROTTLE_SECONDS, so push bursts append once
+NOW=$(date +%s)
+if [ -f "$THROTTLE_FILE" ]; then
+  LAST=$(cat "$THROTTLE_FILE" 2>/dev/null || echo 0)
+  if [ $((NOW - LAST)) -lt $THROTTLE_SECONDS ]; then
+    echo "📊 Insights ran $(( (NOW - LAST) / 60 )) min ago — skipping (throttle: $((THROTTLE_SECONDS / 3600))h)"
+    exit 0
+  fi
+fi
+echo "$NOW" > "$THROTTLE_FILE"
 
 echo "📊 Running /insights analysis (branch: $BRANCH)..."
 
-# Run insights in background (CLAUDECODE= to avoid nested session error)
-# nohup prevents the process from being killed when the terminal closes
+# Background so the push is never blocked (CLAUDECODE= avoids nested-session error)
 (
-  OUTPUT=$(CLAUDECODE= claude -p "/insights" 2>&1)
+  OUTPUT=$(CLAUDECODE= "$CLAUDE_BIN" -p "/insights" 2>&1)
   EXIT_CODE=$?
+
+  if [ $EXIT_CODE -ne 0 ]; then
+    {
+      echo ""
+      echo "---"
+      echo ""
+      echo "## ${TIMESTAMP} — branch: \`${BRANCH}\`"
+      echo ""
+      echo "_insights analysis failed (exit: ${EXIT_CODE})_"
+      echo ""
+      echo '```'
+      echo "$OUTPUT" | head -5
+      echo '```'
+      echo ""
+    } >> "$INSIGHTS_FILE"
+    exit 0
+  fi
+
+  # The useful content lives in the HTML report, not in stdout
+  REPORT_PATH=$(echo "$OUTPUT" | grep -o 'file:///[^[:space:]]*\.html' | head -1 | sed 's|^file://||')
+
+  SUMMARY=""
+  if [ -n "$REPORT_PATH" ] && [ -f "$REPORT_PATH" ]; then
+    SUMMARY=$(CLAUDECODE= "$CLAUDE_BIN" -p --model haiku \
+      "Read the insights report at ${REPORT_PATH} and output the 3-5 most actionable findings as concise markdown bullets ('- ' prefix). Output ONLY the bullets — no preamble, no headings." 2>/dev/null \
+      | grep '^- ' )
+  fi
+
+  if [ -z "$SUMMARY" ]; then
+    # Nothing substantive to record — a bare report link is noise, not insight
+    echo "⚠️  insights: no summary extracted, skipping INSIGHTS.md append (report: ${REPORT_PATH:-none})" >&2
+    exit 0
+  fi
 
   {
     echo ""
@@ -26,15 +85,9 @@ echo "📊 Running /insights analysis (branch: $BRANCH)..."
     echo ""
     echo "## ${TIMESTAMP} — branch: \`${BRANCH}\`"
     echo ""
-    if [ $EXIT_CODE -eq 0 ]; then
-      echo "$OUTPUT"
-    else
-      echo "_insights analysis failed (exit: ${EXIT_CODE})_"
-      echo ""
-      echo "\`\`\`"
-      echo "$OUTPUT"
-      echo "\`\`\`"
-    fi
+    echo "$SUMMARY"
+    echo ""
+    echo "Full report: \`${REPORT_PATH}\`"
     echo ""
   } >> "$INSIGHTS_FILE"
 ) &

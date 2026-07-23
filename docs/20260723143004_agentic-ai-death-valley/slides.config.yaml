@@ -1,0 +1,14 @@
+topic: "導入8割、本番2割 — agentic AIの「死の谷」を越える企業、落ちる企業"
+language: "ja"
+
+slides:
+  count: 20
+
+output:
+  dir: "docs/20260723143004_agentic-ai-death-valley"
+  baseName: "agentic-ai-death-valley"
+
+marp:
+  theme: gaia
+  paginate: true
+  footer: "2026-07-23 | Trend Research"

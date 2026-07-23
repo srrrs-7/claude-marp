@@ -1,0 +1,14 @@
+topic: "利下げのはずが利上げ — FOMCの前提が半年で180度反転した理由"
+language: "ja"
+
+slides:
+  count: 20
+
+output:
+  dir: "docs/20260723143002_fomc-pivot-2026"
+  baseName: "fomc-pivot-2026"
+
+marp:
+  theme: default
+  paginate: true
+  footer: "2026-07-23 | Trend Research"

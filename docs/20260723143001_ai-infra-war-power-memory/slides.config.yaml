@@ -1,0 +1,15 @@
+topic: "AIの敵はGPUではない — 電力とメモリが律速する2026年のインフラ戦争"
+language: "ja"
+
+slides:
+  count: 20
+
+output:
+  dir: "docs/20260723143001_ai-infra-war-power-memory"
+  baseName: "ai-infra-war"
+
+marp:
+  theme: gaia
+  class: invert
+  paginate: true
+  footer: "2026-07-23 | Trend Research"
