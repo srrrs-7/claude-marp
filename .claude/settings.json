@@ -14,14 +14,14 @@
 					},
 					{
 						"type": "command",
-						"command": "bun run format",
-						"statusMessage": "Formatting code...",
+						"command": "make -C \"${CLAUDE_PROJECT_DIR:-.}\" format",
+						"statusMessage": "Formatting code (in container)...",
 						"async": true
 					},
 					{
 						"type": "command",
-						"command": "bun run typecheck",
-						"statusMessage": "Type checking...",
+						"command": "make -C \"${CLAUDE_PROJECT_DIR:-.}\" typecheck",
+						"statusMessage": "Type checking (in container)...",
 						"async": true
 					}
 				]

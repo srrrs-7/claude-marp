@@ -258,7 +258,36 @@ size: 16:9
 
 ---
 
+## Development Environment — Host Claude × devcontainer Runtime（必須方針）
+
+**Claude Code は host 側で起動する。bun runtime を使う作業（format / typecheck / test / render / export / validate / stats 等）はすべて devcontainer コンテナ内で実行する。** コンテナ実行の入口は `make <target>`（実体は `docker-compose run --rm dev …`）。
+
+- **compose 定義は `.devcontainer/compose.yaml` をそのまま使う。** ルートに別の docker-compose.yml は作らない。compose プロジェクト名も VS Code Dev Containers と同じ `<folder>_devcontainer`（= `marp_devcontainer`）を使い、イメージ・ネットワーク・起動中コンテナを共有する（二重ビルドしない）。
+- **host で `bun install` / `bun run` を直接実行しない。** `node_modules` はコンテナ用の Linux バイナリで構成されている（biome / tsgo のネイティブバイナリは darwin と非互換で、host 実行は必ず失敗する）。依存の再インストールは `make install`（コンテナ内 `bun ci`）。
+- `make` は実行環境を自動判別する（Makefile 冒頭の EXEC 選択ロジック）:
+  1. devcontainer コンテナ内で make した場合 → bun を直接実行（docker 不要 — `setup.sh` の `make setup-hooks` もこの経路）
+  2. host + devcontainer 起動中（VS Code attach 中 or `make up` 済み）→ `docker-compose exec -T dev …`（コールドスタートなしで高速）
+  3. host + コンテナ停止中 → `docker-compose run --rm -T dev …`（ワンオフ）
+- **hooks も同じルーティング。** `.claude/settings.json` の format/typecheck は `make` 経由、`.claude/hooks/post-write.sh` は host 実行時に `bun` 関数シムで自動的にコンテナへ委譲する。hook スクリプト内でコンテナに渡すパスは repo 相対パスにする（host の絶対パス `/Users/…` はコンテナに存在しない）。
+- 連続でコマンドを打つ場合は先に `make up` しておくと exec 経路になり速い。`make down` は VS Code が attach している devcontainer も止めるので注意。
+- Docker デーモンは colima。接続エラーが出たら `colima start`。
+- Makefile にない任意コマンド: `make bun ARGS="run stats -- --worst"` / `make run CMD="ls docs"`。コンテナ内 bash は `make shell`。
+
+| host での実行 | 中身（コンテナ内） |
+|---|---|
+| `make install` | `bun ci`（初回 / bun.lock 更新時） |
+| `make format` / `make check` / `make typecheck` / `make test` / `make spellcheck` | Biome format / Biome check / tsgo / bun test / cspell |
+| `make validate` / `make quality` / `make lint` | schema 検証 / 品質チェック / 両方 |
+| `make fix` / `make fix-all` | 自動修正（単発 / 全チェーン） |
+| `make rebuild` / `make rebuild-render` / `make rebuild-export` | 全デッキ再構築（export は常に逐次） |
+| `make single DECK=<partial-name>` | 1デッキだけ render+export |
+| `make stats` / `make doctor` / `make index` | 品質統計 / ヘルスチェック / index.html 再生成 |
+
+---
+
 ## Commands
+
+> **Host からは下記の `bun run …` を直接叩かず、上の「Development Environment」の `make <target>` 経由で実行する。** コンテナ内シェル（`make shell` / VS Code devcontainer）では従来どおり直接実行してよい。
 
 ```bash
 bun run slides init                     # Create slides.config.yaml template
@@ -612,6 +641,10 @@ tmux-based parallel execution: Claude Code (impl) + Codex (review) workers in sp
 | Subagent の返り値が巨大で応答が切れる | 成果物本体を返り値に入れた | 本体は Write でファイルへ。返り値はパス+枚数+品質メタのみ |
 | 並列にしたのに速くならない | subagent を1つずつ起動して待っている | 全 subagent を **1メッセージ内で同時に** `Agent` 呼び出しする |
 | 触ってないデッキの `slides-data.json` が勝手に diff に出る | 一部デッキがスペースインデントでコミット済み。どこを Write/Edit しても PostToolUse の `bun run format` が repo 全体を tab に直す | 意図しない差分は `git checkout -- docs` で戻す。恒久対応は一度 `bun run format` の結果をコミットする |
+| host で `bun run …` が biome/tsgo バイナリ不在で落ちる | `node_modules` はコンテナ用 Linux バイナリ（darwin 非互換） | host では常に `make <target>` 経由（「Development Environment」参照）。host bun で `bun install` し直さない |
+| `make …` が `Cannot connect to the Docker daemon` | colima が起動していない | `colima start` → リトライ |
+| `make …` のたびにコンテナのコールドスタートで遅い | 毎回 `run --rm` になっている | 先に `make up`（以降は自動で `exec` 経路）。作業終了後は `make down` |
+| コンテナ内の `make …` が docker を探しに行って落ちる | 本来は `/.dockerenv` 検出で直接実行に切り替わる — 落ちるなら EXEC 判定ロジックの退行 | Makefile 冒頭の `ifneq ($(wildcard /.dockerenv),)` ブロックを確認 |
 
 ---
 

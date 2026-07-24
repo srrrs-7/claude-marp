@@ -16,6 +16,20 @@
 set -uo pipefail
 cd "${CLAUDE_PROJECT_DIR:-.}" || exit 0
 
+# Host-side Claude policy (CLAUDE.md "Development Environment"): bun only runs
+# inside the devcontainer. When this hook fires on the host, shadow `bun` with
+# a docker-compose dispatch into the devcontainer — exec if it is already
+# running, one-off `run --rm` otherwise. Inside the container (/.dockerenv
+# exists) the real bun is used directly. Same routing as the Makefile.
+if [ ! -f /.dockerenv ]; then
+	_dc="docker-compose -p $(basename "$PWD" | tr '[:upper:]' '[:lower:]')_devcontainer -f .devcontainer/compose.yaml"
+	if [ -n "$($_dc ps -q dev 2>/dev/null)" ]; then
+		bun() { $_dc exec -T dev bun "$@"; }
+	else
+		bun() { $_dc run --rm -T dev bun "$@"; }
+	fi
+fi
+
 INPUT=$(cat 2>/dev/null || true)
 FILE=$(printf '%s' "$INPUT" | jq -r '.tool_input.file_path // empty' 2>/dev/null || true)
 [ -n "$FILE" ] || exit 0
@@ -53,7 +67,9 @@ esac
 # repo on every SVG write and still fail.
 case "$REL" in
 *.svg)
-	bun "${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/check-svg-url-refs.ts" || fail=1
+	# Relative path on purpose: when routed into the container the host's
+	# absolute $CLAUDE_PROJECT_DIR does not exist; cwd is already repo root.
+	bun .claude/hooks/check-svg-url-refs.ts || fail=1
 	;;
 esac
 
