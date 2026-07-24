@@ -2,7 +2,7 @@
  * Incremental build cache.
  *
  * Stores {mtime, size} per file path to detect changes without hashing.
- * Cache file: .cache/build-cache.json (add to .gitignore if not present)
+ * Cache file: .cache/rebuild/build-cache.json (add to .gitignore if not present)
  */
 
 import { existsSync, mkdirSync } from "node:fs";

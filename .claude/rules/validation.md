@@ -7,6 +7,36 @@ paths:
 
 # Validation Rules
 
+## slides.config.yaml Format（正しい完成形）
+
+```yaml
+topic: "Presentation Title"
+language: "ja"
+
+slides:
+  count: 30        # max 200
+
+output:
+  dir: "docs/20260219120000_my-topic"   # full path from project root, required
+  baseName: "my-topic"
+
+marp:
+  theme: gaia           # gaia | default | uncover
+  paginate: true
+  class: invert         # "invert" = dark mode (gaia only); omit for light mode
+  header: "My Header"
+  footer: "© 2026"
+  style: |
+    section pre code {
+      font-size: 0.58em;
+      line-height: 1.4;
+    }
+```
+
+- `marp.class` is part of the config schema — the render pipeline auto-emits it in the front matter (`marp: true` / `theme` / `class` / `size: 16:9`)
+- Top-level `theme:` / `header:` / `footer:` / `style:` / `class:` は Zod に**黙って捨てられる** — 必ず `marp:` の下にネストする
+- プロジェクトルートに `slides.defaults.yaml` があると各デッキ config の**下に** deep-merge される（デッキ側が勝つ・配列は置換）— 意図しない設定はここ由来の可能性あり
+
 ## 🔴 Critical: Always Execute Before Generation
 
 ### Schema Validation

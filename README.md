@@ -136,7 +136,7 @@ content:
   speakerNotes: true               # スピーカーノート有効
 
 output:
-  dir: "./docs"                    # マークダウン出力先
+  dir: "docs/20260219120000_my-topic"  # 必ずプロジェクトルートからのフルパス（相対パス "." "./docs" は禁止）
   baseName: ""                     # 空 = topicからslug自動生成
 ```
 

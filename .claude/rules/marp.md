@@ -39,3 +39,11 @@ section pre code { font-size: 0.58em; line-height: 1.4; overflow-wrap: break-wor
   - コード11-12行 → 箇条書き最大1項目
 
 詳細は `.claude/rules/slide-design.md` の「8. コンテンツ量の制約」を参照
+
+## Auto-fit — how text is kept inside the slide
+
+A diagram can shrink; text cannot. `src/generate/fit.ts` estimates each slide's rendered height and, when the text alone would be clipped, attaches a `fit-NN` class (`fit-94` … `fit-58`) that scales the section font to a fraction of `--marpit-root-font-size`. The ladder is defined in `BASE_CSS`; the estimate is calibrated against headless-Chromium measurements of the rendered decks.
+
+- Using `--marpit-root-font-size` means the fraction is correct for any theme **and** for decks that override the base size in `marp.style`
+- `bun run validate:quality` warns (`overflowing_slide`) when a slide still would not fit at the smallest step — that is a content problem: **split the slide**, don't shrink further
+- ⚠️ `section { font-size: 1.05em }` in a `marp.style` does **not** mean "5% larger". `em` resolves against the inherited 16px, not Gaia's 35px, so it renders at 16.8px — less than half the intended size. Use `px` if you must override.
