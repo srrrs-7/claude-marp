@@ -1,0 +1,15 @@
+topic: "Kimi K3 — Moonshot AIの最新フロンティアモデルを技術者視点で徹底解説"
+language: "ja"
+
+slides:
+  count: 30
+
+output:
+  dir: "docs/20260725012433_kimi-k3"
+  baseName: "kimi-k3"
+
+marp:
+  theme: gaia
+  paginate: true
+  header: "Kimi K3 Deep Dive"
+  footer: "© 2026 — AI Engineer Briefing"
